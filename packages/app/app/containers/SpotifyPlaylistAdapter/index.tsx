@@ -33,14 +33,15 @@ export const SpotifyPlaylistAdapter: React.FC = () => {
       });
   }, []);
 
-  return !isLoading && isReady && !error
-    ? <PlaylistViewContainer playlist={
-      {
+  return !isLoading && isReady && !error ? 
+    <PlaylistViewContainer 
+      playlist={{
         id: playlist.id,
         name: playlist.name,
         tracks: playlist.tracks.map(mapSpotifyTrack)
-      }
-    }
+      }}
+      isExternal
+      externalSourceName='Spotify'
     /> 
     : <Dimmer active><Loader /></Dimmer>;
 };

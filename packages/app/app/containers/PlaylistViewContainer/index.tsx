@@ -11,10 +11,14 @@ import { Playlist } from '@nuclear/core';
 
 type PlaylistViewContainerProps = {
   playlist?: Playlist;
+  isExternal?: boolean;
+  externalSourceName?: string;
 }
 
 const PlaylistViewContainer: React.FC<PlaylistViewContainerProps> = ({
-  playlist
+  playlist,
+  isExternal,
+  externalSourceName
 }) => {
   const match = useRouteMatch<{playlistId: string}>();
   const { playlists } = usePlaylistsProps();
@@ -22,13 +26,14 @@ const PlaylistViewContainer: React.FC<PlaylistViewContainerProps> = ({
 
   const updatePlaylist = useDispatchedCallback(PlaylistActions.updatePlaylist);
   const deletePlaylist = useDispatchedCallback(PlaylistActions.deletePlaylist);
+  const addPlaylist = useDispatchedCallback(PlaylistActions.addPlaylist);
   const exportPlaylist = useDispatchedCallback(PlaylistActions.exportPlaylist);
   const startPlayback = useDispatchedCallback(PlayerActions.startPlayback);
   const clearQueue = useDispatchedCallback(QueueActions.clearQueue);
   const selectSong = useDispatchedCallback(QueueActions.selectSong);
   const addTracks = useDispatchedCallback(QueueActions.addPlaylistTracksToQueue);
 
-  const onReorderTracks = !playlist && useCallback(
+  const onReorderTracks = useCallback(
     onReorder(
       currentPlaylist,
       updatePlaylist
@@ -43,11 +48,13 @@ const PlaylistViewContainer: React.FC<PlaylistViewContainerProps> = ({
       selectSong={selectSong}
       startPlayback={startPlayback}
       clearQueue={clearQueue}
+      addPlaylist={addPlaylist}
       deletePlaylist={deletePlaylist}
       updatePlaylist={updatePlaylist}
       exportPlaylist={exportPlaylist}
       onReorderTracks={onReorderTracks}
-      isEditable={!playlist}
+      isExternal={isExternal}
+      externalSourceName={externalSourceName}
     />
   );
 };

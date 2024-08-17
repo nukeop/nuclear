@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 import { Icon } from 'semantic-ui-react';
 
 import { Playlist } from '@nuclear/core';
-import { Button, ContextPopup, PopupButton, InputDialog, timestampToTimeString } from '@nuclear/ui';
+import { Button, ContextPopup, PopupButton, InputDialog, timestampToTimeString, Tooltip } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -16,6 +16,7 @@ import TrackTableContainer from '../../containers/TrackTableContainer';
 export type PlaylistViewProps = {
   playlist: Playlist;
   updatePlaylist: (playlist: Playlist) => void;
+  addPlaylist: (tracks: Track[], name: string) => void;
   deletePlaylist: (id: string) => void;
   exportPlaylist: (playlist: Playlist, t: TFunction) => void;
   clearQueue: () => void;
@@ -23,12 +24,14 @@ export type PlaylistViewProps = {
   selectSong: (i: number) => void;
   addTracks: (tracks: Playlist['tracks']) => void;
   onReorderTracks: (isource: number, idest: number) => void;
-  isEditable?: boolean;
+  isExternal?: boolean;
+  externalSourceName?: string;
 }
 
 const PlaylistView: React.FC<PlaylistViewProps> = ({
   playlist,
   updatePlaylist,
+  addPlaylist,
   deletePlaylist,
   exportPlaylist,
   clearQueue,
@@ -36,7 +39,8 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   onReorderTracks,
   selectSong,
   startPlayback,
-  isEditable = true
+  isExternal = false,
+  externalSourceName
 }) => {
   const { t, i18n } = useTranslation('playlists');
   const history = useHistory();
@@ -59,7 +63,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     startPlayback(false);
   }, [addTracks, clearQueue, playlist, selectSong, startPlayback]);
 
-  const onDeleteTrack = isEditable
+  const onDeleteTrack = !isExternal
     ? useCallback((trackToRemove: Track, trackIndex: number) => {
       const newPlaylist = {
         ...playlist,
@@ -80,6 +84,11 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     }
   }, [playlist, history, deletePlaylist]);
 
+  const onSaveExternalPlaylist = useCallback(() => {
+    addPlaylist(playlist.tracks, playlist.name);
+    history.push('/playlists');
+  }, [playlist]);
+
   const onExportPlaylist = useCallback(() => {
     exportPlaylist(playlist, t);
   }, [exportPlaylist, playlist, t]);
@@ -98,33 +107,50 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
             />
           </div>
           <div className={styles.playlist_header}>
-            <label className={styles.playlist_header_label}>{t('playlist')}</label>
-            <div className={styles.playlist_name}>
-              {playlist.name}
-              <InputDialog
-                header={t('create-playlist-dialog-title')}
-                placeholder={t('dialog-placeholder')}
-                acceptLabel={t('dialog-rename')}
-                cancelLabel={t('dialog-cancel')}
-                initialString={playlist.name}
-                onAccept={onRenamePlaylist}
-                trigger={
-                  isEditable &&
-                  <Button
-                    basic
-                    aria-label={t('rename')}
-                    icon='pencil'
-                    data-testid='rename-button'
-                  />
-                }
-              />
-            </div>
-            <div className={styles.playlist_details}>
-              <span>
-                {`${playlist.tracks.length} ${t('number-of-tracks')}`}
-              </span>
-              {
-                playlist.lastModified &&
+            {
+              isExternal &&
+              <div className={styles.playlist_header_external_source}>
+                <Tooltip
+                  on='hover'
+                  content={t('external-source-tooltip', { source: externalSourceName })}
+                  trigger={
+                    <div className={styles.playlist_header_external_source_inner}>
+                      <Icon name='external square' />
+                      {externalSourceName}
+                    </div>
+                  }
+                  position='bottom center'
+                />
+              </div>
+            }
+            <div className={styles.playlist_header_inner}>
+              <label className={styles.playlist_header_label}>{t('playlist')}</label>
+              <div className={styles.playlist_name}>
+                {playlist.name}
+                <InputDialog
+                  header={t('create-playlist-dialog-title')}
+                  placeholder={t('dialog-placeholder')}
+                  acceptLabel={t('dialog-rename')}
+                  cancelLabel={t('dialog-cancel')}
+                  initialString={playlist.name}
+                  onAccept={onRenamePlaylist}
+                  trigger={
+                    !isExternal &&
+                    <Button
+                      basic
+                      aria-label={t('rename')}
+                      icon='pencil'
+                      data-testid='rename-button'
+                    />
+                  }
+                />
+              </div>
+              <div className={styles.playlist_details}>
+                <span>
+                  {`${playlist.tracks.length} ${t('number-of-tracks')}`}
+                </span>
+                {
+                  playlist.lastModified &&
                   <>
                     <span>
                       ·
@@ -134,64 +160,74 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                       {`${t('modified-at')}${timestampToTimeString(playlist.lastModified, i18n.language)}`}
                     </span>
                   </>
-              }
-            </div>
-            <div className={styles.playlist_buttons}>
-              <Button
-                onClick={onPlayAll}
-                color='pink'
-                circular
-                className={styles.play_button}
-              >
-                <Icon name='play' /> {t('play')}
-              </Button>
+                }
+              </div>
+              <div className={styles.playlist_buttons}>
+                <Button
+                  onClick={onPlayAll}
+                  color='pink'
+                  circular
+                  className={styles.play_button}
+                >
+                  <Icon name='play' /> {t('play')}
+                </Button>
 
-              <ContextPopup
-                trigger={
-                  <Button
-                    basic
-                    circular
-                    data-testid='more-button'
-                    className={styles.more_button}
-                  >
-                    <Icon name='ellipsis horizontal' />
-                  </Button>
-                }
-                artist={null}
-                title={playlist.name}
-                thumb={playlist?.tracks?.[0]?.thumbnail ?? artPlaceholder as unknown as string}
-              >
-                <PopupButton
-                  onClick={onAddAll}
-                  ariaLabel={t('queue')}
-                  icon='plus'
-                  label={t('queue')}
-                />
-                {
-                  isEditable &&
+                <ContextPopup
+                  trigger={
+                    <Button
+                      basic
+                      circular
+                      data-testid='more-button'
+                      className={styles.more_button}
+                    >
+                      <Icon name='ellipsis horizontal' />
+                    </Button>
+                  }
+                  artist={null}
+                  title={playlist.name}
+                  thumb={playlist?.tracks?.[0]?.thumbnail ?? artPlaceholder as unknown as string}
+                >
                   <PopupButton
-                    onClick={onDeletePlaylist}
-                    ariaLabel={t('delete')}
-                    icon='trash'
-                    label={t('delete')}
+                    onClick={onAddAll}
+                    ariaLabel={t('queue')}
+                    icon='plus'
+                    label={t('queue')}
                   />
-                }
-                <PopupButton
-                  onClick={onExportPlaylist}
-                  ariaLabel={t('export-button')}
-                  icon='download'
-                  label={t('export-button')}
-                />
-              </ContextPopup>
+                  {
+                    !isExternal &&
+                    <PopupButton
+                      onClick={onDeletePlaylist}
+                      ariaLabel={t('delete')}
+                      icon='trash'
+                      label={t('delete')}
+                    />
+                  }
+                  {
+                    isExternal &&
+                    <PopupButton
+                      onClick={onSaveExternalPlaylist}
+                      ariaLabel={t('save-external-playlist')}
+                      icon='save'
+                      label={t('save-external-playlist')}
+                    />
+                  }
+                  <PopupButton
+                    onClick={onExportPlaylist}
+                    ariaLabel={t('export-button')}
+                    icon='download'
+                    label={t('export-button')}
+                  />
+                </ContextPopup>
+              </div>
             </div>
           </div>
         </div>
         <TrackTableContainer
           tracks={playlist.tracks as Track[]}
           onDelete={onDeleteTrack}
-          onReorder={onReorderTracks}
+          onReorder={!isExternal && onReorderTracks}
           displayAlbum={false}
-          displayDeleteButton={isEditable}
+          displayDeleteButton={!isExternal}
         />
       </div>
     </div>
