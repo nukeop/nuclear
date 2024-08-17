@@ -202,7 +202,9 @@
     "input-playlist-url": "Playlist-URL einfügen:",
     "create-playlist-dialog-title": "Gib einen Namen für die Playlist ein:",
     "playlist": "Playlist",
-    "play": "Abspielen"
+    "play": "Abspielen",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save playlist locally"
   },
   "plugins": {
     "add-a-plugin": "Plugin hinzufügen",
