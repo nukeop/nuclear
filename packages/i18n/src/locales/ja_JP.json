@@ -202,7 +202,9 @@
     "input-playlist-url": "再生リストのURLを貼り付け:",
     "create-playlist-dialog-title": "再生リスト名を入力:",
     "playlist": "再生リスト",
-    "play": "再生"
+    "play": "再生",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save playlist locally"
   },
   "plugins": {
     "add-a-plugin": "プラグインを追加",
