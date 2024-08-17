@@ -1,4 +1,4 @@
-@import '../../vars';
+@import "../../vars";
 
 .playlist_view_container {
   width: 100%;
@@ -17,7 +17,7 @@
     margin-bottom: 1em;
 
     img {
-      width:  15rem;
+      width: 15rem;
       border-radius: 0.5rem;
       box-shadow: 0rem 0rem 1rem 0.5rem rgba($black, 0.4);
     }
@@ -25,10 +25,31 @@
 
   .playlist_header {
     display: flex;
+    flex-flow: column;
+    justify-content: space-between;
     width: 100%;
+    margin: 0 2rem;
+  }
+
+  .playlist_header_external_source {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .playlist_header_external_source_inner {
+    border-radius: 2em;
+    text-transform: uppercase;
+    padding: 0.5em 1em;
+    color: $white;
+    background: $purple;
+  }
+
+  .playlist_header_inner {
+    display: flex;
     flex-flow: column;
     justify-content: flex-end;
-    margin: 0 2rem;
   }
 
   .playlist_header_label {
@@ -37,7 +58,7 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
-  
+
   .playlist_name {
     display: flex;
     align-items: center;
@@ -79,7 +100,7 @@
     display: flex;
     flex-flow: row;
     padding-bottom: 1rem;
-    
+
     .play_button {
       text-transform: uppercase;
       margin-right: 1em;
@@ -105,11 +126,11 @@
   .playlist_tracks {
     margin: 1rem;
   }
-  
+
   .playlist_track {
     display: flex;
     flex-flow: row;
-    
+
     border-bottom: 1px solid rgba($lightbg, 0.4);
 
     &:first-child {

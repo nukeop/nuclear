@@ -36,6 +36,8 @@ const DeezerPlaylistAdapter: React.FC = () => {
         name: playlist.title,
         tracks: tracks.data.tracklist
       }}
+      isExternal
+      externalSourceName='Deezer'
     />
     : <Dimmer active><Loader /></Dimmer>;
 };
