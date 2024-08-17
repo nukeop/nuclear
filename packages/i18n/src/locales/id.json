@@ -202,7 +202,9 @@
     "input-playlist-url": "Tempelkan URL daftar putar:",
     "create-playlist-dialog-title": "Masukkan nama playlist:",
     "playlist": "Daftar Putar",
-    "play": "Putar"
+    "play": "Putar",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save playlist locally"
   },
   "plugins": {
     "add-a-plugin": "Tambahkan plugin",
