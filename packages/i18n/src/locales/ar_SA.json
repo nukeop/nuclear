@@ -202,7 +202,9 @@
     "input-playlist-url": "لصق رابط لقائمة الأغاني:",
     "create-playlist-dialog-title": "أدخل اسم قائمة الأغاني:",
     "playlist": "قائمة الأغاني",
-    "play": "تشغيل"
+    "play": "تشغيل",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save playlist locally"
   },
   "plugins": {
     "add-a-plugin": "إضافة المكون الإضافي",
