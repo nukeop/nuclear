@@ -8,7 +8,8 @@ import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider, uuidRegex } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import PlayerBarContainer from '../PlayerBarContainer';
-import { PlaybackStatus } from '@nuclear/core';
+import { Track } from '@nuclear/core';
+import userEvent from '@testing-library/user-event';
 
 const updateStore = (key: string, value: object) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -28,11 +29,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should display favorite tracks', () => {
-    const favorites = buildStoreState()
-      .withFavorites()
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites();
     const { component } = mountComponent();
     expect(component.asFragment()).toMatchSnapshot();
   });
@@ -43,10 +40,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should play a random track when the random button is clicked', async () => {
-    const favorites = buildStoreState()
-      .withFavorites()
-      .build().favorites;
-    updateStore('favorites', favorites);
+    const favorites = withFavorites();
     const { component, store } = mountComponent();
 
     await waitFor(() => component.getByTestId('favorite-tracks-header-play-random').click());
@@ -59,11 +53,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should show a popup when a track is clicked', async () => {
-    const favorites = buildStoreState()
-      .withFavorites()
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites();
     const { component } = mountComponent();
 
     await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
@@ -71,11 +61,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should not display the favorite button for tracks', async () => {
-    const favorites = buildStoreState()
-      .withFavorites()
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites();
     const { component } = mountComponent();
     await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
 
@@ -83,11 +69,8 @@ describe('Favorite tracks view container', () => {
   });
   
   it('should not display the add to favorites all button for selected tracks', async () => {
-    const favorites = buildStoreState()
-      .withFavorites()
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites();
+    
     const { component } = mountComponent();
     await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
     await waitFor(() => component.getByTitle('Toggle All Rows Selected').click());
@@ -98,22 +81,18 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should be able to sort favorite tracks by title, ascending', async () => {
-    const favorites = buildStoreState()
-      .withFavorites({
-        tracks: [
-          { name: 'DEF', artist: 'A' },
-          { name: 'ABC', artist: 'A' },
-          { name: 'GHI', artist: 'A' },
-          { name: 'abc', artist: 'A' }
-        ]
-      })
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites(
+      [
+        { name: 'DEF', artist: 'A' },
+        { name: 'ABC', artist: 'A' },
+        { name: 'GHI', artist: 'A' },
+        { name: 'abc', artist: 'A' }
+      ]
+    );
     const { component } = mountComponent();
 
-    await waitFor(() => component.getByText('Title').click());
-    const tracks = component.getAllByTestId('title-cell');
+    (await component.findByText('Title')).click();
+    const tracks = await component.findAllByTestId('title-cell');
 
     expect(tracks[0].textContent).toEqual('ABC');
     expect(tracks[1].textContent).toEqual('DEF');
@@ -122,19 +101,13 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should be able to sort favorite tracks by title, descending', async () => {
-    const favorites = buildStoreState()
-      .withFavorites({
-        tracks: [
-          { name: 'DEF', artist: 'A' },
-          { name: 'ABC', artist: 'A' },
-          { name: 'GHI', artist: 'A' },
-          { name: 'abc', artist: 'A' }
-        ]
-      })
-      .build()
-      .favorites;
+    withFavorites([
+      { name: 'DEF', artist: 'A' },
+      { name: 'ABC', artist: 'A' },
+      { name: 'GHI', artist: 'A' },
+      { name: 'abc', artist: 'A' }
+    ]);
 
-    updateStore('favorites', favorites);
     const { component } = mountComponent();
 
     await waitFor(() => component.getByText('Title').click());
@@ -149,18 +122,12 @@ describe('Favorite tracks view container', () => {
 
 
   it('should be able to sort favorite tracks by artist', async () => {
-    const favorites = buildStoreState()
-      .withFavorites({
-        tracks: [
-          { name: 'A', artist: 'DEF' },
-          { name: 'B', artist: 'ABC' },
-          { name: 'C', artist: 'GHI' },
-          { name: 'D', artist: 'abc' }
-        ]
-      })
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites([
+      { name: 'A', artist: 'DEF' },
+      { name: 'B', artist: 'ABC' },
+      { name: 'C', artist: 'GHI' },
+      { name: 'D', artist: 'abc' }
+    ]);
     const { component } = mountComponent();
 
     await waitFor(() => component.getByText('Artist').click());
@@ -173,12 +140,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should be able to sort favorite tracks by position', async () => {
-    const favorites = buildStoreState()
-      .withFavorites()
-      .build()
-      .favorites;
-
-    updateStore('favorites', favorites);
+    withFavorites();
     const { component } = mountComponent();
     let tracks = component.getAllByTestId('title-cell');
     
@@ -193,11 +155,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should call provider.search when playing a track with no streams', async () => {
-    const favorites = buildStoreState()
-      .withFavorites()
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites();
 
     const { component, store } = mountComponent();
     const state = store.getState();
@@ -212,11 +170,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should call provider.search when playing a track from favorites', async () => {
-    const favorites = buildStoreState()
-      .withFavorites()
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites();
 
     const { component, store } = mountComponent();
     const state = store.getState();
@@ -233,18 +187,12 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should play a favorited local library track from a local stream', async () => {
-    const favorites = buildStoreState()
-      .withFavorites({
-        tracks: [{
-          uuid: 'local-track-1',
-          artist: 'test artist 1',
-          name: 'test track 1',
-          local: true
-        }]
-      })
-      .build()
-      .favorites;
-    updateStore('favorites', favorites);
+    withFavorites([{
+      uuid: 'local-track-1',
+      artist: 'test artist 1',
+      name: 'test track 1',
+      local: true
+    }]);
 
     const { component, store } = mountComponent();
     await waitFor(() => component.getAllByTestId('play-now')[0].click());
@@ -260,6 +208,26 @@ describe('Favorite tracks view container', () => {
         duration: 300
       }]
     }));
+  });
+
+  it.each([
+    { query: 'test track 1', by: 'track title' },
+    { query: 'test artist 1', by: 'artist' }
+  ])('should filter favorite tracks by $by', async ({ query }) => {
+    const favorites = buildStoreState()
+      .withFavorites()
+      .build()
+      .favorites;
+    updateStore('favorites', favorites);
+    const { component } = mountComponent();
+
+    let rows = await component.findAllByTestId('track-table-row');
+    expect(rows.length).toBe(2);
+    userEvent.type(component.getByPlaceholderText('Filter...'), query);
+
+    rows = await component.findAllByTestId('track-table-row');
+    expect(rows.length).toBe(1);
+    expect(rows[0].textContent).toContain('test track 1');
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
@@ -291,3 +259,13 @@ describe('Favorite tracks view container', () => {
     return { component, history, store };
   };
 });
+
+const withFavorites = (initialFavorites?: Partial<Track>[]) => {
+  const favorites = initialFavorites ? { tracks: initialFavorites } : buildStoreState()
+    .withFavorites()
+    .build()
+    .favorites;
+
+  updateStore('favorites', favorites);
+  return favorites;
+};

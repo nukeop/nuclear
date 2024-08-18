@@ -155,7 +155,8 @@ function TrackTable<T extends Track>({
     {
       searchable && 
       <div className={styles.track_table_filter_row}>
-        <Input 
+        <Input
+          data-testid='track-table-filter-input'
           type='text'
           placeholder={extraProps.strings.filterInputPlaceholder}
           className={styles.track_table_filter_input} 
@@ -200,6 +201,7 @@ function TrackTable<T extends Track>({
         <Droppable droppableId='track_table'>
           {(provided) => (
             <tbody
+              data-testid='track-table-body'
               ref={provided.innerRef}
               {...getTableBodyProps() as TableHTMLAttributes<HTMLTableSectionElement>}
               {...provided.droppableProps}

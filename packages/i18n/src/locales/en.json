@@ -395,7 +395,7 @@
     "play-selected-tracks-now": "Play selected now",
     "tracks-selected-label-singular": "track selected",
     "tracks-selected-label-plural": "tracks selected",
-    "filter-input-placeholder": "Search..."
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"

@@ -130,6 +130,7 @@ exports[`(Snapshot) Track table - empty should render correctly 1`] = `
       <tbody
         data-rbd-droppable-context-id="0"
         data-rbd-droppable-id="track_table"
+        data-testid="track-table-body"
         role="rowgroup"
       />
     </table>
@@ -272,6 +273,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
       <tbody
         data-rbd-droppable-context-id="1"
         data-rbd-droppable-id="track_table"
+        data-testid="track-table-body"
         role="rowgroup"
       >
         <tr
