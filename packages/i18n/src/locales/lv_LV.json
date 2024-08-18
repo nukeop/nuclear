@@ -204,7 +204,7 @@
     "playlist": "Playlist",
     "play": "Play",
     "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save playlist locally"
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Pievienot spraudni",
