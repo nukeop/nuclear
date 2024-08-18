@@ -24,44 +24,61 @@ exports[`Spotfiy playlist adapter should display a Spotify playlist 1`] = `
           <div
             class="playlist_header"
           >
-            <label
-              class="playlist_header_label"
-            >
-              Playlist
-            </label>
             <div
-              class="playlist_name"
+              class="playlist_header_external_source"
             >
-              Test Spotify playlist
-            </div>
-            <div
-              class="playlist_details"
-            >
-              <span>
-                2 tracks
-              </span>
-            </div>
-            <div
-              class="playlist_buttons"
-            >
-              <button
-                class="ui pink circular button nuclear button play_button"
+              <div
+                class="playlist_header_external_source_inner"
               >
                 <i
                   aria-hidden="true"
-                  class="play icon"
+                  class="external square icon"
                 />
-                 Play
-              </button>
-              <button
-                class="ui basic circular button nuclear button more_button"
-                data-testid="more-button"
+                Spotify
+              </div>
+            </div>
+            <div
+              class="playlist_header_inner"
+            >
+              <label
+                class="playlist_header_label"
               >
-                <i
-                  aria-hidden="true"
-                  class="ellipsis horizontal icon"
-                />
-              </button>
+                Playlist
+              </label>
+              <div
+                class="playlist_name"
+              >
+                Test Spotify playlist
+              </div>
+              <div
+                class="playlist_details"
+              >
+                <span>
+                  2 tracks
+                </span>
+              </div>
+              <div
+                class="playlist_buttons"
+              >
+                <button
+                  class="ui pink circular button nuclear button play_button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                   Play
+                </button>
+                <button
+                  class="ui basic circular button nuclear button more_button"
+                  data-testid="more-button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ellipsis horizontal icon"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
