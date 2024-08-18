@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor, within } from '@testing-library/react';
 import React from 'react';
 import { createMemoryHistory } from 'history';
 import { store as electronStore } from '@nuclear/core';
@@ -9,6 +9,7 @@ import { buildElectronStoreState, buildStoreState } from '../../../test/storeBui
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import { onReorder } from '.';
+import userEvent from '@testing-library/user-event';
 
 jest.mock('fs');
 jest.mock('electron-store');
@@ -196,6 +197,21 @@ describe('Playlist view container', () => {
         name: 'test track 22'
       })
     ]);
+  });
+
+  it.each([
+    { query: 'test track 22', by: 'track title' }, 
+    { query: 'test artist 2', by: 'artist' }
+  ])('should filter displayed tracks by $by', async ({ query }) => {
+    const { component } = mountComponent();
+
+    let rows = await component.findAllByTestId('track-table-row');
+    expect(rows.length).toBe(2);
+    userEvent.type(component.getByPlaceholderText('Filter...'), query);
+
+    rows = await component.findAllByTestId('track-table-row');
+    expect(rows.length).toBe(1);
+    expect(rows[0]).toHaveTextContent('test track 22');
   });
 
   it('should delete a single track from the playlist when there are its duplicates', async () => {

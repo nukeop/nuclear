@@ -206,9 +206,10 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
           >
             <div
               class="ui input track_table_filter_input"
+              data-testid="track-table-filter-input"
             >
               <input
-                placeholder="Search..."
+                placeholder="Filter..."
                 type="text"
                 value=""
               />
@@ -331,6 +332,7 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
             <tbody
               data-rbd-droppable-context-id="0"
               data-rbd-droppable-id="track_table"
+              data-testid="track-table-body"
               role="rowgroup"
             >
               <tr
@@ -753,9 +755,10 @@ exports[`Favorite tracks view container should show a popup when a track is clic
           >
             <div
               class="ui input track_table_filter_input"
+              data-testid="track-table-filter-input"
             >
               <input
-                placeholder="Search..."
+                placeholder="Filter..."
                 type="text"
                 value=""
               />
@@ -878,6 +881,7 @@ exports[`Favorite tracks view container should show a popup when a track is clic
             <tbody
               data-rbd-droppable-context-id="2"
               data-rbd-droppable-id="track_table"
+              data-testid="track-table-body"
               role="rowgroup"
             >
               <tr
