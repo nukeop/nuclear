@@ -24,60 +24,64 @@ exports[`Playlist view container should display a playlist 1`] = `
           <div
             class="playlist_header"
           >
-            <label
-              class="playlist_header_label"
-            >
-              Playlist
-            </label>
             <div
-              class="playlist_name"
+              class="playlist_header_inner"
             >
-              test playlist
-              <button
-                aria-label="Rename this playlist"
-                class="ui basic icon button nuclear button"
-                data-testid="rename-button"
+              <label
+                class="playlist_header_label"
               >
-                <i
-                  aria-hidden="true"
-                  class="pencil icon"
-                />
-              </button>
-            </div>
-            <div
-              class="playlist_details"
-            >
-              <span>
-                2 tracks
-              </span>
-              <span>
-                ·
-              </span>
-              <span>
-                Last modified: 9/11/2001, 8:46:40 AM
-              </span>
-            </div>
-            <div
-              class="playlist_buttons"
-            >
-              <button
-                class="ui pink circular button nuclear button play_button"
+                Playlist
+              </label>
+              <div
+                class="playlist_name"
               >
-                <i
-                  aria-hidden="true"
-                  class="play icon"
-                />
-                 Play
-              </button>
-              <button
-                class="ui basic circular button nuclear button more_button"
-                data-testid="more-button"
+                test playlist
+                <button
+                  aria-label="Rename this playlist"
+                  class="ui basic icon button nuclear button"
+                  data-testid="rename-button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="pencil icon"
+                  />
+                </button>
+              </div>
+              <div
+                class="playlist_details"
               >
-                <i
-                  aria-hidden="true"
-                  class="ellipsis horizontal icon"
-                />
-              </button>
+                <span>
+                  2 tracks
+                </span>
+                <span>
+                  ·
+                </span>
+                <span>
+                  Last modified: 9/11/2001, 8:46:40 AM
+                </span>
+              </div>
+              <div
+                class="playlist_buttons"
+              >
+                <button
+                  class="ui pink circular button nuclear button play_button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                   Play
+                </button>
+                <button
+                  class="ui basic circular button nuclear button more_button"
+                  data-testid="more-button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ellipsis horizontal icon"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
