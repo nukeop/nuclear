@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-key */
-import React, { TableHTMLAttributes, useMemo } from 'react';
+import React, { TableHTMLAttributes, ThHTMLAttributes, useMemo, useState } from 'react';
 import cx from 'classnames';
-import { useTable, Column, useRowSelect, useSortBy, HeaderGroup, UseSortByColumnProps, TableState, UseSortByState } from 'react-table';
+import { useTable, Column, useRowSelect, useSortBy, HeaderGroup, UseSortByColumnProps, TableState, UseSortByState, useGlobalFilter, TableInstance, UseGlobalFiltersInstanceProps } from 'react-table';
 import { isNumber, isString } from 'lodash';
 import { DragDropContext, Droppable, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
+import { Input } from 'semantic-ui-react';
 
 import DeleteCell from './Cells/DeleteCell';
 import FavoriteCell from './Cells/FavoriteCell';
@@ -19,8 +20,7 @@ import { TrackTableColumn, TrackTableExtraProps, TrackTableHeaders, TrackTableSe
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { Track } from '../../types';
-import { formatDuration } from '../..';
-import { ThHTMLAttributes } from 'react';
+import { Button, formatDuration } from '../..';
 
 export type TrackTableProps<T extends Track> = TrackTableExtraProps<T> &
   TrackTableHeaders &
@@ -57,6 +57,7 @@ function TrackTable<T extends Track>({
   displayDuration = true,
   displayCustom = true,
   selectable = true,
+  searchable = false,
 
   ...extraProps
 }: TrackTableProps<T>) {
@@ -133,75 +134,110 @@ function TrackTable<T extends Track>({
     sortBy: [{ id: TrackTableColumn.Position, desc: false }]
   };
 
-  const table = useTable<T>({ columns, data, initialState }, useSortBy, useRowSelect);
+  const table = useTable<T>({ columns, data, initialState }, useGlobalFilter, useSortBy, useRowSelect) as (TableInstance<T> & UseGlobalFiltersInstanceProps<T>);
+  const [globalFilter, setGlobalFilterState] = useState(''); // Required, because useGlobalFilter does not provide a way to get the current filter value
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
-    prepareRow
+    prepareRow,
+    setGlobalFilter
   } = table;
 
-  return <table {...getTableProps() as TableHTMLAttributes<HTMLTableElement>} className={cx(className, styles.track_table)}>
+  const onFilterClick = () => {
+    setGlobalFilter('');
+    setGlobalFilterState('');
+  };
+
+  return <div className={styles.track_table_wrapper}> 
     {
-      displayHeaders && <thead>
-        {
-          headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps() as TableHTMLAttributes<HTMLTableRowElement>}>
-              {
-                headerGroup.headers.map((column: (HeaderGroup<T> & UseSortByColumnProps<T>)) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps()) as ThHTMLAttributes<HTMLTableCellElement>}>
-                    {column.render('Header', extraProps)}
-                  </th>
-                )
-                )
-              }
-            </tr>
-          ))
-        }
-      </thead>
+      searchable && 
+      <div className={styles.track_table_filter_row}>
+        <Input 
+          type='text'
+          placeholder={extraProps.strings.filterInputPlaceholder}
+          className={styles.track_table_filter_input} 
+          onChange={(e) => {
+            setGlobalFilter(e.target.value);
+            setGlobalFilterState(e.target.value);
+          }}
+          value={globalFilter}
+        />
+        <Button 
+          className={styles.track_table_filter_button}
+          onClick={onFilterClick}
+          borderless
+          color={'blue'}
+          icon='filter' 
+        />
+      </div>
     }
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId='track_table'>
-        {(provided) => (
-          <tbody
-            ref={provided.innerRef}
-            {...getTableBodyProps() as TableHTMLAttributes<HTMLTableSectionElement>}
-            {...provided.droppableProps}
-          >
-            {
-              rows.map(row => {
-                prepareRow(row);
-                return (
-                  <Draggable
-                    key={`${row.values[TrackTableColumn.Title]} ${row.index}`}
-                    draggableId={`${row.values[TrackTableColumn.Title]} ${row.index}`}
-                    index={row.index}
-                    isDragDisabled={!onDragEnd}
-                  >
-                    {(provided, snapshot) => (
-                      <tr
-                        data-testid='track-table-row'
-                        ref={provided.innerRef}
-                        className={cx({ [styles.is_dragging]: snapshot.isDragging })}
-                        {...row.getRowProps() as TableHTMLAttributes<HTMLTableRowElement>}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        {row.cells.map((cell, i) => (cell.render('Cell', { ...extraProps, key: i })))}
-                      </tr>
-                    )}
-                  </Draggable>
-                );
-              })
-            }
-            {provided.placeholder}
-          </tbody>
-        )}
-      </Droppable>
-    </DragDropContext>
-  </table>;
+    <table 
+      {...getTableProps() as TableHTMLAttributes<HTMLTableElement>} 
+      className={cx(className, styles.track_table)}
+    >
+      {
+        displayHeaders && <thead>
+          {
+            headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps() as TableHTMLAttributes<HTMLTableRowElement>}>
+                {
+                  headerGroup.headers.map((column: (HeaderGroup<T> & UseSortByColumnProps<T>)) => (
+                    <th {...column.getHeaderProps(column.getSortByToggleProps()) as ThHTMLAttributes<HTMLTableCellElement>}>
+                      {column.render('Header', extraProps)}
+                    </th>
+                  )
+                  )
+                }
+              </tr>
+            ))
+          }
+        </thead>
+      }
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId='track_table'>
+          {(provided) => (
+            <tbody
+              ref={provided.innerRef}
+              {...getTableBodyProps() as TableHTMLAttributes<HTMLTableSectionElement>}
+              {...provided.droppableProps}
+            >
+              {
+                rows.map(row => {
+                  prepareRow(row);
+                  return (
+                    <Draggable
+                      key={`${row.values[TrackTableColumn.Title]} ${row.index}`}
+                      draggableId={`${row.values[TrackTableColumn.Title]} ${row.index}`}
+                      index={row.index}
+                      isDragDisabled={!onDragEnd}
+                    >
+                      {(provided, snapshot) => (
+                        <tr
+                          data-testid='track-table-row'
+                          ref={provided.innerRef}
+                          className={cx({ [styles.is_dragging]: snapshot.isDragging })}
+                          {...row.getRowProps() as TableHTMLAttributes<HTMLTableRowElement>}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          {row.cells.map((cell, i) => (cell.render('Cell', { ...extraProps, key: i })))}
+                        </tr>
+                      )}
+                    </Draggable>
+                  );
+                })
+              }
+              {provided.placeholder}
+            </tbody>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </table>
+  
+  </div>;
 }
 
 export default TrackTable;

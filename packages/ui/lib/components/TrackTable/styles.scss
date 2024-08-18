@@ -1,5 +1,50 @@
 @import "../../common.scss";
 
+.track_table_wrapper {
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+}
+
+.track_table_wrapper .track_table_filter_row {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.5em;
+
+  .track_table_filter_input {
+    input {
+      background: rgba($bglighter, 0.25);
+      color: $white;
+      border: 1px solid transparent;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+
+      &::placeholder {
+        color: rgba($white, 0.5);
+      }
+
+      &::selection {
+        background-color: $blue;
+        color: $white;
+      }
+
+      &:active,
+      &:focus {
+        &::placeholder {
+          color: rgba($white, 0.2);
+        }
+      }
+    }
+  }
+
+  .track_table_filter_button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
 .track_table {
   width: 100%;
 

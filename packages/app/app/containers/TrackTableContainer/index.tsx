@@ -134,7 +134,8 @@ function TrackTableContainer<T extends Track> ({
     addSelectedTracksToFavorites: trackTableTranslation('add-selected-tracks-to-favorites'),
     playSelectedTracksNow: trackTableTranslation('play-selected-tracks-now'),
     tracksSelectedLabelSingular: trackTableTranslation('tracks-selected-label-singular'),
-    tracksSelectedLabelPlural: trackTableTranslation('tracks-selected-label-plural')
+    tracksSelectedLabelPlural: trackTableTranslation('tracks-selected-label-plural'),
+    filterInputPlaceholder: trackTableTranslation('filter-input-placeholder')
   };
 
   return <TrackTableComponent

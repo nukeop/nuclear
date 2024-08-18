@@ -4,12 +4,16 @@
 			"path": "."
 		},
 		{
+			"name": "scanner",
+			"path": "packages/scanner"
+		},
+		{
 			"name": "main",
 			"path": "packages/main"
 		},
 		{
-			"name": "i18n",
-			"path": "packages/i18n"
+			"name": "ui",
+			"path": "packages/ui"
 		},
 		{
 			"name": "app",
@@ -20,17 +24,14 @@
 			"path": "packages/core"
 		},
 		{
-			"name": "ui",
-			"path": "packages/ui"
+			"name": "i18n",
+			"path": "packages/i18n"
 		}
 	],
 	"settings": {
 		"jest.disabledWorkspaceFolders": [
-			"main",
-			"i18n",
-			"app",
-			"core",
-			"ui"
+			"scanner",
+			"i18n"
 		]
 	}
 }

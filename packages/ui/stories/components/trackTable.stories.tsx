@@ -7,6 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { TrackTable, HistoryTable, HistoryTableDate } from '../..';
 import { swap } from '../storyUtils';
 import { Track } from '../../lib/types';
+import { TrackTableProps } from '../../lib/components/TrackTable';
 
 export default {
   title: 'Components/Track table',
@@ -62,32 +63,35 @@ const trackTableStrings = {
   addSelectedTracksToFavorites: 'Add selected to favorites',
   playSelectedTracksNow: 'Play selected now',
   tracksSelectedLabelSingular: 'track selected',
-  tracksSelectedLabelPlural: 'tracks selected'
+  tracksSelectedLabelPlural: 'tracks selected',
+  filterInputPlaceholder: 'Search...'
 };
 
+const TrackTableTemplate = <T extends Track>(args: Partial<TrackTableProps<T>>) => <TrackTable
+  tracks={[]} 
+  positionHeader='Position'
+  thumbnailHeader='Thumbnail'
+  artistHeader='Artist'
+  albumHeader='Album'
+  titleHeader='Title'
+  durationHeader='Length'
+  isTrackFavorite={() => false}
+  strings={trackTableStrings}
+  {...args} 
+/>;
+
 export const Empty = () => <div className='bg'>
-  <TrackTable
+  <TrackTableTemplate
     tracks={[]}
-    positionHeader='Position'
-    thumbnailHeader='Thumbnail'
-    artistHeader='Artist'
-    albumHeader='Album'
-    titleHeader='Title'
-    durationHeader='Length'
-    isTrackFavorite={() => false}
-    strings={trackTableStrings}
   />
 </div>;
 
 export const WithRows = () => <div className='bg'>
-  <TrackTable
+  <TrackTableTemplate
     tracks={tracks}
     positionHeader={<Icon name='hashtag' />}
     thumbnailHeader={<Icon name='image' />}
-    artistHeader='Artist'
-    titleHeader='Title'
-    albumHeader='Album'
-    durationHeader='Length'
+    
     isTrackFavorite={
       (track: Track) => track.artist === 'Test Artist 2'
     }
@@ -101,26 +105,31 @@ export const DragAndDrop = () => {
   const [trackRows, setTrackRows] = useState([...tracks]);
 
   return <div className='bg'>
-    <TrackTable
+    <TrackTableTemplate
       tracks={trackRows}
       positionHeader={<Icon name='hashtag' />}
       thumbnailHeader={<Icon name='image' />}
-      artistHeader='Artist'
-      titleHeader='Title'
-      albumHeader='Album'
-      durationHeader='Length'
+     
       isTrackFavorite={(track: Track) => track.artist === 'Test Artist 2'}
       playlists={playlists}
       strings={trackTableStrings}
       onDragEnd={(result) => {
         const { source, destination } = result;
-        setTrackRows(swap(trackRows, source.index, destination.index));
+        setTrackRows(swap(trackRows, source.index, destination!.index));
       }}
       {...callbacks} />
   </div>;
 };
 
-const Template = (args) => <HistoryTable 
+export const Searchable = () => <div className='bg'>
+  <TrackTableTemplate 
+    tracks={tracks}
+    searchable
+  />
+</div>;
+
+
+const HistoryTableTemplate = (args) => <HistoryTable 
   {...args}
   isTrackFavorite={() => false}
   playlists={playlists}
@@ -136,7 +145,7 @@ export const ListeningHistory = () => <div className='bg'>
   <HistoryTableDate>
     {new Date().toLocaleDateString()}
   </HistoryTableDate>
-  <Template
+  <HistoryTableTemplate
     tracks={[{
       artist: 'Test Artist',
       title: 'Test Title',
@@ -147,7 +156,7 @@ export const ListeningHistory = () => <div className='bg'>
   <HistoryTableDate>
     {new Date(new Date().setDate(new Date().getDate() - 1)).toLocaleDateString()}
   </HistoryTableDate>
-  <Template
+  <HistoryTableTemplate
     tracks={[{
       artist: 'Test Artist 2',
       title: 'Test Title 2',
@@ -162,7 +171,7 @@ export const ListeningHistory = () => <div className='bg'>
   <HistoryTableDate>
     {new Date(new Date().setDate(new Date().getDate() - 2)).toLocaleDateString()}
   </HistoryTableDate>
-  <Template
+  <HistoryTableTemplate
     tracks={[{
       artist: 'Test Artist 3',
       title: 'Test Title 3',

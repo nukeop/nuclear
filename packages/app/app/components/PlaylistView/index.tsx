@@ -228,6 +228,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
           onReorder={!isExternal && onReorderTracks}
           displayAlbum={false}
           displayDeleteButton={!isExternal}
+          searchable
         />
       </div>
     </div>

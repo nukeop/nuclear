@@ -82,95 +82,237 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
             </div>
           </div>
         </div>
-        <table
-          class="track_table"
-          role="table"
+        <div
+          class="track_table_wrapper"
         >
-          <thead>
-            <tr
-              role="row"
+          <div
+            class="track_table_filter_row"
+          >
+            <div
+              class="ui input track_table_filter_input"
             >
-              <th
-                colspan="1"
-                role="columnheader"
-                style="cursor: pointer;"
-                title="Toggle SortBy"
+              <input
+                placeholder="Search..."
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              class="ui blue icon button nuclear button borderless track_table_filter_button"
+            >
+              <i
+                aria-hidden="true"
+                class="filter icon"
+              />
+            </button>
+          </div>
+          <table
+            class="track_table"
+            role="table"
+          >
+            <thead>
+              <tr
+                role="row"
               >
-                <span
-                  class="title_with_icon"
-                  data-testid="position-header"
+                <th
+                  colspan="1"
+                  role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="hashtag icon"
-                  />
-                  <i
-                    aria-hidden="true"
-                    class="sort content ascending icon"
-                  />
-                </span>
-              </th>
-              <th
-                colspan="1"
-                role="columnheader"
-                style="cursor: pointer;"
-                title="Toggle SortBy"
-              >
-                <span
-                  class="center_aligned"
+                  <span
+                    class="title_with_icon"
+                    data-testid="position-header"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="hashtag icon"
+                    />
+                    <i
+                      aria-hidden="true"
+                      class="sort content ascending icon"
+                    />
+                  </span>
+                </th>
+                <th
+                  colspan="1"
+                  role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="image icon"
-                  />
-                </span>
-              </th>
-              <th
-                colspan="1"
-                role="columnheader"
-                style="cursor: pointer;"
-                title="Toggle SortBy"
-              >
-                 
-              </th>
-              <th
-                colspan="1"
-                role="columnheader"
-                style="cursor: pointer;"
-                title="Toggle SortBy"
-              >
-                <span
-                  class="title_with_icon"
+                  <span
+                    class="center_aligned"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="image icon"
+                    />
+                  </span>
+                </th>
+                <th
+                  colspan="1"
+                  role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
-                  Title
-                  <i
-                    aria-hidden="true"
-                    class="sort content ascending disabled icon"
-                  />
-                </span>
-              </th>
-              <th
-                colspan="1"
-                role="columnheader"
-                style="cursor: pointer;"
-                title="Toggle SortBy"
-              >
-                <span
-                  class="title_with_icon"
+                   
+                </th>
+                <th
+                  colspan="1"
+                  role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
-                  Artist
-                  <i
-                    aria-hidden="true"
-                    class="sort content ascending disabled icon"
-                  />
-                </span>
-              </th>
-              <th
-                colspan="1"
-                role="columnheader"
+                  <span
+                    class="title_with_icon"
+                  >
+                    Title
+                    <i
+                      aria-hidden="true"
+                      class="sort content ascending disabled icon"
+                    />
+                  </span>
+                </th>
+                <th
+                  colspan="1"
+                  role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
+                >
+                  <span
+                    class="title_with_icon"
+                  >
+                    Artist
+                    <i
+                      aria-hidden="true"
+                      class="sort content ascending disabled icon"
+                    />
+                  </span>
+                </th>
+                <th
+                  colspan="1"
+                  role="columnheader"
+                >
+                  <span
+                    class="select_header"
+                  >
+                    <div
+                      class="ui fitted checkbox nuclear checkbox"
+                      style="cursor: pointer;"
+                    >
+                      <input
+                        class="hidden"
+                        readonly=""
+                        tabindex="0"
+                        title="Toggle All Rows Selected"
+                        type="checkbox"
+                        value=""
+                      />
+                      <label />
+                    </div>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              data-rbd-droppable-context-id="1"
+              data-rbd-droppable-id="track_table"
+              role="rowgroup"
+            >
+              <tr
+                class=""
+                data-rbd-draggable-context-id="1"
+                data-rbd-draggable-id="track 1 0"
+                data-testid="track-table-row"
+                role="row"
               >
-                <span
-                  class="select_header"
+                <td
+                  class="position_cell narrow"
+                  data-testid="position-cell"
+                  role="cell"
+                >
+                  <button
+                    class="ui pink tiny circular icon button nuclear button add_button"
+                    data-testid="play-now"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="play icon"
+                    />
+                  </button>
+                  <span
+                    class="position_cell_value"
+                  >
+                    1
+                  </span>
+                </td>
+                <td
+                  class="thumbnail_cell narrow"
+                  role="cell"
+                >
+                  <img
+                    class="thumbnail"
+                    src="test-file-stub"
+                  />
+                </td>
+                <td
+                  class="favorite_cell narrow"
+                  role="cell"
+                >
+                  <button
+                    class="ui tiny basic circular icon button nuclear button borderless"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="heart outline icon"
+                    />
+                  </button>
+                </td>
+                <td
+                  class="title_cell"
+                  data-testid="title-cell"
+                  role="cell"
+                >
+                  <span
+                    class="title_cell_content"
+                  >
+                    <span
+                      class="title_cell_value"
+                    >
+                      track 1
+                    </span>
+                    <span
+                      class="title_cell_buttons"
+                    >
+                      <button
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                        data-testid="add-to-queue"
+                      >
+                        <i
+                          aria-hidden="true"
+                          class="plus icon"
+                        />
+                      </button>
+                      <button
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                        data-testid="track-popup-trigger"
+                      >
+                        <i
+                          aria-hidden="true"
+                          class="ellipsis horizontal icon"
+                        />
+                      </button>
+                    </span>
+                  </span>
+                </td>
+                <td
+                  role="cell"
+                >
+                  artist 1
+                </td>
+                <td
+                  class="select_cell narrow"
+                  role="cell"
                 >
                   <div
                     class="ui fitted checkbox nuclear checkbox"
@@ -180,245 +322,128 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
                       class="hidden"
                       readonly=""
                       tabindex="0"
-                      title="Toggle All Rows Selected"
+                      title="Toggle Row Selected"
                       type="checkbox"
                       value=""
                     />
                     <label />
                   </div>
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody
-            data-rbd-droppable-context-id="1"
-            data-rbd-droppable-id="track_table"
-            role="rowgroup"
-          >
-            <tr
-              class=""
-              data-rbd-draggable-context-id="1"
-              data-rbd-draggable-id="track 1 0"
-              data-testid="track-table-row"
-              role="row"
-            >
-              <td
-                class="position_cell narrow"
-                data-testid="position-cell"
-                role="cell"
+                </td>
+              </tr>
+              <tr
+                class=""
+                data-rbd-draggable-context-id="1"
+                data-rbd-draggable-id="track 2 1"
+                data-testid="track-table-row"
+                role="row"
               >
-                <button
-                  class="ui pink tiny circular icon button nuclear button add_button"
-                  data-testid="play-now"
+                <td
+                  class="position_cell narrow"
+                  data-testid="position-cell"
+                  role="cell"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="play icon"
+                  <button
+                    class="ui pink tiny circular icon button nuclear button add_button"
+                    data-testid="play-now"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="play icon"
+                    />
+                  </button>
+                  <span
+                    class="position_cell_value"
+                  >
+                    2
+                  </span>
+                </td>
+                <td
+                  class="thumbnail_cell narrow"
+                  role="cell"
+                >
+                  <img
+                    class="thumbnail"
+                    src="test-file-stub"
                   />
-                </button>
-                <span
-                  class="position_cell_value"
+                </td>
+                <td
+                  class="favorite_cell narrow"
+                  role="cell"
                 >
-                  1
-                </span>
-              </td>
-              <td
-                class="thumbnail_cell narrow"
-                role="cell"
-              >
-                <img
-                  class="thumbnail"
-                  src="test-file-stub"
-                />
-              </td>
-              <td
-                class="favorite_cell narrow"
-                role="cell"
-              >
-                <button
-                  class="ui tiny basic circular icon button nuclear button borderless"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="heart outline icon"
-                  />
-                </button>
-              </td>
-              <td
-                class="title_cell"
-                data-testid="title-cell"
-                role="cell"
-              >
-                <span
-                  class="title_cell_content"
+                  <button
+                    class="ui tiny basic circular icon button nuclear button borderless"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="heart outline icon"
+                    />
+                  </button>
+                </td>
+                <td
+                  class="title_cell"
+                  data-testid="title-cell"
+                  role="cell"
                 >
                   <span
-                    class="title_cell_value"
+                    class="title_cell_content"
                   >
-                    track 1
+                    <span
+                      class="title_cell_value"
+                    >
+                      track 2
+                    </span>
+                    <span
+                      class="title_cell_buttons"
+                    >
+                      <button
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                        data-testid="add-to-queue"
+                      >
+                        <i
+                          aria-hidden="true"
+                          class="plus icon"
+                        />
+                      </button>
+                      <button
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                        data-testid="track-popup-trigger"
+                      >
+                        <i
+                          aria-hidden="true"
+                          class="ellipsis horizontal icon"
+                        />
+                      </button>
+                    </span>
                   </span>
-                  <span
-                    class="title_cell_buttons"
+                </td>
+                <td
+                  role="cell"
+                >
+                  artist 2
+                </td>
+                <td
+                  class="select_cell narrow"
+                  role="cell"
+                >
+                  <div
+                    class="ui fitted checkbox nuclear checkbox"
+                    style="cursor: pointer;"
                   >
-                    <button
-                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
-                      data-testid="add-to-queue"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="plus icon"
-                      />
-                    </button>
-                    <button
-                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
-                      data-testid="track-popup-trigger"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="ellipsis horizontal icon"
-                      />
-                    </button>
-                  </span>
-                </span>
-              </td>
-              <td
-                role="cell"
-              >
-                artist 1
-              </td>
-              <td
-                class="select_cell narrow"
-                role="cell"
-              >
-                <div
-                  class="ui fitted checkbox nuclear checkbox"
-                  style="cursor: pointer;"
-                >
-                  <input
-                    class="hidden"
-                    readonly=""
-                    tabindex="0"
-                    title="Toggle Row Selected"
-                    type="checkbox"
-                    value=""
-                  />
-                  <label />
-                </div>
-              </td>
-            </tr>
-            <tr
-              class=""
-              data-rbd-draggable-context-id="1"
-              data-rbd-draggable-id="track 2 1"
-              data-testid="track-table-row"
-              role="row"
-            >
-              <td
-                class="position_cell narrow"
-                data-testid="position-cell"
-                role="cell"
-              >
-                <button
-                  class="ui pink tiny circular icon button nuclear button add_button"
-                  data-testid="play-now"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="play icon"
-                  />
-                </button>
-                <span
-                  class="position_cell_value"
-                >
-                  2
-                </span>
-              </td>
-              <td
-                class="thumbnail_cell narrow"
-                role="cell"
-              >
-                <img
-                  class="thumbnail"
-                  src="test-file-stub"
-                />
-              </td>
-              <td
-                class="favorite_cell narrow"
-                role="cell"
-              >
-                <button
-                  class="ui tiny basic circular icon button nuclear button borderless"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="heart outline icon"
-                  />
-                </button>
-              </td>
-              <td
-                class="title_cell"
-                data-testid="title-cell"
-                role="cell"
-              >
-                <span
-                  class="title_cell_content"
-                >
-                  <span
-                    class="title_cell_value"
-                  >
-                    track 2
-                  </span>
-                  <span
-                    class="title_cell_buttons"
-                  >
-                    <button
-                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
-                      data-testid="add-to-queue"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="plus icon"
-                      />
-                    </button>
-                    <button
-                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
-                      data-testid="track-popup-trigger"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="ellipsis horizontal icon"
-                      />
-                    </button>
-                  </span>
-                </span>
-              </td>
-              <td
-                role="cell"
-              >
-                artist 2
-              </td>
-              <td
-                class="select_cell narrow"
-                role="cell"
-              >
-                <div
-                  class="ui fitted checkbox nuclear checkbox"
-                  style="cursor: pointer;"
-                >
-                  <input
-                    class="hidden"
-                    readonly=""
-                    tabindex="0"
-                    title="Toggle Row Selected"
-                    type="checkbox"
-                    value=""
-                  />
-                  <label />
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                    <input
+                      class="hidden"
+                      readonly=""
+                      tabindex="0"
+                      title="Toggle Row Selected"
+                      type="checkbox"
+                      value=""
+                    />
+                    <label />
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
