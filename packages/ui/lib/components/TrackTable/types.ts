@@ -38,6 +38,7 @@ export type TrackTableStrings = {
   addSelectedTracksToDownloads: string;
   tracksSelectedLabelSingular: string;
   tracksSelectedLabelPlural: string;
+  filterInputPlaceholder: string;
 }
 
 export type TrackTableHeaders = {
@@ -60,6 +61,7 @@ export type TrackTableSettings = {
   displayDuration?: boolean;
   displayCustom?: boolean;
   selectable?: boolean;
+  searchable?: boolean;
 };
 
 

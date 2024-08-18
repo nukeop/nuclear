@@ -66,6 +66,7 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
                 displayAlbum={false}
                 displayFavorite={false}
                 displayAddToFavorites={false}
+                searchable
               />
             </Segment>
           </>
