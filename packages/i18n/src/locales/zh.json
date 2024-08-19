@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "收藏选中的项目",
     "play-selected-tracks-now": "播放所选项",
     "tracks-selected-label-singular": "曲目已选中",
-    "tracks-selected-label-plural": "曲目已选中"
+    "tracks-selected-label-plural": "曲目已选中",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "按 ESC 键退出全屏"
