@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Дадаць выбранае да абранага",
     "play-selected-tracks-now": "Прайграць выбранае зараз",
     "tracks-selected-label-singular": "выбраны трэк",
-    "tracks-selected-label-plural": "выбраныя трэкі"
+    "tracks-selected-label-plural": "выбраныя трэкі",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Націсьніце на ESC, каб выйсьці з поўнага экрану"
