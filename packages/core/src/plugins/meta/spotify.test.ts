@@ -354,7 +354,8 @@ describe('SpotifyMetaProvider', () => {
           track_number: 1,
           name: 'test track',
           artists: [{ name: 'test artist' }],
-          duration_ms: 1000
+          duration_ms: 1000,
+          type: 'track'
         }]
       },
       href: 'album-href'
