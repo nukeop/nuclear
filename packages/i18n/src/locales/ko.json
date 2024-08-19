@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "선택한 항목을 좋아하는 곡에 추가",
     "play-selected-tracks-now": "선택한 항목을 지금 재생",
     "tracks-selected-label-singular": "곡 선택됨",
-    "tracks-selected-label-plural": "곡 선택됨"
+    "tracks-selected-label-plural": "곡 선택됨",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "전체 화면 모드를 종료하려면 Esc 키를 누르십시오."
