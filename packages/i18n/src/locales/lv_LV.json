@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Pievienot izlasei",
     "play-selected-tracks-now": "Atskaņot atlasīto",
     "tracks-selected-label-singular": "dziesma atlasīta",
-    "tracks-selected-label-plural": "dziesmas atlasīti"
+    "tracks-selected-label-plural": "dziesmas atlasīti",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Nospiediet ESC, lai izietu no pilna ekrāna"
