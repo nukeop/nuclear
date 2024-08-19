@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Add selected to favorites",
     "play-selected-tracks-now": "Phát bài hát đã chọn",
     "tracks-selected-label-singular": "bài hát đã chọn",
-    "tracks-selected-label-plural": "bài hát đã chọn"
+    "tracks-selected-label-plural": "bài hát đã chọn",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Nhấn ESC để thoát khỏi chế độ toàn màn hình"
