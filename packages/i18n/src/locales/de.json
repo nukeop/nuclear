@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Auswahl zu den Favoriten hinzufügen",
     "play-selected-tracks-now": "Auswahl jetzt abspielen",
     "tracks-selected-label-singular": "Lied ausgewählt",
-    "tracks-selected-label-plural": "Lieder ausgewählt"
+    "tracks-selected-label-plural": "Lieder ausgewählt",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "ESC Taste drücken, um den Vollbildmodus zu beenden"
