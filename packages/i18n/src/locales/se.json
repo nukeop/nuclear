@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Lägg till markerade i Favoriter",
     "play-selected-tracks-now": "Spela markerade nu",
     "tracks-selected-label-singular": "spår markerat",
-    "tracks-selected-label-plural": "spår markerade"
+    "tracks-selected-label-plural": "spår markerade",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Tryck på Esc för att avsluta helskärmsläge"
