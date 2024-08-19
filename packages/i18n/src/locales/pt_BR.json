@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Adicionar selecionados aos favoritos",
     "play-selected-tracks-now": "Tocar selecionados agora",
     "tracks-selected-label-singular": "música selecionada",
-    "tracks-selected-label-plural": "tracks selected"
+    "tracks-selected-label-plural": "tracks selected",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"
