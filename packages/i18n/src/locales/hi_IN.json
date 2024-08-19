@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "चयनित को प्रिय में जोड़ें",
     "play-selected-tracks-now": "चयनितो को अभी प्ले करें",
     "tracks-selected-label-singular": "चयनित ट्रैक",
-    "tracks-selected-label-plural": "चयनित ट्रैक"
+    "tracks-selected-label-plural": "चयनित ट्रैक",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "फुलस्क्रीन मोड से बाहर निकलने के लिए Esc दबाएं।"
