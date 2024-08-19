@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Legg til valgt i favoritter",
     "play-selected-tracks-now": "Spill av valgte nå",
     "tracks-selected-label-singular": "spor valgt",
-    "tracks-selected-label-plural": "spor valgt"
+    "tracks-selected-label-plural": "spor valgt",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Trykk ESC for å avslutte fullskjerm"
