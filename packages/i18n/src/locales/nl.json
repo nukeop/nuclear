@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Voeg geselecteerde toe aan favorieten",
     "play-selected-tracks-now": "Speel de geselecteerde nu",
     "tracks-selected-label-singular": "geselecteerde track",
-    "tracks-selected-label-plural": "geselecteerde nummers"
+    "tracks-selected-label-plural": "geselecteerde nummers",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Druk op ESC om volledig scherm af te sluiten"
