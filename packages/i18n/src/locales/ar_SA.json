@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "إضافة المحدد إلى المفضلة",
     "play-selected-tracks-now": "تشغيل المحدد الآن",
     "tracks-selected-label-singular": "الأغنية المحددة",
-    "tracks-selected-label-plural": "الأغاني المحددة"
+    "tracks-selected-label-plural": "الأغاني المحددة",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "اضغط ESC للخروج من ملء الشاشة"
