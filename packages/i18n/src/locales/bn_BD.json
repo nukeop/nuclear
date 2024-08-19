@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "সিলেক্টকৃতকে পছন্দতালিকায় যুক্ত করুন",
     "play-selected-tracks-now": "সিলেক্টকৃতকে প্লে করুন",
     "tracks-selected-label-singular": "ট্র্যাক সিলেক্ট হয়েছে",
-    "tracks-selected-label-plural": "ট্র্যাকগুলো সিলেক্ট হয়েছে"
+    "tracks-selected-label-plural": "ট্র্যাকগুলো সিলেক্ট হয়েছে",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "ফুলস্ক্রিন থেকে বের হতে ECS চাপুন"
