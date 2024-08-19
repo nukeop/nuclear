@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Добавить выбранные в избранные",
     "play-selected-tracks-now": "Играть выбранные",
     "tracks-selected-label-singular": "трек выбран",
-    "tracks-selected-label-plural": "треков выбрано"
+    "tracks-selected-label-plural": "треков выбрано",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Нажмите Esc, чтобы выйти из полноэкранного режима"
