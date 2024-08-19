@@ -65,6 +65,12 @@ export type SpotifyTrack = {
   popularity: number;
   track_number: number;
   duration_ms: number;
+  type: 'track';
+}
+
+export type SpotifyEpisode = {
+  // We only want to filter this out
+  type: 'episode';
 }
 
 export type SpotifyPlaylistResponse = {
@@ -84,10 +90,14 @@ export type SpotifyPlaylist = {
 }
 
 export type SpotifyPlaylistTrackObject = {
-  track: SpotifyTrack;
+  track: SpotifyTrack | SpotifyEpisode;
 }
 
 export type SpotifyPlaylistTracksResponse = SpotifyPaginatedResponse<SpotifyPlaylistTrackObject>;
+
+export const isTrack = (track: SpotifyTrack | SpotifyEpisode): track is SpotifyTrack => {
+  return track.type === 'track';
+};
 
 class SpotifyClient {
   private _token: string | undefined;
@@ -203,12 +213,12 @@ class SpotifyClient {
 
   async getPlaylist(id: string): Promise<SpotifyPlaylist> {
     const playlistResponse: SpotifyPlaylistResponse = await this.get(`${SPOTIFY_API_URL}/playlists/${id}`);
-    let tracks = playlistResponse.tracks.items.map(item => item.track);
+    let tracks = playlistResponse.tracks.items.map(item => item.track).filter(isTrack) as SpotifyTrack[];
     let data = playlistResponse.tracks;
 
     while (data.next) {
-      const nextData: SpotifyPaginatedResponse<SpotifyPlaylistTrackObject>  = await this.get(data.next);
-      tracks = [...tracks, ...(nextData.items.map(item => item.track))];
+      const nextData: SpotifyPaginatedResponse<SpotifyPlaylistTrackObject> = await this.get(data.next);
+      tracks = [...tracks, ...(nextData.items.map(item => item.track).filter(isTrack))] as SpotifyTrack[];
       data = nextData;
     }
 
@@ -236,7 +246,6 @@ export const getImageSet = (images: SpotifyImage[]): { thumb?: string; coverImag
 export const mapSpotifyTrack = (track: SpotifyTrack): PlaylistTrack | null => {
   const { thumb } = getImageSet(track.album?.images ?? []);
   try {
-
     return {
       uuid: track.id,
       artist: track.artists[0].name,
