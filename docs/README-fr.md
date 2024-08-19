@@ -95,6 +95,8 @@ Nous utilisons [Crowdin](https://crowdin.com/project/nuclear) pour gérer les tr
 
 ## Captures d'écran
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

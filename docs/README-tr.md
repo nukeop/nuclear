@@ -95,6 +95,8 @@ Yerelleştirmeyi yönetmek için [Crowdin](https://crowdin.com/project/nuclear) 
 
 ## Ekran Fotoğrafları
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

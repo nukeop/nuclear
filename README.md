@@ -102,6 +102,10 @@ We're using [Crowdin](https://crowdin.com/project/nuclear) to manage localizatio
 
 ## Screenshots
 
+![Default](./screenshot_default.jpg)
+
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

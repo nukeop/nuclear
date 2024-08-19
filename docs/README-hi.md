@@ -98,6 +98,8 @@
 
 ## स्क्रीनशॉट
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

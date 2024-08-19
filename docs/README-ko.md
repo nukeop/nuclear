@@ -151,6 +151,8 @@ $ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 
 ## 실제 화면 
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

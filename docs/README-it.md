@@ -145,6 +145,8 @@ Puoi trasformare l'app in un repository locale. attualmente il file crea l'ultim
 
 ## Screenshots
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

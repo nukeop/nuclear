@@ -78,6 +78,8 @@ Nuclear já foi traduzido para diversas línguas, e nós estamos sempre procuran
 
 ## Screenshots
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

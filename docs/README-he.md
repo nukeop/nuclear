@@ -170,6 +170,8 @@ $ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 
 זה יתעדכן ככל שהתוכנה תתפתח
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

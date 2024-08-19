@@ -150,8 +150,9 @@ Sie können das Programm auf eine lokale Quelle ansetzen. Momentan kompiliert di
 ## Screenshots
 This will be updated as the program evolves.
 
-![Dashboard](./screenshot_dashboard.jpg)
+![Default](./screenshot_default.jpg)
 
+![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)
 

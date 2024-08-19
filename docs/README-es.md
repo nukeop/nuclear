@@ -153,6 +153,8 @@ Puede convertir la aplicación en un repositorio local. actualmente, el archivo 
 
 ## Capturas de pantalla
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)
