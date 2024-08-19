@@ -170,25 +170,25 @@ $ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 
 זה יתעדכן ככל שהתוכנה תתפתח
 
-![Dashboard](./screenshot%20dashboard.png)
+![Dashboard](./screenshot_dashboard.jpg)
 
-![Album](./screenshot%20album.png)
+![Album](./screenshot_album.jpg)
 
-![Artist](./screenshot%20artist.png)
+![Artist](./screenshot_artist.jpg)
 
-![Search](./screenshot%20search.png)
+![Search](./screenshot_search.jpg)
 
-![Command palette](./screenshot%20command%20palette.png)
+![Command palette](./screenshot_command_palette.jpg)
 
-![Equalizer](./screenshot%20equalizer.png)
+![Equalizer](./screenshot_equalizer.jpg)
 
-![Genres](./screenshot%20genres.png)
+![Genres](./screenshot_genres.jpg)
 
-![Playlist](./screenshot%20playlist.png)
+![Playlist](./screenshot_playlist.jpg)
 
-![Settings](./screenshot%20settings.png)
+![Settings](./screenshot_settings.jpg)
 
-![Visualizer](./screenshot%20visualizer.png)
+![Visualizer](./screenshot_visualizer.jpg)
 
 ## רישיון
 
