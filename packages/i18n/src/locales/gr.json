@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Προσθήκη επιλεγμένων στα αγαπημένα",
     "play-selected-tracks-now": "Αναπαραγωγή επιλεγμένων τώρα",
     "tracks-selected-label-singular": "επιλεγμένο κομμάτι",
-    "tracks-selected-label-plural": "επιλεγμένα κομμάτια"
+    "tracks-selected-label-plural": "επιλεγμένα κομμάτια",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Πατήστε ESC για έξοδο από πλήρη οθόνη"
