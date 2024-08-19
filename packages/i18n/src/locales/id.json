@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Tambahkan pilihan ke favorit",
     "play-selected-tracks-now": "Putar pilihan sekarang",
     "tracks-selected-label-singular": "lagu telah dipilih",
-    "tracks-selected-label-plural": "lagu telah dipilih"
+    "tracks-selected-label-plural": "lagu telah dipilih",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Tekan ESC untuk keluar dari layar penuh"
