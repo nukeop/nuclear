@@ -90,9 +90,10 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
           >
             <div
               class="ui input track_table_filter_input"
+              data-testid="track-table-filter-input"
             >
               <input
-                placeholder="Search..."
+                placeholder="Filter..."
                 type="text"
                 value=""
               />
@@ -217,6 +218,7 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
             <tbody
               data-rbd-droppable-context-id="1"
               data-rbd-droppable-id="track_table"
+              data-testid="track-table-body"
               role="rowgroup"
             >
               <tr
