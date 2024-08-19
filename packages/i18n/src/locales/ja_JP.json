@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "選択をお気に入りに追加",
     "play-selected-tracks-now": "選択した曲を再生",
     "tracks-selected-label-singular": "曲を選択",
-    "tracks-selected-label-plural": "曲を選択"
+    "tracks-selected-label-plural": "曲を選択",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "ESCで全画面表示終了"
