@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Añadir lo seleccionado a favoritos",
     "play-selected-tracks-now": "Reproducir lo seleccionado ahora",
     "tracks-selected-label-singular": "pista seleccionada",
-    "tracks-selected-label-plural": "pistas seleccionadas"
+    "tracks-selected-label-plural": "pistas seleccionadas",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Presiona ESC para salir de la pantalla completa"
