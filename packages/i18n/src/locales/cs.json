@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Přidat vybrané skladby do oblíbených",
     "play-selected-tracks-now": "Přehrát vybrané",
     "tracks-selected-label-singular": "vybraná skladba",
-    "tracks-selected-label-plural": "vybrané skladby"
+    "tracks-selected-label-plural": "vybrané skladby",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Stiskněte ESC pro opuštění celé obrazovky"
