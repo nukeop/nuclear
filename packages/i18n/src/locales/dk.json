@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Tilføj valgte til favoritter",
     "play-selected-tracks-now": "Afspil valgte nu",
     "tracks-selected-label-singular": "sang valgt",
-    "tracks-selected-label-plural": "sange valgt"
+    "tracks-selected-label-plural": "sange valgt",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Tryk på ESC for at afslutte fuld skærm"
