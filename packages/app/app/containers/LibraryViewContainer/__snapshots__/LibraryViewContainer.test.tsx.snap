@@ -921,6 +921,7 @@ exports[`Library view container should display local library in simple list mode
               <tbody
                 data-rbd-droppable-context-id="0"
                 data-rbd-droppable-id="track_table"
+                data-testid="track-table-body"
                 role="rowgroup"
               >
                 <tr

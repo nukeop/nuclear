@@ -683,6 +683,7 @@ exports[`Dashboard container should display top tracks after going to top tracks
                 <tbody
                   data-rbd-droppable-context-id="0"
                   data-rbd-droppable-id="track_table"
+                  data-testid="track-table-body"
                   role="rowgroup"
                 >
                   <tr

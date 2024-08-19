@@ -209,6 +209,7 @@ exports[`Album view container should display an album 1`] = `
               <tbody
                 data-rbd-droppable-context-id="0"
                 data-rbd-droppable-id="track_table"
+                data-testid="track-table-body"
                 role="rowgroup"
               >
                 <tr

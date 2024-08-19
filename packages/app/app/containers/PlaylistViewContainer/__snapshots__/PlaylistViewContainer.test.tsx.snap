@@ -93,9 +93,10 @@ exports[`Playlist view container should display a playlist 1`] = `
           >
             <div
               class="ui input track_table_filter_input"
+              data-testid="track-table-filter-input"
             >
               <input
-                placeholder="Search..."
+                placeholder="Filter..."
                 type="text"
                 value=""
               />
@@ -226,6 +227,7 @@ exports[`Playlist view container should display a playlist 1`] = `
             <tbody
               data-rbd-droppable-context-id="0"
               data-rbd-droppable-id="track_table"
+              data-testid="track-table-body"
               role="rowgroup"
             >
               <tr
