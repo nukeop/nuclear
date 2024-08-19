@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Seçilenleri favorilere ekle",
     "play-selected-tracks-now": "Seçilenleri şimdi çal",
     "tracks-selected-label-singular": "şarkı seçildi",
-    "tracks-selected-label-plural": "şarkı seçildi"
+    "tracks-selected-label-plural": "şarkı seçildi",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Tam ekrandan çıkmak için ESC'ye basın"
