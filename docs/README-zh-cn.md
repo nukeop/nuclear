@@ -92,6 +92,8 @@ Nuclear的文档已经被翻译成好几种语言了，并且我们一直在寻�
 
 ## 屏幕截图
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

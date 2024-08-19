@@ -90,6 +90,8 @@ Kami menggunakan _platform_ [Crowdin](https://crowdin.com/project/nuclear) untuk
 
 ## Tangkapan Layar
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

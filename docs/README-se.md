@@ -120,6 +120,8 @@ $ sudo docker-compose up dev
 
 ## Skärmdumpar
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)

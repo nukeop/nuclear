@@ -97,6 +97,8 @@ Nuclear は、既に多くの言語に翻訳されており、また追加した
 
 ## スクリーンショット
 
+![Default](./screenshot_default.jpg)
+
 ![Dashboard](./screenshot_dashboard.jpg)
 
 ![Album](./screenshot_album.jpg)
