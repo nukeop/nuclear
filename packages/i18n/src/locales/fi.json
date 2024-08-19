@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Lisää valitut suosikkeihin",
     "play-selected-tracks-now": "Soita valitut nyt",
     "tracks-selected-label-singular": "kappale valittu",
-    "tracks-selected-label-plural": "kappaletta valittu"
+    "tracks-selected-label-plural": "kappaletta valittu",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Paina ESC poistuaksesi koko näytön tilasta"
