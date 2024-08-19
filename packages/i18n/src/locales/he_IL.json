@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "הוסף את הנבחרים למועדפים",
     "play-selected-tracks-now": "הפעל נבחרים כעת",
     "tracks-selected-label-singular": "רצועה שנבחרה",
-    "tracks-selected-label-plural": "רצועות שנבחרו"
+    "tracks-selected-label-plural": "רצועות שנבחרו",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "יש ללחוץ על ESC כדי לצאת ממסך מלא"
