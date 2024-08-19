@@ -6,3 +6,6 @@ packages/app/resources/** binary
 packages/ui/resources/** binary
 packages/main/resources/** binary
 packages/main/bin/** binary
+
+*.png binary
+*.jpg binary
