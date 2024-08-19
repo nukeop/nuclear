@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "A kiválasztottak hozzáadása a kedvencekhez",
     "play-selected-tracks-now": "A kiválasztott lejátszása most",
     "tracks-selected-label-singular": "Szám kiválasztva",
-    "tracks-selected-label-plural": "Számok kiválasztva"
+    "tracks-selected-label-plural": "Számok kiválasztva",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "A teljes képernyőből való kilépéshez nyomd meg az ESC gombot"
