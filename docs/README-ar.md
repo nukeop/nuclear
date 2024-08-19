@@ -102,23 +102,26 @@ nuclear هو برنامج مشغل موسيقى مجاني يقوم بسحب ا�
 يمكنك التحقق مما إذا كانت لغتك مدعومة، وتتبع تقدم الترجمة، ومساعدتنا في ترجمة Nuclear هناك.
 
 ## لقطات الشاشة 
-سيتم تحديث هذا مع تطور البرنامج.
 
-![البحث عن الألبوم](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![عرض الألبوم](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![عرض الفنان](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![قائمة أفضل أحدث الأغاني](https://i.imgur.com/bMDrR4M.png)
+![Search](./screenshot%20search.png)
 
-![قائمة التصنيفات](https://i.imgur.com/g0aCmKx.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![عرض قائمة التشغيل](https://i.imgur.com/2VMXHDC.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![عرض كلمات الأغاني](https://i.imgur.com/7e3DJKJ.png)
+![Genres](./screenshot%20genres.png)
 
-![عرض معادل الصوت](https://i.imgur.com/WreRL0w.png)
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## الترخيص
 

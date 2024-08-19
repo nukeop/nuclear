@@ -94,23 +94,26 @@ Nuclear ad déjà été traduit dans plusieurs langues, et nous cherchons toujou
 Nous utilisons [Crowdin](https://crowdin.com/project/nuclear) pour gérer les traductions. Vous pouvez vérifier si votre langage est supporté, voir où en est la traduction, et nous aider à traduire Nuclear ici.
 
 ## Captures d'écran
-Cette section sera mise à jour à mesure de l'évolution du logiciel.
 
-![Recherche d'album](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![Affichage d'un album](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![Affichage d'un artiste](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![Tableau de bord Meilleure Musique Récente](https://i.imgur.com/bMDrR4M.png)
+![Search](./screenshot%20search.png)
 
-![Tableau de bord Genres](https://i.imgur.com/g0aCmKx.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Affichage d'une playlist](https://i.imgur.com/2VMXHDC.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![Affichage des paroles](https://i.imgur.com/7e3DJKJ.png)
+![Genres](./screenshot%20genres.png)
 
-![Affichage de l'égaliseur](https://i.imgur.com/WreRL0w.png)
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## Licence
 
