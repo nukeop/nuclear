@@ -150,21 +150,26 @@ $ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 애플리케이션을 로컬 repository로 만들 수 있습니다. 현재 파일은 최신 릴리즈를 빌드합니다. 
 
 ## 실제 화면 
-이 부분은 프로그램이 개발 상황에 따라 업데이트됩니다.
 
-![Album Search](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![Album Display](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![Artist View](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
+![Search](./screenshot%20search.png)
 
-![Playlist View](https://i.imgur.com/2VMXHDC.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Lyrics View](https://i.imgur.com/7e3DJKJ.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![Equalizer View](https://i.imgur.com/WreRL0w.png)
+![Genres](./screenshot%20genres.png)
+
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## 라이선스
 

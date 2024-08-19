@@ -144,23 +144,26 @@ $ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 Puoi trasformare l'app in un repository locale. attualmente il file crea l'ultima versione.
 
 ## Screenshots
-Questo verrà aggiornato man mano che il programma si evolve.
 
-![Ricerca Album](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![Mostra Album](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![Vedi Artista](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![Pannello di controllo Recenti brani migliori](https://i.imgur.com/bMDrR4M.png)
+![Search](./screenshot%20search.png)
 
-![Pannello di controllo Generi](https://i.imgur.com/g0aCmKx.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Vedi Playlists](https://i.imgur.com/2VMXHDC.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![Vedi Lyrics](https://i.imgur.com/7e3DJKJ.png)
+![Genres](./screenshot%20genres.png)
 
-![Vedi Equalizzatore](https://i.imgur.com/WreRL0w.png)
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## Licenza
 

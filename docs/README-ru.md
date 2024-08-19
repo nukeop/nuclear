@@ -97,23 +97,26 @@ Nuclear - это бесплатная программа для потоково
 Мы используем [Crowdin](https://crowdin.com/project/nuclear) для управления локализацией. Используя его, вы сможете проверить, поддерживается ли ваш язык, отслеживать прогресс локализации и сможете помогать нам переводить Nuclear на другие языки.
 
 ## Скриншоты
-Скриншоты будут дополняться по мере развития проекта
 
-![Поиск по альбому](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![Отображение альбома](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![Вид страницы исполнителя](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![Раздел, показывающий лучшую новую музыку](https://i.imgur.com/bMDrR4M.png)
+![Search](./screenshot%20search.png)
 
-![Раздел с жанрами](https://i.imgur.com/g0aCmKx.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Вид плейлиста](https://i.imgur.com/2VMXHDC.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![Просмотр текста песни](https://i.imgur.com/7e3DJKJ.png)
+![Genres](./screenshot%20genres.png)
 
-![Вид эквалайзера](https://i.imgur.com/WreRL0w.png)
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## Лицензия
 

@@ -95,23 +95,25 @@ Yerelleştirmeyi yönetmek için [Crowdin](https://crowdin.com/project/nuclear) 
 
 ## Ekran Fotoğrafları
 
-Program geliştikçe bu kısım güncellenecektir.
+![Dashboard](./screenshot%20dashboard.png)
 
-![Albüm Arama](https://i.imgur.com/idFVnAF.png)
+![Album](./screenshot%20album.png)
 
-![Albüm Görünümü](https://i.imgur.com/Kvzo3q7.png)
+![Artist](./screenshot%20artist.png)
 
-![Sanatçı Görünümü](https://i.imgur.com/imBLYl3.png)
+![Search](./screenshot%20search.png)
 
-![En İyi Yeni Müzik Panosu](https://i.imgur.com/bMDrR4M.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Türler Panosu](https://i.imgur.com/g0aCmKx.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![Oynatma Listesi Görünümü](https://i.imgur.com/2VMXHDC.png)
+![Genres](./screenshot%20genres.png)
 
-![Şarkı Sözleri GÖrünümü](https://i.imgur.com/7e3DJKJ.png)
+![Playlist](./screenshot%20playlist.png)
 
-![Ekolayzır GÖrünümü](https://i.imgur.com/WreRL0w.png)
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## Lisans
 

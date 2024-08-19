@@ -119,23 +119,26 @@ $ sudo docker-compose up dev
 ```
 
 ## Skärmdumpar
-Den här sektionen kommer uppdateras allt eftersom programmet utvecklas.
 
-![Albumsök](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![Albumvy](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![Artistvy](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![Överblick Bästa Nya Musiken](https://i.imgur.com/bMDrR4M.png)
+![Search](./screenshot%20search.png)
 
-![Överblick Genrer](https://i.imgur.com/g0aCmKx.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Spellistevy](https://i.imgur.com/2VMXHDC.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![Låttextvy](https://i.imgur.com/7e3DJKJ.png)
+![Genres](./screenshot%20genres.png)
 
-![Equalizervy](https://i.imgur.com/WreRL0w.png)
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## Licens
 

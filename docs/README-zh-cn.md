@@ -91,22 +91,26 @@ Nuclear的文档已经被翻译成好几种语言了，并且我们一直在寻�
 我们使用 [Crowdin](https://crowdin.com/project/nuclear) 来管理程序的本地化。你可以通过这个网站来看你所使用的语言是否被支持，并且跟踪该项目的本地化进展，帮助我们翻译Nuclear。
 
 ## 屏幕截图
-下面的截图将会随着项目的进度更新而随时修改。
-![专辑搜索](https://i.imgur.com/idFVnAF.png)
 
-![专辑展示](https://i.imgur.com/Kvzo3q7.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![艺术家展示](https://i.imgur.com/imBLYl3.png)
+![Album](./screenshot%20album.png)
 
-![管理版面显示当前最好的音乐](https://i.imgur.com/bMDrR4M.png)
+![Artist](./screenshot%20artist.png)
 
-![管理版面显示音乐流派](https://i.imgur.com/g0aCmKx.png)
+![Search](./screenshot%20search.png)
 
-![播放列表](https://i.imgur.com/2VMXHDC.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![歌词](https://i.imgur.com/7e3DJKJ.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![音乐均衡器](https://i.imgur.com/WreRL0w.png)
+![Genres](./screenshot%20genres.png)
+
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## 开源许可证
 

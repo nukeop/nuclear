@@ -97,23 +97,26 @@
 हम [Crowdin](https://crowdin.com/project/nuclear) उपयोग कर रहे हैं स्थानीयकरण का प्रबंधन करने के लिए। आप जांच सकते हैं कि आपकी भाषा समर्थित है या नहीं, स्थानीयकरण प्रगति को ट्रैक करें, और वहां परमाणु का अनुवाद करने में हमारी सहायता करें।
 
 ## स्क्रीनशॉट
-कार्यक्रम के विकसित होते ही इसे अपडेट किया जाएगा।
 
-![एल्बम खोज](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![एल्बम प्रदर्शन](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![कलाकार दृश्य](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![डैशबोर्ड सर्वश्रेष्ठ नया संगीत](https://i.imgur.com/bMDrR4M.png)
+![Search](./screenshot%20search.png)
 
-![डैशबोर्ड शैलियां](https://i.imgur.com/g0aCmKx.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![प्लेलिस्ट देखें](https://i.imgur.com/2VMXHDC.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![गीत देखें](https://i.imgur.com/7e3DJKJ.png)
+![Genres](./screenshot%20genres.png)
 
-![तुल्यकारक दृश्य](https://i.imgur.com/WreRL0w.png)
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## लाइसेंस
 

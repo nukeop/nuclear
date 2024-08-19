@@ -101,21 +101,26 @@ Nuclear has already been translated to several languages, and we're always looki
 We're using [Crowdin](https://crowdin.com/project/nuclear) to manage localization. You can check if your language is supported, track localization progress, and help us translate Nuclear there.
 
 ## Screenshots
-This will be updated as the program evolves.
 
-![Album Search](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![Album Display](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![Artist View](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
+![Search](./screenshot%20search.png)
 
-![Playlist View](https://i.imgur.com/2VMXHDC.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Lyrics View](https://i.imgur.com/7e3DJKJ.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![Equalizer View](https://i.imgur.com/WreRL0w.png)
+![Genres](./screenshot%20genres.png)
+
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## License
 

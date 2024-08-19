@@ -89,21 +89,26 @@ Nuclear telah diterjemahkan ke beberapa bahasa, dan kami akan terus mencari kont
 Kami menggunakan _platform_ [Crowdin](https://crowdin.com/project/nuclear) untuk mengelola alih bahasa. Anda bisa mengecek apakah bahasa yang Anda gunakan telah tersedia di sana, melihat proses alih bahasa, dan bahkan membantu kami menerjemahkan Nuclear.
 
 ## Tangkapan Layar
-Tangkapan layar akan diperbarui seiring perkembangan aplikasi.
 
-![Album Search](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![Album Display](https://i.imgur.com/Kvzo3q7.png)
+![Album](./screenshot%20album.png)
 
-![Artist View](https://i.imgur.com/imBLYl3.png)
+![Artist](./screenshot%20artist.png)
 
-![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
+![Search](./screenshot%20search.png)
 
-![Playlist View](https://i.imgur.com/2VMXHDC.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Lyrics View](https://i.imgur.com/7e3DJKJ.png)
+![Equalizer](./screenshot%20equalizer.png)
 
-![Equalizer View](https://i.imgur.com/WreRL0w.png)
+![Genres](./screenshot%20genres.png)
+
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## Lisensi
 

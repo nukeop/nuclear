@@ -148,21 +148,28 @@ $ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 Sie können das Programm auf eine lokale Quelle ansetzen. Momentan kompiliert die Datei die aktuellste Veröffentlichung.
 
 ## Screenshots
-Diese werden mit der Entwicklung des Projektes aktualisiert.
+This will be updated as the program evolves.
 
-![Albumsuche](https://i.imgur.com/idFVnAF.png)
+![Dashboard](./screenshot%20dashboard.png)
 
-![Albenansicht](https://i.imgur.com/Kvzo3q7.png)
 
-![Künstleransicht](https://i.imgur.com/imBLYl3.png)
+![Album](./screenshot%20album.png)
 
-![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
+![Artist](./screenshot%20artist.png)
 
-![Playlists](https://i.imgur.com/2VMXHDC.png)
+![Search](./screenshot%20search.png)
 
-![Songtexte](https://i.imgur.com/7e3DJKJ.png)
+![Command palette](./screenshot%20command%20palette.png)
 
-![Equalizer](https://i.imgur.com/WreRL0w.png)
+![Equalizer](./screenshot%20equalizer.png)
+
+![Genres](./screenshot%20genres.png)
+
+![Playlist](./screenshot%20playlist.png)
+
+![Settings](./screenshot%20settings.png)
+
+![Visualizer](./screenshot%20visualizer.png)
 
 ## Lizenz
 
