@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Ên hilbijartî tevlî bijarteyan bike",
     "play-selected-tracks-now": "Ên hilbijartî niha lêde",
     "tracks-selected-label-singular": "stran hate hilbijartin",
-    "tracks-selected-label-plural": "stran hatin hilbijartin"
+    "tracks-selected-label-plural": "stran hatin hilbijartin",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Bo ji dîmendera tije derkevî pê li bişkoka ESC-yê bike"
