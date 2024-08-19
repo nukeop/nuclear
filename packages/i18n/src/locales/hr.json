@@ -394,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Dodaj označene u omiljene",
     "play-selected-tracks-now": "Odmah pokreni označeno",
     "tracks-selected-label-singular": "označen zapis",
-    "tracks-selected-label-plural": "označeni zapisi"
+    "tracks-selected-label-plural": "označeni zapisi",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Pritisnite ESC da bi ste izašli iz punog zaslona"
