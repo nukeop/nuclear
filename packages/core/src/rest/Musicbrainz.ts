@@ -62,7 +62,7 @@ const getReleaseGroupDetails = (releaseGroupId: string): Promise<MusicbrainzRele
 
 const getReleaseDetails = (releaseId: string): Promise<MusicbrainzRelease> =>
   new Promise((resolve, reject) => {
-    nb.release(releaseId, { inc: 'artists+recordings+genres' }, (err, response) => {
+    nb.release(releaseId, { inc: 'artists+artist-credits+recordings+genres' }, (err, response) => {
       err ? reject(err) : resolve(response);
     });
   });

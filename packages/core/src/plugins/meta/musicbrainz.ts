@@ -144,7 +144,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       tracklist: _.flatMap(releaseDetails.media, medium => _.map(medium.tracks, track => {
         const newtrack = new Track();
         newtrack.ids[SearchResultsSource.Musicbrainz] = track.id;
-        newtrack.artist = artistName;
+        newtrack.artists = track['artist-credit'].map(artist => artist.name);
         newtrack.title = track.title;
         newtrack.duration = Math.ceil(track.length/1000);
         newtrack.position = track.position;
