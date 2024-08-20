@@ -106,7 +106,7 @@ describe('SpotifyMetaProvider', () => {
     expect(result).toEqual([{
       id: 'track-id',
       title: 'test track',
-      artist: 'test artist',
+      artists: ['test artist'],
       source: 'Spotify',
       thumb: 'thumbnail.jpg'
     }]);
@@ -377,7 +377,7 @@ describe('SpotifyMetaProvider', () => {
         position: 1,
         name: 'test track',
         title: 'test track',
-        artist: 'test artist',
+        artists: ['test artist'],
         duration: 1,
         thumbnail: 'thumbnail.jpg'
       }]

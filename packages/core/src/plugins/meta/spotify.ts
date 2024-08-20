@@ -66,7 +66,7 @@ export class SpotifyMetaProvider extends MetaProvider {
     return {
       id: spotifyTrack.id,
       title: spotifyTrack.name,
-      artist: spotifyTrack.artists[0].name,
+      artists: spotifyTrack.artists.map(artist => artist.name),
       source: SearchResultsSource.Spotify,
       thumb
     };
@@ -167,7 +167,7 @@ export class SpotifyMetaProvider extends MetaProvider {
       year: result.release_date,
       tracklist: result.tracks.items.map(track => new Track({
         title: track.name,
-        artist: result.artists[0].name,
+        artists: track.artists.map(artist => artist.name),
         duration: track.duration_ms/1000,
         position: track.track_number,
         thumbnail: thumb

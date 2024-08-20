@@ -248,7 +248,7 @@ export const mapSpotifyTrack = (track: SpotifyTrack): PlaylistTrack | null => {
   try {
     return {
       uuid: track.id,
-      artists: [track.artists[0].name],
+      artists: track.artists.map(artist => artist.name),
       name: track.name,
       album: track.album.name,
       thumbnail: thumb,
