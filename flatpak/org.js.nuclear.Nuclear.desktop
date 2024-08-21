@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Nuclear
-Comment=Streaming music player that finds music sources automatically.
-Comment[es]=Reproductor que retransmite música desde fuentes encontradas automáticamente.
-Exec="/app/bin/run.sh"
-Terminal=false
-Type=Application
-Icon=org.js.nuclear.Nuclear
-Categories=Audio;AudioVideo;Network;Player;Music;
