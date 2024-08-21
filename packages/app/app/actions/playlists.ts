@@ -55,7 +55,7 @@ export const loadLocalPlaylists = () => dispatch => {
   dispatch(loadLocalPlaylistsAction.request());
 
   try {
-    const playlists: Playlist[] = store.get('playlists');
+    const playlists: Playlist[] = getPlaylistsBackwardsCompatible();
     dispatch(loadLocalPlaylistsAction.success(isEmpty(playlists) ? [] : playlists));
   } catch (error) {
     dispatch(loadLocalPlaylistsAction.failure());
@@ -147,7 +147,7 @@ export function addPlaylistFromFile(filePath, t) {
           throw new Error('missing tracks or name');
         }
 
-        let playlists = store.get('playlists') || [];
+        let playlists = getPlaylistsBackwardsCompatible() || [];
         const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4(), source);
 
         if (!(tracks?.length > 0)) {
@@ -166,4 +166,35 @@ export function addPlaylistFromFile(filePath, t) {
       }
     });
   };
+}
+
+/**
+* Helper function to read the old track format into the new format.
+*
+* `Track.artist` and `Track.extraArtists` are written into {@link Track.artists}
+*/
+function getPlaylistsBackwardsCompatible(): Playlist[] {
+  const playlists: Playlist[] = store.get('playlists');
+
+  playlists?.forEach(playlist => {
+    playlist.tracks?.forEach(track => {
+      // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
+      if (track.artists || !track.artist) {
+        // New format already present, do nothing
+        return;
+      }
+
+      // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
+      track.artists = _.isString(track.artist) ? [track.artist] : [track.artist.name];
+
+      // Assuming we have `extraArtists` on a track, we must had an `artist` which
+      // was already saved into `artists`, so this `track.artists` shouldn't be undefined
+      // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
+      track.extraArtists?.forEach(artist => {
+        track.artists.push(artist);
+      });
+    });
+  });
+
+  return playlists;
 }
