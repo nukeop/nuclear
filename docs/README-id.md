@@ -90,27 +90,27 @@ Kami menggunakan _platform_ [Crowdin](https://crowdin.com/project/nuclear) untuk
 
 ## Tangkapan Layar
 
-![Default](./screenshot_default.jpg)
+![Default](./screenshots/screenshot_default.jpg)
 
-![Dashboard](./screenshot_dashboard.jpg)
+![Dashboard](./screenshots/screenshot_dashboard.jpg)
 
-![Album](./screenshot_album.jpg)
+![Album](./screenshots/screenshot_album.jpg)
 
-![Artist](./screenshot_artist.jpg)
+![Artist](./screenshots/screenshot_artist.jpg)
 
-![Search](./screenshot_search.jpg)
+![Search](./screenshots/screenshot_search.jpg)
 
-![Command palette](./screenshot_command_palette.jpg)
+![Command palette](./screenshots/screenshot_command_palette.jpg)
 
-![Equalizer](./screenshot_equalizer.jpg)
+![Equalizer](./screenshots/screenshot_equalizer.jpg)
 
-![Genres](./screenshot_genres.jpg)
+![Genres](./screenshots/screenshot_genres.jpg)
 
-![Playlist](./screenshot_playlist.jpg)
+![Playlist](./screenshots/screenshot_playlist.jpg)
 
-![Settings](./screenshot_settings.jpg)
+![Settings](./screenshots/screenshot_settings.jpg)
 
-![Visualizer](./screenshot_visualizer.jpg)
+![Visualizer](./screenshots/screenshot_visualizer.jpg)
 
 ## Lisensi
 
