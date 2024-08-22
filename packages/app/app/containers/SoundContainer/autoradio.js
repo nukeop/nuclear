@@ -82,7 +82,13 @@ export function addAutoradioTrackToQueue (callProps) {
       if (selectedTrack === null) {
         return Promise.reject(new Error('No similar track or artist were found.'));
       }
-      return addToQueue(selectedTrack.artist, selectedTrack);
+
+      // The API doesn't returns artist.name we have to convert to the new format
+      if (!selectedTrack.artists && selectedTrack.artist) {
+        selectedTrack.artists = _.isString(selectedTrack.artist) ? [selectedTrack.artist] : [selectedTrack.artist.name];
+      }
+
+      return addToQueue(selectedTrack.artists, selectedTrack);
     })
     .catch(function (err) {
       logger.error('error', err);
