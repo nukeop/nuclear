@@ -114,7 +114,7 @@ export class SpotifyMetaProvider extends MetaProvider {
   mapSpotifyTopTrack(spotifyTrack: SpotifyTrack): ArtistTopTrack {
     const { thumb } = getImageSet(spotifyTrack.album.images);
     return {
-      artist: {name: spotifyTrack.artists[0].name},
+      artists: [spotifyTrack.artists[0].name],
       title: spotifyTrack.name,
       thumb,
       playcount: spotifyTrack.popularity,

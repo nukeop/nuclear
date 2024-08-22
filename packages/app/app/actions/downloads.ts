@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { isEqual } from 'lodash';
 import { store, StreamProvider } from '@nuclear/core';
 import { getTrackItem } from '@nuclear/ui';
 import { safeAddUuid } from './helpers';
@@ -35,8 +36,8 @@ export const addToDownloads = createStandardAction(DownloadActionTypes.ADD_TO_DO
     let downloads: Download[] = store.get('downloads');
   
     const existingTrack = downloads.find(({track}) => {
-      const {name, artist} = track;
-      return artist === clonedTrack.artist && name === clonedTrack.name;
+      const {name, artists} = track;
+      return isEqual(artists, clonedTrack.artists) && name === clonedTrack.name;
     });
   
     if (!existingTrack ){

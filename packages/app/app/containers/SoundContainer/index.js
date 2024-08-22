@@ -101,7 +101,7 @@ class SoundContainer extends React.Component {
 
     if (this.props.settings.listeningHistory) {
       ipcRenderer.send(IpcEvents.POST_LISTENING_HISTORY_ENTRY, {
-        artist: currentSong.artist,
+        artist: currentSong.artists?.[0],
         title: currentSong.title ?? currentSong.name
       });
     }
@@ -141,7 +141,7 @@ class SoundContainer extends React.Component {
       .then(selectedArtist => this.getArtistTopTracks(selectedArtist))
       .then(topTracks => this.getRandomElement(topTracks.toptracks.track))
       .then(track => {
-        return this.addToQueue(track.artist, track);
+        return this.addToQueue(track.artists, track);
       });
   }
 
@@ -167,7 +167,7 @@ class SoundContainer extends React.Component {
   addToQueue(artist, track) {
     return new Promise((resolve) => {
       this.props.actions.addToQueue({
-        artist: artist.name,
+        artists: [artist.name],
         name: track.name,
         thumbnail: track.thumbnail ?? track.image[0]['#text'] ?? track.thumb
       });
@@ -241,7 +241,7 @@ class SoundContainer extends React.Component {
         />
         <VisualizerContainer
           location={location}
-          trackName={currentTrack ? `${currentTrack.artist} - ${currentTrack.name}` : undefined}
+          trackName={currentTrack ? `${currentTrack.artists?.[0]} - ${currentTrack.name}` : undefined}
         />
       </Sound>
     ));

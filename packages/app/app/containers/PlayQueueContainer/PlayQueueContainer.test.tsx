@@ -111,7 +111,7 @@ describe('Play Queue container', () => {
       expect.arrayContaining([
         expect.objectContaining({
           uuid: expect.any(String),
-          artist: 'test artist 1',
+          artists: ['test artist 1'],
           name: 'test track 1',
           thumbnail: 'https://test-track-thumb-url'
         })
@@ -136,7 +136,7 @@ describe('Play Queue container', () => {
       expect.arrayContaining([
         {
           uuid: expect.any(String),
-          artist: expect.stringMatching('test artist 1'),
+          artists: [expect.stringMatching('test artist 1')],
           name: expect.stringMatching('test track 1'),
           thumbnail: 'https://test-track-thumb-url'
         }
@@ -159,7 +159,7 @@ describe('Play Queue container', () => {
 
     expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
       expect.objectContaining({
-        artist: 'test artist 1',
+        artists: ['test artist 1'],
         name: 'test track 1'
       })
     ]);
@@ -182,15 +182,15 @@ describe('Play Queue container', () => {
     expect(state.playlists.localPlaylists.data[1].name).toBe('my new playlist');
     expect(state.playlists.localPlaylists.data[1].tracks).toEqual([
       expect.objectContaining({
-        artist: 'test artist 1',
+        artists: ['test artist 1'],
         name: 'test track 1'
       }),
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 2'
       }),
       expect.objectContaining({
-        artist: 'test artist 3',
+        artists: ['test artist 3'],
         name: 'test track 3'
       })
     ]);
@@ -210,15 +210,15 @@ describe('Play Queue container', () => {
     expect(state.playlists.localPlaylists.data[0].name).toBe('test playlist');
     expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
       expect.objectContaining({
-        artist: 'test artist 1',
+        artists: ['test artist 1'],
         name: 'test track 1'
       }),
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 2'
       }),
       expect.objectContaining({
-        artist: 'test artist 3',
+        artists: ['test artist 3'],
         name: 'test track 3'
       })
     ]);
@@ -246,11 +246,11 @@ describe('Play Queue container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 2'
       }),
       expect.objectContaining({
-        artist: 'test artist 3',
+        artists: ['test artist 3'],
         name: 'test track 3'
       })
     ]);

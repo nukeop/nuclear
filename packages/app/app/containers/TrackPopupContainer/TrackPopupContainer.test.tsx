@@ -115,7 +115,7 @@ describe('Track Popup container', () => {
         queue: {
           currentSong: 1,
           queueItems: [{
-            artist: 'test artist 1',
+            artists: ['test artist 1'],
             name: 'test track 1',
             streams: [{
               duration: 300,
@@ -123,7 +123,7 @@ describe('Track Popup container', () => {
               skipSegments: []
             }]
           }, {
-            artist: 'test artist 2',
+            artists: ['test artist 2'],
             name: 'test track 2',
             streams: [{
               duration: 300,
@@ -144,7 +144,7 @@ describe('Track Popup container', () => {
       expect(state.player.seek).toBe(10);
       expect(state.queue.currentSong).toBe(1); 
       expect(state.queue.queueItems[state.queue.currentSong + 1]).toMatchObject({
-        artist: 'Artist',
+        artists: ['Artist'],
         name: TRACK_TITLE
       });
     });
@@ -157,9 +157,7 @@ describe('Track Popup container', () => {
       <TrackPopupContainer  
         title={TRACK_TITLE}
         track={{
-          artist: {
-            name: 'Artist'
-          },
+          artists: ['Artist'],
           title: TRACK_TITLE
         }}
         trigger={<button data-testid={TEST_IDS.TRIGGER_BUTTON}>Trigger</button>}

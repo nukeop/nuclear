@@ -6,7 +6,7 @@ import LyricsHeader from './LyricsHeader';
 
 import styles from './styles.scss';
 import { QueueItem } from '../../reducers/queue';
-import { getTrackArtist } from '@nuclear/ui';
+import { getTrackArtists } from '@nuclear/ui';
 
 type LyricsViewProps = {
   lyricsSearchResult: string
@@ -40,7 +40,7 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
       <>
         <LyricsHeader
           name={track.name}
-          artist={getTrackArtist(track)}
+          artist={getTrackArtists(track)?.[0]}
         />
         <div className={styles.lyrics_text}>
           {lyricsSearchResult || t('not-found')}

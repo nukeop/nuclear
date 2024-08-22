@@ -24,7 +24,7 @@ describe('Queue actions tests', () => {
       const trackIndex = 123;
       const queueItems: QueueItem[] = [];
       queueItems[trackIndex] = {
-        artist: 'Artist Name',
+        artists: ['Artist Name'],
         name: 'Track Name',
         local: false,
         streams: null

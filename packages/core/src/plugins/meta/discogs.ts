@@ -194,7 +194,7 @@ class DiscogsMetaProvider extends MetaProvider {
         thumb: coverImage,
         playcount: track.playcount,
         listeners: track.listeners,
-        artist: track.artist
+        artists: [track.artist.name]
       })),
       similar: similarArtists,
       source: SearchResultsSource.Discogs

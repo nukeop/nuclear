@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { PopupButton, getThumbnail, getTrackItem, getTrackTitle, getTrackArtist } from '@nuclear/ui';
+import { PopupButton, getThumbnail, getTrackItem, getTrackTitle, getTrackArtists } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
@@ -27,7 +27,7 @@ const TrackPopupButtons = ({
 }) => {
 
   const title = getTrackTitle(track);
-  const artist = getTrackArtist(track);
+  const artist = getTrackArtists(track);
 
   const handleAddToQueue = useCallback(() => 
     queueActions.addToQueue(getTrackItem(track)),

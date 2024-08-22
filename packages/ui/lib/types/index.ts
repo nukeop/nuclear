@@ -6,7 +6,7 @@ export type Track = {
     details: string 
   };
   local?: boolean;
-  artist: { name: string } | string;
+  artists: string[];
   name?: string;
   title?: string;
   album?: string;
@@ -41,7 +41,7 @@ export type SearchProviderOption = {
 }
 
 export type TrackItem = {
-  artist: string;
+  artists: string[];
   name: string;
   thumbnail?: string;
   local?: boolean;

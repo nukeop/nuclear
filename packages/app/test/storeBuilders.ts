@@ -122,21 +122,21 @@ export const buildStoreState = () => {
               {
                 uuid: 'track-1-id',
                 ids: [],
-                artist: 'test artist',
+                artists: ['test artist'],
                 title: 'test track 1',
                 duration: 120
               },
               {
                 uuid: 'track-2-id',
                 ids: [],
-                artist: 'test artist',
+                artists: ['test artist'],
                 title: 'test track 2',
                 duration: 63
               },
               {
                 uuid: 'track-3-id',
                 ids: [],
-                artist: 'test artist',
+                artists: ['test artist'],
                 title: 'test track 3',
                 duration: 7
               }
@@ -172,7 +172,7 @@ export const buildStoreState = () => {
                   tracklist: [
                     {
                       uuid: 'track-1',
-                      artist: 'test artist 1',                      
+                      artists: ['test artist 1'],
                       title: 'test track 1',
                       duration: 10
                     }
@@ -191,7 +191,7 @@ export const buildStoreState = () => {
                   tracklist: [
                     {
                       uuid: 'track-2',
-                      artist: 'test artist 2',
+                      artists: ['test artist 2'],
                       title: 'test track 2',
                       duration: 40
                     }
@@ -210,7 +210,7 @@ export const buildStoreState = () => {
                   tracklist: [
                     {
                       uuid: 'track-3',
-                      artist: 'test artist',
+                      artists: ['test artist'],
                       title: 'test track 3',
                       duration: 40
                     }
@@ -234,27 +234,21 @@ export const buildStoreState = () => {
               thumb: 'test thumb',
               topTracks: [
                 {
-                  artist: {
-                    name: 'test artist'
-                  },
+                  artists: ['test artist'],
                   listeners: 771858,
                   playcount: 6900237,
                   thumb: '',
                   title: 'test artist top track 1'
                 },
                 {
-                  artist: {
-                    name: 'test artist'
-                  },
+                  artists: ['test artist'],
                   listeners: 123,
                   playcount: 6969,
                   thumb: '',
                   title: 'test artist top track 2'
                 },
                 {
-                  artist: {
-                    name: 'test artist'
-                  },
+                  artists: ['test artist'],
                   listeners: 9,
                   playcount: 1,
                   thumb: '',
@@ -389,7 +383,7 @@ export const buildStoreState = () => {
                 tracks: [
                   {
                     uuid: 'test-track-1',
-                    artist: 'test artist 1',
+                    artists: ['test artist 1'],
                     name: 'test track',
                     thumbnail: 'test thumbnail',
                     stream: {
@@ -401,7 +395,7 @@ export const buildStoreState = () => {
                   },
                   {
                     uuid: 'test-track-2',
-                    artist: 'test artist 2',
+                    artists: ['test artist 2'],
                     name: 'test track 22',
                     thumbnail: 'test thumbnail 2',
                     stream: {
@@ -419,7 +413,7 @@ export const buildStoreState = () => {
                 tracks: [
                   {
                     uuid: 'test-track-1',
-                    artist: 'test artist 1',
+                    artists: ['test artist 1'],
                     name: 'test track',
                     thumbnail: 'test thumbnail',
                     stream:
@@ -432,7 +426,7 @@ export const buildStoreState = () => {
                   },
                   {
                     uuid: 'test-track-22',
-                    artist: 'test artist 2',
+                    artists: ['test artist 2'],
                     name: 'test track 22',
                     thumbnail: 'test thumbnail 2',
                     stream: {
@@ -457,14 +451,14 @@ export const buildStoreState = () => {
           tracks: [
             {
               position: 2,
-              artist: 'test artist 1',
+              artists: ['test artist 1'],
               name: 'test track 1',
               thumbnail: 'https://test-track-thumb-url',
               uuid: 'uuid1'
             },
             {
               position: 1,
-              artist: 'test artist 2',
+              artists: ['test artist 2'],
               name: 'test track 2',
               thumbnail: 'https://test-track-thumb-url',
               stream: undefined,
@@ -519,7 +513,7 @@ export const buildStoreState = () => {
               id: 1,
               position: 1,
               title: 'top track 1',
-              artist: 'top track artist 1',
+              artists: ['top track artist 1'],
               thumbnail: 'top track thumbnail 1',
               duration: 100,
               album: {
@@ -534,7 +528,7 @@ export const buildStoreState = () => {
               id: 2,
               position: 2,
               title: 'top track 2',
-              artist: 'top track artist 2',
+              artists: ['top track artist 2'],
               thumbnail: 'top track thumbnail 2',
               duration: 78,
               album: {
@@ -615,12 +609,12 @@ export const buildStoreState = () => {
                 tracklist: [{
                   uuid: '1',
                   name: 'track 1',
-                  artist: 'artist 1',
+                  artists: ['artist 1'],
                   stream: undefined
                 }, {
                   uuid: '2',
                   name: 'track 2',
-                  artist: 'artist 2',
+                  artists: ['artist 2'],
                   stream: undefined
                 }]
               }
@@ -651,7 +645,7 @@ export const buildStoreState = () => {
             completion: 1,
             track: {
               uuid: '1',
-              artist: 'test artist 1',
+              artists: ['test artist 1'],
               name: 'finished track'
             }
           },
@@ -660,7 +654,7 @@ export const buildStoreState = () => {
             completion: 0.1,
             track: {
               uuid: '2',
-              artist: 'test artist 2',
+              artists: ['test artist 2'],
               name: 'track with errorx'
             }
           },
@@ -669,7 +663,7 @@ export const buildStoreState = () => {
             completion: 0.3,
             track: {
               uuid: '3',
-              artist: 'test artist 3',
+              artists: ['test artist 3'],
               name: 'paused track'
             }
           },
@@ -678,7 +672,7 @@ export const buildStoreState = () => {
             completion: 0.5,
             track: {
               uuid: '4',
-              artist: 'test artist 4',
+              artists: ['test artist 4'],
               name: 'started track'
             }
           },
@@ -687,7 +681,7 @@ export const buildStoreState = () => {
             completion: 0,
             track: {
               uuid: '5',
-              artist: 'test artist 5',
+              artists: ['test artist 5'],
               name: 'waiting track'
             }
           }
@@ -714,7 +708,7 @@ export const buildStoreState = () => {
         queue: {
           queueItems: [
             {
-              artist: 'test artist 1',
+              artists: ['test artist 1'],
               name: 'test track 1',
               thumbnail: 'https://test-track-thumb-url',
               streams: [{
@@ -752,7 +746,7 @@ export const buildStoreState = () => {
               error: false
             },
             {
-              artist: 'test artist 2',
+              artists: ['test artist 2'],
               name: 'test track 2',
               thumbnail: 'https://test-track-thumb-url',
               streams: [{
@@ -770,7 +764,7 @@ export const buildStoreState = () => {
               error: false
             },
             {
-              artist: 'test artist 3',
+              artists: ['test artist 3'],
               name: 'test track 3',
               thumbnail: undefined,
               streams: [{
@@ -853,7 +847,7 @@ export const buildStoreState = () => {
           listType: 'simple-list',
           tracks: tracks ?? [{
             uuid: 'local-track-1',
-            artist: 'local artist 1',
+            artists: ['local artist 1'],
             name: 'local track 1',
             album: 'local album 1',
             thumbnail: 'local track thumbnail 1',
@@ -866,7 +860,7 @@ export const buildStoreState = () => {
 
           }, {
             uuid: 'local-track-2',
-            artist: 'local artist 1',
+            artists: ['local artist 1'],
             name: 'local track 2',
             album: 'local album 1',
             thumbnail: 'local track thumbnail 2',
@@ -878,7 +872,7 @@ export const buildStoreState = () => {
             local: true
           }, {
             uuid: 'local-track-3',
-            artist: 'local artist 2',
+            artists: ['local artist 2'],
             name: 'local track 3',
             album: 'local album 2',
             thumbnail: 'local track thumbnail 3',

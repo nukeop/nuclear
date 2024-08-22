@@ -59,9 +59,7 @@ const DownloadsItem: React.FC<DownloadsItemProps> = ({
   pauseDownload,
   removeDownload
 }) => {
-  const artistName = _.isString(_.get(item, 'track.artist'))
-    ? _.get(item, 'track.artist')
-    : _.get(item, 'track.artist.name');
+  const artistName = item.track.artists?.[0];
   const onResumeClick = useCallback(() => resumeDownload(item.track.uuid), [item, resumeDownload]);
   const onPauseClick = useCallback(() => pauseDownload(item.track.uuid), [item, pauseDownload]);
   const onRemoveClick = useCallback(() => removeDownload(item.track.uuid), [item, removeDownload]);

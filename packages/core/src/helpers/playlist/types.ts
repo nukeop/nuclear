@@ -8,7 +8,7 @@ export class Playlist {
 
 export class PlaylistTrack {
   uuid: string;
-  artist: string;
+  artists: string[];
   name: string;
   album?: string;
   thumbnail?: string;

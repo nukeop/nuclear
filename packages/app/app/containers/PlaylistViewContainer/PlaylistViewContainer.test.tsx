@@ -35,11 +35,11 @@ describe('Playlist view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist 1',
+        artists: ['test artist 1'],
         name: 'test track'
       }),
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 22'
       })
     ]);
@@ -54,11 +54,11 @@ describe('Playlist view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist 1',
+        artists: ['test artist 1'],
         name: 'test track'
       }),
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 22'
       })
     ]);
@@ -133,7 +133,7 @@ describe('Playlist view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 22'
       })
     ]);
@@ -146,7 +146,7 @@ describe('Playlist view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 22'
       })
     ]);
@@ -161,7 +161,7 @@ describe('Playlist view container', () => {
     const state = store.getState();
     expect(state.favorites.tracks).toEqual([
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 22'
       })
     ]);
@@ -178,7 +178,7 @@ describe('Playlist view container', () => {
         completion: 0,
         status: 'Waiting',
         track: expect.objectContaining({
-          artist: 'test artist 2',
+          artists: ['test artist 2'],
           name: 'test track 22'
         })
       })
@@ -193,7 +193,7 @@ describe('Playlist view container', () => {
     expect(state.playlists.localPlaylists.data[0].tracks).toHaveLength(1);
     expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
       expect.objectContaining({
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 22'
       })
     ]);
@@ -223,17 +223,17 @@ describe('Playlist view container', () => {
         lastModified: 1000198000000,
         tracks: [{
           uuid: 'test-track-uuid-1',
-          artist: 'test artist 1',
+          artists: ['test artist 1'],
           name: 'test track 1',
           stream: undefined
         }, {
           uuid: 'test-track-uuid-1',
-          artist: 'test artist 1',
+          artists: ['test artist 1'],
           name: 'test track 1',
           stream: undefined
         }, {
           uuid: 'test-track-uuid-3',
-          artist: 'test artist 2',
+          artists: ['test artist 2'],
           name: 'test track 2',
           stream: undefined
         }]}])
@@ -247,12 +247,12 @@ describe('Playlist view container', () => {
     expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
       expect.objectContaining({
         uuid: 'test-track-uuid-1',
-        artist: 'test artist 1',
+        artists: ['test artist 1'],
         name: 'test track 1'
       }),
       expect.objectContaining({
         uuid: 'test-track-uuid-3',
-        artist: 'test artist 2',
+        artists: ['test artist 2'],
         name: 'test track 2'
       })
     ]);

@@ -7,7 +7,7 @@ import { createWriteStream, createReadStream } from 'fs';
 import { rm } from 'fs/promises';
 
 import { ipcController, ipcEvent } from '../utils/decorators';
-import { getTrackArtist, getTrackTitle } from '../utils/tracks';
+import { getTrackArtists, getTrackTitle } from '../utils/tracks';
 import Download from '../services/download';
 import Logger, { $mainLogger } from '../services/logger';
 import Window from '../services/window';
@@ -63,7 +63,7 @@ class DownloadIpcCtrl {
         }
         this.downloadItems = this.downloadItems.filter((item => item.uuid === uuid));
       }
-      const artistName = getTrackArtist(data);
+      const artistName = getTrackArtists(data)?.[0];
       const title = getTrackTitle(data);
 
       // .replace(/[/\\?%*:|"<>]/g, '-') or equivalent invalid characters based on platform

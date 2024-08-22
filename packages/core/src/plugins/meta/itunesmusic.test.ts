@@ -77,7 +77,7 @@ describe('iTunes music metaprovider tests', () => {
     const response = await itunesMeta.fetchAlbumDetails('1440650428', 'master');
     expect(fetch).toHaveBeenCalledTimes(1);
     const track = new Track ({
-      'artist': 'The Platinum Collection (Greatest Hits I, II & III)', 
+      'artists': ['The Platinum Collection (Greatest Hits I, II & III)'], 
       'duration': 356, 
       'position': 1, 
       'thumbnail': 'https://is3-ssl.mzstatic.com/image/thumb/Music115/v4/83/23/e4/8323e48b-3467-448b-1ce0-8981d8a97437/source/60x60bb.jpg', 
