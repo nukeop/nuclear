@@ -47,6 +47,7 @@ export { default as FullscreenLayer } from './components/FullscreenLayer';
 export { default as FullscreenForm } from './components/FullscreenForm';
 export { default as FormInput } from './components/FormInput';
 export { default as InputDialog } from './components/InputDialog';
+export { GridTrackTable } from './components/GridTrackTable';
 
 export {NuclearSignInForm} from './forms/NuclearSignInForm';
 export {NuclearSignUpForm} from './forms/NuclearSignUpForm';
