@@ -75,7 +75,7 @@ module.exports = (env) => {
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-proposal-object-rest-spread'
       ],
-      ignore: [/node_modules\/(?!@nuclear).*/]
+      include: [APP_DIR, ...NUCLEAR_MODULES]
     }
   };
   const contentSecurity =
@@ -246,9 +246,17 @@ module.exports = (env) => {
       static: {
         publicPath: '/'
       },
+      watchFiles: ['../../packages/**/*.{js,jsx,ts,tsx}'],
       allowedHosts: 'all'
     };
+
+    config.watchOptions = {
+      ignored: ['node_modules', 'dist'],
+      aggregateTimeout: 300,
+      poll: 1000
+    };
   }
+
 
   return config;
 };

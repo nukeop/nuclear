@@ -1,0 +1,75 @@
+@import "../../common.scss";
+
+.track_table_wrapper {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    overflow: hidden;
+    height: 100%;
+}
+
+.track_table {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    flex: 1 1 auto;
+
+    .track_table_head {
+        display: grid;
+        background: $bgdefault;
+        color: $white;
+        grid-template-columns: 1fr;
+        flex: 0 0 auto;
+    }
+
+    .track_table_header_row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        width: 100%;
+    }
+
+    .track_table_header_cell {
+        display: table-cell;
+        padding: 1em;
+        text-align: left;
+    }
+
+    .track_table_body {
+        display: block;
+        gap: 0.25em;
+        overflow: auto;
+        flex: 1 1 auto;
+
+        &.body_dragged_over {
+            background: $bgdark;
+        }
+    }
+
+    .track_table_row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        gap: 1em;
+
+        color: $white;
+
+        &:hover {
+            background: rgba($bgdefault, 0.25);
+        }
+    }
+
+    .track_table_cell {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.thumbnail_cell {
+    height: 3em;
+    .thumbnail_cell_thumbnail {
+        display: block;
+        width: 3em;
+        height: 3em;
+        object-fit: contain;
+    }
+}
