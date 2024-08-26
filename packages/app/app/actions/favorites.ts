@@ -1,9 +1,10 @@
 import _, { flow, omit, unionWith } from 'lodash';
-import { store, Track } from '@nuclear/core';
+import { store, Album, Artist, Track } from '@nuclear/core';
 import { areTracksEqualByName, getTrackItem } from '@nuclear/ui';
 
-import { safeAddUuid } from './helpers';
+import { rewriteTrackArtists, safeAddUuid } from './helpers';
 import { createStandardAction } from 'typesafe-actions';
+import { TrackItem } from '@nuclear/ui/lib/types';
 
 export const READ_FAVORITES = 'READ_FAVORITES';
 export const ADD_FAVORITE_TRACK = 'ADD_FAVORITE_TRACK';
@@ -126,41 +127,13 @@ export function removeFavoriteArtist(artist) {
 * `Track.artist` and `Track.extraArtists` are written into {@link Track.artists}
 */
 function getFavoritesBackwardsCompatible() {
-  const favorites = store.get('favorites');
+  const favorites: { albums?: Album[], artists?: Artist[], tracks?: Track[] } = store.get('favorites');
 
-  favorites.tracks?.forEach(track => {
-    if (track.artists || !track.artist) {
-      return;
-    }
-
-    if (track.artist) {
-      track.artists = _.isString(track.artist) ? [track.artist] : [track.artist.name];
-    }
-
-    // Assuming we have `extraArtists` on a track, we must had an `artist` which
-    // was already saved into `artists`, so this `track.artists` shouldn't be undefined
-    track.extraArtists?.forEach(artist => {
-      track.artists.push(artist);
-    });
+  favorites.tracks = favorites.tracks?.map(rewriteTrackArtists);
+  favorites.albums = favorites.albums?.map(album => {
+    album.tracklist = album.tracklist?.map(rewriteTrackArtists);
+    return album;
   });
 
-  favorites.albums?.forEach(album => {
-    album.tracklist?.forEach(track => {
-      if (track.artists || !track.artist) {
-        return;
-      }
-
-      if (track.artist) {
-        track.artists = _.isString(track.artist) ? [track.artist] : [track.artist.name];
-      }
-
-      // Assuming we have `extraArtists` on a track, we must had an `artist` which
-      // was already saved into `artists`, so this `track.artists` shouldn't be undefined
-      track.extraArtists?.forEach(artist => {
-        track.artists.push(artist);
-      });
-    });
-  });
-
-  return favorites;
+  return favorites as any;
 }

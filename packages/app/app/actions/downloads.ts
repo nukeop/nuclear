@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { isEqual } from 'lodash';
 import { store, StreamProvider } from '@nuclear/core';
 import { getTrackItem } from '@nuclear/ui';
-import { safeAddUuid } from './helpers';
+import { rewriteTrackArtists, safeAddUuid } from './helpers';
 import { Download, DownloadStatus, Track, TrackItem } from '@nuclear/ui/lib/types';
 import { createStandardAction } from 'typesafe-actions';
 import { Download as DownloadActionTypes }  from './actionTypes';
@@ -179,26 +179,8 @@ export const clearFinishedDownloads = createStandardAction(DownloadActionTypes.C
 */
 function getDownloadsBackwardsCompatible(): Download[] {
   const downloads: Download[] = store.get('downloads');
-
-  downloads.forEach(download => {
-    // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
-    if (download.track.artists || !download.track.artist) {
-      return;
-    }
-
-    // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
-    if (download.track.artist) {
-      // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
-      download.track.artists = _.isString(download.track.artist) ? [download.track.artist] : [download.track.artist.name];
-    }
-
-    // Assuming we have `extraArtists` on a track, we must had an `artist` which
-    // was already saved into `artists`, so this `track.artists` shouldn't be undefined
-    // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
-    download.track.extraArtists?.forEach(artist => {
-      download.track.artists.push(artist);
-    });
+  return downloads.map(download => {
+    download.track = rewriteTrackArtists(download.track);
+    return download;
   });
-
-  return downloads;
 }

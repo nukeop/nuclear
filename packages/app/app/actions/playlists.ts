@@ -3,7 +3,7 @@ import { v4 } from 'uuid';
 import { remote } from 'electron';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 
-import { store, PlaylistHelper, Playlist, PlaylistTrack, rest } from '@nuclear/core';
+import { store, PlaylistHelper, Playlist, PlaylistTrack, Track, rest } from '@nuclear/core';
 import { GetPlaylistsByUserIdResponseBody } from '@nuclear/core/src/rest/Nuclear/Playlists.types';
 import { ErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 
@@ -18,6 +18,7 @@ import { success, error } from './toasts';
 import { IdentityStore } from '../reducers/nuclear/identity';
 import { PlaylistsStore } from '../reducers/playlists';
 import { isEmpty } from 'lodash';
+import { rewriteTrackArtists } from './helpers';
 
 export const updatePlaylistsAction = createStandardAction(Playlists.UPDATE_LOCAL_PLAYLISTS)<PlaylistsStore['localPlaylists']['data']>();
 
@@ -175,26 +176,8 @@ export function addPlaylistFromFile(filePath, t) {
 */
 function getPlaylistsBackwardsCompatible(): Playlist[] {
   const playlists: Playlist[] = store.get('playlists');
-
-  playlists?.forEach(playlist => {
-    playlist.tracks?.forEach(track => {
-      // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
-      if (track.artists || !track.artist) {
-        // New format already present, do nothing
-        return;
-      }
-
-      // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
-      track.artists = _.isString(track.artist) ? [track.artist] : [track.artist.name];
-
-      // Assuming we have `extraArtists` on a track, we must had an `artist` which
-      // was already saved into `artists`, so this `track.artists` shouldn't be undefined
-      // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
-      track.extraArtists?.forEach(artist => {
-        track.artists.push(artist);
-      });
-    });
+  return playlists.map(playlist => {
+    playlist.tracks = playlist.tracks?.map(rewriteTrackArtists);
+    return playlist;
   });
-
-  return playlists;
 }
