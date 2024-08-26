@@ -64,7 +64,7 @@ class TrayMenu {
         enabled: false
       });
       template.push({
-        label: `by ${this.playerContext.track.artist}`,
+        label: `by ${this.playerContext.track.artists[0]}`,
         enabled: false
       });
     } else {
@@ -137,7 +137,7 @@ class TrayMenu {
 
   getToolTipString() {
     return this.playerContext.track ? 
-      `${this.playerContext.isPlaying ? 'Playing: ' : ''} ${this.playerContext.track.name} - ${this.playerContext.track.artist}` :
+      `${this.playerContext.isPlaying ? 'Playing: ' : ''} ${this.playerContext.track.name} - ${this.playerContext.track.artists[0]}` :
       this.config.title ;
   }
 

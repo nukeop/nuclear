@@ -22,7 +22,7 @@ use crate::{
 #[derive(Default, Debug, Clone, Builder)]
 #[builder(setter(strip_option))]
 pub struct AudioMetadata {
-    pub artist: Option<String>,
+    pub artists: Option<Vec<String>>,
     pub title: Option<String>,
     pub album: Option<String>,
     pub duration: Option<u32>,
@@ -35,7 +35,7 @@ pub struct AudioMetadata {
 impl AudioMetadata {
     pub fn new() -> Self {
         Self {
-            artist: None,
+            artists: None,
             title: None,
             album: None,
             duration: None,
@@ -74,7 +74,7 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         let tag = tag.unwrap();
         let mut metadata = AudioMetadata::new();
 
-        metadata.artist = tag.artist().map(|s| s.to_string());
+        metadata.artists = tag.artist().map(|s| s.to_string()).and_then(|s| Some(vec![s]));
         metadata.title = tag.title().map(|s| s.to_string());
         metadata.album = tag.album().map(|s| s.to_string());
         let duration = mp3_duration::from_path(&path).map(|duration| duration.as_secs() as u32);
@@ -139,7 +139,7 @@ impl MetadataExtractor for FlacMetadataExtractor {
 
         let tag = tag.unwrap();
         let mut metadata = AudioMetadata::new();
-        metadata.artist = Self::extract_string_metadata(&tag, "ARTIST", Some("ALBUMARTIST"));
+        metadata.artists = Self::extract_string_metadata(&tag, "ARTIST", Some("ALBUMARTIST")).and_then(|s| Some(vec![s]));
         metadata.title = Self::extract_string_metadata(&tag, "TITLE", None);
         metadata.album = Self::extract_string_metadata(&tag, "ALBUM", None);
         let total_samples = tag.get_streaminfo().unwrap().total_samples;
@@ -213,7 +213,7 @@ impl MetadataExtractor for OggMetadataExtractor {
                             metadata.title = Some(tag.value.to_string());
                         }
                         Some(StandardTagKey::Artist) => {
-                            metadata.artist = Some(tag.value.to_string());
+                            metadata.artists = Some(vec![tag.value.to_string()]);
                         }
                         Some(StandardTagKey::Album) => {
                             metadata.album = Some(tag.value.to_string());
@@ -257,7 +257,7 @@ impl MetadataExtractor for Mp4MetadataExtractor {
         let tag = tag.unwrap();
         let mut metadata = AudioMetadata::new();
 
-        metadata.artist = tag.artist().map(|s| s.to_string());
+        metadata.artists = tag.artist().map(|s| s.to_string()).and_then(|s| Some(vec![s]));
         metadata.title = tag.title().map(|s| s.to_string());
         metadata.album = tag.album().map(|s| s.to_string());
         metadata.duration = tag.duration().map(|d| d.as_secs() as u32);
