@@ -30,46 +30,147 @@
     }
 
     .track_table_header_cell {
-        display: table-cell;
         padding: 1em;
         text-align: left;
+        user-select: none;
+    }
+
+    .track_table_header_spacer {
+        width: 10px;
     }
 
     .track_table_body {
         display: block;
         gap: 0.25em;
-        overflow: auto;
+        overflow-y: auto;
         flex: 1 1 auto;
 
         &.body_dragged_over {
             background: $bgdark;
         }
     }
+}
 
-    .track_table_row {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-        gap: 1em;
+.track_table_auto_sizer {
+    position: relative;
+}
 
-        color: $white;
+.track_table_virtualized_list {
+    overflow-x: visible !important;
+}
 
-        &:hover {
-            background: rgba($bgdefault, 0.25);
+.track_table_row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+
+    color: $white;
+    user-select: none;
+    outline: none;
+
+    &:hover {
+        background: rgba($bgdefault, 0.25);
+
+        .position_cell_value {
+            display: none;
+        }
+
+        .play_button {
+            display: inline-flex;
         }
     }
 
-    .track_table_cell {
+    &.is_dragging,
+    &:active,
+    &:focus {
+        background: darken($bgdefault, 5%);
+        border: 1px solid rgba($pink, 0.8);
+        border-radius: 4px;
+    }
+
+    &.is_dragging {
+        @include low-shadow;
+    }
+}
+
+.track_table_cell {
+    display: flex;
+    align-items: center;
+}
+
+.text_header {
+    &.centered {
         display: flex;
+        justify-content: center;
         align-items: center;
     }
+
+    .text_header_icon {
+        margin-left: 0.5em;
+    }
+}
+
+.text_cell {
+    padding: 0 1em;
 }
 
 .thumbnail_cell {
     height: 3em;
+
     .thumbnail_cell_thumbnail {
         display: block;
         width: 3em;
         height: 3em;
         object-fit: contain;
+    }
+}
+
+.selection_header,
+.selection_cell {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.selection_header_buttons {
+    position: absolute;
+    right: 4em;
+}
+
+.selection_header_popup_trigger {
+    position: relative;
+    margin: 0 !important;
+}
+
+.position_cell {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+
+    .position_cell_value {
+        display: inline-block;
+    }
+
+    .play_button {
+        display: none;
+        margin: 0;
+        width: 32px;
+        height: 32px;
+
+        i.play.icon {
+            width: 1em !important;
+            height: 1em !important;
+
+            // Manual adjustments to center the icon
+            margin-left: 0.125em !important;
+            margin-top: 0.0625em !important;
+
+            &::before {
+                width: 1em !important;
+                height: 1em !important;
+            }
+        }
     }
 }

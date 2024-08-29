@@ -1,11 +1,10 @@
-import { Row, TableInstance, TableState, UseSortByInstanceProps, UseSortByState, useSortBy, useTable } from 'react-table';
+import { Column, Row, TableInstance, TableOptions, TableState, UseSortByInstanceProps, UseSortByState, useRowSelect, useSortBy, useTable } from 'react-table';
 import React, { useMemo, memo } from 'react';
 import { DragDropContext, DragDropContextProps, Draggable, Droppable } from 'react-beautiful-dnd';
-import cx from 'classnames';
-import { FixedSizeList, FixedSizeList as List } from 'react-window';
+import { FixedSizeList } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
-import { TrackTableColumn, TrackTableHeaders, TrackTableSettings } from '../TrackTable/types';
+import { TrackTableColumn, TrackTableExtraProps, TrackTableHeaders, TrackTableSettings, TrackTableStrings } from '../TrackTable/types';
 import { TextHeader } from './Headers/TextHeader';
 import { TextCell } from './Cells/TextCell';
 import { Track } from '../../types';
@@ -14,92 +13,136 @@ import { getTrackThumbnail } from '../TrackRow';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { ThumbnailCell } from './Cells/ThumbnailCell';
-
-type GridTrackTableRowProps<T extends Track> = {
-  data: {
-    rows: TableInstance<T>['rows'];
-    prepareRow: TableInstance<T>['prepareRow'];
-    extraProps: TrackTableSettings;
-  };
-  index: number;
-  style: React.CSSProperties;
-}
-
-const GridTrackTableRow = memo(<T extends Track>({ index, style, data }: GridTrackTableRowProps<T>) => {
-  const row = data.rows[index];
-  data.prepareRow(row);
-  return <Draggable
-    key={row.id}
-    draggableId={row.id}
-    index={row.index}
-    isDragDisabled={false}
-  >
-    {
-      (draggableProvided, draggableSnapshot) => (
-        <div
-          data-test-id='track-table-row'
-          className={cx(
-            styles.track_table_row,
-            { [styles.is_dragging]: draggableSnapshot.isDragging }
-          )}
-          ref={draggableProvided.innerRef}
-          {...row.getRowProps()}
-          {...draggableProvided.draggableProps}
-          {...draggableProvided.dragHandleProps}
-          style={style ? {
-            ...draggableProvided.draggableProps.style,
-            ...style
-          } : draggableProvided.draggableProps.style}
-        >
-          {row.cells.map((cell, i) => cell.render(
-            'Cell',
-            { ...data.extraProps, key: i }
-          ))}
-        </div>
-      )}
-  </Draggable>;
-});
+import { GridTrackTableRow } from './GridTrackTableRow';
+import { isNumber, isString } from 'lodash';
+import { SelectionCell } from './Cells/SelectionCell';
+import { SelectionHeader } from './Headers/SelectionHeader';
+import { formatDuration } from '../../utils';
+import { PositionCell } from './Cells/PositionCell';
+import { GridTrackTableRowClone } from './GridTrackTableRowClone';
 
 export type GridTrackTableProps<T extends Track> = {
-tracks: T[];
-onDragEnd?: DragDropContextProps['onDragEnd'];
-} & TrackTableHeaders & TrackTableSettings;
+  className?: string;
+  tracks: T[];
+  isTrackFavorite: (track: T) => boolean;
+  onDragEnd?: DragDropContextProps['onDragEnd'];
+  strings: TrackTableStrings;
+  customColumns?: (Column<T> & { columnWidth: string; })[];
+} & TrackTableHeaders 
+  & TrackTableSettings 
+  & TrackTableExtraProps<T>;
 
 export const GridTrackTable = <T extends Track>({ 
+  className,
   tracks, 
+  customColumns=[],
+  isTrackFavorite,
+  onDragEnd,
 
-  titleHeader,
+  positionHeader,
   thumbnailHeader,
+  artistHeader,
+  titleHeader,
+  albumHeader,
+  durationHeader,
 
+  displayHeaders=true,
+  displayDeleteButton=true,
+  displayPosition=true,
+  displayFavorite=true,
   displayArtist=true, 
+  displayAlbum=true,
   displayThumbnail=true,
+  displayDuration=true,
+  displayCustom=true,
+  selectable=true,
+  searchable=false,
 
   ...extraProps
 }: GridTrackTableProps<T>) => {
+  const shouldDisplayDuration = displayDuration && tracks.every(track => Boolean(track.duration));
   const columns = useMemo(() => [
+    displayPosition && {
+      id: TrackTableColumn.Position,
+      Header: ({ column }) => <TextHeader
+        column={column} 
+        header={positionHeader} 
+        isCentered
+      />,
+      accessor: 'position',
+      Cell: PositionCell,
+      enableSorting: true,
+      columnWidth: '4em'
+    },
     displayThumbnail && {
       id: TrackTableColumn.Thumbnail,
-      Header: () => <span className={styles.center_aligned}>{thumbnailHeader}</span>,
-      accessor: (track) => getTrackThumbnail(track) || artPlaceholder,
-      Cell: ThumbnailCell
+      Header: ({ column }) => <TextHeader column={column} header={thumbnailHeader} />,
+      accessor: (track: T) => getTrackThumbnail(track) || artPlaceholder,
+      Cell: ThumbnailCell,
+      columnWidth: '3em'
     },
     {
       id: TrackTableColumn.Title,
       Header: ({ column }) => <TextHeader column={column} header={titleHeader} />,
-      accessor: (track) => track.title ?? track.name,
+      accessor: (track: T) => track.title ?? track.name,
       Cell: TextCell,
-      enableSorting: true
+      enableSorting: true,
+      columnWidth: '1fr'
+    },
+    displayArtist && {
+      id: TrackTableColumn.Artist,
+      Header: ({ column }) => <TextHeader column={column} header={artistHeader} />,
+      accessor: (track: T) => isString(track.artist)
+        ? track.artist
+        : track.artist.name,
+      Cell: TextCell,
+      enableSorting: true,
+      columnWidth: '1fr'
+    },
+    displayAlbum && {
+      id: TrackTableColumn.Album,
+      Header: ({ column }) => <TextHeader column={column} header={albumHeader} />,
+      accessor: 'album',
+      enableSorting: true,
+      Cell: TextCell,
+      columnWidth: '1fr'
+    },
+    shouldDisplayDuration && {
+      id: TrackTableColumn.Duration,
+      Header: ({ column }) => <TextHeader column={column} header={durationHeader} />,
+      accessor: (track: T) => {
+        if (isString(track.duration)) {
+          return track.duration;
+        } else if (isNumber(track.duration)) {
+          return formatDuration(track.duration);
+        } else {
+          return null;
+        }
+      },
+      Cell: TextCell
+    },
+    ...customColumns,
+    selectable && {
+      id: TrackTableColumn.Selection,
+      Header: SelectionHeader,
+      Cell: SelectionCell,
+      columnWidth: '6em'
     }
-  ], [displayArtist, displayThumbnail]);
+  ], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
   const data = useMemo(() => tracks, [tracks]);
 
   const initialState: Partial<TableState<T> & UseSortByState<T>> = {
     sortBy: [{ id: TrackTableColumn.Title, desc: false }]
   };
-  const table = useTable<T>({ columns, data, initialState }, useSortBy) as (TableInstance<T> & UseSortByInstanceProps<T>);
+  const table = useTable<T>({ columns, data, initialState }, useSortBy, useRowSelect) as (TableInstance<T> & UseSortByInstanceProps<T>);
 
   const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = table;
+
+  const gridTemplateColumns = columns.map(column => column.columnWidth ?? '1fr').join(' ');
+
+  // Disabled when there are selected rows, or when sorted by anything other than position
+  const isDragDisabled = !onDragEnd || table.selectedFlatRows.length > 0 || table.state.sortBy[0]?.id !== TrackTableColumn.Position;
 
   return <div className={styles.track_table_wrapper}>
     <div 
@@ -111,6 +154,7 @@ export const GridTrackTable = <T extends Track>({
           <div 
             key={headerGroup.id}
             className={styles.track_table_header_row}
+            style={{ gridTemplateColumns: gridTemplateColumns + ' auto' }}
             {...headerGroup.getHeaderGroupProps()} 
           >
             {
@@ -118,17 +162,26 @@ export const GridTrackTable = <T extends Track>({
                 <div 
                   key={column.id}
                   className={styles.track_table_header_cell}
-                  {...column.getHeaderProps()} 
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
                 >
-                  {column.render('Header')}
+                  {column.render('Header', extraProps)}
                 </div>))
             }
+            <div data-test-id='track-table-header-spacer' className={styles.track_table_header_spacer} />
           </div>
         ))}
       </div>
       <DragDropContext onDragEnd={() => {}}>
-        <Droppable droppableId='track_table'>
-          {(droppableProvided) => (
+        <Droppable 
+          droppableId='track_table'
+          mode='virtual'
+          renderClone={GridTrackTableRowClone({
+            rows,
+            gridTemplateColumns,
+            extraProps
+          })}
+        >
+          {(droppableProvided, droppableSnapshot) => (
             <div
               data-testid='track-table-body'
               className={styles.track_table_body}
@@ -136,26 +189,28 @@ export const GridTrackTable = <T extends Track>({
               {...getTableBodyProps()}
               {...droppableProvided.droppableProps}
             >
-              <AutoSizer>
+              <AutoSizer
+                className={styles.track_table_auto_sizer}
+              >
                 {({ height, width }) =>
-                  <>
-                    <FixedSizeList
-                      height={829}
-                      width={width}
-                      itemSize={42}
-                      itemCount={rows.length}
-                      overscanCount={2}
-                      itemData={{ 
-                        rows: rows as Row<Track>[],
-                        prepareRow: prepareRow as (row: Row<Track>) => void,
-                        extraProps
-                      }}
-                      outerRef={droppableProvided.innerRef}
-                    >
-                      {GridTrackTableRow}
-                    </FixedSizeList>
-                    {droppableProvided.placeholder}
-                  </>
+                  <FixedSizeList
+                    className={styles.track_table_virtualized_list}
+                    height={height}
+                    width={width}
+                    itemSize={42}
+                    itemCount={rows.length}
+                    overscanCount={2}
+                    itemData={{ 
+                      rows: rows as Row<Track>[],
+                      prepareRow: prepareRow as (row: Row<Track>) => void,
+                      gridTemplateColumns,
+                      isDragDisabled,
+                      extraProps
+                    }}
+                    outerRef={droppableProvided.innerRef}
+                  >
+                    {GridTrackTableRow}
+                  </FixedSizeList>
                 }
               </AutoSizer>
             </div>

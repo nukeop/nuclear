@@ -13,7 +13,7 @@ export const TextCell: React.FC<CellProps<Track>> = ({
   value
 }) => <div
   {...cell.getCellProps()}
-  className={cx(styles.track_table_cell)}
+  className={cx(styles.track_table_cell, styles.text_cell)}
 >
   {value}
 </div>;

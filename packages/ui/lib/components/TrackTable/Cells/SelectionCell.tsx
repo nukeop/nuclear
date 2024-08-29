@@ -12,7 +12,10 @@ const SelectionCell: React.FC<CellProps<Track> & UseRowSelectRowProps<Track>> = 
   row
 }) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={cx(styles.select_cell, styles.narrow)}>
   {/* @ts-ignore */}
-  <Checkbox {...row.getToggleRowSelectedProps()}/>
+  <Checkbox
+    {...row.getToggleRowSelectedProps()}
+    tabIndex={undefined}
+  />
 </td>;
 
 export default SelectionCell;

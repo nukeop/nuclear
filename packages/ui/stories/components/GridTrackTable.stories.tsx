@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { GridTrackTableProps } from '../../lib/components/GridTrackTable';
 import { Track } from '../../lib/types';
 import { swap } from '../storyUtils';
+import { Icon } from 'semantic-ui-react';
 
 export default {
   title: 'Components/GridTrackTable',
@@ -31,20 +32,31 @@ const tracks = [
       thumbnail: 'https://i.imgur.com/4euOws2.jpg',
       artist: { name: 'Test Artist 3' },
       name: 'Test Title 3',
-      album: 'Test Album',
+      album: 'Test Album2',
       duration: '1:00'
     } as Track
 ];
 
+const gridTrackTableStrings = {
+  addSelectedTracksToQueue: 'Add selected to queue',
+  addSelectedTracksToDownloads: 'Add selected to downloads',
+  addSelectedTracksToFavorites: 'Add selected to favorites',
+  playSelectedTracksNow: 'Play selected now',
+  tracksSelectedLabelSingular: 'track selected',
+  tracksSelectedLabelPlural: 'tracks selected',
+  filterInputPlaceholder: 'Search...'
+};
 
 const TrackTableTemplate = <T extends Track>(args: Partial<GridTrackTableProps<T>>) => <GridTrackTable
-  tracks={tracks} 
-  positionHeader='Position'
-  thumbnailHeader='Thumbnail'
+  tracks={tracks as T[]} 
+  positionHeader={<Icon name='hashtag' />}
+  thumbnailHeader={<Icon name='image' />}
   artistHeader='Artist'
   albumHeader='Album'
   titleHeader='Title'
   durationHeader='Length'
+  isTrackFavorite={() => false}
+  strings={gridTrackTableStrings}
   {...args} 
 />;
 
