@@ -180,3 +180,29 @@ export const ListeningHistory = () => <div className='bg'>
     displayDeleteButton={false}
   />
 </div>;
+
+export const DragAndDropVirtualized = () => {
+  const [trackRows, setTrackRows] = useState([...tracks]);
+
+  return <div className='bg'>
+    <TrackTableTemplate
+      tracks={Array.from({ length: 100 }, (_, i) => ({
+        ...trackRows[i % trackRows.length],
+        position: i + 1
+      }))}  
+      positionHeader={<Icon name='hashtag' />}
+      thumbnailHeader={<Icon name='image' />}
+      
+      isTrackFavorite={(track: Track) => track.artist === 'Test Artist 2'}
+      playlists={playlists}
+      strings={trackTableStrings}
+      onDragEnd={(result) => {
+        const { source, destination } = result;
+        setTrackRows(swap(trackRows, source.index, destination!.index));
+      }}
+      {...callbacks} 
+      displayDeleteButton={false}
+      displayThumbnail={false}
+    />
+  </div>;
+};
