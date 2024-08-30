@@ -22,7 +22,7 @@ export const GridTrackTableRowClone: <T extends Track>(props: GridTrackTableRowC
   return <div
     ref={provided.innerRef}
     className={cx(
-      styles.track_table_row,
+      styles.grid_track_table_row,
       styles.is_dragging
     )}
     {...row.getRowProps()}

@@ -5,6 +5,7 @@ import { GridTrackTableProps } from '../../lib/components/GridTrackTable';
 import { Track } from '../../lib/types';
 import { swap } from '../storyUtils';
 import { Icon } from 'semantic-ui-react';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/GridTrackTable',
@@ -37,6 +38,17 @@ const tracks = [
     } as Track
 ];
 
+const callbacks = {
+  onPlay: action('Started playing'),
+  onPlayAll: action('Started playing all'),
+  onAddToQueue: action('Added to queue'),
+  onAddToFavorites: action('Added to favorites'),
+  onRemoveFromFavorites: action('Removed from favorites'),
+  onAddToDownloads: action('Added to downloads'),
+  onAddToPlaylist: action('Added to playlist'),
+  onDelete: action('Deleted')
+};
+
 const gridTrackTableStrings = {
   addSelectedTracksToQueue: 'Add selected to queue',
   addSelectedTracksToDownloads: 'Add selected to downloads',
@@ -57,6 +69,7 @@ const TrackTableTemplate = <T extends Track>(args: Partial<GridTrackTableProps<T
   durationHeader='Length'
   isTrackFavorite={() => false}
   strings={gridTrackTableStrings}
+  {...callbacks}
   {...args} 
 />;
 
@@ -83,3 +96,10 @@ export const DragAndDropVirtualized = () => {
     />
   </div>;
 };
+
+export const Searchable = () => <div className='bg'>
+  <TrackTableTemplate 
+    tracks={tracks}
+    searchable
+  />
+</div>;
