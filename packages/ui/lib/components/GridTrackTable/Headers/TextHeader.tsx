@@ -6,15 +6,15 @@ import cx from 'classnames';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
 
-type TextHeaderProps = {
+type TextHeaderProps<T extends Track> = {
   className?: string;
-  column: ColumnInstance<Track> & UseSortByColumnProps<Track>;
+  column: ColumnInstance<T> & UseSortByColumnProps<T>;
   header: string | React.ReactNode;
   isCentered?: boolean;
   'data-testid'?: string;
 };
 
-export const TextHeader: React.FC<TextHeaderProps> = ({ 
+export const TextHeader: <T extends Track>(props: TextHeaderProps<T>) => React.ReactElement<TextHeaderProps<T>> = ({
   className,
   column, 
   header,

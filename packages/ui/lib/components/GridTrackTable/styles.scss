@@ -8,7 +8,46 @@
     height: 100%;
 }
 
-.track_table {
+.track_table_wrapper .track_table_filter_row {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 0.5em;
+
+    .track_table_filter_input {
+        input {
+            background: rgba($bglighter, 0.25);
+            color: $white;
+            border: 1px solid transparent;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+
+            &::placeholder {
+                color: rgba($white, 0.5);
+            }
+
+            &::selection {
+                background-color: $blue;
+                color: $white;
+            }
+
+            &:active,
+            &:focus {
+                &::placeholder {
+                    color: rgba($white, 0.2);
+                }
+            }
+        }
+    }
+
+    .track_table_filter_button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.grid_track_table {
     position: relative;
     display: flex;
     flex-flow: column;
@@ -59,7 +98,7 @@
     overflow-x: visible !important;
 }
 
-.track_table_row {
+.grid_track_table_row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 
@@ -77,11 +116,15 @@
         .play_button {
             display: inline-flex;
         }
+
+        .title_cell {
+            .title_cell_buttons {
+                display: inline-flex;
+            }
+        }
     }
 
-    &.is_dragging,
-    &:active,
-    &:focus {
+    &.is_dragging {
         background: darken($bgdefault, 5%);
         border: 1px solid rgba($pink, 0.8);
         border-radius: 4px;
@@ -92,9 +135,14 @@
     }
 }
 
-.track_table_cell {
+.grid_track_table_cell {
     display: flex;
     align-items: center;
+
+    button.nuclear.button {
+        width: 2.5em;
+        height: 2.5em;
+    }
 }
 
 .text_header {
@@ -110,6 +158,8 @@
 }
 
 .text_cell {
+    @include ellipsis;
+    white-space: nowrap;
     padding: 0 1em;
 }
 
@@ -155,22 +205,61 @@
 
     .play_button {
         display: none;
-        margin: 0;
-        width: 32px;
-        height: 32px;
+
+        // Manual adjustments to center the icon
+        padding-top: 0.75em !important;
 
         i.play.icon {
-            width: 1em !important;
-            height: 1em !important;
-
             // Manual adjustments to center the icon
-            margin-left: 0.125em !important;
-            margin-top: 0.0625em !important;
+            margin-left: 0.06em !important;
+        }
+    }
+}
 
-            &::before {
-                width: 1em !important;
-                height: 1em !important;
-            }
+.delete_cell {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.favorite_cell {
+    justify-content: center;
+    padding-left: 1em;
+}
+
+.grid_track_table_cell.title_cell {
+    .title_cell_content {
+        display: inline-flex;
+        flex-flow: row;
+        align-items: center;
+        width: 100%;
+    }
+
+    .title_cell_value {
+        @include ellipsis;
+        white-space: nowrap;
+        flex: 1 1 auto;
+    }
+
+    .title_cell_buttons {
+        display: none;
+        flex-flow: row;
+        flex: 0 0 auto;
+    }
+    .title_cell_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        width: 2.5em;
+        height: 2.5em;
+        margin: 0;
+        border: none;
+        background: none;
+
+        i.icon {
+            margin: 0 0 0.5px 0 !important;
         }
     }
 }

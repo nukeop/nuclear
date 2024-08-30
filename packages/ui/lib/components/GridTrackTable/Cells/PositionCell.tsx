@@ -14,7 +14,7 @@ export const PositionCell: React.FC<CellProps<Track> & TrackTableExtraProps<Trac
   onPlay
 }) => <div
   {...cell.getCellProps()}
-  className={cx(styles.position_cell, styles.narrow)}
+  className={cx(styles.grid_track_table_cell, styles.position_cell)}
   data-testid='position-cell'
 >
   <Button

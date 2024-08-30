@@ -9,7 +9,7 @@ export const ThumbnailCell: React.FC<CellProps<Track>> = ({
   cell,
   value
 }) => <div
-  className={cx(styles.track_table_cell, styles.thumbnail_cell)}
+  className={cx(styles.grid_track_table_cell, styles.thumbnail_cell)}
   {...cell.getCellProps()}
 >
   <img className={styles.thumbnail_cell_thumbnail} src={value} />
