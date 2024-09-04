@@ -6,6 +6,7 @@
     flex-flow: column;
     overflow: hidden;
     height: 100%;
+    flex: 1 1 auto;
 }
 
 .track_table_wrapper .track_table_filter_row {
@@ -75,13 +76,12 @@
     }
 
     .track_table_header_spacer {
-        width: 10px;
+        width: 0.5rem;
     }
 
     .track_table_body {
         display: block;
         gap: 0.25em;
-        overflow-y: auto;
         flex: 1 1 auto;
 
         &.body_dragged_over {
@@ -105,6 +105,10 @@
     color: $white;
     user-select: none;
     outline: none;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $bgdefault;
+    }
 
     &:hover {
         background: rgba($bgdefault, 0.25);
@@ -146,6 +150,11 @@
 }
 
 .text_header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+
     &.centered {
         display: flex;
         justify-content: center;

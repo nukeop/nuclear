@@ -32,7 +32,7 @@ export type GridTrackTableProps<T extends Track> = {
   isTrackFavorite: (track: T) => boolean;
   onDragEnd?: DragDropContextProps['onDragEnd'];
   strings: TrackTableStrings;
-  customColumns?: (Column<T> & { columnWidth: string; })[];
+  customColumns?: (Column<T & { columnWidth: string; }>)[];
 } & TrackTableHeaders 
   & TrackTableSettings 
   & TrackTableExtraProps<T>;
@@ -137,7 +137,8 @@ export const GridTrackTable = <T extends Track>({
           return null;
         }
       },
-      Cell: TextCell
+      Cell: TextCell,
+      columnWidth: '6em'
     },
     ...customColumns,
     selectable && {
@@ -146,12 +147,12 @@ export const GridTrackTable = <T extends Track>({
       Cell: SelectionCell,
       columnWidth: '6em'
     }
-  ], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
+  ].filter(Boolean), [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
   const data = useMemo(() => tracks, [tracks]);
 
   const initialState: Partial<TableState<T> & UseSortByState<T>> = {
-    sortBy: [{ id: TrackTableColumn.Title, desc: false }]
+    sortBy: [{ id: TrackTableColumn.Position, desc: false }]
   };
   const table = useTable<T>({ columns, data, initialState }, useGlobalFilter, useSortBy, useRowSelect) as (TableInstance<T> & UseSortByInstanceProps<T> & UseGlobalFiltersInstanceProps<T>);
   const [globalFilter, setGlobalFilterState] = useState(''); // Required, because useGlobalFilter does not provide a way to get the current filter value
@@ -225,7 +226,7 @@ export const GridTrackTable = <T extends Track>({
           </div>
         ))}
       </div>
-      <DragDropContext onDragEnd={() => {}}>
+      <DragDropContext onDragEnd={onDragEnd}>
         <Droppable 
           droppableId='track_table'
           mode='virtual'
