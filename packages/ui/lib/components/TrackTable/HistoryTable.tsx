@@ -5,7 +5,6 @@ import TrackTable, { TrackTableProps } from '.';
 import { Track } from '../../types';
 import DateCell from './Cells/DateCell';
 import { TrackTableColumn } from './types';
-import { GridTrackTable } from '../GridTrackTable';
 import { Column } from 'react-table';
 import { TextHeader } from '../GridTrackTable/Headers/TextHeader';
 
@@ -26,7 +25,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ tracks, dateHeader, ...prop
     columnnWidth: '3em'
   } as Column<HistoryTableTrack>], []);
 
-  return <GridTrackTable
+  return <TrackTable
     className={styles.history_table}
     tracks={tracks}
     customColumns={customColumns}
