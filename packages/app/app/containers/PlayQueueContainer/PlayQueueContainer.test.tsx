@@ -12,13 +12,6 @@ import {
 } from '../../../test/storeBuilders';
 import userEvent from '@testing-library/user-event';
 
-jest.mock(
-  'react-virtualized-auto-sizer',
-  () =>
-    ({ children }) =>
-      children({ height: 600, width: 600 })
-);
-
 describe('Play Queue container', () => {
   beforeAll(() => {
     setupI18Next();
