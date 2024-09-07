@@ -1,20 +1,27 @@
 import React from 'react';
-import { CellProps, UseRowSelectRowProps } from 'react-table';
+import { Cell, CellProps, UseRowSelectRowProps } from 'react-table';
 
 import { Track } from '../../../types';
 import Checkbox, { CheckboxProps } from '../../Checkbox';
 import styles from '../styles.scss';
+import { TrackTableRow } from '..';
 
-export const SelectionCell: React.FC<CellProps<Track> & UseRowSelectRowProps<Track>> = ({
+type SelectionCellProps<T extends Track> = {
+  cell: Cell<T>;
+  row: TrackTableRow<T>;
+}
+
+export const SelectionCell = <T extends Track>({
   cell, 
   row
-}) => <div
-  {...cell.getCellProps()}
-  className={styles.selection_cell}
->
-  <Checkbox
-    {...(row.getToggleRowSelectedProps() as unknown as CheckboxProps)} 
-    tabIndex={-1}
-  />
-</div>;
+}: SelectionCellProps<T>) => {
+  return <div
+    {...cell.getCellProps()}
+    className={styles.selection_cell}
+  >
+    <Checkbox
+      {...(row.getToggleRowSelectedProps() as unknown as CheckboxProps)}
+      tabIndex={-1} />
+  </div>;
+};
 

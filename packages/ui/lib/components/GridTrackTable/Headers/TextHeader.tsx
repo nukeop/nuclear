@@ -6,7 +6,7 @@ import cx from 'classnames';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
 
-type TextHeaderProps<T extends Track> = {
+export type TextHeaderProps<T extends Track> = {
   className?: string;
   column: ColumnInstance<T> & UseSortByColumnProps<T>;
   header: string | React.ReactNode;
@@ -29,7 +29,7 @@ export const TextHeader: <T extends Track>(props: TextHeaderProps<T>) => React.R
     <div className={cx(className, styles.text_header, {
       [styles.centered]: isCentered
     })} data-testid={dataTestId}>
-      {header}
+      { header }
       {
         isSorted &&
           <Icon className={styles.text_header_icon} name={name} />

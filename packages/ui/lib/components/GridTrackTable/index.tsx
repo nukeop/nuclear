@@ -1,6 +1,6 @@
-import { Column, Row, TableInstance, TableOptions, TableState, UseGlobalFiltersInstanceProps, UseSortByInstanceProps, UseSortByState, useGlobalFilter, useRowSelect, useSortBy, useTable } from 'react-table';
-import React, { useMemo, memo, useState } from 'react';
-import { DragDropContext, DragDropContextProps, Draggable, Droppable } from 'react-beautiful-dnd';
+import { Column, ColumnInstance, HeaderGroup, Row, TableInstance, TableState, UseGlobalFiltersInstanceProps, UseRowSelectInstanceProps, UseRowSelectRowProps, UseSortByColumnProps, UseSortByInstanceProps, UseSortByState, useGlobalFilter, useRowSelect, useSortBy, useTable } from 'react-table';
+import React, { useMemo, useState } from 'react';
+import { DragDropContext, DragDropContextProps, Droppable } from 'react-beautiful-dnd';
 import { FixedSizeList } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
@@ -32,12 +32,17 @@ export type GridTrackTableProps<T extends Track> = {
   isTrackFavorite: (track: T) => boolean;
   onDragEnd?: DragDropContextProps['onDragEnd'];
   strings: TrackTableStrings;
-  customColumns?: (Column<T & { columnWidth: string; }>)[];
+  customColumns?: (ColumnWithWidth<T>)[];
 } & TrackTableHeaders 
   & TrackTableSettings 
   & TrackTableExtraProps<T>;
 
-  type ColumnWithWidth<T extends Track> = Column<T> & { columnWidth: string; };
+type ColumnWithWidth<T extends Track> = Column<T> & { columnWidth: string; };
+type TrackTableColumnInstance<T extends Track> = ColumnInstance<T> & UseSortByColumnProps<T>;
+type TrackTableHeaderGroup<T extends Track> = HeaderGroup<T> & UseSortByColumnProps<T>;
+type TrackTableInstance<T extends Track> = TableInstance<T> & UseGlobalFiltersInstanceProps<T> & UseSortByInstanceProps<T> & UseRowSelectInstanceProps<T>;
+type TrackTableState<T extends Track> = TableState<T> & UseSortByState<T>;
+export type TrackTableRow<T extends Track> = Row<T> & UseRowSelectRowProps<T>;
 
 export const GridTrackTable = <T extends Track>({ 
   className,
@@ -73,15 +78,15 @@ export const GridTrackTable = <T extends Track>({
       id: TrackTableColumn.Delete,
       Cell: DeleteCell,
       columnWidth: '3em'
-    },
+    } as Column<T>,
     displayPosition && {
       id: TrackTableColumn.Position,
       Header: ({ column }) => <TextHeader
-        column={column} 
+        column={column as TrackTableColumnInstance<Track>}
         header={positionHeader} 
         isCentered
       />,
-      accessor: 'position',
+      accessor: (track: T) => track.position, 
       Cell: PositionCell,
       enableSorting: true,
       columnWidth: '4em'
@@ -119,8 +124,8 @@ export const GridTrackTable = <T extends Track>({
     },
     displayAlbum && {
       id: TrackTableColumn.Album,
-      Header: ({ column }) => <TextHeader column={column} header={albumHeader} />,
-      accessor: 'album',
+      Header: ({ column }: { column: TrackTableColumnInstance<T> }) => <TextHeader column={column} header={albumHeader} />,
+      accessor: (track: T) => track.album,
       enableSorting: true,
       Cell: TextCell,
       columnWidth: '1fr'
@@ -154,7 +159,7 @@ export const GridTrackTable = <T extends Track>({
   const initialState: Partial<TableState<T> & UseSortByState<T>> = {
     sortBy: [{ id: TrackTableColumn.Position, desc: false }]
   };
-  const table = useTable<T>({ columns, data, initialState }, useGlobalFilter, useSortBy, useRowSelect) as (TableInstance<T> & UseSortByInstanceProps<T> & UseGlobalFiltersInstanceProps<T>);
+  const table = useTable<T>({ columns, data, initialState }, useGlobalFilter, useSortBy, useRowSelect);
   const [globalFilter, setGlobalFilterState] = useState(''); // Required, because useGlobalFilter does not provide a way to get the current filter value
 
   const {
@@ -163,8 +168,10 @@ export const GridTrackTable = <T extends Track>({
     headerGroups, 
     rows, 
     prepareRow,
-    setGlobalFilter
-  } = table;
+    setGlobalFilter,
+    state: tableState,
+    selectedFlatRows
+  } = table as TrackTableInstance<T>;
 
   const onFilterClick = () => {
     setGlobalFilter('');
@@ -174,7 +181,7 @@ export const GridTrackTable = <T extends Track>({
   const gridTemplateColumns = columns.map((column: ColumnWithWidth<T>) => column.columnWidth ?? '1fr').join(' ');
 
   // Disabled when there are selected rows, or when sorted by anything other than position
-  const isDragDisabled = !onDragEnd || table.selectedFlatRows.length > 0 || table.state.sortBy[0]?.id !== TrackTableColumn.Position;
+  const isDragDisabled = !onDragEnd || selectedFlatRows.length > 0 || (tableState as TrackTableState<T>).sortBy[0]?.id !== TrackTableColumn.Position;
 
   return <div className={styles.track_table_wrapper}>
     {
@@ -213,11 +220,11 @@ export const GridTrackTable = <T extends Track>({
             {...headerGroup.getHeaderGroupProps()} 
           >
             {
-              headerGroup.headers.map(column => (
+              headerGroup.headers.map((column: TrackTableHeaderGroup<T>) => (
                 <div 
                   key={column.id}
                   className={styles.track_table_header_cell}
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  {...column.getHeaderProps((column).getSortByToggleProps())}
                 >
                   {column.render('Header', extraProps)}
                 </div>))

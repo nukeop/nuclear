@@ -71,7 +71,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
   const customColumns = useMemo(() => [{
     id: PlaycountColumnId,
     Header: t('count'),
-    accessor: 'playcount',
+    accessor: (track: Track) => track.playcount,
     Cell: ({value, ...rest}: CellProps<Track, string>) => <TrackTableCell value={Number(value).toLocaleString()} {...rest} />
   }], []);
 
