@@ -6,7 +6,7 @@ import { Track } from '../../types';
 import DateCell from './Cells/DateCell';
 import { TrackTableColumn } from './types';
 import { Column } from 'react-table';
-import { TextHeader } from '../GridTrackTable/Headers/TextHeader';
+import { TextHeader, TextHeaderProps } from '../GridTrackTable/Headers/TextHeader';
 
 export type HistoryTableTrack = Track & {
     createdAt: Date;
@@ -19,7 +19,10 @@ type HistoryTableProps = TrackTableProps<HistoryTableTrack> & {
 const HistoryTable: React.FC<HistoryTableProps> = ({ tracks, dateHeader, ...props }) => {
   const customColumns = useMemo(() => [{
     id: TrackTableColumn.Date,
-    Header: ({ column }) => <TextHeader  column={column} header={dateHeader} />,
+    Header: ({ column }) => <TextHeader 
+      column={column as TextHeaderProps<HistoryTableTrack>['column']} 
+      header={dateHeader} 
+    />,
     accessor: (track: HistoryTableTrack) => track.createdAt.toLocaleString(),
     Cell: DateCell,
     columnnWidth: '3em'
