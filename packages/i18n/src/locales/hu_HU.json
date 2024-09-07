@@ -230,7 +230,7 @@
     "download-toast-title": "Szám hozzáadva a letöltésekhez",
     "favorite-add": "Hozzáadás a kedvencekhez",
     "header": "Várólista",
-    "header-track": "Current track",
+    "header-track": "",
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream still loading.",
     "playlist-add": "Hozzáadás a lejátszási listához",
