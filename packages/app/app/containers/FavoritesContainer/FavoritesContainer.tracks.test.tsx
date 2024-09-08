@@ -1,15 +1,16 @@
 
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import _, { pick } from 'lodash';
+
+import { Track } from '@nuclear/core';
 
 import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider, uuidRegex } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import PlayerBarContainer from '../PlayerBarContainer';
-import { Track } from '@nuclear/core';
-import userEvent from '@testing-library/user-event';
 
 const updateStore = (key: string, value: object) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires

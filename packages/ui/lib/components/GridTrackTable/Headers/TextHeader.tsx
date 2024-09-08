@@ -26,9 +26,12 @@ export const TextHeader: <T extends Track>(props: TextHeaderProps<T>) => React.R
     ? 'sort content descending' : 'sort content ascending';
 
   return (
-    <div className={cx(className, styles.text_header, {
-      [styles.centered]: isCentered
-    })} data-testid={dataTestId}>
+    <div 
+      className={cx(className, styles.text_header, {
+        [styles.centered]: isCentered
+      })} 
+      data-testid={dataTestId}
+    >
       { header }
       {
         isSorted &&

@@ -31,7 +31,7 @@ export const GridTrackTableRow = memo(<T extends Track>({ index, style, data }: 
     {
       (draggableProvided, draggableSnapshot) => (
         <div
-          data-test-id='track-table-row'
+          data-testid='track-table-row'
           className={cx(
             styles.grid_track_table_row,
             { [styles.is_dragging]: draggableSnapshot.isDragging }
