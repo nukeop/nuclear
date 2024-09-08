@@ -6,6 +6,7 @@ import { TrackTableColumn, TrackTableExtraProps } from '../../TrackTable/types';
 import { Track } from '../../../types';
 import Button from '../../Button';
 import TrackPopup from '../../TrackPopup';
+import Tooltip from '../../Tooltip';
 import styles from '../styles.scss';
 
 export const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
@@ -28,9 +29,11 @@ export const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>>
   className={cx(styles.grid_track_table_cell, styles.text_cell, styles.title_cell)}
 >
   <span className={styles.title_cell_content}>
-    <span className={styles.title_cell_value}>
-      {value}
-    </span>
+    <Tooltip
+      on='hover'
+      content={value}
+      trigger={<span className={styles.title_cell_value}>{value}</span>}
+    />
     <span className={styles.title_cell_buttons}>
       <Button
         className={styles.title_cell_button}

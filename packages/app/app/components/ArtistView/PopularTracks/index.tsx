@@ -6,14 +6,13 @@ import { Button } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 
+import { ArtistTopTrack } from '@nuclear/core/src/plugins/plugins.types';
+import { TextCell } from '@nuclear/ui/lib/components/GridTrackTable/Cells/TextCell';
+import { Track } from '@nuclear/ui/lib/types';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
-import styles from './styles.scss';
-import { ArtistTopTrack } from '@nuclear/core/src/plugins/plugins.types';
 import TrackTableContainer from '../../../containers/TrackTableContainer';
-import TrackTableCell from '@nuclear/ui/lib/components/TrackTable/Cells/TrackTableCell';
-import { Cell, CellProps } from 'react-table';
-import { Track } from '@nuclear/ui/lib/types';
+import styles from './styles.scss';
 
 type AddAllButtonProps = {
   handleAddAll: React.MouseEventHandler;
@@ -71,8 +70,8 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
   const customColumns = useMemo(() => [{
     id: PlaycountColumnId,
     Header: t('count'),
-    accessor: (track: Track) => track.playcount,
-    Cell: ({value, ...rest}: CellProps<Track, string>) => <TrackTableCell value={Number(value).toLocaleString()} {...rest} />
+    accessor: (track: Track) => Number(track.playcount).toLocaleString(),
+    Cell: TextCell
   }], []);
 
   return (
@@ -86,19 +85,24 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
           handleAddAll={handleAddAll}
           t={t}
         />
-        <TrackTableContainer
-          tracks={
-            _(tracks)
-              .sortBy('playcount')
-              .takeRight(expanded ? 15 : 5)
-              .value()
-          }
-          displayDeleteButton={false}
-          displayAlbum={false}
-          displayPosition={false}
-          displayArtist={false}
-          customColumns={customColumns}
-        />
+        <div 
+          className={styles.popular_tracks_table_container}
+          style={{ height: expanded ? `calc(48px + (${tracks.length}*42px))` : undefined }}
+        >
+          <TrackTableContainer
+            tracks={
+              _(tracks)
+                .sortBy('playcount')
+                .takeRight(expanded ? 15 : 5)
+                .value()
+            }
+            displayDeleteButton={false}
+            displayAlbum={false}
+            displayPosition={false}
+            displayArtist={false}
+            customColumns={customColumns}
+          />
+        </div>
         <div className='expand_button' onClick={toggleExpand}>
           <FontAwesome
             name={expanded ? 'angle-double-up' : 'angle-double-down'}
