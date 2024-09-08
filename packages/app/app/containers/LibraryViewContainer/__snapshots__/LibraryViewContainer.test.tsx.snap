@@ -848,6 +848,7 @@ exports[`Library view container should display local library in simple list mode
                   >
                     <div
                       class="text_header centered"
+                      data-testid="position-header"
                     >
                       <i
                         aria-hidden="true"
@@ -953,7 +954,7 @@ exports[`Library view container should display local library in simple list mode
                   </div>
                   <div
                     class="track_table_header_spacer"
-                    data-test-id="track-table-header-spacer"
+                    data-testid="track-table-header-spacer"
                   />
                 </div>
               </div>
@@ -975,7 +976,7 @@ exports[`Library view container should display local library in simple list mode
                       class="grid_track_table_row"
                       data-rbd-draggable-context-id="0"
                       data-rbd-draggable-id="0"
-                      data-test-id="track-table-row"
+                      data-testid="track-table-row"
                       role="row"
                       style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 4em 3em minmax(8em, 1fr) 1fr 1fr 6em 6em;"
                       tabindex="0"
@@ -1088,7 +1089,7 @@ exports[`Library view container should display local library in simple list mode
                       class="grid_track_table_row"
                       data-rbd-draggable-context-id="0"
                       data-rbd-draggable-id="1"
-                      data-test-id="track-table-row"
+                      data-testid="track-table-row"
                       role="row"
                       style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 4em 3em minmax(8em, 1fr) 1fr 1fr 6em 6em;"
                       tabindex="1"
@@ -1201,7 +1202,7 @@ exports[`Library view container should display local library in simple list mode
                       class="grid_track_table_row"
                       data-rbd-draggable-context-id="0"
                       data-rbd-draggable-id="2"
-                      data-test-id="track-table-row"
+                      data-testid="track-table-row"
                       role="row"
                       style="position: absolute; left: 0px; top: 84px; height: 42px; width: 100%; grid-template-columns: 4em 3em minmax(8em, 1fr) 1fr 1fr 6em 6em;"
                       tabindex="2"

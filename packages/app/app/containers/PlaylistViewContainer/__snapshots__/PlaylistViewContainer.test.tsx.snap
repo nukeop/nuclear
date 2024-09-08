@@ -138,6 +138,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                 >
                   <div
                     class="text_header centered"
+                    data-testid="position-header"
                   >
                     <i
                       aria-hidden="true"
@@ -226,7 +227,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                 </div>
                 <div
                   class="track_table_header_spacer"
-                  data-test-id="track-table-header-spacer"
+                  data-testid="track-table-header-spacer"
                 />
               </div>
             </div>
@@ -251,7 +252,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                     data-rbd-drag-handle-draggable-id="0"
                     data-rbd-draggable-context-id="0"
                     data-rbd-draggable-id="0"
-                    data-test-id="track-table-row"
+                    data-testid="track-table-row"
                     draggable="false"
                     role="button"
                     style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 6em;"
@@ -386,7 +387,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                     data-rbd-drag-handle-draggable-id="1"
                     data-rbd-draggable-context-id="0"
                     data-rbd-draggable-id="1"
-                    data-test-id="track-table-row"
+                    data-testid="track-table-row"
                     draggable="false"
                     role="button"
                     style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 6em;"

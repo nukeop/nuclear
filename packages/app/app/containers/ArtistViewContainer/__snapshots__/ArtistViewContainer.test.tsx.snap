@@ -198,7 +198,7 @@ exports[`Artist view container should display an artist 1`] = `
                     </div>
                     <div
                       class="track_table_header_spacer"
-                      data-test-id="track-table-header-spacer"
+                      data-testid="track-table-header-spacer"
                     />
                   </div>
                 </div>
@@ -220,7 +220,7 @@ exports[`Artist view container should display an artist 1`] = `
                         class="grid_track_table_row"
                         data-rbd-draggable-context-id="0"
                         data-rbd-draggable-id="2"
-                        data-test-id="track-table-row"
+                        data-testid="track-table-row"
                         role="row"
                         style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 3em 3em minmax(8em, 1fr) 1fr 6em;"
                         tabindex="2"
@@ -311,7 +311,7 @@ exports[`Artist view container should display an artist 1`] = `
                         class="grid_track_table_row"
                         data-rbd-draggable-context-id="0"
                         data-rbd-draggable-id="1"
-                        data-test-id="track-table-row"
+                        data-testid="track-table-row"
                         role="row"
                         style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 3em 3em minmax(8em, 1fr) 1fr 6em;"
                         tabindex="1"
@@ -402,7 +402,7 @@ exports[`Artist view container should display an artist 1`] = `
                         class="grid_track_table_row"
                         data-rbd-draggable-context-id="0"
                         data-rbd-draggable-id="0"
-                        data-test-id="track-table-row"
+                        data-testid="track-table-row"
                         role="row"
                         style="position: absolute; left: 0px; top: 84px; height: 42px; width: 100%; grid-template-columns: 3em 3em minmax(8em, 1fr) 1fr 6em;"
                         tabindex="0"
