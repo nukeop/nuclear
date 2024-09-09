@@ -395,7 +395,7 @@
     "play-selected-tracks-now": "تشغيل المحدد الآن",
     "tracks-selected-label-singular": "الأغنية المحددة",
     "tracks-selected-label-plural": "الأغاني المحددة",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "تصفية..."
   },
   "visualizer": {
     "exit-fullscreen": "اضغط ESC للخروج من ملء الشاشة"
