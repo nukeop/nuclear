@@ -5,8 +5,13 @@ import { YoutubeResult } from '@nuclear/core/src/rest/Youtube';
 import { ActionType, getType } from 'typesafe-actions';
 import { SearchActions } from '../actions/search';
 
-export type ArtistDetailsState = Partial<ArtistDetails> & {loading?: boolean, error?: boolean, releases?: SearchResultsAlbum[],
-  releasesLoading?: boolean, releasesError?: boolean}
+export type ArtistDetailsState = Partial<ArtistDetails> & {
+  loading?: boolean, 
+  error?: boolean, 
+  releases?: SearchResultsAlbum[],
+  releasesLoading?: boolean, 
+  releasesError?: boolean
+}
 
 export type AlbumDetailsState = Partial<AlbumDetails> & {loading?: boolean, error?: boolean}
 

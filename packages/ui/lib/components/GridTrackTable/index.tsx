@@ -230,7 +230,6 @@ export const GridTrackTable = <T extends Track>({
                   {column.render('Header', extraProps)}
                 </div>))
             }
-            <div data-testid='track-table-header-spacer' className={styles.track_table_header_spacer} />
           </div>
         ))}
       </div>
