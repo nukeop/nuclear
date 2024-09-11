@@ -19,6 +19,8 @@ type AddAllButtonProps = {
   t: TFunction;
 }
 
+const MAX_POPULAR_TRACKS_DISPLAYED = 15;
+
 export const AddAllButton: React.FC<AddAllButtonProps> = ({
   handleAddAll,
   t
@@ -57,7 +59,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
   const toggleExpand = () => setExpanded(!expanded);
   const handleAddAll = () => {
     tracks
-      .slice(0, tracks.length > 15 ? 15 : tracks.length)
+      .slice(0, Math.min(tracks.length, MAX_POPULAR_TRACKS_DISPLAYED))
       .forEach(track => {
         addToQueue({
           artist: artist.name,
@@ -85,15 +87,15 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
           handleAddAll={handleAddAll}
           t={t}
         />
-        <div 
+        <div
           className={styles.popular_tracks_table_container}
-          style={{ height: expanded ? `calc(48px + (${tracks.length}*42px))` : undefined }}
+          style={{ height: expanded ? `calc(48px + (${Math.min(tracks.length, MAX_POPULAR_TRACKS_DISPLAYED)}*42px))` : undefined }}
         >
           <TrackTableContainer
             tracks={
               _(tracks)
                 .sortBy('playcount')
-                .takeRight(expanded ? 15 : 5)
+                .takeRight(expanded ? MAX_POPULAR_TRACKS_DISPLAYED : 5)
                 .value()
             }
             displayDeleteButton={false}
