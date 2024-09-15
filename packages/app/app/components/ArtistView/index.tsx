@@ -1,11 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import { get, isEmpty, take } from 'lodash';
-import { Dimmer, Loader, Icon } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
-import AlbumList from '../AlbumList';
 import SimilarArtists from './SimilarArtists';
 import PopularTracks from './PopularTracks';
 
@@ -111,8 +110,8 @@ const ArtistView: React.FC<ArtistViewProps> = ({
           </>
         }
         {
-          (areReleasesLoading() || artist.releases?.length > 0) && 
-          <ArtistAlbums 
+          (areReleasesLoading() || artist.releases?.length > 0) &&
+          <ArtistAlbums
             albums={artist?.releases ?? []}
             onAlbumClick={onAlbumClick}
             isLoading={areReleasesLoading()}
