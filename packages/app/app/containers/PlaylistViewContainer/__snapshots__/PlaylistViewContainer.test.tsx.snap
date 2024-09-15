@@ -225,10 +225,6 @@ exports[`Playlist view container should display a playlist 1`] = `
                     </div>
                   </div>
                 </div>
-                <div
-                  class="track_table_header_spacer"
-                  data-testid="track-table-header-spacer"
-                />
               </div>
             </div>
             <div

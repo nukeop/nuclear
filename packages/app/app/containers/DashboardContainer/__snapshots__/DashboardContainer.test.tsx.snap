@@ -685,10 +685,6 @@ exports[`Dashboard container should display top tracks after going to top tracks
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="track_table_header_spacer"
-                      data-testid="track-table-header-spacer"
-                    />
                   </div>
                 </div>
                 <div

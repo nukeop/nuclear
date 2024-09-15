@@ -952,10 +952,6 @@ exports[`Library view container should display local library in simple list mode
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="track_table_header_spacer"
-                    data-testid="track-table-header-spacer"
-                  />
                 </div>
               </div>
               <div
