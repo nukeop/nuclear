@@ -213,10 +213,6 @@ exports[`Album view container should display an album 1`] = `
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="track_table_header_spacer"
-                    data-testid="track-table-header-spacer"
-                  />
                 </div>
               </div>
               <div

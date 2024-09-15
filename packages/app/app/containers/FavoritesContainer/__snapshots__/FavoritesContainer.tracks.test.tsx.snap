@@ -329,10 +329,6 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
                     </div>
                   </div>
                 </div>
-                <div
-                  class="track_table_header_spacer"
-                  data-testid="track-table-header-spacer"
-                />
               </div>
             </div>
             <div
@@ -902,10 +898,6 @@ exports[`Favorite tracks view container should show a popup when a track is clic
                     </div>
                   </div>
                 </div>
-                <div
-                  class="track_table_header_spacer"
-                  data-testid="track-table-header-spacer"
-                />
               </div>
             </div>
             <div

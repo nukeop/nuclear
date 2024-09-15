@@ -15,7 +15,7 @@ exports[`(Snapshot) Grid track table - empty should render correctly 1`] = `
         <div
           class="track_table_header_row"
           role="row"
-          style="grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 1fr 6em auto;"
+          style="grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 6em 6em auto;"
         >
           <div
             class="track_table_header_cell"
@@ -33,8 +33,13 @@ exports[`(Snapshot) Grid track table - empty should render correctly 1`] = `
           >
             <div
               class="text_header centered"
+              data-testid="position-header"
             >
               Position
+              <i
+                aria-hidden="true"
+                class="sort content ascending icon text_header_icon"
+              />
             </div>
           </div>
           <div
@@ -68,10 +73,6 @@ exports[`(Snapshot) Grid track table - empty should render correctly 1`] = `
               class="text_header"
             >
               Title
-              <i
-                aria-hidden="true"
-                class="sort content ascending icon text_header_icon"
-              />
             </div>
           </div>
           <div
@@ -137,10 +138,6 @@ exports[`(Snapshot) Grid track table - empty should render correctly 1`] = `
               </div>
             </div>
           </div>
-          <div
-            class="track_table_header_spacer"
-            data-test-id="track-table-header-spacer"
-          />
         </div>
       </div>
       <div
@@ -179,7 +176,7 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
         <div
           class="track_table_header_row"
           role="row"
-          style="grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 1fr 6em auto;"
+          style="grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 6em 6em auto;"
         >
           <div
             class="track_table_header_cell"
@@ -197,8 +194,13 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
           >
             <div
               class="text_header centered"
+              data-testid="position-header"
             >
               Position
+              <i
+                aria-hidden="true"
+                class="sort content ascending icon text_header_icon"
+              />
             </div>
           </div>
           <div
@@ -232,10 +234,6 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
               class="text_header"
             >
               Title
-              <i
-                aria-hidden="true"
-                class="sort content ascending icon text_header_icon"
-              />
             </div>
           </div>
           <div
@@ -301,10 +299,6 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
               </div>
             </div>
           </div>
-          <div
-            class="track_table_header_spacer"
-            data-test-id="track-table-header-spacer"
-          />
         </div>
       </div>
       <div
@@ -325,9 +319,9 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
               class="grid_track_table_row"
               data-rbd-draggable-context-id="1"
               data-rbd-draggable-id="0"
-              data-test-id="track-table-row"
+              data-testid="track-table-row"
               role="row"
-              style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 1fr 6em;"
+              style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 6em 6em;"
               tabindex="0"
             >
               <div
@@ -468,9 +462,9 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
               class="grid_track_table_row"
               data-rbd-draggable-context-id="1"
               data-rbd-draggable-id="1"
-              data-test-id="track-table-row"
+              data-testid="track-table-row"
               role="row"
-              style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 1fr 6em;"
+              style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 6em 6em;"
               tabindex="1"
             >
               <div
@@ -611,9 +605,9 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
               class="grid_track_table_row"
               data-rbd-draggable-context-id="1"
               data-rbd-draggable-id="2"
-              data-test-id="track-table-row"
+              data-testid="track-table-row"
               role="row"
-              style="position: absolute; left: 0px; top: 84px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 1fr 6em;"
+              style="position: absolute; left: 0px; top: 84px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 1fr 6em 6em;"
               tabindex="2"
             >
               <div
