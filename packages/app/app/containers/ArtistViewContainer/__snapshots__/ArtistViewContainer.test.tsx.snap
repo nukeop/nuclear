@@ -199,10 +199,6 @@ exports[`Artist view container should display an artist 1`] = `
                           </div>
                         </div>
                       </div>
-                      <div
-                        class="track_table_header_spacer"
-                        data-testid="track-table-header-spacer"
-                      />
                     </div>
                   </div>
                   <div
@@ -643,7 +639,77 @@ exports[`Artist view container should display an artist 1`] = `
           >
             <div
               class="album_cards"
-            />
+            >
+              <div
+                class="nuclear card_container"
+                data-testid="album-card"
+              >
+                <div
+                  class="card animated"
+                >
+                  <div
+                    class="thumbnail"
+                  >
+                    <div
+                      class="overlay"
+                    />
+                  </div>
+                  <div
+                    class="card_content"
+                  >
+                    <h4>
+                      First test album
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="nuclear card_container"
+                data-testid="album-card"
+              >
+                <div
+                  class="card animated"
+                >
+                  <div
+                    class="thumbnail"
+                  >
+                    <div
+                      class="overlay"
+                    />
+                  </div>
+                  <div
+                    class="card_content"
+                  >
+                    <h4>
+                      Test album 2
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="nuclear card_container"
+                data-testid="album-card"
+              >
+                <div
+                  class="card animated"
+                >
+                  <div
+                    class="thumbnail"
+                  >
+                    <div
+                      class="overlay"
+                    />
+                  </div>
+                  <div
+                    class="card_content"
+                  >
+                    <h4>
+                      Test album 1
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
