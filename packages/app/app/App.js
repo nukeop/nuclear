@@ -67,9 +67,16 @@ class App extends React.PureComponent {
 
     this.updateConnectivityStatus(navigator.onLine);
     window.addEventListener('online', () => this.updateConnectivityStatus(true));
-    window.addEventListener('offline', () => this.updateConnectivityStatus(false)); 
+    window.addEventListener('offline', () => this.updateConnectivityStatus(false));
+    window.addEventListener('auxclick', this.blockMiddleClick);
   }
 
+  blockMiddleClick = (e) => {
+    // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
+    if (e.button === 1) {
+      e.preventDefault();
+    }
+  } 
   updateConnectivityStatus = (isConnected) => {
     this.props.actions.changeConnectivity(isConnected);
   }
