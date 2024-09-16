@@ -1,6 +1,14 @@
 @import "../../../vars";
 
+.active.tab.popular_tracks_tab {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+}
+
 .popular_tracks_container {
+  flex: 1 1 auto;
+
   .popular_tracks_header {
     display: flex;
     flex-flow: row;

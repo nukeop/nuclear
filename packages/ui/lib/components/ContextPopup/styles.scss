@@ -1,4 +1,4 @@
-@import '../../common';
+@import "../../common";
 
 .context_popup {
   @include shadow;
@@ -80,7 +80,7 @@
     display: flex;
     flex-flow: column;
     flex: 0 0 auto;
-    padding: 0.5rem 0;
+    padding-top: 0.5rem;
     height: auto !important;
   }
 }

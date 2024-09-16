@@ -1,10 +1,10 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
-import _ from 'lodash';
+import { find, isEmpty } from 'lodash';
 
 import * as QueueActions from '../../actions/queue';
-import { artistInfoSearchByName, albumInfoSearch } from '../../actions/search';
+import { artistInfoSearchByName, albumInfoSearch, artistReleasesSearch } from '../../actions/search';
 import * as FavoritesActions from '../../actions/favorites';
 import { searchSelectors } from '../../selectors/search';
 import { favoritesSelectors } from '../../selectors/favorites';
@@ -16,7 +16,8 @@ export const useArtistViewProps = () => {
   const { artistId } = useParams<{ artistId: string }>();
   const artistDetails = useSelector(searchSelectors.artistDetails);
   const artist = artistDetails[artistId];
-
+  const source = artist?.source;
+  
   const addTrackToQueue = useCallback(async (item) => {
     dispatch(QueueActions.addToQueue(item));
   }, [dispatch]);
@@ -32,7 +33,7 @@ export const useArtistViewProps = () => {
   const favoriteArtists: { id: string }[] = useSelector(favoritesSelectors.artists);
 
   const getIsFavorite = (currentArtist, favoriteArtists) => {
-    const favoriteArtist = _.find(favoriteArtists, {
+    const favoriteArtist = find(favoriteArtists, {
       id: currentArtist?.id
     });
     return Boolean(favoriteArtist);
@@ -47,6 +48,12 @@ export const useArtistViewProps = () => {
   const removeFavoriteArtist = useCallback(async () => {
     dispatch(FavoritesActions.removeFavoriteArtist(artist));
   }, [artist, dispatch]);
+
+  useEffect(() => {
+    if (artistId !== 'loading' && isEmpty(artist.releases)) {
+      dispatch(artistReleasesSearch(artistId, source));
+    }
+  }, [artistId, source]);
 
   return {
     artist,

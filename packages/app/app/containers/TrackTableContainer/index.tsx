@@ -5,7 +5,7 @@ import { Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import { Playlist } from '@nuclear/core';
-import { TrackTable, areTracksEqualByName } from '@nuclear/ui';
+import { GridTrackTable, areTracksEqualByName } from '@nuclear/ui';
 import { TrackTableProps } from '@nuclear/ui/lib/components/TrackTable';
 import { TrackTableSettings } from '@nuclear/ui/lib/components/TrackTable/types';
 import { Track } from '@nuclear/ui/lib/types';
@@ -33,7 +33,7 @@ function TrackTableContainer<T extends Track> ({
   tracks,
   onDelete,
   onReorder,
-  TrackTableComponent = TrackTable,
+  TrackTableComponent = GridTrackTable,
   customColumns,
   displayAddToDownloads = true,
   displayAddToFavorites = true,

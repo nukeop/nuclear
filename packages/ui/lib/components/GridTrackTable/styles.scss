@@ -1,0 +1,274 @@
+@import "../../common.scss";
+
+.track_table_wrapper {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    overflow: hidden;
+    height: 100%;
+    flex: 1 1 auto;
+}
+
+.track_table_wrapper .track_table_filter_row {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 0.5em;
+
+    .track_table_filter_input {
+        input {
+            background: rgba($bglighter, 0.25);
+            color: $white;
+            border: 1px solid transparent;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+
+            &::placeholder {
+                color: rgba($white, 0.5);
+            }
+
+            &::selection {
+                background-color: $blue;
+                color: $white;
+            }
+
+            &:active,
+            &:focus {
+                &::placeholder {
+                    color: rgba($white, 0.2);
+                }
+            }
+        }
+    }
+
+    .track_table_filter_button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.grid_track_table {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    flex: 1 1 auto;
+
+    .track_table_head {
+        display: grid;
+        background: $bgdefault;
+        color: $white;
+        grid-template-columns: 1fr;
+        flex: 0 0 auto;
+    }
+
+    .track_table_header_row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        width: 100%;
+    }
+
+    .track_table_header_cell {
+        padding: 1em;
+        text-align: left;
+        user-select: none;
+    }
+
+    .track_table_header_spacer {
+        width: 0.5rem;
+    }
+
+    .track_table_body {
+        display: block;
+        gap: 0.25em;
+        flex: 1 1 auto;
+
+        &.body_dragged_over {
+            background: $bgdark;
+        }
+    }
+}
+
+.track_table_auto_sizer {
+    position: relative;
+}
+
+.track_table_virtualized_list {
+    overflow-x: visible !important;
+}
+
+.grid_track_table_row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+
+    color: $white;
+    user-select: none;
+    outline: none;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $bgdefault;
+    }
+
+    &:hover {
+        background: rgba($bgdefault, 0.25);
+
+        .position_cell_value {
+            display: none;
+        }
+
+        .play_button {
+            display: inline-flex;
+        }
+
+        .title_cell {
+            .title_cell_buttons {
+                display: inline-flex;
+            }
+        }
+    }
+
+    &.is_dragging {
+        background: darken($bgdefault, 5%);
+        border: 1px solid rgba($pink, 0.8);
+        border-radius: 4px;
+    }
+
+    &.is_dragging {
+        @include low-shadow;
+    }
+}
+
+.grid_track_table_cell {
+    display: flex;
+    align-items: center;
+
+    button.nuclear.button {
+        width: 2.5em;
+        height: 2.5em;
+    }
+}
+
+.text_header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &.centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text_header_icon {
+        margin-left: 0.5em;
+    }
+}
+
+.text_cell {
+    @include ellipsis;
+    white-space: nowrap;
+    padding: 0 1em;
+}
+
+.thumbnail_cell {
+    height: 3em;
+
+    .thumbnail_cell_thumbnail {
+        display: block;
+        width: 3em;
+        height: 3em;
+        object-fit: contain;
+    }
+}
+
+.selection_header,
+.selection_cell {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.selection_header_buttons {
+    position: absolute;
+    right: 4em;
+}
+
+.selection_header_popup_trigger {
+    position: relative;
+    margin: 0 !important;
+}
+
+.position_cell {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+
+    .position_cell_value {
+        display: inline-block;
+    }
+
+    .play_button {
+        display: none;
+
+        // Manual adjustments to center the icon
+        padding-top: 0.75em !important;
+
+        i.play.icon {
+            // Manual adjustments to center the icon
+            margin-left: 0.06em !important;
+        }
+    }
+}
+
+.delete_cell {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.favorite_cell {
+    justify-content: center;
+    padding-left: 1em;
+}
+
+.grid_track_table_cell.title_cell {
+    .title_cell_content {
+        display: inline-flex;
+        flex-flow: row;
+        align-items: center;
+        width: 100%;
+    }
+
+    .title_cell_value {
+        @include ellipsis;
+        white-space: nowrap;
+        flex: 1 1 auto;
+    }
+
+    .title_cell_buttons {
+        display: none;
+        flex-flow: row;
+        flex: 0 0 auto;
+    }
+    .title_cell_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        width: 2.5em;
+        height: 2.5em;
+        margin: 0;
+        border: none;
+        background: none;
+
+        i.icon {
+            margin: 0 0 0.5px 0 !important;
+        }
+    }
+}

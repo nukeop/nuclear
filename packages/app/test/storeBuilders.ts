@@ -326,7 +326,8 @@ export const buildStoreState = () => {
                   default:
                     return { id: 'test-artist-id' };
                   }
-                })
+                }),
+                fetchArtistAlbums: jest.fn()
               } as any as MetaProvider,
               {
                 name: 'Another Meta Provider',
