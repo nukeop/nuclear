@@ -59,7 +59,7 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
                   />
                 }/>
             </Header>
-            <Segment>
+            <Segment className={styles.favorite_tracks_segment}>
               <TrackTableContainer 
                 tracks={tracks}
                 onDelete={removeFavoriteTrack}

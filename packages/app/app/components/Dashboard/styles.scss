@@ -1,9 +1,16 @@
-.dashboard {
+.dashboard,
+.dashboard_tabs {
   position: relative;
-  height: calc(100% - 2rem);
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
 
+.dashboard {
   .dashboard_tabs {
-    position: relative;
-    height: 100%;
+    .ui.secondary.menu {
+      margin-bottom: 0;
+      flex: 0 0 auto;
+    }
   }
 }

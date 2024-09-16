@@ -5,6 +5,7 @@
   display: flex;
   flex-flow: column;
   width: 100%;
+  height: 510px;
 
   .track {
     transition: $short-duration;
@@ -20,6 +21,10 @@
     margin-bottom: 0.5em;
 
     max-width: 50%;
+  }
+
+  .track_table_wrapper {
+    margin-right: 1em;
   }
 
   table {

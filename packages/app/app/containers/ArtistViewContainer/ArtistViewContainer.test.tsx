@@ -7,7 +7,6 @@ import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestSto
 import MainContentContainer from '../MainContentContainer';
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
 import userEvent from '@testing-library/user-event';
-import { SearchResultsSource } from '@nuclear/core/src/plugins/plugins.types';
 
 describe('Artist view container', () => {
   beforeAll(() => {

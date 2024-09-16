@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import Img from 'react-image';
-import cx from 'classnames';
 
 import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 

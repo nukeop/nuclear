@@ -14,6 +14,6 @@ export const makeSnapshotTest = <ComponentProps extends {}>(
     it('should render correctly', () => {
       const { asFragment } = render(<Component {...props as ComponentProps} />);
       expect(asFragment()).toMatchSnapshot();
-    })
+    });
   });
-}
+};

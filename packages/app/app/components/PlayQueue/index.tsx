@@ -5,6 +5,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { TFunction, useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
 import { areEqual, FixedSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 import { Playlist } from '@nuclear/core';
 import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
@@ -20,7 +21,6 @@ import QueuePopupContainer from '../../containers/QueuePopupContainer';
 import { StreamVerificationContainer } from '../../containers/StreamVerificationContainer';
 
 import styles from './styles.scss';
-import AutoSizer from 'react-virtualized-auto-sizer';
 import { QueueItemClone } from './QueueItemClone';
 
 type PlayQueueProps = {

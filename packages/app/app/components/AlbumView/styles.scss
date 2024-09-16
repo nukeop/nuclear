@@ -3,9 +3,10 @@
 @import "../../../../ui/lib/common.scss";
 
 .album_view_container {
+  display: flex;
+  flex-flow: column;
   width: 100%;
   height: 100%;
-  padding: 1rem 0 0 0;
 
   .album_buttons {
     display: flex;
@@ -31,19 +32,19 @@
   }
 
   .dimmable {
+    display: flex;
+    flex-flow: column;
     width: 100%;
     height: 100%;
 
     .album {
       display: flex;
       flex-flow: column;
+      flex: 1 1 auto;
     }
 
     .album_info_box {
       display: flex;
-
-      margin: 0rem 1rem;
-
       flex-flow: row;
 
       img {
@@ -116,9 +117,9 @@
       }
     }
 
-    table {
-      margin: 3rem 1rem;
-      width: calc(100% - 2rem);
+    [role="table"] {
+      margin-top: 2rem;
+      width: 100%;
     }
 
     .error {
