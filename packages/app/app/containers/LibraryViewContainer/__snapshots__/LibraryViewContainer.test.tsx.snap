@@ -1000,12 +1000,7 @@ exports[`Library view container should display local library in simple list mode
                       <div
                         class="grid_track_table_cell thumbnail_cell"
                         role="cell"
-                      >
-                        <img
-                          class="thumbnail_cell_thumbnail"
-                          src="local track thumbnail 1"
-                        />
-                      </div>
+                      />
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"
@@ -1113,12 +1108,7 @@ exports[`Library view container should display local library in simple list mode
                       <div
                         class="grid_track_table_cell thumbnail_cell"
                         role="cell"
-                      >
-                        <img
-                          class="thumbnail_cell_thumbnail"
-                          src="local track thumbnail 2"
-                        />
-                      </div>
+                      />
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"
@@ -1226,12 +1216,7 @@ exports[`Library view container should display local library in simple list mode
                       <div
                         class="grid_track_table_cell thumbnail_cell"
                         role="cell"
-                      >
-                        <img
-                          class="thumbnail_cell_thumbnail"
-                          src="local track thumbnail 3"
-                        />
-                      </div>
+                      />
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"

@@ -227,12 +227,7 @@ exports[`Artist view container should display an artist 1`] = `
                           <div
                             class="grid_track_table_cell thumbnail_cell"
                             role="cell"
-                          >
-                            <img
-                              class="thumbnail_cell_thumbnail"
-                              src="test-file-stub"
-                            />
-                          </div>
+                          />
                           <div
                             class="grid_track_table_cell favorite_cell"
                             data-testid="favorite-cell"
@@ -323,12 +318,7 @@ exports[`Artist view container should display an artist 1`] = `
                           <div
                             class="grid_track_table_cell thumbnail_cell"
                             role="cell"
-                          >
-                            <img
-                              class="thumbnail_cell_thumbnail"
-                              src="test-file-stub"
-                            />
-                          </div>
+                          />
                           <div
                             class="grid_track_table_cell favorite_cell"
                             data-testid="favorite-cell"
@@ -419,12 +409,7 @@ exports[`Artist view container should display an artist 1`] = `
                           <div
                             class="grid_track_table_cell thumbnail_cell"
                             role="cell"
-                          >
-                            <img
-                              class="thumbnail_cell_thumbnail"
-                              src="test-file-stub"
-                            />
-                          </div>
+                          />
                           <div
                             class="grid_track_table_cell favorite_cell"
                             data-testid="favorite-cell"

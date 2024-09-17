@@ -202,9 +202,6 @@ exports[`Play Queue container should display a context popup on right click 1`] 
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="https://test-track-thumb-url"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
@@ -261,9 +258,6 @@ exports[`Play Queue container should display a context popup on right click 1`] 
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="https://test-track-thumb-url"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
@@ -320,9 +314,6 @@ exports[`Play Queue container should display a context popup on right click 1`] 
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="test-file-stub"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
@@ -790,9 +781,6 @@ exports[`Play Queue container should display a context popup on right click for 
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="https://test-track-thumb-url"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
@@ -849,9 +837,6 @@ exports[`Play Queue container should display a context popup on right click for 
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="https://test-track-thumb-url"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
@@ -908,9 +893,6 @@ exports[`Play Queue container should display a context popup on right click for 
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="test-file-stub"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
@@ -1337,9 +1319,6 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="https://test-track-thumb-url"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
@@ -1396,9 +1375,6 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="https://test-track-thumb-url"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
@@ -1455,9 +1431,6 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
                 <div
                   class="thumbnail"
                 >
-                  <img
-                    src="test-file-stub"
-                  />
                   <div
                     class="thumbnail_overlay"
                     data-testid="queue-item-remove"
