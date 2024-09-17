@@ -580,11 +580,7 @@ exports[`Album view container should display an album 1`] = `
       >
         <div
           class="nuclear cover_container"
-        >
-          <img
-            src="test-file-stub"
-          />
-        </div>
+        />
       </div>
       <div
         class="player_controls"
@@ -747,11 +743,7 @@ exports[`Album view container should show that an album is still loading 1`] = `
       >
         <div
           class="nuclear cover_container"
-        >
-          <img
-            src="test-file-stub"
-          />
-        </div>
+        />
       </div>
       <div
         class="player_controls"

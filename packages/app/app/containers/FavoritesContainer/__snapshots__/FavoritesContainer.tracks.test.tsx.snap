@@ -53,11 +53,7 @@ exports[`Favorite tracks view container should display empty state 1`] = `
       >
         <div
           class="nuclear cover_container"
-        >
-          <img
-            src="test-file-stub"
-          />
-        </div>
+        />
       </div>
       <div
         class="player_controls"
@@ -392,12 +388,7 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
                     <div
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
-                    >
-                      <img
-                        class="thumbnail_cell_thumbnail"
-                        src="https://test-track-thumb-url"
-                      />
-                    </div>
+                    />
                     <div
                       class="grid_track_table_cell text_cell title_cell"
                       data-testid="title-cell"
@@ -508,12 +499,7 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
                     <div
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
-                    >
-                      <img
-                        class="thumbnail_cell_thumbnail"
-                        src="https://test-track-thumb-url"
-                      />
-                    </div>
+                    />
                     <div
                       class="grid_track_table_cell text_cell title_cell"
                       data-testid="title-cell"
@@ -606,11 +592,7 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
       >
         <div
           class="nuclear cover_container"
-        >
-          <img
-            src="test-file-stub"
-          />
-        </div>
+        />
       </div>
       <div
         class="player_controls"
@@ -961,12 +943,7 @@ exports[`Favorite tracks view container should show a popup when a track is clic
                     <div
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
-                    >
-                      <img
-                        class="thumbnail_cell_thumbnail"
-                        src="https://test-track-thumb-url"
-                      />
-                    </div>
+                    />
                     <div
                       class="grid_track_table_cell text_cell title_cell"
                       data-testid="title-cell"
@@ -1077,12 +1054,7 @@ exports[`Favorite tracks view container should show a popup when a track is clic
                     <div
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
-                    >
-                      <img
-                        class="thumbnail_cell_thumbnail"
-                        src="https://test-track-thumb-url"
-                      />
-                    </div>
+                    />
                     <div
                       class="grid_track_table_cell text_cell title_cell"
                       data-testid="title-cell"
@@ -1175,11 +1147,7 @@ exports[`Favorite tracks view container should show a popup when a track is clic
       >
         <div
           class="nuclear cover_container"
-        >
-          <img
-            src="test-file-stub"
-          />
-        </div>
+        />
       </div>
       <div
         class="player_controls"
@@ -1320,11 +1288,7 @@ exports[`Favorite tracks view container should show a popup when a track is clic
       >
         <div
           class="popup_thumb"
-        >
-          <img
-            src="https://test-track-thumb-url"
-          />
-        </div>
+        />
         <div
           class="popup_info"
         >

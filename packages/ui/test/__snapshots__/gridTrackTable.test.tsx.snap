@@ -362,12 +362,7 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
               <div
                 class="grid_track_table_cell thumbnail_cell"
                 role="cell"
-              >
-                <img
-                  class="thumbnail_cell_thumbnail"
-                  src="https://i.imgur.com/4euOws2.jpg"
-                />
-              </div>
+              />
               <div
                 class="grid_track_table_cell favorite_cell"
                 data-testid="favorite-cell"
@@ -505,12 +500,7 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
               <div
                 class="grid_track_table_cell thumbnail_cell"
                 role="cell"
-              >
-                <img
-                  class="thumbnail_cell_thumbnail"
-                  src="https://i.imgur.com/4euOws2.jpg"
-                />
-              </div>
+              />
               <div
                 class="grid_track_table_cell favorite_cell"
                 data-testid="favorite-cell"
@@ -648,12 +638,7 @@ exports[`(Snapshot) Grid track table - example data with all rows should render 
               <div
                 class="grid_track_table_cell thumbnail_cell"
                 role="cell"
-              >
-                <img
-                  class="thumbnail_cell_thumbnail"
-                  src="https://i.imgur.com/4euOws2.jpg"
-                />
-              </div>
+              />
               <div
                 class="grid_track_table_cell favorite_cell"
                 data-testid="favorite-cell"

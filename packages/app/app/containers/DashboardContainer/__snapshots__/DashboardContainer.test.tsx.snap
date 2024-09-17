@@ -733,12 +733,7 @@ exports[`Dashboard container should display top tracks after going to top tracks
                         <div
                           class="grid_track_table_cell thumbnail_cell"
                           role="cell"
-                        >
-                          <img
-                            class="thumbnail_cell_thumbnail"
-                            src="top track album cover 1"
-                          />
-                        </div>
+                        />
                         <div
                           class="grid_track_table_cell favorite_cell"
                           data-testid="favorite-cell"
@@ -855,12 +850,7 @@ exports[`Dashboard container should display top tracks after going to top tracks
                         <div
                           class="grid_track_table_cell thumbnail_cell"
                           role="cell"
-                        >
-                          <img
-                            class="thumbnail_cell_thumbnail"
-                            src="top track album cover 2"
-                          />
-                        </div>
+                        />
                         <div
                           class="grid_track_table_cell favorite_cell"
                           data-testid="favorite-cell"

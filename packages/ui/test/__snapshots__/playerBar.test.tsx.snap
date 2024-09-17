@@ -23,11 +23,7 @@ exports[`(Snapshot) Player bar should render correctly 1`] = `
       >
         <div
           class="nuclear cover_container"
-        >
-          <img
-            src="https://i.imgur.com/4euOws2.jpg"
-          />
-        </div>
+        />
       </div>
       <div
         class="player_controls"
