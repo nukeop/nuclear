@@ -50,5 +50,12 @@
         display: none;
       }
     }
+
+    .play_queue_items {
+      div div::-webkit-scrollbar {
+        width: 0 !important;
+        display: none;
+      }
+    }
   }
 }
