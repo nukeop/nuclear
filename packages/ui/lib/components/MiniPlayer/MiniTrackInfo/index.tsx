@@ -3,6 +3,7 @@ import { Icon } from 'semantic-ui-react';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
+import Img from 'react-image';
 
 import { TrackInfoProps } from '../../TrackInfo';
 
@@ -19,7 +20,10 @@ const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
 }) => (
     <div className={styles.mini_track_info}>
       <div className={styles.mini_cover}>
-        <img src={cover} />
+      <Img
+        src={cover}
+        unloader={<img src={artPlaceholder} />}
+        />
       </div>
       {
         hasTracks &&

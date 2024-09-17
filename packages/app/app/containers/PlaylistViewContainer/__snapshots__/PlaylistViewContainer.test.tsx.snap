@@ -292,12 +292,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                     <div
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
-                    >
-                      <img
-                        class="thumbnail_cell_thumbnail"
-                        src="test thumbnail"
-                      />
-                    </div>
+                    />
                     <div
                       class="grid_track_table_cell favorite_cell"
                       data-testid="favorite-cell"
@@ -427,12 +422,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                     <div
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
-                    >
-                      <img
-                        class="thumbnail_cell_thumbnail"
-                        src="test thumbnail 2"
-                      />
-                    </div>
+                    />
                     <div
                       class="grid_track_table_cell favorite_cell"
                       data-testid="favorite-cell"
