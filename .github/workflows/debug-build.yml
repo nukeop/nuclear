@@ -72,7 +72,7 @@ jobs:
         env:
           VERSION: ${{ steps.package-version.outputs.version }}
       - name: Upload debug binaries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: nuclear-binaries-${{ matrix.platform }}-debug
           path: release/*.*
