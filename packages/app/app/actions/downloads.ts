@@ -108,12 +108,14 @@ export const onDownloadProgress = createStandardAction(DownloadActionTypes.DOWNL
       propertyName: 'completion',
       value: progress
     });
-  
-    payload = changePropertyForItem({
-      downloads: payload,
-      uuid,
-      value: progress < 1 ? DownloadStatus.STARTED : DownloadStatus.FINISHED
-    });
+    if (progress >= 1) {
+      payload = changePropertyForItem({
+        downloads: payload,
+        uuid,
+        value: DownloadStatus.FINISHED
+      });
+    }
+    
   
     return {
       payload
