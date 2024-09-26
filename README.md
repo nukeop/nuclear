@@ -8,6 +8,11 @@ Feel free to do whatever you'd like, I hereby grant everyone (via my grant from 
 
 With love, @davidsenk.
 
+
+Note: This is probably going to be broken, I deliberately removed all commits that were not made by @nukeop. It is likely that just the code @nukeop wrote is not enough for a fully working application.
+
+Not guaranteed to only be code written by @nukeop (and thus, relicensed under CC0 per @nukeop's explicit license); however, it should be pretty close.
+
 --
 
 # ![nuclear](https://i.imgur.com/oT1006i.png) 
