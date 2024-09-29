@@ -1,8 +1,8 @@
-import Sound from 'react-hifi';
 import { setOption } from '@nuclear/core';
+import Sound from 'react-hifi';
 import { createStandardAction } from 'typesafe-actions';
-import { Player } from './actionTypes';
 import { PlaybackStatus } from '../reducers/player';
+import { Player } from './actionTypes';
 
 export const startPlayback = createStandardAction(Player.START_PLAYBACK).map((fromMain: boolean) => {
   return {
@@ -11,6 +11,12 @@ export const startPlayback = createStandardAction(Player.START_PLAYBACK).map((fr
 });
 
 export const pausePlayback = createStandardAction(Player.PAUSE_PLAYBACK).map((fromMain: boolean) => {
+  return {
+    meta: { fromMain }
+  };
+});
+
+export const stopPlayback = createStandardAction(Player.STOP_PLAYBACK).map((fromMain: boolean) => {
   return {
     meta: { fromMain }
   };
@@ -29,7 +35,7 @@ export function togglePlayback(currentState: PlaybackStatus, fromMain: boolean) 
 export function resetPlayer() {
   return dispatch => {
     dispatch(updatePlaybackProgress(0, 0));
-    dispatch(pausePlayback(false));
+    dispatch(stopPlayback(false));
     dispatch(updateStreamLoading(false));
   };
 }

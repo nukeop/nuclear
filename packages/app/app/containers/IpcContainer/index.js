@@ -1,20 +1,20 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { head } from 'lodash';
-import logger from 'electron-timber';
-import { ipcRenderer } from 'electron';
-import { getType } from 'typesafe-actions';
 import { IpcEvents } from '@nuclear/core';
+import { ipcRenderer } from 'electron';
+import logger from 'electron-timber';
+import { head } from 'lodash';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { getType } from 'typesafe-actions';
 
+import * as DownloadsActions from '../../actions/downloads';
+import * as EqualizerActions from '../../actions/equalizer';
+import { localLibraryActions } from '../../actions/local';
 import * as PlayerActions from '../../actions/player';
+import * as PlaylistActions from '../../actions/playlists';
 import * as QueueActions from '../../actions/queue';
 import * as SettingsActions from '../../actions/settings';
-import * as PlaylistActions from '../../actions/playlists';
-import * as EqualizerActions from '../../actions/equalizer';
-import * as DownloadsActions from '../../actions/downloads';
-import { localLibraryActions } from '../../actions/local';
 
 class IpcContainer extends React.Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on(IpcEvents.PREVIOUS, () => actions.previousSong());
     ipcRenderer.on(IpcEvents.PAUSE, () => actions.pausePlayback(true));
     ipcRenderer.on(IpcEvents.PLAYPAUSE, () => actions.togglePlayback(this.props.player.playbackStatus, true));
-    ipcRenderer.on(IpcEvents.STOP, () => actions.pausePlayback(true));
+    ipcRenderer.on(IpcEvents.STOP, () => actions.stopPlayback(true));
     ipcRenderer.on(IpcEvents.PLAY, () => actions.startPlayback(true));
     ipcRenderer.on(IpcEvents.MUTE, () => {
       if (this.props.player.muted) {

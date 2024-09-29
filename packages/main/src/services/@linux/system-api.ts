@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus, IpcEvents } from '@nuclear/core';
+import { IpcEvents, NuclearMeta, NuclearPlaylist, NuclearStatus, PlaybackStatus } from '@nuclear/core';
 import autobind from 'autobind-decorator';
-import { app, IpcMain, Event } from 'electron';
+import { app, Event, IpcMain } from 'electron';
 import { inject } from 'inversify';
-import MprisService, { MprisPlaylist, MprisMeta, PlaybackStatus as MprisStatus, LoopStatus } from 'mpris-service';
+import MprisService, { LoopStatus, MprisMeta, MprisPlaylist, PlaybackStatus as MprisStatus } from 'mpris-service';
 
 import NuclearApi from '../../interfaces/nuclear-api';
-import { systemMediaController, systemMediaEvent, SYSTEM_MEDIA_EVENT_KEY } from '../../utils/decorators';
+import { SYSTEM_MEDIA_EVENT_KEY, systemMediaController, systemMediaEvent } from '../../utils/decorators';
 import { ControllerMeta } from '../../utils/types';
 import Config from '../config';
 import Discord from '../discord';
@@ -138,9 +138,17 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
   @systemMediaEvent('stop')
   onStop() {
-    this.playbackStatus = MprisService.PLAYBACK_STATUS_STOPED;
+    this.playbackStatus = MprisService.PLAYBACK_STATUS_STOPPED;
     this.discord.clear();
+    this.metadata['mpris:length'] = 0; 
     this.window.send(IpcEvents.STOP);
+    this.sendMetadata({
+      artist: 'Nuclear',
+      name: '',
+      uuid: '0',
+      thumbnail: '',
+      streams: []
+    });
   }
 
   @systemMediaEvent('playpause')

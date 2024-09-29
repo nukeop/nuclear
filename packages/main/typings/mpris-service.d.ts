@@ -36,7 +36,7 @@ declare module 'mpris-service' {
   enum playbackStatus {
     PLAYING = 'playing',
     PAUSED = 'paused',
-    STOPED = 'stoped',
+    STOPPED = 'stopped',
   }
 
   export type LoopStatus = loopStatus;
@@ -49,7 +49,7 @@ declare module 'mpris-service' {
 
     static PLAYBACK_STATUS_PLAYING: playbackStatus.PLAYING;
     static PLAYBACK_STATUS_PAUSED: playbackStatus.PAUSED;
-    static PLAYBACK_STATUS_STOPED: playbackStatus.STOPED;
+    static PLAYBACK_STATUS_STOPPED: playbackStatus.STOPPED;
 
     playlists: MprisPlaylist[];
     shuffle: boolean;
