@@ -7,7 +7,7 @@ Desktopowy odtwarzacz muzyki skoncentrowany na streamingu z otwartych źródeł
 
 # Linki
 
-[Oficjalna strona](https://nuclear.js.org)
+[Oficjalna strona](https://nuclearplayer.com)
 
 [Pliki do pobrania](https://github.com/nukeop/nuclear/releases)
 

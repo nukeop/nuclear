@@ -7,7 +7,7 @@
 
 # लिंक
 
-[आधिकारिक वेबसाइट](https://nuclear.js.org)
+[आधिकारिक वेबसाइट](https://nuclearplayer.com)
 
 [डाउनलोड](https://github.com/nukeop/nuclear/releases)
 

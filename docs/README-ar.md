@@ -9,7 +9,7 @@
 
 # الروابط
 
-[الموقع الرسمي](https://nuclear.js.org)
+[الموقع الرسمي](https://nuclearplayer.com)
 
 [التنزيلات](https://github.com/nukeop/nuclear/releases)
 

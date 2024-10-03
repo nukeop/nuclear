@@ -7,7 +7,7 @@ Aplikasi pemutar musik berbasis desktop yang berfokus pada streaming dari sumber
 
 # Daftar Tautan
 
-[Website Resmi](https://nuclear.js.org)
+[Website Resmi](https://nuclearplayer.com)
 
 [Unduh](https://github.com/nukeop/nuclear/releases)
 

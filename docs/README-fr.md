@@ -7,7 +7,7 @@ Lecteur de musique spécialisé dans le streaming depuis des sources gratuites
 
 # Links
 
-[Site officiel](https://nuclear.js.org)
+[Site officiel](https://nuclearplayer.com)
 
 [Téléchargements](https://github.com/nukeop/nuclear/releases)
 

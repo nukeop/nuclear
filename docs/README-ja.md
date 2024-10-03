@@ -7,7 +7,7 @@
 
 # リンク
 
-[公式サイト](https://nuclear.js.org)
+[公式サイト](https://nuclearplayer.com)
 
 [ダウンロード](https://github.com/nukeop/nuclear/releases)
 

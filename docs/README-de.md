@@ -9,7 +9,7 @@ Ein Musikplayer für Computer, mit kostenlosem Streaming.
 
 # Links
 
-[Offizielle Webseite](https://nuclear.js.org)
+[Offizielle Webseite](https://nuclearplayer.com)
 
 [Mastodon](https://fosstodon.org/@nuclearplayer)
 

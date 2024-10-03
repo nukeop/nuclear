@@ -7,7 +7,7 @@ Lettore musicale desktop incentrato sullo streaming da fonti gratuite
 
 # Links
 
-[Sito Ufficiale](https://nuclear.js.org)
+[Sito Ufficiale](https://nuclearplayer.com)
 
 [Mastodon](https://fosstodon.org/@nuclearplayer)
 

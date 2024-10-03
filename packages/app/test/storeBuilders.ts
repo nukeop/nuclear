@@ -94,7 +94,7 @@ export const buildStoreState = () => {
           isLoading: false,
           isReady: true,
           data: {
-            PROMOTED_ARTIST_BACKGROUND: 'https://nuclear.js.org/background.jpg'
+            PROMOTED_ARTIST_BACKGROUND: 'https://nuclearplayer.com/background.jpg'
           }
         }
       }

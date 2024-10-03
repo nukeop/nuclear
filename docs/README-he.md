@@ -8,7 +8,7 @@
 
 # קישורים
 
-[האתר הרשמי](https://nuclear.js.org)
+[האתר הרשמי](https://nuclearplayer.com)
 
 [Mastodon](https://fosstodon.org/@nuclearplayer)
 

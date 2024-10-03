@@ -7,7 +7,7 @@
 
 # Ссылки
 
-[Официальный сайт](https://nuclear.js.org)
+[Официальный сайт](https://nuclearplayer.com)
 
 [Скачать](https://github.com/nukeop/nuclear/releases)
 

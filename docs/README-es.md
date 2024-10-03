@@ -7,7 +7,7 @@ Reproductor de música de escritorio centrado en la transmisión desde fuentes g
 
 # Enlaces
 
-[Sitio web oficial](https://nuclear.js.org)
+[Sitio web oficial](https://nuclearplayer.com)
 
 [Descargas](https://github.com/nukeop/nuclear/releases)
 

@@ -6,7 +6,7 @@
 
 # 相关链接
 
-[官方网站](https://nuclear.js.org)
+[官方网站](https://nuclearplayer.com)
 
 [下载链接](https://github.com/nukeop/nuclear/releases)
 

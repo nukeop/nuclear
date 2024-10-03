@@ -7,7 +7,7 @@
 
 # Links
 
-[공식 사이트](https://nuclear.js.org)
+[공식 사이트](https://nuclearplayer.com)
 
 [Mastodon](https://fosstodon.org/@nuclearplayer)
 

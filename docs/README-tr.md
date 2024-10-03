@@ -8,7 +8,7 @@
 
 # Bağlantılar
 
-[Resmi Site](https://nuclear.js.org)
+[Resmi Site](https://nuclearplayer.com)
 
 [İndirmeler](https://github.com/nukeop/nuclear/releases)
 

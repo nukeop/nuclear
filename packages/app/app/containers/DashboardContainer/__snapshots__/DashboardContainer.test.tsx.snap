@@ -248,7 +248,7 @@ exports[`Dashboard container should display the trending music 1`] = `
           >
             <div
               class="promoted_artist"
-              style="background-image: url(https://nuclear.js.org/background.jpg);"
+              style="background-image: url(https://nuclearplayer.com/background.jpg);"
             >
               <div
                 class="promoted_artist_info"

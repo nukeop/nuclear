@@ -344,7 +344,7 @@ export const settingsConfig: Array<Setting> = [
     category: 'social',
     type: SettingType.STRING,
     default:
-      '#nowplaying {{artist}} - {{title}} #nuclear https://nuclear.js.org',
+      '#nowplaying {{artist}} - {{title}} #nuclear https://nuclearplayer.com',
     hide: true
   },
   {
