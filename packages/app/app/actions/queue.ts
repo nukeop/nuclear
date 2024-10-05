@@ -4,7 +4,7 @@ import { createStandardAction } from 'typesafe-actions';
 import { v4 } from 'uuid';
 
 import { rest, StreamProvider } from '@nuclear/core';
-import { getTrackArtist } from '@nuclear/ui';
+import { getTrackArtists } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
@@ -46,7 +46,7 @@ const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): Que
 
 export const toQueueItem = (track: Track): QueueItem => ({
   ...track,
-  artist: isString(track.artist) ? track.artist : track.artist.name,
+  artists: track.artists,
   name: track.title ? track.title : track.name,
   streams: track.streams ?? []
 });
@@ -72,7 +72,7 @@ export const resolveTrackStreams = async (
     return track.streams.filter((stream) => stream.source === 'Local');
   } else {
     return selectedStreamProvider.search({
-      artist: getTrackArtist(track),
+      artist: getTrackArtists(track)?.[0],
       track: track.name
     });
   }
@@ -186,7 +186,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
         try {
           const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
           const topStream = await StreamMappingsService.getTopStream(
-            track.artist, 
+            track.artists?.[0], 
             track.name,
             selectedStreamProvider.sourceName,
             settings?.userId
@@ -226,7 +226,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
       }
     } catch (e) {
       logger.error(
-        `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}."`
+        `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName} for "${track.artists?.[0]} - ${track.name}."`
       );
       logger.error(e);
       dispatch(

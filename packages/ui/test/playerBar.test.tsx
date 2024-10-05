@@ -11,7 +11,7 @@ makeSnapshotTest(
     timeToEnd: '2:43',
     fill: 66,
     track: 'Test song',
-    artist: 'Test artist',
+    artists: ['Test artist'],
     cover: 'https://i.imgur.com/4euOws2.jpg',
     volume: 60,
     queue: { queueItems: [] },

@@ -124,7 +124,7 @@ describe('PlayerBar container', () => {
       queue: {
         currentSong: 0,
         queueItems: [{
-          artist: 'test artist 1',
+          artists: ['test artist 1'],
           name: 'test track 1',
           streams: [{
             duration: 300,
@@ -150,7 +150,7 @@ describe('PlayerBar container', () => {
       queue: {
         currentSong: 1,
         queueItems: [{
-          artist: 'test artist 1',
+          artists: ['test artist 1'],
           name: 'test track 1',
           streams: [{
             duration: 300,
@@ -159,7 +159,7 @@ describe('PlayerBar container', () => {
             stream: 'stream URL 1'
           }]
         }, {
-          artist: 'test artist 2',
+          artists: ['test artist 2'],
           name: 'test track 2',
           streams: [{
             duration: 300,
@@ -185,7 +185,7 @@ describe('PlayerBar container', () => {
       queue: {
         currentSong: 1,
         queueItems: [{
-          artist: 'test artist 1',
+          artists: ['test artist 1'],
           name: 'test track 1',
           streams: [{
             duration: 300,
@@ -194,7 +194,7 @@ describe('PlayerBar container', () => {
             stream: 'stream URL 1'
           }]
         }, {
-          artist: 'test artist 2',
+          artists: ['test artist 2'],
           name: 'test track 2',
           streams: [{
             duration: 300,
@@ -225,7 +225,7 @@ describe('PlayerBar container', () => {
       queue: {
         currentSong: 0,
         queueItems: [{
-          artist: 'test artist 1',
+          artists: ['test artist 1'],
           name: 'test track 1',
           streams: [{
             duration: 300,
@@ -253,7 +253,7 @@ describe('PlayerBar container', () => {
         queueItems: [
           {
             uuid: 'uuid1',
-            artist: 'test artist name',
+            artists: ['test artist name'],
             name: 'track without streams'
           }
         ]
@@ -285,7 +285,7 @@ describe('PlayerBar container', () => {
         queueItems: [
           {
             uuid: 'uuid1',
-            artist: 'test artist name',
+            artists: ['test artist name'],
             name: 'track without streams'
           }
         ]

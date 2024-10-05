@@ -12,7 +12,7 @@ type ChartsTabProps = {
 }
 
 const mapDeezerTopTrackToTrack = (topTrack: InternalTopTrack): Track => ({
-  artist: topTrack.artist,
+  artists: topTrack.artists,
   title: topTrack.title,
   album: topTrack.album?.title,
   duration: topTrack.duration,

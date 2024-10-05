@@ -34,16 +34,14 @@ export function formatDuration(duration) {
 
 export const getTrackTitle = (track: Track) => track?.name || track?.title;
 
-export const getTrackArtist = (track: Track) => _.isString(track?.artist)
-  ? track?.artist
-  : track?.artist?.name;
+export const getTrackArtists = (track: Track) => track?.artists;
 
 export const getThumbnail = albumOrTrack => _.get(albumOrTrack, 'coverImage')
   || _.get(albumOrTrack, 'thumb')
   || _.get(albumOrTrack, 'thumbnail');
 
 export const getTrackItem = (track: Track): TrackItem => ({
-  artist: getTrackArtist(track),
+  artists: getTrackArtists(track),
   name: getTrackTitle(track),
   thumbnail: getThumbnail(track),
   local: track.local,
@@ -51,7 +49,7 @@ export const getTrackItem = (track: Track): TrackItem => ({
   uuid: track.uuid
 });
 
-export const areTracksEqualByName = (trackA: Track, trackB: Track) => getTrackArtist(trackA) === getTrackArtist(trackB) && getTrackTitle(trackA) === getTrackTitle(trackB);
+export const areTracksEqualByName = (trackA: Track, trackB: Track) => _.isEqual(getTrackArtists(trackA), getTrackArtists(trackB)) && getTrackTitle(trackA) === getTrackTitle(trackB);
 
 export const timestampToDateString = (timestamp: number, locale: string) => new Date(timestamp).toLocaleDateString(
   locale, {

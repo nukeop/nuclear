@@ -18,7 +18,7 @@ const extractTrackData = (track, streamSource: string = null): PlaylistTrack => 
 
   return track && (track.name || track.title) && (!track.type || track.type === 'track') ?
     {
-      artist: track.artist,
+      artists: track.artists,
       name: track.name || track.title,
       album: track.album,
       thumbnail: track.thumbnail,

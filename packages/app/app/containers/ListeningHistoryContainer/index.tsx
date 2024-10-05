@@ -11,7 +11,7 @@ import { queue as queueSelector } from '../../selectors/queue';
 // Importing them causes issues with the dev server
 type ListeningHistoryEntry = {
   uuid: string;
-  artist: string;
+  artists: string[];
   title: string;
   createdAt: Date;
 }

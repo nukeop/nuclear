@@ -97,7 +97,7 @@ class iTunesMusicMetaProvider extends MetaProvider {
         thumb: artistDetails.results[1].artworkUrl100.replace('100x100bb.jpg', '250x250bb.jpg'),
         playcount: track.playcount,
         listeners: track.listeners,
-        artist: track.artist
+        artists: [track.artist.name]
       })),
       source: SearchResultsSource.iTunesMusic
     });
@@ -135,7 +135,7 @@ class iTunesMusicMetaProvider extends MetaProvider {
       year: albumInfo[0].releaseDate,
       type: albumType as AlbumType,
       tracklist: _.map(albumInfo.slice(1), (episode, index) => new Track ({
-        artist: episode.collectionName,
+        artists: [episode.collectionName],
         title: episode.trackName,
         duration: Math.ceil(episode.trackTimeMillis/1000),
         thumbnail: episode.artworkUrl60,

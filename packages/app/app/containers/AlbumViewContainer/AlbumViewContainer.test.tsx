@@ -47,7 +47,7 @@ describe('Album view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 1'
       })
     ]);
@@ -62,7 +62,7 @@ describe('Album view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 1'
       })
     ]);
@@ -80,11 +80,11 @@ describe('Album view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 2'
       }),
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 1'
       })
     ]);
@@ -103,7 +103,7 @@ describe('Album view container', () => {
         completion: 0,
         status: 'Waiting',
         track: expect.objectContaining({
-          artist: 'test artist',
+          artists: ['test artist'],
           name: 'test track 1'
         })
       }
@@ -151,15 +151,15 @@ describe('Album view container', () => {
     const state = store.getState();
     expect(state?.queue?.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 1'
       }),
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 2'
       }),
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 3'
       })
     ]);
@@ -174,15 +174,15 @@ describe('Album view container', () => {
 
     expect(state?.queue?.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 1'
       }),
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 2'
       }),
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test track 3'
       })
     ]);
@@ -200,7 +200,7 @@ describe('Album view container', () => {
       const currentState = store.getState();
       return expect(currentState?.queue?.queueItems).toEqual([
         expect.objectContaining({
-          artist: 'test artist',
+          artists: ['test artist'],
           name: 'test track 1',
           streams: [{
             stream: 'test-stream-url',
@@ -210,11 +210,11 @@ describe('Album view container', () => {
           }]
         }),
         expect.objectContaining({
-          artist: 'test artist',
+          artists: ['test artist'],
           name: 'test track 2'
         }),
         expect.objectContaining({
-          artist: 'test artist',
+          artists: ['test artist'],
           name: 'test track 3'
         })
       ]);
@@ -231,7 +231,7 @@ describe('Album view container', () => {
         completion: 0,
         status: 'Waiting',
         track: expect.objectContaining({
-          artist: 'test artist',
+          artists: ['test artist'],
           name: 'test track 1',
           uuid: 'track-1-id'
         })
@@ -241,7 +241,7 @@ describe('Album view container', () => {
         status: 'Waiting',
         track: expect.objectContaining({
           uuid: 'track-2-id',
-          artist: 'test artist',
+          artists: ['test artist'],
           name: 'test track 2'
         })
       },
@@ -250,7 +250,7 @@ describe('Album view container', () => {
         status: 'Waiting',
         track: expect.objectContaining({
           uuid: 'track-3-id',
-          artist: 'test artist',
+          artists: ['test artist'],
           name: 'test track 3'
         })
       }

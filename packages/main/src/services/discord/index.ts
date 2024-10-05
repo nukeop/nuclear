@@ -82,7 +82,7 @@ class Discord {
     this.baseStart = Date.now();
     this.pausedTotal = 0;
     this.activity = {
-      details: `${track.artist} - ${track.name}`,
+      details: `${track.artists[0]} - ${track.name}`,
       startTimestamp: this.baseStart,
       largeImageKey: 'logo'
     };

@@ -3,6 +3,10 @@ export type MusicbrainzArtist = {
   name: string;
 }
 
+export type MusicBrainzArtistCredit = {
+  name: string;
+}
+
 export type MusicbrainzReleaseGroup = {
   id: string;
   title: string;
@@ -15,6 +19,7 @@ export type MusicbrainzTrack = {
   number: string;
   position: number;
   title: string;
+  'artist-credit': MusicBrainzArtistCredit[];
 };
 
 export type MusicbrainzMedia = {

@@ -1,6 +1,8 @@
 import { v4 } from 'uuid';
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
+import { PlaylistTrack, Track } from '@nuclear/core';
+import { TrackItem } from '@nuclear/ui/lib/types';
 
 type ActionsBasicType = {
   [k: string]: (...payload: any) => any;
@@ -22,3 +24,19 @@ export const safeAddUuid = track => {
 
   return clonedTrack;
 };
+
+export function rewriteTrackArtists<T extends PlaylistTrack | Track | TrackItem>(track: T): T {
+  const clonedTrack = _.cloneDeep(track);
+
+  // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
+  if (clonedTrack.artists || !clonedTrack.artist) {
+    return clonedTrack;
+  }
+
+  // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
+  clonedTrack.artists = _.isString(clonedTrack.artist) ? [clonedTrack.artist] : [clonedTrack.artist.name];
+  // @ts-expect-error For backwards compatibility we're trying to parse an invalid field
+  clonedTrack.artists = clonedTrack.artists.concat(clonedTrack.extraArtists?.map(artist));
+
+  return clonedTrack;
+}

@@ -12,7 +12,7 @@ import { PlaylistTrack } from '@nuclear/core';
 import { PromotedArtist } from '@nuclear/core/src/rest/Nuclear/Promotion';
 
 export type InternalTopTrack = Pick<DeezerTrack, 'id' | 'title' | 'duration' | 'album' | 'position'> & {
-  artist: string;
+  artists: string[];
   thumbnail: string;
 };
 

@@ -137,7 +137,7 @@ export default compose(
       favoritesActions.addFavoriteTrack(normalizedTrack);
       toastActions.info(
         'Favorite track added',
-        `${track.artist} - ${track.name} has been added to favorites.`,
+        `${track.artists?.[0]} - ${track.name} has been added to favorites.`,
         <img src={getThumbnail(normalizedTrack)} />,
         settings
       );
@@ -154,7 +154,7 @@ export default compose(
       downloadsActions.addToDownloads(streamProviders, clonedTrack);
       toastActions.info(
         'Track added to downloads',
-        `${track.artist} - ${track.name} has been added to downloads.`,
+        `${track.artists?.[0]} - ${track.name} has been added to downloads.`,
         <img src={getThumbnail(normalizedTrack)} />,
         settings
       );
@@ -168,7 +168,7 @@ export default compose(
       addTrackToPlaylist(updatePlaylist, playlist, track);
       toastActions.info(
         'Track added to playlist',
-        `${track.artist} - ${track.name} has been added to playlist ${playlist.name}.`,
+        `${track.artists?.[0]} - ${track.name} has been added to playlist ${playlist.name}.`,
         <img src={getThumbnail(normalizeTrack(track))} />,
         settings
       );

@@ -7,7 +7,7 @@ import numeral from 'numeral';
 import { Icon } from 'semantic-ui-react';
 import { head } from 'lodash';
 
-import { formatDuration, getTrackArtist, getTrackTitle } from '@nuclear/ui';
+import { formatDuration, getTrackArtists, getTrackTitle } from '@nuclear/ui';
 
 import * as QueueActions from '../../actions/queue';
 
@@ -39,7 +39,7 @@ class TrackRow extends React.Component {
 
   playTrack() {
     this.props.actions.playTrack(this.props.streamProviders, {
-      artist: this.props.track.artist.name,
+      artists: this.props.track.artists?.[0],
       name: this.props.track.name,
       thumbnail: this.getTrackThumbnail(),
       local: this.props.track.local,
@@ -67,7 +67,7 @@ class TrackRow extends React.Component {
 
   canAddToFavorites() {
     return _.findIndex(this.props.favoriteTracks, (currentTrack) => {
-      return currentTrack.name === this.props.track.name && currentTrack.artist.name === this.props.track.artist.name;
+      return currentTrack.name === this.props.track.name && _.isEqual(currentTrack.artists, this.props.track.artists);
     }) < 0;
   }
 
@@ -99,7 +99,7 @@ class TrackRow extends React.Component {
           </td>
         }
         {displayTrackNumber && <td className={styles.track_number}>{track.position}</td>}
-        {displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
+        {displayArtist && <td className={styles.track_artist}>{track.artists?.[0]}</td>}
         <td className={styles.track_name}>{track.name}</td>
         {displayAlbum && this.renderAlbum(track)}
         {displayDuration && this.renderDuration(track)}
@@ -123,7 +123,7 @@ class TrackRow extends React.Component {
       <TrackPopupContainer
         trigger={this.renderTrigger(track)}
         track={track}
-        artist={getTrackArtist(track)}
+        artist={getTrackArtists(track)?.[0]}
         title={getTrackTitle(track)}
         thumb={this.getTrackThumbnail()}
 

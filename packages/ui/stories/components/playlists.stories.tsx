@@ -15,20 +15,20 @@ const tracks = [
   {
     position: 1,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-    artist: 'Test Artist',
+    artists: ['Test Artist'],
     title: 'Test Title',
     album: 'Test Album'
   }, {
     position: 2,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-    artist: 'Test Artist 2',
+    artists: ['Test Artist 2'],
     name: 'Test Title 2',
     album: 'Test Album'
   },
   {
     position: 3,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-    artist: 'Test Artist 3',
+    artists: ['Test Artist 3'],
     name: 'Test Title 3',
     album: 'Test Album'
   }

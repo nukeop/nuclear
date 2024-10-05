@@ -37,7 +37,7 @@ export type SearchResultsAlbum = {
     type?: string;
     tracklist?: {
         uuid: string;
-        artist: string;
+        artists: string[];
         title: string;
         duration: number;
     }[];
@@ -59,13 +59,13 @@ export type SearchResultsPodcast = {
 export type SearchResultsTrack = {
     id: string;
     title: string;
-    artist: string;
+    artists: string[];
     source: SearchResultsSource;
     thumb?: string;
 }
 
 export type ArtistTopTrack = {
-    artist: { name: string };
+    artists: string[];
     title: string;
     thumb?: string;
     playcount?: number;

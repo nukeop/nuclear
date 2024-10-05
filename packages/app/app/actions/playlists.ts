@@ -3,7 +3,7 @@ import { v4 } from 'uuid';
 import { remote } from 'electron';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 
-import { store, PlaylistHelper, Playlist, PlaylistTrack, rest } from '@nuclear/core';
+import { store, PlaylistHelper, Playlist, PlaylistTrack, Track, rest } from '@nuclear/core';
 import { GetPlaylistsByUserIdResponseBody } from '@nuclear/core/src/rest/Nuclear/Playlists.types';
 import { ErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 
@@ -18,6 +18,7 @@ import { success, error } from './toasts';
 import { IdentityStore } from '../reducers/nuclear/identity';
 import { PlaylistsStore } from '../reducers/playlists';
 import { isEmpty } from 'lodash';
+import { rewriteTrackArtists } from './helpers';
 
 export const updatePlaylistsAction = createStandardAction(Playlists.UPDATE_LOCAL_PLAYLISTS)<PlaylistsStore['localPlaylists']['data']>();
 
@@ -55,7 +56,7 @@ export const loadLocalPlaylists = () => dispatch => {
   dispatch(loadLocalPlaylistsAction.request());
 
   try {
-    const playlists: Playlist[] = store.get('playlists');
+    const playlists: Playlist[] = getPlaylistsBackwardsCompatible();
     dispatch(loadLocalPlaylistsAction.success(isEmpty(playlists) ? [] : playlists));
   } catch (error) {
     dispatch(loadLocalPlaylistsAction.failure());
@@ -147,7 +148,7 @@ export function addPlaylistFromFile(filePath, t) {
           throw new Error('missing tracks or name');
         }
 
-        let playlists = store.get('playlists') || [];
+        let playlists = getPlaylistsBackwardsCompatible() || [];
         const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4(), source);
 
         if (!(tracks?.length > 0)) {
@@ -166,4 +167,17 @@ export function addPlaylistFromFile(filePath, t) {
       }
     });
   };
+}
+
+/**
+* Helper function to read the old track format into the new format.
+*
+* `Track.artist` and `Track.extraArtists` are written into {@link Track.artists}
+*/
+function getPlaylistsBackwardsCompatible(): Playlist[] {
+  const playlists: Playlist[] = store.get('playlists');
+  return playlists.map(playlist => {
+    playlist.tracks = playlist.tracks?.map(rewriteTrackArtists);
+    return playlist;
+  });
 }

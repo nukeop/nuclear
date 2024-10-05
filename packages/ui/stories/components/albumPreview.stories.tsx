@@ -26,7 +26,7 @@ export const Basic = ({
         tracks: _(null).range(10).map(i => (
           {
             name: `Test track ${i}`,
-            artist: { name: 'Test Artist' },
+            artists: ['Test Artist'],
             album: 'Test album',
             position: i+1,
             duration: 100
@@ -53,7 +53,7 @@ export const NoCover = ({
         tracks: _(null).range(10).map(i => (
           {
             name: `Test track ${i}`,
-            artist: { name: 'Test Artist' },
+            artists: ['Test Artist'],
             album: 'Test album',
             position: i+1,
             duration: 100
@@ -82,7 +82,7 @@ export const WithTrackButtons = ({
         tracks: _(null).range(10).map(i => (
           {
             name: `Test track ${i}`,
-            artist: { name: 'Test Artist' },
+            artists: ['Test Artist'],
             album: 'Test album',
             position: i+1,
             duration: 100

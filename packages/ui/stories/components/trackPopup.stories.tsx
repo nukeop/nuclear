@@ -9,7 +9,7 @@ export default {
 };
 
 const track = {
-  artist: 'Test',
+  artists: ['Test'],
   title: 'Test title',
   thumb: 'https://i.imgur.com/4euOws2.jpg'
 };

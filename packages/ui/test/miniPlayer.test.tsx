@@ -8,7 +8,7 @@ makeSnapshotTest(
   {
     cover: 'https://i.imgur.com/4euOws2.jpg',
     track: 'Test song',
-    artist: 'Test artist',
+    artists: ['Test artist'],
 
     fill: 66,
     seek: () => { },

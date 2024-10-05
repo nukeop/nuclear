@@ -104,6 +104,10 @@ export type DiscogsTrack = {
   duration: string;
   position: string;
   title: string;
+  artists?: {
+    name: string;
+    id: number;
+  }[];
   extraartists?: {
     name: string;
   }[];

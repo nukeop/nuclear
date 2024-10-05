@@ -74,7 +74,7 @@ class LocalLibrary {
       }(),
       position: common.track.no,
       album: common.album,
-      artist: common.artist || 'unknown',
+      artists: [common.artist] || ['unknown'],
       imageData: common.picture && common.picture[0].data,
       lastScanned: +Date.now()
     };
@@ -124,7 +124,7 @@ class LocalLibrary {
 
       if (data && data.recordings && data.recordings.length) {
         meta.name = data.recordings[0].name;
-        meta.artist = data.recordings[0].artists?.[0].name || 'unknown';
+        meta.artists = data.recordings[0].artists?.map(artist => artist.name) || ['unknown'];
       }
 
       if (!meta.name) {

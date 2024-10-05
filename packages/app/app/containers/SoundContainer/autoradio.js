@@ -82,7 +82,13 @@ export function addAutoradioTrackToQueue (callProps) {
       if (selectedTrack === null) {
         return Promise.reject(new Error('No similar track or artist were found.'));
       }
-      return addToQueue(selectedTrack.artist, selectedTrack);
+
+      // The API doesn't returns artist.name we have to convert to the new format
+      if (!selectedTrack.artists && selectedTrack.artist) {
+        selectedTrack.artists = _.isString(selectedTrack.artist) ? [selectedTrack.artist] : [selectedTrack.artist.name];
+      }
+
+      return addToQueue(selectedTrack.artists, selectedTrack);
     })
     .catch(function (err) {
       logger.error('error', err);
@@ -137,7 +143,7 @@ function getNewTrack (getter, track) {
   if (getter === 'track') {
     getTrack = getSimilarTracks(track);
   } else {
-    getTrack = getTracksFromSimilarArtist(track.artist);
+    getTrack = getTracksFromSimilarArtist(track.artists?.[0]);
   }
   return getTrack
     .then(similarTracks => {
@@ -145,10 +151,11 @@ function getNewTrack (getter, track) {
     });
 }
 
+// `track` format here is directly from the lastfm api
 function isTrackInQueue (track) {
   const queue = props.queue.queueItems;
   for (const i in queue) {
-    if (queue[i].artist === track.artist.name && queue[i].name === track.name) {
+    if (queue[i].artists.includes(track.artist.name) && queue[i].name === track.name) {
       return true;
     }
   }
@@ -156,7 +163,7 @@ function isTrackInQueue (track) {
 }
 
 function getSimilarTracks (currentSong, limit = 100) {
-  return lastfm.getSimilarTracks(currentSong.artist, currentSong.name, limit)
+  return lastfm.getSimilarTracks(currentSong.artists?.[0], currentSong.name, limit)
     .then(tracks => tracks.json())
     .then(trackJson => {
       return _.get(trackJson, 'similartracks.track', []);
@@ -193,10 +200,10 @@ function getArtistTopTracks (artist) {
     });
 }
 
-function addToQueue (artist, track) {
+function addToQueue (artists, track) {
   return new Promise((resolve) => {
     props.actions.addToQueue({
-      artist: artist.name,
+      artists,
       name: track.name,
       thumbnail: track.thumbnail ?? track.image[0]['#text'] ?? track.thumb
     });

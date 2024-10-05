@@ -97,9 +97,6 @@ function TrackTableContainer<T extends Track> ({
   const onCreatePlaylist = useCallback(
     (track: Track, { name }: { name: string } ) => {
       const clonedTrack = {...safeAddUuid(track)};
-      if (clonedTrack.artist.name) {
-        _.set(clonedTrack, 'artist', clonedTrack.artist.name);
-      }
       dispatch(playlistActions.addPlaylist([clonedTrack], name));
     },
     [dispatch]

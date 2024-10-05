@@ -7,7 +7,7 @@ import { error } from './toasts';
 import { Search } from './actionTypes';
 import { History } from 'history';
 import { RootState } from '../reducers';
-import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsPodcast, SearchResultsSource } from '@nuclear/core/src/plugins/plugins.types';
+import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsPodcast, SearchResultsSource, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
 import { createStandardAction } from 'typesafe-actions';
 import { LastfmTrackMatch, LastfmTrackMatchInternal } from '@nuclear/core/src/rest/Lastfm.types';
 import { YoutubeResult } from '@nuclear/core/src/rest/Youtube';
@@ -80,7 +80,7 @@ export const SearchActions = {
       }
     };
   }),
-  trackSearchSuccess: createStandardAction(Search.TRACK_SEARCH_SUCCESS)<SearchResultsAlbum[]>(),
+  trackSearchSuccess: createStandardAction(Search.TRACK_SEARCH_SUCCESS)<SearchResultsTrack[]>(),
   artistSearchSuccess: createStandardAction(Search.ARTIST_SEARCH_SUCCESS)<SearchResultsArtist[]>(),
   artistInfoStart: createStandardAction(Search.ARTIST_INFO_SEARCH_START)<string>(),
   artistInfoSuccess: createStandardAction(Search.ARTIST_INFO_SEARCH_SUCCESS).map((artistId: string, info: ArtistDetails) => {
@@ -181,6 +181,7 @@ const getTrackThumbnail = (track: LastfmTrackMatch) => {
 
 export const mapLastFMTrackToInternal = (track: LastfmTrackMatch) => ({
   ...track,
+  artists: [track.artist],
   thumbnail: getTrackThumbnail(track)
 });
 

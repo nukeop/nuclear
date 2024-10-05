@@ -76,7 +76,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       .then(response => response.tracks.map(track => ({
         id: track.id,
         title: '',
-        artist: '',
+        artists: [''],
         source: SearchResultsSource.Musicbrainz
       })));
   }
@@ -105,7 +105,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       tags: _.map(lastFmInfo.tags.tag, 'name'),
       onTour: lastFmInfo.ontour === '1',
       topTracks: _.map(lastFmTopTracks.track, (track: LastfmTrack) => ({
-        artist: { name: track.artist.name },
+        artists: [track.artist.name],
         title: track.name,
         playcount: track.playcount,
         listeners: track.listeners
@@ -144,7 +144,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       tracklist: _.flatMap(releaseDetails.media, medium => _.map(medium.tracks, track => {
         const newtrack = new Track();
         newtrack.ids[SearchResultsSource.Musicbrainz] = track.id;
-        newtrack.artist = artistName;
+        newtrack.artists = track['artist-credit'].map(artist => artist.name);
         newtrack.title = track.title;
         newtrack.duration = Math.ceil(track.length/1000);
         newtrack.position = track.position;
