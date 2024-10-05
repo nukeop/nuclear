@@ -48,7 +48,7 @@
     "node-fetch": "^2.6.0",
     "prism-media": "^1.3.5",
     "reflect-metadata": "^0.1.13",
-    "rotating-file-stream": "^2.0.2",
+    "rotating-file-stream": "^3.2.1",
     "sqlite3": "^5.1.6",
     "stream-filter": "^2.1.0",
     "stream-reduce": "^1.0.3",
