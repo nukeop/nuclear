@@ -120,6 +120,7 @@ const ipcConnect: Middleware = () => next => {
       ipcRenderer.send(IpcEvents.DOWNLOAD_PAUSE, track);
       break;
     }
+    case getType(DownloadActions.resumeDownloads):
     case getType(DownloadActions.onDownloadFinished):
     case getType(DownloadActions.onDownloadError): {
       const nextDownload = payload.find((download) =>

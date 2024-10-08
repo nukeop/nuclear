@@ -15,6 +15,7 @@ export default function DownloadsReducer(state=initialState, action: DownloadRed
   case getType(DownloadActions.onDownloadResume):
   case getType(DownloadActions.onDownloadPause):
     return [...action.payload.downloads];
+  case getType(DownloadActions.resumeDownloads):
   case getType(DownloadActions.readDownloads):
   case getType(DownloadActions.onDownloadStarted):
   case getType(DownloadActions.onDownloadProgress):
