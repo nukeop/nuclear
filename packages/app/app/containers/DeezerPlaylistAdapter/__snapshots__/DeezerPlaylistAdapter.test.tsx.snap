@@ -117,8 +117,32 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
               <div
                 class="track_table_header_row"
                 role="row"
-                style="grid-template-columns: 4em 3em 3em minmax(8em, 1fr) 1fr 6em auto;"
+                style="grid-template-columns: 7.5em 4em 3em 3em minmax(8em, 1fr) 6em auto;"
               >
+                <div
+                  class="track_table_header_cell"
+                  colspan="1"
+                  role="columnheader"
+                >
+                  <div
+                    class="selection_header"
+                  >
+                    <div
+                      class="ui fitted checkbox nuclear checkbox"
+                      style="cursor: pointer;"
+                    >
+                      <input
+                        class="hidden"
+                        readonly=""
+                        tabindex="0"
+                        title="Toggle All Rows Selected"
+                        type="checkbox"
+                        value=""
+                      />
+                      <label />
+                    </div>
+                  </div>
+                </div>
                 <div
                   class="track_table_header_cell"
                   colspan="1"
@@ -191,30 +215,6 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
                     Artist
                   </div>
                 </div>
-                <div
-                  class="track_table_header_cell"
-                  colspan="1"
-                  role="columnheader"
-                >
-                  <div
-                    class="selection_header"
-                  >
-                    <div
-                      class="ui fitted checkbox nuclear checkbox"
-                      style="cursor: pointer;"
-                    >
-                      <input
-                        class="hidden"
-                        readonly=""
-                        tabindex="0"
-                        title="Toggle All Rows Selected"
-                        type="checkbox"
-                        value=""
-                      />
-                      <label />
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <div
@@ -237,9 +237,28 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
                     data-rbd-draggable-id="0"
                     data-testid="track-table-row"
                     role="row"
-                    style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 4em 3em 3em minmax(8em, 1fr) 1fr 6em;"
+                    style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em 3em minmax(8em, 1fr) 6em;"
                     tabindex="0"
                   >
+                    <div
+                      class="selection_cell"
+                      role="cell"
+                    >
+                      <div
+                        class="ui fitted checkbox nuclear checkbox"
+                        style="cursor: pointer;"
+                      >
+                        <input
+                          class="hidden"
+                          readonly=""
+                          tabindex="-1"
+                          title="Toggle Row Selected"
+                          type="checkbox"
+                          value=""
+                        />
+                        <label />
+                      </div>
+                    </div>
                     <div
                       class="grid_track_table_cell position_cell"
                       data-testid="position-cell"
@@ -322,6 +341,16 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
                     >
                       artist 1
                     </div>
+                  </div>
+                  <div
+                    class="grid_track_table_row"
+                    data-rbd-draggable-context-id="1"
+                    data-rbd-draggable-id="1"
+                    data-testid="track-table-row"
+                    role="row"
+                    style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em 3em minmax(8em, 1fr) 6em;"
+                    tabindex="1"
+                  >
                     <div
                       class="selection_cell"
                       role="cell"
@@ -341,16 +370,6 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
                         <label />
                       </div>
                     </div>
-                  </div>
-                  <div
-                    class="grid_track_table_row"
-                    data-rbd-draggable-context-id="1"
-                    data-rbd-draggable-id="1"
-                    data-testid="track-table-row"
-                    role="row"
-                    style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 4em 3em 3em minmax(8em, 1fr) 1fr 6em;"
-                    tabindex="1"
-                  >
                     <div
                       class="grid_track_table_cell position_cell"
                       data-testid="position-cell"
@@ -432,25 +451,6 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
                       role="cell"
                     >
                       artist 2
-                    </div>
-                    <div
-                      class="selection_cell"
-                      role="cell"
-                    >
-                      <div
-                        class="ui fitted checkbox nuclear checkbox"
-                        style="cursor: pointer;"
-                      >
-                        <input
-                          class="hidden"
-                          readonly=""
-                          tabindex="-1"
-                          title="Toggle Row Selected"
-                          type="checkbox"
-                          value=""
-                        />
-                        <label />
-                      </div>
                     </div>
                   </div>
                 </div>
