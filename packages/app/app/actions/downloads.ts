@@ -101,8 +101,15 @@ export const onDownloadResume = createStandardAction(DownloadActionTypes.DOWNLOA
 
 export const onDownloadProgress = createStandardAction(DownloadActionTypes.DOWNLOAD_PROGRESS).map(
   (uuid: string, progress: number) => {
-    const downloads = store.get('downloads');
-    let payload = changePropertyForItem({
+    const downloads: Download[] = store.get('downloads');
+    const track = downloads.find((item) => item.track.uuid === uuid);
+    if (track === undefined) {
+      // track is no longer in downloads, so nothing can be updated
+      return {
+        payload: downloads
+      };
+    }
+    let payload: Download[] = changePropertyForItem({
       downloads,
       uuid,
       propertyName: 'completion',
@@ -172,3 +179,19 @@ export const clearFinishedDownloads = createStandardAction(DownloadActionTypes.C
       payload: filteredTracks
     };
   });
+
+export const resumeDownloads = createStandardAction(DownloadActionTypes.RESUME_DOWNLOADS).map(
+  () => {
+    const downloads: Download[] = store.get('downloads');
+    const startedItem = downloads.find((item) => item.status === DownloadStatus.STARTED);
+    let payload = downloads;
+    if (startedItem !== undefined) {
+      payload = changePropertyForItem({
+        downloads,
+        uuid: startedItem.track.uuid,
+        value: DownloadStatus.WAITING
+      });
+    }
+    return  { payload, type: DownloadActionTypes.RESUME_DOWNLOADS };
+  } 
+);
