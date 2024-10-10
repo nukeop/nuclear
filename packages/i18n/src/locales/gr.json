@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Προσθήκη όλων",
-    "count": "Συνολικός αριθμός αναπαραγωγών",
+    "count": "Playcount",
     "queue": "Προσθήκη όλων των κομματιών σε ουρά",
     "similar": "Παρόμοιοι καλλιτέχνες",
     "title": "Τίτλος",
     "tour": "Περιοδίες",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Προσθήκη όλων",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Προσθήκη πρόσθετων",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Η ροή φορτώνει.",
     "playlist-add": "Προσθήκη στην λίστα αναπαραγωγής",
-    "playlist-add-queue": "Προσθήκη ουράς στην λίστα αναπαραγωγής",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Η λίστα αναπαραγωγής {{name}} δημιουργήθηκε.",
     "playlist-toast-title": "Η λίστα αναπαραγωγής δημιουργήθηκε",
     "live": "Ζωντανά",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Προσθήκη επιλεγμένων στα αγαπημένα",
     "play-selected-tracks-now": "Αναπαραγωγή επιλεγμένων τώρα",
     "tracks-selected-label-singular": "επιλεγμένο κομμάτι",
-    "tracks-selected-label-plural": "επιλεγμένα κομμάτια"
+    "tracks-selected-label-plural": "επιλεγμένα κομμάτια",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Πατήστε ESC για έξοδο από πλήρη οθόνη"

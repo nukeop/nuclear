@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Дадаць усе",
-    "count": "Колькасць прайграванняў",
+    "count": "Playcount",
     "queue": "Дадаць усе трэкі ў чаргу",
     "similar": "Падобныя выканаўцы",
     "title": "Назва",
     "tour": "На гастролях",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Дадаць усё",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Дадаць плагiн",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Стрым усё яшчэ загружаецца.",
     "playlist-add": "Дадаць у плэйліст",
-    "playlist-add-queue": "Дадаць чэргу ў плэйліст",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Плэйліст {{name}} створаны.",
     "playlist-toast-title": "Плэйліст створаны",
     "live": "У прамым эфіры",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Дадаць выбранае да абранага",
     "play-selected-tracks-now": "Прайграць выбранае зараз",
     "tracks-selected-label-singular": "выбраны трэк",
-    "tracks-selected-label-plural": "выбраныя трэкі"
+    "tracks-selected-label-plural": "выбраныя трэкі",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Націсьніце на ESC, каб выйсьці з поўнага экрану"

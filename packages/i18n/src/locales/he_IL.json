@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "הוסף הכל",
-    "count": "מספר השמעות",
+    "count": "Playcount",
     "queue": "הוספת כל הרצועות לתור",
     "similar": "אומנים דומים",
     "title": "כותרת",
     "tour": "בסיור",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "הוסף הכל",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "הורדת תוסף",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
-    "playlist-add-queue": "הוספת תור לפלייליסט",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
     "live": "שידור חי",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "הוסף את הנבחרים למועדפים",
     "play-selected-tracks-now": "הפעל נבחרים כעת",
     "tracks-selected-label-singular": "רצועה שנבחרה",
-    "tracks-selected-label-plural": "רצועות שנבחרו"
+    "tracks-selected-label-plural": "רצועות שנבחרו",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "יש ללחוץ על ESC כדי לצאת ממסך מלא"

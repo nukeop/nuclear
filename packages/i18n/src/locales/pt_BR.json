@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Adicionar Tudo",
-    "count": "Reproduções",
+    "count": "Playcount",
     "queue": "Adicione todas as faixas à fila",
     "similar": "Artistas similares",
     "title": "Título",
     "tour": "Turnê",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Adicionar tudo",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Adicionar um plugin",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Transmissão ainda carregando.",
     "playlist-add": "Adicionar à Lista de Reprodução",
-    "playlist-add-queue": "Adicionar fila à Lista de Reprodução",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
     "playlist-toast-title": "Lista de Reprodução Criada",
     "live": "Em direto",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Adicionar selecionados aos favoritos",
     "play-selected-tracks-now": "Tocar selecionados agora",
     "tracks-selected-label-singular": "música selecionada",
-    "tracks-selected-label-plural": "tracks selected"
+    "tracks-selected-label-plural": "tracks selected",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"

@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Toon alles",
-    "count": "Aantal keer beluisterd",
+    "count": "Playcount",
     "queue": "Alle nummers toevoegen aan wachtrij",
     "similar": "Vergelijkbare artiesten",
     "title": "Titel",
     "tour": "Aan het touren",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Alles toevoegen",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Een plug-in toevoegen",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Bezig met laden van stream...",
     "playlist-add": "Toevoegen aan afspeellijst",
-    "playlist-add-queue": "Wachtrij toevoegen aan afspeellijst",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "De afspeellijst, '{{name}}', is gecreëerd.",
     "playlist-toast-title": "Afspeellijst gecreëerd",
     "live": "Live",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Voeg geselecteerde toe aan favorieten",
     "play-selected-tracks-now": "Speel de geselecteerde nu",
     "tracks-selected-label-singular": "geselecteerde track",
-    "tracks-selected-label-plural": "geselecteerde nummers"
+    "tracks-selected-label-plural": "geselecteerde nummers",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Druk op ESC om volledig scherm af te sluiten"

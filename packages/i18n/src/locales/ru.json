@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Добавить все",
-    "count": "Счётчик проигрываний",
+    "count": "Playcount",
     "queue": "Добавить все дорожки в очередь",
     "similar": "Похожие исполнители",
     "title": "Название",
     "tour": "В туре",
-    "popular-tracks": "Популярные треки"
+    "popular-tracks": "Популярные треки",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Добавить все в очередь",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Вставить URL плейлиста:",
     "create-playlist-dialog-title": "Введите название плейлиста:",
     "playlist": "Плейлист",
-    "play": "Воспроизвести"
+    "play": "Воспроизвести",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Добавить плагин",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Добавить выбранные в избранные",
     "play-selected-tracks-now": "Играть выбранные",
     "tracks-selected-label-singular": "трек выбран",
-    "tracks-selected-label-plural": "треков выбрано"
+    "tracks-selected-label-plural": "треков выбрано",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Нажмите Esc, чтобы выйти из полноэкранного режима"

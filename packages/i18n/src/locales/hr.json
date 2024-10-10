@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Dodaj sve",
-    "count": "Broj sviranja",
+    "count": "Playcount",
     "queue": "Dodaj sve pjesme u red čekanja",
     "similar": "Slični izvođači",
     "title": "Naslov",
     "tour": "Na turneji",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Dodaj sve",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Dodaj dodatak",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream se još učitava.",
     "playlist-add": "Dodaj u popis za reprodukciju",
-    "playlist-add-queue": "Dodaj red u popis za reprodukciju",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Popis za reprodukiju {{name}} je kreiran.",
     "playlist-toast-title": "Popis za reprodukciju kreiran",
     "live": "Uživo",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Dodaj označene u omiljene",
     "play-selected-tracks-now": "Odmah pokreni označeno",
     "tracks-selected-label-singular": "označen zapis",
-    "tracks-selected-label-plural": "označeni zapisi"
+    "tracks-selected-label-plural": "označeni zapisi",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Pritisnite ESC da bi ste izašli iz punog zaslona"

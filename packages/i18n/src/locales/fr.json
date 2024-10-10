@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Tout ajouter",
-    "count": "Nombre d'écoutes",
+    "count": "Playcount",
     "queue": "Ajouter tous les morceaux à la file de lecture",
     "similar": "Artistes similaires",
     "title": "Titre",
     "tour": "En tournée",
-    "popular-tracks": "Pistes populaires"
+    "popular-tracks": "Pistes populaires",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Ajouter tout",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Copier le lien de la liste de lecture:",
     "create-playlist-dialog-title": "Enter le nom de la liste de lecture :",
     "playlist": "Liste de lecture",
-    "play": "Lire"
+    "play": "Lire",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Ajouter un module complémentaire",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Ajouter la sélection aux favoris",
     "play-selected-tracks-now": "Lire la sélection maintenant",
     "tracks-selected-label-singular": "morceau sélectionné",
-    "tracks-selected-label-plural": "morceaux sélectionnés"
+    "tracks-selected-label-plural": "morceaux sélectionnés",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Appuyez sur ÉCHAP pour quitter le mode plein écran"

@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Add all",
-    "count": "Spilateljari",
+    "count": "Playcount",
     "queue": "Bæta öllum lögum i biðröðina",
     "similar": "Svipaðir tónlistamenn",
     "title": "Titill",
     "tour": "Á túr",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Add all",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Bæta við viðbót",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Streymi er ennþá að hlaða.",
     "playlist-add": "Bæta í lagalista",
-    "playlist-add-queue": "Bæta röð í lagalista",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Lagalisti {{name}} hefur verið stofnaður.",
     "playlist-toast-title": "Lagalisti stofnaður",
     "live": "Live",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Add selected to favorites",
     "play-selected-tracks-now": "Play selected now",
     "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "tracks-selected-label-plural": "tracks selected",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"

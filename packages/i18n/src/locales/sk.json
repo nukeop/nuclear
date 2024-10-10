@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Pridať všetko",
-    "count": "Počet prehratí",
+    "count": "Playcount",
     "queue": "Pridať všetky skladby do poradia",
     "similar": "Podobný umelci",
     "title": "Názov",
     "tour": "Na tour",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Pridať všetko",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Add a plugin",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream sa stále načítava.",
     "playlist-add": "Pridať do playlistu",
-    "playlist-add-queue": "Pridať do fronty do playlistu",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Playlist {{name}} bol vytvorený.",
     "playlist-toast-title": "Playlist vytvorený",
     "live": "Live",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Add selected to favorites",
     "play-selected-tracks-now": "Play selected now",
     "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "tracks-selected-label-plural": "tracks selected",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"

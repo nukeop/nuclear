@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "সবকটি যোগ করুন",
-    "count": "প্লে কাউন্ট",
+    "count": "Playcount",
     "queue": "সারিতে সমস্ত ট্র্যাক যোগ করুন",
     "similar": "অনুরূপ শিল্পী",
     "title": "টাইটেল",
     "tour": "ভ্রমণে",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "সবকটি যোগ করুন",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "প্লাগইন যোগ করুন",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "স্ট্রীম এখনো লোড হচ্ছে।",
     "playlist-add": "প্লেলিস্টে যোগ করুন",
-    "playlist-add-queue": "প্লেলিস্টে কিউ যোগ করুন",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "প্লেলিস্ট {{name}} তৈরি হয়েছে।",
     "playlist-toast-title": "প্লেলিস্ট তৈরি হয়েছে",
     "live": "সরাসরি",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "সিলেক্টকৃতকে পছন্দতালিকায় যুক্ত করুন",
     "play-selected-tracks-now": "সিলেক্টকৃতকে প্লে করুন",
     "tracks-selected-label-singular": "ট্র্যাক সিলেক্ট হয়েছে",
-    "tracks-selected-label-plural": "ট্র্যাকগুলো সিলেক্ট হয়েছে"
+    "tracks-selected-label-plural": "ট্র্যাকগুলো সিলেক্ট হয়েছে",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "ফুলস্ক্রিন থেকে বের হতে ECS চাপুন"

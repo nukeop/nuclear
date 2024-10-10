@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "सभी जोड़ें",
-    "count": "प्ले काउंट",
+    "count": "Playcount",
     "queue": "कतार में सभी ट्रैक जोड़ें",
     "similar": "समान कलाकार",
     "title": "शीर्षक",
     "tour": "दौरे पर",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "सभी जोड़ें",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "प्लगइन जोड़ें",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "स्ट्रीम अभी भी लोड हो रही है.",
     "playlist-add": "प्‍लेलिस्‍ट में जोड़ें",
-    "playlist-add-queue": "प्‍लेलिस्‍ट में कतार जोड़ें",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "प्लेलिस्ट {{name}} बन गई है।",
     "playlist-toast-title": "प्लेलिस्ट बनाई गई!",
     "live": "लाइव",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "चयनित को प्रिय में जोड़ें",
     "play-selected-tracks-now": "चयनितो को अभी प्ले करें",
     "tracks-selected-label-singular": "चयनित ट्रैक",
-    "tracks-selected-label-plural": "चयनित ट्रैक"
+    "tracks-selected-label-plural": "चयनित ट्रैक",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "फुलस्क्रीन मोड से बाहर निकलने के लिए Esc दबाएं।"

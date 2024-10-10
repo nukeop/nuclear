@@ -9,12 +9,12 @@
     "queue": "إضافة ألبوم إلى قائمة الانتظار",
     "tracks": "الاغاني:",
     "year": "السنة:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "إضافة الالبوم إلى قائمة التشغيل",
+    "create-playlist": "إنشاء قائمة أغاني جديدة",
+    "create-playlist-dialog-title": "أدخل اسم قائمة الأغاني:",
+    "create-playlist-dialog-placeholder": "اسم قائمة الأغاني...",
+    "create-playlist-dialog-accept": "حفظ",
+    "create-playlist-dialog-cancel": "إلغاء"
   },
   "app": {
     "collection": "المجموعة",
@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "أضف الكل",
-    "count": "مرات التشغيل",
+    "count": "Playcount",
     "queue": "اضافة جميع الاغاني الى قائمة التشغيل",
     "similar": "فنانون مماثلون",
     "title": "العنوان",
     "tour": "في جولة",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "مقاطع مشهورة",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "اضافة الكل",
@@ -151,7 +158,7 @@
     "delete": "حذف قائمة التشغيل هذه",
     "duration": "الطول",
     "empty": "لا توجد قوائم تشغيل.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "حاول إنشاء قائمة أغاني, أو الاستيراد عن طريق رابط, وسوف تظهر هنا!",
     "error-empty-data": "بيانات فارغة",
     "error-invalid-data": "بيانات غير صالحة",
     "error-open-file": "لا يمكن فتح الملف",
@@ -160,7 +167,7 @@
     "export-fail-title": "فشل تصدير قائمة التشغيل",
     "export-success-title": "تم تصدير قائمة التشغيل بنجاح",
     "header": "قوائم التشغيل الخاصة بك",
-    "header-add-button": "Add",
+    "header-add-button": "إضافة",
     "import-progress": "تقدم الاستيراد",
     "spotify-import-placeholder": "لصق رابط المقطوعات الموسيقية بسبوتيفاي هنا",
     "dialog-placeholder": "اسم قائمة التشغيل...",
@@ -168,9 +175,9 @@
     "dialog-cancel": "إلغاء",
     "dialog-rename": "إعادة التسمية",
     "dialog-import": "إستيراد",
-    "create-button": "Create a new playlist",
+    "create-button": "إنشاء قائمة أغاني جديدة",
     "new-playlist": "قائمة تشغيل جديدة",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "استيراد من Spotify",
     "import-button": "استيراد من ملف (JSON)",
     "import-fail-title": "فشل استيراد قائمة التشغيل",
     "import-success-title": "تم استيراد قائمة التشغيل بنجاح",
@@ -192,10 +199,12 @@
     "upload-to-server": "تحميل إلى الخادم",
     "download-from-server": "التنزيل من الخادم",
     "number-of-tracks": "الاغاني",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlist-url": "لصق رابط لقائمة الأغاني:",
+    "create-playlist-dialog-title": "أدخل اسم قائمة الأغاني:",
+    "playlist": "قائمة الأغاني",
+    "play": "تشغيل",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "إضافة المكون الإضافي",
@@ -222,10 +231,10 @@
     "favorite-add": "إضافة إلى المفضلات",
     "header": "قائمة الإنتظار",
     "header-track": "المقطع الحالي",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "تم نسخ رابط المقطع إلى الحافظة",
     "loading": "لا يزال البث قيد التحميل.",
     "playlist-add": "إضافة إلى قائمة التشغيل",
-    "playlist-add-queue": "إضافة قائمة الانتظار إلى قائمة التشغيل",
+    "playlist-add-queue": "إضافة قائمة الانتظار إلى الألبوم",
     "playlist-toast-content": "قائمة التشغيل {{name}} تم إنشاؤها.",
     "playlist-toast-title": "تم إنشاء قائمة التشغيل",
     "live": "بث مباشر",
@@ -247,8 +256,8 @@
       "verify": "تحقق",
       "unverify": "لا تحقق"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "أدخل اسم قائمة الأغاني:",
+    "play-now": "تشغيل الآن"
   },
   "search": {
     "album": "ألبوم",
@@ -301,7 +310,7 @@
     "github-description": "قم بتسجيل الدخول عبر Github لتتمكن من إنشاء ومشاركة قوائم التشغيل الخاصة بك على الإنترنت (مِيزة قادمة).",
     "github-title": "Github",
     "http": "API الـHTTP",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "رابط مخدم Invidious",
     "language": "اللّغة",
     "language-placeholder": "اختيار اللغة",
     "lastfm-connect": "الاتصال بواسطة Last.fm",
@@ -364,7 +373,7 @@
     "add-to-favorite": "إضافة إلى المفضلات",
     "add-to-playlist": "إضافة إلى قائمة التشغيل",
     "add-to-queue": "إضافة إلى قائمة الانتظار",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "إنشاء قائمة أغاني جديدة",
     "create-playlist-dialog-title": "أدخل اسم قائمة الأغاني:",
     "create-playlist-dialog-placeholder": "اسم قائمة الأغاني...",
     "create-playlist-dialog-accept": "حفظ",
@@ -385,13 +394,14 @@
     "add-selected-tracks-to-favorites": "إضافة المحدد إلى المفضلة",
     "play-selected-tracks-now": "تشغيل المحدد الآن",
     "tracks-selected-label-singular": "الأغنية المحددة",
-    "tracks-selected-label-plural": "الأغاني المحددة"
+    "tracks-selected-label-plural": "الأغاني المحددة",
+    "filter-input-placeholder": "تصفية..."
   },
   "visualizer": {
     "exit-fullscreen": "اضغط ESC للخروج من ملء الشاشة"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "لفتح لوحة الأوامر",
     "search-placeholder": "ماذا تريد أن تفعل؟",
     "empty-state-help": "لم تجد الذي تبحث عنه؟ استعمل أمر المساعدة.",
     "protip-text": "نصيحة:",

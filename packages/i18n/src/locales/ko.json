@@ -9,12 +9,12 @@
     "queue": "재생 목록에 앨범 추가",
     "tracks": "트랙:",
     "year": "연도:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "앨범을 재생목록에 추가",
+    "create-playlist": "새 재생목록 만들기",
+    "create-playlist-dialog-title": "재생목록 이름 입력:",
+    "create-playlist-dialog-placeholder": "재생목록 이름...",
+    "create-playlist-dialog-accept": "저장",
+    "create-playlist-dialog-cancel": "취소"
   },
   "app": {
     "collection": "보관함",
@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "모두 추가",
-    "count": "총 재생 횟수",
+    "count": "재생 횟수",
     "queue": "모든 음악을 재생 목록에 추가",
     "similar": "비슷한 아티스트",
     "title": "제목",
     "tour": "투어 중",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "인기 트랙",
+    "artist-albums": {
+      "header": "앨범",
+      "sort-by-release-date": "출시일 순으로 정렬",
+      "sort-by-az": "알바벳순으로 정렬",
+      "sort-by-most-played": "가장 많이 재생된 순으로 정렬",
+      "filter-placeholder": "필터..."
+    }
   },
   "dashboard": {
     "add-all": "모두 추가",
@@ -101,7 +108,7 @@
     "empty": "좋아하는 음악 없음.",
     "empty-help": "좋아하는 음악이 여기에 표시됩니다!",
     "header": "좋아하는 음악",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "좋아하는 곡 중에서 무작위로 트랙 재생",
     "title": "제목"
   },
   "help": {
@@ -131,7 +138,7 @@
     "not-found": "이 음악의 가사를 찾을 수 없습니다."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "재생 속도",
     "autoradio": "자동 재생",
     "loop": "반복",
     "mini-player": "미니 플레이어",
@@ -151,7 +158,7 @@
     "delete": "플레이리스트 삭제",
     "duration": "길이",
     "empty": "플레이리스트 없음.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "재생목록을 만들어보거나 URL로 가져와보세요. 그러면 여기에 표시됩니다!",
     "error-empty-data": "데이터 없음",
     "error-invalid-data": "잘못된 데이터",
     "error-open-file": "파일을 열 수 없습니다",
@@ -160,7 +167,7 @@
     "export-fail-title": "플레이리스트 내보내기 실패",
     "export-success-title": "플레이리스트를 성공적으로 내보내었습니다",
     "header": "내 플레이리스트",
-    "header-add-button": "Add",
+    "header-add-button": "추가",
     "import-progress": "가져오기 진행상태",
     "spotify-import-placeholder": "여기에 Spotify 플레이리스트 주소 붙여넣기",
     "dialog-placeholder": "플레이리스트 제목...",
@@ -168,9 +175,9 @@
     "dialog-cancel": "취소",
     "dialog-rename": "이름 변경",
     "dialog-import": "가져오기",
-    "create-button": "Create a new playlist",
+    "create-button": "새 재생목록 만들기",
     "new-playlist": "새 플레이리스트",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Spotify에서 가져오기",
     "import-button": "파일에서 가져오기 (JSON)",
     "import-fail-title": "플레이리스트 내보내기 실패",
     "import-success-title": "플레이리스트를 성공적으로 불러왔습니다",
@@ -192,10 +199,12 @@
     "upload-to-server": "서버에 업로드",
     "download-from-server": "서버에서 다운받기",
     "number-of-tracks": "트랙",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlist-url": "재생목록 URL 붙여넣기:",
+    "create-playlist-dialog-title": "재생목록 이름 입력:",
+    "playlist": "재생목록",
+    "play": "재생",
+    "external-source-tooltip": "이 재생 목록은 외부 소스에서 가져왔음: {{source}}. 편집할 수 없습니다. 재생 목록 메뉴를 사용하여 로컬에 저장하여 변경하세요.",
+    "save-external-playlist": "로컬 저장"
   },
   "plugins": {
     "add-a-plugin": "플러그인 추가",
@@ -222,33 +231,33 @@
     "favorite-add": "좋아요",
     "header": "재생 목록",
     "header-track": "재생 중인 음악",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "트랙 URL을 클립보드에 복사",
     "loading": "스트림 로딩 중.",
     "playlist-add": "플레이리스트에 추가",
-    "playlist-add-queue": "재생목록 플레이리스트에 추가",
+    "playlist-add-queue": "재생목록에 대기열 추가",
     "playlist-toast-content": "플레이리스트 \"{{name}}\"(이)가 생성되었습니다.",
     "playlist-toast-title": "플레이리스트 생성 완료",
     "live": "라이브",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "이 스트림의 상태를 알 수 없습니다.",
+        "unverified": "이 스트림은 아직 커뮤니티에서 검증되지 않았습니다.",
+        "weakly-verified": "이 스트림은 여러 사용자에 의해 검증되었습니다.",
+        "verified": "이 스트림은 커뮤니티에서 검증되었습니다.",
+        "verified-by-user": "이 스트림을 검증하였습니다."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "알 수 없음",
+        "unverified": "검증되지 않음",
+        "weakly-verified": "약하게 검증됨",
+        "verified": "검증됨",
+        "verified-by-user": "검증함"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "검증",
+      "unverify": "검증 취소"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "재생목록 이름 입력:",
+    "play-now": "지금 재생"
   },
   "search": {
     "album": "앨범",
@@ -301,7 +310,7 @@
     "github-description": "Gitub로 로그인하여 플레이리스트를 만들고 온라인으로 공유할 수 있습니다. (추가 예정)",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Invidious 인스턴스 URL",
     "language": "언어",
     "language-placeholder": "언어 선택",
     "lastfm-connect": "Last.fm 연결",
@@ -318,7 +327,7 @@
     "mastodon-awaiting-authorization": "Nuclear가 {{instanceUrl}}에 등록되어 있습니다. 권한 부여를 기다리는 중입니다.",
     "mastodon-description": "",
     "mastodon-instance-label": "마스토돈 인스턴스 URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "Nuclear는 각 트랙이 재생을 완료한 후 Mastodon에 상태를 게시합니다. 위의 문자열은 각 게시물의 템플릿이 되며, {{artist}}, {{title}}, {{url}} 은 각각 아티스트, 제목, 트랙 링크로 대체됩니다.",
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
     "normalize": "볼륨 평탄화",
@@ -336,7 +345,7 @@
     "promoted-artists-description": "당신이 좋아할 만한 흥미로운 인디 아티스트들을 직접 고른 릴입니다. 여기 나온 아티스트들은 아무도 보상을 받지 않았습니다.",
     "saving-in": "저장 경로:",
     "seek-iteration": "화살표 키를 눌렀을 때 탐색할 시간 (초)",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "트레이 아이콘 표시",
     "shuffle-queue": "음악 셔플",
     "shuffle-when-going-back": "이전 음악 재생 시 셔플",
     "shuffle-when-going-back-description": "셔플 활성화 시, 이전 재생 버튼 누르면 임의로 음악 재생",
@@ -346,9 +355,9 @@
     "streaming": "스트리밍",
     "track-duration": "화면에 남은 재생 시간 표시",
     "user": "유저:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "사용자 ID",
+    "use-stream-verification": "스트림 검증 사용",
+    "use-stream-verification-description": "스트림 검증을 사용합니다. 커뮤니티에서 재생하는 트랙에 대해 올바른 것으로 검증한 스트림을 로드합니다. 또한 스트림에 투표할 수 있습니다. 자세한 내용은 설명서를 참조하세요.",
     "youtube": "YouTube",
     "yt-api-key": "Youtube API 키"
   },
@@ -364,7 +373,7 @@
     "add-to-favorite": "즐겨찾기에 추가",
     "add-to-playlist": "플레이리스트에 추가",
     "add-to-queue": "재생목록에 추가",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "새 재생목록 만들기",
     "create-playlist-dialog-title": "플레이리스트 제목 입력:",
     "create-playlist-dialog-placeholder": "플레이리스트 제목...",
     "create-playlist-dialog-accept": "저장",
@@ -385,15 +394,16 @@
     "add-selected-tracks-to-favorites": "선택한 항목을 좋아하는 곡에 추가",
     "play-selected-tracks-now": "선택한 항목을 지금 재생",
     "tracks-selected-label-singular": "곡 선택됨",
-    "tracks-selected-label-plural": "곡 선택됨"
+    "tracks-selected-label-plural": "곡 선택됨",
+    "filter-input-placeholder": "필터..."
   },
   "visualizer": {
     "exit-fullscreen": "전체 화면 모드를 종료하려면 Esc 키를 누르십시오."
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "명령 팔레트 열기",
     "search-placeholder": "무엇을 하시겠어요?",
-    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "empty-state-help": "원하는 것을 찾을 수 없나요? 도움말 명령을 시도해 보세요.",
     "protip-text": "꿀팁:",
     "protip-content": "화살표로 조작, Enter로 선택, Esc로 닫기",
     "categories": {
@@ -411,7 +421,7 @@
       "go-to-previous-page": "이전 페이지로 이동",
       "shuffle": "셔플",
       "loop": "반복",
-      "autoradio": "Autoradio",
+      "autoradio": "오토라디오",
       "raise-volume": "볼륨 올리기",
       "lower-volume": "볼륨 낮추기",
       "mute": "음소거",

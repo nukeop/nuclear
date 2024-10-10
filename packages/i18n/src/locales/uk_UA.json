@@ -10,7 +10,7 @@
     "tracks": "Доріжки:",
     "year": "Рік:",
     "add-to-playlist": "Додати альбом до плейлиста",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Створити новий грайлист",
     "create-playlist-dialog-title": "Введіть назву плейлиста:",
     "create-playlist-dialog-placeholder": "Назва плейлиста...",
     "create-playlist-dialog-accept": "Зберегти",
@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Додати всі",
-    "count": "Кількість відтворень",
+    "count": "Кількість відтворено",
     "queue": "Додати всі доріжки до черги",
     "similar": "Схожі виконавці",
     "title": "Назва",
     "tour": "На гастролі",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Популярні доріжки",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Додати все",
@@ -151,7 +158,7 @@
     "delete": "Видалити цей плейлист",
     "duration": "Тривалість",
     "empty": "Нема грайлистів.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Створіть власні грайлисти або імпортуйте за посиланням і вони з'являться тут!",
     "error-empty-data": "Порожньо",
     "error-invalid-data": "Хибні дані",
     "error-open-file": "Не вдалося відкрити файл",
@@ -160,7 +167,7 @@
     "export-fail-title": "Не вдалося експортувати грайлист",
     "export-success-title": "Грайлист успішно експортовано",
     "header": "Ваші грайлисти",
-    "header-add-button": "Add",
+    "header-add-button": "Додати",
     "import-progress": "Поступ імпорту",
     "spotify-import-placeholder": "Вставте посилання на грайлист Spotify тут",
     "dialog-placeholder": "Назва грайлисту...",
@@ -168,9 +175,9 @@
     "dialog-cancel": "Скасувати",
     "dialog-rename": "Перейменувати",
     "dialog-import": "Імпорт",
-    "create-button": "Create a new playlist",
+    "create-button": "Створити новий грайлист",
     "new-playlist": "Новий грайлист",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Імпортувати зі Spotify",
     "import-button": "Імпорт із файлу (JSON)",
     "import-fail-title": "Збій імпорту грайлисту",
     "import-success-title": "Грайлист успішно імпортовано",
@@ -192,10 +199,12 @@
     "upload-to-server": "Завантажити на сервер",
     "download-from-server": "Завантажити з сервера",
     "number-of-tracks": "доріжки",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlist-url": "Введіть посилання грайлисту:",
+    "create-playlist-dialog-title": "Введіть назву грайлисту:",
+    "playlist": "Грайлист",
+    "play": "Грати",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Додати втулок",
@@ -222,10 +231,10 @@
     "favorite-add": "Додати до вподобаних",
     "header": "Черга",
     "header-track": "Поточна доріжка",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Копіювати посилання доріжки до буфера обміну",
     "loading": "Потік завантажується.",
     "playlist-add": "Додати до грайлисту",
-    "playlist-add-queue": "Додати до черги грайлисту",
+    "playlist-add-queue": "Додати чергу до грайлисту",
     "playlist-toast-content": "Грайлист {{name}} створено.",
     "playlist-toast-title": "Плейлист створено",
     "live": "Наживо",
@@ -247,8 +256,8 @@
       "verify": "Підтвердити",
       "unverify": "Знепідтвердити"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Введіть назву грайлисту:",
+    "play-now": "Грати зараз"
   },
   "search": {
     "album": "Збірка",
@@ -301,7 +310,7 @@
     "github-description": "Увійдіть за допомогою Github, щоб створювати та ділитися своїми плейлистами онлайн (майбутня функція).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Посилання на примірник Invidious",
     "language": "Мова",
     "language-placeholder": "Вибрати мову",
     "lastfm-connect": "Увійти за допомогою Last.fm",
@@ -364,7 +373,7 @@
     "add-to-favorite": "Додати до вподобаних",
     "add-to-playlist": "Додати до грайлисту",
     "add-to-queue": "Додати до черги",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Створити новий грайлист",
     "create-playlist-dialog-title": "Введіть назву грайлисту:",
     "create-playlist-dialog-placeholder": "Назва плейлисту...",
     "create-playlist-dialog-accept": "Зберегти",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Додати вибрані до вподобаних",
     "play-selected-tracks-now": "Грати обране зараз",
     "tracks-selected-label-singular": "доріжка обрана",
-    "tracks-selected-label-plural": "доріжок обрано"
+    "tracks-selected-label-plural": "доріжок обрано",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Натисніть ESC, щоб вийти з повноекранного режиму"

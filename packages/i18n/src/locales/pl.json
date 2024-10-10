@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Dodaj wszystkie",
-    "count": "Liczba odtworzeń",
+    "count": "Playcount",
     "queue": "Dodaj wszystkie utwory do kolejki",
     "similar": "Podobni artyści",
     "title": "Tytuł",
     "tour": "W trasie",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Dodaj wszystkie",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Dodaj plugin",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Dodaj zaznaczone do ulubionych",
     "play-selected-tracks-now": "Odtwórz zaznaczone teraz",
     "tracks-selected-label-singular": "wybrano utwór",
-    "tracks-selected-label-plural": "wybrano utwory"
+    "tracks-selected-label-plural": "wybrano utwory",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Naciśnij ESC, aby wyjść z trybu pełnoekranowego"

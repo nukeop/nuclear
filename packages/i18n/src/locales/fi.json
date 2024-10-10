@@ -9,12 +9,12 @@
     "queue": "Lisää albumi jonoon",
     "tracks": "Kappaleet:",
     "year": "Vuosi:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Lisää albumi soittolistaan",
+    "create-playlist": "Luo uusi soittolista",
+    "create-playlist-dialog-title": "Syötä soittolistalle nimi:",
+    "create-playlist-dialog-placeholder": "Soittolistan nimi...",
+    "create-playlist-dialog-accept": "Tallenna",
+    "create-playlist-dialog-cancel": "Peruuta"
   },
   "app": {
     "collection": "Kokoelma",
@@ -47,7 +47,14 @@
     "similar": "Samankaltaisia artisteja",
     "title": "Nimi",
     "tour": "Kiertueella",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Suositut kappaleet",
+    "artist-albums": {
+      "header": "Albumit",
+      "sort-by-release-date": "Lajittele julkaisupäivän mukaan",
+      "sort-by-az": "Lajittele A-Ö",
+      "sort-by-most-played": "Järjestä eniten soitettujen mukaan",
+      "filter-placeholder": "Suodata..."
+    }
   },
   "dashboard": {
     "add-all": "Lisää kaikki",
@@ -87,9 +94,9 @@
     "rock": "Rokki"
   },
   "favorite-albums": {
-    "empty": "Ei suosikki albumeita",
+    "empty": "Ei suosikkialbumeita",
     "empty-help": "Lisää albumeita suosikkeihin ja ne näkyvät tässä!",
-    "header": "Suosikki albumisi"
+    "header": "Suosikkialbumisi"
   },
   "favorite-artists": {
     "empty": "Ei suosikkiartisteja",
@@ -100,13 +107,13 @@
     "artist": "Artisti",
     "empty": "Ei suosikkeja lisätty",
     "empty-help": "Kokeile lisätä joitakin kappaleita suosikeihin ja ne näkyvät täällä!",
-    "header": "Suosikki kappaleesi",
+    "header": "Suosikkikappaleesi",
     "play-random": "Toista satunnainen kappale suosikeistasi",
     "title": "Nimi"
   },
   "help": {
-    "about": "Tietoa Nuclear Musiikki soittimesta",
-    "contributors": "10 parasta osallistujaamme",
+    "about": "Tietoa Nuclear-musiikkisoittimesta",
+    "contributors": "10 ahkerinta avustajaamme",
     "header": "Työpöytäsovellus musiikin streamaamiseen ilmaisista lähteistä",
     "released": "Lisenssi: AGPL-3.0",
     "report": "Ilmoita ongelmasta tai ehdota uusia ominaisuuksia",
@@ -160,17 +167,17 @@
     "export-fail-title": "Soittolistan vienti epäonnistui",
     "export-success-title": "Soittolistan vienti onnistui",
     "header": "Soittolistasi",
-    "header-add-button": "Add",
+    "header-add-button": "Lisää",
     "import-progress": "Tuonnin edistyminen",
     "spotify-import-placeholder": "Liitä Spotify-soittoluettelon URL-osoite tähän",
     "dialog-placeholder": "Soittolistan nimi...",
     "dialog-accept": "Tallenna",
-    "dialog-cancel": "Keskeytä",
+    "dialog-cancel": "Peruuta",
     "dialog-rename": "Nimeä uudelleen",
     "dialog-import": "Tuo",
-    "create-button": "Create a new playlist",
+    "create-button": "Luo uusi soittolista",
     "new-playlist": "Uusi soittolista",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Tuo Spotifysta",
     "import-button": "Tuo tiedostosta (JSON)",
     "import-fail-title": "Soittolistan tuonti epäonnistui",
     "import-success-title": "Soittolistan tuonti onnistui",
@@ -192,10 +199,12 @@
     "upload-to-server": "Lataa palvelimelle",
     "download-from-server": "Lataa palvelimelta",
     "number-of-tracks": "kappaletta",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlist-url": "Liitä soittolistan osoite:",
+    "create-playlist-dialog-title": "Syötä soittolistalle nimi:",
+    "playlist": "Soittolista",
+    "play": "Toista",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Tallenna paikallisesti"
   },
   "plugins": {
     "add-a-plugin": "Lisää plugin",
@@ -222,7 +231,7 @@
     "favorite-add": "Lisää suosikkeihin",
     "header": "Jono",
     "header-track": "Tämänhetkinen kappale",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Kopioi kappaleen osoite leikepöydälle",
     "loading": "Streami lataa vieläkin.",
     "playlist-add": "Lisää soittolistaan",
     "playlist-add-queue": "Lisää jono soittolistaan",
@@ -247,8 +256,8 @@
       "verify": "Vahvista",
       "unverify": "Poista vahvistus"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Syötä soittolistalle nimi:",
+    "play-now": "Toista nyt"
   },
   "search": {
     "album": "Albumi",
@@ -295,16 +304,16 @@
     "downloads-dir-button": "Valitse kansio...",
     "enable-api": "Kytke api päälle",
     "fmfav-btn": "Tuo",
-    "fmfav-msg": "Tuo omat Last.fm suosikit",
+    "fmfav-msg": "Tuo omat Last.fm-suosikit",
     "frameless-window": "Reunaton ikkuna (vaatii sovelluksen uudelleen käynnistyksen)",
     "github-connect": "Kirjaudu sisään Githubilla",
     "github-description": "Kirjaudu sisään Githubilla jotta voit luoda ja jakaa soittolistoja (ominaisuus tulossa).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Invidious-instanssin osoite",
     "language": "Kieli",
     "language-placeholder": "Valitse kieli",
-    "lastfm-connect": "Kirjaudu käyttäen Last.fm tiliäsi",
+    "lastfm-connect": "Kirjaudu käyttäen Last.fm-tiliäsi",
     "lastfm-description": "Jotta scrobblaus voidaan ottaa käyttöön, sinun on ensin yhdistettävä ja valtuutettava Nuclear Last.fm:ssä, ja sitten klikattava kirjaudu sisään.",
     "lastfm-enable": "Ota scrobblaus käyttöön Last.fm:ssä",
     "lastfm-title": "Last.fm",
@@ -350,13 +359,13 @@
     "use-stream-verification": "Käytä streamin vahvistusta",
     "use-stream-verification-description": "Käytä streamin varmennusta. Lataa yhteisön varmentamat streamit, jotka ovat osoittautuneet oikeiksi soittamiesi kappaleiden osalta. Mahdollistaa myös äänestämisen streamien suhteen. Katso lisätietoja dokumentaatiosta.",
     "youtube": "YouTube",
-    "yt-api-key": "Youtube API Avain"
+    "yt-api-key": "Youtuben API-avain"
   },
   "tags": {
     "albums": "Parhaat Albumit",
     "artist": "Artisti",
     "artists": "Parhaat Artistit",
-    "duration": "Pituus",
+    "duration": "Kesto",
     "queue-add": "Lisää kaikki kappaleet jonoon",
     "title": "Nimi"
   },
@@ -364,11 +373,11 @@
     "add-to-favorite": "Lisää suosikkeihin",
     "add-to-playlist": "Lisää soittolistaan",
     "add-to-queue": "Lisää jonoon",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Luo uusi soittolista",
     "create-playlist-dialog-title": "Syötä soittolistalle nimi:",
     "create-playlist-dialog-placeholder": "Soittolistan nimi...",
     "create-playlist-dialog-accept": "Tallenna",
-    "create-playlist-dialog-cancel": "Keskeytä",
+    "create-playlist-dialog-cancel": "Peruuta",
     "download": "Lataa",
     "download-toast-body": "{{artist}} - {{track}} on lisätty latauksiin.",
     "download-toast-title": "Kappale lisätty latauksiin",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Lisää valitut suosikkeihin",
     "play-selected-tracks-now": "Soita valitut nyt",
     "tracks-selected-label-singular": "kappale valittu",
-    "tracks-selected-label-plural": "kappaletta valittu"
+    "tracks-selected-label-plural": "kappaletta valittu",
+    "filter-input-placeholder": "Suodata..."
   },
   "visualizer": {
     "exit-fullscreen": "Paina ESC poistuaksesi koko näytön tilasta"

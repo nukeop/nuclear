@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Añadir todos",
-    "count": "Conteo de reproducciones",
+    "count": "Playcount",
     "queue": "Añadir todas las pistas a la cola",
     "similar": "Artistas similares",
     "title": "Título",
     "tour": "En tour",
-    "popular-tracks": "Canciones populares"
+    "popular-tracks": "Canciones populares",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Añadir todo",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Añadir un plugin",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "La transmisión sigue cargando.",
     "playlist-add": "Añadir a lista de reproducción",
-    "playlist-add-queue": "Añadir cola a lista de reproducción",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
     "live": "En directo",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Añadir lo seleccionado a favoritos",
     "play-selected-tracks-now": "Reproducir lo seleccionado ahora",
     "tracks-selected-label-singular": "pista seleccionada",
-    "tracks-selected-label-plural": "pistas seleccionadas"
+    "tracks-selected-label-plural": "pistas seleccionadas",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Presiona ESC para salir de la pantalla completa"

@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Lägg till alla",
-    "count": "Antal spelningar",
+    "count": "Playcount",
     "queue": "Lägg till alla spår i kön",
     "similar": "Liknande artister",
     "title": "Titel",
     "tour": "På turné",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Lägg till alla",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Strömmen läses fortfarande.",
     "playlist-add": "Lägg till i spellista",
-    "playlist-add-queue": "Lägg till i spellista kö",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Spellistan {{name}} har skapats.",
     "playlist-toast-title": "Spellista skapad",
     "live": "Live",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Lägg till markerade i Favoriter",
     "play-selected-tracks-now": "Spela markerade nu",
     "tracks-selected-label-singular": "spår markerat",
-    "tracks-selected-label-plural": "spår markerade"
+    "tracks-selected-label-plural": "spår markerade",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Tryck på Esc för att avsluta helskärmsläge"

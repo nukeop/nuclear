@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "新增全部",
-    "count": "播放次數",
+    "count": "Playcount",
     "queue": "將所有歌曲新增到播放佇列",
     "similar": "類似的藝人",
     "title": "音樂標題",
     "tour": "巡迴演出",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "新增所有",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "新增插件",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "串流處理中",
     "playlist-add": "加到播放清單",
-    "playlist-add-queue": "將佇列加入播放清單",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "{{name}} 已建立",
     "playlist-toast-title": "播放清單建立成功",
     "live": "直播",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "將選中的加到我的最愛",
     "play-selected-tracks-now": "播放所選歌曲",
     "tracks-selected-label-singular": "曲目已選取",
-    "tracks-selected-label-plural": "多個曲目已選取"
+    "tracks-selected-label-plural": "多個曲目已選取",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "按ESC鍵退出全畫面"

@@ -47,7 +47,14 @@
     "similar": "似ているアーティスト",
     "title": "タイトル",
     "tour": "ツアー中",
-    "popular-tracks": "人気の曲"
+    "popular-tracks": "人気の曲",
+    "artist-albums": {
+      "header": "アルバム",
+      "sort-by-release-date": "リリース日順",
+      "sort-by-az": "ABC順",
+      "sort-by-most-played": "再生回数順",
+      "filter-placeholder": "絞り込み..."
+    }
   },
   "dashboard": {
     "add-all": "すべて追加",
@@ -150,7 +157,7 @@
     "artist": "アーティスト",
     "delete": "再生リストを削除",
     "duration": "長さ",
-    "empty": "再生リストがありません。",
+    "empty": "再生リストなし。",
     "empty-help": "再生リストを作成するかURLとしてインポートすると、ここに表示されます！",
     "error-empty-data": "データがありません",
     "error-invalid-data": "無効なデータ",
@@ -195,7 +202,9 @@
     "input-playlist-url": "再生リストのURLを貼り付け:",
     "create-playlist-dialog-title": "再生リスト名を入力:",
     "playlist": "再生リスト",
-    "play": "再生"
+    "play": "再生",
+    "external-source-tooltip": "この再生リストは外部の {{source}} から提供されています。編集するには、再生リストのメニューから端末内に保存してください。",
+    "save-external-playlist": "端末内に保存"
   },
   "plugins": {
     "add-a-plugin": "プラグインを追加",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "選択をお気に入りに追加",
     "play-selected-tracks-now": "選択した曲を再生",
     "tracks-selected-label-singular": "曲を選択",
-    "tracks-selected-label-plural": "曲を選択"
+    "tracks-selected-label-plural": "曲を選択",
+    "filter-input-placeholder": "絞り込み..."
   },
   "visualizer": {
     "exit-fullscreen": "ESCで全画面表示終了"

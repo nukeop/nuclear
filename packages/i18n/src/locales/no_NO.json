@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Legg til alle",
-    "count": "Spill teller",
+    "count": "Playcount",
     "queue": "Legg til alle spor i køen",
     "similar": "Lignende artister",
     "title": "Tittel",
     "tour": "Sendes på tur",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Legg til alle",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Legg til en plugin",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Strømming lastes fortsatt.",
     "playlist-add": "Legg til i spilleliste",
-    "playlist-add-queue": "Legg til i spilleliste kø",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
     "playlist-toast-title": "Spilleliste opprettet",
     "live": "Live",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Legg til valgt i favoritter",
     "play-selected-tracks-now": "Spill av valgte nå",
     "tracks-selected-label-singular": "spor valgt",
-    "tracks-selected-label-plural": "spor valgt"
+    "tracks-selected-label-plural": "spor valgt",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Trykk ESC for å avslutte fullskjerm"

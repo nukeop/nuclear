@@ -1,93 +1,100 @@
 {
   "album": {
     "download": "Atsisiųsti",
-    "download-toast-content": "{{artist}} - {{title}} buvo pridėta į atsisiuntimų skiltį.",
-    "download-toast-title": "Albumas buvo pridėtas į atsisiuntimų skiltį",
-    "error-load": "Atsiprašome, bet šis albumas negalėjo būti paleistas prašome pabandyti vėliau arba sukurkite klaidos pranešimą GiitHub platformoje",
+    "download-toast-content": "{{{artist}} – {{title}} buvo pridėtas prie atsisiuntimų.",
+    "download-toast-title": "Albumas pridėtas prie atsisiuntimų",
+    "error-load": "Atsiprašome, šio albumo nepavyko įkelti. Bandykite dar kartą vėliau arba atidarykite naują problemą platformoje „Github“.",
     "genre": "Žanras:",
-    "play": "Paleisti",
+    "play": "Leisti",
     "queue": "Pridėti albumą į eilę",
-    "tracks": "Dainos:",
+    "tracks": "Takeliai:",
     "year": "Metai:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Pridėti albumą į grojaraštį",
+    "create-playlist": "Kurti naują grojaraštį",
+    "create-playlist-dialog-title": "Įvestas grojaraščio pavadinimas:",
+    "create-playlist-dialog-placeholder": "Grojaraščio pavadinimas...",
+    "create-playlist-dialog-accept": "Išsaugoti",
+    "create-playlist-dialog-cancel": "Atšaukti"
   },
   "app": {
     "collection": "Kolekcija",
-    "dashboard": "Valdymo skydas",
+    "dashboard": "Sąvadas",
     "downloads": "Atsisiuntimai",
-    "equalizer": "Balansavimas",
+    "equalizer": "Vienodintuvas",
     "favorite-albums": "Mėgstamiausi albumai",
     "favorite-artists": "Mėgstamiausi atlikėjai",
-    "favorite-tracks": "Mėgstamiausios dainos",
+    "favorite-tracks": "Mėgstamiausi takeliai",
     "library": "Vietinė biblioteka",
-    "listening-history": "Istorija",
-    "lyrics": "Lyrikos",
+    "listening-history": "Klausymosi istorija",
+    "lyrics": "Dainos tekstai",
     "main": "Pagrindinis",
     "playlists": "Grojaraščiai",
     "plugins": "Įskiepiai",
     "search": "Paieškos rezultatai",
     "settings": "Nustatymai",
-    "visualizer": "Virtulizavimas",
+    "visualizer": "Vizualizatorius",
     "user-panel": {
-      "actions-tooltip": "Vartotojo veiksmai",
-      "sign-up": "Užsiregistruoti / Prisijungti",
+      "actions-tooltip": "Naudotojo veiksmai",
+      "sign-up": "Registruotis / prisijungti",
       "sign-out": "Atsijungti"
     },
     "version": "Versija"
   },
   "artist": {
     "add-all": "Pridėti visus",
-    "count": "Paleidimo kartai",
-    "queue": "Pridėti visas dainas į eilę",
+    "count": "Paleidimų skaičius",
+    "queue": "Pridėti visus takelius į eilę",
     "similar": "Panašūs atlikėjai",
     "title": "Pavadinimas",
-    "tour": "Turas",
-    "popular-tracks": "Popular tracks"
+    "tour": "Ture",
+    "popular-tracks": "Populiarūs takeliai",
+    "artist-albums": {
+      "header": "Albumai",
+      "sort-by-release-date": "Rikiuoti pagal išleidimo datą",
+      "sort-by-az": "Rikiuoti pagal A-Z",
+      "sort-by-most-played": "Rikiuoti pagal dažniausiai leidžiamą",
+      "filter-placeholder": "Filtruoti..."
+    }
   },
   "dashboard": {
     "add-all": "Pridėti visus",
     "artist": "Atlikėjas",
     "genres": "Žanrai",
     "news": "Naujienos",
-    "playcounts": "Paleidimo kartai",
-    "playlists": "Populiariausia",
-    "popular-track-title": "Populiariausios Deezer dainos",
+    "playcounts": "Paleidimų skaičius",
+    "playlists": "Tendencinga",
+    "popular-track-title": "Geriausi „Deezer“ takeliai",
     "title": "Pavadinimas",
-    "top": "Top dainos",
-    "trending-playlists": "Populiariausi grojaraščiai",
-    "trending-artists": "Populiariausi atlikėjai",
+    "top": "Geriausi takeliai",
+    "trending-playlists": "Tendencingi grojaraščiai",
+    "trending-artists": "Tendencingi atlikėjai",
     "trending-albums": "Populiariausi albumai",
     "filter": "Filtruoti...",
     "nothing-found": "Nieko nerasta."
   },
   "downloads": {
-    "clear": "Išvalyti pasibaigusias dainas",
-    "completion": "Pabaigta",
-    "empty": "Atsisiuntimų nėra.",
-    "empty-help": "Pridėkite kažką į atsisiuntimų eilę, ir matykite ją čia!",
+    "clear": "Valyti baigtus takelius",
+    "completion": "Baigimas",
+    "empty": "Atsisiuntimai yra tušti.",
+    "empty-help": "Pridėkite ką nors į atsisiuntimo eilę ir pamatysite tai čia!",
     "header": "Atsisiuntimai",
     "name": "Pavadinimas",
     "status": "Būsena"
   },
   "equalizer": {
-    "classical": "Klasikinis",
+    "classical": "Klasika",
     "club": "Klubas",
     "custom": "Pasirinktinis",
     "default": "Numatyta",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Ruošiniai",
+    "full-bass": "Pilnas boso",
+    "full-treble": "Pilnas treblo",
+    "pop": "Popas",
+    "presets": "Numatytieji",
     "reggae": "Regis",
     "rock": "Rokas"
   },
   "favorite-albums": {
-    "empty": "Nėra jokių mėgstamiausių albumų",
+    "empty": "Nėra mėgstamiausių albumų",
     "empty-help": "Pabandykite įdėti mėgstamiausių albumų ir jie atsiras čia!",
     "header": "Jūsų mėgstamiausi albumai"
   },
@@ -125,10 +132,10 @@
     "title": "Pavadinimas"
   },
   "lyrics": {
-    "by-artist": "sukurta {{artist}}",
-    "empty": "Niekas negroja.",
-    "empty-help": "Pridėkite šiek tiek muzikos prie eilės, kad čia būtų rodomi dainų lyrikos!",
-    "not-found": "Jokių lyrikų šitai dainai nebuvo rasta."
+    "by-artist": "sukūrė {{artist}}",
+    "empty": "Niekas neleidžiama.",
+    "empty-help": "Pridėkite šiek tiek muzikos į eilę, kad čia būtų rodomi dainos tekstai!",
+    "not-found": "Šiai dainai dainos tekstai nerasti."
   },
   "option-control": {
     "rate": "Playback speed",
@@ -195,15 +202,17 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Pridėti įskiepį",
     "header": "Įskiepiai",
-    "lyrics-providers": "Lyrikų tiekėjai",
+    "lyrics-providers": "Dainų tekstų teikėjai",
     "meta-providers": "Metadata tiekėjai",
     "placeholder": "Pasirinkite numatytos dainos šaltinį:",
-    "select-lyrics-provider": "Pasirinkite numatytos lyrikos šaltinį:",
+    "select-lyrics-provider": "Pasirinkite numatytąjį dainų tekstų teikėją:",
     "select-meta-provider": "Pasirinkite numatytos metadatos šaltinį:",
     "stream-providers": "Srauto tiekėjai",
     "user-plugins": "Vartotojo įskiepiai",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Srautas dar leidžiasi.",
     "playlist-add": "Pridėti į grojaraštį",
-    "playlist-add-queue": "Pridėti eilę į grojaraštį",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Grojaraštis {{name}} buvo sukurtas.",
     "playlist-toast-title": "Grojaraštis sukurtas",
     "live": "Tiesiogiai",
@@ -343,10 +352,10 @@
     "social": "Social",
     "skip-sponsorblock": "Skip non-music segment",
     "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
-    "streaming": "Grojama",
+    "streaming": "Srautinis perdavimas",
     "track-duration": "Rodyti dainos trukmę ieškojimo juostoje",
     "user": "Vartotojas:",
-    "user-id": "User ID",
+    "user-id": "Naudotojo ID",
     "use-stream-verification": "Use stream verification",
     "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Pridėti prie mėgstamiausių",
     "play-selected-tracks-now": "Groti pasirinkta/s daina/s",
     "tracks-selected-label-singular": "daina pasirinkta",
-    "tracks-selected-label-plural": "dainos pasirinktos"
+    "tracks-selected-label-plural": "dainos pasirinktos",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Spauskite ESC, kad išeitumėte iš pilno ekrano režimo"
@@ -403,8 +413,8 @@
       "application": "Application"
     },
     "actions": {
-      "play": "Play",
-      "pause": "Pause",
+      "play": "Leisti",
+      "pause": "Pristabdyti",
       "next": "Next",
       "previous": "Previous",
       "go-to-next-page": "Go to next page",
@@ -414,14 +424,14 @@
       "autoradio": "Autoradio",
       "raise-volume": "Raise volume",
       "lower-volume": "Lower volume",
-      "mute": "Mute",
-      "unmute": "Atitildyti",
+      "mute": "Išjungti garsą",
+      "unmute": "Įjungti garsą",
       "quit": "Išeiti",
       "minimize": "Sumažinti",
       "maximize": "Padidinti",
-      "go-to-dashboard": "Valdymo skydelis",
-      "go-to-downloads": "Atsisiuntimai",
-      "go-to-lyrics": "Žodžiai",
+      "go-to-dashboard": "Eiti į sąvadą",
+      "go-to-downloads": "Eiti į atsisiuntimus",
+      "go-to-lyrics": "Eiti į dainos tekstą",
       "go-to-plugins": "Papildiniai",
       "go-to-search": "Paieška",
       "go-to-settings": "Nustatymai",
@@ -447,9 +457,9 @@
       "secondary-header": "Registruotis į Nuclear Žiniatinklio Paslaugas",
       "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
       "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
+      "username-label": "Naudotojo vardas",
+      "email-label": "El. paštas",
+      "password-label": "Slaptažodis",
       "sign-up-button": "Sign up",
       "validation": {
         "username": {
@@ -461,17 +471,17 @@
         },
         "password": {
           "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "required": "Slaptažodis privalomas."
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Prisijungimas",
+      "username-label": "Naudotojo vardas",
+      "password-label": "Slaptažodis",
+      "no-account-label": "Neturite paskyros?",
+      "no-account-link": "Registruotis",
+      "sign-in-button": "Prisijungti"
     }
   }
 }

@@ -9,12 +9,12 @@
     "queue": "Album zur Warteschlange hinzufügen",
     "tracks": "Lieder:",
     "year": "Jahr:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Füge ein Album zu einer Playlist hinzu",
+    "create-playlist": "Erstelle eine neue Playlist",
+    "create-playlist-dialog-title": "Gib einen Namen für die Playlist ein:",
+    "create-playlist-dialog-placeholder": "Playlist Name...",
+    "create-playlist-dialog-accept": "Speichern",
+    "create-playlist-dialog-cancel": "Abbrechen"
   },
   "app": {
     "collection": "Sammlung",
@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Alle hinzufügen",
-    "count": "Wiedergabeanzahl",
+    "count": "Playcount",
     "queue": "Alle Lieder zur Warteschlange hinzufügen",
     "similar": "Ähnliche Künstler",
     "title": "Titel",
     "tour": "Auf Tour",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Beliebte Titel",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Alle hinzufügen",
@@ -151,7 +158,7 @@
     "delete": "Diese Wiedergabeliste löschen",
     "duration": "Länge",
     "empty": "Keine Wiedergabelisten.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Versuche Playlists zu erstellen oder importiere einen Link und er wird hier erscheinen!",
     "error-empty-data": "Leere Daten",
     "error-invalid-data": "Ungültige Daten",
     "error-open-file": "Datei kann nicht geöffnet werden",
@@ -160,7 +167,7 @@
     "export-fail-title": "Export von Wiedergabeliste fehlgeschlagen",
     "export-success-title": "Wiedergabeliste erfolgreich exportiert",
     "header": "Deine Wiedergabelisten",
-    "header-add-button": "Add",
+    "header-add-button": "Hinzufügen",
     "import-progress": "Import-Fortschritt",
     "spotify-import-placeholder": "Spotify Playlist-URL hier einfügen",
     "dialog-placeholder": "Wiedergabelistenname...",
@@ -168,9 +175,9 @@
     "dialog-cancel": "Abbrechen",
     "dialog-rename": "Umbenennen",
     "dialog-import": "Importieren",
-    "create-button": "Create a new playlist",
+    "create-button": "Erstelle eine neue Playlist",
     "new-playlist": "Neue Wiedergabeliste",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Von Spotify importieren",
     "import-button": "Aus Datei importieren (JSON)",
     "import-fail-title": "Import der Wiedergabeliste fehlgeschlagen",
     "import-success-title": "Wiedergabeliste erfolgreich importiert",
@@ -192,10 +199,12 @@
     "upload-to-server": "Zum Server hochladen",
     "download-from-server": "Vom Server herunterladen",
     "number-of-tracks": "Titel",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
+    "input-playlist-url": "Playlist-URL einfügen:",
+    "create-playlist-dialog-title": "Gib einen Namen für die Playlist ein:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Abspielen",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Plugin hinzufügen",
@@ -222,7 +231,7 @@
     "favorite-add": "Zu den Favoriten hinzufügen",
     "header": "Warteschlange",
     "header-track": "Aktuelles Lied",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Titel-Link in die Zwischenablage kopieren",
     "loading": "Stream wird noch geladen.",
     "playlist-add": "Zur Wiedergabeliste hinzufügen",
     "playlist-add-queue": "Warteschlange zur Wiedergabeliste hinzufügen",
@@ -247,8 +256,8 @@
       "verify": "Verifizieren",
       "unverify": "Bestätigung entfernen"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Gib einen Namen für die Playlist ein:",
+    "play-now": "Jetzt abspielen"
   },
   "search": {
     "album": "Album",
@@ -301,7 +310,7 @@
     "github-description": "Melde dich über GitHub an, um deine Wiedergabelisten online erstellen und teilen zu können (kommende Funktion).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Invidious-Instanz Link",
     "language": "Sprache",
     "language-placeholder": "Wähle eine Sprache",
     "lastfm-connect": "Mit Last.fm verbinden",
@@ -364,7 +373,7 @@
     "add-to-favorite": "Zu den Favoriten hinzufügen",
     "add-to-playlist": "Zur Wiedergabeliste hinzufügen",
     "add-to-queue": "Zur Warteschlange hinzufügen",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Erstelle eine neue Playlist",
     "create-playlist-dialog-title": "Name der Wiedergabeliste eingeben:",
     "create-playlist-dialog-placeholder": "Name der Wiedergabeliste...",
     "create-playlist-dialog-accept": "Speichern",
@@ -385,13 +394,14 @@
     "add-selected-tracks-to-favorites": "Auswahl zu den Favoriten hinzufügen",
     "play-selected-tracks-now": "Auswahl jetzt abspielen",
     "tracks-selected-label-singular": "Lied ausgewählt",
-    "tracks-selected-label-plural": "Lieder ausgewählt"
+    "tracks-selected-label-plural": "Lieder ausgewählt",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "ESC Taste drücken, um den Vollbildmodus zu beenden"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "um die Befehlsübersicht zu öffnen",
     "search-placeholder": "Was möchtest du machen?",
     "empty-state-help": "Kann nicht finden, was du suchst? Probiere den Hilfe-Befehl.",
     "protip-text": "PROTIP:",

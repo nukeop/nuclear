@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Tilføj alle",
-    "count": "Antal afspilninger",
+    "count": "Playcount",
     "queue": "Tilføj alle sange til kø",
     "similar": "Lignende artister",
     "title": "Titel",
     "tour": "På turné",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Tilføj alle",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "tilføj udvidelse",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream loader stadig.",
     "playlist-add": "Tilføj til afspilningsliste",
-    "playlist-add-queue": "Tilføj kø til afspilningsliste",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Afspilningsliste {{name}} er blevet oprettet.",
     "playlist-toast-title": "Afspilningsliste er oprettet",
     "live": "Direkte",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Tilføj valgte til favoritter",
     "play-selected-tracks-now": "Afspil valgte nu",
     "tracks-selected-label-singular": "sang valgt",
-    "tracks-selected-label-plural": "sange valgt"
+    "tracks-selected-label-plural": "sange valgt",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Tryk på ESC for at afslutte fuld skærm"

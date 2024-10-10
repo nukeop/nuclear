@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Add all",
-    "count": "Spēļu skaits",
+    "count": "Playcount",
     "queue": "Pievienot atlasīto rindai",
     "similar": "Līdzīgi izpildītāji",
     "title": "Nosaukums",
     "tour": "Tūrē",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Pievienot visas",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Pievienot spraudni",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Straume joprojām tiek ielādēta.",
     "playlist-add": "Pievienot atskaņošanas sarakstam",
-    "playlist-add-queue": "Pievienot rindu atskaņošanas sarakstam",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Atskaņošanas saraksts {{name}} izveidots.",
     "playlist-toast-title": "Atskaņošanas saraksts izveidots",
     "live": "Live",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Pievienot izlasei",
     "play-selected-tracks-now": "Atskaņot atlasīto",
     "tracks-selected-label-singular": "dziesma atlasīta",
-    "tracks-selected-label-plural": "dziesmas atlasīti"
+    "tracks-selected-label-plural": "dziesmas atlasīti",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Nospiediet ESC, lai izietu no pilna ekrāna"

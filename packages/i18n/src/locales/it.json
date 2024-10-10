@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Aggiungi tutti",
-    "count": "Conteggio riproduzioni",
+    "count": "Playcount",
     "queue": "Aggiungi tutte le tracce alla coda",
     "similar": "Artisti simili",
     "title": "Titolo",
     "tour": "In tour",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Aggiungi tutte",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Aggiungi plug-in",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Il flusso è ancora in caricamento.",
     "playlist-add": "Aggiungi a scaletta",
-    "playlist-add-queue": "Aggiungi coda a scaletta",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "La scaletta '{{name}}' è stata creata.",
     "playlist-toast-title": "Scaletta creata",
     "live": "In diretta",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Aggiungi selezionate ai preferiti",
     "play-selected-tracks-now": "Riproduci selezionate ora",
     "tracks-selected-label-singular": "traccia selezionata",
-    "tracks-selected-label-plural": "tracce selezionate"
+    "tracks-selected-label-plural": "tracce selezionate",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Premi ESC per uscire dallo schermo intero"

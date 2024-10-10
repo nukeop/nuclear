@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Hemû tevlî bike",
-    "count": "Hejmarê lêdanan",
+    "count": "Playcount",
     "queue": "Hemû stranan tevlî rêzê bike",
     "similar": "Hunermendên wekhev",
     "title": "Sernav",
     "tour": "Di gerê de",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Hemû tevlî bike",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Barkirina weşanê didome.",
     "playlist-add": "Tevlî rêzoka lêdanan bike",
-    "playlist-add-queue": "Rêzoka tevlî lêdananê bike",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Rêzoka lêdanan {{name}} hate afirandin.",
     "playlist-toast-title": "Rêzoka lêdanan hate afirandin",
     "live": "Zindî",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Ên hilbijartî tevlî bijarteyan bike",
     "play-selected-tracks-now": "Ên hilbijartî niha lêde",
     "tracks-selected-label-singular": "stran hate hilbijartin",
-    "tracks-selected-label-plural": "stran hatin hilbijartin"
+    "tracks-selected-label-plural": "stran hatin hilbijartin",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Bo ji dîmendera tije derkevî pê li bişkoka ESC-yê bike"

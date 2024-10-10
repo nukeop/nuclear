@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Idagdag lahat",
-    "count": "Bilang ng pagtugtog",
+    "count": "Playcount",
     "queue": "Idagdag lahat sa pila",
     "similar": "Katulad na artist",
     "title": "Titulado",
     "tour": "Nasa tour",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Idagdag lahat",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Magdagdag ng isang plugin",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream ay inaabangan.",
     "playlist-add": "Idagdag sa playlist",
-    "playlist-add-queue": "Idagdag sa pila sa playlist",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Nagawa ang playlist {{name}}.",
     "playlist-toast-title": "Nagawa ang playlist",
     "live": "Live",
@@ -385,7 +394,8 @@
     "add-selected-tracks-to-favorites": "Add selected to favorites",
     "play-selected-tracks-now": "Play selected now",
     "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "tracks-selected-label-plural": "tracks selected",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"

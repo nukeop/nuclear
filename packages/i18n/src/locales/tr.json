@@ -9,12 +9,12 @@
     "queue": "Albümü kuyruğa ekle",
     "tracks": "Şarkılar:",
     "year": "Yıl:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Çalma listesine albüm ekle",
+    "create-playlist": "Yeni çalma listesi oluştur",
+    "create-playlist-dialog-title": "Çalma listesi adını girin:",
+    "create-playlist-dialog-placeholder": "Çalma Listem...",
+    "create-playlist-dialog-accept": "Kaydet",
+    "create-playlist-dialog-cancel": "Vazgeç"
   },
   "app": {
     "collection": "Koleksiyon",
@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Tümünü ekle",
-    "count": "Dinlenme Sayısı",
+    "count": "Playcount",
     "queue": "Tüm şarkıları kuyruğa ekle",
     "similar": "Benzer şarkıcılar",
     "title": "Şarkı Adı",
     "tour": "Turnede",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popüler parçalar",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Hepsini kuyruğa ekle",
@@ -151,7 +158,7 @@
     "delete": "Bu çalma listesini sil",
     "duration": "Uzunluk",
     "empty": "Çalma listesi yok.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Çalma listesi oluşturur ya da linkten içe aktarırsan burada görünecek!",
     "error-empty-data": "Veri yok",
     "error-invalid-data": "Geçersiz veri",
     "error-open-file": "Dosya açılamıyor",
@@ -160,7 +167,7 @@
     "export-fail-title": "Çalma Listesi dışa aktarılamadı",
     "export-success-title": "Çalma listesi başarıyla dışa aktarıldı",
     "header": "Çalma listelerim",
-    "header-add-button": "Add",
+    "header-add-button": "Ekle",
     "import-progress": "İlerlemeyi içe aktar",
     "spotify-import-placeholder": "Bir Spotify çalma listesi bağlantısını buraya yapıştırın",
     "dialog-placeholder": "Çalma listesi adı...",
@@ -168,9 +175,9 @@
     "dialog-cancel": "İptal Et",
     "dialog-rename": "Yeniden adlandır",
     "dialog-import": "İçe aktar",
-    "create-button": "Create a new playlist",
+    "create-button": "Yeni çalma listesi oluştur",
     "new-playlist": "Yeni çalma listesi",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Spotify'dan İçe Aktar",
     "import-button": "Dosyadan içe aktar (JSON)",
     "import-fail-title": "Çalma listesi içe aktarılamadı",
     "import-success-title": "Çalma listesi başarıyla içe aktarıldı",
@@ -192,10 +199,12 @@
     "upload-to-server": "Sunucuya yükle",
     "download-from-server": "Sunucudan indir",
     "number-of-tracks": "izler",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlist-url": "Çalma listesi linkini yapıştır:",
+    "create-playlist-dialog-title": "Çalma listesi adını girin:",
+    "playlist": "Çalma listesi",
+    "play": "Oynat",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Eklenti ekle",
@@ -222,10 +231,10 @@
     "favorite-add": "Favorilere ekle",
     "header": "Kuyruk",
     "header-track": "Çalan şarkı",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Şarkı linkini panoya kopyala",
     "loading": "Yayın hâlâ yükleniyor.",
     "playlist-add": "Çalma listesine ekle",
-    "playlist-add-queue": "Çalma listesine sıra ekle",
+    "playlist-add-queue": "Sıradakileri çalma listesine ekle",
     "playlist-toast-content": "{{name}} isimli çalma listesi oluşturuldu.",
     "playlist-toast-title": "Çalma listesi oluşturuldu",
     "live": "Canlı",
@@ -247,8 +256,8 @@
       "verify": "Doğrula",
       "unverify": "Doğrulamayı kaldır"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Çalma listesi adı girin:",
+    "play-now": "Şimdi oynat"
   },
   "search": {
     "album": "Albüm",
@@ -301,7 +310,7 @@
     "github-description": "Github'la giriş yaparak çevrimiçi çalma listeleri yapabilir ve paylaşabilirsin.!! (ileride gelecek özellik).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Invidious bağlantı linki",
     "language": "Dil",
     "language-placeholder": "Dil Seçin",
     "lastfm-connect": "Last.fm ile bağlan",
@@ -364,7 +373,7 @@
     "add-to-favorite": "Favorilere ekle",
     "add-to-playlist": "Çalma listesine ekle",
     "add-to-queue": "Kuyruğa ekle",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Yeni çalma listesi oluştur",
     "create-playlist-dialog-title": "Çalma listesi adı girin:",
     "create-playlist-dialog-placeholder": "Çalma listesi adı...",
     "create-playlist-dialog-accept": "Kaydet",
@@ -385,13 +394,14 @@
     "add-selected-tracks-to-favorites": "Seçilenleri favorilere ekle",
     "play-selected-tracks-now": "Seçilenleri şimdi çal",
     "tracks-selected-label-singular": "şarkı seçildi",
-    "tracks-selected-label-plural": "şarkı seçildi"
+    "tracks-selected-label-plural": "şarkı seçildi",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Tam ekrandan çıkmak için ESC'ye basın"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "komut paletini açmak için",
     "search-placeholder": "Ne yapmak istiyorsunuz?",
     "empty-state-help": "Aradığınız şey bulunamıyor, yardım komutunu deneyin.",
     "protip-text": "İPUCU:",
