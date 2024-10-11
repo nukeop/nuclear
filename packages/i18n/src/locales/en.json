@@ -386,7 +386,11 @@
     "play-next": "Play next",
     "play-now": "Play now",
     "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "playlist-toast-title": "Track added to playlist",
+    "track-toast-clipboard-success-title": "Copied to clipboard!",
+    "track-toast-clipboard-success-subtitle": "Track name successfully copied to clipboard.",
+    "track-toast-clipboard-error-title": "Failed to copy!",
+    "track-toast-clipboard-error-subtitle": "Oof, something went wrong."
   },
   "track-table": {
     "add-selected-tracks-to-queue": "Add selected to queue",
