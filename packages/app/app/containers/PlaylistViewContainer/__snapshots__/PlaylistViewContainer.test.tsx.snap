@@ -120,14 +120,31 @@ exports[`Playlist view container should display a playlist 1`] = `
               <div
                 class="track_table_header_row"
                 role="row"
-                style="grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 6em auto;"
+                style="grid-template-columns: 7.5em 4em 3em 3em minmax(8em, 1fr) 6em 3em auto;"
               >
                 <div
                   class="track_table_header_cell"
                   colspan="1"
                   role="columnheader"
                 >
-                   
+                  <div
+                    class="selection_header"
+                  >
+                    <div
+                      class="ui fitted checkbox nuclear checkbox"
+                      style="cursor: pointer;"
+                    >
+                      <input
+                        class="hidden"
+                        readonly=""
+                        tabindex="0"
+                        title="Toggle All Rows Selected"
+                        type="checkbox"
+                        value=""
+                      />
+                      <label />
+                    </div>
+                  </div>
                 </div>
                 <div
                   class="track_table_header_cell"
@@ -206,24 +223,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                   colspan="1"
                   role="columnheader"
                 >
-                  <div
-                    class="selection_header"
-                  >
-                    <div
-                      class="ui fitted checkbox nuclear checkbox"
-                      style="cursor: pointer;"
-                    >
-                      <input
-                        class="hidden"
-                        readonly=""
-                        tabindex="0"
-                        title="Toggle All Rows Selected"
-                        type="checkbox"
-                        value=""
-                      />
-                      <label />
-                    </div>
-                  </div>
+                   
                 </div>
               </div>
             </div>
@@ -251,23 +251,27 @@ exports[`Playlist view container should display a playlist 1`] = `
                     data-testid="track-table-row"
                     draggable="false"
                     role="button"
-                    style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 6em;"
+                    style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em 3em minmax(8em, 1fr) 6em 3em;"
                     tabindex="0"
                   >
                     <div
-                      class="delete_cell"
-                      data-testid="delete-cell"
+                      class="selection_cell"
                       role="cell"
                     >
-                      <button
-                        class="ui tiny basic circular icon button nuclear button borderless"
-                        data-testid="delete-button"
+                      <div
+                        class="ui fitted checkbox nuclear checkbox"
+                        style="cursor: pointer;"
                       >
-                        <i
-                          aria-hidden="true"
-                          class="times icon"
+                        <input
+                          class="hidden"
+                          readonly=""
+                          tabindex="-1"
+                          title="Toggle Row Selected"
+                          type="checkbox"
+                          value=""
                         />
-                      </button>
+                        <label />
+                      </div>
                     </div>
                     <div
                       class="grid_track_table_cell position_cell"
@@ -352,6 +356,35 @@ exports[`Playlist view container should display a playlist 1`] = `
                       test artist 1
                     </div>
                     <div
+                      class="delete_cell"
+                      data-testid="delete-cell"
+                      role="cell"
+                    >
+                      <button
+                        class="ui tiny basic circular icon button nuclear button borderless"
+                        data-testid="delete-button"
+                      >
+                        <i
+                          aria-hidden="true"
+                          class="times icon"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                    class="grid_track_table_row"
+                    data-rbd-drag-handle-context-id="0"
+                    data-rbd-drag-handle-draggable-id="1"
+                    data-rbd-draggable-context-id="0"
+                    data-rbd-draggable-id="1"
+                    data-testid="track-table-row"
+                    draggable="false"
+                    role="button"
+                    style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em 3em minmax(8em, 1fr) 6em 3em;"
+                    tabindex="1"
+                  >
+                    <div
                       class="selection_cell"
                       role="cell"
                     >
@@ -369,35 +402,6 @@ exports[`Playlist view container should display a playlist 1`] = `
                         />
                         <label />
                       </div>
-                    </div>
-                  </div>
-                  <div
-                    aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                    class="grid_track_table_row"
-                    data-rbd-drag-handle-context-id="0"
-                    data-rbd-drag-handle-draggable-id="1"
-                    data-rbd-draggable-context-id="0"
-                    data-rbd-draggable-id="1"
-                    data-testid="track-table-row"
-                    draggable="false"
-                    role="button"
-                    style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 3em 4em 3em 3em minmax(8em, 1fr) 1fr 6em;"
-                    tabindex="1"
-                  >
-                    <div
-                      class="delete_cell"
-                      data-testid="delete-cell"
-                      role="cell"
-                    >
-                      <button
-                        class="ui tiny basic circular icon button nuclear button borderless"
-                        data-testid="delete-button"
-                      >
-                        <i
-                          aria-hidden="true"
-                          class="times icon"
-                        />
-                      </button>
                     </div>
                     <div
                       class="grid_track_table_cell position_cell"
@@ -482,23 +486,19 @@ exports[`Playlist view container should display a playlist 1`] = `
                       test artist 2
                     </div>
                     <div
-                      class="selection_cell"
+                      class="delete_cell"
+                      data-testid="delete-cell"
                       role="cell"
                     >
-                      <div
-                        class="ui fitted checkbox nuclear checkbox"
-                        style="cursor: pointer;"
+                      <button
+                        class="ui tiny basic circular icon button nuclear button borderless"
+                        data-testid="delete-button"
                       >
-                        <input
-                          class="hidden"
-                          readonly=""
-                          tabindex="-1"
-                          title="Toggle Row Selected"
-                          type="checkbox"
-                          value=""
+                        <i
+                          aria-hidden="true"
+                          class="times icon"
                         />
-                        <label />
-                      </div>
+                      </button>
                     </div>
                   </div>
                 </div>
