@@ -281,6 +281,7 @@
     "autoradio-craziness": "جنون المذياع التلقائي",
     "autoradio-craziness-description": "سيختار المذياع التلقائي الأغاني التي لا تشبه الأغاني الموجودة فعلًا في قائمة الانتظار كلما كانت أكثر جنونًا",
     "autoradio-description": "إضافة اغنية مشابهة تلقائياً عند انتهاء قائمة الانتظار",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "تاريخ الاستماع",
     "listening-history-description": "سجل المسارات التي تستمع إليها، لا Last.fm. يتم تخزين السجل دون اتصال.",
     "compact-menu-bar": "استخدام النمط المدمج لشريط القائمة",

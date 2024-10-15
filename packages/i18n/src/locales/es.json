@@ -281,6 +281,7 @@
     "autoradio-craziness": "Nivel de locura de Autoradio",
     "autoradio-craziness-description": "Autoradio seleccionará canciones diferentes a aquellas en la cola mientras más loco esté",
     "autoradio-description": "Añadir pistas similares automáticamente cuando la cola esté terminando",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Historial de reproducción",
     "listening-history-description": "Registre las canciones que escucha, a la Last.fm. El historial se almacena sin conexión.",
     "compact-menu-bar": "Usar el estilo compacto para la barra de menú",

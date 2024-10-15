@@ -281,6 +281,7 @@
     "autoradio-craziness": "অটোরেডিওর পাগলামি",
     "autoradio-craziness-description": "অটোরেডিও সেসব গান সিলেক্ট করবে যেগুলো ইতমধ্যে সারিতে থাকা গানের সাথে পার্থক্যপূর্ণ।",
     "autoradio-description": "সারি শেষ হয়ে গেলে স্বয়ংক্রিয়ভাবে সামঞ্জস্যপূর্ণ ট্র্যাক যুক্ত কর",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Listening history",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "কম্প্যাক্ট স্টাইল ব্যবহার করুন মেনু বারের জন্য",

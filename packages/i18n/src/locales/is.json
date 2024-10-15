@@ -281,6 +281,7 @@
     "autoradio-craziness": "Brjálæði sjálfvirkt útvarps",
     "autoradio-craziness-description": "Sjálfvirka útvarpið velur lög sem eru minna lík en þau sem eru núþegar í biðröð því brjálaðar verður það",
     "autoradio-description": "Sjálfkrafa bætir við svipuðum lögum þegar biðröð er að ljúka",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Listening history",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Nota þéttan stíl fyrir aðalrimil",

@@ -281,6 +281,7 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
     "autoradio-description": "Add similar tracks automatically when the queue is ending",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Listening history",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Use compact style for menu bar",
