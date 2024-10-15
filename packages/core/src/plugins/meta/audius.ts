@@ -94,7 +94,7 @@ class AudiusMetaProvider extends MetaProvider {
       onTour: hasLastFmArtist ? lastFmInfo.ontour === '1' : false,
       coverImage,
       thumb,
-      images: [],
+      images: [coverImage, thumb],
       topTracks: _.map(ArtistTracks, (track) => ({
         name: track.title,
         title: track.title,
