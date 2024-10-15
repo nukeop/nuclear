@@ -200,7 +200,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
   clearTrackList() {
     this.tracks = [];
     this.sendMetadata({
-      artist: 'Nuclear',
+      artists: ['Nuclear'],
       name: '',
       uuid: '0',
       thumbnail: '',
