@@ -14,6 +14,14 @@
     font-variant: all-small-caps;
   }
 
+  .popular_tracks_table_container {
+    height: calc(48px + (42px * 5)); // header + 5 rows
+
+    &.expanded {
+      height: auto;
+    }
+  }
+
   .expand_button {
     display: flex;
     justify-content: center;

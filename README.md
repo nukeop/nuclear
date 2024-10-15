@@ -7,7 +7,7 @@ Desktop music player focused on streaming from free sources
 
 # Links
 
-[Official website](https://nuclear.js.org)
+[Official website](https://nuclearplayer.com)
 
 [Downloads](https://github.com/nukeop/nuclear/releases)
 

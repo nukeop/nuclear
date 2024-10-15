@@ -51,9 +51,14 @@
   thead {
     background: $bgdefault;
     color: $white;
+
+    tr {
+      width: 100%;
+    }
   }
 
   tbody {
+    height: 100%;
     &.body_dragged_over {
       background: $bgdark;
     }
@@ -89,7 +94,10 @@
     }
 
     td {
+      display: table-cell;
       padding: 0 1em;
+      height: 3em;
+      max-height: 3em;
     }
 
     &:hover {

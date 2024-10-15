@@ -56,6 +56,12 @@ a.disabled {
   }
 }
 
+button.ui.button {
+  & + & {
+    margin-left: 0.5rem;
+  }
+}
+
 input {
   &::selection {
     background: rgba($lightbg, 0.85);

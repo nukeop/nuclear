@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { fireEvent, render, waitFor, within } from '@testing-library/react';
+import { fireEvent, prettyDOM, render, waitFor, within } from '@testing-library/react';
 import React from 'react';
 import { createMemoryHistory } from 'history';
 import { store as electronStore } from '@nuclear/core';
@@ -313,6 +313,7 @@ describe('Playlist view container - utils', () => {
     };
     reorder = onReorder(playlist, updatePlaylist);
   });
+  
   it('should reorder tracks correctly (1)', () => {
     reorder(0, 2);
     expect(newPlaylist).toEqual({

@@ -7,7 +7,7 @@ Desktopowy odtwarzacz muzyki skoncentrowany na streamingu z otwartych źródeł
 
 # Linki
 
-[Oficjalna strona](https://nuclear.js.org)
+[Oficjalna strona](https://nuclearplayer.com)
 
 [Pliki do pobrania](https://github.com/nukeop/nuclear/releases)
 
@@ -98,27 +98,27 @@ Korzystamy z  [Crowdin](https://crowdin.com/project/nuclear) aby usprawnić loka
 
 ## Zrzuty ekranu
 
-![Default](./screenshots/screenshot_default.jpg)
+![Default](../screenshots/screenshot_default.jpg)
 
-![Dashboard](./screenshots/screenshot_dashboard.jpg)
+![Dashboard](../screenshots/screenshot_dashboard.jpg)
 
-![Album](./screenshots/screenshot_album.jpg)
+![Album](../screenshots/screenshot_album.jpg)
 
-![Artist](./screenshots/screenshot_artist.jpg)
+![Artist](../screenshots/screenshot_artist.jpg)
 
-![Search](./screenshots/screenshot_search.jpg)
+![Search](../screenshots/screenshot_search.jpg)
 
-![Command palette](./screenshots/screenshot_command_palette.jpg)
+![Command palette](../screenshots/screenshot_command_palette.jpg)
 
-![Equalizer](./screenshots/screenshot_equalizer.jpg)
+![Equalizer](../screenshots/screenshot_equalizer.jpg)
 
-![Genres](./screenshots/screenshot_genres.jpg)
+![Genres](../screenshots/screenshot_genres.jpg)
 
-![Playlist](./screenshots/screenshot_playlist.jpg)
+![Playlist](../screenshots/screenshot_playlist.jpg)
 
-![Settings](./screenshots/screenshot_settings.jpg)
+![Settings](../screenshots/screenshot_settings.jpg)
 
-![Visualizer](./screenshots/screenshot_visualizer.jpg)
+![Visualizer](../screenshots/screenshot_visualizer.jpg)
 
 ## Licencja
 

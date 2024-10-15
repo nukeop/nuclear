@@ -7,7 +7,7 @@ export const registerNuclear = (instanceUrl: string) => {
   return client.registerApp(
     'Nuclear Music Player',
     {
-      website: 'https://nuclear.js.org/'
+      website: 'https://nuclearplayer.com/'
     }
   );
 };

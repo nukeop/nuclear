@@ -59,6 +59,7 @@ class DownloadIpcCtrl {
       if (downloadRef) {
         if (downloadRef.ref.canResume()) {
           downloadRef.ref.resume();
+          this.window?.send(IpcEvents.DOWNLOAD_STARTED, uuid);
           return;
         }
         this.downloadItems = this.downloadItems.filter((item => item.uuid === uuid));
@@ -80,6 +81,7 @@ class DownloadIpcCtrl {
           this.downloadItems = this.downloadItems.filter((item) => item.uuid !== uuid);
           this.downloadItems.push({ uuid, ref: item });
           this.logger.log(`Download started: ${filename}`);
+          this.window?.send(IpcEvents.DOWNLOAD_STARTED, uuid);
         },
         onProgress: (progress) => {
           this.window.send(IpcEvents.DOWNLOAD_PROGRESS, {

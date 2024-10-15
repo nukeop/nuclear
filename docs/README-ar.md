@@ -9,7 +9,7 @@
 
 # الروابط
 
-[الموقع الرسمي](https://nuclear.js.org)
+[الموقع الرسمي](https://nuclearplayer.com)
 
 [التنزيلات](https://github.com/nukeop/nuclear/releases)
 
@@ -103,27 +103,27 @@ nuclear هو برنامج مشغل موسيقى مجاني يقوم بسحب ا�
 
 ## لقطات الشاشة 
 
-![Default](./screenshots/screenshot_default.jpg)
+![Default](../screenshots/screenshot_default.jpg)
 
-![Dashboard](./screenshots/screenshot_dashboard.jpg)
+![Dashboard](../screenshots/screenshot_dashboard.jpg)
 
-![Album](./screenshots/screenshot_album.jpg)
+![Album](../screenshots/screenshot_album.jpg)
 
-![Artist](./screenshots/screenshot_artist.jpg)
+![Artist](../screenshots/screenshot_artist.jpg)
 
-![Search](./screenshots/screenshot_search.jpg)
+![Search](../screenshots/screenshot_search.jpg)
 
-![Command palette](./screenshots/screenshot_command_palette.jpg)
+![Command palette](../screenshots/screenshot_command_palette.jpg)
 
-![Equalizer](./screenshots/screenshot_equalizer.jpg)
+![Equalizer](../screenshots/screenshot_equalizer.jpg)
 
-![Genres](./screenshots/screenshot_genres.jpg)
+![Genres](../screenshots/screenshot_genres.jpg)
 
-![Playlist](./screenshots/screenshot_playlist.jpg)
+![Playlist](../screenshots/screenshot_playlist.jpg)
 
-![Settings](./screenshots/screenshot_settings.jpg)
+![Settings](../screenshots/screenshot_settings.jpg)
 
-![Visualizer](./screenshots/screenshot_visualizer.jpg)
+![Visualizer](../screenshots/screenshot_visualizer.jpg)
 
 ## الترخيص
 

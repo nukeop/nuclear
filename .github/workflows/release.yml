@@ -26,7 +26,7 @@ jobs:
         env:
           VERSION: ${{ steps.package-version.outputs.version }}
       - name: Upload binaries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: nuclear-binaries-linux
           path: release/*.*
@@ -82,7 +82,7 @@ jobs:
         env:
           VERSION: ${{ steps.package-version.outputs.version }}
       - name: Upload binaries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: nuclear-binaries-mac
           path: release/*.*
@@ -121,7 +121,7 @@ jobs:
         env:
           VERSION: ${{ steps.package-version.outputs.version }}
       - name: Upload binaries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: nuclear-binaries-mac-arm64
           path: release/*.*
@@ -157,7 +157,7 @@ jobs:
         env:
           VERSION: ${{ steps.package-version.outputs.version }}
       - name: Upload binaries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: nuclear-binaries-windows
           path: release/*.*

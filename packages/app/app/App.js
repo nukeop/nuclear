@@ -19,6 +19,7 @@ import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
 import * as WindowActions from './actions/window';
 import * as NuclearConfigActions from './actions/nuclear/configuration';
+import * as DownloadActions from './actions/downloads';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -64,12 +65,20 @@ class App extends React.PureComponent {
     this.props.actions.githubContribInfo();
     this.props.actions.fetchNuclearConfiguration();
     this.props.actions.fetchNuclearParams();
+    this.props.actions.resumeDownloads();
 
     this.updateConnectivityStatus(navigator.onLine);
     window.addEventListener('online', () => this.updateConnectivityStatus(true));
-    window.addEventListener('offline', () => this.updateConnectivityStatus(false)); 
+    window.addEventListener('offline', () => this.updateConnectivityStatus(false));
+    window.addEventListener('auxclick', this.blockMiddleClick);
   }
 
+  blockMiddleClick = (e) => {
+    // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
+    if (e.button === 1) {
+      e.preventDefault();
+    }
+  } 
   updateConnectivityStatus = (isConnected) => {
     this.props.actions.changeConnectivity(isConnected);
   }
@@ -191,7 +200,8 @@ function mapDispatchToProps(dispatch) {
         SearchActions,
         GithubContribActions,
         WindowActions,
-        NuclearConfigActions
+        NuclearConfigActions,
+        DownloadActions
       ),
       dispatch
     )

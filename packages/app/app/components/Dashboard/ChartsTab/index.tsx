@@ -26,7 +26,7 @@ const ChartsTab: React.FC<ChartsTabProps> = ({
 }) => {
   const { t } = useTranslation('dashboard');
   return (
-    <Tab.Pane attached={false}>
+    <Tab.Pane attached={false} className={styles.popular_tracks_tab}>
       <div
         className={styles.popular_tracks_container}
       >

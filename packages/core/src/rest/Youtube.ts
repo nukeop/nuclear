@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import ytdl from '../ytdl-core';
+import ytdl from '@distube/ytdl-core';
 
 import ytpl from 'ytpl';
 import {search, SearchVideo} from 'youtube-ext';
@@ -16,6 +16,7 @@ export type YoutubeResult = {
 }
 
 const baseUrl = 'http://www.youtube.com/watch?v=';
+const agent = ytdl.createAgent();
 
 function isValidURL(str) {
   const pattern = new RegExp('^(https?:\\/\\/)' + // protocol
@@ -84,7 +85,7 @@ export async function handleYoutubePlaylist(url: string): Promise<YoutubeResult[
 }
 
 async function handleYoutubeVideo(url: string): Promise<YoutubeResult[]> {
-  return ytdl.getInfo(url)
+  return ytdl.getInfo(url, { agent })
     .then(info => {
       if (info.videoDetails) {
         const videoDetails = info.videoDetails;
@@ -166,7 +167,7 @@ export async function trackSearchByString(query: StreamQuery, sourceName?: strin
 export const getStreamForId = async (id: string, sourceName: string, useSponsorBlock = true): Promise<StreamData> => {
   try {
     const videoUrl = baseUrl + id;
-    const trackInfo = await ytdl.getInfo(videoUrl);
+    const trackInfo = await ytdl.getInfo(videoUrl, { agent });
     const formatInfo = ytdl.chooseFormat(trackInfo.formats, { quality: 'highestaudio' });
     const segments = useSponsorBlock ? await SponsorBlock.getSegments(id) : [];
 

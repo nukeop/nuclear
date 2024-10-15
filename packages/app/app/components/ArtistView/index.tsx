@@ -1,11 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import { get, isEmpty, take } from 'lodash';
-import { Dimmer, Loader, Icon } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
-import AlbumList from '../AlbumList';
 import SimilarArtists from './SimilarArtists';
 import PopularTracks from './PopularTracks';
 
@@ -41,6 +40,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   const { t } = useTranslation('artist');
   const isLoading = () => artist.loading || false;
   const isOnTour = () => artist.onTour || false;
+  const areReleasesLoading = () => artist.releasesLoading || isLoading();
   const onAlbumClick = (album) => {
     albumInfoSearch(album.id, album.type, album);
     history.push('/album/' + album.id);
@@ -109,20 +109,23 @@ const ArtistView: React.FC<ArtistViewProps> = ({
             <hr />
           </>
         }
-        <ArtistAlbums 
-          albums={artist?.releases ?? []}
-          onAlbumClick={onAlbumClick}
-          isLoading={isLoading()}
-          strings={{
-            header: t('artist-albums.header'),
-            sortByReleaseDate: t('artist-albums.sort-by-release-date'),
-            sortByAZ: t('artist-albums.sort-by-az'),
-            sortByMostPlayed: t('artist-albums.sort-by-most-played'),
-            filterPlaceholder: t('artist-albums.filter-placeholder')
-          }}
-          withSortByAZ
-          withSortByReleaseDate
-        />
+        {
+          (areReleasesLoading() || artist.releases?.length > 0) &&
+          <ArtistAlbums
+            albums={artist?.releases ?? []}
+            onAlbumClick={onAlbumClick}
+            isLoading={areReleasesLoading()}
+            strings={{
+              header: t('artist-albums.header'),
+              sortByReleaseDate: t('artist-albums.sort-by-release-date'),
+              sortByAZ: t('artist-albums.sort-by-az'),
+              sortByMostPlayed: t('artist-albums.sort-by-most-played'),
+              filterPlaceholder: t('artist-albums.filter-placeholder')
+            }}
+            withSortByAZ
+            withSortByReleaseDate
+          />
+        }
       </Dimmer.Dimmable>
     </div>
   );

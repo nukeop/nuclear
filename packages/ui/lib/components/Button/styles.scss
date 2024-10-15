@@ -1,12 +1,12 @@
-
 @import "../../common.scss";
 
 button.nuclear.ui.button {
   position: relative;
-  
+
   background: $bglight;
   color: $white;
   white-space: nowrap;
+  margin: 0;
 
   &:hover {
     background: mix($bglight, $bgdark, 90%);
@@ -53,7 +53,7 @@ button.nuclear.ui.button {
     "purple": $purple,
     "pink": $pink,
     "orange": $orange,
-    "red": $red,
+    "red": $red
   );
   @each $color in $colors {
     $button-color: map-get($colorvars, $color);
@@ -88,7 +88,9 @@ button.nuclear.ui.button {
     padding: 0;
     margin: 0 0.5em;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       background: transparent;
     }
 

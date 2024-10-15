@@ -1,4 +1,5 @@
 import React from 'react';
+import Img from 'react-image';
 import cx from 'classnames';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -15,7 +16,10 @@ const Cover: React.FC<CoverProps> = ({ cover = String(artPlaceholder) }) => (
     common.nuclear,
     styles.cover_container
   )}>
-    <img src={cover || String(artPlaceholder)} />
+    <Img 
+      src={cover || String(artPlaceholder)}
+      unloader={<img src={String(artPlaceholder)}/>} 
+     />
   </div>
 );
 

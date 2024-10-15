@@ -94,7 +94,7 @@ export const buildStoreState = () => {
           isLoading: false,
           isReady: true,
           data: {
-            PROMOTED_ARTIST_BACKGROUND: 'https://nuclear.js.org/background.jpg'
+            PROMOTED_ARTIST_BACKGROUND: 'https://nuclearplayer.com/background.jpg'
           }
         }
       }
@@ -320,7 +320,8 @@ export const buildStoreState = () => {
                   default:
                     return { id: 'test-artist-id' };
                   }
-                })
+                }),
+                fetchArtistAlbums: jest.fn()
               } as any as MetaProvider,
               {
                 name: 'Another Meta Provider',
