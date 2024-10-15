@@ -47,6 +47,7 @@ export const addToDownloads = createStandardAction(DownloadActionTypes.ADD_TO_DO
       };
     
       downloads = [...downloads, newDownload];
+      store.set('downloads', downloads);
 
       return {
         payload: { downloads, track: clonedTrack.uuid }

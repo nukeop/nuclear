@@ -300,6 +300,13 @@ export const settingsConfig: Array<Setting> = [
     min: 1
   },
   {
+    name: 'autoDownloadFavourites',
+    category: 'downloads',
+    type: SettingType.BOOLEAN,
+    prettyName: 'auto-download-favourites',
+    default: false
+  },
+  {
     name: 'devtools',
     category: 'developer',
     type: SettingType.BOOLEAN,
