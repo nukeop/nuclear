@@ -255,17 +255,15 @@ export const useStreamLookup = () => {
 
   useEffect(() => {
     if (shouldSearchForStreams(queue)) {
-      const currentSong: QueueItem = queue.queueItems[queue.currentSong];
 
-      if (currentSong && queueActions.trackHasNoFirstStream(currentSong)) {
-        dispatch(queueActions.findStreamsForTrack(queue.currentSong));
-        return;
-      }
+      const nextTrackToSearch = (queue.queueItems as QueueItem[]).findIndex(
+        (item, index) =>
+          index >= queue.currentSong &&
+                queueActions.trackHasNoFirstStream(item) &&
+                !item.error);
     
-      const nextTrackWithNoStream = (queue.queueItems as QueueItem[]).findIndex((item) => isEmpty(item.streams));
-    
-      if (nextTrackWithNoStream !== -1) {
-        dispatch(queueActions.findStreamsForTrack(nextTrackWithNoStream));
+      if (nextTrackToSearch !== -1) {
+        dispatch(queueActions.findStreamsForTrack(nextTrackToSearch));
       }
     }
   }, [queue]);
