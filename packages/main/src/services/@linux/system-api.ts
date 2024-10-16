@@ -144,7 +144,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     this.metadata['mpris:length'] = 0; 
     this.window.send(IpcEvents.STOP);
     this.sendMetadata({
-      artist: 'Nuclear',
+      artists: ['Nuclear'],
       name: '',
       uuid: '0',
       thumbnail: '',
