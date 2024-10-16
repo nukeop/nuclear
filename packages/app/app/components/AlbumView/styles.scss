@@ -79,13 +79,11 @@
           .album_text {
             font-size: 32px;
             line-height: 1.2;
-            max-width: calc(100% - 50px);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            flex: 1;
+            @include ellipsis;
           }
         }
+ 
 
         .album_artist {
           margin: 1rem 0;
