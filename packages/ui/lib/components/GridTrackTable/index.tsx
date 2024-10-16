@@ -117,9 +117,7 @@ export const GridTrackTable = <T extends Track>({
     displayArtist && {
       id: TrackTableColumn.Artist,
       Header: ({ column }) => <TextHeader column={column} header={artistHeader} />,
-      accessor: (track: T) => isString(track.artist)
-        ? track.artist
-        : track.artist.name,
+      accessor: (track: T) => track.artists?.[0],
       Cell: TextCell,
       enableSorting: true,
       columnWidth: '6em'
