@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import cx from 'classnames';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { isArtistObject, Playlist, PlaylistHelper } from '@nuclear/core';
-import { getTrackArtist } from '@nuclear/ui';
+import { Playlist, PlaylistHelper } from '@nuclear/core';
+import { getTrackArtists } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
 import styles from './styles.scss';
@@ -15,10 +15,6 @@ export const addTrackToPlaylist = (
   track: Track
 ) => {
   if (track && track.name) {
-    if (isArtistObject(track.artist)) {
-      track.artist = getTrackArtist(track);
-    }
-
     updatePlaylist({
       ...playlist,
       tracks: [...playlist.tracks, PlaylistHelper.extractTrackData(track)]
@@ -32,10 +28,6 @@ export const addQueueToPlaylist = (
   tracks: Track[]
 ) => {
   const newTracks = tracks.map((track) => {
-    if (isArtistObject(track.artist)) {
-      track.artist = getTrackArtist(track);
-    }
-
     return PlaylistHelper.extractTrackData(track);
   });
 

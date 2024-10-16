@@ -22,7 +22,7 @@ export const DefaultStyle = () => <div
     timeToEnd={163}
     fill={66}
     track='Test song'
-    artist='Test artist'
+    artists={['Test artist']}
     volume={60}
     seek={() => { }}
     queue={{ queueItems: [] }}

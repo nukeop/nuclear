@@ -62,7 +62,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
       .slice(0, Math.min(tracks.length, MAX_POPULAR_TRACKS_DISPLAYED))
       .forEach(track => {
         addToQueue({
-          artist: artist.name,
+          artists: track.artists,
           name: track.title,
           thumbnail: track.thumb
         });

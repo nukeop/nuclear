@@ -11,7 +11,7 @@ storiesOf('Components/Track row', module)
           <TrackRow
             track={{
               album: 'Test album',
-              artist: { name: 'Test artist' },
+              artists: ['Test artist'],
               name: 'Test track',
               duration: 100,
               position: 0,
@@ -46,7 +46,7 @@ storiesOf('Components/Track row', module)
                 key={idx}
                 track={{
                   album: 'Test album',
-                  artist: { name: 'Test artist' },
+                  artists: ['Test artist'],
                   name: `Test track ${i}`,
                   duration: 100,
                   position: i+1,

@@ -113,9 +113,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
 
   const onAddToDownloads = (track: QueueItemType) => {
     const clonedTrack = safeAddUuid(track);
-    const artistName = _.isString(track?.artist)
-      ? track?.artist
-      : track?.artist?.name;
+    const artistName = track.artists?.[0];
     addToDownloads(plugins.plugins.streamProviders, clonedTrack);
     info(
       t('download-toast-title'),

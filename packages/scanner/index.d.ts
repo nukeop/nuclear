@@ -1,6 +1,6 @@
 export type LocalTrack = {
     uuid: string;
-    artist: string;
+    artists: string[];
     title?: string;
     album?: string;
     duration?: number;

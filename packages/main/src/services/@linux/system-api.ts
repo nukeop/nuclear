@@ -76,7 +76,8 @@ class LinuxMediaService extends MprisService implements NuclearApi {
       'mpris:trackid': this.objectPath(`track/${index}`),
       'mpris:artUrl': track.thumbnail,
       'xesam:title': track.name,
-      'xesam:artist': [track.artist]
+      // @ts-expect-error NuclearMeta is not a descendant of Track, but Track.artists should be available here anyway
+      'xesam:artist': track.artists ?? [track.artist]
       // 'mpris:length': this.getDuration(track.streams),
       // 'xesam:album': '21'
     };
@@ -143,7 +144,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     this.metadata['mpris:length'] = 0; 
     this.window.send(IpcEvents.STOP);
     this.sendMetadata({
-      artist: 'Nuclear',
+      artists: ['Nuclear'],
       name: '',
       uuid: '0',
       thumbnail: '',
@@ -207,7 +208,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
   clearTrackList() {
     this.tracks = [];
     this.sendMetadata({
-      artist: 'Nuclear',
+      artists: ['Nuclear'],
       name: '',
       uuid: '0',
       thumbnail: '',

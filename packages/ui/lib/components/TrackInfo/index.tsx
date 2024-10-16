@@ -7,7 +7,7 @@ import styles from './styles.scss';
 export type TrackInfoProps = {
   cover?: string;
   track: string;
-  artist: string;
+  artists: string[];
   onTrackClick: () => void;
   onArtistClick: () => void;
   addToFavorites: () => void;
@@ -19,7 +19,7 @@ export type TrackInfoProps = {
 const TrackInfo: React.FC<TrackInfoProps> = ({
   cover,
   track,
-  artist,
+  artists,
   onTrackClick,
   onArtistClick,
   addToFavorites,
@@ -37,7 +37,7 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
               {track}
             </div>
             <div className={styles.artist_name} onClick={onArtistClick}>
-              {artist}
+              {artists?.[0]}
             </div>
           </div>
           <div className={styles.favorite_part}>

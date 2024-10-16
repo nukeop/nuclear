@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import _, { isEmpty } from 'lodash';
-import { getTrackArtist } from '@nuclear/ui';
+import { getTrackArtists } from '@nuclear/ui';
 import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 
 import { normalizeTrack } from '../../utils';
@@ -114,10 +114,10 @@ export const useTrackInfoProps = () => {
   const currentSong = _.get(queue.queueItems, queue.currentSong);
 
   const track = currentSong?.name;
-  const artist = getTrackArtist(currentSong);
+  const artists = getTrackArtists(currentSong);
   const cover = currentSong?.thumbnail;
 
-  const favorite = useSelector(s => getFavoriteTrack(s, artist, track));
+  const favorite = useSelector(s => getFavoriteTrack(s, artists, track));
   const isFavorite = !_.isNil(favorite);
   const addToFavorites = useCallback(
     () => dispatch(favoritesActions.addFavoriteTrack(normalizeTrack(currentSong))),
@@ -134,13 +134,13 @@ export const useTrackInfoProps = () => {
   );
 
   const onArtistClick = useCallback(
-    () => dispatch(artistInfoSearchByName(artist, history)),
-    [dispatch, artist, history]
+    () => dispatch(artistInfoSearchByName(artists?.[0], history)),
+    [dispatch, artists, history]
   );
 
   return {
     track,
-    artist,
+    artists,
     onTrackClick,
     onArtistClick,
     cover,

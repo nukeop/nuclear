@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 import { PlaylistHelper } from '@nuclear/core';
-import { getTrackArtist, getTrackItem } from '@nuclear/ui/lib';
+import { getTrackArtists, getTrackItem } from '@nuclear/ui/lib';
 import { TrackPopupStrings } from '@nuclear/ui/lib/components/TrackPopup';
 
 import { settingsSelector } from '../../selectors/settings';
@@ -42,7 +42,7 @@ export const useTrackPopupProps = (track, thumb) => {
 
   const toastThumb = React.createElement('img', {src: thumb});
   const { t } = useTranslation('track-popup');
-  const artist = getTrackArtist(track);
+  const artist = getTrackArtists(track);
 
   const favoriteToastTitle = t('favorite-toast-title');
   const favoriteToastBody = t('favorite-toast-body', {
@@ -82,9 +82,6 @@ export const useTrackPopupProps = (track, thumb) => {
   });
   const onAddToPlaylist = useCallback((playlist) => {
     const clonedTrack = {...safeAddUuid(track)};
-    if (clonedTrack.artist.name) {
-      _.set(clonedTrack, 'artist', clonedTrack.artist.name);
-    }
 
     dispatch(PlaylistsActions.updatePlaylist({
       ...playlist,
@@ -101,9 +98,6 @@ export const useTrackPopupProps = (track, thumb) => {
   const onCreatePlaylist = useCallback(
     ({ name }: { name: string }) => {
       const clonedTrack = {...safeAddUuid(track)};
-      if (clonedTrack.artist.name) {
-        _.set(clonedTrack, 'artist', clonedTrack.artist.name);
-      }
       dispatch(PlaylistsActions.addPlaylist([PlaylistHelper.extractTrackData(track)], name));
     },
     [dispatch]

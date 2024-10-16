@@ -107,6 +107,6 @@ export const mapDeezerTrackToInternal = (track: DeezerTrack) => ({
   ...track,
   uuid: track.id.toString(),
   name: track.title,
-  artist: isString(track.artist) ? track.artist : track.artist.name,
+  artists: isString(track.artist) ? [track.artist] : [track.artist.name],
   thumbnail: isString(track.artist) ? null : track.artist.picture_medium
 });

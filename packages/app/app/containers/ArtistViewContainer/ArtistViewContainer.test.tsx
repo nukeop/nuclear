@@ -79,7 +79,7 @@ describe('Artist view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test artist top track 1'
       })
     ]);
@@ -93,9 +93,7 @@ describe('Artist view container', () => {
       .build();
 
     initialState.search.artistDetails['test-artist-id'].topTracks = [{
-      artist: {
-        name: 'test artist'
-      },
+      artists: ['test artist'],
       title: 'test artist top track 1'
     }];
     const { component, store } = mountComponent(initialState);
@@ -106,7 +104,7 @@ describe('Artist view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         title: 'test artist top track 1'
       })
     ]);
@@ -123,7 +121,7 @@ describe('Artist view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test artist top track 1'
       })
     ]);
@@ -143,7 +141,7 @@ describe('Artist view container', () => {
         completion: 0,
         status: 'Waiting',
         track: expect.objectContaining({
-          artist: 'test artist',
+          artists: ['test artist'],
           name: 'test artist top track 1'
         })
       }
@@ -162,7 +160,7 @@ describe('Artist view container', () => {
     
     expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
       expect.objectContaining({
-        artist: { name: 'test artist' },
+        artists: ['test artist'],
         title: 'test artist top track 1'
       })
     ]);
@@ -180,7 +178,7 @@ describe('Artist view container', () => {
     state = store.getState();
     expect(state.favorites.tracks).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test artist top track 1'
       })
     ]);
@@ -193,15 +191,15 @@ describe('Artist view container', () => {
     const state = store.getState();
     expect(state?.queue?.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test artist top track 1'
       }),
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test artist top track 2'
       }),
       expect.objectContaining({
-        artist: 'test artist',
+        artists: ['test artist'],
         name: 'test artist top track 3'
       })
     ]);

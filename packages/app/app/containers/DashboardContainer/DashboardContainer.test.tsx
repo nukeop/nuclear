@@ -79,7 +79,7 @@ describe('Dashboard container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'top track artist 1',
+        artists: ['top track artist 1'],
         name: 'top track 1',
         thumbnail: 'top track album cover 1'
       })
@@ -97,12 +97,12 @@ describe('Dashboard container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'top track artist 1',
+        artists: ['top track artist 1'],
         name: 'top track 1',
         thumbnail: 'top track album cover 1'
       }),
       expect.objectContaining({
-        artist: 'top track artist 2',
+        artists: ['top track artist 2'],
         name: 'top track 2',
         thumbnail: 'top track album cover 2'
       })

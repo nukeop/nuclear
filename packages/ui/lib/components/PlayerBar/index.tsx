@@ -25,7 +25,7 @@ const VOLUME_POPUP_BREAKPOINT = 870;
 const PlayerBar: React.FC<PlayerBarProps> = ({
   cover,
   track,
-  artist,
+  artists,
   onTrackClick,
   onArtistClick,
   addToFavorites,
@@ -93,7 +93,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         <TrackInfo
           cover={cover}
           track={track}
-          artist={artist}
+          artists={artists}
           onTrackClick={onTrackClick}
           onArtistClick={onArtistClick}
           addToFavorites={addToFavorites}

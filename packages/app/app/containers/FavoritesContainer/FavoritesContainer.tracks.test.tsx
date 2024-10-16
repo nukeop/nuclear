@@ -87,10 +87,10 @@ describe('Favorite tracks view container', () => {
   it('should be able to sort favorite tracks by title, ascending', async () => {
     withFavorites(
       [
-        { name: 'DEF', artist: 'A' },
-        { name: 'ABC', artist: 'A' },
-        { name: 'GHI', artist: 'A' },
-        { name: 'abc', artist: 'A' }
+        { name: 'DEF', artists: ['A'] },
+        { name: 'ABC', artists: ['A'] },
+        { name: 'GHI', artists: ['A'] },
+        { name: 'abc', artists: ['A'] }
       ]
     );
     const { component } = mountComponent();
@@ -106,10 +106,10 @@ describe('Favorite tracks view container', () => {
 
   it('should be able to sort favorite tracks by title, descending', async () => {
     withFavorites([
-      { name: 'DEF', artist: 'A' },
-      { name: 'ABC', artist: 'A' },
-      { name: 'GHI', artist: 'A' },
-      { name: 'abc', artist: 'A' }
+      { name: 'DEF', artists: ['A'] },
+      { name: 'ABC', artists: ['A'] },
+      { name: 'GHI', artists: ['A'] },
+      { name: 'abc', artists: ['A'] }
     ]);
 
     const { component } = mountComponent();
@@ -127,10 +127,10 @@ describe('Favorite tracks view container', () => {
 
   it('should be able to sort favorite tracks by artist', async () => {
     withFavorites([
-      { name: 'A', artist: 'DEF' },
-      { name: 'B', artist: 'ABC' },
-      { name: 'C', artist: 'GHI' },
-      { name: 'D', artist: 'abc' }
+      { name: 'A', artists: ['DEF'] },
+      { name: 'B', artists: ['ABC'] },
+      { name: 'C', artists: ['GHI'] },
+      { name: 'D', artists: ['abc'] }
     ]);
     const { component } = mountComponent();
 
@@ -193,7 +193,7 @@ describe('Favorite tracks view container', () => {
   it('should play a favorited local library track from a local stream', async () => {
     withFavorites([{
       uuid: 'local-track-1',
-      artist: 'test artist 1',
+      artists: ['test artist 1'],
       name: 'test track 1',
       local: true
     }]);
@@ -203,7 +203,7 @@ describe('Favorite tracks view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems[0]).toEqual(expect.objectContaining({
       uuid: expect.stringMatching(uuidRegex),
-      artist: 'test artist 1',
+      artists: ['test artist 1'],
       name: 'test track 1',
       local: true,
       streams: [{

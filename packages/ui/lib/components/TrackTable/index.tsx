@@ -95,9 +95,7 @@ function TrackTable<T extends Track>({
     displayArtist && {
       id: TrackTableColumn.Artist,
       Header: ({ column }) => <ColumnHeader column={column} header={artistHeader} />,
-      accessor: (track) => isString(track.artist)
-        ? track.artist
-        : track.artist.name,
+      accessor: (track) => track.artists?.[0],
       Cell: TrackTableCell,
       enableSorting: true
     },
