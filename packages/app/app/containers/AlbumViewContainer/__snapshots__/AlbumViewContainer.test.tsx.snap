@@ -131,8 +131,32 @@ exports[`Album view container should display an album 1`] = `
                 <div
                   class="track_table_header_row"
                   role="row"
-                  style="grid-template-columns: 4em 3em minmax(8em, 1fr) 6em 6em auto;"
+                  style="grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em auto;"
                 >
+                  <div
+                    class="track_table_header_cell"
+                    colspan="1"
+                    role="columnheader"
+                  >
+                    <div
+                      class="selection_header"
+                    >
+                      <div
+                        class="ui fitted checkbox nuclear checkbox"
+                        style="cursor: pointer;"
+                      >
+                        <input
+                          class="hidden"
+                          readonly=""
+                          tabindex="0"
+                          title="Toggle All Rows Selected"
+                          type="checkbox"
+                          value=""
+                        />
+                        <label />
+                      </div>
+                    </div>
+                  </div>
                   <div
                     class="track_table_header_cell"
                     colspan="1"
@@ -189,30 +213,6 @@ exports[`Album view container should display an album 1`] = `
                       Length
                     </div>
                   </div>
-                  <div
-                    class="track_table_header_cell"
-                    colspan="1"
-                    role="columnheader"
-                  >
-                    <div
-                      class="selection_header"
-                    >
-                      <div
-                        class="ui fitted checkbox nuclear checkbox"
-                        style="cursor: pointer;"
-                      >
-                        <input
-                          class="hidden"
-                          readonly=""
-                          tabindex="0"
-                          title="Toggle All Rows Selected"
-                          type="checkbox"
-                          value=""
-                        />
-                        <label />
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div
@@ -235,9 +235,28 @@ exports[`Album view container should display an album 1`] = `
                       data-rbd-draggable-id="0"
                       data-testid="track-table-row"
                       role="row"
-                      style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 4em 3em minmax(8em, 1fr) 6em 6em;"
+                      style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em;"
                       tabindex="0"
                     >
+                      <div
+                        class="selection_cell"
+                        role="cell"
+                      >
+                        <div
+                          class="ui fitted checkbox nuclear checkbox"
+                          style="cursor: pointer;"
+                        >
+                          <input
+                            class="hidden"
+                            readonly=""
+                            tabindex="-1"
+                            title="Toggle Row Selected"
+                            type="checkbox"
+                            value=""
+                          />
+                          <label />
+                        </div>
+                      </div>
                       <div
                         class="grid_track_table_cell position_cell"
                         data-testid="position-cell"
@@ -316,6 +335,16 @@ exports[`Album view container should display an album 1`] = `
                       >
                         02:00
                       </div>
+                    </div>
+                    <div
+                      class="grid_track_table_row"
+                      data-rbd-draggable-context-id="0"
+                      data-rbd-draggable-id="1"
+                      data-testid="track-table-row"
+                      role="row"
+                      style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em;"
+                      tabindex="1"
+                    >
                       <div
                         class="selection_cell"
                         role="cell"
@@ -335,16 +364,6 @@ exports[`Album view container should display an album 1`] = `
                           <label />
                         </div>
                       </div>
-                    </div>
-                    <div
-                      class="grid_track_table_row"
-                      data-rbd-draggable-context-id="0"
-                      data-rbd-draggable-id="1"
-                      data-testid="track-table-row"
-                      role="row"
-                      style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 4em 3em minmax(8em, 1fr) 6em 6em;"
-                      tabindex="1"
-                    >
                       <div
                         class="grid_track_table_cell position_cell"
                         data-testid="position-cell"
@@ -423,6 +442,16 @@ exports[`Album view container should display an album 1`] = `
                       >
                         01:03
                       </div>
+                    </div>
+                    <div
+                      class="grid_track_table_row"
+                      data-rbd-draggable-context-id="0"
+                      data-rbd-draggable-id="2"
+                      data-testid="track-table-row"
+                      role="row"
+                      style="position: absolute; left: 0px; top: 84px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em;"
+                      tabindex="2"
+                    >
                       <div
                         class="selection_cell"
                         role="cell"
@@ -442,16 +471,6 @@ exports[`Album view container should display an album 1`] = `
                           <label />
                         </div>
                       </div>
-                    </div>
-                    <div
-                      class="grid_track_table_row"
-                      data-rbd-draggable-context-id="0"
-                      data-rbd-draggable-id="2"
-                      data-testid="track-table-row"
-                      role="row"
-                      style="position: absolute; left: 0px; top: 84px; height: 42px; width: 100%; grid-template-columns: 4em 3em minmax(8em, 1fr) 6em 6em;"
-                      tabindex="2"
-                    >
                       <div
                         class="grid_track_table_cell position_cell"
                         data-testid="position-cell"
@@ -529,25 +548,6 @@ exports[`Album view container should display an album 1`] = `
                         role="cell"
                       >
                         00:07
-                      </div>
-                      <div
-                        class="selection_cell"
-                        role="cell"
-                      >
-                        <div
-                          class="ui fitted checkbox nuclear checkbox"
-                          style="cursor: pointer;"
-                        >
-                          <input
-                            class="hidden"
-                            readonly=""
-                            tabindex="-1"
-                            title="Toggle Row Selected"
-                            type="checkbox"
-                            value=""
-                          />
-                          <label />
-                        </div>
                       </div>
                     </div>
                   </div>
