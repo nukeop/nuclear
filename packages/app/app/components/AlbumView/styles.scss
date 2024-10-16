@@ -74,10 +74,11 @@
         .album_title {
           display: flex;
           flex-direction: row;
+          align-items: center;
 
           .album_text {
             font-size: 32px;
-            line-height: 32px;
+            line-height: 1.2;
             flex: 1;
             @include ellipsis;
           }
