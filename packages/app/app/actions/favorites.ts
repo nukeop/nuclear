@@ -4,6 +4,8 @@ import { areTracksEqualByName, getTrackItem } from '@nuclear/ui';
 
 import { safeAddUuid } from './helpers';
 import { createStandardAction } from 'typesafe-actions';
+import { addToDownloads } from './downloads';
+import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 
 export const READ_FAVORITES = 'READ_FAVORITES';
 export const ADD_FAVORITE_TRACK = 'ADD_FAVORITE_TRACK';
@@ -32,6 +34,15 @@ export function addFavoriteTrack(track) {
   favorites.tracks = [...filteredTracks, omit(clonedTrack, 'streams')];
   
   store.set('favorites', favorites);
+
+  const settings = store.get('settings');
+  const autoDownloadFavourites = settings.autoDownloadFavourites;
+  
+  if (autoDownloadFavourites) {
+    const streamProviders: StreamProviderPlugin[] = store.get('StreamProvider') || [];
+    
+    addToDownloads(streamProviders, track);
+  }
   
   return {
     type: ADD_FAVORITE_TRACK,
