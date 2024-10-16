@@ -42,8 +42,6 @@ export function addFavoriteTrack(track) {
     const streamProviders: StreamProviderPlugin[] = store.get('StreamProvider') || [];
     
     addToDownloads(streamProviders, track);
-  } else {
-    console.log('Auto-download is disabled, skipping download');
   }
   
   return {
