@@ -177,7 +177,9 @@ export function addPlaylistFromFile(filePath, t) {
 function getPlaylistsBackwardsCompatible(): Playlist[] {
   const playlists: Playlist[] = store.get('playlists');
   return playlists.map(playlist => {
-    playlist.tracks = playlist.tracks?.map(rewriteTrackArtists);
-    return playlist;
+    return {
+      ...playlist,
+      tracks: playlist.tracks?.map(rewriteTrackArtists)
+    }; 
   });
 }
