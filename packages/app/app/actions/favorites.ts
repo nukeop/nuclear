@@ -4,7 +4,6 @@ import { areTracksEqualByName, getTrackItem } from '@nuclear/ui';
 
 import { rewriteTrackArtists, safeAddUuid } from './helpers';
 import { createStandardAction } from 'typesafe-actions';
-import { TrackItem } from '@nuclear/ui/lib/types';
 
 export const READ_FAVORITES = 'READ_FAVORITES';
 export const ADD_FAVORITE_TRACK = 'ADD_FAVORITE_TRACK';
@@ -129,11 +128,12 @@ export function removeFavoriteArtist(artist) {
 function getFavoritesBackwardsCompatible() {
   const favorites: { albums?: Album[], artists?: Artist[], tracks?: Track[] } = store.get('favorites');
 
-  favorites.tracks = favorites.tracks?.map(rewriteTrackArtists);
-  favorites.albums = favorites.albums?.map(album => {
-    album.tracklist = album.tracklist?.map(rewriteTrackArtists);
-    return album;
-  });
-
-  return favorites as any;
+  return {
+    ...favorites,
+    tracks: favorites.tracks?.map(rewriteTrackArtists),
+    albums: favorites.albums?.map(album => ({
+      ...album,
+      tracklist: album.tracklist?.map(rewriteTrackArtists)
+    }))
+  };
 }

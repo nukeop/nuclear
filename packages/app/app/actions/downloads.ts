@@ -188,10 +188,10 @@ export const clearFinishedDownloads = createStandardAction(DownloadActionTypes.C
 */
 function getDownloadsBackwardsCompatible(): Download[] {
   const downloads: Download[] = store.get('downloads');
-  return downloads.map(download => {
-    download.track = rewriteTrackArtists(download.track);
-    return download;
-  });
+  return downloads.map(download => ({
+    ...download,
+    track: rewriteTrackArtists(download.track)
+  }));
 }
 
 export const resumeDownloads = createStandardAction(DownloadActionTypes.RESUME_DOWNLOADS).map(
