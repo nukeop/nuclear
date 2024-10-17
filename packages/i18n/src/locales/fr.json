@@ -290,6 +290,7 @@
     "autoradio-craziness": "Niveau de folie de l'autoradio",
     "autoradio-craziness-description": "Plus le niveau de folie de l'autoradio est élevé, moins les morceaux choisis seront cohérent avec ceux déjà présent dans la file d'attente",
     "autoradio-description": "Ajouter automatiquement des morceaux similaires lorsque la file d'attente se termine",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Historique d'écoute",
     "listening-history-description": "Enregistrez les pistes que vous écoutez, un Last.fm. L'historique est stocké hors ligne.",
     "compact-menu-bar": "Utiliser le style compacte pour la barre de menu",
