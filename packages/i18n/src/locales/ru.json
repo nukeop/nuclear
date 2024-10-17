@@ -290,6 +290,7 @@
     "autoradio-craziness": "Разброс автоподборки",
     "autoradio-craziness-description": "Чем выше уровень разброса, тем менее похожие дорожки будет предлагать автоподборка",
     "autoradio-description": "Автоматически добавлять похожие дорожки по завершении очереди",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "История прослушивания",
     "listening-history-description": "Журналировать дорожки, которые вы слушаете, наподобие Last.fm. История хранится в локально.",
     "compact-menu-bar": "Компактное меню",
