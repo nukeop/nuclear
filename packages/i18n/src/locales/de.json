@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autoradio-Verrücktheit",
     "autoradio-craziness-description": "Autoradio wählt Lieder, aus die anders sind, als die Lieder, die bereits in der Warteschlange sind",
     "autoradio-description": "Fügt ähnliche Lieder automatisch hinzu, falls die Warteschlange beendet wird",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Hörgeschichte",
     "listening-history-description": "Protokollieren Sie die Titel, die Sie bei Last.fm hören. Der Verlauf wird offline gespeichert.",
     "compact-menu-bar": "Kompakten Stil für Menüleiste verwenden",
