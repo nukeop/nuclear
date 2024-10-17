@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autoradio ludilo",
     "autoradio-craziness-description": "Autoradio će odabrati pjesme koje su manje slične onima koje su već u redu čekanja što je luđe",
     "autoradio-description": "Automatski dodaj slične pjesme kad se red čekanja završava",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Povijest slušanja",
     "listening-history-description": "Zabilježite pjesme koje slušate na Last.fm-u. Povijest se pohranjuje na vašem uređaju.",
     "compact-menu-bar": "Koristi kompaktni stil za traku izbornika",
