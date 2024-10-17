@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autómata rádió őrültsége",
     "autoradio-craziness-description": "Az autómata rádió olyan zenéket fog kiválasztani, amlyek annál kevésbé hasonlítanak az várólistán levőkre, ammenyivel őrültebb",
     "autoradio-description": "Hasonló számok autómatikus hozzáadása, amikor a várólista a végéhez ér",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Hallgatási előzmények",
     "listening-history-description": "Regisztráld a hallgatott számokat a Last.fm segítségével. Az előzmények offline tárolódnak.",
     "compact-menu-bar": "Kompakt stílust használata a menüsorhoz",
