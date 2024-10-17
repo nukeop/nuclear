@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio do përzgjedhë këngë të cilat janë më pak të ngjashme me ato që janë aktualisht në radhë dhe më të çmenduara",
     "autoradio-description": "Shto këngë të ngjashme automatikisht kur radha është në përfundim",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Listening history",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Përdor stilin kompakt për shiritin e menusë",
