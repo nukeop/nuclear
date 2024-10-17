@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio sẽ chọn các bài khác không tương tự với các bài hát trong danh sách đang phát",
     "autoradio-description": "Tự động thêm các bài hát tương tự khi danh sách phát kết thúc",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Mới phát gần đây",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Sử dụng thanh menu dạng nhỏ",
