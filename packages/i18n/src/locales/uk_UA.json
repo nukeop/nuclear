@@ -290,6 +290,7 @@
     "autoradio-craziness": "Авторадіо — божевілля",
     "autoradio-craziness-description": "Авторадіо вибере пісні, менш подібні до вже наявних у черзі",
     "autoradio-description": "Додавати подібні доріжки автоматично, коли черга досягає кінця",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Раніше прослухані",
     "listening-history-description": "Запам'ятовувати прослухані доріжки, наподобу Last.fm. Перелік прослуханих доріжок зберігається офлайн.",
     "compact-menu-bar": "Стиснути панель меню",
