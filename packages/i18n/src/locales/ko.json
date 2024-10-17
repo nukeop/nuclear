@@ -290,6 +290,7 @@
     "autoradio-craziness": "무작위 자동 재생",
     "autoradio-craziness-description": "얼마나 재생 목록과 비슷하지 않은 음악을 재생할지 조절할 수 있습니다.",
     "autoradio-description": "재생 목록이 끝나면 자동으로 비슷한 음악 연속 재생",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "재생 기록",
     "listening-history-description": "예를 들어 Last.fm 처럼 당신이 재생한 트랙을 기록합니다. 기록은 오프라인으로 저장됩니다.",
     "compact-menu-bar": "축소된 메뉴 바 사용",
