@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autoradio瘋狂度",
     "autoradio-craziness-description": "Autoradio 會自動選擇與crazier中更不相似的歌曲",
     "autoradio-description": "當佇列結束時自動添加相似曲目",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "聆聽紀錄",
     "listening-history-description": "儲存你的聆聽記錄，就像Last.fm一樣。\n此聆聽記錄是離線儲存的。",
     "compact-menu-bar": "使用最小化工具列",
