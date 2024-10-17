@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autoradio - tryb szaleństwa",
     "autoradio-craziness-description": "Autoradio będzie wybierać tym mniej podobne utwory do tych z kolejki odtwarzania, im większe wybrano szaleństwo",
     "autoradio-description": "Dodaj automatycznie podobne utwory, kiedy kolejka odtwarzania się kończy",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Historia odtwarzania",
     "listening-history-description": "Zapisuj utwory, których słuchasz, à la Last.fm. Historia jest przechowywana offline.",
     "compact-menu-bar": "Włącz uproszczony pasek menu",
