@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autoradio vanvittighed",
     "autoradio-craziness-description": "Autoradio vælger sange som er mindre som de sange der allerede er i køen jo mere skør den er.",
     "autoradio-description": "Tilføj automatisk lignende sange når køen slutter.",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Listening history",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Benyt kompakt stil til menu",
