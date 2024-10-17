@@ -290,6 +290,7 @@
     "autoradio-craziness": "Autoradio hulluus",
     "autoradio-craziness-description": "Autoradio valitsee kappaleet jotka ovat vähemmän samanlaisia kuin ne jotka on jo jonossa",
     "autoradio-description": "Lisää samankaltaisia kappaleita automaattisesti kun jono on loppumassa",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Kuunteluhistoria",
     "listening-history-description": "Ylöskirjaa raidat joita kuuntelet, tyyliin Last.fm. Historiasi taltioidaan yhteydettömässä tilassa.",
     "compact-menu-bar": "Käytä kompaktia valikon palkkia",
