@@ -78,7 +78,7 @@ export const GridTrackTable = <T extends Track>({
       id: TrackTableColumn.Selection,
       Header: SelectionHeader,
       Cell: SelectionCell,
-      columnWidth: '7.5em'
+      columnWidth: '3em'
     },
     displayPosition && {
       id: TrackTableColumn.Position,
@@ -120,7 +120,7 @@ export const GridTrackTable = <T extends Track>({
       accessor: (track: T) => track.artists?.[0],
       Cell: TextCell,
       enableSorting: true,
-      columnWidth: '6em'
+      columnWidth: 'minmax(8em, 1fr)'
     },
     displayAlbum && {
       id: TrackTableColumn.Album,

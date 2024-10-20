@@ -1,9 +1,17 @@
 import _, { flow, omit, unionWith } from 'lodash';
-import { store, Album, Artist, Track } from '@nuclear/core';
+import { store, Track } from '@nuclear/core';
 import { areTracksEqualByName, getTrackItem } from '@nuclear/ui';
 
 import { rewriteTrackArtists, safeAddUuid } from './helpers';
 import { createStandardAction } from 'typesafe-actions';
+
+export type FavoriteArtist = {
+  id: string;
+  name: string;
+  source: string;
+  coverImage: string;
+  thumb: string;
+}
 
 export const READ_FAVORITES = 'READ_FAVORITES';
 export const ADD_FAVORITE_TRACK = 'ADD_FAVORITE_TRACK';
@@ -29,9 +37,11 @@ export function addFavoriteTrack(track) {
   
   const favorites = getFavoritesBackwardsCompatible();
   const filteredTracks = favorites.tracks.filter(t => !areTracksEqualByName(t, track));
-  favorites.tracks = [...filteredTracks, omit(clonedTrack, 'streams')];
   
-  store.set('favorites', favorites);
+  store.set('favorites', {
+    ...favorites,
+    tracks: [...filteredTracks, omit(clonedTrack, 'streams')]
+  });
   
   return {
     type: ADD_FAVORITE_TRACK,
@@ -39,7 +49,7 @@ export function addFavoriteTrack(track) {
   };
 }
 
-const bulkAddFavoriteTracksAction = createStandardAction(BULK_ADD_FAVORITE_TRACKS)<Track[]>();
+const bulkAddFavoriteTracksAction = createStandardAction(BULK_ADD_FAVORITE_TRACKS)<ReturnType<typeof getFavoritesBackwardsCompatible>>();
 
 export const bulkAddFavoriteTracks = (tracks: Track[]) => {
   const favorites = getFavoritesBackwardsCompatible();
@@ -86,8 +96,7 @@ export function removeFavoriteAlbum(album) {
   };
 }
 
-export function addFavoriteArtist(artist) {
-  
+export function addFavoriteArtist(artist: FavoriteArtist) {
   const favorites = getFavoritesBackwardsCompatible();
   const savedArtist = {
     id: artist.id,
@@ -97,7 +106,7 @@ export function addFavoriteArtist(artist) {
     thumb: artist.thumb
   };
 
-  favorites.artists = _.concat(favorites.artists || [], savedArtist);
+  favorites.artists = [...(favorites.artists ?? []), savedArtist];
   store.set('favorites', favorites);
   
   return {
@@ -126,7 +135,7 @@ export function removeFavoriteArtist(artist) {
 * `Track.artist` and `Track.extraArtists` are written into {@link Track.artists}
 */
 function getFavoritesBackwardsCompatible() {
-  const favorites: { albums?: Album[], artists?: Artist[], tracks?: Track[] } = store.get('favorites');
+  const favorites = store.get('favorites');
 
   return {
     ...favorites,
