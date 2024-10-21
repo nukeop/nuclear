@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Icon } from 'semantic-ui-react';
 import { action } from '@storybook/addon-actions';
+import _ from 'lodash';
 
 import { TrackTable, HistoryTable, HistoryTableDate } from '../..';
 import { swap } from '../storyUtils';
@@ -18,14 +19,14 @@ const tracks = [
   {
     position: 1,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-    artist: 'Test Artist',
+    artists: ['Test Artist'],
     title: 'Test Title',
     album: 'Test Album',
     duration: '1:00'
   }, {
     position: 2,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-    artist: 'Test Artist 2',
+    artists: ['Test Artist 2'],
     name: 'Test Title 2',
     album: 'Test Album',
     duration: '1:00'
@@ -33,7 +34,7 @@ const tracks = [
   {
     position: 3,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-    artist: { name: 'Test Artist 3' },
+    artists: ['Test Artist 3'],
     name: 'Test Title 3',
     album: 'Test Album',
     duration: '1:00'
@@ -93,7 +94,7 @@ export const WithRows = () => <div className='bg'>
     thumbnailHeader={<Icon name='image' />}
     
     isTrackFavorite={
-      (track: Track) => track.artist === 'Test Artist 2'
+      (track: Track) => _.isEqual(track.artists, ['Test Artist 2'])
     }
     playlists={playlists}
     strings={trackTableStrings}
@@ -110,7 +111,7 @@ export const DragAndDrop = () => {
       positionHeader={<Icon name='hashtag' />}
       thumbnailHeader={<Icon name='image' />}
      
-      isTrackFavorite={(track: Track) => track.artist === 'Test Artist 2'}
+      isTrackFavorite={(track: Track) => _.isEqual(track.artists, ['Test Artist 2'])}
       playlists={playlists}
       strings={trackTableStrings}
       onDragEnd={(result) => {
@@ -147,7 +148,7 @@ export const ListeningHistory = () => <div className='bg'>
   </HistoryTableDate>
   <HistoryTableTemplate
     tracks={[{
-      artist: 'Test Artist',
+      artists: ['Test Artist'],
       title: 'Test Title',
       createdAt: new Date()
     }]}
@@ -158,11 +159,11 @@ export const ListeningHistory = () => <div className='bg'>
   </HistoryTableDate>
   <HistoryTableTemplate
     tracks={[{
-      artist: 'Test Artist 2',
+      artists: ['Test Artist 2'],
       title: 'Test Title 2',
       createdAt: new Date(new Date().setDate(new Date().getDate() - 1))
     }, {
-      artist: 'Test Artist 4',
+      artist: ['Test Artist 4'],
       title: 'Test Title 4',
       createdAt: new Date(new Date().setDate(new Date().getDate() - 1))
     }]}
@@ -173,7 +174,7 @@ export const ListeningHistory = () => <div className='bg'>
   </HistoryTableDate>
   <HistoryTableTemplate
     tracks={[{
-      artist: 'Test Artist 3',
+      artists: ['Test Artist 3'],
       title: 'Test Title 3',
       createdAt: new Date(new Date().setDate(new Date().getDate() - 2))
     }]}

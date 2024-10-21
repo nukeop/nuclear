@@ -13,6 +13,12 @@ export type ListeningHistorySection = {
 export const ListeningHistorySection: React.FC<ListeningHistorySection> = ({tracks}) => {
   const date = tracks?.[0].createdAt.toLocaleDateString();
 
+  tracks = tracks?.map(track => {
+    // @ts-expect-error DB is not an array of artists yet
+    track.artists = [track.artist];
+    return track;
+  });
+
   return <section className={styles.listening_history_section}>
     <HistoryTableDate>
       {date}

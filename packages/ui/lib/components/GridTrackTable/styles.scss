@@ -215,12 +215,10 @@
     .play_button {
         display: none;
 
-        // Manual adjustments to center the icon
-        padding-top: 0.75em !important;
-
         i.play.icon {
             // Manual adjustments to center the icon
-            margin-left: 0.06em !important;
+            margin-left: 0.1em !important;
+            margin-top: 0.05em !important;
         }
     }
 }

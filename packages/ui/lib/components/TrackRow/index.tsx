@@ -82,9 +82,7 @@ const TrackRow: React.FC<TrackRowProps> = ({
       displayArtist &&
       <td className={styles.track_row_artist}>
         { 
-          _.isString(track.artist) 
-            ? track.artist
-            : track.artist.name 
+          track.artists?.[0]
         }
       </td>
     }

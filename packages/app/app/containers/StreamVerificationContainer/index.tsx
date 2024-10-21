@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
 import logger from 'electron-timber';
 
-import { getTrackArtist, StreamVerification } from '@nuclear/ui';
+import { getTrackArtists, StreamVerification } from '@nuclear/ui';
 import { StreamVerificationProps } from '@nuclear/ui/lib/components/StreamVerification';
 import { rest } from '@nuclear/core';
 
@@ -33,14 +33,14 @@ export const StreamVerificationContainer: React.FC = () => {
     setVerificationStatus('unknown');
     if (currentTrack) {
       StreamMappingsService.getTopStream(
-        getTrackArtist(currentTrack),
+        getTrackArtists(currentTrack)?.[0],
         currentTrack.name,
         selectedStreamProvider,
         settings?.userId
       ).then(res => {
         if (isResponseBody(res) && res.body.stream_id === head(currentTrack.streams)?.id) {
           if (res.body.score === undefined) {
-            logger.error(`Failed to verify stream: ${currentTrack.name} by ${getTrackArtist(currentTrack)}`);
+            logger.error(`Failed to verify stream: ${currentTrack.name} by ${getTrackArtists(currentTrack)?.[0]}`);
             setVerificationStatus('unverified');
           } else if (res.body.self_verified) {
             setVerificationStatus('verified_by_user');
@@ -72,7 +72,7 @@ export const StreamVerificationContainer: React.FC = () => {
     if (currentTrack && verificationStatus !== 'verified_by_user') {
       setLoading(true);
       StreamMappingsService.postStreamMapping({
-        artist: getTrackArtist(currentTrack),
+        artist: getTrackArtists(currentTrack)?.[0],
         title: currentTrack.name,
         source: selectedStreamProvider,
         stream_id: head(currentTrack.streams).id,
@@ -80,7 +80,7 @@ export const StreamVerificationContainer: React.FC = () => {
       }).then(() => {
         setVerificationStatus('verified_by_user');
       }).catch((e) => {
-        logger.error(`Failed to verify stream: ${currentTrack.name} by ${getTrackArtist(currentTrack)}`);
+        logger.error(`Failed to verify stream: ${currentTrack.name} by ${getTrackArtists(currentTrack)?.[0]}`);
         logger.error(e);
         setVerificationStatus('unknown');
       }).finally(() => {
@@ -93,7 +93,7 @@ export const StreamVerificationContainer: React.FC = () => {
     if (currentTrack && verificationStatus === 'verified_by_user') {
       setLoading(true);
       StreamMappingsService.deleteStreamMapping({
-        artist: getTrackArtist(currentTrack),
+        artist: getTrackArtists(currentTrack)?.[0],
         title: currentTrack.name,
         source: selectedStreamProvider,
         stream_id: head(currentTrack.streams).id,
@@ -101,7 +101,7 @@ export const StreamVerificationContainer: React.FC = () => {
       }).then(() => {
         setVerificationStatus('unverified');
       }).catch(() => {
-        logger.error(`Failed to unverify stream: ${currentTrack.name} by ${getTrackArtist(currentTrack)}`);
+        logger.error(`Failed to unverify stream: ${currentTrack.name} by ${getTrackArtists(currentTrack)?.[0]}`);
         setVerificationStatus('verified_by_user');
       }).finally(() => {
         setLoading(false);

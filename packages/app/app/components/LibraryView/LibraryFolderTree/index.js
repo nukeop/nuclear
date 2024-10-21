@@ -51,7 +51,7 @@ const useTreeData = (tracks, localFolders) => {
         path: track.path,
         name: track.name,
         album: track.album,
-        artist: _.isString(track.artist) ? track.artist : track.artist.name
+        artists: track.artists
       };
       pathToEntryMap[track.path] = newEntry;
       folderEntry.children.push(newEntry);

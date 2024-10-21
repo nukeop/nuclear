@@ -25,7 +25,7 @@ export type QueueItem = {
         details: string;
       };
   local?: boolean;
-  artist: string | { name: string };
+  artists: string[];
   name: string;
   thumbnail?: string;
   streams?: TrackStream[];

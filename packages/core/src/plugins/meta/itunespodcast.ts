@@ -56,7 +56,7 @@ class iTunesPodcastMetaProvider extends MetaProvider {
       year: podcastInfo[0].releaseDate,
       type: AlbumType.master,
       tracklist: _.map(podcastInfo.slice(1), (episode, index) => new Track ({
-        artist: episode.collectionName,
+        artists: [episode.collectionName],
         title: episode.trackName,
         duration: Math.ceil(episode.trackTimeMillis/1000),
         thumbnail: episode.artworkUrl60,

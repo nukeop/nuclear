@@ -106,7 +106,7 @@ describe('SpotifyMetaProvider', () => {
     expect(result).toEqual([{
       id: 'track-id',
       title: 'test track',
-      artist: 'test artist',
+      artists: ['test artist'],
       source: 'Spotify',
       thumb: 'thumbnail.jpg'
     }]);
@@ -180,13 +180,13 @@ describe('SpotifyMetaProvider', () => {
       images: ['thumbnail.jpg', 'image.jpg', 'large.jpg'],
       topTracks: [{
         title: 'test track',
-        artist: { name: 'test artist' },
+        artists: ['test artist'],
         thumb: undefined,
         playcount: 100,
         listeners: 100
       }, {
         title: 'test track 2',
-        artist: {name: 'test artist'},
+        artists: ['test artist'],
         thumb: undefined,
         playcount: 100,
         listeners: 100
@@ -267,13 +267,13 @@ describe('SpotifyMetaProvider', () => {
       images: ['thumbnail.jpg', 'image.jpg', 'large.jpg'],
       topTracks: [{
         title: 'test track',
-        artist: { name: 'test artist' },
+        artists: ['test artist'],
         thumb: undefined,
         playcount: 100,
         listeners: 100
       }, {
         title: 'test track 2',
-        artist: {name: 'test artist'},
+        artists: ['test artist'],
         thumb: undefined,
         playcount: 100,
         listeners: 100
@@ -377,7 +377,7 @@ describe('SpotifyMetaProvider', () => {
         position: 1,
         name: 'test track',
         title: 'test track',
-        artist: 'test artist',
+        artists: ['test artist'],
         duration: 1,
         thumbnail: 'thumbnail.jpg'
       }]

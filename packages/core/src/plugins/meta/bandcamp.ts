@@ -62,7 +62,7 @@ class BandcampMetaProvider extends MetaProvider {
       .map(result => ({
         id: btoa(result.url),
         title: result.name,
-        artist: result.artist,
+        artists: [result.artist],
         source: SearchResultsSource.Bandcamp
       }));
   }
@@ -119,7 +119,7 @@ class BandcampMetaProvider extends MetaProvider {
         thumb: bandcampArtistDetails.coverImage,
         playcount: track.playcount,
         listeners: track.listeners,
-        artist: track.artist
+        artists: [track.artist.name]
       })),
       source: SearchResultsSource.Bandcamp
     });
@@ -138,7 +138,7 @@ class BandcampMetaProvider extends MetaProvider {
       coverImage: album.imageUrl,
       type: albumType as AlbumType,
       tracklist: album.tracks.map((track, index) => new Track({
-        artist: album.artist,
+        artists: [album.artist],
         title: track.name,
         duration: track.duration,
         thumbnail: album.imageUrl,

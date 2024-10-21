@@ -41,7 +41,7 @@ export const WithAlbumPreview = () => (
         tracklist: _(null).range(10).map(i => (
           {
             name: `Test track ${Math.random() * i}`,
-            artist: { name: 'Test Artist' },
+            artists: ['Test Artist'],
             album: 'Test album',
             position: i+1,
             duration: 100
