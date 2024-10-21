@@ -38,10 +38,8 @@ export function addFavoriteTrack(track) {
   const favorites = getFavoritesBackwardsCompatible();
   const filteredTracks = favorites.tracks.filter(t => !areTracksEqualByName(t, track));
   
-  store.set('favorites', {
-    ...favorites,
-    tracks: [...filteredTracks, omit(clonedTrack, 'streams')]
-  });
+  favorites.tracks = [...filteredTracks, omit(clonedTrack, 'streams')];
+  store.set('favorites', favorites);
   
   return {
     type: ADD_FAVORITE_TRACK,
