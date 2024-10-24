@@ -22,12 +22,16 @@ class IpcContainer extends React.Component {
 
     ipcRenderer.send(IpcEvents.STARTED);
 
+    // Bind Media Session events only when playback starts
     ipcRenderer.on(IpcEvents.PLAY, () => this.initializeMediaSession());
 
+    // Existing IPC event handlers
     ipcRenderer.on(IpcEvents.NEXT, () => actions.nextSong());
     ipcRenderer.on(IpcEvents.PREVIOUS, () => actions.previousSong());
     ipcRenderer.on(IpcEvents.PAUSE, () => actions.pausePlayback(true));
-    ipcRenderer.on(IpcEvents.PLAYPAUSE, () => actions.togglePlayback(this.props.player.playbackStatus, true));
+    ipcRenderer.on(IpcEvents.PLAYPAUSE, () => {
+      this.togglePlayPause();
+    });
     ipcRenderer.on(IpcEvents.STOP, () => actions.stopPlayback(true));
     ipcRenderer.on(IpcEvents.PLAY, () => actions.startPlayback(true));
     ipcRenderer.on(IpcEvents.MUTE, () => {
@@ -132,23 +136,45 @@ class IpcContainer extends React.Component {
     if ('mediaSession' in navigator) {
       // Set action handlers for media controls
       navigator.mediaSession.setActionHandler('play', () => {
-        ipcRenderer.send(IpcEvents.PLAY);
+        ipcRenderer.send(IpcEvents.PLAY);  // Sends play IPC event
+        this.props.actions.startPlayback(true);  // Dispatch Redux action to update state
+        this.updatePlaybackState('playing');  // Update MediaSession playback state
       });
 
       navigator.mediaSession.setActionHandler('pause', () => {
-        ipcRenderer.send(IpcEvents.PAUSE);
+        ipcRenderer.send(IpcEvents.PAUSE);  // Sends pause IPC event
+        this.props.actions.pausePlayback(true);  // Dispatch Redux action to update state
+        this.updatePlaybackState('paused');  // Update MediaSession playback state
       });
 
       navigator.mediaSession.setActionHandler('nexttrack', () => {
-        ipcRenderer.send(IpcEvents.NEXT);
+        ipcRenderer.send(IpcEvents.NEXT);  // Sends next track IPC event
       });
 
       navigator.mediaSession.setActionHandler('previoustrack', () => {
-        ipcRenderer.send(IpcEvents.PREVIOUS);
+        ipcRenderer.send(IpcEvents.PREVIOUS);  // Sends previous track IPC event
       });
 
-      // Set playback state and update media metadata for the first time
+      // Set initial playback state and metadata
       this.updateMediaSessionMetadata(this.props.queue.queueItems[this.props.queue.currentSong]);
+      this.updatePlaybackState(this.props.player.playbackStatus === 'PLAYING' ? 'playing' : 'paused');
+    }
+  }
+
+  togglePlayPause() {
+    if (this.props.player.playbackStatus === 'PLAYING') {
+      ipcRenderer.send(IpcEvents.PAUSE);
+      this.updatePlaybackState('paused');
+    } else {
+      ipcRenderer.send(IpcEvents.PLAY);
+      this.updatePlaybackState('playing');
+    }
+  }
+
+  updatePlaybackState(state) {
+    // Update Media Session playback state
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.playbackState = state;
     }
   }
 
@@ -159,12 +185,12 @@ class IpcContainer extends React.Component {
         artist: currentSong.artist,
         album: currentSong.album || 'Unknown Album',
         artwork: [
-          { src: currentSong.thumbnail, sizes: '512x512', type: 'image/jpeg' }
+          { sizes: '512x512', src: currentSong.thumbnail, type: 'image/jpg' }
         ]
       });
 
-      // Optionally update the playback state
-      navigator.mediaSession.playbackState = this.props.player.playbackStatus === 'PLAYING' ? 'playing' : 'paused';
+      // Ensure playback state is also updated when metadata changes
+      this.updatePlaybackState(this.props.player.playbackStatus === 'PLAYING' ? 'playing' : 'paused');
     }
   }
 
@@ -184,7 +210,7 @@ class IpcContainer extends React.Component {
   }
 
   render() {
-    return null;
+    return null; // No UI rendering is needed for the IPC container
   }
 }
 
