@@ -22,6 +22,8 @@ class IpcContainer extends React.Component {
 
     ipcRenderer.send(IpcEvents.STARTED);
 
+    ipcRenderer.on(IpcEvents.PLAY, () => this.initializeMediaSession());
+
     ipcRenderer.on(IpcEvents.NEXT, () => actions.nextSong());
     ipcRenderer.on(IpcEvents.PREVIOUS, () => actions.previousSong());
     ipcRenderer.on(IpcEvents.PAUSE, () => actions.pausePlayback(true));
@@ -119,6 +121,51 @@ class IpcContainer extends React.Component {
       }
     });
 
+    ipcRenderer.on(IpcEvents.SONG_CHANGE, (event, currentSong) => {
+      // When the song changes, update the Media Session metadata
+      this.updateMediaSessionMetadata(currentSong);
+    });
+
+  }
+
+  initializeMediaSession() {
+    if ('mediaSession' in navigator) {
+      // Set action handlers for media controls
+      navigator.mediaSession.setActionHandler('play', () => {
+        ipcRenderer.send(IpcEvents.PLAY);
+      });
+
+      navigator.mediaSession.setActionHandler('pause', () => {
+        ipcRenderer.send(IpcEvents.PAUSE);
+      });
+
+      navigator.mediaSession.setActionHandler('nexttrack', () => {
+        ipcRenderer.send(IpcEvents.NEXT);
+      });
+
+      navigator.mediaSession.setActionHandler('previoustrack', () => {
+        ipcRenderer.send(IpcEvents.PREVIOUS);
+      });
+
+      // Set playback state and update media metadata for the first time
+      this.updateMediaSessionMetadata(this.props.queue.queueItems[this.props.queue.currentSong]);
+    }
+  }
+
+  updateMediaSessionMetadata(currentSong) {
+    if ('mediaSession' in navigator && currentSong) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: currentSong.name,
+        artist: currentSong.artist,
+        album: currentSong.album || 'Unknown Album',
+        artwork: [
+          { src: currentSong.thumbnail, sizes: '512x512', type: 'image/jpeg' }
+        ]
+      });
+
+      // Optionally update the playback state
+      navigator.mediaSession.playbackState = this.props.player.playbackStatus === 'PLAYING' ? 'playing' : 'paused';
+    }
   }
 
   componentDidUpdate({ queue: prevQueue }) {
@@ -128,9 +175,11 @@ class IpcContainer extends React.Component {
 
     if (
       (!previousSong && currentSong) ||
-      (previousSong && currentSong && currentSong.name !== previousSong.name)
+        (previousSong && currentSong && currentSong.name !== previousSong.name)
     ) {
+      // When the song changes, send the update to Electron main process and update Media Session
       ipcRenderer.send(IpcEvents.SONG_CHANGE, currentSong);
+      this.updateMediaSessionMetadata(currentSong);
     }
   }
 
