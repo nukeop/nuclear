@@ -9,12 +9,12 @@
     "queue": "Dodaj album do kolejki",
     "tracks": "Utwory:",
     "year": "Rok:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Dodaj album do playlisty",
+    "create-playlist": "Utwórz nową playlistę",
+    "create-playlist-dialog-title": "Nazwa playlisty:",
+    "create-playlist-dialog-placeholder": "Nazwa playlisty...",
+    "create-playlist-dialog-accept": "Zapisz",
+    "create-playlist-dialog-cancel": "Anuluj"
   },
   "app": {
     "collection": "Kolekcja",
@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Dodaj wszystkie",
-    "count": "Playcount",
+    "count": "Liczba odtworzeń",
     "queue": "Dodaj wszystkie utwory do kolejki",
     "similar": "Podobni artyści",
     "title": "Tytuł",
     "tour": "W trasie",
-    "popular-tracks": "Popular tracks",
+    "popular-tracks": "Popularne utwory",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Albumy",
+      "sort-by-release-date": "Sortuj według daty wydania",
+      "sort-by-az": "Sortuj A–Z",
+      "sort-by-most-played": "Sortuj według najczęściej odtwarzanych",
+      "filter-placeholder": "Filtr..."
     }
   },
   "dashboard": {
@@ -108,7 +108,7 @@
     "empty": "Brak ulubionych utworów",
     "empty-help": "Spróbuj dodać trochę utworów do ulubionych wtedy one pojawią się tutaj!",
     "header": "Twoje ulubione utwory",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Odtwórz losowy utwór z ulubionych",
     "title": "Tytuł"
   },
   "help": {
@@ -138,7 +138,7 @@
     "not-found": "Nie znaleziono tekstu dla tego utworu."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "Prędkość odtwarzania",
     "autoradio": "Autoradio",
     "loop": "Powtarzaj",
     "mini-player": "Miniodtwarzacz",
@@ -158,7 +158,7 @@
     "delete": "Usuń tę listę odtwarzania",
     "duration": "Długość",
     "empty": "Brak list odtwarzania.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Stwórz playlistę lub zaimportuj z URL, aby się tu pojawiły!",
     "error-empty-data": "Brak danych",
     "error-invalid-data": "Nieprawidłowe dane",
     "error-open-file": "Nie można otworzyć pliku",
@@ -167,7 +167,7 @@
     "export-fail-title": "Błąd eksportowania listy odtwarzania",
     "export-success-title": "Lista odtwarzania wyeksportowana pomyślnie",
     "header": "Twoje listy odtwarzania",
-    "header-add-button": "Add",
+    "header-add-button": "Dodaj",
     "import-progress": "Postęp importu",
     "spotify-import-placeholder": "Tu wklej link do playlisty ze Spotify",
     "dialog-placeholder": "Nazwa listy odtwarzania...",
@@ -175,9 +175,9 @@
     "dialog-cancel": "Anuluj",
     "dialog-rename": "Zmień nazwę",
     "dialog-import": "Import",
-    "create-button": "Create a new playlist",
+    "create-button": "Utwórz nową playlistę",
     "new-playlist": "Nowa playlista",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Zaimportuj ze Spotify",
     "import-button": "Importuj z pliku (JSON)",
     "import-fail-title": "Błąd importowania listy odtwarzania",
     "import-success-title": "Lista odtwarzania zaimportowana pomyślnie",
@@ -199,11 +199,11 @@
     "upload-to-server": "Prześlij na serwer",
     "download-from-server": "Pobierz z serwera",
     "number-of-tracks": "utwory",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "input-playlist-url": "Wklej URL playlisty:",
+    "create-playlist-dialog-title": "Nazwa playlisty:",
+    "playlist": "Playlista",
+    "play": "Odtwórz",
+    "external-source-tooltip": "Ta playlista pochodzi z zewnętrznego źródła: {{source}}. Nie możesz jej edytować. Zapisz ją lokalnie za pomocą menu playlisty, aby dokonać zmian.",
     "save-external-playlist": "Save locally"
   },
   "plugins": {
