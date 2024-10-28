@@ -50,7 +50,7 @@ export function lastFmConnectAction() {
   };
 }
 
-export function lastFmLoginAction(authToken) {
+export function lastFmLoginAction(authToken: string) {
   return dispatch => {
     dispatch({
       type: 'FAV_IMPORT_INIT',
@@ -103,7 +103,7 @@ export function disableScrobbling() {
   };
 }
 
-export function scrobbleAction(artist, track, session) {
+export function scrobbleAction(artist: string, track: string, session: string) {
   return dispatch => {
     lastfm.scrobble(artist, track, session)
       .then(() => {
@@ -115,7 +115,7 @@ export function scrobbleAction(artist, track, session) {
   };
 }
 
-export function updateNowPlayingAction(artist, track, session) {
+export function updateNowPlayingAction(artist:string, track: string, session: string) {
   return dispatch => {
     lastfm.updateNowPlaying(artist, track, session)
       .then(() => {
