@@ -15,6 +15,7 @@ import styles from './styles.scss';
 import { LastFmSocialIntegration } from './Integrations/LastFmSocialIntegration';
 import { MastodonSocialIntegration } from './Integrations/MastodonSocialIntegration';
 import { RootState } from '../../reducers';
+import { lastFmConnectAction, lastFmLoginAction, lastFmLogOut } from '../../actions/scrobbling';
 
 const volumeSliderColors = {
   fillColor: { r: 248, g: 248, b: 242, a: 1 },
@@ -30,9 +31,9 @@ export type SettingsProps = {
     fetchAllFmFavorites: React.MouseEventHandler;
     enableScrobbling: Function;
     disableScrobbling: Function;
-    lastFmConnectAction: React.MouseEventHandler;
-    lastFmLoginAction: React.MouseEventHandler;
-    lastFmLogOut: React.MouseEventHandler;
+    lastFmConnectAction: typeof lastFmConnectAction;
+    lastFmLoginAction: typeof lastFmLoginAction;
+    lastFmLogOut: typeof lastFmLogOut;
   };
   mastodonActions: {
     registerNuclear: (instanceUrl: string) => void;

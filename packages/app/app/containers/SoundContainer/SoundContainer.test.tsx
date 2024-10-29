@@ -3,7 +3,7 @@ import { waitFor } from '@testing-library/react';
 
 import { AnyProps, mountComponent } from '../../../test/testUtils';
 import { buildStoreState } from '../../../test/storeBuilders';
-import SoundContainer from '.';
+import { SoundContainer } from '.';
 
 jest.mock('react-hls-player', () => {
   return {
