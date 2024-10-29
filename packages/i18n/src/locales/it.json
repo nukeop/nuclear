@@ -281,6 +281,7 @@
     "autoradio-craziness": "Livello di follia della radio automatica",
     "autoradio-craziness-description": "La radio automatica, più folle è, più selezionerà canzoni meno simili a quelle già nella coda",
     "autoradio-description": "Aggiungere automaticamente tracce simili quando la coda termina",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Cronologia di ascolto",
     "listening-history-description": "Tieni traccia dei brani ascoltati, come avviene su Last.fm. La cronologia viene memorizzata offline.",
     "compact-menu-bar": "Usa lo stile compatto per la barra dei menù",

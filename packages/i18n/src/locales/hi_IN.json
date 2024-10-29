@@ -281,6 +281,7 @@
     "autoradio-craziness": "ऑटोरेडियो पागलपन",
     "autoradio-craziness-description": "ऑटोरेडियो उन गानों का चयन करेगा जो पहले से कतार में लगे गानों से कम मिलते-जुलते हैं",
     "autoradio-description": "कतार समाप्त होने पर स्वचालित रूप से समान ट्रैक जोड़ें",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Listening history",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "मेनू बार के लिए कॉम्पैक्ट शैली का प्रयोग करें",

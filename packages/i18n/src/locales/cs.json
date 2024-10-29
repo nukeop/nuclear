@@ -281,6 +281,7 @@
     "autoradio-craziness": "Bláznivost autorádia",
     "autoradio-craziness-description": "Čím bláznivější, tím spíše autorádio vybere skladby, které se méně podobají těm, které jsou již ve frontě",
     "autoradio-description": "Přidat automaticky podobné skladby po dokončení přehrávání fronty",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Historie přehrávání",
     "listening-history-description": "Zaznamenávejte skladby, které posloucháte, a la Last.fm. Historie je ukládána offline.",
     "compact-menu-bar": "Použít kompaktní styl pro lištu menu",

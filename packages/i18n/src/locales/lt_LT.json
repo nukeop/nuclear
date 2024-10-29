@@ -281,6 +281,7 @@
     "autoradio-craziness": "Autoradio linksmumas",
     "autoradio-craziness-description": "Autoradijas pasirinks dainas kurios yra ne panašios į dainas kurios yra eilėje",
     "autoradio-description": "Pridėti panašias dainas automatiškai kai eilė baigiasi",
+    "auto-download-favourites": "Auto download favorite track",
     "listening-history": "Istorija",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Naudoti kompaktinį meniu stilių",

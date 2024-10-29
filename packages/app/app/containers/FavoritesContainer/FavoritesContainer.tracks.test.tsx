@@ -11,6 +11,9 @@ import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider, uuidRegex } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import PlayerBarContainer from '../PlayerBarContainer';
+import { addFavoriteTrack } from '../../actions/favorites'; 
+import { DownloadStatus } from '@nuclear/ui/lib/types';
+import { store as electronStore } from '@nuclear/core';
 
 const updateStore = (key: string, value: object) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -210,6 +213,55 @@ describe('Favorite tracks view container', () => {
       }]
     }));
   });
+
+  it('should automatically add a track to downloads when favorited and auto-download is enabled', () => {
+    electronStore.set('settings', { autoDownloadFavourites: true });
+
+    const testTrack = {
+      artist: 'Test Artist',
+      name: 'Test Track',
+      source: 'TestSource',
+      duration: 300
+    };
+
+    addFavoriteTrack(testTrack);
+
+    const downloads = electronStore.get('downloads');
+    expect(downloads).toContainEqual(
+      expect.objectContaining({
+        track: expect.objectContaining({
+          artist: 'Test Artist',
+          name: 'Test Track'
+        }),
+        status: DownloadStatus.WAITING
+      })
+    );
+  });
+
+  it('should not add a track to downloads when favorited if auto-download is disabled', async () => {
+    electronStore.clear();
+    electronStore.set('settings', { autoDownloadFavourites: false });
+  
+    const testTrack = {
+      artist: 'Test Artist',
+      name: 'Test Track',
+      source: 'TestSource',
+      duration: 300
+    };
+  
+    addFavoriteTrack(testTrack);
+  
+    const downloads = electronStore.get('downloads');
+    expect(downloads).not.toContainEqual(
+      expect.objectContaining({
+        track: expect.objectContaining({
+          artist: 'Test Artist',
+          name: 'Test Track'
+        })
+      })
+    );
+  });
+  
 
   it.each([
     { query: 'test track 1', by: 'track title' },
