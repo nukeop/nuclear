@@ -44,7 +44,7 @@ where
 
     if let Ok(mut metadata) = metadata {
         metadata.title = metadata.title.clone().or(Some(filename.clone()));
-        metadata.artist = metadata.artist.clone().or(Some("unknown".to_string()));
+        metadata.artists = metadata.artists.clone().or(Some(vec!["unknown".to_string()]));
         Ok(LocalTrack {
             uuid: Uuid::new_v4().to_string(),
             metadata: metadata,
@@ -112,7 +112,7 @@ mod tests {
     pub fn test_extractor_from_path(_path: &str) -> Option<Box<dyn MetadataExtractor>> {
         Some(Box::new(TestMetadataExtractor::new(
             AudioMetadataBuilder::default()
-                .artist("Test Artist".to_string())
+                .artists(vec!["Test Artist".to_string()])
                 .title("Test Title".to_string())
                 .album("Test Album".to_string())
                 .duration(10)
@@ -131,7 +131,7 @@ mod tests {
         let thumbnails_dir: String = "tests/thumbnails".to_string();
         let local_track = visit_file(path, test_extractor_from_path, &thumbnails_dir).unwrap();
         assert_eq!(local_track.filename, "test.mp3");
-        assert_eq!(local_track.metadata.artist, Some("Test Artist".to_string()));
+        assert_eq!(local_track.metadata.artists, Some(vec!["Test Artist".to_string()]));
         assert_eq!(local_track.metadata.title, Some("Test Title".to_string()));
         assert_eq!(local_track.metadata.album, Some("Test Album".to_string()));
         assert_eq!(local_track.metadata.duration, Some(10));
@@ -157,7 +157,7 @@ mod tests {
         let local_track =
             visit_file(path, test_extractor_from_path_no_metadata, &thumbnails_dir).unwrap();
         assert_eq!(local_track.filename, "test.mp3");
-        assert_eq!(local_track.metadata.artist, Some("unknown".to_string()));
+        assert_eq!(local_track.metadata.artists, Some(vec!["unknown".to_string()]));
         assert_eq!(local_track.metadata.title, Some("test.mp3".to_string()));
         assert_eq!(local_track.metadata.album, None);
         assert_eq!(local_track.metadata.duration, None);

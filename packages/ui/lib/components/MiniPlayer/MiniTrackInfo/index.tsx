@@ -12,7 +12,7 @@ export type MiniTrackInfoProps = Omit<TrackInfoProps, 'onTrackClick' | 'onArtist
 const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
   cover = artPlaceholder as unknown as string,
   track,
-  artist,
+  artists,
   addToFavorites,
   removeFromFavorites,
   isFavorite = false,
@@ -30,7 +30,7 @@ const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
         <div className={styles.mini_track_info_text}>
           <div className={styles.left}>
             <div className={styles.mini_track}>{track}</div>
-            <div className={styles.mini_artist}>{artist}</div>
+            <div className={styles.mini_artist}>{artists}</div>
           </div>
           <div className={styles.right}>
             <Icon

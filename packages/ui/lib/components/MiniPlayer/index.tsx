@@ -21,7 +21,7 @@ export type MiniPlayerProps = Omit<SeekbarProps, 'children'> &
 const MiniPlayer: React.FC<MiniPlayerProps> = ({
   cover,
   track,
-  artist,
+  artists,
 
   addToFavorites,
   removeFromFavorites,
@@ -60,7 +60,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
   <MiniTrackInfo
     cover={cover}
     track={track}
-    artist={artist}
+    artists={artists}
     isFavorite={isFavorite}
     addToFavorites={addToFavorites}
     removeFromFavorites={removeFromFavorites}

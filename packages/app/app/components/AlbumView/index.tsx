@@ -41,6 +41,28 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
   const displayPlaylistCreationDialog = () => setIsCreatePlaylistDialogOpen(true);
   const hidePlaylistCreationDialog = () => setIsCreatePlaylistDialogOpen(false);
 
+  const displayArtistColumn = () => {
+    if (!album.artist || !album.tracklist) {
+      return false;
+    }
+
+    for (const track of album.tracklist) {
+      if (!track.artists) {
+        return false;
+      }
+
+      if (track.artists.length > 1) {
+        return true;
+      }
+
+      if (album.artist !== track.artists?.[0]) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   const release_date: Date = new Date(album.year);
   return <div className={styles.album_view_container}>
     <Dimmer.Dimmable>
@@ -178,7 +200,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
               tracks={album.tracklist}
               displayDeleteButton={false}
               displayThumbnail={false}
-              displayArtist={false}
+              displayArtist={displayArtistColumn()}
               displayAlbum={false}
             />
           </div>

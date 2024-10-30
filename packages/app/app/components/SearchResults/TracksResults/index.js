@@ -22,12 +22,9 @@ const TracksResults = ({ tracks, limit }) => {
               if (
                 track &&
                 _.hasIn(track, 'name') && (_.hasIn(track, 'image') || _.hasIn(track, 'thumbnail')) &&
-                _.hasIn(track, 'artist')
+                _.hasIn(track, 'artists')
               ) {
                 const newTrack = _.cloneDeep(track);
-                if (!newTrack.artist.name) {
-                  _.set(newTrack, 'artist.name', newTrack.artist);
-                }
                 return (
                   <TrackRow
                     key={'search-result-track-row-' + index}

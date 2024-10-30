@@ -76,7 +76,7 @@ class IpcPlayer {
       return;
     }
 
-    this.window.setTitle(`${arg.artist} - ${arg.name} - Nuclear Music Player`);
+    this.window.setTitle(`${arg.artists[0]} - ${arg.name} - Nuclear Music Player`);
     this.systemApi.sendMetadata && this.systemApi.sendMetadata(arg);
     this.discord.trackChange(arg);
     this.trayMenu.update({track: arg});

@@ -106,13 +106,13 @@ class DiscogsMetaProvider extends MetaProvider {
     };
   }
 
-  discogsTrackToGeneric(discogsTrack: DiscogsTrack, artist: string): Track {
+  discogsTrackToGeneric(discogsTrack: DiscogsTrack, albumArtist: string): Track {
     const track = new Track();
-    track.artist = artist;
+    track.artists = discogsTrack.artists?.map(artist => artist.name) ?? [albumArtist];
     track.title = discogsTrack.title;
     track.duration = discogsTrack.duration;
     track.position = discogsTrack.position;
-    track.extraArtists = _.map(discogsTrack.extraartists, 'name');
+    track.artists = track.artists.concat(_.map(discogsTrack.extraartists, 'name'));
     track.type = discogsTrack.type_;
     return track;
   }
@@ -153,7 +153,7 @@ class DiscogsMetaProvider extends MetaProvider {
       .then(response => response.json())
       .then(json => {
         if (json.results) {
-          const artists = json.results.flatMap(item => 
+          const artists = json.results.flatMap(item =>
             (item.type === 'artist') ?
               [this.discogsArtistSearchResultToGeneric(item)] : []
           );
@@ -194,7 +194,7 @@ class DiscogsMetaProvider extends MetaProvider {
         thumb: coverImage,
         playcount: track.playcount,
         listeners: track.listeners,
-        artist: track.artist
+        artists: [track.artist.name]
       })),
       similar: similarArtists,
       source: SearchResultsSource.Discogs

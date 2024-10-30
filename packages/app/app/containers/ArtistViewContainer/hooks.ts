@@ -9,6 +9,7 @@ import * as FavoritesActions from '../../actions/favorites';
 import { searchSelectors } from '../../selectors/search';
 import { favoritesSelectors } from '../../selectors/favorites';
 import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
+import { FavoriteArtist } from '../../actions/favorites';
 
 export const useArtistViewProps = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ export const useArtistViewProps = () => {
   const isFavorite = getIsFavorite(artist, favoriteArtists);
 
   const addFavoriteArtist = useCallback(async () => {
-    dispatch(FavoritesActions.addFavoriteArtist(artist));
+    dispatch(FavoritesActions.addFavoriteArtist(artist as FavoriteArtist));
   }, [artist, dispatch]);
 
   const removeFavoriteArtist = useCallback(async () => {

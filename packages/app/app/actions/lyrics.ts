@@ -23,7 +23,7 @@ export function lyricsSearch(track: Track) {
     const selectedProvider = getState().plugin.selected.lyricsProviders;
     const lyricsProvider = _.find(providers, {sourceName: selectedProvider});
 
-    lyricsProvider.search(track.artist, track.name)
+    lyricsProvider.search(track.artists?.[0], track.name)
       .then(result => {
         dispatch(lyricsSearchSuccess(result));
       })

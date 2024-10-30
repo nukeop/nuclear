@@ -8,7 +8,7 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import { getTrackArtist, getTrackTitle } from '../../utils';
+import { getTrackArtists, getTrackTitle } from '../../utils';
 import { Track } from '../../types';
 import Img from 'react-image';
 
@@ -69,7 +69,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
             {getTrackTitle(track)}
           </div>
           <div className={styles.artist_container}>
-            {getTrackArtist(track)}
+            {getTrackArtists(track)?.[0]}
           </div>
         </div>
 

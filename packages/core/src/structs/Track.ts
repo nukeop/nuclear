@@ -11,7 +11,7 @@ export default class Track {
   ids?: {
     [K in SearchResultsSource]?: string
   };
-  artist: string;
+  artists: string[];
   title: string;
   name?: string;
   duration: string | number;
@@ -19,17 +19,16 @@ export default class Track {
   position?: string | number;
   playcount?: string | number;
   thumbnail?: string;
-  extraArtists?: string[];
   type?: string;
   local?: boolean;
 
-  constructor(data: PartialExcept<Track, 'artist' | 'title'> = {
-    artist: '',
+  constructor(data: PartialExcept<Track, 'artists' | 'title'> = {
+    artists: [''],
     title: ''
   }) {
     this.uuid = v4();
     this.ids = data.ids || {};
-    this.artist = data.artist;
+    this.artists = data.artists;
     this.title = data.title;
     this.name = data.title;
     this.duration = data.duration;
@@ -39,7 +38,7 @@ export default class Track {
 
   addSearchResultData(data: SearchResultsTrack): void {
     this.ids = { ...this.ids, [data.source]: data.id };
-    this.artist = data.artist;
+    this.artists = data.artists;
     this.title = data.title;
     this.name = data.title;
   }

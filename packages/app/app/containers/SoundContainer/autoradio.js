@@ -51,7 +51,7 @@ let similarTracksResultsLimit = 10;
  */
 let autoradioArtistDeviation = 0.20;
 
-function computeParameters (crazinessScore = 10) {
+function computeParameters(crazinessScore = 10) {
   autoradioArtistDeviation = crazinessScore / 100;
   similarTracksResultsLimit = crazinessScore;
   autoradioImpactingTrackNumber = 101 - crazinessScore;
@@ -66,7 +66,7 @@ let props;
  * random track to play.
  * It will remove all tracks which are already present in the queue.
  */
-export function addAutoradioTrackToQueue (callProps) {
+export function addAutoradioTrackToQueue(callProps) {
   props = callProps;
   const currentSong = props.queue.queueItems[props.queue.currentSong];
   computeParameters(props.settings.autoradioCraziness);
@@ -82,14 +82,20 @@ export function addAutoradioTrackToQueue (callProps) {
       if (selectedTrack === null) {
         return Promise.reject(new Error('No similar track or artist were found.'));
       }
-      return addToQueue(selectedTrack.artist, selectedTrack);
+
+      // The API doesn't returns artist.name we have to convert to the new format
+      if (!selectedTrack.artists && selectedTrack.artist) {
+        selectedTrack.artists = _.isString(selectedTrack.artist) ? [selectedTrack.artist] : [selectedTrack.artist.name];
+      }
+
+      return addToQueue(selectedTrack.artists, selectedTrack);
     })
     .catch(function (err) {
       logger.error('error', err);
     });
 }
 
-function getSimilarTracksToQueue (number) {
+function getSimilarTracksToQueue(number) {
   const similarTracksPromises = [];
 
   for (let i = props.queue.currentSong; i >= Math.max(0, props.queue.currentSong - number); i--) {
@@ -110,7 +116,7 @@ function getSimilarTracksToQueue (number) {
     });
 }
 
-function getScoredRandomTrack (tracks) {
+function getScoredRandomTrack(tracks) {
   let sum = 0;
   const cumulativeBias = tracks.map(function (track) {
     sum += track.match; return sum;
@@ -123,21 +129,21 @@ function getScoredRandomTrack (tracks) {
   return Promise.resolve(tracks[chosenIndex]);
 }
 
-function getTrackNotInQueue (tracks, deviation) {
+function getTrackNotInQueue(tracks, deviation) {
   const newtracks = tracks.filter((track) => !isTrackInQueue(track));
   return getRandomElement(getArraySlice(newtracks, deviation));
 }
 
-function getArraySlice (arr, ratio) {
+function getArraySlice(arr, ratio) {
   return arr.slice(0, Math.round((arr.length - 1) * ratio) + 1);
 }
 
-function getNewTrack (getter, track) {
+function getNewTrack(getter, track) {
   let getTrack;
   if (getter === 'track') {
     getTrack = getSimilarTracks(track);
   } else {
-    getTrack = getTracksFromSimilarArtist(track.artist);
+    getTrack = getTracksFromSimilarArtist(track.artists?.[0]);
   }
   return getTrack
     .then(similarTracks => {
@@ -145,25 +151,26 @@ function getNewTrack (getter, track) {
     });
 }
 
-function isTrackInQueue (track) {
+// `track` format here is directly from the lastfm api
+function isTrackInQueue(track) {
   const queue = props.queue.queueItems;
   for (const i in queue) {
-    if (queue[i].artist === track.artist.name && queue[i].name === track.name) {
+    if (queue[i].artists.includes(track.artist.name) && queue[i].name === track.name) {
       return true;
     }
   }
   return false;
 }
 
-function getSimilarTracks (currentSong, limit = 100) {
-  return lastfm.getSimilarTracks(currentSong.artist, currentSong.name, limit)
+function getSimilarTracks(currentSong, limit = 100) {
+  return lastfm.getSimilarTracks(currentSong.artists?.[0], currentSong.name, limit)
     .then(tracks => tracks.json())
     .then(trackJson => {
       return _.get(trackJson, 'similartracks.track', []);
     });
 }
 
-function getTracksFromSimilarArtist (artist) {
+function getTracksFromSimilarArtist(artist) {
   return lastfm
     .getArtistInfo(artist)
     .then(artist => artist.json())
@@ -176,15 +183,15 @@ function getTracksFromSimilarArtist (artist) {
     .then(topTracks => _.get(topTracks, 'toptracks.track', []));
 }
 
-function getSimilarArtists (artistJson) {
+function getSimilarArtists(artistJson) {
   return Promise.resolve(artistJson.artist.similar.artist);
 }
 
-function getRandomElement (arr) {
+function getRandomElement(arr) {
   return arr[Math.round(Math.random() * (arr.length - 1))];
 }
 
-function getArtistTopTracks (artist) {
+function getArtistTopTracks(artist) {
   return lastfm
     .getArtistTopTracks(_.get(artist, 'name', artist))
     .then(topTracks => {
@@ -193,10 +200,10 @@ function getArtistTopTracks (artist) {
     });
 }
 
-function addToQueue (artist, track) {
+function addToQueue(artists, track) {
   return new Promise((resolve) => {
-    props.actions.addToQueue({
-      artist: artist.name,
+    props.addToQueue({
+      artists,
       name: track.name,
       thumbnail: track.thumbnail ?? track.image[0]['#text'] ?? track.thumb
     });

@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import { isEqual } from 'lodash';
 import { store, StreamProvider } from '@nuclear/core';
 import { getTrackItem } from '@nuclear/ui';
-import { safeAddUuid } from './helpers';
+import { rewriteTrackArtists, safeAddUuid } from './helpers';
 import { Download, DownloadStatus, Track, TrackItem } from '@nuclear/ui/lib/types';
 import { createStandardAction } from 'typesafe-actions';
 import { Download as DownloadActionTypes }  from './actionTypes';
@@ -24,7 +25,7 @@ const changePropertyForItem = ({downloads, uuid, propertyName='status', value}:C
 
 export const readDownloads = createStandardAction(DownloadActionTypes.READ_DOWNLOADS).map(
   () => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = getDownloadsBackwardsCompatible();
     return  { payload: downloads };
   } 
 );
@@ -32,11 +33,11 @@ export const readDownloads = createStandardAction(DownloadActionTypes.READ_DOWNL
 export const addToDownloads = createStandardAction(DownloadActionTypes.ADD_TO_DOWNLOADS).map(
   (_:StreamProvider[], track: Track) => {
     const clonedTrack: TrackItem = safeAddUuid(getTrackItem(track));
-    let downloads: Download[] = store.get('downloads');
+    let downloads: Download[] = getDownloadsBackwardsCompatible();
   
     const existingTrack = downloads.find(({track}) => {
-      const {name, artist} = track;
-      return artist === clonedTrack.artist && name === clonedTrack.name;
+      const {name, artists} = track;
+      return isEqual(artists, clonedTrack.artists) && name === clonedTrack.name;
     });
   
     if (!existingTrack ){
@@ -61,7 +62,7 @@ export const addToDownloads = createStandardAction(DownloadActionTypes.ADD_TO_DO
 
 export const onDownloadStarted = createStandardAction(DownloadActionTypes.DOWNLOAD_STARTED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = getDownloadsBackwardsCompatible();
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -74,7 +75,7 @@ export const onDownloadStarted = createStandardAction(DownloadActionTypes.DOWNLO
 
 export const onDownloadPause =  createStandardAction(DownloadActionTypes.DOWNLOAD_PAUSED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = getDownloadsBackwardsCompatible();
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -87,7 +88,7 @@ export const onDownloadPause =  createStandardAction(DownloadActionTypes.DOWNLOA
 
 export const onDownloadResume = createStandardAction(DownloadActionTypes.DOWNLOAD_RESUMED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = getDownloadsBackwardsCompatible();
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -132,7 +133,7 @@ export const onDownloadProgress = createStandardAction(DownloadActionTypes.DOWNL
 
 export const onDownloadError = createStandardAction(DownloadActionTypes.DOWNLOAD_ERROR).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = getDownloadsBackwardsCompatible();
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -147,7 +148,7 @@ export const onDownloadError = createStandardAction(DownloadActionTypes.DOWNLOAD
 
 export const onDownloadRemoved = createStandardAction(DownloadActionTypes.DOWNLOAD_REMOVED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = getDownloadsBackwardsCompatible();
     const filteredTracks = downloads.filter(item => item.track.uuid !== uuid);
     return {
       payload: filteredTracks
@@ -156,7 +157,7 @@ export const onDownloadRemoved = createStandardAction(DownloadActionTypes.DOWNLO
 
 export const onDownloadFinished = createStandardAction(DownloadActionTypes.DOWNLOAD_FINISHED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = getDownloadsBackwardsCompatible();
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -170,7 +171,7 @@ export const onDownloadFinished = createStandardAction(DownloadActionTypes.DOWNL
 
 export const clearFinishedDownloads = createStandardAction(DownloadActionTypes.CLEAR_FINISHED_DOWNLOADS).map(
   () => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = getDownloadsBackwardsCompatible();
   
     const filteredTracks = downloads.filter(( item ) => 
       item.status !== DownloadStatus.FINISHED && item.status !== DownloadStatus.ERROR
@@ -180,6 +181,19 @@ export const clearFinishedDownloads = createStandardAction(DownloadActionTypes.C
       payload: filteredTracks
     };
   });
+
+/**
+* Helper function to read the old track format into the new format.
+*
+* `Track.artist` and `Track.extraArtists` are written into {@link Track.artists}
+*/
+function getDownloadsBackwardsCompatible(): Download[] {
+  const downloads: Download[] = store.get('downloads');
+  return downloads.map(download => ({
+    ...download,
+    track: rewriteTrackArtists(download.track)
+  }));
+}
 
 export const resumeDownloads = createStandardAction(DownloadActionTypes.RESUME_DOWNLOADS).map(
   () => {

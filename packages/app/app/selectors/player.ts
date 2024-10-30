@@ -1,3 +1,4 @@
+import { RootState } from '../reducers';
 import { createStateSelectors } from './helpers';
 
 export const playerSelectors = createStateSelectors(
@@ -12,3 +13,5 @@ export const playerSelectors = createStateSelectors(
     'playbackRate'
   ]
 );
+
+export const playerStateSelector = (s:RootState) => s.player;

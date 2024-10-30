@@ -14,7 +14,7 @@ export interface NuclearStatus {
 
 export interface NuclearMeta {
   uuid: string;
-  artist: string;
+  artists: string[];
   streams?: Array<{ duration: number }>;
   name?: string;
   position?: number;
@@ -38,7 +38,7 @@ export type PartialExcept<T, TRequired extends keyof T> = Partial<T> & Pick<T, T
 export type TrackType = {
   local?: boolean;
   album?: string;
-  artist?: { name: string } | string;
+  artists?: string[];
   duration?: number | string;
   position?: number;
   playcount?: number | string;
@@ -46,5 +46,3 @@ export type TrackType = {
   name?: string;
   thumbnail?: string;
 };
-
-export const isArtistObject = (artist: TrackType['artist']): artist is { name: string } => typeof artist === 'object' && 'name' in artist;

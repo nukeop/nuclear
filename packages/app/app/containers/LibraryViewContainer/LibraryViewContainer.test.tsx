@@ -67,7 +67,7 @@ describe('Library view container', () => {
     expect(state.queue.queueItems).toStrictEqual([
       expect.objectContaining({
         uuid: expect.stringMatching(uuidRegex),
-        artist: 'local artist 1',
+        artists: ['local artist 1'],
         name: 'local track 1',
         duration: 300,
         local: true
@@ -99,7 +99,7 @@ describe('Library view container', () => {
       .withConnectivity()
       .withLocal([{
         uuid: 'local-track-1',
-        artist: 'local artist 1',
+        artists: ['local artist 1'],
         name: 'local track 1',
         duration: 250,
         path: '/path/to/local/track/1',
@@ -122,7 +122,7 @@ describe('Library view container', () => {
     expect(state.queue.queueItems).toStrictEqual([
       expect.objectContaining({
         uuid: expect.stringMatching(uuidRegex),
-        artist: 'local artist 1',
+        artists: ['local artist 1'],
         name: 'local track 1',
         duration: 250,
         streams: [{

@@ -1,5 +1,5 @@
 import { Track } from '@nuclear/ui/lib/types';
-import { getTrackArtist, getTrackTitle } from '@nuclear/ui';
+import { getTrackArtists, getTrackTitle } from '@nuclear/ui';
 
 export function formatDuration(duration) {
   const secNum = parseInt(duration, 10);
@@ -49,9 +49,7 @@ export function createLastFMLink(artist, track) {
 
 export function normalizeTrack(track: Track){
   return {
-    artist: {
-      name: getTrackArtist(track)
-    },
+    artists: getTrackArtists(track),
     name: getTrackTitle(track),
     thumbnail: track.thumbnail,
     streams: track.streams

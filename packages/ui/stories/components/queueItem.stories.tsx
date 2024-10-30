@@ -10,7 +10,7 @@ const commonProps = {
   track: {
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
     name: 'Test track name',
-    artist: 'Test artist',
+    artists: ['Test artist'],
     stream: {}
   },
   isCurrent: false,
@@ -35,7 +35,7 @@ storiesOf('Components/Queue item', module)
           track={{
             thumbnail: 'https://i.imgur.com/aVNWf3j.jpg',
             name: 'Small thumbnail',
-            artist: 'Test artist'
+            artists: ['Test artist']
           }}
         />
       </div>
@@ -67,7 +67,7 @@ storiesOf('Components/Queue item', module)
           track={{
             thumbnail: 'https://i.imgur.com/koC6Otx.jpg',
             name: 'Test track name',
-            artist: 'Test artist'
+            artists: ['Test artist']
           }}
           isCompact
         />
@@ -86,7 +86,7 @@ storiesOf('Components/Queue item', module)
       <QueueItem {...commonProps}
         track={{
           name: 'Test track name',
-          artist: 'Test artist'
+          artists: ['Test artist']
         }}
       />
       <div
@@ -96,7 +96,7 @@ storiesOf('Components/Queue item', module)
           isCompact
           track={{
             name: 'Test track name',
-            artist: 'Test artist'
+            artists: ['Test artist']
           }}
         />
       </div>

@@ -101,7 +101,7 @@ class AudiusMetaProvider extends MetaProvider {
         thumb: track.artwork ? track.artwork['480x480'] : '',
         playcount: 0,
         listeners: track.listeners,
-        artist: { name: AudiusInfo.name }
+        artists: [AudiusInfo.name]
       })),
       similar: similarArtists,
       source: SearchResultsSource.Audius

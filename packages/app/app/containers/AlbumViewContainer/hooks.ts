@@ -39,10 +39,7 @@ export const useAlbumViewProps = () => {
       thumbnail: album.coverImage,
       duration: parseInt(track.duration) !== track.duration
         ? stringDurationToSeconds(track.duration)
-        : track.duration,
-      artist: {
-        name: album.artist
-      }
+        : track.duration
     }));
   }
 
@@ -70,7 +67,7 @@ export const useAlbumViewProps = () => {
   const addAlbumToQueue = useCallback(async () => {
     await album?.tracklist.forEach(async track => {
       dispatch(QueueActions.addToQueue({
-        artist: album?.artist,
+        artists: track.artists,
         name: track.title,
         thumbnail: album.coverImage,
         streams: []

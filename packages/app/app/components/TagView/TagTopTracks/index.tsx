@@ -9,16 +9,14 @@ import TrackRow from '../../TrackRow';
 import TrackTableContainer from '../../../containers/TrackTableContainer';
 
 type TagTopTrack = {
-  artist: {
-    name: string;
-  };
+  artists: string[];
   name: string;
   image: { '#text': string }[];
 };
 
 type TagTopTracksProps = {
   tracks: TagTopTrack[];
-  addToQueue: (track: { artist: string; name: string; thumbnail: string }) => void;
+  addToQueue: (track: { artists: string[]; name: string; thumbnail: string }) => void;
 }
 
 const TagTopTracks: React.FC<TagTopTracksProps> = ({ tracks, addToQueue }) => {
@@ -33,7 +31,7 @@ const TagTopTracks: React.FC<TagTopTracksProps> = ({ tracks, addToQueue }) => {
         onClick={() => {
           tracks.map((track) => {
             addToQueue({
-              artist: track.artist.name,
+              artists: track.artists,
               name: track.name,
               thumbnail: track.image[1]['#text']
             });

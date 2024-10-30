@@ -9,15 +9,16 @@ import Spacer from '../../Spacer';
 import SocialIntegration from '../SocialIntegration';
 
 import styles from '../styles.scss';
+import { lastFmConnectAction, lastFmLoginAction, lastFmLogOut } from '../../../actions/scrobbling';
 
 type LastFmSocialIntegrationProps = {
   actions: {
     fetchAllFmFavorites: React.MouseEventHandler;
     enableScrobbling: Function;
     disableScrobbling: Function;
-    lastFmConnectAction: React.MouseEventHandler;
-    lastFmLoginAction: React.MouseEventHandler;
-    lastFmLogOut: React.MouseEventHandler;
+    lastFmConnectAction: typeof lastFmConnectAction;
+    lastFmLoginAction: typeof lastFmLoginAction;
+    lastFmLogOut: typeof lastFmLogOut;
   };
   scrobbling: ReturnType<typeof ScrobblingReducer>;
   importfavs: ReturnType<typeof ImportFavsReducer>;

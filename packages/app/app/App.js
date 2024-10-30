@@ -37,7 +37,7 @@ import PlayerBarContainer from './containers/PlayerBarContainer';
 import MiniPlayerContainer from './containers/MiniPlayerContainer';
 
 import IpcContainer from './containers/IpcContainer';
-import SoundContainer from './containers/SoundContainer';
+import { SoundContainer } from './containers/SoundContainer';
 import ToastContainer from './containers/ToastContainer';
 import ShortcutsContainer from './containers/ShortcutsContainer';
 import ErrorBoundary from './containers/ErrorBoundary';
@@ -78,7 +78,7 @@ class App extends React.PureComponent {
     if (e.button === 1) {
       e.preventDefault();
     }
-  } 
+  }
   updateConnectivityStatus = (isConnected) => {
     this.props.actions.changeConnectivity(isConnected);
   }

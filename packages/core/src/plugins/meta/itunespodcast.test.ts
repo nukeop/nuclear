@@ -27,7 +27,7 @@ describe('iTunes podcast metaprovider tests', () => {
     const response = await itunesMeta.fetchAlbumDetails('Programming Throwdown');
     expect(fetch).toHaveBeenCalledTimes(1);
     const track = new Track ({
-      'artist': 'Programming Throwdown', 
+      'artists': ['Programming Throwdown'], 
       'duration': 4554, 
       'position': 1, 
       'thumbnail': 'https://is3-ssl.mzstatic.com/image/thumb/Podcasts125/v4/83/e8/a9/83e8a9d5-df87-b19d-7050-55e4ce4df89d/mza_13511678666604160959.jpg/60x60bb.jpg', 
