@@ -3,18 +3,18 @@
     "download": "Unduh",
     "download-toast-content": "{{artist}} - {{title}} telah ditambahkan ke unduhan.",
     "download-toast-title": "Album telah ditambahkan ke unduhan",
-    "error-load": "Album tidak dapat dimuat. Coba lagi nanti atau laporkan masalah ke Github",
+    "error-load": "Maaf, album tidak dapat dimuat. Coba lagi nanti atau laporkan masalah ke Github",
     "genre": "Genre:",
     "play": "Putar",
     "queue": "Tambahkan album ke daftar antrian",
     "tracks": "Lagu:",
     "year": "Tahun:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Tambahkan album ke daftar putar",
+    "create-playlist": "Buat daftar putar baru",
+    "create-playlist-dialog-title": "Masukkan nama playlist:",
+    "create-playlist-dialog-placeholder": "Nama playlist...",
+    "create-playlist-dialog-accept": "Simpan",
+    "create-playlist-dialog-cancel": "Batal"
   },
   "app": {
     "collection": "Koleksi",
@@ -47,7 +47,14 @@
     "similar": "Musisi yang mirip",
     "title": "Judul",
     "tour": "Dalam tur",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Track populer",
+    "artist-albums": {
+      "header": "Album",
+      "sort-by-release-date": "Urutkan oleh tanggal rilis",
+      "sort-by-az": "Urutkan A-Z",
+      "sort-by-most-played": "Urutkan oleh paling sering diputar",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Tambahkan semua",
@@ -151,7 +158,7 @@
     "delete": "Hapus daftar putar ini",
     "duration": "Durasi",
     "empty": "Tidak ada daftar putar.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Coba membuat daftar putar, atau impor URL, dan mereka akan ditampilkan disini!",
     "error-empty-data": "Data kosong",
     "error-invalid-data": "Data tidak valid",
     "error-open-file": "Tidak bisa membuka berkas",
@@ -160,7 +167,7 @@
     "export-fail-title": "Eksport daftar putar gagal",
     "export-success-title": "Daftar putar berhasil diekspor",
     "header": "Daftar putarmu",
-    "header-add-button": "Add",
+    "header-add-button": "Tambah",
     "import-progress": "Impor perkembangan",
     "spotify-import-placeholder": "Tempelkan tautan playlist Spotify di sini",
     "dialog-placeholder": "Nama daftar putar...",
@@ -168,9 +175,9 @@
     "dialog-cancel": "Batal",
     "dialog-rename": "Ubah Nama",
     "dialog-import": "Impor",
-    "create-button": "Create a new playlist",
+    "create-button": "Buat daftar putar baru",
     "new-playlist": "Daftar putar baru",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Impor dari Spotify",
     "import-button": "Impor berkas (JSON)",
     "import-fail-title": "Impor daftar putar gagal",
     "import-success-title": "Daftar putar berhasil diimpor",
@@ -192,10 +199,12 @@
     "upload-to-server": "Unggah ke server",
     "download-from-server": "Unduh dari server",
     "number-of-tracks": "lagu",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlist-url": "Tempelkan URL daftar putar:",
+    "create-playlist-dialog-title": "Masukkan nama playlist:",
+    "playlist": "Daftar Putar",
+    "play": "Putar",
+    "external-source-tooltip": "Playlist ini dari sumber eksternal: {{source}}. Kamu tidak bisa menyuntingnya. Simpan secara lokal menggunakan menu playlist untuk membuat perubahan.",
+    "save-external-playlist": "Simpan secara lokal"
   },
   "plugins": {
     "add-a-plugin": "Tambahkan plugin",
@@ -222,10 +231,10 @@
     "favorite-add": "Tambahkan ke favorit",
     "header": "antrian",
     "header-track": "Lagu sekarang",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Salin url lagu ke clipboard",
     "loading": "Sedang memuat.",
     "playlist-add": "Tambahkan ke daftar putar",
-    "playlist-add-queue": "Tambahkan antrian ke daftar putar",
+    "playlist-add-queue": "Simpan antrean ke daftar putar",
     "playlist-toast-content": "Daftar putar {{name}} berhasil dibuat.",
     "playlist-toast-title": "Daftar putar berhasil dibuat",
     "live": "Live",
@@ -247,8 +256,8 @@
       "verify": "Verifikasi",
       "unverify": "Tidak diverifikasi"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Masukkan nama playlist:",
+    "play-now": "Putar sekarang"
   },
   "search": {
     "album": "Album",
@@ -302,7 +311,7 @@
     "github-description": "Masuk melalui Github agar dapat membuat dan berbagi daftar putar secara daring (fitur yang akan datang).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "URL contoh Invidious",
     "language": "Bahasa",
     "language-placeholder": "Pilih bahasa",
     "lastfm-connect": "Hubungkan dengan Last.fm",
@@ -349,7 +358,7 @@
     "user": "Pengguna:",
     "user-id": "ID Pengguna",
     "use-stream-verification": "Gunakan verifikasi stream",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "use-stream-verification-description": "Gunakan verifikasi stream. Memuat stream yang diverifikasi oleh komunitas sebagai benar untuk trek yang Anda mainkan. Selain itu, Anda juga bisa memberi suara untuk stream. Lihat dokumentasi untuk detail.",
     "youtube": "Youtube",
     "yt-api-key": "Kunci API Youtube"
   },
@@ -365,7 +374,7 @@
     "add-to-favorite": "Tambahkan ke favorit",
     "add-to-playlist": "Tambahkan ke daftar putar",
     "add-to-queue": "Tambahkan ke daftar antri",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Buat daftar putar baru",
     "create-playlist-dialog-title": "Masukkan nama playlist:",
     "create-playlist-dialog-placeholder": "Nama playlist...",
     "create-playlist-dialog-accept": "Simpan",
@@ -386,13 +395,14 @@
     "add-selected-tracks-to-favorites": "Tambahkan pilihan ke favorit",
     "play-selected-tracks-now": "Putar pilihan sekarang",
     "tracks-selected-label-singular": "lagu telah dipilih",
-    "tracks-selected-label-plural": "lagu telah dipilih"
+    "tracks-selected-label-plural": "lagu telah dipilih",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Tekan ESC untuk keluar dari layar penuh"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "untuk membuka palet perintah",
     "search-placeholder": "Apa yang ingin anda lakukan?",
     "empty-state-help": "Tidak dapat menemukan apa yang anda inginkan? Coba dengan perintah bantuan.",
     "protip-text": "PROTIP:",

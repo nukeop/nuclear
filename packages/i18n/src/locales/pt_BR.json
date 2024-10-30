@@ -9,12 +9,12 @@
     "queue": "Adicionar à Fila",
     "tracks": "Faixas:",
     "year": "Ano:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Adicionar álbum em playlist",
+    "create-playlist": "Cirar uma nova playlist",
+    "create-playlist-dialog-title": "Insira o nome da playlist:",
+    "create-playlist-dialog-placeholder": "Nome da playlist...",
+    "create-playlist-dialog-accept": "Salvar",
+    "create-playlist-dialog-cancel": "Cancelar"
   },
   "app": {
     "collection": "Coleção",
@@ -42,12 +42,19 @@
   },
   "artist": {
     "add-all": "Adicionar Tudo",
-    "count": "Reproduções",
+    "count": "Número de reproduções",
     "queue": "Adicione todas as faixas à fila",
     "similar": "Artistas similares",
     "title": "Título",
     "tour": "Turnê",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Faixas populares",
+    "artist-albums": {
+      "header": "Álbuns",
+      "sort-by-release-date": "Ordenar por Data de Lançamento",
+      "sort-by-az": "Ordenar de A-Z",
+      "sort-by-most-played": "Ordenar por mais tocadas",
+      "filter-placeholder": "Filtrar..."
+    }
   },
   "dashboard": {
     "add-all": "Adicionar tudo",
@@ -151,7 +158,7 @@
     "delete": "Excluir esta playlist",
     "duration": "Duração",
     "empty": "Nenhuma Playlist encontrada.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Tente criar listas de reprodução, ou importar pela URL, e elas aparecerão aqui!",
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
@@ -160,7 +167,7 @@
     "export-fail-title": "Falha na exportação da playlist",
     "export-success-title": "Sucesso na exportação da playlist",
     "header": "Suas playlists",
-    "header-add-button": "Add",
+    "header-add-button": "Adicionar",
     "import-progress": "Progresso de importação",
     "spotify-import-placeholder": "Cole o link da playlist do Spotify aqui",
     "dialog-placeholder": "Nome da Lista de Reprodução...",
@@ -168,9 +175,9 @@
     "dialog-cancel": "Cancelar",
     "dialog-rename": "Renomear",
     "dialog-import": "Importar",
-    "create-button": "Create a new playlist",
+    "create-button": "Cirar uma nova playlist",
     "new-playlist": "New playlist",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Importar do Spotify",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
@@ -192,10 +199,12 @@
     "upload-to-server": "Upload para o servidor",
     "download-from-server": "Baixar do servidor",
     "number-of-tracks": "faixas",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
+    "input-playlist-url": "Colar URL da playlist:",
+    "create-playlist-dialog-title": "Insira o nome da playlist:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Reproduzir",
+    "external-source-tooltip": "Esta playlist é de uma fonte externa: {{source}}. Você não pode editá-la. Salve ela localmente usando o menu de playlist para fazer alterações.",
+    "save-external-playlist": "Salvar localmente"
   },
   "plugins": {
     "add-a-plugin": "Adicionar um plugin",
@@ -222,10 +231,10 @@
     "favorite-add": "Adiconar aos favoritos",
     "header": "Lista",
     "header-track": "Faixa Atual",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Copiar URL da faixa",
     "loading": "Transmissão ainda carregando.",
     "playlist-add": "Adicionar à Lista de Reprodução",
-    "playlist-add-queue": "Adicionar fila à Lista de Reprodução",
+    "playlist-add-queue": "Adicionar fila à playlist",
     "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
     "playlist-toast-title": "Lista de Reprodução Criada",
     "live": "Em direto",
@@ -247,8 +256,8 @@
       "verify": "Verificar",
       "unverify": "Desverificar"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Insira o nome da playlist:",
+    "play-now": "Reproduzir agora"
   },
   "search": {
     "album": "Álbum",
@@ -302,7 +311,7 @@
     "github-description": "Faça o login Através do Github para Poder Criar e Compartilhar suas Playlists (próximo recurso).",
     "github-title": "GitHub",
     "http": "API HTTP",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "URL da instância Invidious",
     "language": "Idioma",
     "language-placeholder": "Escolha um idioma",
     "lastfm-connect": "Conectar com o Last.fm",
@@ -365,7 +374,7 @@
     "add-to-favorite": "Adicionar aos favoritos",
     "add-to-playlist": "Adicionar à Lista de Reprodução",
     "add-to-queue": "Adicionar à fila",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Cirar uma nova playlist",
     "create-playlist-dialog-title": "Insira o nome da playlist:",
     "create-playlist-dialog-placeholder": "Nome da playlist...",
     "create-playlist-dialog-accept": "Salvar",
@@ -386,13 +395,14 @@
     "add-selected-tracks-to-favorites": "Adicionar selecionados aos favoritos",
     "play-selected-tracks-now": "Tocar selecionados agora",
     "tracks-selected-label-singular": "música selecionada",
-    "tracks-selected-label-plural": "tracks selected"
+    "tracks-selected-label-plural": "tracks selected",
+    "filter-input-placeholder": "Filtrar..."
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "para abrir a paleta de comandos",
     "search-placeholder": "O que gostaria de fazer?",
     "empty-state-help": "Não encontrou o que está procurando? Tente o comando de ajuda.",
     "protip-text": "DICA:",

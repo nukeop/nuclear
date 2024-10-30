@@ -2,19 +2,19 @@
   "album": {
     "download": "Daxe",
     "download-toast-content": "{{artist}} - {{title}} li daxistinan hate tevlîkirin.",
-    "download-toast-title": "Album li daxistinan hate tevlîkirin",
+    "download-toast-title": "Elbum li daxistinan hate tevlîkirin",
     "error-load": "Bibore, ev album nehate barkirin. Paşê dîsa biceribîne an jî li ser Github pirsgirêkeke nû veke",
     "genre": "Cure:",
     "play": "Lêde",
-    "queue": "Albumê tevlî rêzê bike",
+    "queue": "Elbumê tevlî rêzê bike",
     "tracks": "Stran:",
     "year": "Sal:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Elbumê tevlî rêzê lêdanê bike",
+    "create-playlist": "Rêzeke lêdanê ya nû çê bike",
+    "create-playlist-dialog-title": "Navê rêza lêdanê têxe:",
+    "create-playlist-dialog-placeholder": "Navê rêza lêdanê...",
+    "create-playlist-dialog-accept": "Tomar bike",
+    "create-playlist-dialog-cancel": "Têk bibe"
   },
   "app": {
     "collection": "Berhevok",
@@ -47,7 +47,14 @@
     "similar": "Hunermendên wekhev",
     "title": "Sernav",
     "tour": "Di gerê de",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Stranên navdar",
+    "artist-albums": {
+      "header": "Elbum",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Parzandin A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Parzûn..."
+    }
   },
   "dashboard": {
     "add-all": "Hemû tevlî bike",
@@ -61,7 +68,7 @@
     "top": "Baştirîn stran",
     "trending-playlists": "Rêzokên lêdanê yên rojevê",
     "trending-artists": "Hunermendên rojevê",
-    "trending-albums": "Albumên rojevê",
+    "trending-albums": "Elbumên rojevê",
     "filter": "Parzûn...",
     "nothing-found": "Tiştek nehate dîtin."
   },
@@ -87,9 +94,9 @@
     "rock": "Rock"
   },
   "favorite-albums": {
-    "empty": "Albumên bijare tune ne",
-    "empty-help": "Hinek albuman tevlî bijarteyên xwe bike û ew ê li vir xuya bibin!",
-    "header": "Albumên te yên bijarte"
+    "empty": "Elbumên bijare tune ne",
+    "empty-help": "Hinek elbuman tevlî bijarteyên xwe bike û ew ê li vir xuya bibin!",
+    "header": "Elbumên te yên bijarte"
   },
   "favorite-artists": {
     "empty": "Hunermendên bijare tune ne",
@@ -114,14 +121,14 @@
   },
   "library": {
     "add": "Peldandkan tevlî bike",
-    "album": "Album",
+    "album": "Elbum",
     "artist": "Hunermend",
     "empty": "Pirtûxane vala ye",
     "empty-help": "Bi bikaranîna bişkoka li jorê hinek muzîk tevlî bike.",
     "filter-placeholder": "Parzûn...",
     "header": "Pirtûxaneya herêmî",
     "no-search-results": "Encamên lêgerînê tune ne",
-    "no-search-results-help": "Tu stran, album an hunermend têkildarî peyva lêgerînê nehate dîtin.",
+    "no-search-results-help": "Tu stran, elbum an hunermend têkildarî peyva lêgerînê nehate dîtin.",
     "title": "Sernav"
   },
   "lyrics": {
@@ -146,7 +153,7 @@
     "add-selected-tracks-to-downloads": "Ên hilbijartî tevlî daxistinan bike",
     "add-selected-tracks-to-favorites": "Ên hilbijartî tevlî bijarteyan bike",
     "add-selected-tracks-to-queue": "Ên hilbijartî tevlî rêzê bike",
-    "album": "Album",
+    "album": "Elbum",
     "artist": "Hunermend",
     "delete": "Vê rêzika lêdanê jê bibe",
     "duration": "Dirêjî",
@@ -195,7 +202,9 @@
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
     "playlist": "Playlist",
-    "play": "Play"
+    "play": "Play",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save locally"
   },
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
@@ -225,7 +234,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Barkirina weşanê didome.",
     "playlist-add": "Tevlî rêzoka lêdanan bike",
-    "playlist-add-queue": "Rêzoka tevlî lêdananê bike",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Rêzoka lêdanan {{name}} hate afirandin.",
     "playlist-toast-title": "Rêzoka lêdanan hate afirandin",
     "live": "Zindî",
@@ -248,11 +257,11 @@
       "unverify": "Piştrast neke"
     },
     "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "play-now": "Niha lêde"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Album",
+    "album": "Elbum",
+    "album_plural": "Elbum",
     "all": "Hemû",
     "artist": "Hunermend",
     "artist_plural": "Hunermend",
@@ -302,7 +311,7 @@
     "github-description": "Bi riya Github-ê têkeve da ku tu rêzoka lêdanên xwe yên serhêl biafirîne û parve bike (taybetmendiya pêşerojê).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Girêdana mînakî ya Invidious",
     "language": "Ziman",
     "language-placeholder": "Zimanekî hilbijêre",
     "lastfm-connect": "Bi Last.fm ve girê bide",
@@ -354,7 +363,7 @@
     "yt-api-key": "Kilîta API ya Youtube"
   },
   "tags": {
-    "albums": "Baştirîn album",
+    "albums": "Baştirîn elbum",
     "artist": "Hunermend",
     "artists": "Baştirîn hunermend",
     "duration": "Dirêjî",
@@ -365,7 +374,7 @@
     "add-to-favorite": "Tevlî bijarteyan bike",
     "add-to-playlist": "Tevlî rêzoka lêdanan bike",
     "add-to-queue": "Tevlî rêzê bike",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Rêzeke lêdanê ya nû çê bike",
     "create-playlist-dialog-title": "Navê rêzoka lêdanê têxe:",
     "create-playlist-dialog-placeholder": "Navê rêzoka lêdanê...",
     "create-playlist-dialog-accept": "Tomar bike",
@@ -386,7 +395,8 @@
     "add-selected-tracks-to-favorites": "Ên hilbijartî tevlî bijarteyan bike",
     "play-selected-tracks-now": "Ên hilbijartî niha lêde",
     "tracks-selected-label-singular": "stran hate hilbijartin",
-    "tracks-selected-label-plural": "stran hatin hilbijartin"
+    "tracks-selected-label-plural": "stran hatin hilbijartin",
+    "filter-input-placeholder": "Filter..."
   },
   "visualizer": {
     "exit-fullscreen": "Bo ji dîmendera tije derkevî pê li bişkoka ESC-yê bike"
