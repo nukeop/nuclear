@@ -3,7 +3,9 @@ const youtubeService = rest.Youtube;
 
 const playlistLessThan100 = 'https://www.youtube.com/watch?v=TKYsuU86-DQ&list=PL0eyrZgxdwhwNC5ppZo_dYGVjerQY3xYU';
 
-const playlistGreaterThan100 = 'https://www.youtube.com/playlist?list=PLuUrokoVSxlcgocBXbDF76yWd3YKWpOH9';
+
+// TODO: replace these tests with mocks
+const playlistGreaterThan100 = 'https://www.youtube.com/playlist?list=PL8F6B0753B2CCA128';
 
 describe('Youtube tests', () => {
   it('should able to get playlist less than 100 tracks', async () => {
