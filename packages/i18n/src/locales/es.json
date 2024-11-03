@@ -11,8 +11,8 @@
     "year": "Año:",
     "add-to-playlist": "Añadir álbum a playlist",
     "create-playlist": "Crear nueva lista de reproducción",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-title": "Nombre de la lista de reproducción:",
+    "create-playlist-dialog-placeholder": "Nombre...",
     "create-playlist-dialog-accept": "Guardar",
     "create-playlist-dialog-cancel": "Cancelar"
   },
@@ -158,7 +158,7 @@
     "delete": "Eliminar esta lista de reproducción",
     "duration": "Duración",
     "empty": "No hay listas de reproducción.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "¡Intenta crear listas de reproducción o importar por URL, y aparecerán aquí!",
     "error-empty-data": "Datos vacíos",
     "error-invalid-data": "Datos inválidos",
     "error-open-file": "No se puede abrir el archivo",
@@ -199,11 +199,11 @@
     "upload-to-server": "Subir al servidor",
     "download-from-server": "Descargar desde el servidor",
     "number-of-tracks": "canciones",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
+    "input-playlist-url": "Pegar URL de la lista de reproducción:",
+    "create-playlist-dialog-title": "Nombre de la lista de reproducción:",
     "playlist": "Lista De Reproducción",
     "play": "Reproducir",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "external-source-tooltip": "Esta lista de reproducción es de una fuente externa: {{source}}. No puedes editarla. Guárdala localmente usando el menú de listas de reproducción para hacer cambios.",
     "save-external-playlist": "Guardar localmente"
   },
   "plugins": {
@@ -231,10 +231,10 @@
     "favorite-add": "Añadir a favoritos",
     "header": "Cola de reproducción",
     "header-track": "Pista actual",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Copiar URL de la pista al portapapeles",
     "loading": "La transmisión sigue cargando.",
     "playlist-add": "Añadir a lista de reproducción",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "Añadir cola a lista de reproducción",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
     "live": "En directo",
@@ -256,7 +256,7 @@
       "verify": "Verificar",
       "unverify": "No verificar"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-title": "Nombre de la lista de reproducción:",
     "play-now": "Reproducir ahora"
   },
   "search": {
