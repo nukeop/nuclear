@@ -88,7 +88,7 @@ export const GridTrackTable = <T extends Track>({
         header={positionHeader}
         isCentered
       />,
-      accessor: (track: T) => track.position,
+      accessor: (track: T) => `${track.discNumber || 1}.${track.position}`,
       Cell: PositionCell,
       enableSorting: true,
       columnWidth: '4em'

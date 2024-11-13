@@ -12,6 +12,7 @@ export type Track = {
   album?: string;
   duration?: number | string;
   position?: number | string;
+  discNumber?: number;
   playcount?: number | string;
   thumbnail?: string;
   image?: { '#text'?: string }[];

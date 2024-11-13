@@ -169,6 +169,7 @@ export class SpotifyMetaProvider extends MetaProvider {
         title: track.name,
         artist: result.artists[0].name,
         duration: track.duration_ms/1000,
+        discNumber: track.disc_number,
         position: track.track_number,
         thumbnail: thumb
       }))
