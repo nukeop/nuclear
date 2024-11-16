@@ -23,13 +23,14 @@ export type TrackTableExtraProps<T extends Track> = {
   onRemoveFromFavorites?: (track: T) => void;
   onAddToPlaylist?: (track: T, { name }: { name: string }) => void;
   onCreatePlaylist?: (track: T, { name }: { name: string }) => void;
+  onTrackUpdate?: (index: number, updatedTrack: T) => void;
   onAddToDownloads?: (track: T) => void;
   onDelete?: (track: T, idx: number) => void;
   playlists?: Array<{
     name: string;
   }>;
-  popupActionStrings?: TrackPopupStrings
-}
+  popupActionStrings?: TrackPopupStrings;
+};
 
 export type TrackTableStrings = {
   addSelectedTracksToQueue: string;
@@ -39,7 +40,7 @@ export type TrackTableStrings = {
   tracksSelectedLabelSingular: string;
   tracksSelectedLabelPlural: string;
   filterInputPlaceholder: string;
-}
+};
 
 export type TrackTableHeaders = {
   positionHeader: React.ReactNode;
@@ -48,7 +49,7 @@ export type TrackTableHeaders = {
   titleHeader: string;
   albumHeader: string;
   durationHeader: string;
-}
+};
 
 export type TrackTableSettings = {
   displayHeaders?: boolean;
@@ -63,5 +64,3 @@ export type TrackTableSettings = {
   selectable?: boolean;
   searchable?: boolean;
 };
-
-
