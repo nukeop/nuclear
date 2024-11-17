@@ -99,7 +99,7 @@ exports[`Spotfiy playlist adapter should display a Spotify playlist 1`] = `
               />
             </div>
             <button
-              class="ui blue icon button nuclear button borderless track_table_filter_button"
+              class="ui blue icon button track_table_filter_button"
             >
               <i
                 aria-hidden="true"
@@ -311,46 +311,47 @@ exports[`Spotfiy playlist adapter should display a Spotify playlist 1`] = `
                         />
                       </button>
                     </div>
-                    <div
-                      class="grid_track_table_cell text_cell title_cell"
-                      data-testid="title-cell"
-                      role="cell"
-                    >
-                      <span
-                        class="title_cell_content"
+                    <div>
+                      <div
+                        class="grid_track_table_cell text_cell title_cell"
+                        data-testid="title-cell"
+                        role="cell"
                       >
                         <span
-                          class="title_cell_value"
+                          class="title_cell_content"
                         >
-                          Test track
-                        </span>
-                        <span
-                          class="title_cell_buttons"
-                        >
-                          <button
-                            class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
-                            data-testid="add-to-queue"
+                          <span
+                            class="title_cell_value"
                           >
-                            <i
-                              aria-hidden="true"
-                              class="plus icon"
-                            />
-                          </button>
-                          <button
-                            class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
-                            data-testid="track-popup-trigger"
+                            Test track
+                          </span>
+                          <span
+                            class="title_cell_buttons"
                           >
-                            <i
-                              aria-hidden="true"
-                              class="ellipsis horizontal icon"
-                            />
-                          </button>
+                            <button
+                              class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                              data-testid="add-to-queue"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="plus icon"
+                              />
+                            </button>
+                            <button
+                              class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                              data-testid="track-popup-trigger"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="ellipsis horizontal icon"
+                              />
+                            </button>
+                          </span>
                         </span>
-                      </span>
+                      </div>
                     </div>
                     <div
                       class="grid_track_table_cell text_cell"
-                      role="cell"
                     >
                       Test artist
                     </div>
@@ -428,46 +429,47 @@ exports[`Spotfiy playlist adapter should display a Spotify playlist 1`] = `
                         />
                       </button>
                     </div>
-                    <div
-                      class="grid_track_table_cell text_cell title_cell"
-                      data-testid="title-cell"
-                      role="cell"
-                    >
-                      <span
-                        class="title_cell_content"
+                    <div>
+                      <div
+                        class="grid_track_table_cell text_cell title_cell"
+                        data-testid="title-cell"
+                        role="cell"
                       >
                         <span
-                          class="title_cell_value"
+                          class="title_cell_content"
                         >
-                          Another test track
-                        </span>
-                        <span
-                          class="title_cell_buttons"
-                        >
-                          <button
-                            class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
-                            data-testid="add-to-queue"
+                          <span
+                            class="title_cell_value"
                           >
-                            <i
-                              aria-hidden="true"
-                              class="plus icon"
-                            />
-                          </button>
-                          <button
-                            class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
-                            data-testid="track-popup-trigger"
+                            Another test track
+                          </span>
+                          <span
+                            class="title_cell_buttons"
                           >
-                            <i
-                              aria-hidden="true"
-                              class="ellipsis horizontal icon"
-                            />
-                          </button>
+                            <button
+                              class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                              data-testid="add-to-queue"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="plus icon"
+                              />
+                            </button>
+                            <button
+                              class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                              data-testid="track-popup-trigger"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="ellipsis horizontal icon"
+                              />
+                            </button>
+                          </span>
                         </span>
-                      </span>
+                      </div>
                     </div>
                     <div
                       class="grid_track_table_cell text_cell"
-                      role="cell"
                     >
                       Another test artist
                     </div>
