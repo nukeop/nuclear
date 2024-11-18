@@ -311,7 +311,9 @@ exports[`Spotfiy playlist adapter should display a Spotify playlist 1`] = `
                         />
                       </button>
                     </div>
-                    <div>
+                    <div
+                      class="grid_track_table_cell text_cell title_cell"
+                    >
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"
@@ -429,7 +431,9 @@ exports[`Spotfiy playlist adapter should display a Spotify playlist 1`] = `
                         />
                       </button>
                     </div>
-                    <div>
+                    <div
+                      class="grid_track_table_cell text_cell title_cell"
+                    >
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"

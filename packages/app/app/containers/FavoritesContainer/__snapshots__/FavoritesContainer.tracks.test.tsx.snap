@@ -393,7 +393,9 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
                     />
-                    <div>
+                    <div
+                      class="grid_track_table_cell text_cell title_cell"
+                    >
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"
@@ -505,7 +507,9 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
                     />
-                    <div>
+                    <div
+                      class="grid_track_table_cell text_cell title_cell"
+                    >
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"
@@ -950,7 +954,9 @@ exports[`Favorite tracks view container should show a popup when a track is clic
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
                     />
-                    <div>
+                    <div
+                      class="grid_track_table_cell text_cell title_cell"
+                    >
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"
@@ -1062,7 +1068,9 @@ exports[`Favorite tracks view container should show a popup when a track is clic
                       class="grid_track_table_cell thumbnail_cell"
                       role="cell"
                     />
-                    <div>
+                    <div
+                      class="grid_track_table_cell text_cell title_cell"
+                    >
                       <div
                         class="grid_track_table_cell text_cell title_cell"
                         data-testid="title-cell"

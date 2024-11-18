@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { CellProps } from 'react-table';
 import { Track } from '@nuclear/ui/lib/types';
 import { TextCell } from './TextCell';
+import cx from 'classnames';
+import styles from '../styles.scss';
 
 export const EditableArtistCell: React.FC<
   CellProps<Track> & {
@@ -35,6 +37,7 @@ export const EditableArtistCell: React.FC<
   return isEditing ? (
     <input
       value={editValue}
+      className={cx(styles.grid_track_table_cell, styles.text_cell)}
       onChange={(e) => setEditValue(e.target.value)}
       onBlur={() => {
         setIsEditing(false);
@@ -53,7 +56,7 @@ export const EditableArtistCell: React.FC<
     />
   ) : (
     <div
-      className='grid_track_table_cell text_cell'
+      className={cx(styles.grid_track_table_cell, styles.text_cell)}
       onDoubleClick={() => setIsEditing(true)}
     >
       {editValue}

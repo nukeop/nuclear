@@ -768,7 +768,9 @@ exports[`Dashboard container should display top tracks after going to top tracks
                             />
                           </button>
                         </div>
-                        <div>
+                        <div
+                          class="grid_track_table_cell text_cell title_cell"
+                        >
                           <div
                             class="grid_track_table_cell text_cell title_cell"
                             data-testid="title-cell"
@@ -886,7 +888,9 @@ exports[`Dashboard container should display top tracks after going to top tracks
                             />
                           </button>
                         </div>
-                        <div>
+                        <div
+                          class="grid_track_table_cell text_cell title_cell"
+                        >
                           <div
                             class="grid_track_table_cell text_cell title_cell"
                             data-testid="title-cell"

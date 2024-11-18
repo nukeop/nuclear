@@ -262,7 +262,9 @@ exports[`Artist view container should display an artist 1`] = `
                               />
                             </button>
                           </div>
-                          <div>
+                          <div
+                            class="grid_track_table_cell text_cell title_cell"
+                          >
                             <div
                               class="grid_track_table_cell text_cell title_cell"
                               data-testid="title-cell"
@@ -355,7 +357,9 @@ exports[`Artist view container should display an artist 1`] = `
                               />
                             </button>
                           </div>
-                          <div>
+                          <div
+                            class="grid_track_table_cell text_cell title_cell"
+                          >
                             <div
                               class="grid_track_table_cell text_cell title_cell"
                               data-testid="title-cell"
@@ -448,7 +452,9 @@ exports[`Artist view container should display an artist 1`] = `
                               />
                             </button>
                           </div>
-                          <div>
+                          <div
+                            class="grid_track_table_cell text_cell title_cell"
+                          >
                             <div
                               class="grid_track_table_cell text_cell title_cell"
                               data-testid="title-cell"
