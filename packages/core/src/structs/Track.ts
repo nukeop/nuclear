@@ -15,9 +15,9 @@ export default class Track {
   title: string;
   name?: string;
   duration: string | number;
-  discNumber?: number;
-  
+
   position?: string | number;
+  discNumber?: string | number;
   playcount?: string | number;
   thumbnail?: string;
   extraArtists?: string[];
@@ -44,6 +44,7 @@ export default class Track {
     this.artist = data.artist;
     this.title = data.title;
     this.name = data.title;
+    this.discNumber = data.discNumber;
   }
 
   static fromSearchResultData(data: SearchResultsTrack): Track {
