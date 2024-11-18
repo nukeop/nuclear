@@ -15,6 +15,19 @@ export const EditableTitleCell: React.FC<
   if (!onTrackUpdate) {
     return <TitleCell {...props} />;
   }
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      setIsEditing(false);
+      if (editValue !== cell.value) {
+        const updatedTrack = { ...row.original };
+        updatedTrack.title = editValue;
+        onTrackUpdate(row.index, updatedTrack);
+      }
+    } else if (e.key === 'Escape') {
+      setIsEditing(false);
+      setEditValue(cell.value);
+    }
+  };
 
   return isEditing ? (
     <input
@@ -28,6 +41,7 @@ export const EditableTitleCell: React.FC<
           onTrackUpdate(row.index, updatedTrack);
         }
       }}
+      onKeyDown={handleKeyDown}
       autoFocus
     />
   ) : (

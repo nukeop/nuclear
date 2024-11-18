@@ -17,6 +17,20 @@ export const EditableArtistCell: React.FC<
   if (!onTrackUpdate) {
     return <TextCell {...(props as any)} />;
   }
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      setIsEditing(false);
+      if (editValue !== cell.value) {
+        const updatedTrack = { ...row.original, artist: editValue };
+        onTrackUpdate(row.index, updatedTrack);
+      }
+    } else if (e.key === 'Escape') {
+      setIsEditing(false);
+      setEditValue(
+        typeof cell.value === 'string' ? cell.value : cell.value.name
+      );
+    }
+  };
 
   return isEditing ? (
     <input
@@ -34,6 +48,7 @@ export const EditableArtistCell: React.FC<
           onTrackUpdate(row.index, updatedTrack);
         }
       }}
+      onKeyDown={handleKeyDown}
       autoFocus
     />
   ) : (
