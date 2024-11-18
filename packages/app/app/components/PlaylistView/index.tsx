@@ -4,8 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 import { Icon } from 'semantic-ui-react';
 
-import { Playlist } from '@nuclear/core';
-import { Button, ContextPopup, PopupButton, InputDialog, timestampToTimeString, Tooltip } from '@nuclear/ui';
+import { Playlist, PlaylistTrack } from '@nuclear/core';
+import {
+  Button,
+  ContextPopup,
+  PopupButton,
+  InputDialog,
+  timestampToTimeString,
+  Tooltip
+} from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -26,7 +33,7 @@ export type PlaylistViewProps = {
   onReorderTracks: (isource: number, idest: number) => void;
   isExternal?: boolean;
   externalSourceName?: string;
-}
+};
 
 const PlaylistView: React.FC<PlaylistViewProps> = ({
   playlist,
@@ -45,16 +52,42 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   const { t, i18n } = useTranslation('playlists');
   const history = useHistory();
 
-  const onRenamePlaylist = useCallback((name: string) => {
-    const updatedPlaylist = {
-      ...playlist,
-      name
-    };
-    updatePlaylist(updatedPlaylist);
-  }, [playlist, updatePlaylist]);
+  const onRenamePlaylist = useCallback(
+    (name: string) => {
+      const updatedPlaylist = {
+        ...playlist,
+        name
+      };
+      updatePlaylist(updatedPlaylist);
+    },
+    [playlist, updatePlaylist]
+  );
+  const onUpdateTrack = useCallback(
+    (index: number, updatedTrack: Track) => {
+      const updatedTracks = playlist.tracks.map((track, i) => {
+        if (i === index) {
+          return {
+            ...updatedTrack,
+            stream: (track as PlaylistTrack).stream
+          } as PlaylistTrack;
+        }
+        return track;
+      });
 
-  const onAddAll = useCallback(() => addTracks(playlist.tracks),
-    [addTracks, playlist]);
+      const updatedPlaylist = {
+        ...playlist,
+        tracks: updatedTracks
+      } as Playlist;
+
+      updatePlaylist(updatedPlaylist);
+    },
+    [playlist, updatePlaylist]
+  );
+
+  const onAddAll = useCallback(
+    () => addTracks(playlist.tracks),
+    [addTracks, playlist]
+  );
 
   const onPlayAll = useCallback(() => {
     clearQueue();
@@ -64,13 +97,16 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   }, [addTracks, clearQueue, playlist, selectSong, startPlayback]);
 
   const onDeleteTrack = !isExternal
-    ? useCallback((trackToRemove: Track, trackIndex: number) => {
-      const newPlaylist = {
-        ...playlist,
-        tracks: playlist.tracks.filter((_, index) => index !== trackIndex)
-      };
-      updatePlaylist(newPlaylist);
-    }, [playlist, updatePlaylist])
+    ? useCallback(
+      (trackToRemove: Track, trackIndex: number) => {
+        const newPlaylist = {
+          ...playlist,
+          tracks: playlist.tracks.filter((_, index) => index !== trackIndex)
+        };
+        updatePlaylist(newPlaylist);
+      },
+      [playlist, updatePlaylist]
+    )
     : undefined;
 
   const onDeletePlaylist = useCallback(() => {
@@ -94,27 +130,30 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   }, [exportPlaylist, playlist, t]);
 
   return (
-    <div 
-      data-testid='playlist-view'
-      className={styles.playlist_view_container}
-    >
+    <div data-testid='playlist-view' className={styles.playlist_view_container}>
       <div className={styles.playlist}>
         <div className={styles.playlist_view_info}>
           <div>
             <img
               className={styles.playlist_thumbnail}
-              src={playlist?.tracks?.[0]?.thumbnail ?? artPlaceholder as unknown as string}
+              src={
+                playlist?.tracks?.[0]?.thumbnail ??
+                (artPlaceholder as unknown as string)
+              }
             />
           </div>
           <div className={styles.playlist_header}>
-            {
-              isExternal &&
+            {isExternal && (
               <div className={styles.playlist_header_external_source}>
                 <Tooltip
                   on='hover'
-                  content={t('external-source-tooltip', { source: externalSourceName })}
+                  content={t('external-source-tooltip', {
+                    source: externalSourceName
+                  })}
                   trigger={
-                    <div className={styles.playlist_header_external_source_inner}>
+                    <div
+                      className={styles.playlist_header_external_source_inner}
+                    >
                       <Icon name='external square' />
                       {externalSourceName}
                     </div>
@@ -122,9 +161,11 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   position='bottom center'
                 />
               </div>
-            }
+            )}
             <div className={styles.playlist_header_inner}>
-              <label className={styles.playlist_header_label}>{t('playlist')}</label>
+              <label className={styles.playlist_header_label}>
+                {t('playlist')}
+              </label>
               <div className={styles.playlist_name}>
                 {playlist.name}
                 <InputDialog
@@ -135,13 +176,14 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   initialString={playlist.name}
                   onAccept={onRenamePlaylist}
                   trigger={
-                    !isExternal &&
-                    <Button
-                      basic
-                      aria-label={t('rename')}
-                      icon='pencil'
-                      data-testid='rename-button'
-                    />
+                    !isExternal && (
+                      <Button
+                        basic
+                        aria-label={t('rename')}
+                        icon='pencil'
+                        data-testid='rename-button'
+                      />
+                    )
                   }
                 />
               </div>
@@ -149,18 +191,18 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 <span>
                   {`${playlist.tracks.length} ${t('number-of-tracks')}`}
                 </span>
-                {
-                  playlist.lastModified &&
+                {playlist.lastModified && (
                   <>
-                    <span>
-                      ·
-                    </span>
+                    <span>·</span>
 
                     <span>
-                      {`${t('modified-at')}${timestampToTimeString(playlist.lastModified, i18n.language)}`}
+                      {`${t('modified-at')}${timestampToTimeString(
+                        playlist.lastModified,
+                        i18n.language
+                      )}`}
                     </span>
                   </>
-                }
+                )}
               </div>
               <div className={styles.playlist_buttons}>
                 <Button
@@ -185,7 +227,10 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   }
                   artist={null}
                   title={playlist.name}
-                  thumb={playlist?.tracks?.[0]?.thumbnail ?? artPlaceholder as unknown as string}
+                  thumb={
+                    playlist?.tracks?.[0]?.thumbnail ??
+                    (artPlaceholder as unknown as string)
+                  }
                 >
                   <PopupButton
                     onClick={onAddAll}
@@ -193,24 +238,22 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                     icon='plus'
                     label={t('queue')}
                   />
-                  {
-                    !isExternal &&
+                  {!isExternal && (
                     <PopupButton
                       onClick={onDeletePlaylist}
                       ariaLabel={t('delete')}
                       icon='trash'
                       label={t('delete')}
                     />
-                  }
-                  {
-                    isExternal &&
+                  )}
+                  {isExternal && (
                     <PopupButton
                       onClick={onSaveExternalPlaylist}
                       ariaLabel={t('save-external-playlist')}
                       icon='save'
                       label={t('save-external-playlist')}
                     />
-                  }
+                  )}
                   <PopupButton
                     onClick={onExportPlaylist}
                     ariaLabel={t('export-button')}
@@ -228,6 +271,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
           onReorder={!isExternal && onReorderTracks}
           displayAlbum={false}
           displayDeleteButton={!isExternal}
+          onTrackUpdate={!isExternal ? onUpdateTrack : undefined}
           searchable
         />
       </div>

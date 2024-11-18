@@ -22,6 +22,7 @@ import { safeAddUuid } from '../../actions/helpers';
 export type TrackTableContainerProps<T extends Track> = TrackTableSettings & {
   tracks: TrackTableProps<T>['tracks'];
   onDelete?: TrackTableProps<T>['onDelete'];
+  onTrackUpdate?: (index: number, updatedTrack: Track) => void;
   onReorder?: (indexSource: number, indexDest: number) => void;
   TrackTableComponent?: React.ComponentType<TrackTableProps<T>>;
   customColumns?: TrackTableProps<T>['customColumns'];
@@ -29,7 +30,7 @@ export type TrackTableContainerProps<T extends Track> = TrackTableSettings & {
   displayAddToFavorites?: boolean;
 };
 
-function TrackTableContainer<T extends Track> ({
+function TrackTableContainer<T extends Track>({
   tracks,
   onDelete,
   onReorder,
@@ -48,55 +49,79 @@ function TrackTableContainer<T extends Track> ({
     dispatch(favoritesActions.readFavorites());
   }, [dispatch]);
 
-  const isTrackFavorite = (track: Track) => !_.isNil(favoriteTracks.find(t => areTracksEqualByName(t, track)));
+  const isTrackFavorite = (track: Track) =>
+    !_.isNil(favoriteTracks.find((t) => areTracksEqualByName(t, track)));
 
-  const onAddToQueue = useCallback((track: Track) => {
-    dispatch(queueActions.addToQueue(queueActions.toQueueItem(track)));
-  }, [dispatch]);
+  const onAddToQueue = useCallback(
+    (track: Track) => {
+      dispatch(queueActions.addToQueue(queueActions.toQueueItem(track)));
+    },
+    [dispatch]
+  );
 
-  const onPlayNow = useCallback((track: Track) => {
-    dispatch(queueActions.playTrack(null, queueActions.toQueueItem(track)));
-  }, [dispatch]);
+  const onPlayNow = useCallback(
+    (track: Track) => {
+      dispatch(queueActions.playTrack(null, queueActions.toQueueItem(track)));
+    },
+    [dispatch]
+  );
 
-  const onPlayNext = useCallback((track: Track) => {
-    dispatch(queueActions.playNext(queueActions.toQueueItem(track)));
-  }, [dispatch]);
+  const onPlayNext = useCallback(
+    (track: Track) => {
+      dispatch(queueActions.playNext(queueActions.toQueueItem(track)));
+    },
+    [dispatch]
+  );
 
-  const onPlayAll = useCallback((tracks: Track[]) => {
-    dispatch(queueActions.clearQueue());
-    dispatch(queueActions.addPlaylistTracksToQueue(tracks));
-    dispatch(queueActions.selectSong(0));
-    dispatch(playerActions.startPlayback(false));
-  }, [dispatch]);
+  const onPlayAll = useCallback(
+    (tracks: Track[]) => {
+      dispatch(queueActions.clearQueue());
+      dispatch(queueActions.addPlaylistTracksToQueue(tracks));
+      dispatch(queueActions.selectSong(0));
+      dispatch(playerActions.startPlayback(false));
+    },
+    [dispatch]
+  );
 
-  const onAddToFavorites = useCallback((track: Track) => {
-    dispatch(favoritesActions.addFavoriteTrack(track));
-  }, [dispatch]);
+  const onAddToFavorites = useCallback(
+    (track: Track) => {
+      dispatch(favoritesActions.addFavoriteTrack(track));
+    },
+    [dispatch]
+  );
 
-  const onRemoveFromFavorites = useCallback((track: Track) => {
-    dispatch(favoritesActions.removeFavoriteTrack(track));
-  }, [dispatch]);
+  const onRemoveFromFavorites = useCallback(
+    (track: Track) => {
+      dispatch(favoritesActions.removeFavoriteTrack(track));
+    },
+    [dispatch]
+  );
 
-  const onAddToDownloads = useCallback((track: Track) => {
-    dispatch(downloadsActions.addToDownloads(null, track));
-  }, [dispatch]);
+  const onAddToDownloads = useCallback(
+    (track: Track) => {
+      dispatch(downloadsActions.addToDownloads(null, track));
+    },
+    [dispatch]
+  );
 
-  const onAddToPlaylist = useCallback((track: Track, playlist: Playlist ) => {
-    const clonedTrack = {...safeAddUuid(track)};
-    const foundPlaylist = playlists.data?.find(p => p.name === playlist.name);
-    const newPlaylist = {
-      ...foundPlaylist,
-      tracks: [
-        ...foundPlaylist.tracks,
-        clonedTrack
-      ]
-    };
-    dispatch(playlistActions.updatePlaylist(newPlaylist));
-  }, [dispatch, playlists]);
+  const onAddToPlaylist = useCallback(
+    (track: Track, playlist: Playlist) => {
+      const clonedTrack = { ...safeAddUuid(track) };
+      const foundPlaylist = playlists.data?.find(
+        (p) => p.name === playlist.name
+      );
+      const newPlaylist = {
+        ...foundPlaylist,
+        tracks: [...foundPlaylist.tracks, clonedTrack]
+      };
+      dispatch(playlistActions.updatePlaylist(newPlaylist));
+    },
+    [dispatch, playlists]
+  );
 
   const onCreatePlaylist = useCallback(
-    (track: Track, { name }: { name: string } ) => {
-      const clonedTrack = {...safeAddUuid(track)};
+    (track: Track, { name }: { name: string }) => {
+      const clonedTrack = { ...safeAddUuid(track) };
       if (clonedTrack.artist.name) {
         _.set(clonedTrack, 'artist', clonedTrack.artist.name);
       }
@@ -105,10 +130,21 @@ function TrackTableContainer<T extends Track> ({
     [dispatch]
   );
 
-  const onDragEnd = useCallback<TrackTableProps<Track>['onDragEnd']>((result) => {
-    const { source, destination } = result;
-    onReorder(source.index, destination.index);
-  }, [onReorder]);
+  const onDragEnd = useCallback<TrackTableProps<Track>['onDragEnd']>(
+    (result) => {
+      const { source, destination } = result;
+      onReorder(source.index, destination.index);
+    },
+    [onReorder]
+  );
+  const onUpdateTrack = useCallback(
+    (index: number, updatedTrack: Track) => {
+      if (settings.onTrackUpdate) {
+        settings.onTrackUpdate(index, updatedTrack);
+      }
+    },
+    [settings.onTrackUpdate]
+  );
 
   const popupTranstation = useTranslation('track-popup').t;
   const popupStrings = {
@@ -129,42 +165,55 @@ function TrackTableContainer<T extends Track> ({
 
   const trackTableTranslation = useTranslation('track-table').t;
   const trackTableStrings = {
-    addSelectedTracksToQueue: trackTableTranslation('add-selected-tracks-to-queue'),
-    addSelectedTracksToDownloads: trackTableTranslation('add-selected-tracks-to-downloads'),
-    addSelectedTracksToFavorites: trackTableTranslation('add-selected-tracks-to-favorites'),
+    addSelectedTracksToQueue: trackTableTranslation(
+      'add-selected-tracks-to-queue'
+    ),
+    addSelectedTracksToDownloads: trackTableTranslation(
+      'add-selected-tracks-to-downloads'
+    ),
+    addSelectedTracksToFavorites: trackTableTranslation(
+      'add-selected-tracks-to-favorites'
+    ),
+
     playSelectedTracksNow: trackTableTranslation('play-selected-tracks-now'),
-    tracksSelectedLabelSingular: trackTableTranslation('tracks-selected-label-singular'),
-    tracksSelectedLabelPlural: trackTableTranslation('tracks-selected-label-plural'),
+    tracksSelectedLabelSingular: trackTableTranslation(
+      'tracks-selected-label-singular'
+    ),
+    tracksSelectedLabelPlural: trackTableTranslation(
+      'tracks-selected-label-plural'
+    ),
     filterInputPlaceholder: trackTableTranslation('filter-input-placeholder')
   };
 
-  return <TrackTableComponent
-    {...settings}
-    tracks={tracks}
-    positionHeader={<Icon name='hashtag' />}
-    thumbnailHeader={<Icon name='image' />}
-    artistHeader={t('artist')}
-    titleHeader={t('title')}
-    albumHeader={t('album')}
-    durationHeader={t('duration')}
-    strings={trackTableStrings}
-    playlists={playlists.data}
-    customColumns={customColumns}
-    onAddToQueue={onAddToQueue}
-    onPlay={onPlayNow}
-    onPlayNext={onPlayNext}
-    onPlayAll={onPlayAll}
-    onAddToFavorites={Boolean(displayAddToFavorites) && onAddToFavorites}
-    onRemoveFromFavorites={onRemoveFromFavorites}
-    onAddToDownloads={Boolean(displayAddToDownloads) && onAddToDownloads}
-    onAddToPlaylist={onAddToPlaylist}
-    onCreatePlaylist={onCreatePlaylist}
-    onDelete={onDelete}
-    onDragEnd={Boolean(onReorder) && onDragEnd}
-    popupActionStrings={popupStrings}
-
-    isTrackFavorite={isTrackFavorite}
-  />;
+  return (
+    <TrackTableComponent
+      {...settings}
+      tracks={tracks}
+      positionHeader={<Icon name='hashtag' />}
+      thumbnailHeader={<Icon name='image' />}
+      artistHeader={t('artist')}
+      titleHeader={t('title')}
+      albumHeader={t('album')}
+      durationHeader={t('duration')}
+      strings={trackTableStrings}
+      playlists={playlists.data}
+      customColumns={customColumns}
+      onAddToQueue={onAddToQueue}
+      onPlay={onPlayNow}
+      onPlayNext={onPlayNext}
+      onPlayAll={onPlayAll}
+      onAddToFavorites={Boolean(displayAddToFavorites) && onAddToFavorites}
+      onRemoveFromFavorites={onRemoveFromFavorites}
+      onAddToDownloads={Boolean(displayAddToDownloads) && onAddToDownloads}
+      onAddToPlaylist={onAddToPlaylist}
+      onCreatePlaylist={onCreatePlaylist}
+      onDelete={onDelete}
+      onDragEnd={Boolean(onReorder) && onDragEnd}
+      popupActionStrings={popupStrings}
+      isTrackFavorite={isTrackFavorite}
+      onTrackUpdate={onUpdateTrack}
+    />
+  );
 }
 
 export default TrackTableContainer;
