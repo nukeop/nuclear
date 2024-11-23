@@ -86,7 +86,7 @@ export const GridTrackTable = <T extends Track>({
     },
     displayPosition && {
       id: TrackTableColumn.Position,
-      Header: ({ column }) => <TextHeader data-testid='position-header' column={column} header={positionHeader} isCentered />,
+      Header: ({ column }) => <TextHeader data-testid='position-header' column={column as TrackTableColumnInstance<Track>} header={positionHeader} isCentered />,
       accessor: (track: T) => track.position,
       Cell: PositionCell,
       enableSorting: true,
@@ -123,7 +123,7 @@ export const GridTrackTable = <T extends Track>({
     },
     displayAlbum && {
       id: TrackTableColumn.Album,
-      Header: ({ column }) => <TextHeader column={column} header={albumHeader} />,
+      Header: ({ column }: { column: TrackTableColumnInstance<T> }) => <TextHeader column={column} header={albumHeader} />,
       accessor: (track: T) => track.album,
       enableSorting: true,
       Cell: TextCell,
@@ -146,14 +146,21 @@ export const GridTrackTable = <T extends Track>({
   
   const renderTable = (data: T[], discNumber?: string) => {
     const columns = useMemo(generateColumns, [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
-  
+    
+    const initialState: Partial<TableState<T> & UseSortByState<T>> = {
+      sortBy: [{ id: TrackTableColumn.Position, desc: false }]
+    };
+
     const table = useTable<T>(
-      { columns, data, initialState: { sortBy: [{ id: TrackTableColumn.Position, desc: false }] } },
+      { columns, data, initialState },
       useGlobalFilter, useSortBy, useRowSelect
     );
     
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setGlobalFilter, state: tableState, selectedFlatRows } = table as TrackTableInstance<T>;
-    const onFilterClick = () => setGlobalFilter('');
+    const onFilterClick = () => {
+      setGlobalFilter('');
+      setGlobalFilterState('');
+    };
     const gridTemplateColumns = columns.map((col: ColumnWithWidth<T>) => col.columnWidth ?? '1fr').join(' ');
   
     const isDragDisabled = !onDragEnd || selectedFlatRows.length > 0 || (tableState as TrackTableState<T>).sortBy[0]?.id !== TrackTableColumn.Position;
@@ -167,7 +174,10 @@ export const GridTrackTable = <T extends Track>({
               type='text'
               placeholder={extraProps.strings.filterInputPlaceholder}
               className={styles.track_table_filter_input}
-              onChange={(e) => setGlobalFilter(e.target.value)}
+              onChange={(e) => {
+                setGlobalFilter(e.target.value);
+                setGlobalFilterState(e.target.value);
+              }}
               value={globalFilter}
             />
             <Button
@@ -184,7 +194,7 @@ export const GridTrackTable = <T extends Track>({
           <div className={styles.track_table_head}>
             {headerGroups.map((headerGroup) => (
               <div key={headerGroup.id} className={styles.track_table_header_row} style={{ gridTemplateColumns: gridTemplateColumns + ' auto' }} {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
+                {headerGroup.headers.map((column: TrackTableHeaderGroup<T>) => (
                   <div key={column.id} className={styles.track_table_header_cell} {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render('Header', extraProps)}
                   </div>
