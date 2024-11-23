@@ -380,6 +380,7 @@ describe('SpotifyMetaProvider', () => {
         title: 'test track',
         artist: 'test artist',
         duration: 1,
+        discNumber: 0,
         thumbnail: 'thumbnail.jpg'
       }]
     });
