@@ -1,3 +1,4 @@
+import spotify from '../../helpers/playlist/spotify';
 import { SpotifyArtist, SpotifyClientProvider, SpotifyImage, SpotifySimplifiedAlbum, SpotifyTrack, getImageSet } from '../../rest/Spotify';
 import Track from '../../structs/Track';
 import MetaProvider from '../metaProvider';
@@ -13,7 +14,7 @@ export class SpotifyMetaProvider extends MetaProvider {
     this.image = null;
     this.isDefault = true;
   }
-      
+
   async searchForArtists(query: string, limit=10): Promise<SearchResultsArtist[]> {
     const client = await SpotifyClientProvider.get();
     const results = await client.searchArtists(query, limit);
@@ -67,6 +68,7 @@ export class SpotifyMetaProvider extends MetaProvider {
       id: spotifyTrack.id,
       title: spotifyTrack.name,
       artist: spotifyTrack.artists[0].name,
+      discNumber: spotifyTrack.disc_number,
       source: SearchResultsSource.Spotify,
       thumb
     };
@@ -169,6 +171,7 @@ export class SpotifyMetaProvider extends MetaProvider {
         title: track.name,
         artist: result.artists[0].name,
         duration: track.duration_ms/1000,
+        discNumber: track.disc_number,
         position: track.track_number,
         thumbnail: thumb
       }))
@@ -181,6 +184,6 @@ export class SpotifyMetaProvider extends MetaProvider {
 
     return this.fetchAlbumDetails(result.id, albumType);
   }
-  
+
 }
 

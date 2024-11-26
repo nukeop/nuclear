@@ -62,6 +62,7 @@ export type SearchResultsTrack = {
     artist: string;
     source: SearchResultsSource;
     thumb?: string;
+    discNumber?: number | string;
 }
 
 export type ArtistTopTrack = {

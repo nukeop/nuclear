@@ -355,6 +355,7 @@ describe('SpotifyMetaProvider', () => {
           name: 'test track',
           artists: [{ name: 'test artist' }],
           duration_ms: 1000,
+          disc_number: 0,
           type: 'track'
         }]
       },
@@ -379,6 +380,7 @@ describe('SpotifyMetaProvider', () => {
         title: 'test track',
         artist: 'test artist',
         duration: 1,
+        discNumber: 0,
         thumbnail: 'thumbnail.jpg'
       }]
     });

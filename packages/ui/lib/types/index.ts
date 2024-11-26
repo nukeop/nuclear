@@ -1,9 +1,9 @@
 export type Track = {
   uuid?: string;
   loading?: boolean;
-  error?: boolean | { 
-    message: string; 
-    details: string 
+  error?: boolean | {
+    message: string;
+    details: string
   };
   local?: boolean;
   artist: { name: string } | string;
@@ -12,6 +12,7 @@ export type Track = {
   album?: string;
   duration?: number | string;
   position?: number | string;
+  discNumber?: number | string;
   playcount?: number | string;
   thumbnail?: string;
   image?: { '#text'?: string }[];

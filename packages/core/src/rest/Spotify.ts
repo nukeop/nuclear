@@ -65,6 +65,7 @@ export type SpotifyTrack = {
   popularity: number;
   track_number: number;
   duration_ms: number;
+  disc_number: number;
   type: 'track';
 }
 

@@ -52,3 +52,31 @@ makeSnapshotTest(GridTrackTable, {
   titleHeader: 'Title',
   durationHeader: 'Length'
 }, '(Snapshot) Grid track table - example data with all rows');
+
+makeSnapshotTest(GridTrackTable, {
+  tracks: [
+    {
+      position: 1, 
+      thumbnail: 'https://i.imgur.com/4euOws2.jpg', 
+      artist: 'Test Artist',
+      title: 'Test Title',
+      album: 'Test Album',
+      duration: '1:00',
+      discNumber: '0'
+    }, {
+      position: 2, 
+      thumbnail: 'https://i.imgur.com/4euOws2.jpg', 
+      artist: 'Test Artist 2',
+      name: 'Test Title 2',
+      album: 'Test Album',
+      duration: '1:00',
+      discNumber: '1'
+    } as Track
+  ],
+  positionHeader: 'Position',
+  thumbnailHeader: 'Thumbnail',
+  artistHeader: 'Artist',
+  albumHeader: 'Album',
+  titleHeader: 'Title',
+  durationHeader: 'Length'
+}, '(Snapshot) Grid track table - example data with multiple discs');
