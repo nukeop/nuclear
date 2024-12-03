@@ -8,7 +8,7 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import { getTrackArtist, getTrackTitle } from '../../utils';
+import { getThumbnail, getTrackArtist, getTrackTitle } from '../../utils';
 import { Track } from '../../types';
 import Img from 'react-image';
 
@@ -48,10 +48,12 @@ export const QueueItem: React.FC<QueueItemProps> = ({
       <div className={styles.thumbnail}>
         {track.loading
           ? <Loader type='small' className={isCompact && styles.compact_loader} />
-          : <Img 
-              src={track.thumbnail ?? artPlaceholder}
+          : (
+            <Img               
+              src={getThumbnail(track) ?? artPlaceholder}
               unloader={<img src={artPlaceholder}/>}
-            />}
+            />
+          )}
 
         <div
           data-testid='queue-item-remove'
