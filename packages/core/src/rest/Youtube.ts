@@ -51,7 +51,7 @@ function formatPlaylistTrack(track: ytpl.Item) {
   return {
     streams: [{ source: 'Youtube', id: track.id }],
     name: track.title,
-    thumbnail: track.thumbnails[0].url,
+    thumbnail: getLargestThumbnail(track.thumbnails),
     artist: track.author.name
   };
 }
@@ -93,7 +93,7 @@ async function handleYoutubeVideo(url: string): Promise<YoutubeResult[]> {
         return [{
           streams: [{ source: 'Youtube', id: videoDetails.videoId }],
           name: videoDetails.title,
-          thumbnail: videoDetails.thumbnails[0].url,
+          thumbnail: getLargestThumbnail(videoDetails.thumbnails),
           artist: { name: videoDetails.ownerChannelName }
         }];
       }
@@ -177,14 +177,14 @@ export const getStreamForId = async (id: string, sourceName: string, useSponsorB
       stream: formatInfo.url,
       duration: parseInt(trackInfo.videoDetails.lengthSeconds),
       title: trackInfo.videoDetails.title,
-      thumbnail: trackInfo.thumbnail_url,
+      thumbnail: getLargestThumbnail(trackInfo.videoDetails.thumbnails),
       format: formatInfo.container,
       skipSegments: segments,
       originalUrl: videoUrl,
       isLive: formatInfo.isLive,
       author: {
         name: trackInfo.videoDetails.author.name,
-        thumbnail: trackInfo.videoDetails.author.thumbnails[0].url
+        thumbnail: getLargestThumbnail(trackInfo.videoDetails.author.thumbnails)
       }
     };
   } catch (e) {
@@ -201,11 +201,20 @@ function videoToStreamData(video: SearchVideo, source: string): StreamData {
     stream: undefined,
     duration: parseInt(video.duration.text),
     title: video.title,
-    thumbnail: video.thumbnails[0].url,
+    thumbnail: getLargestThumbnail(video.thumbnails),
     originalUrl: video.url,
     author: {
       name: video.channel.name,
-      thumbnail: video.thumbnails[0].url
+      thumbnail: getLargestThumbnail(video.thumbnails)
     }
   };
 }
+
+const getLargestThumbnail = (thumbnails: ytdl.thumbnail[]): string => {
+  const isNotEmpty = thumbnails.length > 0;
+  const largestThumbnail = isNotEmpty && thumbnails.reduce((prev, current) => {
+    return (prev.height * prev.width) > (current.height * current.width) ? prev : current;
+  });
+
+  return largestThumbnail?.url;
+};
