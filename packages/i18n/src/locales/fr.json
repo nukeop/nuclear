@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Tout ajouter",
-    "count": "Playcount",
+    "count": "Nombre d'écoutes",
     "queue": "Ajouter tous les morceaux à la file de lecture",
     "similar": "Artistes similaires",
     "title": "Titre",
@@ -52,7 +52,7 @@
       "header": "Albums",
       "sort-by-release-date": "Sort by release date",
       "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
+      "sort-by-most-played": "Trier par nombre de lectures",
       "filter-placeholder": "Filter..."
     }
   },
@@ -396,7 +396,7 @@
     "play-selected-tracks-now": "Lire la sélection maintenant",
     "tracks-selected-label-singular": "morceau sélectionné",
     "tracks-selected-label-plural": "morceaux sélectionnés",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Filtrer..."
   },
   "visualizer": {
     "exit-fullscreen": "Appuyez sur ÉCHAP pour quitter le mode plein écran"
