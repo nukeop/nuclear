@@ -12,7 +12,7 @@ import * as QueueActions from '../../../actions/queue';
 import styles from './styles.scss';
 import { PluginsState } from '../../../reducers/plugins';
 
-type QueuePopupProps = {
+export type QueuePopupProps = {
   trigger: React.ReactNode;
   isQueueItemCompact: boolean;
 

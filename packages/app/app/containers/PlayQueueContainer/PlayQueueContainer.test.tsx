@@ -17,9 +17,8 @@ describe('Play Queue container', () => {
     setupI18Next();
   });
 
-  beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { store } = require('@nuclear/core');
+  beforeEach(async () => {
+    const { store } = await import('@nuclear/core');
     store.clear();
   });
 
