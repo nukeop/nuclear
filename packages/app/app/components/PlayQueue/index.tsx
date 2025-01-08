@@ -173,7 +173,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                     duration={formatTrackDuration(t)(item)}
                   />
                 }
-                isQueueItemCompact={data.settings.compactQueueBar}
+                isQueueItemCompact={data.settings.compactQueueBar as boolean}
                 index={index}
                 track={item}
                 onSelectStream={onSelectStream(index)}
