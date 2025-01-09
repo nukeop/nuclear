@@ -14,7 +14,7 @@ import { RootState } from '../reducers';
 import { LocalLibraryState } from './local';
 import { Queue } from './actionTypes';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
-import { isTopStream, TopStream } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
+import { isSuccessCacheEntry } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
 import { queue as queueSelector } from '../selectors/queue';
 
 type LocalTrack = Track & {
@@ -184,7 +184,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
 
       if (settings.useStreamVerification) {
         try {
-          const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+          const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
           const topStream = await StreamMappingsService.getTopStream(
             track.artist, 
             track.name,
@@ -192,10 +192,10 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
             settings?.userId
           );
             // Use the top stream ID and put it at the top of the list
-          if (isTopStream(topStream.body)) {
+          if (isSuccessCacheEntry(topStream)) {
             streamData = [
-              streamData.find(stream => stream.id === (topStream.body as TopStream).stream_id),          
-              ...streamData.filter(stream => stream.id !== (topStream.body as TopStream).stream_id)
+              streamData.find(stream => stream.id === topStream.value.stream_id),          
+              ...streamData.filter(stream => stream.id !== topStream.value.stream_id)
             ];
           }
         } catch (e) {

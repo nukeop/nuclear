@@ -6,6 +6,7 @@ import { AnyProps } from '../../../test/testUtils';
 import { StreamVerificationContainer } from '.';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { configureMockStore, TestStoreProvider, setupI18Next } from '../../../test/testUtils';
+import { NuclearStreamMappingsService } from '@nuclear/core/src/rest';
 
 describe('StreamVerificationContainer', () => {
   beforeAll(() => {
@@ -15,6 +16,7 @@ describe('StreamVerificationContainer', () => {
 
   beforeEach(() => {
     fetchMock.reset();
+    NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL).clearTopStreamCache();
   });
       
   it('renders nothing when nothing\'s playing', () => {

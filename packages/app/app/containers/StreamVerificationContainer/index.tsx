@@ -14,7 +14,7 @@ import { head } from 'lodash';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { settingsSelector } from '../../selectors/settings';
 import { setStringOption } from '../../actions/settings';
-import { isResponseBody } from '@nuclear/core/src/rest/Nuclear/NuclearService';
+import { isSuccessCacheEntry } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
 
 const WEAK_VERIFICATION_THRESHOLD = 3;
 
@@ -27,7 +27,7 @@ export const StreamVerificationContainer: React.FC = () => {
   const currentTrack: QueueItem = queue.queueItems[queue.currentSong];
   const [isLoading, setLoading] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState<StreamVerificationProps['status']>('unknown');
-  const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+  const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
 
   useEffect(() => {
     setVerificationStatus('unknown');
@@ -37,14 +37,14 @@ export const StreamVerificationContainer: React.FC = () => {
         currentTrack.name,
         selectedStreamProvider,
         settings?.userId
-      ).then(res => {
-        if (isResponseBody(res) && res.body.stream_id === head(currentTrack.streams)?.id) {
-          if (res.body.score === undefined) {
+      ).then(topStream => {
+        if (isSuccessCacheEntry(topStream) && topStream.value.stream_id === head(currentTrack.streams)?.id) {
+          if (topStream.value.score === undefined) {
             logger.error(`Failed to verify stream: ${currentTrack.name} by ${getTrackArtist(currentTrack)}`);
             setVerificationStatus('unverified');
-          } else if (res.body.self_verified) {
+          } else if (topStream.value.self_verified) {
             setVerificationStatus('verified_by_user');
-          } else if (res.body.score < WEAK_VERIFICATION_THRESHOLD) {
+          } else if (topStream.value.score < WEAK_VERIFICATION_THRESHOLD) {
             setVerificationStatus('weakly_verified');
           } else {
             setVerificationStatus('verified');
