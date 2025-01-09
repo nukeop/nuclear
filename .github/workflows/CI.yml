@@ -70,8 +70,8 @@ jobs:
         platform:
           [
             { os: "ubuntu-latest", cmd: "build:linux" },
-            { os: "macos-12", cmd: "build:macos" },
-            { os: "macos-14", cmd: "build:macos-arm64" },
+            { os: "macos-13", cmd: "build:macos" },
+            { os: "macos-latest", cmd: "build:macos-arm64" },
             { os: "windows-latest", cmd: "build:windows" },
           ]
     steps:
