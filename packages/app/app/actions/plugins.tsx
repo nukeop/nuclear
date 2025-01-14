@@ -1,6 +1,5 @@
 import fs from 'fs';
 import logger from 'electron-timber';
-import { remote } from 'electron';
 import { store } from '@nuclear/core';
 
 import UserPlugin from '../structs/userPlugin';
@@ -102,8 +101,7 @@ export function loadUserPlugin(path) {
     dispatch(loadUserPluginStart(path));
     try {
       const api = createApi();
-      const pluginContents = await fs.promises.readFile(path, 'utf8');
-      const transformedPluginContents = await remote.app.transformSource(pluginContents);
+      const transformedPluginContents = {code: ''};
 
       const plugin = eval(transformedPluginContents.code);
 

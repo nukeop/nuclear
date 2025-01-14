@@ -1,4 +1,5 @@
-import { Setting, SettingType, settingsConfig } from '@nuclear/core';
+import { Setting, SettingType } from '@nuclear/core';
+import { rendererSettings } from '@nuclear/core/src/settings/renderer';
 import React from 'react';
 
 import HttpApiUrl from '../containers/HttpApiUrl';
@@ -11,5 +12,5 @@ export default [
     prettyName: 'api-url',
     node: <HttpApiUrl />
   } as Setting,
-  ...settingsConfig
+  ...rendererSettings
 ];

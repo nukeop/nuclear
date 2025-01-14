@@ -1,8 +1,5 @@
 const app = {
-  getPath: () => {},
-  remote: {
-    transformSource: () => {}
-  }
+  getPath: () => {}
 };
 
 module.exports = {

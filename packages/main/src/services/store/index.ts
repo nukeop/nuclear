@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { settingsConfig } from '@nuclear/core';
+import { mainSettings } from '@nuclear/core/src/settings/main';
 import ElectronStore from 'electron-store';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
@@ -35,7 +34,7 @@ class Store extends ElectronStore {
     let value = settings[key];
 
     if (typeof value === 'undefined') {
-      value = (_.find(settingsConfig, { name: key }) as any).default;
+      value = (_.find(mainSettings, { name: key }) as any).default;
     }
   
     return value;

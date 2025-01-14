@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { remote } from 'electron';
+import { dialog } from 'electron';
 import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 
 import { LocalLibrary } from './actionTypes';
@@ -79,7 +79,7 @@ export function addLocalFolders(folders) {
 }
 
 export const openLocalFolderPicker = () => async dispatch => {
-  let folders = await (await remote.dialog.showOpenDialog(remote.getCurrentWindow(), { properties: ['openDirectory', 'multiSelections'] })).filePaths;
+  let folders = await (await dialog.showOpenDialog({ properties: ['openDirectory', 'multiSelections'] })).filePaths;
   if (folders) {
     // normalize path-seps (gets normalized on save to disk, but must happen from start for some UI code)
     folders = folders.map(path => path.replace(/\\/g, '/'));
@@ -88,7 +88,7 @@ export const openLocalFolderPicker = () => async dispatch => {
 };
 
 export const openLocalFilePicker = async () => {
-  let filePaths = await (await remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
+  let filePaths = await (await dialog.showOpenDialog({
     filters: [
       { name: 'json', extensions: ['json'] }
     ],

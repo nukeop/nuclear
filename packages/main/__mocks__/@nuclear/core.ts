@@ -1,5 +1,5 @@
 export default jest.fn();
-export const settingsConfig = jest.requireActual('@nuclear/core/src/settings').settingsConfig;
+export const settingsConfig = jest.requireActual('@nuclear/core/src/settings').mainSettings;
 
 export enum IpcEvents {
   STARTED = 'started',

@@ -1,4 +1,5 @@
-import { settingsConfig, IpcEvents } from '@nuclear/core';
+import { IpcEvents } from '@nuclear/core';
+import { mainSettings } from '@nuclear/core/src/settings/main';
 import { BrowserWindow } from 'electron';
 import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
@@ -19,7 +20,7 @@ export function settingsRouter(store: Store, rendererWindow: BrowserWindow['webC
   router
     .get('/', (req, res) => {
       const settings = store.get('settings');
-      const filteredSettings = settingsConfig
+      const filteredSettings = mainSettings
         .filter(({ name }) => !RESTRICTED_SETTINGS.includes(name as never))
         .reduce((acc, item) => ({
           ...acc,

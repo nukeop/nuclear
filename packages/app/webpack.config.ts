@@ -36,12 +36,12 @@ module.exports = (env) => {
   const IS_DEV = env.NODE_ENV === 'development';
 
   const entry = IS_PROD
-    ? path.resolve(APP_DIR, 'index.js')
+    ? path.resolve(APP_DIR, 'index.tsx')
     : [
       'react-hot-loader/patch',
       'webpack/hot/dev-server.js',
       'webpack-dev-server/client/index.js?hot=true&live-reload=true',
-      path.resolve(APP_DIR, 'index.js')
+      path.resolve(APP_DIR, 'index.tsx')
     ];
   const output: webpack.Configuration['output'] = {
     path: BUILD_DIR,

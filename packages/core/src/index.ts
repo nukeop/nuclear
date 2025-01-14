@@ -3,7 +3,6 @@ import 'isomorphic-fetch';
 export * from './settings';
 export * from './types';
 export * from './util';
-export { transformSource, transformPluginFile } from './plugins/transform';
 
 export { default as Plugin } from './plugins/plugin';
 export { default as LyricsProvider } from './plugins/lyricsProvider';

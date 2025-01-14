@@ -5,11 +5,11 @@ import {
   Icon,
   Segment
 } from 'semantic-ui-react';
-import { remote } from 'electron';
 import { useTranslation } from 'react-i18next';
 
 import { setStringOption } from '../../../actions/settings';
 import styles from './styles.scss';
+import { app, dialog } from 'electron';
 
 type DownloadsHeaderProps = {
   directory: string;
@@ -22,7 +22,7 @@ const DownloadsHeader: React.FC<DownloadsHeaderProps> = ({
 }) => {
   const { t } = useTranslation('settings');
   const setDirectory = useCallback(async () => {
-    const dialogResult = await remote.dialog.showOpenDialog({
+    const dialogResult = await dialog.showOpenDialog({
       properties: ['openDirectory']
     });
     if (!dialogResult.canceled && !_.isEmpty(dialogResult.filePaths)) {
@@ -38,7 +38,7 @@ const DownloadsHeader: React.FC<DownloadsHeaderProps> = ({
       <span className={styles.label}>
         {t('saving-in')}
         <span className={styles.directory}>
-          {_.isEmpty(directory) ? remote.app.getPath('downloads') : directory}
+          {_.isEmpty(directory) ? app.getPath('downloads') : directory}
         </span>
       </span>
       <Button

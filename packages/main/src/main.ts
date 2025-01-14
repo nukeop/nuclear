@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import 'v8-compile-cache';
 
-import { transformSource } from '@nuclear/core';
 import { app, protocol } from 'electron';
 import logger from 'electron-timber';
 
@@ -20,7 +19,6 @@ import ListeningHistoryDb from './services/listening-history/db';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 app.commandLine.appendSwitch('no-sandbox');
-app.transformSource = transformSource;
 
 let container: Container;
 
