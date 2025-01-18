@@ -21,7 +21,7 @@
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
     "postinstall": "electron-builder install-app-deps && lerna run build --scope @nuclear/scanner",
-    "start": "lerna run start --stream",
+    "start": "lerna run start --stream --parallel",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run test",
     "coverage": "lerna run coverage",
@@ -41,7 +41,7 @@
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.3",
     "electron": "^12.1.0",
-    "electron-builder": "^24.13.3",
+    "electron-builder": "^25.1.8",
     "eslint": "^7.18.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react": "^7.12.4",
