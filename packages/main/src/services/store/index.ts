@@ -54,7 +54,7 @@ class Store extends ElectronStore {
   }
 
   getLastThumbCleanDate(): Date | undefined {
-    const time = this.get('last-thumb-clean-date');
+    const time = this.get('last-thumb-clean-date') as number;
 
     if (time) {
       return new Date(time);
