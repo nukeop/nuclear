@@ -23,3 +23,5 @@ export { default as IpcEvents } from './ipc/events';
 
 export * from './helpers';
 export * from './types';
+
+export { default as logger } from './logger/nuclear-logger';

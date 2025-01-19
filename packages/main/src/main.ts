@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import 'v8-compile-cache';
 
 import { app, protocol } from 'electron';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 
 import { controllers, services } from './ioc';
 import Config from './services/config';

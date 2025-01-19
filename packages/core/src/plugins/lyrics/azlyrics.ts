@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '../..';
 import az from 'search-azlyrics';
 
 import LyricsProvider from '../lyricsProvider';

@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '../../';
 import _ from 'lodash';
 
 import { StreamQuery, StreamData } from '../plugins.types';

@@ -134,7 +134,6 @@ module.exports = (env) => {
     };
     jsxRule.include = [APP_DIR, ...NUCLEAR_MODULES];
     jsxRule.exclude = [
-      /node_modules\/electron-timber\/preload\.js/,
       /node_modules\/(?!@nuclear).*/
     ];
     optimization.splitChunks = {

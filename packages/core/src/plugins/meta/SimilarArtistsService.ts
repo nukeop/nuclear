@@ -1,7 +1,7 @@
 import { LastFmArtistInfo } from '../../rest/Lastfm.types';
 import { SpotifyClientProvider } from '../../rest/Spotify';
 import { SimilarArtist } from '../plugins.types';
-import logger from 'electron-timber';
+import { logger } from '../..';
 
 /**
  * Creates SimilarArtist instances using the provided LastFmArtistInfo.

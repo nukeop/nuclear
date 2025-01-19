@@ -34,7 +34,6 @@
     "electron-dl": "^3.0.2",
     "electron-platform": "^1.2.0",
     "electron-store": "8.2.0",
-    "electron-timber": "0.5.1",
     "event-stream": "^4.0.1",
     "express": "^4.17.1",
     "express-json-validator-middleware": "^2.0.0",
