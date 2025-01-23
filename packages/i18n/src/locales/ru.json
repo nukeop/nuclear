@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Добавить все",
-    "count": "Playcount",
+    "count": "Количество прослушиваний",
     "queue": "Добавить все дорожки в очередь",
     "similar": "Похожие исполнители",
     "title": "Название",
     "tour": "В туре",
     "popular-tracks": "Популярные треки",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Альбомы",
+      "sort-by-release-date": "Сортировать по дате выхода",
+      "sort-by-az": "Сортировать А-Я",
+      "sort-by-most-played": "Сортировать по количеству воспроизведений",
+      "filter-placeholder": "Фильтр..."
     }
   },
   "dashboard": {
@@ -203,8 +203,8 @@
     "create-playlist-dialog-title": "Введите название плейлиста:",
     "playlist": "Плейлист",
     "play": "Воспроизвести",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "external-source-tooltip": "Этот плейлист находится из внешнего источника: {{source}}. Вы не можете редактировать его. Сохраните его локально в меню плейлиста, чтобы внести изменения.",
+    "save-external-playlist": "Сохранить локально"
   },
   "plugins": {
     "add-a-plugin": "Добавить плагин",
@@ -290,7 +290,7 @@
     "autoradio-craziness": "Разброс автоподборки",
     "autoradio-craziness-description": "Чем выше уровень разброса, тем менее похожие дорожки будет предлагать автоподборка",
     "autoradio-description": "Автоматически добавлять похожие дорожки по завершении очереди",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "Автозагрузка избранного трека",
     "listening-history": "История прослушивания",
     "listening-history-description": "Журналировать дорожки, которые вы слушаете, наподобие Last.fm. История хранится в локально.",
     "compact-menu-bar": "Компактное меню",
@@ -311,7 +311,7 @@
     "github-description": "Войдите через GitHub, чтобы создавать и делиться плейлистами онлайн (функция в разработке).",
     "github-title": "GitHub",
     "http": "API доступа по HTTP",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Сервер Invidious",
     "language": "Язык",
     "language-placeholder": "Выберите язык",
     "lastfm-connect": "Подключить Last.fm",
@@ -396,7 +396,7 @@
     "play-selected-tracks-now": "Играть выбранные",
     "tracks-selected-label-singular": "трек выбран",
     "tracks-selected-label-plural": "треков выбрано",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Фильтр..."
   },
   "visualizer": {
     "exit-fullscreen": "Нажмите Esc, чтобы выйти из полноэкранного режима"
