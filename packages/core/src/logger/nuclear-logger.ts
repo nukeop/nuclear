@@ -14,7 +14,7 @@ const errorChannel = '__ELECTRON_NUCLEAR_LOGGER_ERROR__';
 const updateChannel = '__ELECTRON_NUCLEAR_LOGGER_UPDATE__';
 const defaultsNameSpace = '__ELECTRON_NUCLEAR_LOGGER_DEFAULTS__';
 
-const preloadScript = resolve(__dirname, 'preload.ts');
+const preloadScript = resolve(__dirname, 'preload.js');
 
 const logLevels = {
   info: 0,

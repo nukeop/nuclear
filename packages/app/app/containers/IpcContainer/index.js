@@ -1,6 +1,6 @@
 import { IpcEvents } from '@nuclear/core';
 import { ipcRenderer } from 'electron';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import { head } from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';

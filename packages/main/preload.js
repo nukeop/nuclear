@@ -1,4 +1,16 @@
-/* eslint-disable no-undef */
-// TODO remove this when updating electron
-window.ELECTRON_ENABLE_SECURITY_WARNINGS=false;
-window.ELECTRON_DISABLE_SECURITY_WARNINGS=true;
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { contextBridge, ipcRenderer } = require('electron');
+
+const electronApi = {
+  send: (channel, data) => {
+    ipcRenderer.send(channel, data);
+  },
+  onReceive: (channel, callback) => {
+    ipcRenderer.on(channel, callback);
+  },
+  getGlobal: (key) => {
+    return window.electronApi.getGlobal(key);
+  }
+};
+
+contextBridge.exposeInMainWorld('electronApi', electronApi);

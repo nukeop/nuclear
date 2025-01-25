@@ -24,7 +24,7 @@ const changePropertyForItem = ({downloads, uuid, propertyName='status', value}:C
 
 export const readDownloads = createStandardAction(DownloadActionTypes.READ_DOWNLOADS).map(
   () => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     return  { payload: downloads };
   } 
 );
@@ -32,7 +32,7 @@ export const readDownloads = createStandardAction(DownloadActionTypes.READ_DOWNL
 export const addToDownloads = createStandardAction(DownloadActionTypes.ADD_TO_DOWNLOADS).map(
   (_:StreamProvider[], track: Track) => {
     const clonedTrack: TrackItem = safeAddUuid(getTrackItem(track));
-    let downloads: Download[] = store.get('downloads');
+    let downloads: Download[] = store.get('downloads') as Download[];
   
     const existingTrack = downloads.find(({track}) => {
       const {name, artist} = track;
@@ -61,7 +61,7 @@ export const addToDownloads = createStandardAction(DownloadActionTypes.ADD_TO_DO
 
 export const onDownloadStarted = createStandardAction(DownloadActionTypes.DOWNLOAD_STARTED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -74,7 +74,7 @@ export const onDownloadStarted = createStandardAction(DownloadActionTypes.DOWNLO
 
 export const onDownloadPause =  createStandardAction(DownloadActionTypes.DOWNLOAD_PAUSED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -87,7 +87,7 @@ export const onDownloadPause =  createStandardAction(DownloadActionTypes.DOWNLOA
 
 export const onDownloadResume = createStandardAction(DownloadActionTypes.DOWNLOAD_RESUMED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -102,7 +102,7 @@ export const onDownloadResume = createStandardAction(DownloadActionTypes.DOWNLOA
 
 export const onDownloadProgress = createStandardAction(DownloadActionTypes.DOWNLOAD_PROGRESS).map(
   (uuid: string, progress: number) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     const track = downloads.find((item) => item.track.uuid === uuid);
     if (track === undefined) {
       // track is no longer in downloads, so nothing can be updated
@@ -132,7 +132,7 @@ export const onDownloadProgress = createStandardAction(DownloadActionTypes.DOWNL
 
 export const onDownloadError = createStandardAction(DownloadActionTypes.DOWNLOAD_ERROR).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -147,7 +147,7 @@ export const onDownloadError = createStandardAction(DownloadActionTypes.DOWNLOAD
 
 export const onDownloadRemoved = createStandardAction(DownloadActionTypes.DOWNLOAD_REMOVED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     const filteredTracks = downloads.filter(item => item.track.uuid !== uuid);
     return {
       payload: filteredTracks
@@ -156,7 +156,7 @@ export const onDownloadRemoved = createStandardAction(DownloadActionTypes.DOWNLO
 
 export const onDownloadFinished = createStandardAction(DownloadActionTypes.DOWNLOAD_FINISHED).map(
   (uuid: string) => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     const payload = changePropertyForItem({
       downloads,
       uuid,
@@ -170,7 +170,7 @@ export const onDownloadFinished = createStandardAction(DownloadActionTypes.DOWNL
 
 export const clearFinishedDownloads = createStandardAction(DownloadActionTypes.CLEAR_FINISHED_DOWNLOADS).map(
   () => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
   
     const filteredTracks = downloads.filter(( item ) => 
       item.status !== DownloadStatus.FINISHED && item.status !== DownloadStatus.ERROR
@@ -183,7 +183,7 @@ export const clearFinishedDownloads = createStandardAction(DownloadActionTypes.C
 
 export const resumeDownloads = createStandardAction(DownloadActionTypes.RESUME_DOWNLOADS).map(
   () => {
-    const downloads: Download[] = store.get('downloads');
+    const downloads: Download[] = store.get('downloads') as Download[];
     const startedItem = downloads.find((item) => item.status === DownloadStatus.STARTED);
     let payload = downloads;
     if (startedItem !== undefined) {

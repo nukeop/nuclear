@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import { rest } from '@nuclear/core';
 import _, { isString } from 'lodash';
 import artPlaceholder from '../../resources/media/art_placeholder.png';

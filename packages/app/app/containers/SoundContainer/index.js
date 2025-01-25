@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withProps } from 'recompose';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import { head } from 'lodash';
 import { IpcEvents, rest } from '@nuclear/core';
 import { post as mastodonPost } from '@nuclear/core/src/rest/Mastodon';

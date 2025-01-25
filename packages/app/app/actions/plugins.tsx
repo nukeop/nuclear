@@ -1,5 +1,5 @@
 import fs from 'fs';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import { store } from '@nuclear/core';
 
 import UserPlugin from '../structs/userPlugin';

@@ -49,7 +49,6 @@
     "deasync": "^0.1.30",
     "dotenv": "^8.2.0",
     "electron": "^33.3.1",
-    "electron-timber": "0.5.1",
     "fetch-mock": "^9.11.0",
     "font-awesome": "^4.7.0",
     "i18next": "^21.3.3",

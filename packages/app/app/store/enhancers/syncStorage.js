@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import { store as electronStore } from '@nuclear/core';
 
 export default function (paths) {

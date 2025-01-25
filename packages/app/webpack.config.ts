@@ -51,7 +51,8 @@ module.exports = (env) => {
   };
   const optimization: webpack.Configuration['optimization'] = {
     moduleIds: 'named' as const,
-    minimize: false
+    minimize: false,
+    splitChunks: false
   };
   const jsxRule: webpack.RuleSetRule = {
     test: /\.(js|jsx|tsx|ts)$/,
@@ -117,6 +118,10 @@ module.exports = (env) => {
         {}
       )
     ),
+    new webpack.ProvidePlugin({
+      global: require.resolve('./global.js'),
+      EventEmitter: ['events', 'EventEmitter']
+    }),
     new webpack.ContextReplacementPlugin(
       /\/(ytpl|ytsr|youtube-ext|bandcamp-scraper|http-cookie-agent|deasync)\//,
       false
@@ -136,20 +141,6 @@ module.exports = (env) => {
     jsxRule.exclude = [
       /node_modules\/(?!@nuclear).*/
     ];
-    optimization.splitChunks = {
-      chunks: 'all',
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    };
   } else {
     output.publicPath = '/';
     jsxRule.exclude = /node_modules\/(?!@nuclear).*/;
@@ -172,11 +163,30 @@ module.exports = (env) => {
         )
       },
       fallback: {
-        fs: false
+        fs: false,
+        http: false,
+        timers: false,
+        zlib: false,
+        stream: false,
+        net: false,
+        crypto: false,
+        tls: false,
+        path: false,
+        https: false,
+        vm: false,
+        os: false,
+        events: false,
+        'node:zlib': false,
+        'node:assert': false
       },
       symlinks: false
     },
-    externals: ['bufferutil', 'utf-8-validate'],
+    externalsPresets: { node: true },
+    externals: {
+      bufferutil: 'commonjs bufferutil',
+      'utf-8-validate': 'commonjs utf-8-validate',
+      events: 'commonjs events'
+    },
     module: {
       rules: [
         jsxRule,
@@ -236,7 +246,7 @@ module.exports = (env) => {
       ]
     },
     plugins,
-    target: 'electron-renderer'
+    target: 'web'
   };
 
   if (IS_DEV) {
