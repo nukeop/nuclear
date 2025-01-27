@@ -47,7 +47,8 @@ module.exports = (env) => {
     path: BUILD_DIR,
     filename: '[name].[contenthash].js',
     sourceMapFilename: '[name].[contenthash].map',
-    chunkFilename: '[id].[contenthash].js'
+    chunkFilename: '[id].[contenthash].js',
+    globalObject: 'this'
   };
   const optimization: webpack.Configuration['optimization'] = {
     moduleIds: 'named' as const,
@@ -119,7 +120,6 @@ module.exports = (env) => {
       )
     ),
     new webpack.ProvidePlugin({
-      global: require.resolve('./global.js'),
       EventEmitter: ['events', 'EventEmitter']
     }),
     new webpack.ContextReplacementPlugin(
@@ -246,7 +246,7 @@ module.exports = (env) => {
       ]
     },
     plugins,
-    target: 'web'
+    target: 'electron-renderer'
   };
 
   if (IS_DEV) {

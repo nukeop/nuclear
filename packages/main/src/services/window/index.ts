@@ -60,10 +60,10 @@ class Window {
       icon,
       show: false,
       webPreferences: {
-        nodeIntegration: false,
-        webSecurity: false,
+        nodeIntegration: true,
+        webSecurity: true,
         webviewTag: true,
-        contextIsolation: true,
+        contextIsolation: false,
         additionalArguments: [
           store.getOption('disableGPU') && '--disable-gpu'
         ]

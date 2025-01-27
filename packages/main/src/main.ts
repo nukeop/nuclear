@@ -22,6 +22,8 @@ app.commandLine.appendSwitch('no-sandbox');
 
 let container: Container;
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('@electron/remote/main').initialize();
 if (!app.requestSingleInstanceLock()) {
   app.quit();
 } else {

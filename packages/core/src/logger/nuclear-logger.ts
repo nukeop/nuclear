@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-import { app, BrowserWindow, ipcMain, IpcMainEvent, IpcRendererEvent, session, Session, WebContents } from 'electron';
+import { app, BrowserWindow, ipcMain, IpcMainEvent, ipcRenderer, IpcRendererEvent } from 'electron';
 import { performance } from 'node:perf_hooks';
-import { resolve } from 'node:path';
 import process from 'node:process';
 
 const isMain = process.type === 'browser';
@@ -14,8 +13,6 @@ const errorChannel = '__ELECTRON_NUCLEAR_LOGGER_ERROR__';
 const updateChannel = '__ELECTRON_NUCLEAR_LOGGER_UPDATE__';
 const defaultsNameSpace = '__ELECTRON_NUCLEAR_LOGGER_DEFAULTS__';
 
-const preloadScript = resolve(__dirname, 'preload.js');
-
 const logLevels = {
   info: 0,
   warn: 1,
@@ -23,6 +20,8 @@ const logLevels = {
 };
 
 type LogLevel = keyof typeof logLevels;
+type LogArgs = unknown[];
+type ConsoleMethod = (...args: LogArgs) => void;
 
 interface NuclearLoggerOptions {
   name?: string;
@@ -36,12 +35,10 @@ interface NuclearLoggerDefaults {
   logLevel: LogLevel;
 }
 
+let remoteMain: typeof import('@electron/remote/main') | null = null;
 if (isMain) {
-  (global as any)[defaultsNameSpace] = {
-    ignore: null,
-    shouldHookConsole: false,
-    logLevel: isDevelopment ? logLevels.info : logLevels.warn
-  };
+  // Only import in main process
+  remoteMain = require('@electron/remote/main');
 }
 
 let isConsoleHooked = false;
@@ -87,13 +84,13 @@ class NuclearLogger {
     return `%c${this.#name.padStart(longestNameLength)}%c ›`;
   }
 
-  log(...args: any[]): void {
+  log(...args: LogArgs): void {
     if (logLevels[this.options.logLevel] > logLevels.info) {
       return;
     }
 
     if (isRenderer) {
-      (window as any).electronApi.send(logChannel, args);
+      ipcRenderer.send(logChannel, args);
     } else if (this.#name) {
       args.unshift(this.#getPrefix(), `color: ${this.#prefixColor}`, 'color: inherit');
     }
@@ -105,13 +102,13 @@ class NuclearLogger {
     this.console.log(...args);
   }
 
-  warn(...args: any[]): void {
+  warn(...args: LogArgs): void {
     if (logLevels[this.options.logLevel] > logLevels.warn) {
       return;
     }
 
     if (isRenderer) {
-      (window as any).electronApi.send(warnChannel, args);
+      ipcRenderer.send(warnChannel, args);
     } else if (this.#name) {
       args.unshift(this.#getPrefix(), `color: ${this.#prefixColor}`, 'color: yellow');
     }
@@ -123,13 +120,13 @@ class NuclearLogger {
     this.console.warn(...args);
   }
 
-  error(...args: any[]): void {
+  error(...args: LogArgs): void {
     if (logLevels[this.options.logLevel] > logLevels.error) {
       return;
     }
 
     if (isRenderer) {
-      (window as any).electronApi.send(errorChannel, args);
+      ipcRenderer.send(errorChannel, args);
     } else if (this.#name) {
       args.unshift(this.#getPrefix(), `color: ${this.#prefixColor}`, 'color: red');
     }
@@ -156,7 +153,7 @@ class NuclearLogger {
       this.#timers.delete(label);
 
       if (isRenderer) {
-        (window as any).electronApi.send(logChannel, args);
+        ipcRenderer.send(logChannel, args);
       } else if (this.#name) {
         args.unshift(this.#getPrefix(), `color: ${this.#prefixColor}`, 'color: inherit');
       }
@@ -207,10 +204,13 @@ class NuclearLogger {
   }
 
   getDefaults(): NuclearLoggerDefaults {
-    const defaults = isMain
-      ? (global as any)[defaultsNameSpace]
-      : (window as any).electronApi.getGlobal(defaultsNameSpace);
-    return { ...defaults };
+    if (isMain) {
+      return { ...global[defaultsNameSpace] };
+    }
+    
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const remote = require('@electron/remote');
+    return { ...remote.getGlobal(defaultsNameSpace) };
   }
 
   hookConsole(options: { main?: boolean; renderer?: boolean } = { main: isMain, renderer: isRenderer }): () => void {
@@ -229,8 +229,8 @@ class NuclearLogger {
       isConsoleHooked = true;
 
       for (const key of hookableMethods) {
-        (_console as any)[key] = console[key as keyof Console];
-        (console as any)[key] = (this[key as keyof NuclearLogger] as Function).bind(this);
+        _console[key] = console[key as keyof Console];
+        console[key] = (this[key as keyof NuclearLogger] as Function).bind(this);
       }
     }
 
@@ -247,8 +247,8 @@ class NuclearLogger {
         if (hookThisConsole) {
           isConsoleHooked = false;
           for (const key of hookableMethods) {
-            (console as any)[key] = (_console as any)[key];
-            (_console as any)[key] = null;
+            console[key] = _console[key] as ConsoleMethod;
+            _console[key] = undefined;
           }
         }
 
@@ -261,7 +261,7 @@ class NuclearLogger {
 
   private hookRenderers(flag: boolean): void {
     if (isMain) {
-      (global as any)[defaultsNameSpace].shouldHookConsole = flag;
+      global[defaultsNameSpace].shouldHookConsole = flag;
       for (const win of BrowserWindow.getAllWindows()) {
         win.webContents.send(updateChannel, flag);
       }
@@ -277,41 +277,32 @@ if (isMain) {
   const rendererLogger = new NuclearLogger({ name: 'renderer' });
 
   if (ipcMain.listenerCount(logChannel) === 0) {
-    ipcMain.on(logChannel, (_event: IpcMainEvent, data: any[]) => {
+    ipcMain.on(logChannel, (_event: IpcMainEvent, data: LogArgs) => {
       rendererLogger.log(...data);
     });
   }
 
   if (ipcMain.listenerCount(warnChannel) === 0) {
-    ipcMain.on(warnChannel, (_event: IpcMainEvent, data: any[]) => {
+    ipcMain.on(warnChannel, (_event: IpcMainEvent, data: LogArgs) => {
       rendererLogger.warn(...data);
     });
   }
 
   if (ipcMain.listenerCount(errorChannel) === 0) {
-    ipcMain.on(errorChannel, (_event: IpcMainEvent, data: any[]) => {
+    ipcMain.on(errorChannel, (_event: IpcMainEvent, data: LogArgs) => {
       rendererLogger.error(...data);
     });
   }
-
-  (async () => {
-    await (app as any).whenReady();
-
-    const mySession: Session = session.defaultSession;
-    const currentPreloads = mySession.getPreloads();
-    if (!currentPreloads.includes(preloadScript)) {
-      mySession.setPreloads([...currentPreloads, preloadScript]);
-    }
-  })();
+  
 } else if (isRenderer) {
-  (window as any).electronApi.onReceive(updateChannel, (_event: IpcRendererEvent, flag: boolean) => {
+  ipcRenderer.on(updateChannel, (_event: IpcRendererEvent, flag: boolean) => {
     if (flag) {
       logger.hookConsole();
     } else {
       isConsoleHooked = false;
       for (const key of hookableMethods) {
-        (console as any)[key] = (_console as any)[key];
-        (_console as any)[key] = null;
+        console[key] = _console[key] as ConsoleMethod;
+        _console[key] = undefined;
       }
     }
   });

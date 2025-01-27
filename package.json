@@ -40,7 +40,7 @@
     "@typescript-eslint/parser": "^4.33.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.3",
-    "electron": "^12.1.0",
+    "electron": "^33.3.1",
     "electron-builder": "^25.1.8",
     "eslint": "^7.18.0",
     "eslint-plugin-node": "^11.1.0",

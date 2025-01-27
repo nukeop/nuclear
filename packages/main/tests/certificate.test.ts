@@ -2,7 +2,6 @@ import { handleCertificateError } from '../src/main';
 
 jest.mock('electron');
 jest.mock('@nuclear/core');
-jest.mock('electron-timber');
 jest.mock('electron-store');
 
 describe('handleCertificateError', () => {
