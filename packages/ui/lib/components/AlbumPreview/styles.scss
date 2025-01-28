@@ -1,4 +1,4 @@
-@import "../../common";
+@use "../../common";
 
 .album_preview {
   position: relative;
@@ -8,7 +8,7 @@
   max-height: 240px;
 
   .album_cover {
-    @include roundCorners;
+    @include common.roundCorners;
     position: relative;
     height: auto;
     min-height: 240px;
@@ -31,15 +31,15 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-    background: $black;
-    transition: $short-duration;
+    background: common.$black;
+    transition: common.$short-duration;
 
     flex-flow: row;
     justify-content: space-between;
     align-items: flex-end;
 
     button.ui.button {
-      border: 1px solid rgba($white, 0.3);
+      border: 1px solid rgba(common.$white, 0.3);
       margin: 1em;
       opacity: 1;
 
@@ -49,12 +49,12 @@
         border: none;
 
         i {
-          color: rgba($black, 0.9);
+          color: rgba(common.$black, 0.9);
         }
       }
 
       i {
-        color: rgba($white, 0.8);
+        color: rgba(common.$white, 0.8);
       }
     }
   }

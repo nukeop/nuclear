@@ -1,4 +1,4 @@
-@import "../../vars.scss";
+@use "../../vars.scss";
 
 .spotify_import_webview {
     position: absolute;
@@ -11,7 +11,7 @@
     margin-top: 3em;
 
     div.label {
-        color: $white;
+        color: vars.$white;
         margin-top: 1em;
     }
 }

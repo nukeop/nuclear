@@ -1,4 +1,5 @@
-@import "../../../vars";
+@use "sass:color";
+@use "../../../vars";
 
 .popular_tracks_container {
   display: flex;
@@ -27,11 +28,11 @@
     justify-content: center;
     padding: 0.5rem;
     margin-top: 0.5rem;
-    transition: $short-duration;
+    transition: vars.$short-duration;
     cursor: pointer;
 
     &:hover {
-      background: lighten($background, 5%);
+      background: color.adjust(vars.$background, $lightness: 5%);
     }
   }
 

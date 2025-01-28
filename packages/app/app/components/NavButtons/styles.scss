@@ -1,4 +1,5 @@
-@import '../../vars.scss';
+@use "sass:color";
+@use '../../vars.scss';
 
 .nav_buttons {
   display: flex;
@@ -12,7 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $blue;
+    background: vars.$blue;
     height: 30px;
     width: 30px;
     cursor: pointer;
@@ -23,11 +24,11 @@
     } 
 
     &:not(.disable):hover {
-      background: darken($blue, 10%);
+      background: color.adjust(vars.$blue, $lightness: -10%);
     }
 
     &:not(.disable):active {
-      background: darken($blue, 15%);
+      background: color.adjust(vars.$blue, $lightness: -15%);
     }
 
     &:first-child {

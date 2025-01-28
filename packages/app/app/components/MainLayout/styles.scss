@@ -1,4 +1,4 @@
-@import "../../vars";
+@use "../../vars";
 
 .main_layout_container {
   position: relative;
@@ -29,9 +29,9 @@
   height: 100%;
   margin: 0;
   border-radius: 0.5rem;
-  transition: $long-duration;
+  transition: vars.$long-duration;
 }
 
 .ui.dimmer {
-  background-color: $background3;
+  background-color: vars.$background3;
 }

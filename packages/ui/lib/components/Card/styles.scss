@@ -1,4 +1,4 @@
-@import "../../common";
+@use "../../common";
 
 .card_container {
   width: 100%;
@@ -6,14 +6,14 @@
   padding: 1rem;
 
   .card {
-    @include roundCorners;
+    @include common.roundCorners;
     position: relative;
     display: flex;
     flex-flow: column;
 
     box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
-    background-color: $background2;
-    transition: $short-duration ease-in-out;
+    background-color: common.$background2;
+    transition: common.$short-duration ease-in-out;
     cursor: pointer;
 
     &.animated:hover {
@@ -39,7 +39,7 @@
     }
 
     .thumbnail {
-      @include roundCorners;
+      @include common.roundCorners;
       position: relative;
       height: 0;
       padding-top: 100%;
@@ -52,12 +52,12 @@
       height: auto;
 
       h4 {
-        @include ellipsis;
+        @include common.ellipsis;
       }
 
       p {
-        @include ellipsis;
-        color: rgba($white, 0.6);
+        @include common.ellipsis;
+        color: rgba(common.$white, 0.6);
       }
     }
     .menu_button {

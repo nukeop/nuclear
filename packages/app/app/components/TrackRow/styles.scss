@@ -1,4 +1,5 @@
-@import '../../vars';
+@use "sass:color";
+@use '../../vars';
 
 .tracks_container {
   display: flex;
@@ -19,11 +20,11 @@
     justify-content: center;
     padding: 0.5rem;
     margin-top: 0.5rem;
-    transition: $short-duration;
+    transition: vars.$short-duration;
     cursor: pointer;
 
     &:hover {
-      background: lighten($background, 5%);
+      background: color.adjust(vars.$background, $lightness: 5%);
     }
   }
 
@@ -33,8 +34,8 @@
 
   thead {
     font-variant: all-small-caps;
-    border-bottom: 1px solid $background2;
-    color: rgba($white, 0.5);
+    border-bottom: 1px solid vars.$background2;
+    color: rgba(vars.$white, 0.5);
     font-size: 20px;
   }
 
@@ -49,11 +50,11 @@
 }
 
 .track {
-  transition: $short-duration;
+  transition: vars.$short-duration;
   cursor: pointer;
 
   &:hover {
-    background: rgba($background2, 0.25);
+    background: rgba(vars.$background2, 0.25);
   }
 
   &:last-child {
@@ -64,7 +65,7 @@
 
   td {
     padding: 1rem 1rem;
-    border-bottom: 1px solid $background2;
+    border-bottom: 1px solid vars.$background2;
   }
 
   .track_number,

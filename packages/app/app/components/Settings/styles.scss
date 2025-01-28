@@ -1,5 +1,5 @@
-@import "../../mixin";
-@import "../../vars";
+@use "../../mixin";
+@use "../../vars";
 
 .settings_container {
   display: flex;
@@ -21,8 +21,8 @@
   }
 
   .segment {
-    background: rgba($background2, 0.35);
-    border: 1px solid $background2;
+    background: rgba(vars.$background2, 0.35);
+    border: 1px solid vars.$background2;
   }
 
   .settings_item_text {
@@ -36,7 +36,7 @@
   }
 
   .settings_item_description {
-    color: rgba($white, 0.5);
+    color: rgba(vars.$white, 0.5);
   }
 
   .settings_item,
@@ -87,8 +87,8 @@
       }
 
       input {
-        color: $grey;
-        background-color: $background3;
+        color: vars.$grey;
+        background-color: vars.$background3;
       }
     }
   }
@@ -109,11 +109,11 @@
   }
 
   .lastfm_icon {
-    color: $red;
+    color: vars.$red;
   }
 
   .social_icon_bg {
-    color: $white;
+    color: vars.$white;
     font-size: 24px;
   }
 

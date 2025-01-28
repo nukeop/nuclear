@@ -1,5 +1,5 @@
-@import "../../mixin";
-@import "../../vars";
+@use "../../mixin";
+@use "../../vars";
 
 .artist_view_container {
   position: relative;
@@ -59,7 +59,7 @@
   .artist_avatar {
     width: 10rem;
     height: 10rem;
-    border: 2px solid $white;
+    border: 2px solid vars.$white;
     border-radius: 50%;
     margin: 1rem;
     flex-shrink: 0;
@@ -83,9 +83,9 @@
   }
 
   .on_tour {
-    @include roundCorners;
+    @include mixin.roundCorners;
     padding: 0.25rem;
-    background: $red;
+    background: vars.$red;
     text-transform: uppercase;
   }
 

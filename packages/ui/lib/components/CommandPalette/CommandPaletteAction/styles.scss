@@ -1,4 +1,4 @@
-@import "../../../common.scss";
+@use "../../../common.scss";
 
 .command_palette_action {
     display: flex;
@@ -16,17 +16,17 @@
     }
 
     &.selected {
-        @include roundCorners;
-        background: rgba($blue, 0.8);
+        @include common.roundCorners;
+        background: rgba(common.$blue, 0.8);
     }
 
     kbd {
-        @include roundCorners;
+        @include common.roundCorners;
         font-size: 12px;
-        background: $bgdefault;
+        background: common.$bgdefault;
         padding: 0.3em 0.5em;
-        border: 1px solid rgba($bgdark, 0.4);
-        box-shadow: 0 1px 0 1px rgba($bgdark, 0.07);
+        border: 1px solid rgba(common.$bgdark, 0.4);
+        box-shadow: 0 1px 0 1px rgba(common.$bgdark, 0.07);
     }
 
     .action_left {

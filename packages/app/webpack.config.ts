@@ -213,11 +213,8 @@ module.exports = (env) => {
             {
               loader: 'css-loader',
               options: {
-                url: (url) => {
-                  if (url.includes('charset=utf-8;;')) {
-                    return false;
-                  }
-                  return true;
+                url: {
+                  filter: (url: string) => !url.includes('charset=utf-8;;')
                 }
               }
             }

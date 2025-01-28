@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .resize_handle {
     position: relative;
@@ -11,12 +11,12 @@
     z-index: 100;
 
     &::before {
-        @include roundCorners;
+        @include common.roundCorners;
         position: relative;
         content: " ";
-        background: $white;
+        background: common.$white;
         opacity: 0;
-        transition: opacity $very-short-duration;
+        transition: opacity common.$very-short-duration;
     }
 
     &.vertical {

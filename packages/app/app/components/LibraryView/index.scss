@@ -1,5 +1,5 @@
-@import '../../mixin.scss';
-@import '../../vars.scss';
+@use '../../mixin.scss';
+@use '../../vars.scss';
 
 .local_files_view {
   display: flex;
@@ -13,15 +13,15 @@
     flex: 0 0 auto;
 
     .input {
-      @include roundCorners;
-      @include transition;
-      border: 1px solid $white;
+      @include mixin.roundCorners;
+      @include mixin.transition;
+      border: 1px solid vars.$white;
       padding: .67861429em 1em;
 
       &:hover,
       &:focus,
       &:active {
-        border: 1px solid rgba($blue, 0.9);
+        border: 1px solid rgba(vars.$blue, 0.9);
       }
 
       i {

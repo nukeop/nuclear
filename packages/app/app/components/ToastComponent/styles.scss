@@ -1,4 +1,4 @@
-@import '../../vars.scss';
+@use '../../vars.scss';
 
 .nuclear.toast_container {
   height: auto;
@@ -13,19 +13,19 @@
     pointer-events: all;
 
     &.error {
-      background: rgba($red, 0.75);
+      background: rgba(vars.$red, 0.75);
     }
 
     &.warning {
-      background: rgba($orange, 0.75);
+      background: rgba(vars.$orange, 0.75);
     }
 
     &.info {
-      background: rgba($blue, 0.75);
+      background: rgba(vars.$blue, 0.75);
     }
 
     &.success {
-      background: rgba($green, 0.75);
+      background: rgba(vars.$green, 0.75);
     }
   }
 

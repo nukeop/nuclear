@@ -1,26 +1,26 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .popup_button {
   width: 100%;
   padding: 0.5em;
   text-decoration: none;
-  color: $white;
-  transition: $short-duration;
+  color: common.$white;
+  transition: common.$short-duration;
   user-select: none;
 
   &.nuclear.dropdown {
     background: none;
     border: none;
-    transition: $short-duration;
+    transition: common.$short-duration;
   }
 
   &.nuclear.dropdown:hover,
   &.nuclear.dropdown:active,
   &.nuclear.dropdown:focus,
   &:hover {
-    background: $pink;
+    background: common.$pink;
     text-decoration: none;
-    color: $white;
+    color: common.$white;
     border: none;
     box-shadow: none;
   }

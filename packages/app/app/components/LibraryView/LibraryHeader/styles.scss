@@ -1,4 +1,4 @@
-@import '../../../vars';
+@use '../../../vars';
 
 .library_header_row {
   display: flex;
@@ -18,18 +18,18 @@
     width: 3em;
     height: 3em;
     margin-right: 1em;
-    border: 1px solid rgba($white,0.3);
+    border: 1px solid rgba(vars.$white,0.3);
 
     &:hover,
     &:active,
     &:focus {
       i {
-        color: rgba($black, 0.9);
+        color: rgba(vars.$black, 0.9);
       }
     }
 
     i {
-      color: rgba($white, 0.6);
+      color: rgba(vars.$white, 0.6);
     }
   }
 }

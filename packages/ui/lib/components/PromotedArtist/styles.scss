@@ -1,12 +1,12 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .promoted_artist {
-    @include high_shadow;
+    @include common.high_shadow;
     border-radius: 1em 3em 1em 3em;
     width: 50em;
     height: 18em;
-    background: $purple;
-    color: $white;
+    background: common.$purple;
+    color: common.$white;
     background-size: cover;
 
     display: flex;
@@ -28,7 +28,7 @@
     }
 
     .name {
-        @include textShadow;
+        @include common.textShadow;
         font-size: 36px;
         font-weight: bold;
         text-transform: uppercase;
@@ -36,7 +36,7 @@
     }
 
     .description {
-        @include textShadow;
+        @include common.textShadow;
         font-size: 16px;
     }
 

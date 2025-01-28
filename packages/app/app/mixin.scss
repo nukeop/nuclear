@@ -1,3 +1,5 @@
+@use "vars";
+
 @mixin transition {
   transition: 0.25s;
 }
@@ -40,16 +42,16 @@
 }
 
 @mixin dropdownOverride {
-  color: $white !important;
-  background: $background3 !important;
-  border: 1px solid rgba($background2, 0.6);
+  color: vars.$white !important;
+  background: vars.$background3 !important;
+  border: 1px solid rgba(vars.$background2, 0.6);
 
   &:hover,
   &:active,
   &:focus,
   &.ui.selection.active.dropdown {
-    color: $white !important;
-    border: 1px solid rgba($background2, 0.6);
+    color: vars.$white !important;
+    border: 1px solid rgba(vars.$background2, 0.6);
   }
 
   .dropdown.icon {
@@ -59,21 +61,21 @@
   }
 
   .menu {
-    border-color: rgba($background2, 0.6) !important;
+    border-color: rgba(vars.$background2, 0.6) !important;
 
     &:hover,
     &:active,
     &:focus {
-      border-color: rgba($background2, 0.6) !important;
+      border-color: rgba(vars.$background2, 0.6) !important;
     }
 
     .item {
-      border-color: rgba($background2, 0.6) !important;
+      border-color: rgba(vars.$background2, 0.6) !important;
     }
 
     .active.selected.item,
     .message {
-      color: $white !important;
+      color: vars.$white !important;
     }
   }
 
@@ -82,6 +84,6 @@
   }
 
   input {
-    color: $white;
+    color: vars.$white;
   }
 }

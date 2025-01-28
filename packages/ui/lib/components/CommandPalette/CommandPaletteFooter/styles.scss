@@ -1,4 +1,4 @@
-@import "../../../common.scss";
+@use "../../../common.scss";
 
 footer.command_palette_footer {
     position: relative;
@@ -14,13 +14,13 @@ footer.command_palette_footer {
         user-select: none;
 
         .protip_text {
-            color: $pink;
+            color: common.$pink;
             font-weight: bold;
             margin-right: 0.5em;
         }
 
         .protip_content {
-            color: rgba($white, 0.6);
+            color: rgba(common.$white, 0.6);
         }
     }
 }

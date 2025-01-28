@@ -1,5 +1,5 @@
-@import '../../vars.scss';
-@import '../../mixin.scss';
+@use '../../vars.scss';
+@use '../../mixin.scss';
 
 .play_options_controls {
   display: flex;
@@ -10,7 +10,7 @@
 
   .icon {
     transition: 85ms ease-out;
-    color: rgba($white, 0.25);
+    color: rgba(vars.$white, 0.25);
     cursor: pointer;
 
     span {
@@ -19,11 +19,11 @@
     }
 
     &.active {
-      color: $white;
+      color: vars.$white;
     }
 
     &:hover {
-      color: $white;
+      color: vars.$white;
     }
   }
 }

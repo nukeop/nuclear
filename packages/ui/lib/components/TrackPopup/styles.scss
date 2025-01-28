@@ -1,13 +1,13 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .nuclear.ui.dropdown.playlists_dropdown {
     .menu {
         .divider {
-            border-top: 1px solid rgba($lightbg, 0.4) !important;
+            border-top: 1px solid rgba(common.$lightbg, 0.4) !important;
         }
 
         .icon {
-            color: $white;
+            color: common.$white;
         }
 
         .input .ui.icon.input {

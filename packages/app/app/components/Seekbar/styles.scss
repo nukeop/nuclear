@@ -1,9 +1,9 @@
-@import "../../vars";
+@use "../../vars";
 
 .seekbar_container {
   position: relative;
   cursor: pointer;
-  background-color: $background2;
+  background-color: vars.$background2;
   flex: none !important;
   padding: 3px 0 !important;
   height: auto !important;
@@ -12,7 +12,7 @@
 }
 
 .seekbar_fill {
-  background-color: $pink;
+  background-color: vars.$pink;
   position: absolute;
   left: 0;
   top: 0;
