@@ -93,7 +93,7 @@ class TagView extends React.Component {
         <Dimmer.Dimmable>
           {this.renderDimmer()}
           {typeof tags[tag] === 'undefined' || tags[tag].loading ? null : (
-            <div className={styles.tag_view}>
+            <div>
               {this.renderTagHeader(tagInfo, topArtists)}
               <TagDescription tagInfo={tagInfo} />
               {this.renderTopArtistsAndTopAlbums(topArtists, topAlbums)}

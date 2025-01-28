@@ -6,7 +6,7 @@ import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import EmptyState from './EmptyState';
-import trackRowStyles from '../TrackRow/styles.scss';
+import * as trackRowStyles from '../TrackRow/styles.scss';
 import * as styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
 import LibrarySimpleList from './LibrarySimpleList';

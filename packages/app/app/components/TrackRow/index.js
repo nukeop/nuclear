@@ -20,7 +20,7 @@ class TrackRow extends React.Component {
   // this function should be moved onto interface for 'track'
   renderAlbum(track) {
     return (
-      <td className={styles.track_album}>
+      <td>
         {track.album}
       </td>
     );
@@ -99,11 +99,11 @@ class TrackRow extends React.Component {
           </td>
         }
         {displayTrackNumber && <td className={styles.track_number}>{track.position}</td>}
-        {displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
-        <td className={styles.track_name}>{track.name}</td>
+        {displayArtist && <td>{track.artist.name}</td>}
+        <td>{track.name}</td>
         {displayAlbum && this.renderAlbum(track)}
         {displayDuration && this.renderDuration(track)}
-        {displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td>}
+        {displayPlayCount && <td>{numeral(track.playcount).format('0,0')}</td>}
       </tr>
     );
   }

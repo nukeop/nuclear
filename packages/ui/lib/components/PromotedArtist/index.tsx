@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
 import Button from '../Button';
 
@@ -52,7 +51,7 @@ const PromotedArtist: React.FC<PromotedArtistProps> = ({
           Check out 
         </Button>
         <Button 
-          className={cx(styles.promoted_artist_button, styles.external_link)}
+          className={styles.promoted_artist_button}
           text
           onClick={onExternalUrlClick}
         >

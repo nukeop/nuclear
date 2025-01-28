@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import TrackRow from '../../TrackRow';
 
-import trackRowStyles from '../../TrackRow/styles.scss';
+import * as trackRowStyles from '../../TrackRow/styles.scss';
 
 const TracksResults = ({ tracks, limit }) => {
   const { t } = useTranslation('search');
