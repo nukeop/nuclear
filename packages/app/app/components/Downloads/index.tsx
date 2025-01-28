@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Header from '../Header';
 import DownloadsList from './DownloadsList';
 import DownloadsHeader from './DownloadsHeader';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { setStringOption } from '../../actions/settings';
 import { Download } from '@nuclear/ui/lib/types';
 

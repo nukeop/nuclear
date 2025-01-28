@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { FormInput as SUIInput, InputProps as SUIInputProps } from 'semantic-ui-react';
 
-import common from '../../common.scss';
-import styles from './styles.scss';
+import * as common from '../../common.scss';
+import * as styles from './styles.scss';
 import { FieldsPropsType } from '../../hooks/types';
 
 export type FormInputProps = Omit<SUIInputProps, 'error'> & Partial<FieldsPropsType[keyof FieldsPropsType]>;

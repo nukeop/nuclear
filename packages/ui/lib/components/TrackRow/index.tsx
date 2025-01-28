@@ -8,7 +8,7 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 // eslint-disable-next-line node/no-missing-import
 import { formatDuration } from '../../utils';
 import { Track } from '../../types';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 export const getTrackThumbnail = track => {
   return track.thumbnail ?? track.image?.[0]?.['#text'] ?? track.thumb;

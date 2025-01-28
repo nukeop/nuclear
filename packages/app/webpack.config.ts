@@ -165,7 +165,6 @@ module.exports = (env) => {
       fallback: {
         fs: false,
         http: false,
-        timers: false,
         zlib: false,
         stream: false,
         net: false,
@@ -191,16 +190,17 @@ module.exports = (env) => {
       rules: [
         jsxRule,
         {
-          test: /.scss$/,
+          test: /\.scss$/,
           use: [
             'style-loader',
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
                 modules: {
-                  localIdentName: '[local]'
-                }
+                  localIdentName: '[local]',
+                  exportLocalsConvention: 'as-is'
+                },
+                importLoaders: 1
               }
             },
             'sass-loader'

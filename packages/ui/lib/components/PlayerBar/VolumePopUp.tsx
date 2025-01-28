@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Popup } from 'semantic-ui-react';
 
 import VolumeControls, { VolumeControlsProps } from '../VolumeControls';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 export type VolumePopUpProps = VolumeControlsProps;
 

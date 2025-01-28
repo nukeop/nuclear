@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { Dimmer, Icon, Loader, Dropdown } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { Loader as NuclearLoader, ContextPopup, PopupButton, PopupDropdown, InputDialog } from '@nuclear/ui';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import TrackTableContainer from '../../containers/TrackTableContainer';
 import { AlbumDetailsState } from '../../reducers/search';

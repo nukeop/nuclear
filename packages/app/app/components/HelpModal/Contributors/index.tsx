@@ -1,6 +1,6 @@
 import React from 'react';
 import { Loader, Card, Image } from 'semantic-ui-react';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 export type GithubContributorData = {
   total: number;
@@ -60,7 +60,7 @@ const Contributors: React.FC<ContributorProps> = ({
               src={contributor.author?.avatar_url}
             />
             <Card.Header>{contributor.author?.login}</Card.Header>
-            <Card.Meta className={styles.meta_text}>
+            <Card.Meta>
               {contributor.author?.html_url}
             </Card.Meta>
             <Card.Description>

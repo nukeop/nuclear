@@ -9,7 +9,7 @@ import { Radio, RadioProps  } from 'semantic-ui-react';
 import PreAmp from './PreAmp';
 import { createChart} from './chart';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 const mapGraphValueToData = (value: number) => value - 10;
 const mapDataValueToGraph = (value: number) => value + 10;

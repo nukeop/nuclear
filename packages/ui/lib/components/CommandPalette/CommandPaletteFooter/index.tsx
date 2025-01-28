@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 type CommandPaletteFooterProps = {
     protipText?: string;

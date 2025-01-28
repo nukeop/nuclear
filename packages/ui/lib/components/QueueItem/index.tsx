@@ -4,8 +4,8 @@ import { Icon } from 'semantic-ui-react';
 import { isEmpty } from 'lodash';
 
 import Loader from '../Loader';
-import common from '../../common.scss';
-import styles from './styles.scss';
+import * as common from '../../common.scss';
+import * as styles from './styles.scss';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { getThumbnail, getTrackArtist, getTrackTitle } from '../../utils';

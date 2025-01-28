@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 
-import common from '../../common.scss';
-import styles from './styles.scss';
+import * as common from '../../common.scss';
+import * as styles from './styles.scss';
 
 type LoaderProps = {
   type: 'default' | 'circle' | 'small';

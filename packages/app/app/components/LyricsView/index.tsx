@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import LyricsHeader from './LyricsHeader';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { QueueItem } from '../../reducers/queue';
 import { getTrackArtist } from '@nuclear/ui';
 

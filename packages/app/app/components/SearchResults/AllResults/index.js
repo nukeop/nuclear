@@ -7,7 +7,7 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import PlaylistResults from '../PlaylistResults';
 import TracksResults from '../TracksResults';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { withTranslation } from 'react-i18next';
 
 @withTranslation('search')

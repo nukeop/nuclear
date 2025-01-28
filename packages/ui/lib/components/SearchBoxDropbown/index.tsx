@@ -1,9 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
-import styles from './styles.scss';
-import { Icon } from 'semantic-ui-react';
-import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
+import * as styles from './styles.scss';
+import { Icon, SemanticICONS } from 'semantic-ui-react';
 
 export type SearchBoxDropdownProps = {
   display?: boolean;

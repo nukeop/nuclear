@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { CellProps } from 'react-table';
 
 import { Track } from '../../../types';
-import styles from '../styles.scss';
+import * as styles from '../styles.scss';
 
 export type ThumbnailCellClassnames = {
   thumbnail_cell?: string;

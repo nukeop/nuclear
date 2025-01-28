@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon, Message } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 const Warning = ({t}) => {
   return (

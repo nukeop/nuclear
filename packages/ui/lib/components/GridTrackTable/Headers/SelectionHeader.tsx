@@ -2,7 +2,7 @@ import { Track } from '@nuclear/core';
 import { HeaderProps, UseRowSelectInstanceProps } from 'react-table';
 
 import { TrackTableExtraProps, TrackTableStrings } from '../../TrackTable/types';
-import styles from '../styles.scss';
+import * as styles from '../styles.scss';
 import React from 'react';
 import Checkbox, { CheckboxProps } from '../../Checkbox';
 import Button from '../../Button';

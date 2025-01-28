@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import ArtistList from '../ArtistList';
 import Header from '../Header';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 const EmptyState = () => {
   const { t } = useTranslation('favorite-artists');

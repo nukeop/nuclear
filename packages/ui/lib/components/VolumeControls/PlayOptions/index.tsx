@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Icon, SemanticICONS } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import Tooltip from '../../Tooltip';
 
 export type PlayOptionControlProps = {

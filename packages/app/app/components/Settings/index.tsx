@@ -11,7 +11,7 @@ import i18n from '@nuclear/i18n';
 import Header from '../Header';
 import Spacer from '../Spacer';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { LastFmSocialIntegration } from './Integrations/LastFmSocialIntegration';
 import { MastodonSocialIntegration } from './Integrations/MastodonSocialIntegration';
 import { RootState } from '../../reducers';
@@ -95,7 +95,6 @@ const Settings: React.FC<SettingsProps> = ({
     <Dropdown
       search
       selection
-      className={styles.list_option}
       placeholder={t(placeholder)}
       value={i18n.language}
       options={options}

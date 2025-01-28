@@ -2,7 +2,7 @@ import React from 'react';
 import { CellProps } from 'react-table';
 import cx from 'classnames';
 
-import styles from '../styles.scss';
+import * as styles from '../styles.scss';
 import { Track } from '../../../types';
 import { TrackTableExtraProps } from '../../TrackTable/types';
 import Button from '../../Button';

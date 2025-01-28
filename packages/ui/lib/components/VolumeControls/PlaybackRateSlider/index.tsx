@@ -3,7 +3,7 @@ import React from 'react';
 import Range from '../../Range';
 import NeumorphicBox from '../../NeumorphicBox';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 export type PlaybackRateSliderProps = {
   playbackRate: number,

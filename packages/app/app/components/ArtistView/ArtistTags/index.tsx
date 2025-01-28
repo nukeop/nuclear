@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 type ArtistTagsProps = {
   tags: string[];

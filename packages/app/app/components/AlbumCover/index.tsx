@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 import AlbumInfo from './AlbumInfo';
 import AlbumOverlay from './AlbumOverlay';

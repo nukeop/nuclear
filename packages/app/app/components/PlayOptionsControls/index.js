@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import settingsConst from '../../constants/settings';
 
 function renderOptionControl(props, settingName, fontAwesomeName, title) {

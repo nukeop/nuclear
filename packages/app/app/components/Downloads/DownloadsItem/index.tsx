@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Icon, SemanticICONS, Table } from 'semantic-ui-react';
 import _ from 'lodash';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { Download } from '@nuclear/ui/lib/types';
 
 type DownloadsItemProps = {

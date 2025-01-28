@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 import { UserPluginsItem } from '@nuclear/ui';
 
 import Warning from './Warning';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 type UserPlugin = {
   path: string;

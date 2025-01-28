@@ -6,7 +6,7 @@ import TagDescription from './TagDescription';
 import TagHeader from './TagHeader';
 import TagTopList from './TagTopList';
 import TagTopTracks from './TagTopTracks';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 @withTranslation('tags')
 class TagView extends React.Component {

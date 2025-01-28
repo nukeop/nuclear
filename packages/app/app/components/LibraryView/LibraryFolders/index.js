@@ -12,7 +12,7 @@ import {
 import { withTranslation } from 'react-i18next';
 import { compose, withHandlers } from 'recompose';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 const LibraryFolders = ({
   openLocalFolderPicker,
@@ -30,7 +30,6 @@ const LibraryFolders = ({
         icon
         inverted
         labelPosition='left'
-        className={styles.add_folder}
         onClick={openLocalFolderPicker}
       >
         <Icon name='folder open' />
@@ -60,7 +59,7 @@ const LibraryFolders = ({
         <List
           divided
           verticalAlign='middle'
-          className={styles.equalizer_list}>
+          className={styles.list}>
           {localFolders.map((folder, idx) => (
             <List.Item key={idx}>
               <List.Content floated='right'>

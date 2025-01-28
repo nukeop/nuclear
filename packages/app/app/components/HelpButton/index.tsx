@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 type HelpButtonProps = {
   onClick: () => void;

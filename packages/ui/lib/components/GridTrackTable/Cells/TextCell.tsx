@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 import { Track } from '@nuclear/core';
 
-import styles from '../styles.scss';
+import * as styles from '../styles.scss';
 
 
 export const TextCell: React.FC<CellProps<Track>> = ({

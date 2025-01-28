@@ -5,8 +5,8 @@ import {
   CheckboxProps as SUICheckboxProps
 } from 'semantic-ui-react';
 
-import common from '../../common.scss';
-import styles from './styles.scss';
+import * as common from '../../common.scss';
+import * as styles from './styles.scss';
 
 export type CheckboxProps = SUICheckboxProps;
 const Checkbox: React.FC<CheckboxProps> = ({

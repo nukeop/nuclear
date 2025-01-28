@@ -61,7 +61,7 @@ class Window {
       show: false,
       webPreferences: {
         nodeIntegration: true,
-        webSecurity: true,
+        webSecurity: false,
         webviewTag: true,
         contextIsolation: false,
         additionalArguments: [
@@ -69,6 +69,9 @@ class Window {
         ]
       }
     });
+
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('@electron/remote/main').enable(this.browserWindow.webContents);
 
     if (platform.isMac()) {
       app.dock.setIcon(icon);

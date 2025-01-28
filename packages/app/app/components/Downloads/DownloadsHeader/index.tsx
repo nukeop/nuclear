@@ -8,7 +8,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { setStringOption } from '../../../actions/settings';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { app, dialog } from 'electron';
 
 type DownloadsHeaderProps = {

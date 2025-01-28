@@ -12,7 +12,7 @@ import { Track } from '@nuclear/ui/lib/types';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
 import TrackTableContainer from '../../../containers/TrackTableContainer';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 type AddAllButtonProps = {
   handleAddAll: React.MouseEventHandler;

@@ -7,7 +7,7 @@ import NeumorphicBox from '../../NeumorphicBox';
 import { VolumeControlsProps } from '../../VolumeControls';
 import { PlayOptionControlProps } from '../../VolumeControls/PlayOptions';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 
 export type MiniPlayOptionsProps = Pick<VolumeControlsProps, 'playOptions'> & {
@@ -60,7 +60,10 @@ const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
         />
       </button>
       {
-        isExpanded && playOptions.slice(1).map(playOption => <MiniPlayOptionControl {...playOption} />)
+        isExpanded && playOptions.slice(1).map(playOption => <MiniPlayOptionControl 
+          key={playOption.name}
+          {...playOption} 
+        />)
       }
     </NeumorphicBox>
   </div>;

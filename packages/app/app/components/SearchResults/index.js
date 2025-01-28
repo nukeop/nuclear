@@ -8,7 +8,7 @@ import AllResults from './AllResults';
 import TracksResults from './TracksResults';
 import PlaylistResults from './PlaylistResults';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 @withTranslation('search')
 class SearchResults extends React.Component {
@@ -16,7 +16,7 @@ class SearchResults extends React.Component {
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
-          <div className={styles.row}>
+          <div className='row'>
             <AllResults
               {...this.props}
               albumInfoSearch={this.albumInfoSearch.bind(this)}

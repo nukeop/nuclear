@@ -7,7 +7,7 @@ import Equalizer from '../../components/Equalizer';
 import EqualizerPresetList from '../../components/EqualizerPresetList';
 import { useTranslation } from 'react-i18next';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { RootState } from '../../reducers';
 import Header from '../../components/Header';
 

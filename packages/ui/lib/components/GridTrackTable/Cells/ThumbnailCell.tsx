@@ -3,7 +3,7 @@ import { CellProps } from 'react-table';
 import cx from 'classnames';
 
 import { Track } from '../../../types';
-import styles from '../styles.scss';
+import * as styles from '../styles.scss';
 import Img from 'react-image';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
@@ -18,5 +18,5 @@ export const ThumbnailCell: React.FC<CellProps<Track>> = ({
     className={styles.thumbnail_cell_thumbnail} 
     src={value}
     unloader={<img className={styles.thumbnail_cell_thumbnail} src={artPlaceholder}/>}
-    />
+  />
 </div>;

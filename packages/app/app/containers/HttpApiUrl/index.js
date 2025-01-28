@@ -4,7 +4,7 @@ import { shell } from 'electron';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 const handleClick = settings => {
   const apiUrl = `http://localhost:${settings['api.port']}/nuclear/docs` ;

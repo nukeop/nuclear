@@ -9,7 +9,7 @@ import { StreamInfo } from '@nuclear/ui';
 import QueuePopupButtons from '../../../containers/QueuePopupButtons';
 import { QueueItem } from '../../../reducers/queue';
 import * as QueueActions from '../../../actions/queue';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { PluginsState } from '../../../reducers/plugins';
 
 export type QueuePopupProps = {

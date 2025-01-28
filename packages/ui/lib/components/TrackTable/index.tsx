@@ -17,7 +17,7 @@ import SelectionHeader from './Headers/SelectionHeader';
 import ColumnHeader from './Headers/ColumnHeader';
 import { getTrackThumbnail } from '../TrackRow';
 import { TrackTableColumn, TrackTableExtraProps, TrackTableHeaders, TrackTableSettings, TrackTableStrings } from './types';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { Track } from '../../types';
 import { Button, formatDuration } from '../..';

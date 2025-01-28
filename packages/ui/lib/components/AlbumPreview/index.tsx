@@ -8,7 +8,7 @@ import { getThumbnail } from '../..';
 import ContextPopup from '../ContextPopup';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 
 type AlbumPreviewProps = {

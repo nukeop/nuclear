@@ -5,7 +5,7 @@ import { Cell, Row, TableToggleRowsSelectedProps, UseRowSelectRowProps } from 'r
 
 import { Checkbox } from '../../..';
 import { Track } from '../../../types';
-import styles from '../styles.scss';
+import * as styles from '../styles.scss';
 
 type SelectionCellProps<T extends Track> = {
   cell: Cell<T>;

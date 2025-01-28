@@ -4,7 +4,7 @@ import { CellProps } from 'react-table';
 import { Button, TrackPopup } from '../../..';
 import { TrackTableColumn, TrackTableExtraProps } from '../types';
 import { Track } from '../../../types';
-import styles from '../styles.scss';
+import * as styles from '../styles.scss';
 
 const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   cell,

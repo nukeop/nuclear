@@ -6,7 +6,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import ChartsTab from './ChartsTab';
 import GenresTab from './GenresTab';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { DashboardReducerState } from '../../reducers/dashboard';
 import EditorialsTab from './EditorialsTab';
 

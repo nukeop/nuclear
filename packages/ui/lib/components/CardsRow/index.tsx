@@ -3,7 +3,7 @@ import { Icon, Input } from 'semantic-ui-react';
 
 import Button from '../Button';
 import Card from '../Card';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 type CardWithId = ComponentProps<typeof Card> & {
   id: string;

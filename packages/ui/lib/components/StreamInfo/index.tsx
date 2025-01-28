@@ -8,7 +8,7 @@ import { StreamOption } from './StreamOption';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import Tooltip from '../Tooltip';
 import Button from '../Button';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 type Handlers = {
   onImageLoaded: React.ReactEventHandler<HTMLImageElement>;

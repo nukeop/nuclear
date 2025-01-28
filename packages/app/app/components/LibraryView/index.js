@@ -7,7 +7,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import EmptyState from './EmptyState';
 import trackRowStyles from '../TrackRow/styles.scss';
-import styles from './index.scss';
+import * as styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
 import LibrarySimpleList from './LibrarySimpleList';
 import LibraryFolderTree from './LibraryFolderTree';

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import Header from '../Header';
 import UserPluginsSection from './UserPluginsSection';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { useDropdownOptions } from '../../hooks/useDropdownOptions';
 import { PluginsState } from '../../reducers/plugins';
 import { useDispatch } from 'react-redux';

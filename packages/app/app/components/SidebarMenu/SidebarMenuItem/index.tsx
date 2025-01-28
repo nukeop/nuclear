@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tooltip } from '@nuclear/ui';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 type SidebarMenuItemProps = {
   name: string;

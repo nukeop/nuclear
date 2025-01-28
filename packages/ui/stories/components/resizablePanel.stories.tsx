@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 import { ResizablePanel } from '../..';
 
-import styles from './resizablePanel.styles.scss';
+import * as styles from './resizablePanel.styles.scss';
 
 export default {
   title: 'Components/ResizablePanel'

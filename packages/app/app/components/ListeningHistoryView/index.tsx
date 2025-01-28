@@ -4,7 +4,7 @@ import { groupBy, map } from 'lodash';
 import { HistoryTableTrack } from '@nuclear/ui/lib/components/TrackTable/HistoryTable';
 
 import { ListeningHistorySection } from './ListeningHistorySection';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import Header from '../Header';
 import { useTranslation } from 'react-i18next';
 import { Button, ConfirmationModal } from '@nuclear/ui';

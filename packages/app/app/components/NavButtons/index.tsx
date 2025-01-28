@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import { useHistory } from 'react-router';
 import { History } from 'history';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 
 const NavButtons: React.FC = () => {

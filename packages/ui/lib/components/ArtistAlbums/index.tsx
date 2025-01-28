@@ -1,7 +1,7 @@
 import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
 import React, { useMemo, useState } from 'react';
 import { AlbumGrid, Button, Dropdown, FormInput } from '../..';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 export type ArtistAlbumsStrings = {
   header: string;

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
 
 import appStyles from '../../styles.scss';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 const PlaylistsSubMenu = props => {
   return (

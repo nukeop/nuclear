@@ -4,7 +4,7 @@ import { Tab } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import genreToIcon from './mapGenres';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 import { useHistory } from 'react-router-dom';
 

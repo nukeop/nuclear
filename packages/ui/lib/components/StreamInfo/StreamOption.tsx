@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 export const StreamOption: React.FC<StreamData> = ({ title, author, thumbnail }) => (
   <div className={styles.stream_option}>

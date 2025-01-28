@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react';
 import VolumeSlider, { VolumeSliderProps } from './VolumeSlider';
 import PlaybackRateSlider, { PlaybackRateSliderProps } from './PlaybackRateSlider';
 import PlayOptions, { PlayOptionsProps } from './PlayOptions';
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 export type VolumeControlsProps = VolumeSliderProps & PlayOptionsProps & PlaybackRateSliderProps;
 

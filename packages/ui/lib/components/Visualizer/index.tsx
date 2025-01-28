@@ -6,7 +6,7 @@ import butterchurnPresets from 'butterchurn-presets';
 import Measure from 'react-measure';
 import _ from 'lodash';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 
 export type VisualizerProps = {
   audioContext?: AudioContext;

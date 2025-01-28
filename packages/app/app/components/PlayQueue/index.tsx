@@ -20,7 +20,7 @@ import { PlayQueueActions } from '../../containers/PlayQueueContainer';
 import QueuePopupContainer from '../../containers/QueuePopupContainer';
 import { StreamVerificationContainer } from '../../containers/StreamVerificationContainer';
 
-import styles from './styles.scss';
+import * as styles from './styles.scss';
 import { QueueItemClone } from './QueueItemClone';
 
 type PlayQueueProps = {
@@ -222,7 +222,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
         >
           {(droppableProvided, snapshot) => (
             <div
-              className={classnames(styles.play_queue_items, styles.fade_in, {
+              className={classnames(styles.play_queue_items, {
                 [styles.file_dragged_over]: isFileHovered,
                 [styles.track_dragged_over]: snapshot.isDraggingOver
               })}
