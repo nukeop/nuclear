@@ -62,7 +62,6 @@ class Window {
       webPreferences: {
         nodeIntegration: true,
         webSecurity: false,
-        webviewTag: true,
         contextIsolation: false,
         additionalArguments: [
           store.getOption('disableGPU') && '--disable-gpu'

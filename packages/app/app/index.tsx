@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import 'regenerator-runtime';
 
 import 'semantic-ui-css/semantic.min.css';
@@ -17,6 +18,12 @@ import configureStore from './store/configureStore';
 import { app } from 'electron';
 
 const store = configureStore({});
+
+/* 
+* The `setTimeout` and `setInterval` functions are overridden to use the Node.js timers module. This is necessary because the default browser implementations of `setTimeout` and `setInterval` will not work correctly with unidici, so we use the Node versions.
+*/
+window.setTimeout = ((handler: TimerHandler, timeout?: number, ...args: any[]) => require('timers').setTimeout(handler, timeout, ...args)) as typeof setTimeout;
+window.setInterval = ((handler: TimerHandler, timeout?: number, ...args: any[]) => require('timers').setInterval(handler, timeout, ...args)) as typeof setInterval;
 
 i18n.on('languageChanged', lng => setOption('language', lng));
 
