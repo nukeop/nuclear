@@ -222,12 +222,12 @@ module.exports = (env) => {
         },
         {
           test: /\.(png|jpg|gif)$/,
-          loader: 'url-loader',
+          type: 'asset/resource',
           include: [RESOURCES_DIR, APP_DIR, UI_DIR, VENDOR_DIR]
         },
         {
           test: /\.(ttf|eot|woff|woff2|svg)$/,
-          loader: 'url-loader',
+          type: 'asset/resource',
           include: [UI_DIR, APP_DIR, VENDOR_DIR]
         },
         {

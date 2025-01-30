@@ -44,14 +44,14 @@ module.exports = {
           },
           {
             test: /\.(ttf|eot|woff|woff2|svg)$/,
-            loader: 'url-loader',
+            type: 'asset/resource',
             include: [
               path.resolve(__dirname, '../resources')
             ]
           },
           {
             test: /\.(png|jpg|gif)$/,
-            loader: 'url-loader',
+            type: 'asset/resource',
             include: path.resolve(__dirname, '../resources')
           }
         ]

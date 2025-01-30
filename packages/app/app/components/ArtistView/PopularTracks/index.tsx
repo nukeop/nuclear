@@ -10,8 +10,8 @@ import { ArtistTopTrack } from '@nuclear/core/src/plugins/plugins.types';
 import { TextCell } from '@nuclear/ui/lib/components/GridTrackTable/Cells/TextCell';
 import { Track } from '@nuclear/ui/lib/types';
 
-import trackRowStyles from '../../TrackRow/styles.scss';
 import TrackTableContainer from '../../../containers/TrackTableContainer';
+import * as trackRowStyles from '../../TrackRow/styles.scss';
 import * as styles from './styles.scss';
 
 type AddAllButtonProps = {
