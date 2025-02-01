@@ -2,7 +2,7 @@ import React from 'react';
 
 import PlayerButton from '../PlayerButton';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type PlayerControlsProps = {
   goForward?: () => void;

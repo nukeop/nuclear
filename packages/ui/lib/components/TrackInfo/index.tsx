@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
 import Cover from '../Cover';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type TrackInfoProps = {
   cover?: string;

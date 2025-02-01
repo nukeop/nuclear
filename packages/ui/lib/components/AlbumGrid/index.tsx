@@ -5,11 +5,11 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 
 import AlbumPreview from '../AlbumPreview';
 import Card from '../Card';
-import * as common from '../../common.scss';
-import * as styles from './styles.scss';
+import common from '../../common.scss';
+import styles from './styles.scss';
 import { getThumbnail, getTrackItem } from '../..';
 import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
-import { Album, Track } from '@nuclear/core';
+import { Track } from '@nuclear/core';
 
 type AlbumGridProps = {
   albums?: SearchResultsAlbum[];

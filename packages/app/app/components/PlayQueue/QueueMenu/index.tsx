@@ -9,7 +9,7 @@ import settingsConst from '../../../constants/settings';
 import { PlayQueueActions } from '../../../containers/PlayQueueContainer';
 import { QueueItem } from '../../../reducers/queue';
 import { SettingsState } from '../../../reducers/settings';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 type QueueMenuProps = {
   addPlaylist: PlayQueueActions['addPlaylist'];

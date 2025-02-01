@@ -8,7 +8,7 @@ import ScrobblingReducer from '../../../reducers/scrobbling';
 import Spacer from '../../Spacer';
 import SocialIntegration from '../SocialIntegration';
 
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 
 type LastFmSocialIntegrationProps = {
   actions: {

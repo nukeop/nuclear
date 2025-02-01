@@ -12,7 +12,7 @@ import {
 import { withTranslation } from 'react-i18next';
 import { compose, withHandlers } from 'recompose';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 const LibraryFolders = ({
   openLocalFolderPicker,

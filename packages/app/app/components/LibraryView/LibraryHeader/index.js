@@ -8,7 +8,7 @@ import { withHandlers, withState, compose } from 'recompose';
 import Header from '../../Header';
 import LibraryFolders from '../LibraryFolders';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 const LibraryHeader = ({
   t,

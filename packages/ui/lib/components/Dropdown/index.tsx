@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { Dropdown as SemanticDropdown, DropdownProps as SUIDropdownProps } from 'semantic-ui-react';
 
-import * as common from '../../common.scss';
-import * as styles from './styles.scss';
+import common from '../../common.scss';
+import styles from './styles.scss';
 
 export type DropdownProps = SUIDropdownProps & {
   noCaret?: boolean;

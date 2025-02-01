@@ -1,6 +1,6 @@
 import React from 'react';
 import { Loader, Card, Image } from 'semantic-ui-react';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type GithubContributorData = {
   total: number;

@@ -3,7 +3,7 @@ import { Cell, CellProps, UseRowSelectRowProps } from 'react-table';
 
 import { Track } from '../../../types';
 import Checkbox, { CheckboxProps } from '../../Checkbox';
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 import { TrackTableRow } from '..';
 
 type SelectionCellProps<T extends Track> = {

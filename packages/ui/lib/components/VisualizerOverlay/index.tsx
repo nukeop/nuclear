@@ -1,6 +1,6 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
 import { Button, Dropdown } from '../..';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import cx from 'classnames';
 
 export type VisualizerOverlayProps = {

@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Dropdown as SemanticDropdown, DropdownProps } from 'semantic-ui-react';
 
 import Dropdown from '../Dropdown';
-import * as popupButtonStyles from '../PopupButton/styles.scss';
+import popupButtonStyles from '../PopupButton/styles.scss';
 import './styles.scss';
 
 export type PopupDropdownProps = {

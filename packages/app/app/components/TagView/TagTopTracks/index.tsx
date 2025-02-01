@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, TrackTable } from '@nuclear/ui';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import TrackRow from '../../TrackRow';
 import TrackTableContainer from '../../../containers/TrackTableContainer';
 

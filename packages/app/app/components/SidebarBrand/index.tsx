@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 import logoIcon from '../../../resources/media/512x512.png';
 import { Tooltip } from '@nuclear/ui';

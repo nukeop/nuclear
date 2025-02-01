@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { isMac } from '../../hooks/usePlatform';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 const CommandPaletteReminder = () => {
   const { t } = useTranslation('command-palette');

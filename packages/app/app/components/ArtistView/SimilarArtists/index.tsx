@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 type SimilarArtistsProps = {

@@ -5,7 +5,7 @@ import cx from 'classnames';
 import Button from '../../Button';
 import { TrackTableExtraProps } from '../../TrackTable/types';
 import { Track } from '../../../types';
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 
 export const PositionCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   cell,

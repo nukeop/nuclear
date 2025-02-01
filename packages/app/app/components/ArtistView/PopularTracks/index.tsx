@@ -11,8 +11,8 @@ import { TextCell } from '@nuclear/ui/lib/components/GridTrackTable/Cells/TextCe
 import { Track } from '@nuclear/ui/lib/types';
 
 import TrackTableContainer from '../../../containers/TrackTableContainer';
-import * as trackRowStyles from '../../TrackRow/styles.scss';
-import * as styles from './styles.scss';
+import trackRowStyles from '../../TrackRow/styles.scss';
+import styles from './styles.scss';
 
 type AddAllButtonProps = {
   handleAddAll: React.MouseEventHandler;

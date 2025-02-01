@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export default () => {
   const { t } = useTranslation('library');

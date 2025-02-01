@@ -3,7 +3,7 @@ import { CellProps } from 'react-table';
 import cx from 'classnames';
 
 import { Track } from '../../../types';
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 import Img from 'react-image';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 

@@ -10,7 +10,7 @@ import { agplDisclaimer } from './const';
 
 import logoImg from '../../../resources/media/logo_full_light.png';
 import mastodonImg from '../../../resources/media/mastodon.svg';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type HelpModalProps = {
   githubContrib: ContributorState;

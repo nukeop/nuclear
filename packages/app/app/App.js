@@ -22,8 +22,8 @@ import * as NuclearConfigActions from './actions/nuclear/configuration';
 import * as DownloadActions from './actions/downloads';
 
 import './app.global.scss';
-import * as styles from './styles.scss';
-import * as compact from './compact.scss';
+import styles from './styles.scss';
+import compact from './compact.scss';
 
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';

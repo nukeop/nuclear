@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 import SimilarArtists from './SimilarArtists';
 import PopularTracks from './PopularTracks';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { ArtistDetailsState } from '../../reducers/search';
 import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';

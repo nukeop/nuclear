@@ -3,7 +3,7 @@ import { Popup, PopupProps } from 'semantic-ui-react';
 import Img from 'react-image';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type ContextPopupProps = {
   trigger: PopupProps['trigger'];

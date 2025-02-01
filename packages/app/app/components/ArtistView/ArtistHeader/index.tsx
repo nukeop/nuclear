@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ArtistTags from '../ArtistTags';
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 import { ArtistDetailsState } from '../../../reducers/search';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import { Icon } from 'semantic-ui-react';

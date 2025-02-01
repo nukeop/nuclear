@@ -5,8 +5,8 @@ import {
   ButtonProps as SUIButtonProps
 } from 'semantic-ui-react';
 
-import * as common from '../../common.scss';
-import * as styles from './styles.scss';
+import common from '../../common.scss';
+import styles from './styles.scss';
 
 export type ButtonProps = SUIButtonProps & {
   borderless?: boolean;

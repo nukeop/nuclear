@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 import { TrackTableExtraProps } from '../TrackTable/types';
 import { Track } from '../../types';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 type GridTrackTableRowProps<T extends Track> = {
     data: {

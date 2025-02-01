@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from './index.scss';
+import styles from './index.scss';
 
 type PreAmpProps = {
   value: number;

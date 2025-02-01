@@ -2,7 +2,7 @@ import React from 'react';
 import { Transition } from 'semantic-ui-react';
 import useKeyPress from '../../hooks/useKeyPress';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type FullscreenLayerProps = {
     isOpen?: boolean;

@@ -7,7 +7,7 @@ import { Track } from '@nuclear/core';
 
 import TrackTableContainer from '../../containers/TrackTableContainer';
 import Header from '../Header';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { Button, Tooltip } from '@nuclear/ui';
 
 export const EmptyState = () => {

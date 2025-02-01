@@ -4,7 +4,7 @@ import Button from '../Button';
 
 import blobMask from '../../../resources/media/blob_mask.png';
 import blobMaskShadow from '../../../resources/media/blob_mask_shadow.png';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 type PromotedArtistProps = {
     name: string;

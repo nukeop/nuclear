@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react';
 
 import { Track } from '../../../types';
 
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 
 type ColumnHeaderProps = {
   column: ColumnInstance<Track> & UseSortByColumnProps<Track>;

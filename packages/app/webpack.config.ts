@@ -80,19 +80,12 @@ module.exports = (env) => {
       include: [APP_DIR, ...NUCLEAR_MODULES]
     }
   };
-  const contentSecurity =
-    'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data: file:;';
+  
   const plugins: webpack.Configuration['plugins'] = [
     new HtmlWebpackPlugin({
       meta: {
         charset: {
           charset: 'UTF-8'
-        },
-        'Content-Security-Policy': {
-          'http-equiv': 'Content-Security-Policy',
-          content: IS_DEV
-            ? `${contentSecurity} script-src 'unsafe-eval' 'unsafe-inline' localhost:8080`
-            : contentSecurity
         }
       },
       template: path.resolve(__dirname, 'index.html'),
@@ -198,8 +191,10 @@ module.exports = (env) => {
               options: {
                 modules: {
                   localIdentName: '[local]',
-                  exportLocalsConvention: 'as-is'
+                  exportLocalsConvention: 'as-is',
+                  namedExport: false
                 },
+                esModule: true,
                 importLoaders: 1
               }
             },

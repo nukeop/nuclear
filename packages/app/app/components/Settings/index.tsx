@@ -11,7 +11,7 @@ import i18n from '@nuclear/i18n';
 import Header from '../Header';
 import Spacer from '../Spacer';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { LastFmSocialIntegration } from './Integrations/LastFmSocialIntegration';
 import { MastodonSocialIntegration } from './Integrations/MastodonSocialIntegration';
 import { RootState } from '../../reducers';

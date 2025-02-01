@@ -4,7 +4,7 @@ import { Dropdown, Icon } from 'semantic-ui-react';
 import { TrackPopupProps, TrackPopupStrings } from '.';
 import PopupDropdown from '../PopupDropdown';
 import FormInput from '../FormInput';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type PlaylistsDropdownStrings = Pick<TrackPopupStrings, 'textAddToPlaylist' | 'textCreatePlaylist'>;
 

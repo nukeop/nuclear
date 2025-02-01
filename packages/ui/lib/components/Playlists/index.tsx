@@ -12,7 +12,7 @@ import TracksCell from './Cells/TracksCell';
 import ModificationDateCell from './Cells/ModificationDateCell';
 import SyncCell from './Cells/SyncCell';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { TableHTMLAttributes } from 'react';
 
 export type PlaylistsStrings = {

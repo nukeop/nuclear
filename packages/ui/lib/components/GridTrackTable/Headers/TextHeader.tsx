@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react';
 import cx from 'classnames';
 
 import { Track } from '../../../types';
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 
 export type TextHeaderProps<T extends Track> = {
   className?: string;

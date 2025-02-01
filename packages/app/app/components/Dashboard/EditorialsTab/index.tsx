@@ -5,7 +5,7 @@ import { Tab } from 'semantic-ui-react';
 import { CardsRow } from '@nuclear/ui';
 import { DeezerEditorialCharts } from '@nuclear/core/src/rest/Deezer';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { PromotedArtistsContainer } from '../../../containers/PromotedArtistsContainer';
 
 type EditorialsTabProps = { 

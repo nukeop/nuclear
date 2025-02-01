@@ -7,7 +7,7 @@ import NeumorphicBox from '../../NeumorphicBox';
 import { VolumeControlsProps } from '../../VolumeControls';
 import { PlayOptionControlProps } from '../../VolumeControls/PlayOptions';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 
 export type MiniPlayOptionsProps = Pick<VolumeControlsProps, 'playOptions'> & {

@@ -5,7 +5,7 @@ import { HeaderProps, UseRowSelectInstanceProps } from 'react-table';
 import { TrackTableExtraProps, TrackTableStrings } from '../types';
 import { Button, Checkbox, ContextPopup, PopupButton } from '../../..';
 import { Track } from '../../../types';
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 
 const SelectionHeader: React.FC<
   HeaderProps<Track> &

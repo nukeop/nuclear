@@ -4,8 +4,8 @@ import cx from 'classnames';
 
 import { CommandPaletteAction as CommandPaletteActionType } from '..';
 
-import * as common from '../../../common.scss';
-import * as styles from './styles.scss';
+import common from '../../../common.scss';
+import styles from './styles.scss';
 
 type CommandPaletteActionProps = CommandPaletteActionType & {
     onSelect: () => void;

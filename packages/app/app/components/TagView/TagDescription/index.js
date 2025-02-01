@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 const TagDescription = ({ tagInfo }) => (
   <div className={styles.tag_description}>

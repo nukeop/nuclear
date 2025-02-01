@@ -10,7 +10,7 @@ import { TextCell } from './Cells/TextCell';
 import { Track } from '../../types';
 import { getTrackThumbnail } from '../TrackRow';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { ThumbnailCell } from './Cells/ThumbnailCell';
 import { GridTrackTableRow } from './GridTrackTableRow';

@@ -20,7 +20,7 @@ import { PlayQueueActions } from '../../containers/PlayQueueContainer';
 import QueuePopupContainer from '../../containers/QueuePopupContainer';
 import { StreamVerificationContainer } from '../../containers/StreamVerificationContainer';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { QueueItemClone } from './QueueItemClone';
 
 type PlayQueueProps = {

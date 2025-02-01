@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type NeumorphicBoxProps = {
   borderRadius?: string;

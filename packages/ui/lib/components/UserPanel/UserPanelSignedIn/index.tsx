@@ -6,8 +6,8 @@ import UsernameContainer from '../UsernameContainer';
 import { UserPanelProps } from '..';
 import { Dropdown } from '../../..';
 
-import * as styles from '../styles.scss';
-import * as common from '../../../common.scss';
+import styles from '../styles.scss';
+import common from '../../../common.scss';
 import { DropdownProps } from '../../Dropdown';
 
 type User = {

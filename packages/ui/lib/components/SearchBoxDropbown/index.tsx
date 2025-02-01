@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { Icon, SemanticICONS } from 'semantic-ui-react';
 
 export type SearchBoxDropdownProps = {

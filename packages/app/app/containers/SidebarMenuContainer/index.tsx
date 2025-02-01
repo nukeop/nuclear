@@ -13,7 +13,7 @@ import { settingsSelector } from '../../selectors/settings';
 import { setBooleanOption } from '../../actions/settings';
 import { useResizablePanel } from './hooks';
 import categories from './categories';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 // import { UserPanelContainer } from '../UserPanelContainer';
 
 const SidebarMenuContainer: React.FC = () => {

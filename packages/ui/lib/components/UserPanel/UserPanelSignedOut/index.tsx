@@ -3,8 +3,8 @@ import cx from 'classnames';
 
 import Button from '../../Button';
 
-import * as styles from '../styles.scss';
-import * as common from '../../../common.scss';
+import styles from '../styles.scss';
+import common from '../../../common.scss';
 
 export type UserPanelSignedOutProps = {
     signUpButtonLabel: string;

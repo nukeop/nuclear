@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export type UsernameContainerProps = {
     username?: string;

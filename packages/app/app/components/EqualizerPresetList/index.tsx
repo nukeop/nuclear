@@ -3,7 +3,7 @@ import { List, Icon } from 'semantic-ui-react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 type EqualizerPresetListProps ={
   presets: Array<Preset>;

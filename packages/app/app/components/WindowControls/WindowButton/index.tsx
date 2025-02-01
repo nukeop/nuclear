@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, SemanticICONS } from 'semantic-ui-react';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 type WindowButtonControls = {
   color?: string;

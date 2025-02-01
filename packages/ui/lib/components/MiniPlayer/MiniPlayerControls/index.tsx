@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 import { PlayerControlsProps } from '../../PlayerControls';
 import NeumorphicBox from '../../NeumorphicBox';

@@ -3,7 +3,7 @@ import { CellProps } from 'react-table';
 
 import { Playlist } from '@nuclear/core';
 
-import * as styles from '../styles.scss';
+import styles from '../styles.scss';
 
 const TitleCell: React.FC<CellProps<Playlist>> =({
   cell,

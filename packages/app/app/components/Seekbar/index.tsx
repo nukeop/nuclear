@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 const Seekbar = ({ seek, queue, fill, children }) => {
   const handleClick = useCallback(event => {

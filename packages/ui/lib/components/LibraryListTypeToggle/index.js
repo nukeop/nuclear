@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 export const LIST_TYPE = Object.freeze({
   SIMPLE_LIST: 'simple-list',

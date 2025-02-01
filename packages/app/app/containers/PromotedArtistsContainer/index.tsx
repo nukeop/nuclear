@@ -11,7 +11,7 @@ import { PromotedArtist as PromotedArtistType } from '@nuclear/core/src/rest/Nuc
 
 import { isConfigFlagEnabled, nuclearSelectors, paramValue } from '../../selectors/nuclear';
 import { dashboardSelector } from '../../selectors/dashboard';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { selectMetaProvider } from '../../actions/plugins';
 import { unifiedSearch } from '../../actions/search';
 

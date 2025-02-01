@@ -4,8 +4,8 @@ import cx from 'classnames';
 import { Button, Icon } from 'semantic-ui-react';
 
 import Loader from '../Loader';
-import * as common from '../../common.scss';
-import * as styles from './styles.scss';
+import common from '../../common.scss';
+import styles from './styles.scss';
 
 const UserPluginsItem = ({
   path,

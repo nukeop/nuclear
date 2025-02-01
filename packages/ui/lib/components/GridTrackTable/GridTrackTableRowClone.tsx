@@ -2,7 +2,7 @@ import React from 'react';
 import { DraggableChildrenFn } from 'react-beautiful-dnd';
 
 import cx from 'classnames';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { Row } from 'react-table';
 import { Track } from '../../types';
 import { TrackTableExtraProps } from '../TrackTable/types';

@@ -6,8 +6,8 @@ import PlayerControls, { PlayerControlsProps } from '../PlayerControls';
 import TrackInfo, { TrackInfoProps } from '../TrackInfo';
 import VolumeControls, { VolumeControlsProps } from '../VolumeControls';
 import VolumePopUp, { VolumePopUpProps } from './VolumePopUp';
-import * as common from '../../common.scss';
-import * as styles from './styles.scss';
+import common from '../../common.scss';
+import styles from './styles.scss';
 import { formatDuration } from '../../utils';
 import useWindowSize from '../../hooks/useWindowSize';
 

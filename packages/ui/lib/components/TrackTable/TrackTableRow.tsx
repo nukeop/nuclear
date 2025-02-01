@@ -6,7 +6,7 @@ import cx from 'classnames';
 
 import { TrackTableColumn, TrackTableExtraProps } from './types';
 import { Track } from '../../types';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 type TrackTableRowProps<T extends Track> = {
     data: {

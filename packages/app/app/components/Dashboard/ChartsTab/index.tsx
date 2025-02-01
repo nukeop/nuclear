@@ -3,7 +3,7 @@ import { Tab } from 'semantic-ui-react';
 import { Track } from '@nuclear/ui/lib/types';
 
 import TrackTableContainer from '../../../containers/TrackTableContainer';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
 import { InternalTopTrack } from '../../../reducers/dashboard';
 

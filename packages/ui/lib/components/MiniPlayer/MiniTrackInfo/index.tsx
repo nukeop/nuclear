@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import Img from 'react-image';
 
