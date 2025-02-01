@@ -6,7 +6,7 @@ import {
   Segment
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { dialog, ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron';
 
 import { setStringOption } from '../../../actions/settings';
 import styles from './styles.scss';
@@ -23,18 +23,18 @@ const DownloadsHeader: React.FC<DownloadsHeaderProps> = ({
 }) => {
   const { t } = useTranslation('settings');
   const [downloadsDir, setDownloadsDir] = useState<string>('');
+  
   const setDirectory = useCallback(async () => {
-    const dialogResult = await dialog.showOpenDialog({
+    const selectedPath = await ipcRenderer.invoke(IpcEvents.OPEN_PATH_PICKER, {
+      title: t('downloads-dir-button'),
       properties: ['openDirectory']
     });
-    if (!dialogResult.canceled && !_.isEmpty(dialogResult.filePaths)) {
-      setStringOption(
-        'downloads.dir',
-        _.head(dialogResult.filePaths)
-      );
-      setDownloadsDir(_.head(dialogResult.filePaths));
+    
+    if (selectedPath) {
+      setStringOption('downloads.dir', selectedPath[0]);
+      setDownloadsDir(selectedPath[0]);
     }
-  }, [setStringOption]);
+  }, [setStringOption, t]);
 
   useEffect(() => {
     ipcRenderer.invoke(IpcEvents.DOWNLOAD_GET_PATH).then((storedDownloadsDir) => {

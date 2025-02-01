@@ -1,7 +1,7 @@
 import { IpcEvents } from '@nuclear/core';
 import { dialog, shell, clipboard, app } from 'electron';
 import { inject } from 'inversify';
-import { ipcController, ipcInvokeHandler } from '../utils/decorators';
+import { ipcController, ipcEvent, ipcInvokeHandler } from '../utils/decorators';
 import Logger, { $mainLogger } from '../services/logger';
 import Window from '../services/window';
 
@@ -24,6 +24,9 @@ class ElectronUtilsIpcCtrl {
     @inject($mainLogger) private logger: Logger,
     @inject(Window) private window: Window
   ) {}
+  
+  @ipcEvent(IpcEvents.DOWNLOAD_PAUSE)
+  async onPauseDownload() {}
 
   @ipcInvokeHandler(IpcEvents.OPEN_PATH_PICKER)
   async openPathPicker(options: PathPickerOptions = {}) {
@@ -33,7 +36,7 @@ class ElectronUtilsIpcCtrl {
         defaultPath: options.defaultPath,
         properties: options.properties || ['openDirectory']
       });
-      return filePaths[0];
+      return filePaths;
     } catch (error) {
       this.logger.error('Failed to open path picker:', error);
       throw error;
