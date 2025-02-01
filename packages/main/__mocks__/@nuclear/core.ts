@@ -40,6 +40,7 @@ export enum IpcEvents {
 
   CONNECTIVITY = 'connectivity',
 
+  DOWNLOAD_GET_PATH = 'get-download-path',
   DOWNLOAD_START = 'start-download',
   DOWNLOAD_PAUSE = 'pause-download',
   DOWNLOAD_STARTED = 'download-started',

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import _ from 'lodash';
 import {
   Button,
@@ -6,10 +6,11 @@ import {
   Segment
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
+import { dialog, ipcRenderer } from 'electron';
 
 import { setStringOption } from '../../../actions/settings';
 import styles from './styles.scss';
-import { app, dialog } from 'electron';
+import { IpcEvents } from '@nuclear/core';
 
 type DownloadsHeaderProps = {
   directory: string;
@@ -21,6 +22,7 @@ const DownloadsHeader: React.FC<DownloadsHeaderProps> = ({
   setStringOption
 }) => {
   const { t } = useTranslation('settings');
+  const [downloadsDir, setDownloadsDir] = useState<string>('');
   const setDirectory = useCallback(async () => {
     const dialogResult = await dialog.showOpenDialog({
       properties: ['openDirectory']
@@ -30,15 +32,22 @@ const DownloadsHeader: React.FC<DownloadsHeaderProps> = ({
         'downloads.dir',
         _.head(dialogResult.filePaths)
       );
+      setDownloadsDir(_.head(dialogResult.filePaths));
     }
   }, [setStringOption]);
+
+  useEffect(() => {
+    ipcRenderer.invoke(IpcEvents.DOWNLOAD_GET_PATH).then((storedDownloadsDir) => {
+      setDownloadsDir(_.isEmpty(directory) ? storedDownloadsDir : directory);
+    });
+  }, []);
 
   return (
     <Segment className={styles.downloads_header}>
       <span className={styles.label}>
         {t('saving-in')}
         <span className={styles.directory}>
-          {_.isEmpty(directory) ? app.getPath('downloads') : directory}
+          {downloadsDir}
         </span>
       </span>
       <Button
