@@ -103,6 +103,7 @@ enum IpcEvents {
   SHOW_ITEM_IN_FOLDER = 'show-item-in-folder',
   COPY_TO_CLIPBOARD = 'copy-to-clipboard',
   GET_SYSTEM_INFO = 'get-system-info',
+  SHOW_SAVE_DIALOG = 'show-save-dialog',  
 }
 
 export default IpcEvents;

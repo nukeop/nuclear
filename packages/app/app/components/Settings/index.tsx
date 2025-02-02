@@ -1,10 +1,10 @@
 import React from 'react';
-import { dialog, ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron';
 import { Button, Input, Radio, Segment, Icon } from 'semantic-ui-react';
 import cx from 'classnames';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
-import { SettingType } from '@nuclear/core';
+import { SettingType, IpcEvents } from '@nuclear/core';
 import { Dropdown, Range } from '@nuclear/ui';
 import i18n from '@nuclear/i18n';
 
@@ -72,14 +72,12 @@ const Settings: React.FC<SettingsProps> = ({
   };
 
   const setDirectoryOption = async (option) => {
-    const dialogResult = await dialog.showOpenDialog({
+    const filePaths = await ipcRenderer.invoke(IpcEvents.OPEN_PATH_PICKER, {
       properties: ['openDirectory']
     });
-    if (!dialogResult.canceled && !_.isEmpty(dialogResult.filePaths)) {
-      actions.setStringOption(
-        option.name,
-        _.head(dialogResult.filePaths)
-      );
+    
+    if (!_.isEmpty(filePaths)) {
+      actions.setStringOption(option.name, _.head(filePaths));
     }
   };
 

@@ -18,6 +18,12 @@ interface FilePickerOptions {
   properties?: Array<'openFile' | 'multiSelections' | 'showHiddenFiles'>;
 }
 
+interface SaveDialogOptions {
+  defaultPath?: string;
+  filters?: { name: string; extensions: string[] }[];
+  properties?: Array<'createDirectory' | 'showOverwriteConfirmation'>;
+}
+
 @ipcController()
 class ElectronUtilsIpcCtrl {
   constructor(
@@ -55,6 +61,21 @@ class ElectronUtilsIpcCtrl {
       return filePaths;
     } catch (error) {
       this.logger.error('Failed to open file picker:', error);
+      throw error;
+    }
+  }
+
+  @ipcInvokeHandler(IpcEvents.SHOW_SAVE_DIALOG)
+  async showSaveDialog(options: SaveDialogOptions = {}) {
+    try {
+      const result = await dialog.showSaveDialog(this.window.getBrowserWindow(), {
+        defaultPath: options.defaultPath,
+        filters: options.filters,
+        properties: options.properties
+      });
+      return result;
+    } catch (error) {
+      this.logger.error('Failed to open save dialog:', error);
       throw error;
     }
   }
