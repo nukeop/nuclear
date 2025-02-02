@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { app } from 'electron';
-import timber from 'electron-timber';
+import {logger} from '@nuclear/core';
 import path from 'path';
 import * as rts from 'rotating-file-stream';
 
-timber.hookConsole();
+logger.hookConsole();
 
 const errorLogStream = rts.createStream(
   path.join(app.getPath('userData'), 'logs', 'nuclear-error.log'),
@@ -14,10 +14,6 @@ const errorLogStream = rts.createStream(
     rotate: 5
   }
 );
-
-/**
- * @see {@link https://github.com/sindresorhus/electron-timber}
- */
 
 interface EventMessage {
   once?: boolean;
@@ -33,12 +29,12 @@ export interface ILogger {
 }
 
 class Logger implements ILogger {
-  private logger: typeof timber;
+  private logger: typeof logger;
   private name: string;
 
   constructor(name?: string) {
     this.name = name || 'main';
-    this.logger = name ? timber.create({ name }) : timber;
+    this.logger = name ? logger.create({ name }) : logger;
   }
 
   private getDate() {

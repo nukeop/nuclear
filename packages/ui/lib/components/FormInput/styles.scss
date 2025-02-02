@@ -1,58 +1,58 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .nuclear.field.input {
     position: relative;
 
     .input input {
-        background: rgba($bglighter, 0.25);
-        color: $white;
-        caret-color: $white;
+        background: rgba(common.$bglighter, 0.25);
+        color: common.$white;
+        caret-color: common.$white;
         border: none;
 
         &::placeholder {
-            color: rgba($white, 0.6);
+            color: rgba(common.$white, 0.6);
         }
 
         &::selection {
-            background-color: $blue;
-            color: $white;
+            background-color: common.$blue;
+            color: common.$white;
         }
 
         &:active,
         &:focus {
-            background: rgba($bglighter, 0.25);
-            color: $white;
+            background: rgba(common.$bglighter, 0.25);
+            color: common.$white;
             border: none;
 
             &::placeholder {
-                color: rgba($white, 0.2);
+                color: rgba(common.$white, 0.2);
             }
         }
     }
 
     &.error {
         .input input {
-            background: rgba($bglighter, 0.25);
-            color: $red;
-            border: 1px solid $red;
+            background: rgba(common.$bglighter, 0.25);
+            color: common.$red;
+            border: 1px solid common.$red;
 
             &:active,
             &:focus {
-                background: rgba($bglighter, 0.25);
-                color: $red;
-                border: 1px solid $red;
+                background: rgba(common.$bglighter, 0.25);
+                color: common.$red;
+                border: 1px solid common.$red;
             }
         }
 
         label {
-            color: $red;
+            color: common.$red;
         }
 
         :global(.ui.pointing.below.prompt.label)[role=alert] {
             position: absolute;
             top: 0;
             right: 0;
-            color: $red !important;
+            color: common.$red !important;
             background: none !important;
             border: none !important;
             padding: 0;
@@ -68,7 +68,7 @@
     }
 
     label {
-        color: $white;
+        color: common.$white;
         font-variant: small-caps;
     }
 }

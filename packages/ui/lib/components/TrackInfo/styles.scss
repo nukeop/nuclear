@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .track_info {
   display: flex;
@@ -22,7 +22,7 @@
   }
 
   .track_name {
-    @include ellipsis;
+    @include common.ellipsis;
     overflow-x: hidden;
     overflow-y: visible;
     line-height: 1.25;
@@ -32,11 +32,11 @@
 
   .artist_name {
     font-size: 14px;
-    color: rgba($white, 0.6);
+    color: rgba(common.$white, 0.6);
     cursor: pointer;
 
     &:hover {
-      color: rgba($white, 0.8);
+      color: rgba(common.$white, 0.8);
     }
   }
 

@@ -5,4 +5,4 @@ $background-color: transparent;
 $border: none;
 $row-hovered-background-color: hsla(0, 0%, 100%, .2);
 
-@import '~react-base-table/es/_BaseTable.scss';
+@use '~react-base-table/es/_BaseTable.scss';

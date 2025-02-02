@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .nuclear.checkbox {
   input ~ label {
@@ -6,16 +6,16 @@
     &:hover,
     &:active,
     &:focus {
-      color: $white;
+      color: common.$white;
 
       &::before,
       &::after {
-        color: $white !important;
+        color: common.$white !important;
         background: transparent !important;
       }
 
       &::before {
-        border: 1px solid $white !important;
+        border: 1px solid common.$white !important;
       }
     }
   }

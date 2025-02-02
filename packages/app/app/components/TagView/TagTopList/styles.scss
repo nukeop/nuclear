@@ -1,4 +1,4 @@
-@import '../../../vars';
+@use '../../../vars';
 
 .tag_top_list {
   position: relative;
@@ -67,7 +67,7 @@
     font-size: 3rem;
     line-height: 3rem;
     z-index: 20;
-    color: $white;
+    color: vars.$white;
   }
 
   .other_items {

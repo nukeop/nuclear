@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .album_grid {
   display: flex;
@@ -18,7 +18,7 @@
   }
 
   hr {
-    border: 1px solid rgba($background2, 0.6);
+    border: 1px solid rgba(common.$background2, 0.6);
     margin: 1em 0;
   }
 

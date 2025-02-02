@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .cards_row_container {
     display: flex;
@@ -24,29 +24,29 @@
         margin-right: 1em;
 
         .icon {
-            color: $white;
+            color: common.$white;
         }
 
         .cards_filter input {
-            background: rgba($bglighter, 0.25);
-            color: $white;
+            background: rgba(common.$bglighter, 0.25);
+            color: common.$white;
             border: 1px solid transparent;
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
 
             &::placeholder {
-                color: rgba($white, 0.5);
+                color: rgba(common.$white, 0.5);
             }
 
             &::selection {
-                background-color: $blue;
-                color: $white;
+                background-color: common.$blue;
+                color: common.$white;
             }
 
             &:active,
             &:focus {
                 &::placeholder {
-                    color: rgba($white, 0.2);
+                    color: rgba(common.$white, 0.2);
                 }
             }
         }

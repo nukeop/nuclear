@@ -17,11 +17,10 @@ const ModificationDateCell: React.FC<CellProps<Playlist> & PlaylistsStrings & Pl
   serverModifiedAt  
 }) => <td
   {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}
-  className={styles.modification_date_cell}
 >
   <div className={styles.modification_date_cell_content}>
     <div className={styles.modified_dates}>
-      <div className={styles.modified_at_row}>
+      <div>
         {modifiedAt}
         {
           value?.lastModified
@@ -29,7 +28,7 @@ const ModificationDateCell: React.FC<CellProps<Playlist> & PlaylistsStrings & Pl
             : neverModified
         }
       </div>
-      <div className={styles.modified_at_row}>
+      <div>
         {serverModifiedAt}
         {
           value?.serverModified

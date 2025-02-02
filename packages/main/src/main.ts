@@ -1,9 +1,8 @@
 import 'reflect-metadata';
 import 'v8-compile-cache';
 
-import { transformSource } from '@nuclear/core';
 import { app, protocol } from 'electron';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 
 import { controllers, services } from './ioc';
 import Config from './services/config';
@@ -20,10 +19,11 @@ import ListeningHistoryDb from './services/listening-history/db';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 app.commandLine.appendSwitch('no-sandbox');
-app.transformSource = transformSource;
 
 let container: Container;
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('@electron/remote/main').initialize();
 if (!app.requestSingleInstanceLock()) {
   app.quit();
 } else {

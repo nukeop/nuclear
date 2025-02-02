@@ -18,5 +18,5 @@ export const ThumbnailCell: React.FC<CellProps<Track>> = ({
     className={styles.thumbnail_cell_thumbnail} 
     src={value}
     unloader={<img className={styles.thumbnail_cell_thumbnail} src={artPlaceholder}/>}
-    />
+  />
 </div>;

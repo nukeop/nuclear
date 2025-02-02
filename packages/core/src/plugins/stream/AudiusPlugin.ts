@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '../../';
 import _ from 'lodash';
 
 import { StreamData, StreamQuery } from '../plugins.types';
@@ -10,20 +10,23 @@ class AudiusPlugin extends StreamProviderPlugin {
     super();
     this.name = 'Audius Plugin';
     this.sourceName = 'Audius';
-    this.description = 'A plugin that adds Audius search and streaming support to Nuclear.';
+    this.description =
+      'A plugin that adds Audius search and streaming support to Nuclear.';
     this.baseUrl = 'https://audius.co';
     this.image = null;
     this.init();
   }
 
-  async init(){
+  async init() {
     this.apiEndpoint = await Audius._findHost();
   }
 
   async search(query: StreamQuery): Promise<StreamData[] | undefined> {
     const terms = query.artist + ' ' + query.track;
     try {
-      const results = await (await Audius.trackSearch(this.apiEndpoint, terms)).json();
+      const results = await (
+        await Audius.trackSearch(this.apiEndpoint, terms)
+      ).json();
       const info = results.data;
       return info && info.map(this.createStreamData);
     } catch (err) {
@@ -46,7 +49,9 @@ class AudiusPlugin extends StreamProviderPlugin {
 
   async getStreamForId(id: string): Promise<undefined | StreamData> {
     try {
-      const results = await (await Audius.getTrack(this.apiEndpoint, id)).json();
+      const results = await (
+        await Audius.getTrack(this.apiEndpoint, id)
+      ).json();
       return results.data && this.createStreamData(results.data);
     } catch (err) {
       logger.error(`Error while looking up streams for id: ${id} on Audius`);

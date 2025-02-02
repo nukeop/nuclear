@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@use '../../common.scss';
 
 .visualizer_overlay {
   position: absolute;
@@ -13,12 +13,12 @@
   justify-content: flex-end;
   align-items: flex-end;
 
-  transition: background $short-duration;
-  color: $white;
+  transition: background common.$short-duration;
+  color: common.$white;
 
   & > * {
-    color: $white;
-    transition: opacity $short-duration ease-in !important;
+    color: common.$white;
+    transition: opacity common.$short-duration ease-in !important;
     opacity: 0;
     margin: 0;
 
@@ -38,7 +38,7 @@
     line-height: 2.71428571em;
   }
   &.hover {
-    background: rgba($background3, 0.75);
+    background: rgba(common.$background3, 0.75);
     & > * {
       opacity: 1;
     }

@@ -45,7 +45,7 @@ export const CommandPaletteAction: React.FC<CommandPaletteActionProps> = ({
     <div className={styles.action_right}>
       {
         shortcut && shortcut.length > 0 && 
-        <kbd className={styles.shortcut}>{shortcut}</kbd>
+        <kbd>{shortcut}</kbd>
       }
     </div>
   </button>;

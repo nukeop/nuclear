@@ -43,7 +43,7 @@ const ContextPopup: React.FC<ContextPopupProps> = ({
           <Img 
             src={thumb}
             unloader={<img src={artPlaceholder}/>}
-            />
+          />
         </div>}
         <div className={styles.popup_info}>
           <div className={styles.popup_title}>

@@ -1,5 +1,5 @@
-@import '../../../mixin';
-@import '../../../vars';
+@use '../../../mixin';
+@use '../../../vars';
 
 .library_simple_list_container {
   // needed to fix "height" style being ignored (thus breaking scrolling)
@@ -13,10 +13,10 @@
   .thead {
     th {
       position: relative;
-      color: rgba($white, 0.5) !important;
+      color: rgba(vars.$white, 0.5) !important;
       font-size: 20px !important;
       background: transparent !important;
-      border-bottom: 0.5px solid rgba($white, 0.2) !important;
+      border-bottom: 0.5px solid rgba(vars.$white, 0.2) !important;
 
       &:last-child {
         text-align: right;
@@ -39,11 +39,11 @@
 
   .tbody {
     tr {
-      color: $white;
+      color: vars.$white;
     }
 
     td {
-      @include ellipsis;
+      @include mixin.ellipsis;
       border-color: transparent;
       max-width: 0;
     }
@@ -69,14 +69,14 @@
     padding: 0 !important;
   }
   .ui.table:not(.unstackable) tr>td {
-    border-bottom: 2px solid $background3 !important;
+    border-bottom: 2px solid vars.$background3 !important;
   }
   /* table header */
   .ui.table:not(.unstackable) tr>th {
     max-width: 42px !important;
     padding-top: 0.928571em !important;
     padding-bottom: 0.928571em !important;
-    border-bottom: 0.5px solid rgba($white, 0.2) !important;
+    border-bottom: 0.5px solid rgba(vars.$white, 0.2) !important;
   }
   /* picture icon header thing */
   .ui.table:not(.unstackable) tr>th:nth-child(1) {

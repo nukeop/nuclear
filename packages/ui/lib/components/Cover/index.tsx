@@ -19,7 +19,7 @@ const Cover: React.FC<CoverProps> = ({ cover = String(artPlaceholder) }) => (
     <Img 
       src={cover || String(artPlaceholder)}
       unloader={<img src={String(artPlaceholder)}/>} 
-     />
+    />
   </div>
 );
 

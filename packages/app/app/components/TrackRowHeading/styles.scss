@@ -1,6 +1,6 @@
-@import '../../vars';
+@use '../../vars';
 
 .heading_container {
-  transition: $short-duration;
-  background: rgba($bgdark, 0.2);
+  transition: vars.$short-duration;
+  background: rgba(vars.$bgdark, 0.2);
 }

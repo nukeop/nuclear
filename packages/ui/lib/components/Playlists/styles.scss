@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .playlists_table {
     border-collapse: separate;
@@ -6,18 +6,18 @@
 
     tbody {
         &.body_dragged_over {
-            background: $bgdark;
+            background: common.$bgdark;
         }
     }
 
     tr {
-        color: $white;
+        color: common.$white;
         user-select: none;
-        background: rgba($background2, 0.5);
+        background: rgba(common.$background2, 0.5);
     }
 
     td {
-        @include ellipsis;
+        @include common.ellipsis;
         padding: 0 1em;
     }
 

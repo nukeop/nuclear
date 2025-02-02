@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 
 import { getTrackArtist, StreamVerification } from '@nuclear/ui';
 import { StreamVerificationProps } from '@nuclear/ui/lib/components/StreamVerification';

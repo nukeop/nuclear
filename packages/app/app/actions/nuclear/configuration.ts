@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import { createAsyncAction } from 'typesafe-actions';
 
 import { rest } from '@nuclear/core';

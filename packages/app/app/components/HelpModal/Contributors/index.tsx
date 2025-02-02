@@ -60,7 +60,7 @@ const Contributors: React.FC<ContributorProps> = ({
               src={contributor.author?.avatar_url}
             />
             <Card.Header>{contributor.author?.login}</Card.Header>
-            <Card.Meta className={styles.meta_text}>
+            <Card.Meta>
               {contributor.author?.html_url}
             </Card.Meta>
             <Card.Description>

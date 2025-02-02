@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import ElectronStore from 'electron-store';
 
-import { settingsConfig } from '../settings';
+import { rendererSettings } from '../settings/renderer';
 
 const store = new ElectronStore();
 
@@ -37,7 +37,7 @@ function getOption(key) {
   let value = settings[key];
 
   if (typeof value === 'undefined') {
-    value = _.find(settingsConfig, { name: key }).default;
+    value = _.find(rendererSettings, { name: key }).default;
   }
 
   return value;

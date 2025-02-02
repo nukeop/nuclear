@@ -1,4 +1,4 @@
-@import "../../vars";
+@use "../../vars";
 
 .playlist_view_container {
   width: 100%;
@@ -18,7 +18,7 @@
     img {
       width: 15rem;
       border-radius: 0.5rem;
-      box-shadow: 0rem 0rem 1rem 0.5rem rgba($black, 0.4);
+      box-shadow: 0rem 0rem 1rem 0.5rem rgba(vars.$black, 0.4);
     }
   }
 
@@ -41,8 +41,8 @@
     border-radius: 2em;
     text-transform: uppercase;
     padding: 0.5em 1em;
-    color: $white;
-    background: $purple;
+    color: vars.$white;
+    background: vars.$purple;
   }
 
   .playlist_header_inner {
@@ -68,19 +68,19 @@
 
     button {
       margin-left: 1rem;
-      border: 1px solid rgba($white, 0.3);
+      border: 1px solid rgba(vars.$white, 0.3);
 
       &:hover,
       &:active,
       &:focus {
         i {
-          color: rgba($black, 0.9);
+          color: rgba(vars.$black, 0.9);
         }
       }
     }
 
     i {
-      color: rgba($white, 0.6);
+      color: rgba(vars.$white, 0.6);
     }
   }
 
@@ -88,7 +88,7 @@
     display: flex;
     flex-flow: row;
     margin-bottom: 1em;
-    color: rgba($white, 0.6);
+    color: rgba(vars.$white, 0.6);
 
     span {
       margin-right: 0.5em;
@@ -114,8 +114,8 @@
     }
 
     .delete_button {
-      background: $red;
-      color: $white;
+      background: vars.$red;
+      color: vars.$white;
       border-radius: 1.5rem;
       text-transform: uppercase;
       margin-right: 2rem;
@@ -130,10 +130,10 @@
     display: flex;
     flex-flow: row;
 
-    border-bottom: 1px solid rgba($lightbg, 0.4);
+    border-bottom: 1px solid rgba(vars.$lightbg, 0.4);
 
     &:first-child {
-      border-top: 1px solid rgba($lightbg, 0.4);
+      border-top: 1px solid rgba(vars.$lightbg, 0.4);
     }
   }
 }

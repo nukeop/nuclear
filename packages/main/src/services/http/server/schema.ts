@@ -1,4 +1,4 @@
-import { settingsConfig } from '@nuclear/core';
+import { mainSettings } from '@nuclear/core/src/settings/main';
 
 export const RESTRICTED_SETTINGS = [];
 export const READONLY_SETTINGS = [];
@@ -10,7 +10,7 @@ export const getSettingsSchema = {
     properties: {
       option: {
         type: 'string',
-        enum: settingsConfig
+        enum: mainSettings
           .filter(({ name }) => !RESTRICTED_SETTINGS.includes(name as never))
           .map(({ name }) => name)
       }
@@ -25,7 +25,7 @@ export const updateSettingsSchema = {
     properties: {
       option: {
         type: 'string',
-        enum: settingsConfig
+        enum: mainSettings
           .filter(({ name }) => !READONLY_SETTINGS.includes(name as never))
           .filter(({ name }) => !RESTRICTED_SETTINGS.includes(name as never))
           .map(({ name }) => name)

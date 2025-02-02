@@ -51,7 +51,7 @@ export function playlistRouter(store: Store, rendererWindow: BrowserWindow['webC
   router
     .delete('/:name', (req, res, next) => {
       try {
-        const playlists: NuclearPlaylist[] = store.get('playlists');
+        const playlists: NuclearPlaylist[] = store.get('playlists') as NuclearPlaylist[];
 
         store.set('playlists', playlists.filter(({ name }) => name !== req.params.name));
         rendererWindow.send(IpcEvents.PLAYLIST_REFRESH);

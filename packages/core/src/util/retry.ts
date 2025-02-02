@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '..';
 
 export async function retryWithExponentialBackoff<T>(
   apiCall: () => Promise<T>,

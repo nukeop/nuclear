@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@use '../../common.scss';
 
 .fullscreen_layer {
     position: absolute;
@@ -8,5 +8,5 @@
     right: 0;
     z-index: 100;
 
-    background: $background;
+    background: common.$background;
 }

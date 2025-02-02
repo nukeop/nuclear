@@ -1,12 +1,13 @@
-@import '../../../../vars';
+@use "sass:color";
+@use '../../../../vars';
 
 .ui.warning.message.plugins_warning {
-  background-color: $yellow;
-  color: darken($yellow, 60%);
+  background-color: vars.$yellow;
+  color: color.adjust(vars.$yellow, $lightness: -60%);
   box-shadow: none;
   margin: 0;
 
   .header {
-    color: darken($yellow, 60%);
+    color: color.adjust(vars.$yellow, $lightness: -60%);
   }
 }

@@ -1,16 +1,16 @@
-@import '../../vars.scss';
+@use '../../vars.scss';
 
-$icon_color: rgba($white, 0.75) !important;
+$icon_color: rgba(vars.$white, 0.75) !important;
 
 .ui.page.modals.dimmer {
-  background: rgba($background, 0.85);
+  background: rgba(vars.$background, 0.85);
 }
 
 .help_modal {
   top: 25% !important;
   color: $icon_color;
   a {
-    color: $cyan;
+    color: vars.$cyan;
   }
   .contributors {
     display: flex;
@@ -19,7 +19,7 @@ $icon_color: rgba($white, 0.75) !important;
     flex-direction: column;
   }
   .contributors_header {
-    color: $white !important;
+    color: vars.$white !important;
   }
   .social_icons {
     display: flex;

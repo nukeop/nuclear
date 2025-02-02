@@ -1,5 +1,5 @@
-@import "../../mixin";
-@import "../../vars";
+@use "../../mixin";
+@use "../../vars";
 
 .favorite_tracks_view {
   display: flex;
@@ -7,7 +7,7 @@
   height: 100%;
 
   .empty_state {
-    @include emptyState;
+    @include mixin.emptyState;
   }
 
   .favorite_tracks_segment {
@@ -30,10 +30,10 @@
     .thead {
       th {
         position: relative;
-        color: rgba($white, 0.5) !important;
+        color: rgba(vars.$white, 0.5) !important;
         font-size: 20px !important;
         background: transparent !important;
-        border-bottom: 0.5px solid rgba($white, 0.2) !important;
+        border-bottom: 0.5px solid rgba(vars.$white, 0.2) !important;
       }
 
       i {
@@ -51,7 +51,7 @@
 
     .tbody {
       tr {
-        color: $white;
+        color: vars.$white;
       }
     }
   }

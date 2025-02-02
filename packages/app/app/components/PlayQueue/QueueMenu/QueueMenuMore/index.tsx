@@ -105,7 +105,7 @@ export const QueueMenuMore: React.FC<QueueMenuMoreProps> = ({
         {savePlaylistDialog}
         <Dropdown.Item>
           <Dropdown text={t('playlist-add-queue')} className='left'>
-            <Dropdown.Menu className={cx('left', styles.playlists_menu)}>
+            <Dropdown.Menu className='left'>
               {playlists?.map((playlist, i) => (
                 <Dropdown.Item
                   key={i}
@@ -125,7 +125,7 @@ export const QueueMenuMore: React.FC<QueueMenuMoreProps> = ({
         <Dropdown.Header>{t('header-track')}</Dropdown.Header>
         <Dropdown.Item>
           <Dropdown text={t('playlist-add')} className='left'>
-            <Dropdown.Menu className={cx('left', styles.playlists_menu)}>
+            <Dropdown.Menu className='left'>
               {playlists?.map((playlist, i) => (
                 <Dropdown.Item
                   key={i}

@@ -1,4 +1,5 @@
-@import "vars";
+@use "sass:color";
+@use "vars";
 
 .app_container {
   position: absolute;
@@ -10,9 +11,9 @@
   height: 100%;
   overflow: hidden;
 
-  color: $grey;
+  color: vars.$grey;
 
-  animation: init $long-duration ease-in-out;
+  animation: init vars.$long-duration ease-in-out;
 }
 
 @keyframes init {
@@ -43,7 +44,7 @@
 
   height: 50px;
 
-  background-color: $background;
+  background-color: vars.$background;
   box-shadow:
     0px 5px 5px 0px rgba(0, 0, 0, 0.18),
     0px 5px 20px 0px rgba(0, 0, 0, 0.09);
@@ -64,7 +65,7 @@
 
   width: 300px;
 
-  background-color: $background;
+  background-color: vars.$background;
   box-shadow:
     5px 0px 5px 0px rgba(0, 0, 0, 0.18),
     5px 0px 20px 0px rgba(0, 0, 0, 0.09);
@@ -74,7 +75,7 @@
   flex: 1 1 auto;
   width: 0;
 
-  background-color: $background;
+  background-color: vars.$background;
 }
 
 .right_panel {
@@ -86,7 +87,7 @@
 
   width: 300px;
 
-  background-color: $background;
+  background-color: vars.$background;
   box-shadow:
     -5px 0px 5px 0px rgba(0, 0, 0, 0.18),
     -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
@@ -103,7 +104,7 @@
   width: 100%;
   max-width: 100%;
 
-  background-color: $background3;
+  background-color: vars.$background3;
   box-shadow:
     0px -5px 5px 0px rgba(0, 0, 0, 0.18),
     0px -10px 20px 0px rgba(0, 0, 0, 0.09);
@@ -129,12 +130,12 @@
 
 .version_string {
   text-align: center;
-  color: $bglight;
+  color: vars.$bglight;
 }
 
 .active_nav_link {
-  color: $white !important;
-  border-left: 0.5rem solid $green;
+  color: vars.$white !important;
+  border-left: 0.5rem solid vars.$green;
 }
 
 .sidebar_menus {
@@ -156,17 +157,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $background2;
-    color: $white !important;
+    background: vars.$background2;
+    color: vars.$white !important;
     width: 2rem;
     height: 2rem;
 
     &:hover {
-      background: lighten($background2, 10%);
+      background: color.adjust(vars.$background2, $lightness: 10%);
     }
 
     &:active {
-      background: lighten($background2, 20%);
+      background: color.adjust(vars.$background2, $lightness: 20%);
     }
   }
 }

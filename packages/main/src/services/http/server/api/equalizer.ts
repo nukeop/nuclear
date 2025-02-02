@@ -10,6 +10,19 @@ import { IpcEvents } from '@nuclear/core';
 
 const { validate } = new Validator({ allErrors: true });
 
+type Preset = {
+  label: string
+  id: string
+  values: number[]
+  preAmp: number
+}
+
+type EqualizerPresetList = {
+  presets: {
+    [id: string]: Preset;
+  }
+}
+
 export function equalizerRouter(store: Store, rendererWindow: BrowserWindow['webContents']): ISwaggerizedRouter {
   const router = express.Router() as ISwaggerizedRouter;
 
@@ -33,7 +46,7 @@ export function equalizerRouter(store: Store, rendererWindow: BrowserWindow['web
     }));
 
   router.post('/:eqName/set', (req, res) => {
-    const equalizerNames = Object.keys(store.get('equalizer').presets);
+    const equalizerNames = Object.keys((store.get('equalizer') as EqualizerPresetList).presets);
 
     if (!equalizerNames.includes(req.params.eqName)) {
       res.status(400).send(`name should be one of ${equalizerNames.toString()}`);

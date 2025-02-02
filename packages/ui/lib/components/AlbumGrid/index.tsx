@@ -9,7 +9,7 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 import { getThumbnail, getTrackItem } from '../..';
 import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
-import { Album, Track } from '@nuclear/core';
+import { Track } from '@nuclear/core';
 
 type AlbumGridProps = {
   albums?: SearchResultsAlbum[];

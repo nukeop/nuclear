@@ -1,5 +1,5 @@
 export default jest.fn();
-export const settingsConfig = jest.requireActual('@nuclear/core/src/settings').settingsConfig;
+export const settingsConfig = jest.requireActual('@nuclear/core/src/settings').mainSettings;
 
 export enum IpcEvents {
   STARTED = 'started',
@@ -40,6 +40,7 @@ export enum IpcEvents {
 
   CONNECTIVITY = 'connectivity',
 
+  DOWNLOAD_GET_PATH = 'get-download-path',
   DOWNLOAD_START = 'start-download',
   DOWNLOAD_PAUSE = 'pause-download',
   DOWNLOAD_STARTED = 'download-started',
@@ -76,5 +77,5 @@ export enum IpcEvents {
 
   PLAY_STARTUP_TRACK = 'play-startup-track',
 
-  ELECTRON_TIMBER_ERROR_EVENT = '__ELECTRON_TIMBER_ERROR__'
+  ELECTRON_NUCLEAR_LOGGER_ERROR_EVENT = '__ELECTRON_NUCLEAR_LOGGER_ERROR__'
   }

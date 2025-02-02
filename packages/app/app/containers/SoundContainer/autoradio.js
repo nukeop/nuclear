@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 
 import globals from '../../globals';
 import { rest } from '@nuclear/core';

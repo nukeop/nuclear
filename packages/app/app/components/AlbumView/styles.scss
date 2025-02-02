@@ -1,6 +1,6 @@
-@import "../../vars";
+@use "../../vars";
 
-@import "../../../../ui/lib/common.scss";
+@use "../../../../ui/lib/common.scss";
 
 .album_view_container {
   display: flex;
@@ -19,15 +19,15 @@
   }
 
   .play_button {
-    background: $pink;
-    color: $white;
+    background: vars.$pink;
+    color: vars.$white;
     border-radius: 1.5rem;
     text-transform: uppercase;
     margin-right: 2rem;
   }
 
   .more_button {
-    border: 1px solid $white;
+    border: 1px solid vars.$white;
     border-radius: 1.5rem;
   }
 
@@ -53,7 +53,7 @@
         object-fit: contain;
 
         border-radius: 0.5rem;
-        box-shadow: 0rem 0rem 1rem 0.5rem rgba($black, 0.4);
+        box-shadow: 0rem 0rem 1rem 0.5rem rgba(vars.$black, 0.4);
 
         flex: 0 0 auto;
       }
@@ -68,7 +68,7 @@
 
         label {
           margin: 0 0.5rem 0 0;
-          color: rgba($white, 0.6);
+          color: rgba(vars.$white, 0.6);
         }
 
         .album_title {
@@ -80,22 +80,22 @@
             font-size: 32px;
             line-height: 1.2;
             flex: 1;
-            @include ellipsis;
+            @include common.ellipsis;
           }
         }
 
         .album_artist {
           margin: 1rem 0;
 
-          color: rgba($white, 0.6);
+          color: rgba(vars.$white, 0.6);
 
           font-size: 20px;
           a {
-            color: rgba($white, 0.6);
-            transition: $short-duration;
+            color: rgba(vars.$white, 0.6);
+            transition: vars.$short-duration;
 
             &:hover {
-              color: $white;
+              color: vars.$white;
             }
           }
         }

@@ -1,4 +1,4 @@
-@import "../../../vars";
+@use "../../../vars";
 
 .playlists_header_container {
   display: flex;
@@ -34,21 +34,21 @@
     0 16px 16px rgba(0, 0, 0, 0.12) !important;
   display: flex;
   flex-flow: column;
-  background-color: $background !important;
-  color: $white;
-  border-color: $background2 !important;
+  background-color: vars.$background !important;
+  color: vars.$white;
+  border-color: vars.$background2 !important;
   user-select: none;
 
   &:before {
-    background-color: $background !important;
+    background-color: vars.$background !important;
   }
 
   &.bottom:before {
-    box-shadow: -1px -1px 0 0 $bgdefault !important;
+    box-shadow: -1px -1px 0 0 vars.$bgdefault !important;
   }
 
   &.top:before {
-    box-shadow: 1px 1px 0 0 $bgdefault !important;
+    box-shadow: 1px 1px 0 0 vars.$bgdefault !important;
   }
 
   .playlist_header_buttons {

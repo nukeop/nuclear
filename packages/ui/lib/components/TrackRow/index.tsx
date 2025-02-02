@@ -80,7 +80,7 @@ const TrackRow: React.FC<TrackRowProps> = ({
     }
     {
       displayArtist &&
-      <td className={styles.track_row_artist}>
+      <td>
         { 
           _.isString(track.artist) 
             ? track.artist
@@ -88,12 +88,12 @@ const TrackRow: React.FC<TrackRowProps> = ({
         }
       </td>
     }
-    <td className={styles.track_row_name}>
+    <td>
       { track.title ?? track.name }
     </td>
     {
       displayAlbum &&
-      <td className={styles.track_row_album}>
+      <td>
         { track.album }
       </td>
     }
@@ -105,7 +105,7 @@ const TrackRow: React.FC<TrackRowProps> = ({
     }
     {
       displayPlayCount &&
-      <td className={styles.track_row_playcount}>
+      <td>
         { numeral(track.playcount).format('0,0') }
       </td>
     }

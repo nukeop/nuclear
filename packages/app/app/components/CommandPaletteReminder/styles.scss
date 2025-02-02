@@ -1,12 +1,12 @@
-@import "../../vars.scss";
+@use "../../vars.scss";
 
 .command_palette_reminder {
-    color: rgba($white, 0.6);
+    color: rgba(vars.$white, 0.6);
     padding: 0.5em 1em;
     kbd {
         border-radius: 0.25em;
         font-size: 12px;
-        background: $bgdefault;
+        background: vars.$bgdefault;
         padding: 0.3em 0.5em;
         margin-right: 1em;
     }

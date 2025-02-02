@@ -115,7 +115,6 @@ const Playlists: React.FC<PlaylistsProps> = ({
                     {(provided, snapshot) => (
                       <tr
                         ref={provided.innerRef}
-                        className={cx({ [styles.is_dragging]: snapshot.isDragging })}
                         onClick={() => extra.onPlaylistClick(row.original.id)}
                         {...row.getRowProps() as TableHTMLAttributes<HTMLTableRowElement>}
                         {...provided.draggableProps}

@@ -1,10 +1,10 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .seekbar {
   position: relative;
   height: 1.25em;
   cursor: pointer;
-  background-color: $background2;
+  background-color: common.$background2;
   flex: 0 0 auto;
   transition: height 0.25s;
 
@@ -29,12 +29,12 @@
 
   .seekbar_progress {
     height: 100%;
-    background-color: $pink;
+    background-color: common.$pink;
   }
 
   .seekbar_segment {
     position: absolute;
-    background-color: rgba($blue, 0.75);
+    background-color: rgba(common.$blue, 0.75);
     height: 100%;
   }
 
@@ -47,21 +47,21 @@
 }
 
 .seekbar_popup {
-  background: $bgdarker !important;
-  color: $white !important;
-  border-color: $bgdefault !important;
+  background: common.$bgdarker !important;
+  color: common.$white !important;
+  border-color: common.$bgdefault !important;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18), 0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
   user-select: none;
 
   &:before {
-    background-color: $bgdarker !important;
+    background-color: common.$bgdarker !important;
   }
 
   &.bottom:before {
-    box-shadow: -1px -1px 0 0 $bgdefault !important;
+    box-shadow: -1px -1px 0 0 common.$bgdefault !important;
   }
 
   &.top:before {
-    box-shadow: 1px 1px 0 0 $bgdefault !important;
+    box-shadow: 1px 1px 0 0 common.$bgdefault !important;
   }
 }

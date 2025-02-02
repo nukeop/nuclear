@@ -3,7 +3,6 @@ module.exports = {
     getPath: () => { }
   },
   remote: {
-    transformSource: () => { },
     app: {
       getPath: () => { }
     },

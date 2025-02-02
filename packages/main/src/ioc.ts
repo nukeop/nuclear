@@ -27,6 +27,7 @@ import TouchbarMenu from './services/touchbar';
 import ListeningHistoryService from './services/listening-history';
 import ListeningHistoryDb from './services/listening-history/db';
 import ListeningHistoryController from './controllers/listening-history';
+import ElectronUtilsIpcCtrl from './controllers/electron-utils';
 
 const services: ServiceProvider[] = [
   { useClass: AcousticId },
@@ -53,6 +54,7 @@ const services: ServiceProvider[] = [
 
 const controllers: Class[] = [
   DownloadCtrl,
+  ElectronUtilsIpcCtrl,
   LocalLibraryCtrl,
   ListeningHistoryController,
   LoggerCtrl,

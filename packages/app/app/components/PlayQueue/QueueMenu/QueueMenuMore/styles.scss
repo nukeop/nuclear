@@ -1,4 +1,4 @@
-@import "../../../../vars.scss";
+@use "../../../../vars.scss";
 
 .queue_menu_more {
   margin-left: auto;
@@ -10,7 +10,7 @@
   }
 
   .divider:not(.text) {
-    border-top: 1px solid rgba($background2, 0.6) !important;
+    border-top: 1px solid rgba(vars.$background2, 0.6) !important;
   }
 
   .dropdown.left {

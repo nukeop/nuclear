@@ -57,7 +57,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
     this.tracks = [];
     const storedPlaylists = this.store.get('playlists');
-    this.setPlaylists(storedPlaylists ? storedPlaylists.map(this.playlistMapper) : []);
+    this.setPlaylists(storedPlaylists ? (storedPlaylists as []).map(this.playlistMapper) : []);
   }
 
   private getPlayingStatus(): Promise<NuclearStatus> {

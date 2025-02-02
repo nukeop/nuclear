@@ -1,34 +1,34 @@
-@import "../../common";
+@use "../../common";
 
 .context_popup {
-  @include shadow;
+  @include common.shadow;
   display: flex;
   flex-flow: row;
-  background-color: $background !important;
-  color: $white;
-  border-color: $background2 !important;
+  background-color: common.$background !important;
+  color: common.$white;
+  border-color: common.$background2 !important;
   user-select: none;
 
   &:before {
-    background-color: $background !important;
+    background-color: common.$background !important;
   }
 
   &.bottom:before {
-    box-shadow: -1px -1px 0 0 $bgdefault !important;
+    box-shadow: -1px -1px 0 0 common.$bgdefault !important;
   }
 
   &.top:before {
-    box-shadow: 1px 1px 0 0 $bgdefault !important;
+    box-shadow: 1px 1px 0 0 common.$bgdefault !important;
   }
 
   &.visible {
-    animation: fade-in $short-duration normal forwards ease-in-out;
+    animation: fade-in common.$short-duration normal forwards ease-in-out;
   }
 
   hr {
     margin: 0.5em 0 0 0;
     border: none;
-    border-bottom: 1px solid $bgdefault;
+    border-bottom: 1px solid common.$bgdefault;
   }
 
   .popup_content > .content {
@@ -66,14 +66,14 @@
 
   .popup_artist {
     flex: 0 0 auto;
-    color: rgba($white, 0.6);
+    color: rgba(common.$white, 0.6);
   }
 
   .popup_title {
     flex: 0 0 auto;
     font-weight: bold;
     font-size: 16px;
-    color: $white;
+    color: common.$white;
   }
 
   .popup_buttons {

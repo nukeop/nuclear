@@ -1,5 +1,5 @@
-@import '../../mixin.scss';
-@import '../../vars.scss';
+@use '../../mixin.scss';
+@use '../../vars.scss';
 
 .preset_list_container {
   display: flex;
@@ -15,7 +15,7 @@
   }
   
   .equalizer_list {
-    @include roundCorners;
+    @include mixin.roundCorners;
     height: 100%;
     overflow: auto;
   }
@@ -23,7 +23,7 @@
   .equalizer_item {
     padding: 9px !important;
     display: flex !important;
-    background: $background2;
+    background: vars.$background2;
     margin-bottom: 1px;
     user-select: none;
     
@@ -36,11 +36,11 @@
   }
 
   .equalizer_click_item {
-    background: $background3;
+    background: vars.$background3;
     cursor: pointer;
     
     &:hover {
-      background: rgba($background2, 0.3);
+      background: rgba(vars.$background2, 0.3);
     }
   }  
 }

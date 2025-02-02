@@ -1,6 +1,7 @@
 
 
-@import "../.../../../../common.scss";
+@use "sass:color";
+@use "../../../common.scss";
 
 .mini_track_info {
 
@@ -26,7 +27,7 @@
     overflow: hidden;
     border-radius: 1em;
     background: transparent;
-    box-shadow: 15px 15px 45px darken($background, 5%), -15px -15px 45px lighten($background, 5%);
+    box-shadow: 15px 15px 45px color.adjust(common.$background, $lightness: -5%), -15px -15px 45px color.adjust(common.$background, $lightness: 5%);
     padding: 0.5em;
 
     img {
@@ -62,7 +63,7 @@
 
       i {
         cursor: pointer;
-        color: $pink;
+        color: common.$pink;
       }
     }
   }
@@ -77,7 +78,7 @@
   
   .mini_artist {
     font-size: 1.5em;
-    color: rgba($white, 0.6);
+    color: rgba(common.$white, 0.6);
     text-align: left;
     line-height: 1em;
   }

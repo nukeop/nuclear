@@ -1,4 +1,4 @@
-@import '../../vars';
+@use '../../vars';
 
 .sidebar_menu {
   flex: 1 1 auto;
@@ -9,6 +9,6 @@
   overflow: auto;
 
   a {
-    color: rgba($white, 0.5);
+    color: rgba(vars.$white, 0.5);
   }
 }

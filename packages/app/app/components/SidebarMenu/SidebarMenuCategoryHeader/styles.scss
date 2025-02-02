@@ -1,4 +1,4 @@
-@import '../../../vars.scss';
+@use '../../../vars.scss';
 
 .sidebar_menu_category_header {
   display: flex;
@@ -7,7 +7,7 @@
   padding: 0.5rem 1rem;
   margin-top: 1.5rem;
   font-size: 1.5rem;
-  color: rgba($white, 0.75);
+  color: rgba(vars.$white, 0.75);
 
   letter-spacing: 1.2px;
   font-variant: all-small-caps;
@@ -15,6 +15,6 @@
   hr {
     margin: 0.5rem 0 0 1rem;
     flex: 1 1 auto;
-    border-color: $bgdefault;
+    border-color: vars.$bgdefault;
   }
 }

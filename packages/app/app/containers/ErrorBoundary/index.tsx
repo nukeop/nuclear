@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';

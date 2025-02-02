@@ -6,8 +6,6 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import _ from 'lodash';
 import { withTranslation } from 'react-i18next';
 
-import styles from './styles.scss';
-
 @withTranslation('search')
 class PlaylistResults extends React.Component {
   constructor(props) {
@@ -33,7 +31,6 @@ class PlaylistResults extends React.Component {
             this.addTrack(track);
           });
       }}
-      className={styles.add_button}
       aria-label={this.props.t('queue-add')}
     >
       <FontAwesome name='plus' /> Add all

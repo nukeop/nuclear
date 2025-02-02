@@ -1,18 +1,18 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .nuclear.ui.dropdown {
-  color: $white;
-  background: $background3;
-  border: 1px solid rgba($background2, 0.6);
-  transition: box-shadow $short-duration ease-in;
+  color: common.$white;
+  background: common.$background3;
+  border: 1px solid rgba(common.$background2, 0.6);
+  transition: box-shadow common.$short-duration ease-in;
 
   &:hover,
   &:active,
   &:focus,
   &.ui.selection.active.dropdown {
     &:not(.no_background) {
-      @include shadow;
-      color: $white;
+      @include common.shadow;
+      color: common.$white;
       border: 1px solid transparent;
     }
   }
@@ -36,50 +36,50 @@
     display: flex;
     align-items: center;
     height: 100%;
-    color: $white;
+    color: common.$white;
   }
 
   .text.divider {
-    color: $white !important;
+    color: common.$white !important;
   }
 
   .text:not(.divider),
   input {
-    color: $white !important;
+    color: common.$white !important;
     line-height: 1.25;
   }
 
   .menu {
-    @include shadow;
-    background: $background;
+    @include common.shadow;
+    background: common.$background;
     border-color: transparent !important;
-    color: $white !important;
+    color: common.$white !important;
     border: 0;
 
     .item {
-      color: $white !important;
+      color: common.$white !important;
       border-color: transparent !important;
 
       &:hover,
       &:active,
       &:focus {
-        background: rgba($lightbg, 0.4) !important;
+        background: rgba(common.$lightbg, 0.4) !important;
       }
     }
 
     .active.selected.item,
     .message {
-      background: rgba($lightbg, 0.2);
-      color: $white !important;
+      background: rgba(common.$lightbg, 0.2);
+      color: common.$white !important;
     }
 
     &.visible {
-      animation: fade-in $short-duration normal forwards ease-in-out;
+      animation: fade-in common.$short-duration normal forwards ease-in-out;
     }
   }
 
   &.lighter {
-    background: rgba($bglighter, 0.25);
+    background: rgba(common.$bglighter, 0.25);
     border: none;
     min-height: 0;
 
@@ -94,12 +94,12 @@
       margin: 0;
       width: 100%;
       min-width: 100%;
-      border-top: 1px solid rgba($bglighter, 0.6) !important;
+      border-top: 1px solid rgba(common.$bglighter, 0.6) !important;
     }
 
     .active.selected.item,
     .message {
-      color: $white !important;
+      color: common.$white !important;
     }
   }
 }

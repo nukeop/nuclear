@@ -1,4 +1,3 @@
-import logger from 'electron-timber';
 import lyrics from 'get-lyrics-hd';
 import { noop } from 'lodash';
 

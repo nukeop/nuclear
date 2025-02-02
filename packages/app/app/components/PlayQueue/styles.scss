@@ -1,4 +1,4 @@
-@import "../../vars.scss";
+@use "../../vars.scss";
 
 .play_queue_container {
   display: flex;
@@ -10,7 +10,7 @@
   .play_queue_items {
     display: block;
     flex: 1 1 auto;
-    transition: $short-duration;
+    transition: vars.$short-duration;
 
     div {
       &:hover,
@@ -25,9 +25,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $background3;
+    background: vars.$background3;
     margin: 1rem;
-    border: 6px dashed rgba($white, 0.8);
+    border: 6px dashed rgba(vars.$white, 0.8);
 
     *:not(i) {
       display: none;
@@ -35,7 +35,7 @@
   }
 
   .track_dragged_over {
-    background: $background3;
+    background: vars.$background3;
   }
 
   .file_icon {

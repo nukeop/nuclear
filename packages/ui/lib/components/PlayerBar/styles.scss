@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .player_bar {
   display: flex;
@@ -8,7 +8,7 @@
   width: 100%;
   max-width: 100%;
 
-  background: $background3;
+  background: common.$background3;
   user-select: none;
   z-index: 10;
 
@@ -51,7 +51,7 @@
 
   .volume_popup_button {
     background: transparent !important;
-    color: $white !important;
+    color: common.$white !important;
   }
 }
 
@@ -59,9 +59,9 @@
   position: relative !important;
   right: 1em !important;
 
-  background: $bgdarker !important;
-  border: 1px solid rgba($bgdefault, 0.6) !important;
-  box-shadow: 0rem 0.125rem 0.5rem 0.25rem rgba($black, 0.1) !important;
+  background: common.$bgdarker !important;
+  border: 1px solid rgba(common.$bgdefault, 0.6) !important;
+  box-shadow: 0rem 0.125rem 0.5rem 0.25rem rgba(common.$black, 0.1) !important;
 
   .volume_controls_container {
     padding: 0;

@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import { rest } from '@nuclear/core';
 import globals from '../globals';
 

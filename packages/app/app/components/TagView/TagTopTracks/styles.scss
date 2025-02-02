@@ -1,4 +1,4 @@
-@import "../../../vars";
+@use "../../../vars";
 
 .tag_top_tracks {
   position: relative;
@@ -8,7 +8,7 @@
   height: 510px;
 
   .track {
-    transition: $short-duration;
+    transition: vars.$short-duration;
   }
 
   .track_thumbnail {
@@ -32,7 +32,7 @@
   }
 
   thead {
-    background: $background2;
+    background: vars.$background2;
   }
 
   th {
@@ -41,15 +41,15 @@
   }
 
   tr {
-    transition: $short-duration;
+    transition: vars.$short-duration;
   }
 
   tr:hover {
-    background: rgba($background2, 0.25);
+    background: rgba(vars.$background2, 0.25);
   }
 
   td {
     padding: 1rem 1rem;
-    border-bottom: 1px solid $background2;
+    border-bottom: 1px solid vars.$background2;
   }
 }

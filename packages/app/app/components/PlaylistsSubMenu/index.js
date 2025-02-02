@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
 
-import appStyles from '../../styles.scss';
+import * as appStyles from '../../styles.scss';
 import styles from './styles.scss';
 
 const PlaylistsSubMenu = props => {

@@ -1,4 +1,4 @@
-@import '../../../common.scss';
+@use '../../../common.scss';
 
 .mini_play_options {
   position: absolute;
@@ -10,7 +10,7 @@
   width: 100%;
   
   button {
-    @include center;
+    @include common.center;
     display: flex;
     
     background: transparent;
@@ -28,7 +28,7 @@
     }
     
     i {
-      color: $white;
+      color: common.$white;
      margin: 0;
    }
  }

@@ -1,5 +1,6 @@
 
-@import '../../../vars';
+@use "sass:color";
+@use '../../../vars';
 
 .all_results_container {
     display: flex;
@@ -44,12 +45,12 @@
     align-items: center;
     flex-flow: row;
 
-    transition: $short-duration ease-in-out;
+    transition: vars.$short-duration ease-in-out;
 
-    border-bottom: 1px solid rgba($background2, 0.2);
+    border-bottom: 1px solid rgba(vars.$background2, 0.2);
 
     &:hover {
-      background: lighten($background, 10%);
+      background: color.adjust(vars.$background, $lightness: 10%);
     }
 
     img {
@@ -78,11 +79,11 @@
     justify-content: center;
     padding: 0.5rem;
     margin-top: 0.5rem;
-    transition: $short-duration;
+    transition: vars.$short-duration;
     cursor: pointer;
 
     &:hover {
-      background: lighten($background, 5%);
+      background: color.adjust(vars.$background, $lightness: 5%);
     }
   }
 }

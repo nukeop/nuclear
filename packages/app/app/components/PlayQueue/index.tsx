@@ -222,7 +222,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
         >
           {(droppableProvided, snapshot) => (
             <div
-              className={classnames(styles.play_queue_items, styles.fade_in, {
+              className={classnames(styles.play_queue_items, {
                 [styles.file_dragged_over]: isFileHovered,
                 [styles.track_dragged_over]: snapshot.isDraggingOver
               })}

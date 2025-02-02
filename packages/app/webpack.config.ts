@@ -36,22 +36,24 @@ module.exports = (env) => {
   const IS_DEV = env.NODE_ENV === 'development';
 
   const entry = IS_PROD
-    ? path.resolve(APP_DIR, 'index.js')
+    ? path.resolve(APP_DIR, 'index.tsx')
     : [
       'react-hot-loader/patch',
       'webpack/hot/dev-server.js',
       'webpack-dev-server/client/index.js?hot=true&live-reload=true',
-      path.resolve(APP_DIR, 'index.js')
+      path.resolve(APP_DIR, 'index.tsx')
     ];
   const output: webpack.Configuration['output'] = {
     path: BUILD_DIR,
     filename: '[name].[contenthash].js',
     sourceMapFilename: '[name].[contenthash].map',
-    chunkFilename: '[id].[contenthash].js'
+    chunkFilename: '[id].[contenthash].js',
+    globalObject: 'this'
   };
   const optimization: webpack.Configuration['optimization'] = {
     moduleIds: 'named' as const,
-    minimize: false
+    minimize: false,
+    splitChunks: false
   };
   const jsxRule: webpack.RuleSetRule = {
     test: /\.(js|jsx|tsx|ts)$/,
@@ -78,19 +80,12 @@ module.exports = (env) => {
       include: [APP_DIR, ...NUCLEAR_MODULES]
     }
   };
-  const contentSecurity =
-    'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data: file:;';
+  
   const plugins: webpack.Configuration['plugins'] = [
     new HtmlWebpackPlugin({
       meta: {
         charset: {
           charset: 'UTF-8'
-        },
-        'Content-Security-Policy': {
-          'http-equiv': 'Content-Security-Policy',
-          content: IS_DEV
-            ? `${contentSecurity} script-src 'unsafe-eval' 'unsafe-inline' localhost:8080`
-            : contentSecurity
         }
       },
       template: path.resolve(__dirname, 'index.html'),
@@ -117,6 +112,9 @@ module.exports = (env) => {
         {}
       )
     ),
+    new webpack.ProvidePlugin({
+      EventEmitter: ['events', 'EventEmitter']
+    }),
     new webpack.ContextReplacementPlugin(
       /\/(ytpl|ytsr|youtube-ext|bandcamp-scraper|http-cookie-agent|deasync)\//,
       false
@@ -134,23 +132,8 @@ module.exports = (env) => {
     };
     jsxRule.include = [APP_DIR, ...NUCLEAR_MODULES];
     jsxRule.exclude = [
-      /node_modules\/electron-timber\/preload\.js/,
       /node_modules\/(?!@nuclear).*/
     ];
-    optimization.splitChunks = {
-      chunks: 'all',
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    };
   } else {
     output.publicPath = '/';
     jsxRule.exclude = /node_modules\/(?!@nuclear).*/;
@@ -173,25 +156,46 @@ module.exports = (env) => {
         )
       },
       fallback: {
-        fs: false
+        fs: false,
+        http: false,
+        zlib: false,
+        stream: false,
+        net: false,
+        crypto: false,
+        tls: false,
+        path: false,
+        https: false,
+        vm: false,
+        os: false,
+        events: false,
+        'node:zlib': false,
+        'node:assert': false
       },
       symlinks: false
     },
-    externals: ['bufferutil', 'utf-8-validate'],
+    externalsPresets: { node: true },
+    externals: {
+      bufferutil: 'commonjs bufferutil',
+      'utf-8-validate': 'commonjs utf-8-validate',
+      events: 'commonjs events'
+    },
     module: {
       rules: [
         jsxRule,
         {
-          test: /.scss$/,
+          test: /\.scss$/,
           use: [
             'style-loader',
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
                 modules: {
-                  localIdentName: '[local]'
-                }
+                  localIdentName: '[local]',
+                  exportLocalsConvention: 'as-is',
+                  namedExport: false
+                },
+                esModule: true,
+                importLoaders: 1
               }
             },
             'sass-loader'
@@ -204,11 +208,8 @@ module.exports = (env) => {
             {
               loader: 'css-loader',
               options: {
-                url: (url) => {
-                  if (url.includes('charset=utf-8;;')) {
-                    return false;
-                  }
-                  return true;
+                url: {
+                  filter: (url: string) => !url.includes('charset=utf-8;;')
                 }
               }
             }
@@ -216,12 +217,12 @@ module.exports = (env) => {
         },
         {
           test: /\.(png|jpg|gif)$/,
-          loader: 'url-loader',
+          type: 'asset/resource',
           include: [RESOURCES_DIR, APP_DIR, UI_DIR, VENDOR_DIR]
         },
         {
           test: /\.(ttf|eot|woff|woff2|svg)$/,
-          loader: 'url-loader',
+          type: 'asset/resource',
           include: [UI_DIR, APP_DIR, VENDOR_DIR]
         },
         {
