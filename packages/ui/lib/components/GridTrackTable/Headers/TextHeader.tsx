@@ -9,7 +9,7 @@ import styles from '../styles.scss';
 export type TextHeaderProps<T extends Track> = {
   className?: string;
   column: ColumnInstance<T> & UseSortByColumnProps<T>;
-  header: string | React.ReactNode;
+  header?: string | React.ReactNode;
   isCentered?: boolean;
   'data-testid'?: string;
 };
@@ -17,7 +17,7 @@ export type TextHeaderProps<T extends Track> = {
 export const TextHeader: <T extends Track>(props: TextHeaderProps<T>) => React.ReactElement<TextHeaderProps<T>> = ({
   className,
   column, 
-  header,
+  header = '',
   isCentered,
   'data-testid': dataTestId
 }) => {

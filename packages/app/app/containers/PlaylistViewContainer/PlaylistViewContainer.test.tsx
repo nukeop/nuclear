@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { fireEvent, prettyDOM, render, waitFor, within } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import React from 'react';
 import { createMemoryHistory } from 'history';
 import { store as electronStore } from '@nuclear/core';
+import { ipcRenderer } from 'electron';
 
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
@@ -13,6 +13,11 @@ import userEvent from '@testing-library/user-event';
 
 jest.mock('fs');
 jest.mock('electron-store');
+jest.mock('electron', () => ({
+  ipcRenderer: {
+    invoke: jest.fn()
+  }
+}));
 
 describe('Playlist view container', () => {
   beforeAll(() => {
@@ -21,6 +26,8 @@ describe('Playlist view container', () => {
 
   beforeEach(() => {
     electronStore.clear();
+    jest.clearAllMocks();
+    (ipcRenderer.invoke as jest.Mock).mockResolvedValue({ filePath: 'downloaded_playlist' });
   });
 
   it('should display a playlist', () => {
@@ -83,18 +90,19 @@ describe('Playlist view container', () => {
     await waitFor(() => component.getByTestId('more-button').click());
     await waitFor(() => component.getByText(/export/i).click());
     const state = store.getState();
-    const remote = require('electron').remote;
     const fs = require('fs');
     const [playlist] = state.playlists.localPlaylists.data;
-    // check if the dialog was open
-    expect(remote.dialog.showSaveDialog).toHaveBeenCalledWith({
+    
+    // check if the IPC call was made with correct arguments
+    expect(ipcRenderer.invoke).toHaveBeenCalledWith('show-save-dialog', {
       defaultPath: playlist.name,
       filters: [
         { name: 'file', extensions: ['json'] }
       ],
       properties: ['createDirectory', 'showOverwriteConfirmation']
     });
-    expect(remote.dialog.showSaveDialog).toHaveBeenCalledTimes(1);
+    expect(ipcRenderer.invoke).toHaveBeenCalledTimes(1);
+    
     // check if the playlist was properly exported 
     expect(fs.writeFile).toHaveBeenCalledWith(
       'downloaded_playlist',
@@ -266,6 +274,7 @@ describe('Playlist view container', () => {
         .withConnectivity()
         .build();
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     initStore && electronStore.init({
       ...buildElectronStoreState(),

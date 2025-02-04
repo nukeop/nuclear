@@ -1,4 +1,3 @@
-import { Track } from '@nuclear/core';
 import { HeaderProps, UseRowSelectInstanceProps } from 'react-table';
 
 import { TrackTableExtraProps, TrackTableStrings } from '../../TrackTable/types';
@@ -8,8 +7,9 @@ import Checkbox, { CheckboxProps } from '../../Checkbox';
 import Button from '../../Button';
 import ContextPopup from '../../ContextPopup';
 import PopupButton from '../../PopupButton';
+import { Track } from '../../../types';
 
-export const SelectionHeader: React.FC<HeaderProps<Track> & UseRowSelectInstanceProps<Track> & TrackTableExtraProps<Track> & { strings: TrackTableStrings }> = ({
+export const SelectionHeader = <T extends Track>({
   getToggleAllRowsSelectedProps,
   selectedFlatRows,
   onAddToQueue,
@@ -17,7 +17,7 @@ export const SelectionHeader: React.FC<HeaderProps<Track> & UseRowSelectInstance
   onAddToFavorites,
   onAddToDownloads,
   strings
-}) => {
+}: HeaderProps<T> & UseRowSelectInstanceProps<T> & TrackTableExtraProps<T> & { strings: TrackTableStrings }): React.ReactElement => {
   const checkboxProps = getToggleAllRowsSelectedProps();
   const selectedTracks = selectedFlatRows.map(row => row.original);
   

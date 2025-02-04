@@ -7,29 +7,29 @@ import { TrackTableExtraProps } from '../TrackTable/types';
 import { Track } from '../../types';
 import styles from './styles.scss';
 
-type GridTrackTableRowProps<T extends Track> = {
-    data: {
-      rows: TableInstance<T>['rows'];
-      prepareRow: TableInstance<T>['prepareRow'];
-      gridTemplateColumns: string;
-      isDragDisabled: boolean;
-      extraProps: TrackTableExtraProps<T>;
-    };
-    index: number;
-    style: React.CSSProperties;
-  }
+export type GridTrackTableRowProps<T extends Track> = {
+  data: {
+    rows: TableInstance<T>['rows'];
+    prepareRow: TableInstance<T>['prepareRow'];
+    gridTemplateColumns: string;
+    isDragDisabled: boolean;
+    extraProps: TrackTableExtraProps<T>;
+  };
+  index: number;
+  style: React.CSSProperties;
+}
 
-export const GridTrackTableRow = memo(<T extends Track>({ index, style, data }: GridTrackTableRowProps<T>) => {
+const GridTrackTableRowComponent = <T extends Track>({ index, style, data }: GridTrackTableRowProps<T>): JSX.Element => {
   const row = data.rows[index];
   data.prepareRow(row);
-  return <Draggable
-    key={row.id}
-    draggableId={row.id}
-    index={row.index}
-    isDragDisabled={data.isDragDisabled}
-  >
-    {
-      (draggableProvided, draggableSnapshot) => (
+  return (
+    <Draggable
+      key={row.id}
+      draggableId={row.id}
+      index={row.index}
+      isDragDisabled={data.isDragDisabled}
+    >
+      {(draggableProvided, draggableSnapshot) => (
         <div
           data-testid='track-table-row'
           className={cx(
@@ -41,19 +41,16 @@ export const GridTrackTableRow = memo(<T extends Track>({ index, style, data }: 
           {...draggableProvided.draggableProps}
           {...draggableProvided.dragHandleProps}
           style={{
-            ...(style ? {
-              ...draggableProvided.draggableProps.style,
-              ...style
-            } : draggableProvided.draggableProps.style),
+            ...(draggableProvided.draggableProps.style ? { ...draggableProvided.draggableProps.style, ...style } : draggableProvided.draggableProps.style),
             gridTemplateColumns: data.gridTemplateColumns
           }}
           tabIndex={row.index}
         >
-          {row.cells.map((cell, i) => cell.render(
-            'Cell',
-            { ...data.extraProps, key: i }
-          ))}
+          {row.cells.map((cell, i) => cell.render('Cell', { ...data.extraProps, key: i }))}
         </div>
       )}
-  </Draggable>;
-});
+    </Draggable>
+  );
+};
+
+export const GridTrackTableRow = memo(GridTrackTableRowComponent) as <T extends Track>(props: GridTrackTableRowProps<T>) => JSX.Element;

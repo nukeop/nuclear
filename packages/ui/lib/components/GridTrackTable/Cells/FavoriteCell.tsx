@@ -7,22 +7,29 @@ import { Track } from '../../../types';
 import Button from '../../Button';
 import styles from '../styles.scss';
 
-export const FavoriteCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
+export const FavoriteCell = <T extends Track>({
   cell,
   row,
   value,
   onAddToFavorites,
   onRemoveFromFavorites
-}) => <div
-  {...cell.getCellProps()}
-  className={cx(styles.grid_track_table_cell, styles.favorite_cell)}
-  data-testid='favorite-cell'>
-  <Button
-    data-testid='favorite-button'
-    basic
-    borderless
-    circular
-    size='tiny' icon={value ? 'heart' : 'heart outline'}
-    onClick={() =>  value ? onRemoveFromFavorites(row.original) : onAddToFavorites(row.original)}
-  />
-</div>;
+}: CellProps<T> & TrackTableExtraProps<T>) => {
+  return (
+    <div
+      {...cell.getCellProps()}
+      className={cx(styles.grid_track_table_cell, styles.favorite_cell)}
+      data-testid='favorite-cell'
+    >
+      <Button
+        data-testid='favorite-button'
+        basic
+        borderless
+        circular
+        size='tiny'
+        icon={value ? 'heart' : 'heart outline'}
+        onClick={() => value
+          ? onRemoveFromFavorites(row.original)
+          : onAddToFavorites(row.original)} />
+    </div>
+  );
+};
