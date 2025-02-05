@@ -4,6 +4,7 @@ import { rest, store } from '@nuclear/core';
 import globals from '../globals';
 import * as FavoritesActions from './favorites';
 import { ImportFavs } from './actionTypes';
+import { ScrobblingState } from '../reducers/scrobbling';
 
 const MAX_TRACKS_PER_PAGE = 1000;
 export function FavImportInit() {
@@ -40,7 +41,7 @@ function FmSuccessFinal(count) {
 }
 
 export function fetchAllFmFavorites() {
-  const storage = store.get('lastFm');
+  const storage = store.get('lastFm') as ScrobblingState;
   if (storage) {
     return async dispatch => {
       dispatch({ type: ImportFavs.LASTFM_FAV_IMPORT_START });

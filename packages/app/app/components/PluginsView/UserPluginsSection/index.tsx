@@ -16,8 +16,8 @@ type UserPlugin = {
   description: string;
   image: string | null;
   author: string;
-  loading: boolean;
-  error: boolean;
+  loading?: boolean;
+  error?: boolean;
 }
 
 type UserPluginsSectionProps = {

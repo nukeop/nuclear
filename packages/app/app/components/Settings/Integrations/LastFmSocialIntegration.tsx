@@ -16,7 +16,7 @@ type LastFmSocialIntegrationProps = {
     enableScrobbling: Function;
     disableScrobbling: Function;
     lastFmConnectAction: React.MouseEventHandler;
-    lastFmLoginAction: React.MouseEventHandler;
+    lastFmLoginAction: (authToken: string) => void;
     lastFmLogOut: React.MouseEventHandler;
   };
   scrobbling: ReturnType<typeof ScrobblingReducer>;

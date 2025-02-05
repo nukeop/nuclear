@@ -19,6 +19,9 @@ type UserPlugin = {
   name: string;
   description: string;
   image: string;
+  author: string;
+  loading?: boolean;
+  error?: boolean;
 }
 
 type PluginKey = keyof typeof config.plugins;
@@ -32,9 +35,7 @@ export type PluginsState = {
   selected: {
     [key in PluginKey]?: string;
   };
-  userPlugins: {
-    [key: string]: UserPlugin;
-  };
+  userPlugins: Record<string, UserPlugin>;
 }
 
 const initialState: PluginsState = {
