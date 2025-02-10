@@ -64,7 +64,11 @@
                                             <p>MacOS may block unsigned apps. Try these solutions:</p>
 
                                             <h4>1. Remove quarantine attribute</h4>
-                                            <code>sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app</code>
+                                            <code>sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app
+                                                <button class="copy-button" onclick="copyToClipboard(this, 'sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app')">
+                                                    {% include svg/copy.svg %}
+                                                </button>
+                                            </code>
 
                                             <h4>2. Allow Nuclear to run</h4>
                                             <ol>
@@ -73,7 +77,11 @@
                                             </ol>
 
                                             <h4>3. Disable Gatekeeper (Advanced)</h4>
-                                            <code>sudo spctl --master-disable</code>
+                                            <code>sudo spctl --master-disable
+                                                <button class="copy-button" onclick="copyToClipboard(this, 'sudo spctl --master-disable')">
+                                                    {% include svg/copy.svg %}
+                                                </button>
+                                            </code>
                                         </div>
                                     </div>
                                 </div>
@@ -179,3 +187,20 @@
         </div>
     </div>
 </section>
+
+<script>
+    function copyToClipboard(button, text) {
+        navigator.clipboard.writeText(text).then(function () {
+            button.classList.add('copied');
+            const originalIcon = button.innerHTML;
+            button.innerHTML = '✓';
+
+            setTimeout(() => {
+                button.innerHTML = originalIcon;
+                button.classList.remove('copied');
+            }, 1500);
+        }).catch(function (err) {
+            console.error('Failed to copy:', err);
+        });
+    }
+</script>

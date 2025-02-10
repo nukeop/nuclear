@@ -327,6 +327,41 @@ body {
                 font-family: monospace;
                 font-size: 0.9em;
                 word-break: break-all;
+                position: relative;
+                padding-right: 48px;
+            }
+
+            .copy-button {
+                position: absolute;
+                top: 50%;
+                right: 12px;
+                transform: translateY(-50%);
+                background: transparent;
+                border: none;
+                color: rgba($pink, 0.6);
+                width: 24px;
+                height: 24px;
+                padding: 0;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                svg {
+                    width: 16px;
+                    height: 16px;
+                    fill: currentColor;
+                }
+
+                &:hover {
+                    color: $pink;
+                }
+
+                &.copied {
+                    color: lighten($pink, 20%);
+                    animation: pop 0.3s ease;
+                }
             }
         }
     }
@@ -449,5 +484,17 @@ body {
                 min-width: unset;
             }
         }
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.2);
+    }
+    100% {
+        transform: translateY(-50%) scale(1);
     }
 }
