@@ -9,6 +9,13 @@ body {
     flex: 1 1 auto;
     background: url("/assets/images/background1.jpg");
     background-size: cover;
+    padding: 2rem 0;
+
+    h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 
     h4 {
         margin-bottom: 0;
@@ -16,42 +23,188 @@ body {
 
     .container {
         position: relative;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 0 auto;
+        padding: 0 24px;
 
         @media screen and (max-width: $md) {
             max-width: 100%;
-            margin: 0 24px;
+            margin: 0;
         }
     }
 
-    .box {
+    .os-grid {
         display: grid;
-        grid-template-columns: 50% 50%;
-        background: rgba($bgdark, 0.4);
-        border: 1px solid $bgdefault;
-        border-radius: 8px;
-        padding: 8px 24px 16px;
-        margin-bottom: 8px;
-        backdrop-filter: blur(8px);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin: 32px 0;
+    }
 
-        @media screen and (max-width: $sm) {
-            grid-template-columns: 100%;
+    .box {
+        background: rgba($bgdark, 0.6);
+        border: 1px solid $bgdefault;
+        border-radius: 12px;
+        padding: 24px;
+        backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        &.warning-box {
+            background: rgba($pink, 0.1);
+            border: 2px solid rgba($pink, 0.3);
+        }
+
+        h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-size: 1.4em;
+
+            svg {
+                width: 24px;
+                height: 24px;
+                fill: currentColor;
+            }
+        }
+    }
+
+    .os-selection {
+        margin-bottom: 48px;
+
+        .os-radio {
+            display: none;
+
+            &#mac-select:checked {
+                & ~ .download-areas #mac-downloads {
+                    display: block;
+                }
+                & ~ .os-buttons .os-button:nth-child(1) {
+                    border-color: $pink;
+                }
+            }
+
+            &#linux-select:checked {
+                & ~ .download-areas #linux-downloads {
+                    display: block;
+                }
+                & ~ .os-buttons .os-button:nth-child(2) {
+                    border-color: $pink;
+                }
+            }
+
+            &#windows-select:checked {
+                & ~ .download-areas #windows-downloads {
+                    display: block;
+                }
+                & ~ .os-buttons .os-button:nth-child(3) {
+                    border-color: $pink;
+                }
+            }
+        }
+
+        .os-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+
+            @media screen and (max-width: $sm) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .os-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 24px;
+            background: rgba($bgdark, 0.6);
+            border: 2px solid rgba($white, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+
+            &:hover {
+                transform: translateY(-2px);
+                border-color: rgba($pink, 0.5);
+                background: rgba($bgdark, 0.8);
+            }
+
+            svg {
+                width: 48px;
+                height: 48px;
+                fill: currentColor;
+            }
+
+            span {
+                font-size: 1.2em;
+                font-weight: 600;
+            }
+        }
+
+        .download-areas {
+            .download-area {
+                display: none;
+                animation: fadeIn 0.3s ease;
+            }
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .download-group {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        h4 {
+            margin: 8px 0 4px;
+            color: rgba($white, 0.9);
+            font-size: 1.1em;
         }
     }
 
     .download-links {
         display: flex;
-        flex-flow: row;
-        align-items: center;
+        flex-flow: column;
         gap: 8px;
 
-        .main-download {
-            flex: 1 1 auto;
+        a {
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+                opacity: 0.9;
+            }
         }
 
-        @media screen and (max-width: $sm) {
-            flex-flow: column;
+        img {
+            max-width: 100%;
+            height: auto;
         }
     }
 
@@ -66,28 +219,50 @@ body {
         flex-flow: column;
         gap: 8px;
         flex: 1 1 auto;
+        margin-top: 8px;
 
         .accordion-label {
             display: flex;
-            flex-flow: row;
             justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
+            padding: 12px;
+            background: rgba($pink, 0.1);
+            border: 1px solid rgba($pink, 0.3);
+            border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background: rgba($pink, 0.15);
+            }
 
             h4 {
-                display: flex;
-                align-items: center;
+                margin: 0;
+                color: $pink;
             }
 
             svg {
-                fill: $white;
+                width: 16px;
+                height: 16px;
+                fill: $pink;
+                transition: transform 0.3s ease;
             }
         }
 
         .accordion-checkbox {
             display: none;
+
+            &:checked {
+                & ~ .accordion-label svg {
+                    transform: rotate(180deg);
+                }
+
+                & ~ .accordion-content {
+                    max-height: 800px;
+                    opacity: 1;
+                    margin-top: 12px;
+                }
+            }
         }
 
         .accordion-checkbox:checked ~ .accordion-label svg {
@@ -99,8 +274,10 @@ body {
         }
 
         .accordion-content {
-            display: none;
+            max-height: 0;
+            opacity: 0;
             overflow: hidden;
+            transition: all 0.3s ease-in-out;
             flex-flow: column;
 
             .accordion-title {
@@ -113,97 +290,163 @@ body {
         }
 
         .accordion-warning {
-            padding: 8px;
+            background: rgba($bgdark, 0.3);
             border-radius: 8px;
-            background: rgba($bglight, 0.4);
-            border: 1px solid rgba($bglight, 0.6);
-            color: rgba($white, 0.8);
+            padding: 16px;
+
+            p {
+                margin-bottom: 16px;
+                color: rgba($white, 0.9);
+            }
 
             h4 {
-                color: $white;
+                color: $pink;
+                margin: 16px 0 8px;
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+
+            ol {
+                margin: 8px 0;
+                padding-left: 24px;
+            }
+
+            li {
+                margin: 4px 0;
+                color: rgba($white, 0.9);
             }
 
             code {
-                font-size: 16px;
+                display: block;
+                background: rgba($bgdark, 0.6);
+                padding: 8px 12px;
+                margin: 8px 0;
+                border-radius: 4px;
                 color: $pink;
-                text-shadow: 1px 1px 1px rgba($black, 0.8);
+                font-family: monospace;
+                font-size: 0.9em;
+                word-break: break-all;
             }
         }
     }
 
+    .warning-content {
+        background: rgba($bgdark, 0.3);
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 8px;
+
+        h4 {
+            color: $pink;
+            margin: 16px 0 8px;
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        ol {
+            margin: 8px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            margin: 4px 0;
+            color: rgba($white, 0.9);
+        }
+
+        code {
+            background: rgba($bgdark, 0.6);
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: $pink;
+            font-family: monospace;
+        }
+    }
+
     .guide {
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 16px;
-        padding: 48px 0;
+        margin-top: 32px;
+        text-align: center;
+        background: rgba($bgdark, 0.4);
+        border-radius: 12px;
+        padding: 32px;
+        backdrop-filter: blur(8px);
 
         h2 {
-            text-align: center;
+            margin-bottom: 24px;
         }
 
         .buttons {
             display: flex;
-            flex-flow: row;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            gap: 24px;
+            gap: 16px;
 
             @media screen and (max-width: $sm) {
-                flex-flow: column;
+                flex-direction: column;
             }
         }
 
         a {
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 16px;
-            box-sizing: border-box;
-            border-radius: 4px;
-            font-size: 20px;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 18px;
             text-decoration: none;
             color: $white;
             font-weight: bold;
-            height: 64px;
-
-            @media screen and (max-width: $sm) {
-                font-size: 22px;
-                padding: 8px 12px;
-                height: auto;
-                width: 100%;
-                max-width: 480px;
-                height: 50px;
-
-                svg {
-                    width: 24px;
-                    height: 24px;
-                }
-            }
-        }
-
-        a.faq {
-            background: rgba($pink, 0.9);
-
-            &:hover {
-                background: lighten($pink, 5%);
-            }
-        }
-
-        a.soc-button {
-            border: 1px solid $bgdark;
-            background: rgba($bgdark, 0.4);
+            transition: all 0.2s ease;
+            min-width: 200px;
 
             svg {
-                margin-right: 16px;
-                width: 28px;
-                height: 28px;
+                width: 24px;
+                height: 24px;
+                margin-right: 12px;
+            }
 
-                @media screen and (max-width: $xsm) {
-                    width: 24px;
-                    height: 24px;
+            &.faq {
+                background: rgba($pink, 0.9);
+
+                &:hover {
+                    background: lighten($pink, 5%);
+                    transform: translateY(-2px);
                 }
+            }
+
+            &.soc-button {
+                background: rgba($bgdark, 0.6);
+                border: 1px solid rgba($white, 0.2);
+
+                &:hover {
+                    background: rgba($bgdark, 0.8);
+                    transform: translateY(-2px);
+                }
+            }
+        }
+    }
+
+    .mac-box {
+        .mac-content {
+            display: flex;
+            gap: 24px;
+
+            @media screen and (max-width: $md) {
+                flex-direction: column;
+            }
+        }
+
+        .left {
+            flex: 1;
+        }
+
+        .troubleshooting-section {
+            flex: 1;
+            min-width: 300px;
+
+            @media screen and (max-width: $md) {
+                min-width: unset;
             }
         }
     }

@@ -1,141 +1,162 @@
 <section class="downloads">
     <div class="container">
         <h1>Downloads</h1>
-        <div class="box">
-            <div class="left">
 
-                <h3>Linux</h3>
-                <a target="_blank" rel="noreferrer" class="main-download"
-                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x86_64.AppImage">
-                    <img src="https://img.shields.io/badge/Download-AppImage-blue?style=for-the-badge&logo=linux&logoColor=white"
-                        alt="Download AppImage">
-                </a>
+        <!-- OS Selection Buttons -->
+        <div class="os-selection">
+            <input type="radio" id="mac-select" name="os-choice" class="os-radio" checked>
+            <input type="radio" id="linux-select" name="os-choice" class="os-radio">
+            <input type="radio" id="windows-select" name="os-choice" class="os-radio">
+
+            <div class="os-buttons">
+                <label for="mac-select" class="os-button">
+                    {% include svg/apple.svg %}
+                    <span>macOS</span>
+                </label>
+
+                <label for="linux-select" class="os-button">
+                    {% include svg/linux.svg %}
+                    <span>Linux</span>
+                </label>
+
+                <label for="windows-select" class="os-button">
+                    {% include svg/windows.svg %}
+                    <span>Windows</span>
+                </label>
             </div>
 
-            <div class="right">
+            <!-- Download Content Areas -->
+            <div class="download-areas">
+                <!-- macOS Downloads -->
+                <div class="download-area" id="mac-downloads">
+                    <div class="box mac-box">
+                        <div class="mac-content">
+                            <div class="download-group left">
+                                <h4>Apple Silicon (M1/M2)</h4>
+                                <div class="download-links">
+                                    <a target="_blank" rel="noreferrer"
+                                        href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-arm64.dmg">
+                                        <img src="https://img.shields.io/badge/Download-DMG_(ARM64)-blue?style=for-the-badge&logo=apple&logoColor=white"
+                                            alt="Download DMG for Apple CPU">
+                                    </a>
+                                </div>
 
-                <div class="accordion">
-                    <input type="checkbox" name="accordion" id="accordion-1" class="accordion-checkbox" />
-                    <label for="accordion-1" class="accordion-label">
-                        <h4>
-                            {% include svg/chevron-down.svg %} Other downloads
-                        </h4>
-                    </label>
-                    <div class="accordion-content">
-                        <a target="_blank" rel="noreferrer"
-                            href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-amd64.deb">
-                            <img src="https://img.shields.io/badge/Download-Debian%20package-blue?style=for-the-badge&logo=debian&logoColor=white"
-                                alt="Download Debian package">
-                        </a>
-                        <a target="_blank" rel="noreferrer"
-                            href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-amd64.snap">
-                            <img src="https://img.shields.io/badge/Download-Snap-blue?style=for-the-badge&logo=snapcraft&logoColor=white"
-                                alt="Download Snap">
-                        </a>
-                        <a target="_blank" rel="noreferrer"
-                            href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x64.tar.gz">
-                            <img src="https://img.shields.io/badge/Download-Tarball-blue?style=for-the-badge&logo=linux&logoColor=white"
-                                alt="Download Tarball">
-                        </a>
-                        <a target="_blank" rel="noreferrer" href="https://flathub.org/apps/org.js.nuclear.Nuclear">
-                            <img src="https://img.shields.io/badge/Download-Flatpak-blue?style=for-the-badge&logo=flathub&logoColor=white"
-                                alt="Download Flatpak">
-                        </a>
-                        <a target="_blank" rel="noreferrer"
-                            href="https://aur.archlinux.org/packages/nuclear-player-bin">
-                            <img src="https://img.shields.io/badge/Download-AUR-blue?style=for-the-badge&logo=arch-linux&logoColor=white"
-                                alt="Download AUR">
-                        </a>
-                        <a target="_blank" rel="noreferrer"
-                            href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x86_64.rpm">
-                            <img src="https://img.shields.io/badge/Download-RPM-blue?style=for-the-badge&logo=fedora&logoColor=white"
-                                alt="Download RPM">
-                        </a>
+                                <h4>Intel Processor</h4>
+                                <div class="download-links">
+                                    <a target="_blank" rel="noreferrer"
+                                        href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x64.dmg">
+                                        <img src="https://img.shields.io/badge/Download-DMG_(Intel)-blue?style=for-the-badge&logo=apple&logoColor=white"
+                                            alt="Download DMG for Intel CPU">
+                                    </a>
+                                </div>
+                            </div>
 
+                            <div class="troubleshooting-section">
+                                <!-- Mac Troubleshooting Accordion -->
+                                <div class="accordion">
+                                    <input type="checkbox" id="mac-troubleshooting" class="accordion-checkbox">
+                                    <label for="mac-troubleshooting" class="accordion-label">
+                                        <h4>⚠️ Having trouble opening Nuclear?</h4>
+                                        {% include svg/chevron-down.svg %}
+                                    </label>
+                                    <div class="accordion-content">
+                                        <div class="accordion-warning">
+                                            <p>MacOS may block unsigned apps. Try these solutions:</p>
+
+                                            <h4>1. Remove quarantine attribute</h4>
+                                            <code>sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app</code>
+
+                                            <h4>2. Allow Nuclear to run</h4>
+                                            <ol>
+                                                <li>Open System Preferences → Security & Privacy</li>
+                                                <li>Click "Open Anyway" next to Nuclear</li>
+                                            </ol>
+
+                                            <h4>3. Disable Gatekeeper (Advanced)</h4>
+                                            <code>sudo spctl --master-disable</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <div class=" box">
-            <div class="left">
-                <h3>Windows</h3>
-                <a target="_blank" rel="noreferrer" class="main-download"
-                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x64.exe">
-                    <img src="https://img.shields.io/badge/Download-EXE-blue?style=for-the-badge&logo=windows&logoColor=white"
-                        alt="Download portable EXE">
-                </a>
-            </div>
+                <!-- Linux Downloads -->
+                <div class="download-area" id="linux-downloads">
+                    <div class="box">
+                        <div class="download-group">
+                            <h4>Universal Install (Recommended)</h4>
+                            <div class="download-links">
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x86_64.AppImage">
+                                    <img src="https://img.shields.io/badge/Download-AppImage-blue?style=for-the-badge&logo=linux&logoColor=white"
+                                        alt="Download AppImage">
+                                </a>
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://flathub.org/apps/org.js.nuclear.Nuclear">
+                                    <img src="https://img.shields.io/badge/Download-Flatpak-blue?style=for-the-badge&logo=flathub&logoColor=white"
+                                        alt="Download Flatpak">
+                                </a>
+                            </div>
 
-            <div class="right">
-                <div class="accordion">
-                    <input type="checkbox" name="accordion" id="accordion-2" class="accordion-checkbox" />
-                    <label for="accordion-2" class="accordion-label">
-                        <h4>
-                            {% include svg/chevron-down.svg %} Other downloads
-                        </h4>
-                    </label>
-                    <div class="accordion-content">
-                        <a target="_blank" rel="noreferrer"
-                            href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear.Setup.0.6.42.exe">
-                            <img src="https://img.shields.io/badge/Download-Installer-blue?style=for-the-badge&logo=windows&logoColor=white"
-                                alt="Download Installer">
-                        </a>
+                            <h4>Distribution-specific Packages</h4>
+                            <div class="download-links">
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-amd64.deb">
+                                    <img src="https://img.shields.io/badge/Download-Debian%20package-blue?style=for-the-badge&logo=debian&logoColor=white"
+                                        alt="Download Debian package">
+                                </a>
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x86_64.rpm">
+                                    <img src="https://img.shields.io/badge/Download-RPM-blue?style=for-the-badge&logo=fedora&logoColor=white"
+                                        alt="Download RPM">
+                                </a>
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://aur.archlinux.org/packages/nuclear-player-bin">
+                                    <img src="https://img.shields.io/badge/Download-AUR-blue?style=for-the-badge&logo=arch-linux&logoColor=white"
+                                        alt="Download AUR">
+                                </a>
+                            </div>
 
+                            <h4>Additional Formats</h4>
+                            <div class="download-links">
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-amd64.snap">
+                                    <img src="https://img.shields.io/badge/Download-Snap-blue?style=for-the-badge&logo=snapcraft&logoColor=white"
+                                        alt="Download Snap">
+                                </a>
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x64.tar.gz">
+                                    <img src="https://img.shields.io/badge/Download-Tarball-blue?style=for-the-badge&logo=linux&logoColor=white"
+                                        alt="Download Tarball">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="left">
-                <h3>Mac OS</h3>
-                <div>
-                    <h4>Apple Silicon</h4>
-                    <a target="_blank" rel="noreferrer" class="main-download"
-                        href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-arm64.dmg">
-                        <img src="https://img.shields.io/badge/Download-DMG-blue?style=for-the-badge&logo=apple&logoColor=white"
-                            alt="Download DMG for Apple CPU">
-                    </a>
-                    <h4>Intel</h4>
-                    <a target="_blank" rel="noreferrer" class="main-download"
-                        href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x64.dmg">
-                        <img src="https://img.shields.io/badge/Download-DMG-blue?style=for-the-badge&logo=apple&logoColor=white"
-                            alt="Download DMG for Intel CPU">
-                    </a>
-                </div>
-            </div>
-            <div class="right">
-                <div class="accordion">
-                    <input type="checkbox" name="accordion" id="accordion-3" class="accordion-checkbox" />
-                    <label for="accordion-3" class="accordion-label">
-                        <h4>
-                            {% include svg/chevron-down.svg %} If you have trouble running Nuclear
-                        </h4>
-                    </label>
-                    <div class="accordion-content">
 
-                        <div class="accordion-warning">
-                            Note: MacOS can block running unsigned apps. If you have trouble running Nuclear, try this:
+                <!-- Windows Downloads -->
+                <div class="download-area" id="windows-downloads">
+                    <div class="box">
+                        <div class="download-group">
+                            <h4>Easy Install (Recommended)</h4>
+                            <div class="download-links">
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear.Setup.0.6.42.exe">
+                                    <img src="https://img.shields.io/badge/Download-Installer-blue?style=for-the-badge&logo=windows&logoColor=white"
+                                        alt="Download Installer">
+                                </a>
+                            </div>
 
-                            <h4>Remove the "quarantine" attribute</h4>
-                            <ol>
-                                <li>Open Terminal</li>
-                                <li>Run <code>sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app</code>
-                                </li>
-                            </ol>
-
-                            <h4>Allow Nuclear to run</h4>
-                            <ol>
-                                <li>Open System Preferences</li>
-                                <li>Go to Security & Privacy</li>
-                                <li>Click "Open Anyway" next to the Nuclear app</li>
-                            </ol>
-
-                            <h4>Disable Gatekeeper</h4>
-                            <ol>
-                                <li>Open Terminal</li>
-                                <li>Run <code>sudo spctl --master-disable</code></li>
-                            </ol>
+                            <h4>Portable Version</h4>
+                            <div class="download-links">
+                                <a target="_blank" rel="noreferrer"
+                                    href="https://github.com/nukeop/nuclear/releases/download/v0.6.42/nuclear-v0.6.42-x64.exe">
+                                    <img src="https://img.shields.io/badge/Download-Portable_EXE-blue?style=for-the-badge&logo=windows&logoColor=white"
+                                        alt="Download portable EXE">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,20 +164,18 @@
         </div>
 
         <div class="guide">
-            <h2>
-                Got a question for Nuclear?
-            </h2>
-
+            <h2>Need help with Nuclear?</h2>
             <div class="buttons">
-
-                <a class="faq" target="_blank" rel="noreferrer" href="https://nukeop.gitbook.io/nuclear/">User guide and
-                    FAQ</a>
+                <a class="faq" target="_blank" rel="noreferrer" href="https://nukeop.gitbook.io/nuclear/">
+                    Read User Guide & FAQ
+                </a>
                 <a class="soc-button" href="https://fosstodon.org/@nuclearplayer" rel="me">
-                    {% include svg/mastodon.svg %} Ask us on Mastodon
+                    {% include svg/mastodon.svg %} Follow on Mastodon
                 </a>
                 <a class="soc-button" href="https://discord.gg/JqPjKxE" rel="me">
                     {% include svg/discord.svg %} Join Discord
                 </a>
             </div>
         </div>
+    </div>
 </section>
