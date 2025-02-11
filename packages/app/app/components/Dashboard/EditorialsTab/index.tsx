@@ -6,14 +6,12 @@ import { CardsRow } from '@nuclear/ui';
 import { DeezerEditorialCharts } from '@nuclear/core/src/rest/Deezer';
 
 import styles from './styles.scss';
-import { PromotedArtistsContainer } from '../../../containers/PromotedArtistsContainer';
 
 type EditorialsTabProps = { 
   isLoading: boolean;
     playlists?: DeezerEditorialCharts['playlists']['data'];
     artists?: DeezerEditorialCharts['artists']['data'];
     albums?: DeezerEditorialCharts['albums']['data'];
-    isPromotedArtistsEnabled: boolean;
 
     artistInfoSearchByName: (artistName: string) => void;
     albumInfoSearchByName: (albumName: string, artistName: string) => void;
@@ -25,7 +23,6 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({
   playlists,
   artists, 
   albums,
-  isPromotedArtistsEnabled,
   artistInfoSearchByName,
   albumInfoSearchByName,
   onEditorialPlaylistClick
@@ -54,10 +51,6 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({
             nothingFoundLabel={t('nothing-found')}
           />
         </div>
-        {
-          isPromotedArtistsEnabled &&
-          <PromotedArtistsContainer />
-        }
         <div className={styles.row}>
           <CardsRow 
             cards={

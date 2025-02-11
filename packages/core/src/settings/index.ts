@@ -197,14 +197,6 @@ export const createSettingsConfig: (app?: Electron.App) => Array<Setting> = (app
     default: true
   },
   {
-    name: 'promotedArtists',
-    category: 'display',
-    type: SettingType.BOOLEAN,
-    prettyName: 'promoted-artists',
-    description: 'promoted-artists-description',
-    default: true
-  },
-  {
     name: 'api.enabled',
     category: 'http',
     type: SettingType.BOOLEAN,

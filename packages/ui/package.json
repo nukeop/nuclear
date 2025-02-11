@@ -19,8 +19,8 @@
 	},
 	"scripts": {
 		"storybook": "start-storybook -p 9001 -c .storybook",
-		"lint": "eslint \"{lib,stories}/**.{ts,tsx,js,jsx}\"",
-		"lint:fix": "eslint \"{lib,stories}/**.{ts,tsx,js,jsx}\" --fix",
+		"lint": "eslint \"{lib,stories}/**/*.{ts,tsx,js,jsx}\"",
+		"lint:fix": "eslint \"{lib,stories}/**/*.{ts,tsx,js,jsx}\" --fix",
 		"test": "jest",
 		"coverage": "jest --coverage"
 	},

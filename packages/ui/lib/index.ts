@@ -24,7 +24,6 @@ export { default as PlayerButton } from './components/PlayerButton';
 export { default as Playlists } from './components/Playlists';
 export { default as PopupButton } from './components/PopupButton';
 export { default as PopupDropdown } from './components/PopupDropdown';
-export { default as PromotedArtist } from './components/PromotedArtist';
 export { default as QueueItem } from './components/QueueItem';
 export { default as Range } from './components/Range';
 export { default as ResizablePanel } from './components/ResizablePanel';

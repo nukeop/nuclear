@@ -13,7 +13,6 @@ import EditorialsTab from './EditorialsTab';
 type DashboardProps = {
   dashboardData: DashboardReducerState;
   isConnected: boolean;
-  isPromotedArtistsEnabled: boolean;
 
   artistInfoSearchByName: (artistName: string) => void;
   albumInfoSearchByName: (albumName: string, artistName: string) => void;
@@ -23,7 +22,6 @@ type DashboardProps = {
 export const Dashboard: React.FC<DashboardProps> = ({
   dashboardData,
   isConnected,
-  isPromotedArtistsEnabled,
   artistInfoSearchByName,
   albumInfoSearchByName,
   onEditorialPlaylistClick
@@ -46,7 +44,6 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   playlists={dashboardData.editorialCharts.data?.playlists.data}
                   artists={dashboardData.editorialCharts.data?.artists.data}
                   albums={dashboardData.editorialCharts.data?.albums.data}
-                  isPromotedArtistsEnabled={isPromotedArtistsEnabled}
 
                   artistInfoSearchByName={artistInfoSearchByName}
                   albumInfoSearchByName={albumInfoSearchByName}
