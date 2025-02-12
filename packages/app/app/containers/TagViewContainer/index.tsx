@@ -1,65 +1,51 @@
-import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+
+import { Track } from '@nuclear/ui/lib/types';
+
 import * as SearchActions from '../../actions/search';
 import * as TagActions from '../../actions/tag';
 import * as QueueActions from '../../actions/queue';
-import * as PlayerActions from '../../actions/player';
 import { RootState } from '../../reducers';
-
 import TagView from '../../components/TagView';
 
-type OwnProps = RouteComponentProps<{ tagName: string }>;
+const TagViewContainer: React.FC = () => {
+  const history = useHistory();
+  const { tagName } = useParams<{ tagName: string }>();
+  const dispatch = useDispatch();
+  
+  const tags = useSelector((state: RootState) => state.tags);
 
-type StateProps = {
-  tags: RootState['tags'];
-  streamProviders: RootState['plugin']['plugins']['streamProviders'];
-}
+  const handleLoadTagInfo = useCallback((tag: string) => {
+    dispatch(TagActions.loadTagInfo(tag));
+  }, [dispatch]);
 
-type DispatchProps = {
-  actions: {
-    loadTagInfo: typeof TagActions.loadTagInfo;
-    artistInfoSearchByName: typeof SearchActions.artistInfoSearchByName;
-    albumInfoSearchByName: typeof SearchActions.albumInfoSearchByName;
-    addToQueue: typeof QueueActions.addToQueue;
-  };
-}
+  const handleArtistInfoSearch = useCallback((artistName: string) => {
+    dispatch(SearchActions.artistInfoSearchByName(artistName, history));
+  }, [dispatch, history]);
 
-type Props = OwnProps & StateProps & DispatchProps;
+  const handleAlbumInfoSearch = useCallback((albumName: string) => {
+    // TODO: Album search can be improved by adding artist name
+    // TabTopList doesn't support artist name, but it can be added
+    dispatch(SearchActions.albumInfoSearchByName(albumName, '', history));
+  }, [dispatch, history]);
 
-const TagViewContainer: React.FC<Props> = ({ actions, history, match, tags, streamProviders }) => (
-  <TagView
-    loadTagInfo={actions.loadTagInfo}
-    artistInfoSearchByName={actions.artistInfoSearchByName}
-    albumInfoSearchByName={actions.albumInfoSearchByName}
-    history={history}
-    tag={match.params.tagName}
-    tags={tags}
-    streamProviders={streamProviders}
-    addToQueue={actions.addToQueue}
-  />
-);
+  const handleAddToQueue = useCallback((track: Track) => {
+    dispatch(QueueActions.addToQueue(QueueActions.toQueueItem(track)));
+  }, [dispatch]);
 
-function mapStateToProps(state: RootState): StateProps {
-  return {
-    tags: state.tags,
-    streamProviders: state.plugin.plugins.streamProviders
-  };
-}
+  return (
+    <TagView
+      loadTagInfo={handleLoadTagInfo}
+      artistInfoSearchByName={handleArtistInfoSearch}
+      albumInfoSearchByName={handleAlbumInfoSearch}
+      history={history}
+      tag={tagName}
+      tags={tags}
+      addToQueue={handleAddToQueue}
+    />
+  );
+};
 
-function mapDispatchToProps(dispatch: any): DispatchProps {
-  return {
-    actions: bindActionCreators(
-      Object.assign({}, SearchActions, TagActions, QueueActions, PlayerActions),
-      dispatch
-    )
-  };
-}
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(TagViewContainer)
-);
+export default TagViewContainer;

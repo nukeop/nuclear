@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import { History } from 'history';
-import { LastfmArtistShort, LastfmTag, LastfmAlbum, LastfmTrackMatch } from '@nuclear/core/src/rest/Lastfm.types';
+import { LastfmArtistShort, LastfmTag, LastfmAlbum, LastfmTrackMatch, LastfmTagTopTrack } from '@nuclear/core/src/rest/Lastfm.types';
 
 import TagDescription from './TagDescription';
 import TagHeader from './TagHeader';
@@ -22,7 +22,7 @@ type TagViewProps = WithTranslation & {
       loading?: boolean;
       // API response array containing [tagInfo, topTracks, topAlbums, topArtists]
       0?: LastfmTag;
-      1?: LastfmTrackMatch[];
+      1?: LastfmTagTopTrack[];
       2?: LastfmAlbum[];
       3?: LastfmArtistShort[];
     };
@@ -71,10 +71,10 @@ const TagView: React.FC<TagViewProps> = ({
     />
   );
 
-  const renderTagTopTracks = (topTracks?: LastfmTrackMatch[], addToQueue?: TagViewProps['addToQueue']) => (
+  const renderTagTopTracks = (topTracks: LastfmTagTopTrack[], addToQueue: TagViewProps['addToQueue']) => (
     <TagTopTracks
       tracks={topTracks ?? []}
-      addToQueue={addToQueue!}
+      addToQueue={addToQueue}
     />
   );
 
@@ -92,9 +92,9 @@ const TagView: React.FC<TagViewProps> = ({
   );
 
   const tagInfo = tags[tag]?.[0];
-  const topTracks = tags[tag]?.[1];
-  const topAlbums = tags[tag]?.[2];
-  const topArtists = tags[tag]?.[3];
+  const topTracks = tags[tag]?.[1] ?? [];
+  const topAlbums = tags[tag]?.[2] ?? [];
+  const topArtists = tags[tag]?.[3] ?? [];
   const isLoading = typeof tags[tag] === 'undefined' || tags[tag]?.loading;
 
   return (

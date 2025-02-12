@@ -64,6 +64,10 @@ export type LastfmTrackMatch = {
   listeners: string;
 }
 
+export type LastfmTagTopTrack = LastfmTrackMatch & {
+  artist: {name: string;}
+};
+
 export type LastfmTrackMatchInternal  = LastfmTrackMatch & { thumbnail: string }
 
 export type LastfmTopTag = {

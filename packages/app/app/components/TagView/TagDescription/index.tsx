@@ -8,7 +8,7 @@ interface TagDescriptionProps {
 
 const TagDescription: React.FC<TagDescriptionProps> = ({ tagInfo }) => (
   <div className={styles.tag_description}>
-    {tagInfo.wiki.summary
+    {tagInfo?.wiki?.summary
       .split('.')
       .slice(0, -5)
       .join('.') + '...'}
