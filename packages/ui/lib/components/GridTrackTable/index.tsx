@@ -46,7 +46,7 @@ export type TrackTableRow<T extends Track> = Row<T> & UseRowSelectRowProps<T>;
 
 export const GridTrackTable = <T extends Track>({
   className,
-  tracks,
+  tracks = [],
   customColumns = [],
   isTrackFavorite,
   onDragEnd,

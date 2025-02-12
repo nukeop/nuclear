@@ -2,10 +2,9 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useTranslation } from 'react-i18next';
 
-import { Button, TrackTable } from '@nuclear/ui';
+import { Button } from '@nuclear/ui';
 
 import styles from './styles.scss';
-import TrackRow from '../../TrackRow';
 import TrackTableContainer from '../../../containers/TrackTableContainer';
 
 type TagTopTrack = {
