@@ -42,7 +42,7 @@ const CardsRow: React.FC<CardRowProps> = ({
     }
   };
 
-  const [displayedCards, setDisplayedCards] = useState(cards);
+  const [displayedCards, setDisplayedCards] = useState(cards ?? []);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const CardsRow: React.FC<CardRowProps> = ({
   }, []);
 
   useEffect(() => {
-    setDisplayedCards(cards.filter(card => card.header.toLowerCase().includes(filter.toLowerCase())));
+    setDisplayedCards(cards?.filter(card => card.header.toLowerCase().includes(filter.toLowerCase())));
   }, [cards, filter]);
 
   return <div className={styles.cards_row_container}>
@@ -105,7 +105,7 @@ const CardsRow: React.FC<CardRowProps> = ({
       ref={cardsRow}
     >
       {
-        displayedCards.length > 0 ?
+        displayedCards?.length > 0 ?
           displayedCards.map(card => <Card 
             key={card.id}
             className={styles.row_card}

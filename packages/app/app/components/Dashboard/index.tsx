@@ -41,9 +41,9 @@ export const Dashboard: React.FC<DashboardProps> = ({
               render: () => (
                 <EditorialsTab
                   isLoading={editorialCharts.isLoading || !editorialCharts.isReady}
-                  playlists={dashboardData.editorialCharts.data?.playlists.data}
-                  artists={dashboardData.editorialCharts.data?.artists.data}
-                  albums={dashboardData.editorialCharts.data?.albums.data}
+                  playlists={dashboardData.editorialCharts?.data?.playlists?.data}
+                  artists={dashboardData.editorialCharts?.data?.artists?.data}
+                  albums={dashboardData.editorialCharts?.data?.albums?.data}
 
                   artistInfoSearchByName={artistInfoSearchByName}
                   albumInfoSearchByName={albumInfoSearchByName}
