@@ -39,7 +39,6 @@ exports[`Playlists container should display all playlists 1`] = `
         >
           <tr
             aria-describedby="rbd-hidden-text-0-hidden-text-0"
-            class=""
             data-rbd-drag-handle-context-id="0"
             data-rbd-drag-handle-draggable-id="test playlist  0"
             data-rbd-draggable-context-id="0"
@@ -58,7 +57,6 @@ exports[`Playlists container should display all playlists 1`] = `
               />
             </td>
             <td
-              class="title_cell"
               role="cell"
             >
               test playlist
@@ -71,7 +69,6 @@ exports[`Playlists container should display all playlists 1`] = `
           </tr>
           <tr
             aria-describedby="rbd-hidden-text-0-hidden-text-0"
-            class=""
             data-rbd-drag-handle-context-id="0"
             data-rbd-drag-handle-draggable-id="test playlist 2  1"
             data-rbd-draggable-context-id="0"
@@ -90,7 +87,6 @@ exports[`Playlists container should display all playlists 1`] = `
               />
             </td>
             <td
-              class="title_cell"
               role="cell"
             >
               test playlist 2
