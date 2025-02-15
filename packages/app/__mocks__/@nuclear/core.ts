@@ -15,6 +15,30 @@ const mockTopTags = {
   }
 };
 
+const mockLogger = {
+  log: jest.fn(),
+  warn: jest.fn(),
+  error: jest.fn().mockImplementation((...args) => {
+    console.error(...args);
+  }),
+  time: jest.fn(),
+  timeEnd: jest.fn(),
+  streamLog: jest.fn(),
+  streamWarn: jest.fn(),
+  streamError: jest.fn().mockImplementation((stream) => {
+    stream.on('data', (data) => {
+      console.error(data.trim());
+    });
+  }),
+  create: jest.fn().mockImplementation(() => mockLogger),
+  getDefaults: jest.fn().mockReturnValue({
+    ignore: null,
+    shouldHookConsole: false,
+    logLevel: 'info'
+  }),
+  hookConsole: jest.fn().mockReturnValue(() => {})
+};
+
 module.exports = {
   isArtistObject: jest.requireActual('@nuclear/core/src/types').isArtistObject,
   store: mockElectronStore(mockStore),
@@ -56,6 +80,7 @@ module.exports = {
       })
     }
   },
+  logger: mockLogger,
   settingsConfig: jest.requireActual('@nuclear/core/src/settings').settingsConfig,
   SettingType: {
     BOOLEAN: 'boolean',

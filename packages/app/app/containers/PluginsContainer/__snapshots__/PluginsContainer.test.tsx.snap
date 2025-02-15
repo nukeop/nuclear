@@ -255,9 +255,7 @@ exports[`Plugins container should display loaded user plugins 1`] = `
               >
                 test plugin
               </div>
-              <div
-                class="plugin_path"
-              >
+              <div>
                 <label>
                   Installed from:
                 </label>
@@ -265,26 +263,24 @@ exports[`Plugins container should display loaded user plugins 1`] = `
                   test file.txt
                 </span>
               </div>
-              <div
-                class="plugin_description"
-              >
+              <div>
                 test plugin description
               </div>
               <div
                 class="plugin_footer"
               >
-                <div
-                  class="plugin_author"
-                >
+                <div>
                   <label>
                     Author:
                   </label>
                   <span
                     class="link"
-                  />
+                  >
+                    test author
+                  </span>
                 </div>
                 <button
-                  class="ui basic icon inverted button delete_button"
+                  class="ui basic icon inverted button"
                 >
                   <i
                     aria-hidden="true"
@@ -293,9 +289,7 @@ exports[`Plugins container should display loaded user plugins 1`] = `
                   Uninstall
                 </button>
               </div>
-              <div
-                class="error_footer"
-              />
+              <div />
             </div>
           </div>
         </div>

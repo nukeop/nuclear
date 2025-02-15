@@ -15,6 +15,13 @@ This is a music player made with Typescript, React, Electron, and some Rust. You
 - Prefer arrow functions: () => {} over function expressions: function() {}.
 - If you're unsure, stick to the existing code style.
 
+# Tests
+
+- We mostly write integration tests for everything in the `app` package. Avoid unit tests for components, containers, and utility functions. It's better to mount a large part of the music player and test it as a whole.
+- We want the tests to accurately reflect the behavior of the music player. Avoid mocking unless necessary. Any setup should be done by performing the same actions as the user: clicking buttons, typing text, etc.
+- Snapshot tests should be created for every new component in the `ui` package.
+- Tests with smaller scope are usually written in the `core` package. Creating unit tests is fine there.
+
 # Style
 
 - Be fun, approachable, patient, and passionate.
