@@ -1,8 +1,4 @@
-import { handleCertificateError } from '../src/main';
-
-jest.mock('electron');
-jest.mock('@nuclear/core');
-jest.mock('electron-store');
+import { handleCertificateError } from '../src/certificate';
 
 describe('handleCertificateError', () => {
   it('calls event.preventDefault and callback with true when certificate error event is emitted', () => {

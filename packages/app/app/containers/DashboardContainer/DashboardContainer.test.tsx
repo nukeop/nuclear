@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { Deezer, LastFmApi } from '@nuclear/core/src/rest';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';

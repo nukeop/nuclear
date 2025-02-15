@@ -1,5 +1,37 @@
+import { initialStoreState, mockElectronStore } from '../../tests/mockElectronStore';
+
 export default jest.fn();
 export const settingsConfig = jest.requireActual('@nuclear/core/src/settings').mainSettings;
+
+const mockStore = {...initialStoreState()};
+
+const store = mockElectronStore(mockStore);
+
+export {store};
+
+export const logger = {
+  log: jest.fn(),
+  warn: jest.fn(),
+  error: jest.fn().mockImplementation((...args) => {
+    console.error(...args);
+  }),
+  time: jest.fn(),
+  timeEnd: jest.fn(),
+  streamLog: jest.fn(),
+  streamWarn: jest.fn(),
+  streamError: jest.fn().mockImplementation((stream) => {
+    stream.on('data', (data) => {
+      console.error(data.trim());
+    });
+  }),
+  create: jest.fn().mockImplementation(() => logger),
+  getDefaults: jest.fn().mockReturnValue({
+    ignore: null,
+    shouldHookConsole: false,
+    logLevel: 'info'
+  }),
+  hookConsole: jest.fn().mockReturnValue(() => {})
+};
 
 export enum IpcEvents {
   STARTED = 'started',
