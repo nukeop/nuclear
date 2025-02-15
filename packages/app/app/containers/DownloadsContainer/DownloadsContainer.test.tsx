@@ -1,7 +1,15 @@
 import { store as electronStore } from '@nuclear/core';
 import { waitFor } from '@testing-library/dom';
+import { ipcRenderer } from 'electron';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
+
+jest.mock('electron', () => ({
+  ipcRenderer: {
+    invoke: jest.fn()
+  }
+}));
+jest.mock('electron-store');
 
 const initialStoreState = 
 buildStoreState()
@@ -20,6 +28,8 @@ describe('Downloads container', () => {
       'downloads',
       initialStoreState.downloads
     );
+    jest.clearAllMocks();
+    (ipcRenderer.invoke as jest.Mock).mockResolvedValue( 'selected_directory' );
   });
 
   it('should display downloads', () => {
@@ -69,11 +79,12 @@ describe('Downloads container', () => {
     const { component } = mountComponent();
     await waitFor(() => component.getByText(/choose a directory.../i).click());
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const remote = require('electron').remote;
-    expect(remote.dialog.showOpenDialog).toHaveBeenCalledWith({
-      properties: ['openDirectory']
+    expect(ipcRenderer.invoke).toHaveBeenNthCalledWith(1, 'get-download-path');
+    expect(ipcRenderer.invoke).toHaveBeenNthCalledWith(2, 'open-path-picker', {
+      properties: ['openDirectory'],
+      title: 'Choose a directory...'
     });
+    expect(ipcRenderer.invoke).toHaveBeenCalledTimes(2);
   });
 
   const mountComponent = mountedComponentFactory(

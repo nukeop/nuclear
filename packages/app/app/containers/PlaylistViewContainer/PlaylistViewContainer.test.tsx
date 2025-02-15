@@ -103,7 +103,7 @@ describe('Playlist view container', () => {
     });
     expect(ipcRenderer.invoke).toHaveBeenCalledTimes(1);
     
-    // check if the playlist was properly exported 
+    // check if the playlist was properly exported
     expect(fs.writeFile).toHaveBeenCalledWith(
       'downloaded_playlist',
       JSON.stringify(playlist, null, 2),
