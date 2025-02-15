@@ -1,7 +1,16 @@
-import { waitFor } from '@testing-library/react';
+import { waitFor, screen } from '@testing-library/react';
 
 import { buildStoreState } from '../../../test/storeBuilders';
 import { mountedComponentFactory, setupI18Next, uuidRegex } from '../../../test/testUtils';
+import { ipcRenderer } from 'electron';
+import userEvent from '@testing-library/user-event';
+
+jest.mock('electron-store');
+jest.mock('electron', () => ({
+  ipcRenderer: {
+    invoke: jest.fn()
+  }
+}));
 
 describe('Library view container', () => {
   beforeAll(() => {
@@ -25,42 +34,40 @@ describe('Library view container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should display local library in album grid mode', () => {
+  it('should display local library in album grid mode', async () => {
     const { component } = mountComponent();
-
-    waitFor(() => component.getByTestId('library-list-type-toggle-album-grid').click());
+    const albumGridButton = await component.findByTestId('library-list-type-toggle-album-grid');
+    await userEvent.click(albumGridButton);
 
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should display local library in folder tree mode', () => {
+  it('should display local library in folder tree mode', async () => {
     const { component } = mountComponent();
-
-    waitFor(() => component.getByTestId('library-list-type-toggle-folder-tree').click());
+    const folderTreeButton = await component.findByTestId('library-list-type-toggle-folder-tree');
+    await userEvent.click(folderTreeButton);
 
     expect(component.asFragment()).toMatchSnapshot();
   });
 
   it('should add a folder to the local library', async () => {
     const { component } = mountComponent();
+    const addFoldersButton = await component.findByText(/add folders/i);
+    await userEvent.click(addFoldersButton);
 
-    await waitFor(() => component.getByText(/add folders/i).click());
-
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const remote = require('electron').remote;
-    expect(remote.dialog.showOpenDialog).toHaveBeenCalledWith(
-      'currentWindow',
-      {
-        properties: ['openDirectory', 'multiSelections']
-      }
-    );
+    expect(ipcRenderer.invoke).toHaveBeenCalledWith('open-path-picker', {
+      properties: ['openDirectory', 'multiSelections']
+    });
   });
 
   it('should add a track from the local library to the queue', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
-    await waitFor(() => component.getByText(/add to queue/i).click());
+    const triggers = await component.findAllByTestId('track-popup-trigger');
+    await userEvent.click(triggers[0]);
+
+    const addToQueueButton = await component.findByText(/add to queue/i);
+    await userEvent.click(addToQueueButton);
 
     const state = store.getState();
 
@@ -77,7 +84,9 @@ describe('Library view container', () => {
 
   it('should not display the download button for tracks', async () => {
     const { component } = mountComponent();
-    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+    const triggers = await component.findAllByTestId('track-popup-trigger');
+    await userEvent.click(triggers[0]);
+
     await component.findByText(/add to queue/i);
 
     expect(component.queryByText(/download/i)).toBeNull();
@@ -85,9 +94,15 @@ describe('Library view container', () => {
 
   it('should not display the download all button for selected tracks', async () => {
     const { component } = mountComponent();
-    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
-    await waitFor(() => component.getByTitle('Toggle All Rows Selected').click());
-    await waitFor(() => component.getByTestId('select-all-popup-trigger').click());
+    const triggers = await component.findAllByTestId('track-popup-trigger');
+    await userEvent.click(triggers[0]);
+    
+    const toggleAllButton = await component.findByTitle('Toggle All Rows Selected');
+    await userEvent.click(toggleAllButton);
+    
+    const selectAllTrigger = await component.findByTestId('select-all-popup-trigger');
+    await userEvent.click(selectAllTrigger);
+    
     await component.findByText(/add selected to queue/i);
 
     expect(component.queryByText(/add selected to downloads/i)).toBeNull();
@@ -114,8 +129,11 @@ describe('Library view container', () => {
       .build();
     const { component, store } = mountComponent(initialState);
 
-    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
-    await waitFor(() => component.getByText(/add to queue/i).click());
+    const triggers = await component.findAllByTestId('track-popup-trigger');
+    await userEvent.click(triggers[0]);
+    
+    const addToQueueButton = await component.findByText(/add to queue/i);
+    await userEvent.click(addToQueueButton);
 
     const state = store.getState();
 
