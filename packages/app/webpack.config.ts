@@ -116,7 +116,7 @@ module.exports = (env) => {
       EventEmitter: ['events', 'EventEmitter']
     }),
     new webpack.ContextReplacementPlugin(
-      /\/(ytpl|ytsr|youtube-ext|bandcamp-scraper|http-cookie-agent|deasync)\//,
+      /\/(@distube\/ytpl|@distube\/ytsr|youtube-ext|bandcamp-scraper|http-cookie-agent|deasync)\//,
       false
     ),
     new webpack.ContextReplacementPlugin(

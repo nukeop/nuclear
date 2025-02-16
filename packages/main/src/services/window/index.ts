@@ -173,13 +173,10 @@ class Window {
 
   async installDevTools() {
     try {
-      await Promise.all([
-        installExtension(REACT_DEVELOPER_TOOLS),
-        installExtension(REDUX_DEVTOOLS)
-      ]);
-      this.logger.log('devtools installed');
+      await installExtension([REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS]);
+      this.logger.log('Developer tools successfully installed: React & Redux DevTools');
     } catch (err) {
-      this.logger.warn('something fails while trying to install devtools');
+      this.logger.warn('Failed to install developer tools', { error: err });
     }
   }
 

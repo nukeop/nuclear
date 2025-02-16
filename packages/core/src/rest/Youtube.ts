@@ -1,12 +1,12 @@
 import { logger } from '../../';
 import ytdl from '@distube/ytdl-core';
-
-import ytpl from 'ytpl';
+import ytpl from '@distube/ytpl';
 import {search, SearchVideo} from 'youtube-ext';
 
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
 import { YoutubeHeuristics } from './heuristics';
+import ytsr from '@distube/ytsr';
 
 export type YoutubeResult = {
   streams: { source: string, id: string }[]
@@ -47,11 +47,11 @@ function analyseUrlType(url) {
   return analysisResult;
 }
 
-function formatPlaylistTrack(track: ytpl.Item) {
+function formatPlaylistTrack(track: ytpl.result['items'][0]): YoutubeResult {
   return {
     streams: [{ source: 'Youtube', id: track.id }],
     name: track.title,
-    thumbnail: getLargestThumbnail(track.thumbnails),
+    thumbnail: track.thumbnail,
     artist: track.author.name
   };
 }
@@ -60,17 +60,8 @@ export async function handleYoutubePlaylist(url: string): Promise<YoutubeResult[
   try {
     const playlistID = await ytpl.getPlaylistID(url);
     if (ytpl.validateID(playlistID)) {
-      const playlistResult = await ytpl(playlistID, { pages: 1 });
-      const totalTrackCount = playlistResult.estimatedItemCount;
+      const playlistResult = await ytpl(playlistID);
       const allTracks = playlistResult.items;
-      let trackCount = allTracks.length;
-      let haveMoreTrack = playlistResult.continuation;
-      while (trackCount < totalTrackCount && haveMoreTrack) {
-        const moreTracks = await ytpl.continueReq(haveMoreTrack);
-        trackCount += moreTracks.items.length;
-        allTracks.push(...moreTracks.items);
-        haveMoreTrack = moreTracks.continuation;
-      }
 
       return allTracks.map(formatPlaylistTrack);
     }
@@ -118,29 +109,20 @@ export async function urlSearch(url: string): Promise<YoutubeResult[]> {
 }
 
 export async function liveStreamSearch(query: string): Promise<YoutubeResult[]> {
-  // FIXME: since ytsr is broken, we can't use it for now
-  // Instead, we're using youtube-ext, which doesn't support live search, so we're just returning an empty array
-  return [];
+  if (isValidURL(query)) {
+    return [];
+  }
 
-  // if (isValidURL(query)) {
-  //   return [];
-  // }
+  const searchResults = await ytsr(query, { safeSearch: false, limit: 10 });
 
-  // const videoFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(query))).get('Type').get('Video');
-  // const liveFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(videoFilter.url))).get('Features').get('Live');
-  // const options = {
-  //   limit: 10
-  // };
-  // const searchResults = await ytsr(liveFilter.url, options);
-
-  // return searchResults.items.map((video: ytsr.Video) => {
-  //   return {
-  //     streams: [{ source: 'Youtube', id: video.id }],
-  //     name: video.title,
-  //     thumbnail: video.bestThumbnail.url,
-  //     artist: { name: video.author.name }
-  //   };
-  // });
+  return searchResults.items
+    .filter(item => item.isLive)
+    .map((video: ytsr.Video) => ({
+      streams: [{ source: 'Youtube', id: video.id }],
+      name: video.name,
+      thumbnail: video.thumbnail,
+      artist: { name: video.author.name }
+    }));
 }
 
 export async function trackSearch(query: StreamQuery, sourceName?: string) {
