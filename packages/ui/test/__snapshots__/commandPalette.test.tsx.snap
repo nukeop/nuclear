@@ -144,9 +144,7 @@ exports[`(Snapshot) Command palette - with actions should render correctly 1`] =
             <div
               class="action_right"
             >
-              <kbd
-                class="shortcut"
-              >
+              <kbd>
                 space
               </kbd>
             </div>
@@ -170,9 +168,7 @@ exports[`(Snapshot) Command palette - with actions should render correctly 1`] =
             <div
               class="action_right"
             >
-              <kbd
-                class="shortcut"
-              >
+              <kbd>
                 right arrow
               </kbd>
             </div>
@@ -196,9 +192,7 @@ exports[`(Snapshot) Command palette - with actions should render correctly 1`] =
             <div
               class="action_right"
             >
-              <kbd
-                class="shortcut"
-              >
+              <kbd>
                 left arrow
               </kbd>
             </div>
