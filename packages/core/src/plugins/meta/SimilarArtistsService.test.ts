@@ -1,9 +1,14 @@
-import { LastFmArtistInfo } from '../../rest/Lastfm.types';
-import SimilarArtistsService from './SimilarArtistsService';
 import { range } from 'lodash';
 import fetchMock from 'fetch-mock';
+
+import SimilarArtistsService from './SimilarArtistsService';
+import { LastFmArtistInfo } from '../../rest/Lastfm.types';
 import { SpotifyMock } from '../../../test/spotify-mock';
 
+jest.mock('@electron/remote', () => ({
+  exec: jest.fn(),
+  getGlobal: jest.fn().mockReturnValue({})
+}));
 
 describe('Tests for SimilarArtistsService', () => {
   const underTest = new SimilarArtistsService();
