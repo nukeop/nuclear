@@ -21,6 +21,10 @@ class ListeningHistoryDb{
     ) {}
 
     async connect() {
+      if (this.connection?.isInitialized) {
+        return;
+      }
+
       try {
         const database = path.join(app.getPath('userData'), this.config.listeningHistoryDbName);
 
@@ -36,10 +40,15 @@ class ListeningHistoryDb{
         
         this.listeningHistoryRepository = this.connection.getRepository<ListeningHistoryEntry>(ListeningHistoryEntry);
 
+        if (!this.listeningHistoryRepository) {
+          throw new Error('Failed to initialize listening history repository');
+        }
+
         this.logger.log(`Listening history database created at ${database}`);
       } catch (e) {
         this.logger.error('Could not connect to the sqlite database for listening history');
         this.logger.error(e.stack);
+        throw e;
       }
     }
 
@@ -51,6 +60,10 @@ class ListeningHistoryDb{
     }
 
     async getEntries(request?: ListeningHistoryRequest): Promise<PagingResult<ListeningHistoryEntry>> {
+      if (!this.connection?.isInitialized || !this.listeningHistoryRepository) {
+        throw new Error('Database connection not initialized');
+      }
+
       const qb = this.listeningHistoryRepository.createQueryBuilder('entry');
 
       if (request?.artist) {
@@ -92,6 +105,12 @@ class ListeningHistoryDb{
       const entries = await this.getEntries(request);
 
       await this.listeningHistoryRepository.remove(entries.data);
+    }
+
+    async disconnect() {
+      if (this.connection) {
+        await this.connection.destroy();
+      }
     }
 
     async getRepository(): Promise<Repository<ListeningHistoryEntry>> {

@@ -5,7 +5,8 @@ import { range } from 'lodash';
 
 describe('Listening history', () => {
   let Db: ListeningHistoryDb;
-  beforeAll(() => {
+  
+  beforeAll(async () => {
     jest.mock('electron', () => ({
       app: {
         getPath: jest.fn().mockImplementation(() => '')
@@ -15,11 +16,16 @@ describe('Listening history', () => {
     Db = new ListeningHistoryDb(new TestLogger(), {
       listeningHistoryDbName: ':memory:'
     } as Config);
+    
+    await Db.connect();
   });
 
   beforeEach(async () => {
-    await Db.connect();
     await Db.deleteEntries({});
+  });
+
+  afterAll(async () => {
+    await Db.disconnect();
   });
 
   it('should post an entry', async () => {
