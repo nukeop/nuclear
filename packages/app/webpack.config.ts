@@ -165,7 +165,6 @@ module.exports = (env) => {
         tls: false,
         path: false,
         https: false,
-        vm: false,
         os: false,
         events: false,
         'node:zlib': false,

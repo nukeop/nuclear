@@ -48,6 +48,13 @@ const hookableMethods = ['log', 'warn', 'error', 'time', 'timeEnd'];
 
 let longestNameLength = 0;
 
+const terminalColors = {
+  reset: '\x1b[0m',
+  dim: '\x1b[2m',
+  red: '\x1b[31m',
+  yellow: '\x1b[33m'
+};
+
 class NuclearLogger {
   #timers = new Map<string, number>();
   #initialOptions: NuclearLoggerOptions;
@@ -77,11 +84,18 @@ class NuclearLogger {
 
   #generatePrefixColor(): string {
     const hue = Math.floor(parseInt(this.#name, 36) / 36 * 360);
-    return `hsl(${hue}, 50%, 50%)`;
+    if (isRenderer) {
+      return `hsl(${hue}, 50%, 50%)`;
+    }
+    // For main process, convert HSL to closest ANSI color
+    return `\x1b[38;5;${Math.floor((hue / 360) * 230 + 20)}m`;
   }
 
   #getPrefix(): string {
-    return `%c${this.#name.padStart(longestNameLength)}%c ›`;
+    if (isRenderer) {
+      return `%c${this.#name.padStart(longestNameLength)}%c ›`;
+    }
+    return `${this.#prefixColor}${this.#name.padStart(longestNameLength)}${terminalColors.reset} ›`;
   }
 
   log(...args: LogArgs): void {
@@ -92,7 +106,7 @@ class NuclearLogger {
     if (isRenderer) {
       ipcRenderer.send(logChannel, args);
     } else if (this.#name) {
-      args.unshift(this.#getPrefix(), `color: ${this.#prefixColor}`, 'color: inherit');
+      args.unshift(this.#getPrefix());
     }
 
     if (this.options.ignore && this.options.ignore.test(args.join(' '))) {
@@ -110,7 +124,8 @@ class NuclearLogger {
     if (isRenderer) {
       ipcRenderer.send(warnChannel, args);
     } else if (this.#name) {
-      args.unshift(this.#getPrefix(), `color: ${this.#prefixColor}`, 'color: yellow');
+      args.unshift(`${this.#getPrefix()} ${terminalColors.yellow}`);
+      args.push(terminalColors.reset);
     }
 
     if (this.options.ignore && this.options.ignore.test(args.join(' '))) {
@@ -128,7 +143,8 @@ class NuclearLogger {
     if (isRenderer) {
       ipcRenderer.send(errorChannel, args);
     } else if (this.#name) {
-      args.unshift(this.#getPrefix(), `color: ${this.#prefixColor}`, 'color: red');
+      args.unshift(`${this.#getPrefix()} ${terminalColors.red}`);
+      args.push(terminalColors.reset);
     }
 
     if (this.options.ignore && this.options.ignore.test(args.join(' '))) {
@@ -278,23 +294,44 @@ if (isMain) {
 
   if (ipcMain.listenerCount(logChannel) === 0) {
     ipcMain.on(logChannel, (_event: IpcMainEvent, data: LogArgs) => {
+      // Forward to all renderer windows
+      BrowserWindow.getAllWindows().forEach(win => {
+        win.webContents.send(logChannel, data);
+      });
       rendererLogger.log(...data);
     });
   }
 
   if (ipcMain.listenerCount(warnChannel) === 0) {
     ipcMain.on(warnChannel, (_event: IpcMainEvent, data: LogArgs) => {
+      BrowserWindow.getAllWindows().forEach(win => {
+        win.webContents.send(warnChannel, data);
+      });
       rendererLogger.warn(...data);
     });
   }
 
   if (ipcMain.listenerCount(errorChannel) === 0) {
     ipcMain.on(errorChannel, (_event: IpcMainEvent, data: LogArgs) => {
+      BrowserWindow.getAllWindows().forEach(win => {
+        win.webContents.send(errorChannel, data);
+      });
       rendererLogger.error(...data);
     });
   }
-  
 } else if (isRenderer) {
+  ipcRenderer.on(logChannel, (_event: IpcRendererEvent, data: LogArgs) => {
+    logger.log(...data);
+  });
+
+  ipcRenderer.on(warnChannel, (_event: IpcRendererEvent, data: LogArgs) => {
+    logger.warn(...data);
+  });
+
+  ipcRenderer.on(errorChannel, (_event: IpcRendererEvent, data: LogArgs) => {
+    logger.error(...data);
+  });
+
   ipcRenderer.on(updateChannel, (_event: IpcRendererEvent, flag: boolean) => {
     if (flag) {
       logger.hookConsole();
