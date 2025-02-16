@@ -1,12 +1,12 @@
 import fs from 'fs';
-import logger from 'electron-timber';
-import { remote } from 'electron';
+import { logger } from '@nuclear/core';
 import { store } from '@nuclear/core';
 
 import UserPlugin from '../structs/userPlugin';
 import { error } from './toasts';
 import { createApi } from '@nuclear/core';
 import { find, forEach, isNil } from 'lodash';
+import { PluginsState } from '../reducers/plugins';
 
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const SELECT_STREAM_PROVIDER = 'SELECT_STREAM_PROVIDER';
@@ -102,8 +102,7 @@ export function loadUserPlugin(path) {
     dispatch(loadUserPluginStart(path));
     try {
       const api = createApi();
-      const pluginContents = await fs.promises.readFile(path, 'utf8');
-      const transformedPluginContents = await remote.app.transformSource(pluginContents);
+      const transformedPluginContents = {code: ''};
 
       const plugin = eval(transformedPluginContents.code);
 
@@ -160,7 +159,7 @@ export function serializePlugins(plugins) {
 
 export function deserializePlugins() {
   return dispatch => {
-    const plugins = store.get('plugins') || [];
+    const plugins = (store.get('plugins') || []) as PluginsState['userPlugins'];
     forEach(plugins, plugin => {
       dispatch(loadUserPlugin(plugin.path));
     });

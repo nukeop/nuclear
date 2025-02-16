@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
+import { ipcRenderer } from 'electron';
 
 import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
@@ -8,6 +9,11 @@ import MainContentContainer from '../MainContentContainer';
 
 jest.mock('fs');
 jest.mock('electron-store');
+jest.mock('electron', () => ({
+  ipcRenderer: {
+    invoke: jest.fn().mockResolvedValue(['test file.txt'])
+  }
+}));
 
 describe('Plugins container', () => {
   beforeAll(() => {
@@ -51,15 +57,13 @@ describe('Plugins container', () => {
     await waitFor(() => component.getAllByText(/Add a plugin/i)[0].click());
 
     const state = store.getState();
-
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const remote = require('electron').remote;
-    expect(remote.dialog.showOpenDialog).toHaveBeenCalledWith({
+    
+    await waitFor(() => expect(ipcRenderer.invoke).toHaveBeenCalledWith('open-file-picker', {
       filters: [{
         name: 'Javascript files',
         extensions: ['js', 'jsx']
       }]
-    });
+    }));
     expect(state.plugin.userPlugins['test file.txt']).toEqual(
       expect.objectContaining({
         path: 'test file.txt'
@@ -78,6 +82,7 @@ describe('Plugins container', () => {
         'test file.txt': {
           path: 'test file.txt',
           name: 'test plugin',
+          author: 'test author',
           description: 'test plugin description',
           image: null
         }

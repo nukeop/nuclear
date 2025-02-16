@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@use '../../common.scss';
 
 .nuclear.box {
     position: relative;
@@ -8,9 +8,9 @@
     padding: 2em;
 
     border-radius: 0.5em;
-    background: $bgdefault;
+    background: common.$bgdefault;
 
     &.shadow {
-        @include high-shadow;
+        @include common.high-shadow;
     }
 }

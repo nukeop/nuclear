@@ -1,5 +1,37 @@
+import { initialStoreState, mockElectronStore } from '../../tests/mockElectronStore';
+
 export default jest.fn();
-export const settingsConfig = jest.requireActual('@nuclear/core/src/settings').settingsConfig;
+export const settingsConfig = jest.requireActual('@nuclear/core/src/settings').mainSettings;
+
+const mockStore = {...initialStoreState()};
+
+const store = mockElectronStore(mockStore);
+
+export {store};
+
+export const logger = {
+  log: jest.fn(),
+  warn: jest.fn(),
+  error: jest.fn().mockImplementation((...args) => {
+    console.error(...args);
+  }),
+  time: jest.fn(),
+  timeEnd: jest.fn(),
+  streamLog: jest.fn(),
+  streamWarn: jest.fn(),
+  streamError: jest.fn().mockImplementation((stream) => {
+    stream.on('data', (data) => {
+      console.error(data.trim());
+    });
+  }),
+  create: jest.fn().mockImplementation(() => logger),
+  getDefaults: jest.fn().mockReturnValue({
+    ignore: null,
+    shouldHookConsole: false,
+    logLevel: 'info'
+  }),
+  hookConsole: jest.fn().mockReturnValue(() => {})
+};
 
 export enum IpcEvents {
   STARTED = 'started',
@@ -40,6 +72,7 @@ export enum IpcEvents {
 
   CONNECTIVITY = 'connectivity',
 
+  DOWNLOAD_GET_PATH = 'get-download-path',
   DOWNLOAD_START = 'start-download',
   DOWNLOAD_PAUSE = 'pause-download',
   DOWNLOAD_STARTED = 'download-started',
@@ -76,5 +109,5 @@ export enum IpcEvents {
 
   PLAY_STARTUP_TRACK = 'play-startup-track',
 
-  ELECTRON_TIMBER_ERROR_EVENT = '__ELECTRON_TIMBER_ERROR__'
+  ELECTRON_NUCLEAR_LOGGER_ERROR_EVENT = '__ELECTRON_NUCLEAR_LOGGER_ERROR__'
   }

@@ -53,7 +53,7 @@ function generateNotification(title: string, details: string, icon?:  Node | Rea
     },
     type)));
 
-    const timeout = get(settings, 'notificationTimeout') ?? 3;
+    const timeout = get(settings, 'notificationTimeout') as number ?? 3;
     setTimeout(() => dispatch(removeNotification(id)), timeout * 1000);
   };
 }

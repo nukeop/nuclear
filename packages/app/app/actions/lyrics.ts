@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import _ from 'lodash';
 
 import { createStandardAction } from 'typesafe-actions';

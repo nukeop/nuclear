@@ -95,20 +95,13 @@ const getSelected = (selected: string, presets: Preset[]) => {
   return legacySelected ? legacySelected.id : presets[0].id;
 };
 
-const getLegacyCustom = ({presets}: { [id: string]: Preset }): CustomPreset => {
-  return {
-    values: _.get(presets, 'Custom.values', []),
-    preAmp: _.get(presets, 'Custom.preAmp', 0)
-  };
-};
-
 const getSpectrumStatus = (otherConfig: Omit<EqualizerState, 'custom' | 'selected'>) => {
   return _.get(otherConfig, 'enableSpectrum', false);
 };
 
 const getInitialState = (): EqualizerState => {
-  const {custom, selected, ...other} = store.get('equalizer');
-  const customPreset = custom ? custom : getLegacyCustom(other);
+  const {custom, selected, ...other} = store.get('equalizer') as EqualizerState;
+  const customPreset = custom;
   const presets = getPresets(customPreset);
   const {ids, map} = normalize(presets);
   return {

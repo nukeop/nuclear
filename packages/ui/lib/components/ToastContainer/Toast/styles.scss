@@ -1,11 +1,12 @@
-@import '../../../common.scss';
+@use "sass:color";
+@use '../../../common.scss';
 
 .toast {
-  @include roundCorners;
-  @include transition;
-  @include shadow;
+  @include common.roundCorners;
+  @include common.transition;
+  @include common.shadow;
   position: relative;
-  background: $background2;
+  background: common.$background2;
   padding: 1em;
   animation: fade-in 0.5s normal forwards ease-in-out;
   user-select: none;
@@ -52,29 +53,29 @@
   .title {
     overflow: hidden;
     text-overflow: ellipsis;
-    color: $white;
+    color: common.$white;
     font-weight: bold;
   }
 
   .details {
     overflow: hidden;
     text-overflow: ellipsis;
-    color: rgba($white, 0.7);
+    color: rgba(common.$white, 0.7);
   }
 
   &.error {
-    background: $red;
+    background: common.$red;
   }
 
   &.warning {
-    background: darken($orange, 15%);
+    background: color.adjust(common.$orange, $lightness: -15%);
   }
 
   &.info {
-    background: $blue;
+    background: common.$blue;
   }
 
   &.success {
-    background: darken($green, 25%);
+    background: color.adjust(common.$green, $lightness: -25%);
   }
 }

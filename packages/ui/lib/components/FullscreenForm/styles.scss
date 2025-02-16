@@ -1,4 +1,5 @@
-@import "../../common.scss";
+@use "sass:color";
+@use "../../common.scss";
 
 .fullscreen_form_container {
     position: relative;
@@ -19,7 +20,7 @@
             left: 0;
             bottom: 100%;
             width: 100%;
-            color: $white;
+            color: common.$white;
             border: none;
             box-shadow: none;
 
@@ -28,11 +29,11 @@
             }
 
             &.error {
-                background: $red;
+                background: common.$red;
             }
 
             &.success {
-                background: darken($green, 10%);
+                background: color.adjust(common.$green, $lightness: -10%);
             }
         }
     }
@@ -44,12 +45,12 @@
         &.loading {
             min-height: 10em;
             &::before {
-                @include roundCorners-lg;
+                @include common.roundCorners-lg;
                 background: transparent;
             }
 
             &::after {
-                border-color: $green rgba($bgdarker,.25) rgba($bgdarker,.25) rgba($bgdarker,.25);
+                border-color: common.$green rgba(common.$bgdarker,.25) rgba(common.$bgdarker,.25) rgba(common.$bgdarker,.25);
             }
         }
     }

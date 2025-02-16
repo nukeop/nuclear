@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .transition_container {
     position: absolute;
@@ -25,7 +25,7 @@ div.command_palette_container {
 }
 
 .command_palette {
-    @include roundCorners-lg;
+    @include common.roundCorners-lg;
     position: absolute;
     display: flex;
     flex-flow: column;
@@ -35,32 +35,32 @@ div.command_palette_container {
     max-width: 36em;
     box-sizing: border-box;
     padding: 1em 1em 0 1em;
-    background: $bgdark;
+    background: common.$bgdark;
 
     .input {
         position: relative;
         width: 100%;
         box-sizing: border-box;
 
-        color: $white;
+        color: common.$white;
 
         input {
-            background: $bgdarker;
-            transition: $short-duration;
-            caret-color: $white;
-            color: $white;
+            background: common.$bgdarker;
+            transition: common.$short-duration;
+            caret-color: common.$white;
+            color: common.$white;
             border: none;
 
             &::selection {
-                background-color: $blue;
-                color: $white;
+                background-color: common.$blue;
+                color: common.$white;
             }
 
             &:active,
             &:focus {
-                background: $background3;
+                background: common.$background3;
                 border: none;
-                color: $white;
+                color: common.$white;
             }
         }
     }

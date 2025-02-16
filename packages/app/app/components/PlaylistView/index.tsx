@@ -11,6 +11,7 @@ import { Track } from '@nuclear/ui/lib/types';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
+import playlistItemStyles from '../Playlists/PlaylistItem/styles.scss';
 import TrackTableContainer from '../../containers/TrackTableContainer';
 
 export type PlaylistViewProps = {
@@ -102,7 +103,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
         <div className={styles.playlist_view_info}>
           <div>
             <img
-              className={styles.playlist_thumbnail}
+              className={playlistItemStyles.playlist_thumbnail}
               src={playlist?.tracks?.[0]?.thumbnail ?? artPlaceholder as unknown as string}
             />
           </div>

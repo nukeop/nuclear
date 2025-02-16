@@ -1,4 +1,4 @@
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 import { createAsyncAction } from 'typesafe-actions';
 
 import { rest } from '@nuclear/core';
@@ -7,7 +7,6 @@ import { DeezerEditorialCharts, mapDeezerTrackToInternal } from '@nuclear/core/s
 
 import globals from '../globals';
 import { Dashboard } from './actionTypes';
-import { PromotedArtist } from '@nuclear/core/src/rest/Nuclear/Promotion';
 
 const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
@@ -89,27 +88,6 @@ export const loadEditorialPlaylist = (id: number) => async (dispatch) => {
     }));
   } catch (error) {
     dispatch(loadEditorialPlaylistAction.failure({ id, error: error.message }));
-    logger.error(error);
-  }
-};
-
-export const loadPromotedArtistsAction = createAsyncAction(
-  Dashboard.LOAD_PROMOTED_ARTISTS_START,
-  Dashboard.LOAD_PROMOTED_ARTISTS_SUCCESS,
-  Dashboard.LOAD_PROMOTED_ARTISTS_ERROR
-)<undefined, PromotedArtist[], string>();
-
-export const loadPromotedArtists = () => async (dispatch) => {
-  dispatch(loadPromotedArtistsAction.request());
-  try {
-    const service = new rest.NuclearPromotionService(
-      process.env.NUCLEAR_SERVICES_URL,
-      process.env.NUCLEAR_SERVICES_ANON_KEY
-    );
-    const artists = await service.getPromotedArtists();
-    dispatch(loadPromotedArtistsAction.success(artists?.data));
-  } catch (error) {
-    dispatch(loadPromotedArtistsAction.failure(error.message));
     logger.error(error);
   }
 };

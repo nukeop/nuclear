@@ -10,7 +10,6 @@ const TitleCell: React.FC<CellProps<Playlist>> =({
   value
 }) => <td
   {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}
-  className={styles.title_cell}
 >
   {value}
 </td>;

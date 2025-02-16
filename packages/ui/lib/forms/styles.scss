@@ -1,4 +1,4 @@
-@import '../common.scss';
+@use '../common.scss';
 
 .form_header {
     text-align: center;
@@ -9,16 +9,16 @@
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    color: rgba($white, 0.5);
+    color: rgba(common.$white, 0.5);
 
     a {
-        color: $pink;
+        color: common.$pink;
         margin-left: 0.5em;
         cursor: pointer;
-        transition: $short-duration;
+        transition: common.$short-duration;
 
         &:hover {
-            color: $white;
+            color: common.$white;
         }
     }
 }

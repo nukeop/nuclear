@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .stream_verification {
     display: flex;
@@ -10,8 +10,8 @@
 
     box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18), 0px -5px 20px 0px rgba(0, 0, 0, 0.09);
 
-    color: $white;
-    background-color: $bgdark;
+    color: common.$white;
+    background-color: common.$bgdark;
 
     .stream_verification_right {
         display: flex;
@@ -23,25 +23,25 @@
         &.unknown,
         &.unverified {
             i {
-                color: rgba($white, 0.6);
+                color: rgba(common.$white, 0.6);
             }
         }
 
         &.weakly_verified {
             i {
-                color: $yellow;
+                color: common.$yellow;
             }
         }
 
         &.verified {
             i {
-                color: $green;
+                color: common.$green;
             }
         }
 
         &.verified_by_user {
             i {
-                color: $cyan;
+                color: common.$cyan;
             }
         }
     }

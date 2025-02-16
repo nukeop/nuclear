@@ -1,19 +1,19 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .stream_info {
   position: relative;
   display: block;
-  color: $white !important;
+  color: common.$white !important;
   height: auto !important;
 
   .menu.transition.visible {
     height: max-content;
-    background-color: $background2;
+    background-color: common.$background2;
     padding: 0;
   }
 
   .text {
-    color: $white;
+    color: common.$white;
   }
 
   .stream_text_info {
@@ -24,12 +24,12 @@
     display: flex;
     flex-flow: column;
     padding: 0.5rem;
-    background: rgba($black, 0.85);
+    background: rgba(common.$black, 0.85);
     border-radius: 0.25rem;
   }
 
   label {
-    color: rgba($white, 0.25);
+    color: rgba(common.$white, 0.25);
     font-size: 12px;
   }
 
@@ -40,7 +40,7 @@
     .stream_source_name {
       display: flex;
       align-items: center;
-      background: $blue;
+      background: common.$blue;
       padding: 0.25rem 0.5rem;
       border-radius: 0.25rem;
     }
@@ -57,7 +57,7 @@
     }
 
     div[role="alert"] {
-      @include ellipsis;
+      @include common.ellipsis;
       position: relative;
       display: block;
       font-weight: bold;
@@ -66,17 +66,17 @@
   }
 
   .stream_author {
-    @include ellipsis;
-    color: rgba($white, 0.5);
+    @include common.ellipsis;
+    color: rgba(common.$white, 0.5);
   }
 
   .stream_id {
-    color: rgba($white, 0.5);
+    color: rgba(common.$white, 0.5);
     display: flex;
     align-items: center;
 
     span {
-      @include ellipsis;
+      @include common.ellipsis;
       display: inline-block;
       width: calc(100% - 48px);
     }
@@ -116,8 +116,8 @@
 
   .stream_option_title,
   .stream_option_author {
-    @include ellipsis;
-    color: rgba($white, 0.5);
+    @include common.ellipsis;
+    color: rgba(common.$white, 0.5);
     z-index: 1;
   }
 
@@ -135,10 +135,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba($black, 0.8);
+    background: rgba(common.$black, 0.8);
   }
 
   &:hover .stream_option_thumbnail_overlay {
-    background: rgba($black, 0.6);
+    background: rgba(common.$black, 0.6);
   }
 }

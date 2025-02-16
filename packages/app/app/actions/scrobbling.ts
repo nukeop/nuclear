@@ -4,12 +4,13 @@ import { rest } from '@nuclear/core';
 
 import { Scrobbling } from './actionTypes';
 import globals from '../globals';
+import { ScrobblingState } from '../reducers/scrobbling';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export function lastFmReadSettings() {
   return dispatch => {
-    const settings = store.get('lastFm') || {};
+    const settings = (store.get('lastFm') as ScrobblingState);
     if (settings) {
       dispatch({
         type: Scrobbling.LASTFM_READ_SETTINGS,
@@ -17,8 +18,7 @@ export function lastFmReadSettings() {
           lastFmName: settings.lastFmName,
           lastFmAuthToken: settings.lastFmAuthToken,
           lastFmSessionKey: settings.lastFmSessionKey,
-          lastFmScrobblingEnabled: settings.lastFmScrobblingEnabled,
-          lastFmFavImportStatus: settings.lastFmFavImportStatus
+          lastFmScrobblingEnabled: settings.lastFmScrobblingEnabled
         }
       });
     } else {
@@ -50,7 +50,7 @@ export function lastFmConnectAction() {
   };
 }
 
-export function lastFmLoginAction(authToken) {
+export function lastFmLoginAction(authToken: string) {
   return dispatch => {
     dispatch({
       type: 'FAV_IMPORT_INIT',

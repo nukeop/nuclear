@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .artist_albums {
     display: flex;
@@ -35,12 +35,12 @@
     h3 {
         font-size: 20px;
         margin: 0;
-        color: $white;
+        color: common.$white;
     }
 
     hr {
         border: 0;
-        border-bottom: 1px solid rgba($white, 40%);
+        border-bottom: 1px solid rgba(common.$white, 40%);
         margin: 0 1em;
         width: 100%;
     }

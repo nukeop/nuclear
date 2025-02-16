@@ -1,15 +1,24 @@
 import { rest } from '..';
+
+jest.mock('@electron/remote', () => ({
+  exec: jest.fn(),
+  getGlobal: jest.fn().mockReturnValue({})
+}));
+
 const youtubeService = rest.Youtube;
 
-const playlistLessThan100 = 'https://www.youtube.com/watch?v=TKYsuU86-DQ&list=PL0eyrZgxdwhwNC5ppZo_dYGVjerQY3xYU';
-
+const playlistLessThan100 =
+  'https://www.youtube.com/watch?v=TKYsuU86-DQ&list=PL0eyrZgxdwhwNC5ppZo_dYGVjerQY3xYU';
 
 // TODO: replace these tests with mocks
-const playlistGreaterThan100 = 'https://www.youtube.com/playlist?list=PL8F6B0753B2CCA128';
+const playlistGreaterThan100 =
+  'https://www.youtube.com/playlist?list=PL8F6B0753B2CCA128';
 
 describe('Youtube tests', () => {
   it('should able to get playlist less than 100 tracks', async () => {
-    const tracks = await youtubeService.handleYoutubePlaylist(playlistLessThan100);
+    const tracks = await youtubeService.handleYoutubePlaylist(
+      playlistLessThan100
+    );
     expect(tracks.length).toBeGreaterThan(0);
 
     const oneTrack = tracks[0];
@@ -22,7 +31,9 @@ describe('Youtube tests', () => {
   });
 
   it('should able to get playlist more than 100 track', async () => {
-    const tracks = await youtubeService.handleYoutubePlaylist(playlistGreaterThan100);
+    const tracks = await youtubeService.handleYoutubePlaylist(
+      playlistGreaterThan100
+    );
     expect(tracks.length).toBeGreaterThan(100);
 
     const oneTrack = tracks[0];

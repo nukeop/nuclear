@@ -1,4 +1,4 @@
-@import "./vars";
+@use "vars";
 
 .compact_panel {
   width: 3rem;
@@ -11,7 +11,7 @@
 
   .active_nav_link {
     border: none;
-    background: rgba($background3, 0.6);
+    background: rgba(vars.$background3, 0.6);
   }
 
   span {

@@ -62,14 +62,15 @@ class Window {
       webPreferences: {
         nodeIntegration: true,
         webSecurity: false,
-        webviewTag: true,
-        enableRemoteModule: true,
         contextIsolation: false,
         additionalArguments: [
           store.getOption('disableGPU') && '--disable-gpu'
         ]
       }
     });
+
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('@electron/remote/main').enable(this.browserWindow.webContents);
 
     if (platform.isMac()) {
       app.dock.setIcon(icon);

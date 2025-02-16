@@ -16,6 +16,7 @@ exports[`Track Popup container creating new playlist should open Input Dialog 1`
   >
     <div
       class="ui bottom center popup transition visible context_popup"
+      data-testid="context-popup"
       style="position: initial;"
     >
       <div
@@ -228,6 +229,7 @@ exports[`Track Popup container should render the Track Popup container 1`] = `
   >
     <div
       class="ui top left popup transition visible context_popup"
+      data-testid="context-popup"
       style="position: initial;"
     >
       <div

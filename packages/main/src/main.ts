@@ -1,9 +1,8 @@
 import 'reflect-metadata';
 import 'v8-compile-cache';
 
-import { transformSource } from '@nuclear/core';
 import { app, protocol } from 'electron';
-import logger from 'electron-timber';
+import { logger } from '@nuclear/core';
 
 import { controllers, services } from './ioc';
 import Config from './services/config';
@@ -17,13 +16,15 @@ import LocalLibrary from './services/local-library';
 import HttpApi from './services/http';
 import LocalLibraryDb from './services/local-library/db';
 import ListeningHistoryDb from './services/listening-history/db';
+import { handleCertificateError } from './certificate';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 app.commandLine.appendSwitch('no-sandbox');
-app.transformSource = transformSource;
 
 let container: Container;
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('@electron/remote/main').initialize();
 if (!app.requestSingleInstanceLock()) {
   app.quit();
 } else {
@@ -92,12 +93,6 @@ app.on('ready', async () => {
     app.quit();
   }
 });
-
-export function handleCertificateError(event, webContents, url, error, certificate, callback) {
-  logger.log('Certificate error', error, certificate);
-  event.preventDefault();
-  callback(true);
-}
 
 app.on('certificate-error', handleCertificateError);
 

@@ -1,4 +1,5 @@
-@import "../../common.scss";
+@use "sass:color";
+@use "../../common.scss";
 
 .track_table_wrapper {
     position: relative;
@@ -18,25 +19,25 @@
 
     .track_table_filter_input {
         input {
-            background: rgba($bglighter, 0.25);
-            color: $white;
+            background: rgba(common.$bglighter, 0.25);
+            color: common.$white;
             border: 1px solid transparent;
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
 
             &::placeholder {
-                color: rgba($white, 0.5);
+                color: rgba(common.$white, 0.5);
             }
 
             &::selection {
-                background-color: $blue;
-                color: $white;
+                background-color: common.$blue;
+                color: common.$white;
             }
 
             &:active,
             &:focus {
                 &::placeholder {
-                    color: rgba($white, 0.2);
+                    color: rgba(common.$white, 0.2);
                 }
             }
         }
@@ -57,8 +58,8 @@
 
     .track_table_head {
         display: grid;
-        background: $bgdefault;
-        color: $white;
+        background: common.$bgdefault;
+        color: common.$white;
         grid-template-columns: 1fr;
         flex: 0 0 auto;
     }
@@ -85,7 +86,7 @@
         flex: 1 1 auto;
 
         &.body_dragged_over {
-            background: $bgdark;
+            background: common.$bgdark;
         }
     }
 }
@@ -102,16 +103,16 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 
-    color: $white;
+    color: common.$white;
     user-select: none;
     outline: none;
 
     &:not(:last-child) {
-        border-bottom: 1px solid $bgdefault;
+        border-bottom: 1px solid common.$bgdefault;
     }
 
     &:hover {
-        background: rgba($bgdefault, 0.25);
+        background: rgba(common.$bgdefault, 0.25);
 
         .position_cell_value {
             display: none;
@@ -129,13 +130,13 @@
     }
 
     &.is_dragging {
-        background: darken($bgdefault, 5%);
-        border: 1px solid rgba($pink, 0.8);
+        background: color.adjust(common.$bgdefault, $lightness: -5%);
+        border: 1px solid rgba(common.$pink, 0.8);
         border-radius: 4px;
     }
 
     &.is_dragging {
-        @include low-shadow;
+        @include common.low-shadow;
     }
 }
 
@@ -167,7 +168,7 @@
 }
 
 .text_cell {
-    @include ellipsis;
+    @include common.ellipsis;
     white-space: nowrap;
     padding: 0 1em;
 }
@@ -246,7 +247,7 @@
     }
 
     .title_cell_value {
-        @include ellipsis;
+        @include common.ellipsis;
         white-space: nowrap;
         flex: 1 1 auto;
     }

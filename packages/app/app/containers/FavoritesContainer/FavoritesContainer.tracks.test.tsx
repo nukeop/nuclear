@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import _, { pick } from 'lodash';
@@ -15,10 +14,10 @@ import { addFavoriteTrack } from '../../actions/favorites';
 import { DownloadStatus } from '@nuclear/ui/lib/types';
 import { store as electronStore } from '@nuclear/core';
 
-const updateStore = (key: string, value: object) => {
+const updateStore = async (key: string, value: object) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const store = require('@nuclear/core').store;
-  store.set(key, value);
+  await store.set(key, value);
 };
 
 describe('Favorite tracks view container', () => {
@@ -32,8 +31,8 @@ describe('Favorite tracks view container', () => {
     store.clear();
   });
 
-  it('should display favorite tracks', () => {
-    withFavorites();
+  it('should display favorite tracks', async () => {
+    await withFavorites();
     const { component } = mountComponent();
     expect(component.asFragment()).toMatchSnapshot();
   });
@@ -44,7 +43,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should play a random track when the random button is clicked', async () => {
-    const favorites = withFavorites();
+    const favorites = await withFavorites();
     const { component, store } = mountComponent();
 
     await waitFor(() => component.getByTestId('favorite-tracks-header-play-random').click());
@@ -57,15 +56,25 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should show a popup when a track is clicked', async () => {
-    withFavorites();
+    await withFavorites();
     const { component } = mountComponent();
 
-    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
-    expect(component.asFragment()).toMatchSnapshot();
+    const trigger = (await component.findAllByTestId('track-popup-trigger'))[0];
+    await userEvent.click(trigger);
+
+    const popup = await component.findByTestId('context-popup');
+
+    expect(popup).toBeInTheDocument();    
+    expect(within(popup).getByText('test track 2')).toBeInTheDocument();
+    expect(within(popup).getByText('by test artist 2')).toBeInTheDocument();
+    expect(within(popup).getByText(/add to queue/i)).toBeInTheDocument();
+    expect(within(popup).getByText(/play next/i)).toBeInTheDocument();
+    expect(within(popup).getByText(/play now/i)).toBeInTheDocument();
+    expect(within(popup).getByText(/download/i)).toBeInTheDocument();
   });
 
   it('should not display the favorite button for tracks', async () => {
-    withFavorites();
+    await withFavorites();
     const { component } = mountComponent();
     await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
 
@@ -73,7 +82,7 @@ describe('Favorite tracks view container', () => {
   });
   
   it('should not display the add to favorites all button for selected tracks', async () => {
-    withFavorites();
+    await withFavorites();
     
     const { component } = mountComponent();
     await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
@@ -85,7 +94,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should be able to sort favorite tracks by title, ascending', async () => {
-    withFavorites(
+    await withFavorites(
       [
         { name: 'DEF', artist: 'A' },
         { name: 'ABC', artist: 'A' },
@@ -105,7 +114,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should be able to sort favorite tracks by title, descending', async () => {
-    withFavorites([
+    await withFavorites([
       { name: 'DEF', artist: 'A' },
       { name: 'ABC', artist: 'A' },
       { name: 'GHI', artist: 'A' },
@@ -124,9 +133,8 @@ describe('Favorite tracks view container', () => {
     expect(tracks[3].textContent).toEqual('ABC');
   });
 
-
   it('should be able to sort favorite tracks by artist', async () => {
-    withFavorites([
+    await withFavorites([
       { name: 'A', artist: 'DEF' },
       { name: 'B', artist: 'ABC' },
       { name: 'C', artist: 'GHI' },
@@ -144,7 +152,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should be able to sort favorite tracks by position', async () => {
-    withFavorites();
+    await withFavorites();
     const { component } = mountComponent();
     let tracks = component.getAllByTestId('title-cell');
     
@@ -159,7 +167,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should call provider.search when playing a track with no streams', async () => {
-    withFavorites();
+    await withFavorites();
 
     const { component, store } = mountComponent();
     const state = store.getState();
@@ -174,7 +182,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should call provider.search when playing a track from favorites', async () => {
-    withFavorites();
+    await withFavorites();
 
     const { component, store } = mountComponent();
     const state = store.getState();
@@ -191,7 +199,7 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should play a favorited local library track from a local stream', async () => {
-    withFavorites([{
+    await withFavorites([{
       uuid: 'local-track-1',
       artist: 'test artist 1',
       name: 'test track 1',
@@ -214,8 +222,8 @@ describe('Favorite tracks view container', () => {
     }));
   });
 
-  it('should automatically add a track to downloads when favorited and auto-download is enabled', () => {
-    electronStore.set('settings', { autoDownloadFavourites: true });
+  it('should automatically add a track to downloads when favorited and auto-download is enabled', async () => {
+    await electronStore.set('settings', { autoDownloadFavourites: true });
 
     const testTrack = {
       artist: 'Test Artist',
@@ -224,7 +232,7 @@ describe('Favorite tracks view container', () => {
       duration: 300
     };
 
-    addFavoriteTrack(testTrack);
+    await addFavoriteTrack(testTrack);
 
     const downloads = electronStore.get('downloads');
     expect(downloads).toContainEqual(
@@ -239,8 +247,8 @@ describe('Favorite tracks view container', () => {
   });
 
   it('should not add a track to downloads when favorited if auto-download is disabled', async () => {
-    electronStore.clear();
-    electronStore.set('settings', { autoDownloadFavourites: false });
+    await electronStore.clear();
+    await electronStore.set('settings', { autoDownloadFavourites: false });
   
     const testTrack = {
       artist: 'Test Artist',
@@ -249,7 +257,7 @@ describe('Favorite tracks view container', () => {
       duration: 300
     };
   
-    addFavoriteTrack(testTrack);
+    await addFavoriteTrack(testTrack);
   
     const downloads = electronStore.get('downloads');
     expect(downloads).not.toContainEqual(
@@ -271,7 +279,7 @@ describe('Favorite tracks view container', () => {
       .withFavorites()
       .build()
       .favorites;
-    updateStore('favorites', favorites);
+    await updateStore('favorites', favorites);
     const { component } = mountComponent();
 
     let rows = await component.findAllByTestId('track-table-row');
@@ -313,12 +321,12 @@ describe('Favorite tracks view container', () => {
   };
 });
 
-const withFavorites = (initialFavorites?: Partial<Track>[]) => {
+const withFavorites = async (initialFavorites?: Partial<Track>[]) => {
   const favorites = initialFavorites ? { tracks: initialFavorites } : buildStoreState()
     .withFavorites()
     .build()
     .favorites;
 
-  updateStore('favorites', favorites);
+  await updateStore('favorites', favorites);
   return favorites;
 };

@@ -1,4 +1,4 @@
-@import '../../vars.scss';
+@use '../../vars.scss';
 
 .ui.help_button {
   position: relative;
@@ -10,7 +10,7 @@
   width: 36px;
   padding: 0;
   margin-right: 12px;
-  transition: $short-duration !important;
+  transition: vars.$short-duration !important;
 
   i {
     position: absolute;
@@ -18,11 +18,11 @@
     justify-content: center;
     align-items: center;
     height: auto;
-    color: rgba($white, 0.3);
+    color: rgba(vars.$white, 0.3);
     font-size: 2rem;
   }
 
   &:hover i {
-    color: rgba($white, 0.75);
+    color: rgba(vars.$white, 0.75);
   }
 }

@@ -1,7 +1,7 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .queue_item {
-  @include roundCorners;
+  @include common.roundCorners;
 
   display: flex;
   position: relative;
@@ -11,10 +11,10 @@
   margin: 0.5em;
   margin-top: 0;
   overflow: hidden;
-  background-color: rgba($background2, 0.5);
+  background-color: rgba(common.$background2, 0.5);
 
   .thumbnail {
-    @include center;
+    @include common.center;
 
     position: relative;
     display: flex;
@@ -25,7 +25,7 @@
     z-index: 10;
 
     img {
-      @include circle;
+      @include common.circle;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -33,16 +33,16 @@
   }
 
   .thumbnail_overlay {
-    @include center;
-    @include circle;
-    @include transition;
+    @include common.center;
+    @include common.circle;
+    @include common.transition;
 
     position: absolute;
     display: flex;
     width: 100%;
     height: 100%;
-    background: $black;
-    color: $white;
+    background: common.$black;
+    color: common.$white;
     opacity: 0;
     cursor: pointer;
 
@@ -59,11 +59,11 @@
   }
 
   &.current_song {
-    background: rgba($green, 0.3);
+    background: rgba(common.$green, 0.3);
   }
 
   &.error {
-    background: rgba($red, 0.8);
+    background: rgba(common.$red, 0.8);
   }
 
   &.compact {
@@ -125,7 +125,7 @@
 }
 
 .item_info_container {
-  @include ellipsis;
+  @include common.ellipsis;
 
   display: flex;
   margin: 0.25em;
@@ -134,13 +134,13 @@
   justify-content: center;
 
   .name_container {
-    @include ellipsis;
+    @include common.ellipsis;
     margin-bottom: 0.25 em;
   }
 
   .artist_container {
-    @include ellipsis;
-    color: rgba($white, 0.5);
+    @include common.ellipsis;
+    color: rgba(common.$white, 0.5);
   }
 }
 
@@ -154,6 +154,6 @@
   margin: 0 0.5em;
 
   .item_duration {
-    color: rgba($white, 0.5);
+    color: rgba(common.$white, 0.5);
   }
 }

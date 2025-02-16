@@ -27,9 +27,9 @@ class Discord {
   private async sendActivity() {
     try {
       await this.rpc.setActivity(this.activity);
-      this.logger.log('update discord activity');
+      this.logger.log('Update Discord activity');
     } catch (err) {
-      this.logger.error('error trying to set discord activity');
+      this.logger.error('Error trying to set Discord activity');
     }
   }
 
@@ -64,7 +64,7 @@ class Discord {
     this.rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
     this.rpc.once('ready', () => {
-      this.logger.log('connected to discord');
+      this.logger.log('Connected to Discord');
       this.isReady = true;
       cb && cb();
     });
@@ -72,7 +72,7 @@ class Discord {
     try {
       await this.rpc.login({ clientId: this.config.discordClientId });
     } catch (err) {
-      this.logger.log('error trying to connect discord');
+      this.logger.log('Discord is not running, skipping rich presence');
       this.isReady = true;
     }
   }
@@ -104,7 +104,7 @@ class Discord {
         this.logger.log('Clearing Discord activity');
         await this.rpc.clearActivity();
       } catch (e) {
-        this.logger.error('Could not clear discord activity');
+        this.logger.error('Could not clear Discord activity');
         this.logger.error(e);
       }
     }

@@ -1,4 +1,4 @@
-@import '../../../vars.scss';
+@use '../../../vars.scss';
 
 .lyrics_header {
   margin-left: 1rem;
@@ -14,6 +14,6 @@
   .lyrics_header_artist {
     font-size: 20px;
     line-height: 30px;
-    color: rgba($white, 0.6);
+    color: rgba(vars.$white, 0.6);
   }
 }

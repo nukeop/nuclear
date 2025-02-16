@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .track_table_wrapper {
   display: flex;
@@ -15,25 +15,25 @@
 
   .track_table_filter_input {
     input {
-      background: rgba($bglighter, 0.25);
-      color: $white;
+      background: rgba(common.$bglighter, 0.25);
+      color: common.$white;
       border: 1px solid transparent;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
 
       &::placeholder {
-        color: rgba($white, 0.5);
+        color: rgba(common.$white, 0.5);
       }
 
       &::selection {
-        background-color: $blue;
-        color: $white;
+        background-color: common.$blue;
+        color: common.$white;
       }
 
       &:active,
       &:focus {
         &::placeholder {
-          color: rgba($white, 0.2);
+          color: rgba(common.$white, 0.2);
         }
       }
     }
@@ -49,8 +49,8 @@
   width: 100%;
 
   thead {
-    background: $bgdefault;
-    color: $white;
+    background: common.$bgdefault;
+    color: common.$white;
 
     tr {
       width: 100%;
@@ -60,7 +60,7 @@
   tbody {
     height: 100%;
     &.body_dragged_over {
-      background: $bgdark;
+      background: common.$bgdark;
     }
   }
 
@@ -75,22 +75,22 @@
   }
 
   tr {
-    color: $white;
+    color: common.$white;
     user-select: none;
     height: 3em;
 
     &:hover {
-      background: rgba($bgdefault, 0.25);
+      background: rgba(common.$bgdefault, 0.25);
     }
 
     &:not(:last-child) {
-      border-bottom: 1px solid $bgdefault;
+      border-bottom: 1px solid common.$bgdefault;
     }
 
     &.is_dragging {
       display: table;
       border: none;
-      background: rgba($bgdefault, 0.5);
+      background: rgba(common.$bgdefault, 0.5);
     }
 
     td {
@@ -180,7 +180,7 @@
     }
 
     .title_cell_value {
-      @include ellipsis;
+      @include common.ellipsis;
       white-space: normal;
       flex: 1 1 auto;
     }
@@ -253,7 +253,7 @@
 
   .date_cell {
     text-align: right;
-    color: rgba($white, 0.4);
+    color: rgba(common.$white, 0.4);
   }
 
   .select_cell {
@@ -265,7 +265,7 @@
 }
 
 .history_table_date {
-  color: rgba($white, 0.4);
+  color: rgba(common.$white, 0.4);
   font-weight: normal;
   font-size: 1.25em;
   margin: 1em 0 0 0.5em;

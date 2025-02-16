@@ -88,7 +88,7 @@ const HelpModal: React.FC<HelpModalProps> = ({
           />
           <div
             data-testid='mastodon-link'
-            className={cx(styles.mastodon, styles.icon)}
+            className={styles.mastodon}
             onClick={handleMastodonClick}
             dangerouslySetInnerHTML={{ __html: mastodonImg }}
           />

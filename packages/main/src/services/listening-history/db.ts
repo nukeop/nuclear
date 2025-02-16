@@ -1,7 +1,8 @@
 import { app } from 'electron';
 import { inject, injectable } from 'inversify';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, Repository, DataSourceOptions } from 'typeorm';
 import path from 'path';
+import fs from 'fs';
 
 import Config from '../config';
 import { $mainLogger, ILogger } from '../logger';
@@ -21,25 +22,66 @@ class ListeningHistoryDb{
     ) {}
 
     async connect() {
-      try {
-        const database = path.join(app.getPath('userData'), this.config.listeningHistoryDbName);
+      if (this.connection?.isInitialized) {
+        return;
+      }
 
-        this.connection = new DataSource({
+      try {
+        const userDataPath = app.getPath('userData');
+        this.logger.log(`User data path: ${userDataPath}`);
+        
+        const dbPath = path.normalize(path.join(userDataPath, this.config.listeningHistoryDbName));
+        this.logger.log(`Database path: ${dbPath}`);
+        
+        const dbDir = path.dirname(dbPath);
+        this.logger.log(`Database directory: ${dbDir}`);
+
+        if (!fs.existsSync(dbDir)) {
+          this.logger.log(`Creating database directory: ${dbDir}`);
+          fs.mkdirSync(dbDir, { recursive: true });
+        }
+
+        if (!fs.existsSync(dbDir)) {
+          throw new Error(`Failed to create database directory: ${dbDir}`);
+        }
+
+        try {
+          fs.accessSync(dbDir, fs.constants.W_OK);
+          this.logger.log(`Directory is writable: ${dbDir}`);
+        } catch (e) {
+          this.logger.error(`Directory is not writable: ${dbDir}`);
+          throw e;
+        }
+
+        const dbConfig: DataSourceOptions = {
           type: 'sqlite',
           name: 'listening-history',
-          database,
+          database: this.config.listeningHistoryDbName === ':memory:' ? ':memory:' : dbPath,
           entities: [ListeningHistoryEntry],
           synchronize: true,
           logging: false
-        });
+        };
+
+        this.logger.log('Creating database connection with config:', dbConfig);
+        this.connection = new DataSource(dbConfig);
+
+        this.logger.log('Initializing database connection...');
         await this.connection.initialize();
         
-        this.listeningHistoryRepository = this.connection.getRepository<ListeningHistoryEntry>(ListeningHistoryEntry);
+        this.logger.log('Getting repository...');
+        this.listeningHistoryRepository = this.connection.getRepository(ListeningHistoryEntry);
 
-        this.logger.log(`Listening history database created at ${database}`);
+        if (!this.listeningHistoryRepository) {
+          throw new Error('Failed to initialize listening history repository');
+        }
+
+        this.logger.log(`Listening history database initialized successfully at ${dbPath}`);
       } catch (e) {
         this.logger.error('Could not connect to the sqlite database for listening history');
-        this.logger.error(e.stack);
+        this.logger.error(`Error name: ${e.name}`);
+        this.logger.error(`Error message: ${e.message}`);
+        this.logger.error(`Error stack: ${e.stack}`);
+        throw e;
       }
     }
 
@@ -51,6 +93,10 @@ class ListeningHistoryDb{
     }
 
     async getEntries(request?: ListeningHistoryRequest): Promise<PagingResult<ListeningHistoryEntry>> {
+      if (!this.connection?.isInitialized || !this.listeningHistoryRepository) {
+        throw new Error('Database connection not initialized');
+      }
+
       const qb = this.listeningHistoryRepository.createQueryBuilder('entry');
 
       if (request?.artist) {
@@ -92,6 +138,12 @@ class ListeningHistoryDb{
       const entries = await this.getEntries(request);
 
       await this.listeningHistoryRepository.remove(entries.data);
+    }
+
+    async disconnect() {
+      if (this.connection) {
+        await this.connection.destroy();
+      }
     }
 
     async getRepository(): Promise<Repository<ListeningHistoryEntry>> {

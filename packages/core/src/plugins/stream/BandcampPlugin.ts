@@ -1,7 +1,7 @@
 import { Bandcamp } from '../../rest';
 import { BandcampSearchResult } from '../../rest/Bandcamp';
 import { StreamQuery, StreamData } from '../plugins.types';
-import logger from 'electron-timber';
+import { logger } from '../../';
 import StreamProviderPlugin from '../streamProvider';
 
 class BandcampPlugin extends StreamProviderPlugin {

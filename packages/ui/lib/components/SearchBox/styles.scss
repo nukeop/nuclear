@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 $input_height: 30px;
 
@@ -16,7 +16,7 @@ $input_height: 30px;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: $white;
+      color: common.$white;
 
       width: $input_height;
       height: $input_height;
@@ -25,7 +25,7 @@ $input_height: 30px;
 
     i.search.icon {
       border-radius: 0;
-      background-color: $blue;
+      background-color: common.$blue;
     }
 
     i.spinner.icon {
@@ -39,15 +39,15 @@ $input_height: 30px;
       border: none;
       padding: 0 1em;
 
-      color: $grey;
+      color: common.$grey;
       outline: none;
-      background-color: $background3;
+      background-color: common.$background3;
 
       font-family: inherit;
       font-size: 16px;
 
       &::selection {
-        background: rgba($lightbg, 0.85);
+        background: rgba(common.$lightbg, 0.85);
       }
 
       &.disabled {
@@ -61,12 +61,12 @@ $input_height: 30px;
       align-items: center;
       padding: 0 12px;
       z-index: 10000;
-      color: $white;
-      background: $blue;
+      color: common.$white;
+      background: common.$blue;
 
       .item,
       .text {
-        color: $white !important;
+        color: common.$white !important;
       }
     }
 

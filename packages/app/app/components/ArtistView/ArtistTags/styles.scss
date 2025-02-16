@@ -1,4 +1,4 @@
-@import '../../../vars';
+@use '../../../vars';
 
 .tags_container {
   display: flex;
@@ -13,8 +13,8 @@
   margin: 0 0.5rem 0.5rem 0;
   padding: 0.5rem 1rem;
 
-  color: $white;
+  color: vars.$white;
   border-radius: 1.25rem;
-  background-color: rgba($green, 0.8);
+  background-color: rgba(vars.$green, 0.8);
   white-space: nowrap;
 }

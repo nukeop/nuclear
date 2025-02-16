@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
-import { remote } from 'electron';
+import { ipcRenderer } from 'electron';
 import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
+import { IpcEvents } from '@nuclear/core';
 
 import { LocalLibrary } from './actionTypes';
 import { VoidAction } from './helpers';
@@ -79,23 +80,26 @@ export function addLocalFolders(folders) {
 }
 
 export const openLocalFolderPicker = () => async dispatch => {
-  let folders = await (await remote.dialog.showOpenDialog(remote.getCurrentWindow(), { properties: ['openDirectory', 'multiSelections'] })).filePaths;
-  if (folders) {
+  const filePaths = await ipcRenderer.invoke(IpcEvents.OPEN_PATH_PICKER, {
+    properties: ['openDirectory', 'multiSelections']
+  });
+  
+  if (filePaths) {
     // normalize path-seps (gets normalized on save to disk, but must happen from start for some UI code)
-    folders = folders.map(path => path.replace(/\\/g, '/'));
-    dispatch(addLocalFolders(folders));
+    const normalizedPaths = filePaths.map(path => path.replace(/\\/g, '/'));
+    dispatch(addLocalFolders(normalizedPaths));
   }
 };
 
 export const openLocalFilePicker = async () => {
-  let filePaths = await (await remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
+  const filePaths = await ipcRenderer.invoke(IpcEvents.OPEN_FILE_PICKER, {
     filters: [
       { name: 'json', extensions: ['json'] }
     ],
     properties: ['openFile']
-  })).filePaths;
+  });
+  
   if (filePaths) {
-    filePaths = filePaths.map(path => path.replace(/\\/g, '/'));
-    return filePaths;
+    return filePaths.map(path => path.replace(/\\/g, '/'));
   }
 };

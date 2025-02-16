@@ -18,7 +18,6 @@ import * as ImportFavActions from './actions/importfavs';
 import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
 import * as WindowActions from './actions/window';
-import * as NuclearConfigActions from './actions/nuclear/configuration';
 import * as DownloadActions from './actions/downloads';
 
 import './app.global.scss';
@@ -63,8 +62,6 @@ class App extends React.PureComponent {
     this.props.actions.createPlugins(PluginConfig.plugins);
     this.props.actions.deserializePlugins();
     this.props.actions.githubContribInfo();
-    this.props.actions.fetchNuclearConfiguration();
-    this.props.actions.fetchNuclearParams();
     this.props.actions.resumeDownloads();
 
     this.updateConnectivityStatus(navigator.onLine);
@@ -200,7 +197,6 @@ function mapDispatchToProps(dispatch) {
         SearchActions,
         GithubContribActions,
         WindowActions,
-        NuclearConfigActions,
         DownloadActions
       ),
       dispatch

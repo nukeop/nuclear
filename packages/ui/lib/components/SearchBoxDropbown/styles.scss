@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@use "../../common.scss";
 
 .search_box_dropdown {
   position: absolute;
@@ -8,8 +8,8 @@
   left: 0;
   right: 0;
   padding: 8px;
-  background: $background;
-  color: $white;
+  background: common.$background;
+  color: common.$white;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18), 0px 5px 20px 0px rgba(0, 0, 0, 0.09);
   z-index: 100;
 
@@ -22,15 +22,15 @@
     a {
       display: flex;
       align-items: center;
-      color: rgba($grey, 0.6);
+      color: rgba(common.$grey, 0.6);
 
       &:hover,
       &:active,
       &:focus {
-        color: $white;
+        color: common.$white;
 
         i.fitted.icon {
-          color: $white;
+          color: common.$white;
         }
       }
     }
@@ -40,11 +40,11 @@
       height: auto;
       margin-left: 1em !important;
       margin-top: 4px !important;
-      color: rgba($grey, 0.6);
+      color: rgba(common.$grey, 0.6);
     }
 
     label {
-      color: rgba($grey, 0.6);
+      color: rgba(common.$grey, 0.6);
     }
   }
 
@@ -54,7 +54,7 @@
     cursor: pointer;
 
     &:hover {
-      background: rgba($background2, 0.6);
+      background: rgba(common.$background2, 0.6);
     }
   }
 
@@ -64,7 +64,7 @@
     justify-content: center;
     align-items: center;
     padding: 8px;
-    background: rgba($background2, 0.4);
+    background: rgba(common.$background2, 0.4);
     
     label {
       width: auto;

@@ -1,13 +1,20 @@
 import { Scrobbling } from '../actions/actionTypes';
 
-const initialState = {
+export type ScrobblingState = {
+  lastFmName: string | null;
+  lastFmAuthToken: string | null;
+  lastFmSessionKey: string | null;
+  lastFmScrobblingEnabled: boolean;
+};
+
+const initialState: ScrobblingState = {
   lastFmName: null,
   lastFmAuthToken: null,
   lastFmSessionKey: null,
   lastFmScrobblingEnabled: false
 };
 
-export default function ScrobblingReducer(state=initialState, action) {
+export default function ScrobblingReducer(state=initialState, action): ScrobblingState {
   switch (action.type) {
   case Scrobbling.LASTFM_CONNECT:
     return Object.assign({}, state, {

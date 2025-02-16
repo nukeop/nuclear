@@ -84,7 +84,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
                   class="dropdown icon"
                 />
                 <div
-                  class="menu transition left playlists_menu"
+                  class="menu transition left"
                 >
                   <div
                     class="item"
@@ -130,7 +130,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
                   class="dropdown icon"
                 />
                 <div
-                  class="menu transition left playlists_menu"
+                  class="menu transition left"
                 >
                   <div
                     class="item"
@@ -172,7 +172,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
       <hr />
     </div>
     <div
-      class="play_queue_items fade_in"
+      class="play_queue_items"
       data-rbd-droppable-context-id="2"
       data-rbd-droppable-id="play_queue"
     >
@@ -663,7 +663,7 @@ exports[`Play Queue container should display a context popup on right click for 
                   class="dropdown icon"
                 />
                 <div
-                  class="menu transition left playlists_menu"
+                  class="menu transition left"
                 >
                   <div
                     class="item"
@@ -709,7 +709,7 @@ exports[`Play Queue container should display a context popup on right click for 
                   class="dropdown icon"
                 />
                 <div
-                  class="menu transition left playlists_menu"
+                  class="menu transition left"
                 >
                   <div
                     class="item"
@@ -751,7 +751,7 @@ exports[`Play Queue container should display a context popup on right click for 
       <hr />
     </div>
     <div
-      class="play_queue_items fade_in"
+      class="play_queue_items"
       data-rbd-droppable-context-id="3"
       data-rbd-droppable-id="play_queue"
     >
@@ -1201,7 +1201,7 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
                   class="dropdown icon"
                 />
                 <div
-                  class="menu transition left playlists_menu"
+                  class="menu transition left"
                 >
                   <div
                     class="item"
@@ -1247,7 +1247,7 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
                   class="dropdown icon"
                 />
                 <div
-                  class="menu transition left playlists_menu"
+                  class="menu transition left"
                 >
                   <div
                     class="item"
@@ -1289,7 +1289,7 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
       <hr />
     </div>
     <div
-      class="play_queue_items fade_in"
+      class="play_queue_items"
       data-rbd-droppable-context-id="0"
       data-rbd-droppable-id="play_queue"
     >

@@ -1,6 +1,6 @@
 import { VideoID, Category, Segment, OriginalSegment } from './SponsorBlock.types';
 import _ from 'lodash';
-import logger from 'electron-timber';
+import { logger } from '../../';
 
 const BASE_URL = 'https://sponsor.ajay.app';
 export const ALL_CATEGORIES = ['sponsor', 'intro', 'outro', 'interaction', 'selfpromo', 'music_offtopic'];

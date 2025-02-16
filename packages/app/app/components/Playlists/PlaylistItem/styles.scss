@@ -1,4 +1,4 @@
-@import "../../../vars";
+@use "../../../vars";
 
 .playlist_outside_container {
 	width: 50%;
@@ -8,7 +8,7 @@
 	display: flex;
 	flex-flow: row;
 	margin: 0.5rem;
-	background: rgba($background2, 0.5);
+	background: rgba(vars.$background2, 0.5);
 	cursor: pointer;
 	border-radius: 0.25rem;
 	justify-content: flex-start;

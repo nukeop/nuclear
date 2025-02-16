@@ -2,22 +2,14 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useTranslation } from 'react-i18next';
 
-import { Button, TrackTable } from '@nuclear/ui';
+import { Button } from '@nuclear/ui';
 
 import styles from './styles.scss';
-import TrackRow from '../../TrackRow';
 import TrackTableContainer from '../../../containers/TrackTableContainer';
-
-type TagTopTrack = {
-  artist: {
-    name: string;
-  };
-  name: string;
-  image: { '#text': string }[];
-};
+import { LastfmTagTopTrack } from '@nuclear/core/src/rest/Lastfm.types';
 
 type TagTopTracksProps = {
-  tracks: TagTopTrack[];
+  tracks: LastfmTagTopTrack[];
   addToQueue: (track: { artist: string; name: string; thumbnail: string }) => void;
 }
 

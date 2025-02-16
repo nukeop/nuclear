@@ -59,8 +59,7 @@ export const buildStoreState = () => {
       topTracks: [],
       topTags: [],
       editorialCharts: { ...startingStateMeta },
-      editorialPlaylists: {},
-      promotedArtists: { ...startingStateMeta }
+      editorialPlaylists: {}
     },
     downloads: [],
     favorites: {
@@ -81,22 +80,6 @@ export const buildStoreState = () => {
       identity: {
         token: null,
         signedInUser: null
-      },
-      configuration: {
-        configuration: {
-          isLoading: false,
-          isReady: true,
-          data: {
-            PROMOTED_ARTISTS: true
-          }
-        },
-        params: {
-          isLoading: false,
-          isReady: true,
-          data: {
-            PROMOTED_ARTIST_BACKGROUND: 'https://nuclearplayer.com/background.jpg'
-          }
-        }
       }
     },
     settings: {}
@@ -626,18 +609,6 @@ export const buildStoreState = () => {
                 }]
               }
             }
-          },
-          promotedArtists: {
-            isLoading: false,
-            isReady: true,
-            data: [{
-              id: '1',
-              name: 'Promoted artist 1',
-              description: 'Promoted artist 1 description',
-              link: 'https://promoted-artist-1.example',
-              picture: 'https://promoted-artist-1.example/picture.jpg',
-              metaProvider: 'bandcamp'              
-            }]
           }
         }
       };

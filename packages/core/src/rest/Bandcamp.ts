@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import * as bandcamp from 'bandcamp-scraper';
 import _ from 'lodash';
 
@@ -52,7 +52,6 @@ export type BandcampSearchResult = {
   artist?: string;
 }
 
-/* eslint-disable @typescript-eslint/ban-types */
 const promisify = <T>(func: Function, arg: any): Promise<T> => new Promise((resolve, reject) => {
   func.apply(null, [arg, (err, result) => {
     if (err) {

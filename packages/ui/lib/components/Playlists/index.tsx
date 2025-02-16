@@ -56,17 +56,20 @@ const Playlists: React.FC<PlaylistsProps> = ({
     {
       id: PlaylistsColumn.Thumbnail,
       accessor: (playlist: PlaylistWithLoadingState) => playlist.tracks?.[0]?.thumbnail || artPlaceholder,
-      Cell: ThumbnailCell(styles)
+      Cell: (props) => {
+        const CellComponent = ThumbnailCell(styles);
+        return <CellComponent {...props} styles={styles} />;
+      }
     },
     {
       id: PlaylistsColumn.Title,
       accessor: (playlist: PlaylistWithLoadingState) => playlist?.name,
-      Cell: TitleCell
+      Cell: (props) => <TitleCell {...props} />
     },
     {
       id: PlaylistsColumn.Tracks,
       accessor: (playlist: PlaylistWithLoadingState) => playlist?.tracks?.length ?? 0,
-      Cell: TracksCell
+      Cell: (props) => <TracksCell {...props} />
     },
     displayModificationDates && {
       id: PlaylistsColumn.LastModified,
@@ -74,12 +77,12 @@ const Playlists: React.FC<PlaylistsProps> = ({
         lastModified: playlist?.lastModified,
         serverModified: playlist?.serverModified
       }),
-      Cell: ModificationDateCell
+      Cell: (props) => <ModificationDateCell {...props} />
     },
     displayModificationDates && {
       id: PlaylistsColumn.Sync,
       accessor: null,
-      Cell: SyncCell
+      Cell: (props) => <SyncCell {...props} />
     }
   ].filter(Boolean), [displayModificationDates]);
   const data = useMemo(() => playlists, [playlists]);
@@ -115,7 +118,6 @@ const Playlists: React.FC<PlaylistsProps> = ({
                     {(provided, snapshot) => (
                       <tr
                         ref={provided.innerRef}
-                        className={cx({ [styles.is_dragging]: snapshot.isDragging })}
                         onClick={() => extra.onPlaylistClick(row.original.id)}
                         {...row.getRowProps() as TableHTMLAttributes<HTMLTableRowElement>}
                         {...provided.draggableProps}

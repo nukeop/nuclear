@@ -44,23 +44,22 @@ const UserPluginsItem = ({
         <div className={styles.plugin_name}>
           {name}
         </div>
-        <div className={styles.plugin_path}>
+        <div>
           <label>Installed from:</label>
           <span>{path}</span>
         </div>
-        <div className={styles.plugin_description}>
+        <div>
           {description}
         </div>
 
         <div className={styles.plugin_footer}>
-          <div className={styles.plugin_author}>
+          <div>
             <label>Author:</label>
             <span className={styles.link} onClick={handleAuthorClick}>
               {author}
             </span>
           </div>
           <Button basic inverted icon
-            className={styles.delete_button}
             onClick={handleDelete}
           >
             <Icon name='trash alternate outline' />
@@ -68,7 +67,7 @@ const UserPluginsItem = ({
           </Button>
         </div>
 
-        <div className={styles.error_footer}>
+        <div>
           {error &&
           <div className={styles.error_message}>
             This plugin could not be loaded correctly.

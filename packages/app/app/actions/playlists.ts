@@ -1,9 +1,9 @@
 import fs from 'fs';
 import { v4 } from 'uuid';
-import { remote } from 'electron';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
+import { ipcRenderer } from 'electron';
 
-import { store, PlaylistHelper, Playlist, PlaylistTrack, rest } from '@nuclear/core';
+import { store, PlaylistHelper, Playlist, PlaylistTrack, rest, IpcEvents } from '@nuclear/core';
 import { GetPlaylistsByUserIdResponseBody } from '@nuclear/core/src/rest/Nuclear/Playlists.types';
 import { ErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 
@@ -37,7 +37,7 @@ export const addPlaylist = (tracks: Array<PlaylistTrack>, name: string) => dispa
   if (name?.length === 0) {
     return;
   }
-  let playlists: PlaylistsStore['localPlaylists']['data'] = store.get('playlists') || [];
+  let playlists: Playlist[] = (store.get('playlists') || []) as Playlist[];
   const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
 
   playlists = [...playlists, playlist];
@@ -55,7 +55,7 @@ export const loadLocalPlaylists = () => dispatch => {
   dispatch(loadLocalPlaylistsAction.request());
 
   try {
-    const playlists: Playlist[] = store.get('playlists');
+    const playlists: Playlist[] = store.get('playlists') as Playlist[];
     dispatch(loadLocalPlaylistsAction.success(isEmpty(playlists) ? [] : playlists));
   } catch (error) {
     dispatch(loadLocalPlaylistsAction.failure());
@@ -99,7 +99,7 @@ export const reorderPlaylists = (source: number, destination: number) => async (
 
 export const exportPlaylist = (playlist, t) => async (dispatch) => {
   const name = playlist.name;
-  const dialogResult = await remote.dialog.showSaveDialog({
+  const dialogResult = await ipcRenderer.invoke(IpcEvents.SHOW_SAVE_DIALOG, {
     defaultPath: name,
     filters: [
       { name: 'file', extensions: ['json'] }
@@ -147,7 +147,7 @@ export function addPlaylistFromFile(filePath, t) {
           throw new Error('missing tracks or name');
         }
 
-        let playlists = store.get('playlists') || [];
+        let playlists = (store.get('playlists') || []) as Playlist[];
         const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4(), source);
 
         if (!(tracks?.length > 0)) {

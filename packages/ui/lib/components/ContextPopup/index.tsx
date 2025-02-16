@@ -26,6 +26,7 @@ const ContextPopup: React.FC<ContextPopupProps> = ({
   const handleOpen = () => setOpen(true);
   return (
     <Popup
+      data-testid='context-popup'
       className={styles.context_popup}
       trigger={trigger}
       open={isOpen}
@@ -43,7 +44,7 @@ const ContextPopup: React.FC<ContextPopupProps> = ({
           <Img 
             src={thumb}
             unloader={<img src={artPlaceholder}/>}
-            />
+          />
         </div>}
         <div className={styles.popup_info}>
           <div className={styles.popup_title}>

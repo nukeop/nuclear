@@ -1,29 +1,30 @@
-
 import { waitFor } from '@testing-library/react';
-import { Deezer } from '@nuclear/core/src/rest';
-
+import { Deezer, LastFmApi } from '@nuclear/core/src/rest';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
+import userEvent from '@testing-library/user-event';
 
 jest.mock('@nuclear/core/src/rest');
+jest.mock('@nuclear/core');
 
 describe('Dashboard container', () => {
   beforeAll(() => {
     setupI18Next();
+    process.env.NUCLEAR_SERVICES_URL = 'http://nuclear.services.url';
+    process.env.NUCLEAR_SERVICES_ANON_KEY = 'nuclear-services-anon-key';
   });
 
   beforeEach(() => {
-    const mockState = buildStoreState()
-      .withDashboard()
-      .build();
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    Deezer.getTopTracks = jest.fn().mockResolvedValue({ data: mockState.dashboard.topTracks });
-    
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    Deezer.mapDeezerTrackToInternal = jest.requireActual('@nuclear/core/src/rest').Deezer.mapDeezerTrackToInternal;
+    const mockState = buildStoreState().withDashboard().build();
+    (Deezer.getTopTracks as jest.Mock).mockResolvedValue({ data: mockState.dashboard.topTracks });
+    (Deezer.getEditorialCharts as jest.Mock).mockResolvedValue(mockState.dashboard.editorialCharts.data);
+    (LastFmApi.prototype.getTopTags as jest.Mock).mockResolvedValue({
+      json: () => Promise.resolve({
+        toptags: {
+          tag: mockState.dashboard.topTags
+        }
+      })
+    });
   });
 
   afterAll(() => {
@@ -31,49 +32,58 @@ describe('Dashboard container', () => {
   });
 
   it('should display the trending music', async () => {
-    const { component } = mountComponent();
+    const { component, store } = mountComponent();
+    
+    await waitFor(() => {
+      const state = store.getState();
+      return state.dashboard.topTracks.length > 0 && 
+             state.dashboard.editorialCharts.isReady;
+    });
+    
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should search for the promoted artist using his meta provider', async () => {
-    const { component, store, history } = mountComponent();
-    await waitFor(() => component.getByText(/Check out/i).click());
-
-    const state = store.getState();
-    expect(state.plugin.selected.metaProviders).toEqual('Bandcamp Meta Provider');
-    expect(state.search.unifiedSearchStarted).toBe(true);
-  });
-
-  it('should open the promoted artist link in an external browser', async () => {
-    const { component } = mountComponent();
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const shell = require('electron').shell;
-    await waitFor(() => component.getByText(/External link/i).click());
-
-    expect(shell.openExternal).toHaveBeenCalledWith('https://promoted-artist-1.example');
-  });
-
   it('should display top tracks after going to top tracks tab', async () => {
-    const { component } = mountComponent();
+    const { component, store } = mountComponent();
+    
+    await waitFor(() => {
+      const state = store.getState();
+      return state.dashboard.topTracks.length > 0;
+    });
 
     await waitFor(() => component.getByText(/top tracks/i).click());
-
+    
     expect(component.asFragment()).toMatchSnapshot();
   });
 
   it('should display genres after going to genres tab', async () => {
-    const { component } = mountComponent();
+    const { component, store } = mountComponent();
+    
+    await waitFor(() => {
+      const state = store.getState();
+      return state.dashboard.topTags.length > 0;
+    });
 
     await waitFor(() => component.getByText(/genres/i).click());
-
+    
     expect(component.asFragment()).toMatchSnapshot();
   });
 
   it('should add a single track to the queue', async () => {
     const { component, store } = mountComponent();
+    
+    await waitFor(() => {
+      const state = store.getState();
+      return state.dashboard.topTracks.length > 0;
+    });
 
     await waitFor(() => component.getByText(/top tracks/i).click());
-    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+    
+    const trackRows = await waitFor(() => component.getAllByTestId('track-table-row'));
+    const firstTrackRow = trackRows[0];
+    const menuTrigger = firstTrackRow.querySelector('[data-testid="track-popup-trigger"]');
+    await waitFor(() => userEvent.click(menuTrigger));
+    
     await waitFor(() => component.getByText(/Add to queue/i).click());
 
     const state = store.getState();
