@@ -9,10 +9,10 @@
     "queue": "Añadir álbum a la cola",
     "tracks": "Pistas:",
     "year": "Año:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
+    "add-to-playlist": "Añadir álbum a playlist",
+    "create-playlist": "Crear nueva lista de reproducción",
+    "create-playlist-dialog-title": "Nombre de la lista de reproducción:",
+    "create-playlist-dialog-placeholder": "Nombre...",
     "create-playlist-dialog-accept": "Guardar",
     "create-playlist-dialog-cancel": "Cancelar"
   },
@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Añadir todos",
-    "count": "Playcount",
+    "count": "Reproducciones",
     "queue": "Añadir todas las pistas a la cola",
     "similar": "Artistas similares",
     "title": "Título",
     "tour": "En tour",
     "popular-tracks": "Canciones populares",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Álbumes",
+      "sort-by-release-date": "Ordenar por fecha de lanzamiento",
+      "sort-by-az": "Ordenar A-Z",
+      "sort-by-most-played": "Ordenar por más reproducidos",
+      "filter-placeholder": "Filtrar..."
     }
   },
   "dashboard": {
@@ -158,7 +158,7 @@
     "delete": "Eliminar esta lista de reproducción",
     "duration": "Duración",
     "empty": "No hay listas de reproducción.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "¡Intenta crear listas de reproducción o importar por URL, y aparecerán aquí!",
     "error-empty-data": "Datos vacíos",
     "error-invalid-data": "Datos inválidos",
     "error-open-file": "No se puede abrir el archivo",
@@ -167,7 +167,7 @@
     "export-fail-title": "Exportación de lista de reproducción fallida",
     "export-success-title": "Lista de reproducción exportada exitosamente",
     "header": "Tus listas de reproducción",
-    "header-add-button": "Add",
+    "header-add-button": "Añadir",
     "import-progress": "Importar progreso",
     "spotify-import-placeholder": "Pega aquí una URL de una lista de reproducción de Spotify",
     "dialog-placeholder": "Nombre de la lista de reproducción...",
@@ -175,9 +175,9 @@
     "dialog-cancel": "Cancelar",
     "dialog-rename": "Renombrar",
     "dialog-import": "Importar",
-    "create-button": "Create a new playlist",
+    "create-button": "Crear nueva lista de reproducción",
     "new-playlist": "Nueva lista de reproducción",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Importar de Spotify",
     "import-button": "Importar desde archivo (JSON)",
     "import-fail-title": "Importación de lista de reproducción fallida",
     "import-success-title": "Lista de reproducción importada exitosamente",
@@ -199,12 +199,12 @@
     "upload-to-server": "Subir al servidor",
     "download-from-server": "Descargar desde el servidor",
     "number-of-tracks": "canciones",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "input-playlist-url": "Pegar URL de la lista de reproducción:",
+    "create-playlist-dialog-title": "Nombre de la lista de reproducción:",
+    "playlist": "Lista De Reproducción",
+    "play": "Reproducir",
+    "external-source-tooltip": "Esta lista de reproducción es de una fuente externa: {{source}}. No puedes editarla. Guárdala localmente usando el menú de listas de reproducción para hacer cambios.",
+    "save-external-playlist": "Guardar localmente"
   },
   "plugins": {
     "add-a-plugin": "Añadir un plugin",
@@ -231,10 +231,10 @@
     "favorite-add": "Añadir a favoritos",
     "header": "Cola de reproducción",
     "header-track": "Pista actual",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Copiar URL de la pista al portapapeles",
     "loading": "La transmisión sigue cargando.",
     "playlist-add": "Añadir a lista de reproducción",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "Añadir cola a lista de reproducción",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
     "live": "En directo",
@@ -256,8 +256,8 @@
       "verify": "Verificar",
       "unverify": "No verificar"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Nombre de la lista de reproducción:",
+    "play-now": "Reproducir ahora"
   },
   "search": {
     "album": "Álbum",
@@ -290,7 +290,7 @@
     "autoradio-craziness": "Nivel de locura de Autoradio",
     "autoradio-craziness-description": "Autoradio seleccionará canciones diferentes a aquellas en la cola mientras más loco esté",
     "autoradio-description": "Añadir pistas similares automáticamente cuando la cola esté terminando",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "Autodescarga pista favorita",
     "listening-history": "Historial de reproducción",
     "listening-history-description": "Registre las canciones que escucha, a la Last.fm. El historial se almacena sin conexión.",
     "compact-menu-bar": "Usar el estilo compacto para la barra de menú",
@@ -311,7 +311,7 @@
     "github-description": "Inicia sesión en GitHub para crear y compartir tus listas de reproducción en línea (próximamente disponible).",
     "github-title": "GitHub",
     "http": "API HTTP",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Invidious URL de instancia",
     "language": "Idioma",
     "language-placeholder": "Elige un idioma",
     "lastfm-connect": "Conectar con Last.fm",
@@ -372,7 +372,7 @@
     "add-to-favorite": "Añadir a favoritos",
     "add-to-playlist": "Añadir a lista de reproducción",
     "add-to-queue": "Añadir a la cola",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Crear nueva lista de reproducción",
     "create-playlist-dialog-title": "Introduce el nombre de la playlist:",
     "create-playlist-dialog-placeholder": "Nombre de la lista de reproducción...",
     "create-playlist-dialog-accept": "Guardar",
@@ -394,13 +394,13 @@
     "play-selected-tracks-now": "Reproducir lo seleccionado ahora",
     "tracks-selected-label-singular": "pista seleccionada",
     "tracks-selected-label-plural": "pistas seleccionadas",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Filtrar..."
   },
   "visualizer": {
     "exit-fullscreen": "Presiona ESC para salir de la pantalla completa"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "para abrir la paleta de comandos",
     "search-placeholder": "¿Qué te gustaría hacer?",
     "empty-state-help": "¿No encuentras lo que estás buscando? Prueba el comando de ayuda.",
     "protip-text": "Consejo de pro:",

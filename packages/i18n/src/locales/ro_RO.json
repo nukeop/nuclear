@@ -425,62 +425,62 @@
       "lower-volume": "Lower volume",
       "mute": "Mute",
       "unmute": "Unmute",
-      "quit": "Quit",
-      "minimize": "Minimize",
-      "maximize": "Maximize",
+      "quit": "Ieșire",
+      "minimize": "Minimizează",
+      "maximize": "Maximizează",
       "go-to-dashboard": "Go to dashboard",
-      "go-to-downloads": "Go to downloads",
-      "go-to-lyrics": "Go to lyrics",
-      "go-to-plugins": "Go to plugins",
-      "go-to-search": "Go to search",
-      "go-to-settings": "Go to settings",
-      "go-to-equalizer": "Go to equalizer",
-      "go-to-visualizer": "Go to visualizer",
-      "go-to-playlists": "Go to playlists",
-      "go-to-favorite-tracks": "Go to favorite tracks",
-      "go-to-library": "Go to local library"
+      "go-to-downloads": "Mergeți la descărcări",
+      "go-to-lyrics": "Mergeți la versuri",
+      "go-to-plugins": "Mergeți la plugin-uri",
+      "go-to-search": "Mergeți la căutare",
+      "go-to-settings": "Mergeți la setări",
+      "go-to-equalizer": "Mergeți la egalizator",
+      "go-to-visualizer": "Mergeți la vizualizator",
+      "go-to-playlists": "Mergeți la playlist-uri",
+      "go-to-favorite-tracks": "Mergeți la melodiile favorite",
+      "go-to-library": "Mergeți la biblioteca locală"
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "Istoria ascultării",
+    "empty-state": "Nu ai ascultat nimic încă.",
+    "clear-history": "Şterge istoric",
+    "clear-history-confirm": "Sunteţi sigur că doriţi să ştergeţi istoricul de ascultare?",
+    "clear-history-confirm-yes": "Confirma",
+    "clear-history-confirm-no": "Anulare",
+    "clear-history-toast": "Istoria ascultării a fost ștearsă"
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Crează cont",
+      "secondary-header": "Înregistrează-te la Servicii Web Nuclear",
+      "side-paragraph-1": "NWS vă permite să vă salvați online listele de redare și să le distribuiți.",
+      "side-paragraph-2": "Dacă vă uitați parola, adresa de e-mail este opțională, vă va permite să vă recuperați contul.",
+      "username-label": "Nume utilizator",
+      "email-label": "E-mail",
+      "password-label": "Parolă",
+      "sign-up-button": "Crează cont",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Numele de utilizator trebuie să conțină cel puțin 4 caractere",
+          "required": "Numele de utilizator este necesar"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "E-mailul trebuie să fie un email valid"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Parola trebuie să conțină cel puțin 6 caractere",
+          "required": "Parola este necesară"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Înregistrare",
+      "username-label": "Nume utilizator",
+      "password-label": "Parolă",
+      "no-account-label": "Nu ai un cont?",
+      "no-account-link": "Crează cont",
+      "sign-in-button": "Înregistrare"
     }
   }
 }

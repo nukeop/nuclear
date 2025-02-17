@@ -290,7 +290,7 @@
     "autoradio-craziness": "ラジオのヤバさ",
     "autoradio-craziness-description": "ラジオがヤバいほど既に再生キューにある曲と似ていない曲を選びます",
     "autoradio-description": "キューにある曲と似たような曲を自動的にキューに追加します",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "お気に入りの曲を自動ダウンロード",
     "listening-history": "再生履歴",
     "listening-history-description": "Last.fm 風に、聴いた曲を記録。この履歴はオフラインで保存されます。",
     "compact-menu-bar": "メニューバーを小型に表示",
