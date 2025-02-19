@@ -1,22 +1,45 @@
-<script>  
-  fetch("https://api.github.com/repos/nukeop/nuclear/releases")
-  .then(res => res.json())
-  .then(data => {
-    const date = new Date(data[0].published_at);
-    let month = date.getUTCMonth() + 1;
-    let day = date.getUTCDate();
-    const year = date.getUTCFullYear();
+<script>
+  (function () {
+    document.documentElement.classList.remove('no-js');
 
-    if (day < 10) {
-      day = "0" + day.toString();
+    fetch("https://api.github.com/repos/nukeop/nuclear/releases")
+      .then(res => res.json())
+      .then(data => {
+        const date = new Date(data[0].published_at);
+        let month = date.getUTCMonth() + 1;
+        let day = date.getUTCDate();
+        const year = date.getUTCFullYear();
+
+        if (day < 10) day = "0" + day;
+        if (month < 10) month = "0" + month;
+
+        const releaseElement = document.getElementById("lastest-release");
+        if (releaseElement) {
+          releaseElement.innerHTML = `Latest releases: ${day}/${month}/${year}`;
+          releaseElement.style.display = "block";
+        }
+      })
+      .catch(err => console.warn('Failed to fetch release date:', err));
+
+    const animateElements = document.querySelectorAll('.feature .description, .testimonial, .faq-item');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        }),
+        { threshold: 0.2 }
+      );
+
+      animateElements.forEach(el => {
+        el.classList.add('animate-on-scroll');
+        observer.observe(el);
+      });
+    } else {
+      animateElements.forEach(el => el.classList.add('visible'));
     }
-
-    if (month < 10) {
-      month = "0" + month.toString();
-    } 
-
-    document.getElementById("lastest-release").innerHTML = `Latest releases: ${day}/${month}/${year}`;
-    document.getElementById("lastest-release").style.display = "block";
-  });
-
+  })();
 </script>
