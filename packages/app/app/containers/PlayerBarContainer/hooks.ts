@@ -254,35 +254,36 @@ export const useStreamLookup = () => {
   const queue = useSelector(queueSelector);
 
   useEffect(() => {
-    if (shouldSearchForStreams(queue)) {
-      const currentSong: QueueItem = queue.queueItems[queue.currentSong];
+    if (!shouldSearchForStreams(queue)) {
+      return;
+    }
+    
+    const currentSong: QueueItem = queue.queueItems[queue.currentSong];
 
-      if (currentSong && queueActions.trackHasNoFirstStream(currentSong)) {
-        dispatch(queueActions.findStreamsForTrack(queue.currentSong));
-        return;
-      }
+    if (currentSong && queueActions.trackHasNoFirstStream(currentSong)) {
+      dispatch(queueActions.findStreamsForTrack(queue.currentSong));
+      return;
+    }
     
-      const nextTrackWithNoStream = (queue.queueItems as QueueItem[]).findIndex((item) => isEmpty(item.streams));
-    
+    const isAnyTrackLoading = queue.queueItems.some(item => item.loading);
+    if (!isAnyTrackLoading) {
+      const nextTrackWithNoStream = queue.queueItems.findIndex((item, index) => 
+        index !== queue.currentSong &&
+        !item.loading && 
+        isEmpty(item.streams)
+      );
+      
       if (nextTrackWithNoStream !== -1) {
         dispatch(queueActions.findStreamsForTrack(nextTrackWithNoStream));
       }
     }
-  }, [queue]);
+  }, [queue.currentSong, queue.queueItems]);
 };
 
 const shouldSearchForStreams = (queue: QueueStore): boolean => {
-  const currentlyLoadingTrack = queue.queueItems.find((item) => item.loading);
-  if (!currentlyLoadingTrack) {
-    // No track is currently "loading": start searching for steams.
-    return true;
-  }
-  if (isEmpty(currentlyLoadingTrack.streams)) {
-    // Streams are not yet resolved: this happens when the track is being marked as "loading"
-    // while still resolving streams. We don't need to start a search until that operation completes or fails.
-    return false;
-  }
-  const firstStream = currentlyLoadingTrack.streams[0];
-  // A search should be performed if the first stream URL wasn't yet resolved.
-  return !firstStream?.stream;
+  return queue.queueItems.length > 0 && !queue.queueItems.every(item => 
+    item.local || 
+    (item.streams?.[0]?.stream) ||
+    item.error
+  );
 };

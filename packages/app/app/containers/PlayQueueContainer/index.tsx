@@ -1,38 +1,69 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useLocalPlaylists } from '../PlaylistsContainer/hooks';
-import * as DownloadsActions from '../../actions/downloads';
-import * as FavoritesActions from '../../actions/favorites';
-import * as QueueActions from '../../actions/queue';
-import * as PluginsActions from '../../actions/plugins';
-import * as PlaylistsActions from '../../actions/playlists';
-import * as SettingsActions from '../../actions/settings';
-import * as ToastActions from '../../actions/toasts';
-import * as PlayerActions from '../../actions/player';
-
+import { RootState } from '../../reducers';
 import PlayQueue from '../../components/PlayQueue';
+import { Playlist, PlaylistTrack } from '@nuclear/core';
+import { SettingsState } from '../../reducers/settings';
 
-export type PlayQueueActions = typeof DownloadsActions &
-typeof FavoritesActions &
- typeof PlaylistsActions &
- typeof PluginsActions &
-  typeof QueueActions &
-   typeof SettingsActions &
-    typeof ToastActions &
-     typeof PlayerActions;
+import { 
+  queueDrop,
+  repositionSong,
+  selectNewStream,
+  selectSong,
+  removeFromQueue,
+  clearQueue
+} from '../../actions/queue';
+import { addToDownloads } from '../../actions/downloads';
+import { info, success } from '../../actions/toasts';
+import { resetPlayer } from '../../actions/player';
+import { addFavoriteTrack } from '../../actions/favorites';
+import { addPlaylist, updatePlaylist } from '../../actions/playlists';
+import { toggleOption } from '../../actions/settings';
+import { QueueItem } from '../../reducers/queue';
+import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 
-const PlayQueueContainer = props => {
-  const {
-    actions,
-    queue,
-    plugins,
-    settings
-  } = props;
-  
+export type PlayQueueActions = {
+  queueDrop: (paths: string[]) => void;
+  repositionSong: (from: number, to: number) => void;
+  selectNewStream: (index: number, streamId: string) => void;
+  selectSong: (index: number) => void;
+  removeFromQueue: (index: number) => void;
+  clearQueue: () => void;
+  resetPlayer: () => void;
+  addToDownloads: (providers: StreamProviderPlugin[], track: QueueItem) => void;
+  info: (title: string, details: string, icon: React.ReactElement<{ src: string }>, settings: SettingsState) => void;
+  success: (title: string, details: string) => void;
+  addFavoriteTrack: (track: QueueItem) => void;
+  addPlaylist: (tracks: PlaylistTrack[], name: string) => void;
+  updatePlaylist: (playlist: Playlist) => void;
+  toggleOption: (option: string, value?: boolean) => void;
+}
+
+const PlayQueueContainer: React.FC = () => {
+  const dispatch = useDispatch();
+  const queue = useSelector((state: RootState) => state.queue);
+  const plugins = useSelector((state: RootState) => state.plugin);
+  const settings = useSelector((state: RootState) => state.settings);
   const { localPlaylists: playlists } = useLocalPlaylists();
+
+  const actions: PlayQueueActions = React.useMemo(() => ({
+    queueDrop: (paths) => dispatch(queueDrop(paths)),
+    repositionSong: (from, to) => dispatch(repositionSong(from, to)),
+    selectNewStream: (index, streamId) => dispatch(selectNewStream(index, streamId)),
+    selectSong: (index) => dispatch(selectSong(index)),
+    removeFromQueue: (index) => dispatch(removeFromQueue(index)),
+    clearQueue: () => dispatch(clearQueue()),
+    resetPlayer: () => dispatch(resetPlayer()),
+    addToDownloads: (providers, track) => dispatch(addToDownloads(providers, track)),
+    info: (title, details, icon, settings) => dispatch(info(title, details, icon, settings)),
+    success: (title, details) => dispatch(success(title, details)),
+    addFavoriteTrack: (track) => dispatch(addFavoriteTrack(track)),
+    addPlaylist: (tracks, name) => dispatch(addPlaylist(tracks, name)),
+    updatePlaylist: (playlist) => dispatch(updatePlaylist(playlist)),
+    toggleOption: (option, value) => dispatch(toggleOption(option, value))
+  }), [dispatch]);
 
   return (
     <PlayQueue
@@ -40,33 +71,9 @@ const PlayQueueContainer = props => {
       queue={queue}
       plugins={plugins}
       settings={settings}
-      playlists={playlists.data}
+      playlists={playlists?.data}
     />
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    queue: state.queue,
-    plugins: state.plugin,
-    settings: state.settings
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Object.assign(
-      {},
-      DownloadsActions,
-      FavoritesActions,
-      PlaylistsActions,
-      PluginsActions,
-      QueueActions,
-      SettingsActions,
-      ToastActions,
-      PlayerActions
-    ), dispatch)
-  };
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PlayQueueContainer));
+export default PlayQueueContainer;

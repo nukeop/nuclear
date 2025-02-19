@@ -25,3 +25,4 @@ export * from './helpers';
 export * from './types';
 
 export { default as logger } from './logger/nuclear-logger';
+export { retryWithExponentialBackoff } from './util/retry';

@@ -170,9 +170,9 @@ export const getStreamForId = async (id: string, sourceName: string, useSponsorB
       }
     };
   } catch (e) {
-    logger.error('youtube track get by id');
+    logger.error('Yotube - getStreamForId error');
     logger.error(e);
-    throw new Error(`Can not find youtube track with ${id}`);
+    throw new Error(`Could not find a Youtube track with ${id}`);
   }
 };
 
