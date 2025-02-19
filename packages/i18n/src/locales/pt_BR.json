@@ -1,6 +1,6 @@
 {
   "album": {
-    "download": "Download",
+    "download": "Baixar",
     "download-toast-content": "{{artist}} - {{title}} foi adicionado aos downloads.",
     "download-toast-title": "Álbum adicionado aos downloads",
     "error-load": "Desculpe, este álbum não pôde ser carregado. Tente novamente mais tarde ou abra uma nova issue no Github",
@@ -11,8 +11,8 @@
     "year": "Ano:",
     "add-to-playlist": "Adicionar álbum à lista de reprodução",
     "create-playlist": "Criar uma nova lista de reprodução",
-    "create-playlist-dialog-title": "Insira o nome da playlist:",
-    "create-playlist-dialog-placeholder": "Nome da playlist...",
+    "create-playlist-dialog-title": "Insira o nome da lista de reprodução:",
+    "create-playlist-dialog-placeholder": "Nome da lista de reprodução...",
     "create-playlist-dialog-accept": "Salvar",
     "create-playlist-dialog-cancel": "Cancelar"
   },
