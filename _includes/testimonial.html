@@ -1,5 +1,5 @@
-<div class="testimonial">
-  <q>
+<div class="testimonial" itemscope itemtype="https://schema.org/Review">
+  <q itemprop="reviewBody">
     {% include svg/quote-left.svg %}
     {% if include.testimonial.url %}
     <a href="{{ include.testimonial.url }}">
@@ -9,11 +9,14 @@
     </a>
     {% endif %}
   </q>
-  <div class="author">
-    {{ include.testimonial.author }}{% if include.testimonial.author-forum %},
-    <span class="forum">
+  <div class="author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <span itemprop="name">{{ include.testimonial.author }}</span>{% if include.testimonial.author-forum %},
+    <span class="forum" itemprop="additionalName">
       {{ include.testimonial.author-forum }}
     </span>
     {% endif %}
   </div>
+  {% if include.testimonial.url %}
+  <meta itemprop="url" content="{{ include.testimonial.url }}" />
+  {% endif %}
 </div>

@@ -1,15 +1,15 @@
-<section class="intro">
+<section class="intro" itemscope itemtype="https://schema.org/SoftwareApplication">
   <div class="fade-out"></div>
   <div class="container">
     {% include header.html %}
     <div class="intro-content">
 
       <div class="intro-left">
-        <h1>
+        <h1 itemprop="name">
           <span>Free music, </span>
           <span>on <em>your</em> terms</span>
         </h1>
-        <p>
+        <p itemprop="description">
           Say goodbye to proprietary music players filled with ads, tracking,
           and profiling. <br />
           <em>Nuclear</em> empowers you to listen to what you want, where you
@@ -17,17 +17,26 @@
         </p>
 
         <div class="cta">
-          <img src="/assets/images/arrow.png" class="arrow" />
-          <div class="links">
+          <img src="/assets/images/arrow.png" alt="Arrow pointing to download button" class="arrow" />
+          <div class="links" itemprop="downloadUrl">
             <a class="get-it-now" href="/downloads">Get it now</a>
             <a href="https://github.com/nukeop/nuclear">Learn more</a>
           </div>
         </div>
 
-        <div class="social-proof">
+        <div class="social-proof" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
           {% include svg/star.svg %}
-          Loved by 11,000+ people on Github
+          Loved by <span itemprop="ratingCount">11,000</span>+ people on Github
+          <meta itemprop="ratingValue" content="4.8" />
+          <meta itemprop="bestRating" content="5" />
         </div>
+
+        <meta itemprop="applicationCategory" content="Music Player">
+        <meta itemprop="operatingSystem" content="Windows, macOS, Linux">
+        <meta itemprop="price" content="0">
+        <meta itemprop="priceCurrency" content="USD">
+        <meta itemprop="softwareVersion" content="7.3.0">
+        <meta itemprop="license" content="AGPL-3.0">
 
         <div class="featured-on">
           <span>Featured on</span>
@@ -69,8 +78,11 @@
 
 
       <div class="mockup">
-        <img src="/assets/images/mockup1.png" alt="Nuclear running in a laptop computer" />
-        <img src="/assets/images/mascot_running_256.png" alt="Nuclear mascot running" class="intro-mascot" />
+        <img src="/assets/images/mockup1.png"
+          alt="Nuclear music player interface showing the main screen with album artwork and playback controls"
+          itemprop="screenshot" />
+        <img src="/assets/images/mascot_running_256.png" alt="Nuclear mascot - a cute cartoon character running"
+          class="intro-mascot" />
       </div>
     </div>
   </div>

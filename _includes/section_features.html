@@ -1,12 +1,16 @@
-<section class='feature dark'>
-  <div class="container">
+<section class='feature dark' itemscope itemtype="https://schema.org/ItemList">
+  <meta itemprop="name" content="Nuclear Music Player Features" />
+  <meta itemprop="numberOfItems" content="3" />
+  <div class="container" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <meta itemprop="position" content="1" />
     {% include svg/feature_streaming.svg %}
-    <div class="description">
-      <h2>
+    <div class="description" itemprop="item" itemscope itemtype="https://schema.org/Thing">
+      <h2 itemprop="name">
         Stream from any free source on the internet
       </h2>
-      <p>
-        <em>Nuclear</em> supports Youtube, Soundcloud, Bandcamp, and your local library. A flexible plugin system allows for easy addition of more.
+      <p itemprop="description">
+        <em>Nuclear</em> supports Youtube, Soundcloud, Bandcamp, and your local library. A flexible plugin system allows
+        for easy addition of more.
       </p>
     </div>
   </div>
@@ -17,13 +21,15 @@
   <div class="fade-in"></div>
   <div class="fade-out-small"></div>
   <div class="fade-out"></div>
-  <div class="container reverse-md">
-    <div class="description">
-      <h2>
+  <div class="container reverse-md" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <meta itemprop="position" content="2" />
+    <div class="description" itemprop="item" itemscope itemtype="https://schema.org/Thing">
+      <h2 itemprop="name">
         Social integrations
       </h2>
-      <p>
-        <em>Nuclear</em> integrates with Last.fm and Mastodon, and lets you import favorites and share what you’re listening to.
+      <p itemprop="description">
+        <em>Nuclear</em> integrates with Last.fm and Mastodon, and lets you import favorites and share what you’re
+        listening to.
       </p>
     </div>
     {% include svg/feature_social.svg %}
@@ -31,16 +37,18 @@
 </section>
 
 <section class='feature dark'>
-  <div class="container">
+  <div class="container" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <meta itemprop="position" content="3" />
     {% include svg/ganoo.svg %}
-    <div class="description">
-      <h2>
+    <div class="description" itemprop="item" itemscope itemtype="https://schema.org/Thing">
+      <h2 itemprop="name">
         Free as in freedom
       </h2>
-      <p>
+      <p itemprop="description">
         <em>Nuclear</em> respects your freedom and it’s developed under the Affero GPL license.<br /><br />
 
-        We collect no data and have no telemetry, no Code of Conduct, no Contributor License Agreement and absolutely no ads.
+        We collect no data and have no telemetry, no Code of Conduct, no Contributor License Agreement and absolutely no
+        ads.
       </p>
     </div>
   </div>
