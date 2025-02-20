@@ -144,7 +144,6 @@ section.intro {
         }
     }
 
-    .cta *,
     .social-proof,
     .featured-on {
         font-size: 22px;
@@ -166,6 +165,7 @@ section.intro {
             position: absolute;
             transform: translateX(200px);
             pointer-events: none;
+            z-index: 20;
 
             @media screen and (max-width: $sm) {
                 transform: translate(180px, -20px) scale(0.75, 0.75);
@@ -190,6 +190,57 @@ section.intro {
 
         @media screen and (max-width: $sm) {
             width: auto;
+        }
+
+        .links {
+            display: flex;
+            flex-flow: row;
+            gap: 16px;
+
+            @media screen and (max-width: $sm) {
+                flex-direction: column;
+            }
+
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 16px 32px;
+                border-radius: 8px;
+                text-decoration: none;
+                color: $white;
+                transition: transform 0.2s ease;
+                min-width: 200px;
+                font-size: 30px;
+                font-variant: all-small-caps;
+
+                & > span {
+                    display: flex;
+                    align-items: center;
+                    line-height: 1;
+                    margin-bottom: 3px;
+                }
+
+                &.get-it-now {
+                    background: linear-gradient(90deg, $pink 0%, darken($pink, 10%) 100%);
+                    box-shadow: 0 4px 15px rgba($pink, 0.3);
+                    font-weight: bold;
+
+                    &:hover {
+                        box-shadow: 0 6px 20px rgba($pink, 0.4);
+                    }
+                }
+
+                &:not(.get-it-now) {
+                    background: rgba($bgdark, 0.4);
+                    border: 1px solid rgba($white, 0.8);
+                    backdrop-filter: blur(8px);
+
+                    &:hover {
+                        background: rgba($bgdark, 0.6);
+                    }
+                }
+            }
         }
     }
 
@@ -250,42 +301,6 @@ section.intro {
 
         .input-hidden {
             display: none;
-        }
-    }
-
-    .links {
-        display: flex;
-        flex-flow: row;
-
-        a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 12px 0;
-            color: $white;
-            border-radius: 4px;
-            flex: 1 1 auto;
-            text-decoration: none;
-            transition: all 0.2s ease-in-out;
-
-            &:first-child {
-                background: linear-gradient(90deg, $pink 0%, $purple 100%);
-                margin-right: 24px;
-                border: 3px solid lighten($pink, 10);
-
-                &:hover {
-                    background: linear-gradient(90deg, lighten($pink, 2) 0%, lighten($purple, 2) 100%);
-                }
-            }
-
-            &:last-child {
-                background: transparent;
-                border: 2px solid $white;
-
-                &:hover {
-                    background: rgba($white, 0.1);
-                }
-            }
         }
     }
 

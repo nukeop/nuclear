@@ -1,74 +1,207 @@
 header {
-    position: relative;
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-    height: 96px;
-    padding: 24px;
-    box-sizing: border-box;
-  
-    background: rgba($bgdark, 0.5);
-    border-bottom: 1px solid $bglight;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  height: 80px;
+  padding: 16px 24px;
+  box-sizing: border-box;
+
+  width: calc(100% - 32px);
+  max-width: 1366px;
+  margin: 24px auto 0;
+
+  background: linear-gradient(to bottom, rgba(mix($bgdark, $bglight, 90%), 0.75), rgba($bgdark, 0.8));
+
+  border: 1px solid rgba($bglight, 0.12);
+
+  border-radius: 24px;
+
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0.15) 80%,
+      transparent
+    );
   }
-  
-  .header-container {
-    position: relative;
+
+  .html.no-js & {
+    height: 64px;
+    padding: 8px 24px;
+    background: rgba($bgdark, 0.95);
+  }
+}
+
+.header-container {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  max-width: 1366px;
+  align-items: center;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  a,
+  img {
+    height: 100%;
+  }
+
+  a {
+    transition: transform 0.2s ease;
     display: flex;
-    flex-flow: row;
-    width: 100%;
-    max-width: 1366px;
     align-items: center;
 
-    a, img {
-      height: 100%;
+    &:hover {
+      transform: scale(1.05);
     }
-  
-    .spacer {
-      flex: 1 1 auto;
-    }
-  
-    .buttons {
-      display: flex;
-      flex-flow: row;
-      flex: 0 0 auto;
-  
-      &>*:not(:last-child) {
-        margin-right: 24px;
+
+    img {
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      &:hover {
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4)) brightness(1.15);
+        transform: translateY(-2px);
       }
-  
-      a {
-        width: 48px;
-        height: 48px;
-  
+    }
+  }
+
+  .buttons {
+    display: flex;
+    flex-flow: row;
+    flex: 0 0 auto;
+    gap: 16px;
+
+    a {
+      position: relative;
+      width: 48px;
+      height: 48px;
+
+      &:hover {
+        transform: scale(1.05);
+
+        &::after {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+
         svg {
-          width: 100%;
-          height: auto;
+          transform: scale(1.1);
+          filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
         }
       }
-    }
-  }
 
-  @media screen and (max-width: $xsm) {
-    header {
-      padding: 16px;
-      height: auto;
-    }
-
-    div.header-container {
-      img {
-        height: 32px;
+      & > *:not(:last-child) {
         margin-right: 24px;
       }
 
-      span.buttons {
-        &>*:not(:last-child) {
-          margin-right: 16px;
-        }
-
-        a {
-          width: 32px;
-          height: 32px;
-        }
+      svg {
+        position: relative;
+        width: 100%;
+        height: auto;
+        z-index: 1;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
     }
   }
+}
+
+body {
+  padding-top: 80px;
+
+  &::before {
+    display: none;
+  }
+}
+
+section:first-of-type {
+  position: relative;
+  margin-top: -104px; // header height + margin
+  padding-top: 104px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, $bgdark 0%, rgba($bgdark, 0.7) 40%, transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+@media screen and (max-width: $xsm) {
+  body {
+    padding-top: 64px;
+  }
+  header {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: 12px 16px;
+    height: 64px;
+    border: 0;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      display: none;
+    }
+  }
+
+  section:first-of-type {
+    margin-top: 0;
+    padding-top: 64px;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  div.header-container {
+    img {
+      height: 32px;
+      margin-right: 24px;
+    }
+
+    span.buttons {
+      gap: 8px;
+
+      & > *:not(:last-child) {
+        margin-right: 16px;
+      }
+
+      a {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+}
