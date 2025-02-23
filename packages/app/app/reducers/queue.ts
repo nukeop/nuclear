@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { Queue } from '../actions/actionTypes';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
 import { removeFromQueue } from '../actions/queue';
+import { logger } from '@nuclear/core';
 
 export type TrackStream = {
   id: string;
@@ -24,6 +25,7 @@ export type QueueItem = {
         message: string;
         details: string;
       };
+  streamLookupRetries?: number;
   local?: boolean;
   artist: string | { name: string };
   name: string;
@@ -37,10 +39,6 @@ export class QueueStore {
 }
 
 const defaultState = {...new QueueStore()};
-
-const findQueueItemIndex = (queueItems: QueueItem[], item: QueueItem) => {
-  return _.findIndex(queueItems, i => i.uuid === item.uuid);
-};
 
 function reduceRemoveFromQueue(state, action: ReturnType<typeof removeFromQueue>) {
   const removeIx = action.payload.index;
@@ -106,24 +104,6 @@ function reducePreviousSong(state) {
   });
 }
 
-function reduceStreamFailed(state) {
-  return {
-    ...state,
-    queueItems: state.queueItems.map((item, index) => {
-      if (index === state.currentSong) {
-        return {
-          ...item,
-          error: {
-            message: 'Could not find a working stream using this source.',
-            details: 'Try re-rolling.'
-          }
-        };
-      }
-      return item;
-    })
-  };
-}
-
 function reduceSelectStreamProviders(state) {
   return {
     ...state,
@@ -157,7 +137,8 @@ const reduceAddPlayNextItem = (state, action) => {
   };
 };
 
-export default function QueueReducer(state = defaultState, action) {
+export default function QueueReducer(state = defaultState, action): QueueStore {
+  logger.log('QueueReducer', action);
   switch (action.type) {
   case Queue.ADD_QUEUE_ITEM:
     return {
@@ -183,8 +164,6 @@ export default function QueueReducer(state = defaultState, action) {
     return reduceSelectSong(state, action);
   case Queue.REPOSITION_TRACK:
     return reduceRepositionSong(state, action);
-  case Queue.STREAM_FAILED:
-    return reduceStreamFailed(state);
   case SELECT_STREAM_PROVIDER:
     return reduceSelectStreamProviders(state);
   default:
