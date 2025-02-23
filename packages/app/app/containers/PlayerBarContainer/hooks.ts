@@ -270,7 +270,7 @@ export const useStreamLookup = () => {
       const nextTrackWithNoStream = queue.queueItems.findIndex((item, index) => 
         index !== queue.currentSong &&
         !item.loading && 
-        isEmpty(item.streams)
+        isEmpty(item.streams) && (item.streamLookupRetries < 3 || item.streamLookupRetries === undefined)
       );
       
       if (nextTrackWithNoStream !== -1) {
