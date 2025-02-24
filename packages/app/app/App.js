@@ -99,12 +99,12 @@ class App extends React.PureComponent {
   }
 
   scrobbleLastFm() {
-    const currentSong = this.props.queue.queueItems[
-      this.props.queue.currentSong
+    const currentTrack = this.props.queue.queueItems[
+      this.props.queue.currentTrack
     ];
     this.props.actions.updateNowPlayingAction(
-      currentSong.artist,
-      currentSong.name,
+      currentTrack.artist,
+      currentTrack.name,
       this.props.scrobbling.lastFmSessionKey
     );
   }
@@ -126,9 +126,9 @@ class App extends React.PureComponent {
     );
   }
 
-  getCurrentSongParameter(parameter) {
-    return this.props.queue.queueItems[this.props.queue.currentSong]
-      ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
+  getCurrentTrackParameter(parameter) {
+    return this.props.queue.queueItems[this.props.queue.currentTrack]
+      ? this.props.queue.queueItems[this.props.queue.currentTrack][parameter]
       : null;
   }
 

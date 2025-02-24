@@ -21,6 +21,8 @@ type LocalTrack = Track & {
   local: true;
 };
 
+export const streamLookupRetriesLimit = 3;
+
 const isLocalTrack = (track: Track): track is LocalTrack => track.local;
 
 const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): QueueItem => {

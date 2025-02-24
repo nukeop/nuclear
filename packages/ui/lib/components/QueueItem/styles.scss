@@ -113,6 +113,11 @@
     margin: 0.5em;
     overflow: hidden;
 
+    .error_icon {
+      font-size: 2em;
+      color: rgba(common.$white, 0.75);
+    }
+
     .error_message {
       font-weight: bold;
       white-space: nowrap;
@@ -121,6 +126,18 @@
 
       width: 100%;
     }
+  }
+
+  .retry_overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    color: rgba(common.$white, 0.75);
+    font-size: 12px;
+    background: rgba(common.$yellow, 0.8);
+    border-radius: 4px;
+    padding: 0.5em;
   }
 }
 

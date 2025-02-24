@@ -116,13 +116,13 @@ describe('PlayerBar container', () => {
     const nextButton = await component.findByTestId('player-controls-forward');
     fireEvent.click(nextButton);
     const state = store.getState();
-    expect(state.queue.currentSong).toBe(1);
+    expect(state.queue.currentTrack).toBe(1);
   });
 
   it('should rewind to the beginning of the current track when the previous button is clicked and the track has progressed past the first 3 seconds', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 0,
+        currentTrack: 0,
         queueItems: [{
           artist: 'test artist 1',
           name: 'test track 1',
@@ -142,13 +142,13 @@ describe('PlayerBar container', () => {
     fireEvent.click(previousButton);
     const state = store.getState();
     waitFor(() => expect(state.player.seek).toBe(0));
-    expect(state.queue.currentSong).toBe(0);
+    expect(state.queue.currentTrack).toBe(0);
   });
 
   it('should skip to the previous track when the previous button is clicked and the track has not progressed past the first 3 seconds', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 1,
+        currentTrack: 1,
         queueItems: [{
           artist: 'test artist 1',
           name: 'test track 1',
@@ -177,13 +177,13 @@ describe('PlayerBar container', () => {
     fireEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
-    expect(state.queue.currentSong).toBe(0);
+    expect(state.queue.currentTrack).toBe(0);
   });
 
   it('should skip to the previous track if there is a sponsorblock segment at the beginning of the current track and the playhead is within 3 seconds of the segment', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 1,
+        currentTrack: 1,
         queueItems: [{
           artist: 'test artist 1',
           name: 'test track 1',
@@ -217,13 +217,13 @@ describe('PlayerBar container', () => {
     fireEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
-    expect(state.queue.currentSong).toBe(0); 
+    expect(state.queue.currentTrack).toBe(0); 
   });
 
   it('should go back to the beginning of current track if current track is the first song in the queue', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 0,
+        currentTrack: 0,
         queueItems: [{
           artist: 'test artist 1',
           name: 'test track 1',
@@ -243,13 +243,13 @@ describe('PlayerBar container', () => {
     fireEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
-    expect(state.queue.currentSong).toBe(0); 
+    expect(state.queue.currentTrack).toBe(0); 
   });
 
   it('should remove the track when no streams are available for the track', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 0,
+        currentTrack: 0,
         queueItems: [
           {
             uuid: 'uuid1',
@@ -281,7 +281,7 @@ describe('PlayerBar container', () => {
   it('should remove the track when no more stream URLs can be resolved', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 0,
+        currentTrack: 0,
         queueItems: [
           {
             uuid: 'uuid1',

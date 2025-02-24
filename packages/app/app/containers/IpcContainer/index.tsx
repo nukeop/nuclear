@@ -27,7 +27,7 @@ interface RootState {
       thumbnail: string;
       streams: Array<{ duration: number }>;
     }>;
-    currentSong: number;
+    currentTrack: number;
   };
   settings: {
     shuffleQueue: boolean;
@@ -139,7 +139,7 @@ const IpcContainer: React.FC = () => {
       [IpcEvents.PLAYING_STATUS]: () => {
         const { shuffleQueue, loopAfterQueueEnd } = settings;
         try {
-          const currentItem = queue.queueItems[queue.currentSong];
+          const currentItem = queue.queueItems[queue.currentTrack];
           const { artist, name, thumbnail } = currentItem;
           const duration = head(currentItem.streams)?.duration;
 
@@ -185,11 +185,11 @@ const IpcContainer: React.FC = () => {
 
   // Track changes and notify IPC
   useEffect(() => {
-    const currentSong = queue.queueItems[queue.currentSong];
-    if (currentSong) {
-      ipcRenderer.send(IpcEvents.SONG_CHANGE, currentSong);
+    const currentTrack = queue.queueItems[queue.currentTrack];
+    if (currentTrack) {
+      ipcRenderer.send(IpcEvents.SONG_CHANGE, currentTrack);
     }
-  }, [queue.currentSong, queue.queueItems]);
+  }, [queue.currentTrack, queue.queueItems]);
 
   return null;
 };

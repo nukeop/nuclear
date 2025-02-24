@@ -18,7 +18,7 @@ type QueueMenuProps = {
   resetPlayer: PlayQueueActions['resetPlayer'];
   addFavoriteTrack: PlayQueueActions['addFavoriteTrack'];
   addToDownloads: (track: QueueItem) => void;
-  currentSong: number;
+  currentTrack: number;
   success: PlayQueueActions['success'];
   items: QueueItem[];
   toggleOption: PlayQueueActions['toggleOption'];
@@ -34,7 +34,7 @@ const QueueMenu: React.FC<QueueMenuProps> = ({
   resetPlayer,
   addFavoriteTrack,
   addToDownloads,
-  currentSong,
+  currentTrack,
   success,
   items,
   toggleOption,
@@ -84,7 +84,7 @@ const QueueMenu: React.FC<QueueMenuProps> = ({
               addFavoriteTrack={addFavoriteTrack}
               addToDownloads={addToDownloads}
               playlists={playlists}
-              currentItem={items[currentSong]}
+              currentItem={items[currentTrack]}
               items={items}
               savePlaylistDialog={
                 <InputDialog

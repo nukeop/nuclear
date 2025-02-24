@@ -19,6 +19,7 @@ import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
 import { QueueItem, QueueStore } from '../../reducers/queue';
+import { streamLookupRetriesLimit } from '../../actions/queue';
 
 export const useSeekbarProps = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export const useSeekbarProps = () => {
   const queue = useSelector(queueSelector);
   const seek: number = useSelector(playerSelectors.seek);
   const playbackProgress: number = useSelector(playerSelectors.playbackProgress);
-  const currentTrackStream = queue.queueItems[queue.currentSong]?.streams?.[0];
+  const currentTrackStream = queue.queueItems[queue.currentTrack]?.streams?.[0];
   const currentTrackDuration: number | undefined = currentTrackStream?.duration;
   const timeToEnd = currentTrackDuration - seek;
 
@@ -57,14 +58,14 @@ export const usePlayerControlsProps = () => {
   const queue = useSelector(queueSelector);
   const settings = useSelector(settingsSelector);
   const playbackStatus = useSelector(playerSelectors.playbackStatus);
-  const currentTrack = queue?.queueItems[queue.currentSong];
+  const currentTrack = queue?.queueItems[queue.currentTrack];
   const currentTrackStream = currentTrack?.streams?.[0];
   const playbackStreamLoading: boolean = useSelector(playerSelectors.playbackStreamLoading);
   const seek = useSelector(playerSelectors.seek);
   const favoriteTracks = useSelector(favoritesSelectors.tracks);
 
   const couldPlay = queue.queueItems.length > 0;
-  const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
+  const couldForward = couldPlay && queue.currentTrack + 1 < queue.queueItems.length;
   const couldBack = couldPlay;
   const goBackThreshold = ((
     settings.skipSponsorblock && 
@@ -85,7 +86,7 @@ export const usePlayerControlsProps = () => {
     () => {
       if (seek > goBackThreshold){
         dispatch(playerActions.updateSeek(0));
-      } else if (queue.currentSong === 0) {
+      } else if (queue.currentTrack === 0) {
         dispatch(playerActions.resetPlayer());
       } else {
         dispatch(queueActions.previousSong());
@@ -111,17 +112,17 @@ export const useTrackInfoProps = () => {
   const history = useHistory();
   const queue = useSelector(queueSelector);
   const hasTracks = queue.queueItems.length > 0;
-  const currentSong = _.get(queue.queueItems, queue.currentSong);
+  const currentTrack = _.get(queue.queueItems, queue.currentTrack);
 
-  const track = currentSong?.name;
-  const artist = getTrackArtist(currentSong);
-  const cover = currentSong?.thumbnail;
+  const track = currentTrack?.name;
+  const artist = getTrackArtist(currentTrack);
+  const cover = currentTrack?.thumbnail;
 
   const favorite = useSelector(s => getFavoriteTrack(s, artist, track));
   const isFavorite = !_.isNil(favorite);
   const addToFavorites = useCallback(
-    () => dispatch(favoritesActions.addFavoriteTrack(normalizeTrack(currentSong))),
-    [dispatch, currentSong]
+    () => dispatch(favoritesActions.addFavoriteTrack(normalizeTrack(currentTrack))),
+    [dispatch, currentTrack]
   );
   const removeFromFavorites = useCallback(
     () => dispatch(favoritesActions.removeFavoriteTrack(favorite)),
@@ -258,26 +259,31 @@ export const useStreamLookup = () => {
       return;
     }
     
-    const currentSong: QueueItem = queue.queueItems[queue.currentSong];
+    const currentTrack: QueueItem = queue.queueItems[queue.currentTrack];
 
-    if (currentSong && queueActions.trackHasNoFirstStream(currentSong)) {
-      dispatch(queueActions.findStreamsForTrack(queue.currentSong));
+    if (
+      currentTrack && 
+      !currentTrack.loading &&
+        queueActions.trackHasNoFirstStream(currentTrack) && 
+        (currentTrack.streamLookupRetries === undefined || currentTrack.streamLookupRetries < 3)) {
+      dispatch(queueActions.findStreamsForTrack(queue.currentTrack));
       return;
     }
     
     const isAnyTrackLoading = queue.queueItems.some(item => item.loading);
     if (!isAnyTrackLoading) {
       const nextTrackWithNoStream = queue.queueItems.findIndex((item, index) => 
-        index !== queue.currentSong &&
+        index !== queue.currentTrack &&
         !item.loading && 
-        isEmpty(item.streams) && (item.streamLookupRetries < 3 || item.streamLookupRetries === undefined)
+        isEmpty(item.streams) && 
+        (item.streamLookupRetries < streamLookupRetriesLimit || item.streamLookupRetries === undefined)
       );
       
       if (nextTrackWithNoStream !== -1) {
         dispatch(queueActions.findStreamsForTrack(nextTrackWithNoStream));
       }
     }
-  }, [queue.currentSong, queue.queueItems]);
+  }, [queue.currentTrack, queue.queueItems]);
 };
 
 const shouldSearchForStreams = (queue: QueueStore): boolean => {

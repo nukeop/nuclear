@@ -35,28 +35,28 @@ export type QueueItem = {
 
 export class QueueStore {
   queueItems: QueueItem[] = [];
-  currentSong = 0;
+  currentTrack = 0;
 }
 
 const defaultState = {...new QueueStore()};
 
 function reduceRemoveFromQueue(state, action: ReturnType<typeof removeFromQueue>) {
   const removeIx = action.payload.index;
-  let newCurrent = state.currentSong;
+  let newCurrent = state.currentTrack;
   const newQueue = [...state.queueItems.slice(0, removeIx), ...state.queueItems.slice(removeIx + 1)];
-  if (removeIx < state.currentSong) {
+  if (removeIx < state.currentTrack) {
     newCurrent--;
   }
   return {
     ...state,
     queueItems: newQueue,
-    currentSong: newCurrent
+    currentTrack: newCurrent
   };
 }
 
 function reduceSelectSong(state, action) {
   return Object.assign({}, state, {
-    currentSong: action.payload
+    currentTrack: action.payload
   });
 }
 
@@ -65,40 +65,40 @@ function reduceRepositionSong(state, action) {
   const [removed] = newQueue.splice(action.payload.itemFrom, 1);
   newQueue.splice(action.payload.itemTo, 0, removed);
 
-  let newCurrentSong = state.currentSong;
-  if (action.payload.itemFrom === state.currentSong) {
-    newCurrentSong = action.payload.itemTo;
+  let newCurrentTrack = state.currentTrack;
+  if (action.payload.itemFrom === state.currentTrack) {
+    newCurrentTrack = action.payload.itemTo;
   } else if (action.payload.itemFrom < action.payload.itemTo) {
     // moving top to bottom and
     // current song is in between
-    if (state.currentSong > action.payload.itemFrom && state.currentSong <= action.payload.itemTo) {
-      newCurrentSong--;
+    if (state.currentTrack > action.payload.itemFrom && state.currentTrack <= action.payload.itemTo) {
+      newCurrentTrack--;
     }
   } else if (action.payload.itemFrom > action.payload.itemTo) {
     // moving bottom to top
     // current song is in between
-    if (state.currentSong < action.payload.itemFrom && state.currentSong >= action.payload.itemTo) {
-      newCurrentSong++;
+    if (state.currentTrack < action.payload.itemFrom && state.currentTrack >= action.payload.itemTo) {
+      newCurrentTrack++;
     }
   }
   // otherwise does not change
 
   return Object.assign({}, state, {
-    currentSong: newCurrentSong,
+    currentTrack: newCurrentTrack,
     queueItems: newQueue
   });
 }
 
 function reduceNextSong(state) {
   return Object.assign({}, state, {
-    currentSong: (state.currentSong + 1) % state.queueItems.length
+    currentTrack: (state.currentTrack + 1) % state.queueItems.length
   });
 }
 
 function reducePreviousSong(state) {
   return Object.assign({}, state, {
-    currentSong:
-      (((state.currentSong - 1) % state.queueItems.length) +
+    currentTrack:
+      (((state.currentTrack - 1) % state.queueItems.length) +
         state.queueItems.length) %
       state.queueItems.length
   });
@@ -130,9 +130,9 @@ const reduceAddPlayNextItem = (state, action) => {
   return {
     ...state,
     queueItems: [
-      ...state.queueItems.slice(0, state.currentSong + 1),
+      ...state.queueItems.slice(0, state.currentTrack + 1),
       action.payload.item,
-      ...state.queueItems.slice(state.currentSong + 1)
+      ...state.queueItems.slice(state.currentTrack + 1)
     ]
   };
 };

@@ -74,7 +74,7 @@ export const buildStoreState = () => {
     },
     queue: {
       queueItems: [],
-      currentSong: 0
+      currentTrack: 0
     },
     nuclear: {
       identity: {
@@ -696,7 +696,6 @@ export const buildStoreState = () => {
                 duration: 300,
                 title: 'test track 1',
                 thumbnail: 'https://test-track-thumb-url',
-                format: 'webm',
                 skipSegments: [
                   {
                     category: 'intro',
@@ -713,9 +712,9 @@ export const buildStoreState = () => {
                     startTime: 239,
                     endTime: 299
                   }
-                ],
-                originalUrl: 'https://test-track-original-url'
+                ]
               }, {
+                id: 'test-stream-provider-id',
                 source: 'Test Stream Provider',
                 title: 'test track 1 - different stream'
               }],
@@ -734,7 +733,6 @@ export const buildStoreState = () => {
                 duration: 300,
                 title: 'test track 2',
                 thumbnail: 'https://test-track-thumb-url',
-                format: 'webm',
                 skipSegments: []
               }],
               uuid: 'uuid2',
@@ -752,7 +750,6 @@ export const buildStoreState = () => {
                 duration: 300,
                 title: 'test track 3',
                 thumbnail: 'https://test-track-thumb-url',
-                format: 'webm',
                 skipSegments: []
               }],
               uuid: 'uuid3',
@@ -760,7 +757,7 @@ export const buildStoreState = () => {
               error: false
             }
           ],
-          currentSong: 0
+          currentTrack: 0
         }
       };
 
