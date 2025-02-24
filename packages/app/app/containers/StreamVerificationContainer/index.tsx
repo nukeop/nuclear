@@ -24,7 +24,7 @@ export const StreamVerificationContainer: React.FC = () => {
   const queue = useSelector(queueSelector);
   const settings = useSelector(settingsSelector);
   const selectedStreamProvider = useSelector(pluginsSelectors.selected)?.streamProviders;
-  const currentTrack: QueueItem = queue.queueItems[queue.currentSong];
+  const currentTrack: QueueItem = queue.queueItems[queue.currentTrack];
   const [isLoading, setLoading] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState<StreamVerificationProps['status']>('unknown');
   const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);

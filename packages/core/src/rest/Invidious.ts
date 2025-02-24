@@ -1,7 +1,6 @@
 import { getOption } from '../persistence/store';
-import { StreamData } from '../plugins/plugins.types';
 
-export const baseUrl = getOption('invidious.url');
+export const baseUrl: string = getOption('invidious.url') as string;
 
 export const getTrackInfo = async (videoId) => {
   const response = await fetch(`${baseUrl}/api/v1/videos/${videoId}`);

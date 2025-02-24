@@ -1,4 +1,4 @@
-import { store, setOption } from '@nuclear/core';
+import { store, setOption, Setting } from '@nuclear/core';
 
 import { Settings } from './actionTypes';
 
@@ -10,39 +10,39 @@ export function readSettings() {
   };
 }
 
-export function setBooleanOption(option, state, fromMain?) {
-  setOption(option, state);
+export function setBooleanOption(key: string, value: unknown, fromMain?: boolean) {
+  setOption(key, value);
 
   return {
     type: Settings.SET_BOOLEAN_OPTION,
-    payload: {option, state},
+    payload: {option: key, state: value},
     meta: { fromMain }
   };
 }
 
-export function setStringOption(option, state, fromMain?) {
-  setOption(option, state);
+export function setStringOption(key: string, value: unknown, fromMain?: boolean) {
+  setOption(key, value);
 
   return {
     type: Settings.SET_STRING_OPTION,
-    payload: {option, state},
+    payload: {option: key, state: value},
     meta: { fromMain }
   };
 }
 
-export function setNumberOption(option, state, fromMain) {
-  setOption(option, state);
+export function setNumberOption(key: string, value: unknown, fromMain?: boolean) {
+  setOption(key, value);
 
   return {
     type: Settings.SET_NUMBER_OPTION,
-    payload: {option, state},
+    payload: {option: key, state: value},
     meta: { fromMain }
   };
 }
 
-export function toggleOption(option, state) {
-  const optionState = state[option.name];
+export function toggleOption(key: Setting, state: unknown) {
+  const optionState = state[key.name];
   return optionState !== undefined
-    ? setBooleanOption(option.name, !optionState)
-    : setBooleanOption(option.name, !option.default);
+    ? setBooleanOption(key.name, !optionState)
+    : setBooleanOption(key.name, !key.default);
 }

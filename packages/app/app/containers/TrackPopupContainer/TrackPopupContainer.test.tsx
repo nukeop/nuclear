@@ -113,7 +113,7 @@ describe('Track Popup container', () => {
     it('should add the song to next of current song when clicking PlayNext', async () => {
       const { component, store } = mountTrackPopupContainer({
         queue: {
-          currentSong: 1,
+          currentTrack: 1,
           queueItems: [{
             artist: 'test artist 1',
             name: 'test track 1',
@@ -142,8 +142,8 @@ describe('Track Popup container', () => {
 
       const state = store.getState();
       expect(state.player.seek).toBe(10);
-      expect(state.queue.currentSong).toBe(1); 
-      expect(state.queue.queueItems[state.queue.currentSong + 1]).toMatchObject({
+      expect(state.queue.currentTrack).toBe(1); 
+      expect(state.queue.queueItems[state.queue.currentTrack + 1]).toMatchObject({
         artist: 'Artist',
         name: TRACK_TITLE
       });

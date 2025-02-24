@@ -18,6 +18,8 @@ export type QueueItemProps = {
   isCompact: boolean;
   track: Track;
   duration: string;
+  streamLookupRetries: number;
+  streamLookupRetriesLimit: number;
   onSelect: () => void;
   onRemove: () => void;
 };
@@ -31,6 +33,8 @@ export const QueueItem: React.FC<QueueItemProps> = ({
   isCompact,
   track,
   duration,
+  streamLookupRetries,
+  streamLookupRetriesLimit,
   onRemove,
   onSelect
 }) => {
@@ -64,31 +68,55 @@ export const QueueItem: React.FC<QueueItemProps> = ({
         </div>
       </div>
 
-      {!track.error &&
-      <>
-        <div className={styles.item_info_container}>
-          <div className={styles.name_container}>
-            {getTrackTitle(track)}
+      {
+        !track.error &&
+        <>
+          <div className={styles.item_info_container}>
+            <div className={styles.name_container}>
+              {getTrackTitle(track)}
+            </div>
+            <div className={styles.artist_container}>
+              {getTrackArtist(track)}
+            </div>
           </div>
-          <div className={styles.artist_container}>
-            {getTrackArtist(track)}
-          </div>
-        </div>
 
-        {!track.loading &&
+          {
+            !track.loading &&
               !isEmpty(track.streams) &&
               <div className={styles.item_duration_container}>
                 <div className={styles.item_duration}>
                   {duration}
                 </div>
-              </div>}
-      </>}
+              </div>
+          }
+        </>
+      }
 
-      {
+      {/* {
         isErrorWithMessage(track.error) &&
         !isCompact &&
         <div className={styles.error_overlay}>
           <div className={styles.error_message}>{track.error.message}</div>
+        </div>
+      } */}
+
+      {
+        streamLookupRetries > 0 &&
+        streamLookupRetries < streamLookupRetriesLimit &&
+        <div className={styles.retry_overlay}>
+          <div className={styles.retry_message}>
+            {`Retrying stream lookup (${streamLookupRetries}/${streamLookupRetriesLimit})`}
+          </div>
+        </div>
+      }
+
+      {
+        streamLookupRetries >= streamLookupRetriesLimit &&
+        <div className={styles.error_overlay}>
+          <div className={styles.error_icon}>
+            <Icon name='lock' size='big' />
+          </div>
+          <div className={styles.error_message}>Failed to load stream.</div>
         </div>
       }
     </div>

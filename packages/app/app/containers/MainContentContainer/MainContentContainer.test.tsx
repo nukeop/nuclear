@@ -22,7 +22,7 @@ describe('Main content container', () => {
     
     state = store.getState();
     expect(state.settings.loopAfterQueueEnd).toEqual(true);
-    expect(state.queue.currentSong).toEqual(0);
+    expect(state.queue.currentTrack).toEqual(0);
   });
     
   it('should loop with a single track in the queue', () => {
@@ -36,7 +36,7 @@ describe('Main content container', () => {
           })
           .build(),
         queue: {
-          currentSong: 0,
+          currentTrack: 0,
           queueItems: [storeWithTracks.queue.queueItems[0]]
         }
       }
@@ -49,7 +49,7 @@ describe('Main content container', () => {
     
     state = store.getState();
     expect(state.settings.loopAfterQueueEnd).toEqual(true);
-    expect(state.queue.currentSong).toEqual(0);
+    expect(state.queue.currentTrack).toEqual(0);
     expect(state.player.seek).toEqual(0);
     expect(state.player.playbackStatus).toEqual(Sound.status.PLAYING);
   });

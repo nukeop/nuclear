@@ -22,7 +22,7 @@ export type SeekbarProps = {
   seek: (arg0: number) => void;
   queue: {
     queueItems: QueueItem[];
-    currentSong?: number;
+    currentTrack?: number;
   };
   height?: string;
   skipSegments?: Segment[];
@@ -56,7 +56,7 @@ const Seekbar: React.FC<SeekbarProps> = ({
     }
   }, [hasMounted, seek, skipSegments, timePlayed, allowSkipSegment]);
 
-  const duration = queue?.queueItems[queue.currentSong]?.streams?.[0]?.duration;
+  const duration = queue?.queueItems[queue.currentTrack]?.streams?.[0]?.duration;
 
   const handleClick = useCallback((seek) => {
     return event => {

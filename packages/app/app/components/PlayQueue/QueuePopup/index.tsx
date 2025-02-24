@@ -21,7 +21,6 @@ export type QueuePopupProps = {
   track: QueueItem;
   index: number;
 
-  actions: typeof QueueActions;
   plugins: PluginsState;
   copyToClipboard: (text: string) => void;
   onSelectStream: (stream: StreamData) => void;

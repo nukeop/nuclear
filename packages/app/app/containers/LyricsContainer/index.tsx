@@ -13,7 +13,7 @@ const LyricsContainer = () => {
   return <LyricsView
     track={_.get(
       queue.queueItems,
-      queue.currentSong
+      queue.currentTrack
     )}
     lyricsSearchResult={lyricsSearchResult}
   />;

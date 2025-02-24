@@ -47,7 +47,7 @@ class Shortcuts extends React.Component {
     return false;
   }
 
-  playCurrentSong = () => {
+  playCurrentTrack = () => {
     const { queue, player, actions } = this.props;
 
     if (
@@ -122,7 +122,7 @@ class Shortcuts extends React.Component {
     });
 
     Mousetrap.bind('space', this.handleSpaceBar);
-    Mousetrap.bind('enter', this.playCurrentSong);
+    Mousetrap.bind('enter', this.playcurrentTrack);
     Mousetrap.bind('up', this.increaseVolume);
     Mousetrap.bind('down', this.decreaseVolume);
     Mousetrap.bind('left', this.decreaseSeek);
