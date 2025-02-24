@@ -34,11 +34,11 @@ export type PlayQueueActions = {
   resetPlayer: () => void;
   addToDownloads: (providers: StreamProviderPlugin[], track: QueueItem) => void;
   info: (title: string, details: string, icon: React.ReactElement<{ src: string }>, settings: SettingsState) => void;
-  success: (title: string, details: string) => void;
+  success: typeof success;
   addFavoriteTrack: (track: QueueItem) => void;
   addPlaylist: (tracks: PlaylistTrack[], name: string) => void;
   updatePlaylist: (playlist: Playlist) => void;
-  toggleOption: (option: string, value?: boolean) => void;
+  toggleOption: typeof toggleOption;
 }
 
 const PlayQueueContainer: React.FC = () => {

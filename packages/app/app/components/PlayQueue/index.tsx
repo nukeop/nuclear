@@ -22,6 +22,7 @@ import { StreamVerificationContainer } from '../../containers/StreamVerification
 
 import styles from './styles.scss';
 import { QueueItemClone } from './QueueItemClone';
+import { streamLookupRetriesLimit } from '../../actions/queue';
 
 type PlayQueueProps = {
   actions: PlayQueueActions;
@@ -166,11 +167,13 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                 trigger={
                   <QueueItem
                     isCompact={data.settings.compactQueueBar as boolean}
-                    isCurrent={data.queue.currentSong === index}
+                    isCurrent={data.queue.currentTrack === index}
                     track={item}
+                    duration={formatTrackDuration(t)(item)}
+                    streamLookupRetries={item.streamLookupRetries}
+                    streamLookupRetriesLimit={streamLookupRetriesLimit}
                     onSelect={onSelectTrack(index)}
                     onRemove={onRemoveTrack(index)}
-                    duration={formatTrackDuration(t)(item)}
                   />
                 }
                 isQueueItemCompact={data.settings.compactQueueBar as boolean}
@@ -201,7 +204,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
           toggleOption={toggleOption}
           addFavoriteTrack={addFavoriteTrack}
           addToDownloads={onAddToDownloads}
-          currentSong={queue.currentSong}
+          currentTrack={queue.currentTrack}
           success={success}
           settings={settings}
           playlists={playlists}
@@ -215,6 +218,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
           renderClone={QueueItemClone({
             settings,
             queue,
+            streamLookupRetriesLimit,
             onSelectTrack,
             onRemoveTrack,
             formatTrackDuration: formatTrackDuration(t)
