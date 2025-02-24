@@ -16,7 +16,11 @@ class YoutubePlugin extends StreamProviderPlugin {
   async search(query: StreamQuery): Promise<undefined | StreamData[]> {
     const terms = query.artist + ' ' + query.track;
     try {
-      return Youtube.trackSearch(query, this.sourceName);
+      const tracks = await Youtube.trackSearch(query);
+
+      return Promise.all(tracks.map(async track => {              
+        return track;
+      }));
     } catch (e) {
       logger.error(`Error while searching  for ${terms} on Youtube`);
       logger.error(e);
@@ -25,11 +29,11 @@ class YoutubePlugin extends StreamProviderPlugin {
 
   async getStreamForId(id: string): Promise<undefined | StreamData> {
     try {
-      return Youtube.getStreamForId(id, this.sourceName);
+      const stream = await Youtube.getStreamForId(id, this.sourceName);
+      return stream;
     } catch (e) {
       logger.error(`Error while looking up streams for id: ${id} on Youtube`);
-      logger.error(e);
-      
+      logger.error(e);      
     }
   }
 }
