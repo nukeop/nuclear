@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 import { getOption, setOption } from '@nuclear/core';
 import i18n, { setupI18n } from '@nuclear/i18n';
+import { setTimeout, setInterval } from 'timers';
 
 import App from './App';
 import configureStore from './store/configureStore';
@@ -22,8 +23,8 @@ const store = configureStore({});
 /* 
 * The `setTimeout` and `setInterval` functions are overridden to use the Node.js timers module. This is necessary because the default browser implementations of `setTimeout` and `setInterval` will not work correctly with unidici, so we use the Node versions.
 */
-window.setTimeout = ((handler: TimerHandler, timeout?: number, ...args: any[]) => require('timers').setTimeout(handler, timeout, ...args)) as typeof setTimeout;
-window.setInterval = ((handler: TimerHandler, timeout?: number, ...args: any[]) => require('timers').setInterval(handler, timeout, ...args)) as typeof setInterval;
+window.setTimeout = ((handler: TimerHandler, timeout?: number, ...args: any[]) => setTimeout(handler, timeout, ...args)) as typeof setTimeout;
+window.setInterval = ((handler: TimerHandler, timeout?: number, ...args: any[]) => setInterval(handler, timeout, ...args)) as typeof setInterval;
 
 i18n.on('languageChanged', lng => setOption('language', lng));
 
