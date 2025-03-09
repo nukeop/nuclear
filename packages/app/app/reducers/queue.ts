@@ -13,6 +13,7 @@ export type TrackStream = {
   title?: string;
   thumbnail?: string;
   stream?: string;
+  originalUrl?: string;
   skipSegments?: Segment[];
 };
 

@@ -74,13 +74,14 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
 
   return (
     <Popup
+      data-testid={`queue-popup-${track.uuid}`}
       className={cs(styles.queue_popup, {
         [styles.hidden]: !imageReady
       })}
       trigger={
         <div
           ref={triggerElement}
-          data-testid={`queue-popup-${track.uuid}`}
+          data-testid={`queue-popup-trigger-${track.uuid}`}
           onContextMenu={handleOpen}
         >
           {trigger}

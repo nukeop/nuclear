@@ -12,7 +12,6 @@ import { getThumbnail, getTrackArtist, getTrackTitle } from '../../utils';
 import { Track } from '../../types';
 import Img from 'react-image';
 
-
 export type QueueItemProps = {
   isCurrent: boolean;
   isCompact: boolean;
@@ -22,10 +21,6 @@ export type QueueItemProps = {
   streamLookupRetriesLimit: number;
   onSelect: () => void;
   onRemove: () => void;
-};
-
-const isErrorWithMessage = (error: any): error is { message: string; details: string } => {
-  return Boolean(error) && Boolean(error.message);
 };
 
 export const QueueItem: React.FC<QueueItemProps> = ({
@@ -91,14 +86,6 @@ export const QueueItem: React.FC<QueueItemProps> = ({
           }
         </>
       }
-
-      {/* {
-        isErrorWithMessage(track.error) &&
-        !isCompact &&
-        <div className={styles.error_overlay}>
-          <div className={styles.error_message}>{track.error.message}</div>
-        </div>
-      } */}
 
       {
         streamLookupRetries > 0 &&

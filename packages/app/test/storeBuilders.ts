@@ -712,13 +712,15 @@ export const buildStoreState = () => {
                     startTime: 239,
                     endTime: 299
                   }
-                ]
+                ],
+                originalUrl: 'https://test-track-original-url'
               }, {
                 id: 'test-stream-provider-id',
                 source: 'Test Stream Provider',
                 title: 'test track 1 - different stream'
               }],
               uuid: 'uuid1',
+              queueId: '1',
               loading: false,
               error: false
             },
@@ -736,6 +738,7 @@ export const buildStoreState = () => {
                 skipSegments: []
               }],
               uuid: 'uuid2',
+              queueId: '2',
               loading: false,
               error: false
             },
@@ -753,6 +756,7 @@ export const buildStoreState = () => {
                 skipSegments: []
               }],
               uuid: 'uuid3',
+              queueId: '3',
               loading: false,
               error: false
             }

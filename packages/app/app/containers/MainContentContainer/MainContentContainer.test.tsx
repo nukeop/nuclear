@@ -4,6 +4,7 @@ import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
 import { startPlayback } from '../../actions/player';
 import { nextSongAction } from '../../actions/queue';
 import { toggleOption } from '../../actions/settings';
+import { Setting } from '@nuclear/core';
 
 describe('Main content container', () => {
   beforeAll(() => {
@@ -14,7 +15,7 @@ describe('Main content container', () => {
     const { store } = mountComponent();
     
     let state = store.getState();
-    store.dispatch(toggleOption({name: 'loopAfterQueueEnd'}, state.settings));
+    store.dispatch(toggleOption({name: 'loopAfterQueueEnd'} as Setting, state.settings));
     store.dispatch(startPlayback(false));
     store.dispatch(nextSongAction());
     store.dispatch(nextSongAction());
@@ -43,7 +44,7 @@ describe('Main content container', () => {
     );
     
     let state = store.getState();
-    store.dispatch(toggleOption({name: 'loopAfterQueueEnd'}, state.settings));
+    store.dispatch(toggleOption({name: 'loopAfterQueueEnd'} as Setting, state.settings));
     store.dispatch(startPlayback(false));
     store.dispatch(nextSongAction());
     
