@@ -46,12 +46,22 @@ const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): Que
 };
 
 
-export const toQueueItem = (track: Track): QueueItem => ({
-  ...track,
-  artist: isString(track.artist) ? track.artist : track.artist.name,
-  name: track.title ? track.title : track.name,
-  streams: track.streams ?? []
-});
+export const toQueueItem = (track: Track): QueueItem => {
+  const queueItem: QueueItem = {
+    ...track,
+    artist: isString(track.artist) ? track.artist : track.artist.name,
+    name: track.title ? track.title : track.name,
+    streams: track.streams ?? []
+  };
+
+  safeAddUuid(queueItem);
+
+  if (!queueItem.queueId) {
+    queueItem.queueId = v4();
+  }
+
+  return queueItem;
+};
 
 // Exported to facilitate testing.
 export const getSelectedStreamProvider = (getState) => {
@@ -122,6 +132,7 @@ export const addToQueue =
       const { local }: RootState = getState();
       item = {
         ...safeAddUuid(item),
+        queueId: v4(),
         streams: item.local ? item.streams : [],
         loading: false
       };
@@ -140,7 +151,8 @@ export const addToQueue =
     };
 
 export const selectNewStream = (index: number, streamId: string) => async (dispatch, getState) => {
-  const track = queueSelector(getState()).queueItems[index];
+  const getLatestTrack = () => queueSelector(getState()).queueItems[index];
+  let track = getLatestTrack();
   const selectedStreamProvider: StreamProviderPlugin = getSelectedStreamProvider(getState);
 
   const oldStreamData = track.streams.find(stream => stream.id === streamId);
@@ -149,6 +161,7 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
   if (!streamData) {
     dispatch(removeFromQueue(index));
   } else {
+    track = getLatestTrack();
     dispatch(
       updateQueueItem({
         ...track,
@@ -211,8 +224,8 @@ const resolveStreams = async (
 };
 
 export const findStreamsForTrack = (index: number) => async (dispatch, getState) => {
-  const {queue, settings}: RootState = getState();
-  const track = queue.queueItems[index];
+  const getLatestTrack = () => queueSelector(getState()).queueItems[index];
+  let track = getLatestTrack();
 
   if (!track || track.local || !trackHasNoFirstStream(track)) {
     return;
@@ -232,15 +245,18 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
       return;
     }
 
+    const settings = getState().settings;
     streamData = await verifyStreamWithService(track, streamData, selectedStreamProvider, settings);
 
     const firstStream = streamData[0];
     if (!firstStream?.stream) {
       const remainingStreams = streamData.slice(1);
+      track = getLatestTrack();
       removeFirstStream(track, index, remainingStreams, dispatch);
       return;
     }
 
+    track = getLatestTrack();
     dispatch(updateQueueItem({
       ...track,
       loading: false,
@@ -253,6 +269,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
     );
     logger.error(e);
     
+    track = getLatestTrack();
     dispatch(updateQueueItem({
       ...track,
       loading: false,

@@ -18,6 +18,7 @@ export type TrackStream = {
 
 export type QueueItem = {
   uuid?: string;
+  queueId?: string;
   loading?: boolean;
   error?:
     | boolean
@@ -116,7 +117,7 @@ function reduceSelectStreamProviders(state) {
 
 const reduceUpdateQueueItem = (state, action) => {
   const { item } = action.payload;
-  const itemIndex = _.findIndex(state.queueItems, { uuid: item.uuid });
+  const itemIndex = _.findIndex(state.queueItems, { queueId: item.queueId });
   const queueClone = _.cloneDeep(state.queueItems);
   queueClone[itemIndex] = item;
 
@@ -138,7 +139,6 @@ const reduceAddPlayNextItem = (state, action) => {
 };
 
 export default function QueueReducer(state = defaultState, action): QueueStore {
-  logger.log('QueueReducer', action);
   switch (action.type) {
   case Queue.ADD_QUEUE_ITEM:
     return {
