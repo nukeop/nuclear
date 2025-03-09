@@ -71,6 +71,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
 }) => {
   const { t } = useTranslation('queue');
   const [isFileHovered, setFileHovered] = useState(false);
+  const [openPopupQueueId, setOpenPopupQueueId] = useState<string | null>(null);
 
   const onDropFile = (event) => {
     event.preventDefault();
@@ -129,11 +130,13 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
   // When a new stream is selected from the track context menu
   const onSelectStream = (index: number) => (stream: StreamData) => {
     selectNewStream(index, stream.id);
+    setOpenPopupQueueId(null);
   };
 
   // When a track is switched to e.g. by double clicking
   const onSelectTrack = (index: number) => () => {
     selectSong(index);
+    setOpenPopupQueueId(null);
   };
 
   // When a track is removed from the queue
@@ -142,6 +145,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     if (queue.queueItems.length === 1) {
       resetPlayer();
     }
+    setOpenPopupQueueId(null);
   };
 
   const QueueRow = React.memo(({ data, index, style }: QueueRowProps) => {
@@ -180,7 +184,11 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                 index={index}
                 track={item}
                 onSelectStream={onSelectStream(index)}
-                copyTrackUrlLabel={t('copy-track-url')} />
+                copyTrackUrlLabel={t('copy-track-url')}
+                isOpen={openPopupQueueId === item.queueId}
+                onRequestOpen={() => setOpenPopupQueueId(item.queueId!)}
+                onRequestClose={() => setOpenPopupQueueId(null)}
+              />
             </div>
           );
         }}
@@ -231,6 +239,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                 [styles.track_dragged_over]: snapshot.isDraggingOver
               })}
               {...droppableProvided.droppableProps}
+              ref={droppableProvided.innerRef}
             >
               <AutoSizer>
                 {({ height, width }) => <List
@@ -240,7 +249,6 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                   itemCount={queue.queueItems.length}
                   overscanCount={2}
                   itemData={{ queue, settings }}
-                  outerRef={droppableProvided.innerRef}
                 >
                   {QueueRow}
                 </List>}
