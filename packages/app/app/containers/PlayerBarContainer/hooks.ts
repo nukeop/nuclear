@@ -260,12 +260,17 @@ export const useStreamLookup = () => {
     }
     
     const currentTrack: QueueItem = queue.queueItems[queue.currentTrack];
+    // If the current track has been removed, do not proceed
+    if (!currentTrack) {
+      return;
+    }
 
     if (
-      currentTrack && 
+      currentTrack &&
       !currentTrack.loading &&
-        queueActions.trackHasNoFirstStream(currentTrack) && 
-        (currentTrack.streamLookupRetries === undefined || currentTrack.streamLookupRetries < 3)) {
+      queueActions.trackHasNoFirstStream(currentTrack) &&
+      (currentTrack.streamLookupRetries === undefined || currentTrack.streamLookupRetries < 3)
+    ) {
       dispatch(queueActions.findStreamsForTrack(queue.currentTrack));
       return;
     }
@@ -286,10 +291,10 @@ export const useStreamLookup = () => {
   }, [queue.currentTrack, queue.queueItems]);
 };
 
-const shouldSearchForStreams = (queue: QueueStore): boolean => {
+export const shouldSearchForStreams = (queue: QueueStore): boolean => {
   return queue.queueItems.length > 0 && !queue.queueItems.every(item => 
     item.local || 
     (item.streams?.[0]?.stream) ||
-    item.error
+    (item.error && item.streamLookupRetries !== undefined && item.streamLookupRetries >= streamLookupRetriesLimit)
   );
 };

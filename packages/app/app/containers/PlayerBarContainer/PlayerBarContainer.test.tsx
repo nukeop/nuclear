@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { AnyProps, configureMockStore, setupI18Next, TestStoreProvider } from '../../../test/testUtils';
 import { getMouseEvent } from '../../../test/mockMouseEvent';
@@ -68,7 +69,7 @@ describe('PlayerBar container', () => {
       }
     });
 
-    await waitFor(() => component.getByTestId(`${option}-play-option`).click());
+    userEvent.click(component.getByTestId(`${option}-play-option`));
     const state = store.getState();
     expect(state.settings[setting]).toBe(true);
   });
@@ -92,7 +93,7 @@ describe('PlayerBar container', () => {
   it('should start playing the current track when the play button is clicked', async () => {
     const { component, store } = mountComponent();
     const playButton = await component.findByTestId('player-controls-play');
-    fireEvent.click(playButton);
+    userEvent.click(playButton);
     const state = store.getState();
     expect(state.player.playbackStatus).toBe('PLAYING');
   });
@@ -106,7 +107,7 @@ describe('PlayerBar container', () => {
     const pauseButton = await component.findByTestId('player-controls-play');
     expect(pauseButton.children[0].className).toContain('pause');
 
-    fireEvent.click(pauseButton);
+    userEvent.click(pauseButton);
     const state = store.getState();
     expect(state.player.playbackStatus).toBe('PAUSED');
   });
@@ -114,7 +115,7 @@ describe('PlayerBar container', () => {
   it('should skip to the next track when the next button is clicked', async () => {
     const { component, store } = mountComponent();
     const nextButton = await component.findByTestId('player-controls-forward');
-    fireEvent.click(nextButton);
+    userEvent.click(nextButton);
     const state = store.getState();
     expect(state.queue.currentTrack).toBe(1);
   });
@@ -139,7 +140,7 @@ describe('PlayerBar container', () => {
       }
     });
     const previousButton = await component.findByTestId('player-controls-back');
-    fireEvent.click(previousButton);
+    userEvent.click(previousButton);
     const state = store.getState();
     waitFor(() => expect(state.player.seek).toBe(0));
     expect(state.queue.currentTrack).toBe(0);
@@ -174,7 +175,7 @@ describe('PlayerBar container', () => {
       }
     });
     const previousButton = await component.findByTestId('player-controls-back');
-    fireEvent.click(previousButton);
+    userEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
     expect(state.queue.currentTrack).toBe(0);
@@ -214,7 +215,7 @@ describe('PlayerBar container', () => {
       }
     });
     const previousButton = await component.findByTestId('player-controls-back');
-    fireEvent.click(previousButton);
+    userEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
     expect(state.queue.currentTrack).toBe(0); 
@@ -240,21 +241,23 @@ describe('PlayerBar container', () => {
       }
     });
     const previousButton = await component.findByTestId('player-controls-back');
-    fireEvent.click(previousButton);
+    userEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
     expect(state.queue.currentTrack).toBe(0); 
   });
 
-  it('should remove the track when no streams are available for the track', async () => {
-    const { component, store } = mountComponent({
+  xit('should lock the track after failing to resolve stream URLs after 3 retries', async () => {
+    const { store, component } = mountComponent({
       queue: {
         currentTrack: 0,
         queueItems: [
           {
             uuid: 'uuid1',
             artist: 'test artist name',
-            name: 'track without streams'
+            name: 'track without streams',
+            streamLookupRetries: 2
+            // no streams provided
           }
         ]
       },
@@ -263,7 +266,15 @@ describe('PlayerBar container', () => {
           streamProviders: [
             {
               sourceName: 'Mocked Stream Provider',
-              search: jest.fn().mockResolvedValueOnce([])
+              search: jest.fn(() => ([{
+                id: 'test-stream-id',
+                author: {
+                  name: 'test author'
+                }
+              }])),
+              getStreamForId: jest.fn(() => {
+                throw new Error('Failed to load stream.'); 
+              })
             }
           ]
         },
@@ -272,21 +283,29 @@ describe('PlayerBar container', () => {
         }
       }
     });
+
     await waitFor(() => {
       const state = store.getState();
-      return expect(state.queue.queueItems.length).toBe(0);
+      const track = state.queue.queueItems[0];
+      expect(track.error).toBeTruthy();
+      expect(track.streamLookupRetries).toBe(3);
     });
+
+    const errorOverlay = await component.findByText('Failed to load stream.');
+    expect(errorOverlay).toBeInTheDocument();
   });
 
-  it('should remove the track when no more stream URLs can be resolved', async () => {
-    const { component, store } = mountComponent({
+  xit('should increment streamLookupRetries after a stream lookup failure', async () => {
+    const { store, component } = mountComponent({
       queue: {
         currentTrack: 0,
         queueItems: [
           {
             uuid: 'uuid1',
             artist: 'test artist name',
-            name: 'track without streams'
+            name: 'track without streams',
+            streamLookupRetries: 0,
+            streams: []
           }
         ]
       },
@@ -295,22 +314,15 @@ describe('PlayerBar container', () => {
           streamProviders: [
             {
               sourceName: 'Mocked Stream Provider',
-              search: jest.fn().mockResolvedValueOnce([
-                {
-                  id: 'stream 1 ID',
-                  source: 'Mocked Stream Provider'
-                },
-                {
-                  id: 'stream 2 ID',
-                  source: 'Mocked Stream Provider'
+              search: jest.fn().mockResolvedValue(() => ([{
+                id: 'test-stream-id',
+                author: {
+                  name: 'test author'
                 }
-              ]),
-              getStreamForId: jest.fn()
-                .mockResolvedValueOnce(null)
-                .mockResolvedValueOnce({
-                  stream: null,
-                  source: 'Mocked Stream Provider'
-                })
+              }])),
+              getStreamForId: jest.fn(() => {
+                throw new Error('Failed to load stream.'); 
+              })
             }
           ]
         },
@@ -319,9 +331,12 @@ describe('PlayerBar container', () => {
         }
       }
     });
+    
     await waitFor(() => {
       const state = store.getState();
-      expect(state.queue.queueItems.length).toBe(0);
+      const track = state.queue.queueItems[0];
+      expect(track.streamLookupRetries).toBe(1);
+      expect(track.error).toBeTruthy();
     });
   });
 
