@@ -13,8 +13,8 @@
     "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Input playlist name:",
     "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "create-playlist-dialog-accept": "保存",
+    "create-playlist-dialog-cancel": "取消"
   },
   "app": {
     "collection": "收藏",
