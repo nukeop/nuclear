@@ -1,6 +1,6 @@
 import { logger } from '../../';
-
 import { PlaylistTrack } from '../helpers';
+import * as crypto from 'crypto';
 
 const SPOTIFY_API_OPEN_URL = 'https://open.spotify.com';
 const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
@@ -100,10 +100,53 @@ export const isTrack = (track: SpotifyTrack | SpotifyEpisode): track is SpotifyT
   return track.type === 'track';
 };
 
-class SpotifyClient {
-  private _token: string | undefined;
+class TOTP {
+  private secret: Buffer;
+  private version: number;
+  private period: number;
+  private digits: number;
 
   constructor() {
+    this.secret = Buffer.from('5507145853487499592248630329347');
+    this.version = 5;
+    this.period = 30;
+    this.digits = 6;
+  }
+
+  generate(timestamp: number): string {
+    const counter = Math.floor(timestamp / 1000 / this.period);
+    
+    const counterBuffer = Buffer.alloc(8);
+    const high = Math.floor(counter / 0x100000000);
+    const low = counter >>> 0;
+    counterBuffer.writeUInt32BE(high, 0);
+    counterBuffer.writeUInt32BE(low, 4);
+    
+    const hmac = crypto.createHmac('sha1', this.secret);
+    hmac.update(counterBuffer);
+    const hmacResult = hmac.digest();
+    
+    const offset = hmacResult[hmacResult.length - 1] & 0x0f;
+    const binary = 
+      ((hmacResult[offset] & 0x7f) << 24) |
+      ((hmacResult[offset + 1] & 0xff) << 16) |
+      ((hmacResult[offset + 2] & 0xff) << 8) |
+      (hmacResult[offset + 3] & 0xff);
+    
+    return (binary % Math.pow(10, this.digits)).toString().padStart(this.digits, '0');
+  }
+  
+  getVersion(): number {
+    return this.version;
+  }
+}
+
+class SpotifyClient {
+  private _token: string | undefined;
+  private totp: TOTP;
+
+  constructor() {
+    this.totp = new TOTP();
   }
 
   async init() {
@@ -115,8 +158,32 @@ class SpotifyClient {
   }
 
   async refreshToken() {
-    const tokenData = await (await fetch(`${SPOTIFY_API_OPEN_URL}/get_access_token?reason=transport&productType=web_player`)).json();
-    this._token = tokenData.accessToken;
+    try {
+      const serverTimeResponse = await fetch(`${SPOTIFY_API_OPEN_URL}/server-time`);
+      if (!serverTimeResponse.ok) {
+        throw new Error(`Failed to get server time: ${serverTimeResponse.status}`);
+      }
+      
+      const serverTimeData = await serverTimeResponse.json();
+      const serverTime = 1000 * serverTimeData.serverTime;
+      
+      const totpToken = this.totp.generate(serverTime);
+      
+      const tokenResponse = await fetch(
+        `${SPOTIFY_API_OPEN_URL}/get_access_token?reason=init&productType=web-player&totp=${totpToken}&totpVer=${this.totp.getVersion()}&ts=${serverTime}`
+      );
+      
+      if (!tokenResponse.ok) {
+        throw new Error(`Failed to get access token: ${tokenResponse.status}`);
+      }
+      
+      const tokenData = await tokenResponse.json();
+      this._token = tokenData.accessToken;
+    } catch (error) {
+      logger.error('Failed to refresh Spotify token:', error);
+      const tokenData = await (await fetch(`${SPOTIFY_API_OPEN_URL}/get_access_token?reason=transport&productType=web_player`)).json();
+      this._token = tokenData.accessToken;
+    }
   }
 
   async get(url: string) {
