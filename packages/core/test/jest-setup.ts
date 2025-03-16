@@ -7,6 +7,7 @@ import {
   ReadableStream,
   TransformStream
 } from 'node:stream/web';
+import { Blob } from 'node:buffer';
 
 
 // ref: https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
@@ -16,10 +17,26 @@ Object.defineProperties(global, {
   TextDecoder: { value: TextDecoder },
   TextEncoder: { value: TextEncoder },
   ReadableStream: { value: ReadableStream },
-  TransformStream: { value: TransformStream }
+  TransformStream: { value: TransformStream },
+  Blob: { value: Blob },
+  MessagePort: { value: {} },
+  DOMException: { value: Error }
 });
 
 Object.defineProperty(global, 'require', {
   writable: true,
   value: require
 });
+
+jest.mock('@electron/remote', () => ({
+  getCurrentWindow: jest.fn(() => ({})),
+  getGlobal: jest.fn(() => ({})),
+  require: jest.fn(),
+  requireFor: jest.fn(),
+  getElectronBinding: (binding: string) => {
+    if (binding === 'electron_common_features') {
+      return {};
+    }
+    throw new Error(`No such binding was linked: ${binding}`);
+  }
+}));

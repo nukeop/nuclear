@@ -1,5 +1,4 @@
-import spotify from '../../helpers/playlist/spotify';
-import { SpotifyArtist, SpotifyClientProvider, SpotifyImage, SpotifySimplifiedAlbum, SpotifyTrack, getImageSet } from '../../rest/Spotify';
+import { SpotifyArtist, SpotifyClientProvider, SpotifySimplifiedAlbum, SpotifyTrack, getImageSet } from '../../rest/Spotify';
 import Track from '../../structs/Track';
 import MetaProvider from '../metaProvider';
 import { SearchResultsArtist, SearchResultsAlbum, SearchResultsTrack, ArtistDetails, AlbumDetails, SearchResultsSource, ArtistTopTrack, SimilarArtist } from '../plugins.types';
