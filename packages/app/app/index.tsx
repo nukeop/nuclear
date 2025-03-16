@@ -33,7 +33,7 @@ const render = async Component => {
     languageDetector: {
       init: () => {},
       type: 'languageDetector',
-      detect: () => getOption('language') || app.getLocale(),
+      detect: () => getOption('language') as string || app.getLocale(),
       cacheUserLanguage: () => {}
     }
   });
