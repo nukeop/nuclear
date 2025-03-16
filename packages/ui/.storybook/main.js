@@ -1,3 +1,4 @@
+import { dirname, join } from "path";
 const path = require('path');
 
 module.exports = {
@@ -5,21 +6,32 @@ module.exports = {
     '../stories/**/*.stories.js',
     '../stories/**/*.stories.tsx'
   ],
+
   addons: [
-    '@storybook/addon-actions',
-    '@storybook/addon-links'
+    getAbsolutePath("@storybook/addon-actions"),
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-webpack5-compiler-babel")
   ],
+
   core: {
     disableTelemetry: true // stop spying on me you parasites
   },
+
   webpackFinal: config => {
+    // console.log(config.module.rules)
+    // process.exit()
     return {
       ...config,
       module: {
         ...config.module,
         rules: [
           config.module.rules[0],
+          config.module.rules[1],
           config.module.rules[2],
+          config.module.rules[4],
+          config.module.rules[5],
+          config.module.rules[7],
+          config.module.rules[10],
           {
             test: /\.s?css$/,
             use: [
@@ -41,21 +53,22 @@ module.exports = {
               path.resolve(__dirname, '../stories'),
               path.resolve(__dirname, '../resources')
             ]
-          },
-          {
-            test: /\.(ttf|eot|woff|woff2|svg)$/,
-            type: 'asset/resource',
-            include: [
-              path.resolve(__dirname, '../resources')
-            ]
-          },
-          {
-            test: /\.(png|jpg|gif)$/,
-            type: 'asset/resource',
-            include: path.resolve(__dirname, '../resources')
           }
         ]
       }
     };
+  },
+
+  framework: {
+    name: getAbsolutePath("@storybook/react-webpack5"),
+    options: {}
+  },
+
+  docs: {
+    autodocs: true
   }
 };
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, "package.json")));
+}
