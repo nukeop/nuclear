@@ -39,12 +39,16 @@ body {
         position: relative;
         max-width: 1000px;
         margin: 0 auto;
-        padding: 0 24px;
+        padding: 100px 24px 0px 24px;
         transform: translateZ(0);
 
         @media screen and (max-width: $md) {
             max-width: 100%;
             margin: 0;
+        }
+
+        @media screen and (max-width: $xsm) {
+            padding-top: 0px;
         }
     }
 
