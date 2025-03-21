@@ -22,6 +22,7 @@ import { StreamVerificationContainer } from '../../containers/StreamVerification
 
 import styles from './styles.scss';
 import { QueueItemClone } from './QueueItemClone';
+import { streamLookupRetriesLimit } from '../../actions/queue';
 
 type PlayQueueProps = {
   actions: PlayQueueActions;
@@ -70,6 +71,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
 }) => {
   const { t } = useTranslation('queue');
   const [isFileHovered, setFileHovered] = useState(false);
+  const [openPopupQueueId, setOpenPopupQueueId] = useState<string | null>(null);
 
   const onDropFile = (event) => {
     event.preventDefault();
@@ -128,11 +130,13 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
   // When a new stream is selected from the track context menu
   const onSelectStream = (index: number) => (stream: StreamData) => {
     selectNewStream(index, stream.id);
+    setOpenPopupQueueId(null);
   };
 
   // When a track is switched to e.g. by double clicking
   const onSelectTrack = (index: number) => () => {
     selectSong(index);
+    setOpenPopupQueueId(null);
   };
 
   // When a track is removed from the queue
@@ -141,6 +145,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     if (queue.queueItems.length === 1) {
       resetPlayer();
     }
+    setOpenPopupQueueId(null);
   };
 
   const QueueRow = React.memo(({ data, index, style }: QueueRowProps) => {
@@ -166,18 +171,24 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                 trigger={
                   <QueueItem
                     isCompact={data.settings.compactQueueBar as boolean}
-                    isCurrent={data.queue.currentSong === index}
+                    isCurrent={data.queue.currentTrack === index}
                     track={item}
+                    duration={formatTrackDuration(t)(item)}
+                    streamLookupRetries={item.streamLookupRetries}
+                    streamLookupRetriesLimit={streamLookupRetriesLimit}
                     onSelect={onSelectTrack(index)}
                     onRemove={onRemoveTrack(index)}
-                    duration={formatTrackDuration(t)(item)}
                   />
                 }
                 isQueueItemCompact={data.settings.compactQueueBar as boolean}
                 index={index}
                 track={item}
                 onSelectStream={onSelectStream(index)}
-                copyTrackUrlLabel={t('copy-track-url')} />
+                copyTrackUrlLabel={t('copy-track-url')}
+                isOpen={openPopupQueueId === item.queueId}
+                onRequestOpen={() => setOpenPopupQueueId(item.queueId!)}
+                onRequestClose={() => setOpenPopupQueueId(null)}
+              />
             </div>
           );
         }}
@@ -201,7 +212,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
           toggleOption={toggleOption}
           addFavoriteTrack={addFavoriteTrack}
           addToDownloads={onAddToDownloads}
-          currentSong={queue.currentSong}
+          currentTrack={queue.currentTrack}
           success={success}
           settings={settings}
           playlists={playlists}
@@ -215,6 +226,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
           renderClone={QueueItemClone({
             settings,
             queue,
+            streamLookupRetriesLimit,
             onSelectTrack,
             onRemoveTrack,
             formatTrackDuration: formatTrackDuration(t)
@@ -227,6 +239,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                 [styles.track_dragged_over]: snapshot.isDraggingOver
               })}
               {...droppableProvided.droppableProps}
+              ref={droppableProvided.innerRef}
             >
               <AutoSizer>
                 {({ height, width }) => <List
@@ -236,7 +249,6 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                   itemCount={queue.queueItems.length}
                   overscanCount={2}
                   itemData={{ queue, settings }}
-                  outerRef={droppableProvided.innerRef}
                 >
                   {QueueRow}
                 </List>}

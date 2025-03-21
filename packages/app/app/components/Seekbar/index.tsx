@@ -6,10 +6,10 @@ import styles from './styles.scss';
 const Seekbar = ({ seek, queue, fill, children }) => {
   const handleClick = useCallback(event => {
     const percent = (event.pageX - event.target.offsetLeft) / document.body.clientWidth;
-    const duration = queue.queueItems[queue.currentSong].streams?.[0]?.duration;
+    const duration = queue.queueItems[queue.currentTrack].streams?.[0]?.duration;
 
     seek(percent * duration);
-  }, [queue.queueItems, queue.currentSong, seek]);
+  }, [queue.queueItems, queue.currentTrack, seek]);
 
   return (
     <div onClick={handleClick} className={styles.seekbar_container}>
@@ -22,7 +22,7 @@ const Seekbar = ({ seek, queue, fill, children }) => {
 Seekbar.propTypes = {
   seek: PropTypes.func,
   queue: PropTypes.shape({
-    currentSong: PropTypes.number,
+    currentTrack: PropTypes.number,
     queueItems: PropTypes.array
   }),
   fill: PropTypes.string,

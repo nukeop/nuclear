@@ -32,7 +32,7 @@ describe('Lyrics container', () => {
         lyricsSearchResult: ''
       },
       queue: {
-        currentSong: 0,
+        currentTrack: 0,
         queueItems: [{}]
       }
     });
@@ -47,7 +47,7 @@ describe('Lyrics container', () => {
           lyricsSearchResult: 'test song lyrics'
         },
         queue: {
-          currentSong: 0,
+          currentTrack: 0,
           queueItems: [
             {
               name: 'test track',

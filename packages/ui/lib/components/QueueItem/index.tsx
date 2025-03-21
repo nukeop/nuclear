@@ -12,18 +12,15 @@ import { getThumbnail, getTrackArtist, getTrackTitle } from '../../utils';
 import { Track } from '../../types';
 import Img from 'react-image';
 
-
 export type QueueItemProps = {
   isCurrent: boolean;
   isCompact: boolean;
   track: Track;
   duration: string;
+  streamLookupRetries: number;
+  streamLookupRetriesLimit: number;
   onSelect: () => void;
   onRemove: () => void;
-};
-
-const isErrorWithMessage = (error: any): error is { message: string; details: string } => {
-  return Boolean(error) && Boolean(error.message);
 };
 
 export const QueueItem: React.FC<QueueItemProps> = ({
@@ -31,6 +28,8 @@ export const QueueItem: React.FC<QueueItemProps> = ({
   isCompact,
   track,
   duration,
+  streamLookupRetries,
+  streamLookupRetriesLimit,
   onRemove,
   onSelect
 }) => {
@@ -64,31 +63,47 @@ export const QueueItem: React.FC<QueueItemProps> = ({
         </div>
       </div>
 
-      {!track.error &&
-      <>
-        <div className={styles.item_info_container}>
-          <div className={styles.name_container}>
-            {getTrackTitle(track)}
+      {
+        !track.error &&
+        <>
+          <div className={styles.item_info_container}>
+            <div className={styles.name_container}>
+              {getTrackTitle(track)}
+            </div>
+            <div className={styles.artist_container}>
+              {getTrackArtist(track)}
+            </div>
           </div>
-          <div className={styles.artist_container}>
-            {getTrackArtist(track)}
-          </div>
-        </div>
 
-        {!track.loading &&
+          {
+            !track.loading &&
               !isEmpty(track.streams) &&
               <div className={styles.item_duration_container}>
                 <div className={styles.item_duration}>
                   {duration}
                 </div>
-              </div>}
-      </>}
+              </div>
+          }
+        </>
+      }
 
       {
-        isErrorWithMessage(track.error) &&
-        !isCompact &&
+        streamLookupRetries > 0 &&
+        streamLookupRetries < streamLookupRetriesLimit &&
+        <div className={styles.retry_overlay}>
+          <div className={styles.retry_message}>
+            {`Retrying stream lookup (${streamLookupRetries}/${streamLookupRetriesLimit})`}
+          </div>
+        </div>
+      }
+
+      {
+        streamLookupRetries >= streamLookupRetriesLimit &&
         <div className={styles.error_overlay}>
-          <div className={styles.error_message}>{track.error.message}</div>
+          <div className={styles.error_icon}>
+            <Icon name='lock' size='big' />
+          </div>
+          <div className={styles.error_message}>Failed to load stream.</div>
         </div>
       }
     </div>

@@ -4,7 +4,7 @@ import { createStandardAction } from 'typesafe-actions';
 import { v4 } from 'uuid';
 
 import { rest, StreamProvider } from '@nuclear/core';
-import { getTrackArtist } from '@nuclear/ui';
+import { getTrackArtist, getTrackTitle } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
@@ -20,6 +20,8 @@ import { queue as queueSelector } from '../selectors/queue';
 type LocalTrack = Track & {
   local: true;
 };
+
+export const streamLookupRetriesLimit = 3;
 
 const isLocalTrack = (track: Track): track is LocalTrack => track.local;
 
@@ -44,12 +46,22 @@ const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): Que
 };
 
 
-export const toQueueItem = (track: Track): QueueItem => ({
-  ...track,
-  artist: isString(track.artist) ? track.artist : track.artist.name,
-  name: track.title ? track.title : track.name,
-  streams: track.streams ?? []
-});
+export const toQueueItem = (track: Track): QueueItem => {
+  const queueItem: QueueItem = {
+    ...track,
+    artist: isString(track.artist) ? track.artist : track.artist.name,
+    name: track.title ? track.title : track.name,
+    streams: track.streams ?? []
+  };
+
+  safeAddUuid(queueItem);
+
+  if (!queueItem.queueId) {
+    queueItem.queueId = v4();
+  }
+
+  return queueItem;
+};
 
 // Exported to facilitate testing.
 export const getSelectedStreamProvider = (getState) => {
@@ -98,10 +110,6 @@ export const queueDrop = (paths) => ({
   payload: paths
 });
 
-export const streamFailed = () => ({
-  type: Queue.STREAM_FAILED
-});
-
 export function repositionSong(itemFrom, itemTo) {
   return {
     type: Queue.REPOSITION_TRACK,
@@ -124,6 +132,7 @@ export const addToQueue =
       const { local }: RootState = getState();
       item = {
         ...safeAddUuid(item),
+        queueId: v4(),
         streams: item.local ? item.streams : [],
         loading: false
       };
@@ -142,7 +151,8 @@ export const addToQueue =
     };
 
 export const selectNewStream = (index: number, streamId: string) => async (dispatch, getState) => {
-  const track = queueSelector(getState()).queueItems[index];
+  const getLatestTrack = () => queueSelector(getState()).queueItems[index];
+  let track = getLatestTrack();
   const selectedStreamProvider: StreamProviderPlugin = getSelectedStreamProvider(getState);
 
   const oldStreamData = track.streams.find(stream => stream.id === streamId);
@@ -151,6 +161,7 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
   if (!streamData) {
     dispatch(removeFromQueue(index));
   } else {
+    track = getLatestTrack();
     dispatch(
       updateQueueItem({
         ...track,
@@ -167,79 +178,107 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
   }
 };
 
+const verifyStreamWithService = async (
+  track: QueueItem,
+  streamData: TrackStream[],
+  selectedStreamProvider: StreamProvider,
+  settings: RootState['settings']
+): Promise<TrackStream[]> => {
+  if (!settings.useStreamVerification) {
+    return streamData;
+  }
+
+  try {
+    const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+    const topStream = await StreamMappingsService.getTopStream(
+      getTrackArtist(track),
+      getTrackTitle(track),
+      selectedStreamProvider.sourceName,
+      settings?.userId
+    );
+
+    if (!isSuccessCacheEntry(topStream)) {
+      return streamData;
+    }
+
+    const verifiedStream = streamData.find(stream => stream.id === topStream.value.stream_id);
+    const otherStreams = streamData.filter(stream => stream.id !== topStream.value.stream_id);
+    return verifiedStream ? [verifiedStream, ...otherStreams] : streamData;
+  } catch (e) {
+    logger.error('Failed to get top stream', e);
+    return streamData;
+  }
+};
+
+const resolveStreams = async (
+  track: QueueItem,
+  selectedStreamProvider: StreamProvider
+): Promise<TrackStream[]> => {
+  const streamData = await getTrackStreams(track, selectedStreamProvider);
+  
+  if (streamData.length === 0) {
+    return [];
+  }
+  
+  return resolveSourceUrlForTheFirstStream(streamData, selectedStreamProvider);
+};
+
 export const findStreamsForTrack = (index: number) => async (dispatch, getState) => {
-  const {queue, settings}: RootState = getState();
-  const track = queue.queueItems[index];
+  const getLatestTrack = () => queueSelector(getState()).queueItems[index];
+  let track = getLatestTrack();
 
-  if (track && !track.local && trackHasNoFirstStream(track)) {
-    if (!track.loading) {
-      dispatch(updateQueueItem({
-        ...track,
-        loading: true
-      }));
+  if (!track || track.local || !trackHasNoFirstStream(track)) {
+    return;
+  }
+
+  if (!track.loading) {
+    dispatch(updateQueueItem({ ...track, loading: true }));
+  }
+
+  const selectedStreamProvider = getSelectedStreamProvider(getState);
+
+  try {
+    let streamData = await resolveStreams(track, selectedStreamProvider);
+    
+    if (streamData.length === 0) {
+      dispatch(removeFromQueue(index));
+      return;
     }
-    const selectedStreamProvider = getSelectedStreamProvider(getState);
-    try {
-      let streamData: TrackStream[] = await getTrackStreams(track, selectedStreamProvider);
 
-      if (settings.useStreamVerification) {
-        try {
-          const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
-          const topStream = await StreamMappingsService.getTopStream(
-            track.artist, 
-            track.name,
-            selectedStreamProvider.sourceName,
-            settings?.userId
-          );
-            // Use the top stream ID and put it at the top of the list
-          if (isSuccessCacheEntry(topStream)) {
-            streamData = [
-              streamData.find(stream => stream.id === topStream.value.stream_id),          
-              ...streamData.filter(stream => stream.id !== topStream.value.stream_id)
-            ];
-          }
-        } catch (e) {
-          logger.error('Failed to get top stream', e);
-        }
-      }
+    const settings = getState().settings;
+    streamData = await verifyStreamWithService(track, streamData, selectedStreamProvider, settings);
 
-      if (streamData?.length === 0) {
-        dispatch(removeFromQueue(index));
-      } else {
-        streamData = await resolveSourceUrlForTheFirstStream(streamData, selectedStreamProvider);
-
-        const firstStream = streamData[0];
-        if (!firstStream?.stream) {
-          const remainingStreams = streamData.slice(1);
-          removeFirstStream(track, index, remainingStreams, dispatch);
-          return;
-        }
-
-        dispatch(
-          updateQueueItem({
-            ...track,
-            loading: false,
-            error: false,
-            streams: streamData
-          })
-        );
-      }
-    } catch (e) {
-      logger.error(
-        `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}."`
-      );
-      logger.error(e);
-      dispatch(
-        updateQueueItem({
-          ...track,
-          loading: false,
-          error: {
-            message: `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName}.`,
-            details: e.message
-          }
-        })
-      );
+    const firstStream = streamData[0];
+    if (!firstStream?.stream) {
+      const remainingStreams = streamData.slice(1);
+      track = getLatestTrack();
+      removeFirstStream(track, index, remainingStreams, dispatch);
+      return;
     }
+
+    track = getLatestTrack();
+    dispatch(updateQueueItem({
+      ...track,
+      loading: false,
+      error: false,
+      streams: streamData
+    }));
+  } catch (e) {
+    logger.error(
+      `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}". Retrying...`
+    );
+    logger.error(e);
+    
+    track = getLatestTrack();
+    dispatch(updateQueueItem({
+      ...track,
+      loading: false,
+      streamLookupRetries: (track.streamLookupRetries ?? 0) + 1,
+      error: {
+        message: 'Stream lookup error. Retrying...',
+        details: e.message
+      }
+    }));
   }
 };
 

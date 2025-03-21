@@ -293,44 +293,81 @@ if (isMain) {
   const rendererLogger = new NuclearLogger({ name: 'renderer' });
 
   if (ipcMain.listenerCount(logChannel) === 0) {
-    ipcMain.on(logChannel, (_event: IpcMainEvent, data: LogArgs) => {
-      // Forward to all renderer windows
-      BrowserWindow.getAllWindows().forEach(win => {
-        win.webContents.send(logChannel, data);
-      });
+    ipcMain.on(logChannel, (event: IpcMainEvent, data: LogArgs) => {
+      // Forward to all renderer windows except sender
+      BrowserWindow.getAllWindows()
+        .filter(win => win.webContents.id !== event.sender.id)
+        .forEach(win => {
+          win.webContents.send(logChannel, data);
+        });
       rendererLogger.log(...data);
     });
   }
 
   if (ipcMain.listenerCount(warnChannel) === 0) {
-    ipcMain.on(warnChannel, (_event: IpcMainEvent, data: LogArgs) => {
-      BrowserWindow.getAllWindows().forEach(win => {
-        win.webContents.send(warnChannel, data);
-      });
+    ipcMain.on(warnChannel, (event: IpcMainEvent, data: LogArgs) => {
+      BrowserWindow.getAllWindows()
+        .filter(win => win.webContents.id !== event.sender.id)
+        .forEach(win => {
+          win.webContents.send(warnChannel, data);
+        });
       rendererLogger.warn(...data);
     });
   }
 
   if (ipcMain.listenerCount(errorChannel) === 0) {
-    ipcMain.on(errorChannel, (_event: IpcMainEvent, data: LogArgs) => {
-      BrowserWindow.getAllWindows().forEach(win => {
-        win.webContents.send(errorChannel, data);
-      });
+    ipcMain.on(errorChannel, (event: IpcMainEvent, data: LogArgs) => {
+      BrowserWindow.getAllWindows()
+        .filter(win => win.webContents.id !== event.sender.id)
+        .forEach(win => {
+          win.webContents.send(errorChannel, data);
+        });
       rendererLogger.error(...data);
     });
   }
 } else if (isRenderer) {
+  // Add flag to prevent re-logging messages that originated from this renderer
+  let isLoggingInProgress = false;
+
   ipcRenderer.on(logChannel, (_event: IpcRendererEvent, data: LogArgs) => {
-    logger.log(...data);
+    if (!isLoggingInProgress) {
+      logger.log(...data);
+    }
   });
 
   ipcRenderer.on(warnChannel, (_event: IpcRendererEvent, data: LogArgs) => {
-    logger.warn(...data);
+    if (!isLoggingInProgress) {
+      logger.warn(...data);
+    }
   });
 
   ipcRenderer.on(errorChannel, (_event: IpcRendererEvent, data: LogArgs) => {
-    logger.error(...data);
+    if (!isLoggingInProgress) {
+      logger.error(...data);
+    }
   });
+
+  const originalLog = logger.log.bind(logger);
+  const originalWarn = logger.warn.bind(logger);
+  const originalError = logger.error.bind(logger);
+
+  logger.log = (...args: LogArgs) => {
+    isLoggingInProgress = true;
+    originalLog(...args);
+    isLoggingInProgress = false;
+  };
+
+  logger.warn = (...args: LogArgs) => {
+    isLoggingInProgress = true;
+    originalWarn(...args);
+    isLoggingInProgress = false;
+  };
+
+  logger.error = (...args: LogArgs) => {
+    isLoggingInProgress = true;
+    originalError(...args);
+    isLoggingInProgress = false;
+  };
 
   ipcRenderer.on(updateChannel, (_event: IpcRendererEvent, flag: boolean) => {
     if (flag) {

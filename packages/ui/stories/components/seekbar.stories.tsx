@@ -60,7 +60,7 @@ export const WithSkippableSegments = () => <div style={{
           duration: 100
         }]
       }],
-      currentSong: 0
+      currentTrack: 0
     }}
     segmentPopupMessage='Non-music'
   />

@@ -26,7 +26,7 @@ const initialState: () => PlayerReducerState = () => {
     playbackStreamLoading: false,
     playbackProgress: 0,
     seek: 0,
-    volume: getOption('volume'),
+    volume: getOption('volume') as number,
     muted: false,
     playbackRate: 2
   });

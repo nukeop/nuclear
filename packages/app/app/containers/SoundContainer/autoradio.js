@@ -68,13 +68,13 @@ let props;
  */
 export function addAutoradioTrackToQueue (callProps) {
   props = callProps;
-  const currentSong = props.queue.queueItems[props.queue.currentSong];
+  const currentTrack = props.queue.queueItems[props.queue.currentTrack];
   computeParameters(props.settings.autoradioCraziness);
 
   return getSimilarTracksToQueue(autoradioImpactingTrackNumber)
     .then(track => {
       if (track === null) {
-        track = getNewTrack('artist', currentSong);
+        track = getNewTrack('artist', currentTrack);
       }
       return track;
     })
@@ -92,7 +92,7 @@ export function addAutoradioTrackToQueue (callProps) {
 function getSimilarTracksToQueue (number) {
   const similarTracksPromises = [];
 
-  for (let i = props.queue.currentSong; i >= Math.max(0, props.queue.currentSong - number); i--) {
+  for (let i = props.queue.currentTrack; i >= Math.max(0, props.queue.currentTrack - number); i--) {
     similarTracksPromises.push(getSimilarTracks(props.queue.queueItems[i], similarTracksResultsLimit));
   }
   return Promise.all(similarTracksPromises)
@@ -155,8 +155,8 @@ function isTrackInQueue (track) {
   return false;
 }
 
-function getSimilarTracks (currentSong, limit = 100) {
-  return lastfm.getSimilarTracks(currentSong.artist, currentSong.name, limit)
+function getSimilarTracks (currentTrack, limit = 100) {
+  return lastfm.getSimilarTracks(currentTrack.artist, currentTrack.name, limit)
     .then(tracks => tracks.json())
     .then(trackJson => {
       return _.get(trackJson, 'similartracks.track', []);
