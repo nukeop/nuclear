@@ -3,6 +3,7 @@ import React from 'react';
 import { DraggableChildrenFn } from 'react-beautiful-dnd';
 import { QueueItem as QueueItemType, QueueStore } from '../../../reducers/queue';
 import { SettingsState } from '../../../reducers/settings';
+import { useTranslation } from 'react-i18next';
 
 export type QueueItemCloneProps = {
   settings: SettingsState;
@@ -10,6 +11,7 @@ export type QueueItemCloneProps = {
   streamLookupRetriesLimit: number;
   onSelectTrack: (index: number) => () => void;
   onRemoveTrack: (index: number) => () => void;
+  onReloadTrack: (index: number) => () => void;
   formatTrackDuration: (track: QueueItemType) => string;
 }
 
@@ -19,20 +21,29 @@ export const QueueItemClone: (props: QueueItemCloneProps) => DraggableChildrenFn
   streamLookupRetriesLimit,
   onSelectTrack,
   onRemoveTrack,
+  onReloadTrack,
   formatTrackDuration
-}) => (provided, snapshot, rubric) => <div
-  ref={provided.innerRef}
-  {...provided.draggableProps}
-  {...provided.dragHandleProps}
->
-  <QueueItem
-    isCompact={settings.compactQueueBar as boolean}
-    isCurrent={queue.currentTrack === rubric.source.index}
-    track={queue.queueItems[rubric.source.index]}
-    streamLookupRetries={queue.queueItems[rubric.source.index].streamLookupRetries}
-    streamLookupRetriesLimit={streamLookupRetriesLimit}
-    onSelect={onSelectTrack(rubric.source.index)}
-    onRemove={onRemoveTrack(rubric.source.index)}
-    duration={formatTrackDuration(queue.queueItems[rubric.source.index])}
-  />
-</div>;
+}) => {
+  const { t } = useTranslation('queue');
+
+  return (provided, snapshot, rubric) => <div
+    ref={provided.innerRef}
+    {...provided.draggableProps}
+    {...provided.dragHandleProps}
+  >
+    <QueueItem
+      isCompact={settings.compactQueueBar as boolean}
+      isCurrent={queue.currentTrack === rubric.source.index}
+      track={queue.queueItems[rubric.source.index]}
+      streamLookupRetries={queue.queueItems[rubric.source.index].streamLookupRetries}
+      streamLookupRetriesLimit={streamLookupRetriesLimit}
+      onSelect={onSelectTrack(rubric.source.index)}
+      onRemove={onRemoveTrack(rubric.source.index)}
+      onReload={onReloadTrack(rubric.source.index)}
+      duration={formatTrackDuration(queue.queueItems[rubric.source.index])}
+      strings={{
+        locked: t('locked')
+      }}
+    />
+  </div>;
+};

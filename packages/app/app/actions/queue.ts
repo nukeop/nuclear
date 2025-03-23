@@ -150,6 +150,18 @@ export const addToQueue =
       }
     };
 
+export const reloadTrack = (index: number) => async (dispatch, getState) => {
+  const track = queueSelector(getState()).queueItems[index];
+  dispatch(
+    updateQueueItem({
+      ...track,
+      error: false,
+      streamLookupRetries: 0,
+      streams: []
+    })
+  );
+};
+
 export const selectNewStream = (index: number, streamId: string) => async (dispatch, getState) => {
   const getLatestTrack = () => queueSelector(getState()).queueItems[index];
   let track = getLatestTrack();
@@ -159,6 +171,7 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
   const streamData = await selectedStreamProvider.getStreamForId(streamId);
 
   if (!streamData) {
+    logger.error(`No stream data found for ${track.artist} - ${track.name}, streamId: ${streamId}`);
     dispatch(removeFromQueue(index));
   } else {
     track = getLatestTrack();
@@ -312,7 +325,7 @@ function removeFirstStream(track: QueueItem, trackIndex: number, remainingStream
     // no more streams are available
     dispatch(removeFromQueue(trackIndex));
   } else {
-    // remove the first (unavailable) stream
+  // remove the first (unavailable) stream
     dispatch(updateQueueItem({
       ...track,
       loading: true,

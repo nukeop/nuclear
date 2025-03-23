@@ -13,7 +13,8 @@ import {
   selectNewStream,
   selectSong,
   removeFromQueue,
-  clearQueue
+  clearQueue,
+  reloadTrack
 } from '../../actions/queue';
 import { addToDownloads } from '../../actions/downloads';
 import { info, success } from '../../actions/toasts';
@@ -39,6 +40,7 @@ export type PlayQueueActions = {
   addPlaylist: (tracks: PlaylistTrack[], name: string) => void;
   updatePlaylist: (playlist: Playlist) => void;
   toggleOption: typeof toggleOption;
+  reloadTrack: (index: number) => void;
 }
 
 const PlayQueueContainer: React.FC = () => {
@@ -62,7 +64,8 @@ const PlayQueueContainer: React.FC = () => {
     addFavoriteTrack: (track) => dispatch(addFavoriteTrack(track)),
     addPlaylist: (tracks, name) => dispatch(addPlaylist(tracks, name)),
     updatePlaylist: (playlist) => dispatch(updatePlaylist(playlist)),
-    toggleOption: (option, value) => dispatch(toggleOption(option, value))
+    toggleOption: (option, value) => dispatch(toggleOption(option, value)),
+    reloadTrack: (index) => dispatch(reloadTrack(index))
   }), [dispatch]);
 
   return (

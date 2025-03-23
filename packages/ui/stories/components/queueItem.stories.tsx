@@ -1,15 +1,18 @@
 import React from 'react';
 
 import { QueueItem } from '../..';
-// eslint-disable-next-line node/no-missing-import
 import { formatDuration } from '../../lib/utils';
+import { TrackStream } from '../../lib/types';
 
 const commonProps = {
   track: {
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
     name: 'Test track name',
     artist: 'Test artist',
-    stream: {}
+    streams: [{
+      id: '123',
+      source: 'test'
+    } satisfies TrackStream]
   },
   isCurrent: false,
   isCompact: false,
@@ -20,6 +23,14 @@ const commonProps = {
   },
   onRemove: () => {
     alert('Item removed from queue');
+  },
+  onReload: () => {
+    alert('Item reloaded');
+  },
+  streamLookupRetries: 0,
+  streamLookupRetriesLimit: 3,
+  strings: {
+    locked: 'Stream lookup failed. Click to start over.'
   }
 };
 
@@ -36,7 +47,11 @@ export const Basic = () => {
         track={{
           thumbnail: 'https://i.imgur.com/aVNWf3j.jpg',
           name: 'Small thumbnail',
-          artist: 'Test artist'
+          artist: 'Test artist',
+          streams: [{
+            id: '123',
+            source: 'test'
+          } satisfies TrackStream]
         }}
       />
     </div>
@@ -82,6 +97,14 @@ export const Compact = () => (
       <QueueItem {...commonProps} isCompact 
         track={{...commonProps.track, error: { message: 'An error has occurred.', details: 'Error details are available here.' }}}
       />
+      <QueueItem
+        {...commonProps}
+        isCompact
+        track={{...commonProps.track
+        }}
+        streamLookupRetries={3}
+        streamLookupRetriesLimit={3}
+      />
     </div>
   </div>
 );
@@ -115,6 +138,17 @@ export const Error = () => (
     />
     <QueueItem {...commonProps}
       track={{...commonProps.track, error: { message: 'An error has occurred. This is a longer message containing several lines that will be truncated.', details: '' }}}
+    />
+  </div>
+);
+
+export const Locked = () => (
+  <div className='bg'>
+    <QueueItem {...commonProps}
+      track={{...commonProps.track
+      }}
+      streamLookupRetries={3}
+      streamLookupRetriesLimit={3}
     />
   </div>
 );

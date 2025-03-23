@@ -62,7 +62,8 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     addFavoriteTrack,
     addPlaylist,
     updatePlaylist,
-    toggleOption
+    toggleOption,
+    reloadTrack
   },
   playlists,
   plugins,
@@ -148,6 +149,9 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     setOpenPopupQueueId(null);
   };
 
+  // When a track is reloaded after it gets locked for subsequent stream lookup failures
+  const onReloadTrack = (index: number) => () => reloadTrack(index);
+
   const QueueRow = React.memo(({ data, index, style }: QueueRowProps) => {
     const item = data.queue.queueItems[index] as QueueItemType;
     return (
@@ -178,6 +182,10 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                     streamLookupRetriesLimit={streamLookupRetriesLimit}
                     onSelect={onSelectTrack(index)}
                     onRemove={onRemoveTrack(index)}
+                    onReload={onReloadTrack(index)}
+                    strings={{
+                      locked: t('locked')
+                    }}
                   />
                 }
                 isQueueItemCompact={data.settings.compactQueueBar as boolean}
@@ -229,6 +237,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
             streamLookupRetriesLimit,
             onSelectTrack,
             onRemoveTrack,
+            onReloadTrack,
             formatTrackDuration: formatTrackDuration(t)
           })}
         >

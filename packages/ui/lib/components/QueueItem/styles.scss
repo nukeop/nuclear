@@ -12,6 +12,7 @@
   margin-top: 0;
   overflow: hidden;
   background-color: rgba(common.$background2, 0.5);
+  user-select: none;
 
   .thumbnail {
     @include common.center;
@@ -29,6 +30,18 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .lock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      i {
+        margin: 0;
+      }
     }
   }
 
@@ -58,12 +71,17 @@
     }
   }
 
-  &.current_song {
+  &.current_track {
     background: rgba(common.$green, 0.3);
   }
 
   &.error {
     background: rgba(common.$red, 0.8);
+  }
+
+  &.locked {
+    cursor: pointer;
+    background: rgba(common.$white, 0.3);
   }
 
   &.compact {
@@ -119,11 +137,6 @@
     }
 
     .error_message {
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
       width: 100%;
     }
   }

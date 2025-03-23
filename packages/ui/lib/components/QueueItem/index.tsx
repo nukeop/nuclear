@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
-import { isEmpty } from 'lodash';
+import { has, isEmpty } from 'lodash';
 
 import Loader from '../Loader';
 import common from '../../common.scss';
@@ -12,6 +12,10 @@ import { getThumbnail, getTrackArtist, getTrackTitle } from '../../utils';
 import { Track } from '../../types';
 import Img from 'react-image';
 
+type QueueItemStrings = {
+  locked: string
+}
+
 export type QueueItemProps = {
   isCurrent: boolean;
   isCompact: boolean;
@@ -21,6 +25,12 @@ export type QueueItemProps = {
   streamLookupRetriesLimit: number;
   onSelect: () => void;
   onRemove: () => void;
+  onReload: () => void;
+  strings: QueueItemStrings;
+};
+
+const isErrorWithMessage = (error: Track['error']): error is { message: string; details: string } => {
+  return Boolean(error) && has(error, 'message') && Boolean(error.message);
 };
 
 export const QueueItem: React.FC<QueueItemProps> = ({
@@ -31,40 +41,61 @@ export const QueueItem: React.FC<QueueItemProps> = ({
   streamLookupRetries,
   streamLookupRetriesLimit,
   onRemove,
-  onSelect
+  onSelect,
+  onReload,
+  strings
 }) => {
+  const isLocked = streamLookupRetries >= streamLookupRetriesLimit;
+
   return (
     <div
       className={cx(
         common.nuclear,
         styles.queue_item,
-        { [`${styles.current_song}`]: isCurrent },
+        { [`${styles.current_track}`]: isCurrent },
         { [`${styles.error}`]: Boolean(track.error) },
+        { [`${styles.locked}`]: isLocked },
         { [`${styles.compact}`]: isCompact }
       )}
       onDoubleClick={onSelect}
+      onClick={isLocked && onReload}
     >
       <div className={styles.thumbnail}>
-        {track.loading
-          ? <Loader type='small' className={isCompact && styles.compact_loader} />
-          : (
-            <Img               
-              src={getThumbnail(track) ?? artPlaceholder}
-              unloader={<img src={artPlaceholder}/>}
-            />
-          )}
+        {
+          track.loading && 
+          <Loader type='small' className={isCompact && styles.compact_loader} />
+        }
+
+        {
+          isLocked && 
+          <div className={styles.lock}>
+            <Icon name='lock' size={isCompact ? 'small' : 'big'} className={styles.lock_icon} />
+          </div>
+        }
+
+        {
+          !track.loading && !isLocked &&
+          <Img               
+            src={getThumbnail(track) ?? artPlaceholder}
+            unloader={<img src={artPlaceholder}/>}
+          />
+        } 
 
         <div
           data-testid='queue-item-remove'
           className={styles.thumbnail_overlay}
-          onClick={onRemove}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onRemove();
+          }}
         >
           <Icon name='trash alternate outline' size={isCompact ? 'large' : 'big'} />
         </div>
       </div>
 
       {
-        !track.error &&
+        !track.error && !isLocked && !isCompact &&
         <>
           <div className={styles.item_info_container}>
             <div className={styles.name_container}>
@@ -77,6 +108,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
 
           {
             !track.loading &&
+            !isLocked &&
               !isEmpty(track.streams) &&
               <div className={styles.item_duration_container}>
                 <div className={styles.item_duration}>
@@ -88,22 +120,17 @@ export const QueueItem: React.FC<QueueItemProps> = ({
       }
 
       {
-        streamLookupRetries > 0 &&
-        streamLookupRetries < streamLookupRetriesLimit &&
-        <div className={styles.retry_overlay}>
-          <div className={styles.retry_message}>
-            {`Retrying stream lookup (${streamLookupRetries}/${streamLookupRetriesLimit})`}
-          </div>
+        isErrorWithMessage(track.error) && !isCompact && <div className={styles.error_overlay}>
+          <div className={styles.error_message}>{track.error && track.error.message}</div>
         </div>
       }
 
       {
-        streamLookupRetries >= streamLookupRetriesLimit &&
+        isLocked && !isCompact &&
         <div className={styles.error_overlay}>
-          <div className={styles.error_icon}>
-            <Icon name='lock' size='big' />
+          <div className={styles.error_message}>
+            {strings.locked}
           </div>
-          <div className={styles.error_message}>Failed to load stream.</div>
         </div>
       }
     </div>
