@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 export type QueueItemCloneProps = {
   settings: SettingsState;
   queue: QueueStore;
-  streamLookupRetriesLimit: number;
   onSelectTrack: (index: number) => () => void;
   onRemoveTrack: (index: number) => () => void;
   onReloadTrack: (index: number) => () => void;
@@ -18,7 +17,6 @@ export type QueueItemCloneProps = {
 export const QueueItemClone: (props: QueueItemCloneProps) => DraggableChildrenFn = ({
   settings,
   queue,
-  streamLookupRetriesLimit,
   onSelectTrack,
   onRemoveTrack,
   onReloadTrack,
@@ -35,8 +33,6 @@ export const QueueItemClone: (props: QueueItemCloneProps) => DraggableChildrenFn
       isCompact={settings.compactQueueBar as boolean}
       isCurrent={queue.currentTrack === rubric.source.index}
       track={queue.queueItems[rubric.source.index]}
-      streamLookupRetries={queue.queueItems[rubric.source.index].streamLookupRetries}
-      streamLookupRetriesLimit={streamLookupRetriesLimit}
       onSelect={onSelectTrack(rubric.source.index)}
       onRemove={onRemoveTrack(rubric.source.index)}
       onReload={onReloadTrack(rubric.source.index)}

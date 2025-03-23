@@ -21,8 +21,6 @@ export type QueueItemProps = {
   isCompact: boolean;
   track: Track;
   duration: string;
-  streamLookupRetries: number;
-  streamLookupRetriesLimit: number;
   onSelect: () => void;
   onRemove: () => void;
   onReload: () => void;
@@ -38,15 +36,11 @@ export const QueueItem: React.FC<QueueItemProps> = ({
   isCompact,
   track,
   duration,
-  streamLookupRetries,
-  streamLookupRetriesLimit,
   onRemove,
   onSelect,
   onReload,
   strings
 }) => {
-  const isLocked = streamLookupRetries >= streamLookupRetriesLimit;
-
   return (
     <div
       className={cx(
@@ -54,11 +48,9 @@ export const QueueItem: React.FC<QueueItemProps> = ({
         styles.queue_item,
         { [`${styles.current_track}`]: isCurrent },
         { [`${styles.error}`]: Boolean(track.error) },
-        { [`${styles.locked}`]: isLocked },
         { [`${styles.compact}`]: isCompact }
       )}
       onDoubleClick={onSelect}
-      onClick={isLocked && onReload}
     >
       <div className={styles.thumbnail}>
         {
@@ -67,14 +59,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
         }
 
         {
-          isLocked && 
-          <div className={styles.lock}>
-            <Icon name='lock' size={isCompact ? 'small' : 'big'} className={styles.lock_icon} />
-          </div>
-        }
-
-        {
-          !track.loading && !isLocked &&
+          !track.loading &&
           <Img               
             src={getThumbnail(track) ?? artPlaceholder}
             unloader={<img src={artPlaceholder}/>}
@@ -95,7 +80,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
       </div>
 
       {
-        !track.error && !isLocked && !isCompact &&
+        !track.error && !isCompact &&
         <>
           <div className={styles.item_info_container}>
             <div className={styles.name_container}>
@@ -108,7 +93,6 @@ export const QueueItem: React.FC<QueueItemProps> = ({
 
           {
             !track.loading &&
-            !isLocked &&
               !isEmpty(track.streams) &&
               <div className={styles.item_duration_container}>
                 <div className={styles.item_duration}>
@@ -126,7 +110,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
       }
 
       {
-        isLocked && !isCompact &&
+        !isCompact &&
         <div className={styles.error_overlay}>
           <div className={styles.error_message}>
             {strings.locked}

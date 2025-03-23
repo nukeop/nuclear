@@ -27,7 +27,6 @@ export type QueueItem = {
         message: string;
         details: string;
       };
-  streamLookupRetries?: number;
   local?: boolean;
   artist: string | { name: string };
   name: string;

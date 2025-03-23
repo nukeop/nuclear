@@ -22,7 +22,6 @@ import { StreamVerificationContainer } from '../../containers/StreamVerification
 
 import styles from './styles.scss';
 import { QueueItemClone } from './QueueItemClone';
-import { streamLookupRetriesLimit } from '../../actions/queue';
 
 type PlayQueueProps = {
   actions: PlayQueueActions;
@@ -178,8 +177,6 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                     isCurrent={data.queue.currentTrack === index}
                     track={item}
                     duration={formatTrackDuration(t)(item)}
-                    streamLookupRetries={item.streamLookupRetries}
-                    streamLookupRetriesLimit={streamLookupRetriesLimit}
                     onSelect={onSelectTrack(index)}
                     onRemove={onRemoveTrack(index)}
                     onReload={onReloadTrack(index)}
@@ -234,7 +231,6 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
           renderClone={QueueItemClone({
             settings,
             queue,
-            streamLookupRetriesLimit,
             onSelectTrack,
             onRemoveTrack,
             onReloadTrack,

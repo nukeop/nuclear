@@ -27,8 +27,6 @@ const commonProps = {
   onReload: () => {
     alert('Item reloaded');
   },
-  streamLookupRetries: 0,
-  streamLookupRetriesLimit: 3,
   strings: {
     locked: 'Stream lookup failed. Click to start over.'
   }
@@ -97,14 +95,6 @@ export const Compact = () => (
       <QueueItem {...commonProps} isCompact 
         track={{...commonProps.track, error: { message: 'An error has occurred.', details: 'Error details are available here.' }}}
       />
-      <QueueItem
-        {...commonProps}
-        isCompact
-        track={{...commonProps.track
-        }}
-        streamLookupRetries={3}
-        streamLookupRetriesLimit={3}
-      />
     </div>
   </div>
 );
@@ -138,17 +128,6 @@ export const Error = () => (
     />
     <QueueItem {...commonProps}
       track={{...commonProps.track, error: { message: 'An error has occurred. This is a longer message containing several lines that will be truncated.', details: '' }}}
-    />
-  </div>
-);
-
-export const Locked = () => (
-  <div className='bg'>
-    <QueueItem {...commonProps}
-      track={{...commonProps.track
-      }}
-      streamLookupRetries={3}
-      streamLookupRetriesLimit={3}
     />
   </div>
 );

@@ -21,8 +21,6 @@ type LocalTrack = Track & {
   local: true;
 };
 
-export const streamLookupRetriesLimit = 3;
-
 const isLocalTrack = (track: Track): track is LocalTrack => track.local;
 
 const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): QueueItem => {
@@ -156,7 +154,6 @@ export const reloadTrack = (index: number) => async (dispatch, getState) => {
     updateQueueItem({
       ...track,
       error: false,
-      streamLookupRetries: 0,
       streams: []
     })
   );
@@ -278,7 +275,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
     }));
   } catch (e) {
     logger.error(
-      `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}". Retrying...`
+      `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}".`
     );
     logger.error(e);
     
@@ -286,9 +283,8 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
     dispatch(updateQueueItem({
       ...track,
       loading: false,
-      streamLookupRetries: (track.streamLookupRetries ?? 0) + 1,
       error: {
-        message: 'Stream lookup error. Retrying...',
+        message: 'Stream lookup error.',
         details: e.message
       }
     }));

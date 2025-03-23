@@ -19,7 +19,6 @@ import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
 import { QueueItem, QueueStore } from '../../reducers/queue';
-import { streamLookupRetriesLimit } from '../../actions/queue';
 
 export const useSeekbarProps = () => {
   const dispatch = useDispatch();
@@ -268,8 +267,7 @@ export const useStreamLookup = () => {
     if (
       currentTrack &&
       !currentTrack.loading &&
-      queueActions.trackHasNoFirstStream(currentTrack) &&
-      (currentTrack.streamLookupRetries === undefined || currentTrack.streamLookupRetries < 3)
+      queueActions.trackHasNoFirstStream(currentTrack)
     ) {
       dispatch(queueActions.findStreamsForTrack(queue.currentTrack));
       return;
@@ -280,8 +278,7 @@ export const useStreamLookup = () => {
       const nextTrackWithNoStream = queue.queueItems.findIndex((item, index) => 
         index !== queue.currentTrack &&
         !item.loading && 
-        isEmpty(item.streams) && 
-        (item.streamLookupRetries < streamLookupRetriesLimit || item.streamLookupRetries === undefined)
+        isEmpty(item.streams)
       );
       
       if (nextTrackWithNoStream !== -1) {
@@ -294,7 +291,6 @@ export const useStreamLookup = () => {
 export const shouldSearchForStreams = (queue: QueueStore): boolean => {
   return queue.queueItems.length > 0 && !queue.queueItems.every(item => 
     item.local || 
-    (item.streams?.[0]?.stream) ||
-    (item.error && item.streamLookupRetries !== undefined && item.streamLookupRetries >= streamLookupRetriesLimit)
+    (item.streams?.[0]?.stream)
   );
 };
