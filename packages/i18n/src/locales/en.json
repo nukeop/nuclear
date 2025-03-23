@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "Input playlist name:",
     "play-now": "Play now",
-    "locked": "Stream lookup failed. Click to start over."
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Album",

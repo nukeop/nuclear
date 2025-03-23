@@ -26,9 +26,6 @@ const commonProps = {
   },
   onReload: () => {
     alert('Item reloaded');
-  },
-  strings: {
-    locked: 'Stream lookup failed. Click to start over.'
   }
 };
 

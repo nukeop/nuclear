@@ -252,6 +252,7 @@ export const useVolumeControlsProps = () => {
 export const useStreamLookup = () => {
   const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
+  const { t } = useTranslation('queue');
 
   useEffect(() => {
     if (!shouldSearchForStreams(queue)) {
@@ -269,7 +270,7 @@ export const useStreamLookup = () => {
       !currentTrack.loading &&
       queueActions.trackHasNoFirstStream(currentTrack)
     ) {
-      dispatch(queueActions.findStreamsForTrack(queue.currentTrack));
+      dispatch(queueActions.findStreamsForTrack(queue.currentTrack, t('stream-lookup-error')));
       return;
     }
     
@@ -282,7 +283,7 @@ export const useStreamLookup = () => {
       );
       
       if (nextTrackWithNoStream !== -1) {
-        dispatch(queueActions.findStreamsForTrack(nextTrackWithNoStream));
+        dispatch(queueActions.findStreamsForTrack(nextTrackWithNoStream, t('stream-lookup-error')));
       }
     }
   }, [queue.currentTrack, queue.queueItems]);
@@ -291,6 +292,8 @@ export const useStreamLookup = () => {
 export const shouldSearchForStreams = (queue: QueueStore): boolean => {
   return queue.queueItems.length > 0 && !queue.queueItems.every(item => 
     item.local || 
+    item.loading ||
+    item.error ||
     (item.streams?.[0]?.stream)
   );
 };

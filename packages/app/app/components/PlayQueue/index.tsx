@@ -180,9 +180,6 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                     onSelect={onSelectTrack(index)}
                     onRemove={onRemoveTrack(index)}
                     onReload={onReloadTrack(index)}
-                    strings={{
-                      locked: t('locked')
-                    }}
                   />
                 }
                 isQueueItemCompact={data.settings.compactQueueBar as boolean}

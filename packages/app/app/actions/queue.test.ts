@@ -39,7 +39,7 @@ describe('Queue actions tests', () => {
       });
 
       const dispatchOperation = jest.fn();
-      const findStreamsForTrackOperation = QueueOperations.findStreamsForTrack(trackIndex);
+      const findStreamsForTrackOperation = QueueOperations.findStreamsForTrack(trackIndex, 'stream lookup error');
       findStreamsForTrackOperation(dispatchOperation, stateResolver)
         .then(() => {
           // The track without streams should have been removed from the queue.

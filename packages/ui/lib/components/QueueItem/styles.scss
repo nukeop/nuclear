@@ -79,11 +79,6 @@
     background: rgba(common.$red, 0.8);
   }
 
-  &.locked {
-    cursor: pointer;
-    background: rgba(common.$white, 0.3);
-  }
-
   &.compact {
     width: auto;
     height: auto;

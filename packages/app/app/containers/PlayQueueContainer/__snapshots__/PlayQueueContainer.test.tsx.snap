@@ -578,7 +578,7 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
               data-testid="queue-popup-trigger-uuid1"
             >
               <div
-                class="nuclear queue_item current_song"
+                class="nuclear queue_item current_track"
               >
                 <div
                   class="thumbnail"

@@ -12,10 +12,6 @@ import { getThumbnail, getTrackArtist, getTrackTitle } from '../../utils';
 import { Track } from '../../types';
 import Img from 'react-image';
 
-type QueueItemStrings = {
-  locked: string
-}
-
 export type QueueItemProps = {
   isCurrent: boolean;
   isCompact: boolean;
@@ -24,7 +20,6 @@ export type QueueItemProps = {
   onSelect: () => void;
   onRemove: () => void;
   onReload: () => void;
-  strings: QueueItemStrings;
 };
 
 const isErrorWithMessage = (error: Track['error']): error is { message: string; details: string } => {
@@ -38,8 +33,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
   duration,
   onRemove,
   onSelect,
-  onReload,
-  strings
+  onReload
 }) => {
   return (
     <div
@@ -51,6 +45,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
         { [`${styles.compact}`]: isCompact }
       )}
       onDoubleClick={onSelect}
+      onClick={track. error && onReload}
     >
       <div className={styles.thumbnail}>
         {
@@ -106,15 +101,6 @@ export const QueueItem: React.FC<QueueItemProps> = ({
       {
         isErrorWithMessage(track.error) && !isCompact && <div className={styles.error_overlay}>
           <div className={styles.error_message}>{track.error && track.error.message}</div>
-        </div>
-      }
-
-      {
-        !isCompact &&
-        <div className={styles.error_overlay}>
-          <div className={styles.error_message}>
-            {strings.locked}
-          </div>
         </div>
       }
     </div>

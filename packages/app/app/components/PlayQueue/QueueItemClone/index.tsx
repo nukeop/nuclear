@@ -37,9 +37,6 @@ export const QueueItemClone: (props: QueueItemCloneProps) => DraggableChildrenFn
       onRemove={onRemoveTrack(rubric.source.index)}
       onReload={onReloadTrack(rubric.source.index)}
       duration={formatTrackDuration(queue.queueItems[rubric.source.index])}
-      strings={{
-        locked: t('locked')
-      }}
     />
   </div>;
 };

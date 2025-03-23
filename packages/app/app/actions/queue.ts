@@ -233,7 +233,7 @@ const resolveStreams = async (
   return resolveSourceUrlForTheFirstStream(streamData, selectedStreamProvider);
 };
 
-export const findStreamsForTrack = (index: number) => async (dispatch, getState) => {
+export const findStreamsForTrack = (index: number, streamLookupErrorMessage: string) => async (dispatch, getState) => {
   const getLatestTrack = () => queueSelector(getState()).queueItems[index];
   let track = getLatestTrack();
 
@@ -284,7 +284,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
       ...track,
       loading: false,
       error: {
-        message: 'Stream lookup error.',
+        message: streamLookupErrorMessage,
         details: e.message
       }
     }));
