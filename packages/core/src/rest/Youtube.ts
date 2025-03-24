@@ -1,12 +1,11 @@
 import { logger } from '../../';
 import ytdl from '@distube/ytdl-core';
 import ytpl from '@distube/ytpl';
-import {search, SearchVideo} from 'youtube-ext';
 
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
 import { YoutubeHeuristics } from './heuristics';
-import ytsr from '@distube/ytsr';
+import ytsr, { Video } from '@distube/ytsr';
 
 export type YoutubeResult = {
   streams: { source: string, id: string }[]
@@ -132,18 +131,18 @@ export async function trackSearch(query: StreamQuery, sourceName?: string) {
 export async function trackSearchByString(query: StreamQuery, sourceName?: string, useSponsorBlock = true): Promise<StreamData[]> {
   const terms = query.artist + ' ' + query.track;
 
-  const results = await search(terms, { filterType: 'video' });
+  const tracks = (await ytsr(terms, { safeSearch: false, type: 'video', limit: 10 })).items.filter((item) => item.isLive === false);
 
   const heuristics = new YoutubeHeuristics();
 
   const orderedTracks = heuristics.orderTracks({
-    tracks: results.videos,
+    tracks,
     artist: query.artist,
     title: query.track
   });
 
   return orderedTracks
-    .map((track) => videoToStreamData(track as SearchVideo, sourceName));
+    .map((track) => videoToStreamData(track as Video, sourceName));
 }
 
 export const getStreamForId = async (id: string, sourceName: string, useSponsorBlock = true): Promise<StreamData> => {
@@ -176,17 +175,17 @@ export const getStreamForId = async (id: string, sourceName: string, useSponsorB
   }
 };
 
-function videoToStreamData(video: SearchVideo, source: string): StreamData {
+function videoToStreamData(video: Video, source: string): StreamData {
   return {
     source,
     id: video.id,
     stream: undefined,
-    duration: parseInt(video.duration.text),
-    title: video.title,
+    duration: parseInt(video.duration),
+    title: video.name,
     thumbnail: getLargestThumbnail(video.thumbnails),
     originalUrl: video.url,
     author: {
-      name: video.channel.name,
+      name: video.author.name,
       thumbnail: getLargestThumbnail(video.thumbnails)
     }
   };
