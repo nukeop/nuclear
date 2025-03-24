@@ -7,6 +7,14 @@ import rootReducer from '../reducers';
 import syncStore from './enhancers/syncStorage';
 import ipcConnect from './middlewares/ipc';
 
+declare global {
+  interface NodeModule {
+    hot?: {
+      accept: (path: string, callback: () => void) => void;
+    };
+  }
+}
+
 export default function configureStore(initialState) {
   const composeEnhancers = process.env.NODE_ENV === 'production'
     ? compose

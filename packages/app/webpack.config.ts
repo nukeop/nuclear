@@ -246,6 +246,9 @@ module.exports = (env) => {
       static: {
         publicPath: '/'
       },
+      client: {
+        overlay: false
+      },
       watchFiles: ['../../packages/**/*.{js,jsx,ts,tsx}'],
       allowedHosts: 'all'
     };
