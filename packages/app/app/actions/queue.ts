@@ -258,7 +258,7 @@ export const findStreamsForTrack = (index: number, streamLookupErrorMessage: str
     const firstStream = streamData[0];
     if (!firstStream?.stream) {
       track = getLatestTrack();
-      removeFirstStream(track, index, dispatch);
+      removeFirstStream(track, index)(dispatch);
       return;
     }
 
@@ -276,7 +276,7 @@ export const findStreamsForTrack = (index: number, streamLookupErrorMessage: str
     logger.error(e);
     
     track = getLatestTrack();
-    removeFirstStream(track, index, dispatch);
+    removeFirstStream(track, index)(dispatch);
   }
 };
 
@@ -320,7 +320,7 @@ export function trackHasNoFirstStream(track: QueueItem): boolean {
   return isEmpty(track?.streams) || isEmpty(track.streams[0].stream);
 }
 
-export function removeFirstStream(track: QueueItem, trackIndex: number, dispatch): void {
+export const removeFirstStream = (track: QueueItem, trackIndex: number) => (dispatch) => {
   const remainingStreams = track.streams.slice(1);
   
   if (remainingStreams.length === 0) {
@@ -331,12 +331,12 @@ export function removeFirstStream(track: QueueItem, trackIndex: number, dispatch
   // remove the first (unavailable) stream
     dispatch(updateQueueItem({
       ...track,
-      loading: true,
+      loading: false,
       error: false,
       streams: remainingStreams
     }));
   }
-}
+};
 
 export function playTrack(streamProviders, item: QueueItem) {
   return (dispatch) => {

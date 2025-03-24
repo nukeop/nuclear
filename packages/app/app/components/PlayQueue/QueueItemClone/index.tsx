@@ -3,7 +3,6 @@ import React from 'react';
 import { DraggableChildrenFn } from 'react-beautiful-dnd';
 import { QueueItem as QueueItemType, QueueStore } from '../../../reducers/queue';
 import { SettingsState } from '../../../reducers/settings';
-import { useTranslation } from 'react-i18next';
 
 export type QueueItemCloneProps = {
   settings: SettingsState;
@@ -21,22 +20,17 @@ export const QueueItemClone: (props: QueueItemCloneProps) => DraggableChildrenFn
   onRemoveTrack,
   onReloadTrack,
   formatTrackDuration
-}) => {
-  const { t } = useTranslation('queue');
-
-  return (provided, snapshot, rubric) => <div
-    ref={provided.innerRef}
-    {...provided.draggableProps}
-    {...provided.dragHandleProps}
-  >
-    <QueueItem
-      isCompact={settings.compactQueueBar as boolean}
-      isCurrent={queue.currentTrack === rubric.source.index}
-      track={queue.queueItems[rubric.source.index]}
-      onSelect={onSelectTrack(rubric.source.index)}
-      onRemove={onRemoveTrack(rubric.source.index)}
-      onReload={onReloadTrack(rubric.source.index)}
-      duration={formatTrackDuration(queue.queueItems[rubric.source.index])}
-    />
-  </div>;
-};
+}) => (provided, snapshot, rubric) => <div
+  ref={provided.innerRef}
+  {...provided.draggableProps}
+  {...provided.dragHandleProps}
+>
+  <QueueItem
+    isCompact={settings.compactQueueBar as boolean}
+    isCurrent={queue.currentTrack === rubric.source.index}
+    track={queue.queueItems[rubric.source.index]}
+    onSelect={onSelectTrack(rubric.source.index)}
+    onRemove={onRemoveTrack(rubric.source.index)}
+    onReload={onReloadTrack(rubric.source.index)}
+    duration={formatTrackDuration(queue.queueItems[rubric.source.index])} />
+</div>;

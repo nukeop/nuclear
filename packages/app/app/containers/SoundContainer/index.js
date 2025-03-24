@@ -178,7 +178,7 @@ class SoundContainer extends React.Component {
   handleError(err) {
     logger.error(err.message);
     const { queue } = this.props;
-    this.props.actions.removeFromQueue(queue.currentTrack);
+    this.props.actions.removeFirstStream(queue.queueItems[queue.currentTrack], queue.currentTrack);
   }
 
   shouldComponentUpdate(nextProps) {
