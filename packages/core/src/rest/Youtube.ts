@@ -75,23 +75,22 @@ export async function handleYoutubePlaylist(url: string): Promise<YoutubeResult[
 }
 
 async function handleYoutubeVideo(url: string): Promise<YoutubeResult[]> {
-  return ytdl.getInfo(url, { agent })
-    .then(info => {
-      if (info.videoDetails) {
-        const videoDetails = info.videoDetails;
-
-        return [{
-          streams: [{ source: 'Youtube', id: videoDetails.videoId }],
-          name: videoDetails.title,
-          thumbnail: getLargestThumbnail(videoDetails.thumbnails),
-          artist: { name: videoDetails.ownerChannelName }
-        }];
-      }
-      return [];
-    })
-    .catch(function () {
-      return Promise.resolve([]);
-    });
+  try {
+    const info = await ytdl.getInfo(url, { agent });
+    if (info.videoDetails) {
+      const videoDetails = info.videoDetails;
+    
+      return [{
+        streams: [{ source: 'Youtube', id: videoDetails.videoId }],
+        name: videoDetails.title,
+        thumbnail: getLargestThumbnail(videoDetails.thumbnails),
+        artist: { name: videoDetails.ownerChannelName }
+      }];
+    }
+    return [];
+  } catch (e) {
+    return [];
+  }
 }
 
 export async function urlSearch(url: string): Promise<YoutubeResult[]> {

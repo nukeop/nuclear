@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
 import { has, isEmpty } from 'lodash';
@@ -26,7 +26,7 @@ const isErrorWithMessage = (error: Track['error']): error is { message: string; 
   return Boolean(error) && has(error, 'message') && Boolean(error.message);
 };
 
-export const QueueItem: React.FC<QueueItemProps> = ({
+export const QueueItem: React.FC<QueueItemProps> = memo(({
   isCurrent,
   isCompact,
   track,
@@ -35,6 +35,20 @@ export const QueueItem: React.FC<QueueItemProps> = ({
   onSelect,
   onReload
 }) => {
+  const handleRemove = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onRemove();
+  }, [onRemove]);
+
+  const handleReload = useCallback((e: React.MouseEvent) => {
+    if (track.error) {
+      e.preventDefault();
+      e.stopPropagation();
+      onReload();
+    }
+  }, [onReload, track.error]);
+
   return (
     <div
       className={cx(
@@ -45,7 +59,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
         { [`${styles.compact}`]: isCompact }
       )}
       onDoubleClick={onSelect}
-      onClick={track. error && onReload}
+      onClick={handleReload}
     >
       <div className={styles.thumbnail}>
         {
@@ -64,11 +78,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
         <div
           data-testid='queue-item-remove'
           className={styles.thumbnail_overlay}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onRemove();
-          }}
+          onClick={handleRemove}
         >
           <Icon name='trash alternate outline' size={isCompact ? 'large' : 'big'} />
         </div>
@@ -105,6 +115,6 @@ export const QueueItem: React.FC<QueueItemProps> = ({
       }
     </div>
   );
-};
+});
 
 export default QueueItem;

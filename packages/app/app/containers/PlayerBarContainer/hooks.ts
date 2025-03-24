@@ -278,7 +278,9 @@ export const useStreamLookup = () => {
     if (!isAnyTrackLoading) {
       const nextTrackWithNoStream = queue.queueItems.findIndex((item, index) => 
         index !== queue.currentTrack &&
+      !item.local &&
         !item.loading && 
+        !item.error &&
         isEmpty(item.streams)
       );
       

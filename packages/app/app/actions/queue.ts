@@ -16,6 +16,7 @@ import { Queue } from './actionTypes';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 import { isSuccessCacheEntry } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
 import { queue as queueSelector } from '../selectors/queue';
+import { error } from './toasts';
 
 type LocalTrack = Track & {
   local: true;
@@ -226,10 +227,6 @@ const resolveStreams = async (
 ): Promise<TrackStream[]> => {
   const streamData = await getTrackStreams(track, selectedStreamProvider);
   
-  if (streamData.length === 0) {
-    return [];
-  }
-  
   return resolveSourceUrlForTheFirstStream(streamData, selectedStreamProvider);
 };
 
@@ -260,9 +257,8 @@ export const findStreamsForTrack = (index: number, streamLookupErrorMessage: str
 
     const firstStream = streamData[0];
     if (!firstStream?.stream) {
-      const remainingStreams = streamData.slice(1);
       track = getLatestTrack();
-      removeFirstStream(track, index, remainingStreams, dispatch);
+      removeFirstStream(track, index, dispatch);
       return;
     }
 
@@ -280,14 +276,7 @@ export const findStreamsForTrack = (index: number, streamLookupErrorMessage: str
     logger.error(e);
     
     track = getLatestTrack();
-    dispatch(updateQueueItem({
-      ...track,
-      loading: false,
-      error: {
-        message: streamLookupErrorMessage,
-        details: e.message
-      }
-    }));
+    removeFirstStream(track, index, dispatch);
   }
 };
 
@@ -302,11 +291,26 @@ async function getTrackStreams(track: QueueItem, streamProvider: StreamProvider)
 }
 
 async function resolveSourceUrlForTheFirstStream(trackStreams: TrackStream[], streamProvider: StreamProvider): Promise<TrackStream[]> {
-  if (isEmpty(trackStreams[0].stream)) {
-    return [
-      await streamProvider.getStreamForId(trackStreams.find(Boolean)?.id),
-      ...trackStreams.slice(1)
-    ];
+  if (isEmpty(trackStreams)) {
+    return [];
+  }
+
+  const firstStream = trackStreams.find(Boolean);
+  if (isEmpty(firstStream.stream)) {
+    try {
+      const resolvedStream = await streamProvider.getStreamForId(firstStream.id);
+      return [
+        resolvedStream,
+        ...trackStreams.filter(stream => stream.id !== firstStream.id)
+      ];
+    } catch (e) {
+      logger.error(`Error resolving stream URL for ${firstStream.id}`, e);
+      return resolveSourceUrlForTheFirstStream(
+        trackStreams.filter(stream => stream.id !== firstStream.id),
+        streamProvider
+      );
+    }
+
   }
   // The stream URL might already be resolved, for example for a previously played track.
   return trackStreams;
@@ -316,10 +320,13 @@ export function trackHasNoFirstStream(track: QueueItem): boolean {
   return isEmpty(track?.streams) || isEmpty(track.streams[0].stream);
 }
 
-function removeFirstStream(track: QueueItem, trackIndex: number, remainingStreams: TrackStream[], dispatch): void {
+export function removeFirstStream(track: QueueItem, trackIndex: number, dispatch): void {
+  const remainingStreams = track.streams.slice(1);
+  
   if (remainingStreams.length === 0) {
     // no more streams are available
     dispatch(removeFromQueue(trackIndex));
+    dispatch(error('The track was removed from the queue', 'No streams available'));
   } else {
   // remove the first (unavailable) stream
     dispatch(updateQueueItem({
