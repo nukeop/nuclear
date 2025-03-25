@@ -257,7 +257,8 @@
       "unverify": "Doğrulamayı kaldır"
     },
     "create-playlist-dialog-title": "Çalma listesi adı girin:",
-    "play-now": "Şimdi oynat"
+    "play-now": "Şimdi oynat",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Albüm",
