@@ -257,7 +257,8 @@
       "unverify": "Zrušit ověření"
     },
     "create-playlist-dialog-title": "Zadejte název playlistu:",
-    "play-now": "Přehrát nyní"
+    "play-now": "Přehrát nyní",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Album",
