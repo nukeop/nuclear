@@ -257,7 +257,8 @@
       "unverify": "Nem ellenőrzött"
     },
     "create-playlist-dialog-title": "Add meg a lejátszási lista nevét:",
-    "play-now": "Lejátszás most"
+    "play-now": "Lejátszás most",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Album",
