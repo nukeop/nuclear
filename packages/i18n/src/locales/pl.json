@@ -257,7 +257,8 @@
       "unverify": "Cofnij weryfikację"
     },
     "create-playlist-dialog-title": "Nazwa playlisty:",
-    "play-now": "Odtwórz teraz"
+    "play-now": "Odtwórz teraz",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Album",
