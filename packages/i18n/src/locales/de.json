@@ -257,7 +257,8 @@
       "unverify": "Bestätigung entfernen"
     },
     "create-playlist-dialog-title": "Gib einen Namen für die Playlist ein:",
-    "play-now": "Jetzt abspielen"
+    "play-now": "Jetzt abspielen",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Album",
