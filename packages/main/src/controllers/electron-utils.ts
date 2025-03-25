@@ -122,6 +122,7 @@ class ElectronUtilsIpcCtrl {
       electron: process.versions.electron,
       chrome: process.versions.chrome,
       node: process.versions.node,
+      locale: app.getLocale(),
       paths: {
         userData: app.getPath('userData'),
         downloads: app.getPath('downloads'),

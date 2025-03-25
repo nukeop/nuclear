@@ -10,13 +10,13 @@ import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
-import { getOption, setOption } from '@nuclear/core';
+import { getOption, setOption, IpcEvents } from '@nuclear/core';
 import i18n, { setupI18n } from '@nuclear/i18n';
 import { setTimeout, setInterval } from 'timers';
+import { ipcRenderer } from 'electron';
 
 import App from './App';
 import configureStore from './store/configureStore';
-import { app } from 'electron';
 
 const store = configureStore({});
 
@@ -28,12 +28,29 @@ window.setInterval = ((handler: TimerHandler, timeout?: number, ...args: any[]) 
 
 i18n.on('languageChanged', lng => setOption('language', lng));
 
-const render = async Component => {
+const initializeLanguage = async (): Promise<string> => {
+  const savedLanguage = getOption('language') as string;
+  if (savedLanguage) {
+    return savedLanguage;
+  }
+
+  try {
+    const systemInfo = await ipcRenderer.invoke(IpcEvents.GET_SYSTEM_INFO);
+    return systemInfo.locale || 'en';
+  } catch (error) {
+    console.error('Failed to get system locale:', error);
+    return 'en';
+  }
+};
+
+const render = async (Component: typeof App) => {
+  const initialLanguage = await initializeLanguage();
+  
   await setupI18n({
     languageDetector: {
       init: () => {},
       type: 'languageDetector',
-      detect: () => getOption('language') as string || app.getLocale(),
+      detect: () => initialLanguage,
       cacheUserLanguage: () => {}
     }
   });
