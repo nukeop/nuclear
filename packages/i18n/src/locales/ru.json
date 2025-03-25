@@ -257,7 +257,8 @@
       "unverify": "Снять подтверждение"
     },
     "create-playlist-dialog-title": "Введите название плейлиста:",
-    "play-now": "Играть"
+    "play-now": "Играть",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Альбом",
