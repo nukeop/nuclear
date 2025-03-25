@@ -257,7 +257,8 @@
       "unverify": "Unverify"
     },
     "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "play-now": "Play now",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Album",
