@@ -257,7 +257,8 @@
       "unverify": "Poista vahvistus"
     },
     "create-playlist-dialog-title": "Syötä soittolistalle nimi:",
-    "play-now": "Toista nyt"
+    "play-now": "Toista nyt",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Albumi",
