@@ -1,5 +1,5 @@
 import { logger } from '@nuclear/core';
-import _, { isEmpty, isString } from 'lodash';
+import { isEmpty, isString, find } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
 import { v4 } from 'uuid';
 
@@ -17,6 +17,8 @@ import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 import { isSuccessCacheEntry } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
 import { queue as queueSelector } from '../selectors/queue';
 import { error } from './toasts';
+import { random } from 'lodash';
+import { Dispatch } from 'redux';
 
 type LocalTrack = Track & {
   local: true;
@@ -63,7 +65,7 @@ export const toQueueItem = (track: Track): QueueItem => {
 };
 
 // Exported to facilitate testing.
-export const getSelectedStreamProvider = (getState) => {
+export const getSelectedStreamProvider = (getState: () => RootState): StreamProviderPlugin => {
   const {
     plugin: {
       plugins: { streamProviders },
@@ -71,7 +73,7 @@ export const getSelectedStreamProvider = (getState) => {
     }
   } = getState();
 
-  return _.find(streamProviders, { sourceName: selected.streamProviders });
+  return find(streamProviders, { sourceName: selected.streamProviders });
 };
 
 // Exported to facilitate testing.
@@ -104,20 +106,18 @@ const playNextItem = (item: QueueItem) => ({
   payload: { item }
 });
 
-export const queueDrop = (paths) => ({
+export const queueDrop = (paths: string[]) => ({
   type: Queue.QUEUE_DROP,
   payload: paths
 });
 
-export function repositionSong(itemFrom, itemTo) {
-  return {
-    type: Queue.REPOSITION_TRACK,
-    payload: {
-      itemFrom,
-      itemTo
-    }
-  };
-}
+export const repositionSong = (itemFrom: number, itemTo: number) => ({
+  type: Queue.REPOSITION_TRACK,
+  payload: {
+    itemFrom,
+    itemTo
+  }
+});
 
 export const clearQueue = createStandardAction(Queue.CLEAR_QUEUE)();
 export const nextSongAction = createStandardAction(Queue.NEXT_TRACK)();
@@ -127,7 +127,7 @@ export const playNext = (item: QueueItem) => addToQueue(item, true);
 
 export const addToQueue =
   (item: QueueItem, asNextItem = false) =>
-    async (dispatch, getState) => {
+    async (dispatch: Dispatch, getState: () => RootState) => {
       const { local }: RootState = getState();
       item = {
         ...safeAddUuid(item),
@@ -149,7 +149,7 @@ export const addToQueue =
       }
     };
 
-export const reloadTrack = (index: number) => async (dispatch, getState) => {
+export const reloadTrack = (index: number) => async (dispatch: Dispatch, getState: () => RootState) => {
   const track = queueSelector(getState()).queueItems[index];
   dispatch(
     updateQueueItem({
@@ -160,7 +160,7 @@ export const reloadTrack = (index: number) => async (dispatch, getState) => {
   );
 };
 
-export const selectNewStream = (index: number, streamId: string) => async (dispatch, getState) => {
+export const selectNewStream = (index: number, streamId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
   const getLatestTrack = () => queueSelector(getState()).queueItems[index];
   let track = getLatestTrack();
   const selectedStreamProvider: StreamProviderPlugin = getSelectedStreamProvider(getState);
@@ -280,7 +280,7 @@ export const findStreamsForTrack = (index: number, streamLookupErrorMessage: str
   }
 };
 
-async function getTrackStreams(track: QueueItem, streamProvider: StreamProvider): Promise<TrackStream[]> {
+const getTrackStreams = async (track: QueueItem, streamProvider: StreamProvider): Promise<TrackStream[]> => {
   if (isEmpty(track.streams)) {
     return resolveTrackStreams(
       track,
@@ -288,9 +288,9 @@ async function getTrackStreams(track: QueueItem, streamProvider: StreamProvider)
     );
   }
   return track.streams;
-}
+};
 
-async function resolveSourceUrlForTheFirstStream(trackStreams: TrackStream[], streamProvider: StreamProvider): Promise<TrackStream[]> {
+const resolveSourceUrlForTheFirstStream = async (trackStreams: TrackStream[], streamProvider: StreamProvider): Promise<TrackStream[]> => {
   if (isEmpty(trackStreams)) {
     return [];
   }
@@ -314,11 +314,11 @@ async function resolveSourceUrlForTheFirstStream(trackStreams: TrackStream[], st
   }
   // The stream URL might already be resolved, for example for a previously played track.
   return trackStreams;
-}
+};
 
-export function trackHasNoFirstStream(track: QueueItem): boolean {
+export const trackHasNoFirstStream = (track: QueueItem): boolean => {
   return isEmpty(track?.streams) || isEmpty(track.streams[0].stream);
-}
+};
 
 export const removeFirstStream = (track: QueueItem, trackIndex: number) => (dispatch) => {
   const remainingStreams = track.streams.slice(1);
@@ -326,9 +326,9 @@ export const removeFirstStream = (track: QueueItem, trackIndex: number) => (disp
   if (remainingStreams.length === 0) {
     // no more streams are available
     dispatch(removeFromQueue(trackIndex));
-    dispatch(error('The track was removed from the queue', 'No streams available'));
+    dispatch(error(`${track.artist} - ${track.name} was removed from the queue`, 'No streams available'));
   } else {
-  // remove the first (unavailable) stream
+    // remove the first (unavailable) stream
     dispatch(updateQueueItem({
       ...track,
       loading: false,
@@ -338,58 +338,54 @@ export const removeFirstStream = (track: QueueItem, trackIndex: number) => (disp
   }
 };
 
-export function playTrack(streamProviders, item: QueueItem) {
-  return (dispatch) => {
-    dispatch(clearQueue());
-    dispatch(addToQueue(item));
-    dispatch(selectSong(0));
-    dispatch(startPlayback(false));
-  };
-}
+export const playTrack = (streamProviders: StreamProvider[], item: QueueItem) => (dispatch) => {
+  dispatch(clearQueue());
+  dispatch(addToQueue(item));
+  dispatch(selectSong(0));
+  dispatch(startPlayback(false));
+};
 
 export const removeFromQueue = (index: number) => ({
   type: Queue.REMOVE_QUEUE_ITEM,
   payload: { index}
 });
 
-export function addPlaylistTracksToQueue(tracks) {
-  return async (dispatch) => {
-    await tracks.forEach(async (item) => {
-      await dispatch(addToQueue(item));
-    });
-  };
-}
+export const addPlaylistTracksToQueue = (tracks: Track[]) => async (dispatch) => {
+  await tracks.forEach(async (item) => {
+    await dispatch(addToQueue(toQueueItem(item)));
+  });
+};
 
-function dispatchWithShuffle(dispatch, getState, action) {
+function dispatchWithShuffle(
+  dispatch: Dispatch, 
+  getState: () => RootState, 
+  action: () => { type: string; payload?: unknown }
+) {
   const state = getState();
   const settings = state.settings;
   const queue = state.queue;
 
   if (settings.shuffleQueue) {
-    const index = _.random(0, queue.queueItems.length - 1);
+    const index = random(0, queue.queueItems.length - 1);
     dispatch(selectSong(index));
   } else {
     dispatch(action());
   }
 }
 
-export function previousSong() {
-  return (dispatch, getState) => {
-    const state = getState();
-    const settings = state.settings;
+export const previousSong = () => (dispatch, getState) => {
+  const state = getState();
+  const settings = state.settings;
 
-    if (settings.shuffleWhenGoingBack) {
-      dispatchWithShuffle(dispatch, getState, previousSongAction);
-    } else {
-      dispatch(previousSongAction());
-    }
-  };
-}
+  if (settings.shuffleWhenGoingBack) {
+    dispatchWithShuffle(dispatch, getState, previousSongAction);
+  } else {
+    dispatch(previousSongAction());
+  }
+};
 
-export function nextSong() {
-  return (dispatch, getState) => {
-    dispatchWithShuffle(dispatch, getState, nextSongAction);
-    dispatch(pausePlayback(false));
-    setImmediate(() => dispatch(startPlayback(false)));
-  };
-}
+export const nextSong = () => (dispatch, getState) => {
+  dispatchWithShuffle(dispatch, getState, nextSongAction);
+  dispatch(pausePlayback(false));
+  setImmediate(() => dispatch(startPlayback(false)));
+};

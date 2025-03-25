@@ -1,12 +1,13 @@
+import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 import { QueueItem } from '../reducers/queue';
 import { Queue } from './actionTypes';
-import * as QueueOperations from './queue';
+import * as QueueActions from './queue';
 
 describe('Queue actions tests', () => {
 
   describe('finds streams for track', () => {
-    const getSelectedStreamProvider = jest.spyOn(QueueOperations, 'getSelectedStreamProvider');
-    const resolveTrackStreams = jest.spyOn(QueueOperations, 'resolveTrackStreams');
+    const getSelectedStreamProvider = jest.spyOn(QueueActions, 'getSelectedStreamProvider');
+    const resolveTrackStreams = jest.spyOn(QueueActions, 'resolveTrackStreams');
 
     afterEach(() => {
       getSelectedStreamProvider.mockReset();
@@ -18,7 +19,7 @@ describe('Queue actions tests', () => {
       resolveTrackStreams.mockResolvedValueOnce([]);
 
       // Configure a dummy stream provider. It is not actually used in this execution path.
-      getSelectedStreamProvider.mockReturnValueOnce({});
+      getSelectedStreamProvider.mockReturnValueOnce({} as StreamProviderPlugin);
 
       // Set up the queue with an arbitrary track, which doesn't have any stream.
       const trackIndex = 123;
@@ -39,7 +40,7 @@ describe('Queue actions tests', () => {
       });
 
       const dispatchOperation = jest.fn();
-      const findStreamsForTrackOperation = QueueOperations.findStreamsForTrack(trackIndex, 'stream lookup error');
+      const findStreamsForTrackOperation = QueueActions.findStreamsForTrack(trackIndex, 'stream lookup error');
       findStreamsForTrackOperation(dispatchOperation, stateResolver)
         .then(() => {
           // The track without streams should have been removed from the queue.
