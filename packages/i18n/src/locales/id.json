@@ -257,7 +257,8 @@
       "unverify": "Tidak diverifikasi"
     },
     "create-playlist-dialog-title": "Masukkan nama playlist:",
-    "play-now": "Putar sekarang"
+    "play-now": "Putar sekarang",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Album",
