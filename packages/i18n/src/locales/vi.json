@@ -257,7 +257,8 @@
       "unverify": "Huỷ xác minh"
     },
     "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Phát ngay"
+    "play-now": "Phát ngay",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Bộ sưu tập",
