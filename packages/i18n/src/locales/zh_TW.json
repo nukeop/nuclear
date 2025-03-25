@@ -257,7 +257,8 @@
       "unverify": "未驗證"
     },
     "create-playlist-dialog-title": "輸入播放清單名稱:",
-    "play-now": "立即播放"
+    "play-now": "立即播放",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "專輯",
