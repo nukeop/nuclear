@@ -257,7 +257,8 @@
       "unverify": "검증 취소"
     },
     "create-playlist-dialog-title": "재생목록 이름 입력:",
-    "play-now": "지금 재생"
+    "play-now": "지금 재생",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "앨범",
