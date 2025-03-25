@@ -17,7 +17,6 @@ const DashboardContainer: React.FC = () => {
 
   const dashboard = useSelector(dashboardSelector);
   const isConnected = useSelector(connectivity);
-  const settings = useSelector(settingsSelector);
   
   const loadTopTags = () => dispatch(DashboardActions.loadTopTags());
   const loadTopTracks = () => dispatch(DashboardActions.loadTopTracks());

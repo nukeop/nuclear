@@ -1,12 +1,12 @@
-import { SearchVideo } from 'youtube-ext';
+import { Video } from '@distube/ytsr';
 import { YoutubeHeuristics } from './heuristics';
 
-export const ytTrack = (overrides?: Partial<SearchVideo>): Partial<SearchVideo> => ({
-  title: 'Black Sabbath - Paranoid',
-  channel: {
+export const ytTrack = (overrides?: Partial<Video>): Partial<Video> => ({
+  name: 'Black Sabbath - Paranoid',
+  author: {
     name: 'Black Sabbath'
-  } as SearchVideo['channel'],
-  duration: { text: '172', pretty: '2:12' },
+  } as Video['author'],
+  duration: '172',
   ...overrides
 });
 
@@ -14,16 +14,16 @@ describe('Search heuristics', () => {
   it('finds a verbatim match', () => {
     const tracks = [
       ytTrack({
-        title: 'Ozzy Osbourne - Crazy Train'
+        name: 'Ozzy Osbourne - Crazy Train'
       }),
       ytTrack({
-        title: 'Frank Zappa - Muffin Man'
+        name: 'Frank Zappa - Muffin Man'
       }),
       ytTrack({
-        title: 'Black Sabbath - Paranoid'
+        name: 'Black Sabbath - Paranoid'
       }),
       ytTrack({
-        title: 'The White Stripes - Seven Nation Army'
+        name: 'The White Stripes - Seven Nation Army'
       })
     ];
 
@@ -40,13 +40,13 @@ describe('Search heuristics', () => {
   it('prefers titles that contain the artist and title verbatim', () => {
     const tracks = [
       ytTrack({
-        title: 'Rammstein - Zick Zack (Official Video)'
+        name: 'Rammstein - Zick Zack (Official Video)'
       }),
       ytTrack({
-        title: 'Rammstein - Zeit (Official Video)'
+        name: 'Rammstein - Zeit (Official Video)'
       }),
       ytTrack({
-        title: 'Rammstein - Zeig Dich (Official Lyric Video)'
+        name: 'Rammstein - Zeig Dich (Official Lyric Video)'
       })
     ];
 
@@ -64,10 +64,10 @@ describe('Search heuristics', () => {
   it('prefers a closer match in case of a partial match', () => {
     const tracks = [
       ytTrack({
-        title: 'Johnny Cash - The Mercy Seat'
+        name: 'Johnny Cash - The Mercy Seat'
       }),
       ytTrack({
-        title: 'Nick Cave - The Mercy Seat'
+        name: 'Nick Cave - The Mercy Seat'
       })
     ];
       
@@ -83,13 +83,13 @@ describe('Search heuristics', () => {
   it('tolerates typos', () => {
     const tracks = [
       ytTrack({
-        title: 'The Whte Stipes - Sevn Natn Ary'
+        name: 'The Whte Stipes - Sevn Natn Ary'
       }),
       ytTrack({
-        title: 'The Whte Stripes - Sevn Nation Army'
+        name: 'The Whte Stripes - Sevn Nation Army'
       }),
       ytTrack({
-        title: 'Arctic Monkeys - Do I Wanna Know'
+        name: 'Arctic Monkeys - Do I Wanna Know'
       })
     ];
 
@@ -110,10 +110,10 @@ describe('Search heuristics', () => {
   it('prefers an official video', () => {
     const tracks = [
       ytTrack({
-        title: 'Ozzy Osbourne - Crazy Train (crappy bootleg)'
+        name: 'Ozzy Osbourne - Crazy Train (crappy bootleg)'
       }),
       ytTrack({
-        title: 'Ozzy Osbourne - Crazy Train - Official Video'
+        name: 'Ozzy Osbourne - Crazy Train - Official Video'
       })
     ];
 
@@ -130,13 +130,13 @@ describe('Search heuristics', () => {
   it('prefers high quality videos', () => {
     const tracks = [
       ytTrack({
-        title: 'Ozzy Osbourne - Crazy Train (crappy bootleg)'
+        name: 'Ozzy Osbourne - Crazy Train (crappy bootleg)'
       }),
       ytTrack({
-        title: 'Ozzy Osbourne - Crazy Train (HQ)'
+        name: 'Ozzy Osbourne - Crazy Train (HQ)'
       }),
       ytTrack({
-        title: 'Ozzy Osbourne - Crazy Train - High Quality'
+        name: 'Ozzy Osbourne - Crazy Train - High Quality'
       })
     ];
 
@@ -157,20 +157,20 @@ describe('Search heuristics', () => {
   it('prefers videos with closest duration', () => {
     const tracks = [
       ytTrack({
-        title: 'Frank Zappa - Peaches en Regalia',
-        duration: { text: '180', pretty: '3:00' }
+        name: 'Frank Zappa - Peaches en Regalia',
+        duration: '180'
       }),
       ytTrack({
-        title: 'Frank Zappa - Peaches en Regalia',
-        duration: { text: '219', pretty: '3:39' }
+        name: 'Frank Zappa - Peaches en Regalia',
+        duration: '219'
       }),
       ytTrack({
-        title: 'Frank Zappa - Peaches en Regalia',
-        duration: { text: '300', pretty: '5:00' }
+        name: 'Frank Zappa - Peaches en Regalia',
+        duration: '300'
       }),
       ytTrack({
-        title: 'Frank Zappa - Peaches en Regalia',
-        duration: { text: '360', pretty: '6:00' }
+        name: 'Frank Zappa - Peaches en Regalia',
+        duration: '360'
       })
     ];
 
@@ -193,10 +193,10 @@ describe('Search heuristics', () => {
   it('ranks videos with full albums lower', () => {
     const tracks = [
       ytTrack({
-        title: 'Black Sabbath - Paranoid (Full album)'
+        name: 'Black Sabbath - Paranoid (Full album)'
       }),
       ytTrack({
-        title: 'Black Sabbath - Paranoid (random addition to the title)'
+        name: 'Black Sabbath - Paranoid (random addition to the title)'
       })
     ];
 
@@ -216,10 +216,10 @@ describe('Search heuristics', () => {
   it('ranks live videos lower', () => {
     const tracks = [
       ytTrack({
-        title: 'Black Sabbath - Paranoid (Live)'
+        name: 'Black Sabbath - Paranoid (Live)'
       }),
       ytTrack({
-        title: 'Black Sabbath - Paranoid (Something else)'
+        name: 'Black Sabbath - Paranoid (Something else)'
       })
     ];
 
@@ -238,13 +238,13 @@ describe('Search heuristics', () => {
   it('ranks live videos normally if they also appear in the search query title', () => {
     const tracks = [
       ytTrack({
-        title: 'Black Sabbath - Paranoid'
+        name: 'Black Sabbath - Paranoid'
       }),
       ytTrack({
-        title: 'Black Sabbath - Paranoid (Live)'
+        name: 'Black Sabbath - Paranoid (Live)'
       }),
       ytTrack({
-        title: 'Black Sabbath - Paranoid (Random addition to the title)'
+        name: 'Black Sabbath - Paranoid (Random addition to the title)'
       })
     ];
 
@@ -265,10 +265,10 @@ describe('Search heuristics', () => {
   it('ranks remix videos lower', () => {
     const tracks = [
       ytTrack({
-        title: 'Black Sabbath - Paranoid (Remix)'
+        name: 'Black Sabbath - Paranoid (Remix)'
       }),
       ytTrack({
-        title: 'Black Sabbath - Paranoid (Random addition to the title)'
+        name: 'Black Sabbath - Paranoid (Random addition to the title)'
       })
     ];
 
@@ -289,16 +289,16 @@ describe('Search heuristics', () => {
   it('ranks videos whose channel names include the artist name higher', () => {
     const tracks = [
       ytTrack({
-        title: 'Savant - Valkyrie',
-        channel: {
+        name: 'Savant - Valkyrie',
+        author: {
           name: 'EssentialEDMusic'
-        } as SearchVideo['channel']
+        } as Video['author']
       }),
       ytTrack({
-        title: 'Savant - Orakel - Valkyrie',
-        channel: {
+        name: 'Savant - Orakel - Valkyrie',
+        author: {
           name: 'SAVANT'
-        } as SearchVideo['channel']
+        } as Video['author']
       })
     ];
 
@@ -318,16 +318,16 @@ describe('Search heuristics', () => {
   it('ranks videos whose names match the track title exactly, and channel names match artist name exactly higher', () => {
     const tracks = [
       ytTrack({
-        title: 'Savant - Wildstyle',
-        channel: {
+        name: 'Savant - Wildstyle',
+        author: {
           name: 'Tasty'
-        } as SearchVideo['channel']
+        } as Video['author']
       }),
       ytTrack({
-        title: 'Firestarter',
-        channel: {
+        name: 'Firestarter',
+        author: {
           name: 'SAVANT'
-        } as SearchVideo['channel']
+        } as Video['author']
       })
     ];
 

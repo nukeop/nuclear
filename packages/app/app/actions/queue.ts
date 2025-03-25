@@ -1,10 +1,10 @@
 import { logger } from '@nuclear/core';
-import _, { isEmpty, isString } from 'lodash';
+import { isEmpty, isString, find } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
 import { v4 } from 'uuid';
 
 import { rest, StreamProvider } from '@nuclear/core';
-import { getTrackArtist } from '@nuclear/ui';
+import { getTrackArtist, getTrackTitle } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
@@ -16,6 +16,9 @@ import { Queue } from './actionTypes';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 import { isSuccessCacheEntry } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
 import { queue as queueSelector } from '../selectors/queue';
+import { error } from './toasts';
+import { random } from 'lodash';
+import { Dispatch } from 'redux';
 
 type LocalTrack = Track & {
   local: true;
@@ -44,15 +47,25 @@ const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): Que
 };
 
 
-export const toQueueItem = (track: Track): QueueItem => ({
-  ...track,
-  artist: isString(track.artist) ? track.artist : track.artist.name,
-  name: track.title ? track.title : track.name,
-  streams: track.streams ?? []
-});
+export const toQueueItem = (track: Track): QueueItem => {
+  const queueItem: QueueItem = {
+    ...track,
+    artist: isString(track.artist) ? track.artist : track.artist.name,
+    name: track.title ? track.title : track.name,
+    streams: track.streams ?? []
+  };
+
+  safeAddUuid(queueItem);
+
+  if (!queueItem.queueId) {
+    queueItem.queueId = v4();
+  }
+
+  return queueItem;
+};
 
 // Exported to facilitate testing.
-export const getSelectedStreamProvider = (getState) => {
+export const getSelectedStreamProvider = (getState: () => RootState): StreamProviderPlugin => {
   const {
     plugin: {
       plugins: { streamProviders },
@@ -60,7 +73,7 @@ export const getSelectedStreamProvider = (getState) => {
     }
   } = getState();
 
-  return _.find(streamProviders, { sourceName: selected.streamProviders });
+  return find(streamProviders, { sourceName: selected.streamProviders });
 };
 
 // Exported to facilitate testing.
@@ -93,24 +106,18 @@ const playNextItem = (item: QueueItem) => ({
   payload: { item }
 });
 
-export const queueDrop = (paths) => ({
+export const queueDrop = (paths: string[]) => ({
   type: Queue.QUEUE_DROP,
   payload: paths
 });
 
-export const streamFailed = () => ({
-  type: Queue.STREAM_FAILED
+export const repositionSong = (itemFrom: number, itemTo: number) => ({
+  type: Queue.REPOSITION_TRACK,
+  payload: {
+    itemFrom,
+    itemTo
+  }
 });
-
-export function repositionSong(itemFrom, itemTo) {
-  return {
-    type: Queue.REPOSITION_TRACK,
-    payload: {
-      itemFrom,
-      itemTo
-    }
-  };
-}
 
 export const clearQueue = createStandardAction(Queue.CLEAR_QUEUE)();
 export const nextSongAction = createStandardAction(Queue.NEXT_TRACK)();
@@ -120,10 +127,11 @@ export const playNext = (item: QueueItem) => addToQueue(item, true);
 
 export const addToQueue =
   (item: QueueItem, asNextItem = false) =>
-    async (dispatch, getState) => {
+    async (dispatch: Dispatch, getState: () => RootState) => {
       const { local }: RootState = getState();
       item = {
         ...safeAddUuid(item),
+        queueId: v4(),
         streams: item.local ? item.streams : [],
         loading: false
       };
@@ -141,16 +149,30 @@ export const addToQueue =
       }
     };
 
-export const selectNewStream = (index: number, streamId: string) => async (dispatch, getState) => {
+export const reloadTrack = (index: number) => async (dispatch: Dispatch, getState: () => RootState) => {
   const track = queueSelector(getState()).queueItems[index];
+  dispatch(
+    updateQueueItem({
+      ...track,
+      error: false,
+      streams: []
+    })
+  );
+};
+
+export const selectNewStream = (index: number, streamId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+  const getLatestTrack = () => queueSelector(getState()).queueItems[index];
+  let track = getLatestTrack();
   const selectedStreamProvider: StreamProviderPlugin = getSelectedStreamProvider(getState);
 
   const oldStreamData = track.streams.find(stream => stream.id === streamId);
   const streamData = await selectedStreamProvider.getStreamForId(streamId);
 
   if (!streamData) {
+    logger.error(`No stream data found for ${track.artist} - ${track.name}, streamId: ${streamId}`);
     dispatch(removeFromQueue(index));
   } else {
+    track = getLatestTrack();
     dispatch(
       updateQueueItem({
         ...track,
@@ -167,83 +189,98 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
   }
 };
 
-export const findStreamsForTrack = (index: number) => async (dispatch, getState) => {
-  const {queue, settings}: RootState = getState();
-  const track = queue.queueItems[index];
+const verifyStreamWithService = async (
+  track: QueueItem,
+  streamData: TrackStream[],
+  selectedStreamProvider: StreamProvider,
+  settings: RootState['settings']
+): Promise<TrackStream[]> => {
+  if (!settings.useStreamVerification) {
+    return streamData;
+  }
 
-  if (track && !track.local && trackHasNoFirstStream(track)) {
-    if (!track.loading) {
-      dispatch(updateQueueItem({
-        ...track,
-        loading: true
-      }));
+  try {
+    const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+    const topStream = await StreamMappingsService.getTopStream(
+      getTrackArtist(track),
+      getTrackTitle(track),
+      selectedStreamProvider.sourceName,
+      settings?.userId
+    );
+
+    if (!isSuccessCacheEntry(topStream)) {
+      return streamData;
     }
-    const selectedStreamProvider = getSelectedStreamProvider(getState);
-    try {
-      let streamData: TrackStream[] = await getTrackStreams(track, selectedStreamProvider);
 
-      if (settings.useStreamVerification) {
-        try {
-          const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
-          const topStream = await StreamMappingsService.getTopStream(
-            track.artist, 
-            track.name,
-            selectedStreamProvider.sourceName,
-            settings?.userId
-          );
-            // Use the top stream ID and put it at the top of the list
-          if (isSuccessCacheEntry(topStream)) {
-            streamData = [
-              streamData.find(stream => stream.id === topStream.value.stream_id),          
-              ...streamData.filter(stream => stream.id !== topStream.value.stream_id)
-            ];
-          }
-        } catch (e) {
-          logger.error('Failed to get top stream', e);
-        }
-      }
-
-      if (streamData?.length === 0) {
-        dispatch(removeFromQueue(index));
-      } else {
-        streamData = await resolveSourceUrlForTheFirstStream(streamData, selectedStreamProvider);
-
-        const firstStream = streamData[0];
-        if (!firstStream?.stream) {
-          const remainingStreams = streamData.slice(1);
-          removeFirstStream(track, index, remainingStreams, dispatch);
-          return;
-        }
-
-        dispatch(
-          updateQueueItem({
-            ...track,
-            loading: false,
-            error: false,
-            streams: streamData
-          })
-        );
-      }
-    } catch (e) {
-      logger.error(
-        `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}."`
-      );
-      logger.error(e);
-      dispatch(
-        updateQueueItem({
-          ...track,
-          loading: false,
-          error: {
-            message: `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName}.`,
-            details: e.message
-          }
-        })
-      );
-    }
+    const verifiedStream = streamData.find(stream => stream.id === topStream.value.stream_id);
+    const otherStreams = streamData.filter(stream => stream.id !== topStream.value.stream_id);
+    return verifiedStream ? [verifiedStream, ...otherStreams] : streamData;
+  } catch (e) {
+    logger.error('Failed to get top stream', e);
+    return streamData;
   }
 };
 
-async function getTrackStreams(track: QueueItem, streamProvider: StreamProvider): Promise<TrackStream[]> {
+const resolveStreams = async (
+  track: QueueItem,
+  selectedStreamProvider: StreamProvider
+): Promise<TrackStream[]> => {
+  const streamData = await getTrackStreams(track, selectedStreamProvider);
+  
+  return resolveSourceUrlForTheFirstStream(streamData, selectedStreamProvider);
+};
+
+export const findStreamsForTrack = (index: number, streamLookupErrorMessage: string) => async (dispatch, getState) => {
+  const getLatestTrack = () => queueSelector(getState()).queueItems[index];
+  let track = getLatestTrack();
+
+  if (!track || track.local || !trackHasNoFirstStream(track)) {
+    return;
+  }
+
+  if (!track.loading) {
+    dispatch(updateQueueItem({ ...track, loading: true }));
+  }
+
+  const selectedStreamProvider = getSelectedStreamProvider(getState);
+
+  try {
+    let streamData = await resolveStreams(track, selectedStreamProvider);
+    
+    if (streamData.length === 0) {
+      dispatch(removeFromQueue(index));
+      return;
+    }
+
+    const settings = getState().settings;
+    streamData = await verifyStreamWithService(track, streamData, selectedStreamProvider, settings);
+
+    const firstStream = streamData[0];
+    if (!firstStream?.stream) {
+      track = getLatestTrack();
+      removeFirstStream(track, index)(dispatch);
+      return;
+    }
+
+    track = getLatestTrack();
+    dispatch(updateQueueItem({
+      ...track,
+      loading: false,
+      error: false,
+      streams: streamData
+    }));
+  } catch (e) {
+    logger.error(
+      `An error has occurred when searching for streams with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}".`
+    );
+    logger.error(e);
+    
+    track = getLatestTrack();
+    removeFirstStream(track, index)(dispatch);
+  }
+};
+
+const getTrackStreams = async (track: QueueItem, streamProvider: StreamProvider): Promise<TrackStream[]> => {
   if (isEmpty(track.streams)) {
     return resolveTrackStreams(
       track,
@@ -251,90 +288,104 @@ async function getTrackStreams(track: QueueItem, streamProvider: StreamProvider)
     );
   }
   return track.streams;
-}
+};
 
-async function resolveSourceUrlForTheFirstStream(trackStreams: TrackStream[], streamProvider: StreamProvider): Promise<TrackStream[]> {
-  if (isEmpty(trackStreams[0].stream)) {
-    return [
-      await streamProvider.getStreamForId(trackStreams.find(Boolean)?.id),
-      ...trackStreams.slice(1)
-    ];
+const resolveSourceUrlForTheFirstStream = async (trackStreams: TrackStream[], streamProvider: StreamProvider): Promise<TrackStream[]> => {
+  if (isEmpty(trackStreams)) {
+    return [];
+  }
+
+  const firstStream = trackStreams.find(Boolean);
+  if (isEmpty(firstStream.stream)) {
+    try {
+      const resolvedStream = await streamProvider.getStreamForId(firstStream.id);
+      return [
+        resolvedStream,
+        ...trackStreams.filter(stream => stream.id !== firstStream.id)
+      ];
+    } catch (e) {
+      logger.error(`Error resolving stream URL for ${firstStream.id}`, e);
+      return resolveSourceUrlForTheFirstStream(
+        trackStreams.filter(stream => stream.id !== firstStream.id),
+        streamProvider
+      );
+    }
+
   }
   // The stream URL might already be resolved, for example for a previously played track.
   return trackStreams;
-}
+};
 
-export function trackHasNoFirstStream(track: QueueItem): boolean {
+export const trackHasNoFirstStream = (track: QueueItem): boolean => {
   return isEmpty(track?.streams) || isEmpty(track.streams[0].stream);
-}
+};
 
-function removeFirstStream(track: QueueItem, trackIndex: number, remainingStreams: TrackStream[], dispatch): void {
+export const removeFirstStream = (track: QueueItem, trackIndex: number) => (dispatch) => {
+  const remainingStreams = track.streams.slice(1);
+  
   if (remainingStreams.length === 0) {
     // no more streams are available
     dispatch(removeFromQueue(trackIndex));
+    dispatch(error(`${track.artist} - ${track.name} was removed from the queue`, 'No streams available'));
   } else {
     // remove the first (unavailable) stream
     dispatch(updateQueueItem({
       ...track,
-      loading: true,
+      loading: false,
       error: false,
       streams: remainingStreams
     }));
   }
-}
+};
 
-export function playTrack(streamProviders, item: QueueItem) {
-  return (dispatch) => {
-    dispatch(clearQueue());
-    dispatch(addToQueue(item));
-    dispatch(selectSong(0));
-    dispatch(startPlayback(false));
-  };
-}
+export const playTrack = (streamProviders: StreamProvider[], item: QueueItem) => (dispatch) => {
+  dispatch(clearQueue());
+  dispatch(addToQueue(item));
+  dispatch(selectSong(0));
+  dispatch(startPlayback(false));
+};
 
 export const removeFromQueue = (index: number) => ({
   type: Queue.REMOVE_QUEUE_ITEM,
   payload: { index}
 });
 
-export function addPlaylistTracksToQueue(tracks) {
-  return async (dispatch) => {
-    await tracks.forEach(async (item) => {
-      await dispatch(addToQueue(item));
-    });
-  };
-}
+export const addPlaylistTracksToQueue = (tracks: Track[]) => async (dispatch) => {
+  await tracks.forEach(async (item) => {
+    await dispatch(addToQueue(toQueueItem(item)));
+  });
+};
 
-function dispatchWithShuffle(dispatch, getState, action) {
+function dispatchWithShuffle(
+  dispatch: Dispatch, 
+  getState: () => RootState, 
+  action: () => { type: string; payload?: unknown }
+) {
   const state = getState();
   const settings = state.settings;
   const queue = state.queue;
 
   if (settings.shuffleQueue) {
-    const index = _.random(0, queue.queueItems.length - 1);
+    const index = random(0, queue.queueItems.length - 1);
     dispatch(selectSong(index));
   } else {
     dispatch(action());
   }
 }
 
-export function previousSong() {
-  return (dispatch, getState) => {
-    const state = getState();
-    const settings = state.settings;
+export const previousSong = () => (dispatch, getState) => {
+  const state = getState();
+  const settings = state.settings;
 
-    if (settings.shuffleWhenGoingBack) {
-      dispatchWithShuffle(dispatch, getState, previousSongAction);
-    } else {
-      dispatch(previousSongAction());
-    }
-  };
-}
+  if (settings.shuffleWhenGoingBack) {
+    dispatchWithShuffle(dispatch, getState, previousSongAction);
+  } else {
+    dispatch(previousSongAction());
+  }
+};
 
-export function nextSong() {
-  return (dispatch, getState) => {
-    dispatchWithShuffle(dispatch, getState, nextSongAction);
-    dispatch(pausePlayback(false));
-    setImmediate(() => dispatch(startPlayback(false)));
-  };
-}
+export const nextSong = () => (dispatch, getState) => {
+  dispatchWithShuffle(dispatch, getState, nextSongAction);
+  dispatch(pausePlayback(false));
+  setImmediate(() => dispatch(startPlayback(false)));
+};

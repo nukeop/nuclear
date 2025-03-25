@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { SearchBox } from '../..';
 import { SearchProviderOption } from '../../lib/types';
@@ -24,34 +23,47 @@ const commonProps = {
   isFocused: false
 };
 
-storiesOf('Components/Search box', module)
-  .add('Basic', () => {
-    const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
-    return <div className='bg'>
+export default {
+  title: 'Components/Search box'
+};
+
+export const Basic = () => {
+  const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
+  return (
+    <div className='bg'>
       <SearchBox 
         {...commonProps} 
         selectedSearchProvider={selectedSearchProvider}
         onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value) as SearchProviderOption)}
       />
-    </div>;
-  })
-  .add('Loading', () => {
-    const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
-    return <div className='bg'><SearchBox 
-      {...commonProps} 
-      selectedSearchProvider={selectedSearchProvider}
-      onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value) as SearchProviderOption)}
-      loading
-    />
-    </div>;
-  })
-  .add('Disabled', () => {
-    const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
-    return <div className='bg'><SearchBox 
-      {...commonProps} 
-      selectedSearchProvider={selectedSearchProvider}
-      onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value) as SearchProviderOption)}
-      disabled
-    />
-    </div>;
-  });
+    </div>
+  );
+};
+
+export const Loading = () => {
+  const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
+  return (
+    <div className='bg'>
+      <SearchBox 
+        {...commonProps} 
+        selectedSearchProvider={selectedSearchProvider}
+        onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value) as SearchProviderOption)}
+        loading
+      />
+    </div>
+  );
+};
+
+export const Disabled = () => {
+  const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
+  return (
+    <div className='bg'>
+      <SearchBox 
+        {...commonProps} 
+        selectedSearchProvider={selectedSearchProvider}
+        onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value) as SearchProviderOption)}
+        disabled
+      />
+    </div>
+  );
+};

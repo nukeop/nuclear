@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { AnyProps, configureMockStore, setupI18Next, TestStoreProvider } from '../../../test/testUtils';
 import { getMouseEvent } from '../../../test/mockMouseEvent';
@@ -68,7 +69,7 @@ describe('PlayerBar container', () => {
       }
     });
 
-    await waitFor(() => component.getByTestId(`${option}-play-option`).click());
+    userEvent.click(component.getByTestId(`${option}-play-option`));
     const state = store.getState();
     expect(state.settings[setting]).toBe(true);
   });
@@ -92,7 +93,7 @@ describe('PlayerBar container', () => {
   it('should start playing the current track when the play button is clicked', async () => {
     const { component, store } = mountComponent();
     const playButton = await component.findByTestId('player-controls-play');
-    fireEvent.click(playButton);
+    userEvent.click(playButton);
     const state = store.getState();
     expect(state.player.playbackStatus).toBe('PLAYING');
   });
@@ -106,7 +107,7 @@ describe('PlayerBar container', () => {
     const pauseButton = await component.findByTestId('player-controls-play');
     expect(pauseButton.children[0].className).toContain('pause');
 
-    fireEvent.click(pauseButton);
+    userEvent.click(pauseButton);
     const state = store.getState();
     expect(state.player.playbackStatus).toBe('PAUSED');
   });
@@ -114,15 +115,15 @@ describe('PlayerBar container', () => {
   it('should skip to the next track when the next button is clicked', async () => {
     const { component, store } = mountComponent();
     const nextButton = await component.findByTestId('player-controls-forward');
-    fireEvent.click(nextButton);
+    userEvent.click(nextButton);
     const state = store.getState();
-    expect(state.queue.currentSong).toBe(1);
+    expect(state.queue.currentTrack).toBe(1);
   });
 
   it('should rewind to the beginning of the current track when the previous button is clicked and the track has progressed past the first 3 seconds', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 0,
+        currentTrack: 0,
         queueItems: [{
           artist: 'test artist 1',
           name: 'test track 1',
@@ -139,16 +140,16 @@ describe('PlayerBar container', () => {
       }
     });
     const previousButton = await component.findByTestId('player-controls-back');
-    fireEvent.click(previousButton);
+    userEvent.click(previousButton);
     const state = store.getState();
     waitFor(() => expect(state.player.seek).toBe(0));
-    expect(state.queue.currentSong).toBe(0);
+    expect(state.queue.currentTrack).toBe(0);
   });
 
   it('should skip to the previous track when the previous button is clicked and the track has not progressed past the first 3 seconds', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 1,
+        currentTrack: 1,
         queueItems: [{
           artist: 'test artist 1',
           name: 'test track 1',
@@ -174,16 +175,16 @@ describe('PlayerBar container', () => {
       }
     });
     const previousButton = await component.findByTestId('player-controls-back');
-    fireEvent.click(previousButton);
+    userEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
-    expect(state.queue.currentSong).toBe(0);
+    expect(state.queue.currentTrack).toBe(0);
   });
 
   it('should skip to the previous track if there is a sponsorblock segment at the beginning of the current track and the playhead is within 3 seconds of the segment', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 1,
+        currentTrack: 1,
         queueItems: [{
           artist: 'test artist 1',
           name: 'test track 1',
@@ -214,16 +215,16 @@ describe('PlayerBar container', () => {
       }
     });
     const previousButton = await component.findByTestId('player-controls-back');
-    fireEvent.click(previousButton);
+    userEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
-    expect(state.queue.currentSong).toBe(0); 
+    expect(state.queue.currentTrack).toBe(0); 
   });
 
   it('should go back to the beginning of current track if current track is the first song in the queue', async () => {
     const { component, store } = mountComponent({
       queue: {
-        currentSong: 0,
+        currentTrack: 0,
         queueItems: [{
           artist: 'test artist 1',
           name: 'test track 1',
@@ -240,89 +241,10 @@ describe('PlayerBar container', () => {
       }
     });
     const previousButton = await component.findByTestId('player-controls-back');
-    fireEvent.click(previousButton);
+    userEvent.click(previousButton);
     const state = store.getState();
     expect(state.player.seek).toBe(0);
-    expect(state.queue.currentSong).toBe(0); 
-  });
-
-  it('should remove the track when no streams are available for the track', async () => {
-    const { component, store } = mountComponent({
-      queue: {
-        currentSong: 0,
-        queueItems: [
-          {
-            uuid: 'uuid1',
-            artist: 'test artist name',
-            name: 'track without streams'
-          }
-        ]
-      },
-      plugin: {
-        plugins: {
-          streamProviders: [
-            {
-              sourceName: 'Mocked Stream Provider',
-              search: jest.fn().mockResolvedValueOnce([])
-            }
-          ]
-        },
-        selected: {
-          streamProviders: 'Mocked Stream Provider'
-        }
-      }
-    });
-    await waitFor(() => {
-      const state = store.getState();
-      return expect(state.queue.queueItems.length).toBe(0);
-    });
-  });
-
-  it('should remove the track when no more stream URLs can be resolved', async () => {
-    const { component, store } = mountComponent({
-      queue: {
-        currentSong: 0,
-        queueItems: [
-          {
-            uuid: 'uuid1',
-            artist: 'test artist name',
-            name: 'track without streams'
-          }
-        ]
-      },
-      plugin: {
-        plugins: {
-          streamProviders: [
-            {
-              sourceName: 'Mocked Stream Provider',
-              search: jest.fn().mockResolvedValueOnce([
-                {
-                  id: 'stream 1 ID',
-                  source: 'Mocked Stream Provider'
-                },
-                {
-                  id: 'stream 2 ID',
-                  source: 'Mocked Stream Provider'
-                }
-              ]),
-              getStreamForId: jest.fn()
-                .mockResolvedValueOnce(null)
-                .mockResolvedValueOnce({
-                  stream: null,
-                  source: 'Mocked Stream Provider'
-                })
-            }
-          ]
-        },
-        selected: {
-          streamProviders: 'Mocked Stream Provider'
-        }
-      }
-    });
-    await waitFor(() => {
-      const state = store.getState();
-      expect(state.queue.queueItems.length).toBe(0);
-    });
+    expect(state.queue.currentTrack).toBe(0); 
   });
 
   const mountComponent = (initialStore?: AnyProps) => {

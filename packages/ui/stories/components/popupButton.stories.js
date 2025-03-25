@@ -1,16 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { PopupButton } from '../..';
 
-storiesOf('Components/Popup button', module)
-  .add('Basic', () => (
-    <div className='bg'>
-      <PopupButton
-        onClick={() => alert('Button clicked')}
-        ariaLabel={'test'}
-        icon='alarm'
-        label={'Test button'}
-      />
-    </div>
-  ));
+export default {
+  title: 'Components/Popup button'
+};
+
+export const Basic = () => (
+  <div className='bg'>
+    <PopupButton
+      onClick={() => alert('Button clicked')}
+      ariaLabel={'test'}
+      icon='alarm'
+      label={'Test button'}
+    />
+  </div>
+);

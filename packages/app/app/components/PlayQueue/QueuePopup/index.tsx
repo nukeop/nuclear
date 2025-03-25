@@ -21,10 +21,12 @@ export type QueuePopupProps = {
   track: QueueItem;
   index: number;
 
-  actions: typeof QueueActions;
   plugins: PluginsState;
   copyToClipboard: (text: string) => void;
   onSelectStream: (stream: StreamData) => void;
+  isOpen: boolean;
+  onRequestOpen: () => void;
+  onRequestClose: () => void;
 }
 
 export const QueuePopup: React.FC<QueuePopupProps> = ({
@@ -34,12 +36,13 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
   track,
   index,
   copyToClipboard,
-  onSelectStream
+  onSelectStream,
+  isOpen,
+  onRequestOpen,
+  onRequestClose
 }) => {
   const triggerElement = useRef(null);
-  
-  const [isOpen, setIsOpen] = useState(false);
-  const [imageReady, setImageReady] = useState(false);
+  const [imageReady, setImageReady] = useState(() => !track.loading && Boolean(track.thumbnail));
 
   const selectedStream = head(track.streams) as StreamData;
 
@@ -50,9 +53,9 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
         return;
       }
       triggerElement.current.click();
-      setIsOpen(true);
+      onRequestOpen();
     },
-    [selectedStream, setIsOpen]
+    [selectedStream, onRequestOpen]
   );
 
   const handleImageLoaded = useCallback(() => setImageReady(true), [setImageReady]);
@@ -61,30 +64,31 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
     if (selectedStream?.originalUrl?.length) {
       copyToClipboard(selectedStream.originalUrl);
     }
-    setIsOpen(false);
-  }, [selectedStream, setIsOpen, copyToClipboard]);
+    onRequestClose();
+  }, [selectedStream, copyToClipboard, onRequestClose]);
 
   const handleSelectStream = useCallback((stream: StreamData) => {
     onSelectStream(stream);
-    setIsOpen(false);
-  }, [onSelectStream]);
+    onRequestClose();
+  }, [onSelectStream, onRequestClose]);
 
   return (
     <Popup
+      data-testid={`queue-popup-${track.uuid}`}
       className={cs(styles.queue_popup, {
         [styles.hidden]: !imageReady
       })}
       trigger={
         <div
           ref={triggerElement}
-          data-testid={`queue-popup-${track.uuid}`}
+          data-testid={`queue-popup-trigger-${track.uuid}`}
           onContextMenu={handleOpen}
         >
           {trigger}
         </div>
       }
       open={isOpen}
-      onClose={() => setIsOpen(false)}
+      onClose={onRequestClose}
       position={isQueueItemCompact ? 'bottom right' : 'bottom center'}
       hideOnScroll
       on={null}

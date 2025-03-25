@@ -1,6 +1,6 @@
 import { mean, sortBy } from 'lodash';
-import { SearchVideo } from 'youtube-ext';
 import levenshtein from 'fast-levenshtein';
+import { Video } from '@distube/ytsr';
 
 type ScoreTrackArgs<Track> = {
   track: Track;
@@ -33,7 +33,7 @@ const promotedWords = [
   'official'
 ];
 
-export class YoutubeHeuristics implements SearchHeuristics<Partial<SearchVideo>> {
+export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
   static createTitle = ({
     artist,
     title
@@ -44,15 +44,15 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<SearchVideo>>
     artist,
     title,
     duration
-  }: ScoreTrackArgs<Partial<SearchVideo>>) => {
+  }: ScoreTrackArgs<Partial<Video>>) => {
     const trackTitle = YoutubeHeuristics.createTitle({ artist, title });
-    const lowercaseResultTitle = track.title.toLowerCase();
+    const lowercaseResultTitle = track.name.toLowerCase();
 
     const titleScore = (1 - (levenshtein.get(trackTitle, lowercaseResultTitle) / trackTitle.length)) * 25;
 
     const verbatimSubstringScore = lowercaseResultTitle.includes(title.toLowerCase()) ? 300 : 0;
 
-    const durationDelta = Math.abs(Number.parseFloat(track.duration.text) - duration);
+    const durationDelta = Math.abs(Number.parseFloat(track.duration) - duration);
     const durationScore = track.duration && duration
       ? (1 - durationDelta / duration) * 800
       : 0;
@@ -66,7 +66,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<SearchVideo>>
       liveVideoScore = 0;
     }
 
-    const channelNameScore = track.channel?.name.toLowerCase().includes(artist.toLowerCase()) ? 300 : 0;
+    const channelNameScore = track.author?.name.toLowerCase().includes(artist.toLowerCase()) ? 300 : 0;
 
     return mean([
       titleScore,
@@ -84,7 +84,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<SearchVideo>>
     artist,
     title,
     duration
-  }: OrderTracksArgs<Partial<SearchVideo>>) => {
+  }: OrderTracksArgs<Partial<Video>>) => {
     const scores = tracks.map(track => this.scoreTrack({
       track,
       artist,

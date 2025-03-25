@@ -1,5 +1,7 @@
 import { fireEvent, waitFor } from '@testing-library/react';
 import { store as electronStore } from '@nuclear/core';
+import { screen } from '@testing-library/dom';
+import userEvent from '@testing-library/user-event';
 
 import {
   AnyProps,
@@ -10,7 +12,12 @@ import {
   buildElectronStoreState,
   buildStoreState
 } from '../../../test/storeBuilders';
-import userEvent from '@testing-library/user-event';
+
+const createElementSnapshot = (element: HTMLElement): DocumentFragment => {
+  const fragment = document.createDocumentFragment();
+  fragment.appendChild(element.cloneNode(true));
+  return fragment;
+};
 
 describe('Play Queue container', () => {
   beforeAll(() => {
@@ -41,21 +48,27 @@ describe('Play Queue container', () => {
 
   it('should display a context popup on right click', async () => {
     const { component } = mountComponent();
-    const track = component.getByTestId('queue-popup-uuid1');
+    const track = await component.findByTestId('queue-popup-trigger-uuid1');
     await waitFor(() => fireEvent.contextMenu(track));
-    expect(component.asFragment()).toMatchSnapshot();
+
+    const popup = await screen.findByTestId('queue-popup-uuid1');
+    expect(popup).toBeInTheDocument();
+    expect(createElementSnapshot(popup)).toMatchSnapshot();
   });
 
   it('should display a context popup on right click for tracks without thumbnails', async () => {
     const { component } = mountComponent();
-    const track = component.getByTestId('queue-popup-uuid3');
+    const track = await component.findByTestId('queue-popup-trigger-uuid3');
     await waitFor(() => fireEvent.contextMenu(track));
-    expect(component.asFragment()).toMatchSnapshot();
+
+    const popup = await screen.findByTestId('queue-popup-uuid3');
+    expect(popup).toBeInTheDocument();
+    expect(createElementSnapshot(popup)).toMatchSnapshot();
   });
 
   it('should select a new stream from the popup', async () => {
     const { component, store } = mountComponent();
-    const track = component.getByTestId('queue-popup-uuid1');
+    const track = component.getByTestId('queue-popup-trigger-uuid1');
     await waitFor(() => fireEvent.contextMenu(track));
 
     await waitFor(() => component.getByRole('combobox').click());
@@ -75,9 +88,9 @@ describe('Play Queue container', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const clipboard = require('electron').clipboard;
 
-    const track = component.getByTestId('queue-popup-uuid1');
+    const track = await component.findByTestId('queue-popup-trigger-uuid1');
     await waitFor(() => fireEvent.contextMenu(track));
-    await waitFor(() => component.getByTestId('copy-original-url').click());
+    await userEvent.click(component.getByTestId('copy-original-url'));
     expect(clipboard.writeText).toHaveBeenCalledWith(
       'https://test-track-original-url'
     );
@@ -85,7 +98,7 @@ describe('Play Queue container', () => {
 
   it('should not display the copy original track url button if the url is not included in the current stream', async () => {
     const { component } = mountComponent();
-    const track = component.getByTestId('queue-popup-uuid2');
+    const track = component.getByTestId('queue-popup-trigger-uuid2');
     await waitFor(() => fireEvent.contextMenu(track));
     const copyButton = component.queryByTestId('copy-original-url');
     expect(copyButton).toEqual(null);
@@ -94,7 +107,7 @@ describe('Play Queue container', () => {
   it('should favorite track without stream data (track queue popup)', async () => {
     const { component, store } = mountComponent();
 
-    const track = component.getByTestId('queue-popup-uuid1');
+    const track = component.getByTestId('queue-popup-trigger-uuid1');
     await waitFor(() => fireEvent.contextMenu(track));
     await waitFor(() => component.getByTestId('queue-popup-favorite').click());
 

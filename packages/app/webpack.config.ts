@@ -116,7 +116,7 @@ module.exports = (env) => {
       EventEmitter: ['events', 'EventEmitter']
     }),
     new webpack.ContextReplacementPlugin(
-      /\/(@distube\/ytpl|@distube\/ytsr|youtube-ext|bandcamp-scraper|http-cookie-agent|deasync)\//,
+      /\/(@distube\/ytpl|@distube\/ytsr|bandcamp-scraper|http-cookie-agent|deasync)\//,
       false
     ),
     new webpack.ContextReplacementPlugin(
@@ -245,6 +245,9 @@ module.exports = (env) => {
       hot: true,
       static: {
         publicPath: '/'
+      },
+      client: {
+        overlay: false
       },
       watchFiles: ['../../packages/**/*.{js,jsx,ts,tsx}'],
       allowedHosts: 'all'
