@@ -1,4 +1,4 @@
-import { getOption, IpcEvents, isValidPort } from '@nuclear/core';
+import { getOption, IpcEvents, isValidPort, logger } from '@nuclear/core';
 import { ipcRenderer } from 'electron';
 import _ from 'lodash';
 import { Middleware } from 'redux';
@@ -80,6 +80,9 @@ const ipcConnect: Middleware = () => next => {
         break;
       case 'loopAfterQueueEnd':
         ipcRenderer.send(IpcEvents.LOOP, payload.state);
+        break;
+      case 'devtools':
+        ipcRenderer.send(IpcEvents.WINDOW_OPEN_DEVTOOLS);
         break;
       }
       break;
