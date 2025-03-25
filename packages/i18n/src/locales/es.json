@@ -257,7 +257,8 @@
       "unverify": "No verificar"
     },
     "create-playlist-dialog-title": "Nombre de la lista de reproducción:",
-    "play-now": "Reproducir ahora"
+    "play-now": "Reproducir ahora",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Álbum",
