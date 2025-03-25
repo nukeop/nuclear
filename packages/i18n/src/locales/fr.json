@@ -257,7 +257,8 @@
       "unverify": "Annuler la vérification"
     },
     "create-playlist-dialog-title": "Enter le nom de la liste de lecture :",
-    "play-now": "Lire maintenant"
+    "play-now": "Lire maintenant",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Album",
