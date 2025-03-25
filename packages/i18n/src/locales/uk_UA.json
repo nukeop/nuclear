@@ -257,7 +257,8 @@
       "unverify": "Знепідтвердити"
     },
     "create-playlist-dialog-title": "Введіть назву грайлисту:",
-    "play-now": "Грати зараз"
+    "play-now": "Грати зараз",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Збірка",
