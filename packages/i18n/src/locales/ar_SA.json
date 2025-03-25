@@ -257,7 +257,8 @@
       "unverify": "لا تحقق"
     },
     "create-playlist-dialog-title": "أدخل اسم قائمة الأغاني:",
-    "play-now": "تشغيل الآن"
+    "play-now": "تشغيل الآن",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "ألبوم",
