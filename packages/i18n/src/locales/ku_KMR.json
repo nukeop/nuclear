@@ -257,7 +257,8 @@
       "unverify": "Piştrast neke"
     },
     "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Niha lêde"
+    "play-now": "Niha lêde",
+    "stream-lookup-error": "Stream lookup error. Click to retry."
   },
   "search": {
     "album": "Elbum",
