@@ -13,7 +13,7 @@ import Button from '../Button';
 type SearchBarProps = {
   loading: boolean;
   disabled: boolean;
-  isFocused: boolean
+  isFocused: boolean;
   placeholder: string;
   searchProviders: SearchProviderOption[];
   searchHistory: string[];

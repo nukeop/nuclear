@@ -8,6 +8,7 @@ export enum SearchResultsSource {
     iTunesPodcast = 'iTunesPodcast',
     iTunesMusic = 'iTunesMusic',
     Spotify = 'Spotify',
+    Soundcloud = 'Soundcloud',
 }
 
 export enum AlbumType {
