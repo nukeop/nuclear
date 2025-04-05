@@ -7,7 +7,11 @@ export const initialStoreState = () => ({
     albums: [],
     tracks: []
   },
-  playlists: []
+  playlists: [],
+  queue: {
+    queueItems: [],
+    currentSong: null
+  }
 });
 
 export type MockStore = ReturnType<typeof initialStoreState>;
