@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/core",
-  "version": "0.6.45",
+  "version": "0.6.46",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
@@ -26,8 +26,8 @@
     "@distube/ytpl": "^1.2.1",
     "@distube/ytsr": "^2.0.4",
     "@electron/remote": "^2.1.2",
-    "@nuclear/main": "^0.6.45",
-    "@nuclear/scanner": "^0.6.45",
+    "@nuclear/main": "^0.6.46",
+    "@nuclear/scanner": "^0.6.46",
     "@supabase/supabase-js": "^1.35.4",
     "ajv": "^6.12.5",
     "bandcamp-scraper": "1.4.1",
