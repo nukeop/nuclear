@@ -96,8 +96,8 @@ export type SpotifyPlaylistTrackObject = {
 
 export type SpotifyPlaylistTracksResponse = SpotifyPaginatedResponse<SpotifyPlaylistTrackObject>;
 
-export const isTrack = (track: SpotifyTrack | SpotifyEpisode): track is SpotifyTrack => {
-  return track.type === 'track';
+export const isTrack = (track: SpotifyTrack | SpotifyEpisode | null): track is SpotifyTrack => {
+  return track && track.type === 'track';
 };
 
 class TOTP {
