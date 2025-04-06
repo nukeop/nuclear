@@ -79,3 +79,6 @@ build-dir
 .travis.yml
 .vs/
 target/*
+
+#ENVIROMENT VARIABLES AND SECRETS
+.env
