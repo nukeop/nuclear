@@ -9,12 +9,12 @@
     "queue": "Aggiungi album alla coda",
     "tracks": "Tracce:",
     "year": "Anno:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Aggiungi album a playlist",
+    "create-playlist": "Crea una nuova playlist",
+    "create-playlist-dialog-title": "Inserisci nome playlist:",
+    "create-playlist-dialog-placeholder": "Nome playlist...",
+    "create-playlist-dialog-accept": "Salva",
+    "create-playlist-dialog-cancel": "Cancella"
   },
   "app": {
     "collection": "Collezione",
@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Aggiungi tutti",
-    "count": "Playcount",
+    "count": "Numero di riproduzioni",
     "queue": "Aggiungi tutte le tracce alla coda",
     "similar": "Artisti simili",
     "title": "Titolo",
     "tour": "In tour",
-    "popular-tracks": "Popular tracks",
+    "popular-tracks": "Brani popolari",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Album",
+      "sort-by-release-date": "Ordina per data di rilascio",
+      "sort-by-az": "Ordina A-Z",
+      "sort-by-most-played": "Ordina per più riprodotti",
+      "filter-placeholder": "Filtra..."
     }
   },
   "dashboard": {
@@ -158,7 +158,7 @@
     "delete": "Elimina questa scaletta",
     "duration": "Durata",
     "empty": "Nessuna scaletta.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Prova a creare una playlist o importa da URL e appariranno qui!",
     "error-empty-data": "Dati vuoti",
     "error-invalid-data": "Dati non validi",
     "error-open-file": "Impossibile aprire il file",
@@ -167,7 +167,7 @@
     "export-fail-title": "Esportazione scaletta fallita",
     "export-success-title": "Scaletta esportata con successo",
     "header": "Tue scalette",
-    "header-add-button": "Add",
+    "header-add-button": "Aggiungi",
     "import-progress": "Avanzamento importazione",
     "spotify-import-placeholder": "Incolla qui l'URL di una playlist di Spotify",
     "dialog-placeholder": "Nome scaletta...",
@@ -175,9 +175,9 @@
     "dialog-cancel": "Annulla",
     "dialog-rename": "Rinomina",
     "dialog-import": "Importa",
-    "create-button": "Create a new playlist",
+    "create-button": "Crea una nuova playlist",
     "new-playlist": "Nuova scaletta",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Importa da Spotify",
     "import-button": "Importa da file (JSON)",
     "import-fail-title": "Importazione scaletta fallita",
     "import-success-title": "Scaletta importata con successo",
@@ -199,12 +199,12 @@
     "upload-to-server": "Carica sul server",
     "download-from-server": "Scarica dal server",
     "number-of-tracks": "tracce",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
+    "input-playlist-url": "Incolla playlist URL",
+    "create-playlist-dialog-title": "Inserisci nome playlist:",
     "playlist": "Playlist",
-    "play": "Play",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "play": "Riproduci",
+    "external-source-tooltip": "Questa playlist deriva da una fonte esterna: {{source}}. Non puoi modificarla. Salvala localmente utilizzando il menu playlist per effettuare modifiche.",
+    "save-external-playlist": "Salva in locale"
   },
   "plugins": {
     "add-a-plugin": "Aggiungi plug-in",
@@ -231,10 +231,10 @@
     "favorite-add": "Aggiungi ai preferiti",
     "header": "Coda",
     "header-track": "Traccia corrente",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Copia URL traccia negli appunti",
     "loading": "Il flusso è ancora in caricamento.",
     "playlist-add": "Aggiungi a scaletta",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "Aggiungi coda alla playlist",
     "playlist-toast-content": "La scaletta '{{name}}' è stata creata.",
     "playlist-toast-title": "Scaletta creata",
     "live": "In diretta",
@@ -256,9 +256,9 @@
       "verify": "Verifica",
       "unverify": "Annulla verifica"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "create-playlist-dialog-title": "Nome playlist in ingresso:",
+    "play-now": "Riproduci ora",
+    "stream-lookup-error": "Errore di ricerca streaming. Clicca per riprovare."
   },
   "search": {
     "album": "Album",
@@ -291,7 +291,7 @@
     "autoradio-craziness": "Livello di follia della radio automatica",
     "autoradio-craziness-description": "La radio automatica, più folle è, più selezionerà canzoni meno simili a quelle già nella coda",
     "autoradio-description": "Aggiungere automaticamente tracce simili quando la coda termina",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "Scarica automaticamente tracce preferite",
     "listening-history": "Cronologia di ascolto",
     "listening-history-description": "Tieni traccia dei brani ascoltati, come avviene su Last.fm. La cronologia viene memorizzata offline.",
     "compact-menu-bar": "Usa lo stile compatto per la barra dei menù",
@@ -312,7 +312,7 @@
     "github-description": "Accedere tramite GitHub per poter creare e condividere le tue playlist online (funzionalità in arrivo).",
     "github-title": "GitHub",
     "http": "API HTTP",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "URL istanza Invidious",
     "language": "Lingua",
     "language-placeholder": "Scegli una lingua",
     "lastfm-connect": "Collega a Last.fm",
@@ -373,7 +373,7 @@
     "add-to-favorite": "Aggiungi ai preferiti",
     "add-to-playlist": "Aggiungi a scaletta",
     "add-to-queue": "Aggiungi alla coda",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Crea una nuova playlist",
     "create-playlist-dialog-title": "Nome scaletta in ingresso:",
     "create-playlist-dialog-placeholder": "Nome scaletta...",
     "create-playlist-dialog-accept": "Salva",
@@ -395,13 +395,13 @@
     "play-selected-tracks-now": "Riproduci selezionate ora",
     "tracks-selected-label-singular": "traccia selezionata",
     "tracks-selected-label-plural": "tracce selezionate",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Filtra..."
   },
   "visualizer": {
     "exit-fullscreen": "Premi ESC per uscire dallo schermo intero"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "per aprire la tavolozza dei comandi",
     "search-placeholder": "Che cosa vorresti fare?",
     "empty-state-help": "Non riesci a trovare quello che stai cercando? Prova il comando aiuto.",
     "protip-text": "Suggerimento:",
