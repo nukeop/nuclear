@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "Nazwa playlisty:",
     "play-now": "Odtwórz teraz",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "Błąd wyszukiwania. Kliknij, by spróbować ponownie."
   },
   "search": {
     "album": "Album",
