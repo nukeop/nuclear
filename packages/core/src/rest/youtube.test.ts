@@ -57,7 +57,7 @@ jest.mock('@distube/ytpl', () => {
   });
 });
 
-jest.mock('@distube/ytdl-core', () => ({
+jest.mock('@nuclearplayer/ytdl-core', () => ({
   createAgent: jest.fn(),
   getInfo: jest.fn().mockResolvedValue({
     videoDetails: {

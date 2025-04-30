@@ -1,5 +1,5 @@
 import { logger } from '../../';
-import ytdl from '@distube/ytdl-core';
+import ytdl from '@nuclearplayer/ytdl-core';
 import ytpl from '@distube/ytpl';
 
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
