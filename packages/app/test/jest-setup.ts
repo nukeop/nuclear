@@ -18,5 +18,6 @@ Object.defineProperties(global, {
   TextDecoder: { value: TextDecoder },
   TextEncoder: { value: TextEncoder },
   ReadableStream: { value: ReadableStream },
-  TransformStream: { value: TransformStream }
+  TransformStream: { value: TransformStream },
+  MessagePort: { value: {} }
 });
