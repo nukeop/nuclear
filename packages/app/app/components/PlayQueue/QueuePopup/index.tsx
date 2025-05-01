@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, memo } from 'react';
 import cs from 'classnames';
 import { head } from 'lodash';
 import { Popup } from 'semantic-ui-react';
@@ -110,4 +110,4 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
   );
 };
 
-export default QueuePopup;
+export default memo(QueuePopup);

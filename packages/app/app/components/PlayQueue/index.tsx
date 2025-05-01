@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import classnames from 'classnames';
 import _, { head } from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -35,6 +35,13 @@ type QueueRowProps = {
   data: {
     settings: SettingsState;
     queue: QueueStore;
+    openPopupQueueId: string | null;
+    setOpenPopupQueueId: React.Dispatch<React.SetStateAction<string | null>>;
+    onSelectTrack: (index: number) => () => void;
+    onRemoveTrack: (index: number) => () => void;
+    onReloadTrack: (index: number) => () => void;
+    onSelectStream: (index: number) => (stream: StreamData) => void;
+    t: TFunction;
   };
   index: number;
   style: Object
@@ -45,6 +52,75 @@ const formatTrackDuration = (t: TFunction) => (track: QueueItemType) => formatDu
   Boolean(track.streams)
   ? t('live')
   : formatDuration(head(track.streams)?.duration);
+
+const QueueRow = React.memo(({ data, index, style }: QueueRowProps) => {
+  const {
+    queue,
+    settings,
+    openPopupQueueId,
+    setOpenPopupQueueId,
+    onSelectTrack,
+    onRemoveTrack,
+    onReloadTrack,
+    onSelectStream,
+    t
+  } = data;
+  const item = queue.queueItems[index] as QueueItemType;
+
+  const handleRequestOpen = useCallback(() => {
+    if (item.queueId) {
+      setOpenPopupQueueId(item.queueId);
+    }
+  }, [setOpenPopupQueueId, item.queueId]);
+
+  const handleRequestClose = useCallback(() => {
+    setOpenPopupQueueId(null);
+  }, [setOpenPopupQueueId]);
+
+  return (
+    <Draggable
+      key={item.uuid}
+      draggableId={item.uuid}
+      index={index}
+    >
+      {(draggableProvided, draggableSnapshot) => {
+        return (
+          <div
+            ref={draggableProvided.innerRef}
+            {...draggableProvided.draggableProps}
+            {...draggableProvided.dragHandleProps}
+            style={style ? {
+              ...draggableProvided.draggableProps.style,
+              ...style
+            } : draggableProvided.draggableProps.style}
+          >
+            <QueuePopupContainer
+              trigger={
+                <QueueItem
+                  isCompact={settings.compactQueueBar as boolean}
+                  isCurrent={queue.currentTrack === index}
+                  track={item}
+                  duration={formatTrackDuration(t)(item)}
+                  onSelect={onSelectTrack(index)}
+                  onRemove={onRemoveTrack(index)}
+                  onReload={onReloadTrack(index)}
+                />
+              }
+              isQueueItemCompact={settings.compactQueueBar as boolean}
+              index={index}
+              track={item}
+              onSelectStream={onSelectStream(index)}
+              copyTrackUrlLabel={t('copy-track-url')}
+              isOpen={openPopupQueueId === item.queueId}
+              onRequestOpen={handleRequestOpen}
+              onRequestClose={handleRequestClose}
+            />
+          </div>
+        );
+      }}
+    </Draggable>
+  );
+}, areEqual);
 
 const PlayQueue: React.FC<PlayQueueProps> = ({
   actions: {
@@ -128,75 +204,28 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
   };
 
   // When a new stream is selected from the track context menu
-  const onSelectStream = (index: number) => (stream: StreamData) => {
+  const onSelectStream = useCallback((index: number) => (stream: StreamData) => {
     selectNewStream(index, stream.id);
     setOpenPopupQueueId(null);
-  };
+  }, [selectNewStream, setOpenPopupQueueId]);
 
   // When a track is switched to e.g. by double clicking
-  const onSelectTrack = (index: number) => () => {
+  const onSelectTrack = useCallback((index: number) => () => {
     selectSong(index);
     setOpenPopupQueueId(null);
-  };
+  }, [selectSong, setOpenPopupQueueId]);
 
   // When a track is removed from the queue
-  const onRemoveTrack = (index: number) => () => {
+  const onRemoveTrack = useCallback((index: number) => () => {
     removeFromQueue(index);
     if (queue.queueItems.length === 1) {
       resetPlayer();
     }
     setOpenPopupQueueId(null);
-  };
+  }, [removeFromQueue, resetPlayer, queue.queueItems.length, setOpenPopupQueueId]);
 
   // When a track is reloaded after it gets locked for subsequent stream lookup failures
-  const onReloadTrack = (index: number) => () => reloadTrack(index);
-
-  const QueueRow = React.memo(({ data, index, style }: QueueRowProps) => {
-    const item = data.queue.queueItems[index] as QueueItemType;
-    return (
-      <Draggable
-        key={item.uuid}
-        draggableId={item.uuid}
-        index={index}
-      >
-        {(draggableProvided, draggableSnapshot) => {
-          return (
-            <div
-              ref={draggableProvided.innerRef}
-              {...draggableProvided.draggableProps}
-              {...draggableProvided.dragHandleProps}
-              style={style ? {
-                ...draggableProvided.draggableProps.style,
-                ...style
-              } : draggableProvided.draggableProps.style}
-            >
-              <QueuePopupContainer
-                trigger={
-                  <QueueItem
-                    isCompact={data.settings.compactQueueBar as boolean}
-                    isCurrent={data.queue.currentTrack === index}
-                    track={item}
-                    duration={formatTrackDuration(t)(item)}
-                    onSelect={onSelectTrack(index)}
-                    onRemove={onRemoveTrack(index)}
-                    onReload={onReloadTrack(index)}
-                  />
-                }
-                isQueueItemCompact={data.settings.compactQueueBar as boolean}
-                index={index}
-                track={item}
-                onSelectStream={onSelectStream(index)}
-                copyTrackUrlLabel={t('copy-track-url')}
-                isOpen={openPopupQueueId === item.queueId}
-                onRequestOpen={() => setOpenPopupQueueId(item.queueId!)}
-                onRequestClose={() => setOpenPopupQueueId(null)}
-              />
-            </div>
-          );
-        }}
-      </Draggable>
-    );
-  }, areEqual);
+  const onReloadTrack = useCallback((index: number) => () => reloadTrack(index), [reloadTrack]);
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -250,7 +279,17 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                   itemSize={settings.compactQueueBar ? 42 : 64}
                   itemCount={queue.queueItems.length}
                   overscanCount={2}
-                  itemData={{ queue, settings }}
+                  itemData={{
+                    queue,
+                    settings,
+                    openPopupQueueId,
+                    setOpenPopupQueueId,
+                    onSelectTrack,
+                    onRemoveTrack,
+                    onReloadTrack,
+                    onSelectStream,
+                    t
+                  }}
                 >
                   {QueueRow}
                 </List>}
