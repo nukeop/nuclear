@@ -4,15 +4,15 @@
 
 ### Phase 1: Setup and Foundation
 
-- [ ] Install Redux Toolkit and required dependencies
+- [x] Install Redux Toolkit and required dependencies
 
   ```fish
   npm install @reduxjs/toolkit
   ```
 
-- [ ] Create a parallel store configuration using RTK's `configureStore`
+- [x] Create a parallel store configuration using RTK's `configureStore`
 
-  - [ ] Create a new file at `/packages/app/app/store/configureStoreRTK.ts`
+  - [x] Create a new file at `/packages/app/app/store/configureStoreRTK.ts`
   - [ ] Setup initial configuration that maintains compatibility with existing middleware
   - [ ] Ensure DevTools integration works
 
