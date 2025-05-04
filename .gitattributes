@@ -1,0 +1,12 @@
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg text
+
+*.png -text diff=image merge=binary
+*.jpg -text diff=image merge=binary
+*.jpeg -text diff=image merge=binary
+*.gif -text diff=image merge=binary
+
+*.svg -text merge=binary
