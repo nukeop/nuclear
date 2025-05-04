@@ -13,8 +13,8 @@
 - [x] Create a parallel store configuration using RTK's `configureStore`
 
   - [x] Create a new file at `/packages/app/app/store/configureStoreRTK.ts`
-  - [ ] Setup initial configuration that maintains compatibility with existing middleware
-  - [ ] Ensure DevTools integration works
+  - [x] Setup initial configuration that maintains compatibility with existing middleware
+  - [x] Ensure DevTools integration works
 
 - [ ] Update test utilities to support both the existing store and the new RTK store
   - [ ] Modify `/packages/app/test/testUtils.tsx` to support RTK store
