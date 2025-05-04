@@ -1,8 +1,4 @@
-# Redux Toolkit - [x] Ensure DevTools integration works
-
-- [x] Update test utilities to support both the existing store and the new RTK store
-  - [x] Modify `/packages/app/test/testUtils.tsx` to support RTK store
-  - [x] Create new test utility functions as neededtion Plan
+# Redux Toolkit Migration Plan
 
 ## Migration Phases
 
@@ -20,9 +16,9 @@
   - [x] Setup initial configuration that maintains compatibility with existing middleware
   - [x] Ensure DevTools integration works
 
-- [ ] Update test utilities to support both the existing store and the new RTK store
-  - [ ] Modify `/packages/app/test/testUtils.tsx` to support RTK store
-  - [ ] Create new test utility functions as needed
+- [x] Update test utilities to support both the existing store and the new RTK store
+  - [x] Modify `/packages/app/test/testUtils.tsx` to support RTK store
+  - [x] Create new test utility functions as needed
 
 ### Phase 2: Slice-by-Slice Migration
 
