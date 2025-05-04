@@ -1,5 +1,5 @@
 import React from 'react';
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, compose, createStore, Store, AnyAction } from 'redux';
 import { Provider } from 'react-redux';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -9,16 +9,24 @@ import ReduxPromise from 'redux-promise';
 import { Router } from 'react-router';
 import { render } from '@testing-library/react';
 import en from '@nuclear/i18n/src/locales/en.json';
+import { configureStore } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
-import rootReducer from '../app/reducers';
+import rootReducer, { RootState } from '../app/reducers';
 import syncStore from '../app/store/enhancers/syncStorage';
+import { 
+  persistenceMiddleware, 
+  initializePersistenceCache, 
+  getPersistedState 
+} from '../app/store/middlewares/persistence';
+import ipcConnect from '../app/store/middlewares/ipc';
+import { RootStateRTK } from '../app/store/storeTypes';
 
 import MainContentContainer from '../app/containers/MainContentContainer';
 import HelpModalContainer from '../app/containers/HelpModalContainer';
 import PlayQueueContainer from '../app/containers/PlayQueueContainer';
 import Navbar from '../app/components/Navbar';
 import NavButtons from '../app/components/NavButtons';
-
 
 export type AnyProps = {
   [k: string]: any;
@@ -31,14 +39,36 @@ type TestRouteProviderProps = {
   history: ReturnType<typeof createMemoryHistory>;
 }
 
-export const configureMockStore = (initialState?: AnyProps) => createStore(
-  rootReducer,
-  initialState,
-  compose(
-    applyMiddleware(ReduxPromise, thunk),
-    syncStore(['downloads'])
-  )
-);
+type OldStoreType = Store<RootState, AnyAction> & { dispatch: any };
+type RTKStoreType = ReturnType<typeof configureStore>;
+type MockStoreType = OldStoreType | RTKStoreType;
+
+export const configureMockStore = (initialState?: AnyProps, useRTK = false): MockStoreType => {
+  if (useRTK) {
+    const basePersistedState = getPersistedState();
+    const preloadedState = _.merge({}, basePersistedState, initialState);
+    const rtkRootReducer = {};
+
+    const rtkStore = configureStore({
+      reducer: rtkRootReducer,
+      middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(ReduxPromise, ipcConnect, persistenceMiddleware),
+      devTools: false,
+      preloadedState
+    });
+    initializePersistenceCache(rtkStore.getState() as RootStateRTK);
+    return rtkStore as RTKStoreType;
+  } else {
+    return createStore(
+      rootReducer,
+      initialState,
+      compose(
+        applyMiddleware(ReduxPromise, thunk),
+        syncStore(['downloads'])
+      )
+    ) as OldStoreType;
+  }
+};
 
 export const TestStoreProvider: React.FC<{
   initialState?: AnyProps;
@@ -80,13 +110,15 @@ export const mountComponent = (
   initialHistoryEntries: string[],
   initialStore?: AnyProps, 
   defaultInitialStore?: AnyProps,
-  renderOptions?: {}) => {
+  renderOptions?: {},
+  useRTKStore = false
+) => {
   const initialState = initialStore || defaultInitialStore;
 
   const history = createMemoryHistory({
     initialEntries: initialHistoryEntries
   });
-  const store = configureMockStore(initialState);
+  const store = configureMockStore(initialState, useRTKStore);
   const component = render(
     <TestRouterProvider
       history={history}
@@ -104,7 +136,8 @@ export const mountComponent = (
 export const mountedComponentFactory = (
   initialHistoryEntries: string[],
   defaultInitialStore?: AnyProps,
-  AdditionalNodes?: React.FC
+  AdditionalNodes?: React.FC,
+  useRTKStore = false
 ) =>
   (initialStore?: AnyProps) => mountComponent(
     <>
@@ -113,12 +146,15 @@ export const mountedComponentFactory = (
     </>,
     initialHistoryEntries,
     initialStore,
-    defaultInitialStore
+    defaultInitialStore,
+    undefined,
+    useRTKStore
   );
 
 export const mountedNavbarFactory= (
   initialHistoryEntries: string[],
-  defaultInitialStore?: AnyProps
+  defaultInitialStore?: AnyProps,
+  useRTKStore = false
 ) =>
   (initialStore?: AnyProps) => mountComponent(
     <Navbar>
@@ -127,17 +163,21 @@ export const mountedNavbarFactory= (
     </Navbar>,
     initialHistoryEntries,
     initialStore,
-    defaultInitialStore
+    defaultInitialStore,
+    undefined,
+    useRTKStore
   );
   
 export const mountedPlayQueueFactory= (
   initialHistoryEntries: string[],
-  defaultInitialStore?: AnyProps
+  defaultInitialStore?: AnyProps,
+  useRTKStore = false
 ) =>
   (initialStore?: AnyProps) => mountComponent(
     <PlayQueueContainer />,
     initialHistoryEntries,
     initialStore,
     defaultInitialStore,
-    { container: document.body }
+    { container: document.body },
+    useRTKStore
   );
