@@ -10,9 +10,9 @@
     "tracks": "曲目：",
     "year": "年份​​：",
     "add-to-playlist": "",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist": "创建播放列表",
+    "create-playlist-dialog-title": "输入播放列表名称：",
+    "create-playlist-dialog-placeholder": "播放列表名称",
     "create-playlist-dialog-accept": "保存",
     "create-playlist-dialog-cancel": "取消"
   },
@@ -42,12 +42,12 @@
   },
   "artist": {
     "add-all": "全部添加",
-    "count": "Playcount",
+    "count": "播放次数",
     "queue": "将全部歌曲添加到播放列表",
     "similar": "相似的艺术家",
     "title": "标题",
     "tour": "巡回演出",
-    "popular-tracks": "Popular tracks",
+    "popular-tracks": "流行曲目",
     "artist-albums": {
       "header": "Albums",
       "sort-by-release-date": "Sort by release date",
@@ -201,7 +201,7 @@
     "number-of-tracks": "tracks",
     "input-playlist-url": "Paste playlist URL:",
     "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
+    "playlist": "播放列表",
     "play": "Play",
     "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
     "save-external-playlist": "Save locally"
