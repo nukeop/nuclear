@@ -8,6 +8,9 @@ import syncStore from './enhancers/syncStorage';
 import ipcConnect from './middlewares/ipc';
 
 declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
   interface NodeModule {
     hot?: {
       accept: (path: string, callback: () => void) => void;
@@ -16,10 +19,9 @@ declare global {
 }
 
 export default function configureStore(initialState) {
-  const composeEnhancers = process.env.NODE_ENV === 'production'
-    ? compose
-    // eslint-disable-next-line dot-notation
-    : _.defaultTo(window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose, compose);
+  const composeEnhancers = (typeof window !== 'undefined' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
 
   const store = createStore(
     rootReducer,

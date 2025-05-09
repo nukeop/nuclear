@@ -9,10 +9,13 @@ import {
   getPersistedState 
 } from './middlewares/persistence';
 import { RootStateRTK, AppDispatchRTK } from './storeTypes';
+import { playerSlice } from '../slices/playerSlice';
 
 const preloadedState = getPersistedState();
 
-const rootReducer = {};
+const rootReducer = {
+  player: playerSlice.reducer
+};
 
 export const storeRTK = configureStore({
   reducer: rootReducer,
@@ -22,7 +25,7 @@ export const storeRTK = configureStore({
   preloadedState
 });
 
-initializePersistenceCache(storeRTK.getState());
+initializePersistenceCache(storeRTK.getState() as RootStateRTK);
 
 export const useAppDispatchRTK = () => useDispatch<AppDispatchRTK>();
 export const useAppSelectorRTK: TypedUseSelectorHook<RootStateRTK> = useSelector;

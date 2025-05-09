@@ -1,7 +1,8 @@
 import { ThunkAction, Action } from '@reduxjs/toolkit';
+import { PlayerState } from '../slices/playerSlice';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RootStateRTK {
+  player: PlayerState;
 }
 
 export type AppDispatchRTK = typeof import('./configureStoreRTK').storeRTK.dispatch;
