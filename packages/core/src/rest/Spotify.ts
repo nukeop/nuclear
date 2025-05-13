@@ -1,6 +1,7 @@
 import { logger } from '../../';
 import { PlaylistTrack } from '../helpers';
 import * as crypto from 'crypto';
+import { Album, Artist, SpotifySearchV2Response } from './Spotify.types';
 
 const SPOTIFY_API_OPEN_URL = 'https://open.spotify.com';
 const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
@@ -170,7 +171,7 @@ class SpotifyClient {
       const totpToken = this.totp.generate(serverTime);
       
       const tokenResponse = await fetch(
-        `${SPOTIFY_API_OPEN_URL}/get_access_token?reason=init&productType=web-player&totp=${totpToken}&totpVer=${this.totp.getVersion()}&ts=${serverTime}`
+        `${SPOTIFY_API_OPEN_URL}/get_access_token?reason=init&productType=web-player&totp=${totpToken}&totpVer=${this.totp.getVersion()}&sTime=${serverTime}&cTime=${Date.now()}&buildVer=web-player_2025-05-12_1747082920646_8ab14aa&buildDate=2025-05-12&totpServer=010137`
       );
       
       if (!tokenResponse.ok) {
@@ -201,26 +202,109 @@ class SpotifyClient {
     }
   }
 
-  async searchArtists(query: string, limit=10): Promise<SpotifyArtist[]> {
-    const data = await this.get(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`);
+  async post(url: string, body?: any) {
+    const result = await fetch(url, {
+      method: 'POST',
+      headers: {  
+        Authorization: `Bearer ${this._token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (result.ok) {
+      return result.json();
+    } else if (result.status === 401) {
+      await this.refreshToken();
+      return this.post(url, body);
+    }
+  }
 
-    return data.artists.items;
+  async searchArtists(query: string, limit=10): Promise<SpotifyArtist[]> {
+    const data: SpotifySearchV2Response = await this.post('https://api-partner.spotify.com/pathfinder/v2/query', {
+      operationName: 'searchDesktop',
+      variables: {
+        searchTerm: query,
+        limit: 10,
+        offset: 0,
+        numberOfTopResults: 5,
+        includeAudiobooks: false,
+        includeArtistHasConcertsField: false,
+        includePreReleases: true,
+        includeLocalConcertsField: false
+      },
+      'extensions': {
+        'persistedQuery': {
+          'version': 1,
+          'sha256Hash': 'd9f785900f0710b31c07818d617f4f7600c1e21217e80f5b043d1e78d74e6026'
+        }
+      }
+    });
+
+
+    return data.data.searchV2.artists.items.map((item) => {
+      const data = item.data as Artist;
+
+      return {
+        id: data.uri,
+        name: data.profile.name,
+        images: data.visuals.avatarImage?.sources ?? []
+      };
+    });
   }
 
   async searchReleases(query: string, limit=10): Promise<SpotifySimplifiedAlbum[]> {
-    const data = await this.get(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`);
+    const data: SpotifySearchV2Response = await this.post('https://api-partner.spotify.com/pathfinder/v2/query', {
+      operationName: 'searchDesktop',
+      variables: {
+        searchTerm: query,
+        limit: 10,
+        offset: 0,
+        numberOfTopResults: 5,
+        includeAudiobooks: false,
+        includeArtistHasConcertsField: false,
+        includePreReleases: true,
+        includeLocalConcertsField: false
+      },
+      'extensions': {
+        'persistedQuery': {
+          'version': 1,
+          'sha256Hash': 'd9f785900f0710b31c07818d617f4f7600c1e21217e80f5b043d1e78d74e6026'
+        }
+      }
+    });
 
-    return data.albums.items;
+    return data.data.searchV2.albumsV2.items.filter(item => item.__typename === 'AlbumResponseWrapper').map((item) => {
+      const data = item.data as Album;
+      return {
+        id: data.uri,
+        name: data.name,
+        images: data.coverArt?.sources ?? [],
+        album_type: data.type as SpotifySimplifiedAlbum['album_type'],
+        release_date: data.date?.year.toString() ?? 'Unknown',
+        total_tracks: 0,
+        href: data.uri,
+        artists: data.artists?.items.map((artist) => ({
+          name: artist.profile.name
+        })) ?? []
+      };
+    }
+    );
   }
 
   async searchTracks(query: string, limit=20): Promise<SpotifyTrack[]> {
-    const data = await this.get(`${SPOTIFY_API_URL}/search?type=track&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`);
+    const data = await this.get(`${SPOTIFY_API_URL}/search?type=track&q=${query}&limit=${limit}`);
 
     return data.tracks.items;
   }
 
   async searchAll(query: string): Promise<{ artists: SpotifyArtist[]; releases: SpotifySimplifiedAlbum[]; tracks: SpotifyTrack[]; }> {
-    const data = await this.get(`${SPOTIFY_API_URL}/search?q=${query}&type=artist,album,track&decorate_restrictions=false&include_external=audio`);
+    
+    const data = await this.post('https://api-partner.spotify.com/pathfinder/v2/query', {
+      operationName: 'searchDesktop',
+      variables: {
+        searchTerm: query
+      }
+    });
 
     return {
       artists: data.artists.items,
@@ -262,7 +346,7 @@ class SpotifyClient {
   }
 
   async getTopArtist(query: string): Promise<SpotifyFullArtist> {
-    const data = await this.get(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=1`);
+    const data = await this.get(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&best_match=true&limit=1`);
 
     return data.best_match.items[0];
   }
@@ -274,7 +358,7 @@ class SpotifyClient {
   }
 
   async getTopAlbum(query: string): Promise<SpotifyFullAlbum> {
-    const data = await this.get(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=1`);
+    const data = await this.get(`${SPOTIFY_API_URL}/search?type=album&q=${query}&best_match=true&limit=1`);
 
     return data.best_match.items[0];
   }
