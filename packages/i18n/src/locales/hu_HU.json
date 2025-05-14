@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "Add meg a lejátszási lista nevét:",
     "play-now": "Lejátszás most",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "Adatfolyam keresési hiba. Kattints az újrapróbálkozáshoz."
   },
   "search": {
     "album": "Album",
@@ -291,7 +291,7 @@
     "autoradio-craziness": "Autómata rádió őrültsége",
     "autoradio-craziness-description": "Az autómata rádió olyan zenéket fog kiválasztani, amlyek annál kevésbé hasonlítanak az várólistán levőkre, ammenyivel őrültebb",
     "autoradio-description": "Hasonló számok autómatikus hozzáadása, amikor a várólista a végéhez ér",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "Kedvenc szám automatikus letöltése",
     "listening-history": "Hallgatási előzmények",
     "listening-history-description": "Regisztráld a hallgatott számokat a Last.fm segítségével. Az előzmények offline tárolódnak.",
     "compact-menu-bar": "Kompakt stílust használata a menüsorhoz",
@@ -316,8 +316,8 @@
     "language": "Nyelv",
     "language-placeholder": "Válasz egy nyelvet",
     "lastfm-connect": "Csatlakozás a Last.fm-hez",
-    "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
-    "lastfm-enable": "Last.fm re való scrollozás engedélyezése",
+    "lastfm-description": "A scrobbling engedélyezéséhez először csatlakoznia kell és engedélyeznie kell a Nucleart a Last.fm-en, majd karttintson a Bejelentkezésre.",
+    "lastfm-enable": "Last.fm re való scrobbling engedélyezése",
     "lastfm-title": "Last.fm",
     "less": "Kevesebb",
     "login": "Bejelentkezés",
@@ -325,7 +325,7 @@
     "loop-after-queue-end": "Véletlenszerű lejátszás az utolsó tétel után",
     "mastodon-authorization-token-label": "Feljogosítási token",
     "mastodon-authorize": "Feljogosítás",
-    "mastodon-authorized": "Nuclear is authorized to post on ",
+    "mastodon-authorized": "Nuclearnak közzétételi engedélye van ",
     "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastadon URL-je",
