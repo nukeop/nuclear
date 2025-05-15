@@ -343,7 +343,7 @@ export interface SearchV2 {
 
 // Root Response Object
 
-export interface SpotifySearchV2Response {
+export interface SoytifySearchV2Response {
   data: {
     searchV2: SearchV2;
   };
