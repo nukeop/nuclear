@@ -9,7 +9,6 @@ import { Loadable } from './types';
 
 export class PlaylistsStore {
   localPlaylists: Loadable<Playlist[]> = {...startingStateMeta};
-  remotePlaylists: Loadable<Playlist[]> = {...startingStateMeta};
 }
 
 const defaultState = { ...new PlaylistsStore() };

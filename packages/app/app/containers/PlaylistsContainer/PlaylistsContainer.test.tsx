@@ -194,20 +194,6 @@ describe('Playlists container', () => {
     ]);
   });
 
-  it('should get the users playlists on mount if the user is logged in', async () => {
-    const initialState = buildStoreState()
-      .withPlaylists()
-      .withPlugins()
-      .withConnectivity()
-      .withLoggedInUser()
-      .withSettings({
-        nuclearPlaylistsServiceUrl: 'http://playlists.nuclear'
-      })
-      .build();
-    mountComponent(initialState);
-    expect(fetchMock.done());
-  });
-
   it.each([{
     kind: 'undefined',
     filePath: undefined
@@ -230,18 +216,6 @@ describe('Playlists container', () => {
       error: true,
       onClick: expect.any(Function)
     });
-  });
-
-  it('should not get the user\'s playlists on mount if the user is not logged in', async () => {
-    const initialState = buildStoreState()
-      .withPlaylists()
-      .withPlugins()
-      .withConnectivity()
-      .withLoggedInUser()
-      .build();
-    mountComponent(initialState);
-
-    expect(fetchMock.done());
   });
 
   const mountComponent = (initialStore?: AnyProps, initStore = true) => {

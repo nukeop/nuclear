@@ -3,9 +3,7 @@ import { v4 } from 'uuid';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 import { ipcRenderer } from 'electron';
 
-import { store, PlaylistHelper, Playlist, PlaylistTrack, rest, IpcEvents } from '@nuclear/core';
-import { GetPlaylistsByUserIdResponseBody } from '@nuclear/core/src/rest/Nuclear/Playlists.types';
-import { ErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
+import { store, PlaylistHelper, Playlist, PlaylistTrack, IpcEvents } from '@nuclear/core';
 
 import { Playlists } from './actionTypes';
 
@@ -15,7 +13,6 @@ import {
   updatePlaylistsOrderEffect
 } from './playlists.effects';
 import { success, error } from './toasts';
-import { IdentityStore } from '../reducers/nuclear/identity';
 import { PlaylistsStore } from '../reducers/playlists';
 import { isEmpty } from 'lodash';
 
@@ -26,12 +23,6 @@ export const loadLocalPlaylistsAction = createAsyncAction(
   Playlists.LOAD_LOCAL_PLAYLISTS_SUCCESS,
   Playlists.LOAD_LOCAL_PLAYLISTS_ERROR
 )<void, Array<Playlist>, void>();
-
-export const loadRemotePlaylistsAction = createAsyncAction(
-  Playlists.LOAD_REMOTE_PLAYLISTS_START,
-  Playlists.LOAD_REMOTE_PLAYLISTS_SUCCESS,
-  Playlists.LOAD_REMOTE_PLAYLISTS_ERROR
-)<void, GetPlaylistsByUserIdResponseBody, ErrorBody>();
 
 export const addPlaylist = (tracks: Array<PlaylistTrack>, name: string) => dispatch => {
   if (name?.length === 0) {
@@ -59,30 +50,6 @@ export const loadLocalPlaylists = () => dispatch => {
     dispatch(loadLocalPlaylistsAction.success(isEmpty(playlists) ? [] : playlists));
   } catch (error) {
     dispatch(loadLocalPlaylistsAction.failure());
-  }
-};
-
-
-export const loadRemotePlaylists = ({ token, signedInUser }: IdentityStore) => async (dispatch, getState) => {
-  dispatch(loadRemotePlaylistsAction.request());
-  const { settings } = getState();
-  const service = new rest.NuclearPlaylistsService(
-    settings.nuclearPlaylistsServiceUrl
-  );
-
-  try {
-    if (token) {
-      const playlists = await service.getPlaylistsByUserId(token, signedInUser.id);
-      if (playlists.ok) {
-        dispatch(loadRemotePlaylistsAction.success(playlists.body as GetPlaylistsByUserIdResponseBody));
-      } else {
-        throw playlists.body;
-      }
-    } else {
-      throw new Error('No token');
-    }
-  } catch (e) {
-    dispatch(loadRemotePlaylistsAction.failure(e.message));
   }
 };
 
