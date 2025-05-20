@@ -1,3 +1,14 @@
+// Query parameters
+
+export type OperationName =
+  | 'searchDesktop'
+  | 'searchArtists'
+  | 'searchAlbums'
+  | 'searchTracks'
+  | 'searchPlaylists'
+  | 'queryArtistOverview'
+  | 'getAlbum';
+
 // Helper Types & Common Interfaces
 
 export interface CoverArtSource {
@@ -56,6 +67,7 @@ export interface AvatarImage {
 
 export interface ArtistVisuals {
   avatarImage: AvatarImage;
+  gallery?: Gallery;
 }
 
 export interface ArtistProfile {
@@ -321,13 +333,128 @@ export interface SearchResultItemWrapper<T> {
   item: T;
 }
 
+export interface ArtistStats {
+    followers: number;
+    monthlyListeners: number;
+    worldRank: number;
+}
 
 export interface TopResultsV2 {
   featured: PlaylistResponseWrapper[];
-  itemsV2: SearchResultItemWrapper<TrackResponseWrapper | ArtistResponseWrapper | PlaylistResponseWrapper>[];
+  itemsV2: SearchResultItemWrapper<
+    TrackResponseWrapper | ArtistResponseWrapper | PlaylistResponseWrapper
+  >[];
 }
 
-// Main SearchV2 Structure
+export interface ArtistSimplified {
+  profile: {
+    name: string;
+  };
+  uri: string;
+}
+
+export interface SharingInfo {
+    shareId: string;
+    shareUrl: string;
+}
+
+export interface YearDate {
+  year: number;
+}
+
+export interface FullDate {
+  day: number;
+  month: number;
+  precision: 'DAY' | 'MONTH' | 'YEAR';
+  year: number;
+}
+
+export interface CopyrightItem {
+    text: string;
+    type: 'C' | 'P';
+}
+
+export interface Copyright {
+    items: CopyrightItem[];
+}
+
+export interface TracksSummary {
+    totalCount: number;
+}
+
+export type ReleaseType = 'ALBUM' | 'SINGLE' | 'EP' | 'COMPILATION';
+
+export interface ReleaseItem {
+    copyright: Copyright;
+    coverArt: AlbumCoverArt;
+    date: FullDate;
+    id: string;
+    label: string;
+    name: string;
+    playability: Playability;
+    sharingInfo: SharingInfo;
+    tracks: TracksSummary;
+    type: ReleaseType;
+    uri: string;
+}
+
+export type ReleaseSection = PaginatedResponse<ReleaseItem>;
+
+export interface RelatedContent {
+    relatedArtists: Artist;
+}
+
+export interface ConcertItem {
+  '__typename': 'ConcertV2';
+  festival: boolean;
+  location: {
+    city: string;
+    name: string;
+  }
+  startDateIsoString: string;
+  title: string;
+  uri: string;
+}
+export interface Goods {
+    concerts: PaginatedResponse<ConcertItem>;
+}
+
+export interface ArtistTopTrack {
+    albumOfTrack: AlbumOfTrack;
+    artists: {
+        items: ArtistSimplified[];
+    };
+    associationsV3: AssociationsV3;
+    contentRating: ContentRating;
+    discNumber: number;
+    duration: Duration;
+    id: string;
+    name: string;
+    playability: Playability;
+    playcount: string;
+    uri: string;
+}
+
+export interface TopTracksSection {
+    items: ArtistTopTrack[];
+}
+
+export interface Discography {
+    albums: ReleaseSection;
+    compilations: ReleaseSection;
+    latest: ReleaseItem;
+    popularReleasesAlbums: ReleaseSection;
+    singles: ReleaseSection;
+    topTracks: TopTracksSection;
+}
+
+export interface GalleryImageItem {
+    sources: CoverArtSource[];
+}
+
+export interface Gallery {
+    items: GalleryImageItem[];
+}
 
 export interface SearchV2 {
   albumsV2: AlbumOrPrereleasePage;
@@ -341,11 +468,41 @@ export interface SearchV2 {
   users: PaginatedResponse<UserResponseWrapper>;
 }
 
-// Root Response Object
+
+export interface ArtistOverviewData {
+    __typename: 'Artist';
+    discography: Discography;
+    goods: Goods;
+    headerImage: CoverArtSource | null;
+    id: string;
+    preRelease: PreReleaseResponseWrapper | null;
+    profile: ArtistProfile;
+    relatedContent: RelatedContent;
+    saved: boolean;
+    sharingInfo: SharingInfo;
+    stats: ArtistStats;
+    uri: string;
+    visuals: ArtistVisuals;
+}
+
+// Response objects
 
 export interface SoytifySearchV2Response {
   data: {
     searchV2: SearchV2;
+  };
+  extensions: {
+    requestIds: {
+      [key: string]: {
+        [key: string]: string;
+      };
+    };
+  };
+}
+
+export interface SoytifyArtistOverviewResponse {
+  data: {
+    artistUnion: ArtistOverviewData;
   };
   extensions: {
     requestIds: {

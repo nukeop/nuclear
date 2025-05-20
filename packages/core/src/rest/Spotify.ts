@@ -1,7 +1,7 @@
-import { logger } from '../../';
+import { getImageSet, logger } from '../../';
 import { PlaylistTrack } from '../helpers';
 import * as crypto from 'crypto';
-import { Album, Artist, SpotifySearchV2Response } from './soytify/Spotify.types';
+import { Album, Artist, SoytifySearchV2Response } from './soytify/soytify.types';
 
 const SPOTIFY_API_OPEN_URL = 'https://open.spotify.com';
 const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
@@ -220,7 +220,7 @@ class SpotifyClient {
   }
 
   async searchArtists(query: string, limit=10): Promise<SpotifyArtist[]> {
-    const data: SpotifySearchV2Response = await this.post('https://api-partner.spotify.com/pathfinder/v2/query', {
+    const data: SoytifySearchV2Response = await this.post('https://api-partner.spotify.com/pathfinder/v2/query', {
       operationName: 'searchDesktop',
       variables: {
         searchTerm: query,
@@ -253,7 +253,7 @@ class SpotifyClient {
   }
 
   async searchReleases(query: string, limit=10): Promise<SpotifySimplifiedAlbum[]> {
-    const data: SpotifySearchV2Response = await this.post('https://api-partner.spotify.com/pathfinder/v2/query', {
+    const data: SoytifySearchV2Response = await this.post('https://api-partner.spotify.com/pathfinder/v2/query', {
       operationName: 'searchDesktop',
       variables: {
         searchTerm: query,
@@ -380,20 +380,6 @@ class SpotifyClient {
     };
   }
 }
-
-export const getImageSet = (images: SpotifyImage[]): { thumb?: string; coverImage?: string; } => {
-  const isNotEmpty = images.length > 0;
-  const largestImage = isNotEmpty && images.reduce((prev, current) => {
-    return (prev.height * prev.width) > (current.height * current.width) ? prev : current;
-  });
-  const thumbnail = isNotEmpty && images.find(image => image.height < 400 && image.width < 400);
-
-  return {
-    thumb: thumbnail?.url,
-    coverImage: largestImage?.url
-  };
-};
-
 
 export const mapSpotifyTrack = (track: SpotifyTrack): PlaylistTrack | null => {
   const { thumb } = getImageSet(track.album?.images ?? []);
