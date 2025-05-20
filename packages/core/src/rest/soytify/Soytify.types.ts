@@ -312,21 +312,7 @@ export interface AlbumOrPrereleasePage {
   items: (AlbumResponseWrapper | PreReleaseResponseWrapper)[];
   totalCount: number;
 }
-export interface ArtistOverviewData {
-  __typename: 'Artist';
-  discography: Discography;
-  goods: Goods;
-  headerImage: CoverArtSource | null;
-  id: string;
-  preRelease: PreReleaseResponseWrapper | null;
-  profile: ArtistProfile;
-  relatedContent: RelatedContent;
-  saved: boolean;
-  sharingInfo: SharingInfo;
-  stats: ArtistStats;
-  uri: string;
-  visuals: ArtistVisuals;
-}
+
 export interface ArtistStats {
   followers: number;
   monthlyListeners: number;
@@ -416,7 +402,7 @@ export interface TopTracksSection {
 // Response objects
 export interface SoytifyArtistOverviewResponse {
   data: {
-    artistUnion: ArtistOverviewData;
+    artistUnion: Artist;
   };
   extensions: {
     requestIds: {
