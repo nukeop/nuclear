@@ -1,11 +1,12 @@
-import { logger } from '../../';
+import { getLargestThumbnail, getThumbnailSizedImage, logger } from '../../';
 import { TOTP } from './soytify-totp';
-import { OperationName, SoytifyArtistOverviewResponse, SoytifySearchV2Response } from './soytify.types';
+import { OperationName, SoytifyArtistOverviewResponse, SoytifySearchV2Response } from './Soytify.types';
 import {
   mapSoytifyArtistSearchResult,
   mapSoytifyReleaseSearchResult,
   mapSoytifyTrackSearchResult
 } from './soytify-mappers';
+import { ArtistDetails, SearchResultsSource } from '../../plugins/plugins.types';
 
 const SOYTIFY_API_OPEN_URL = 'https://open.' + atob('c3BvdGlmeQ==') + '.com';
 const SOYTIFY_BASE_URL =
@@ -187,12 +188,22 @@ export class SoytifyClient {
     };
   }
 
-  async fetchArtistDetails(artistId: string) {
-    const artist = await this.runQuery<SoytifyArtistOverviewResponse>({
+  async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
+    const {data: {artistUnion: artist}} = await this.runQuery<SoytifyArtistOverviewResponse>({
       operationName: 'queryArtistOverview',
       args: {uri: artistId, locale: ''}
     });
-    return artist;
+
+    return {
+      id: artist.uri,
+      name: artist.profile.name,
+      coverImage: artist.headerImage.url,
+      thumb: getThumbnailSizedImage(artist.visuals.avatarImage.sources),
+      images: artist.visuals.gallery.items.map(item => getLargestThumbnail(item.sources)),
+      topTracks: artist.discography.topTracks.items.map(track => ({})),
+      similar: artist.relatedContent.relatedArtists.items.map(artist => ({})),
+      source: SearchResultsSource.Soytify
+    };
   }
 }
 

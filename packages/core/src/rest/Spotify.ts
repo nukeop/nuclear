@@ -1,7 +1,7 @@
 import { getImageSet, logger } from '../../';
 import { PlaylistTrack } from '../helpers';
 import * as crypto from 'crypto';
-import { Album, Artist, SoytifySearchV2Response } from './soytify/soytify.types';
+import { Album, Artist, SoytifySearchV2Response } from './soytify/Soytify.types';
 
 const SPOTIFY_API_OPEN_URL = 'https://open.spotify.com';
 const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
