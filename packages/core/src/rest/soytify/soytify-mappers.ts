@@ -1,4 +1,4 @@
-import { Album, AlbumResponseWrapper, ArtistResponseWrapper, SearchResultItemWrapper, Track, TrackResponseWrapper } from './soytify.types';
+import { Album, AlbumResponseWrapper, ArtistResponseWrapper, SearchResultItemWrapper, Track, TrackResponseWrapper } from './Soytify.types';
 import { getImageSet, getThumbnailSizedImage } from '../../util';
 import { SearchResultsAlbum, SearchResultsArtist, SearchResultsSource, SearchResultsTrack } from '../../plugins/plugins.types';
 

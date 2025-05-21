@@ -200,8 +200,17 @@ export class SoytifyClient {
       coverImage: artist.headerImage.url,
       thumb: getThumbnailSizedImage(artist.visuals.avatarImage.sources),
       images: artist.visuals.gallery.items.map(item => getLargestThumbnail(item.sources)),
-      topTracks: artist.discography.topTracks.items.map(track => ({})),
-      similar: artist.relatedContent.relatedArtists.items.map(artist => ({})),
+      topTracks: artist.discography.topTracks.items.map(track => ({
+        artist: {name: track.artists.items[0].profile.name},
+        title: track.name,
+        thumb: getThumbnailSizedImage(track.albumOfTrack.coverArt?.sources),
+        playcount: parseInt(track.playcount),
+        listeners: parseInt(track.playcount)
+      })),
+      similar: artist.relatedContent.relatedArtists.items.map(artist => ({
+        name: artist.profile.name,
+        thumbnail: getThumbnailSizedImage(artist.visuals.avatarImage.sources)
+      })),
       source: SearchResultsSource.Soytify
     };
   }
