@@ -7,6 +7,9 @@ export const searchSelectors = createStateSelectors(
     'artistDetails', 
     'searchHistory',
     'unifiedSearchStarted',
-    'isFocused'
+    'isFocused',
+    'trackSearchResults',
+    'artistSearchResults',
+    'albumSearchResults'
   ]
 );

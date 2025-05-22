@@ -15,7 +15,7 @@ export type ArtistDetailsState = Partial<ArtistDetails> & {
 
 export type AlbumDetailsState = Partial<AlbumDetails> & {loading?: boolean, error?: boolean}
 
-type SearchState = {
+export type SearchState = {
   artistSearchResults: Artist[]
   albumSearchResults: SearchResultsAlbum[]
   podcastSearchResults: SearchResultsPodcast[]
