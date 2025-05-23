@@ -2,17 +2,13 @@ import { logger } from '@nuclear/core';
 import { rest } from '@nuclear/core';
 import _, { isString } from 'lodash';
 import artPlaceholder from '../../resources/media/art_placeholder.png';
-import globals from '../globals';
 import { error } from './toasts';
 import { Search } from './actionTypes';
 import { History } from 'history';
 import { RootState } from '../reducers';
-import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsPodcast, SearchResultsSource } from '@nuclear/core/src/plugins/plugins.types';
-import { createStandardAction } from 'typesafe-actions';
-import { LastfmTrackMatch, LastfmTrackMatchInternal } from '@nuclear/core/src/rest/Lastfm.types';
+import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsPodcast, SearchResultsSource, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
+import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 import { YoutubeResult } from '@nuclear/core/src/rest/Youtube';
-
-const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const SearchActions = {
   unifiedSearchStart: createStandardAction(Search.UNIFIED_SEARCH_START)<string>(),
@@ -71,16 +67,6 @@ export const SearchActions = {
   podcastSearchSuccess: createStandardAction(Search.PODCAST_SEARCH_SUCCESS)<SearchResultsPodcast[]>(),
   setSearchDropdownVisibility: createStandardAction(Search.SEARCH_DROPDOWN_DISPLAY_CHANGE)<boolean>(),
   updateSearchHistory: createStandardAction(Search.UPDATE_SEARCH_HISTORY)<string[]>(),
-  lastFmTrackSearchStart: createStandardAction(Search.LASTFM_TRACK_SEARCH_START)<string>(),
-  lastFmTrackSearchSuccess: createStandardAction(Search.LASTFM_TRACK_SEARCH_SUCCESS).map((terms: string, searchResults: LastfmTrackMatchInternal[]) => {
-    return {
-      payload: {
-        id: terms,
-        info: searchResults
-      }
-    };
-  }),
-  trackSearchSuccess: createStandardAction(Search.TRACK_SEARCH_SUCCESS)<SearchResultsAlbum[]>(),
   artistSearchSuccess: createStandardAction(Search.ARTIST_SEARCH_SUCCESS)<SearchResultsArtist[]>(),
   artistInfoStart: createStandardAction(Search.ARTIST_INFO_SEARCH_START)<string>(),
   artistInfoSuccess: createStandardAction(Search.ARTIST_INFO_SEARCH_SUCCESS).map((artistId: string, info: ArtistDetails) => {
@@ -121,7 +107,12 @@ export const SearchActions = {
         error
       }
     };
-  })
+  }),
+  trackSearchAction: createAsyncAction(
+    Search.TRACK_SEARCH_START,
+    Search.TRACK_SEARCH_SUCCESS,
+    Search.TRACK_SEARCH_ERROR
+  )<undefined, SearchResultsTrack[], undefined>()
 };
 
 
@@ -149,9 +140,15 @@ export const albumSearch = (terms: string) => async (dispatch, getState: () => R
 };
 
 export const trackSearch = (terms: string) => async (dispatch, getState: () => RootState) => {
-  const selectedProvider = getSelectedMetaProvider(getState);
-  const results = await selectedProvider.searchForTracks(terms);
-  dispatch(SearchActions.trackSearchSuccess(results));
+  dispatch(SearchActions.trackSearchAction.request());
+  try {
+    const selectedProvider = getSelectedMetaProvider(getState);
+    const results = await selectedProvider.searchForTracks(terms);
+    dispatch(SearchActions.trackSearchAction.success(results));
+  } catch (e) {
+    logger.error(e);
+    dispatch(SearchActions.trackSearchAction.failure());
+  }
 };
 
 export const podcastSearch = (terms: string) => async (dispatch, getState: () => RootState) => {
@@ -159,46 +156,6 @@ export const podcastSearch = (terms: string) => async (dispatch, getState: () =>
   const results = await selectedProvider.searchForPodcast(terms);
   dispatch(SearchActions.podcastSearchSuccess(results));
 };
-
-
-const isAcceptableLastFMThumbnail = (thumbnail: string) =>
-  !(/https?:\/\/lastfm-img\d.akamaized.net\/i\/u\/\d+s\/2a96cbd8b46e442fc41c2b86b821562f\.png/.test(thumbnail));
-
-const getTrackThumbnail = (track: LastfmTrackMatch) => {
-  const image =
-    _.get(
-      track,
-      ['image', 1, '#text'],
-      _.get(
-        track,
-        ['image', 0, '#text'],
-        artPlaceholder
-      )
-    );
-  
-  return !isString(image) ? artPlaceholder : isAcceptableLastFMThumbnail(image) ? image : artPlaceholder;
-};
-
-export const mapLastFMTrackToInternal = (track: LastfmTrackMatch) => ({
-  ...track,
-  thumbnail: getTrackThumbnail(track)
-});
-
-export function lastFmTrackSearch(terms: string) {
-  return dispatch => {
-    dispatch(SearchActions.lastFmTrackSearchStart(terms));
-    Promise.all([lastfm.searchTracks(terms)])
-      .then(results => Promise.all(results.map(info => info.json())))
-      .then(results => {
-        dispatch(
-          SearchActions.lastFmTrackSearchSuccess(terms, _.get(results[0], 'results.trackmatches.track', []).map(mapLastFMTrackToInternal))
-        );
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
 
 export function youtubePlaylistSearch(terms: string) {
   return dispatch => {
@@ -234,7 +191,7 @@ export function unifiedSearch(terms: string, history: History) {
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms)),
       dispatch(podcastSearch(terms)),
-      dispatch(lastFmTrackSearch(terms)),
+      dispatch(trackSearch(terms)),
       dispatch(youtubePlaylistSearch(terms)),
       dispatch(youtubeLiveStreamSearch(terms))
     ])
