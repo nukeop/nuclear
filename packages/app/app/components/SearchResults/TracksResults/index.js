@@ -7,7 +7,7 @@ import TrackRow from '../../TrackRow';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
 
-const TracksResults = ({ tracks, limit }) => {
+export const TracksResults = ({ tracks, limit }) => {
   const { t } = useTranslation('search');
   const collection = tracks || [];
 
@@ -45,5 +45,3 @@ const TracksResults = ({ tracks, limit }) => {
     );
   }
 };
-
-export default TracksResults;
