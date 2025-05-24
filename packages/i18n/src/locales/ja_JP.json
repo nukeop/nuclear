@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "再生リスト名を入力:",
     "play-now": "今すぐ再生",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "ストリーム検索エラー。クリックで再試行。"
   },
   "search": {
     "album": "アルバム",
