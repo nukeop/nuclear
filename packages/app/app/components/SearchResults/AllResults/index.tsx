@@ -2,18 +2,22 @@ import React, { FC, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Card } from '@nuclear/ui';
-
-import { searchSelectors } from '../../../selectors/search';
-import { artistInfoSearch as artistInfoSearchAction } from '../../../actions/search';
-import { SearchState } from '../../../reducers/search';
-import { pluginsSelectors } from '../../../selectors/plugins';
-import artPlaceholder from '../../../../resources/media/art_placeholder.png';
-import styles from './styles.scss';
 import {
   SearchResultsAlbum,
   SearchResultsArtist
 } from '@nuclear/core/src/plugins/plugins.types';
+import { Card } from '@nuclear/ui';
+
+import { TracksResults } from '../TracksResults';
+import { searchSelectors } from '../../../selectors/search';
+import { 
+  artistInfoSearch as artistInfoSearchAction,
+  albumInfoSearch as albumInfoSearchAction
+} from '../../../actions/search';
+import { SearchState } from '../../../reducers/search';
+import artPlaceholder from '../../../../resources/media/art_placeholder.png';
+import styles from './styles.scss';
+
 
 type SearchCollection = SearchState[
   | 'artistSearchResults'
@@ -30,18 +34,6 @@ type ResultsProps = {
   }) => void;
 };
 const Results: FC<ResultsProps> = ({ collection, onClick }) => {
-  const metaProviders = useSelector(pluginsSelectors.plugins).metaProviders;
-  const selectedProviderName = useSelector(
-    pluginsSelectors.selected
-  ).metaProviders;
-  const selectedProvider = useMemo(
-    () =>
-      metaProviders.find(
-        (metaProvider) => metaProvider.sourceName === selectedProviderName
-      ),
-    [metaProviders, selectedProviderName]
-  );
-
   return (
     <>
       {collection.slice(0, 5).map((item, index) => {
@@ -92,17 +84,31 @@ type AllResultsProps = {};
 export const AllResults: FC<AllResultsProps> = () => {
   const { t } = useTranslation('search');
   const dispatch = useDispatch();
-  const trackSearchResults = useSelector(searchSelectors.trackSearchResults);
   const artistSearchResults = useSelector(searchSelectors.artistSearchResults);
   const albumSearchResults = useSelector(searchSelectors.albumSearchResults);
+  const trackSearchResults = useSelector(searchSelectors.trackSearchResults);
 
-  const artistsLength = artistSearchResults?.length;
+  const tracksLength = trackSearchResults?.length || 0;
+  const artistsLength = artistSearchResults?.length || 0;
+  const albumsLength = albumSearchResults?.length || 0;
+
   const artistInfoSearch = useCallback(
     ({ id, item }: { id: string; item: SearchResultsArtist }) => {
       dispatch(artistInfoSearchAction(id, item));
     },
-    []
+    [dispatch]
   );
+
+  const albumInfoSearch = useCallback(
+    ({ id, item }: { id: string; item: SearchResultsAlbum }) => {
+      dispatch(albumInfoSearchAction(id, 'master', item));
+    },
+    [dispatch]
+  );
+
+  if (artistsLength + albumsLength === 0) {
+    return <div>{t('empty')}</div>;
+  }
 
   return (
     <div className={styles.all_results_container}>
@@ -112,6 +118,24 @@ export const AllResults: FC<AllResultsProps> = () => {
           collection={artistSearchResults}
           onClick={artistInfoSearch}
         />
+      )}
+      {albumsLength > 0 && (
+        <ResultsSection
+          title={t('album', { count: albumSearchResults.length })}
+          collection={albumSearchResults}
+          onClick={albumInfoSearch}
+        />
+      )}
+      {tracksLength > 0 && (
+        <div className={styles.column}>
+          <h3>{t('track_plural')}</h3>
+          <div className={styles.row}>
+            <TracksResults
+              tracks={trackSearchResults}
+              limit={5}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
