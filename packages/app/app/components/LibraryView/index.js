@@ -6,7 +6,6 @@ import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import EmptyState from './EmptyState';
-import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
 import LibrarySimpleList from './LibrarySimpleList';
@@ -89,7 +88,7 @@ const LibraryView = ({
               <EmptyState />
             )
           ) : (
-            <Segment inverted className={trackRowStyles.tracks_container}>
+            <Segment inverted>
               <Dimmer active={pending} loading={pending.toString()} />
 
               {!pending && listType === LIST_TYPE.SIMPLE_LIST && (

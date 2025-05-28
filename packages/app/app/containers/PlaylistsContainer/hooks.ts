@@ -3,22 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { playlistsSelectors } from '../../selectors/playlists';
-import { nuclearSelectors } from '../../selectors/nuclear';
 import * as PlaylistActions from '../../actions/playlists';
 import { openLocalFilePicker } from '../../actions/local';
-
-export const useRemotePlaylists = () => {
-  const dispatch = useDispatch();
-  const identityStore = useSelector(nuclearSelectors.identity);
-
-  useEffect(() => {
-    dispatch(PlaylistActions.loadRemotePlaylists(identityStore));
-  }, [dispatch, identityStore]);
-
-  return {
-    remotePlaylists: useSelector(playlistsSelectors.remotePlaylists)
-  };
-};
 
 export const useLocalPlaylists = () => {
   const dispatch = useDispatch();
@@ -50,13 +36,11 @@ export const usePlaylistsProps = () => {
   );
 
   const { localPlaylists } = useLocalPlaylists();
-  const { remotePlaylists } = useRemotePlaylists();
 
   return {
     isLoading: localPlaylists.isLoading,
     hasError: localPlaylists.hasError,
     playlists: localPlaylists.data,
-    remotePlaylists,
     onImportFromFile,
     onCreate
   };

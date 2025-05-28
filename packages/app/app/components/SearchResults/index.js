@@ -4,7 +4,7 @@ import { Tab } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
 import { Card } from '@nuclear/ui';
 
-import AllResults from './AllResults';
+import { AllResults } from './AllResults';
 import TracksResults from './TracksResults';
 import PlaylistResults from './PlaylistResults';
 
@@ -17,12 +17,7 @@ class SearchResults extends React.Component {
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
           <div className='row'>
-            <AllResults
-              {...this.props}
-              albumInfoSearch={this.albumInfoSearch.bind(this)}
-              artistInfoSearch={this.artistInfoSearch.bind(this)}
-              podcastInfoSearch={this.podcastInfoSearch.bind(this)}
-            />
+            <AllResults />
           </div>
         </div>
       </Tab.Pane >

@@ -36,7 +36,6 @@ abstract class MetaProvider extends Plugin {
     artist?: string
   ): Promise<AlbumDetails>;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   searchForPodcast(query: string): Promise<Array<SearchResultsPodcast>> {
     return Promise.resolve([]);
   }
