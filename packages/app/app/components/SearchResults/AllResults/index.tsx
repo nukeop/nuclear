@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -36,19 +36,14 @@ type ResultsProps = {
 const Results: FC<ResultsProps> = ({ collection, onClick }) => {
   return (
     <>
-      {collection.slice(0, 5).map((item, index) => {
-        return (
-          <Card
-            header={item.title || item.name}
-            image={
-              item.coverImage || item.thumb || item.thumbnail || artPlaceholder
-            }
-            content={item.artist}
-            onClick={() => onClick({ id: item.id, item })}
-            key={'item-' + index}
-          />
-        );
-      })}
+      {collection.slice(0, 5).map((item, index) => (
+        <Card
+          header={item.title || item.name}
+          image={item.coverImage || item.thumb || item.thumbnail || artPlaceholder}
+          content={item.artist}
+          onClick={() => onClick({ id: item.id, item })}
+          key={'item-' + index} />
+      ))}
     </>
   );
 };

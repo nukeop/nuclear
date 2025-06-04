@@ -319,19 +319,21 @@ export interface ArtistStats {
   worldRank: number;
 }
 export interface ArtistTopTrack {
-  albumOfTrack: AlbumOfTrack;
-  artists: {
-    items: ArtistSimplified[];
+  track: {
+    albumOfTrack: AlbumOfTrack;
+    artists: {
+      items: ArtistSimplified[];
+    };
+    associationsV3: AssociationsV3;
+    contentRating: ContentRating;
+    discNumber: number;
+    duration: Duration;
+    id: string;
+    name: string;
+    playability: Playability;
+    playcount: string;
+    uri: string;
   };
-  associationsV3: AssociationsV3;
-  contentRating: ContentRating;
-  discNumber: number;
-  duration: Duration;
-  id: string;
-  name: string;
-  playability: Playability;
-  playcount: string;
-  uri: string;
 }
 export interface ChipOrder {
   items: ChipOrderItem[];
