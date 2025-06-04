@@ -8,6 +8,7 @@ export enum SearchResultsSource {
     iTunesPodcast = 'iTunesPodcast',
     iTunesMusic = 'iTunesMusic',
     Spotify = 'Spotify',
+    Soytify = 'Soytify',
     Soundcloud = 'Soundcloud',
 }
 
@@ -61,9 +62,9 @@ export type SearchResultsTrack = {
     id: string;
     title: string;
     artist: string;
-    source: SearchResultsSource;
     thumb?: string;
     discNumber?: number | string;
+    source: SearchResultsSource;
 }
 
 export type ArtistTopTrack = {
