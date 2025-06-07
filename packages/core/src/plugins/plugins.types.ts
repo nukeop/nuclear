@@ -10,6 +10,7 @@ export enum SearchResultsSource {
     Spotify = 'Spotify',
     Soytify = 'Soytify',
     Soundcloud = 'Soundcloud',
+    Youtube = 'Youtube',
 }
 
 export enum AlbumType {
@@ -36,7 +37,7 @@ export type SearchResultsAlbum = {
     title: string;
     artist: string;
     resourceUrl?: string;
-    type?: string;
+    type?: 'master' | 'release';
     tracklist?: {
         uuid: string;
         artist: string;

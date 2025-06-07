@@ -1,7 +1,6 @@
 import { logger } from '@nuclear/core';
 import { rest } from '@nuclear/core';
-import _, { isString } from 'lodash';
-import artPlaceholder from '../../resources/media/art_placeholder.png';
+import _ from 'lodash';
 import { error } from './toasts';
 import { Search } from './actionTypes';
 import { History } from 'history';
@@ -9,6 +8,7 @@ import { RootState } from '../reducers';
 import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsPodcast, SearchResultsSource, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 import { YoutubeResult } from '@nuclear/core/src/rest/Youtube';
+import { getTrackArtist, getTrackTitle } from '@nuclear/ui';
 
 export const SearchActions = {
   unifiedSearchStart: createStandardAction(Search.UNIFIED_SEARCH_START)<string>(),
@@ -24,7 +24,7 @@ export const SearchActions = {
     };
   }),
   youtubeLiveStreamSearchStart: createStandardAction(Search.YOUTUBE_LIVESTREAM_SEARCH_START)<string>(),
-  youtubeLiveStreamSearchSuccess: createStandardAction(Search.YOUTUBE_LIVESTREAM_SEARCH_SUCCESS).map((id: string, info: YoutubeResult[]) => {
+  youtubeLiveStreamSearchSuccess: createStandardAction(Search.YOUTUBE_LIVESTREAM_SEARCH_SUCCESS).map((id: string, info: SearchResultsTrack[]) => {
     return {
       payload: {
         id,
@@ -175,7 +175,13 @@ export function youtubePlaylistSearch(terms: string) {
 export const youtubeLiveStreamSearch = (terms: string) => async (dispatch) => {
   dispatch(SearchActions.youtubeLiveStreamSearchStart(terms));
   try {
-    const results = await rest.Youtube.liveStreamSearch(terms);
+    const results = (await rest.Youtube.liveStreamSearch(terms)).map(el => ({
+      id: el.streams[0].id,
+      title: el.name,
+      artist: getTrackArtist(el),
+      thumb: el.thumbnail,
+      source: SearchResultsSource.Youtube
+    }) satisfies SearchResultsTrack);
     dispatch(SearchActions.youtubeLiveStreamSearchSuccess(terms, results));
   } catch (e) {
     logger.error(e);
@@ -208,28 +214,28 @@ export function unifiedSearch(terms: string, history: History) {
   };
 }
 
-export const albumInfoSearch = (albumId: string, releaseType: 'master' | 'release' = 'master', release: SearchResultsAlbum) => async (dispatch, getState:() => RootState) => {
-  dispatch(SearchActions.albumInfoStart(albumId));
+export const albumInfoSearch = (release: SearchResultsAlbum) => async (dispatch, getState:() => RootState) => {
+  dispatch(SearchActions.albumInfoStart(release.id));
   try {
     const selectedProvider = getSelectedMetaProvider(getState);
-    const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, releaseType, release?.resourceUrl);
-    dispatch(SearchActions.albumInfoSuccess(albumId, albumDetails));
+    const albumDetails = await selectedProvider.fetchAlbumDetails(release.id, release.type, release?.resourceUrl);
+    dispatch(SearchActions.albumInfoSuccess(release.id, albumDetails));
   } catch (e) {
     logger.error(e);
-    dispatch(SearchActions.albumInfoError(albumId, e));
+    dispatch(SearchActions.albumInfoError(release.id, e));
   }
 };
 
 
-export const artistInfoSearch = (artistId: string, artist: SearchResultsArtist) => async (dispatch, getState: () => RootState) => {
-  dispatch(SearchActions.artistInfoStart(artistId));
+export const artistInfoSearch = (artist: SearchResultsArtist) => async (dispatch, getState: () => RootState) => {
+  dispatch(SearchActions.artistInfoStart(artist.id));
   try {
     const selectedProvider = getSelectedMetaProvider(getState, artist?.source);
-    const artistDetails = await selectedProvider.fetchArtistDetails(artistId);
-    dispatch(SearchActions.artistInfoSuccess(artistId, artistDetails));
+    const artistDetails = await selectedProvider.fetchArtistDetails(artist.id);
+    dispatch(SearchActions.artistInfoSuccess(artist.id, artistDetails));
   } catch (e) {
     logger.error(e);
-    dispatch(SearchActions.artistInfoError(artistId, e));
+    dispatch(SearchActions.artistInfoError(artist.id, e));
   }
 };
 

@@ -19,8 +19,8 @@ export type SearchState = {
   podcastSearchResults: SearchResultsPodcast[];
   trackSearchResults: SearchResultsTrack[];
   trackSearchState: { isReady: boolean; isLoading: boolean; hasError: boolean; };
-  playlistSearchResults: { id:string, info: YoutubeResult[] } | undefined[];
-  liveStreamSearchResults: { id:string, info: YoutubeResult[] } | undefined[];
+  playlistSearchResults: { id:string, info: YoutubeResult[] } | undefined;
+  liveStreamSearchResults: { id:string, info: SearchResultsTrack[] } | undefined;
   albumDetails:{[key: string]:  AlbumDetailsState };
   artistDetails: {[key: string]: ArtistDetailsState };
   searchHistory: string[];
@@ -36,8 +36,8 @@ const initialState: SearchState = {
   podcastSearchResults: [],
   trackSearchResults: [],
   trackSearchState: { isReady: false, isLoading: false, hasError: false },
-  playlistSearchResults: [],
-  liveStreamSearchResults: [],
+  playlistSearchResults: undefined,
+  liveStreamSearchResults: undefined,
   albumDetails: {},
   artistDetails: {},
   searchHistory: [],
@@ -204,7 +204,7 @@ export default function SearchReducer(state = initialState, action: SearchReduce
     return {
       ...state,
       playlistSearchStarted: action.payload,
-      playlistSearchResults: []
+      playlistSearchResults: undefined
     };
   case getType(SearchActions.youtubePlaylistSearchSuccess):
     return {
@@ -215,7 +215,7 @@ export default function SearchReducer(state = initialState, action: SearchReduce
     return {
       ...state,
       liveStreamSearchStarted: action.payload,
-      liveStreamSearchResults: []
+      liveStreamSearchResults: undefined
     };
   case getType(SearchActions.youtubeLiveStreamSearchSuccess):
     return {
@@ -225,7 +225,7 @@ export default function SearchReducer(state = initialState, action: SearchReduce
   case getType(SearchActions.youtubeLiveStreamSearchError):
     return {
       ...state,
-      liveStreamSearchResults: []
+      liveStreamSearchResults: undefined
     };
   case getType(SearchActions.setSearchDropdownVisibility):
     return {

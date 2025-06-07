@@ -6,11 +6,10 @@ import { Card } from '@nuclear/ui';
 import { 
   SearchResultsAlbum, 
   SearchResultsArtist, 
-  SearchResultsPodcast, 
   SearchResultsTrack 
 } from '@nuclear/core/src/plugins/plugins.types';
 
-import { albumInfoSearch as albumInfoSearchAction, artistInfoSearch as artistInfoSearchAction, podcastSearch as podcastSearchAction } from '../../actions/search';
+import { albumInfoSearch as albumInfoSearchAction, artistInfoSearch as artistInfoSearchAction } from '../../actions/search';
 import {clearQueue as clearQueueAction, selectSong as selectSongAction} from '../../actions/queue';
 import {startPlayback as startPlaybackAction} from '../../actions/player';
 import { AllResults } from './AllResults';
@@ -47,20 +46,15 @@ const SearchResults: FC = () => {
   [metaProviders, selectedPlugins.metaProviders]
   );
 
-  const albumInfoSearch = useCallback((albumId: string, releaseType?: 'master' | 'release', release?: SearchResultsAlbum) => {
-    dispatch(albumInfoSearchAction(albumId, releaseType, release));
-    history.push(`/album/${albumId}`);
+  const albumInfoSearch = useCallback((release?: SearchResultsAlbum) => {
+    dispatch(albumInfoSearchAction(release));
+    history.push(`/album/${release?.id}`);
   }, [albumInfoSearchAction, history]);
 
-  const artistInfoSearch = useCallback((artistId: string, artist: SearchResultsArtist) => {
-    dispatch(artistInfoSearchAction(artistId, artist ));
-    history.push(`/artist/${artistId}`);
+  const artistInfoSearch = useCallback((artist?: SearchResultsArtist) => {
+    dispatch(artistInfoSearchAction(artist));
+    history.push(`/artist/${artist?.id}`);
   }, [artistInfoSearchAction, history]);
-
-  const podcastInfoSearch = useCallback((podcastId: string, releaseType?: 'master' | 'release', release?: SearchResultsPodcast) => {
-    dispatch(podcastSearchAction(podcastId));
-    history.push(`/album/${podcastId}`);
-  }, [podcastSearchAction, history]);
 
   const addToQueue = useDispatchedCallback(addToQueueAction);
   const clearQueue = useDispatchedCallback(clearQueueAction);
@@ -77,27 +71,20 @@ const SearchResults: FC = () => {
     </Tab.Pane>
   ), [unifiedSearchStarted]);
 
-  const getItemHeader = useCallback((item: SearchResultsAlbum | SearchResultsArtist | SearchResultsPodcast): string => {
-    return (item as SearchResultsAlbum | SearchResultsPodcast).title || (item as SearchResultsArtist).name;
+  const getItemHeader = useCallback((item: SearchResultsAlbum | SearchResultsArtist): string => {
+    return (item as SearchResultsAlbum).title || (item as SearchResultsArtist).name;
   }, []);
 
-  const getItemContent = useCallback((item: SearchResultsAlbum | SearchResultsArtist | SearchResultsPodcast): string | undefined => {
+  const getItemContent = useCallback((item: SearchResultsAlbum | SearchResultsArtist): string | undefined => {
     if ('artist' in item) {
       return item.artist;
-    }
-    if ('author' in item) {
-      return item.author;
     }
     return undefined;
   }, []);
 
-  const getItemType = useCallback((item: SearchResultsAlbum | SearchResultsArtist | SearchResultsPodcast): string | undefined => {
-    return 'type' in item ? item.type : undefined;
-  }, []);
-
-  const renderPane = useCallback(<T extends SearchResultsAlbum | SearchResultsArtist | SearchResultsPodcast>(
+  const renderPane = useCallback(<T extends SearchResultsAlbum | SearchResultsArtist>(
     collection: T[], 
-    onClick: (id: string, type?: string) => void
+    onClick: (element: T) => void
   ) => {
     return (
       <Tab.Pane loading={unifiedSearchStarted} attached={false}>
@@ -113,14 +100,14 @@ const SearchResults: FC = () => {
                     header={getItemHeader(el)}
                     content={getItemContent(el)}
                     image={el.coverImage || el.thumb}
-                    onClick={() => onClick(id, getItemType(el))} />
+                    onClick={() => onClick(el)} />
                 );
               })
             : t('empty')}
         </div>
       </Tab.Pane>
     );
-  }, [unifiedSearchStarted, selectedProvider, t, getItemHeader, getItemContent, getItemType]);
+  }, [unifiedSearchStarted, selectedProvider, t, getItemHeader, getItemContent]);
 
   const renderTrackListPane = useCallback((collection?: SearchResultsTrack[]) => {
     if (!collection) {
@@ -144,7 +131,7 @@ const SearchResults: FC = () => {
     );
   }, [unifiedSearchStarted, t]);
 
-  const renderPlaylistPane = useMemo(() => (
+  const renderPlaylistPane = useCallback(() => (
     <Tab.Pane attached={false}>
       <PlaylistResults
         playlistSearchStarted={playlistSearchStarted}
@@ -163,7 +150,6 @@ const SearchResults: FC = () => {
     const tracksHasResults = get(trackSearchResults, ['info', 'length'], trackSearchResults.length) > 0;
     const playlistsHasResults = get(playlistSearchResults, ['info', 'length'], 0) > 0;
     const liveStreamsHasResults = get(liveStreamSearchResults, ['info', 'length'], 0) > 0;
-    const podcastsHasResults = podcastSearchResults.length > 0;
 
     return [
       {
@@ -188,18 +174,14 @@ const SearchResults: FC = () => {
       },
       liveStreamsHasResults && {
         menuItem: t('live-stream'),
-        render: () => renderTrackListPane(get(liveStreamSearchResults, 'info'))
-      },
-      podcastsHasResults && {
-        menuItem: t('podcast'),
-        render: () => renderPane(podcastSearchResults, podcastInfoSearch)
+        render: () => renderTrackListPane(liveStreamSearchResults?.info)
       }
     ].filter(Boolean);
   }, [
     artistSearchResults, albumSearchResults, trackSearchResults, 
     playlistSearchResults, liveStreamSearchResults, podcastSearchResults,
     t, renderAllResultsPane, renderPane, renderTrackListPane, renderPlaylistPane,
-    artistInfoSearch, albumInfoSearch, podcastInfoSearch
+    artistInfoSearch, albumInfoSearch
   ]);
 
   return (

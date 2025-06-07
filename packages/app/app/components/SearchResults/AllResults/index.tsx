@@ -51,13 +51,8 @@ const Results: FC<ResultsProps> = ({ collection, onClick }) => {
 type ResultsSectionProps = {
   title: string;
   collection: SearchCollection;
-  onClick: ({
-    id,
-    item
-  }: {
-    id: string;
-    item: SearchResultsArtist | SearchResultsAlbum;
-  }) => void;
+  onClick: (
+    item: SearchResultsArtist | SearchResultsAlbum) => void;
 };
 const ResultsSection: FC<ResultsSectionProps> = ({
   title,
@@ -88,15 +83,15 @@ export const AllResults: FC<AllResultsProps> = () => {
   const albumsLength = albumSearchResults?.length || 0;
 
   const artistInfoSearch = useCallback(
-    ({ id, item }: { id: string; item: SearchResultsArtist }) => {
-      dispatch(artistInfoSearchAction(id, item));
+    (item: SearchResultsArtist) => {
+      dispatch(artistInfoSearchAction(item));
     },
     [dispatch]
   );
 
   const albumInfoSearch = useCallback(
     ({ id, item }: { id: string; item: SearchResultsAlbum }) => {
-      dispatch(albumInfoSearchAction(id, 'master', item));
+      dispatch(albumInfoSearchAction(item));
     },
     [dispatch]
   );
