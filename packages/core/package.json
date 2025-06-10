@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/core",
-  "version": "0.6.47",
+  "version": "0.6.48",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
@@ -25,8 +25,8 @@
     "@distube/ytpl": "^1.2.1",
     "@distube/ytsr": "^2.0.4",
     "@electron/remote": "^2.1.2",
-    "@nuclear/main": "^0.6.47",
-    "@nuclear/scanner": "^0.6.47",
+    "@nuclear/main": "^0.6.48",
+    "@nuclear/scanner": "^0.6.48",
     "@nuclearplayer/ytdl-core": "4.16.13",
     "@supabase/supabase-js": "^1.35.4",
     "ajv": "^6.12.5",
