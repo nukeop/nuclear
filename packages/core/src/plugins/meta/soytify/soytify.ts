@@ -2,7 +2,7 @@ import { SoytifyClientProvider } from '../../../rest/soytify/soytify-partners-ap
 import MetaProvider from '../../metaProvider';
 import { SearchResultsAlbum, SearchResultsTrack, SearchResultsArtist, ArtistDetails, AlbumDetails } from '../../plugins.types';
 
-const SOYTIFY_NAME = atob('U3BvdGlmeQ==');
+const SOYTIFY_NAME = atob('U295dGlmeQ==');
 
 export class SoytifyMetaProvider extends MetaProvider {
   constructor() {

@@ -1,4 +1,4 @@
-import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsPodcast, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
+import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
 import { YoutubeResult } from '@nuclear/core/src/rest/Youtube';
 import { ActionType, getType } from 'typesafe-actions';
 import { SearchActions } from '../actions/search';
@@ -16,7 +16,6 @@ export type AlbumDetailsState = Partial<AlbumDetails> & {loading?: boolean, erro
 export type SearchState = {
   artistSearchResults: SearchResultsArtist[];
   albumSearchResults: SearchResultsAlbum[];
-  podcastSearchResults: SearchResultsPodcast[];
   trackSearchResults: SearchResultsTrack[];
   trackSearchState: { isReady: boolean; isLoading: boolean; hasError: boolean; };
   playlistSearchResults: { id:string, info: YoutubeResult[] } | undefined;
@@ -33,7 +32,6 @@ export type SearchState = {
 const initialState: SearchState = {
   artistSearchResults: [],
   albumSearchResults: [],
-  podcastSearchResults: [],
   trackSearchResults: [],
   trackSearchState: { isReady: false, isLoading: false, hasError: false },
   playlistSearchResults: undefined,
@@ -74,11 +72,6 @@ export default function SearchReducer(state = initialState, action: SearchReduce
     return {
       ...state,
       artistSearchResults: action.payload
-    };
-  case getType(SearchActions.podcastSearchSuccess):
-    return {
-      ...state,
-      podcastSearchResults: action.payload
     };
   case getType(SearchActions.albumInfoStart):
     return {

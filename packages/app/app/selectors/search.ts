@@ -13,7 +13,6 @@ export const searchSelectors = createStateSelectors(
     'artistSearchResults',
     'albumSearchResults',
     'playlistSearchResults',
-    'liveStreamSearchResults',
-    'podcastSearchResults'
+    'liveStreamSearchResults'
   ]
 );

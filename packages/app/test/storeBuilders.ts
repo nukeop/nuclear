@@ -20,10 +20,8 @@ export const buildStoreState = () => {
     search: {
       artistSearchResults: [],
       albumSearchResults: [],
-      podcastSearchResults: [],
       trackSearchResults: [],
-      playlistSearchResults: [],
-      liveStreamSearchResults: [],
+      liveStreamSearchResults: undefined,
       albumDetails: {},
       artistDetails: {},
       searchHistory: [],
@@ -292,7 +290,6 @@ export const buildStoreState = () => {
                 searchName: 'Test Metadata Provider',
                 searchForArtists: jest.fn().mockResolvedValue([]),
                 searchForReleases: jest.fn().mockResolvedValue([]),
-                searchForPodcast: jest.fn().mockResolvedValue([]),
                 fetchArtistDetailsByName: jest.fn(artistName => {
                   switch (artistName) {
                   case 'artist-similar-1':

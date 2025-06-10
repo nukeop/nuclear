@@ -39,7 +39,6 @@ const SearchResults: FC = () => {
   const albumSearchResults = useSelector(searchSelectors.albumSearchResults);
   const artistSearchResults = useSelector(searchSelectors.artistSearchResults);
   const liveStreamSearchResults = useSelector(searchSelectors.liveStreamSearchResults);
-  const podcastSearchResults = useSelector(searchSelectors.podcastSearchResults);
 
   const selectedProvider = useMemo(() => 
     metaProviders.find(provider => provider.sourceName === selectedPlugins.metaProviders),
@@ -179,7 +178,7 @@ const SearchResults: FC = () => {
     ].filter(Boolean);
   }, [
     artistSearchResults, albumSearchResults, trackSearchResults, 
-    playlistSearchResults, liveStreamSearchResults, podcastSearchResults,
+    playlistSearchResults, liveStreamSearchResults,
     t, renderAllResultsPane, renderPane, renderTrackListPane, renderPlaylistPane,
     artistInfoSearch, albumInfoSearch
   ]);

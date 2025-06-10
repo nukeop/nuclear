@@ -52,8 +52,8 @@ class PlaylistResults extends React.Component {
         addToQueue={this.props.addToQueue}
         tracks={this.props.playlistSearchResults.info}
         limit='100'
-        streamProviders={this.props.streamProviders}
-      /></div>
+      />
+    </div>
 
   renderNoResult() {
     return (<div>{this.props.t('empty')}</div>);

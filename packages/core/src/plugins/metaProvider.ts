@@ -3,7 +3,6 @@ import {
   SearchResultsArtist,
   SearchResultsAlbum,
   SearchResultsTrack,
-  SearchResultsPodcast,
   ArtistDetails,
   AlbumDetails
 } from './plugins.types';
@@ -16,7 +15,6 @@ abstract class MetaProvider extends Plugin {
   abstract searchForArtists(query: string): Promise<Array<SearchResultsArtist>>;
   abstract searchForReleases(query: string): Promise<Array<SearchResultsAlbum>>;
   abstract searchForTracks(query: string): Promise<Array<SearchResultsTrack>>;
-  abstract searchForPodcast(query: string): Promise<Array<SearchResultsPodcast>>;
   abstract searchAll(query: string): Promise<{
     artists: Array<SearchResultsArtist>;
     releases: Array<SearchResultsAlbum>;

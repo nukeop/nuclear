@@ -5,10 +5,10 @@ import { error } from './toasts';
 import { Search } from './actionTypes';
 import { History } from 'history';
 import { RootState } from '../reducers';
-import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsPodcast, SearchResultsSource, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
+import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsSource, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 import { YoutubeResult } from '@nuclear/core/src/rest/Youtube';
-import { getTrackArtist, getTrackTitle } from '@nuclear/ui';
+import { getTrackArtist } from '@nuclear/ui';
 
 export const SearchActions = {
   unifiedSearchStart: createStandardAction(Search.UNIFIED_SEARCH_START)<string>(),
@@ -64,7 +64,6 @@ export const SearchActions = {
       }
     };
   }),
-  podcastSearchSuccess: createStandardAction(Search.PODCAST_SEARCH_SUCCESS)<SearchResultsPodcast[]>(),
   setSearchDropdownVisibility: createStandardAction(Search.SEARCH_DROPDOWN_DISPLAY_CHANGE)<boolean>(),
   updateSearchHistory: createStandardAction(Search.UPDATE_SEARCH_HISTORY)<string[]>(),
   artistSearchSuccess: createStandardAction(Search.ARTIST_SEARCH_SUCCESS)<SearchResultsArtist[]>(),
@@ -151,12 +150,6 @@ export const trackSearch = (terms: string) => async (dispatch, getState: () => R
   }
 };
 
-export const podcastSearch = (terms: string) => async (dispatch, getState: () => RootState) => {
-  const selectedProvider = getSelectedMetaProvider(getState);
-  const results = await selectedProvider.searchForPodcast(terms);
-  dispatch(SearchActions.podcastSearchSuccess(results));
-};
-
 export function youtubePlaylistSearch(terms: string) {
   return dispatch => {
     dispatch(SearchActions.youtubePlaylistSearchStart(terms));
@@ -196,7 +189,6 @@ export function unifiedSearch(terms: string, history: History) {
     Promise.all([
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms)),
-      dispatch(podcastSearch(terms)),
       dispatch(trackSearch(terms)),
       dispatch(youtubePlaylistSearch(terms)),
       dispatch(youtubeLiveStreamSearch(terms))

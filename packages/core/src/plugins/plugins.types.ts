@@ -28,6 +28,8 @@ export type SearchResultsArtist = {
     source: SearchResultsSource;
 }
 
+export type SearchResultsAlbumType = 'master' | 'release';
+
 export type SearchResultsAlbum = {
     id: string;
     coverImage?: string;
@@ -37,7 +39,7 @@ export type SearchResultsAlbum = {
     title: string;
     artist: string;
     resourceUrl?: string;
-    type?: 'master' | 'release';
+    type?: SearchResultsAlbumType;
     tracklist?: {
         uuid: string;
         artist: string;
