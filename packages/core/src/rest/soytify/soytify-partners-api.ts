@@ -8,7 +8,7 @@ import {
 } from './soytify-mappers';
 import { ArtistDetails, SearchResultsSource } from '../../plugins/plugins.types';
 
-const SOYTIFY_API_OPEN_URL = 'https://open.' + atob('c3BvdGlmeQ==') + '.com';
+const SOYTIFY_API_OPEN_URL = 'https://open.' + atob('c3BvdGlmeQ==') + '.com/api';
 const SOYTIFY_BASE_URL =
   'https://api-partner.' + atob('c3BvdGlmeQ==') + '.com/pathfinder/v2/query';
 
@@ -61,7 +61,7 @@ export class SoytifyClient {
       const totpToken = this.totp.generate(serverTime);
 
       const tokenResponse = await fetch(
-        `${SOYTIFY_API_OPEN_URL}/get_access_token?reason=init&productType=web-player&totp=${totpToken}&totpVer=${this.totp.getVersion()}&sTime=${serverTime}&cTime=${Date.now()}&buildVer=web-player_2025-05-12_1747082920646_8ab14aa&buildDate=2025-05-12&totpServer=010137`
+        `${SOYTIFY_API_OPEN_URL}/token?reason=init&productType=web-player&totp=${totpToken}&totpVer=${this.totp.getVersion()}&sTime=${serverTime}&cTime=${Date.now()}&buildVer=web-player_2025-05-12_1747082920646_8ab14aa&buildDate=2025-05-12&totpServer=010137`
       );
 
       if (!tokenResponse.ok) {
@@ -74,7 +74,7 @@ export class SoytifyClient {
       logger.error('Failed to refresh Spotify token:', error);
       const tokenData = await (
         await fetch(
-          `${SOYTIFY_API_OPEN_URL}/get_access_token?reason=transport&productType=web_player`
+          `${SOYTIFY_API_OPEN_URL}/token?reason=transport&productType=web_player`
         )
       ).json();
       this._token = tokenData.accessToken;

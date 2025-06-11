@@ -1,3 +1,4 @@
+import { ReleaseType as SoytifyReleaseType } from '../rest/soytify/Soytify.types';
 import Track from '../structs/Track';
 
 export enum SearchResultsSource {
@@ -28,7 +29,7 @@ export type SearchResultsArtist = {
     source: SearchResultsSource;
 }
 
-export type SearchResultsAlbumType = 'master' | 'release';
+export type SearchResultsAlbumType = 'master' | 'release' | SoytifyReleaseType;
 
 export type SearchResultsAlbum = {
     id: string;
