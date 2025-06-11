@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "Masukkan nama playlist:",
     "play-now": "Putar sekarang",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "Kesalahan lookup stream. Klik untuk coba lagi."
   },
   "search": {
     "album": "Album",
