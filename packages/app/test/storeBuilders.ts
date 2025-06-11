@@ -1,5 +1,4 @@
 import Sound from 'react-hifi';
-import { UserAccountState } from '@nuclear/core/src/rest/Nuclear/Identity.types';
 import { DownloadStatus } from '@nuclear/ui/lib/types';
 
 import { RootState } from '../app/reducers';
@@ -21,10 +20,8 @@ export const buildStoreState = () => {
     search: {
       artistSearchResults: [],
       albumSearchResults: [],
-      podcastSearchResults: [],
       trackSearchResults: [],
-      playlistSearchResults: [],
-      liveStreamSearchResults: [],
+      liveStreamSearchResults: undefined,
       albumDetails: {},
       artistDetails: {},
       searchHistory: [],
@@ -43,8 +40,7 @@ export const buildStoreState = () => {
       userPlugins: {}
     },
     playlists: {
-      localPlaylists: { ...startingStateMeta },
-      remotePlaylists: { ...startingStateMeta }
+      localPlaylists: { ...startingStateMeta }
     },
     player: {
       playbackStatus: Sound.status.PAUSED,
@@ -75,12 +71,6 @@ export const buildStoreState = () => {
     queue: {
       queueItems: [],
       currentTrack: 0
-    },
-    nuclear: {
-      identity: {
-        token: null,
-        signedInUser: null
-      }
     },
     settings: {}
   };
@@ -300,7 +290,6 @@ export const buildStoreState = () => {
                 searchName: 'Test Metadata Provider',
                 searchForArtists: jest.fn().mockResolvedValue([]),
                 searchForReleases: jest.fn().mockResolvedValue([]),
-                searchForPodcast: jest.fn().mockResolvedValue([]),
                 fetchArtistDetailsByName: jest.fn(artistName => {
                   switch (artistName) {
                   case 'artist-similar-1':
@@ -360,7 +349,6 @@ export const buildStoreState = () => {
       state = {
         ...state,
         playlists: {
-          remotePlaylists: { ...startingStateMeta },
           localPlaylists: {
             isLoading: isLoading || false,
             hasError: false,
@@ -795,19 +783,6 @@ export const buildStoreState = () => {
               }
             }
           ]
-        }
-      };
-      return this as StoreStateBuilder;
-    },
-    withLoggedInUser() {
-      state.nuclear.identity = {
-        ...state.nuclear.identity,
-        token: 'auth-token',
-        signedInUser: {
-          id: '1',
-          username: 'nukeop',
-          displayName: 'nukeop',
-          accountState: UserAccountState.UNCONFIRMED
         }
       };
       return this as StoreStateBuilder;

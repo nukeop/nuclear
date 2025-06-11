@@ -17,13 +17,13 @@ import LyricsContainer from '../LyricsContainer';
 import PlaylistViewContainer from '../PlaylistViewContainer';
 import PlaylistsContainer from '../PlaylistsContainer';
 import PluginsContainer from '../PluginsContainer';
-import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
 import VisualizerNode from '../VisualizerContainer/VisualizerNode';
 import DeezerPlaylistAdapter from '../DeezerPlaylistAdapter';
 import { ListeningHistoryContainer } from '../ListeningHistoryContainer';
 import { SpotifyPlaylistAdapter } from '../SpotifyPlaylistAdapter';
+import SearchResults from '../../components/SearchResults';
 
 class MainContentContainer extends React.Component {
   componentDidMount() {
@@ -54,7 +54,7 @@ class MainContentContainer extends React.Component {
               <Route path='/plugins' component={PluginsContainer} />
               <Route path='/settings' component={SettingsContainer} />
               <Route path='/tag/:tagName' component={TagViewContainer} />
-              <Route path='/search' component={SearchResultsContainer} />
+              <Route path='/search' component={SearchResults} />
               <Route path='/lyrics' component={LyricsContainer} />
               <Route path='/equalizer' component={EqualizerViewContainer} />
               <Route path='/visualizer' component={VisualizerNode} />

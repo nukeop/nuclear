@@ -1,4 +1,5 @@
-import { logger } from '../../';
+import { logger } from '../..';
+import { getLargestThumbnail } from '../util';
 import ytdl from '@nuclearplayer/ytdl-core';
 import ytpl from '@distube/ytpl';
 
@@ -189,12 +190,3 @@ function videoToStreamData(video: Video, source: string): StreamData {
     }
   };
 }
-
-const getLargestThumbnail = (thumbnails: ytdl.thumbnail[]): string => {
-  const isNotEmpty = thumbnails.length > 0;
-  const largestThumbnail = isNotEmpty && thumbnails.reduce((prev, current) => {
-    return (prev.height * prev.width) > (current.height * current.width) ? prev : current;
-  });
-
-  return largestThumbnail?.url;
-};

@@ -3,7 +3,6 @@ import {
   SearchResultsArtist,
   SearchResultsAlbum,
   SearchResultsTrack,
-  SearchResultsPodcast,
   ArtistDetails,
   AlbumDetails
 } from './plugins.types';
@@ -35,11 +34,6 @@ abstract class MetaProvider extends Plugin {
     albumType?: ('master' | 'release'),
     artist?: string
   ): Promise<AlbumDetails>;
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  searchForPodcast(query: string): Promise<Array<SearchResultsPodcast>> {
-    return Promise.resolve([]);
-  }
 }
 
 export default MetaProvider;
