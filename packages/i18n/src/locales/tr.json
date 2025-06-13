@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Tümünü ekle",
-    "count": "Playcount",
+    "count": "Dinlenme Sayısı",
     "queue": "Tüm şarkıları kuyruğa ekle",
     "similar": "Benzer şarkıcılar",
     "title": "Şarkı Adı",
     "tour": "Turnede",
     "popular-tracks": "Popüler parçalar",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Albümler",
+      "sort-by-release-date": "Çıkış tarihine göre sırala",
+      "sort-by-az": "A'dan Z'ye sırala",
+      "sort-by-most-played": "En çok dinlenmeye göre sırala",
+      "filter-placeholder": "Filtrele..."
     }
   },
   "dashboard": {
@@ -204,7 +204,7 @@
     "playlist": "Çalma listesi",
     "play": "Oynat",
     "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "save-external-playlist": "Yerel olarak kaydet"
   },
   "plugins": {
     "add-a-plugin": "Eklenti ekle",
@@ -291,7 +291,7 @@
     "autoradio-craziness": "Autoradio Çılgınlığı",
     "autoradio-craziness-description": "Autoradio çılgınlaştıkça kuyruktaki şarkılara daha az benzeyen şarkıları seçer",
     "autoradio-description": "Eğer kuyruk bitiyorsa otomatik olarak benzer şarkılar ekle",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "Favori parçayı otomatik indir",
     "listening-history": "Dinleme Geçmişi",
     "listening-history-description": "Dinlediğin parçaları la Last.fm e kaydet. Geçmiş çevrimdışı kaydedilir.",
     "compact-menu-bar": "Menü için kompakt stili kullan",
@@ -395,7 +395,7 @@
     "play-selected-tracks-now": "Seçilenleri şimdi çal",
     "tracks-selected-label-singular": "şarkı seçildi",
     "tracks-selected-label-plural": "şarkı seçildi",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Filtrele..."
   },
   "visualizer": {
     "exit-fullscreen": "Tam ekrandan çıkmak için ESC'ye basın"
