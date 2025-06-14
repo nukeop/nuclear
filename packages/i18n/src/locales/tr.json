@@ -38,7 +38,7 @@
       "sign-up": "Giriş yap / Kayıt ol",
       "sign-out": "Oturumu Kapat"
     },
-    "version": "Versiyon"
+    "version": "Sürüm"
   },
   "artist": {
     "add-all": "Tümünü ekle",
@@ -203,7 +203,7 @@
     "create-playlist-dialog-title": "Çalma listesi adını girin:",
     "playlist": "Çalma listesi",
     "play": "Oynat",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "external-source-tooltip": "Bu çalma listesi bir dış kaynaktan geliyor: {{source}}. Düzenleyemezsiniz. Düzenlemek için çalma listesi menüsünü kullanarak yerel olarak kaydedin.",
     "save-external-playlist": "Yerel olarak kaydet"
   },
   "plugins": {
@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "Çalma listesi adı girin:",
     "play-now": "Şimdi oynat",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "Akış arama hatası. Yeniden denemek için tıklayın."
   },
   "search": {
     "album": "Albüm",
