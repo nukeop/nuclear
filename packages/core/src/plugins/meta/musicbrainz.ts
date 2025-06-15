@@ -131,7 +131,6 @@ class MusicbrainzMetaProvider extends MetaProvider {
     const releaseDetails = await getReleaseDetails(headRelease.id);
     const cover = await getCoverForRelease(releaseDetails.id);
     const artistName = _.get(releaseDetails, 'artist-credit[0].name');
-
     return Promise.resolve({
       id: releaseDetails.id, 
       artist: artistName,
@@ -140,7 +139,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       coverImage: cover.url,
       year: releaseDetails.date,
       genres: _.map(releaseDetails.genres, 'name'),
-      type: AlbumType.release,
+      type: 'release',
       tracklist: _.flatMap(releaseDetails.media, medium => _.map(medium.tracks, track => {
         const newtrack = new Track();
         newtrack.ids[SearchResultsSource.Musicbrainz] = track.id;

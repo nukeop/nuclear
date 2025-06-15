@@ -1,3 +1,4 @@
+import { ReleaseType as SoytifyReleaseType } from '../rest/soytify/Soytify.types';
 import Track from '../structs/Track';
 
 export enum SearchResultsSource {
@@ -5,16 +6,11 @@ export enum SearchResultsSource {
     Discogs = 'Discogs',
     Musicbrainz = 'Musicbrainz',
     Bandcamp = 'Bandcamp',
-    iTunesPodcast = 'iTunesPodcast',
     iTunesMusic = 'iTunesMusic',
     Spotify = 'Spotify',
+    Soytify = 'Soytify',
     Soundcloud = 'Soundcloud',
-}
-
-export enum AlbumType {
-    master = 'master',
-    release = 'release',
-    unknown = 'unknown'
+    Youtube = 'Youtube',
 }
 
 export type SearchResultsArtist = {
@@ -26,6 +22,8 @@ export type SearchResultsArtist = {
     source: SearchResultsSource;
 }
 
+export type AlbumType = 'master' | 'release' | 'unknown' | SoytifyReleaseType;
+
 export type SearchResultsAlbum = {
     id: string;
     coverImage?: string;
@@ -35,7 +33,7 @@ export type SearchResultsAlbum = {
     title: string;
     artist: string;
     resourceUrl?: string;
-    type?: string;
+    type?: AlbumType;
     tracklist?: {
         uuid: string;
         artist: string;
@@ -61,9 +59,9 @@ export type SearchResultsTrack = {
     id: string;
     title: string;
     artist: string;
-    source: SearchResultsSource;
     thumb?: string;
     discNumber?: number | string;
+    source: SearchResultsSource;
 }
 
 export type ArtistTopTrack = {
