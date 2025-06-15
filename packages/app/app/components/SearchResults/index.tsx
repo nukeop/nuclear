@@ -2,11 +2,9 @@ import React, { FC, useMemo } from 'react';
 import { get } from 'lodash';
 import { Tab } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { Card } from '@nuclear/ui';
 import { 
   SearchResultsAlbum, 
-  SearchResultsArtist, 
-  SearchResultsTrack 
+  SearchResultsArtist 
 } from '@nuclear/core/src/plugins/plugins.types';
 
 import { albumInfoSearch as albumInfoSearchAction, artistInfoSearch as artistInfoSearchAction } from '../../actions/search';
@@ -15,140 +13,14 @@ import {startPlayback as startPlaybackAction} from '../../actions/player';
 import { AllResults } from './AllResults';
 import { TracksResults } from './TracksResults';
 import PlaylistResults from './PlaylistResults';
+import ItemResults from './ItemResults';
 
-import styles from './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { useHistory } from 'react-router';
 import { searchSelectors } from '../../selectors/search';
 import { useDispatchedCallback } from '../../hooks/useDispatchedCallback';
 import { addToQueue as addToQueueAction } from '../../actions/queue';
-
-interface AllResultsPaneProps {
-  loading: boolean;
-  albumInfoSearch: (release?: SearchResultsAlbum) => void;
-  artistInfoSearch: (artist?: SearchResultsArtist) => void;
-}
-
-const AllResultsPane: FC<AllResultsPaneProps> = ({ loading, albumInfoSearch, artistInfoSearch }) => (
-  <Tab.Pane loading={loading} attached={false}>
-    <div className={styles.pane_container}>
-      <div className='row'>
-        <AllResults
-          albumInfoSearch={albumInfoSearch}
-          artistInfoSearch={artistInfoSearch}
-        />
-      </div>
-    </div>
-  </Tab.Pane>
-);
-
-interface ResultsPaneProps<T extends SearchResultsAlbum | SearchResultsArtist> {
-  collection: T[];
-  loading: boolean;
-  selectedProvider?: { searchName: string };
-  onItemClick: (item: T) => void;
-  emptyText: string;
-}
-
-const ResultsPane = <T extends SearchResultsAlbum | SearchResultsArtist>({
-  collection,
-  loading,
-  selectedProvider,
-  onItemClick,
-  emptyText
-}: ResultsPaneProps<T>) => {
-  const getItemHeader = (item: T): string => {
-    return (item as SearchResultsAlbum).title || (item as SearchResultsArtist).name;
-  };
-
-  const getItemContent = (item: T): string | undefined => {
-    if ('artist' in item) {
-      return item.artist;
-    }
-    return undefined;
-  };
-
-  return (
-    <Tab.Pane loading={loading} attached={false}>
-      <div className={styles.pane_container}>
-        {collection.length > 0
-          ? loading
-            ? null
-            : collection.map((el, i) => {
-              const id = get(el, `ids.${selectedProvider?.searchName}`, el.id);
-              return (
-                <Card
-                  key={`title-card-${i}`}
-                  header={getItemHeader(el)}
-                  content={getItemContent(el)}
-                  image={el.coverImage || el.thumb}
-                  onClick={() => onItemClick(el)} 
-                />
-              );
-            })
-          : emptyText}
-      </div>
-    </Tab.Pane>
-  );
-};
-
-interface TrackListPaneProps {
-  collection?: SearchResultsTrack[];
-  loading: boolean;
-  emptyText: string;
-}
-
-const TrackListPane: FC<TrackListPaneProps> = ({ collection, loading, emptyText }) => {
-  if (!collection) {
-    return (
-      <Tab.Pane loading={loading} attached={false}>
-        <div className={styles.pane_container}>{emptyText}</div>
-      </Tab.Pane>
-    );
-  }
-
-  return (
-    <Tab.Pane loading={loading} attached={false}>
-      <div className={styles.pane_container}>
-        {collection.length > 0
-          ? loading
-            ? null
-            : <TracksResults tracks={collection} limit={15} />
-          : emptyText}
-      </div>
-    </Tab.Pane>
-  );
-};
-
-interface PlaylistPaneProps {
-  playlistSearchStarted: boolean | string;
-  playlistSearchResults: unknown;
-  addToQueue: (track: unknown) => void;
-  clearQueue: () => void;
-  startPlayback: (fromMain: boolean) => void;
-  selectSong: (track: unknown) => void;
-}
-
-const PlaylistPane: FC<PlaylistPaneProps> = ({
-  playlistSearchStarted,
-  playlistSearchResults,
-  addToQueue,
-  clearQueue,
-  startPlayback,
-  selectSong
-}) => (
-  <Tab.Pane attached={false}>
-    <PlaylistResults
-      playlistSearchStarted={playlistSearchStarted}
-      playlistSearchResults={playlistSearchResults}
-      addToQueue={addToQueue}
-      clearQueue={clearQueue}
-      startPlayback={() => startPlayback(false)}
-      selectSong={selectSong}
-    />
-  </Tab.Pane>
-);
 
 const SearchResults: FC = () => {
   const { t } = useTranslation('search');
@@ -196,8 +68,9 @@ const SearchResults: FC = () => {
       {
         menuItem: t('all'),
         render: () => (
-          <AllResultsPane
+          <AllResults
             loading={unifiedSearchStarted}
+            attached={false}
             albumInfoSearch={albumInfoSearch}
             artistInfoSearch={artistInfoSearch}
           />
@@ -206,9 +79,10 @@ const SearchResults: FC = () => {
       artistsHasResults && {
         menuItem: t('artist_plural'),
         render: () => (
-          <ResultsPane
+          <ItemResults
             collection={artistSearchResults}
             loading={unifiedSearchStarted}
+            attached={false}
             selectedProvider={selectedProvider}
             onItemClick={artistInfoSearch}
             emptyText={t('empty')}
@@ -218,9 +92,10 @@ const SearchResults: FC = () => {
       albumsHasResults && {
         menuItem: t('album_plural'),
         render: () => (
-          <ResultsPane
+          <ItemResults
             collection={albumSearchResults}
             loading={unifiedSearchStarted}
+            attached={false}
             selectedProvider={selectedProvider}
             onItemClick={albumInfoSearch}
             emptyText={t('empty')}
@@ -230,33 +105,39 @@ const SearchResults: FC = () => {
       tracksHasResults && {
         menuItem: t('track_plural'),
         render: () => (
-          <TrackListPane
-            collection={get(trackSearchResults, 'info', trackSearchResults)}
+          <TracksResults
+            tracks={get(trackSearchResults, 'info', trackSearchResults)}
+            limit={15}
             loading={unifiedSearchStarted}
-            emptyText={t('empty')}
+            attached={false}
+            asPane={true}
           />
         )
       },
       playlistsHasResults && {
         menuItem: t('playlist'),
         render: () => (
-          <PlaylistPane
+          <PlaylistResults
             playlistSearchStarted={playlistSearchStarted}
             playlistSearchResults={playlistSearchResults}
             addToQueue={addToQueue}
             clearQueue={clearQueue}
-            startPlayback={startPlayback}
+            startPlayback={() => startPlayback(false)}
             selectSong={selectSong}
+            loading={false}
+            attached={false}
           />
         )
       },
       liveStreamsHasResults && {
         menuItem: t('live-stream'),
         render: () => (
-          <TrackListPane
-            collection={liveStreamSearchResults?.info}
+          <TracksResults
+            tracks={liveStreamSearchResults?.info}
+            limit={15}
             loading={unifiedSearchStarted}
-            emptyText={t('empty')}
+            attached={false}
+            asPane={true}
           />
         )
       }

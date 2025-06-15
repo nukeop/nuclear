@@ -1,6 +1,7 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { Tab } from 'semantic-ui-react';
 
 import {
   SearchResultsAlbum,
@@ -10,13 +11,10 @@ import { Card } from '@nuclear/ui';
 
 import { TracksResults } from '../TracksResults';
 import { searchSelectors } from '../../../selectors/search';
-import { 
-  artistInfoSearch as artistInfoSearchAction,
-  albumInfoSearch as albumInfoSearchAction
-} from '../../../actions/search';
 import { SearchState } from '../../../reducers/search';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
+import parentStyles from '../styles.scss';
 
 
 type SearchCollection = SearchState[
@@ -68,9 +66,16 @@ const ResultsSection: FC<ResultsSectionProps> = ({
 type AllResultsProps = {
   artistInfoSearch?: (item: SearchResultsArtist) => void;
   albumInfoSearch?: (item: SearchResultsAlbum) => void;
+  loading?: boolean;
+  attached?: boolean;
 };
 
-export const AllResults: FC<AllResultsProps> = ({artistInfoSearch, albumInfoSearch}) => {
+export const AllResults: FC<AllResultsProps> = ({
+  artistInfoSearch, 
+  albumInfoSearch, 
+  loading = false, 
+  attached = false
+}) => {
   const { t } = useTranslation('search');
   const dispatch = useDispatch();
   const artistSearchResults = useSelector(searchSelectors.artistSearchResults);
@@ -81,37 +86,49 @@ export const AllResults: FC<AllResultsProps> = ({artistInfoSearch, albumInfoSear
   const artistsLength = artistSearchResults?.length || 0;
   const albumsLength = albumSearchResults?.length || 0;
 
-  if (artistsLength + albumsLength === 0) {
-    return <div>{t('empty')}</div>;
-  }
+  const content = () => {
+    if (artistsLength + albumsLength === 0) {
+      return <div>{t('empty')}</div>;
+    }
+
+    return (
+      <div className={styles.all_results_container}>
+        {artistsLength > 0 && (
+          <ResultsSection
+            title={t('artist', { count: artistSearchResults.length })}
+            collection={artistSearchResults}
+            onClick={artistInfoSearch}
+          />
+        )}
+        {albumsLength > 0 && (
+          <ResultsSection
+            title={t('album', { count: albumSearchResults.length })}
+            collection={albumSearchResults}
+            onClick={albumInfoSearch}
+          />
+        )}
+        {tracksLength > 0 && (
+          <div className={styles.column}>
+            <h3>{t('track_plural')}</h3>
+            <div className={styles.row}>
+              <TracksResults
+                tracks={trackSearchResults}
+                limit={5}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
-    <div className={styles.all_results_container}>
-      {artistsLength > 0 && (
-        <ResultsSection
-          title={t('artist', { count: artistSearchResults.length })}
-          collection={artistSearchResults}
-          onClick={artistInfoSearch}
-        />
-      )}
-      {albumsLength > 0 && (
-        <ResultsSection
-          title={t('album', { count: albumSearchResults.length })}
-          collection={albumSearchResults}
-          onClick={albumInfoSearch}
-        />
-      )}
-      {tracksLength > 0 && (
-        <div className={styles.column}>
-          <h3>{t('track_plural')}</h3>
-          <div className={styles.row}>
-            <TracksResults
-              tracks={trackSearchResults}
-              limit={5}
-            />
-          </div>
+    <Tab.Pane loading={loading} attached={attached}>
+      <div className={parentStyles.pane_container}>
+        <div className='row'>
+          {content()}
         </div>
-      )}
-    </div>
+      </div>
+    </Tab.Pane>
   );
 };
