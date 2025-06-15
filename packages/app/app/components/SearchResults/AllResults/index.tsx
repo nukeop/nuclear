@@ -65,9 +65,12 @@ const ResultsSection: FC<ResultsSectionProps> = ({
   );
 };
 
-type AllResultsProps = {};
+type AllResultsProps = {
+  artistInfoSearch?: (item: SearchResultsArtist) => void;
+  albumInfoSearch?: (item: SearchResultsAlbum) => void;
+};
 
-export const AllResults: FC<AllResultsProps> = () => {
+export const AllResults: FC<AllResultsProps> = ({artistInfoSearch, albumInfoSearch}) => {
   const { t } = useTranslation('search');
   const dispatch = useDispatch();
   const artistSearchResults = useSelector(searchSelectors.artistSearchResults);
@@ -77,20 +80,6 @@ export const AllResults: FC<AllResultsProps> = () => {
   const tracksLength = trackSearchResults?.length || 0;
   const artistsLength = artistSearchResults?.length || 0;
   const albumsLength = albumSearchResults?.length || 0;
-
-  const artistInfoSearch = useCallback(
-    (item: SearchResultsArtist) => {
-      dispatch(artistInfoSearchAction(item));
-    },
-    [dispatch]
-  );
-
-  const albumInfoSearch = useCallback(
-    ( item: SearchResultsAlbum ) => {
-      dispatch(albumInfoSearchAction(item));
-    },
-    [dispatch]
-  );
 
   if (artistsLength + albumsLength === 0) {
     return <div>{t('empty')}</div>;
