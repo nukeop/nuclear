@@ -25,13 +25,9 @@ type SearchCollection = SearchState[
 
 type ResultsProps = {
   collection: SearchCollection;
-  onClick: ({
-    id,
-    item
-  }: {
-    id: string;
-    item: SearchResultsArtist | SearchResultsAlbum;
-  }) => void;
+  onClick: (
+    item: SearchResultsArtist | SearchResultsAlbum
+  ) => void;
 };
 const Results: FC<ResultsProps> = ({ collection, onClick }) => {
   return (
@@ -41,7 +37,7 @@ const Results: FC<ResultsProps> = ({ collection, onClick }) => {
           header={item.title || item.name}
           image={item.coverImage || item.thumb || item.thumbnail || artPlaceholder}
           content={item.artist}
-          onClick={() => onClick({ id: item.id, item })}
+          onClick={() => onClick(item)}
           key={'item-' + index} />
       ))}
     </>
@@ -90,7 +86,7 @@ export const AllResults: FC<AllResultsProps> = () => {
   );
 
   const albumInfoSearch = useCallback(
-    ({ id, item }: { id: string; item: SearchResultsAlbum }) => {
+    ( item: SearchResultsAlbum ) => {
       dispatch(albumInfoSearchAction(item));
     },
     [dispatch]

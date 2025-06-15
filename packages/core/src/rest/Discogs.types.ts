@@ -1,4 +1,4 @@
-import { SearchResultsAlbumType } from '../plugins/plugins.types';
+import { AlbumType, SearchResultsAlbum } from '../plugins/plugins.types';
 
 export type DiscogsImage = {
   height: number;
@@ -45,7 +45,7 @@ export type DiscogsArtistReleaseSearchResult = {
   title: string;
   thumb: string;
   resource_url: string;
-  type: SearchResultsAlbumType;
+  type: AlbumType;
   year: number;
 }
 

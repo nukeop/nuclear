@@ -6,18 +6,11 @@ export enum SearchResultsSource {
     Discogs = 'Discogs',
     Musicbrainz = 'Musicbrainz',
     Bandcamp = 'Bandcamp',
-    iTunesPodcast = 'iTunesPodcast',
     iTunesMusic = 'iTunesMusic',
     Spotify = 'Spotify',
     Soytify = 'Soytify',
     Soundcloud = 'Soundcloud',
     Youtube = 'Youtube',
-}
-
-export enum AlbumType {
-    master = 'master',
-    release = 'release',
-    unknown = 'unknown'
 }
 
 export type SearchResultsArtist = {
@@ -29,7 +22,7 @@ export type SearchResultsArtist = {
     source: SearchResultsSource;
 }
 
-export type SearchResultsAlbumType = 'master' | 'release' | SoytifyReleaseType;
+export type AlbumType = 'master' | 'release' | 'unknown' | SoytifyReleaseType;
 
 export type SearchResultsAlbum = {
     id: string;
@@ -40,7 +33,7 @@ export type SearchResultsAlbum = {
     title: string;
     artist: string;
     resourceUrl?: string;
-    type?: SearchResultsAlbumType;
+    type?: AlbumType;
     tracklist?: {
         uuid: string;
         artist: string;

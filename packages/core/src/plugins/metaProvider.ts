@@ -4,7 +4,8 @@ import {
   SearchResultsAlbum,
   SearchResultsTrack,
   ArtistDetails,
-  AlbumDetails
+  AlbumDetails,
+  AlbumType
 } from './plugins.types';
 
 abstract class MetaProvider extends Plugin {
@@ -27,11 +28,11 @@ abstract class MetaProvider extends Plugin {
 
   abstract fetchAlbumDetails(
     albumId: string, 
-    albumType: ('master' | 'release'),
+    albumType: AlbumType,
     resourceUrl?: string): Promise<AlbumDetails>;
   abstract fetchAlbumDetailsByName(
     albumName: string,
-    albumType?: ('master' | 'release'),
+    albumType?: AlbumType,
     artist?: string
   ): Promise<AlbumDetails>;
 }
