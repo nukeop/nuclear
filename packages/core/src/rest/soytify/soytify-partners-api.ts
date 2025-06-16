@@ -7,6 +7,7 @@ import {
   mapSoytifyTrackSearchResult
 } from './soytify-mappers';
 import { ArtistDetails, SearchResultsSource } from '../../plugins/plugins.types';
+import { cacheable, withCache } from '../cache';
 
 const SOYTIFY_API_OPEN_URL = 'https://open.' + atob('c3BvdGlmeQ==') + '.com/api';
 const SOYTIFY_BASE_URL =
@@ -28,7 +29,7 @@ const OPERATION_HASHES: Record<OperationName, string> = {
   getAlbum: '97dd13a1f28c80d66115a13697a7ffd94fe3bebdb94da42159456e1d82bfee76'
 };
 
-export class SoytifyClient {
+class SoytifyClientBase {
   private _token: string | undefined;
   private totp: TOTP;
 
@@ -81,7 +82,7 @@ export class SoytifyClient {
     }
   }
 
-  async post(url: string, body?: any) {
+  async post(url: string, body?: Record<string, unknown>) {
     const result = await fetch(url, {
       method: 'POST',
       headers: {
@@ -101,13 +102,14 @@ export class SoytifyClient {
     }
   }
 
+  @cacheable({ ttl: 60 * 60 * 1000 }) // 1 hour cache
   async runQuery<Response>({
     operationName,
     args
   }: {
     operationName: OperationName;
     args: Record<string, string | number | boolean>;
-  }) {
+  }): Promise<Response> {
     const data: Response = await this.post(SOYTIFY_BASE_URL, {
       operationName,
       variables: {
@@ -124,13 +126,14 @@ export class SoytifyClient {
     return data;
   }
 
+  @cacheable({ ttl: 60 * 60 * 1000 })
   async searchQuery({
     operationName,
     searchTerm
   }: {
     operationName: OperationName;
     searchTerm: string;
-  }) {
+  }): Promise<SoytifySearchV2Response> {
     const data = await this.runQuery<SoytifySearchV2Response>({
       operationName,
       args: {
@@ -148,6 +151,7 @@ export class SoytifyClient {
     return data;
   }
 
+  @cacheable({ ttl: 60 * 60 * 1000 })
   async searchArtists(searchTerm: string) {
     const artists = await this.searchQuery({
       operationName: 'searchArtists',
@@ -158,6 +162,7 @@ export class SoytifyClient {
     );
   }
 
+  @cacheable({ ttl: 60 * 60 * 1000 })
   async searchReleases(searchTerm: string) {
     const releases = await this.searchQuery({
       operationName: 'searchAlbums',
@@ -168,6 +173,7 @@ export class SoytifyClient {
     );
   }
 
+  @cacheable({ ttl: 60 * 60 * 1000 })
   async searchTracks(searchTerm: string) {
     const tracks = await this.searchQuery({
       operationName: 'searchTracks',
@@ -176,6 +182,7 @@ export class SoytifyClient {
     return tracks.data.searchV2.tracksV2.items.filter(wrapper => wrapper.item.data.__typename !== 'NotFound').map(mapSoytifyTrackSearchResult);
   }
 
+  @cacheable({ ttl: 60 * 60 * 1000 })
   async searchAll(searchTerm: string) {
     const {
       data: { searchV2 }
@@ -189,7 +196,6 @@ export class SoytifyClient {
   }
 
   async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
-
     const {data: {artistUnion: artist}} = await this.runQuery<SoytifyArtistOverviewResponse>({
       operationName: 'queryArtistOverview',
       args: {uri: artistId, locale: ''}
@@ -202,7 +208,7 @@ export class SoytifyClient {
       thumb: getThumbnailSizedImage(artist.visuals.avatarImage.sources),
       images: artist.visuals.gallery.items.map(item => getLargestThumbnail(item.sources)),
       topTracks: artist.discography.topTracks?.items.map(({ track }) => ({
-        artist: {name: track.artists.items[0].profile.name},
+        artist: { name: track.artists.items[0].profile.name },
         title: track.name,
         thumb: getThumbnailSizedImage(track.albumOfTrack.coverArt?.sources),
         playcount: parseInt(track.playcount),
@@ -217,8 +223,10 @@ export class SoytifyClient {
   }
 }
 
+export const SoytifyClient = withCache(SoytifyClientBase, { ttl: 60 * 60 * 1000 });
+
 export class SoytifyClientProvider {
-  private static instance: SoytifyClient;
+  private static instance: InstanceType<typeof SoytifyClient>;
 
   static async get() {
     if (!this.instance) {
