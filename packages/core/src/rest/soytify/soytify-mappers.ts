@@ -1,4 +1,4 @@
-import { Album, AlbumResponseWrapper, ArtistResponseWrapper, SearchResultItemWrapper, Track, TrackResponseWrapper } from './Soytify.types';
+import { Album, AlbumResponseWrapper, Artist, ArtistResponseWrapper, ReleaseItem, SearchResultItemWrapper, Track, TrackResponseWrapper } from './Soytify.types';
 import { getImageSet, getThumbnailSizedImage } from '../../util';
 import { SearchResultsAlbum, SearchResultsArtist, SearchResultsSource, SearchResultsTrack } from '../../plugins/plugins.types';
 
@@ -12,6 +12,25 @@ export const mapSoytifyArtistSearchResult = (artistSearchResult: ArtistResponseW
     source: SearchResultsSource.Soytify,
     ...imageSet
   };
+};
+
+export const mapSoytifyReleaseItem = (releaseItem: ReleaseItem, artist: Artist): SearchResultsAlbum => {
+  const imageSet = getImageSet(releaseItem.coverArt?.sources);
+  const { thumb, coverImage } = imageSet;
+  const mapped = {
+    id: releaseItem.uri,
+    coverImage,
+    thumb,
+    images: releaseItem.coverArt?.sources.map((source) => source.url) ?? [],
+    title: releaseItem.name,
+    artist: artist.profile.name,
+    resourceUrl: releaseItem.uri,
+    type: releaseItem.type,
+    year: releaseItem.date.year.toString(),
+    source: SearchResultsSource.Soytify
+  };
+
+  return mapped;
 };
 
 export const mapSoytifyReleaseSearchResult = (releaseSearchResult: AlbumResponseWrapper): SearchResultsAlbum => {

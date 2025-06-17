@@ -6,6 +6,7 @@ export type OperationName =
   | 'searchTracks'
   | 'searchPlaylists'
   | 'queryArtistOverview'
+  | 'queryArtistDiscographyAll'
   | 'getAlbum';
 
 // Helper Types & Common Interfaces
@@ -171,7 +172,7 @@ export interface Album {
   date: AlbumDate;
   name: string;
   playability: Playability;
-  type: 'ALBUM' | 'SINGLE' | 'EP';
+  type: ReleaseType;
   uri: string;
 }
 export interface Artist {
@@ -339,6 +340,7 @@ export interface ChipOrder {
   items: ChipOrderItem[];
 }
 export interface Discography {
+  all?: PaginatedResponse<{ releases: PaginatedResponse<ReleaseItem> }>;
   albums: ReleaseSection;
   compilations: ReleaseSection;
   latest: ReleaseItem;

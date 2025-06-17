@@ -3,6 +3,7 @@ import { TOTP } from './soytify-totp';
 import { OperationName, SoytifyArtistOverviewResponse, SoytifySearchV2Response } from './Soytify.types';
 import {
   mapSoytifyArtistSearchResult,
+  mapSoytifyReleaseItem,
   mapSoytifyReleaseSearchResult,
   mapSoytifyTrackSearchResult
 } from './soytify-mappers';
@@ -26,6 +27,7 @@ const OPERATION_HASHES: Record<OperationName, string> = {
     'fc3a690182167dbad20ac7a03f842b97be4e9737710600874cb903f30112ad58',
   queryArtistOverview:
     '1ac33ddab5d39a3a9c27802774e6d78b9405cc188c6f75aed007df2a32737c72',
+  queryArtistDiscographyAll: '5e07d323febb57b4a56a42abbf781490e58764aa45feb6e3dc0591564fc56599',
   getAlbum: '97dd13a1f28c80d66115a13697a7ffd94fe3bebdb94da42159456e1d82bfee76'
 };
 
@@ -195,11 +197,16 @@ class SoytifyClientBase {
     };
   }
 
-  async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
-    const {data: {artistUnion: artist}} = await this.runQuery<SoytifyArtistOverviewResponse>({
+  @cacheable({ ttl: 60 * 60 * 1000 })
+  async fetchArtistOverview(artistId: string): Promise<SoytifyArtistOverviewResponse> {
+    return this.runQuery<SoytifyArtistOverviewResponse>({
       operationName: 'queryArtistOverview',
-      args: {uri: artistId, locale: ''}
+      args: { uri: artistId, locale: '' }
     });
+  }
+
+  async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
+    const { data: { artistUnion: artist } } = await this.fetchArtistOverview(artistId);
 
     return {
       id: artist.uri,
@@ -220,6 +227,19 @@ class SoytifyClientBase {
       })),
       source: SearchResultsSource.Soytify
     };
+  }
+
+  async fetchArtistAlbums(artistId: string) {
+    const { data: { artistUnion: artistOverview } } = await this.runQuery<SoytifyArtistOverviewResponse>({
+      operationName: 'queryArtistOverview',
+      args: { uri: artistId, locale: '' }
+    });
+    const { data: { artistUnion: artistWithDiscography } } = await this.runQuery<SoytifyArtistOverviewResponse>({
+      operationName: 'queryArtistDiscographyAll',
+      args: { uri: artistId, order: 'DATE_DESC', limit: 50, offset: 0 }
+    });
+
+    return artistWithDiscography.discography.all.items.map(releaseItem => mapSoytifyReleaseItem(releaseItem.releases.items[0], artistOverview));
   }
 }
 

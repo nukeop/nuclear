@@ -43,9 +43,12 @@ export class SoytifyMetaProvider extends MetaProvider {
   fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
     throw new Error('Method not implemented.');
   }
-  fetchArtistAlbums(artistId: string): Promise<Array<SearchResultsAlbum>> {
-    throw new Error('Method not implemented.');
+
+  async fetchArtistAlbums(artistId: string): Promise<Array<SearchResultsAlbum>> {
+    const client = await SoytifyClientProvider.get();
+    return await client.fetchArtistAlbums(artistId);
   }
+  
   fetchAlbumDetails(albumId: string, albumType: ('master' | 'release'), resourceUrl?: string): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');
   }
