@@ -32,6 +32,7 @@ export interface ArtistSimplified {
     name: string;
   };
   uri: string;
+  visuals?: ArtistVisuals;
 }
 export interface ArtistVisuals {
   avatarImage: AvatarImage;
@@ -100,6 +101,7 @@ export interface FullDate {
   month: number;
   precision: 'DAY' | 'MONTH' | 'YEAR';
   year: number;
+  isoString?: string;
 }
 export interface PlayedState {
   playPositionMilliseconds: number;
@@ -175,6 +177,22 @@ export interface Album {
   type: ReleaseType;
   uri: string;
 }
+
+export interface AlbumUnion {
+  __typename: 'AlbumUnion';
+  copyright: Copyright;
+  date: FullDate;
+  label: string;
+  name: string;
+  playability: Playability;
+  type: ReleaseType;
+  artists: PaginatedResponse<ArtistSimplified>;
+  coverArt: AlbumCoverArt;
+  discs: PaginatedResponse<{ number: number; tracks: { totalCount: number } }>;
+  tracksV2: PaginatedResponse<{track: Track;}>;
+  uri: string;
+}
+
 export interface Artist {
   __typename: 'Artist';
   id: string;
@@ -188,7 +206,6 @@ export interface Artist {
   relatedContent: RelatedContent;
   sharingInfo: SharingInfo;
   stats: ArtistStats;
-  saved: boolean;
 }
 export interface ConcertItem {
   __typename: 'ConcertV2';
@@ -257,10 +274,13 @@ export interface Track {
   associationsV3: AssociationsV3;
   contentRating: ContentRating;
   duration: Duration;
+  discNumber: number;
   id: string;
   trackMediaType: 'UNKNOWN';
   name: string;
   playability: Playability;
+  playcount: string;
+  trackNumber: number;
   uri: string;
 }
 export interface User {
@@ -419,6 +439,19 @@ export interface SoytifyArtistOverviewResponse {
 export interface SoytifySearchV2Response {
   data: {
     searchV2: SearchV2;
+  };
+  extensions: {
+    requestIds: {
+      [key: string]: {
+        [key: string]: string;
+      };
+    };
+  };
+}
+
+export interface SoytifyGetAlbumResponse {
+  data: {
+    albumUnion: AlbumUnion;
   };
   extensions: {
     requestIds: {

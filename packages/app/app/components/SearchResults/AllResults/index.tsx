@@ -77,7 +77,6 @@ export const AllResults: FC<AllResultsProps> = ({
   attached = false
 }) => {
   const { t } = useTranslation('search');
-  const dispatch = useDispatch();
   const artistSearchResults = useSelector(searchSelectors.artistSearchResults);
   const albumSearchResults = useSelector(searchSelectors.albumSearchResults);
   const trackSearchResults = useSelector(searchSelectors.trackSearchResults);

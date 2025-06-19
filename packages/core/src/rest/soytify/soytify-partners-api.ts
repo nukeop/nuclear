@@ -1,13 +1,13 @@
 import { getLargestThumbnail, getThumbnailSizedImage, logger } from '../../';
 import { TOTP } from './soytify-totp';
-import { OperationName, SoytifyArtistOverviewResponse, SoytifySearchV2Response } from './Soytify.types';
+import { OperationName, SoytifyArtistOverviewResponse, SoytifyGetAlbumResponse, SoytifySearchV2Response } from './Soytify.types';
 import {
   mapSoytifyArtistSearchResult,
   mapSoytifyReleaseItem,
   mapSoytifyReleaseSearchResult,
   mapSoytifyTrackSearchResult
 } from './soytify-mappers';
-import { ArtistDetails, SearchResultsSource } from '../../plugins/plugins.types';
+import { AlbumType, ArtistDetails, SearchResultsSource } from '../../plugins/plugins.types';
 import { cacheable, withCache } from '../cache';
 
 const SOYTIFY_API_OPEN_URL = 'https://open.' + atob('c3BvdGlmeQ==') + '.com/api';
@@ -240,6 +240,15 @@ class SoytifyClientBase {
     });
 
     return artistWithDiscography.discography.all.items.map(releaseItem => mapSoytifyReleaseItem(releaseItem.releases.items[0], artistOverview));
+  }
+  
+  async fetchAlbumDetails(albumId: string, albumType: AlbumType) {
+    const { data } = await this.runQuery<SoytifyGetAlbumResponse>({
+      operationName: 'getAlbum',
+      args: { uri: albumId, type: albumType, limit: 50, offset: 0, locale: '' }
+    });
+
+    return data.albumUnion;
   }
 }
 

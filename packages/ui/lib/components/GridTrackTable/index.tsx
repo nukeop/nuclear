@@ -85,7 +85,7 @@ export const GridTrackTable = <T extends Track>({
       id: TrackTableColumn.Selection,
       Header: (props: HeaderProps<T> & UseRowSelectInstanceProps<T> & TrackTableExtraProps<T>) => <SelectionHeader<T> {...props} {...extraProps} />,
       Cell: (props: SelectionCellProps<T> & UseRowSelectRowProps<T>) => <SelectionCell<T> {...props} />,
-      columnWidth: '7.5em'
+      columnWidth: '4em'
     },
     displayPosition && {
       id: TrackTableColumn.Position,

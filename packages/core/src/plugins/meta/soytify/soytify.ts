@@ -1,6 +1,7 @@
+import { mapSoytifyAlbumDetails } from '../../../rest/soytify/soytify-mappers';
 import { SoytifyClientProvider } from '../../../rest/soytify/soytify-partners-api';
 import MetaProvider from '../../metaProvider';
-import { SearchResultsAlbum, SearchResultsTrack, SearchResultsArtist, ArtistDetails, AlbumDetails } from '../../plugins.types';
+import { SearchResultsAlbum, SearchResultsTrack, SearchResultsArtist, ArtistDetails, AlbumDetails, AlbumType } from '../../plugins.types';
 
 const SOYTIFY_NAME = atob('U295dGlmeQ==');
 
@@ -40,6 +41,7 @@ export class SoytifyMetaProvider extends MetaProvider {
     const client = await SoytifyClientProvider.get();
     return client.fetchArtistDetails(artistId);
   }
+
   fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
     throw new Error('Method not implemented.');
   }
@@ -49,10 +51,13 @@ export class SoytifyMetaProvider extends MetaProvider {
     return await client.fetchArtistAlbums(artistId);
   }
   
-  fetchAlbumDetails(albumId: string, albumType: ('master' | 'release'), resourceUrl?: string): Promise<AlbumDetails> {
-    throw new Error('Method not implemented.');
+  async fetchAlbumDetails(albumId: string, albumType: AlbumType): Promise<AlbumDetails> {
+    const client = await SoytifyClientProvider.get();
+
+    return mapSoytifyAlbumDetails(await client.fetchAlbumDetails(albumId, albumType));
   }
-  fetchAlbumDetailsByName(albumName: string, albumType?: ('master' | 'release'), artist?: string): Promise<AlbumDetails> {
+  
+  fetchAlbumDetailsByName(albumName: string, albumType?: AlbumType, artist?: string): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');
   }
 }
