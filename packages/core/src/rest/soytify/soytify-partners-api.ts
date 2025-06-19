@@ -211,7 +211,7 @@ class SoytifyClientBase {
     return {
       id: artist.uri,
       name: artist.profile.name,
-      coverImage: artist.headerImage.url,
+      coverImage: getLargestThumbnail(artist.headerImage.data.sources),
       thumb: getThumbnailSizedImage(artist.visuals.avatarImage.sources),
       images: artist.visuals.gallery.items.map(item => getLargestThumbnail(item.sources)),
       topTracks: artist.discography.topTracks?.items.map(({ track }) => ({
@@ -241,7 +241,7 @@ class SoytifyClientBase {
 
     return artistWithDiscography.discography.all.items.map(releaseItem => mapSoytifyReleaseItem(releaseItem.releases.items[0], artistOverview));
   }
-  
+
   async fetchAlbumDetails(albumId: string, albumType: AlbumType) {
     const { data } = await this.runQuery<SoytifyGetAlbumResponse>({
       operationName: 'getAlbum',

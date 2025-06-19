@@ -198,7 +198,11 @@ export interface Artist {
   id: string;
   uri: string;
   profile: ArtistProfile;
-  headerImage: CoverArtSource | null;
+  headerImage: {
+    data: {
+      sources: CoverArtSource[]
+    };
+  };
   visuals?: ArtistVisuals;
   goods: Goods;
   discography: Discography;
