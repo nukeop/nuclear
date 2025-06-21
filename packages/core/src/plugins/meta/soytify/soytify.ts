@@ -71,8 +71,7 @@ export class SoytifyMetaProvider extends MetaProvider {
 
   async fetchAlbumDetails(albumId: string, albumType?: AlbumType): Promise<AlbumDetails> {
     const client = await SoytifyClientProvider.get();
-
-    return mapSoytifyAlbumDetails(await client.fetchAlbumDetails(albumId, albumType));
+    return await client.fetchAlbumDetails(albumId, albumType);
   }
 
   fetchAlbumDetailsByName(

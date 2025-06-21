@@ -189,7 +189,7 @@ export interface AlbumUnion {
   artists: PaginatedResponse<ArtistSimplified>;
   coverArt: AlbumCoverArt;
   discs: PaginatedResponse<{ number: number; tracks: { totalCount: number } }>;
-  tracksV2: PaginatedResponse<{track: Track;}>;
+  tracksV2: PaginatedResponse<{ track: Track; }>;
   uri: string;
 }
 
@@ -202,7 +202,7 @@ export interface Artist {
     data: {
       sources: CoverArtSource[]
     };
-  };
+  } | null;
   visuals?: ArtistVisuals;
   goods: Goods;
   discography: Discography;

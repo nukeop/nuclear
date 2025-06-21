@@ -1,6 +1,6 @@
 import { Album, AlbumResponseWrapper, AlbumUnion, Artist, ArtistResponseWrapper, ReleaseItem, SearchResultItemWrapper, Track, TrackResponseWrapper } from './Soytify.types';
-import { getImageSet, getThumbnailSizedImage } from '../../util';
-import { AlbumDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsSource, SearchResultsTrack } from '../../plugins/plugins.types';
+import { getImageSet, getLargestThumbnail, getThumbnailSizedImage } from '../../util';
+import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsSource, SearchResultsTrack } from '../../plugins/plugins.types';
 import NuclearTrack from '../../structs/Track';
 
 export const mapSoytifyArtistSearchResult = (artistSearchResult: ArtistResponseWrapper): SearchResultsArtist => {
@@ -66,11 +66,11 @@ export const mapSoytifyAlbumDetails = (album: AlbumUnion): AlbumDetails => {
     id: album.uri,
     artist: album.artists.items[0].profile.name,
     title: album.name,
-    ...imageSet,
     year: album.date.year?.toString(),
     type: album.type,
     resourceUrl: album.uri,
-    tracklist: album.tracksV2.items.map(trackObj => mapSoytifyAlbumTrack(trackObj.track))
+    tracklist: album.tracksV2.items.map(trackObj => mapSoytifyAlbumTrack(trackObj.track)),
+    ...imageSet
   };
 };
 
@@ -83,3 +83,25 @@ export const mapSoytifyAlbumTrack = (track: Track): NuclearTrack => new NuclearT
   discNumber: track.discNumber,
   playcount: track.playcount
 });
+
+export const mapSoytifyArtistDetails = (artist: Artist): ArtistDetails => {
+  return {
+    id: artist.uri,
+    name: artist.profile.name,
+    coverImage: getLargestThumbnail(artist.headerImage?.data.sources),
+    thumb: getThumbnailSizedImage(artist.visuals.avatarImage.sources),
+    images: artist.visuals.gallery.items.map(item => getLargestThumbnail(item.sources)),
+    topTracks: artist.discography.topTracks?.items.map(({ track }) => ({
+      artist: { name: track.artists.items[0].profile.name },
+      title: track.name,
+      thumb: getThumbnailSizedImage(track.albumOfTrack.coverArt?.sources),
+      playcount: parseInt(track.playcount),
+      listeners: parseInt(track.playcount)
+    })) ?? [],
+    similar: artist.relatedContent.relatedArtists.items.map(artist => ({
+      name: artist.profile.name,
+      thumbnail: getThumbnailSizedImage(artist.visuals.avatarImage.sources)
+    })),
+    source: SearchResultsSource.Soytify
+  };
+};

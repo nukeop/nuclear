@@ -1,13 +1,15 @@
-import { getLargestThumbnail, getThumbnailSizedImage, logger } from '../../';
+import { logger } from '../../';
 import { TOTP } from './soytify-totp';
 import { OperationName, SoytifyArtistOverviewResponse, SoytifyGetAlbumResponse, SoytifySearchV2Response } from './Soytify.types';
 import {
+  mapSoytifyAlbumDetails,
+  mapSoytifyArtistDetails,
   mapSoytifyArtistSearchResult,
   mapSoytifyReleaseItem,
   mapSoytifyReleaseSearchResult,
   mapSoytifyTrackSearchResult
 } from './soytify-mappers';
-import { AlbumType, ArtistDetails, SearchResultsSource } from '../../plugins/plugins.types';
+import { AlbumType, ArtistDetails } from '../../plugins/plugins.types';
 import { cacheable, withCache } from '../cache';
 
 const SOYTIFY_API_OPEN_URL = 'https://open.' + atob('c3BvdGlmeQ==') + '.com/api';
@@ -208,25 +210,8 @@ class SoytifyClientBase {
   async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
     const { data: { artistUnion: artist } } = await this.fetchArtistOverview(artistId);
 
-    return {
-      id: artist.uri,
-      name: artist.profile.name,
-      coverImage: getLargestThumbnail(artist.headerImage.data.sources),
-      thumb: getThumbnailSizedImage(artist.visuals.avatarImage.sources),
-      images: artist.visuals.gallery.items.map(item => getLargestThumbnail(item.sources)),
-      topTracks: artist.discography.topTracks?.items.map(({ track }) => ({
-        artist: { name: track.artists.items[0].profile.name },
-        title: track.name,
-        thumb: getThumbnailSizedImage(track.albumOfTrack.coverArt?.sources),
-        playcount: parseInt(track.playcount),
-        listeners: parseInt(track.playcount)
-      })) ?? [],
-      similar: artist.relatedContent.relatedArtists.items.map(artist => ({
-        name: artist.profile.name,
-        thumbnail: getThumbnailSizedImage(artist.visuals.avatarImage.sources)
-      })),
-      source: SearchResultsSource.Soytify
-    };
+
+    return mapSoytifyArtistDetails(artist);
   }
 
   async fetchArtistAlbums(artistId: string) {
@@ -248,7 +233,7 @@ class SoytifyClientBase {
       args: { uri: albumId, type: albumType, limit: 50, offset: 0, locale: '' }
     });
 
-    return data.albumUnion;
+    return mapSoytifyAlbumDetails(data.albumUnion);
   }
 }
 
