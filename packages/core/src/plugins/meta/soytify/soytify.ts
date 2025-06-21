@@ -9,7 +9,6 @@ import {
   AlbumDetails,
   AlbumType
 } from '../../plugins.types';
-import { mapSoytifyAlbumDetails } from '../../../rest/soytify/soytify-mappers';
 const SOYTIFY_NAME = atob('U295dGlmeQ==');
 
 export class SoytifyMetaProvider extends MetaProvider {
@@ -74,11 +73,14 @@ export class SoytifyMetaProvider extends MetaProvider {
     return await client.fetchAlbumDetails(albumId, albumType);
   }
 
-  fetchAlbumDetailsByName(
+  async fetchAlbumDetailsByName(
     albumName: string,
-    albumType?: AlbumType,
-    artist?: string
+    albumType?: AlbumType
   ): Promise<AlbumDetails> {
-    throw new Error('Method not implemented.');
+    const albumSearch = await this.searchForReleases(albumName);
+    if (albumSearch.length === 0) {
+      throw new Error('Album not found');
+    }
+    return this.fetchAlbumDetails(albumSearch[0].id, albumType);
   }
 }
