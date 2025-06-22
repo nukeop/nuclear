@@ -273,7 +273,7 @@ exports[`Library view container should display local library in album grid mode 
           </div>
         </div>
         <div
-          class="ui inverted segment tracks_container"
+          class="ui inverted segment"
         >
           <div
             class="ui dimmer"
@@ -546,7 +546,7 @@ exports[`Library view container should display local library in folder tree mode
           </div>
         </div>
         <div
-          class="ui inverted segment tracks_container"
+          class="ui inverted segment"
         >
           <div
             class="ui dimmer"
@@ -806,7 +806,7 @@ exports[`Library view container should display local library in simple list mode
           </div>
         </div>
         <div
-          class="ui inverted segment tracks_container"
+          class="ui inverted segment"
         >
           <div
             class="ui dimmer"
@@ -825,7 +825,7 @@ exports[`Library view container should display local library in simple list mode
                 <div
                   class="track_table_header_row"
                   role="row"
-                  style="grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em 6em 6em auto;"
+                  style="grid-template-columns: 4em 4em 3em minmax(8em, 1fr) 6em 6em 6em auto;"
                 >
                   <div
                     class="track_table_header_cell"
@@ -962,7 +962,7 @@ exports[`Library view container should display local library in simple list mode
                       data-rbd-draggable-id="0"
                       data-testid="track-table-row"
                       role="row"
-                      style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em 6em 6em;"
+                      style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 4em 4em 3em minmax(8em, 1fr) 6em 6em 6em;"
                       tabindex="0"
                     >
                       <div
@@ -1070,7 +1070,7 @@ exports[`Library view container should display local library in simple list mode
                       data-rbd-draggable-id="1"
                       data-testid="track-table-row"
                       role="row"
-                      style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em 6em 6em;"
+                      style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 4em 4em 3em minmax(8em, 1fr) 6em 6em 6em;"
                       tabindex="1"
                     >
                       <div
@@ -1178,7 +1178,7 @@ exports[`Library view container should display local library in simple list mode
                       data-rbd-draggable-id="2"
                       data-testid="track-table-row"
                       role="row"
-                      style="position: absolute; left: 0px; top: 84px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em 6em 6em;"
+                      style="position: absolute; left: 0px; top: 84px; height: 42px; width: 100%; grid-template-columns: 4em 4em 3em minmax(8em, 1fr) 6em 6em 6em;"
                       tabindex="2"
                     >
                       <div

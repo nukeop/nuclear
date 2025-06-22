@@ -66,7 +66,6 @@ module.exports = {
       urlSearch: jest.fn().mockResolvedValue([]),
       liveStreamSearch: jest.fn().mockResolvedValue([])
     },
-    NuclearPlaylistsService: jest.requireActual('@nuclear/core/src/rest/Nuclear/Playlists').NuclearPlaylistsService,
     NuclearStreamMappingsService: jest.requireActual('@nuclear/core/src/rest/Nuclear/StreamMappings').NuclearStreamMappingsService,
     Deezer: {
       ...jest.requireActual('@nuclear/core/src/rest/Deezer'),
