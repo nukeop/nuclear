@@ -100,7 +100,7 @@ export const mapSoytifyArtistDetails = (artist: Artist): ArtistDetails => {
     })) ?? [],
     similar: artist.relatedContent.relatedArtists.items.map(artist => ({
       name: artist.profile.name,
-      thumbnail: getThumbnailSizedImage(artist.visuals.avatarImage.sources)
+      thumbnail: getThumbnailSizedImage(artist.visuals.avatarImage?.sources)
     })),
     source: SearchResultsSource.Soytify
   };

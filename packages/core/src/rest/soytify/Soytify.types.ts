@@ -35,7 +35,7 @@ export interface ArtistSimplified {
   visuals?: ArtistVisuals;
 }
 export interface ArtistVisuals {
-  avatarImage: AvatarImage;
+  avatarImage: AvatarImage | null;
   gallery?: Gallery;
 }
 export interface AssociationsV3 {

@@ -48,9 +48,7 @@ export const getThumbnailSizedImage = (
   width = 400,
   height = 400
 ): string => {
-  const isNotEmpty = !isEmpty(images);
-
-  if (!isNotEmpty) {
+  if (!images || isEmpty(images)) {
     return undefined;
   }
 

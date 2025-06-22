@@ -9,7 +9,7 @@ import {
   AlbumDetails,
   AlbumType
 } from '../../plugins.types';
-const SOYTIFY_NAME = atob('U295dGlmeQ==');
+const SOYTIFY_NAME = atob('U3BvdGlmeQ==');
 
 export class SoytifyMetaProvider extends MetaProvider {
   constructor() {
@@ -20,7 +20,7 @@ export class SoytifyMetaProvider extends MetaProvider {
     this.description =
       'Metadata provider that uses ' + SOYTIFY_NAME + ' as a source.';
     this.image = null;
-    this.isDefault = false;
+    this.isDefault = true;
   }
 
   async searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {

@@ -121,9 +121,12 @@ const getSelectedMetaProvider = (getState: () => RootState, wantedProvider: Sear
       plugins: { metaProviders }, selected }
   } = getState();
 
-  return wantedProvider ?
+  const selectedProvider = wantedProvider ?
     _.find(metaProviders, { searchName: wantedProvider }) :
     _.find(metaProviders, { sourceName: selected.metaProviders });
+
+
+  return selectedProvider || _.find(metaProviders, { isDefault: true }) || null;
 };
 
 export const artistSearch = (terms: string) => async (dispatch, getState: () => RootState) => {
