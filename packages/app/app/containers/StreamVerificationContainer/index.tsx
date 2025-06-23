@@ -14,7 +14,7 @@ import { head } from 'lodash';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { settingsSelector } from '../../selectors/settings';
 import { setStringOption } from '../../actions/settings';
-import { isSuccessCacheEntry } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
+import { isSuccessCacheEntry } from '@nuclear/core/src/rest/nuclear';
 
 const WEAK_VERIFICATION_THRESHOLD = 3;
 

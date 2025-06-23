@@ -14,7 +14,7 @@ import { RootState } from '../reducers';
 import { LocalLibraryState } from './local';
 import { Queue } from './actionTypes';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
-import { isSuccessCacheEntry } from '@nuclear/core/src/rest/nuclear/StreamMappings';
+import { isSuccessCacheEntry } from '@nuclear/core/src/rest/nuclear';
 import { queue as queueSelector } from '../selectors/queue';
 import { error } from './toasts';
 import { random } from 'lodash';
