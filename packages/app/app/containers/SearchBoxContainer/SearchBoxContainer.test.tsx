@@ -29,10 +29,8 @@ describe('Search box container', () => {
     expect(state.search.searchHistory).toEqual(['test']);
     expect(state.plugin.plugins.metaProviders[0].searchForArtists).toHaveBeenCalledWith('test');
     expect(state.plugin.plugins.metaProviders[0].searchForReleases).toHaveBeenCalledWith('test');
-    expect(state.plugin.plugins.metaProviders[0].searchForPodcast).toHaveBeenCalledWith('test');
+    expect(state.plugin.plugins.metaProviders[0].searchForTracks).toHaveBeenCalledWith('test');
 
-    const lastfmApi = new rest.LastFmApi('test', 'test');
-    expect(lastfmApi.searchTracks).toHaveBeenCalledWith('test');
     expect(rest.Youtube.urlSearch).toHaveBeenCalledWith('test');
     expect(rest.Youtube.liveStreamSearch).toHaveBeenCalledWith('test');
   });
