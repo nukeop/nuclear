@@ -6,6 +6,7 @@ import { logger } from '@nuclear/core';
 
 import { getTrackArtist, StreamVerification } from '@nuclear/ui';
 import { StreamVerificationProps } from '@nuclear/ui/lib/components/StreamVerification';
+import { Nuclear } from '@nuclear/core/src/rest';
 
 import { queue as queueSelector } from '../../selectors/queue';
 import { QueueItem } from '../../reducers/queue';
@@ -13,7 +14,6 @@ import { head } from 'lodash';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { settingsSelector } from '../../selectors/settings';
 import { setStringOption } from '../../actions/settings';
-import { isSuccessCacheEntry, NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear/StreamMappings';
 
 const WEAK_VERIFICATION_THRESHOLD = 3;
 
@@ -26,7 +26,7 @@ export const StreamVerificationContainer: React.FC = () => {
   const currentTrack: QueueItem = queue.queueItems[queue.currentTrack];
   const [isLoading, setLoading] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState<StreamVerificationProps['status']>('unknown');
-  const StreamMappingsService = NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+  const StreamMappingsService = Nuclear.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
 
   useEffect(() => {
     setVerificationStatus('unknown');
@@ -37,7 +37,7 @@ export const StreamVerificationContainer: React.FC = () => {
         selectedStreamProvider,
         settings?.userId
       ).then(topStream => {
-        if (isSuccessCacheEntry(topStream) && topStream.value.stream_id === head(currentTrack.streams)?.id) {
+        if (Nuclear.isSuccessCacheEntry(topStream) && topStream.value.stream_id === head(currentTrack.streams)?.id) {
           if (topStream.value.score === undefined) {
             logger.error(`Failed to verify stream: ${currentTrack.name} by ${getTrackArtist(currentTrack)}`);
             setVerificationStatus('unverified');

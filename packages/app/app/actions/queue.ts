@@ -4,6 +4,8 @@ import { createStandardAction } from 'typesafe-actions';
 import { v4 } from 'uuid';
 
 import { StreamProvider } from '@nuclear/core';
+import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
+import { Nuclear } from '@nuclear/core/src/rest';
 import { getTrackArtist, getTrackTitle } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
@@ -13,8 +15,6 @@ import { QueueItem, TrackStream } from '../reducers/queue';
 import { RootState } from '../reducers';
 import { LocalLibraryState } from './local';
 import { Queue } from './actionTypes';
-import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
-import { isSuccessCacheEntry, NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear/StreamMappings';
 import { queue as queueSelector } from '../selectors/queue';
 import { error } from './toasts';
 import { random } from 'lodash';
@@ -200,7 +200,7 @@ const verifyStreamWithService = async (
   }
 
   try {
-    const StreamMappingsService = NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+    const StreamMappingsService = Nuclear.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
     const topStream = await StreamMappingsService.getTopStream(
       getTrackArtist(track),
       getTrackTitle(track),
@@ -208,7 +208,7 @@ const verifyStreamWithService = async (
       settings?.userId
     );
 
-    if (!isSuccessCacheEntry(topStream)) {
+    if (!Nuclear.isSuccessCacheEntry(topStream)) {
       return streamData;
     }
 

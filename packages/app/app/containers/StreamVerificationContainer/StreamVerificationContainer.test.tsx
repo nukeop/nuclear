@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 import fetchMock from 'fetch-mock';
+import { Nuclear } from '@nuclear/core/src/rest';
 
 import { AnyProps } from '../../../test/testUtils';
 import { StreamVerificationContainer } from '.';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { configureMockStore, TestStoreProvider, setupI18Next } from '../../../test/testUtils';
-import { NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear/StreamMappings';
 
 describe('StreamVerificationContainer', () => {
   beforeAll(() => {
@@ -16,7 +16,7 @@ describe('StreamVerificationContainer', () => {
 
   beforeEach(() => {
     fetchMock.reset();
-    NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL).clearTopStreamCache();
+    Nuclear.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL).clearTopStreamCache();
   });
       
   it('renders nothing when nothing\'s playing', () => {

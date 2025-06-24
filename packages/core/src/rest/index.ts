@@ -26,3 +26,6 @@ export { iTunes };
 
 import * as Spotify from './Spotify';
 export { Spotify };
+
+import * as Nuclear from './nuclear';
+export { Nuclear };
