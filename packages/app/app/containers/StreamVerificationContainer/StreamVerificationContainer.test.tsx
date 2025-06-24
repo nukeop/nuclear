@@ -6,7 +6,7 @@ import { AnyProps } from '../../../test/testUtils';
 import { StreamVerificationContainer } from '.';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { configureMockStore, TestStoreProvider, setupI18Next } from '../../../test/testUtils';
-import { NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear';
+import { NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear/StreamMappings';
 
 describe('StreamVerificationContainer', () => {
   beforeAll(() => {

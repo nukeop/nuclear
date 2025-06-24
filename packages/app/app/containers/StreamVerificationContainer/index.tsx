@@ -13,7 +13,7 @@ import { head } from 'lodash';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { settingsSelector } from '../../selectors/settings';
 import { setStringOption } from '../../actions/settings';
-import { isSuccessCacheEntry, NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear';
+import { isSuccessCacheEntry, NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear/StreamMappings';
 
 const WEAK_VERIFICATION_THRESHOLD = 3;
 
