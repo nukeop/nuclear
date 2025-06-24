@@ -1,5 +1,4 @@
 import { initialStoreState, mockElectronStore } from '../../test/mockElectronStore';
-import { NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear';
 
 const mockStore = {...initialStoreState()};
 
@@ -67,7 +66,6 @@ module.exports = {
       urlSearch: jest.fn().mockResolvedValue([]),
       liveStreamSearch: jest.fn().mockResolvedValue([])
     },
-    NuclearStreamMappingsService,
     Deezer: {
       ...jest.requireActual('@nuclear/core/src/rest/Deezer'),
       getEditorialCharts: jest.fn().mockResolvedValue({
