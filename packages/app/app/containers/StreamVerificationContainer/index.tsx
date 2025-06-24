@@ -6,7 +6,6 @@ import { logger } from '@nuclear/core';
 
 import { getTrackArtist, StreamVerification } from '@nuclear/ui';
 import { StreamVerificationProps } from '@nuclear/ui/lib/components/StreamVerification';
-import { rest } from '@nuclear/core';
 
 import { queue as queueSelector } from '../../selectors/queue';
 import { QueueItem } from '../../reducers/queue';
