@@ -14,7 +14,7 @@ import { head } from 'lodash';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { settingsSelector } from '../../selectors/settings';
 import { setStringOption } from '../../actions/settings';
-import { isSuccessCacheEntry } from '@nuclear/core/src/rest/nuclear';
+import { isSuccessCacheEntry, NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear';
 
 const WEAK_VERIFICATION_THRESHOLD = 3;
 
@@ -27,7 +27,7 @@ export const StreamVerificationContainer: React.FC = () => {
   const currentTrack: QueueItem = queue.queueItems[queue.currentTrack];
   const [isLoading, setLoading] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState<StreamVerificationProps['status']>('unknown');
-  const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+  const StreamMappingsService = NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
 
   useEffect(() => {
     setVerificationStatus('unknown');

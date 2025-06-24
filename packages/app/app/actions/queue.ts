@@ -3,7 +3,7 @@ import { isEmpty, isString, find } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
 import { v4 } from 'uuid';
 
-import { rest, StreamProvider } from '@nuclear/core';
+import { StreamProvider } from '@nuclear/core';
 import { getTrackArtist, getTrackTitle } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
@@ -14,7 +14,7 @@ import { RootState } from '../reducers';
 import { LocalLibraryState } from './local';
 import { Queue } from './actionTypes';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
-import { isSuccessCacheEntry } from '@nuclear/core/src/rest/nuclear';
+import { isSuccessCacheEntry, NuclearStreamMappingsService } from '@nuclear/core/src/rest/nuclear';
 import { queue as queueSelector } from '../selectors/queue';
 import { error } from './toasts';
 import { random } from 'lodash';
@@ -200,7 +200,7 @@ const verifyStreamWithService = async (
   }
 
   try {
-    const StreamMappingsService = rest.NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+    const StreamMappingsService = NuclearStreamMappingsService.get(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
     const topStream = await StreamMappingsService.getTopStream(
       getTrackArtist(track),
       getTrackTitle(track),

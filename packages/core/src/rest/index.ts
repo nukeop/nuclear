@@ -26,6 +26,3 @@ export { iTunes };
 
 import * as Spotify from './Spotify';
 export { Spotify };
-
-import { NuclearStreamMappingsService } from './nuclear';
-export { NuclearStreamMappingsService };
