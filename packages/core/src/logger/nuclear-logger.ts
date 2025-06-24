@@ -308,7 +308,8 @@ class NuclearLogger {
 }
 
 const logger = new NuclearLogger({
-  name: isMain ? 'main' : undefined
+  name: isMain ? 'main' : undefined,
+  logLevel: isDevelopment ? 'debug' : 'info'
 });
 
 if (isMain) {
