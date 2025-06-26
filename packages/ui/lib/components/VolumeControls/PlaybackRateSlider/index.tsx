@@ -24,7 +24,7 @@ const PlaybackRateSlider: React.FC<PlaybackRateSliderProps> = ({
   updatePlaybackRate,
   isPlaybackRateOpen
 }) => {
-  
+
   const rateOptions = PLAYBACK_RATES.map((item, index) => <div key={index} onClick={() => updatePlaybackRate(index)}>{item}</div>);
 
   return (
@@ -33,9 +33,10 @@ const PlaybackRateSlider: React.FC<PlaybackRateSliderProps> = ({
     >
       <NeumorphicBox
         borderRadius='10px'
+        padding='1em'
       >
         <div className={styles.rates_box}>{rateOptions}</div>
-        <Range  
+        <Range
           value={playbackRate}
           height={4}
           width='100%'

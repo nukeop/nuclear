@@ -20,6 +20,7 @@ const MiniPlayOptionControl: React.FC<PlayOptionControlProps> = ({
   enabled = true,
   onToggle
 }) => <button
+  className={styles.mini_play_options_control}
   onClick={onToggle}
 >
   <Icon
@@ -40,9 +41,8 @@ const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
   return <div className={styles.mini_play_options}>
     <NeumorphicBox small borderRadius='5px'>
       <button
+        className={styles.mini_play_options_button}
         onClick={onDisableMiniPlayer}
-        
-       
       >
         <Icon
           size='large'
@@ -52,6 +52,7 @@ const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
     </NeumorphicBox>
     <NeumorphicBox small borderRadius='5px'>
       <button
+        className={styles.mini_play_options_button}
         onClick={isExpanded ? contract : expand}
       >
         <Icon
@@ -60,9 +61,9 @@ const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
         />
       </button>
       {
-        isExpanded && playOptions.slice(1).map(playOption => <MiniPlayOptionControl 
+        isExpanded && playOptions.slice(1).map(playOption => <MiniPlayOptionControl
           key={playOption.name}
-          {...playOption} 
+          {...playOption}
         />)
       }
     </NeumorphicBox>
