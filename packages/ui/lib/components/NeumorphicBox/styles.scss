@@ -11,25 +11,24 @@ $contrast: 5%;
   height: 100%;
   border-radius: 25px;
   background: transparent;
-  box-shadow: $bigDisplacement $bigDisplacement $bigBlur color.adjust(common.$background, $lightness: -$contrast), 
+  box-shadow: $bigDisplacement $bigDisplacement $bigBlur color.adjust(common.$background, $lightness: -$contrast),
   (-$bigDisplacement) (-$bigDisplacement) $bigBlur color.adjust(common.$background, $lightness: $contrast);
   color: common.$white;
-  padding: 1em;
   margin: 1em;
 
   &.small {
-    box-shadow: $smallDisplacement $smallDisplacement $smallBlur color.adjust(common.$background, $lightness: -$contrast), 
+    box-shadow: $smallDisplacement $smallDisplacement $smallBlur color.adjust(common.$background, $lightness: -$contrast),
     (-$smallDisplacement) (-$smallDisplacement) $smallBlur color.adjust(common.$background, $lightness: $contrast);
     z-index:1000;
   }
 
   &.pressed {
-    box-shadow: inset $bigDisplacement $bigDisplacement $bigBlur color.adjust(common.$background, $lightness: -$contrast), 
+    box-shadow: inset $bigDisplacement $bigDisplacement $bigBlur color.adjust(common.$background, $lightness: -$contrast),
     inset (-$bigDisplacement) (-$bigDisplacement) $bigBlur color.adjust(common.$background, $lightness: $contrast);
   }
 
   &.small.pressed {
-    box-shadow: inset $smallDisplacement $smallDisplacement $smallBlur color.adjust(common.$background, $lightness: -$contrast), 
+    box-shadow: inset $smallDisplacement $smallDisplacement $smallBlur color.adjust(common.$background, $lightness: -$contrast),
     inset (-$smallDisplacement) (-$smallDisplacement) $smallBlur color.adjust(common.$background, $lightness: $contrast);
   }
 }

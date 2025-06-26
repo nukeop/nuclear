@@ -12,7 +12,9 @@ exports[`(Snapshot) Mini player should render correctly 1`] = `
         class="neumorphic_box small"
         style="border-radius: 5px;"
       >
-        <button>
+        <button
+          class="mini_play_options_button"
+        >
           <i
             aria-hidden="true"
             class="chevron left large icon"
@@ -23,7 +25,9 @@ exports[`(Snapshot) Mini player should render correctly 1`] = `
         class="neumorphic_box small"
         style="border-radius: 5px;"
       >
-        <button>
+        <button
+          class="mini_play_options_button"
+        >
           <i
             aria-hidden="true"
             class="ellipsis horizontal large icon"

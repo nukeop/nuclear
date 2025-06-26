@@ -8,28 +8,33 @@
   flex-flow: row;
   justify-content: space-between;
   width: 100%;
-  
-  button {
+
+  &_button, &_control {
     @include common.center;
     display: flex;
-    
+
     background: transparent;
     border: none;
     outline: none;
     cursor: pointer;
-    width: 2em;
-    height: 2em;
-    
-    padding: 0;
+
     margin: 0;
-    
-    &:not(:first-child) {
-      margin-top: 1em;
-    }
-    
+
     i {
       color: common.$white;
-     margin: 0;
-   }
- }
+      margin: 0;
+    }
+  }
+
+  &_button {
+    padding: 1.25em 1.12em;
+  }
+
+  &_control {
+    padding: 0.75em 1.12em;
+
+    &:last-child {
+      padding-bottom: 1em;
+    }
+  }
 }
