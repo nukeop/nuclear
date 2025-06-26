@@ -25,6 +25,7 @@ import HlsPlayer from '../../components/HLSPlayer';
 import { ipcRenderer } from 'electron';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+let previousTrack = null;
 
 class SoundContainer extends React.Component {
   constructor(props) {
@@ -59,6 +60,23 @@ class SoundContainer extends React.Component {
     this.handleLoadLyrics();
     this.handleAutoRadio();
     this.props.actions.updateStreamLoading(false);
+
+    let currentTrack = this.props.queue.queueItems[
+      this.props.queue.currentTrack
+    ];
+    if (this.props.settings.listeningHistory && currentTrack !== previousTrack) {
+      // Don't add the same track
+      if (previousTrack === null ||
+          currentTrack.artist !== previousTrack.artist ||
+          currentTrack.name !== previousTrack.name ||
+          currentTrack.duration !== previousTrack.duration) {
+        previousTrack = currentTrack;
+        ipcRenderer.send(IpcEvents.POST_LISTENING_HISTORY_ENTRY, {
+          title: currentTrack.title ?? currentTrack.name,
+          artist: currentTrack.artist
+        });
+      }
+    }
   }
 
   handleLoadLyrics() {
@@ -97,13 +115,6 @@ class SoundContainer extends React.Component {
         currentTrack.title ?? currentTrack.name,
         this.props.scrobbling.lastFmSessionKey
       );
-    }
-
-    if (this.props.settings.listeningHistory) {
-      ipcRenderer.send(IpcEvents.POST_LISTENING_HISTORY_ENTRY, {
-        artist: currentTrack.artist,
-        title: currentTrack.title ?? currentTrack.name
-      });
     }
 
     if (
