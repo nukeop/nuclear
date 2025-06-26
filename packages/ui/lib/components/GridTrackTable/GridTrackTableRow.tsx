@@ -6,6 +6,7 @@ import cx from 'classnames';
 import { TrackTableExtraProps } from '../TrackTable/types';
 import { Track } from '../../types';
 import styles from './styles.scss';
+import {func} from 'prop-types';
 
 export type GridTrackTableRowProps<T extends Track> = {
   data: {
@@ -22,6 +23,11 @@ export type GridTrackTableRowProps<T extends Track> = {
 const GridTrackTableRowComponent = <T extends Track>({ index, style, data }: GridTrackTableRowProps<T>): JSX.Element => {
   const row = data.rows[index];
   data.prepareRow(row);
+
+  function playTrack(track: T) {
+    data.extraProps.onPlay(track);
+  }
+
   return (
     <Draggable
       key={row.id}
@@ -45,6 +51,7 @@ const GridTrackTableRowComponent = <T extends Track>({ index, style, data }: Gri
             gridTemplateColumns: data.gridTemplateColumns
           }}
           tabIndex={row.index}
+          onDoubleClick={() => playTrack(row.original)}
         >
           {row.cells.map((cell, i) => cell.render('Cell', { ...data.extraProps, key: i }))}
         </div>
