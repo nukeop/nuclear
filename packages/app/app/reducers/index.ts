@@ -20,7 +20,6 @@ import TagReducer from './tag';
 import ToastsReducer from './toasts';
 import { reducer as LocalLibraryReducer } from './local';
 import { reducer as MastodonReducer } from './mastodon';
-import { reducer as NuclearReducer } from './nuclear';
 
 const rootReducer = combineReducers({
   connectivity: ConnectivityReducer,
@@ -33,7 +32,6 @@ const rootReducer = combineReducers({
   local: LocalLibraryReducer,
   lyrics: LyricsReducer,
   mastodon: MastodonReducer,
-  nuclear: NuclearReducer,
   player: PlayerReducer,
   playlists: PlaylistsReducer,
   plugin: PluginsReducer,

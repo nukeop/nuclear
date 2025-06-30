@@ -1,5 +1,4 @@
 import Sound from 'react-hifi';
-import { UserAccountState } from '@nuclear/core/src/rest/Nuclear/Identity.types';
 import { DownloadStatus } from '@nuclear/ui/lib/types';
 
 import { RootState } from '../app/reducers';
@@ -21,10 +20,10 @@ export const buildStoreState = () => {
     search: {
       artistSearchResults: [],
       albumSearchResults: [],
-      podcastSearchResults: [],
       trackSearchResults: [],
-      playlistSearchResults: [],
-      liveStreamSearchResults: [],
+      trackSearchState: { isReady: false, isLoading: false, hasError: false },
+      playlistSearchResults: undefined,
+      liveStreamSearchResults: undefined,
       albumDetails: {},
       artistDetails: {},
       searchHistory: [],
@@ -43,8 +42,7 @@ export const buildStoreState = () => {
       userPlugins: {}
     },
     playlists: {
-      localPlaylists: { ...startingStateMeta },
-      remotePlaylists: { ...startingStateMeta }
+      localPlaylists: { ...startingStateMeta }
     },
     player: {
       playbackStatus: Sound.status.PAUSED,
@@ -75,12 +73,6 @@ export const buildStoreState = () => {
     queue: {
       queueItems: [],
       currentTrack: 0
-    },
-    nuclear: {
-      identity: {
-        token: null,
-        signedInUser: null
-      }
     },
     settings: {}
   };
@@ -300,7 +292,7 @@ export const buildStoreState = () => {
                 searchName: 'Test Metadata Provider',
                 searchForArtists: jest.fn().mockResolvedValue([]),
                 searchForReleases: jest.fn().mockResolvedValue([]),
-                searchForPodcast: jest.fn().mockResolvedValue([]),
+                searchForTracks: jest.fn().mockResolvedValue([]),
                 fetchArtistDetailsByName: jest.fn(artistName => {
                   switch (artistName) {
                   case 'artist-similar-1':
@@ -360,7 +352,6 @@ export const buildStoreState = () => {
       state = {
         ...state,
         playlists: {
-          remotePlaylists: { ...startingStateMeta },
           localPlaylists: {
             isLoading: isLoading || false,
             hasError: false,
@@ -772,42 +763,24 @@ export const buildStoreState = () => {
         ...state.search,
         artistSearchResults: [
           {
-            uuid: 'test-uuid',
+            id: 'test-artist-id',
             name: 'Test Artist',
             coverImage: 'https://test-cover-url',
-            thumbnail: 'https://test-thumb-url',
-            cleanName: () => { },
-            addSearchResultData: () => { }
+            thumb: 'https://test-thumb-url',
+            source: SearchResultsSource.Discogs
           }
         ],
         liveStreamSearchResults: {
           id: 'test',
           info: [
             {
-              streams: [{
-                source: 'Test LiveStream Provider',
-                id: '_CuklIb9d3fI'
-              }],
-              name: 'Test LiveStream',
-              thumbnail: 'https://test-thumb-url',
-              artist: {
-                name: 'Test artist'
-              }
+              id: '1',
+              title: 'Test LiveStream',
+              thumb: 'https://test-thumb-url',
+              artist: 'Test artist',
+              source: SearchResultsSource.Youtube
             }
           ]
-        }
-      };
-      return this as StoreStateBuilder;
-    },
-    withLoggedInUser() {
-      state.nuclear.identity = {
-        ...state.nuclear.identity,
-        token: 'auth-token',
-        signedInUser: {
-          id: '1',
-          username: 'nukeop',
-          displayName: 'nukeop',
-          accountState: UserAccountState.UNCONFIRMED
         }
       };
       return this as StoreStateBuilder;

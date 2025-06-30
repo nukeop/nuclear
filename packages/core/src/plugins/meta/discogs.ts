@@ -248,7 +248,7 @@ class DiscogsMetaProvider extends MetaProvider {
     )).json();
     return this.discogsReleaseInfoToGeneric(
       albumData,
-      albumType === 'master' ? AlbumType.master : AlbumType.release
+      albumType === 'master' ? 'master' : 'release'
     );
   }
 }

@@ -11,7 +11,6 @@ import { TextCell } from '@nuclear/ui/lib/components/GridTrackTable/Cells/TextCe
 import { Track } from '@nuclear/ui/lib/types';
 
 import TrackTableContainer from '../../../containers/TrackTableContainer';
-import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
 
 type AddAllButtonProps = {
@@ -79,8 +78,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
   return (
     !_.isEmpty(tracks) &&
       <div className={cx(
-        styles.popular_tracks_container,
-        trackRowStyles.tracks_container
+        styles.popular_tracks_container
       )}>
         <div className={styles.header}>{t('popular-tracks')}</div>
         <AddAllButton 
