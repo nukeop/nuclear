@@ -1,6 +1,4 @@
-import { Artist } from '@nuclear/core';
-import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsPodcast } from '@nuclear/core/src/plugins/plugins.types';
-import { LastfmTrackMatchInternal } from '@nuclear/core/src/rest/Lastfm.types';
+import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
 import { YoutubeResult } from '@nuclear/core/src/rest/Youtube';
 import { ActionType, getType } from 'typesafe-actions';
 import { SearchActions } from '../actions/search';
@@ -15,29 +13,29 @@ export type ArtistDetailsState = Partial<ArtistDetails> & {
 
 export type AlbumDetailsState = Partial<AlbumDetails> & {loading?: boolean, error?: boolean}
 
-type SearchState = {
-  artistSearchResults: Artist[]
-  albumSearchResults: SearchResultsAlbum[]
-  podcastSearchResults: SearchResultsPodcast[]
-  trackSearchResults: string | { id: string, info: LastfmTrackMatchInternal[] } | undefined[]
-  playlistSearchResults: { id:string, info: YoutubeResult[] } | undefined[]
-  liveStreamSearchResults: { id:string, info: YoutubeResult[] } | undefined[]
-  albumDetails:{[key: string]:  AlbumDetailsState }
-  artistDetails: {[key: string]: ArtistDetailsState }
-  searchHistory: string[]
-  unifiedSearchStarted: boolean
-  playlistSearchStarted: boolean | string
-  liveStreamSearchStarted: boolean | string
-  isFocused: boolean
+export type SearchState = {
+  artistSearchResults: SearchResultsArtist[];
+  albumSearchResults: SearchResultsAlbum[];
+  trackSearchResults: SearchResultsTrack[];
+  trackSearchState: { isReady: boolean; isLoading: boolean; hasError: boolean; };
+  playlistSearchResults: { id:string, info: YoutubeResult[] } | undefined;
+  liveStreamSearchResults: { id:string, info: SearchResultsTrack[] } | undefined;
+  albumDetails:{[key: string]:  AlbumDetailsState };
+  artistDetails: {[key: string]: ArtistDetailsState };
+  searchHistory: string[];
+  unifiedSearchStarted: boolean;
+  playlistSearchStarted: boolean | string;
+  liveStreamSearchStarted: boolean | string;
+  isFocused: boolean;
 }
 
 const initialState: SearchState = {
   artistSearchResults: [],
   albumSearchResults: [],
-  podcastSearchResults: [],
   trackSearchResults: [],
-  playlistSearchResults: [],
-  liveStreamSearchResults: [],
+  trackSearchState: { isReady: false, isLoading: false, hasError: false },
+  playlistSearchResults: undefined,
+  liveStreamSearchResults: undefined,
   albumDetails: {},
   artistDetails: {},
   searchHistory: [],
@@ -73,12 +71,7 @@ export default function SearchReducer(state = initialState, action: SearchReduce
   case getType(SearchActions.artistSearchSuccess):
     return {
       ...state,
-      artistSearchResults: action.payload.map(artist => Artist.fromSearchResultData(artist))
-    };
-  case getType(SearchActions.podcastSearchSuccess):
-    return {
-      ...state,
-      podcastSearchResults: action.payload
+      artistSearchResults: action.payload
     };
   case getType(SearchActions.albumInfoStart):
     return {
@@ -180,21 +173,31 @@ export default function SearchReducer(state = initialState, action: SearchReduce
         }
       }
     };
-  case getType(SearchActions.lastFmTrackSearchStart):
+  case getType(SearchActions.trackSearchAction.request):
     return {
       ...state,
-      trackSearchResults: action.payload
+      trackSearchState: {
+        isReady: false,
+        isLoading: true,
+        hasError: false
+      },
+      trackSearchResults: []
     };
-  case getType(SearchActions.lastFmTrackSearchSuccess):
+  case getType(SearchActions.trackSearchAction.success):
     return {
       ...state,
+      trackSearchState: {
+        isReady: true,
+        isLoading: false,
+        hasError: false
+      },
       trackSearchResults: action.payload
     };
   case getType(SearchActions.youtubePlaylistSearchStart):
     return {
       ...state,
       playlistSearchStarted: action.payload,
-      playlistSearchResults: []
+      playlistSearchResults: undefined
     };
   case getType(SearchActions.youtubePlaylistSearchSuccess):
     return {
@@ -205,7 +208,7 @@ export default function SearchReducer(state = initialState, action: SearchReduce
     return {
       ...state,
       liveStreamSearchStarted: action.payload,
-      liveStreamSearchResults: []
+      liveStreamSearchResults: undefined
     };
   case getType(SearchActions.youtubeLiveStreamSearchSuccess):
     return {
@@ -215,7 +218,7 @@ export default function SearchReducer(state = initialState, action: SearchReduce
   case getType(SearchActions.youtubeLiveStreamSearchError):
     return {
       ...state,
-      liveStreamSearchResults: []
+      liveStreamSearchResults: undefined
     };
   case getType(SearchActions.setSearchDropdownVisibility):
     return {

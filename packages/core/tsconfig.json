@@ -13,8 +13,7 @@
     "allowJs": true,
     "typeRoots": [
       "../../node_modules/@types",
-      "typings",
-      "src/ytdl-core"
+      "typings"
     ]
   },
   "include": [
