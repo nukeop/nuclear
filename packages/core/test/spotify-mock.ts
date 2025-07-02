@@ -58,10 +58,6 @@ export class SpotifyMock {
     fetchMock.get(`https://api.spotify.com/v1/artists/${artistId}/top-tracks`, { tracks });
   }
   
-  static withGetSimilarArtists(artistId: string, artists: Partial<SpotifyArtist>[]) {
-    fetchMock.get(`https://api.spotify.com/v1/artists/${artistId}/related-artists`, { artists });
-  }
-  
   static withGetArtistsAlbums(artistId: string, albums: Partial<SpotifySimplifiedAlbum>[]) {
     fetchMock.get(`https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album`, { items: albums });
   }

@@ -231,12 +231,6 @@ class SpotifyClient {
     return data.tracks;
   }
 
-  async getSimilarArtists(id: string): Promise<SpotifyFullArtist[]> {
-    const data = await this.get(`${SPOTIFY_API_URL}/artists/${id}/related-artists`);
-
-    return data.artists;
-  }
-
   async getArtistsAlbums(id: string): Promise<SpotifySimplifiedAlbum[]> {
     let albums: SpotifySimplifiedAlbum[] = [];
     let data: SpotifyPaginatedResponse<SpotifySimplifiedAlbum> = await this.get(`${SPOTIFY_API_URL}/artists/${id}/albums?include_groups=album`);

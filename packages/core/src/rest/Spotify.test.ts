@@ -68,20 +68,6 @@ describe('Spotify tests', () => {
     }]);
   });
 
-  it('gets similar artists', async () => {
-    SpotifyMock.withAccessToken();
-    SpotifyMock.withGetSimilarArtists('artist-id', [{
-      name: 'test artist',
-      images: []
-    }]);
-    const result = await (await SpotifyClientProvider.get()).getSimilarArtists('artist-id');
-
-    expect(result).toEqual([{
-      name: 'test artist',
-      images: []
-    }]);
-  });
-
   it('gets artist\'s albums', async () => {
     SpotifyMock.withAccessToken();
     SpotifyMock.withGetArtistsAlbums('artist-id', [{
