@@ -68,32 +68,6 @@ describe('Spotify tests', () => {
     }]);
   });
 
-  it('gets artist\'s albums', async () => {
-    SpotifyMock.withAccessToken();
-    SpotifyMock.withGetArtistsAlbums('artist-id', [{
-      id: 'album-id',
-      album_type: 'album',
-      total_tracks: 10,
-      href: 'album-href',
-      images: [],
-      name: 'test album',
-      release_date: '2020-01-01',
-      artists: [{ name: 'test artist' }]
-    }]);
-    const result = await (await SpotifyClientProvider.get()).getArtistsAlbums('artist-id');
-
-    expect(result).toEqual([{
-      id: 'album-id',
-      album_type: 'album',
-      total_tracks: 10,
-      href: 'album-href',
-      images: [],
-      name: 'test album',
-      release_date: '2020-01-01',
-      artists: [{ name: 'test artist' }]
-    }]);
-  });
-
   it('gets an album', async () => {
     SpotifyMock.withAccessToken();
     SpotifyMock.withGetAlbum('album-id', {

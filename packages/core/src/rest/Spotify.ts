@@ -231,20 +231,6 @@ class SpotifyClient {
     return data.tracks;
   }
 
-  async getArtistsAlbums(id: string): Promise<SpotifySimplifiedAlbum[]> {
-    let albums: SpotifySimplifiedAlbum[] = [];
-    let data: SpotifyPaginatedResponse<SpotifySimplifiedAlbum> = await this.get(`${SPOTIFY_API_URL}/artists/${id}/albums?include_groups=album`);
-    albums = data.items;
-
-    while (data.next && data.items?.length >= data.limit) {
-      const nextData: SpotifyPaginatedResponse<SpotifySimplifiedAlbum> = await this.get(data.next);
-      albums = [...albums, ...nextData.items];
-      data = nextData;
-    }
-
-    return albums;
-  }
-
   async getTopArtist(query: string): Promise<SpotifyFullArtist> {
     const data = await this.get(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&best_match=true&limit=1`);
 
