@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "재생목록 이름 입력:",
     "play-now": "지금 재생",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "스트림 조회 오류가 발생했습니다. 다시 시도하려면 클릭하세요."
   },
   "search": {
     "album": "앨범",
