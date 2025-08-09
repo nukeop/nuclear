@@ -78,6 +78,11 @@ module.exports = {
       getPlaylistTracks: jest.fn().mockResolvedValue({
         data: []
       })
+    },
+    YouTubeJSApi: {
+      init: jest.fn().mockResolvedValue(null),
+      getTrack: jest.fn().mockResolvedValue([]),
+      search: jest.fn().mockResolvedValue([])
     }
   },
   logger: mockLogger,
