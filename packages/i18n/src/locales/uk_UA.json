@@ -5,7 +5,7 @@
     "download-toast-title": "Збірку додано до завантажень",
     "error-load": "На жаль, цю збірку не вдалося завантажити. Повторіть спробу пізніше або відкрийте нову проблему на Github",
     "genre": "Жанр:",
-    "play": "Грати",
+    "play": "Слухати",
     "queue": "Додати збірку до черги",
     "tracks": "Доріжки:",
     "year": "Рік:",
@@ -204,7 +204,7 @@
     "playlist": "Грайлист",
     "play": "Грати",
     "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "save-external-playlist": "Зберегти на пристрої"
   },
   "plugins": {
     "add-a-plugin": "Додати втулок",
