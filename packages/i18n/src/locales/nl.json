@@ -9,12 +9,12 @@
     "queue": "Album toevoegen aan wachtrij",
     "tracks": "Nummers:",
     "year": "Jaar:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Album toevoegen aan afspeellijst",
+    "create-playlist": "Een nieuwe afspeellijst maken",
+    "create-playlist-dialog-title": "Naam afspeellijst invoeren:",
+    "create-playlist-dialog-placeholder": "Naam afspeellijst...",
+    "create-playlist-dialog-accept": "Opslaan",
+    "create-playlist-dialog-cancel": "Annuleren"
   },
   "app": {
     "collection": "Verzameling",
@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Toon alles",
-    "count": "Playcount",
+    "count": "Speeltelling",
     "queue": "Alle nummers toevoegen aan wachtrij",
     "similar": "Vergelijkbare artiesten",
     "title": "Titel",
     "tour": "Aan het touren",
-    "popular-tracks": "Popular tracks",
+    "popular-tracks": "Populaire nummers",
     "artist-albums": {
       "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "sort-by-release-date": "Sorteren op releasedatum",
+      "sort-by-az": "Sorteer A-Z",
+      "sort-by-most-played": "Sorteren op meest gespeeld",
+      "filter-placeholder": "Filter…"
     }
   },
   "dashboard": {
@@ -158,7 +158,7 @@
     "delete": "Verwijderen",
     "duration": "Duur",
     "empty": "Geen afspeellijsten.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Probeer afspeellijsten te maken of importeer ze via URL, dan verschijnen ze hier!",
     "error-empty-data": "Lege gegevens",
     "error-invalid-data": "Ongeldige gegevens",
     "error-open-file": "Kan bestand niet openen",
@@ -167,7 +167,7 @@
     "export-fail-title": "Afspeellijst exporteren mislukt",
     "export-success-title": "Afspeellijst succesvol geëxporteerd",
     "header": "Uw afspeellijsten",
-    "header-add-button": "Add",
+    "header-add-button": "Toevoegen",
     "import-progress": "Import voortgang",
     "spotify-import-placeholder": "Plak een Spotify-afspeellijst URL hier",
     "dialog-placeholder": "Naam van afspeellijst...",
@@ -175,9 +175,9 @@
     "dialog-cancel": "Annuleren",
     "dialog-rename": "Hernoemen",
     "dialog-import": "Importeren",
-    "create-button": "Create a new playlist",
+    "create-button": "Een nieuwe afspeellijst maken",
     "new-playlist": "Nieuwe afspeellijst",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Importeren van Spotify",
     "import-button": "Uit één bestand importeren (JSON)",
     "import-fail-title": "Afspeellijst importeren mislukt",
     "import-success-title": "Afspeellijst succesvol geïmporteerd",
@@ -199,12 +199,12 @@
     "upload-to-server": "Naar server uploaden",
     "download-from-server": "Van server downloaden",
     "number-of-tracks": "nummers",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "input-playlist-url": "URL afspeellijst plakken:",
+    "create-playlist-dialog-title": "Naam afspeellijst invoeren:",
+    "playlist": "Afspeellijst",
+    "play": "Afspelen",
+    "external-source-tooltip": "Deze afspeellijst komt van een externe bron: {{source}}. Je kunt deze niet bewerken. Sla hem lokaal op met het afspeellijstmenu om wijzigingen aan te brengen.",
+    "save-external-playlist": "Lokaal opslaan"
   },
   "plugins": {
     "add-a-plugin": "Een plug-in toevoegen",
@@ -231,10 +231,10 @@
     "favorite-add": "Toevoegen aan favorieten",
     "header": "Wachtrij",
     "header-track": "Huidige nummer",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Track URL kopiëren naar klembord",
     "loading": "Bezig met laden van stream...",
     "playlist-add": "Toevoegen aan afspeellijst",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "Wachtrij toevoegen aan afspeellijst",
     "playlist-toast-content": "De afspeellijst, '{{name}}', is gecreëerd.",
     "playlist-toast-title": "Afspeellijst gecreëerd",
     "live": "Live",
@@ -256,9 +256,9 @@
       "verify": "Verifiëren",
       "unverify": "Maak verificatie ongedaan"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "create-playlist-dialog-title": "Naam afspeellijst invoeren:",
+    "play-now": "Nu spelen",
+    "stream-lookup-error": "Fout bij opzoeken stream. Klik op om opnieuw te proberen."
   },
   "search": {
     "album": "Album",
@@ -291,7 +291,7 @@
     "autoradio-craziness": "Automatische radio - gekte",
     "autoradio-craziness-description": "Autoradio wil nummers selecteren die minder lijken op die welke al in de wachtrij staan hoe gekker het is",
     "autoradio-description": "Voeg soortgelijke nummers automatisch toe wanneer de wachtrij eindigt",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "Favoriete track automatisch downloaden",
     "listening-history": "Luister geschiedenis",
     "listening-history-description": "Log de tracks waarnaar u luistert op Last.fm. De geschiedenis wordt offline opgeslagen.",
     "compact-menu-bar": "Compacte menubalk",
@@ -312,7 +312,7 @@
     "github-description": "Log in met je GitHub-account om online-afspeellijsten te creëren en delen (binnenkort).",
     "github-title": "GitHub",
     "http": "HTTP-API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "Verraderlijke instantie URL",
     "language": "Taal",
     "language-placeholder": "Kies een taal",
     "lastfm-connect": "Koppelen aan Last.fm",
@@ -373,7 +373,7 @@
     "add-to-favorite": "Toevoegen aan favorieten",
     "add-to-playlist": "Toevoegen aan afspeellijst",
     "add-to-queue": "Toevoegen aan wachtrij",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Een nieuwe afspeellijst maken",
     "create-playlist-dialog-title": "Naam van afspeellijst invoeren:",
     "create-playlist-dialog-placeholder": "Naam van afspeellijst...",
     "create-playlist-dialog-accept": "Opslaan",
@@ -395,13 +395,13 @@
     "play-selected-tracks-now": "Speel de geselecteerde nu",
     "tracks-selected-label-singular": "geselecteerde track",
     "tracks-selected-label-plural": "geselecteerde nummers",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Filter…"
   },
   "visualizer": {
     "exit-fullscreen": "Druk op ESC om volledig scherm af te sluiten"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "om het commandopalet te openen",
     "search-placeholder": "Wat wilt u doen?",
     "empty-state-help": "Kunt u niet vinden wat u zoekt? Probeer de hulpcommando.",
     "protip-text": "PROTIP:",
