@@ -9,12 +9,12 @@
     "queue": "Dodaj album u red čekanja",
     "tracks": "Zapisi:",
     "year": "Godina:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Dodaj album na popis pjesama",
+    "create-playlist": "Izradi novi popis za reprodukciju",
+    "create-playlist-dialog-title": "Unesite naziv popisa za reprodukciju:",
+    "create-playlist-dialog-placeholder": "Naziv popisa za reprodukciju...",
+    "create-playlist-dialog-accept": "Spremi",
+    "create-playlist-dialog-cancel": "Otkaži"
   },
   "app": {
     "collection": "Zbirka",
@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Dodaj sve",
-    "count": "Playcount",
+    "count": "Broj reprodukcija",
     "queue": "Dodaj sve pjesme u red čekanja",
     "similar": "Slični izvođači",
     "title": "Naslov",
     "tour": "Na turneji",
-    "popular-tracks": "Popular tracks",
+    "popular-tracks": "Popularne pjesme",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Albumi",
+      "sort-by-release-date": "Sortiraj po datumu izdanja",
+      "sort-by-az": "Sortiraj od A do Ž",
+      "sort-by-most-played": "Poredaj po najčešće puštanom",
+      "filter-placeholder": "Filtriranje..."
     }
   },
   "dashboard": {
@@ -158,7 +158,7 @@
     "delete": "Obriši ovaj popis za reprodukciju",
     "duration": "Duljina",
     "empty": "Nema popisa za reprodukciju.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Pokušajte stvoriti popise za reprodukciju ili ih uvesti putem URL-a i oni će se pojaviti ovdje!",
     "error-empty-data": "Prazni podaci",
     "error-invalid-data": "Nevažeći podaci",
     "error-open-file": "Ne može se datoteka otvoriti",
@@ -167,7 +167,7 @@
     "export-fail-title": "Neuspješno je izvezen popis",
     "export-success-title": "Uspješno je izvezen popis",
     "header": "Vaši popisi",
-    "header-add-button": "Add",
+    "header-add-button": "Dodaj",
     "import-progress": "Napredak uvoza",
     "spotify-import-placeholder": "Ovdje zalijepite URL popisa za reprodukciju od Spotify-a",
     "dialog-placeholder": "Ime popisa za reprodukciju...",
@@ -175,9 +175,9 @@
     "dialog-cancel": "Otkaži",
     "dialog-rename": "Preimenuj",
     "dialog-import": "Uvezi",
-    "create-button": "Create a new playlist",
+    "create-button": "Izradi novi popis za reprodukciju",
     "new-playlist": "Novi popis",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Uvoz sa Spotifyja",
     "import-button": "Unesite popis iz datoteke (JSON)",
     "import-fail-title": "Neuspješno je unesen popis",
     "import-success-title": "Uspješno je unesen popis",
@@ -199,12 +199,12 @@
     "upload-to-server": "Učitaj na poslužitelj",
     "download-from-server": "Preuzmi sa poslužitelja",
     "number-of-tracks": "pjesme",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "input-playlist-url": "Zalijepi URL popisa za reprodukciju:",
+    "create-playlist-dialog-title": "Unesite naziv popisa za reprodukciju:",
+    "playlist": "Popis za reprodukciju",
+    "play": "Reproduciraj",
+    "external-source-tooltip": "Ovaj popis za reprodukciju je iz vanjskog izvora: {{source}}. Ne možete ga uređivati. Spremite ga lokalno pomoću izbornika popisa za reprodukciju kako biste unijeli promjene.",
+    "save-external-playlist": "Spremi lokalno"
   },
   "plugins": {
     "add-a-plugin": "Dodaj dodatak",
@@ -231,10 +231,10 @@
     "favorite-add": "Dodaj u omiljene",
     "header": "Red čekanja",
     "header-track": "Trenutna pjesma",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Kopiraj URL pjesme u međuspremnik",
     "loading": "Stream se još učitava.",
     "playlist-add": "Dodaj u popis za reprodukciju",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "Dodaj red za reprodukciju na popis pjesama",
     "playlist-toast-content": "Popis za reprodukiju {{name}} je kreiran.",
     "playlist-toast-title": "Popis za reprodukciju kreiran",
     "live": "Uživo",
@@ -256,9 +256,9 @@
       "verify": "Potvrdi",
       "unverify": "Poništi potvrdu"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "create-playlist-dialog-title": "Unesite naziv popisa za reprodukciju:",
+    "play-now": "Pokreni sada",
+    "stream-lookup-error": "Pogreška u pretraživanju streama. Kliknite za ponovni pokušaj."
   },
   "search": {
     "album": "Album",
@@ -291,7 +291,7 @@
     "autoradio-craziness": "Autoradio ludilo",
     "autoradio-craziness-description": "Autoradio će odabrati pjesme koje su manje slične onima koje su već u redu čekanja što je luđe",
     "autoradio-description": "Automatski dodaj slične pjesme kad se red čekanja završava",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "Automatsko preuzimanje omiljene pjesme",
     "listening-history": "Povijest slušanja",
     "listening-history-description": "Zabilježite pjesme koje slušate na Last.fm-u. Povijest se pohranjuje na vašem uređaju.",
     "compact-menu-bar": "Koristi kompaktni stil za traku izbornika",
@@ -312,7 +312,7 @@
     "github-description": "Prijavi se sa Githubom kako bi bio u mogućnosti kreairati i dijeliti online svoje liste za reporodukciju (nadolazeća značajka).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance URL",
+    "invidious-url": "URL invanzivne instance",
     "language": "Jezik",
     "language-placeholder": "Odaberi jezik",
     "lastfm-connect": "Poveži se sa Last.fm",
@@ -373,7 +373,7 @@
     "add-to-favorite": "Dodaj u omiljene",
     "add-to-playlist": "Dodaj u popis za reprodukciju",
     "add-to-queue": "Dodaj u red čekanja",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Izradi novi popis za reprodukciju",
     "create-playlist-dialog-title": "Unesite ime popisa za reprodukciju:",
     "create-playlist-dialog-placeholder": "Ime popisa za reprodukciju...",
     "create-playlist-dialog-accept": "Spremi",
@@ -395,13 +395,13 @@
     "play-selected-tracks-now": "Odmah pokreni označeno",
     "tracks-selected-label-singular": "označen zapis",
     "tracks-selected-label-plural": "označeni zapisi",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Filtriranje..."
   },
   "visualizer": {
     "exit-fullscreen": "Pritisnite ESC da bi ste izašli iz punog zaslona"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "za otvaranje palete naredbi",
     "search-placeholder": "Što biste željeli uraditi?",
     "empty-state-help": "Ne možete naći šta tražite? Probajte pomoćnu komandu.",
     "protip-text": "PRO-SAVJET:",
