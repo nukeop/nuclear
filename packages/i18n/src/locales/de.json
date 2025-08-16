@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Alle hinzufügen",
-    "count": "Playcount",
+    "count": "Spielzählung",
     "queue": "Alle Lieder zur Warteschlange hinzufügen",
     "similar": "Ähnliche Künstler",
     "title": "Titel",
     "tour": "Auf Tour",
     "popular-tracks": "Beliebte Titel",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Alben",
+      "sort-by-release-date": "Nach Veröffentlichungsdatum sortieren",
+      "sort-by-az": "Von A-Z sortieren",
+      "sort-by-most-played": "Sortieren nach meistgespielten",
+      "filter-placeholder": "Filter…"
     }
   },
   "dashboard": {
@@ -203,8 +203,8 @@
     "create-playlist-dialog-title": "Gib einen Namen für die Playlist ein:",
     "playlist": "Playlist",
     "play": "Abspielen",
-    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "external-source-tooltip": "Diese Wiedergabeliste stammt von einer externen Quelle: {{source}}. Sie können sie nicht bearbeiten. Speichern Sie sie lokal über das Wiedergabelistenmenü, um Änderungen vorzunehmen.",
+    "save-external-playlist": "Lokal speichern"
   },
   "plugins": {
     "add-a-plugin": "Plugin hinzufügen",
@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "Gib einen Namen für die Playlist ein:",
     "play-now": "Jetzt abspielen",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "Streamsuchefehler. Klicken Sie auf, um es erneut zu versuchen."
   },
   "search": {
     "album": "Album",
@@ -291,7 +291,7 @@
     "autoradio-craziness": "Autoradio-Verrücktheit",
     "autoradio-craziness-description": "Autoradio wählt Lieder, aus die anders sind, als die Lieder, die bereits in der Warteschlange sind",
     "autoradio-description": "Fügt ähnliche Lieder automatisch hinzu, falls die Warteschlange beendet wird",
-    "auto-download-favourites": "Auto download favorite track",
+    "auto-download-favourites": "Automatischer Download des Lieblingstitels",
     "listening-history": "Hörgeschichte",
     "listening-history-description": "Protokollieren Sie die Titel, die Sie bei Last.fm hören. Der Verlauf wird offline gespeichert.",
     "compact-menu-bar": "Kompakten Stil für Menüleiste verwenden",
@@ -395,7 +395,7 @@
     "play-selected-tracks-now": "Auswahl jetzt abspielen",
     "tracks-selected-label-singular": "Lied ausgewählt",
     "tracks-selected-label-plural": "Lieder ausgewählt",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Filter…"
   },
   "visualizer": {
     "exit-fullscreen": "ESC Taste drücken, um den Vollbildmodus zu beenden"
