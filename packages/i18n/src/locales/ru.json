@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "Введите название плейлиста:",
     "play-now": "Играть",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "Ошибка поиска потока. Нажмите, чтобы повторить."
   },
   "search": {
     "album": "Альбом",
