@@ -7,6 +7,8 @@ We have started a rewrite here: https://github.com/NuclearPlayer/nuclear-xrd
 This new version will have several advantages
 
 - It will fix the constant need to update to keep everything working. Auto-update will be built-in for both Nuclear, and its plugins
+- Electron will be ditched in favor of Tauri
+- Performance-intensive parts will be written in native Rust
 - Theming support
 - A powerful plugin system
 - Better tools for plugin developers
