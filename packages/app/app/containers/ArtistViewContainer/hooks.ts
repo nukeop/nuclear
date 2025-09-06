@@ -8,7 +8,7 @@ import { artistInfoSearchByName, albumInfoSearch, artistReleasesSearch } from '.
 import * as FavoritesActions from '../../actions/favorites';
 import { searchSelectors } from '../../selectors/search';
 import { favoritesSelectors } from '../../selectors/favorites';
-import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
+import { AlbumType, SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
 
 export const useArtistViewProps = () => {
   const dispatch = useDispatch();
@@ -26,8 +26,8 @@ export const useArtistViewProps = () => {
     dispatch(artistInfoSearchByName(artistName, history));
   }, [history, dispatch]);
 
-  const albumInfoSearchCallback = useCallback(async (albumId: string, releaseType: 'master' | 'release', release: SearchResultsAlbum) => {
-    dispatch(albumInfoSearch(albumId, releaseType, release));
+  const albumInfoSearchCallback = useCallback(async (release: SearchResultsAlbum) => {
+    dispatch(albumInfoSearch(release));
   }, [dispatch]);
 
   const favoriteArtists: { id: string }[] = useSelector(favoritesSelectors.artists);

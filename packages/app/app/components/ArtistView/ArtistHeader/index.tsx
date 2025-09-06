@@ -24,6 +24,9 @@ export const ArtistHeader: React.FC<ArtistHeaderProps> = ({
   addFavoriteArtist
 }) => {
   const { t }= useTranslation('artist');
+
+  const avatar = artist.thumb ?? artist.images?.[1] ?? artPlaceholder;
+
   return <div className={styles.artist_header_overlay}>
     <div className={styles.artist_header_container}>
       {
@@ -31,8 +34,7 @@ export const ArtistHeader: React.FC<ArtistHeaderProps> = ({
         <div
           className={styles.artist_avatar}
           style={{
-            background: `url('${get(artist, 'images[1]', artPlaceholder)
-            }')`,
+            background: `url('${avatar}')`,
             backgroundRepeat: 'noRepeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover'

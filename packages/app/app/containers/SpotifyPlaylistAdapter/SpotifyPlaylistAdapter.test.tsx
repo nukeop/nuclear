@@ -51,7 +51,7 @@ describe('Spotfiy playlist adapter', () => {
       album: 'Test album',
       artist: 'Test artist',
       duration: 120,
-      thumbnail: 'thumb.jpg',
+      thumbnail: 'cover.jpg',
       stream: null
     }, {
       uuid: '2',

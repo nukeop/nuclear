@@ -16,10 +16,10 @@ type ErrorBoundaryProps = {
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
   componentDidCatch(error) {
-    logger.error(error.message ? error.message : error);
+    logger.error(String(error));
     this.props.onError(
       'Uncaught error',
-      error.message,
+      error.message || String(error),
       undefined,
       this.props.settings
     );
