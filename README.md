@@ -1,3 +1,22 @@
+# Important notice
+
+Nuclear requires ongoing maintenance to keep everything working. This version has not been maintained for a while, so expect things to be broken.
+
+We have started a rewrite here: https://github.com/NuclearPlayer/nuclear-xrd
+
+This new version will have several advantages
+
+- It will fix the constant need to update to keep everything working. Auto-update will be built-in for both Nuclear, and its plugins
+- Electron will be ditched in favor of Tauri
+- Performance-intensive parts will be written in native Rust
+- Theming support
+- A powerful plugin system
+- Better tools for plugin developers
+- Support for more metadata and streaming providers.
+
+Stay tuned for updates!
+
+
 # ![nuclear](https://i.imgur.com/oT1006i.png) 
 [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE)
 
