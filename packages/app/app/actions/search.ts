@@ -1,18 +1,14 @@
 import { logger } from '@nuclear/core';
 import { rest } from '@nuclear/core';
-import _, { isString } from 'lodash';
-import artPlaceholder from '../../resources/media/art_placeholder.png';
-import globals from '../globals';
+import _ from 'lodash';
 import { error } from './toasts';
 import { Search } from './actionTypes';
 import { History } from 'history';
 import { RootState } from '../reducers';
-import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsPodcast, SearchResultsSource } from '@nuclear/core/src/plugins/plugins.types';
-import { createStandardAction } from 'typesafe-actions';
-import { LastfmTrackMatch, LastfmTrackMatchInternal } from '@nuclear/core/src/rest/Lastfm.types';
+import { AlbumDetails, ArtistDetails, SearchResultsAlbum, SearchResultsArtist, SearchResultsSource, SearchResultsTrack } from '@nuclear/core/src/plugins/plugins.types';
+import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 import { YoutubeResult } from '@nuclear/core/src/rest/Youtube';
-
-const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+import { getTrackArtist } from '@nuclear/ui';
 
 export const SearchActions = {
   unifiedSearchStart: createStandardAction(Search.UNIFIED_SEARCH_START)<string>(),
@@ -28,7 +24,7 @@ export const SearchActions = {
     };
   }),
   youtubeLiveStreamSearchStart: createStandardAction(Search.YOUTUBE_LIVESTREAM_SEARCH_START)<string>(),
-  youtubeLiveStreamSearchSuccess: createStandardAction(Search.YOUTUBE_LIVESTREAM_SEARCH_SUCCESS).map((id: string, info: YoutubeResult[]) => {
+  youtubeLiveStreamSearchSuccess: createStandardAction(Search.YOUTUBE_LIVESTREAM_SEARCH_SUCCESS).map((id: string, info: SearchResultsTrack[]) => {
     return {
       payload: {
         id,
@@ -68,19 +64,8 @@ export const SearchActions = {
       }
     };
   }),
-  podcastSearchSuccess: createStandardAction(Search.PODCAST_SEARCH_SUCCESS)<SearchResultsPodcast[]>(),
   setSearchDropdownVisibility: createStandardAction(Search.SEARCH_DROPDOWN_DISPLAY_CHANGE)<boolean>(),
   updateSearchHistory: createStandardAction(Search.UPDATE_SEARCH_HISTORY)<string[]>(),
-  lastFmTrackSearchStart: createStandardAction(Search.LASTFM_TRACK_SEARCH_START)<string>(),
-  lastFmTrackSearchSuccess: createStandardAction(Search.LASTFM_TRACK_SEARCH_SUCCESS).map((terms: string, searchResults: LastfmTrackMatchInternal[]) => {
-    return {
-      payload: {
-        id: terms,
-        info: searchResults
-      }
-    };
-  }),
-  trackSearchSuccess: createStandardAction(Search.TRACK_SEARCH_SUCCESS)<SearchResultsAlbum[]>(),
   artistSearchSuccess: createStandardAction(Search.ARTIST_SEARCH_SUCCESS)<SearchResultsArtist[]>(),
   artistInfoStart: createStandardAction(Search.ARTIST_INFO_SEARCH_START)<string>(),
   artistInfoSuccess: createStandardAction(Search.ARTIST_INFO_SEARCH_SUCCESS).map((artistId: string, info: ArtistDetails) => {
@@ -121,7 +106,12 @@ export const SearchActions = {
         error
       }
     };
-  })
+  }),
+  trackSearchAction: createAsyncAction(
+    Search.TRACK_SEARCH_START,
+    Search.TRACK_SEARCH_SUCCESS,
+    Search.TRACK_SEARCH_ERROR
+  )<undefined, SearchResultsTrack[], undefined>()
 };
 
 
@@ -131,9 +121,12 @@ const getSelectedMetaProvider = (getState: () => RootState, wantedProvider: Sear
       plugins: { metaProviders }, selected }
   } = getState();
 
-  return wantedProvider ?
+  const selectedProvider = wantedProvider ?
     _.find(metaProviders, { searchName: wantedProvider }) :
     _.find(metaProviders, { sourceName: selected.metaProviders });
+
+
+  return selectedProvider || _.find(metaProviders, { isDefault: true }) || null;
 };
 
 export const artistSearch = (terms: string) => async (dispatch, getState: () => RootState) => {
@@ -149,56 +142,16 @@ export const albumSearch = (terms: string) => async (dispatch, getState: () => R
 };
 
 export const trackSearch = (terms: string) => async (dispatch, getState: () => RootState) => {
-  const selectedProvider = getSelectedMetaProvider(getState);
-  const results = await selectedProvider.searchForTracks(terms);
-  dispatch(SearchActions.trackSearchSuccess(results));
+  dispatch(SearchActions.trackSearchAction.request());
+  try {
+    const selectedProvider = getSelectedMetaProvider(getState);
+    const results = await selectedProvider.searchForTracks(terms);
+    dispatch(SearchActions.trackSearchAction.success(results));
+  } catch (e) {
+    logger.error(e);
+    dispatch(SearchActions.trackSearchAction.failure());
+  }
 };
-
-export const podcastSearch = (terms: string) => async (dispatch, getState: () => RootState) => {
-  const selectedProvider = getSelectedMetaProvider(getState);
-  const results = await selectedProvider.searchForPodcast(terms);
-  dispatch(SearchActions.podcastSearchSuccess(results));
-};
-
-
-const isAcceptableLastFMThumbnail = (thumbnail: string) =>
-  !(/https?:\/\/lastfm-img\d.akamaized.net\/i\/u\/\d+s\/2a96cbd8b46e442fc41c2b86b821562f\.png/.test(thumbnail));
-
-const getTrackThumbnail = (track: LastfmTrackMatch) => {
-  const image =
-    _.get(
-      track,
-      ['image', 1, '#text'],
-      _.get(
-        track,
-        ['image', 0, '#text'],
-        artPlaceholder
-      )
-    );
-  
-  return !isString(image) ? artPlaceholder : isAcceptableLastFMThumbnail(image) ? image : artPlaceholder;
-};
-
-export const mapLastFMTrackToInternal = (track: LastfmTrackMatch) => ({
-  ...track,
-  thumbnail: getTrackThumbnail(track)
-});
-
-export function lastFmTrackSearch(terms: string) {
-  return dispatch => {
-    dispatch(SearchActions.lastFmTrackSearchStart(terms));
-    Promise.all([lastfm.searchTracks(terms)])
-      .then(results => Promise.all(results.map(info => info.json())))
-      .then(results => {
-        dispatch(
-          SearchActions.lastFmTrackSearchSuccess(terms, _.get(results[0], 'results.trackmatches.track', []).map(mapLastFMTrackToInternal))
-        );
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
 
 export function youtubePlaylistSearch(terms: string) {
   return dispatch => {
@@ -218,7 +171,13 @@ export function youtubePlaylistSearch(terms: string) {
 export const youtubeLiveStreamSearch = (terms: string) => async (dispatch) => {
   dispatch(SearchActions.youtubeLiveStreamSearchStart(terms));
   try {
-    const results = await rest.Youtube.liveStreamSearch(terms);
+    const results = (await rest.Youtube.liveStreamSearch(terms)).map(el => ({
+      id: el.streams[0].id,
+      title: el.name,
+      artist: getTrackArtist(el),
+      thumb: el.thumbnail,
+      source: SearchResultsSource.Youtube
+    }) satisfies SearchResultsTrack);
     dispatch(SearchActions.youtubeLiveStreamSearchSuccess(terms, results));
   } catch (e) {
     logger.error(e);
@@ -233,8 +192,7 @@ export function unifiedSearch(terms: string, history: History) {
     Promise.all([
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms)),
-      dispatch(podcastSearch(terms)),
-      dispatch(lastFmTrackSearch(terms)),
+      dispatch(trackSearch(terms)),
       dispatch(youtubePlaylistSearch(terms)),
       dispatch(youtubeLiveStreamSearch(terms))
     ])
@@ -251,28 +209,28 @@ export function unifiedSearch(terms: string, history: History) {
   };
 }
 
-export const albumInfoSearch = (albumId: string, releaseType: 'master' | 'release' = 'master', release: SearchResultsAlbum) => async (dispatch, getState:() => RootState) => {
-  dispatch(SearchActions.albumInfoStart(albumId));
+export const albumInfoSearch = (release: SearchResultsAlbum) => async (dispatch, getState:() => RootState) => {
+  dispatch(SearchActions.albumInfoStart(release.id));
   try {
     const selectedProvider = getSelectedMetaProvider(getState);
-    const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, releaseType, release?.resourceUrl);
-    dispatch(SearchActions.albumInfoSuccess(albumId, albumDetails));
+    const albumDetails = await selectedProvider.fetchAlbumDetails(release.id, release.type, release?.resourceUrl);
+    dispatch(SearchActions.albumInfoSuccess(release.id, albumDetails));
   } catch (e) {
     logger.error(e);
-    dispatch(SearchActions.albumInfoError(albumId, e));
+    dispatch(SearchActions.albumInfoError(release.id, e));
   }
 };
 
 
-export const artistInfoSearch = (artistId: string, artist: SearchResultsArtist) => async (dispatch, getState: () => RootState) => {
-  dispatch(SearchActions.artistInfoStart(artistId));
+export const artistInfoSearch = (artist: SearchResultsArtist) => async (dispatch, getState: () => RootState) => {
+  dispatch(SearchActions.artistInfoStart(artist.id));
   try {
     const selectedProvider = getSelectedMetaProvider(getState, artist?.source);
-    const artistDetails = await selectedProvider.fetchArtistDetails(artistId);
-    dispatch(SearchActions.artistInfoSuccess(artistId, artistDetails));
+    const artistDetails = await selectedProvider.fetchArtistDetails(artist.id);
+    dispatch(SearchActions.artistInfoSuccess(artist.id, artistDetails));
   } catch (e) {
     logger.error(e);
-    dispatch(SearchActions.artistInfoError(artistId, e));
+    dispatch(SearchActions.artistInfoError(artist.id, e));
   }
 };
 

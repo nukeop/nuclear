@@ -229,7 +229,7 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
               <div
                 class="track_table_header_row"
                 role="row"
-                style="grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em 3em auto;"
+                style="grid-template-columns: 4em 4em 3em minmax(8em, 1fr) 6em 3em auto;"
               >
                 <div
                   class="track_table_header_cell"
@@ -347,7 +347,7 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
                     data-rbd-draggable-id="1"
                     data-testid="track-table-row"
                     role="row"
-                    style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em 3em;"
+                    style="position: absolute; left: 0px; top: 0px; height: 42px; width: 100%; grid-template-columns: 4em 4em 3em minmax(8em, 1fr) 6em 3em;"
                     tabindex="1"
                   >
                     <div
@@ -458,7 +458,7 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
                     data-rbd-draggable-id="0"
                     data-testid="track-table-row"
                     role="row"
-                    style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 7.5em 4em 3em minmax(8em, 1fr) 6em 3em;"
+                    style="position: absolute; left: 0px; top: 42px; height: 42px; width: 100%; grid-template-columns: 4em 4em 3em minmax(8em, 1fr) 6em 3em;"
                     tabindex="0"
                   >
                     <div

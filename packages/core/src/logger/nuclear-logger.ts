@@ -8,12 +8,14 @@ const isRenderer = process.type === 'renderer';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const logChannel = '__ELECTRON_NUCLEAR_LOGGER_LOG__';
+const debugChannel = '__ELECTRON_NUCLEAR_LOGGER_DEBUG__';
 const warnChannel = '__ELECTRON_NUCLEAR_LOGGER_WARN__';
 const errorChannel = '__ELECTRON_NUCLEAR_LOGGER_ERROR__';
 const updateChannel = '__ELECTRON_NUCLEAR_LOGGER_UPDATE__';
 const defaultsNameSpace = '__ELECTRON_NUCLEAR_LOGGER_DEFAULTS__';
 
 const logLevels = {
+  debug: -1,
   info: 0,
   warn: 1,
   error: 2
@@ -44,13 +46,14 @@ if (isMain) {
 let isConsoleHooked = false;
 const _console: Partial<Console> = {};
 
-const hookableMethods = ['log', 'warn', 'error', 'time', 'timeEnd'];
+const hookableMethods = ['log', 'debug', 'warn', 'error', 'time', 'timeEnd'];
 
 let longestNameLength = 0;
 
 const terminalColors = {
   reset: '\x1b[0m',
   dim: '\x1b[2m',
+  cyan: '\x1b[36m',
   red: '\x1b[31m',
   yellow: '\x1b[33m'
 };
@@ -107,6 +110,25 @@ class NuclearLogger {
       ipcRenderer.send(logChannel, args);
     } else if (this.#name) {
       args.unshift(this.#getPrefix());
+    }
+
+    if (this.options.ignore && this.options.ignore.test(args.join(' '))) {
+      return;
+    }
+
+    this.console.log(...args);
+  }
+
+  debug(...args: LogArgs): void {
+    if (logLevels[this.options.logLevel] > logLevels.debug) {
+      return;
+    }
+
+    if (isRenderer) {
+      ipcRenderer.send(debugChannel, args);
+    } else if (this.#name) {
+      args.unshift(`${this.#getPrefix()} ${terminalColors.cyan}`);
+      args.push(terminalColors.reset);
     }
 
     if (this.options.ignore && this.options.ignore.test(args.join(' '))) {
@@ -286,7 +308,8 @@ class NuclearLogger {
 }
 
 const logger = new NuclearLogger({
-  name: isMain ? 'main' : undefined
+  name: isMain ? 'main' : undefined,
+  logLevel: isDevelopment ? 'debug' : 'info'
 });
 
 if (isMain) {
@@ -301,6 +324,17 @@ if (isMain) {
           win.webContents.send(logChannel, data);
         });
       rendererLogger.log(...data);
+    });
+  }
+
+  if (ipcMain.listenerCount(debugChannel) === 0) {
+    ipcMain.on(debugChannel, (event: IpcMainEvent, data: LogArgs) => {
+      BrowserWindow.getAllWindows()
+        .filter(win => win.webContents.id !== event.sender.id)
+        .forEach(win => {
+          win.webContents.send(debugChannel, data);
+        });
+      rendererLogger.debug(...data);
     });
   }
 
@@ -335,6 +369,12 @@ if (isMain) {
     }
   });
 
+  ipcRenderer.on(debugChannel, (_event: IpcRendererEvent, data: LogArgs) => {
+    if (!isLoggingInProgress) {
+      logger.debug(...data);
+    }
+  });
+
   ipcRenderer.on(warnChannel, (_event: IpcRendererEvent, data: LogArgs) => {
     if (!isLoggingInProgress) {
       logger.warn(...data);
@@ -348,12 +388,19 @@ if (isMain) {
   });
 
   const originalLog = logger.log.bind(logger);
+  const originalDebug = logger.debug.bind(logger);
   const originalWarn = logger.warn.bind(logger);
   const originalError = logger.error.bind(logger);
 
   logger.log = (...args: LogArgs) => {
     isLoggingInProgress = true;
     originalLog(...args);
+    isLoggingInProgress = false;
+  };
+
+  logger.debug = (...args: LogArgs) => {
+    isLoggingInProgress = true;
+    originalDebug(...args);
     isLoggingInProgress = false;
   };
 

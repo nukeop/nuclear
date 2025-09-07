@@ -5,7 +5,7 @@ import { FixedSizeList } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
 import { TrackTableColumn, TrackTableExtraProps, TrackTableHeaders, TrackTableSettings, TrackTableStrings } from '../TrackTable/types';
-import { TextHeader, TextHeaderProps } from './Headers/TextHeader';
+import { TextHeader } from './Headers/TextHeader';
 import { TextCell } from './Cells/TextCell';
 import { Track } from '../../types';
 import { getTrackThumbnail } from '../TrackRow';
@@ -25,6 +25,9 @@ import { FavoriteCell } from './Cells/FavoriteCell';
 import { TitleCell } from './Cells/TitleCell';
 import { Input } from 'semantic-ui-react';
 import Button from '../Button';
+
+export const HEADER_HEIGHT = 48;
+export const ITEM_HEIGHT = 42;
 
 export type GridTrackTableProps<T extends Track> = {
   className?: string;
@@ -82,7 +85,7 @@ export const GridTrackTable = <T extends Track>({
       id: TrackTableColumn.Selection,
       Header: (props: HeaderProps<T> & UseRowSelectInstanceProps<T> & TrackTableExtraProps<T>) => <SelectionHeader<T> {...props} {...extraProps} />,
       Cell: (props: SelectionCellProps<T> & UseRowSelectRowProps<T>) => <SelectionCell<T> {...props} />,
-      columnWidth: '7.5em'
+      columnWidth: '4em'
     },
     displayPosition && {
       id: TrackTableColumn.Position,
@@ -218,7 +221,7 @@ export const GridTrackTable = <T extends Track>({
                         className={styles.track_table_virtualized_list}
                         height={height}
                         width={width}
-                        itemSize={42}
+                        itemSize={ITEM_HEIGHT}
                         itemCount={rows.length}
                         overscanCount={2}
                         itemData={{

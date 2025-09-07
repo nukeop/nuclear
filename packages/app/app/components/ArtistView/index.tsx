@@ -22,7 +22,7 @@ type ArtistViewProps = {
   isFavorite: boolean;
   addTrackToQueue: (item: any) => Promise<void>;
   artistInfoSearchByName: (artistName: string) => Promise<void>;
-  albumInfoSearch: (albumId: string, releaseType: ReleaseTypeProps, release: SearchResultsAlbum) => Promise<void>;
+  albumInfoSearch: (release: SearchResultsAlbum) => Promise<void>;
   removeFavoriteArtist: React.MouseEventHandler;
   addFavoriteArtist: React.MouseEventHandler;
 }
@@ -42,7 +42,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   const isOnTour = () => artist.onTour || false;
   const areReleasesLoading = () => artist.releasesLoading || isLoading();
   const onAlbumClick = (album) => {
-    albumInfoSearch(album.id, album.type, album);
+    albumInfoSearch(album);
     history.push('/album/' + album.id);
   };
 
