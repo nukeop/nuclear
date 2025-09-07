@@ -63,7 +63,7 @@
     "news": "新聞",
     "playcounts": "播放次數",
     "playlists": "熱門",
-    "popular-track-title": "Deezer 的最新單曲 ",
+    "popular-track-title": "Deezer 的最新單曲",
     "title": "音樂標題",
     "top": "排行榜",
     "trending-playlists": "熱門歌單",
@@ -134,7 +134,7 @@
   "lyrics": {
     "by-artist": "{{artist}}",
     "empty": "沒有播放中的曲目",
-    "empty-help": "把歌曲加到播放佇列後,會顯示在這裡。",
+    "empty-help": "把歌曲加到播放佇列後, 會顯示在這裡！",
     "not-found": "這首歌沒有歌詞資料"
   },
   "option-control": {
@@ -258,7 +258,7 @@
     },
     "create-playlist-dialog-title": "輸入播放清單名稱:",
     "play-now": "立即播放",
-    "stream-lookup-error": "Stream lookup error. Click to retry."
+    "stream-lookup-error": "播放发现错误。单击即可重试。"
   },
   "search": {
     "album": "專輯",
@@ -284,7 +284,7 @@
     "segment-popup": "非音樂"
   },
   "settings": {
-    "api-port": "API 網路埠",
+    "api-port": "Api 網路埠",
     "api-url": "",
     "audio": "音訊",
     "autoradio": "自動接續播放",
