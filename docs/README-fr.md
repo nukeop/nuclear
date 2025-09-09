@@ -44,7 +44,7 @@ Nuclear se concentre aussi davantage sur l'audio. Imaginez Spotify, mais sans pa
 une librairie encore plus vaste.
 
 ## Et si je suis religieusement contre Electron ?
-Voir [ceci](docs/electron-fr.md).
+Voir [ceci](electron-fr.md).
 
 ## Fonctionnalités
 
