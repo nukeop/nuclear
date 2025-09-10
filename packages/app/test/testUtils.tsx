@@ -36,7 +36,11 @@ export const configureMockStore = (initialState?: AnyProps) => createStore(
   initialState,
   compose(
     applyMiddleware(ReduxPromise, thunk),
-    syncStore(['downloads'])
+    syncStore([
+      'downloads',
+      'queue.queueItems',
+      'queue.currentSong'
+    ])
   )
 );
 

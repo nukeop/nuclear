@@ -30,7 +30,9 @@ export default function configureStore(initialState) {
         'downloads', 
         'local.expandedFolders', 
         'plugin.selected',
-        'nuclear.identity'
+        'nuclear.identity',
+        'queue.queueItems',
+        'queue.currentSong'
       ])
     )
   );

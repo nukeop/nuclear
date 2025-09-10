@@ -18,7 +18,9 @@ export default function (paths) {
     try {
       for (const path of paths) {
         const persistedValue = electronStore.get(path);
-        finalInitialState = _.setWith(_.clone(finalInitialState), path, persistedValue, _.clone); // deep, immutable set
+        if (persistedValue !== undefined) {
+          finalInitialState = _.setWith(_.clone(finalInitialState), path, persistedValue, _.clone); // deep, immutable set
+        }
       }
     } catch (e) {
       logger.warn(
