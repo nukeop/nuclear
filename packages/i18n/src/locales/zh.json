@@ -254,7 +254,7 @@
         "verified-by-user": "Verified by you"
       },
       "verify": "Verify",
-      "unverify": "Unverify"
+      "unverify": "取消验证"
     },
     "create-playlist-dialog-title": "Input playlist name:",
     "play-now": "Play now",
@@ -286,7 +286,7 @@
   "settings": {
     "api-port": "API使用端口",
     "api-url": "",
-    "audio": "Audio",
+    "audio": "音频",
     "autoradio": "自动广播",
     "autoradio-craziness": "变化",
     "autoradio-craziness-description": "得到",
