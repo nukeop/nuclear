@@ -421,9 +421,9 @@
       "go-to-previous-page": "Go to previous page",
       "shuffle": "Shuffle",
       "loop": "Loop",
-      "autoradio": "Autoradio",
-      "raise-volume": "Raise volume",
-      "lower-volume": "Lower volume",
+      "autoradio": "随便听听",
+      "raise-volume": "增大音量",
+      "lower-volume": "减小音量",
       "mute": "Mute",
       "unmute": "Unmute",
       "quit": "Quit",
@@ -438,12 +438,12 @@
       "go-to-equalizer": "Go to equalizer",
       "go-to-visualizer": "Go to visualizer",
       "go-to-playlists": "Go to playlists",
-      "go-to-favorite-tracks": "Go to favorite tracks",
-      "go-to-library": "Go to local library"
+      "go-to-favorite-tracks": "您收藏的歌曲",
+      "go-to-library": "转到本地库"
     }
   },
   "listening-history": {
-    "title": "Listening history",
+    "title": "播放历史",
     "empty-state": "You haven't listened to anything yet.",
     "clear-history": "Clear history",
     "clear-history-confirm": "Are you sure you want to clear your listening history?",
