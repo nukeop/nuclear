@@ -83,7 +83,7 @@
   },
   "equalizer": {
     "classical": "古典",
-    "club": "Club",
+    "club": "俱乐部",
     "custom": "自定义",
     "default": "默认",
     "full-bass": "全低音",
@@ -455,7 +455,7 @@
     "nuclear-sign-up": {
       "header": "Sign up",
       "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-1": "NWS 允许您在线备份您的播放列表并分享它们。",
       "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
       "username-label": "Username",
       "email-label": "Email",
