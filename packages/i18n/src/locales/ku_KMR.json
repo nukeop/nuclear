@@ -50,7 +50,7 @@
     "popular-tracks": "Stranên navdar",
     "artist-albums": {
       "header": "Elbum",
-      "sort-by-release-date": "Sort by release date",
+      "sort-by-release-date": "Bi dîroka weşandinê rêz bike",
       "sort-by-az": "Parzandin A-Z",
       "sort-by-most-played": "Sort by most played",
       "filter-placeholder": "Parzûn..."
@@ -167,7 +167,7 @@
     "export-fail-title": "Derxistina rêzoka lêdanê têkçû",
     "export-success-title": "Derxistina rêzoka lêdanê serkeftî bû",
     "header": "Rêzokên te yên lêdanan",
-    "header-add-button": "Add",
+    "header-add-button": "Tevlî bike",
     "import-progress": "Pêvajoyê têxe",
     "spotify-import-placeholder": "URL ya rêzoka lêdanê ya Spotify li bir pêve bike",
     "dialog-placeholder": "Navê rêzoka lêdanan...",
@@ -204,7 +204,7 @@
     "playlist": "Playlist",
     "play": "Play",
     "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "save-external-playlist": "Herêmî tomar bike"
   },
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
@@ -395,7 +395,7 @@
     "play-selected-tracks-now": "Ên hilbijartî niha lêde",
     "tracks-selected-label-singular": "stran hate hilbijartin",
     "tracks-selected-label-plural": "stran hatin hilbijartin",
-    "filter-input-placeholder": "Filter..."
+    "filter-input-placeholder": "Parzûn..."
   },
   "visualizer": {
     "exit-fullscreen": "Bo ji dîmendera tije derkevî pê li bişkoka ESC-yê bike"
