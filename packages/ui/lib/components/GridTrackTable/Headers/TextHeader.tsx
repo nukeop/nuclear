@@ -23,7 +23,7 @@ export const TextHeader: <T extends Track>(props: TextHeaderProps<T>) => React.R
 }) => {
   const { isSorted, isSortedDesc } = column;
   const name = isSortedDesc
-    ? 'sort content descending' : 'sort content ascending';
+    ? 'sort content ascending' : 'sort content descending';
 
   return (
     <div 

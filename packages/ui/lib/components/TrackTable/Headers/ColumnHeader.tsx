@@ -19,7 +19,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
 }) => {
   const { isSorted, isSortedDesc } = column;
   const name = isSortedDesc
-    ? 'sort content descending' : 'sort content ascending';
+    ? 'sort content ascending' : 'sort content descending';
 
   return (
     <span className={styles.title_with_icon} data-testid={dataTestId}>
