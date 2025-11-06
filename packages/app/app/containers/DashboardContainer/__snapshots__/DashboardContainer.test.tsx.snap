@@ -29,6 +29,11 @@ exports[`Dashboard container should display genres after going to genres tab 1`]
           >
             Genres
           </a>
+          <a
+            class="Audiobooks"
+          >
+            Genres
+          </a>
         </div>
         <div
           class="ui segment active tab"
