@@ -49,11 +49,11 @@
     "tour": "Đang lưu diễn",
     "popular-tracks": "Các bài hát phổ biến",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Bộ sưu tập",
+      "sort-by-release-date": "Sắp xếp theo ngày phát hành",
+      "sort-by-az": "Sắp xếp theo thứ tự từ A-Z",
+      "sort-by-most-played": "Sắp xếp theo số lượt phát nhiều nhất",
+      "filter-placeholder": "Bộ lọc..."
     }
   },
   "dashboard": {
@@ -204,7 +204,7 @@
     "playlist": "Danh sách phát",
     "play": "Phát",
     "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
-    "save-external-playlist": "Save locally"
+    "save-external-playlist": "Lưu cục bộ"
   },
   "plugins": {
     "add-a-plugin": "Thêm plugin",
@@ -234,7 +234,7 @@
     "copy-track-url": "Sao chép liên kết của bài hát đến bảng nhớ tạm",
     "loading": "Stream đang tải.",
     "playlist-add": "Thêm vào playlist",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "Thêm hàng đợi vào danh sách phát",
     "playlist-toast-content": "Playlist {{name}} đã được tạo.",
     "playlist-toast-title": "Playlist đã được tạo",
     "live": "Trực tiếp",
@@ -256,7 +256,7 @@
       "verify": "Xác minh",
       "unverify": "Huỷ xác minh"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-title": "Nhập tên danh sách phát:",
     "play-now": "Phát ngay",
     "stream-lookup-error": "Stream lookup error. Click to retry."
   },
