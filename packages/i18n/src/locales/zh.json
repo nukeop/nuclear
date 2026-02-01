@@ -158,7 +158,7 @@
     "delete": "删除播放列表",
     "duration": "曲目长度",
     "empty": "没有任何播放列表。",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "尝试创建播放列表或通过URL导入，它们将出现在这里！",
     "error-empty-data": "空数据",
     "error-invalid-data": "无效数据",
     "error-open-file": "无法打开文件",
