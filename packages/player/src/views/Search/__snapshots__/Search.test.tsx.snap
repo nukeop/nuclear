@@ -165,13 +165,14 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           transition="[object Object]"
         >
           <div
-            class="flex flex-1 flex-col items-start justify-start"
+            class="group/sidebar flex flex-1 flex-col items-start justify-start"
+            data-testid="sidebar-navigation"
           >
             <div
-              class="mb-4 flex w-full flex-col text-sm"
+              class="mb-4 flex w-full flex-col text-sm group-data-[compact]/sidebar:mb-2 group-data-[compact]/sidebar:items-center"
             >
               <button
-                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-9 px-3 inline-flex flex-row items-center justify-between"
+                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground border-2 h-9 px-3 inline-flex flex-row items-center justify-between border-transparent bg-transparent group-data-[compact]/sidebar:size-8 group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:p-0"
                 data-headlessui-state=""
                 type="button"
               >
@@ -200,10 +201,15 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
                       r="10"
                     />
                   </svg>
-                  Explore
+                  <span
+                    class="group-data-[compact]/sidebar:hidden"
+                  >
+                    Explore
+                  </span>
                 </span>
                 <div
                   animate="[object Object]"
+                  class="group-data-[compact]/sidebar:hidden"
                   transition="[object Object]"
                 >
                   <svg
@@ -227,10 +233,10 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               </button>
             </div>
             <div
-              class="mb-4 flex w-full flex-col text-sm"
+              class="mb-4 flex w-full flex-col text-sm group-data-[compact]/sidebar:mb-2 group-data-[compact]/sidebar:items-center"
             >
               <button
-                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-9 px-3 inline-flex flex-row items-center justify-between"
+                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground border-2 h-9 px-3 inline-flex flex-row items-center justify-between border-transparent bg-transparent group-data-[compact]/sidebar:size-8 group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:p-0"
                 data-headlessui-state=""
                 type="button"
               >
@@ -259,10 +265,15 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
                       r="3"
                     />
                   </svg>
-                  Preferences
+                  <span
+                    class="group-data-[compact]/sidebar:hidden"
+                  >
+                    Preferences
+                  </span>
                 </span>
                 <div
                   animate="[object Object]"
+                  class="group-data-[compact]/sidebar:hidden"
                   transition="[object Object]"
                 >
                   <svg
@@ -286,10 +297,10 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               </button>
             </div>
             <div
-              class="mb-4 flex w-full flex-col text-sm"
+              class="mb-4 flex w-full flex-col text-sm group-data-[compact]/sidebar:mb-2 group-data-[compact]/sidebar:items-center"
             >
               <button
-                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-9 px-3 inline-flex flex-row items-center justify-between"
+                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground border-2 h-9 px-3 inline-flex flex-row items-center justify-between border-transparent bg-transparent group-data-[compact]/sidebar:size-8 group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:p-0"
                 data-headlessui-state=""
                 type="button"
               >
@@ -322,10 +333,15 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
                       d="M4 4v16"
                     />
                   </svg>
-                  Collection
+                  <span
+                    class="group-data-[compact]/sidebar:hidden"
+                  >
+                    Collection
+                  </span>
                 </span>
                 <div
                   animate="[object Object]"
+                  class="group-data-[compact]/sidebar:hidden"
                   transition="[object Object]"
                 >
                   <svg

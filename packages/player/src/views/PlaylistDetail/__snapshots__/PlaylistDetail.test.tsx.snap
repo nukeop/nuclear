@@ -166,7 +166,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
             </div>
           </div>
           <div
-            class="relative flex max-h-full overflow-auto"
+            class="relative flex max-h-full w-full overflow-y-auto"
             data-test-resize-observer-block-size="504"
             data-test-resize-observer-inline-size="1024"
           >
