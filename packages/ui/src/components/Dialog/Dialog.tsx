@@ -3,8 +3,10 @@ import { FC, PropsWithChildren, ReactNode } from 'react';
 import { DialogActions } from './DialogActions';
 import { DialogClose } from './DialogClose';
 import { DialogDescription } from './DialogDescription';
+import { DialogOverlayBackdrop } from './DialogOverlayBackdrop';
 import { DialogRoot } from './DialogRoot';
 import { DialogTitle } from './DialogTitle';
+import { DialogXClose } from './DialogXClose';
 
 type DialogProps = PropsWithChildren<{
   isOpen: boolean;
@@ -20,6 +22,8 @@ type DialogComponent = FC<DialogProps> & {
   Description: typeof DialogDescription;
   Actions: typeof DialogActions;
   Close: typeof DialogClose;
+  XClose: typeof DialogXClose;
+  Backdrop: typeof DialogOverlayBackdrop;
 };
 
 const DialogImpl: FC<DialogProps> = ({
@@ -44,3 +48,5 @@ Dialog.Title = DialogTitle;
 Dialog.Description = DialogDescription;
 Dialog.Actions = DialogActions;
 Dialog.Close = DialogClose;
+Dialog.XClose = DialogXClose;
+Dialog.Backdrop = DialogOverlayBackdrop;
