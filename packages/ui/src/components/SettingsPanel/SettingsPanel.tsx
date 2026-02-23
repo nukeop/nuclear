@@ -17,6 +17,7 @@ type SettingsPanelProps = {
   tabs: SettingsTab[];
   activeTab: string;
   onTabChange: (tabId: string) => void;
+  navFooter?: ReactNode;
 };
 
 export const SettingsPanel: FC<SettingsPanelProps> = ({
@@ -25,6 +26,7 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({
   tabs,
   activeTab,
   onTabChange,
+  navFooter,
 }) => {
   const activeTabContent = tabs.find((tab) => tab.id === activeTab)?.content;
 
@@ -38,6 +40,7 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={onTabChange}
+        footer={navFooter}
       />
       <SettingsPanelContent>
         {activeTabContent && activeTabContent()}

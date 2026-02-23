@@ -10,6 +10,7 @@ type SidebarNavigationItemProps = {
   label: string;
   isSelected?: boolean;
   to?: string;
+  onClick?: () => void;
 };
 
 const MaybeNavLink: FC<{
@@ -28,6 +29,7 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
   label,
   isSelected,
   to,
+  onClick,
 }) => {
   const isCompact = useSidebarCompact();
 
@@ -36,10 +38,13 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
       {(active) => (
         <Tooltip content={label} side="right" disabled={!isCompact}>
           <div
+            role={onClick ? 'button' : undefined}
+            onClick={onClick}
             data-testid="sidebar-navigation-item"
             className={cn(
               'flex w-full flex-row items-center gap-2 rounded-r-md border-y-2 border-transparent px-2 py-1',
               'group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:rounded-md group-data-[compact]/sidebar:border-2 group-data-[compact]/sidebar:px-0 group-data-[compact]/sidebar:py-2',
+              onClick && 'cursor-pointer',
               active &&
                 'bg-primary border-border border-t-2 border-r-2 border-b-2 font-bold',
             )}
