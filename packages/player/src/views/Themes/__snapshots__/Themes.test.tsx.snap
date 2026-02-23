@@ -344,7 +344,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                     <span
                       class="group-data-[compact]/sidebar:hidden"
                     >
-                      Settings
+                      General
                     </span>
                   </div>
                 </a>

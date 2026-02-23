@@ -15,10 +15,10 @@ export const SettingsWrapper = {
     );
     await userEvent.click(
       await component.findByRole('link', {
-        name: 'Settings',
+        name: 'General',
       }),
     );
-    await screen.findByRole('heading', { name: 'Settings' });
+    await screen.findByRole('heading', { name: 'General', level: 1 });
 
     return component;
   },

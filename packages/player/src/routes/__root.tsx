@@ -39,6 +39,7 @@ import { useLayoutStore } from '../stores/layoutStore';
 
 const RootComponent = () => {
   const { t } = useTranslation('navigation');
+  const { t: tPrefs } = useTranslation('preferences');
   const { version: appVersion, commitHash } = useAppVersion();
   const {
     leftSidebar,
@@ -86,28 +87,28 @@ const RootComponent = () => {
                 />
               </SidebarNavigationCollapsible>
               <SidebarNavigationCollapsible
-                title={t('preferences')}
+                title={tPrefs('title')}
                 icon={<SettingsIcon />}
               >
                 <SidebarNavigationItem
                   to="/settings"
                   icon={<Settings2Icon />}
-                  label={t('settings')}
+                  label={tPrefs('general.title')}
                 />
                 <SidebarNavigationItem
                   to="/plugins"
                   icon={<BlocksIcon />}
-                  label={t('plugins')}
+                  label={tPrefs('plugins.title')}
                 />
                 <SidebarNavigationItem
                   to="/themes"
                   icon={<PaletteIcon />}
-                  label={t('themes')}
+                  label={tPrefs('themes.title')}
                 />
                 <SidebarNavigationItem
                   to="/logs"
                   icon={<ScrollTextIcon />}
-                  label={t('logs')}
+                  label={tPrefs('logs.title')}
                 />
               </SidebarNavigationCollapsible>
               <SidebarNavigationCollapsible

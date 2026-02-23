@@ -347,7 +347,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                     <span
                       class="group-data-[compact]/sidebar:hidden"
                     >
-                      Settings
+                      General
                     </span>
                   </div>
                 </a>
@@ -593,7 +593,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                 class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
                 data-testid="title"
               >
-                Settings
+                General
               </h1>
               <div
                 class="flex w-full flex-1 flex-col overflow-y-auto"
