@@ -39,8 +39,8 @@ describe('Themes view', async () => {
   });
 
   it('(Snapshot) renders the themes view', async () => {
-    const { asFragment } = await ThemesWrapper.mount();
-    expect(asFragment()).toMatchSnapshot();
+    const { getByRole } = await ThemesWrapper.mount();
+    expect(getByRole('dialog')).toMatchSnapshot();
   });
 
   it('renders the Themes view sections', async () => {
