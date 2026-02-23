@@ -11,6 +11,7 @@ export type PlayerWorkspaceSidebarPropsBase = {
   children?: ReactNode;
   headerActions?: ReactNode;
   footer?: ReactNode;
+  persistentFooter?: ReactNode;
   isCollapsed: boolean;
   width: number;
   onWidthChange: (width: number) => void;
@@ -26,6 +27,7 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
   children,
   headerActions,
   footer,
+  persistentFooter,
   isCollapsed,
   width,
   onWidthChange,
@@ -107,6 +109,12 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {persistentFooter && (
+        <div className="mt-auto flex flex-col items-center gap-2 py-2">
+          {persistentFooter}
+        </div>
+      )}
 
       {!isCollapsed && (
         <div
