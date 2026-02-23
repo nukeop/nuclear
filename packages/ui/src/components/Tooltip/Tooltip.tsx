@@ -5,6 +5,7 @@ import { cn } from '../../utils';
 type TooltipProps = PropsWithChildren<{
   content: ReactNode;
   side?: 'top' | 'right' | 'bottom' | 'left';
+  disabled?: boolean;
   className?: string;
 }>;
 
@@ -19,9 +20,14 @@ export const Tooltip: FC<TooltipProps> = ({
   children,
   content,
   side = 'right',
+  disabled = false,
   className,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+
+  if (disabled) {
+    return <>{children}</>;
+  }
 
   return (
     <div

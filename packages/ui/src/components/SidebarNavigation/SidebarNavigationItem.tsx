@@ -2,44 +2,53 @@ import { Link } from '@tanstack/react-router';
 import { FC, ReactNode } from 'react';
 
 import { cn } from '../../utils';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { useSidebarCompact } from './SidebarCompactContext';
 
 type SidebarNavigationItemProps = {
-  children: ReactNode;
+  icon: ReactNode;
+  label: string;
   isSelected?: boolean;
-  isCollapsed?: boolean;
   to?: string;
 };
 
-const ItemContent: FC<{ children: ReactNode; isSelected?: boolean }> = ({
-  children,
-  isSelected,
-}) => (
-  <div
-    data-testid="sidebar-navigation-item"
-    className={cn(
-      'flex w-full flex-row items-center justify-start gap-2 rounded-r-md border-y-2 border-transparent px-2 py-1',
-      isSelected &&
-        'bg-primary border-border border-t-2 border-r-2 border-b-2 font-bold',
-    )}
-  >
-    {children}
-  </div>
-);
+const MaybeNavLink: FC<{
+  to?: string;
+  isSelected?: boolean;
+  children: (isSelected: boolean) => ReactNode;
+}> = ({ to, isSelected = false, children }) => {
+  if (to) {
+    return <Link to={to}>{({ isActive }) => children(isActive)}</Link>;
+  }
+  return <>{children(isSelected)}</>;
+};
 
 export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
-  children,
+  icon,
+  label,
   isSelected,
   to,
 }) => {
-  if (to) {
-    return (
-      <Link to={to}>
-        {({ isActive }) => (
-          <ItemContent isSelected={isActive}>{children}</ItemContent>
-        )}
-      </Link>
-    );
-  }
+  const isCompact = useSidebarCompact();
 
-  return <ItemContent isSelected={isSelected}>{children}</ItemContent>;
+  return (
+    <MaybeNavLink to={to} isSelected={isSelected}>
+      {(active) => (
+        <Tooltip content={label} side="right" disabled={!isCompact}>
+          <div
+            data-testid="sidebar-navigation-item"
+            className={cn(
+              'flex w-full flex-row items-center gap-2 rounded-r-md border-y-2 border-transparent px-2 py-1',
+              'group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:rounded-md group-data-[compact]/sidebar:border-2 group-data-[compact]/sidebar:px-0 group-data-[compact]/sidebar:py-2',
+              active &&
+                'bg-primary border-border border-t-2 border-r-2 border-b-2 font-bold',
+            )}
+          >
+            <span className="shrink-0">{icon}</span>
+            <span className="group-data-[compact]/sidebar:hidden">{label}</span>
+          </div>
+        </Tooltip>
+      )}
+    </MaybeNavLink>
+  );
 };

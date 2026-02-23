@@ -29,6 +29,17 @@ describe('Tooltip', () => {
     });
   });
 
+  it('does not show tooltip when disabled', async () => {
+    render(
+      <Tooltip content="Settings" disabled>
+        <button>Hover me</button>
+      </Tooltip>,
+    );
+
+    await userEvent.hover(screen.getByText('Hover me'));
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  });
+
   it('renders ReactNode content', async () => {
     render(
       <Tooltip content={<span data-testid="custom-content">Custom</span>}>

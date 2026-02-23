@@ -79,52 +79,61 @@ const RootComponent = () => {
                 title={t('explore')}
                 icon={<CompassIcon />}
               >
-                <SidebarNavigationItem to="/dashboard">
-                  <GaugeIcon />
-                  {t('dashboard')}
-                </SidebarNavigationItem>
+                <SidebarNavigationItem
+                  to="/dashboard"
+                  icon={<GaugeIcon />}
+                  label={t('dashboard')}
+                />
               </SidebarNavigationCollapsible>
               <SidebarNavigationCollapsible
                 title={t('preferences')}
                 icon={<SettingsIcon />}
               >
-                <SidebarNavigationItem to="/settings">
-                  <Settings2Icon />
-                  {t('settings')}
-                </SidebarNavigationItem>
-                <SidebarNavigationItem to="/plugins">
-                  <BlocksIcon />
-                  {t('plugins')}
-                </SidebarNavigationItem>
-                <SidebarNavigationItem to="/themes">
-                  <PaletteIcon />
-                  {t('themes')}
-                </SidebarNavigationItem>
-                <SidebarNavigationItem to="/logs">
-                  <ScrollTextIcon />
-                  {t('logs')}
-                </SidebarNavigationItem>
+                <SidebarNavigationItem
+                  to="/settings"
+                  icon={<Settings2Icon />}
+                  label={t('settings')}
+                />
+                <SidebarNavigationItem
+                  to="/plugins"
+                  icon={<BlocksIcon />}
+                  label={t('plugins')}
+                />
+                <SidebarNavigationItem
+                  to="/themes"
+                  icon={<PaletteIcon />}
+                  label={t('themes')}
+                />
+                <SidebarNavigationItem
+                  to="/logs"
+                  icon={<ScrollTextIcon />}
+                  label={t('logs')}
+                />
               </SidebarNavigationCollapsible>
               <SidebarNavigationCollapsible
                 title={t('collection')}
                 icon={<LibraryIcon />}
               >
-                <SidebarNavigationItem to="/favorites/albums">
-                  <DiscIcon />
-                  {t('favoriteAlbums')}
-                </SidebarNavigationItem>
-                <SidebarNavigationItem to="/favorites/tracks">
-                  <MusicIcon />
-                  {t('favoriteTracks')}
-                </SidebarNavigationItem>
-                <SidebarNavigationItem to="/favorites/artists">
-                  <UserIcon />
-                  {t('favoriteArtists')}
-                </SidebarNavigationItem>
-                <SidebarNavigationItem to="/playlists">
-                  <ListMusicIcon />
-                  {t('playlists')}
-                </SidebarNavigationItem>
+                <SidebarNavigationItem
+                  to="/favorites/albums"
+                  icon={<DiscIcon />}
+                  label={t('favoriteAlbums')}
+                />
+                <SidebarNavigationItem
+                  to="/favorites/tracks"
+                  icon={<MusicIcon />}
+                  label={t('favoriteTracks')}
+                />
+                <SidebarNavigationItem
+                  to="/favorites/artists"
+                  icon={<UserIcon />}
+                  label={t('favoriteArtists')}
+                />
+                <SidebarNavigationItem
+                  to="/playlists"
+                  icon={<ListMusicIcon />}
+                  label={t('playlists')}
+                />
               </SidebarNavigationCollapsible>
             </SidebarNavigation>
           </PlayerWorkspace.LeftSidebar>
