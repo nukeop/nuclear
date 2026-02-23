@@ -9,11 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ThemesRouteImport } from './routes/themes'
-import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SearchRouteImport } from './routes/search'
-import { Route as PluginsRouteImport } from './routes/plugins'
-import { Route as LogsRouteImport } from './routes/logs'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlaylistsIndexRouteImport } from './routes/playlists/index'
@@ -24,29 +20,9 @@ import { Route as FavoritesAlbumsRouteImport } from './routes/favorites/albums'
 import { Route as ArtistProviderIdArtistIdRouteImport } from './routes/artist/$providerId/$artistId'
 import { Route as AlbumProviderIdAlbumIdRouteImport } from './routes/album/$providerId/$albumId'
 
-const ThemesRoute = ThemesRouteImport.update({
-  id: '/themes',
-  path: '/themes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PluginsRoute = PluginsRouteImport.update({
-  id: '/plugins',
-  path: '/plugins',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LogsRoute = LogsRouteImport.update({
-  id: '/logs',
-  path: '/logs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -99,11 +75,7 @@ const AlbumProviderIdAlbumIdRoute = AlbumProviderIdAlbumIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/logs': typeof LogsRoute
-  '/plugins': typeof PluginsRoute
   '/search': typeof SearchRoute
-  '/settings': typeof SettingsRoute
-  '/themes': typeof ThemesRoute
   '/favorites/albums': typeof FavoritesAlbumsRoute
   '/favorites/artists': typeof FavoritesArtistsRoute
   '/favorites/tracks': typeof FavoritesTracksRoute
@@ -115,11 +87,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/logs': typeof LogsRoute
-  '/plugins': typeof PluginsRoute
   '/search': typeof SearchRoute
-  '/settings': typeof SettingsRoute
-  '/themes': typeof ThemesRoute
   '/favorites/albums': typeof FavoritesAlbumsRoute
   '/favorites/artists': typeof FavoritesArtistsRoute
   '/favorites/tracks': typeof FavoritesTracksRoute
@@ -132,11 +100,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/logs': typeof LogsRoute
-  '/plugins': typeof PluginsRoute
   '/search': typeof SearchRoute
-  '/settings': typeof SettingsRoute
-  '/themes': typeof ThemesRoute
   '/favorites/albums': typeof FavoritesAlbumsRoute
   '/favorites/artists': typeof FavoritesArtistsRoute
   '/favorites/tracks': typeof FavoritesTracksRoute
@@ -150,11 +114,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
-    | '/logs'
-    | '/plugins'
     | '/search'
-    | '/settings'
-    | '/themes'
     | '/favorites/albums'
     | '/favorites/artists'
     | '/favorites/tracks'
@@ -166,11 +126,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard'
-    | '/logs'
-    | '/plugins'
     | '/search'
-    | '/settings'
-    | '/themes'
     | '/favorites/albums'
     | '/favorites/artists'
     | '/favorites/tracks'
@@ -182,11 +138,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
-    | '/logs'
-    | '/plugins'
     | '/search'
-    | '/settings'
-    | '/themes'
     | '/favorites/albums'
     | '/favorites/artists'
     | '/favorites/tracks'
@@ -199,11 +151,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
-  LogsRoute: typeof LogsRoute
-  PluginsRoute: typeof PluginsRoute
   SearchRoute: typeof SearchRoute
-  SettingsRoute: typeof SettingsRoute
-  ThemesRoute: typeof ThemesRoute
   FavoritesAlbumsRoute: typeof FavoritesAlbumsRoute
   FavoritesArtistsRoute: typeof FavoritesArtistsRoute
   FavoritesTracksRoute: typeof FavoritesTracksRoute
@@ -215,39 +163,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/themes': {
-      id: '/themes'
-      path: '/themes'
-      fullPath: '/themes'
-      preLoaderRoute: typeof ThemesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/search': {
       id: '/search'
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/plugins': {
-      id: '/plugins'
-      path: '/plugins'
-      fullPath: '/plugins'
-      preLoaderRoute: typeof PluginsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/logs': {
-      id: '/logs'
-      path: '/logs'
-      fullPath: '/logs'
-      preLoaderRoute: typeof LogsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -319,11 +239,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
-  LogsRoute: LogsRoute,
-  PluginsRoute: PluginsRoute,
   SearchRoute: SearchRoute,
-  SettingsRoute: SettingsRoute,
-  ThemesRoute: ThemesRoute,
   FavoritesAlbumsRoute: FavoritesAlbumsRoute,
   FavoritesArtistsRoute: FavoritesArtistsRoute,
   FavoritesTracksRoute: FavoritesTracksRoute,
