@@ -1,9 +1,7 @@
 import { createRootRoute } from '@tanstack/react-router';
 import {
-  CompassIcon,
   DiscIcon,
   GaugeIcon,
-  LibraryIcon,
   ListMusicIcon,
   MusicIcon,
   SettingsIcon,
@@ -16,7 +14,6 @@ import {
   PlayerWorkspace,
   RouteTransition,
   SidebarNavigation,
-  SidebarNavigationCollapsible,
   SidebarNavigationItem,
   Toaster,
 } from '@nuclearplayer/ui';
@@ -64,45 +61,34 @@ const RootComponent = () => {
             onWidthChange={setLeftSidebarWidth}
             onToggle={toggleLeftSidebar}
           >
-            <SidebarNavigation>
+            <SidebarNavigation isCompact={leftSidebar.isCollapsed}>
               <div className="flex-1 overflow-y-auto">
-                <SidebarNavigationCollapsible
-                  title={t('explore')}
-                  icon={<CompassIcon />}
-                >
-                  <SidebarNavigationItem
-                    to="/dashboard"
-                    icon={<GaugeIcon />}
-                    label={t('dashboard')}
-                  />
-                </SidebarNavigationCollapsible>
-                <SidebarNavigationCollapsible
-                  title={t('collection')}
-                  icon={<LibraryIcon />}
-                >
-                  <SidebarNavigationItem
-                    to="/favorites/albums"
-                    icon={<DiscIcon />}
-                    label={t('favoriteAlbums')}
-                  />
-                  <SidebarNavigationItem
-                    to="/favorites/tracks"
-                    icon={<MusicIcon />}
-                    label={t('favoriteTracks')}
-                  />
-                  <SidebarNavigationItem
-                    to="/favorites/artists"
-                    icon={<UserIcon />}
-                    label={t('favoriteArtists')}
-                  />
-                  <SidebarNavigationItem
-                    to="/playlists"
-                    icon={<ListMusicIcon />}
-                    label={t('playlists')}
-                  />
-                </SidebarNavigationCollapsible>
+                <SidebarNavigationItem
+                  to="/dashboard"
+                  icon={<GaugeIcon />}
+                  label={t('dashboard')}
+                />
+                <SidebarNavigationItem
+                  to="/favorites/albums"
+                  icon={<DiscIcon />}
+                  label={t('favoriteAlbums')}
+                />
+                <SidebarNavigationItem
+                  to="/favorites/tracks"
+                  icon={<MusicIcon />}
+                  label={t('favoriteTracks')}
+                />
+                <SidebarNavigationItem
+                  to="/favorites/artists"
+                  icon={<UserIcon />}
+                  label={t('favoriteArtists')}
+                />
+                <SidebarNavigationItem
+                  to="/playlists"
+                  icon={<ListMusicIcon />}
+                  label={t('playlists')}
+                />
               </div>
-              <hr className="border-border my-1 border-t-2" />
               <SidebarNavigationItem
                 icon={<SettingsIcon />}
                 label={tPrefs('title')}

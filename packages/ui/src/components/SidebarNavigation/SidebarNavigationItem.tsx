@@ -42,15 +42,24 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
             onClick={onClick}
             data-testid="sidebar-navigation-item"
             className={cn(
-              'flex w-full flex-row items-center gap-2 rounded-r-md border-y-2 border-transparent px-2 py-1',
-              'group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:rounded-md group-data-[compact]/sidebar:border-2 group-data-[compact]/sidebar:px-0 group-data-[compact]/sidebar:py-2',
+              'flex w-full items-center overflow-hidden rounded-md border-2',
               onClick && 'cursor-pointer',
-              active &&
-                'bg-primary border-border border-t-2 border-r-2 border-b-2 font-bold',
+              active
+                ? 'bg-primary border-border font-bold'
+                : 'hover:bg-background-secondary border-transparent',
             )}
           >
-            <span className="shrink-0">{icon}</span>
-            <span className="group-data-[compact]/sidebar:hidden">{label}</span>
+            <div className="flex size-8 flex-shrink-0 items-center justify-center">
+              {icon}
+            </div>
+            <span
+              className={cn(
+                'text-sm whitespace-nowrap transition-opacity duration-150',
+                isCompact ? 'opacity-0' : 'opacity-100',
+              )}
+            >
+              {label}
+            </span>
           </div>
         </Tooltip>
       )}

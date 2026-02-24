@@ -1,4 +1,12 @@
-import { FC, PropsWithChildren, ReactNode, useState } from 'react';
+import {
+  FC,
+  PropsWithChildren,
+  ReactNode,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
+import { createPortal } from 'react-dom';
 
 import { cn } from '../../utils';
 
@@ -9,11 +17,38 @@ type TooltipProps = PropsWithChildren<{
   className?: string;
 }>;
 
-const SIDE_CLASSES = {
-  right: 'left-full top-1/2 ml-2 -translate-y-1/2',
-  left: 'right-full top-1/2 mr-2 -translate-y-1/2',
-  top: 'bottom-full left-1/2 mb-2 -translate-x-1/2',
-  bottom: 'top-full left-1/2 mt-2 -translate-x-1/2',
+const OFFSET = 12;
+
+const getTooltipStyle = (
+  rect: DOMRect,
+  side: 'top' | 'right' | 'bottom' | 'left',
+): React.CSSProperties => {
+  switch (side) {
+    case 'right':
+      return {
+        top: rect.top + rect.height / 2,
+        left: rect.right + OFFSET,
+        transform: 'translateY(-50%)',
+      };
+    case 'left':
+      return {
+        top: rect.top + rect.height / 2,
+        left: rect.left - OFFSET,
+        transform: 'translate(-100%, -50%)',
+      };
+    case 'top':
+      return {
+        top: rect.top - OFFSET,
+        left: rect.left + rect.width / 2,
+        transform: 'translate(-50%, -100%)',
+      };
+    case 'bottom':
+      return {
+        top: rect.bottom + OFFSET,
+        left: rect.left + rect.width / 2,
+        transform: 'translateX(-50%)',
+      };
+  }
 };
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -24,30 +59,44 @@ export const Tooltip: FC<TooltipProps> = ({
   className,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [style, setStyle] = useState<React.CSSProperties>({});
+  const triggerRef = useRef<HTMLDivElement>(null);
 
-  if (disabled) {
-    return <>{children}</>;
-  }
+  const show = useCallback(() => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setStyle(getTooltipStyle(rect, side));
+    }
+    setIsVisible(true);
+  }, [side]);
+
+  const hide = useCallback(() => {
+    setIsVisible(false);
+  }, []);
 
   return (
     <div
-      className="relative inline-flex"
-      onMouseEnter={() => setIsVisible(true)}
-      onMouseLeave={() => setIsVisible(false)}
+      ref={triggerRef}
+      className="relative"
+      onMouseEnter={disabled ? undefined : show}
+      onMouseLeave={disabled ? undefined : hide}
     >
       {children}
-      {isVisible && (
-        <div
-          role="tooltip"
-          className={cn(
-            'border-border bg-background text-foreground shadow-shadow pointer-events-none absolute z-50 rounded-md border-2 px-2 py-1 text-sm whitespace-nowrap',
-            SIDE_CLASSES[side],
-            className,
-          )}
-        >
-          {content}
-        </div>
-      )}
+      {isVisible &&
+        !disabled &&
+        createPortal(
+          <div
+            role="tooltip"
+            style={style}
+            className={cn(
+              'border-border bg-background text-foreground shadow-shadow pointer-events-none fixed z-50 rounded-md border-2 px-2 py-1 text-sm whitespace-nowrap',
+              className,
+            )}
+          >
+            {content}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 };

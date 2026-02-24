@@ -1,93 +1,68 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { CompassIcon, GaugeIcon, HeartIcon } from 'lucide-react';
+import { GaugeIcon, HeartIcon } from 'lucide-react';
 
 import { SidebarNavigation } from './SidebarNavigation';
-import { SidebarNavigationCollapsible } from './SidebarNavigationCollapsible';
 import { SidebarNavigationItem } from './SidebarNavigationItem';
 
 const renderSidebar = ({ isCompact = false } = {}) =>
   render(
     <SidebarNavigation isCompact={isCompact}>
-      <SidebarNavigationCollapsible
-        title="Explore"
-        icon={<CompassIcon data-testid="section-icon" />}
-      >
-        <SidebarNavigationItem
-          icon={<GaugeIcon data-testid="dashboard-icon" />}
-          label="Dashboard"
-        />
-        <SidebarNavigationItem
-          icon={<HeartIcon data-testid="favorites-icon" />}
-          label="Favorites"
-        />
-      </SidebarNavigationCollapsible>
+      <SidebarNavigationItem
+        icon={<GaugeIcon data-testid="dashboard-icon" />}
+        label="Dashboard"
+      />
+      <SidebarNavigationItem
+        icon={<HeartIcon data-testid="favorites-icon" />}
+        label="Favorites"
+      />
     </SidebarNavigation>,
   );
 
-describe('SidebarNavigation compact mode', () => {
-  it('(Snapshot) renders in compact mode', () => {
-    const { asFragment } = renderSidebar({ isCompact: true });
-    expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('sets data-compact attribute on the root', () => {
-    renderSidebar({ isCompact: true });
-    expect(screen.getByTestId('sidebar-navigation')).toHaveAttribute(
-      'data-compact',
-    );
-  });
-
-  it('shows section icon', () => {
-    renderSidebar({ isCompact: true });
-    expect(screen.getByTestId('section-icon')).toBeInTheDocument();
-  });
-
-  it('shows item tooltips on hover', async () => {
-    renderSidebar({ isCompact: true });
-
-    const sectionButton = screen.getByRole('button');
-    await userEvent.click(sectionButton);
-
-    const items = await screen.findAllByTestId('sidebar-navigation-item');
-    await userEvent.unhover(sectionButton);
-    await userEvent.hover(items[0]);
-
-    const tooltips = await screen.findAllByRole('tooltip');
-    expect(
-      tooltips.some((tooltip) => tooltip.textContent === 'Dashboard'),
-    ).toBe(true);
-  });
-});
-
-describe('SidebarNavigation normal mode', () => {
-  it('(Snapshot) renders in normal mode', () => {
+describe('SidebarNavigation', () => {
+  it('(Snapshot) renders flat nav items in normal mode', () => {
     const { asFragment } = renderSidebar();
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('does not set data-compact attribute', () => {
-    renderSidebar();
-    expect(screen.getByTestId('sidebar-navigation')).not.toHaveAttribute(
-      'data-compact',
-    );
+  it('(Snapshot) renders flat nav items in compact mode', () => {
+    const { asFragment } = renderSidebar({ isCompact: true });
+    expect(asFragment()).toMatchSnapshot();
   });
 
-  it('shows text labels', () => {
+  it('sets data-testid on root element', () => {
     renderSidebar();
-
-    const sectionButton = screen.getByRole('button');
-    expect(sectionButton).toHaveTextContent('Explore');
+    expect(screen.getByTestId('sidebar-navigation')).toBeInTheDocument();
   });
 
-  it('does not show tooltips on hover', async () => {
+  it('shows text labels in normal mode', () => {
     renderSidebar();
+    expect(screen.getByText('Dashboard')).toBeVisible();
+    expect(screen.getByText('Favorites')).toBeVisible();
+  });
 
-    const sectionButton = screen.getByRole('button');
-    await userEvent.click(sectionButton);
+  it('hides text labels in compact mode', () => {
+    renderSidebar({ isCompact: true });
+    expect(screen.getByText('Dashboard')).toHaveClass('opacity-0');
+    expect(screen.getByText('Favorites')).toHaveClass('opacity-0');
+  });
 
-    const items = await screen.findAllByTestId('sidebar-navigation-item');
+  it('shows tooltips on hover in compact mode', async () => {
+    renderSidebar({ isCompact: true });
+
+    const items = screen.getAllByTestId('sidebar-navigation-item');
     await userEvent.hover(items[0]);
+
+    const tooltip = await screen.findByRole('tooltip');
+    expect(tooltip).toHaveTextContent('Dashboard');
+  });
+
+  it('does not show tooltips in normal mode', async () => {
+    renderSidebar();
+
+    const items = screen.getAllByTestId('sidebar-navigation-item');
+    await userEvent.hover(items[0]);
+
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
   });
 });

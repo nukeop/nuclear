@@ -117,7 +117,7 @@ exports[`App > should render snapshot 1`] = `
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col p-2 border-r-2"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-r-2"
         transition="[object Object]"
       >
         <span
@@ -156,191 +156,291 @@ exports[`App > should render snapshot 1`] = `
           </button>
         </span>
         <div
-          animate="[object Object]"
           class="flex flex-1 flex-col overflow-hidden"
-          exit="[object Object]"
-          initial="[object Object]"
-          transition="[object Object]"
         >
           <div
-            class="group/sidebar flex flex-1 flex-col items-start justify-start"
+            class="flex flex-1 flex-col gap-1"
             data-testid="sidebar-navigation"
           >
             <div
               class="flex-1 overflow-y-auto"
             >
-              <div
-                class="mb-4 flex w-full flex-col text-sm group-data-[compact]/sidebar:mb-2 group-data-[compact]/sidebar:items-center"
+              <a
+                aria-current="page"
+                class="active"
+                data-status="active"
+                href="/dashboard"
               >
-                <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground border-2 h-9 px-3 inline-flex flex-row items-center justify-between border-transparent bg-transparent group-data-[compact]/sidebar:size-8 group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:p-0"
-                  data-headlessui-state=""
-                  type="button"
+                <div
+                  class="relative"
                 >
-                  <span
-                    class="inline-flex flex-row items-center gap-2"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="lucide lucide-compass"
-                      fill="none"
-                      height="24"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"
-                      />
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                      />
-                    </svg>
-                    <span
-                      class="group-data-[compact]/sidebar:hidden"
-                    >
-                      Explore
-                    </span>
-                  </span>
                   <div
-                    animate="[object Object]"
-                    class="group-data-[compact]/sidebar:hidden"
-                    transition="[object Object]"
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 bg-primary border-border font-bold"
+                    data-testid="sidebar-navigation-item"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-right"
-                      fill="none"
-                      height="24"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      class="flex size-8 flex-shrink-0 items-center justify-center"
                     >
-                      <path
-                        d="m9 18 6-6-6-6"
-                      />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-gauge"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="m12 14 4-4"
+                        />
+                        <path
+                          d="M3.34 19a10 10 0 1 1 17.32 0"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                    >
+                      Dashboard
+                    </span>
                   </div>
-                </button>
-              </div>
-              <div
-                class="mb-4 flex w-full flex-col text-sm group-data-[compact]/sidebar:mb-2 group-data-[compact]/sidebar:items-center"
+                </div>
+              </a>
+              <a
+                href="/favorites/albums"
               >
-                <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground border-2 h-9 px-3 inline-flex flex-row items-center justify-between border-transparent bg-transparent group-data-[compact]/sidebar:size-8 group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:p-0"
-                  data-headlessui-state=""
-                  type="button"
+                <div
+                  class="relative"
                 >
-                  <span
-                    class="inline-flex flex-row items-center gap-2"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="lucide lucide-library"
-                      fill="none"
-                      height="24"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="m16 6 4 14"
-                      />
-                      <path
-                        d="M12 6v14"
-                      />
-                      <path
-                        d="M8 8v12"
-                      />
-                      <path
-                        d="M4 4v16"
-                      />
-                    </svg>
-                    <span
-                      class="group-data-[compact]/sidebar:hidden"
-                    >
-                      Collection
-                    </span>
-                  </span>
                   <div
-                    animate="[object Object]"
-                    class="group-data-[compact]/sidebar:hidden"
-                    transition="[object Object]"
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+                    data-testid="sidebar-navigation-item"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="lucide lucide-chevron-right"
-                      fill="none"
-                      height="24"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      class="flex size-8 flex-shrink-0 items-center justify-center"
                     >
-                      <path
-                        d="m9 18 6-6-6-6"
-                      />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-disc"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                        />
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="2"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                    >
+                      Favorite albums
+                    </span>
                   </div>
-                </button>
-              </div>
+                </div>
+              </a>
+              <a
+                href="/favorites/tracks"
+              >
+                <div
+                  class="relative"
+                >
+                  <div
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+                    data-testid="sidebar-navigation-item"
+                  >
+                    <div
+                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-music"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 18V5l12-2v13"
+                        />
+                        <circle
+                          cx="6"
+                          cy="18"
+                          r="3"
+                        />
+                        <circle
+                          cx="18"
+                          cy="16"
+                          r="3"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                    >
+                      Favorite tracks
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <a
+                href="/favorites/artists"
+              >
+                <div
+                  class="relative"
+                >
+                  <div
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+                    data-testid="sidebar-navigation-item"
+                  >
+                    <div
+                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-user"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                        />
+                        <circle
+                          cx="12"
+                          cy="7"
+                          r="4"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                    >
+                      Favorite artists
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <a
+                href="/playlists"
+              >
+                <div
+                  class="relative"
+                >
+                  <div
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+                    data-testid="sidebar-navigation-item"
+                  >
+                    <div
+                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-list-music"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M21 15V6"
+                        />
+                        <path
+                          d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
+                        />
+                        <path
+                          d="M12 12H3"
+                        />
+                        <path
+                          d="M16 6H3"
+                        />
+                        <path
+                          d="M12 18H3"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                    >
+                      Playlists
+                    </span>
+                  </div>
+                </div>
+              </a>
             </div>
-            <hr
-              class="border-border my-1 border-t-2"
-            />
             <div
-              class="flex w-full flex-row items-center gap-2 rounded-r-md border-y-2 border-transparent px-2 py-1 group-data-[compact]/sidebar:justify-center group-data-[compact]/sidebar:rounded-md group-data-[compact]/sidebar:border-2 group-data-[compact]/sidebar:px-0 group-data-[compact]/sidebar:py-2 cursor-pointer"
-              data-testid="sidebar-navigation-item"
-              role="button"
+              class="relative"
             >
-              <span
-                class="shrink-0"
+              <div
+                class="flex w-full items-center overflow-hidden rounded-md border-2 cursor-pointer border-transparent hover:bg-background-secondary"
+                data-testid="sidebar-navigation-item"
+                role="button"
               >
-                <svg
-                  aria-hidden="true"
-                  class="lucide lucide-settings"
-                  fill="none"
-                  height="24"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="flex size-8 flex-shrink-0 items-center justify-center"
                 >
-                  <path
-                    d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="3"
-                  />
-                </svg>
-              </span>
-              <span
-                class="group-data-[compact]/sidebar:hidden"
-              >
-                Preferences
-              </span>
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-settings"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="3"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                >
+                  Preferences
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -447,7 +547,7 @@ exports[`App > should render snapshot 1`] = `
       </main>
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col p-2 border-l-2"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-l-2"
         transition="[object Object]"
       >
         <span
@@ -489,11 +589,7 @@ exports[`App > should render snapshot 1`] = `
           />
         </span>
         <div
-          animate="[object Object]"
           class="flex flex-1 flex-col overflow-hidden"
-          exit="[object Object]"
-          initial="[object Object]"
-          transition="[object Object]"
         >
           <div
             class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center"

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { PanelLeft, PanelRight } from 'lucide-react';
 import { FC, ReactNode, useRef } from 'react';
 
@@ -49,7 +49,7 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
     <motion.div
       ref={sidebarRef}
       className={cn(
-        'bg-background-secondary border-border relative flex flex-col p-2',
+        'bg-background-secondary border-border relative flex flex-col overflow-hidden p-2',
         { 'border-r-2': side === 'left', 'border-l-2': side === 'right' },
         className,
       )}
@@ -88,27 +88,12 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
           </span>
         )}
       </span>
-      <AnimatePresence mode="wait">
-        {!isCollapsed && (
-          <motion.div
-            className="flex flex-1 flex-col overflow-hidden"
-            initial={{ opacity: 0, x: side === 'left' ? -20 : 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: side === 'left' ? -20 : 20 }}
-            transition={{
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-              mass: 0.5,
-            }}
-          >
-            {children}
-            {footer && (
-              <div className="mt-auto flex justify-center">{footer}</div>
-            )}
-          </motion.div>
+      <div className="flex flex-1 flex-col overflow-hidden">
+        {children}
+        {!isCollapsed && footer && (
+          <div className="mt-auto flex justify-center">{footer}</div>
         )}
-      </AnimatePresence>
+      </div>
 
       {persistentFooter && (
         <div className="mt-auto flex flex-col items-center gap-2 py-2">
