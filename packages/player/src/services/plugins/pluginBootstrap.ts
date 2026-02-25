@@ -1,17 +1,9 @@
 import { normalize } from '@tauri-apps/api/path';
 
-import { NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
-
 import { usePluginStore } from '../../stores/pluginStore';
 import { useStartupStore } from '../../stores/startupStore';
 import { resolveErrorMessage } from '../../utils/logging';
-import { favoritesHost } from '../favoritesHost';
-import { httpHost } from '../httpHost';
-import { createLoggerHost } from '../loggerHost';
-import { providersHost } from '../providersHost';
-import { queueHost } from '../queueHost';
-import { createPluginSettingsHost } from '../settingsHost';
-import { ytdlpHost } from '../ytdlpHost';
+import { createPluginAPI } from './createPluginAPI';
 import { getPluginsDir } from './pluginDir';
 import { PluginLoader } from './PluginLoader';
 import {
@@ -42,20 +34,10 @@ export const hydratePluginsFromRegistry = async (): Promise<void> => {
     const pluginLoadStartTime = Date.now();
     try {
       const loader = new PluginLoader(entry.path);
-      const { metadata, instance } = await loader.load();
+      const metadata = await loader.loadMetadata();
+      const api = createPluginAPI(metadata.id, metadata.displayName);
+      const { instance } = await loader.load(api);
       const warnings = entry.warnings ?? loader.getWarnings() ?? [];
-      const api = new NuclearPluginAPI({
-        settingsHost: createPluginSettingsHost(
-          metadata.id,
-          metadata.displayName,
-        ),
-        queueHost,
-        providersHost,
-        httpHost,
-        ytdlpHost,
-        favoritesHost,
-        loggerHost: createLoggerHost(metadata.id),
-      });
       usePluginStore.setState((state) => ({
         plugins: {
           ...state.plugins,

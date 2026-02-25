@@ -4,11 +4,8 @@ import { create } from 'zustand';
 import type { NuclearPlugin, PluginMetadata } from '@nuclearplayer/plugin-sdk';
 import { NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
 
-import { dashboardHost } from '../services/dashboardHost';
-import { favoritesHost } from '../services/favoritesHost';
-import { httpHost } from '../services/httpHost';
 import { Logger } from '../services/logger';
-import { createLoggerHost } from '../services/loggerHost';
+import { createPluginAPI } from '../services/plugins/createPluginAPI';
 import {
   installPluginToManagedDir,
   removeManagedPluginInstall,
@@ -21,10 +18,6 @@ import {
   setRegistryEntryEnabled,
   upsertRegistryEntry,
 } from '../services/plugins/pluginRegistry';
-import { providersHost } from '../services/providersHost';
-import { queueHost } from '../services/queueHost';
-import { createPluginSettingsHost } from '../services/settingsHost';
-import { ytdlpHost } from '../services/ytdlpHost';
 import { reportError } from '../utils/logging';
 
 const allowedPermissions: string[] = [];
@@ -149,16 +142,7 @@ export const usePluginStore = create<PluginStore>((set, get) => ({
         warnings,
       });
 
-      const api = new NuclearPluginAPI({
-        settingsHost: createPluginSettingsHost(id, loadedMetadata.displayName),
-        queueHost,
-        providersHost,
-        httpHost,
-        ytdlpHost,
-        favoritesHost,
-        dashboardHost,
-        loggerHost: createLoggerHost(id),
-      });
+      const api = createPluginAPI(id, loadedMetadata.displayName);
 
       set(
         produce((state: PluginStore) => {
@@ -329,6 +313,8 @@ export const usePluginStore = create<PluginStore>((set, get) => ({
         warnings,
       } = await loadPluginData(originalPath, id, newVersion);
 
+      const api = createPluginAPI(id, loadedMetadata.displayName);
+
       const now = new Date().toISOString();
       const existingEntry = await getRegistryEntry(id);
       const installedAt =
@@ -358,6 +344,7 @@ export const usePluginStore = create<PluginStore>((set, get) => ({
             warning: warnings.length > 0,
             warnings,
             instance,
+            api,
             isLoading: false,
           };
         }),

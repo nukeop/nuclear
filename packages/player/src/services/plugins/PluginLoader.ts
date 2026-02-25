@@ -9,14 +9,7 @@ import type {
   PluginMetadata,
 } from '@nuclearplayer/plugin-sdk';
 
-import { favoritesHost } from '../favoritesHost';
-import { httpHost } from '../httpHost';
 import { Logger } from '../logger';
-import { createLoggerHost } from '../loggerHost';
-import { providersHost } from '../providersHost';
-import { queueHost } from '../queueHost';
-import { createPluginSettingsHost } from '../settingsHost';
-import { ytdlpHost } from '../ytdlpHost';
 import { compilePlugin } from './pluginCompiler';
 import { safeParsePluginManifest } from './pluginManifest';
 
@@ -158,27 +151,15 @@ export class PluginLoader {
     return this.buildMetadata(manifest);
   }
 
-  async load(): Promise<LoadedPlugin> {
+  async load(api?: NuclearPluginAPI): Promise<LoadedPlugin> {
     Logger.plugins.debug(`Loading plugin from ${this.path}`);
-    const manifest = await this.readManifest();
+    const manifest = this.manifest ?? (await this.readManifest());
     const metadata = this.buildMetadata(manifest);
     this.entryPath = await this.resolveEntryPath(manifest);
     const code = await this.readPluginCode(this.entryPath);
     const instance = this.evaluatePlugin(code);
-    if (instance.onLoad) {
+    if (instance.onLoad && api) {
       Logger.plugins.debug(`Calling onLoad for ${metadata.id}`);
-      const api = new NuclearPluginAPI({
-        settingsHost: createPluginSettingsHost(
-          metadata.id,
-          metadata.displayName,
-        ),
-        queueHost,
-        providersHost,
-        httpHost,
-        ytdlpHost,
-        favoritesHost,
-        loggerHost: createLoggerHost(metadata.id),
-      });
       await instance.onLoad(api);
     }
     Logger.plugins.info(
