@@ -49,7 +49,7 @@ export const FlatList = () => (
 );
 
 export const CompactMode = () => (
-  <div className="bg-background-secondary border-border flex h-[600px] w-14 flex-col items-center border-2 p-2">
+  <div className="bg-background-secondary border-border flex h-[600px] w-[54px] flex-col border-2 p-2">
     <SidebarNavigation isCompact>
       <SidebarNavigationItem icon={<Home size={16} />} label="Home" />
       <SidebarNavigationItem icon={<Search size={16} />} label="Search" />

@@ -72,7 +72,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col p-2 border-r-2"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-r-2"
         transition="[object Object]"
       >
         <span
@@ -111,11 +111,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
           </button>
         </span>
         <div
-          animate="[object Object]"
           class="flex flex-1 flex-col overflow-hidden"
-          exit="[object Object]"
-          initial="[object Object]"
-          transition="[object Object]"
         />
         <div
           class="absolute top-0 bottom-0 w-1 cursor-col-resize transition-colors right-0"
@@ -127,7 +123,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
       />
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col p-2 border-l-2"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-l-2"
         transition="[object Object]"
       >
         <span
@@ -166,11 +162,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
           </button>
         </span>
         <div
-          animate="[object Object]"
           class="flex flex-1 flex-col overflow-hidden"
-          exit="[object Object]"
-          initial="[object Object]"
-          transition="[object Object]"
         />
         <div
           class="absolute top-0 bottom-0 w-1 cursor-col-resize transition-colors left-0"

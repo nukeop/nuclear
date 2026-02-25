@@ -3,14 +3,12 @@
 exports[`SidebarNavigation > (Snapshot) renders flat nav items in compact mode 1`] = `
 <DocumentFragment>
   <div
-    class="flex flex-1 flex-col gap-1"
+    class="flex flex-1 flex-col"
     data-testid="sidebar-navigation"
   >
-    <div
-      class="relative"
-    >
+    <div>
       <div
-        class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+        class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
         data-testid="sidebar-navigation-item"
       >
         <div
@@ -39,17 +37,15 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in compact mode 1
           </svg>
         </div>
         <span
-          class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-0"
+          class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-0"
         >
           Dashboard
         </span>
       </div>
     </div>
-    <div
-      class="relative"
-    >
+    <div>
       <div
-        class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+        class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
         data-testid="sidebar-navigation-item"
       >
         <div
@@ -75,7 +71,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in compact mode 1
           </svg>
         </div>
         <span
-          class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-0"
+          class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-0"
         >
           Favorites
         </span>
@@ -88,14 +84,12 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in compact mode 1
 exports[`SidebarNavigation > (Snapshot) renders flat nav items in normal mode 1`] = `
 <DocumentFragment>
   <div
-    class="flex flex-1 flex-col gap-1"
+    class="flex flex-1 flex-col"
     data-testid="sidebar-navigation"
   >
-    <div
-      class="relative"
-    >
+    <div>
       <div
-        class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+        class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
         data-testid="sidebar-navigation-item"
       >
         <div
@@ -124,17 +118,15 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in normal mode 1`
           </svg>
         </div>
         <span
-          class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+          class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
         >
           Dashboard
         </span>
       </div>
     </div>
-    <div
-      class="relative"
-    >
+    <div>
       <div
-        class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+        class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
         data-testid="sidebar-navigation-item"
       >
         <div
@@ -160,7 +152,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in normal mode 1`
           </svg>
         </div>
         <span
-          class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+          class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
         >
           Favorites
         </span>

@@ -1,55 +1,26 @@
 import {
-  FC,
-  PropsWithChildren,
-  ReactNode,
-  useCallback,
-  useRef,
-  useState,
-} from 'react';
+  autoUpdate,
+  flip,
+  offset,
+  shift,
+  useFloating,
+} from '@floating-ui/react-dom';
+import { FC, PropsWithChildren, ReactNode, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { cn } from '../../utils';
 
+const TOOLTIP_OFFSET_PX = 12;
+const VIEWPORT_PADDING_PX = 8;
+
+type TooltipSide = 'top' | 'right' | 'bottom' | 'left';
+
 type TooltipProps = PropsWithChildren<{
   content: ReactNode;
-  side?: 'top' | 'right' | 'bottom' | 'left';
+  side?: TooltipSide;
   disabled?: boolean;
   className?: string;
 }>;
-
-const OFFSET = 12;
-
-const getTooltipStyle = (
-  rect: DOMRect,
-  side: 'top' | 'right' | 'bottom' | 'left',
-): React.CSSProperties => {
-  switch (side) {
-    case 'right':
-      return {
-        top: rect.top + rect.height / 2,
-        left: rect.right + OFFSET,
-        transform: 'translateY(-50%)',
-      };
-    case 'left':
-      return {
-        top: rect.top + rect.height / 2,
-        left: rect.left - OFFSET,
-        transform: 'translate(-100%, -50%)',
-      };
-    case 'top':
-      return {
-        top: rect.top - OFFSET,
-        left: rect.left + rect.width / 2,
-        transform: 'translate(-50%, -100%)',
-      };
-    case 'bottom':
-      return {
-        top: rect.bottom + OFFSET,
-        left: rect.left + rect.width / 2,
-        transform: 'translateX(-50%)',
-      };
-  }
-};
 
 export const Tooltip: FC<TooltipProps> = ({
   children,
@@ -58,38 +29,34 @@ export const Tooltip: FC<TooltipProps> = ({
   disabled = false,
   className,
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [style, setStyle] = useState<React.CSSProperties>({});
-  const triggerRef = useRef<HTMLDivElement>(null);
-
-  const show = useCallback(() => {
-    if (triggerRef.current) {
-      const rect = triggerRef.current.getBoundingClientRect();
-      setStyle(getTooltipStyle(rect, side));
-    }
-    setIsVisible(true);
-  }, [side]);
-
-  const hide = useCallback(() => {
-    setIsVisible(false);
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+  const { refs, floatingStyles } = useFloating({
+    placement: side,
+    open: isOpen,
+    middleware: [
+      offset(TOOLTIP_OFFSET_PX),
+      flip(),
+      shift({ padding: VIEWPORT_PADDING_PX }),
+    ],
+    whileElementsMounted: autoUpdate,
+  });
 
   return (
     <div
-      ref={triggerRef}
-      className="relative"
-      onMouseEnter={disabled ? undefined : show}
-      onMouseLeave={disabled ? undefined : hide}
+      ref={refs.setReference}
+      onMouseEnter={disabled ? undefined : () => setIsOpen(true)}
+      onMouseLeave={disabled ? undefined : () => setIsOpen(false)}
     >
       {children}
-      {isVisible &&
+      {isOpen &&
         !disabled &&
         createPortal(
           <div
+            ref={refs.setFloating}
             role="tooltip"
-            style={style}
+            style={floatingStyles}
             className={cn(
-              'border-border bg-background text-foreground shadow-shadow pointer-events-none fixed z-50 rounded-md border-2 px-2 py-1 text-sm whitespace-nowrap',
+              'border-border bg-background text-foreground shadow-shadow pointer-events-none z-50 rounded-md border-2 px-2 py-1 text-sm whitespace-nowrap',
               className,
             )}
           >

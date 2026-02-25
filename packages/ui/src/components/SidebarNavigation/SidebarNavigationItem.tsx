@@ -43,10 +43,11 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
             data-testid="sidebar-navigation-item"
             className={cn(
               'flex w-full items-center overflow-hidden rounded-md border-2',
-              onClick && 'cursor-pointer',
-              active
-                ? 'bg-primary border-border font-bold'
-                : 'hover:bg-background-secondary border-transparent',
+              {
+                'cursor-pointer': onClick,
+                'bg-primary border-border font-bold': active,
+                'hover:bg-background-secondary border-transparent': !active,
+              },
             )}
           >
             <div className="flex size-8 flex-shrink-0 items-center justify-center">
@@ -55,7 +56,10 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
             <span
               className={cn(
                 'text-sm whitespace-nowrap transition-opacity duration-150',
-                isCompact ? 'opacity-0' : 'opacity-100',
+                {
+                  'opacity-0': isCompact,
+                  'opacity-100': !isCompact,
+                },
               )}
             >
               {label}

@@ -159,11 +159,11 @@ exports[`App > should render snapshot 1`] = `
           class="flex flex-1 flex-col overflow-hidden"
         >
           <div
-            class="flex flex-1 flex-col gap-1"
+            class="flex flex-1 flex-col"
             data-testid="sidebar-navigation"
           >
             <div
-              class="flex-1 overflow-y-auto"
+              class="flex flex-1 flex-col gap-2 overflow-y-auto"
             >
               <a
                 aria-current="page"
@@ -171,9 +171,7 @@ exports[`App > should render snapshot 1`] = `
                 data-status="active"
                 href="/dashboard"
               >
-                <div
-                  class="relative"
-                >
+                <div>
                   <div
                     class="flex w-full items-center overflow-hidden rounded-md border-2 bg-primary border-border font-bold"
                     data-testid="sidebar-navigation-item"
@@ -203,7 +201,7 @@ exports[`App > should render snapshot 1`] = `
                       </svg>
                     </div>
                     <span
-                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                      class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
                     >
                       Dashboard
                     </span>
@@ -213,11 +211,9 @@ exports[`App > should render snapshot 1`] = `
               <a
                 href="/favorites/albums"
               >
-                <div
-                  class="relative"
-                >
+                <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -249,7 +245,7 @@ exports[`App > should render snapshot 1`] = `
                       </svg>
                     </div>
                     <span
-                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                      class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
                     >
                       Favorite albums
                     </span>
@@ -259,11 +255,9 @@ exports[`App > should render snapshot 1`] = `
               <a
                 href="/favorites/tracks"
               >
-                <div
-                  class="relative"
-                >
+                <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -298,7 +292,7 @@ exports[`App > should render snapshot 1`] = `
                       </svg>
                     </div>
                     <span
-                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                      class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
                     >
                       Favorite tracks
                     </span>
@@ -308,11 +302,9 @@ exports[`App > should render snapshot 1`] = `
               <a
                 href="/favorites/artists"
               >
-                <div
-                  class="relative"
-                >
+                <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -342,7 +334,7 @@ exports[`App > should render snapshot 1`] = `
                       </svg>
                     </div>
                     <span
-                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                      class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
                     >
                       Favorite artists
                     </span>
@@ -352,11 +344,9 @@ exports[`App > should render snapshot 1`] = `
               <a
                 href="/playlists"
               >
-                <div
-                  class="relative"
-                >
+                <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 border-transparent hover:bg-background-secondary"
+                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -393,7 +383,7 @@ exports[`App > should render snapshot 1`] = `
                       </svg>
                     </div>
                     <span
-                      class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                      class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
                     >
                       Playlists
                     </span>
@@ -401,11 +391,9 @@ exports[`App > should render snapshot 1`] = `
                 </div>
               </a>
             </div>
-            <div
-              class="relative"
-            >
+            <div>
               <div
-                class="flex w-full items-center overflow-hidden rounded-md border-2 cursor-pointer border-transparent hover:bg-background-secondary"
+                class="flex w-full items-center overflow-hidden rounded-md border-2 cursor-pointer hover:bg-background-secondary border-transparent"
                 data-testid="sidebar-navigation-item"
                 role="button"
               >
@@ -436,7 +424,7 @@ exports[`App > should render snapshot 1`] = `
                   </svg>
                 </div>
                 <span
-                  class="whitespace-nowrap text-sm transition-opacity duration-150 opacity-100"
+                  class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
                 >
                   Preferences
                 </span>

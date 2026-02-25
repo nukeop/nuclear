@@ -54,7 +54,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
         class="text-foreground bg-primary border-border rounded-md border-2 px-4 py-2 leading-5 select-none translate-y-0"
         exit="[object Object]"
         initial="[object Object]"
-        style="overflow: auto; max-width: 0px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
+        style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
       >
         <div
           class="flex min-w-48 flex-col overflow-hidden"
@@ -157,7 +157,7 @@ exports[`Popover > (Snapshot) renders with all props 1`] = `
         class="text-foreground bg-primary border-border rounded-md border-2 px-4 py-2 leading-5 select-none translate-x-2 -translate-y-2"
         exit="[object Object]"
         initial="[object Object]"
-        style="overflow: auto; max-width: 0px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
+        style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
       >
         Popover Content
       </div>

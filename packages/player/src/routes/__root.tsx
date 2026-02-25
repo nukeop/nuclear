@@ -62,7 +62,7 @@ const RootComponent = () => {
             onToggle={toggleLeftSidebar}
           >
             <SidebarNavigation isCompact={leftSidebar.isCollapsed}>
-              <div className="flex-1 overflow-y-auto">
+              <div className="flex flex-1 flex-col gap-2 overflow-y-auto">
                 <SidebarNavigationItem
                   to="/dashboard"
                   icon={<GaugeIcon />}
