@@ -42,6 +42,7 @@ rmcp = { version = "0.16", features = ["server", "transport-streamable-http-serv
 schemars = "1.0"
 axum = { version = "0.8", default-features = false, features = ["http1", "tokio"] }
 tokio-util = { version = "0.7", features = ["rt"] }
+uuid = { version = "1.20.0", features = ["v4"] }
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-updater = "2"

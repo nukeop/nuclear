@@ -1,6 +1,7 @@
 pub mod commands;
 pub mod http;
 pub mod logging;
+pub mod mcp;
 mod setup;
 pub mod stream_proxy;
 pub mod ytdlp;
@@ -33,10 +34,14 @@ pub fn run() {
             http::http_fetch,
             ytdlp::ytdlp_search,
             ytdlp::ytdlp_get_stream,
-            logging::get_startup_logs
+            logging::get_startup_logs,
+            mcp::mcp_start,
+            mcp::mcp_stop,
+            mcp::mcp_respond
         ])
-        .setup(|_app| {
+        .setup(|app| {
             logging::mark_startup_complete();
+            mcp::init_mcp(app.handle().clone());
             Ok(())
         })
         .run(tauri::generate_context!())

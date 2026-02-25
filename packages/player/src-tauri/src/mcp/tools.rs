@@ -36,7 +36,7 @@ fn bridge_result_to_mcp(
 #[derive(Clone)]
 pub struct NuclearMcpServer {
     pub bridge: McpBridge,
-    tool_router: ToolRouter<NuclearMcpServer>,
+    pub(crate) tool_router: ToolRouter<NuclearMcpServer>,
 }
 
 #[tool_router]
