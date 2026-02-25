@@ -5,6 +5,7 @@ import { favoritesHost } from '../../services/favoritesHost';
 import { httpHost } from '../../services/httpHost';
 import { createLoggerHost } from '../../services/loggerHost';
 import { metadataHost } from '../../services/metadataHost';
+import { playbackHost } from '../../services/playbackHost';
 import { playlistsHost } from '../../services/playlistsHost';
 import { providersHost } from '../../services/providersHost';
 import { queueHost } from '../../services/queueHost';
@@ -25,6 +26,7 @@ export const createPluginAPI = (
     httpHost,
     ytdlpHost,
     favoritesHost,
+    playbackHost,
     playlistsHost,
     dashboardHost,
     loggerHost: createLoggerHost(pluginId),

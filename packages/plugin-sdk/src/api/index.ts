@@ -3,6 +3,7 @@ import type { FavoritesHost } from '../types/favorites';
 import type { HttpHost } from '../types/http';
 import type { LoggerHost } from '../types/logger';
 import type { MetadataHost } from '../types/metadata';
+import type { PlaybackHost } from '../types/playback';
 import type { PlaylistsHost } from '../types/playlists';
 import { ProvidersHost } from '../types/providers';
 import type { QueueHost } from '../types/queue';
@@ -14,6 +15,7 @@ import { FavoritesAPI } from './favorites';
 import { HttpAPI } from './http';
 import { LoggerAPI } from './logger';
 import { MetadataAPI } from './metadata';
+import { PlaybackAPI } from './playback';
 import { PlaylistsAPI } from './playlists';
 import { Providers } from './providers';
 import { QueueAPI } from './queue';
@@ -32,6 +34,7 @@ export class NuclearAPI {
   readonly Favorites: FavoritesAPI;
   readonly Logger: LoggerAPI;
   readonly Dashboard: DashboardAPI;
+  readonly Playback: PlaybackAPI;
   readonly Playlists: PlaylistsAPI;
 
   constructor(opts?: {
@@ -45,6 +48,7 @@ export class NuclearAPI {
     favoritesHost?: FavoritesHost;
     loggerHost?: LoggerHost;
     dashboardHost?: DashboardHost;
+    playbackHost?: PlaybackHost;
     playlistsHost?: PlaylistsHost;
   }) {
     this.Settings = new Settings(opts?.settingsHost);
@@ -57,6 +61,7 @@ export class NuclearAPI {
     this.Favorites = new FavoritesAPI(opts?.favoritesHost);
     this.Logger = new LoggerAPI(opts?.loggerHost);
     this.Dashboard = new DashboardAPI(opts?.dashboardHost);
+    this.Playback = new PlaybackAPI(opts?.playbackHost);
     this.Playlists = new PlaylistsAPI(opts?.playlistsHost);
   }
 }
