@@ -79,6 +79,13 @@ describe('QueuePanel', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('(Snapshot) renders collapsed empty state', () => {
+    const { container } = render(
+      <QueuePanel items={[]} isCollapsed={true} labels={mockLabels} />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   it('(Snapshot) renders collapsed state', () => {
     const { container } = render(
       <QueuePanel

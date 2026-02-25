@@ -60,7 +60,11 @@ export const QueuePanel: FC<QueuePanelProps> = ({
       <div
         data-testid="queue-empty-state"
         className={cn(
-          'flex h-full flex-col items-center justify-center gap-4 p-8 text-center',
+          'flex h-full flex-col items-center justify-center gap-4 p-8 text-center transition-opacity duration-150',
+          {
+            'opacity-0': isCollapsed,
+            'opacity-100': !isCollapsed,
+          },
           classes?.empty,
         )}
       >

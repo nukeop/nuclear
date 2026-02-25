@@ -1,5 +1,52 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`QueuePanel > (Snapshot) renders collapsed empty state 1`] = `
+<div
+  class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center transition-opacity duration-150 opacity-0"
+  data-testid="queue-empty-state"
+>
+  <svg
+    aria-hidden="true"
+    class="lucide lucide-music text-foreground-secondary opacity-50"
+    fill="none"
+    height="64"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="64"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9 18V5l12-2v13"
+    />
+    <circle
+      cx="6"
+      cy="18"
+      r="3"
+    />
+    <circle
+      cx="18"
+      cy="16"
+      r="3"
+    />
+  </svg>
+  <div>
+    <div
+      class="text-foreground text-lg font-bold"
+    >
+      Your queue is empty
+    </div>
+    <div
+      class="text-foreground-secondary mt-2 text-sm"
+    >
+      Add some tracks to get started
+    </div>
+  </div>
+</div>
+`;
+
 exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
 <div
   class="flex h-full flex-col"
@@ -405,7 +452,7 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
 
 exports[`QueuePanel > (Snapshot) renders empty state 1`] = `
 <div
-  class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center"
+  class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center transition-opacity duration-150 opacity-100"
   data-testid="queue-empty-state"
 >
   <svg
@@ -452,7 +499,7 @@ exports[`QueuePanel > (Snapshot) renders empty state 1`] = `
 
 exports[`QueuePanel > (Snapshot) renders empty state with labels 1`] = `
 <div
-  class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center"
+  class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center transition-opacity duration-150 opacity-100"
   data-testid="queue-empty-state"
 >
   <svg

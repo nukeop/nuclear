@@ -995,7 +995,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
           class="flex flex-1 flex-col overflow-hidden"
         >
           <div
-            class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center"
+            class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center transition-opacity duration-150 opacity-100"
             data-testid="queue-empty-state"
           >
             <svg
@@ -2555,7 +2555,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
           class="flex flex-1 flex-col overflow-hidden"
         >
           <div
-            class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center"
+            class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center transition-opacity duration-150 opacity-100"
             data-testid="queue-empty-state"
           >
             <svg
