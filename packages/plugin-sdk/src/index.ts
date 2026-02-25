@@ -3,6 +3,7 @@ export { DashboardAPI } from './api/dashboard';
 export { FavoritesAPI } from './api/favorites';
 export { HttpAPI } from './api/http';
 export { LoggerAPI } from './api/logger';
+export { PlaylistsAPI } from './api/playlists';
 export { YtdlpAPI } from './api/ytdlp';
 export type {
   FetchFunction,
@@ -23,6 +24,7 @@ export * from './types/queue';
 export * from './types/streaming';
 export * from './types/metadata';
 export * from './types/favorites';
+export * from './types/playlists';
 export * from './types/dashboard';
 export type {
   ProvidersHost,
