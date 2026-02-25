@@ -19,7 +19,7 @@ export const ThemesWrapper = {
       await component.findByRole('button', { name: 'Preferences' }),
     );
     await userEvent.click(
-      await component.findByRole('link', {
+      await component.findByRole('button', {
         name: 'Themes',
       }),
     );

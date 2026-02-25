@@ -20,7 +20,7 @@ exports[`Dialog > (Snapshot) renders open dialog 1`] = `
   >
     <div
       aria-hidden="true"
-      class="fixed inset-0 bg-black/40 backdrop-blur-sm"
+      class="fixed inset-0 bg-black/40"
       data-headlessui-state="open"
       data-open=""
     />

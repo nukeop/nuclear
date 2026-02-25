@@ -27,9 +27,7 @@ describe('Plugin Store', () => {
   it('(Snapshot) renders the plugin store with plugins from the registry', async () => {
     setupRegistryMock();
 
-    const component = (await PluginsWrapper.mount()).getByTestId(
-      'player-workspace-main',
-    );
+    const component = (await PluginsWrapper.mount()).getByRole('dialog');
     await PluginsWrapper.goToStoreTab();
 
     await screen.findAllByTestId('plugin-store-item');

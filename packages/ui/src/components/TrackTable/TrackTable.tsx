@@ -125,7 +125,7 @@ export function TrackTable<T extends Track = Track>({
       )}
       <div
         ref={scrollParentRef}
-        className="relative flex max-h-full overflow-auto"
+        className="relative flex max-h-full w-full overflow-y-auto"
         data-test-resize-observer-inline-size="1024"
         data-test-resize-observer-block-size={String(mockViewportHeight)}
       >

@@ -1,406 +1,630 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from the registry 1`] = `
-<main
-  class="bg-background-secondary overflow-auto"
-  data-testid="player-workspace-main"
+<div
+  aria-modal="true"
+  class="relative z-50"
+  data-headlessui-state="open"
+  data-open=""
+  id="headlessui-dialog-:r4:"
+  role="dialog"
+  tabindex="-1"
 >
   <div
-    class="relative h-full w-full overflow-hidden"
+    animate="[object Object]"
+    exit="[object Object]"
+    initial="[object Object]"
+    transition="[object Object]"
   >
     <div
-      animate="center"
-      class="absolute inset-0 h-full w-full"
-      exit="exit"
-      initial="enter"
+      aria-hidden="true"
+      class="fixed inset-0 bg-black/40"
+      data-headlessui-state="open"
+      data-open=""
+    />
+  </div>
+  <div
+    class="fixed inset-0 flex items-center justify-center p-4"
+  >
+    <div
+      animate="[object Object]"
+      exit="[object Object]"
+      initial="[object Object]"
       transition="[object Object]"
     >
       <div
-        class="bg-background relative flex h-full w-full flex-col items-start justify-start px-6 pt-6"
+        class="border-border bg-background shadow-shadow relative rounded-md border-2 flex h-[80vh] max-h-[900px] w-[80vw] max-w-6xl p-0"
+        data-headlessui-state="open"
+        data-open=""
+        id="headlessui-dialog-panel-:ra:"
       >
-        <h1
-          class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
-          data-testid="title"
+        <button
+          aria-label="Close"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center absolute top-3 right-3"
+          data-headlessui-state=""
+          data-testid="dialog-x-close"
+          type="button"
         >
-          Plugins
-        </h1>
-        <div
-          class="flex w-full flex-1 flex-col overflow-y-auto"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+        <nav
+          class="border-border flex w-56 flex-shrink-0 flex-col border-r-2 p-4"
         >
           <div
-            class="max-h-full w-full gap-2 flex flex-1 flex-col overflow-hidden"
+            class="flex flex-col gap-1"
+          >
+            <button
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              data-headlessui-state=""
+              data-testid="settings-tab-general"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-settings2 lucide-settings-2"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14 17H5"
+                />
+                <path
+                  d="M19 7h-9"
+                />
+                <circle
+                  cx="17"
+                  cy="17"
+                  r="3"
+                />
+                <circle
+                  cx="7"
+                  cy="7"
+                  r="3"
+                />
+              </svg>
+              General
+            </button>
+            <button
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
+              data-headlessui-state=""
+              data-testid="settings-tab-plugins"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-blocks"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2"
+                />
+                <rect
+                  height="8"
+                  rx="1"
+                  width="8"
+                  x="14"
+                  y="2"
+                />
+              </svg>
+              Plugins
+            </button>
+            <button
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              data-headlessui-state=""
+              data-testid="settings-tab-themes"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-palette"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"
+                />
+                <circle
+                  cx="13.5"
+                  cy="6.5"
+                  fill="currentColor"
+                  r=".5"
+                />
+                <circle
+                  cx="17.5"
+                  cy="10.5"
+                  fill="currentColor"
+                  r=".5"
+                />
+                <circle
+                  cx="6.5"
+                  cy="12.5"
+                  fill="currentColor"
+                  r=".5"
+                />
+                <circle
+                  cx="8.5"
+                  cy="7.5"
+                  fill="currentColor"
+                  r=".5"
+                />
+              </svg>
+              Themes
+            </button>
+            <button
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              data-headlessui-state=""
+              data-testid="settings-tab-logs"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-scroll-text"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 12h-5"
+                />
+                <path
+                  d="M15 8h-5"
+                />
+                <path
+                  d="M19 17V5a2 2 0 0 0-2-2H4"
+                />
+                <path
+                  d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"
+                />
+              </svg>
+              Logs
+            </button>
+          </div>
+          <div
+            class="mt-auto"
+          />
+        </nav>
+        <div
+          class="flex flex-1 flex-col overflow-hidden"
+        >
+          <div
+            class="flex-1 overflow-y-auto"
           >
             <div
-              aria-orientation="horizontal"
-              class="flex w-full items-center gap-2"
-              id="tabs-:r4:-list"
-              role="tablist"
+              class="bg-background relative flex h-full w-full flex-col items-start justify-start px-6 pt-6"
             >
-              <button
-                aria-controls="headlessui-tabs-panel-:r9:"
-                aria-selected="false"
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
-                data-headlessui-state=""
-                id="headlessui-tabs-tab-:r5:"
-                role="tab"
-                tabindex="-1"
-                type="button"
+              <h1
+                class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
+                data-testid="title"
               >
-                Installed
-              </button>
-              <button
-                aria-controls="headlessui-tabs-panel-:rb:"
-                aria-selected="true"
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2"
-                data-headlessui-state="hover"
-                data-hover=""
-                data-selected=""
-                id="headlessui-tabs-tab-:r7:"
-                role="tab"
-                tabindex="0"
-                type="button"
-              >
-                Store
-              </button>
-            </div>
-            <div
-              class="mt-2 flex flex-col flex-1 overflow-hidden"
-              id="tabs-:r4:-panels"
-            >
-              <span
-                aria-hidden="true"
-                aria-labelledby="headlessui-tabs-tab-:r5:"
-                id="headlessui-tabs-panel-:r9:"
-                role="tabpanel"
-                style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
-                tabindex="-1"
-              />
+                Plugins
+              </h1>
               <div
-                aria-labelledby="headlessui-tabs-tab-:r7:"
-                class="relative outline-none flex flex-1 overflow-hidden"
-                data-headlessui-state="selected"
-                data-selected=""
-                id="headlessui-tabs-panel-:rb:"
-                role="tabpanel"
-                tabindex="0"
+                class="flex w-full flex-1 flex-col overflow-y-auto"
               >
                 <div
-                  class="relative h-full w-full"
+                  class="max-h-full w-full gap-2 flex flex-1 flex-col overflow-hidden"
                 >
                   <div
-                    class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
-                    style="scrollbar-width: none;"
+                    aria-orientation="horizontal"
+                    class="flex w-full items-center gap-2"
+                    id="tabs-:rb:-list"
+                    role="tablist"
                   >
+                    <button
+                      aria-controls="headlessui-tabs-panel-:rg:"
+                      aria-selected="false"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+                      data-headlessui-state=""
+                      id="headlessui-tabs-tab-:rc:"
+                      role="tab"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      Installed
+                    </button>
+                    <button
+                      aria-controls="headlessui-tabs-panel-:ri:"
+                      aria-selected="true"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2"
+                      data-headlessui-state="hover"
+                      data-hover=""
+                      data-selected=""
+                      id="headlessui-tabs-tab-:re:"
+                      role="tab"
+                      tabindex="0"
+                      type="button"
+                    >
+                      Store
+                    </button>
+                  </div>
+                  <div
+                    class="mt-2 flex flex-col flex-1 overflow-hidden"
+                    id="tabs-:rb:-panels"
+                  >
+                    <span
+                      aria-hidden="true"
+                      aria-labelledby="headlessui-tabs-tab-:rc:"
+                      id="headlessui-tabs-panel-:rg:"
+                      role="tabpanel"
+                      style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+                      tabindex="-1"
+                    />
                     <div
-                      class="flex flex-1 flex-col gap-4 overflow-hidden"
+                      aria-labelledby="headlessui-tabs-tab-:re:"
+                      class="relative outline-none flex flex-1 overflow-hidden"
+                      data-headlessui-state="selected"
+                      data-selected=""
+                      id="headlessui-tabs-panel-:ri:"
+                      role="tabpanel"
+                      tabindex="0"
                     >
                       <div
-                        class="flex flex-col gap-3"
-                      >
-                        <div
-                          class="flex w-full flex-col gap-2"
-                        >
-                          <input
-                            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                            data-headlessui-state=""
-                            id="input-:rd:"
-                            placeholder="Search plugins..."
-                            type="text"
-                            value=""
-                          />
-                        </div>
-                        <div
-                          aria-label="Filter options"
-                          class="flex flex-wrap gap-2"
-                          data-testid="filter-chips"
-                          role="radiogroup"
-                        >
-                          <button
-                            aria-checked="true"
-                            class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
-                            role="radio"
-                            type="button"
-                          >
-                            All
-                          </button>
-                          <button
-                            aria-checked="false"
-                            class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                            role="radio"
-                            type="button"
-                          >
-                            Streaming
-                          </button>
-                          <button
-                            aria-checked="false"
-                            class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                            role="radio"
-                            type="button"
-                          >
-                            Metadata
-                          </button>
-                          <button
-                            aria-checked="false"
-                            class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                            role="radio"
-                            type="button"
-                          >
-                            Lyrics
-                          </button>
-                          <button
-                            aria-checked="false"
-                            class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                            role="radio"
-                            type="button"
-                          >
-                            Scrobbling
-                          </button>
-                          <button
-                            aria-checked="false"
-                            class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                            role="radio"
-                            type="button"
-                          >
-                            Other
-                          </button>
-                        </div>
-                      </div>
-                      <div
-                        class="relative h-full w-full flex-1 overflow-hidden"
+                        class="relative h-full w-full"
                       >
                         <div
                           class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
                           style="scrollbar-width: none;"
                         >
                           <div
-                            class="flex flex-col gap-3 px-2 py-2"
+                            class="flex flex-1 flex-col gap-4 overflow-hidden"
                           >
                             <div
-                              class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
-                              data-testid="plugin-store-item"
+                              class="flex flex-col gap-3"
                             >
                               <div
-                                class="flex min-w-0 flex-1 flex-col gap-1"
+                                class="flex w-full flex-col gap-2"
                               >
-                                <div
-                                  class="flex items-center gap-2"
-                                >
-                                  <h3
-                                    class="text-foreground truncate text-base font-bold"
-                                    data-testid="plugin-store-item-name"
-                                  >
-                                    YouTube Music
-                                  </h3>
-                                  <span
-                                    class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
-                                  >
-                                    streaming
-                                  </span>
-                                </div>
-                                <p
-                                  class="text-foreground-secondary line-clamp-2 text-sm"
-                                  data-testid="plugin-store-item-description"
-                                >
-                                  Stream music from YouTube
-                                </p>
-                                <p
-                                  class="text-foreground-secondary text-xs"
-                                  data-testid="plugin-store-item-author"
-                                >
-                                  by
-                                   
-                                  nukeop
-                                </p>
+                                <input
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                  data-headlessui-state=""
+                                  id="input-:rk:"
+                                  placeholder="Search plugins..."
+                                  type="text"
+                                  value=""
+                                />
                               </div>
                               <div
-                                class="shrink-0"
+                                aria-label="Filter options"
+                                class="flex flex-wrap gap-2"
+                                data-testid="filter-chips"
+                                role="radiogroup"
                               >
                                 <button
-                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
-                                  data-headlessui-state=""
+                                  aria-checked="true"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
+                                  role="radio"
                                   type="button"
                                 >
-                                  <svg
-                                    aria-hidden="true"
-                                    class="lucide lucide-download"
-                                    fill="none"
-                                    height="16"
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    viewBox="0 0 24 24"
-                                    width="16"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 15V3"
-                                    />
-                                    <path
-                                      d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                                    />
-                                    <path
-                                      d="m7 10 5 5 5-5"
-                                    />
-                                  </svg>
-                                  <span
-                                    class="ml-2"
-                                  >
-                                    Install
-                                  </span>
+                                  All
+                                </button>
+                                <button
+                                  aria-checked="false"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                  role="radio"
+                                  type="button"
+                                >
+                                  Streaming
+                                </button>
+                                <button
+                                  aria-checked="false"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                  role="radio"
+                                  type="button"
+                                >
+                                  Metadata
+                                </button>
+                                <button
+                                  aria-checked="false"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                  role="radio"
+                                  type="button"
+                                >
+                                  Lyrics
+                                </button>
+                                <button
+                                  aria-checked="false"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                  role="radio"
+                                  type="button"
+                                >
+                                  Scrobbling
+                                </button>
+                                <button
+                                  aria-checked="false"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                  role="radio"
+                                  type="button"
+                                >
+                                  Other
                                 </button>
                               </div>
                             </div>
                             <div
-                              class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
-                              data-testid="plugin-store-item"
+                              class="relative h-full w-full flex-1 overflow-hidden"
                             >
                               <div
-                                class="flex min-w-0 flex-1 flex-col gap-1"
+                                class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                                style="scrollbar-width: none;"
                               >
                                 <div
-                                  class="flex items-center gap-2"
+                                  class="flex flex-col gap-3 px-2 py-2"
                                 >
-                                  <h3
-                                    class="text-foreground truncate text-base font-bold"
-                                    data-testid="plugin-store-item-name"
+                                  <div
+                                    class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    data-testid="plugin-store-item"
                                   >
-                                    Last.fm Scrobbler
-                                  </h3>
-                                  <span
-                                    class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                    <div
+                                      class="flex min-w-0 flex-1 flex-col gap-1"
+                                    >
+                                      <div
+                                        class="flex items-center gap-2"
+                                      >
+                                        <h3
+                                          class="text-foreground truncate text-base font-bold"
+                                          data-testid="plugin-store-item-name"
+                                        >
+                                          YouTube Music
+                                        </h3>
+                                        <span
+                                          class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                        >
+                                          streaming
+                                        </span>
+                                      </div>
+                                      <p
+                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        data-testid="plugin-store-item-description"
+                                      >
+                                        Stream music from YouTube
+                                      </p>
+                                      <p
+                                        class="text-foreground-secondary text-xs"
+                                        data-testid="plugin-store-item-author"
+                                      >
+                                        by
+                                         
+                                        nukeop
+                                      </p>
+                                    </div>
+                                    <div
+                                      class="shrink-0"
+                                    >
+                                      <button
+                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
+                                        data-headlessui-state=""
+                                        type="button"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          class="lucide lucide-download"
+                                          fill="none"
+                                          height="16"
+                                          stroke="currentColor"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          viewBox="0 0 24 24"
+                                          width="16"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M12 15V3"
+                                          />
+                                          <path
+                                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                                          />
+                                          <path
+                                            d="m7 10 5 5 5-5"
+                                          />
+                                        </svg>
+                                        <span
+                                          class="ml-2"
+                                        >
+                                          Install
+                                        </span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    data-testid="plugin-store-item"
                                   >
-                                    scrobbling
-                                  </span>
+                                    <div
+                                      class="flex min-w-0 flex-1 flex-col gap-1"
+                                    >
+                                      <div
+                                        class="flex items-center gap-2"
+                                      >
+                                        <h3
+                                          class="text-foreground truncate text-base font-bold"
+                                          data-testid="plugin-store-item-name"
+                                        >
+                                          Last.fm Scrobbler
+                                        </h3>
+                                        <span
+                                          class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                        >
+                                          scrobbling
+                                        </span>
+                                      </div>
+                                      <p
+                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        data-testid="plugin-store-item-description"
+                                      >
+                                        Scrobble your listening history to Last.fm
+                                      </p>
+                                      <p
+                                        class="text-foreground-secondary text-xs"
+                                        data-testid="plugin-store-item-author"
+                                      >
+                                        by
+                                         
+                                        nukeop
+                                      </p>
+                                    </div>
+                                    <div
+                                      class="shrink-0"
+                                    >
+                                      <button
+                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
+                                        data-headlessui-state=""
+                                        type="button"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          class="lucide lucide-download"
+                                          fill="none"
+                                          height="16"
+                                          stroke="currentColor"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          viewBox="0 0 24 24"
+                                          width="16"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M12 15V3"
+                                          />
+                                          <path
+                                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                                          />
+                                          <path
+                                            d="m7 10 5 5 5-5"
+                                          />
+                                        </svg>
+                                        <span
+                                          class="ml-2"
+                                        >
+                                          Install
+                                        </span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    data-testid="plugin-store-item"
+                                  >
+                                    <div
+                                      class="flex min-w-0 flex-1 flex-col gap-1"
+                                    >
+                                      <div
+                                        class="flex items-center gap-2"
+                                      >
+                                        <h3
+                                          class="text-foreground truncate text-base font-bold"
+                                          data-testid="plugin-store-item-name"
+                                        >
+                                          MusicBrainz Metadata
+                                        </h3>
+                                        <span
+                                          class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                        >
+                                          metadata
+                                        </span>
+                                      </div>
+                                      <p
+                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        data-testid="plugin-store-item-description"
+                                      >
+                                        Fetch metadata from MusicBrainz database
+                                      </p>
+                                      <p
+                                        class="text-foreground-secondary text-xs"
+                                        data-testid="plugin-store-item-author"
+                                      >
+                                        by
+                                         
+                                        nukeop
+                                      </p>
+                                    </div>
+                                    <div
+                                      class="shrink-0"
+                                    >
+                                      <button
+                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
+                                        data-headlessui-state=""
+                                        type="button"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          class="lucide lucide-download"
+                                          fill="none"
+                                          height="16"
+                                          stroke="currentColor"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          viewBox="0 0 24 24"
+                                          width="16"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M12 15V3"
+                                          />
+                                          <path
+                                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                                          />
+                                          <path
+                                            d="m7 10 5 5 5-5"
+                                          />
+                                        </svg>
+                                        <span
+                                          class="ml-2"
+                                        >
+                                          Install
+                                        </span>
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
-                                <p
-                                  class="text-foreground-secondary line-clamp-2 text-sm"
-                                  data-testid="plugin-store-item-description"
-                                >
-                                  Scrobble your listening history to Last.fm
-                                </p>
-                                <p
-                                  class="text-foreground-secondary text-xs"
-                                  data-testid="plugin-store-item-author"
-                                >
-                                  by
-                                   
-                                  nukeop
-                                </p>
-                              </div>
-                              <div
-                                class="shrink-0"
-                              >
-                                <button
-                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
-                                  data-headlessui-state=""
-                                  type="button"
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    class="lucide lucide-download"
-                                    fill="none"
-                                    height="16"
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    viewBox="0 0 24 24"
-                                    width="16"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 15V3"
-                                    />
-                                    <path
-                                      d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                                    />
-                                    <path
-                                      d="m7 10 5 5 5-5"
-                                    />
-                                  </svg>
-                                  <span
-                                    class="ml-2"
-                                  >
-                                    Install
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                            <div
-                              class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
-                              data-testid="plugin-store-item"
-                            >
-                              <div
-                                class="flex min-w-0 flex-1 flex-col gap-1"
-                              >
-                                <div
-                                  class="flex items-center gap-2"
-                                >
-                                  <h3
-                                    class="text-foreground truncate text-base font-bold"
-                                    data-testid="plugin-store-item-name"
-                                  >
-                                    MusicBrainz Metadata
-                                  </h3>
-                                  <span
-                                    class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
-                                  >
-                                    metadata
-                                  </span>
-                                </div>
-                                <p
-                                  class="text-foreground-secondary line-clamp-2 text-sm"
-                                  data-testid="plugin-store-item-description"
-                                >
-                                  Fetch metadata from MusicBrainz database
-                                </p>
-                                <p
-                                  class="text-foreground-secondary text-xs"
-                                  data-testid="plugin-store-item-author"
-                                >
-                                  by
-                                   
-                                  nukeop
-                                </p>
-                              </div>
-                              <div
-                                class="shrink-0"
-                              >
-                                <button
-                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
-                                  data-headlessui-state=""
-                                  type="button"
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    class="lucide lucide-download"
-                                    fill="none"
-                                    height="16"
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    viewBox="0 0 24 24"
-                                    width="16"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 15V3"
-                                    />
-                                    <path
-                                      d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                                    />
-                                    <path
-                                      d="m7 10 5 5 5-5"
-                                    />
-                                  </svg>
-                                  <span
-                                    class="ml-2"
-                                  >
-                                    Install
-                                  </span>
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -416,5 +640,5 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
       </div>
     </div>
   </div>
-</main>
+</div>
 `;

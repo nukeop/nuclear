@@ -1,21 +1,21 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactNode } from 'react';
 
-import { SidebarNavigationCollapsible } from './SidebarNavigationCollapsible';
-import { SidebarNavigationItem } from './SidebarNavigationItem';
+import { SidebarCompactProvider } from './SidebarCompactContext';
 
 type SidebarNavigationProps = {
-  children:
-    | ReactElement<typeof SidebarNavigationItem>
-    | ReactElement<typeof SidebarNavigationCollapsible>
-    | Array<ReactElement<typeof SidebarNavigationItem>>
-    | Array<ReactElement<typeof SidebarNavigationCollapsible>>;
-  isCollapsed?: boolean;
+  children: ReactNode;
+  isCompact?: boolean;
 };
 
-export const SidebarNavigation: FC<SidebarNavigationProps> = ({ children }) => {
+export const SidebarNavigation: FC<SidebarNavigationProps> = ({
+  children,
+  isCompact = false,
+}) => {
   return (
-    <div className="flex flex-1 flex-col items-start justify-start">
-      {children}
-    </div>
+    <SidebarCompactProvider isCompact={isCompact}>
+      <div data-testid="sidebar-navigation" className="flex flex-1 flex-col">
+        {children}
+      </div>
+    </SidebarCompactProvider>
   );
 };

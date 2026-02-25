@@ -11,7 +11,6 @@ import {
   List,
   Mic2,
   MoreHorizontal,
-  Music,
   Play,
   Radio,
   Repeat,
@@ -21,7 +20,6 @@ import {
   SkipBack,
   SkipForward,
   Star,
-  TrendingUp,
   Volume2,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -31,7 +29,6 @@ import {
   Button,
   PlayerWorkspace,
   SidebarNavigation,
-  SidebarNavigationCollapsible,
   SidebarNavigationItem,
   TopBar,
 } from '@nuclearplayer/ui';
@@ -198,19 +195,17 @@ export const BasicLayout = () => {
           onWidthChange={setLeftWidth}
           onToggle={() => setLeftCollapsed(!leftCollapsed)}
         >
-          <SidebarNavigation>
-            <SidebarNavigationItem isSelected>
-              <Home size={16} />
-              <span>Home</span>
-            </SidebarNavigationItem>
-            <SidebarNavigationItem>
-              <Search size={16} />
-              <span>Search</span>
-            </SidebarNavigationItem>
-            <SidebarNavigationItem>
-              <Library size={16} />
-              <span>Your Library</span>
-            </SidebarNavigationItem>
+          <SidebarNavigation isCompact={leftCollapsed}>
+            <SidebarNavigationItem
+              icon={<Home size={16} />}
+              label="Home"
+              isSelected
+            />
+            <SidebarNavigationItem icon={<Search size={16} />} label="Search" />
+            <SidebarNavigationItem
+              icon={<Library size={16} />}
+              label="Your Library"
+            />
           </SidebarNavigation>
         </PlayerWorkspace.LeftSidebar>
 
@@ -313,64 +308,41 @@ export const FullNavigationLayout = () => {
           onWidthChange={setLeftWidth}
           onToggle={() => setLeftCollapsed(!leftCollapsed)}
         >
-          <SidebarNavigation>
-            <SidebarNavigationItem isSelected>
-              <Home size={16} />
-              <span>Home</span>
-            </SidebarNavigationItem>
-            <SidebarNavigationItem>
-              <Search size={16} />
-              <span>Search</span>
-            </SidebarNavigationItem>
-            <SidebarNavigationItem>
-              <Library size={16} />
-              <span>Your Library</span>
-            </SidebarNavigationItem>
-
-            <SidebarNavigationCollapsible
-              title="Your Music"
-              icon={<Music size={16} />}
-            >
-              <SidebarNavigationItem>
-                <Heart size={16} />
-                <span>Liked Songs</span>
-              </SidebarNavigationItem>
-              <SidebarNavigationItem isSelected>
-                <Clock size={16} />
-                <span>Recently Played</span>
-              </SidebarNavigationItem>
-              <SidebarNavigationItem>
-                <Download size={16} />
-                <span>Downloaded</span>
-              </SidebarNavigationItem>
-              <SidebarNavigationItem>
-                <Star size={16} />
-                <span>Favorites</span>
-              </SidebarNavigationItem>
-            </SidebarNavigationCollapsible>
-
-            <SidebarNavigationCollapsible
-              title="Browse"
-              icon={<TrendingUp size={16} />}
-            >
-              <SidebarNavigationItem>
-                <Disc3 size={16} />
-                <span>Albums</span>
-              </SidebarNavigationItem>
-              <SidebarNavigationItem>
-                <Mic2 size={16} />
-                <span>Artists</span>
-              </SidebarNavigationItem>
-              <SidebarNavigationItem>
-                <Radio size={16} />
-                <span>Radio</span>
-              </SidebarNavigationItem>
-            </SidebarNavigationCollapsible>
-
-            <SidebarNavigationItem>
-              <Settings size={16} />
-              <span>Settings</span>
-            </SidebarNavigationItem>
+          <SidebarNavigation isCompact={leftCollapsed}>
+            <SidebarNavigationItem
+              icon={<Home size={16} />}
+              label="Home"
+              isSelected
+            />
+            <SidebarNavigationItem icon={<Search size={16} />} label="Search" />
+            <SidebarNavigationItem
+              icon={<Library size={16} />}
+              label="Your Library"
+            />
+            <SidebarNavigationItem
+              icon={<Heart size={16} />}
+              label="Liked Songs"
+            />
+            <SidebarNavigationItem
+              icon={<Clock size={16} />}
+              label="Recently Played"
+              isSelected
+            />
+            <SidebarNavigationItem
+              icon={<Download size={16} />}
+              label="Downloaded"
+            />
+            <SidebarNavigationItem
+              icon={<Star size={16} />}
+              label="Favorites"
+            />
+            <SidebarNavigationItem icon={<Disc3 size={16} />} label="Albums" />
+            <SidebarNavigationItem icon={<Mic2 size={16} />} label="Artists" />
+            <SidebarNavigationItem icon={<Radio size={16} />} label="Radio" />
+            <SidebarNavigationItem
+              icon={<Settings size={16} />}
+              label="Settings"
+            />
           </SidebarNavigation>
         </PlayerWorkspace.LeftSidebar>
 

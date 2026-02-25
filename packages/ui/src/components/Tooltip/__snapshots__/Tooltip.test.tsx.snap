@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tooltip > (Snapshot) renders children without tooltip visible 1`] = `
+<DocumentFragment>
+  <div>
+    <button>
+      Hover me
+    </button>
+  </div>
+</DocumentFragment>
+`;

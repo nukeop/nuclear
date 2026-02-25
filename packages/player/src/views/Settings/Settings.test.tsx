@@ -12,7 +12,7 @@ describe('Settings view', async () => {
     registerBuiltInCoreSettings();
   });
   it('(Snapshot) renders the settings view', async () => {
-    const { asFragment } = await SettingsWrapper.mount();
-    expect(asFragment()).toMatchSnapshot();
+    const { getByRole } = await SettingsWrapper.mount();
+    expect(getByRole('dialog')).toMatchSnapshot();
   });
 });

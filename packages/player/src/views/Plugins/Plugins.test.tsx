@@ -23,9 +23,7 @@ describe('Plugins view', () => {
   });
 
   it('(Snapshot) renders the plugins view', async () => {
-    const component = (await PluginsWrapper.mount()).getByTestId(
-      'player-workspace-main',
-    );
+    const component = (await PluginsWrapper.mount()).getByRole('dialog');
     expect(component).toMatchSnapshot();
   });
 
