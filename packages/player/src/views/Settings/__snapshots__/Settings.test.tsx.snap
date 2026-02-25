@@ -247,289 +247,294 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                 General
               </h1>
               <div
-                class="flex w-full flex-1 flex-col overflow-y-auto"
+                class="relative h-full flex w-full flex-1 flex-col"
               >
                 <div
-                  class="flex w-full flex-col items-center justify-center overflow-hidden"
+                  class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                  style="scrollbar-width: none;"
                 >
                   <div
-                    class="relative h-full w-full max-w-100 flex-1 overflow-hidden"
+                    class="flex w-full flex-col items-center justify-center overflow-hidden"
                   >
                     <div
-                      class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
-                      style="scrollbar-width: none;"
+                      class="relative h-full w-full max-w-100 flex-1 overflow-hidden"
                     >
                       <div
-                        class="px-2"
+                        class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                        style="scrollbar-width: none;"
                       >
-                        <section
-                          class="mb-6 flex w-full flex-col items-start justify-start"
+                        <div
+                          class="px-2"
                         >
-                          <h2
-                            class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                          <section
+                            class="mb-6 flex w-full flex-col items-start justify-start"
                           >
-                            General
-                          </h2>
-                          <div
-                            class="flex w-full flex-1 flex-col"
-                          >
+                            <h2
+                              class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                            >
+                              General
+                            </h2>
                             <div
-                              class="flex flex-col gap-6"
+                              class="flex w-full flex-1 flex-col"
                             >
                               <div
-                                class="relative flex w-full flex-col gap-2"
-                              >
-                                <label
-                                  class="text-foreground text-sm font-semibold"
-                                  for="select-:rb:"
-                                  id="select-:rb:-label"
-                                >
-                                  Language
-                                </label>
-                                <button
-                                  aria-expanded="false"
-                                  aria-haspopup="listbox"
-                                  class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-2 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
-                                  data-headlessui-state=""
-                                  id="select-:rb:"
-                                  type="button"
-                                >
-                                  <span
-                                    class="block truncate"
-                                  >
-                                    English
-                                  </span>
-                                  <span
-                                    class="flex items-center"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      class="lucide lucide-chevron-down text-foreground transition-transform"
-                                      fill="none"
-                                      height="16"
-                                      stroke="currentColor"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
-                                      viewBox="0 0 24 24"
-                                      width="16"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="m6 9 6 6 6-6"
-                                      />
-                                    </svg>
-                                  </span>
-                                </button>
-                                <p
-                                  class="text-foreground-secondary text-sm select-none"
-                                  id="select-:rb:-description"
-                                >
-                                  Select your preferred language
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-                        <section
-                          class="mb-6 flex w-full flex-col items-start justify-start"
-                        >
-                          <h2
-                            class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
-                          >
-                            Playback
-                          </h2>
-                          <div
-                            class="flex w-full flex-1 flex-col"
-                          >
-                            <div
-                              class="flex flex-col gap-6"
-                            >
-                              <div
-                                class="flex w-full flex-col gap-2"
-                              >
-                                <label
-                                  class="text-foreground text-sm font-semibold"
-                                  for="input-:rf:"
-                                  id="input-:rf:-label"
-                                >
-                                  Skip duration
-                                </label>
-                                <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                  data-headlessui-state=""
-                                  id="input-:rf:"
-                                  inputmode="numeric"
-                                  type="number"
-                                  value="10"
-                                />
-                                <p
-                                  class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rf:-description"
-                                >
-                                  Number of seconds to skip forward/backward
-                                </p>
-                              </div>
-                              <div
-                                class="flex w-full flex-col gap-2"
-                              >
-                                <label
-                                  class="text-foreground text-sm font-semibold"
-                                  for="input-:rh:"
-                                  id="input-:rh:-label"
-                                >
-                                  Crossfade
-                                </label>
-                                <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                  data-headlessui-state=""
-                                  id="input-:rh:"
-                                  inputmode="numeric"
-                                  type="number"
-                                  value="0"
-                                />
-                                <p
-                                  class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rh:-description"
-                                >
-                                  Crossfade duration between tracks in milliseconds
-                                </p>
-                              </div>
-                              <div
-                                class="flex w-full flex-col gap-2"
-                              >
-                                <label
-                                  class="text-foreground text-sm font-semibold"
-                                  for="input-:rj:"
-                                  id="input-:rj:-label"
-                                >
-                                  Stream expiry time
-                                </label>
-                                <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                  data-headlessui-state=""
-                                  id="input-:rj:"
-                                  inputmode="numeric"
-                                  type="number"
-                                  value="3600000"
-                                />
-                                <p
-                                  class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rj:-description"
-                                >
-                                  How long before a resolved stream URL is considered expired and needs re-resolution
-                                </p>
-                              </div>
-                              <div
-                                class="flex w-full flex-col gap-2"
-                              >
-                                <label
-                                  class="text-foreground text-sm font-semibold"
-                                  for="input-:rl:"
-                                  id="input-:rl:-label"
-                                >
-                                  Stream resolution retries
-                                </label>
-                                <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                  data-headlessui-state=""
-                                  id="input-:rl:"
-                                  inputmode="numeric"
-                                  type="number"
-                                  value="3"
-                                />
-                                <p
-                                  class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rl:-description"
-                                >
-                                  Number of times to retry resolving a stream URL before moving to the next candidate
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-                        <section
-                          class="mb-6 flex w-full flex-col items-start justify-start"
-                        >
-                          <h2
-                            class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
-                          >
-                            Updates
-                          </h2>
-                          <div
-                            class="flex w-full flex-1 flex-col"
-                          >
-                            <div
-                              class="flex flex-col gap-6"
-                            >
-                              <div
-                                class="flex flex-col gap-2"
+                                class="flex flex-col gap-6"
                               >
                                 <div
-                                  class="flex items-center gap-3"
+                                  class="relative flex w-full flex-col gap-2"
                                 >
-                                  <button
-                                    aria-checked="true"
-                                    aria-label="Check for updates"
-                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
-                                    data-checked=""
-                                    data-headlessui-state="checked"
-                                    id="headlessui-switch-:rn:"
-                                    role="switch"
-                                    tabindex="0"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
-                                    />
-                                  </button>
-                                  <span
+                                  <label
                                     class="text-foreground text-sm font-semibold"
+                                    for="select-:rb:"
+                                    id="select-:rb:-label"
                                   >
-                                    Check for updates
-                                  </span>
-                                </div>
-                                <p
-                                  class="text-foreground-secondary text-sm select-none"
-                                >
-                                  Automatically check for new versions on startup
-                                </p>
-                              </div>
-                              <div
-                                class="flex flex-col gap-2"
-                              >
-                                <div
-                                  class="flex items-center gap-3"
-                                >
+                                    Language
+                                  </label>
                                   <button
-                                    aria-checked="false"
-                                    aria-label="Auto-install updates"
-                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                    aria-expanded="false"
+                                    aria-haspopup="listbox"
+                                    class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-2 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
                                     data-headlessui-state=""
-                                    id="headlessui-switch-:ro:"
-                                    role="switch"
-                                    tabindex="0"
+                                    id="select-:rb:"
                                     type="button"
                                   >
                                     <span
-                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
-                                    />
+                                      class="block truncate"
+                                    >
+                                      English
+                                    </span>
+                                    <span
+                                      class="flex items-center"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        class="lucide lucide-chevron-down text-foreground transition-transform"
+                                        fill="none"
+                                        height="16"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        viewBox="0 0 24 24"
+                                        width="16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          d="m6 9 6 6 6-6"
+                                        />
+                                      </svg>
+                                    </span>
                                   </button>
-                                  <span
-                                    class="text-foreground text-sm font-semibold"
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                    id="select-:rb:-description"
                                   >
-                                    Auto-install updates
-                                  </span>
+                                    Select your preferred language
+                                  </p>
                                 </div>
-                                <p
-                                  class="text-foreground-secondary text-sm select-none"
-                                >
-                                  Download and install updates automatically when available
-                                </p>
                               </div>
                             </div>
-                          </div>
-                        </section>
+                          </section>
+                          <section
+                            class="mb-6 flex w-full flex-col items-start justify-start"
+                          >
+                            <h2
+                              class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                            >
+                              Playback
+                            </h2>
+                            <div
+                              class="flex w-full flex-1 flex-col"
+                            >
+                              <div
+                                class="flex flex-col gap-6"
+                              >
+                                <div
+                                  class="flex w-full flex-col gap-2"
+                                >
+                                  <label
+                                    class="text-foreground text-sm font-semibold"
+                                    for="input-:rf:"
+                                    id="input-:rf:-label"
+                                  >
+                                    Skip duration
+                                  </label>
+                                  <input
+                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                    data-headlessui-state=""
+                                    id="input-:rf:"
+                                    inputmode="numeric"
+                                    type="number"
+                                    value="10"
+                                  />
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                    id="input-:rf:-description"
+                                  >
+                                    Number of seconds to skip forward/backward
+                                  </p>
+                                </div>
+                                <div
+                                  class="flex w-full flex-col gap-2"
+                                >
+                                  <label
+                                    class="text-foreground text-sm font-semibold"
+                                    for="input-:rh:"
+                                    id="input-:rh:-label"
+                                  >
+                                    Crossfade
+                                  </label>
+                                  <input
+                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                    data-headlessui-state=""
+                                    id="input-:rh:"
+                                    inputmode="numeric"
+                                    type="number"
+                                    value="0"
+                                  />
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                    id="input-:rh:-description"
+                                  >
+                                    Crossfade duration between tracks in milliseconds
+                                  </p>
+                                </div>
+                                <div
+                                  class="flex w-full flex-col gap-2"
+                                >
+                                  <label
+                                    class="text-foreground text-sm font-semibold"
+                                    for="input-:rj:"
+                                    id="input-:rj:-label"
+                                  >
+                                    Stream expiry time
+                                  </label>
+                                  <input
+                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                    data-headlessui-state=""
+                                    id="input-:rj:"
+                                    inputmode="numeric"
+                                    type="number"
+                                    value="3600000"
+                                  />
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                    id="input-:rj:-description"
+                                  >
+                                    How long before a resolved stream URL is considered expired and needs re-resolution
+                                  </p>
+                                </div>
+                                <div
+                                  class="flex w-full flex-col gap-2"
+                                >
+                                  <label
+                                    class="text-foreground text-sm font-semibold"
+                                    for="input-:rl:"
+                                    id="input-:rl:-label"
+                                  >
+                                    Stream resolution retries
+                                  </label>
+                                  <input
+                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                    data-headlessui-state=""
+                                    id="input-:rl:"
+                                    inputmode="numeric"
+                                    type="number"
+                                    value="3"
+                                  />
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                    id="input-:rl:-description"
+                                  >
+                                    Number of times to retry resolving a stream URL before moving to the next candidate
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                          <section
+                            class="mb-6 flex w-full flex-col items-start justify-start"
+                          >
+                            <h2
+                              class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                            >
+                              Updates
+                            </h2>
+                            <div
+                              class="flex w-full flex-1 flex-col"
+                            >
+                              <div
+                                class="flex flex-col gap-6"
+                              >
+                                <div
+                                  class="flex flex-col gap-2"
+                                >
+                                  <div
+                                    class="flex items-center gap-3"
+                                  >
+                                    <button
+                                      aria-checked="true"
+                                      aria-label="Check for updates"
+                                      class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                      data-checked=""
+                                      data-headlessui-state="checked"
+                                      id="headlessui-switch-:rn:"
+                                      role="switch"
+                                      tabindex="0"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                      />
+                                    </button>
+                                    <span
+                                      class="text-foreground text-sm font-semibold"
+                                    >
+                                      Check for updates
+                                    </span>
+                                  </div>
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                  >
+                                    Automatically check for new versions on startup
+                                  </p>
+                                </div>
+                                <div
+                                  class="flex flex-col gap-2"
+                                >
+                                  <div
+                                    class="flex items-center gap-3"
+                                  >
+                                    <button
+                                      aria-checked="false"
+                                      aria-label="Auto-install updates"
+                                      class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                      data-headlessui-state=""
+                                      id="headlessui-switch-:ro:"
+                                      role="switch"
+                                      tabindex="0"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                      />
+                                    </button>
+                                    <span
+                                      class="text-foreground text-sm font-semibold"
+                                    >
+                                      Auto-install updates
+                                    </span>
+                                  </div>
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                  >
+                                    Download and install updates automatically when available
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </div>
                       </div>
                     </div>
                   </div>

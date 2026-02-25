@@ -1,12 +1,12 @@
 import { useNavigate } from '@tanstack/react-router';
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { pickArtwork } from '@nuclearplayer/model';
 import { MetadataProvider } from '@nuclearplayer/plugin-sdk';
 import { Card, CardGrid, Loader } from '@nuclearplayer/ui';
 
-import { providersHost } from '../../../services/providersHost';
+import { useProviders } from '../../../hooks/useProviders';
 import { useArtistAlbums } from '../hooks/useArtistAlbums';
 
 type ArtistAlbumsGridProps = {
@@ -28,10 +28,8 @@ export const ArtistAlbumsGrid: FC<ArtistAlbumsGridProps> = ({
     isError,
   } = useArtistAlbums(providerId, artistId);
 
-  const provider = useMemo(() => {
-    const providers = providersHost.list('metadata') as MetadataProvider[];
-    return providers[0];
-  }, []);
+  const providers = useProviders('metadata') as MetadataProvider[];
+  const provider = providers[0];
 
   if (isLoading) {
     return (

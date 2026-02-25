@@ -1,5 +1,7 @@
 import { FC, ReactNode } from 'react';
 
+import { ScrollableArea } from '../ScrollableArea';
+
 type ViewShellProps = {
   children: ReactNode;
   title: string;
@@ -28,8 +30,8 @@ export const ViewShell: FC<ViewShellProps> = ({
         {subtitle}
       </h2>
     )}
-    <div className="flex w-full flex-1 flex-col overflow-y-auto">
+    <ScrollableArea className="flex w-full flex-1 flex-col">
       {children}
-    </div>
+    </ScrollableArea>
   </div>
 );

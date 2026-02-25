@@ -1,11 +1,18 @@
 import { QueryClient } from '@tanstack/react-query';
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
-import { render, RenderResult, screen, within } from '@testing-library/react';
+import {
+  act,
+  render,
+  RenderResult,
+  screen,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
 import { providersHost } from '../../services/providersHost';
+import { useStartupStore } from '../../stores/startupStore';
 import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
 import {
   EDITORIAL_PLAYLISTS_DASHBOARD,
@@ -33,10 +40,26 @@ export const DashboardWrapper = {
   reset() {
     providersHost.clear();
     resetInMemoryTauriStore();
+    useStartupStore.setState({
+      isStartingUp: false,
+      startupFinishedAt: undefined,
+      totalStartupTimeMs: undefined,
+      pluginDurations: {},
+    });
   },
 
   seedProvider(builder: DashboardProviderBuilder) {
     providersHost.register(builder.build());
+  },
+
+  simulateStartupWithProvider(builder: DashboardProviderBuilder) {
+    act(() => {
+      useStartupStore.getState().startStartup();
+    });
+    act(() => {
+      providersHost.register(builder.build());
+      useStartupStore.getState().finishStartup(100);
+    });
   },
 
   async mount(): Promise<MountResult> {
@@ -50,6 +73,10 @@ export const DashboardWrapper = {
     );
     await screen.findByTestId('dashboard-view');
     return { ...component, router };
+  },
+
+  get loader() {
+    return screen.queryByTestId('dashboard-loader');
   },
 
   get emptyState() {

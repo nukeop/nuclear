@@ -1,3 +1,6 @@
+import { act } from '@testing-library/react';
+
+import { useStartupStore } from '../../stores/startupStore';
 import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
 import { TOP_TRACKS_RADIOHEAD } from '../../test/fixtures/dashboard';
 import { DashboardWrapper } from './Dashboard.test-wrapper';
@@ -108,6 +111,34 @@ describe('Dashboard view', () => {
 
     expect(router.state.location.pathname).toBe('/search');
     expect(router.state.location.search).toEqual({ q: 'Radiohead' });
+  });
+
+  it('shows a loader during startup instead of the empty state', async () => {
+    act(() => {
+      useStartupStore.getState().startStartup();
+    });
+
+    await DashboardWrapper.mount();
+
+    expect(DashboardWrapper.loader).toBeInTheDocument();
+    expect(DashboardWrapper.emptyState).not.toBeInTheDocument();
+  });
+
+  it('shows widgets when a provider registers after initial mount', async () => {
+    await DashboardWrapper.mount();
+    expect(DashboardWrapper.emptyState).toBeInTheDocument();
+
+    DashboardWrapper.simulateStartupWithProvider(
+      DashboardWrapper.fixtures.topTracksProvider(),
+    );
+
+    expect(DashboardWrapper.emptyState).not.toBeInTheDocument();
+    expect(DashboardWrapper.topTracks.heading).toBeInTheDocument();
+    expect(
+      await DashboardWrapper.topTracks.findTrack(
+        'Everything In Its Right Place',
+      ),
+    ).toBeInTheDocument();
   });
 
   it('shows tracks from multiple providers', async () => {

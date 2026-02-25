@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useSearch } from '@tanstack/react-router';
-import { useMemo, type FC } from 'react';
+import type { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { pickArtwork } from '@nuclearplayer/model';
@@ -18,8 +18,8 @@ import {
   ViewShell,
 } from '@nuclearplayer/ui';
 
+import { useProviders } from '../../hooks/useProviders';
 import { metadataHost } from '../../services/metadataHost';
-import { providersHost } from '../../services/providersHost';
 
 export const Search: FC = () => {
   const { t } = useTranslation(['search', 'common']);
@@ -27,10 +27,8 @@ export const Search: FC = () => {
   const navigate = useNavigate();
 
   // @todo: this selects the first metadata provider, when we support switching it should use the selected one
-  const provider = useMemo(() => {
-    const providers = providersHost.list('metadata') as MetadataProvider[];
-    return providers[0];
-  }, []);
+  const providers = useProviders('metadata') as MetadataProvider[];
+  const provider = providers[0];
 
   const {
     data: results,

@@ -246,382 +246,387 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 Plugins
               </h1>
               <div
-                class="flex w-full flex-1 flex-col overflow-y-auto"
+                class="relative h-full flex w-full flex-1 flex-col"
               >
                 <div
-                  class="max-h-full w-full gap-2 flex flex-1 flex-col overflow-hidden"
+                  class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                  style="scrollbar-width: none;"
                 >
                   <div
-                    aria-orientation="horizontal"
-                    class="flex w-full items-center gap-2"
-                    id="tabs-:rb:-list"
-                    role="tablist"
+                    class="max-h-full w-full gap-2 flex flex-1 flex-col overflow-hidden"
                   >
-                    <button
-                      aria-controls="headlessui-tabs-panel-:rg:"
-                      aria-selected="false"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
-                      data-headlessui-state=""
-                      id="headlessui-tabs-tab-:rc:"
-                      role="tab"
-                      tabindex="-1"
-                      type="button"
-                    >
-                      Installed
-                    </button>
-                    <button
-                      aria-controls="headlessui-tabs-panel-:ri:"
-                      aria-selected="true"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2"
-                      data-headlessui-state="hover"
-                      data-hover=""
-                      data-selected=""
-                      id="headlessui-tabs-tab-:re:"
-                      role="tab"
-                      tabindex="0"
-                      type="button"
-                    >
-                      Store
-                    </button>
-                  </div>
-                  <div
-                    class="mt-2 flex flex-col flex-1 overflow-hidden"
-                    id="tabs-:rb:-panels"
-                  >
-                    <span
-                      aria-hidden="true"
-                      aria-labelledby="headlessui-tabs-tab-:rc:"
-                      id="headlessui-tabs-panel-:rg:"
-                      role="tabpanel"
-                      style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
-                      tabindex="-1"
-                    />
                     <div
-                      aria-labelledby="headlessui-tabs-tab-:re:"
-                      class="relative outline-none flex flex-1 overflow-hidden"
-                      data-headlessui-state="selected"
-                      data-selected=""
-                      id="headlessui-tabs-panel-:ri:"
-                      role="tabpanel"
-                      tabindex="0"
+                      aria-orientation="horizontal"
+                      class="flex w-full items-center gap-2"
+                      id="tabs-:rb:-list"
+                      role="tablist"
                     >
+                      <button
+                        aria-controls="headlessui-tabs-panel-:rg:"
+                        aria-selected="false"
+                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+                        data-headlessui-state=""
+                        id="headlessui-tabs-tab-:rc:"
+                        role="tab"
+                        tabindex="-1"
+                        type="button"
+                      >
+                        Installed
+                      </button>
+                      <button
+                        aria-controls="headlessui-tabs-panel-:ri:"
+                        aria-selected="true"
+                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2"
+                        data-headlessui-state="hover"
+                        data-hover=""
+                        data-selected=""
+                        id="headlessui-tabs-tab-:re:"
+                        role="tab"
+                        tabindex="0"
+                        type="button"
+                      >
+                        Store
+                      </button>
+                    </div>
+                    <div
+                      class="mt-2 flex flex-col flex-1 overflow-hidden"
+                      id="tabs-:rb:-panels"
+                    >
+                      <span
+                        aria-hidden="true"
+                        aria-labelledby="headlessui-tabs-tab-:rc:"
+                        id="headlessui-tabs-panel-:rg:"
+                        role="tabpanel"
+                        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+                        tabindex="-1"
+                      />
                       <div
-                        class="relative h-full w-full"
+                        aria-labelledby="headlessui-tabs-tab-:re:"
+                        class="relative outline-none flex flex-1 overflow-hidden"
+                        data-headlessui-state="selected"
+                        data-selected=""
+                        id="headlessui-tabs-panel-:ri:"
+                        role="tabpanel"
+                        tabindex="0"
                       >
                         <div
-                          class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
-                          style="scrollbar-width: none;"
+                          class="relative h-full w-full"
                         >
                           <div
-                            class="flex flex-1 flex-col gap-4 overflow-hidden"
+                            class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                            style="scrollbar-width: none;"
                           >
                             <div
-                              class="flex flex-col gap-3"
+                              class="flex flex-1 flex-col gap-4 overflow-hidden"
                             >
                               <div
-                                class="flex w-full flex-col gap-2"
-                              >
-                                <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                  data-headlessui-state=""
-                                  id="input-:rk:"
-                                  placeholder="Search plugins..."
-                                  type="text"
-                                  value=""
-                                />
-                              </div>
-                              <div
-                                aria-label="Filter options"
-                                class="flex flex-wrap gap-2"
-                                data-testid="filter-chips"
-                                role="radiogroup"
-                              >
-                                <button
-                                  aria-checked="true"
-                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
-                                  role="radio"
-                                  type="button"
-                                >
-                                  All
-                                </button>
-                                <button
-                                  aria-checked="false"
-                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                                  role="radio"
-                                  type="button"
-                                >
-                                  Streaming
-                                </button>
-                                <button
-                                  aria-checked="false"
-                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                                  role="radio"
-                                  type="button"
-                                >
-                                  Metadata
-                                </button>
-                                <button
-                                  aria-checked="false"
-                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                                  role="radio"
-                                  type="button"
-                                >
-                                  Lyrics
-                                </button>
-                                <button
-                                  aria-checked="false"
-                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                                  role="radio"
-                                  type="button"
-                                >
-                                  Scrobbling
-                                </button>
-                                <button
-                                  aria-checked="false"
-                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
-                                  role="radio"
-                                  type="button"
-                                >
-                                  Other
-                                </button>
-                              </div>
-                            </div>
-                            <div
-                              class="relative h-full w-full flex-1 overflow-hidden"
-                            >
-                              <div
-                                class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
-                                style="scrollbar-width: none;"
+                                class="flex flex-col gap-3"
                               >
                                 <div
-                                  class="flex flex-col gap-3 px-2 py-2"
+                                  class="flex w-full flex-col gap-2"
+                                >
+                                  <input
+                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                    data-headlessui-state=""
+                                    id="input-:rk:"
+                                    placeholder="Search plugins..."
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                                <div
+                                  aria-label="Filter options"
+                                  class="flex flex-wrap gap-2"
+                                  data-testid="filter-chips"
+                                  role="radiogroup"
+                                >
+                                  <button
+                                    aria-checked="true"
+                                    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
+                                    role="radio"
+                                    type="button"
+                                  >
+                                    All
+                                  </button>
+                                  <button
+                                    aria-checked="false"
+                                    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                    role="radio"
+                                    type="button"
+                                  >
+                                    Streaming
+                                  </button>
+                                  <button
+                                    aria-checked="false"
+                                    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                    role="radio"
+                                    type="button"
+                                  >
+                                    Metadata
+                                  </button>
+                                  <button
+                                    aria-checked="false"
+                                    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                    role="radio"
+                                    type="button"
+                                  >
+                                    Lyrics
+                                  </button>
+                                  <button
+                                    aria-checked="false"
+                                    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                    role="radio"
+                                    type="button"
+                                  >
+                                    Scrobbling
+                                  </button>
+                                  <button
+                                    aria-checked="false"
+                                    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                    role="radio"
+                                    type="button"
+                                  >
+                                    Other
+                                  </button>
+                                </div>
+                              </div>
+                              <div
+                                class="relative h-full w-full flex-1 overflow-hidden"
+                              >
+                                <div
+                                  class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                                  style="scrollbar-width: none;"
                                 >
                                   <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
-                                    data-testid="plugin-store-item"
+                                    class="flex flex-col gap-3 px-2 py-2"
                                   >
                                     <div
-                                      class="flex min-w-0 flex-1 flex-col gap-1"
+                                      class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                      data-testid="plugin-store-item"
                                     >
                                       <div
-                                        class="flex items-center gap-2"
+                                        class="flex min-w-0 flex-1 flex-col gap-1"
                                       >
-                                        <h3
-                                          class="text-foreground truncate text-base font-bold"
-                                          data-testid="plugin-store-item-name"
+                                        <div
+                                          class="flex items-center gap-2"
                                         >
-                                          YouTube Music
-                                        </h3>
-                                        <span
-                                          class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          <h3
+                                            class="text-foreground truncate text-base font-bold"
+                                            data-testid="plugin-store-item-name"
+                                          >
+                                            YouTube Music
+                                          </h3>
+                                          <span
+                                            class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          >
+                                            streaming
+                                          </span>
+                                        </div>
+                                        <p
+                                          class="text-foreground-secondary line-clamp-2 text-sm"
+                                          data-testid="plugin-store-item-description"
                                         >
-                                          streaming
-                                        </span>
+                                          Stream music from YouTube
+                                        </p>
+                                        <p
+                                          class="text-foreground-secondary text-xs"
+                                          data-testid="plugin-store-item-author"
+                                        >
+                                          by
+                                           
+                                          nukeop
+                                        </p>
                                       </div>
-                                      <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
-                                        data-testid="plugin-store-item-description"
+                                      <div
+                                        class="shrink-0"
                                       >
-                                        Stream music from YouTube
-                                      </p>
-                                      <p
-                                        class="text-foreground-secondary text-xs"
-                                        data-testid="plugin-store-item-author"
-                                      >
-                                        by
-                                         
-                                        nukeop
-                                      </p>
+                                        <button
+                                          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
+                                          data-headlessui-state=""
+                                          type="button"
+                                        >
+                                          <svg
+                                            aria-hidden="true"
+                                            class="lucide lucide-download"
+                                            fill="none"
+                                            height="16"
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            viewBox="0 0 24 24"
+                                            width="16"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M12 15V3"
+                                            />
+                                            <path
+                                              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                                            />
+                                            <path
+                                              d="m7 10 5 5 5-5"
+                                            />
+                                          </svg>
+                                          <span
+                                            class="ml-2"
+                                          >
+                                            Install
+                                          </span>
+                                        </button>
+                                      </div>
                                     </div>
                                     <div
-                                      class="shrink-0"
-                                    >
-                                      <button
-                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
-                                        data-headlessui-state=""
-                                        type="button"
-                                      >
-                                        <svg
-                                          aria-hidden="true"
-                                          class="lucide lucide-download"
-                                          fill="none"
-                                          height="16"
-                                          stroke="currentColor"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                          stroke-width="2"
-                                          viewBox="0 0 24 24"
-                                          width="16"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                          <path
-                                            d="M12 15V3"
-                                          />
-                                          <path
-                                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                                          />
-                                          <path
-                                            d="m7 10 5 5 5-5"
-                                          />
-                                        </svg>
-                                        <span
-                                          class="ml-2"
-                                        >
-                                          Install
-                                        </span>
-                                      </button>
-                                    </div>
-                                  </div>
-                                  <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
-                                    data-testid="plugin-store-item"
-                                  >
-                                    <div
-                                      class="flex min-w-0 flex-1 flex-col gap-1"
+                                      class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                      data-testid="plugin-store-item"
                                     >
                                       <div
-                                        class="flex items-center gap-2"
+                                        class="flex min-w-0 flex-1 flex-col gap-1"
                                       >
-                                        <h3
-                                          class="text-foreground truncate text-base font-bold"
-                                          data-testid="plugin-store-item-name"
+                                        <div
+                                          class="flex items-center gap-2"
                                         >
-                                          Last.fm Scrobbler
-                                        </h3>
-                                        <span
-                                          class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          <h3
+                                            class="text-foreground truncate text-base font-bold"
+                                            data-testid="plugin-store-item-name"
+                                          >
+                                            Last.fm Scrobbler
+                                          </h3>
+                                          <span
+                                            class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          >
+                                            scrobbling
+                                          </span>
+                                        </div>
+                                        <p
+                                          class="text-foreground-secondary line-clamp-2 text-sm"
+                                          data-testid="plugin-store-item-description"
                                         >
-                                          scrobbling
-                                        </span>
+                                          Scrobble your listening history to Last.fm
+                                        </p>
+                                        <p
+                                          class="text-foreground-secondary text-xs"
+                                          data-testid="plugin-store-item-author"
+                                        >
+                                          by
+                                           
+                                          nukeop
+                                        </p>
                                       </div>
-                                      <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
-                                        data-testid="plugin-store-item-description"
+                                      <div
+                                        class="shrink-0"
                                       >
-                                        Scrobble your listening history to Last.fm
-                                      </p>
-                                      <p
-                                        class="text-foreground-secondary text-xs"
-                                        data-testid="plugin-store-item-author"
-                                      >
-                                        by
-                                         
-                                        nukeop
-                                      </p>
+                                        <button
+                                          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
+                                          data-headlessui-state=""
+                                          type="button"
+                                        >
+                                          <svg
+                                            aria-hidden="true"
+                                            class="lucide lucide-download"
+                                            fill="none"
+                                            height="16"
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            viewBox="0 0 24 24"
+                                            width="16"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M12 15V3"
+                                            />
+                                            <path
+                                              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                                            />
+                                            <path
+                                              d="m7 10 5 5 5-5"
+                                            />
+                                          </svg>
+                                          <span
+                                            class="ml-2"
+                                          >
+                                            Install
+                                          </span>
+                                        </button>
+                                      </div>
                                     </div>
                                     <div
-                                      class="shrink-0"
-                                    >
-                                      <button
-                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
-                                        data-headlessui-state=""
-                                        type="button"
-                                      >
-                                        <svg
-                                          aria-hidden="true"
-                                          class="lucide lucide-download"
-                                          fill="none"
-                                          height="16"
-                                          stroke="currentColor"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                          stroke-width="2"
-                                          viewBox="0 0 24 24"
-                                          width="16"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                          <path
-                                            d="M12 15V3"
-                                          />
-                                          <path
-                                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                                          />
-                                          <path
-                                            d="m7 10 5 5 5-5"
-                                          />
-                                        </svg>
-                                        <span
-                                          class="ml-2"
-                                        >
-                                          Install
-                                        </span>
-                                      </button>
-                                    </div>
-                                  </div>
-                                  <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
-                                    data-testid="plugin-store-item"
-                                  >
-                                    <div
-                                      class="flex min-w-0 flex-1 flex-col gap-1"
+                                      class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                      data-testid="plugin-store-item"
                                     >
                                       <div
-                                        class="flex items-center gap-2"
+                                        class="flex min-w-0 flex-1 flex-col gap-1"
                                       >
-                                        <h3
-                                          class="text-foreground truncate text-base font-bold"
-                                          data-testid="plugin-store-item-name"
+                                        <div
+                                          class="flex items-center gap-2"
                                         >
-                                          MusicBrainz Metadata
-                                        </h3>
-                                        <span
-                                          class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          <h3
+                                            class="text-foreground truncate text-base font-bold"
+                                            data-testid="plugin-store-item-name"
+                                          >
+                                            MusicBrainz Metadata
+                                          </h3>
+                                          <span
+                                            class="border-border inline-flex items-center justify-center border-2 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          >
+                                            metadata
+                                          </span>
+                                        </div>
+                                        <p
+                                          class="text-foreground-secondary line-clamp-2 text-sm"
+                                          data-testid="plugin-store-item-description"
                                         >
-                                          metadata
-                                        </span>
+                                          Fetch metadata from MusicBrainz database
+                                        </p>
+                                        <p
+                                          class="text-foreground-secondary text-xs"
+                                          data-testid="plugin-store-item-author"
+                                        >
+                                          by
+                                           
+                                          nukeop
+                                        </p>
                                       </div>
-                                      <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
-                                        data-testid="plugin-store-item-description"
+                                      <div
+                                        class="shrink-0"
                                       >
-                                        Fetch metadata from MusicBrainz database
-                                      </p>
-                                      <p
-                                        class="text-foreground-secondary text-xs"
-                                        data-testid="plugin-store-item-author"
-                                      >
-                                        by
-                                         
-                                        nukeop
-                                      </p>
-                                    </div>
-                                    <div
-                                      class="shrink-0"
-                                    >
-                                      <button
-                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
-                                        data-headlessui-state=""
-                                        type="button"
-                                      >
-                                        <svg
-                                          aria-hidden="true"
-                                          class="lucide lucide-download"
-                                          fill="none"
-                                          height="16"
-                                          stroke="currentColor"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                          stroke-width="2"
-                                          viewBox="0 0 24 24"
-                                          width="16"
-                                          xmlns="http://www.w3.org/2000/svg"
+                                        <button
+                                          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 w-28"
+                                          data-headlessui-state=""
+                                          type="button"
                                         >
-                                          <path
-                                            d="M12 15V3"
-                                          />
-                                          <path
-                                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                                          />
-                                          <path
-                                            d="m7 10 5 5 5-5"
-                                          />
-                                        </svg>
-                                        <span
-                                          class="ml-2"
-                                        >
-                                          Install
-                                        </span>
-                                      </button>
+                                          <svg
+                                            aria-hidden="true"
+                                            class="lucide lucide-download"
+                                            fill="none"
+                                            height="16"
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            viewBox="0 0 24 24"
+                                            width="16"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M12 15V3"
+                                            />
+                                            <path
+                                              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                                            />
+                                            <path
+                                              d="m7 10 5 5 5-5"
+                                            />
+                                          </svg>
+                                          <span
+                                            class="ml-2"
+                                          >
+                                            Install
+                                          </span>
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>

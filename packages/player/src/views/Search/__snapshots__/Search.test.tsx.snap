@@ -465,16 +465,21 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
                 Query: "test"
               </h2>
               <div
-                class="flex w-full flex-1 flex-col overflow-y-auto"
+                class="relative h-full flex w-full flex-1 flex-col"
               >
-                <button
-                  aria-hidden="true"
-                  style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
-                  type="button"
-                />
                 <div
-                  class="flex max-h-full w-full flex-col gap-2 flex-1"
-                />
+                  class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                  style="scrollbar-width: none;"
+                >
+                  <button
+                    aria-hidden="true"
+                    style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+                    type="button"
+                  />
+                  <div
+                    class="flex max-h-full w-full flex-col gap-2 flex-1"
+                  />
+                </div>
               </div>
             </div>
           </div>

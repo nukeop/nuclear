@@ -461,71 +461,76 @@ exports[`App > should render snapshot 1`] = `
                 Dashboard
               </h1>
               <div
-                class="flex w-full flex-1 flex-col overflow-y-auto"
+                class="relative h-full flex w-full flex-1 flex-col"
               >
                 <div
-                  class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
-                  data-testid="dashboard-empty-state"
+                  class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                  style="scrollbar-width: none;"
                 >
                   <div
-                    class="text-foreground-secondary"
+                    class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+                    data-testid="dashboard-empty-state"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="lucide lucide-layout-dashboard"
-                      fill="none"
-                      height="48"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      width="48"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      class="text-foreground-secondary"
                     >
-                      <rect
-                        height="9"
-                        rx="1"
-                        width="7"
-                        x="3"
-                        y="3"
-                      />
-                      <rect
-                        height="5"
-                        rx="1"
-                        width="7"
-                        x="14"
-                        y="3"
-                      />
-                      <rect
-                        height="9"
-                        rx="1"
-                        width="7"
-                        x="14"
-                        y="12"
-                      />
-                      <rect
-                        height="5"
-                        rx="1"
-                        width="7"
-                        x="3"
-                        y="16"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    class="flex flex-col gap-1"
-                  >
-                    <h3
-                      class="text-foreground text-lg font-bold"
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-layout-dashboard"
+                        fill="none"
+                        height="48"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="48"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect
+                          height="9"
+                          rx="1"
+                          width="7"
+                          x="3"
+                          y="3"
+                        />
+                        <rect
+                          height="5"
+                          rx="1"
+                          width="7"
+                          x="14"
+                          y="3"
+                        />
+                        <rect
+                          height="9"
+                          rx="1"
+                          width="7"
+                          x="14"
+                          y="12"
+                        />
+                        <rect
+                          height="5"
+                          rx="1"
+                          width="7"
+                          x="3"
+                          y="16"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="flex flex-col gap-1"
                     >
-                      No dashboard data available
-                    </h3>
-                    <p
-                      class="text-foreground-secondary text-sm"
-                    >
-                      Enable a plugin that provides dashboard content.
-                    </p>
+                      <h3
+                        class="text-foreground text-lg font-bold"
+                      >
+                        No dashboard data available
+                      </h3>
+                      <p
+                        class="text-foreground-secondary text-sm"
+                      >
+                        Enable a plugin that provides dashboard content.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
