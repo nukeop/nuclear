@@ -6,6 +6,7 @@ export type ParamMeta = {
 };
 
 export type MethodMeta = {
+  name: string;
   description: string;
   params: ParamMeta[];
   returns: string;
