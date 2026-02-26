@@ -13,7 +13,8 @@ use tokio::sync::{oneshot, Mutex};
 use tokio_util::sync::CancellationToken;
 use tools::NuclearMcpServer;
 
-const MCP_PORT: u16 = 8800;
+const MCP_PORT_START: u16 = 8800;
+const MCP_PORT_END: u16 = 8809;
 
 #[tool_handler]
 impl ServerHandler for NuclearMcpServer {
@@ -31,6 +32,7 @@ impl ServerHandler for NuclearMcpServer {
 struct RunningServer {
     task: tauri::async_runtime::JoinHandle<()>,
     cancellation_token: CancellationToken,
+    port: u16,
 }
 
 pub struct McpState {
@@ -47,10 +49,26 @@ impl McpState {
     }
 }
 
+async fn try_bind(port_start: u16, port_end: u16) -> Result<tokio::net::TcpListener, String> {
+    let mut last_error = String::new();
+    for port in port_start..=port_end {
+        match tokio::net::TcpListener::bind(format!("127.0.0.1:{port}")).await {
+            Ok(listener) => return Ok(listener),
+            Err(err) => {
+                log::debug!("Port {port} unavailable: {err}");
+                last_error = format!("{err}");
+            }
+        }
+    }
+    Err(format!(
+        "No available port in range {port_start}-{port_end}: {last_error}"
+    ))
+}
+
 async fn start_server(
     bridge: McpBridge,
     ct: CancellationToken,
-    ready: oneshot::Sender<Result<(), String>>,
+    ready: oneshot::Sender<Result<u16, String>>,
 ) {
     let service = StreamableHttpService::new(
         move || Ok(NuclearMcpServer::new(bridge.clone())),
@@ -63,19 +81,18 @@ async fn start_server(
 
     let router = axum::Router::new().nest_service("/mcp", service);
 
-    let bind_addr = format!("127.0.0.1:{MCP_PORT}");
-    let tcp_listener = match tokio::net::TcpListener::bind(&bind_addr).await {
+    let tcp_listener = match try_bind(MCP_PORT_START, MCP_PORT_END).await {
         Ok(listener) => listener,
-        Err(err) => {
-            let message = format!("Failed to bind MCP server to {bind_addr}: {err}");
-            log::error!("{message}");
+        Err(message) => {
+            log::error!("Failed to bind MCP server: {message}");
             let _ = ready.send(Err(message));
             return;
         }
     };
 
-    log::info!("MCP server listening on http://{bind_addr}/mcp");
-    let _ = ready.send(Ok(()));
+    let bound_port = tcp_listener.local_addr().unwrap().port();
+    log::info!("MCP server listening on http://127.0.0.1:{bound_port}/mcp");
+    let _ = ready.send(Ok(bound_port));
 
     let _ = axum::serve(tcp_listener, router)
         .with_graceful_shutdown(async move {
@@ -92,11 +109,11 @@ pub fn init_mcp(app_handle: AppHandle) {
 }
 
 #[tauri::command]
-pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<(), String> {
+pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<u16, String> {
     let mut guard = state.running.lock().await;
-    if guard.is_some() {
-        log::info!("MCP server already running");
-        return Ok(());
+    if let Some(server) = guard.as_ref() {
+        log::info!("MCP server already running on port {}", server.port);
+        return Ok(server.port);
     }
 
     log::info!("Starting MCP server");
@@ -106,12 +123,13 @@ pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<(), String> 
         tauri::async_runtime::spawn(start_server(state.bridge.clone(), ct.clone(), ready_tx));
 
     match ready_rx.await {
-        Ok(Ok(())) => {
+        Ok(Ok(port)) => {
             *guard = Some(RunningServer {
                 task,
                 cancellation_token: ct,
+                port,
             });
-            Ok(())
+            Ok(port)
         }
         Ok(Err(message)) => Err(message),
         Err(_) => Err("MCP server task exited before reporting ready".into()),
