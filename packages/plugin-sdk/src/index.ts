@@ -34,4 +34,8 @@ export type {
   ProviderDescriptor,
 } from './types/providers';
 export { useSetting } from './react/useSetting';
+export { apiMeta } from './mcp/meta';
+export type { ParamMeta, MethodMeta, DomainMeta, ApiMeta } from './mcp/meta';
+export { typeRegistry } from './mcp/typeRegistry';
+export type { TypeField, TypeShape, TypeRegistry } from './mcp/typeRegistry';
 export * from '@nuclearplayer/model';
