@@ -2,7 +2,7 @@
 description: Let AI agents control Nuclear via the Model Context Protocol.
 ---
 
-# MCP Server
+# MCP server
 
 Nuclear includes a built-in [MCP](https://modelcontextprotocol.io/) server that lets your AI control the music player, doing pretty much anything that you can!
 
@@ -78,19 +78,51 @@ Enter `http://127.0.0.1:8800/mcp` as the URL and select `Streamable HTTP` as the
 
 ## Tools
 
-Nuclear exposes two MCP tools. There are too many functionalities for each to have its own tool, so there's a swiss army knife-style `nuclear_api` method that can call any method by name, and a `nuclear_api_schema` that lists all available methods and their parameters.
+Nuclear exposes four MCP tools. The server uses a hierarchical discovery pattern: start broad, drill down, then act.
 
-### `nuclear_api_schema`
+### `list_methods`
 
-Returns the full list of available API methods and their parameters. Call this first to discover what you can do.
+Lists available methods in a domain.
 
-No parameters.
+| Parameter | Type   | Required | Description                                                                                                            |
+| --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `domain`  | string | yes      | One of: `Queue`, `Playback`, `Metadata`, `Favorites`, `Playlists`, `Dashboard`, `Providers`. |
 
-### `nuclear_api`
+Returns the method names and short descriptions for that domain.
 
-Calls a Nuclear API method by name.
+### `method_details`
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `method` | string | yes | The method name (from `nuclear_api_schema`) |
-| `params` | object | no | Method parameters. Omit or pass `{}` for methods with no parameters. |
+Gets full details for a single method: its description, parameter names and types, and return type.
+
+| Parameter | Type   | Required | Description                                                       |
+| --------- | ------ | -------- | ----------------------------------------------------------------- |
+| `method`  | string | yes      | The method name in `Domain.method` format, e.g. `Queue.addToQueue`. |
+
+### `describe_type`
+
+Gets the JSON shape of a data type. Use this when `method_details` returns a parameter or return type that references a complex type.
+
+| Parameter | Type   | Required | Description                                          |
+| --------- | ------ | -------- | ---------------------------------------------------- |
+| `type`    | string | yes      | The type name, e.g. `Track`, `QueueItem`, `Playlist`. |
+
+### `call`
+
+Calls a Nuclear API method.
+
+| Parameter | Type   | Required | Description                                                                                    |
+| --------- | ------ | -------- | ---------------------------------------------------------------------------------------------- |
+| `method`  | string | yes      | The method name in `Domain.method` format, e.g. `Queue.addToQueue`.                              |
+| `params`  | object | no       | A JSON object with named fields matching the method's parameters. Omit or pass `{}` for methods with no parameters. |
+
+## Discovery workflow
+
+An agent follows this sequence to find and call an API method:
+
+1. Read the `list_methods` tool description to see the seven available domains.
+2. Call `list_methods` with a domain (e.g. `Queue`) to see that domain's methods.
+3. Call `method_details` (e.g. `Queue.addToQueue`) to get parameter names, types, and the return type.
+4. If a parameter or return type is a complex type like `Track`, call `describe_type` to see its fields.
+5. Call `call` with the method name and parameters to execute it.
+
+Each step returns a small, focused payload to save on tokens.
