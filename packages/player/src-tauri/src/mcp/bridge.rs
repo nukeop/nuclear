@@ -4,7 +4,7 @@ use std::sync::Arc;
 
 use serde::{Deserialize, Serialize};
 use tauri::{AppHandle, Emitter};
-use tokio::sync::{Mutex, oneshot};
+use tokio::sync::{oneshot, Mutex};
 use uuid::Uuid;
 
 #[derive(Debug, Clone, Serialize)]
@@ -80,23 +80,30 @@ impl McpBridge {
                 BridgeError::InfrastructureError(format!("Failed to emit event: {err}"))
             })?;
 
-        let response = tokio::time::timeout(
-            std::time::Duration::from_secs(30),
-            receiver,
-        )
-        .await
-        .map_err(|_| {
-            BridgeError::InfrastructureError(format!("Timed out after 30s"))
-        })?
-        .map_err(|_| {
-            BridgeError::InfrastructureError(format!("Response channel closed unexpectedly"))
-        })?;
+        let response =
+            match tokio::time::timeout(std::time::Duration::from_secs(30), receiver).await {
+                Ok(Ok(response)) => response,
+                Ok(Err(_)) => {
+                    self.pending.lock().await.remove(&trace_id);
+                    return Err(BridgeError::InfrastructureError(
+                        "Response channel closed unexpectedly".into(),
+                    ));
+                }
+                Err(_) => {
+                    self.pending.lock().await.remove(&trace_id);
+                    return Err(BridgeError::InfrastructureError(
+                        "Timed out after 30s".into(),
+                    ));
+                }
+            };
 
         if response.success {
             Ok(response.data.unwrap_or(serde_json::Value::Null))
         } else {
             Err(BridgeError::ToolError(
-                response.error.unwrap_or_else(|| "Unknown error".to_string()),
+                response
+                    .error
+                    .unwrap_or_else(|| "Unknown error".to_string()),
             ))
         }
     }
