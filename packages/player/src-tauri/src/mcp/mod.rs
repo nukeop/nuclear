@@ -89,9 +89,11 @@ pub fn init_mcp(app_handle: AppHandle) {
 pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<(), String> {
     let mut guard = state.running.lock().await;
     if guard.is_some() {
+        log::info!("MCP server already running");
         return Ok(());
     }
 
+    log::info!("Starting MCP server");
     let ct = CancellationToken::new();
     let task = tauri::async_runtime::spawn(start_server(state.bridge.clone(), ct.clone()));
     *guard = Some(RunningServer { task, cancellation_token: ct });
@@ -102,8 +104,11 @@ pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<(), String> 
 pub async fn mcp_stop(state: tauri::State<'_, McpState>) -> Result<(), String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.take() {
+        log::info!("Stopping MCP server");
         server.cancellation_token.cancel();
         let _ = server.task.await;
+    } else {
+        log::info!("MCP server already stopped");
     }
     Ok(())
 }
