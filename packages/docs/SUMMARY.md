@@ -12,6 +12,10 @@
 * [Dashboard](plugins/dashboard.md)
 * [Providers](plugins/providers.md)
 
+## Integrations
+
+* [MCP Server](integrations/mcp-server.md)
+
 ## Theming
 
 * [Themes](themes/themes.md)
@@ -21,6 +25,7 @@
 ## Development
 
 * [Logging](development/logging.md)
+* [MCP Architecture](development/mcp-architecture.md)
 
 ## Misc
 

@@ -168,6 +168,24 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     default: false,
     widget: { type: 'toggle' },
   },
+  {
+    id: 'integrations.mcp.enabled',
+    title: 'preferences.integrations.mcp.enabled.title',
+    description: 'preferences.integrations.mcp.enabled.description',
+    category: 'integrations',
+    kind: 'boolean',
+    default: false,
+    widget: { type: 'toggle' },
+  },
+  {
+    id: 'integrations.mcp.serverUrl',
+    title: 'preferences.integrations.mcp.serverUrl.title',
+    description: 'preferences.integrations.mcp.serverUrl.description',
+    category: 'integrations',
+    kind: 'string',
+    default: 'http://127.0.0.1:8800/mcp',
+    widget: { type: 'info' },
+  },
 ];
 
 export const registerBuiltInCoreSettings = () => {

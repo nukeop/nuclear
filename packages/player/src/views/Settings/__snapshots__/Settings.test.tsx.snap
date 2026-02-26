@@ -341,6 +341,111 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                             <h2
                               class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
                             >
+                              Integrations
+                            </h2>
+                            <div
+                              class="flex w-full flex-1 flex-col"
+                            >
+                              <div
+                                class="flex flex-col gap-6"
+                              >
+                                <div
+                                  class="flex flex-col gap-2"
+                                >
+                                  <div
+                                    class="flex items-center gap-3"
+                                  >
+                                    <button
+                                      aria-checked="false"
+                                      aria-label="Enable MCP Server"
+                                      class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                      data-headlessui-state=""
+                                      id="headlessui-switch-:rf:"
+                                      role="switch"
+                                      tabindex="0"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                      />
+                                    </button>
+                                    <span
+                                      class="text-foreground text-sm font-semibold"
+                                    >
+                                      Enable MCP Server
+                                    </span>
+                                  </div>
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                  >
+                                    Start a local MCP server that allows AI tools to control Nuclear.
+                                  </p>
+                                </div>
+                                <div
+                                  class="flex flex-col gap-2"
+                                >
+                                  <span
+                                    class="text-foreground text-sm font-semibold"
+                                  >
+                                    MCP Server URL
+                                  </span>
+                                  <div
+                                    class="flex items-center gap-2"
+                                  >
+                                    <div
+                                      class="border-border bg-background-input flex-1 rounded-md border-2 px-3 py-2 font-mono text-sm"
+                                      data-testid="info-field-value"
+                                    >
+                                      http://127.0.0.1:8800/mcp
+                                    </div>
+                                    <button
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border border-current bg-transparent hover:bg-black/10 size-8 justify-center"
+                                      data-headlessui-state=""
+                                      data-testid="info-field-copy-button"
+                                      type="button"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        class="lucide lucide-copy size-3.5"
+                                        fill="none"
+                                        height="24"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <rect
+                                          height="14"
+                                          rx="2"
+                                          ry="2"
+                                          width="14"
+                                          x="8"
+                                          y="8"
+                                        />
+                                        <path
+                                          d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                                        />
+                                      </svg>
+                                    </button>
+                                  </div>
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                  >
+                                    Point your AI tool to this URL to connect to Nuclear.
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                          <section
+                            class="mb-6 flex w-full flex-col items-start justify-start"
+                          >
+                            <h2
+                              class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                            >
                               Playback
                             </h2>
                             <div
@@ -354,22 +459,22 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                 >
                                   <label
                                     class="text-foreground text-sm font-semibold"
-                                    for="input-:rf:"
-                                    id="input-:rf:-label"
+                                    for="input-:rg:"
+                                    id="input-:rg:-label"
                                   >
                                     Skip duration
                                   </label>
                                   <input
                                     class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
                                     data-headlessui-state=""
-                                    id="input-:rf:"
+                                    id="input-:rg:"
                                     inputmode="numeric"
                                     type="number"
                                     value="10"
                                   />
                                   <p
                                     class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rf:-description"
+                                    id="input-:rg:-description"
                                   >
                                     Number of seconds to skip forward/backward
                                   </p>
@@ -379,22 +484,22 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                 >
                                   <label
                                     class="text-foreground text-sm font-semibold"
-                                    for="input-:rh:"
-                                    id="input-:rh:-label"
+                                    for="input-:ri:"
+                                    id="input-:ri:-label"
                                   >
                                     Crossfade
                                   </label>
                                   <input
                                     class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
                                     data-headlessui-state=""
-                                    id="input-:rh:"
+                                    id="input-:ri:"
                                     inputmode="numeric"
                                     type="number"
                                     value="0"
                                   />
                                   <p
                                     class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rh:-description"
+                                    id="input-:ri:-description"
                                   >
                                     Crossfade duration between tracks in milliseconds
                                   </p>
@@ -404,22 +509,22 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                 >
                                   <label
                                     class="text-foreground text-sm font-semibold"
-                                    for="input-:rj:"
-                                    id="input-:rj:-label"
+                                    for="input-:rk:"
+                                    id="input-:rk:-label"
                                   >
                                     Stream expiry time
                                   </label>
                                   <input
                                     class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
                                     data-headlessui-state=""
-                                    id="input-:rj:"
+                                    id="input-:rk:"
                                     inputmode="numeric"
                                     type="number"
                                     value="3600000"
                                   />
                                   <p
                                     class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rj:-description"
+                                    id="input-:rk:-description"
                                   >
                                     How long before a resolved stream URL is considered expired and needs re-resolution
                                   </p>
@@ -429,22 +534,22 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                 >
                                   <label
                                     class="text-foreground text-sm font-semibold"
-                                    for="input-:rl:"
-                                    id="input-:rl:-label"
+                                    for="input-:rm:"
+                                    id="input-:rm:-label"
                                   >
                                     Stream resolution retries
                                   </label>
                                   <input
                                     class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
                                     data-headlessui-state=""
-                                    id="input-:rl:"
+                                    id="input-:rm:"
                                     inputmode="numeric"
                                     type="number"
                                     value="3"
                                   />
                                   <p
                                     class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rl:-description"
+                                    id="input-:rm:-description"
                                   >
                                     Number of times to retry resolving a stream URL before moving to the next candidate
                                   </p>
@@ -478,7 +583,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                       data-checked=""
                                       data-headlessui-state="checked"
-                                      id="headlessui-switch-:rn:"
+                                      id="headlessui-switch-:ro:"
                                       role="switch"
                                       tabindex="0"
                                       type="button"
@@ -510,7 +615,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       aria-label="Auto-install updates"
                                       class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                       data-headlessui-state=""
-                                      id="headlessui-switch-:ro:"
+                                      id="headlessui-switch-:rp:"
                                       role="switch"
                                       tabindex="0"
                                       type="button"

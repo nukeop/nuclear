@@ -1,15 +1,22 @@
 import { Check, Copy } from 'lucide-react';
-import { FC, memo, useEffect, useRef, useState } from 'react';
+import { ComponentProps, FC, memo, useEffect, useRef, useState } from 'react';
 
 import { Button } from '../Button';
 
 const COPY_FEEDBACK_DURATION_MS = 2000;
 
-type CopyButtonProps = {
+export type CopyButtonProps = Omit<
+  ComponentProps<typeof Button>,
+  'onClick' | 'children'
+> & {
   text: string;
 };
 
-const CopyButtonImpl: FC<CopyButtonProps> = ({ text }) => {
+const CopyButtonImpl: FC<CopyButtonProps> = ({
+  text,
+  size = 'icon-sm',
+  ...props
+}) => {
   const [copied, setCopied] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -33,7 +40,7 @@ const CopyButtonImpl: FC<CopyButtonProps> = ({ text }) => {
   };
 
   return (
-    <Button data-testid="log-copy-button" size="icon-sm" onClick={handleCopy}>
+    <Button size={size} onClick={handleCopy} {...props}>
       {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
     </Button>
   );

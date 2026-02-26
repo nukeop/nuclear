@@ -253,6 +253,19 @@
         "title": "Auto-install updates",
         "description": "Download and install updates automatically when available"
       }
+    },
+    "integrations": {
+      "title": "Integrations",
+      "mcp": {
+        "enabled": {
+          "title": "Enable MCP Server",
+          "description": "Start a local MCP server that allows AI tools to control Nuclear."
+        },
+        "serverUrl": {
+          "title": "MCP Server URL",
+          "description": "Point your AI tool to this URL to connect to Nuclear."
+        }
+      }
     }
   },
   "queue": {

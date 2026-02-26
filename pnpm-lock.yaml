@@ -481,6 +481,9 @@ importers:
       '@fontsource/dm-sans':
         specifier: ^5.2.6
         version: 5.2.6
+      '@fontsource/space-mono':
+        specifier: ^5.2.9
+        version: 5.2.9
       '@nuclearplayer/model':
         specifier: workspace:*
         version: link:../model
@@ -637,6 +640,9 @@ importers:
       '@fontsource/dm-sans':
         specifier: ^5.2.6
         version: 5.2.6
+      '@fontsource/space-mono':
+        specifier: ^5.2.9
+        version: 5.2.9
       '@headlessui/react':
         specifier: ^2.2.7
         version: 2.2.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1342,6 +1348,9 @@ packages:
 
   '@fontsource/dm-sans@5.2.6':
     resolution: {integrity: sha512-3AmJcX93hqmevsC2ixNwHj3iO3sNY/YHBqGhg0MjIyfhk6aZLNv1s2HqJ6xf8yf1rXXK3yR56rzyA3O21htKkg==}
+
+  '@fontsource/space-mono@5.2.9':
+    resolution: {integrity: sha512-b61faFOHEISQ/pD25G+cfGY9o/WW6lRv6hBQQfpWvEJ4y1V+S4gmth95EVyBE2VL3qDYHeVQ8nBzrplzdXTDDg==}
 
   '@headlessui/react@2.2.7':
     resolution: {integrity: sha512-WKdTymY8Y49H8/gUc/lIyYK1M+/6dq0Iywh4zTZVAaiTDprRfioxSgD0wnXTQTBpjpGJuTL1NO/mqEvc//5SSg==}
@@ -6999,6 +7008,8 @@ snapshots:
   '@fontsource/bricolage-grotesque@5.2.8': {}
 
   '@fontsource/dm-sans@5.2.6': {}
+
+  '@fontsource/space-mono@5.2.9': {}
 
   '@headlessui/react@2.2.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
