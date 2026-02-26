@@ -4,13 +4,12 @@ pub mod tools;
 use std::sync::Arc;
 
 use bridge::{McpBridge, McpBridgeResponse};
-use rmcp::{ServerHandler, model::*, tool_handler};
 use rmcp::transport::streamable_http_server::{
-    StreamableHttpServerConfig, StreamableHttpService,
-    session::local::LocalSessionManager,
+    session::local::LocalSessionManager, StreamableHttpServerConfig, StreamableHttpService,
 };
+use rmcp::{model::*, tool_handler, ServerHandler};
 use tauri::{AppHandle, Manager};
-use tokio::sync::Mutex;
+use tokio::sync::{oneshot, Mutex};
 use tokio_util::sync::CancellationToken;
 use tools::NuclearMcpServer;
 
@@ -48,7 +47,11 @@ impl McpState {
     }
 }
 
-async fn start_server(bridge: McpBridge, ct: CancellationToken) {
+async fn start_server(
+    bridge: McpBridge,
+    ct: CancellationToken,
+    ready: oneshot::Sender<Result<(), String>>,
+) {
     let service = StreamableHttpService::new(
         move || Ok(NuclearMcpServer::new(bridge.clone())),
         LocalSessionManager::default().into(),
@@ -64,12 +67,15 @@ async fn start_server(bridge: McpBridge, ct: CancellationToken) {
     let tcp_listener = match tokio::net::TcpListener::bind(&bind_addr).await {
         Ok(listener) => listener,
         Err(err) => {
-            log::error!("Failed to bind MCP server to {bind_addr}: {err}");
+            let message = format!("Failed to bind MCP server to {bind_addr}: {err}");
+            log::error!("{message}");
+            let _ = ready.send(Err(message));
             return;
         }
     };
 
     log::info!("MCP server listening on http://{bind_addr}/mcp");
+    let _ = ready.send(Ok(()));
 
     let _ = axum::serve(tcp_listener, router)
         .with_graceful_shutdown(async move {
@@ -95,9 +101,21 @@ pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<(), String> 
 
     log::info!("Starting MCP server");
     let ct = CancellationToken::new();
-    let task = tauri::async_runtime::spawn(start_server(state.bridge.clone(), ct.clone()));
-    *guard = Some(RunningServer { task, cancellation_token: ct });
-    Ok(())
+    let (ready_tx, ready_rx) = oneshot::channel();
+    let task =
+        tauri::async_runtime::spawn(start_server(state.bridge.clone(), ct.clone(), ready_tx));
+
+    match ready_rx.await {
+        Ok(Ok(())) => {
+            *guard = Some(RunningServer {
+                task,
+                cancellation_token: ct,
+            });
+            Ok(())
+        }
+        Ok(Err(message)) => Err(message),
+        Err(_) => Err("MCP server task exited before reporting ready".into()),
+    }
 }
 
 #[tauri::command]
