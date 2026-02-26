@@ -2,12 +2,12 @@ import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
 import { z } from 'zod';
 
+import { NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
 import {
   apiMeta,
   DomainMeta,
-  NuclearPluginAPI,
   typeRegistry,
-} from '@nuclearplayer/plugin-sdk';
+} from '@nuclearplayer/plugin-sdk/mcp';
 
 import { getSetting, useSettingsStore } from '../../stores/settingsStore';
 import { errorMessage } from '../../utils/error';

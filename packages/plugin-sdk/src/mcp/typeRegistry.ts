@@ -174,4 +174,229 @@ export const typeRegistry: TypeRegistry = {
       shuffleEnabled: { type: 'boolean' },
     },
   },
+
+  PlaylistRef: {
+    description: 'A lightweight reference to a playlist.',
+    fields: {
+      id: { type: 'string' },
+      name: { type: 'string' },
+      artwork: { type: 'ArtworkSet', optional: true },
+      source: { type: 'ProviderRef' },
+    },
+  },
+
+  PlaylistItem: {
+    description: 'A track within a playlist.',
+    fields: {
+      id: { type: 'string' },
+      track: { type: 'Track' },
+      note: { type: 'string', optional: true },
+      addedAtIso: { type: 'string' },
+    },
+  },
+
+  Playlist: {
+    description: 'A full playlist with metadata and items.',
+    fields: {
+      id: { type: 'string' },
+      name: { type: 'string' },
+      description: { type: 'string', optional: true },
+      artwork: { type: 'ArtworkSet', optional: true },
+      tags: { type: 'string[]', optional: true },
+      createdAtIso: { type: 'string' },
+      lastModifiedIso: { type: 'string' },
+      origin: { type: 'ProviderRef', optional: true },
+      isReadOnly: { type: 'boolean' },
+      parentId: { type: 'string', optional: true },
+      items: { type: 'PlaylistItem[]' },
+    },
+  },
+
+  PlaylistIndexEntry: {
+    description: 'Summary info for a playlist in the index.',
+    fields: {
+      id: { type: 'string' },
+      name: { type: 'string' },
+      createdAtIso: { type: 'string' },
+      lastModifiedIso: { type: 'string' },
+      isReadOnly: { type: 'boolean' },
+      artwork: { type: 'ArtworkSet', optional: true },
+      itemCount: { type: 'number' },
+      totalDurationMs: { type: 'number' },
+    },
+  },
+
+  SearchParams: {
+    description: 'Parameters for a music search query.',
+    fields: {
+      query: { type: 'string' },
+      types: {
+        type: '"artists" | "albums" | "tracks" | "playlists"[]',
+        optional: true,
+        description: 'Categories to search',
+      },
+      limit: { type: 'number', optional: true },
+    },
+  },
+
+  SearchResults: {
+    description: 'Results from a music search, grouped by category.',
+    fields: {
+      artists: { type: 'ArtistRef[]', optional: true },
+      albums: { type: 'AlbumRef[]', optional: true },
+      tracks: { type: 'Track[]', optional: true },
+      playlists: { type: 'PlaylistRef[]', optional: true },
+    },
+  },
+
+  Album: {
+    description: 'A full album with track listing and metadata.',
+    fields: {
+      title: { type: 'string' },
+      artists: { type: 'ArtistCredit[]' },
+      tracks: { type: 'TrackRef[]', optional: true },
+      releaseDate: {
+        type: 'ReleaseDate',
+        optional: true,
+        description: 'Release date with precision',
+      },
+      genres: { type: 'string[]', optional: true },
+      artwork: { type: 'ArtworkSet', optional: true },
+      source: { type: 'ProviderRef' },
+    },
+  },
+
+  ReleaseDate: {
+    description: 'A date with precision indicator.',
+    fields: {
+      precision: { type: '"year" | "month" | "day"' },
+      dateIso: { type: 'string' },
+    },
+  },
+
+  ArtistBio: {
+    description: "An artist's biography, tags, and tour status.",
+    fields: {
+      name: { type: 'string' },
+      disambiguation: { type: 'string', optional: true },
+      bio: { type: 'string', optional: true },
+      onTour: { type: 'boolean', optional: true },
+      artwork: { type: 'ArtworkSet', optional: true },
+      tags: { type: 'string[]', optional: true },
+      source: { type: 'ProviderRef' },
+    },
+  },
+
+  ArtistSocialStats: {
+    description: "An artist's social media and platform statistics.",
+    fields: {
+      name: { type: 'string' },
+      artwork: { type: 'ArtworkSet', optional: true },
+      city: { type: 'string', optional: true },
+      country: { type: 'string', optional: true },
+      followersCount: { type: 'number', optional: true },
+      followingsCount: { type: 'number', optional: true },
+      trackCount: { type: 'number', optional: true },
+      playlistCount: { type: 'number', optional: true },
+      source: { type: 'ProviderRef' },
+    },
+  },
+
+  PlaybackState: {
+    description: 'Current audio playback state.',
+    fields: {
+      status: { type: '"playing" | "paused" | "stopped"' },
+      seek: { type: 'number', description: 'Current position in seconds' },
+      duration: { type: 'number', description: 'Total duration in seconds' },
+    },
+  },
+
+  FavoriteEntry: {
+    description:
+      'A favorited item with timestamp. The ref field contains the actual entity (Track, AlbumRef, or ArtistRef).',
+    fields: {
+      ref: {
+        type: 'Track | AlbumRef | ArtistRef',
+        description: 'The favorited entity',
+      },
+      addedAtIso: { type: 'string' },
+    },
+  },
+
+  AttributedResult: {
+    description: 'A batch of results from a specific provider.',
+    fields: {
+      providerId: { type: 'string' },
+      metadataProviderId: { type: 'string', optional: true },
+      providerName: { type: 'string' },
+      items: {
+        type: 'any[]',
+        description:
+          'Array of result items (Track, ArtistRef, AlbumRef, or PlaylistRef depending on the endpoint)',
+      },
+    },
+  },
+
+  StreamResolutionResult: {
+    description:
+      'Result of resolving stream candidates for a track. Either succeeds with candidates or fails with an error.',
+    fields: {
+      success: { type: 'boolean' },
+      candidates: {
+        type: 'StreamCandidate[]',
+        optional: true,
+        description: 'Present when success is true',
+      },
+      error: {
+        type: 'string',
+        optional: true,
+        description: 'Present when success is false',
+      },
+    },
+  },
+
+  ProviderDescriptor: {
+    description:
+      'Describes a registered provider (metadata, streaming, dashboard, etc.).',
+    fields: {
+      id: { type: 'string' },
+      kind: {
+        type: 'string',
+        description:
+          'Provider kind: metadata, streaming, lyrics, dashboard, etc.',
+      },
+      name: { type: 'string' },
+      pluginId: { type: 'string', optional: true },
+    },
+  },
+
+  YtdlpSearchResult: {
+    description: 'A YouTube search result from yt-dlp.',
+    fields: {
+      id: { type: 'string', description: 'YouTube video ID' },
+      title: { type: 'string' },
+      duration: { type: 'number | null' },
+      thumbnail: { type: 'string | null' },
+    },
+  },
+
+  YtdlpStreamInfo: {
+    description: 'A resolved YouTube audio stream from yt-dlp.',
+    fields: {
+      stream_url: { type: 'string' },
+      duration: { type: 'number | null' },
+      title: { type: 'string | null' },
+    },
+  },
+
+  QueueItemStateUpdate: {
+    description: 'Partial update for a queue item status.',
+    fields: {
+      status: {
+        type: '"idle" | "loading" | "success" | "error"',
+        optional: true,
+      },
+      error: { type: 'string', optional: true },
+    },
+  },
 };

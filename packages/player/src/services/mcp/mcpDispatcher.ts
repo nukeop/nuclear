@@ -1,8 +1,5 @@
-import {
-  apiMeta,
-  NuclearAPI,
-  NuclearPluginAPI,
-} from '@nuclearplayer/plugin-sdk';
+import { NuclearAPI, NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
+import { apiMeta } from '@nuclearplayer/plugin-sdk/mcp';
 
 type DomainOf<K extends keyof NuclearAPI> = NuclearAPI[K];
 type MethodOf<D> = {
