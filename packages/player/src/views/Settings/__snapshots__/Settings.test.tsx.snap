@@ -382,25 +382,57 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   </p>
                                 </div>
                                 <div
-                                  class="flex w-full flex-col gap-2"
+                                  class="flex flex-col gap-2"
                                 >
-                                  <label
+                                  <span
                                     class="text-foreground text-sm font-semibold"
-                                    for="input-:rg:"
-                                    id="input-:rg:-label"
                                   >
                                     MCP Server URL
-                                  </label>
-                                  <input
-                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                    data-headlessui-state=""
-                                    id="input-:rg:"
-                                    type="text"
-                                    value="http://127.0.0.1:8800/mcp"
-                                  />
+                                  </span>
+                                  <div
+                                    class="flex items-center gap-2"
+                                  >
+                                    <div
+                                      class="border-border bg-background-input flex-1 rounded-md border-2 px-3 py-2 font-mono text-sm"
+                                      data-testid="info-field-value"
+                                    >
+                                      http://127.0.0.1:8800/mcp
+                                    </div>
+                                    <button
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border border-current bg-transparent hover:bg-black/10 size-8 justify-center"
+                                      data-headlessui-state=""
+                                      data-testid="info-field-copy-button"
+                                      type="button"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        class="lucide lucide-copy size-3.5"
+                                        fill="none"
+                                        height="24"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <rect
+                                          height="14"
+                                          rx="2"
+                                          ry="2"
+                                          width="14"
+                                          x="8"
+                                          y="8"
+                                        />
+                                        <path
+                                          d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                                        />
+                                      </svg>
+                                    </button>
+                                  </div>
                                   <p
                                     class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rg:-description"
                                   >
                                     Point your AI tool to this URL to connect to Nuclear.
                                   </p>
@@ -427,10 +459,35 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                 >
                                   <label
                                     class="text-foreground text-sm font-semibold"
+                                    for="input-:rg:"
+                                    id="input-:rg:-label"
+                                  >
+                                    Skip duration
+                                  </label>
+                                  <input
+                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                    data-headlessui-state=""
+                                    id="input-:rg:"
+                                    inputmode="numeric"
+                                    type="number"
+                                    value="10"
+                                  />
+                                  <p
+                                    class="text-foreground-secondary text-sm select-none"
+                                    id="input-:rg:-description"
+                                  >
+                                    Number of seconds to skip forward/backward
+                                  </p>
+                                </div>
+                                <div
+                                  class="flex w-full flex-col gap-2"
+                                >
+                                  <label
+                                    class="text-foreground text-sm font-semibold"
                                     for="input-:ri:"
                                     id="input-:ri:-label"
                                   >
-                                    Skip duration
+                                    Crossfade
                                   </label>
                                   <input
                                     class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
@@ -438,13 +495,13 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     id="input-:ri:"
                                     inputmode="numeric"
                                     type="number"
-                                    value="10"
+                                    value="0"
                                   />
                                   <p
                                     class="text-foreground-secondary text-sm select-none"
                                     id="input-:ri:-description"
                                   >
-                                    Number of seconds to skip forward/backward
+                                    Crossfade duration between tracks in milliseconds
                                   </p>
                                 </div>
                                 <div
@@ -455,7 +512,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     for="input-:rk:"
                                     id="input-:rk:-label"
                                   >
-                                    Crossfade
+                                    Stream expiry time
                                   </label>
                                   <input
                                     class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
@@ -463,13 +520,13 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     id="input-:rk:"
                                     inputmode="numeric"
                                     type="number"
-                                    value="0"
+                                    value="3600000"
                                   />
                                   <p
                                     class="text-foreground-secondary text-sm select-none"
                                     id="input-:rk:-description"
                                   >
-                                    Crossfade duration between tracks in milliseconds
+                                    How long before a resolved stream URL is considered expired and needs re-resolution
                                   </p>
                                 </div>
                                 <div
@@ -480,7 +537,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     for="input-:rm:"
                                     id="input-:rm:-label"
                                   >
-                                    Stream expiry time
+                                    Stream resolution retries
                                   </label>
                                   <input
                                     class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
@@ -488,36 +545,11 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     id="input-:rm:"
                                     inputmode="numeric"
                                     type="number"
-                                    value="3600000"
-                                  />
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rm:-description"
-                                  >
-                                    How long before a resolved stream URL is considered expired and needs re-resolution
-                                  </p>
-                                </div>
-                                <div
-                                  class="flex w-full flex-col gap-2"
-                                >
-                                  <label
-                                    class="text-foreground text-sm font-semibold"
-                                    for="input-:ro:"
-                                    id="input-:ro:-label"
-                                  >
-                                    Stream resolution retries
-                                  </label>
-                                  <input
-                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                    data-headlessui-state=""
-                                    id="input-:ro:"
-                                    inputmode="numeric"
-                                    type="number"
                                     value="3"
                                   />
                                   <p
                                     class="text-foreground-secondary text-sm select-none"
-                                    id="input-:ro:-description"
+                                    id="input-:rm:-description"
                                   >
                                     Number of times to retry resolving a stream URL before moving to the next candidate
                                   </p>
@@ -551,7 +583,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                       data-checked=""
                                       data-headlessui-state="checked"
-                                      id="headlessui-switch-:rq:"
+                                      id="headlessui-switch-:ro:"
                                       role="switch"
                                       tabindex="0"
                                       type="button"
@@ -583,7 +615,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       aria-label="Auto-install updates"
                                       class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                       data-headlessui-state=""
-                                      id="headlessui-switch-:rr:"
+                                      id="headlessui-switch-:rp:"
                                       role="switch"
                                       tabindex="0"
                                       type="button"
