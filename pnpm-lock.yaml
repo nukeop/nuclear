@@ -640,6 +640,9 @@ importers:
       '@fontsource/dm-sans':
         specifier: ^5.2.6
         version: 5.2.6
+      '@fontsource/space-mono':
+        specifier: ^5.2.9
+        version: 5.2.9
       '@headlessui/react':
         specifier: ^2.2.7
         version: 2.2.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
