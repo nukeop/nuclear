@@ -1,0 +1,1 @@
+export { initMcpHandler } from './mcpHandler';

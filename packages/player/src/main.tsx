@@ -19,6 +19,7 @@ import {
   applyLanguageFromSettings,
   initLanguageWatcher,
 } from './services/languageService';
+import { initMcpHandler } from './services/mcp';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { applyThemeFromSettings } from './services/themeBootstrap';
 import { useUpdaterStore } from './stores/updaterStore';
@@ -30,6 +31,7 @@ initializeSettingsStore()
   .then(() => initializeFavoritesStore())
   .then(() => initializePlaylistStore())
   .then(() => registerBuiltInCoreSettings())
+  .then(() => initMcpHandler())
   .then(() => applyLanguageFromSettings())
   .then(() => initLanguageWatcher())
   .then(() => startAdvancedThemeWatcher())
