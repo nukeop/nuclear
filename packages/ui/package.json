@@ -33,6 +33,7 @@
     "@floating-ui/react-dom": "^2.1.7",
     "@fontsource/bricolage-grotesque": "^5.2.8",
     "@fontsource/dm-sans": "^5.2.6",
+    "@fontsource/space-mono": "^5.2.9",
     "@headlessui/react": "^2.2.7",
     "@nuclearplayer/eslint-config": "workspace:*",
     "@nuclearplayer/model": "workspace:*",

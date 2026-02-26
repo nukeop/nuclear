@@ -127,3 +127,11 @@ An agent follows this sequence to find and call an API method:
 5. Call `call` with the method name and parameters to execute it.
 
 Each step returns a small, focused payload to save on tokens.
+
+## Agent skill
+
+If your AI tool supports skills (like Claude Code), you can install one that teaches the agent how to use Nuclear's MCP tools, including the discovery workflow, common recipes, and the full API reference.
+
+[Download nuclear-mcp.zip](/skills/nuclear-mcp.zip)
+
+Unzip it into your skills directory (e.g. `~/.claude/skills/`) and the agent will pick it up automatically.

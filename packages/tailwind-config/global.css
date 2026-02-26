@@ -40,6 +40,7 @@
 
   --font-sans: var(--font-family);
   --font-heading: var(--font-family-heading);
+  --font-mono: var(--font-family-mono);
 
   --shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--border);
   --shadow-shadow: var(--shadow);
@@ -88,6 +89,9 @@
   --font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   --default-font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   --font-family-heading: 'Bricolage Grotesque', var(--default-font-family);
+  --font-family-mono:
+    'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
   --font-weight-extra-bold: 800;
