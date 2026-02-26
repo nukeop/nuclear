@@ -87,10 +87,14 @@ const watchSettings = () => {
 
     if (enabled) {
       Logger.app.info('MCP server enabled');
-      void startServer();
+      startServer().catch((err) =>
+        Logger.app.error(`Failed to start MCP server: ${errorMessage(err)}`),
+      );
     } else {
       Logger.app.info('MCP server disabled');
-      void stopServer();
+      stopServer().catch((err) =>
+        Logger.app.error(`Failed to stop MCP server: ${errorMessage(err)}`),
+      );
     }
   });
 };
