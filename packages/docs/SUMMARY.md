@@ -1,5 +1,7 @@
 # Table of contents
 
+* [Nuclear Documentation](README.md)
+
 ## Plugins
 
 * [Getting started](plugins/getting-started.md)
