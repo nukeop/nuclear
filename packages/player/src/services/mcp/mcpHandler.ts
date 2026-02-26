@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 import {
   apiMeta,
+  DomainMeta,
   NuclearPluginAPI,
   typeRegistry,
 } from '@nuclearplayer/plugin-sdk';
@@ -41,13 +42,42 @@ const paramsArg = z.record(z.string(), z.unknown()).default({});
 
 type ToolHandler = (args: unknown) => unknown | Promise<unknown>;
 
+const availableDomains = () => Object.keys(apiMeta).join(', ');
+
+const getDomain = (name: string): DomainMeta => {
+  const domain = apiMeta[name];
+  if (!domain) {
+    throw new Error(
+      `Unknown domain "${name}". Available: ${availableDomains()}`,
+    );
+  }
+  return domain;
+};
+
 const discoveryHandlers: Record<string, ToolHandler> = {
-  list_methods: (args) => Object.values(apiMeta[stringArg.parse(args)].methods),
+  list_methods: (args) =>
+    Object.values(getDomain(stringArg.parse(args)).methods),
   method_details: (args) => {
-    const [domain, method] = stringArg.parse(args).split('.', 2);
-    return apiMeta[domain].methods[method];
+    const [domainName, methodName] = stringArg.parse(args).split('.', 2);
+    const domain = getDomain(domainName);
+    const method = domain.methods[methodName];
+    if (!method) {
+      throw new Error(
+        `Unknown method "${methodName}" in domain "${domainName}". Available: ${Object.keys(domain.methods).join(', ')}`,
+      );
+    }
+    return method;
   },
-  describe_type: (args) => typeRegistry[stringArg.parse(args)],
+  describe_type: (args) => {
+    const typeName = stringArg.parse(args);
+    const shape = typeRegistry[typeName];
+    if (!shape) {
+      throw new Error(
+        `Unknown type "${typeName}". Available: ${Object.keys(typeRegistry).join(', ')}`,
+      );
+    }
+    return shape;
+  },
 };
 
 const getToolHandler = (toolName: string): ToolHandler =>

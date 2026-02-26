@@ -65,15 +65,15 @@ impl NuclearMcpServer {
     }
 
     #[tool(
-        name = "nuclear_list_methods",
+        name = "list_methods",
         description = "List available methods in a Nuclear API domain. Available domains: Queue."
     )]
-    async fn nuclear_list_methods(
+    async fn list_methods(
         &self,
         Parameters(params): Parameters<ListMethodsParams>,
     ) -> Result<CallToolResult, McpError> {
         bridge_result_to_mcp(
-            &format!("nuclear_list_methods({})", params.domain),
+            &format!("list_methods({})", params.domain),
             self.bridge
                 .call_tool(
                     "list_methods",
@@ -84,15 +84,15 @@ impl NuclearMcpServer {
     }
 
     #[tool(
-        name = "nuclear_method_details",
+        name = "method_details",
         description = "Get full details for a Nuclear API method: description, parameter names and types, return type. Use Domain.method format."
     )]
-    async fn nuclear_method_details(
+    async fn method_details(
         &self,
         Parameters(params): Parameters<MethodDetailsParams>,
     ) -> Result<CallToolResult, McpError> {
         bridge_result_to_mcp(
-            &format!("nuclear_method_details({})", params.method),
+            &format!("method_details({})", params.method),
             self.bridge
                 .call_tool(
                     "method_details",
@@ -103,15 +103,15 @@ impl NuclearMcpServer {
     }
 
     #[tool(
-        name = "nuclear_describe_type",
+        name = "describe_type",
         description = "Get the JSON shape of a Nuclear data type. Use when a method parameter or return type references a complex type like Track, Queue, QueueItem, etc."
     )]
-    async fn nuclear_describe_type(
+    async fn describe_type(
         &self,
         Parameters(params): Parameters<DescribeTypeParams>,
     ) -> Result<CallToolResult, McpError> {
         bridge_result_to_mcp(
-            &format!("nuclear_describe_type({})", params.type_name),
+            &format!("describe_type({})", params.type_name),
             self.bridge
                 .call_tool(
                     "describe_type",
@@ -122,15 +122,15 @@ impl NuclearMcpServer {
     }
 
     #[tool(
-        name = "nuclear_call",
+        name = "call",
         description = "Call a Nuclear music player API method. Use Domain.method format for the method name and pass parameters as a JSON object with named fields."
     )]
-    async fn nuclear_call(
+    async fn call(
         &self,
         Parameters(params): Parameters<CallParams>,
     ) -> Result<CallToolResult, McpError> {
         bridge_result_to_mcp(
-            &format!("nuclear_call({})", params.method),
+            &format!("call({})", params.method),
             self.bridge.call_tool(&params.method, params.params).await,
         )
     }
