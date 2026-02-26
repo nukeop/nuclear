@@ -61,7 +61,7 @@ const handleToolCall = async (request: BridgeRequest): Promise<void> => {
     await respond({ traceId: request.traceId, success: true, data });
   } catch (error) {
     const message = errorMessage(error);
-    void Logger.app.error(
+    void Logger.mcp.error(
       `MCP tool call failed (${request.toolName}): ${message}`,
     );
     await respond({
@@ -86,14 +86,14 @@ const watchSettings = () => {
     previouslyEnabled = enabled;
 
     if (enabled) {
-      Logger.app.info('MCP server enabled');
+      Logger.mcp.info('MCP server enabled');
       startServer().catch((err) =>
-        Logger.app.error(`Failed to start MCP server: ${errorMessage(err)}`),
+        Logger.mcp.error(`Failed to start MCP server: ${errorMessage(err)}`),
       );
     } else {
-      Logger.app.info('MCP server disabled');
+      Logger.mcp.info('MCP server disabled');
       stopServer().catch((err) =>
-        Logger.app.error(`Failed to stop MCP server: ${errorMessage(err)}`),
+        Logger.mcp.error(`Failed to stop MCP server: ${errorMessage(err)}`),
       );
     }
   });
@@ -108,7 +108,7 @@ export const initMcpHandler = async () => {
   watchSettings();
 
   if (getSetting(MCP_ENABLED_SETTING) === true) {
-    Logger.app.info('MCP server enabled on startup');
+    Logger.mcp.info('MCP server enabled on startup');
     await startServer();
   }
 };
