@@ -7,6 +7,7 @@ import type {
   SettingValue,
 } from '@nuclearplayer/plugin-sdk';
 
+import { InfoField } from './InfoField';
 import { NumberInputField } from './NumberInputField';
 import { SelectField } from './SelectField';
 import { SliderField } from './SliderField';
@@ -117,6 +118,13 @@ export const SettingField: FC<SettingFieldProps> = ({
         value={String(value ?? '')}
         setValue={(v) => setValue(v)}
         variant="text"
+      />
+    ),
+    info: () => (
+      <InfoField
+        label={label}
+        description={description}
+        value={String(value ?? '')}
       />
     ),
   };

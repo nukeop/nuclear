@@ -5,7 +5,7 @@ import { ComponentProps, FC, memo } from 'react';
 
 import { useCollapsibleText } from '../../hooks';
 import { cn } from '../../utils';
-import { CopyButton } from './CopyButton';
+import { CopyButton } from '../CopyButton';
 
 export type LogLevel = 'trace' | 'debug' | 'info' | 'warn' | 'error';
 
@@ -164,7 +164,7 @@ const LogEntryImpl: FC<LogEntryProps> = ({
         data-testid="log-action-panel"
         className="absolute top-1 right-2 hidden group-hover:block"
       >
-        <CopyButton text={entry.message} />
+        <CopyButton data-testid="log-copy-button" text={entry.message} />
       </div>
     </div>
   );

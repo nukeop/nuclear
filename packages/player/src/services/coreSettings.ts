@@ -184,7 +184,7 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     category: 'integrations',
     kind: 'string',
     default: 'http://127.0.0.1:8800/mcp',
-    widget: { type: 'text' },
+    widget: { type: 'info' },
   },
 ];
 

@@ -17,7 +17,8 @@ export type NumberWidget =
 export type StringWidget =
   | { type: 'text'; placeholder?: string }
   | { type: 'password'; placeholder?: string }
-  | { type: 'textarea'; placeholder?: string; rows?: number };
+  | { type: 'textarea'; placeholder?: string; rows?: number }
+  | { type: 'info' };
 export type EnumWidget = { type: 'select' } | { type: 'radio' };
 
 export type BooleanSettingDefinition = {

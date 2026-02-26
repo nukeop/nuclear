@@ -9,13 +9,18 @@ import {
   typeRegistry,
 } from '@nuclearplayer/plugin-sdk/mcp';
 
-import { getSetting, useSettingsStore } from '../../stores/settingsStore';
+import {
+  getSetting,
+  setSetting,
+  useSettingsStore,
+} from '../../stores/settingsStore';
 import { errorMessage } from '../../utils/error';
 import { Logger } from '../logger';
 import { createPluginAPI } from '../plugins/createPluginAPI';
 import { dispatch } from './mcpDispatcher';
 
 const MCP_ENABLED_SETTING = 'core.integrations.mcp.enabled';
+const MCP_SERVER_URL_SETTING = 'core.integrations.mcp.serverUrl';
 
 const bridgeRequestSchema = z.object({
   traceId: z.string(),
@@ -102,7 +107,13 @@ const handleToolCall = async (request: BridgeRequest): Promise<void> => {
   }
 };
 
-const startServer = () => invoke('mcp_start');
+const startServer = async () => {
+  const port = await invoke<number>('mcp_start');
+  const url = `http://127.0.0.1:${port}/mcp`;
+  await setSetting(MCP_SERVER_URL_SETTING, url);
+  Logger.mcp.info(`MCP server started on ${url}`);
+};
+
 const stopServer = () => invoke('mcp_stop');
 
 const watchSettings = () => {
