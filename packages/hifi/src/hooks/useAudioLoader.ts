@@ -1,10 +1,11 @@
 import { RefObject, useEffect, useRef } from 'react';
 
-import { AudioSource } from '../types';
+import { AudioSource, SoundStatus } from '../types';
 
 export const useAudioLoader = (
   audioRef: RefObject<HTMLAudioElement | null>,
   src: AudioSource,
+  status: SoundStatus,
   isReady: boolean,
 ) => {
   const prevUrl = useRef<string | null>(null);
@@ -27,6 +28,10 @@ export const useAudioLoader = (
       audio.src = src.url;
       audio.load();
       prevUrl.current = src.url;
+
+      if (status === 'playing') {
+        audio.play();
+      }
     }
-  }, [src, isReady, audioRef]);
+  }, [src, status, isReady, audioRef]);
 };

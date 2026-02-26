@@ -35,6 +35,15 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
     useQueueStore.getState().goToNext();
   }, []);
 
+  const handleCanPlay = useCallback(() => {
+    const currentItem = useQueueStore.getState().getCurrentItem();
+    if (currentItem) {
+      useQueueStore
+        .getState()
+        .updateItemState(currentItem.id, { status: 'success' });
+    }
+  }, []);
+
   return (
     <>
       {src && (
@@ -46,6 +55,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
           crossOrigin={crossOrigin}
           onTimeUpdate={handleTimeUpdate}
           onEnd={handleEnd}
+          onCanPlay={handleCanPlay}
         >
           <Volume value={volumePercent} />
         </Sound>

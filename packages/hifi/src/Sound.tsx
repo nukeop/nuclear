@@ -18,6 +18,7 @@ export const Sound: React.FC<SoundProps> = ({
   onTimeUpdate,
   onEnd,
   onLoadStart,
+  onCanPlay,
   onError,
   children,
 }) => {
@@ -28,7 +29,7 @@ export const Sound: React.FC<SoundProps> = ({
 
   usePlaybackStatus(audioRef, status, context, isReady);
   useAudioSeek(audioRef, seek, isReady);
-  useAudioLoader(audioRef, src, isReady);
+  useAudioLoader(audioRef, src, status, isReady);
   useHlsSource(audioRef, src, isReady);
 
   const { handleTimeUpdate, handleError } = useAudioEvents({
@@ -46,6 +47,7 @@ export const Sound: React.FC<SoundProps> = ({
         onTimeUpdate={handleTimeUpdate}
         onEnded={onEnd}
         onLoadStart={onLoadStart}
+        onCanPlay={onCanPlay}
         onError={handleError}
       />
       {isReady &&

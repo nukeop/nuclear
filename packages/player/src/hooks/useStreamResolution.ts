@@ -122,7 +122,6 @@ const resolveAndPlay = async (item: QueueItem, t: TFunction): Promise<void> => {
     return;
   }
 
-  updateItemState(item.id, { status: 'success' });
   setSrc(buildAudioSource(resolvedCandidate));
   play();
 };

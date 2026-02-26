@@ -15,6 +15,7 @@ export type SoundProps = {
   onTimeUpdate?: (args: { position: number; duration: number }) => void;
   onEnd?: () => void;
   onLoadStart?: () => void;
+  onCanPlay?: () => void;
   onError?: (error: Error) => void;
   children?: ReactNode;
 };
