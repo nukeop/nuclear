@@ -41,6 +41,31 @@ export const StreamResolutionWrapper = {
     await waitFor(() => {
       expect(useSoundStore.getState().src).not.toBeNull();
     });
+
+    const audio = document.querySelector('audio');
+    if (audio) {
+      audio.dispatchEvent(new Event('canplay'));
+    }
+
+    await waitFor(() => {
+      const item = useQueueStore.getState().getCurrentItem();
+      expect(item?.status).toBe('success');
+    });
+  },
+
+  simulateCanPlay() {
+    const audio = document.querySelector('audio');
+    if (audio) {
+      audio.dispatchEvent(new Event('canplay'));
+    }
+  },
+
+  async waitForSuccess() {
+    this.simulateCanPlay();
+    await waitFor(() => {
+      const item = useQueueStore.getState().getCurrentItem();
+      expect(item?.status).toBe('success');
+    });
   },
 
   async waitForError() {

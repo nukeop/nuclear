@@ -65,8 +65,7 @@ describe('Playlist export → import round trip', () => {
     (fs.readTextFile as Mock).mockResolvedValueOnce(capturedFileContent);
 
     await PlaylistsWrapper.mount();
-    await PlaylistsWrapper.importButton.click();
-    await PlaylistsWrapper.importJsonOption.click();
+    await PlaylistsWrapper.import.fromJson.click();
 
     await vi.waitFor(() => {
       expect(PlaylistsWrapper.cards).toHaveLength(1);
