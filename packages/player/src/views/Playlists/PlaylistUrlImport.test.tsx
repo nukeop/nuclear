@@ -1,7 +1,10 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper';
+import { QueueWrapper } from '../../integration-tests/Queue.test-wrapper';
 import { usePlaylistStore } from '../../stores/playlistStore';
+import { useQueueStore } from '../../stores/queueStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
@@ -52,6 +55,7 @@ describe('import from URL', () => {
       playlists: new Map(),
       loaded: true,
     });
+    useQueueStore.setState({ items: [], currentIndex: 0 });
     PlaylistsWrapper.clearProviders();
     toastError.mockClear();
     toastSuccess.mockClear();
@@ -93,13 +97,29 @@ describe('import from URL', () => {
     });
   });
 
+  it('plays all tracks when clicking the play button', async () => {
+    PlaylistsWrapper.registerPlaylistProvider(exampleProvider());
+
+    await PlaylistsWrapper.mount();
+    await importPlaylistFromUrl();
+
+    await userEvent.click(screen.getByTestId('play-all-button'));
+
+    const queueItems = QueueWrapper.getItems();
+    expect(queueItems).toHaveLength(2);
+    expect(queueItems[0]?.title).toBe('Midnight Drive');
+    expect(queueItems[1]?.title).toBe('Coastal Breeze');
+    expect(PlayerBarWrapper.isPlaying).toBe(true);
+  });
+
   it('saves the playlist locally as an editable copy', async () => {
     PlaylistsWrapper.registerPlaylistProvider(exampleProvider());
 
     await PlaylistsWrapper.mount();
     await importPlaylistFromUrl();
 
-    await userEvent.click(screen.getByTestId('save-locally-button'));
+    await userEvent.click(screen.getByTestId('playlist-actions-button'));
+    await userEvent.click(screen.getByTestId('save-locally-action'));
 
     await vi.waitFor(() => {
       expect(usePlaylistStore.getState().index).toHaveLength(1);

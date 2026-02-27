@@ -1,17 +1,15 @@
 import { useParams, useSearch } from '@tanstack/react-router';
-import { SaveIcon } from 'lucide-react';
 import { useCallback, type FC } from 'react';
 
-import { useTranslation } from '@nuclearplayer/i18n';
-import { Button, ViewShell } from '@nuclearplayer/ui';
+import { ViewShell } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
 import { PlaylistDetailHeader } from '../PlaylistDetail/components/PlaylistDetailHeader';
+import { PlaylistImportActions } from './PlaylistImportActions';
 import { usePlaylistFromProvider } from './usePlaylistFromProvider';
 import { useSaveLocally } from './useSaveLocally';
 
 export const PlaylistImport: FC = () => {
-  const { t } = useTranslation('playlists');
   const { providerId } = useParams({
     from: '/playlists/import/$providerId',
   });
@@ -29,14 +27,7 @@ export const PlaylistImport: FC = () => {
     <ViewShell data-testid="playlist-import-view" title={playlist?.name ?? ''}>
       {playlist && <PlaylistDetailHeader playlist={playlist} />}
       {playlist && (
-        <Button
-          data-testid="save-locally-button"
-          variant="default"
-          onClick={saveLocally}
-        >
-          <SaveIcon size={16} />
-          {t('saveLocally')}
-        </Button>
+        <PlaylistImportActions tracks={tracks} onSaveLocally={saveLocally} />
       )}
       {tracks.length > 0 && (
         <ConnectedTrackTable

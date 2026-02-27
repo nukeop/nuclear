@@ -83,6 +83,13 @@ export class PlaylistBuilder {
     return this;
   }
 
+  withArtwork(url: string): this {
+    this.playlist.artwork = {
+      items: [{ url }],
+    };
+    return this;
+  }
+
   build(): Playlist {
     return cloneDeep(this.playlist);
   }
