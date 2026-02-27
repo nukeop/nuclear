@@ -17,6 +17,7 @@ import { Route as PlaylistsPlaylistIdRouteImport } from './routes/playlists/$pla
 import { Route as FavoritesTracksRouteImport } from './routes/favorites/tracks'
 import { Route as FavoritesArtistsRouteImport } from './routes/favorites/artists'
 import { Route as FavoritesAlbumsRouteImport } from './routes/favorites/albums'
+import { Route as PlaylistsImportProviderIdRouteImport } from './routes/playlists/import.$providerId'
 import { Route as ArtistProviderIdArtistIdRouteImport } from './routes/artist/$providerId/$artistId'
 import { Route as AlbumProviderIdAlbumIdRouteImport } from './routes/album/$providerId/$albumId'
 
@@ -60,6 +61,12 @@ const FavoritesAlbumsRoute = FavoritesAlbumsRouteImport.update({
   path: '/favorites/albums',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlaylistsImportProviderIdRoute =
+  PlaylistsImportProviderIdRouteImport.update({
+    id: '/playlists/import/$providerId',
+    path: '/playlists/import/$providerId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ArtistProviderIdArtistIdRoute =
   ArtistProviderIdArtistIdRouteImport.update({
     id: '/artist/$providerId/$artistId',
@@ -83,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/playlists': typeof PlaylistsIndexRoute
   '/album/$providerId/$albumId': typeof AlbumProviderIdAlbumIdRoute
   '/artist/$providerId/$artistId': typeof ArtistProviderIdArtistIdRoute
+  '/playlists/import/$providerId': typeof PlaylistsImportProviderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -95,6 +103,7 @@ export interface FileRoutesByTo {
   '/playlists': typeof PlaylistsIndexRoute
   '/album/$providerId/$albumId': typeof AlbumProviderIdAlbumIdRoute
   '/artist/$providerId/$artistId': typeof ArtistProviderIdArtistIdRoute
+  '/playlists/import/$providerId': typeof PlaylistsImportProviderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -108,6 +117,7 @@ export interface FileRoutesById {
   '/playlists/': typeof PlaylistsIndexRoute
   '/album/$providerId/$albumId': typeof AlbumProviderIdAlbumIdRoute
   '/artist/$providerId/$artistId': typeof ArtistProviderIdArtistIdRoute
+  '/playlists/import/$providerId': typeof PlaylistsImportProviderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/playlists'
     | '/album/$providerId/$albumId'
     | '/artist/$providerId/$artistId'
+    | '/playlists/import/$providerId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -134,6 +145,7 @@ export interface FileRouteTypes {
     | '/playlists'
     | '/album/$providerId/$albumId'
     | '/artist/$providerId/$artistId'
+    | '/playlists/import/$providerId'
   id:
     | '__root__'
     | '/'
@@ -146,6 +158,7 @@ export interface FileRouteTypes {
     | '/playlists/'
     | '/album/$providerId/$albumId'
     | '/artist/$providerId/$artistId'
+    | '/playlists/import/$providerId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -159,6 +172,7 @@ export interface RootRouteChildren {
   PlaylistsIndexRoute: typeof PlaylistsIndexRoute
   AlbumProviderIdAlbumIdRoute: typeof AlbumProviderIdAlbumIdRoute
   ArtistProviderIdArtistIdRoute: typeof ArtistProviderIdArtistIdRoute
+  PlaylistsImportProviderIdRoute: typeof PlaylistsImportProviderIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -219,6 +233,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FavoritesAlbumsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/playlists/import/$providerId': {
+      id: '/playlists/import/$providerId'
+      path: '/playlists/import/$providerId'
+      fullPath: '/playlists/import/$providerId'
+      preLoaderRoute: typeof PlaylistsImportProviderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/artist/$providerId/$artistId': {
       id: '/artist/$providerId/$artistId'
       path: '/artist/$providerId/$artistId'
@@ -247,6 +268,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlaylistsIndexRoute: PlaylistsIndexRoute,
   AlbumProviderIdAlbumIdRoute: AlbumProviderIdAlbumIdRoute,
   ArtistProviderIdArtistIdRoute: ArtistProviderIdArtistIdRoute,
+  PlaylistsImportProviderIdRoute: PlaylistsImportProviderIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -108,6 +108,12 @@ describe('Stream Resolution Integration', () => {
       resolveStream!(createMockStream('yt-1'));
 
       await waitFor(() => {
+        expect(useSoundStore.getState().src).not.toBeNull();
+      });
+
+      StreamResolutionWrapper.simulateCanPlay();
+
+      await waitFor(() => {
         const item = StreamResolutionWrapper.getCurrentQueueItem();
         expect(item?.status).toBe('success');
       });

@@ -5,7 +5,14 @@ import type {
   Track,
 } from '@nuclearplayer/model';
 
+import type { ProviderDescriptor } from './providers';
+
 export type PlaylistsListener = (index: PlaylistIndexEntry[]) => void;
+
+export type PlaylistProvider = ProviderDescriptor<'playlists'> & {
+  matchesUrl: (url: string) => boolean;
+  fetchPlaylistByUrl: (url: string) => Promise<Playlist>;
+};
 
 export type PlaylistsHost = {
   getIndex: () => Promise<PlaylistIndexEntry[]>;

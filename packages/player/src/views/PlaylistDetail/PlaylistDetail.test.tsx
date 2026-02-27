@@ -1,6 +1,7 @@
 import * as dialog from '@tauri-apps/plugin-dialog';
 import * as fs from '@tauri-apps/plugin-fs';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { type Mock } from 'vitest';
 
 import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper';
@@ -70,13 +71,34 @@ describe('PlaylistDetail view', () => {
         .withId('external-playlist')
         .withName('External Playlist')
         .readOnly()
-        .withOrigin({ provider: 'spotify', id: 'ext-1' })
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
         .withTrackNames(['Track A']),
     );
 
     await PlaylistDetailWrapper.mount('external-playlist');
 
     expect(PlaylistDetailWrapper.readOnlyBadge).toBeInTheDocument();
+  });
+
+  it('shows tooltip on read-only badge hover', async () => {
+    PlaylistDetailWrapper.seedPlaylist(
+      new PlaylistBuilder()
+        .withId('external-playlist')
+        .withName('External Playlist')
+        .readOnly()
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
+        .withTrackNames(['Track A']),
+    );
+
+    await PlaylistDetailWrapper.mount('external-playlist');
+
+    await userEvent.hover(screen.getByTestId('read-only-badge'));
+
+    await vi.waitFor(() => {
+      expect(screen.getByRole('tooltip')).toHaveTextContent(
+        'This playlist is from example-music and is read-only. Save a local copy to edit it.',
+      );
+    });
   });
 
   it('deletes playlist and navigates back to playlists list', async () => {
@@ -139,7 +161,7 @@ describe('PlaylistDetail view', () => {
         .withId('readonly-playlist')
         .withName('Read-Only Playlist')
         .readOnly()
-        .withOrigin({ provider: 'spotify', id: 'ext-1' })
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
         .withTrackNames(['Track A', 'Track B']),
     );
 
@@ -162,7 +184,7 @@ describe('PlaylistDetail view', () => {
         .withId('readonly-playlist')
         .withName('Read-Only')
         .readOnly()
-        .withOrigin({ provider: 'spotify', id: 'ext-1' })
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
         .withTrackNames(['Track A', 'Track B']),
     );
 
@@ -190,6 +212,22 @@ describe('PlaylistDetail view', () => {
     expect(queueItems[0]?.title).toBe('Existing Track');
     expect(queueItems[1]?.title).toBe('Giant Steps');
     expect(queueItems[2]?.title).toBe('So What');
+  });
+
+  it('displays playlist artwork when available', async () => {
+    PlaylistDetailWrapper.seedPlaylist(
+      new PlaylistBuilder()
+        .withId('art-playlist')
+        .withName('Playlist With Art')
+        .withArtwork('https://example.com/cover.jpg')
+        .withTrackNames(['Track A']),
+    );
+
+    await PlaylistDetailWrapper.mount('art-playlist');
+
+    const artwork = screen.getByTestId('playlist-artwork');
+    expect(artwork).toBeInTheDocument();
+    expect(artwork).toHaveAttribute('src', 'https://example.com/cover.jpg');
   });
 
   describe('JSON export', () => {

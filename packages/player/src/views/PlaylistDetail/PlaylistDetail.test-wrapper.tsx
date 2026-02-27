@@ -49,6 +49,9 @@ export const PlaylistDetailWrapper = {
   get emptyState() {
     return screen.queryByTestId('empty-state');
   },
+  get artwork() {
+    return screen.queryByTestId('playlist-artwork');
+  },
 
   actionsButton: {
     get element() {

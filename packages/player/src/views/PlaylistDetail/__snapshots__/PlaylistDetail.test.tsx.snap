@@ -32,20 +32,24 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
             class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
             style="scrollbar-width: none;"
           >
-            <span
-              data-testid="playlist-detail-title"
-            >
-              Test Playlist
-            </span>
             <div
-              class="mb-4 flex items-center gap-3"
+              class="relative"
             >
               <span
-                class="text-foreground-secondary text-sm"
-                data-testid="playlist-detail-track-count"
+                data-testid="playlist-detail-title"
               >
-                2 tracks
+                Test Playlist
               </span>
+              <div
+                class="mb-4 flex items-center gap-3"
+              >
+                <span
+                  class="text-foreground-secondary text-sm"
+                  data-testid="playlist-detail-track-count"
+                >
+                  2 tracks
+                </span>
+              </div>
             </div>
             <div
               class="mb-6 flex items-center gap-2"

@@ -3,6 +3,7 @@ export type ProviderKind =
   | 'streaming'
   | 'lyrics'
   | 'dashboard'
+  | 'playlists'
   | (string & {});
 
 export type ProviderDescriptor<K extends ProviderKind = ProviderKind> = {
