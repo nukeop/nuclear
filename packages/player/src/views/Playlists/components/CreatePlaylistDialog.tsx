@@ -3,12 +3,12 @@ import { useState, type FC } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import { Button, Dialog, Input } from '@nuclearplayer/ui';
 
-import { usePlaylistsContext } from '../PlaylistsContext';
+import { useCreatePlaylistContext } from '../PlaylistsContext';
 
 export const CreatePlaylistDialog: FC = () => {
   const { t } = useTranslation('playlists');
   const { isCreateDialogOpen, closeCreateDialog, createPlaylist } =
-    usePlaylistsContext();
+    useCreatePlaylistContext();
   const [name, setName] = useState('');
 
   const handleCreate = () => {

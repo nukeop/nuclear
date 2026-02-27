@@ -10,26 +10,48 @@ import {
 
 import { usePlaylistStore } from '../../stores/playlistStore';
 
-type PlaylistsContextValue = {
+type CreatePlaylistContextValue = {
   isCreateDialogOpen: boolean;
   openCreateDialog: () => void;
   closeCreateDialog: () => void;
   createPlaylist: (name: string) => Promise<void>;
 };
 
-const PlaylistsContext = createContext<PlaylistsContextValue | null>(null);
+type ImportFromUrlContextValue = {
+  isUrlDialogOpen: boolean;
+  openUrlDialog: () => void;
+  closeUrlDialog: () => void;
+};
 
-export const usePlaylistsContext = () => {
-  const ctx = useContext(PlaylistsContext);
+const CreatePlaylistContext = createContext<CreatePlaylistContextValue | null>(
+  null,
+);
+
+const ImportFromUrlContext = createContext<ImportFromUrlContextValue | null>(
+  null,
+);
+
+export const useCreatePlaylistContext = () => {
+  const ctx = useContext(CreatePlaylistContext);
   if (!ctx) {
     throw new Error(
-      'usePlaylistsContext must be used within <PlaylistsProvider>',
+      'useCreatePlaylistContext must be used within <PlaylistsProvider>',
     );
   }
   return ctx;
 };
 
-export const PlaylistsProvider: FC<PropsWithChildren> = ({ children }) => {
+export const useImportFromUrlContext = () => {
+  const ctx = useContext(ImportFromUrlContext);
+  if (!ctx) {
+    throw new Error(
+      'useImportFromUrlContext must be used within <PlaylistsProvider>',
+    );
+  }
+  return ctx;
+};
+
+const CreatePlaylistProvider: FC<PropsWithChildren> = ({ children }) => {
   const storeCreatePlaylist = usePlaylistStore((state) => state.createPlaylist);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
@@ -55,8 +77,36 @@ export const PlaylistsProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 
   return (
-    <PlaylistsContext.Provider value={value}>
+    <CreatePlaylistContext.Provider value={value}>
       {children}
-    </PlaylistsContext.Provider>
+    </CreatePlaylistContext.Provider>
   );
 };
+
+const ImportFromUrlProvider: FC<PropsWithChildren> = ({ children }) => {
+  const [isUrlDialogOpen, setIsUrlDialogOpen] = useState(false);
+
+  const openUrlDialog = useCallback(() => setIsUrlDialogOpen(true), []);
+  const closeUrlDialog = useCallback(() => setIsUrlDialogOpen(false), []);
+
+  const value = useMemo(
+    () => ({
+      isUrlDialogOpen,
+      openUrlDialog,
+      closeUrlDialog,
+    }),
+    [isUrlDialogOpen, openUrlDialog, closeUrlDialog],
+  );
+
+  return (
+    <ImportFromUrlContext.Provider value={value}>
+      {children}
+    </ImportFromUrlContext.Provider>
+  );
+};
+
+export const PlaylistsProvider: FC<PropsWithChildren> = ({ children }) => (
+  <CreatePlaylistProvider>
+    <ImportFromUrlProvider>{children}</ImportFromUrlProvider>
+  </CreatePlaylistProvider>
+);
