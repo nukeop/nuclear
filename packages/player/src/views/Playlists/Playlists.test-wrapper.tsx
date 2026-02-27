@@ -53,6 +53,9 @@ export const PlaylistsWrapper = {
   get detailView() {
     return screen.queryByTestId('playlist-detail-view');
   },
+  get importView() {
+    return screen.queryByTestId('playlist-import-view');
+  },
 
   createButton: {
     get element() {

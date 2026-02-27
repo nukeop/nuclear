@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import {
   createContext,
   useCallback,
@@ -7,7 +8,12 @@ import {
   type FC,
   type PropsWithChildren,
 } from 'react';
+import { toast } from 'sonner';
 
+import { useTranslation } from '@nuclearplayer/i18n';
+import type { PlaylistProvider } from '@nuclearplayer/plugin-sdk';
+
+import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
 
 type CreatePlaylistContextValue = {
@@ -21,6 +27,7 @@ type ImportFromUrlContextValue = {
   isUrlDialogOpen: boolean;
   openUrlDialog: () => void;
   closeUrlDialog: () => void;
+  importFromUrl: (url: string) => Promise<void>;
 };
 
 const CreatePlaylistContext = createContext<CreatePlaylistContextValue | null>(
@@ -84,18 +91,43 @@ const CreatePlaylistProvider: FC<PropsWithChildren> = ({ children }) => {
 };
 
 const ImportFromUrlProvider: FC<PropsWithChildren> = ({ children }) => {
+  const { t } = useTranslation('playlists');
+  const navigate = useNavigate();
   const [isUrlDialogOpen, setIsUrlDialogOpen] = useState(false);
 
   const openUrlDialog = useCallback(() => setIsUrlDialogOpen(true), []);
   const closeUrlDialog = useCallback(() => setIsUrlDialogOpen(false), []);
+
+  const importFromUrl = useCallback(
+    async (url: string) => {
+      const providers = providersHost.list('playlists') as PlaylistProvider[];
+      const matchingProvider = providers.find((provider) =>
+        provider.matchesUrl(url),
+      );
+
+      if (!matchingProvider) {
+        toast.error(t('importUrlNoProvider'));
+        return;
+      }
+
+      setIsUrlDialogOpen(false);
+      navigate({
+        to: '/playlists/import/$providerId',
+        params: { providerId: matchingProvider.id },
+        search: { url: encodeURIComponent(url) },
+      });
+    },
+    [navigate, t],
+  );
 
   const value = useMemo(
     () => ({
       isUrlDialogOpen,
       openUrlDialog,
       closeUrlDialog,
+      importFromUrl,
     }),
-    [isUrlDialogOpen, openUrlDialog, closeUrlDialog],
+    [isUrlDialogOpen, openUrlDialog, closeUrlDialog, importFromUrl],
   );
 
   return (

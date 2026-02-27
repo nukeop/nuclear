@@ -40,7 +40,7 @@ const importPlaylistFromUrl = async () => {
   await PlaylistsWrapper.import.fromUrl.click();
   await PlaylistsWrapper.import.fromUrl.dialog.importFromUrl(IMPORT_URL);
   await vi.waitFor(() => {
-    expect(PlaylistsWrapper.detailView).toBeInTheDocument();
+    expect(PlaylistsWrapper.importView).toBeInTheDocument();
   });
 };
 
@@ -121,7 +121,7 @@ describe('import from URL', () => {
         'No plugin can handle this URL. Install a plugin that supports this service.',
       );
     });
-    expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+    expect(PlaylistsWrapper.importView).not.toBeInTheDocument();
   });
 
   it('shows an error when no provider matches the URL', async () => {
@@ -140,7 +140,7 @@ describe('import from URL', () => {
         'No plugin can handle this URL. Install a plugin that supports this service.',
       );
     });
-    expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+    expect(PlaylistsWrapper.importView).not.toBeInTheDocument();
   });
 
   it('shows an error when the provider fails to fetch', async () => {
@@ -158,11 +158,14 @@ describe('import from URL', () => {
     await PlaylistsWrapper.import.fromUrl.dialog.importFromUrl(IMPORT_URL);
 
     await vi.waitFor(() => {
+      expect(PlaylistsWrapper.importView).toBeInTheDocument();
+    });
+
+    await vi.waitFor(() => {
       expect(toastError).toHaveBeenCalledWith(
         'Failed to import playlist',
         expect.objectContaining({ description: 'API rate limited' }),
       );
     });
-    expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
   });
 });

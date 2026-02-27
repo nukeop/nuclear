@@ -25,7 +25,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
         </span>
         {playlist.isReadOnly && playlist.origin && (
           <Badge variant="pill" color="cyan" data-testid="read-only-badge">
-            {t('readOnlyBadge')}
+            {t('readOnlyBadge', { source: playlist.origin.provider })}
           </Badge>
         )}
       </div>
