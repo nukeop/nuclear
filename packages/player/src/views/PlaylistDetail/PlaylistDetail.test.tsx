@@ -71,7 +71,7 @@ describe('PlaylistDetail view', () => {
         .withId('external-playlist')
         .withName('External Playlist')
         .readOnly()
-        .withOrigin({ provider: 'spotify', id: 'ext-1' })
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
         .withTrackNames(['Track A']),
     );
 
@@ -86,7 +86,7 @@ describe('PlaylistDetail view', () => {
         .withId('external-playlist')
         .withName('External Playlist')
         .readOnly()
-        .withOrigin({ provider: 'spotify', id: 'ext-1' })
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
         .withTrackNames(['Track A']),
     );
 
@@ -96,7 +96,7 @@ describe('PlaylistDetail view', () => {
 
     await vi.waitFor(() => {
       expect(screen.getByRole('tooltip')).toHaveTextContent(
-        'This playlist is from spotify and is read-only. Save a local copy to edit it.',
+        'This playlist is from example-music and is read-only. Save a local copy to edit it.',
       );
     });
   });
@@ -161,7 +161,7 @@ describe('PlaylistDetail view', () => {
         .withId('readonly-playlist')
         .withName('Read-Only Playlist')
         .readOnly()
-        .withOrigin({ provider: 'spotify', id: 'ext-1' })
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
         .withTrackNames(['Track A', 'Track B']),
     );
 
@@ -184,7 +184,7 @@ describe('PlaylistDetail view', () => {
         .withId('readonly-playlist')
         .withName('Read-Only')
         .readOnly()
-        .withOrigin({ provider: 'spotify', id: 'ext-1' })
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
         .withTrackNames(['Track A', 'Track B']),
     );
 
