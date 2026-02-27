@@ -66,7 +66,7 @@
     "play": "Play",
     "addToQueue": "Add to queue",
     "saveLocally": "Save locally",
-    "readOnlyBadge": "External playlist",
+    "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "This playlist is from {{source}} and is read-only. Save a local copy to edit it.",
     "trackCount": "{{count}} track",
     "trackCount_other": "{{count}} tracks",
@@ -79,7 +79,12 @@
     "exportSuccess": "Playlist exported",
     "exportError": "Failed to export playlist",
     "importSuccess": "Playlist imported",
-    "importError": "Failed to import playlist"
+    "importError": "Failed to import playlist",
+    "importUrl": "Import from URL",
+    "importUrlTitle": "Import playlist from URL",
+    "importUrlPlaceholder": "Paste a playlist URL...",
+    "importUrlNoProvider": "No plugin can handle this URL. Install a plugin that supports this service.",
+    "importUrlImporting": "Importing..."
   },
   "search": {
     "title": "Search",

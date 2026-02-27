@@ -103,8 +103,7 @@ describe('Playlists view', () => {
       );
 
       await PlaylistsWrapper.mount();
-      await PlaylistsWrapper.importButton.click();
-      await PlaylistsWrapper.importJsonOption.click();
+      await PlaylistsWrapper.import.fromJson.click();
 
       await vi.waitFor(() => {
         expect(PlaylistsWrapper.cards).toHaveLength(1);
@@ -120,8 +119,7 @@ describe('Playlists view', () => {
       (dialog.open as Mock).mockResolvedValueOnce(null);
 
       await PlaylistsWrapper.mount();
-      await PlaylistsWrapper.importButton.click();
-      await PlaylistsWrapper.importJsonOption.click();
+      await PlaylistsWrapper.import.fromJson.click();
 
       expect(PlaylistsWrapper.cards).toHaveLength(0);
       expect(PlaylistsWrapper.emptyState).toBeInTheDocument();
@@ -132,8 +130,7 @@ describe('Playlists view', () => {
       (fs.readTextFile as Mock).mockResolvedValueOnce('not valid json {{{');
 
       await PlaylistsWrapper.mount();
-      await PlaylistsWrapper.importButton.click();
-      await PlaylistsWrapper.importJsonOption.click();
+      await PlaylistsWrapper.import.fromJson.click();
 
       await vi.waitFor(() => {
         expect(toastError).toHaveBeenCalledWith(
@@ -152,8 +149,7 @@ describe('Playlists view', () => {
       );
 
       await PlaylistsWrapper.mount();
-      await PlaylistsWrapper.importButton.click();
-      await PlaylistsWrapper.importJsonOption.click();
+      await PlaylistsWrapper.import.fromJson.click();
 
       await vi.waitFor(() => {
         expect(toastError).toHaveBeenCalledWith(
@@ -172,8 +168,7 @@ describe('Playlists view', () => {
       );
 
       await PlaylistsWrapper.mount();
-      await PlaylistsWrapper.importButton.click();
-      await PlaylistsWrapper.importJsonOption.click();
+      await PlaylistsWrapper.import.fromJson.click();
 
       await vi.waitFor(() => {
         expect(toastError).toHaveBeenCalledWith('Failed to import playlist', {
@@ -190,8 +185,7 @@ describe('Playlists view', () => {
       );
 
       await PlaylistsWrapper.mount();
-      await PlaylistsWrapper.importButton.click();
-      await PlaylistsWrapper.importJsonOption.click();
+      await PlaylistsWrapper.import.fromJson.click();
 
       await vi.waitFor(() => {
         expect(toastError).toHaveBeenCalledWith('Failed to import playlist', {

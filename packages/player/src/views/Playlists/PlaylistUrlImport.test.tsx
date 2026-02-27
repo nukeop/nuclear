@@ -1,5 +1,11 @@
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import { usePlaylistStore } from '../../stores/playlistStore';
+import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
+import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
+import { PlaylistsWrapper } from './Playlists.test-wrapper';
 
 const toastError = vi.fn();
 const toastSuccess = vi.fn();
@@ -15,6 +21,29 @@ vi.mock('@tauri-apps/plugin-fs', async () => ({
   writeTextFile: vi.fn(),
 }));
 
+const IMPORT_URL = 'https://music.example.com/playlist/summer-hits-2025';
+
+const importedPlaylist = new PlaylistBuilder()
+  .withName('Summer Hits 2025')
+  .withTrackNames(['Midnight Drive', 'Coastal Breeze'])
+  .build();
+
+const exampleProvider = () =>
+  new PlaylistProviderBuilder()
+    .withId('example-playlists')
+    .withName('Example Music')
+    .thatMatchesUrl('music.example.com/playlist/')
+    .thatReturnsPlaylist(importedPlaylist)
+    .build();
+
+const importPlaylistFromUrl = async () => {
+  await PlaylistsWrapper.import.fromUrl.click();
+  await PlaylistsWrapper.import.fromUrl.dialog.importFromUrl(IMPORT_URL);
+  await vi.waitFor(() => {
+    expect(PlaylistsWrapper.detailView).toBeInTheDocument();
+  });
+};
+
 describe('import from URL', () => {
   beforeEach(() => {
     resetInMemoryTauriStore();
@@ -23,23 +52,117 @@ describe('import from URL', () => {
       playlists: new Map(),
       loaded: true,
     });
+    PlaylistsWrapper.clearProviders();
+    toastError.mockClear();
+    toastSuccess.mockClear();
   });
 
-  it.todo('opens the URL import dialog');
+  it('opens the URL import dialog', async () => {
+    await PlaylistsWrapper.mount();
+    await PlaylistsWrapper.import.fromUrl.click();
 
-  it.todo('disables the import button when the URL input is empty');
+    expect(PlaylistsWrapper.import.fromUrl.dialog.isOpen()).toBe(true);
+  });
 
-  it.todo('imports a playlist from a URL and shows it in the list');
+  it('disables the import button when the URL input is empty', async () => {
+    await PlaylistsWrapper.mount();
+    await PlaylistsWrapper.import.fromUrl.click();
 
-  it.todo('marks the imported playlist as read-only with provider origin');
+    expect(PlaylistsWrapper.import.fromUrl.dialog.submitButton).toBeDisabled();
+  });
 
-  it.todo('closes the dialog after a successful import');
+  it('imports a playlist from a URL and shows it in the detail view', async () => {
+    PlaylistsWrapper.registerPlaylistProvider(exampleProvider());
 
-  it.todo('shows an error when no providers are registered');
+    await PlaylistsWrapper.mount();
+    await importPlaylistFromUrl();
 
-  it.todo('shows an error when no provider matches the URL');
+    await vi.waitFor(() => {
+      expect(PlaylistsWrapper.import.fromUrl.dialog.isOpen()).toBe(false);
+    });
 
-  it.todo('shows an error when the provider fails to fetch');
+    expect(screen.getByTestId('title')).toHaveTextContent('Summer Hits 2025');
+    expect(screen.getByTestId('read-only-badge')).toHaveTextContent(
+      'Example Music',
+    );
+    expect(screen.getByText('Midnight Drive')).toBeInTheDocument();
+    expect(screen.getByText('Coastal Breeze')).toBeInTheDocument();
 
-  it.todo('shows an error when the provider returns invalid data');
+    await vi.waitFor(() => {
+      expect(toastSuccess).toHaveBeenCalledWith('Playlist imported');
+    });
+  });
+
+  it('saves the playlist locally as an editable copy', async () => {
+    PlaylistsWrapper.registerPlaylistProvider(exampleProvider());
+
+    await PlaylistsWrapper.mount();
+    await importPlaylistFromUrl();
+
+    await userEvent.click(screen.getByTestId('save-locally-button'));
+
+    await vi.waitFor(() => {
+      expect(usePlaylistStore.getState().index).toHaveLength(1);
+    });
+
+    expect(screen.getByTestId('title')).toHaveTextContent('Summer Hits 2025');
+    expect(screen.queryByTestId('read-only-badge')).not.toBeInTheDocument();
+    expect(screen.getByText('Midnight Drive')).toBeInTheDocument();
+    expect(screen.getByText('Coastal Breeze')).toBeInTheDocument();
+  });
+
+  it('shows an error when no providers are registered', async () => {
+    await PlaylistsWrapper.mount();
+    await PlaylistsWrapper.import.fromUrl.click();
+    await PlaylistsWrapper.import.fromUrl.dialog.importFromUrl(IMPORT_URL);
+
+    await vi.waitFor(() => {
+      expect(toastError).toHaveBeenCalledWith(
+        'No plugin can handle this URL. Install a plugin that supports this service.',
+      );
+    });
+    expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+  });
+
+  it('shows an error when no provider matches the URL', async () => {
+    PlaylistsWrapper.registerPlaylistProvider(
+      new PlaylistProviderBuilder()
+        .thatMatchesUrl('other-service.com/playlist/')
+        .build(),
+    );
+
+    await PlaylistsWrapper.mount();
+    await PlaylistsWrapper.import.fromUrl.click();
+    await PlaylistsWrapper.import.fromUrl.dialog.importFromUrl(IMPORT_URL);
+
+    await vi.waitFor(() => {
+      expect(toastError).toHaveBeenCalledWith(
+        'No plugin can handle this URL. Install a plugin that supports this service.',
+      );
+    });
+    expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+  });
+
+  it('shows an error when the provider fails to fetch', async () => {
+    PlaylistsWrapper.registerPlaylistProvider(
+      new PlaylistProviderBuilder()
+        .thatMatchesUrl('music.example.com/playlist/')
+        .withFetchPlaylistByUrl(async () => {
+          throw new Error('API rate limited');
+        })
+        .build(),
+    );
+
+    await PlaylistsWrapper.mount();
+    await PlaylistsWrapper.import.fromUrl.click();
+    await PlaylistsWrapper.import.fromUrl.dialog.importFromUrl(IMPORT_URL);
+
+    await vi.waitFor(() => {
+      expect(toastError).toHaveBeenCalledWith(
+        'Failed to import playlist',
+        expect.objectContaining({ description: 'API rate limited' }),
+      );
+    });
+    expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+  });
 });
