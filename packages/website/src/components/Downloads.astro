@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const platforms = [
+  {
+    name: 'macOS',
+    icon: 'simple-icons:apple',
+    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.11.1/nuclear-music-player_1.11.1_aarch64.dmg',
+  },
+  {
+    name: 'Windows',
+    icon: 'simple-icons:windows',
+    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.11.1/nuclear-music-player_1.11.1_x64-setup.exe',
+  },
+  {
+    name: 'Linux',
+    icon: 'simple-icons:linux',
+    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.11.1/nuclear-music-player_1.11.1_amd64.AppImage',
+  },
+];
+---
+
+<section id="downloads" class="hidden md:flex justify-center gap-4 px-8 pb-16 relative z-10">
+  {platforms.map((platform) => (
+    <a
+      href={platform.url}
+      class="inline-flex items-center gap-2.5 border-2 border-border bg-white rounded-md px-6 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none"
+    >
+      <Icon name={platform.icon} class="w-5 h-5" />
+      {platform.name}
+    </a>
+  ))}
+</section>
