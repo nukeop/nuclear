@@ -133,11 +133,11 @@
   "album": {
     "title": "Альбом",
     "genre": "Жанр",
-    "year": "Year",
-    "tracks": "Tracks",
+    "year": "Год",
+    "tracks": "Треки",
     "errors": {
-      "failedToLoadDetails": "Failed to load album details.",
-      "failedToLoadTracks": "Failed to load tracks."
+      "failedToLoadDetails": "Не удалось загрузить детали альбома.",
+      "failedToLoadTracks": "Не удалось загрузить треки."
     }
   },
   "themes": {
@@ -149,88 +149,88 @@
   },
   "dashboard": {
     "title": "Панель",
-    "empty-state": "No dashboard data available",
-    "empty-state-description": "Enable a plugin that provides dashboard content.",
-    "top-tracks": "Top Tracks",
-    "top-artists": "Top Artists",
-    "top-albums": "Top Albums",
-    "editorial-playlists": "Top Playlists",
-    "new-releases": "New Releases",
-    "filter-artists": "Filter artists...",
-    "filter-albums": "Filter albums...",
-    "filter-playlists": "Filter playlists...",
-    "filter-releases": "Filter releases...",
-    "nothing-found": "Nothing found"
+    "empty-state": "Нет доступных данных в панели управления",
+    "empty-state-description": "Включите плагин, который предоставляет содержимое панели.",
+    "top-tracks": "Лучшие Треки",
+    "top-artists": "Лучшие Исполнители",
+    "top-albums": "Лучшие Альбомы",
+    "editorial-playlists": "Лучше Плейлисты",
+    "new-releases": "Новые Релизы",
+    "filter-artists": "Фильтр исполнителей...",
+    "filter-albums": "Фильтр альбомов...",
+    "filter-playlists": "Фильтр плейлистов...",
+    "filter-releases": "Фильтр релизов...",
+    "nothing-found": "Ничего не найдено"
   },
   "plugins": {
     "title": "Плагины",
     "addPlugin": "Добавить плагин",
     "tabs": {
-      "installed": "Installed",
-      "store": "Store"
+      "installed": "Установлено",
+      "store": "Магазин"
     },
     "store": {
-      "searchPlaceholder": "Search plugins...",
-      "install": "Install",
-      "installing": "Installing",
-      "installed": "Installed",
-      "by": "by",
+      "searchPlaceholder": "Поиск плагинов...",
+      "install": "Установить",
+      "installing": "Установка",
+      "installed": "Установлен",
+      "by": "от",
       "categories": {
-        "all": "All",
-        "streaming": "Streaming",
-        "metadata": "Metadata",
-        "lyrics": "Lyrics",
-        "scrobbling": "Scrobbling",
-        "other": "Other"
+        "all": "Всё",
+        "streaming": "Трансляция",
+        "metadata": "Метаданные",
+        "lyrics": "Текст",
+        "scrobbling": "Скробблинг",
+        "other": "Прочие"
       },
       "error": {
-        "title": "Failed to load plugins",
-        "description": "Could not fetch the plugin registry. Please check your internet connection.",
-        "retry": "Retry"
+        "title": "Не удалось загрузить плагины",
+        "description": "Не удалось получить реестр плагинов. Пожалуйста, проверьте подключение к Интернету.",
+        "retry": "Повторить"
       },
       "noResults": {
-        "title": "No plugins found",
-        "filtered": "Try adjusting your search or filters.",
-        "empty": "No plugins available yet."
+        "title": "Плагины не найдены",
+        "filtered": "Попробуйте изменить запрос или фильтры.",
+        "empty": "Нет доступных плагинов."
       },
       "installError": {
-        "title": "Failed to install {{name}}"
+        "title": "Не удалось установить {{name}}"
       }
     }
   },
   "updater": {
-    "updateAvailable": "Update available"
+    "updateAvailable": "Доступно обновление"
   },
   "flatpak": {
-    "sandboxWarning": "You're running Nuclear in a Flatpak sandbox. Some features may not work correctly. If you experience issues, try the .deb or AppImage instead.",
-    "dismiss": "Got it"
+    "sandboxWarning": "Вы используете Nuclear в среде Flatpak. Некоторые функции могут работать неправильно. Если вы столкнулись с проблемами, попробуйте .deb или AppImage.",
+    "dismiss": "Хорошо"
   },
   "preferences": {
-    "title": "Preferences",
+    "title": "Настройки",
     "general": {
-      "title": "General",
+      "title": "Общие",
       "language": {
-        "title": "Language",
-        "description": "Select your preferred language"
+        "title": "Язык",
+        "description": "Выберите предпочитаемый язык"
       }
     },
     "plugins": {
-      "title": "Plugins"
+      "title": "Плагины"
     },
     "themes": {
-      "title": "Themes"
+      "title": "Темы"
     },
     "logs": {
-      "title": "Logs"
+      "title": "Логи"
     },
     "appearance": {
-      "title": "Appearance"
+      "title": "Оформление"
     },
     "playback": {
-      "title": "Playback",
+      "title": "Воспроизведение",
       "skipSeconds": {
-        "title": "Skip duration",
-        "description": "Number of seconds to skip forward/backward"
+        "title": "Длительность перемотки",
+        "description": "Количество секунд, пропускаемое вперёд/назад"
       },
       "crossfadeMs": {
         "title": "Плавный переход",
