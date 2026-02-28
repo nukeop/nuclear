@@ -77,11 +77,11 @@
   "license": "AGPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NuclearPlayer/nuclear-xrd.git",
+    "url": "https://github.com/nukeop/nuclear.git",
     "directory": "packages/plugin-sdk"
   },
-  "homepage": "https://github.com/NuclearPlayer/nuclear-xrd#readme",
+  "homepage": "https://github.com/nukeop/nuclear#readme",
   "bugs": {
-    "url": "https://github.com/NuclearPlayer/nuclear-xrd/issues"
+    "url": "https://github.com/nukeop/nuclear/issues"
   }
 }

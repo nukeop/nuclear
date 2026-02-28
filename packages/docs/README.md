@@ -13,7 +13,7 @@ Nuclear is a free, open‑source music player that acts as a hub for many servic
 | Website  | [https://nuclearplayer.com/](https://nuclearplayer.com/)                   |
 | Github   | [https://github.com/nukeop/nuclear](https://github.com/nukeop/nuclear)     |
 | Discord  | [https://discord.gg/JqPjKxE](https://discord.gg/JqPjKxE)                   |
-| Mastodon | [https://mstdn.io/@nuclear](https://mstdn.io/@nuclear)                     |
+| Mastodon | [https://fosstodon.org/@nuclearplayer](https://fosstodon.org/@nuclearplayer) |
 | Gitbook  | [https://docs.nuclearplayer.com](https://docs.nuclearplayer.com)   |
 
 ## For users

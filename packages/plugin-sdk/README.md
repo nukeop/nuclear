@@ -114,7 +114,7 @@ The `api` object passed to lifecycle hooks provides access to these domain APIs:
 | `api.Metadata` | Search and fetch artist/album/track details |
 | `api.Dashboard` | Fetch dashboard content (top tracks, new releases, etc.) |
 
-See the [full documentation](https://docs.nuclearplayer.com/nuclear-xrd) for detailed guides on each API.
+See the [full documentation](https://docs.nuclearplayer.com) for detailed guides on each API.
 
 ## Permissions
 

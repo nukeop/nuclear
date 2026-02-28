@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nuclearplayer.github.io/nuclear-xrd/sitemap-index.xml
+Sitemap: https://nuclearplayer.com/sitemap-index.xml
