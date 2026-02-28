@@ -28,14 +28,63 @@
   "navigation": {
     "explore": "Explorar",
     "dashboard": "Panel",
-    "preferences": "Preferencias",
-    "settings": "Configuración",
-    "plugins": "Plugins",
-    "themes": "Temas",
     "collection": "Colección",
     "favoriteAlbums": "Albums favoritos",
     "favoriteTracks": "Canciones favoritas",
-    "favoriteArtists": "Artistas favoritos"
+    "favoriteArtists": "Artistas favoritos",
+    "playlists": "Playlists"
+  },
+  "favorites": {
+    "albums": {
+      "title": "Favorite albums",
+      "empty": "No favorite albums yet",
+      "emptyDescription": "Albums you mark as favorites will appear here"
+    },
+    "tracks": {
+      "title": "Favorite tracks",
+      "empty": "No favorite tracks yet",
+      "emptyDescription": "Tracks you mark as favorites will appear here"
+    },
+    "artists": {
+      "title": "Favorite artists",
+      "empty": "No favorite artists yet",
+      "emptyDescription": "Artists you mark as favorites will appear here"
+    }
+  },
+  "playlists": {
+    "title": "Playlists",
+    "empty": "No playlists yet",
+    "emptyDescription": "Create a playlist or import one to get started",
+    "emptyTracks": "No tracks in this playlist",
+    "emptyTracksDescription": "Add tracks from search results or your library",
+    "create": "Create new",
+    "importJson": "Import from JSON",
+    "exportJson": "Export as JSON",
+    "add": "Add",
+    "delete": "Delete playlist",
+    "deleteConfirm": "Are you sure you want to delete this playlist?",
+    "play": "Play",
+    "addToQueue": "Add to queue",
+    "saveLocally": "Save locally",
+    "readOnlyBadge": "{{source}}",
+    "readOnlyTooltip": "This playlist is from {{source}} and is read-only. Save a local copy to edit it.",
+    "trackCount": "{{count}} track",
+    "trackCount_other": "{{count}} tracks",
+    "addToPlaylist": "Add to playlist",
+    "filterPlaylists": "Filter playlists...",
+    "createNew": "Create new playlist",
+    "saveQueueAsPlaylist": "Save queue as playlist",
+    "name": "Name",
+    "namePlaceholder": "Playlist name...",
+    "exportSuccess": "Playlist exported",
+    "exportError": "Failed to export playlist",
+    "importSuccess": "Playlist imported",
+    "importError": "Failed to import playlist",
+    "importUrl": "Import from URL",
+    "importUrlTitle": "Import playlist from URL",
+    "importUrlPlaceholder": "Paste a playlist URL...",
+    "importUrlNoProvider": "No plugin can handle this URL. Install a plugin that supports this service.",
+    "importUrlImporting": "Importing..."
   },
   "search": {
     "title": "Buscar",
@@ -69,11 +118,26 @@
     "topTracks": "Top tracks",
     "onTour": "De gira",
     "notOnTour": "No está de gira",
+    "followers": "Followers",
+    "followings": "Following",
+    "playlists": "Playlists",
     "errors": {
       "failedToLoadDetails": "Error al cargar los detalles del artista.",
       "failedToLoadAlbums": "Error al cargar los albums.",
       "failedToLoadPopularTracks": "Error al cargar los tracks populares.",
-      "failedToLoadSimilarArtists": "Error al cargar artistas similares."
+      "failedToLoadSimilarArtists": "Error al cargar artistas similares.",
+      "failedToLoadSocialStats": "Failed to load artist stats.",
+      "failedToLoadPlaylists": "Failed to load playlists."
+    }
+  },
+  "album": {
+    "title": "Album",
+    "genre": "Genre",
+    "year": "Year",
+    "tracks": "Tracks",
+    "errors": {
+      "failedToLoadDetails": "Failed to load album details.",
+      "failedToLoadTracks": "Failed to load tracks."
     }
   },
   "themes": {
@@ -85,35 +149,176 @@
   },
   "dashboard": {
     "title": "Panel",
-    "content": "Vista del panel"
+    "empty-state": "No dashboard data available",
+    "empty-state-description": "Enable a plugin that provides dashboard content.",
+    "top-tracks": "Top Tracks",
+    "top-artists": "Top Artists",
+    "top-albums": "Top Albums",
+    "editorial-playlists": "Top Playlists",
+    "new-releases": "New Releases",
+    "filter-artists": "Filter artists...",
+    "filter-albums": "Filter albums...",
+    "filter-playlists": "Filter playlists...",
+    "filter-releases": "Filter releases...",
+    "nothing-found": "Nothing found"
   },
   "plugins": {
     "title": "Plugins",
-    "addPlugin": "Agregar plugin"
-  },
-  "settings": {
-    "title": "Configuración",
-    "categories": {
-      "general": "General",
-      "appearance": "Apariencia",
-      "playback": "Reproducción",
-      "layout": "Diseño"
+    "addPlugin": "Agregar plugin",
+    "tabs": {
+      "installed": "Installed",
+      "store": "Store"
     },
-    "general": {
-      "language": {
-        "title": "Idioma",
-        "description": "Selecciona tu idioma preferido"
-      }
-    },
-    "playback": {
-      "skipSeconds": {
-        "title": "Duración del salto",
-        "description": "Número de segundos para avanzar/retroceder"
+    "store": {
+      "searchPlaceholder": "Search plugins...",
+      "install": "Install",
+      "installing": "Installing",
+      "installed": "Installed",
+      "by": "by",
+      "categories": {
+        "all": "All",
+        "streaming": "Streaming",
+        "metadata": "Metadata",
+        "lyrics": "Lyrics",
+        "scrobbling": "Scrobbling",
+        "other": "Other"
       },
-      "crossfadeMs": {
-        "title": "Fundido cruzado",
-        "description": "Duración del fundido cruzado entre canciones en milisegundos"
+      "error": {
+        "title": "Failed to load plugins",
+        "description": "Could not fetch the plugin registry. Please check your internet connection.",
+        "retry": "Retry"
+      },
+      "noResults": {
+        "title": "No plugins found",
+        "filtered": "Try adjusting your search or filters.",
+        "empty": "No plugins available yet."
+      },
+      "installError": {
+        "title": "Failed to install {{name}}"
       }
     }
+  },
+  "updater": {
+    "updateAvailable": "Update available"
+  },
+  "flatpak": {
+    "sandboxWarning": "You're running Nuclear in a Flatpak sandbox. Some features may not work correctly. If you experience issues, try the .deb or AppImage instead.",
+    "dismiss": "Got it"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "general": {
+      "title": "General",
+      "language": {
+        "title": "Language",
+        "description": "Select your preferred language"
+      }
+    },
+    "plugins": {
+      "title": "Plugins"
+    },
+    "themes": {
+      "title": "Themes"
+    },
+    "logs": {
+      "title": "Logs"
+    },
+    "appearance": {
+      "title": "Appearance"
+    },
+    "playback": {
+      "title": "Playback",
+      "skipSeconds": {
+        "title": "Skip duration",
+        "description": "Number of seconds to skip forward/backward"
+      },
+      "crossfadeMs": {
+        "title": "Crossfade",
+        "description": "Crossfade duration between tracks in milliseconds"
+      },
+      "streamExpiryMs": {
+        "title": "Stream expiry time",
+        "description": "How long before a resolved stream URL is considered expired and needs re-resolution"
+      },
+      "streamResolutionRetries": {
+        "title": "Stream resolution retries",
+        "description": "Number of times to retry resolving a stream URL before moving to the next candidate"
+      }
+    },
+    "layout": {
+      "title": "Layout"
+    },
+    "updates": {
+      "title": "Updates",
+      "checkForUpdates": {
+        "title": "Check for updates",
+        "description": "Automatically check for new versions on startup"
+      },
+      "autoInstall": {
+        "title": "Auto-install updates",
+        "description": "Download and install updates automatically when available"
+      }
+    },
+    "integrations": {
+      "title": "Integrations",
+      "mcp": {
+        "enabled": {
+          "title": "Enable MCP Server",
+          "description": "Start a local MCP server that allows AI tools to control Nuclear."
+        },
+        "serverUrl": {
+          "title": "MCP Server URL",
+          "description": "Point your AI tool to this URL to connect to Nuclear."
+        }
+      }
+    }
+  },
+  "queue": {
+    "title": "Queue",
+    "empty": {
+      "title": "Queue is empty",
+      "subtitle": "Add tracks to start playing"
+    },
+    "actions": {
+      "remove": "Remove from queue",
+      "clear": "Clear queue",
+      "saveAsPlaylist": "Save queue as playlist"
+    },
+    "errors": {
+      "playback": "Playback error"
+    }
+  },
+  "track": {
+    "actions": {
+      "playNow": "Play now",
+      "playNext": "Play next",
+      "addToQueue": "Add to queue",
+      "addToFavorites": "Add to favorites",
+      "removeFromFavorites": "Remove from favorites"
+    }
+  },
+  "streaming": {
+    "errors": {
+      "noCandidatesFound": "Failed to find stream candidates",
+      "allCandidatesFailed": "All stream candidates failed"
+    }
+  },
+  "playerBar": {
+    "noTrackPlaying": "No track playing"
+  },
+  "logs": {
+    "title": "Logs",
+    "searchPlaceholder": "Search logs...",
+    "searchAriaLabel": "Search logs",
+    "levelLabel": "Level:",
+    "scopeLabel": "Scope:",
+    "clearButton": "Clear",
+    "exportButton": "Export",
+    "openLogFolderButton": "Open Log Folder",
+    "noLogsMessage": "No logs to display",
+    "invalidRegexMessage": "Invalid regex pattern",
+    "entryCount": "{{count}} entry",
+    "entryCount_other": "{{count}} entries",
+    "exportSuccess": "Logs exported"
   }
 }
