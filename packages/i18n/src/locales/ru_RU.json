@@ -32,59 +32,59 @@
     "favoriteAlbums": "Избранные альбомы",
     "favoriteTracks": "Избранные треки",
     "favoriteArtists": "Избранные артисты",
-    "playlists": "Playlists"
+    "playlists": "Плейлисты"
   },
   "favorites": {
     "albums": {
-      "title": "Favorite albums",
-      "empty": "No favorite albums yet",
-      "emptyDescription": "Albums you mark as favorites will appear here"
+      "title": "Любимые альбомы",
+      "empty": "Ещё нет любимых альбомов",
+      "emptyDescription": "Альбомы, отмеченные как любимые, появятся здесь"
     },
     "tracks": {
-      "title": "Favorite tracks",
-      "empty": "No favorite tracks yet",
-      "emptyDescription": "Tracks you mark as favorites will appear here"
+      "title": "Любимые треки",
+      "empty": "Ещё нет любимых треков",
+      "emptyDescription": "Треки, отмеченные как любимые, появятся здесь"
     },
     "artists": {
-      "title": "Favorite artists",
-      "empty": "No favorite artists yet",
-      "emptyDescription": "Artists you mark as favorites will appear here"
+      "title": "Любимые исполнители",
+      "empty": "Ещё нет любимых исполнителей",
+      "emptyDescription": "Исполнители, отмеченные как любимые, появятся здесь"
     }
   },
   "playlists": {
-    "title": "Playlists",
-    "empty": "No playlists yet",
-    "emptyDescription": "Create a playlist or import one to get started",
-    "emptyTracks": "No tracks in this playlist",
-    "emptyTracksDescription": "Add tracks from search results or your library",
-    "create": "Create new",
-    "importJson": "Import from JSON",
-    "exportJson": "Export as JSON",
-    "add": "Add",
-    "delete": "Delete playlist",
-    "deleteConfirm": "Are you sure you want to delete this playlist?",
-    "play": "Play",
-    "addToQueue": "Add to queue",
-    "saveLocally": "Save locally",
+    "title": "Плейлисты",
+    "empty": "Ещё нет плейлистов",
+    "emptyDescription": "Создайте или импортируйте плейлист для начала",
+    "emptyTracks": "В этом плейлисте нет треков",
+    "emptyTracksDescription": "Добавьте треки из результатов поиска или библиотеки",
+    "create": "Создать новый",
+    "importJson": "Импортировать из JSON",
+    "exportJson": "Экспортировать в JSON",
+    "add": "Добавить",
+    "delete": "Удалить плейлист",
+    "deleteConfirm": "Вы уверены, что хотите удалить плейлист?",
+    "play": "Воспроизвести",
+    "addToQueue": "Добавить в очередь",
+    "saveLocally": "Сохранить локально",
     "readOnlyBadge": "{{source}}",
-    "readOnlyTooltip": "This playlist is from {{source}} and is read-only. Save a local copy to edit it.",
-    "trackCount": "{{count}} track",
-    "trackCount_other": "{{count}} tracks",
-    "addToPlaylist": "Add to playlist",
-    "filterPlaylists": "Filter playlists...",
-    "createNew": "Create new playlist",
-    "saveQueueAsPlaylist": "Save queue as playlist",
-    "name": "Name",
-    "namePlaceholder": "Playlist name...",
-    "exportSuccess": "Playlist exported",
-    "exportError": "Failed to export playlist",
-    "importSuccess": "Playlist imported",
-    "importError": "Failed to import playlist",
-    "importUrl": "Import from URL",
-    "importUrlTitle": "Import playlist from URL",
-    "importUrlPlaceholder": "Paste a playlist URL...",
-    "importUrlNoProvider": "No plugin can handle this URL. Install a plugin that supports this service.",
-    "importUrlImporting": "Importing..."
+    "readOnlyTooltip": "Этот плейлист от {{source}} доступен только для чтения. Сохраните локальную копию для редактирования.",
+    "trackCount": "{{count}} треков",
+    "trackCount_other": "{{count}} треков",
+    "addToPlaylist": "Добавить в плейлист",
+    "filterPlaylists": "Отфильтровать плейлисты...",
+    "createNew": "Создать новый плейлист",
+    "saveQueueAsPlaylist": "Сохранить очередь как плейлист",
+    "name": "Название",
+    "namePlaceholder": "Название плейлиста...",
+    "exportSuccess": "Плейлист экспортирован",
+    "exportError": "Не удалось экспортировать плейлист",
+    "importSuccess": "Плейлист импортирован",
+    "importError": "Не удалось импортировать плейлист",
+    "importUrl": "Импортировать по URL",
+    "importUrlTitle": "Импортировать плейлист по URL",
+    "importUrlPlaceholder": "Вставьте URL плейлиста...",
+    "importUrlNoProvider": "Ни один плагин не может обработать этот URL. Установите плагин, поддерживающий этот сервис.",
+    "importUrlImporting": "Импортирование..."
   },
   "search": {
     "title": "Поиск",
@@ -118,21 +118,21 @@
     "topTracks": "Топ треки",
     "onTour": "В туре",
     "notOnTour": "Не в туре",
-    "followers": "Followers",
-    "followings": "Following",
-    "playlists": "Playlists",
+    "followers": "Подписчики",
+    "followings": "Подписки",
+    "playlists": "Плейлисты",
     "errors": {
       "failedToLoadDetails": "Не удалось загрузить информацию об артисте.",
       "failedToLoadAlbums": "Не удалось загрузить альбомы.",
       "failedToLoadPopularTracks": "Не удалось загрузить популярные треки.",
       "failedToLoadSimilarArtists": "Не удалось загрузить похожих артистов.",
-      "failedToLoadSocialStats": "Failed to load artist stats.",
-      "failedToLoadPlaylists": "Failed to load playlists."
+      "failedToLoadSocialStats": "Не удалось загрузить статистику исполнителя.",
+      "failedToLoadPlaylists": "Не удалось загрузить плейлисты."
     }
   },
   "album": {
-    "title": "Album",
-    "genre": "Genre",
+    "title": "Альбом",
+    "genre": "Жанр",
     "year": "Year",
     "tracks": "Tracks",
     "errors": {
@@ -233,92 +233,92 @@
         "description": "Number of seconds to skip forward/backward"
       },
       "crossfadeMs": {
-        "title": "Crossfade",
-        "description": "Crossfade duration between tracks in milliseconds"
+        "title": "Плавный переход",
+        "description": "Длительность плавного перехода между треками в миллисекундах"
       },
       "streamExpiryMs": {
-        "title": "Stream expiry time",
-        "description": "How long before a resolved stream URL is considered expired and needs re-resolution"
+        "title": "Время истечения трансляции",
+        "description": "Через сколько разрешенный URL трансляции будет считаться устаревшим и нуждаться в повторном разрешении"
       },
       "streamResolutionRetries": {
-        "title": "Stream resolution retries",
-        "description": "Number of times to retry resolving a stream URL before moving to the next candidate"
+        "title": "Попытки разрешения трансляции",
+        "description": "Количество раз, чтобы повторить попытку разрешить URL трансляции перед переходом к следующему кандидату"
       }
     },
     "layout": {
-      "title": "Layout"
+      "title": "Макет"
     },
     "updates": {
-      "title": "Updates",
+      "title": "Обновления",
       "checkForUpdates": {
-        "title": "Check for updates",
-        "description": "Automatically check for new versions on startup"
+        "title": "Проворить наличие обновлений",
+        "description": "Автоматически проверяет наличие обновлений при запуске"
       },
       "autoInstall": {
-        "title": "Auto-install updates",
-        "description": "Download and install updates automatically when available"
+        "title": "Автоустановка обновлений",
+        "description": "Скачивать и устанавливать обновления автоматически при наличии"
       }
     },
     "integrations": {
-      "title": "Integrations",
+      "title": "Интеграции",
       "mcp": {
         "enabled": {
-          "title": "Enable MCP Server",
-          "description": "Start a local MCP server that allows AI tools to control Nuclear."
+          "title": "Включить MCP сервер",
+          "description": "Запустит локальный MCP сервер, позволяющий ИИ инструментам контролировать Nuclear."
         },
         "serverUrl": {
-          "title": "MCP Server URL",
-          "description": "Point your AI tool to this URL to connect to Nuclear."
+          "title": "URL MCP сервера",
+          "description": "Направьте Ваш ИИ инструмент на этот URL для подключения к Nuclear."
         }
       }
     }
   },
   "queue": {
-    "title": "Queue",
+    "title": "Очередь",
     "empty": {
-      "title": "Queue is empty",
-      "subtitle": "Add tracks to start playing"
+      "title": "Очередь пуста",
+      "subtitle": "Добавьте треки для начала воспроизведения"
     },
     "actions": {
-      "remove": "Remove from queue",
-      "clear": "Clear queue",
-      "saveAsPlaylist": "Save queue as playlist"
+      "remove": "Убрать из очереди",
+      "clear": "Очистить очередь",
+      "saveAsPlaylist": "Сохранить очередь как плейлист"
     },
     "errors": {
-      "playback": "Playback error"
+      "playback": "Ошибка воспроизведения"
     }
   },
   "track": {
     "actions": {
-      "playNow": "Play now",
-      "playNext": "Play next",
-      "addToQueue": "Add to queue",
-      "addToFavorites": "Add to favorites",
-      "removeFromFavorites": "Remove from favorites"
+      "playNow": "Воспроизвести",
+      "playNext": "Воспроизвести следующий",
+      "addToQueue": "Добавить в очередь",
+      "addToFavorites": "Добавить в любимые",
+      "removeFromFavorites": "Убрать из любимых"
     }
   },
   "streaming": {
     "errors": {
-      "noCandidatesFound": "Failed to find stream candidates",
-      "allCandidatesFailed": "All stream candidates failed"
+      "noCandidatesFound": "Не удалось найти кандидатов трансляции",
+      "allCandidatesFailed": "Все кандидаты не удались"
     }
   },
   "playerBar": {
-    "noTrackPlaying": "No track playing"
+    "noTrackPlaying": "Трек не воспроизводится"
   },
   "logs": {
-    "title": "Logs",
-    "searchPlaceholder": "Search logs...",
-    "searchAriaLabel": "Search logs",
-    "levelLabel": "Level:",
-    "scopeLabel": "Scope:",
-    "clearButton": "Clear",
-    "exportButton": "Export",
-    "openLogFolderButton": "Open Log Folder",
-    "noLogsMessage": "No logs to display",
-    "invalidRegexMessage": "Invalid regex pattern",
-    "entryCount": "{{count}} entry",
-    "entryCount_other": "{{count}} entries",
-    "exportSuccess": "Logs exported"
+    "title": "Логи",
+    "searchPlaceholder": "Поиск логов...",
+    "searchAriaLabel": "Поиск логов",
+    "levelLabel": "Уровень:",
+    "scopeLabel": "Область:",
+    "clearButton": "Очистить",
+    "exportButton": "Экспорт",
+    "openLogFolderButton": "Открыть папку с логами",
+    "noLogsMessage": "Нет логов для отображения",
+    "invalidRegexMessage": "Неправильный regex паттерн",
+    "entryCount": "{{count}} запись",
+    "entryCount_other": "{{count}} записей",
+    "exportSuccess": "Логи экспортированы"
   }
 }
