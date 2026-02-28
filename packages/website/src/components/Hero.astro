@@ -1,6 +1,4 @@
 ---
-import Button from './Button.astro';
-
 type Props = {
   version?: string;
 };
@@ -34,13 +32,5 @@ const { version = 'v1.1.0' } = Astro.props;
       want.
     </p>
 
-    <div class="flex flex-wrap justify-center gap-4">
-      <Button href="#downloads" variant="default" size="lg">Download</Button>
-      <Button
-        href="https://github.com/nukeop/nuclear"
-        variant="secondary"
-        size="lg">Learn more</Button
-      >
-    </div>
   </div>
 </section>
