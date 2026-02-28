@@ -20,6 +20,23 @@ const platforms = [
 ];
 ---
 
+<div class="border-2 border-border bg-primary rounded-md shadow-shadow px-6 py-5 relative z-10 text-center md:hidden">
+  <h2 class="absolute -top-4 left-1/2 -translate-x-1/2 border-2 border-border bg-[#FFD6E0] rounded-md px-4 py-1 font-heading text-sm font-black uppercase tracking-widest whitespace-nowrap">
+    Desktop only
+  </h2>
+  <div class="flex justify-center gap-3 mt-1 pointer-events-none select-none">
+    {platforms.map((platform) => (
+      <span class="inline-flex items-center gap-2 border-2 border-border/40 bg-white/40 text-foreground/40 rounded-md px-4 py-2 text-sm font-bold">
+        <Icon name={platform.icon} class="w-4 h-4" />
+        {platform.name}
+      </span>
+    ))}
+  </div>
+  <p class="text-xs mt-3">
+    Downloads are only available on a desktop device.
+  </p>
+</div>
+
 <section
   id="downloads"
   class="hidden md:block border-2 border-border bg-primary rounded-md shadow-shadow px-8 py-6 relative z-10"
