@@ -1,29 +1,15 @@
 import { useState } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { cn, ViewShell } from '@nuclearplayer/ui';
+import { ViewShell } from '@nuclearplayer/ui';
 
 import changelog from '../../../changelog.json';
 import type { ChangelogEntry } from '../../types/changelog';
+import { TimelineEntry } from './TimelineEntry';
 
 const entries = changelog as ChangelogEntry[];
 
 const INITIAL_COUNT = 3;
-
-const NODE_SIZE = 'size-4';
-
-const TimelineNode = () => (
-  <div
-    className={cn(
-      NODE_SIZE,
-      'bg-foreground border-foreground shrink-0 rounded-full border-2',
-    )}
-  >
-    <div className="bg-background-secondary border-background-secondary size-full rounded-full border-2">
-      <div className="bg-foreground size-full rounded-full" />
-    </div>
-  </div>
-);
 
 export const WhatsNew = () => {
   const { t } = useTranslation('changelog');
@@ -36,30 +22,12 @@ export const WhatsNew = () => {
     <ViewShell title={t('title')}>
       <div className="flex w-full flex-col pr-4 pl-2">
         {visibleEntries.map((entry, index) => (
-          <div key={index} data-testid="changelog-entry" className="flex gap-4">
-            <div className="flex w-4 flex-col items-center">
-              <div
-                className={cn(
-                  'w-0.5 flex-1',
-                  index > 0 ? 'bg-border' : 'bg-transparent',
-                )}
-              />
-              <TimelineNode />
-              <div
-                className={cn(
-                  'w-0.5 flex-1',
-                  index < visibleEntries.length - 1
-                    ? 'bg-border'
-                    : 'bg-transparent',
-                )}
-              />
-            </div>
-            <div className="border-border bg-background-secondary shadow-shadow my-4 flex-1 rounded-md border-2 p-4">
-              <span data-testid="changelog-description">
-                {entry.description}
-              </span>
-            </div>
-          </div>
+          <TimelineEntry
+            key={index}
+            entry={entry}
+            isFirst={index === 0}
+            isLast={index === visibleEntries.length - 1}
+          />
         ))}
         {!showAll && hiddenCount > 0 && (
           <button
