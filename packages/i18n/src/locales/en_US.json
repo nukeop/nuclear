@@ -329,7 +329,6 @@
   "changelog": {
     "title": "What's New",
     "seeMore": "See more ({{count}} older)",
-    "hideOlder": "Hide older versions",
     "types": {
       "feature": "Feature",
       "fix": "Fix",

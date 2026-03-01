@@ -287,6 +287,9 @@ importers:
       '@tauri-apps/plugin-upload':
         specifier: ~2.2.1
         version: 2.2.2
+      '@types/luxon':
+        specifier: ^3.7.1
+        version: 3.7.1
       esbuild-wasm:
         specifier: ^0.21.5
         version: 0.21.5
@@ -302,6 +305,9 @@ importers:
       lucide-react:
         specifier: ^0.542.0
         version: 0.542.0(react@18.3.1)
+      luxon:
+        specifier: ^3.7.1
+        version: 3.7.1
       react:
         specifier: ^18.3.1
         version: 18.3.1

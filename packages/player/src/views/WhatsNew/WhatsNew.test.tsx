@@ -1,7 +1,4 @@
-import {
-  SINGLE_VERSION_CHANGELOG,
-  TEST_CHANGELOG,
-} from '../../test/fixtures/changelog';
+import { TEST_CHANGELOG } from '../../test/fixtures/changelog';
 import { WhatsNewWrapper } from './WhatsNew.test-wrapper';
 
 vi.mock('../../../changelog.json', () => ({
@@ -31,99 +28,78 @@ describe("What's New view", () => {
     expect(WhatsNewWrapper.title).toHaveTextContent("What's New");
   });
 
-  it('shows the latest version with its date', async () => {
+  it('displays changelog entries with descriptions', async () => {
     await WhatsNewWrapper.mount();
-    const latest = WhatsNewWrapper.version('1.12.0');
-    expect(latest.header).toHaveTextContent('1.12.0');
-    expect(latest.header).toHaveTextContent('Mar 1, 2026');
-  });
-
-  it('only shows the latest version by default', async () => {
-    await WhatsNewWrapper.mount();
-    expect(WhatsNewWrapper.version('1.12.0').header).toBeInTheDocument();
-    expect(WhatsNewWrapper.version('1.11.1').query).toBeNull();
-  });
-
-  it('displays change descriptions', async () => {
-    await WhatsNewWrapper.mount();
-    const latest = WhatsNewWrapper.version('1.12.0');
-    expect(latest.entry(0).description).toHaveTextContent(
+    expect(WhatsNewWrapper.entry(0).description).toHaveTextContent(
       'Support importing legacy format playlists',
     );
-    expect(latest.entry(1).description).toHaveTextContent(
+    expect(WhatsNewWrapper.entry(1).description).toHaveTextContent(
       'Fixed audio stuttering on track transition',
     );
-    expect(latest.entry(2).description).toHaveTextContent(
-      'Improved plugin loading performance',
-    );
+  });
+
+  it('formats dates as human-readable strings', async () => {
+    await WhatsNewWrapper.mount();
+    expect(WhatsNewWrapper.entry(0).date).toHaveTextContent('Mar 1, 2026');
   });
 
   it('shows type badges on each entry', async () => {
     await WhatsNewWrapper.mount();
-    const latest = WhatsNewWrapper.version('1.12.0');
-    expect(latest.entry(0).typeBadge).toHaveTextContent('Feature');
-    expect(latest.entry(1).typeBadge).toHaveTextContent('Fix');
-    expect(latest.entry(2).typeBadge).toHaveTextContent('Improvement');
+    expect(WhatsNewWrapper.entry(0).typeBadge).toHaveTextContent('Feature');
+    expect(WhatsNewWrapper.entry(1).typeBadge).toHaveTextContent('Fix');
+    expect(WhatsNewWrapper.entry(2).typeBadge).toHaveTextContent('Improvement');
   });
 
-  it('shows contributor usernames with @ prefix', async () => {
+  it('shows a single contributor with @ prefix', async () => {
     await WhatsNewWrapper.mount();
-    const latest = WhatsNewWrapper.version('1.12.0');
-    expect(latest.entry(0).contributor).toHaveTextContent('@nukeop');
-    expect(latest.entry(2).contributor).toHaveTextContent('@someDev');
+    expect(WhatsNewWrapper.entry(0).contributors).toHaveLength(1);
+    expect(WhatsNewWrapper.entry(0).contributors[0]).toHaveTextContent(
+      '@nukeop',
+    );
   });
 
-  it('does not render contributor when not provided', async () => {
+  it('shows multiple contributors', async () => {
     await WhatsNewWrapper.mount();
-    const latest = WhatsNewWrapper.version('1.12.0');
-    expect(latest.entry(1).contributor).toBeNull();
+    expect(WhatsNewWrapper.entry(2).contributors).toHaveLength(2);
+    expect(WhatsNewWrapper.entry(2).contributors[0]).toHaveTextContent(
+      '@someDev',
+    );
+    expect(WhatsNewWrapper.entry(2).contributors[1]).toHaveTextContent(
+      '@nukeop',
+    );
+  });
+
+  it('does not render contributors when not provided', async () => {
+    await WhatsNewWrapper.mount();
+    expect(WhatsNewWrapper.entry(1).contributors).toHaveLength(0);
   });
 
   it('shows tags when present', async () => {
     await WhatsNewWrapper.mount();
-    const latest = WhatsNewWrapper.version('1.12.0');
-    expect(latest.entry(0).tags).toHaveLength(1);
-    expect(latest.entry(0).tags[0]).toHaveTextContent('Playlists');
+    expect(WhatsNewWrapper.entry(0).tags).toHaveLength(1);
+    expect(WhatsNewWrapper.entry(0).tags[0]).toHaveTextContent('Playlists');
   });
 
   it('does not render tags when not provided', async () => {
     await WhatsNewWrapper.mount();
-    const latest = WhatsNewWrapper.version('1.12.0');
-    expect(latest.entry(1).tags).toHaveLength(0);
+    expect(WhatsNewWrapper.entry(1).tags).toHaveLength(0);
   });
 
-  it('shows the count of older versions in the see more button', async () => {
+  it('shows see more button when there are more entries', async () => {
     await WhatsNewWrapper.mount();
     expect(WhatsNewWrapper.seeMoreButton.element).toHaveTextContent(
-      'See more (1 older)',
+      'See more (2 older)',
     );
   });
 
-  it('reveals older versions when see more is clicked', async () => {
+  it('reveals all entries when see more is clicked', async () => {
     await WhatsNewWrapper.mount();
     await WhatsNewWrapper.seeMoreButton.click();
 
-    const older = WhatsNewWrapper.version('1.11.1');
-    expect(older.header).toHaveTextContent('1.11.1');
-    expect(older.header).toHaveTextContent('Feb 15, 2026');
-    expect(older.entry(0).description).toHaveTextContent(
-      'Added new website with dark mode',
+    expect(WhatsNewWrapper.entries).toHaveLength(5);
+    expect(WhatsNewWrapper.entry(3).description).toHaveTextContent(
+      'MCP server for controlling Nuclear from AI agents',
     );
-    expect(older.entry(0).typeBadge).toHaveTextContent('Feature');
-    expect(older.entry(0).tags[0]).toHaveTextContent('Website');
-    expect(older.entry(1).typeBadge).toHaveTextContent('Docs');
-  });
-
-  it('hides older versions when toggled back', async () => {
-    await WhatsNewWrapper.mount();
-    await WhatsNewWrapper.seeMoreButton.click();
-    await WhatsNewWrapper.seeMoreButton.click();
-
-    expect(WhatsNewWrapper.version('1.11.1').query).toBeNull();
-  });
-
-  it('does not show see more button with only one version', async () => {
-    await WhatsNewWrapper.mount(SINGLE_VERSION_CHANGELOG);
-    expect(WhatsNewWrapper.seeMoreButton.query).not.toBeInTheDocument();
+    expect(WhatsNewWrapper.entry(4).typeBadge).toHaveTextContent('Docs');
   });
 });

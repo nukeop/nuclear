@@ -8,22 +8,13 @@ export type ChangelogEntryType =
   | 'fix'
   | 'improvement'
   | 'chore'
-  | 'plugins'
+  | 'plugin'
   | 'docs';
 
-export type ChangelogChange = {
+export type ChangelogEntry = {
+  date: string;
   description: string;
   type: ChangelogEntryType;
-  contributor?: string;
+  contributors?: string[];
   tags?: ChangelogTag[];
-};
-
-export type ChangelogVersion = {
-  version: string;
-  date: string;
-  changes: ChangelogChange[];
-};
-
-export type Changelog = {
-  entries: ChangelogVersion[];
 };
