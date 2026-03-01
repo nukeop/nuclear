@@ -47,6 +47,11 @@
   }
 }
 
+.themed-border {
+  border-width: var(--border-width);
+  border-style: solid;
+}
+
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
