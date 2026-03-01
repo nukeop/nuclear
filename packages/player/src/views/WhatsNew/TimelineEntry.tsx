@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { cn } from '@nuclearplayer/ui';
+import { Badge, cn } from '@nuclearplayer/ui';
 import { DateTime } from 'luxon';
 
 import type { ChangelogEntry } from '../../types/changelog';
@@ -34,6 +34,20 @@ export const TimelineEntry: FC<TimelineEntryProps> = ({
       />
     </div>
     <div className="my-4 flex flex-1 flex-col gap-1">
+      {entry.tags && entry.tags.length > 0 && (
+        <div className="flex justify-end gap-1.5 px-1">
+          {entry.tags.map((tag) => (
+            <Badge
+              key={tag.label}
+              data-testid="changelog-tag-badge"
+              variant="pill"
+              color={tag.color as never}
+            >
+              {tag.label}
+            </Badge>
+          ))}
+        </div>
+      )}
       <div className="border-border bg-background-secondary shadow-shadow flex-1 rounded-md border-2 p-4">
         <span data-testid="changelog-description">{entry.description}</span>
       </div>
