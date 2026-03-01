@@ -268,414 +268,410 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
           />
         </nav>
         <div
-          class="flex flex-1 flex-col overflow-hidden"
+          class="flex min-h-0 flex-1 flex-col overflow-hidden"
         >
           <div
-            class="flex-1 overflow-y-auto"
+            class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
           >
-            <div
-              class="bg-background relative flex h-full w-full flex-col items-start justify-start px-6 pt-6"
+            <h1
+              class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
+              data-testid="title"
             >
-              <h1
-                class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
-                data-testid="title"
-              >
-                General
-              </h1>
+              General
+            </h1>
+            <div
+              class="relative h-full flex min-h-0 w-full flex-1 flex-col"
+            >
               <div
-                class="relative h-full flex w-full flex-1 flex-col"
+                class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                style="scrollbar-width: none;"
               >
                 <div
-                  class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
-                  style="scrollbar-width: none;"
+                  class="flex w-full flex-col items-center justify-center overflow-hidden"
                 >
                   <div
-                    class="flex w-full flex-col items-center justify-center overflow-hidden"
+                    class="relative h-full w-full max-w-100 flex-1 overflow-hidden"
                   >
                     <div
-                      class="relative h-full w-full max-w-100 flex-1 overflow-hidden"
+                      class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+                      style="scrollbar-width: none;"
                     >
                       <div
-                        class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
-                        style="scrollbar-width: none;"
+                        class="px-2"
                       >
-                        <div
-                          class="px-2"
+                        <section
+                          class="mb-6 flex w-full flex-col items-start justify-start"
                         >
-                          <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                          <h2
+                            class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
                           >
-                            <h2
-                              class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
-                            >
-                              General
-                            </h2>
+                            General
+                          </h2>
+                          <div
+                            class="flex w-full flex-1 flex-col"
+                          >
                             <div
-                              class="flex w-full flex-1 flex-col"
+                              class="flex flex-col gap-6"
                             >
                               <div
-                                class="flex flex-col gap-6"
+                                class="relative flex w-full flex-col gap-2"
+                              >
+                                <label
+                                  class="text-foreground text-sm font-semibold"
+                                  for="select-:rb:"
+                                  id="select-:rb:-label"
+                                >
+                                  Language
+                                </label>
+                                <button
+                                  aria-expanded="false"
+                                  aria-haspopup="listbox"
+                                  class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-2 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                                  data-headlessui-state=""
+                                  id="select-:rb:"
+                                  type="button"
+                                >
+                                  <span
+                                    class="block truncate"
+                                  >
+                                    English
+                                  </span>
+                                  <span
+                                    class="flex items-center"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      class="lucide lucide-chevron-down text-foreground transition-transform"
+                                      fill="none"
+                                      height="16"
+                                      stroke="currentColor"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      viewBox="0 0 24 24"
+                                      width="16"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="m6 9 6 6 6-6"
+                                      />
+                                    </svg>
+                                  </span>
+                                </button>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                  id="select-:rb:-description"
+                                >
+                                  Select your preferred language
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <section
+                          class="mb-6 flex w-full flex-col items-start justify-start"
+                        >
+                          <h2
+                            class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                          >
+                            Integrations
+                          </h2>
+                          <div
+                            class="flex w-full flex-1 flex-col"
+                          >
+                            <div
+                              class="flex flex-col gap-6"
+                            >
+                              <div
+                                class="flex flex-col gap-2"
                               >
                                 <div
-                                  class="relative flex w-full flex-col gap-2"
+                                  class="flex items-center gap-3"
                                 >
-                                  <label
-                                    class="text-foreground text-sm font-semibold"
-                                    for="select-:rb:"
-                                    id="select-:rb:-label"
-                                  >
-                                    Language
-                                  </label>
                                   <button
-                                    aria-expanded="false"
-                                    aria-haspopup="listbox"
-                                    class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-2 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                                    aria-checked="false"
+                                    aria-label="Enable MCP Server"
+                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
-                                    id="select-:rb:"
+                                    id="headlessui-switch-:rf:"
+                                    role="switch"
+                                    tabindex="0"
                                     type="button"
                                   >
                                     <span
-                                      class="block truncate"
-                                    >
-                                      English
-                                    </span>
-                                    <span
-                                      class="flex items-center"
-                                    >
-                                      <svg
-                                        aria-hidden="true"
-                                        class="lucide lucide-chevron-down text-foreground transition-transform"
-                                        fill="none"
-                                        height="16"
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        viewBox="0 0 24 24"
-                                        width="16"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          d="m6 9 6 6 6-6"
-                                        />
-                                      </svg>
-                                    </span>
+                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                    />
                                   </button>
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
-                                    id="select-:rb:-description"
-                                  >
-                                    Select your preferred language
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                          <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
-                          >
-                            <h2
-                              class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
-                            >
-                              Integrations
-                            </h2>
-                            <div
-                              class="flex w-full flex-1 flex-col"
-                            >
-                              <div
-                                class="flex flex-col gap-6"
-                              >
-                                <div
-                                  class="flex flex-col gap-2"
-                                >
-                                  <div
-                                    class="flex items-center gap-3"
-                                  >
-                                    <button
-                                      aria-checked="false"
-                                      aria-label="Enable MCP Server"
-                                      class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
-                                      data-headlessui-state=""
-                                      id="headlessui-switch-:rf:"
-                                      role="switch"
-                                      tabindex="0"
-                                      type="button"
-                                    >
-                                      <span
-                                        class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
-                                      />
-                                    </button>
-                                    <span
-                                      class="text-foreground text-sm font-semibold"
-                                    >
-                                      Enable MCP Server
-                                    </span>
-                                  </div>
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
-                                  >
-                                    Start a local MCP server that allows AI tools to control Nuclear.
-                                  </p>
-                                </div>
-                                <div
-                                  class="flex flex-col gap-2"
-                                >
                                   <span
                                     class="text-foreground text-sm font-semibold"
                                   >
-                                    MCP Server URL
+                                    Enable MCP Server
                                   </span>
-                                  <div
-                                    class="flex items-center gap-2"
-                                  >
-                                    <div
-                                      class="border-border bg-background-input flex-1 rounded-md border-2 px-3 py-2 font-mono text-sm"
-                                      data-testid="info-field-value"
-                                    >
-                                      http://127.0.0.1:8800/mcp
-                                    </div>
-                                    <button
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border border-current bg-transparent hover:bg-black/10 size-8 justify-center"
-                                      data-headlessui-state=""
-                                      data-testid="info-field-copy-button"
-                                      type="button"
-                                    >
-                                      <svg
-                                        aria-hidden="true"
-                                        class="lucide lucide-copy size-3.5"
-                                        fill="none"
-                                        height="24"
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        viewBox="0 0 24 24"
-                                        width="24"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <rect
-                                          height="14"
-                                          rx="2"
-                                          ry="2"
-                                          width="14"
-                                          x="8"
-                                          y="8"
-                                        />
-                                        <path
-                                          d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
-                                        />
-                                      </svg>
-                                    </button>
-                                  </div>
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
-                                  >
-                                    Point your AI tool to this URL to connect to Nuclear.
-                                  </p>
                                 </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Start a local MCP server that allows AI tools to control Nuclear.
+                                </p>
+                              </div>
+                              <div
+                                class="flex flex-col gap-2"
+                              >
+                                <span
+                                  class="text-foreground text-sm font-semibold"
+                                >
+                                  MCP Server URL
+                                </span>
+                                <div
+                                  class="flex items-center gap-2"
+                                >
+                                  <div
+                                    class="border-border bg-background-input flex-1 rounded-md border-2 px-3 py-2 font-mono text-sm"
+                                    data-testid="info-field-value"
+                                  >
+                                    http://127.0.0.1:8800/mcp
+                                  </div>
+                                  <button
+                                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border border-current bg-transparent hover:bg-black/10 size-8 justify-center"
+                                    data-headlessui-state=""
+                                    data-testid="info-field-copy-button"
+                                    type="button"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      class="lucide lucide-copy size-3.5"
+                                      fill="none"
+                                      height="24"
+                                      stroke="currentColor"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      viewBox="0 0 24 24"
+                                      width="24"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <rect
+                                        height="14"
+                                        rx="2"
+                                        ry="2"
+                                        width="14"
+                                        x="8"
+                                        y="8"
+                                      />
+                                      <path
+                                        d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Point your AI tool to this URL to connect to Nuclear.
+                                </p>
                               </div>
                             </div>
-                          </section>
-                          <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                          </div>
+                        </section>
+                        <section
+                          class="mb-6 flex w-full flex-col items-start justify-start"
+                        >
+                          <h2
+                            class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
                           >
-                            <h2
-                              class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
-                            >
-                              Playback
-                            </h2>
+                            Playback
+                          </h2>
+                          <div
+                            class="flex w-full flex-1 flex-col"
+                          >
                             <div
-                              class="flex w-full flex-1 flex-col"
+                              class="flex flex-col gap-6"
                             >
                               <div
-                                class="flex flex-col gap-6"
+                                class="flex w-full flex-col gap-2"
                               >
-                                <div
-                                  class="flex w-full flex-col gap-2"
+                                <label
+                                  class="text-foreground text-sm font-semibold"
+                                  for="input-:rg:"
+                                  id="input-:rg:-label"
                                 >
-                                  <label
-                                    class="text-foreground text-sm font-semibold"
-                                    for="input-:rg:"
-                                    id="input-:rg:-label"
-                                  >
-                                    Skip duration
-                                  </label>
-                                  <input
-                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                    data-headlessui-state=""
-                                    id="input-:rg:"
-                                    inputmode="numeric"
-                                    type="number"
-                                    value="10"
-                                  />
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rg:-description"
-                                  >
-                                    Number of seconds to skip forward/backward
-                                  </p>
-                                </div>
-                                <div
-                                  class="flex w-full flex-col gap-2"
+                                  Skip duration
+                                </label>
+                                <input
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                  data-headlessui-state=""
+                                  id="input-:rg:"
+                                  inputmode="numeric"
+                                  type="number"
+                                  value="10"
+                                />
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                  id="input-:rg:-description"
                                 >
-                                  <label
-                                    class="text-foreground text-sm font-semibold"
-                                    for="input-:ri:"
-                                    id="input-:ri:-label"
-                                  >
-                                    Crossfade
-                                  </label>
-                                  <input
-                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                    data-headlessui-state=""
-                                    id="input-:ri:"
-                                    inputmode="numeric"
-                                    type="number"
-                                    value="0"
-                                  />
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
-                                    id="input-:ri:-description"
-                                  >
-                                    Crossfade duration between tracks in milliseconds
-                                  </p>
-                                </div>
-                                <div
-                                  class="flex w-full flex-col gap-2"
+                                  Number of seconds to skip forward/backward
+                                </p>
+                              </div>
+                              <div
+                                class="flex w-full flex-col gap-2"
+                              >
+                                <label
+                                  class="text-foreground text-sm font-semibold"
+                                  for="input-:ri:"
+                                  id="input-:ri:-label"
                                 >
-                                  <label
-                                    class="text-foreground text-sm font-semibold"
-                                    for="input-:rk:"
-                                    id="input-:rk:-label"
-                                  >
-                                    Stream expiry time
-                                  </label>
-                                  <input
-                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                    data-headlessui-state=""
-                                    id="input-:rk:"
-                                    inputmode="numeric"
-                                    type="number"
-                                    value="3600000"
-                                  />
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rk:-description"
-                                  >
-                                    How long before a resolved stream URL is considered expired and needs re-resolution
-                                  </p>
-                                </div>
-                                <div
-                                  class="flex w-full flex-col gap-2"
+                                  Crossfade
+                                </label>
+                                <input
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                  data-headlessui-state=""
+                                  id="input-:ri:"
+                                  inputmode="numeric"
+                                  type="number"
+                                  value="0"
+                                />
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                  id="input-:ri:-description"
                                 >
-                                  <label
-                                    class="text-foreground text-sm font-semibold"
-                                    for="input-:rm:"
-                                    id="input-:rm:-label"
-                                  >
-                                    Stream resolution retries
-                                  </label>
-                                  <input
-                                    class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
-                                    data-headlessui-state=""
-                                    id="input-:rm:"
-                                    inputmode="numeric"
-                                    type="number"
-                                    value="3"
-                                  />
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
-                                    id="input-:rm:-description"
-                                  >
-                                    Number of times to retry resolving a stream URL before moving to the next candidate
-                                  </p>
-                                </div>
+                                  Crossfade duration between tracks in milliseconds
+                                </p>
+                              </div>
+                              <div
+                                class="flex w-full flex-col gap-2"
+                              >
+                                <label
+                                  class="text-foreground text-sm font-semibold"
+                                  for="input-:rk:"
+                                  id="input-:rk:-label"
+                                >
+                                  Stream expiry time
+                                </label>
+                                <input
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                  data-headlessui-state=""
+                                  id="input-:rk:"
+                                  inputmode="numeric"
+                                  type="number"
+                                  value="3600000"
+                                />
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                  id="input-:rk:-description"
+                                >
+                                  How long before a resolved stream URL is considered expired and needs re-resolution
+                                </p>
+                              </div>
+                              <div
+                                class="flex w-full flex-col gap-2"
+                              >
+                                <label
+                                  class="text-foreground text-sm font-semibold"
+                                  for="input-:rm:"
+                                  id="input-:rm:-label"
+                                >
+                                  Stream resolution retries
+                                </label>
+                                <input
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-2"
+                                  data-headlessui-state=""
+                                  id="input-:rm:"
+                                  inputmode="numeric"
+                                  type="number"
+                                  value="3"
+                                />
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                  id="input-:rm:-description"
+                                >
+                                  Number of times to retry resolving a stream URL before moving to the next candidate
+                                </p>
                               </div>
                             </div>
-                          </section>
-                          <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                          </div>
+                        </section>
+                        <section
+                          class="mb-6 flex w-full flex-col items-start justify-start"
+                        >
+                          <h2
+                            class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
                           >
-                            <h2
-                              class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
-                            >
-                              Updates
-                            </h2>
+                            Updates
+                          </h2>
+                          <div
+                            class="flex w-full flex-1 flex-col"
+                          >
                             <div
-                              class="flex w-full flex-1 flex-col"
+                              class="flex flex-col gap-6"
                             >
                               <div
-                                class="flex flex-col gap-6"
+                                class="flex flex-col gap-2"
                               >
                                 <div
-                                  class="flex flex-col gap-2"
+                                  class="flex items-center gap-3"
                                 >
-                                  <div
-                                    class="flex items-center gap-3"
+                                  <button
+                                    aria-checked="true"
+                                    aria-label="Check for updates"
+                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                    data-checked=""
+                                    data-headlessui-state="checked"
+                                    id="headlessui-switch-:ro:"
+                                    role="switch"
+                                    tabindex="0"
+                                    type="button"
                                   >
-                                    <button
-                                      aria-checked="true"
-                                      aria-label="Check for updates"
-                                      class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
-                                      data-checked=""
-                                      data-headlessui-state="checked"
-                                      id="headlessui-switch-:ro:"
-                                      role="switch"
-                                      tabindex="0"
-                                      type="button"
-                                    >
-                                      <span
-                                        class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
-                                      />
-                                    </button>
                                     <span
-                                      class="text-foreground text-sm font-semibold"
-                                    >
-                                      Check for updates
-                                    </span>
-                                  </div>
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
+                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                    />
+                                  </button>
+                                  <span
+                                    class="text-foreground text-sm font-semibold"
                                   >
-                                    Automatically check for new versions on startup
-                                  </p>
+                                    Check for updates
+                                  </span>
                                 </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Automatically check for new versions on startup
+                                </p>
+                              </div>
+                              <div
+                                class="flex flex-col gap-2"
+                              >
                                 <div
-                                  class="flex flex-col gap-2"
+                                  class="flex items-center gap-3"
                                 >
-                                  <div
-                                    class="flex items-center gap-3"
+                                  <button
+                                    aria-checked="false"
+                                    aria-label="Auto-install updates"
+                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                    data-headlessui-state=""
+                                    id="headlessui-switch-:rp:"
+                                    role="switch"
+                                    tabindex="0"
+                                    type="button"
                                   >
-                                    <button
-                                      aria-checked="false"
-                                      aria-label="Auto-install updates"
-                                      class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
-                                      data-headlessui-state=""
-                                      id="headlessui-switch-:rp:"
-                                      role="switch"
-                                      tabindex="0"
-                                      type="button"
-                                    >
-                                      <span
-                                        class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
-                                      />
-                                    </button>
                                     <span
-                                      class="text-foreground text-sm font-semibold"
-                                    >
-                                      Auto-install updates
-                                    </span>
-                                  </div>
-                                  <p
-                                    class="text-foreground-secondary text-sm select-none"
+                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                    />
+                                  </button>
+                                  <span
+                                    class="text-foreground text-sm font-semibold"
                                   >
-                                    Download and install updates automatically when available
-                                  </p>
+                                    Auto-install updates
+                                  </span>
                                 </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Download and install updates automatically when available
+                                </p>
                               </div>
                             </div>
-                          </section>
-                        </div>
+                          </div>
+                        </section>
                       </div>
                     </div>
                   </div>
