@@ -1,6 +1,11 @@
 import { create } from 'zustand';
 
-export type SettingsTab = 'general' | 'plugins' | 'themes' | 'logs';
+export type SettingsTab =
+  | 'general'
+  | 'plugins'
+  | 'themes'
+  | 'logs'
+  | 'whats-new';
 
 type SettingsModalState = {
   isOpen: boolean;

@@ -3,6 +3,7 @@ import {
   PaletteIcon,
   ScrollTextIcon,
   Settings2Icon,
+  SparklesIcon,
 } from 'lucide-react';
 import { FC } from 'react';
 
@@ -17,6 +18,7 @@ import { Logs } from '../views/Logs/Logs';
 import { Plugins } from '../views/Plugins/Plugins';
 import { Settings } from '../views/Settings/Settings';
 import { Themes } from '../views/Themes/Themes';
+import { WhatsNew } from '../views/WhatsNew';
 import { VersionString } from './VersionString';
 
 const SETTINGS_TABS = [
@@ -39,6 +41,11 @@ const SETTINGS_TABS = [
     id: 'logs',
     icon: <ScrollTextIcon />,
     content: () => <Logs />,
+  },
+  {
+    id: 'whats-new',
+    icon: <SparklesIcon />,
+    content: () => <WhatsNew />,
   },
 ] as const;
 
