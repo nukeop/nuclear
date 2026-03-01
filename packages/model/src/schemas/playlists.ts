@@ -73,3 +73,35 @@ export const playlistIndexEntrySchema = z.object({
 });
 
 export const playlistIndexSchema = z.array(playlistIndexEntrySchema);
+
+export const legacyTrackSchema = z.object({
+  uuid: z.string().optional(),
+  artist: z.string().optional(),
+  name: z.string().optional(),
+  album: z.string().optional(),
+  thumbnail: z.string().optional(),
+  duration: z
+    .union([z.number(), z.string().transform(Number)])
+    .refine((val) => Number.isFinite(val), { message: 'Invalid duration' })
+    .optional(),
+});
+
+export const legacyPlaylistSchema = z.object({
+  name: z.string(),
+  tracks: z.array(legacyTrackSchema),
+});
+
+export const legacyConfigSchema = z
+  .object({
+    playlists: z.array(z.unknown()),
+  })
+  .refine(
+    (config) =>
+      config.playlists.some(
+        (entry) => legacyPlaylistSchema.safeParse(entry).success,
+      ),
+    { message: 'No valid legacy playlists found' },
+  );
+
+export type LegacyTrack = z.infer<typeof legacyTrackSchema>;
+export type LegacyPlaylist = z.infer<typeof legacyPlaylistSchema>;

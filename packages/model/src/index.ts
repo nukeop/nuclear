@@ -114,4 +114,8 @@ export {
   playlistExportSchema,
   playlistIndexEntrySchema,
   playlistIndexSchema,
+  legacyTrackSchema,
+  legacyPlaylistSchema,
+  legacyConfigSchema,
 } from './schemas';
+export type { LegacyTrack, LegacyPlaylist } from './schemas';
