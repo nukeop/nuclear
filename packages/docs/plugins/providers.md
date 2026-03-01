@@ -11,7 +11,7 @@ Providers are modules that fulfill specific data requests from Nuclear. When the
 All registration and lookup goes through `api.Providers`.
 
 {% hint style="info" %}
-Every provider extends the `ProviderDescriptor` base type, which requires an `id`, `kind`, and `name`. Each provider kind then adds its own domain-specific methods (e.g., `search` for metadata, `getStreamUrl` for streaming).
+Every provider extends the `ProviderDescriptor` base type, which requires an `id`, `kind`, and `name`. Each provider kind then adds its own domain-specific methods (e.g., `searchArtists` for metadata, `getStreamUrl` for streaming).
 {% endhint %}
 
 ## Provider kinds
@@ -28,7 +28,7 @@ Every provider extends the `ProviderDescriptor` base type, which requires an `id
 
 Register providers in your plugin's `onEnable` hook and unregister them in `onDisable`:
 
-```ts
+```typescript
 import type { NuclearPluginAPI, MetadataProvider } from '@nuclearplayer/plugin-sdk';
 
 let providerId: string;
@@ -39,9 +39,10 @@ export default {
       id: 'my-metadata-source',
       kind: 'metadata',
       name: 'My Metadata Source',
-      search: async (query) => { /* ... */ },
-      fetchArtist: async (artistId) => { /* ... */ },
-      fetchAlbum: async (albumId) => { /* ... */ },
+      searchCapabilities: ['artists', 'albums'],
+      searchArtists: async (params) => { /* ... */ },
+      searchAlbums: async (params) => { /* ... */ },
+      fetchAlbumDetails: async (albumId) => { /* ... */ },
     };
 
     providerId = api.Providers.register(provider);
@@ -68,7 +69,7 @@ Always register in `onEnable` and unregister in `onDisable`. If you skip unregis
 
 All providers share this shape:
 
-```ts
+```typescript
 type ProviderDescriptor<K extends ProviderKind = ProviderKind> = {
   id: string;
   kind: K;

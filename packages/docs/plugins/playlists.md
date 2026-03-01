@@ -46,7 +46,7 @@ Each playlist is stored as a separate JSON file on disk. All mutations through t
 
 ---
 
-## Quick start
+## Usage
 
 {% tabs %}
 {% tab title="Reading playlists" %}

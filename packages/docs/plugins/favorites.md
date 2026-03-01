@@ -9,7 +9,7 @@ description: Save and manage user's favorite tracks, albums, and artists.
 The Favorites API lets Nuclear, as well as  plugins, read and modify the user's library of saved tracks, albums, and artists.
 
 {% hint style="info" %}
-Access favorites via `NuclearAPI.Favorites.*` in your plugin's lifecycle hooks. All operations are asynchronous and return Promises.
+Access favorites via `api.Favorites.*` in your plugin's lifecycle hooks. All operations are asynchronous and return Promises.
 {% endhint %}
 
 ---
@@ -30,7 +30,7 @@ Each favorite entry includes a timestamp (`addedAtIso`) recording when it was ad
 
 ### Identity and deduplication
 
-Favorites are identified by their `source` fiels. It's a combination of provider name and ID. Because each metadata provider stores music data differently, **favorites from each provider are treated separately**.
+Favorites are identified by their `source` field. It's a combination of provider name and ID. Because each metadata provider stores music data differently, **favorites from each provider are treated separately**.
 
 ```typescript
 type ProviderRef = {
@@ -48,7 +48,7 @@ Favorites are saved to disk automatically after every add/remove operation. They
 
 ---
 
-## Quick start
+## Usage
 
 {% tabs %}
 {% tab title="Reading favorites" %}
@@ -160,3 +160,32 @@ export default {
 ```
 {% endtab %}
 {% endtabs %}
+
+---
+
+## Reference
+
+```typescript
+// Reading
+api.Favorites.getTracks(): Promise<FavoriteEntry<Track>[]>
+api.Favorites.getAlbums(): Promise<FavoriteEntry<AlbumRef>[]>
+api.Favorites.getArtists(): Promise<FavoriteEntry<ArtistRef>[]>
+
+// Tracks
+api.Favorites.addTrack(track: Track): Promise<void>
+api.Favorites.removeTrack(source: ProviderRef): Promise<void>
+api.Favorites.isTrackFavorite(source: ProviderRef): Promise<boolean>
+
+// Albums
+api.Favorites.addAlbum(ref: AlbumRef): Promise<void>
+api.Favorites.removeAlbum(source: ProviderRef): Promise<void>
+api.Favorites.isAlbumFavorite(source: ProviderRef): Promise<boolean>
+
+// Artists
+api.Favorites.addArtist(ref: ArtistRef): Promise<void>
+api.Favorites.removeArtist(source: ProviderRef): Promise<void>
+api.Favorites.isArtistFavorite(source: ProviderRef): Promise<boolean>
+
+// Subscriptions
+api.Favorites.subscribe(listener: FavoritesListener): () => void
+```

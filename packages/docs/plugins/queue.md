@@ -9,7 +9,7 @@ description: Control playback order, manipulate the queue, and react to track ch
 The Queue API gives plugins full control over Nuclear's playback queue. Add tracks, reorder items, control navigation, and subscribe to queue changes—all from your plugin code.
 
 {% hint style="info" %}
-Access the queue via `NuclearAPI.Queue.*` in your plugin's lifecycle hooks. All queue operations are asynchronous and return Promises.
+Access the queue via `api.Queue.*` in your plugin's lifecycle hooks. All queue operations are asynchronous and return Promises.
 {% endhint %}
 
 ---
@@ -69,7 +69,7 @@ When `shuffleEnabled` is `true`, `goToNext()` and `goToPrevious()` pick random i
 
 ---
 
-## Quick start
+## Usage
 
 {% tabs %}
 {% tab title="Reading queue state" %}

@@ -10,7 +10,7 @@ Spin up a bare plugin, load it in Nuclear, and poke the Plugin SDK to make sure 
 Plugins are folders on disk with a `package.json` and an entry file. The app loads them at runtime and provides `@nuclearplayer/plugin-sdk` to your code.
 {% endhint %}
 
-## Quick start
+## Usage
 
 {% tabs %}
 {% tab title="1) Folder" %}
@@ -36,7 +36,7 @@ Run `npm init` inside.
 {% endtab %}
 
 {% tab title="3) index.ts" %}
-```js
+```typescript
 const CATEGORY = "Examples";
 
 module.exports = {
@@ -82,12 +82,12 @@ Setting IDs are auto-namespaced. Use bare IDs like `hello`; the app stores them 
 
 ## Plugin shape
 
-```ts
+```typescript
 type Plugin = {
   onLoad?(api: NuclearPluginAPI): void | Promise<void>;
   onEnable?(api: NuclearPluginAPI): void | Promise<void>;
-  onDisable?(): void | Promise<void>;
-  onUnload?(): void | Promise<void>;
+  onDisable?(api: NuclearPluginAPI): void | Promise<void>;
+  onUnload?(api: NuclearPluginAPI): void | Promise<void>;
 };
 ```
 

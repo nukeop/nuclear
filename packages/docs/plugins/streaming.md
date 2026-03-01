@@ -9,7 +9,7 @@ description: Resolve audio streams for tracks in Nuclear's queue.
 The Streaming API resolves playable audio URLs for tracks. When a user plays a track, Nuclear searches for stream candidates (e.g., YouTube videos) and then resolves the actual audio URL just-in-time.
 
 {% hint style="info" %}
-Access streaming via `NuclearAPI.Streaming.*` in your plugin's lifecycle hooks.
+Access streaming via `api.Streaming.*` in your plugin's lifecycle hooks.
 {% endhint %}
 
 ---

@@ -9,7 +9,7 @@ description: How plugins define, read, and update persisted settings in Nuclear.
 Persist user preferences, secrets, and configuration with a single API. This guide shows how to define settings, read/write values, and react to changes.
 
 {% hint style="info" %}
-Access settings via the API object (NuclearAPI.Settings.\*) or the React hook described below.
+Access settings via the API object (api.Settings.\*) or the React hook described below.
 {% endhint %}
 
 ### Core concepts
@@ -24,11 +24,11 @@ Access settings via the API object (NuclearAPI.Settings.\*) or the React hook de
 * Hidden: settings with `hidden: true` are stored but not shown in standard UI.
 * Persistence: values are saved to disk via Tauri's Store plugin.
 
-### Quick start
+### Usage
 
 {% tabs %}
 {% tab title="Register settings" %}
-```ts
+```typescript
 import type { NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
 
 export default {
@@ -62,7 +62,7 @@ export default {
 {% endtab %}
 
 {% tab title="Read and write" %}
-```ts
+```typescript
 // Read a value (string | number | boolean | undefined)
 const theme = await api.Settings.get<string>('theme');
 
@@ -82,7 +82,7 @@ unsubscribe();
 
 ### Setting definitions
 
-```ts
+```typescript
 type SettingCategory = string;
 
 type BooleanSettingDefinition = {
@@ -162,7 +162,7 @@ type EnumSettingDefinition = {
 
 The SDK exposes a React hook for live values: `useSetting(host, id)`.
 
-```ts
+```typescript
 import { useSetting, type SettingsHost } from '@nuclearplayer/plugin-sdk';
 
 function ThemeBadge({ host }: { host: SettingsHost }) {
@@ -186,7 +186,7 @@ In typical plugins you won’t have direct access to the `SettingsHost`. Prefer 
 
 ### End-to-end example
 
-```ts
+```typescript
 import type { NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
 
 export default {
@@ -221,7 +221,7 @@ export default {
 
 ### Reference
 
-```ts
+```typescript
 // Domain API (preferred)
 api.Settings.register(defs: SettingDefinition[]): Promise<{ registered: string[] }>
 api.Settings.get<T extends SettingValue>(id: string): Promise<T | undefined>
