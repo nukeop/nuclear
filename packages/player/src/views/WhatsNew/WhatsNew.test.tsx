@@ -94,7 +94,9 @@ describe("What's New view", () => {
 
   it('shows the count of older versions in the see more button', async () => {
     await WhatsNewWrapper.mount();
-    expect(WhatsNewWrapper.seeMoreButton.element).toHaveTextContent('1 older');
+    expect(WhatsNewWrapper.seeMoreButton.element).toHaveTextContent(
+      'See more (1 older)',
+    );
   });
 
   it('reveals older versions when see more is clicked', async () => {
@@ -121,7 +123,7 @@ describe("What's New view", () => {
   });
 
   it('does not show see more button with only one version', async () => {
-    await WhatsNewWrapper.mountWithSingleVersion();
+    await WhatsNewWrapper.mount(SINGLE_VERSION_CHANGELOG);
     expect(WhatsNewWrapper.seeMoreButton.query).not.toBeInTheDocument();
   });
 });
