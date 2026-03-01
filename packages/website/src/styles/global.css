@@ -3,6 +3,50 @@
 @source "../layouts";
 @source "../pages";
 
+:root {
+  --page-bg: white;
+  --background: white;
+  --background-secondary: white;
+  --color-badge: #ffd6e0;
+  --color-heading-accent: var(--primary);
+  --color-heading-shadow: var(--foreground);
+  --color-star: var(--foreground);
+  --color-star-bg: var(--accent-yellow);
+  --border-width: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg: #282828;
+    --background: #282828;
+    --background-secondary: #3c3836;
+    --foreground: #ebdbb2;
+    --foreground-secondary: #a89984;
+    --primary: #3c3836;
+    --border: #7c6f64;
+    --shadow-x: 0px;
+    --shadow-y: 0px;
+    --color-badge: #722529;
+    --color-heading-accent: #ebdbb2;
+    --color-heading-shadow: none;
+    --color-star: #fabd2f;
+    --color-star-bg: #3c3836;
+    --border-width: 1px;
+  }
+
+  .bg-grid-pattern {
+    opacity: 0.06;
+  }
+
+  .btn-interactive:hover {
+    filter: brightness(1.3);
+  }
+
+  .btn-interactive:active {
+    filter: brightness(0.9);
+  }
+}
+
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
@@ -13,9 +57,9 @@
 .bg-radial-fade {
   background: radial-gradient(
     circle at center,
-    white 0%,
-    white 20%,
-    white 40%,
+    var(--page-bg) 0%,
+    var(--page-bg) 20%,
+    var(--page-bg) 40%,
     transparent 70%
   );
 }

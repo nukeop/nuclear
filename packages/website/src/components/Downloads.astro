@@ -18,15 +18,32 @@ const platforms = [
     url: 'https://github.com/nukeop/nuclear/releases/download/player@1.11.1/nuclear-music-player_1.11.1_amd64.AppImage',
   },
 ];
+
+const btnClass =
+  'btn-interactive inline-flex items-center justify-center gap-2.5 border-border bg-background-secondary rounded-md px-6 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none';
+
+const platformBtnClass = `${btnClass} w-36`;
+
+const boxClass =
+  'border-border bg-primary rounded-md shadow-shadow px-6 py-5 relative z-10 text-center';
+
+const badgeClass =
+  'absolute left-1/2 -translate-x-1/2 border-border bg-[var(--color-badge)] rounded-md font-heading font-black uppercase tracking-widest whitespace-nowrap';
 ---
 
-<div class="border-2 border-border bg-primary rounded-md shadow-shadow px-6 py-5 relative z-10 text-center md:hidden">
-  <h2 class="absolute -top-4 left-1/2 -translate-x-1/2 border-2 border-border bg-[#FFD6E0] rounded-md px-4 py-1 font-heading text-sm font-black uppercase tracking-widest whitespace-nowrap">
+<div class:list={[boxClass, 'md:hidden']} style={`border-width: var(--border-width)`}>
+  <h2
+    class:list={[badgeClass, '-top-3.5 px-3 py-0.5 text-xs']}
+    style={`border-width: var(--border-width)`}
+  >
     Desktop only
   </h2>
-  <div class="flex justify-center gap-3 mt-1 pointer-events-none select-none">
+  <div class="flex flex-col items-center gap-3 mt-1 pointer-events-none select-none min-[400px]:flex-row min-[400px]:justify-center">
     {platforms.map((platform) => (
-      <span class="inline-flex items-center gap-2 border-2 border-border/40 bg-white/40 text-foreground/40 rounded-md px-4 py-2 text-sm font-bold">
+      <span
+        class="inline-flex items-center justify-center gap-2 border-border/40 bg-background-secondary/40 text-foreground/40 rounded-md w-32 py-2 text-sm font-bold"
+        style={`border-width: var(--border-width)`}
+      >
         <Icon name={platform.icon} class="w-4 h-4" />
         {platform.name}
       </span>
@@ -39,25 +56,26 @@ const platforms = [
 
 <section
   id="downloads"
-  class="hidden md:block border-2 border-border bg-primary rounded-md shadow-shadow px-8 py-6 relative z-10"
+  class:list={[boxClass, 'hidden md:block px-8 py-6']}
+  style={`border-width: var(--border-width)`}
 >
   <h2
-    class="absolute -top-4 left-1/2 -translate-x-1/2 border-2 border-border bg-[#FFD6E0] rounded-md px-4 py-1 font-heading text-sm font-black uppercase tracking-widest whitespace-nowrap"
+    class:list={[badgeClass, '-top-4 px-4 py-1 text-sm']}
+    style={`border-width: var(--border-width)`}
   >
     Downloads
   </h2>
   <div class="flex justify-center gap-4 mt-2">
-    {
-      platforms.map((platform) => (
-        <a
-          href={platform.url}
-          class="inline-flex items-center gap-2.5 border-2 border-border bg-white rounded-md px-6 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none"
-        >
-          <Icon name={platform.icon} class="w-5 h-5" />
-          {platform.name}
-        </a>
-      ))
-    }
+    {platforms.map((platform) => (
+      <a
+        href={platform.url}
+        class={platformBtnClass}
+        style={`border-width: var(--border-width)`}
+      >
+        <Icon name={platform.icon} class="w-5 h-5" />
+        {platform.name}
+      </a>
+    ))}
   </div>
   <a
     href="https://github.com/nukeop/nuclear/releases"
@@ -67,10 +85,19 @@ const platforms = [
   </a>
 </section>
 
-<a
-  href="https://github.com/nukeop/nuclear"
-  class="hidden md:inline-flex items-center gap-2.5 border-2 border-border bg-white rounded-md px-6 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none mt-6 relative z-10"
->
-  <Icon name="simple-icons:github" class="w-5 h-5" />
-  Learn more
-</a>
+<div class="relative mt-6 z-10">
+  <span
+    class="absolute -top-3 -right-3 border-border rounded-md px-2 py-0.5 text-xs font-black rotate-6 pointer-events-none whitespace-nowrap z-20"
+    style={`color: var(--color-star); background: var(--color-star-bg); border-width: var(--border-width)`}
+  >
+    17k &#9733;
+  </span>
+  <a
+    href="https://github.com/nukeop/nuclear"
+    class={btnClass}
+    style={`border-width: var(--border-width)`}
+  >
+    <Icon name="simple-icons:github" class="w-5 h-5" />
+    Learn more
+  </a>
+</div>

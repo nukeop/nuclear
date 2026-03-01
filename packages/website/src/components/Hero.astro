@@ -9,7 +9,8 @@ const { version = 'v1.1.0' } = Astro.props;
 <section class="px-4 py-8 md:p-8 z-10 relative">
   <div class="text-center">
     <div
-      class="inline-block mb-6 border-border border-2 bg-primary rounded-md px-4 py-1 text-sm font-bold uppercase tracking-widest shadow-shadow"
+      class="inline-block mb-6 border-border bg-[var(--color-badge)] rounded-md px-4 py-1 text-sm font-bold uppercase tracking-widest shadow-shadow"
+      style={`border-width: var(--border-width)`}
     >
       {version} Available Now
     </div>
@@ -19,8 +20,8 @@ const { version = 'v1.1.0' } = Astro.props;
     >
       A GODDAMN<br />
       <span
-        class="text-primary font-heading"
-        style="text-shadow: 2px 2px 0px var(--color-foreground)"
+        class="font-heading"
+        style="color: var(--color-heading-accent); text-shadow: 2px 2px 0px var(--color-heading-shadow);"
         >MUSIC PLAYER</span
       >
     </h1>
