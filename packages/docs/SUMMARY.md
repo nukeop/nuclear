@@ -9,9 +9,14 @@
 * [Settings](plugins/settings.md)
 * [Queue](plugins/queue.md)
 * [Favorites](plugins/favorites.md)
+* [Playlists](plugins/playlists.md)
+* [Playback](plugins/playback.md)
 * [Streaming](plugins/streaming.md)
 * [Metadata](plugins/metadata.md)
 * [Dashboard](plugins/dashboard.md)
+* [Logger](plugins/logger.md)
+* [HTTP](plugins/http.md)
+* [yt-dlp](plugins/ytdlp.md)
 * [Providers](plugins/providers.md)
 
 ## Integrations

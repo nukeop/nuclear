@@ -21,6 +21,7 @@ Every provider extends the `ProviderDescriptor` base type, which requires an `id
 | `'metadata'` | Search results, artist & album details | [Metadata](metadata.md) |
 | `'streaming'` | Audio stream URLs for playback | [Streaming](streaming.md) |
 | `'dashboard'` | Dashboard content (top tracks, new releases, etc.) | [Dashboard](dashboard.md) |
+| `'playlists'` | Fetch playlists from URLs (Spotify, SoundCloud, etc.) | [Playlists](playlists.md) |
 | `'lyrics'` | Song lyrics *(planned)* | N/A |
 
 ## Registration
