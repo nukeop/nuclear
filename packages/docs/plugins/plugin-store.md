@@ -18,8 +18,7 @@ Click the Install button on any plugin. Nuclear downloads the latest release fro
 
 After installation, the plugin appears in the Installed tab. Toggle it on to enable it.
 
-<!-- TODO: Add screenshot showing the Store tab with plugins listed -->
-<!-- TODO: Add screenshot showing a plugin being installed (spinner state) -->
+<figure><img src="../.gitbook/assets/plugin-store.png" alt="The plugin store showing available plugins"><figcaption></figcaption></figure>
 
 ## Installing manually (dev plugins)
 
@@ -27,11 +26,11 @@ You can also install plugins from a local folder. In the Installed tab, click "A
 
 Manually installed plugins have one extra feature: a reload button. Click it to re-read the plugin source from the original folder, recompile, and reload. This is useful during development. Store-installed plugins don't support reload; remove and reinstall to get a new version. Auto-update is planned for the future.
 
-<!-- TODO: Add screenshot showing the Add Plugin dialog for dev plugins -->
+
 
 ## Managing plugins
 
-<!-- TODO: Add screenshot showing the Installed tab with enabled/disabled plugins -->
+<figure><img src="../.gitbook/assets/installed-plugins.png" alt="Installed plugins with enable/disable toggles"><figcaption></figcaption></figure>
 
 ### Enable and disable
 

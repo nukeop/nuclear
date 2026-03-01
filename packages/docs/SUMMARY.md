@@ -6,6 +6,8 @@
 
 * [Getting started](plugins/getting-started.md)
 * [Plugin system](plugins/plugin-system.md)
+* [Plugin store](plugins/plugin-store.md)
+* [Publishing](plugins/publishing.md)
 * [Settings](plugins/settings.md)
 * [Queue](plugins/queue.md)
 * [Favorites](plugins/favorites.md)
