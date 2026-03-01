@@ -1,32 +1,20 @@
 ---
 type Props = {
-  variant?: 'primary' | 'secondary' | 'tertiary';
-  shadow?: 'default' | 'none';
+  as?: string;
   class?: string;
+  [key: string]: unknown;
 };
 
-const {
-  variant = 'primary',
-  shadow = 'default',
-  class: className,
-} = Astro.props;
-
-const baseClasses = 'border-border text-foreground flex rounded-md border p-4';
-
-const variantClasses = {
-  primary: 'bg-primary',
-  secondary: 'bg-background',
-  tertiary: 'bg-background-secondary',
-};
-
-const shadowClasses = {
-  default: 'shadow-shadow',
-  none: 'shadow-none',
-};
+const { as: Element = 'div', class: className, ...rest } = Astro.props;
 ---
 
-<div
-  class:list={[baseClasses, variantClasses[variant], shadowClasses[shadow], className]}
+<Element
+  class:list={[
+    'themed-border border-border bg-primary rounded-md shadow-shadow relative text-center',
+    className,
+  ]}
+  {...rest}
 >
+  <slot name="badge" />
   <slot />
-</div>
+</Element>

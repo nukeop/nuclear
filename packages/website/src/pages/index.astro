@@ -1,42 +1,28 @@
 ---
+import Downloads from '../components/Downloads.astro';
+import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
 import '../styles/global.css';
 
 const title = 'Nuclear Music Player';
 const description =
-  'A free, open-source desktop music player that streams from free sources. Currently being rebuilt from scratch.';
+  'A free, open-source desktop music player that streams from free sources.';
 ---
 
 <BaseLayout title={title} description={description}>
-  <main class="flex min-h-screen flex-col items-center justify-center px-4">
-    <img
-      src="/images/nuki-construction.png"
-      alt="Nuki the Nuclear mascot wearing a hard hat"
-      class="mb-8 h-64 w-auto"
-    />
-
-    <h1 class="font-heading mb-4 text-center text-4xl font-bold md:text-5xl">
-      Under Construction
-    </h1>
-
-    <p class="mb-8 max-w-md text-center text-lg text-muted-foreground">
-      Nuclear is being rebuilt from scratch. A new player, a new website, and a
-      whole lot of improvements are on the way.
-    </p>
-
-    <div class="flex flex-wrap justify-center gap-4">
-      <a
-        href="https://discord.gg/JqPjKxE"
-        class="inline-flex items-center gap-2 rounded-md border-2 border-foreground bg-foreground px-6 py-3 font-medium text-background transition-colors hover:bg-background hover:text-foreground"
-      >
-        Join Discord
-      </a>
-      <a
-        href="https://github.com/nukeop/nuclear"
-        class="inline-flex items-center gap-2 rounded-md border-2 border-foreground px-6 py-3 font-medium transition-colors hover:bg-foreground hover:text-background"
-      >
-        View on GitHub
-      </a>
+  <main class="relative min-h-screen bg-background flex flex-col items-center justify-center">
+    <div
+      class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"
+      aria-hidden="true"
+    >
     </div>
+    <div
+      class="absolute inset-0 bg-radial-fade pointer-events-none"
+      aria-hidden="true"
+    >
+    </div>
+    <Hero version="v1.1.0" />
+    <Downloads />
   </main>
 </BaseLayout>

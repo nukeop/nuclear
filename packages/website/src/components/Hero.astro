@@ -1,6 +1,4 @@
 ---
-import Button from './Button.astro';
-
 type Props = {
   version?: string;
 };
@@ -8,53 +6,31 @@ type Props = {
 const { version = 'v1.1.0' } = Astro.props;
 ---
 
-<section class="p-8 z-10 relative">
-  <img
-    src="/images/nuki-running.png"
-    alt=""
-    class="absolute -bottom-8 right-8 w-32 md:w-40 lg:w-48 pointer-events-none select-none"
-    aria-hidden="true"
-  />
-  <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-    <div class="text-center lg:text-left">
-      <div
-        class="inline-block mb-6 border-border border bg-primary rounded-md px-4 py-1 text-sm font-bold uppercase tracking-widest shadow-shadow"
-      >
-        {version} Available Now
-      </div>
-
-      <h1
-        class="font-heading mb-8 text-5xl font-black uppercase leading-none md:text-6xl lg:text-7xl xl:text-8xl"
-      >
-        A GODDAMN<br />
-        <span
-          class="text-primary font-heading"
-          style="text-shadow: 2px 2px 0px var(--color-foreground)"
-          >MUSIC PLAYER</span
-        >
-      </h1>
-
-      <p
-        class="mb-8 text-xl md:text-2xl font-medium text-foreground-secondary max-w-xl mx-auto lg:mx-0"
-      >
-        Nuclear was built with one purpose: to let you listen to music however
-        you want.
-      </p>
-
-      <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-        <Button href="/downloads" variant="default" size="lg">Download</Button>
-        <Button href="#features" variant="secondary" size="lg"
-          >Learn more</Button
-        >
-      </div>
+<section class="px-4 py-8 md:p-8 z-10 relative">
+  <div class="text-center">
+    <div
+      class="inline-block mb-6 themed-border border-border bg-[var(--color-badge)] rounded-md px-4 py-1 text-sm font-bold uppercase tracking-widest shadow-shadow"
+    >
+      {version} Available Now
     </div>
 
-    <div class="hidden lg:block">
-      <slot />
-    </div>
-  </div>
+    <h1
+      class="font-heading mb-8 text-5xl font-black uppercase leading-none md:text-6xl lg:text-7xl xl:text-8xl"
+    >
+      A GODDAMN<br />
+      <span
+        class="font-heading"
+        style="color: var(--color-heading-accent); text-shadow: 2px 2px 0px var(--color-heading-shadow);"
+        >MUSIC PLAYER</span
+      >
+    </h1>
 
-  <div class="mt-12 lg:hidden">
-    <slot />
+    <p
+      class="mb-8 text-xl md:text-2xl font-medium text-foreground-secondary max-w-xl mx-auto"
+    >
+      Nuclear was built with one purpose: to let you listen to music however you
+      want.
+    </p>
+
   </div>
 </section>

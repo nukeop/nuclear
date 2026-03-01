@@ -1,0 +1,77 @@
+---
+import { Icon } from 'astro-icon/components';
+import Badge from './Badge.astro';
+import Box from './Box.astro';
+
+const platforms = [
+  {
+    name: 'macOS',
+    icon: 'simple-icons:apple',
+    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.11.1/nuclear-music-player_1.11.1_aarch64.dmg',
+  },
+  {
+    name: 'Windows',
+    icon: 'simple-icons:windows',
+    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.11.1/nuclear-music-player_1.11.1_x64-setup.exe',
+  },
+  {
+    name: 'Linux',
+    icon: 'simple-icons:linux',
+    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.11.1/nuclear-music-player_1.11.1_amd64.AppImage',
+  },
+];
+---
+
+<Box class="md:hidden px-6 py-5 z-10">
+  <Badge slot="badge" size="sm">Desktop only</Badge>
+  <div class="flex flex-col items-center gap-3 mt-1 pointer-events-none select-none min-[400px]:flex-row min-[400px]:justify-center">
+    {platforms.map((platform) => (
+      <span
+        class="inline-flex items-center justify-center gap-2 themed-border border-border/40 bg-background-secondary/40 text-foreground/40 rounded-md w-32 py-2 text-sm font-bold"
+      >
+        <Icon name={platform.icon} class="w-4 h-4" />
+        {platform.name}
+      </span>
+    ))}
+  </div>
+  <p class="text-xs mt-3">
+    Downloads are only available on a desktop device.
+  </p>
+</Box>
+
+<Box as="section" id="downloads" class="hidden md:block px-8 py-6 z-10">
+  <Badge slot="badge">Downloads</Badge>
+  <div class="flex justify-center gap-4 mt-2">
+    {platforms.map((platform) => (
+      <a
+        href={platform.url}
+        class="themed-border btn-interactive inline-flex items-center justify-center gap-2.5 border-border bg-background-secondary rounded-md w-36 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none"
+      >
+        <Icon name={platform.icon} class="w-5 h-5" />
+        {platform.name}
+      </a>
+    ))}
+  </div>
+  <a
+    href="https://github.com/nukeop/nuclear/releases"
+    class="block text-center text-sm font-medium mt-4 underline underline-offset-2 hover:no-underline"
+  >
+    All downloads
+  </a>
+</Box>
+
+<div class="relative mt-6 z-10">
+  <span
+    class="absolute -top-3 -right-3 themed-border border-border rounded-md px-2 py-0.5 text-xs font-black rotate-6 pointer-events-none whitespace-nowrap z-20"
+    style={`color: var(--color-star); background: var(--color-star-bg)`}
+  >
+    17k &#9733;
+  </span>
+  <a
+    href="https://github.com/nukeop/nuclear"
+    class="themed-border btn-interactive inline-flex items-center justify-center gap-2.5 border-border bg-background-secondary rounded-md px-6 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none"
+  >
+    <Icon name="simple-icons:github" class="w-5 h-5" />
+    Learn more
+  </a>
+</div>

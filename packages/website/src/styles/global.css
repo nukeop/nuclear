@@ -3,6 +3,55 @@
 @source "../layouts";
 @source "../pages";
 
+:root {
+  --page-bg: white;
+  --background: white;
+  --background-secondary: white;
+  --color-badge: #ffd6e0;
+  --color-heading-accent: var(--primary);
+  --color-heading-shadow: var(--foreground);
+  --color-star: var(--foreground);
+  --color-star-bg: var(--accent-yellow);
+  --border-width: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg: #282828;
+    --background: #282828;
+    --background-secondary: #3c3836;
+    --foreground: #ebdbb2;
+    --foreground-secondary: #a89984;
+    --primary: #3c3836;
+    --border: #7c6f64;
+    --shadow-x: 0px;
+    --shadow-y: 0px;
+    --color-badge: #722529;
+    --color-heading-accent: #ebdbb2;
+    --color-heading-shadow: none;
+    --color-star: #fabd2f;
+    --color-star-bg: #3c3836;
+    --border-width: 1px;
+  }
+
+  .bg-grid-pattern {
+    opacity: 0.06;
+  }
+
+  .btn-interactive:hover {
+    filter: brightness(1.3);
+  }
+
+  .btn-interactive:active {
+    filter: brightness(0.9);
+  }
+}
+
+.themed-border {
+  border-width: var(--border-width);
+  border-style: solid;
+}
+
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
@@ -10,18 +59,18 @@
     linear-gradient(to bottom, var(--color-foreground) 1px, transparent 1px);
 }
 
+.bg-radial-fade {
+  background: radial-gradient(
+    circle at center,
+    var(--page-bg) 0%,
+    var(--page-bg) 20%,
+    var(--page-bg) 40%,
+    transparent 70%
+  );
+}
+
 .bg-paper-texture {
   background-image: url('/textures/paper.png');
   background-size: cover;
   background-position: center;
-}
-
-.paper-sheet {
-  box-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.04),
-    0 2px 2px rgba(0, 0, 0, 0.04),
-    0 4px 4px rgba(0, 0, 0, 0.04),
-    0 8px 8px rgba(0, 0, 0, 0.04),
-    0 16px 16px rgba(0, 0, 0, 0.04),
-    0 32px 32px rgba(0, 0, 0, 0.04);
 }
