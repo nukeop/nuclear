@@ -28,14 +28,65 @@
   "navigation": {
     "explore": "Обзор",
     "dashboard": "Панель",
-    "preferences": "Настройки",
-    "settings": "Параметры",
-    "plugins": "Плагины",
-    "themes": "Темы",
     "collection": "Коллекция",
     "favoriteAlbums": "Избранные альбомы",
     "favoriteTracks": "Избранные треки",
-    "favoriteArtists": "Избранные артисты"
+    "favoriteArtists": "Избранные артисты",
+    "playlists": "Плейлисты"
+  },
+  "favorites": {
+    "albums": {
+      "title": "Любимые альбомы",
+      "empty": "Ещё нет любимых альбомов",
+      "emptyDescription": "Альбомы, отмеченные как любимые, появятся здесь"
+    },
+    "tracks": {
+      "title": "Любимые треки",
+      "empty": "Ещё нет любимых треков",
+      "emptyDescription": "Треки, отмеченные как любимые, появятся здесь"
+    },
+    "artists": {
+      "title": "Любимые исполнители",
+      "empty": "Ещё нет любимых исполнителей",
+      "emptyDescription": "Исполнители, отмеченные как любимые, появятся здесь"
+    }
+  },
+  "playlists": {
+    "title": "Плейлисты",
+    "empty": "Ещё нет плейлистов",
+    "emptyDescription": "Создайте или импортируйте плейлист для начала",
+    "emptyTracks": "В этом плейлисте нет треков",
+    "emptyTracksDescription": "Добавьте треки из результатов поиска или библиотеки",
+    "create": "Создать новый",
+    "importJson": "Импортировать из JSON",
+    "exportJson": "Экспортировать в JSON",
+    "add": "Добавить",
+    "delete": "Удалить плейлист",
+    "deleteConfirm": "Вы уверены, что хотите удалить плейлист?",
+    "play": "Воспроизвести",
+    "addToQueue": "Добавить в очередь",
+    "saveLocally": "Сохранить локально",
+    "readOnlyBadge": "{{source}}",
+    "readOnlyTooltip": "Этот плейлист от {{source}} доступен только для чтения. Сохраните локальную копию для редактирования.",
+    "trackCount": "{{count}} треков",
+    "trackCount_other": "{{count}} треков",
+    "addToPlaylist": "Добавить в плейлист",
+    "filterPlaylists": "Отфильтровать плейлисты...",
+    "createNew": "Создать новый плейлист",
+    "saveQueueAsPlaylist": "Сохранить очередь как плейлист",
+    "name": "Название",
+    "namePlaceholder": "Название плейлиста...",
+    "exportSuccess": "Плейлист экспортирован",
+    "exportError": "Не удалось экспортировать плейлист",
+    "importSuccess": "Плейлист импортирован",
+    "importBatchSuccess": "{{count}} плейлистов импортировано",
+    "importError": "Не удалось импортировать плейлист",
+    "importNoPlaylists": "Плейлисты не найдены в этом файле",
+    "importUrl": "Импортировать по URL",
+    "importUrlTitle": "Импортировать плейлист по URL",
+    "importUrlPlaceholder": "Вставьте URL плейлиста...",
+    "importUrlNoProvider": "Ни один плагин не может обработать этот URL. Установите плагин, поддерживающий этот сервис.",
+    "importUrlImporting": "Импортирование..."
   },
   "search": {
     "title": "Поиск",
@@ -69,11 +120,26 @@
     "topTracks": "Топ треки",
     "onTour": "В туре",
     "notOnTour": "Не в туре",
+    "followers": "Подписчики",
+    "followings": "Подписки",
+    "playlists": "Плейлисты",
     "errors": {
       "failedToLoadDetails": "Не удалось загрузить информацию об артисте.",
       "failedToLoadAlbums": "Не удалось загрузить альбомы.",
       "failedToLoadPopularTracks": "Не удалось загрузить популярные треки.",
-      "failedToLoadSimilarArtists": "Не удалось загрузить похожих артистов."
+      "failedToLoadSimilarArtists": "Не удалось загрузить похожих артистов.",
+      "failedToLoadSocialStats": "Не удалось загрузить статистику исполнителя.",
+      "failedToLoadPlaylists": "Не удалось загрузить плейлисты."
+    }
+  },
+  "album": {
+    "title": "Альбом",
+    "genre": "Жанр",
+    "year": "Год",
+    "tracks": "Треки",
+    "errors": {
+      "failedToLoadDetails": "Не удалось загрузить детали альбома.",
+      "failedToLoadTracks": "Не удалось загрузить треки."
     }
   },
   "themes": {
@@ -85,35 +151,191 @@
   },
   "dashboard": {
     "title": "Панель",
-    "content": "Вид панели"
+    "empty-state": "Нет доступных данных в панели управления",
+    "empty-state-description": "Включите плагин, который предоставляет содержимое панели.",
+    "top-tracks": "Лучшие Треки",
+    "top-artists": "Лучшие Исполнители",
+    "top-albums": "Лучшие Альбомы",
+    "editorial-playlists": "Лучше Плейлисты",
+    "new-releases": "Новые Релизы",
+    "filter-artists": "Фильтр исполнителей...",
+    "filter-albums": "Фильтр альбомов...",
+    "filter-playlists": "Фильтр плейлистов...",
+    "filter-releases": "Фильтр релизов...",
+    "nothing-found": "Ничего не найдено"
   },
   "plugins": {
     "title": "Плагины",
-    "addPlugin": "Добавить плагин"
-  },
-  "settings": {
-    "title": "Параметры",
-    "categories": {
-      "general": "Общие",
-      "appearance": "Внешний вид",
-      "playback": "Воспроизведение",
-      "layout": "Макет"
+    "addPlugin": "Добавить плагин",
+    "tabs": {
+      "installed": "Установлено",
+      "store": "Магазин"
     },
+    "store": {
+      "searchPlaceholder": "Поиск плагинов...",
+      "install": "Установить",
+      "installing": "Установка",
+      "installed": "Установлен",
+      "by": "от",
+      "categories": {
+        "all": "Всё",
+        "streaming": "Трансляция",
+        "metadata": "Метаданные",
+        "lyrics": "Текст",
+        "scrobbling": "Скробблинг",
+        "other": "Прочие"
+      },
+      "error": {
+        "title": "Не удалось загрузить плагины",
+        "description": "Не удалось получить реестр плагинов. Пожалуйста, проверьте подключение к Интернету.",
+        "retry": "Повторить"
+      },
+      "noResults": {
+        "title": "Плагины не найдены",
+        "filtered": "Попробуйте изменить запрос или фильтры.",
+        "empty": "Нет доступных плагинов."
+      },
+      "installError": {
+        "title": "Не удалось установить {{name}}"
+      }
+    }
+  },
+  "updater": {
+    "updateAvailable": "Доступно обновление"
+  },
+  "flatpak": {
+    "sandboxWarning": "Вы используете Nuclear в среде Flatpak. Некоторые функции могут работать неправильно. Если вы столкнулись с проблемами, попробуйте .deb или AppImage.",
+    "dismiss": "Хорошо"
+  },
+  "preferences": {
+    "title": "Настройки",
     "general": {
+      "title": "Общие",
       "language": {
         "title": "Язык",
         "description": "Выберите предпочитаемый язык"
       }
     },
+    "plugins": {
+      "title": "Плагины"
+    },
+    "themes": {
+      "title": "Темы"
+    },
+    "logs": {
+      "title": "Логи"
+    },
+    "whats-new": {
+      "title": "What's New"
+    },
+    "appearance": {
+      "title": "Оформление"
+    },
     "playback": {
+      "title": "Воспроизведение",
       "skipSeconds": {
         "title": "Длительность перемотки",
-        "description": "Количество секунд для перемотки вперёд/назад"
+        "description": "Количество секунд, пропускаемое вперёд/назад"
       },
       "crossfadeMs": {
-        "title": "Кроссфейд",
-        "description": "Длительность кроссфейда между треками в миллисекундах"
+        "title": "Плавный переход",
+        "description": "Длительность плавного перехода между треками в миллисекундах"
+      },
+      "streamExpiryMs": {
+        "title": "Время истечения трансляции",
+        "description": "Через сколько разрешенный URL трансляции будет считаться устаревшим и нуждаться в повторном разрешении"
+      },
+      "streamResolutionRetries": {
+        "title": "Попытки разрешения трансляции",
+        "description": "Количество раз, чтобы повторить попытку разрешить URL трансляции перед переходом к следующему кандидату"
       }
+    },
+    "layout": {
+      "title": "Макет"
+    },
+    "updates": {
+      "title": "Обновления",
+      "checkForUpdates": {
+        "title": "Проворить наличие обновлений",
+        "description": "Автоматически проверяет наличие обновлений при запуске"
+      },
+      "autoInstall": {
+        "title": "Автоустановка обновлений",
+        "description": "Скачивать и устанавливать обновления автоматически при наличии"
+      }
+    },
+    "integrations": {
+      "title": "Интеграции",
+      "mcp": {
+        "enabled": {
+          "title": "Включить MCP сервер",
+          "description": "Запустит локальный MCP сервер, позволяющий ИИ инструментам контролировать Nuclear."
+        },
+        "serverUrl": {
+          "title": "URL MCP сервера",
+          "description": "Направьте Ваш ИИ инструмент на этот URL для подключения к Nuclear."
+        }
+      }
+    }
+  },
+  "queue": {
+    "title": "Очередь",
+    "empty": {
+      "title": "Очередь пуста",
+      "subtitle": "Добавьте треки для начала воспроизведения"
+    },
+    "actions": {
+      "remove": "Убрать из очереди",
+      "clear": "Очистить очередь",
+      "saveAsPlaylist": "Сохранить очередь как плейлист"
+    },
+    "errors": {
+      "playback": "Ошибка воспроизведения"
+    }
+  },
+  "track": {
+    "actions": {
+      "playNow": "Воспроизвести",
+      "playNext": "Воспроизвести следующий",
+      "addToQueue": "Добавить в очередь",
+      "addToFavorites": "Добавить в любимые",
+      "removeFromFavorites": "Убрать из любимых"
+    }
+  },
+  "streaming": {
+    "errors": {
+      "noCandidatesFound": "Не удалось найти кандидатов трансляции",
+      "allCandidatesFailed": "Все кандидаты не удались"
+    }
+  },
+  "playerBar": {
+    "noTrackPlaying": "Трек не воспроизводится"
+  },
+  "logs": {
+    "title": "Логи",
+    "searchPlaceholder": "Поиск логов...",
+    "searchAriaLabel": "Поиск логов",
+    "levelLabel": "Уровень:",
+    "scopeLabel": "Область:",
+    "clearButton": "Очистить",
+    "exportButton": "Экспорт",
+    "openLogFolderButton": "Открыть папку с логами",
+    "noLogsMessage": "Нет логов для отображения",
+    "invalidRegexMessage": "Неправильный regex паттерн",
+    "entryCount": "{{count}} запись",
+    "entryCount_other": "{{count}} записей",
+    "exportSuccess": "Логи экспортированы"
+  },
+  "changelog": {
+    "title": "What's New",
+    "seeMore": "See more ({{count}} older)",
+    "types": {
+      "feature": "Feature",
+      "fix": "Fix",
+      "improvement": "Improvement",
+      "chore": "Chore",
+      "plugin": "Plugin",
+      "docs": "Docs"
     }
   }
 }
