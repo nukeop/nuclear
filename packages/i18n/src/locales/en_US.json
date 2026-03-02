@@ -86,7 +86,9 @@
     "importUrlTitle": "Import playlist from URL",
     "importUrlPlaceholder": "Paste a playlist URL...",
     "importUrlNoProvider": "No plugin can handle this URL. Install a plugin that supports this service.",
-    "importUrlImporting": "Importing..."
+    "importUrlImporting": "Importing...",
+    "descriptionPlaceholder": "Add a description...",
+    "trackCount_label": "tracks"
   },
   "search": {
     "title": "Search",

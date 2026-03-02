@@ -64,7 +64,7 @@ describe('PlaylistDetail view', () => {
   it('displays the track count', async () => {
     await PlaylistDetailWrapper.mount('test-playlist');
 
-    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('2 tracks');
+    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('2');
   });
 
   it('shows read-only badge for external playlists', async () => {
@@ -154,7 +154,7 @@ describe('PlaylistDetail view', () => {
       ).not.toBeInTheDocument();
     });
     expect(PlaylistDetailWrapper.trackTitle('So What')).toBeInTheDocument();
-    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('1 track');
+    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('1');
   });
 
   it('does not show remove buttons for read-only playlists', async () => {

@@ -1,5 +1,6 @@
 import { FilterIcon } from 'lucide-react';
 
+import { cn } from '../../utils';
 import { Input } from '../Input';
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
 
 export function FilterBar({ value, onChange, placeholder, className }: Props) {
   return (
-    <div className={['flex justify-end', className].filter(Boolean).join(' ')}>
+    <div className={cn('flex justify-end', className)}>
       <div className="inline-flex w-full max-w-sm items-stretch">
         <Input
           value={value}
