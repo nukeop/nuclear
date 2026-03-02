@@ -90,6 +90,16 @@ export class PlaylistBuilder {
     return this;
   }
 
+  withDescription(description: string): this {
+    this.playlist.description = description;
+    return this;
+  }
+
+  withTags(tags: string[]): this {
+    this.playlist.tags = tags;
+    return this;
+  }
+
   build(): Playlist {
     return cloneDeep(this.playlist);
   }

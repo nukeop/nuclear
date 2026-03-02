@@ -184,4 +184,17 @@ describe('playlistStore', () => {
 
     expect(loaded?.name).toBe('Already Cached');
   });
+
+  describe('updatePlaylist', () => {
+    it('updates the playlist name', async () => {
+      const id = await usePlaylistStore.getState().createPlaylist('Original');
+
+      vi.setSystemTime(new Date('2026-06-15T12:00:00.000Z'));
+      await usePlaylistStore.getState().updatePlaylist(id, { name: 'Renamed' });
+
+      const updated = usePlaylistStore.getState().playlists.get(id);
+      expect(updated?.name).toBe('Renamed');
+      expect(updated?.lastModifiedIso).toBe('2026-06-15T12:00:00.000Z');
+    });
+  });
 });
