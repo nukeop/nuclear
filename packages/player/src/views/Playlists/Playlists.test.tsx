@@ -76,6 +76,54 @@ describe('Playlists view', () => {
     expect(usePlaylistStore.getState().index[0]?.name).toBe('My New Playlist');
   });
 
+  it('shows mosaic artwork on playlist card when 4+ tracks have art', async () => {
+    PlaylistsWrapper.seedPlaylists(
+      new PlaylistBuilder()
+        .withName('With Art')
+        .withTrackArtworks([
+          'https://example.com/a.jpg',
+          'https://example.com/b.jpg',
+          'https://example.com/c.jpg',
+          'https://example.com/d.jpg',
+        ])
+        .withThumbnails([
+          'https://example.com/a.jpg',
+          'https://example.com/b.jpg',
+          'https://example.com/c.jpg',
+          'https://example.com/d.jpg',
+        ]),
+    );
+
+    await PlaylistsWrapper.mount();
+
+    expect(PlaylistsWrapper.card(0).images).toHaveLength(4);
+  });
+
+  it('shows single artwork on playlist card when fewer than 4 tracks have art', async () => {
+    PlaylistsWrapper.seedPlaylists(
+      new PlaylistBuilder()
+        .withName('Single Art')
+        .withTrackArtworks(['https://example.com/a.jpg'])
+        .withThumbnails(['https://example.com/a.jpg']),
+    );
+
+    await PlaylistsWrapper.mount();
+
+    expect(PlaylistsWrapper.card(0).images).toHaveLength(1);
+  });
+
+  it('shows no artwork on playlist card when tracks have no art', async () => {
+    PlaylistsWrapper.seedPlaylists(
+      new PlaylistBuilder()
+        .withName('No Art')
+        .withTrackNames(['Track A', 'Track B']),
+    );
+
+    await PlaylistsWrapper.mount();
+
+    expect(PlaylistsWrapper.card(0).images).toHaveLength(0);
+  });
+
   it('navigates to playlist detail when clicking a card', async () => {
     PlaylistsWrapper.seedPlaylists(
       new PlaylistBuilder()

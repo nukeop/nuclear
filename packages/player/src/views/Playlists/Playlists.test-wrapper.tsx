@@ -45,6 +45,9 @@ export const PlaylistsWrapper = {
       get name() {
         return within(this.element).getByTestId('card-title').textContent;
       },
+      get images() {
+        return within(this.element).queryAllByRole('img');
+      },
       async click() {
         await user.click(this.element);
       },
