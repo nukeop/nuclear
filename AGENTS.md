@@ -307,11 +307,17 @@ Use centralized configs from eslint-config and tailwind-config packages.
 
 Assume TanStack Router routes regenerate on dev - don't regenerate manually.
 
+## Changelog
+
+`packages/player/changelog.json` is the source of truth for the in-app "What's New" tab and auto-generated GitHub release notes.
+
+When building a user-facing feature, fix, or improvement, add an entry to the top of the array according to the format you find there.
+
 ## Releasing
 
 ### Nuclear Player
 
-Releases are triggered by git tags. The workflow builds for macOS (arm64/x64), Linux, and Windows.
+Releases are triggered by git tags. The workflow builds for macOS (arm64/x64), Linux, and Windows. Release notes are auto-generated from `packages/player/changelog.json`.
 
 ```bash
 # 1. Update version in packages/player/package.json
