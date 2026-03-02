@@ -32,6 +32,7 @@ export * from './SidebarNavigation';
 export * from './Slider';
 export * from './StatChip';
 export * from './Tabs';
+export * from './Textarea';
 export * from './ThemeController';
 export * from './Toaster';
 export * from './Toggle';

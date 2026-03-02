@@ -1,28 +1,17 @@
 import { PencilIcon } from 'lucide-react';
-import { FC, useState } from 'react';
+import type { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { Playlist, Track } from '@nuclearplayer/model';
-import { pickArtwork } from '@nuclearplayer/model';
-import { Badge, Button, Input, Tooltip } from '@nuclearplayer/ui';
+import { Badge, Button, Input, Textarea, Tooltip } from '@nuclearplayer/ui';
 
-import { usePlaylistStore } from '../../../stores/playlistStore';
 import { PlaylistDetailActions } from './PlaylistDetailActions';
+import { usePlaylistDetailHeader } from './usePlaylistDetailHeader';
 
 type PlaylistDetailHeaderProps = {
   playlist: Playlist;
   playlistId: string;
   tracks: Track[];
-};
-
-const getCoverUrl = (playlist: Playlist): string | undefined => {
-  const playlistCover = pickArtwork(playlist.artwork, 'cover', 600);
-  if (playlistCover) {
-    return playlistCover.url;
-  }
-
-  const firstTrackArt = playlist.items[0]?.track.artwork;
-  return pickArtwork(firstTrackArt, 'cover', 600)?.url;
 };
 
 export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
@@ -31,45 +20,26 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   tracks,
 }) => {
   const { t } = useTranslation('playlists');
-  const updatePlaylist = usePlaylistStore((state) => state.updatePlaylist);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editName, setEditName] = useState(playlist.name);
-  const [editDescription, setEditDescription] = useState(
-    playlist.description ?? '',
-  );
-
-  const coverUrl = getCoverUrl(playlist);
-  const headerButtonClassName = 'bg-white text-black';
-
-  const handleSave = () => {
-    const trimmedName = editName.trim();
-    const trimmedDescription = editDescription.trim();
-
-    if (trimmedName && trimmedName !== playlist.name) {
-      updatePlaylist(playlist.id, { name: trimmedName });
-    }
-    if (trimmedDescription !== (playlist.description ?? '')) {
-      updatePlaylist(playlist.id, {
-        description: trimmedDescription || undefined,
-      });
-    }
-
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setEditName(playlist.name);
-    setEditDescription(playlist.description ?? '');
-    setIsEditing(false);
-  };
+  const {
+    isEditing,
+    editName,
+    setEditName,
+    editDescription,
+    setEditDescription,
+    coverUrl,
+    startEditing,
+    save,
+    cancel,
+  } = usePlaylistDetailHeader(playlist);
 
   return (
     <div className="border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-2 p-6 md:flex-row">
       {!playlist.isReadOnly && !isEditing && (
         <Button
+          variant="secondary"
           size="icon-sm"
-          className={`absolute top-4 right-4 z-10 ${headerButtonClassName}`}
-          onClick={() => setIsEditing(true)}
+          className="absolute top-4 right-4 z-10"
+          onClick={startEditing}
           data-testid="edit-playlist-button"
         >
           <PencilIcon size={14} />
@@ -105,25 +75,25 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
               data-testid="playlist-detail-title-input"
               className="font-heading text-3xl font-extrabold"
             />
-            <textarea
+            <Textarea
               value={editDescription}
               onChange={(event) => setEditDescription(event.target.value)}
               placeholder={t('descriptionPlaceholder')}
               data-testid="playlist-detail-description-input"
-              className="border-border bg-background-input text-foreground placeholder:text-foreground-secondary min-h-[4rem] w-full resize-y rounded-md border-2 px-3 py-2 text-lg focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="min-h-[4rem] text-lg"
             />
             <div className="flex gap-2">
               <Button
-                onClick={handleSave}
+                variant="secondary"
+                onClick={save}
                 data-testid="save-edit-button"
-                className={headerButtonClassName}
               >
                 {t('common:actions.save')}
               </Button>
               <Button
-                onClick={handleCancel}
+                variant="secondary"
+                onClick={cancel}
                 data-testid="cancel-edit-button"
-                className={headerButtonClassName}
               >
                 {t('common:actions.cancel')}
               </Button>

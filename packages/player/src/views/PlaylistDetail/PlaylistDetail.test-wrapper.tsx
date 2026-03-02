@@ -38,6 +38,13 @@ export const PlaylistDetailWrapper = {
     get input() {
       return screen.queryByTestId('playlist-detail-title-input');
     },
+    async edit(newValue: string) {
+      await user.click(screen.getByTestId('edit-playlist-button'));
+      const input = screen.getByTestId('playlist-detail-title-input');
+      await user.clear(input);
+      await user.type(input, newValue);
+      await user.click(screen.getByTestId('save-edit-button'));
+    },
   },
 
   description: {
@@ -46,6 +53,13 @@ export const PlaylistDetailWrapper = {
     },
     get input() {
       return screen.queryByTestId('playlist-detail-description-input');
+    },
+    async edit(newValue: string) {
+      await user.click(screen.getByTestId('edit-playlist-button'));
+      const input = screen.getByTestId('playlist-detail-description-input');
+      await user.clear(input);
+      await user.type(input, newValue);
+      await user.click(screen.getByTestId('save-edit-button'));
     },
   },
 
@@ -56,31 +70,6 @@ export const PlaylistDetailWrapper = {
     async click() {
       await user.click(screen.getByTestId('edit-playlist-button'));
     },
-  },
-
-  saveEditButton: {
-    get element() {
-      return screen.getByTestId('save-edit-button');
-    },
-    async click() {
-      await user.click(screen.getByTestId('save-edit-button'));
-    },
-  },
-
-  async editTitle(newValue: string) {
-    await this.editButton.click();
-    const input = screen.getByTestId('playlist-detail-title-input');
-    await user.clear(input);
-    await user.type(input, newValue);
-    await this.saveEditButton.click();
-  },
-
-  async editDescription(newValue: string) {
-    await this.editButton.click();
-    const input = screen.getByTestId('playlist-detail-description-input');
-    await user.clear(input);
-    await user.type(input, newValue);
-    await this.saveEditButton.click();
   },
 
   get trackTable() {

@@ -53,9 +53,9 @@ export const PlaylistDetailActions: FC<PlaylistDetailActionsProps> = ({
     <>
       <div className="flex items-center gap-2">
         <Button
+          variant="secondary"
           onClick={handlePlayAll}
           data-testid="play-all-button"
-          className="bg-white text-black"
         >
           <PlayIcon size={16} />
           {t('play')}
@@ -65,9 +65,9 @@ export const PlaylistDetailActions: FC<PlaylistDetailActionsProps> = ({
           panelClassName="bg-background px-0 py-0"
           trigger={
             <Button
+              variant="secondary"
               size="icon"
               data-testid="playlist-actions-button"
-              className="bg-white text-black"
             >
               <EllipsisVerticalIcon size={16} />
             </Button>

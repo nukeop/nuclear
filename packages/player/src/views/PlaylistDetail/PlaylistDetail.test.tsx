@@ -228,7 +228,7 @@ describe('PlaylistDetail view', () => {
   it('renames the playlist via the edit button', async () => {
     await PlaylistDetailWrapper.mount('test-playlist');
 
-    await PlaylistDetailWrapper.editTitle('Renamed Playlist');
+    await PlaylistDetailWrapper.title.edit('Renamed Playlist');
 
     await vi.waitFor(() => {
       expect(PlaylistDetailWrapper.title.display).toHaveTextContent(
@@ -263,7 +263,7 @@ describe('PlaylistDetail view', () => {
       'Old description',
     );
 
-    await PlaylistDetailWrapper.editDescription('New description');
+    await PlaylistDetailWrapper.description.edit('New description');
 
     await vi.waitFor(() => {
       expect(PlaylistDetailWrapper.description.display).toHaveTextContent(
