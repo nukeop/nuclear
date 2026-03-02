@@ -70,6 +70,7 @@ export const playlistIndexEntrySchema = z.object({
   artwork: artworkSetSchema.optional(),
   itemCount: z.number(),
   totalDurationMs: z.number(),
+  thumbnails: z.array(z.string()).default([]),
 });
 
 export const playlistIndexSchema = z.array(playlistIndexEntrySchema);
