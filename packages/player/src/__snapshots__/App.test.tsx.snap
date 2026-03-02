@@ -451,7 +451,7 @@ exports[`App > should render snapshot 1`] = `
             transition="[object Object]"
           >
             <div
-              class="bg-background relative flex h-full w-full flex-col items-start justify-start px-6 pt-6"
+              class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
               data-testid="dashboard-view"
             >
               <h1
@@ -461,7 +461,7 @@ exports[`App > should render snapshot 1`] = `
                 Dashboard
               </h1>
               <div
-                class="relative h-full flex w-full flex-1 flex-col"
+                class="relative h-full flex min-h-0 w-full flex-1 flex-col"
               >
                 <div
                   class="scrollbar-hide flex h-full w-full flex-col overflow-auto"

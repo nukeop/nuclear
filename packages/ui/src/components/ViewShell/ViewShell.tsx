@@ -16,7 +16,7 @@ export const ViewShell: FC<ViewShellProps> = ({
   'data-testid': dataTestId,
 }) => (
   <div
-    className="bg-background relative flex h-full w-full flex-col items-start justify-start px-6 pt-6"
+    className="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
     data-testid={dataTestId}
   >
     <h1
@@ -30,7 +30,7 @@ export const ViewShell: FC<ViewShellProps> = ({
         {subtitle}
       </h2>
     )}
-    <ScrollableArea className="flex w-full flex-1 flex-col">
+    <ScrollableArea className="flex min-h-0 w-full flex-1 flex-col">
       {children}
     </ScrollableArea>
   </div>

@@ -132,6 +132,6 @@ Each step returns a small, focused payload to save on tokens.
 
 If your AI tool supports skills (like Claude Code), you can install one that teaches the agent how to use Nuclear's MCP tools, including the discovery workflow, common recipes, and the full API reference.
 
-[Download nuclear-mcp.zip](/skills/nuclear-mcp.zip)
+[Download nuclear-mcp.zip](../.gitbook/assets/nuclear-mcp.zip)
 
 Unzip it into your skills directory (e.g. `~/.claude/skills/`) and the agent will pick it up automatically.

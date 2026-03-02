@@ -35,6 +35,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-tags: true
+          fetch-depth: 0
 
       - name: Extract version from tag
         id: version
@@ -89,6 +92,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Generate release notes
+        id: release_notes
+        shell: bash
+        run: |
+          NOTES=$(node scripts/generate-release-notes.mjs "${{ steps.version.outputs.version }}")
+          DELIMITER=$(openssl rand -hex 16)
+          echo "notes<<$DELIMITER" >> $GITHUB_OUTPUT
+          echo "$NOTES" >> $GITHUB_OUTPUT
+          echo "$DELIMITER" >> $GITHUB_OUTPUT
+
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v0
         env:
@@ -99,7 +112,7 @@ jobs:
         with:
           tagName: ${{ github.ref_name }}
           releaseName: "Nuclear Player v${{ steps.version.outputs.version }}"
-          releaseBody: "Nuclear Player release v${{ steps.version.outputs.version }}"
+          releaseBody: "${{ steps.release_notes.outputs.notes }}"
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}

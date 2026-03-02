@@ -1,0 +1,108 @@
+[
+  {
+    "date": "2026-03-01T00:00",
+    "description": "In-app changelog in settings (What's New tab)",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Settings",
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-01T00:00",
+    "description": "Release pipeline auto-generates GitHub release notes from changelog data",
+    "type": "improvement",
+    "contributors": ["nukeop"]
+  },
+  {
+    "date": "2026-03-01T00:00",
+    "description": "Support importing legacy format playlists (from old Nuclear)",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-28T00:00",
+    "description": "Migrated repository to nukeop/nuclear",
+    "type": "chore",
+    "contributors": ["nukeop"]
+  },
+  {
+    "date": "2026-02-25T00:00",
+    "description": "Playlist import from URL",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-25T00:00",
+    "description": "Playlist provider adapter view with cover art",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "cyan"
+      },
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-25T00:00",
+    "description": "Fixed loading status getting stuck on stream resolution",
+    "type": "fix",
+    "contributors": ["nukeop"]
+  },
+  {
+    "date": "2026-02-20T00:00",
+    "description": "MCP server for controlling Nuclear from AI agents and other tools",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "MCP",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-20T00:00",
+    "description": "Plugin store with browsing, search, and installation",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-02-20T00:00",
+    "description": "Flatpak packaging",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Linux",
+        "color": "orange"
+      }
+    ]
+  }
+]

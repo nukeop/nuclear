@@ -225,6 +225,9 @@
     "logs": {
       "title": "Logs"
     },
+    "whats-new": {
+      "title": "What's New"
+    },
     "appearance": {
       "title": "Appearance"
     },
@@ -322,5 +325,17 @@
     "entryCount": "{{count}} entry",
     "entryCount_other": "{{count}} entries",
     "exportSuccess": "Logs exported"
+  },
+  "changelog": {
+    "title": "What's New",
+    "seeMore": "See more ({{count}} older)",
+    "types": {
+      "feature": "Feature",
+      "fix": "Fix",
+      "improvement": "Improvement",
+      "chore": "Chore",
+      "plugin": "Plugin",
+      "docs": "Docs"
+    }
   }
 }
