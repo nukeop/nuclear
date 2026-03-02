@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EditableText > (Snapshot) renders in display mode 1`] = `
+<div
+  class="relative"
+>
+  <div
+    class="cursor-text rounded px-2 py-1"
+  >
+    My Playlist
+  </div>
+</div>
+`;
