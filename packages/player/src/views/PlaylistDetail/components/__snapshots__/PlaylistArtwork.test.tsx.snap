@@ -1,0 +1,120 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PlaylistArtwork > (Snapshot) renders custom artwork when playlist has its own 1`] = `
+<div>
+  <div
+    class="relative h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 border-border shadow-shadow"
+  >
+    <img
+      alt="Test Playlist"
+      class="h-full w-full object-cover"
+      decoding="async"
+      loading="lazy"
+      src="https://example.com/custom.jpg"
+    />
+  </div>
+</div>
+`;
+
+exports[`PlaylistArtwork > (Snapshot) renders mosaic from track artwork 1`] = `
+<div>
+  <div
+    class="grid grid-cols-2 grid-rows-2 h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 border-border shadow-shadow"
+  >
+    <div
+      class="relative overflow-hidden h-full w-full"
+    >
+      <img
+        class="h-full w-full object-cover"
+        decoding="async"
+        loading="lazy"
+        src="https://example.com/1.jpg"
+      />
+    </div>
+    <div
+      class="relative overflow-hidden h-full w-full"
+    >
+      <img
+        class="h-full w-full object-cover"
+        decoding="async"
+        loading="lazy"
+        src="https://example.com/2.jpg"
+      />
+    </div>
+    <div
+      class="relative overflow-hidden h-full w-full"
+    >
+      <img
+        class="h-full w-full object-cover"
+        decoding="async"
+        loading="lazy"
+        src="https://example.com/3.jpg"
+      />
+    </div>
+    <div
+      class="relative overflow-hidden h-full w-full"
+    >
+      <img
+        class="h-full w-full object-cover"
+        decoding="async"
+        loading="lazy"
+        src="https://example.com/4.jpg"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PlaylistArtwork > (Snapshot) renders placeholder when no artwork available 1`] = `
+<div>
+  <div
+    class="h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 border-border shadow-shadow flex items-center justify-center"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-list-music opacity-20"
+      fill="none"
+      height="96"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="96"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M21 15V6"
+      />
+      <path
+        d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
+      />
+      <path
+        d="M12 12H3"
+      />
+      <path
+        d="M16 6H3"
+      />
+      <path
+        d="M12 18H3"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`PlaylistArtwork > (Snapshot) renders single image when fewer than 4 tracks have art 1`] = `
+<div>
+  <div
+    class="relative h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 border-border shadow-shadow"
+  >
+    <img
+      alt="Test Playlist"
+      class="h-full w-full object-cover"
+      decoding="async"
+      loading="lazy"
+      src="https://example.com/1.jpg"
+    />
+  </div>
+</div>
+`;

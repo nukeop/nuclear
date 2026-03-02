@@ -1,19 +1,8 @@
 import { useState } from 'react';
 
 import type { Playlist } from '@nuclearplayer/model';
-import { pickArtwork } from '@nuclearplayer/model';
 
 import { usePlaylistStore } from '../../../stores/playlistStore';
-
-const getCoverUrl = (playlist: Playlist): string | undefined => {
-  const playlistCover = pickArtwork(playlist.artwork, 'cover', 600);
-  if (playlistCover) {
-    return playlistCover.url;
-  }
-
-  const firstTrackArt = playlist.items[0]?.track.artwork;
-  return pickArtwork(firstTrackArt, 'cover', 600)?.url;
-};
 
 export const usePlaylistDetailHeader = (playlist: Playlist) => {
   const updatePlaylist = usePlaylistStore((state) => state.updatePlaylist);
@@ -22,8 +11,6 @@ export const usePlaylistDetailHeader = (playlist: Playlist) => {
   const [editDescription, setEditDescription] = useState(
     playlist.description ?? '',
   );
-
-  const coverUrl = getCoverUrl(playlist);
 
   const startEditing = () => setIsEditing(true);
 
@@ -55,7 +42,6 @@ export const usePlaylistDetailHeader = (playlist: Playlist) => {
     setEditName,
     editDescription,
     setEditDescription,
-    coverUrl,
     startEditing,
     save,
     cancel,

@@ -84,8 +84,8 @@ export const PlaylistDetailWrapper = {
   get emptyState() {
     return screen.queryByTestId('empty-state');
   },
-  get artwork() {
-    return screen.queryByTestId('playlist-artwork');
+  get artworkImages() {
+    return screen.queryAllByRole('img');
   },
 
   actionsButton: {

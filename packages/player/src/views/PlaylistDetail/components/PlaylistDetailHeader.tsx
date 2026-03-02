@@ -5,6 +5,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import type { Playlist, Track } from '@nuclearplayer/model';
 import { Badge, Button, Input, Textarea, Tooltip } from '@nuclearplayer/ui';
 
+import { PlaylistArtwork } from './PlaylistArtwork';
 import { PlaylistDetailActions } from './PlaylistDetailActions';
 import { usePlaylistDetailHeader } from './usePlaylistDetailHeader';
 
@@ -26,7 +27,6 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
     setEditName,
     editDescription,
     setEditDescription,
-    coverUrl,
     startEditing,
     save,
     cancel,
@@ -57,14 +57,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
           </Tooltip>
         </div>
       )}
-      {coverUrl && (
-        <img
-          src={coverUrl}
-          alt={playlist.name}
-          data-testid="playlist-artwork"
-          className="border-border shadow-shadow h-60 w-60 rounded-md border-2 object-cover select-none"
-        />
-      )}
+      <PlaylistArtwork playlist={playlist} className="select-none" />
 
       <div className="flex flex-1 flex-col gap-4">
         {isEditing ? (

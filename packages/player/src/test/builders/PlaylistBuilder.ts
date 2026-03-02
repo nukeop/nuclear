@@ -73,6 +73,19 @@ export class PlaylistBuilder {
     return this;
   }
 
+  withTrackArtworks(artworkUrls: string[]): this {
+    this.playlist.items = artworkUrls.map((url, index) => ({
+      id: uuidv4(),
+      track: {
+        ...defaultTrack(),
+        title: `Track ${index + 1}`,
+        artwork: { items: [{ url }] },
+      },
+      addedAtIso: now(),
+    }));
+    return this;
+  }
+
   readOnly(): this {
     this.playlist.isReadOnly = true;
     return this;

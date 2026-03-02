@@ -209,20 +209,22 @@ describe('PlaylistDetail view', () => {
     expect(queueItems[2]?.title).toBe('So What');
   });
 
-  it('displays playlist artwork when available', async () => {
+  it('displays artwork from track thumbnails', async () => {
     PlaylistDetailWrapper.seedPlaylist(
       new PlaylistBuilder()
         .withId('art-playlist')
         .withName('Playlist With Art')
-        .withArtwork('https://example.com/cover.jpg')
-        .withTrackNames(['Track A']),
+        .withTrackArtworks([
+          'https://example.com/album1.jpg',
+          'https://example.com/album2.jpg',
+          'https://example.com/album3.jpg',
+          'https://example.com/album4.jpg',
+        ]),
     );
 
     await PlaylistDetailWrapper.mount('art-playlist');
 
-    const artwork = screen.getByTestId('playlist-artwork');
-    expect(artwork).toBeInTheDocument();
-    expect(artwork).toHaveAttribute('src', 'https://example.com/cover.jpg');
+    expect(PlaylistDetailWrapper.artworkImages.length).toBeGreaterThan(0);
   });
 
   it('renames the playlist via the edit button', async () => {
