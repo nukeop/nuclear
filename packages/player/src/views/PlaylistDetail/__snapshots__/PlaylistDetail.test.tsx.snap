@@ -57,7 +57,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                 </svg>
               </button>
               <div
-                class="h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 border-border shadow-shadow select-none flex items-center justify-center"
+                class="border-border shadow-shadow h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 select-none flex items-center justify-center"
               >
                 <svg
                   aria-hidden="true"

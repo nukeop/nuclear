@@ -36,6 +36,7 @@ describe('playlistStore', () => {
           "itemCount": 0,
           "lastModifiedIso": "2026-01-01T00:00:00.000Z",
           "name": "My Playlist",
+          "thumbnails": [],
           "totalDurationMs": 0,
         },
       ]

@@ -32,6 +32,7 @@ const defaultItem = (): PlaylistItem => ({
 
 export class PlaylistBuilder {
   private playlist: Playlist;
+  private thumbnails: string[] = [];
 
   constructor() {
     this.playlist = {
@@ -117,6 +118,11 @@ export class PlaylistBuilder {
     return cloneDeep(this.playlist);
   }
 
+  withThumbnails(thumbnails: string[]): this {
+    this.thumbnails = thumbnails;
+    return this;
+  }
+
   buildIndexEntry(): PlaylistIndexEntry {
     const playlist = this.build();
     return {
@@ -131,6 +137,7 @@ export class PlaylistBuilder {
         (sum, item) => sum + (item.track.durationMs ?? 0),
         0,
       ),
+      thumbnails: this.thumbnails,
     };
   }
 }

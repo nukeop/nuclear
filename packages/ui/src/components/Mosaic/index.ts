@@ -1,1 +1,1 @@
-export { Mosaic } from './Mosaic';
+export { Mosaic, MOSAIC_SIZE } from './Mosaic';
