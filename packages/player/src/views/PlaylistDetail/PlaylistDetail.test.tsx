@@ -61,12 +61,6 @@ describe('PlaylistDetail view', () => {
     );
   });
 
-  it('displays the track count', async () => {
-    await PlaylistDetailWrapper.mount('test-playlist');
-
-    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('2');
-  });
-
   it('shows read-only badge for external playlists', async () => {
     PlaylistDetailWrapper.seedPlaylist(
       new PlaylistBuilder()
@@ -154,7 +148,6 @@ describe('PlaylistDetail view', () => {
       ).not.toBeInTheDocument();
     });
     expect(PlaylistDetailWrapper.trackTitle('So What')).toBeInTheDocument();
-    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('1');
   });
 
   it('does not show remove buttons for read-only playlists', async () => {
@@ -232,10 +225,10 @@ describe('PlaylistDetail view', () => {
     expect(artwork).toHaveAttribute('src', 'https://example.com/cover.jpg');
   });
 
-  it('renames the playlist inline', async () => {
+  it('renames the playlist via the edit button', async () => {
     await PlaylistDetailWrapper.mount('test-playlist');
 
-    await PlaylistDetailWrapper.title.edit('Renamed Playlist');
+    await PlaylistDetailWrapper.editTitle('Renamed Playlist');
 
     await vi.waitFor(() => {
       expect(PlaylistDetailWrapper.title.display).toHaveTextContent(
@@ -244,7 +237,7 @@ describe('PlaylistDetail view', () => {
     });
   });
 
-  it('does not allow editing the name of a read-only playlist', async () => {
+  it('does not show edit button for read-only playlists', async () => {
     PlaylistDetailWrapper.seedPlaylist(
       new PlaylistBuilder()
         .withId('readonly-playlist')
@@ -256,8 +249,7 @@ describe('PlaylistDetail view', () => {
 
     await PlaylistDetailWrapper.mount('readonly-playlist');
 
-    await PlaylistDetailWrapper.title.click();
-    expect(PlaylistDetailWrapper.title.input).not.toBeInTheDocument();
+    expect(PlaylistDetailWrapper.editButton.element).not.toBeInTheDocument();
   });
 
   it('edits the playlist description', async () => {
@@ -271,7 +263,7 @@ describe('PlaylistDetail view', () => {
       'Old description',
     );
 
-    await PlaylistDetailWrapper.description.edit('New description');
+    await PlaylistDetailWrapper.editDescription('New description');
 
     await vi.waitFor(() => {
       expect(PlaylistDetailWrapper.description.display).toHaveTextContent(
@@ -280,10 +272,10 @@ describe('PlaylistDetail view', () => {
     });
   });
 
-  it('shows a placeholder when the description is empty', async () => {
+  it('does not show description when empty', async () => {
     await PlaylistDetailWrapper.mount('test-playlist');
 
-    expect(PlaylistDetailWrapper.description.display).toBeInTheDocument();
+    expect(PlaylistDetailWrapper.description.display).not.toBeInTheDocument();
   });
 
   describe('JSON export', () => {

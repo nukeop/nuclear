@@ -33,45 +33,56 @@ export const PlaylistDetailWrapper = {
 
   title: {
     get display() {
-      return screen.getByTestId('playlist-detail-title-display');
+      return screen.getByTestId('playlist-detail-title');
     },
     get input() {
       return screen.queryByTestId('playlist-detail-title-input');
-    },
-    async click() {
-      await user.click(this.display);
-    },
-    async edit(newValue: string) {
-      await user.click(this.display);
-      const input = screen.getByTestId('playlist-detail-title-input');
-      await user.clear(input);
-      await user.type(input, newValue);
-      await user.keyboard('{Enter}');
     },
   },
 
   description: {
     get display() {
-      return screen.getByTestId('playlist-detail-description-display');
+      return screen.queryByTestId('playlist-detail-description');
     },
     get input() {
       return screen.queryByTestId('playlist-detail-description-input');
     },
-    async click() {
-      await user.click(this.display);
+  },
+
+  editButton: {
+    get element() {
+      return screen.queryByTestId('edit-playlist-button');
     },
-    async edit(newValue: string) {
-      await user.click(this.display);
-      const input = screen.getByTestId('playlist-detail-description-input');
-      await user.clear(input);
-      await user.type(input, newValue);
-      await user.tab();
+    async click() {
+      await user.click(screen.getByTestId('edit-playlist-button'));
     },
   },
 
-  get trackCount() {
-    return screen.queryByTestId('playlist-detail-track-count');
+  saveEditButton: {
+    get element() {
+      return screen.getByTestId('save-edit-button');
+    },
+    async click() {
+      await user.click(screen.getByTestId('save-edit-button'));
+    },
   },
+
+  async editTitle(newValue: string) {
+    await this.editButton.click();
+    const input = screen.getByTestId('playlist-detail-title-input');
+    await user.clear(input);
+    await user.type(input, newValue);
+    await this.saveEditButton.click();
+  },
+
+  async editDescription(newValue: string) {
+    await this.editButton.click();
+    const input = screen.getByTestId('playlist-detail-description-input');
+    await user.clear(input);
+    await user.type(input, newValue);
+    await this.saveEditButton.click();
+  },
+
   get trackTable() {
     return screen.queryByRole('table');
   },

@@ -8,7 +8,6 @@ export * from './CopyButton';
 export * from './Dialog';
 export * from './FavoriteButton';
 export * from './CardGrid';
-export * from './EditableText';
 export * from './EmptyState';
 export * from './FilterChips';
 export * from './Input';
