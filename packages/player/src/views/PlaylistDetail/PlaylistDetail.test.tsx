@@ -56,7 +56,9 @@ describe('PlaylistDetail view', () => {
   it('displays the playlist name', async () => {
     await PlaylistDetailWrapper.mount('test-playlist');
 
-    expect(PlaylistDetailWrapper.title).toHaveTextContent('Test Playlist');
+    expect(PlaylistDetailWrapper.title.display).toHaveTextContent(
+      'Test Playlist',
+    );
   });
 
   it('displays the track count', async () => {
@@ -228,6 +230,60 @@ describe('PlaylistDetail view', () => {
     const artwork = screen.getByTestId('playlist-artwork');
     expect(artwork).toBeInTheDocument();
     expect(artwork).toHaveAttribute('src', 'https://example.com/cover.jpg');
+  });
+
+  it('renames the playlist inline', async () => {
+    await PlaylistDetailWrapper.mount('test-playlist');
+
+    await PlaylistDetailWrapper.title.edit('Renamed Playlist');
+
+    await vi.waitFor(() => {
+      expect(PlaylistDetailWrapper.title.display).toHaveTextContent(
+        'Renamed Playlist',
+      );
+    });
+  });
+
+  it('does not allow editing the name of a read-only playlist', async () => {
+    PlaylistDetailWrapper.seedPlaylist(
+      new PlaylistBuilder()
+        .withId('readonly-playlist')
+        .withName('Read-Only')
+        .readOnly()
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
+        .withTrackNames(['Track A']),
+    );
+
+    await PlaylistDetailWrapper.mount('readonly-playlist');
+
+    await PlaylistDetailWrapper.title.click();
+    expect(PlaylistDetailWrapper.title.input).not.toBeInTheDocument();
+  });
+
+  it('edits the playlist description', async () => {
+    PlaylistDetailWrapper.seedPlaylist(
+      defaultPlaylist().withDescription('Old description'),
+    );
+
+    await PlaylistDetailWrapper.mount('test-playlist');
+
+    expect(PlaylistDetailWrapper.description.display).toHaveTextContent(
+      'Old description',
+    );
+
+    await PlaylistDetailWrapper.description.edit('New description');
+
+    await vi.waitFor(() => {
+      expect(PlaylistDetailWrapper.description.display).toHaveTextContent(
+        'New description',
+      );
+    });
+  });
+
+  it('shows a placeholder when the description is empty', async () => {
+    await PlaylistDetailWrapper.mount('test-playlist');
+
+    expect(PlaylistDetailWrapper.description.display).toBeInTheDocument();
   });
 
   describe('JSON export', () => {

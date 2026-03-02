@@ -23,10 +23,9 @@ export const EditableText: FC<EditableTextProps> = ({
   disabled: _disabled,
   maxLength: _maxLength,
   'data-testid': testId,
-  ...props
 }) => {
   return (
-    <div className={cn('relative', className)} data-testid={testId} {...props}>
+    <div className={cn('relative', className)}>
       <div
         data-testid={testId ? `${testId}-display` : undefined}
         className={cn(

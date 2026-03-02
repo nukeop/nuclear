@@ -2,7 +2,9 @@ import type { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { Playlist } from '@nuclearplayer/model';
-import { Badge, Tooltip } from '@nuclearplayer/ui';
+import { Badge, EditableText, Tooltip } from '@nuclearplayer/ui';
+
+import { usePlaylistStore } from '../../../stores/playlistStore';
 
 type PlaylistDetailHeaderProps = {
   playlist: Playlist;
@@ -12,6 +14,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   playlist,
 }) => {
   const { t } = useTranslation('playlists');
+  const updatePlaylist = usePlaylistStore((state) => state.updatePlaylist);
 
   const artworkUrl = playlist.artwork?.items[0]?.url;
 
@@ -25,7 +28,13 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
           className="size-24 rounded-lg object-cover"
         />
       )}
-      <span data-testid="playlist-detail-title">{playlist.name}</span>
+      <EditableText
+        value={playlist.name}
+        onSave={(newName) => updatePlaylist(playlist.id, { name: newName })}
+        disabled={playlist.isReadOnly}
+        textClassName="text-3xl font-bold text-foreground"
+        data-testid="playlist-detail-title"
+      />
       <div className="mb-4 flex items-center gap-3">
         <span
           data-testid="playlist-detail-track-count"

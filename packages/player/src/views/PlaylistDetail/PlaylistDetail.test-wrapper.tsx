@@ -31,9 +31,44 @@ export const PlaylistDetailWrapper = {
     return component;
   },
 
-  get title() {
-    return screen.queryByTestId('title');
+  title: {
+    get display() {
+      return screen.getByTestId('playlist-detail-title-display');
+    },
+    get input() {
+      return screen.queryByTestId('playlist-detail-title-input');
+    },
+    async click() {
+      await user.click(this.display);
+    },
+    async edit(newValue: string) {
+      await user.click(this.display);
+      const input = screen.getByTestId('playlist-detail-title-input');
+      await user.clear(input);
+      await user.type(input, newValue);
+      await user.keyboard('{Enter}');
+    },
   },
+
+  description: {
+    get display() {
+      return screen.getByTestId('playlist-detail-description-display');
+    },
+    get input() {
+      return screen.queryByTestId('playlist-detail-description-input');
+    },
+    async click() {
+      await user.click(this.display);
+    },
+    async edit(newValue: string) {
+      await user.click(this.display);
+      const input = screen.getByTestId('playlist-detail-description-input');
+      await user.clear(input);
+      await user.type(input, newValue);
+      await user.tab();
+    },
+  },
+
   get trackCount() {
     return screen.queryByTestId('playlist-detail-track-count');
   },
