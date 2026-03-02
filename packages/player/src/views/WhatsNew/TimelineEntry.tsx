@@ -1,8 +1,8 @@
+import { DateTime } from 'luxon';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { Badge, cn } from '@nuclearplayer/ui';
-import { DateTime } from 'luxon';
 
 import type { ChangelogEntry, ChangelogEntryType } from '../../types/changelog';
 import { TimelineNode } from './TimelineNode';
