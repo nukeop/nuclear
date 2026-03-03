@@ -22,7 +22,9 @@ export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
       {index.map((entry) => (
         <Card
           key={entry.id}
-          image={<PlaylistArtwork playlist={entry} />}
+          image={
+            <PlaylistArtwork name={entry.name} thumbnails={entry.thumbnails} />
+          }
           title={entry.name}
           subtitle={t('trackCount', { count: entry.itemCount })}
           onClick={() => onCardClick(entry.id)}

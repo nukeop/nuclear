@@ -13,7 +13,8 @@ import { usePlaylistEditing } from './usePlaylistEditing';
 
 export const PlaylistDetail: FC = () => {
   const { t } = useTranslation('playlists');
-  const { playlistId, playlist, items, tracks } = usePlaylistDetail();
+  const { playlistId, playlist, items, tracks, thumbnails } =
+    usePlaylistDetail();
   const editing = usePlaylistEditing(
     playlistId,
     items,
@@ -26,7 +27,7 @@ export const PlaylistDetail: FC = () => {
       classes={{ scrollableArea: '[&>div>:first-child]:mb-2' }}
     >
       {playlist && (
-        <PlaylistDetailHeader playlist={playlist}>
+        <PlaylistDetailHeader playlist={playlist} thumbnails={thumbnails}>
           <PlaylistDetailActions playlistId={playlistId} tracks={tracks} />
         </PlaylistDetailHeader>
       )}

@@ -1,9 +1,10 @@
 import { useParams, useSearch } from '@tanstack/react-router';
-import { useCallback, type FC } from 'react';
+import { useCallback, useMemo, type FC } from 'react';
 
 import { ViewShell } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
+import { buildThumbnails } from '../../services/playlistFileService/buildThumbnails';
 import { PlaylistDetailHeader } from '../PlaylistDetail/components/PlaylistDetailHeader';
 import { PlaylistImportActions } from './PlaylistImportActions';
 import { usePlaylistFromProvider } from './usePlaylistFromProvider';
@@ -18,6 +19,11 @@ export const PlaylistImport: FC = () => {
   const { playlist, items, tracks } = usePlaylistFromProvider(providerId, url);
   const { saveLocally } = useSaveLocally(playlist);
 
+  const thumbnails = useMemo(
+    () => (playlist ? buildThumbnails(playlist) : []),
+    [playlist],
+  );
+
   const getItemId = useCallback(
     (_track: unknown, index: number) => items[index]?.id ?? String(index),
     [items],
@@ -29,7 +35,7 @@ export const PlaylistImport: FC = () => {
       classes={{ scrollableArea: '[&>div>:first-child]:mb-2' }}
     >
       {playlist && (
-        <PlaylistDetailHeader playlist={playlist}>
+        <PlaylistDetailHeader playlist={playlist} thumbnails={thumbnails}>
           <PlaylistImportActions tracks={tracks} onSaveLocally={saveLocally} />
         </PlaylistDetailHeader>
       )}

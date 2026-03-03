@@ -30,7 +30,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
               class="border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-2 p-6 md:flex-row"
             >
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 bg-white text-black hover:shadow-none size-8 justify-center absolute top-4 right-4 z-10"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-2 hover:shadow-none size-8 justify-center absolute top-4 right-4 z-10"
                 data-headlessui-state=""
                 data-testid="edit-playlist-button"
                 type="button"
@@ -118,7 +118,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                   class="flex items-center gap-2"
                 >
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 bg-white text-black hover:shadow-none h-10 px-4 py-2"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-2 hover:shadow-none h-10 px-4 py-2"
                     data-headlessui-state=""
                     data-testid="play-all-button"
                     type="button"
@@ -153,7 +153,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                       id="headlessui-popover-button-:r5:"
                     >
                       <button
-                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 bg-white text-black hover:shadow-none size-10 justify-center"
+                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-2 hover:shadow-none size-10 justify-center"
                         data-headlessui-state=""
                         data-testid="playlist-actions-button"
                         type="button"

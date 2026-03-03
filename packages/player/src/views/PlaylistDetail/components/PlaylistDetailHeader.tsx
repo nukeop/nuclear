@@ -10,11 +10,13 @@ import { usePlaylistDetailHeader } from './usePlaylistDetailHeader';
 
 type PlaylistDetailHeaderProps = {
   playlist: Playlist;
+  thumbnails?: string[];
   children?: ReactNode;
 };
 
 export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   playlist,
+  thumbnails,
   children,
 }) => {
   const { t } = useTranslation('playlists');
@@ -55,7 +57,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
         </div>
       )}
       <div className="border-border shadow-shadow h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 select-none">
-        <PlaylistArtwork playlist={playlist} />
+        <PlaylistArtwork name={playlist.name} thumbnails={thumbnails} />
       </div>
 
       <div className="flex flex-1 flex-col gap-4">

@@ -1,43 +1,19 @@
 import { CassetteTape } from 'lucide-react';
 import type { FC } from 'react';
 
-import type { ArtworkSet, PlaylistItem } from '@nuclearplayer/model';
 import { cn, ImageReveal, Mosaic, MOSAIC_SIZE } from '@nuclearplayer/ui';
 
-import { buildThumbnails } from '../../../services/playlistFileService/buildThumbnails';
-
-type PlaylistArtworkData = {
-  name: string;
-  artwork?: ArtworkSet;
-  thumbnails?: string[];
-  items?: PlaylistItem[];
-};
-
 type PlaylistArtworkProps = {
-  playlist: PlaylistArtworkData;
+  name: string;
+  thumbnails?: string[];
   className?: string;
 };
 
-const resolveThumbnails = (playlist: PlaylistArtworkData): string[] => {
-  if (playlist.thumbnails) {
-    return playlist.thumbnails;
-  }
-
-  if (playlist.items) {
-    return buildThumbnails({
-      artwork: playlist.artwork,
-      items: playlist.items,
-    });
-  }
-
-  return [];
-};
-
 export const PlaylistArtwork: FC<PlaylistArtworkProps> = ({
-  playlist,
+  name,
+  thumbnails = [],
   className,
 }) => {
-  const thumbnails = resolveThumbnails(playlist);
 
   if (thumbnails.length >= MOSAIC_SIZE) {
     return (
@@ -49,7 +25,7 @@ export const PlaylistArtwork: FC<PlaylistArtworkProps> = ({
     return (
       <ImageReveal
         src={thumbnails[0]}
-        alt={playlist.name}
+        alt={name}
         className={cn('h-full w-full', className)}
         imgClassName="h-full w-full object-cover"
       />
