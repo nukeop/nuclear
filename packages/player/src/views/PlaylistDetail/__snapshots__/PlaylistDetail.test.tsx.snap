@@ -57,37 +57,49 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                 </svg>
               </button>
               <div
-                class="border-border shadow-shadow h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 select-none flex items-center justify-center"
+                class="border-border shadow-shadow h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 select-none"
               >
-                <svg
-                  aria-hidden="true"
-                  class="lucide lucide-list-music opacity-20"
-                  fill="none"
-                  height="96"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="96"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  class="flex h-full w-full items-center justify-center"
                 >
-                  <path
-                    d="M21 15V6"
-                  />
-                  <path
-                    d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
-                  />
-                  <path
-                    d="M12 12H3"
-                  />
-                  <path
-                    d="M16 6H3"
-                  />
-                  <path
-                    d="M12 18H3"
-                  />
-                </svg>
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-cassette-tape animate-pulse opacity-20"
+                    fill="none"
+                    height="96"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="0.5"
+                    viewBox="0 0 24 24"
+                    width="96"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      height="16"
+                      rx="2"
+                      width="20"
+                      x="2"
+                      y="4"
+                    />
+                    <circle
+                      cx="8"
+                      cy="10"
+                      r="2"
+                    />
+                    <path
+                      d="M8 12h8"
+                    />
+                    <circle
+                      cx="16"
+                      cy="10"
+                      r="2"
+                    />
+                    <path
+                      d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+                    />
+                  </svg>
+                </div>
               </div>
               <div
                 class="flex flex-1 flex-col gap-4"

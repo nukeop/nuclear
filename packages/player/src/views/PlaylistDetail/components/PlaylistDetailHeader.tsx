@@ -57,7 +57,9 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
           </Tooltip>
         </div>
       )}
-      <PlaylistArtwork playlist={playlist} className="select-none" />
+      <div className="border-border shadow-shadow h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 select-none">
+        <PlaylistArtwork playlist={playlist} />
+      </div>
 
       <div className="flex flex-1 flex-col gap-4">
         {isEditing ? (

@@ -1,5 +1,5 @@
 import { CassetteTape } from 'lucide-react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { cn } from '../../utils';
 import { Box } from '../Box';
@@ -8,6 +8,7 @@ import { ImageReveal } from '../ImageReveal';
 
 type CardProps = {
   src?: string;
+  image?: ReactNode;
   title?: string;
   subtitle?: string;
   className?: string;
@@ -17,6 +18,7 @@ type CardProps = {
 
 export const Card: FC<CardProps> = ({
   src,
+  image,
   title,
   subtitle,
   className,
@@ -37,20 +39,22 @@ export const Card: FC<CardProps> = ({
       shadow="none"
       className="relative aspect-square w-full items-center justify-center overflow-hidden p-0"
     >
-      <ImageReveal
-        enabled={imageReveal}
-        src={src}
-        alt={title}
-        className="absolute inset-0"
-        imgClassName="h-full w-full object-cover"
-        placeholder={
-          <CassetteTape
-            size={96}
-            absoluteStrokeWidth
-            className="animate-pulse opacity-20"
-          />
-        }
-      />
+      {image ?? (
+        <ImageReveal
+          enabled={imageReveal}
+          src={src}
+          alt={title}
+          className="absolute inset-0"
+          imgClassName="h-full w-full object-cover"
+          placeholder={
+            <CassetteTape
+              size={96}
+              absoluteStrokeWidth
+              className="animate-pulse opacity-20"
+            />
+          }
+        />
+      )}
     </Box>
 
     {(title || subtitle) && (
