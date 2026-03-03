@@ -24,10 +24,14 @@ export const PlaylistImport: FC = () => {
   );
 
   return (
-    <ViewShell data-testid="playlist-import-view" title={playlist?.name ?? ''}>
-      {playlist && <PlaylistDetailHeader playlist={playlist} />}
+    <ViewShell
+      data-testid="playlist-import-view"
+      classes={{ scrollableArea: '[&>div>:first-child]:mb-2' }}
+    >
       {playlist && (
-        <PlaylistImportActions tracks={tracks} onSaveLocally={saveLocally} />
+        <PlaylistDetailHeader playlist={playlist}>
+          <PlaylistImportActions tracks={tracks} onSaveLocally={saveLocally} />
+        </PlaylistDetailHeader>
       )}
       {tracks.length > 0 && (
         <ConnectedTrackTable

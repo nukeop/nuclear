@@ -1,24 +1,21 @@
 import { PencilIcon } from 'lucide-react';
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import type { Playlist, Track } from '@nuclearplayer/model';
+import type { Playlist } from '@nuclearplayer/model';
 import { Badge, Button, Input, Textarea, Tooltip } from '@nuclearplayer/ui';
 
 import { PlaylistArtwork } from './PlaylistArtwork';
-import { PlaylistDetailActions } from './PlaylistDetailActions';
 import { usePlaylistDetailHeader } from './usePlaylistDetailHeader';
 
 type PlaylistDetailHeaderProps = {
   playlist: Playlist;
-  playlistId: string;
-  tracks: Track[];
+  children?: ReactNode;
 };
 
 export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   playlist,
-  playlistId,
-  tracks,
+  children,
 }) => {
   const { t } = useTranslation('playlists');
   const {
@@ -113,7 +110,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
           </div>
         )}
 
-        <PlaylistDetailActions playlistId={playlistId} tracks={tracks} />
+        {children}
       </div>
     </div>
   );

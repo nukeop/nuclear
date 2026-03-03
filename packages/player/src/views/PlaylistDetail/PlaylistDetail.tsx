@@ -6,6 +6,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import { EmptyState, ViewShell } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
+import { PlaylistDetailActions } from './components/PlaylistDetailActions';
 import { PlaylistDetailHeader } from './components/PlaylistDetailHeader';
 import { usePlaylistDetail } from './usePlaylistDetail';
 import { usePlaylistEditing } from './usePlaylistEditing';
@@ -25,11 +26,9 @@ export const PlaylistDetail: FC = () => {
       classes={{ scrollableArea: '[&>div>:first-child]:mb-2' }}
     >
       {playlist && (
-        <PlaylistDetailHeader
-          playlist={playlist}
-          playlistId={playlistId}
-          tracks={tracks}
-        />
+        <PlaylistDetailHeader playlist={playlist}>
+          <PlaylistDetailActions playlistId={playlistId} tracks={tracks} />
+        </PlaylistDetailHeader>
       )}
       {isEmpty(tracks) ? (
         <EmptyState
