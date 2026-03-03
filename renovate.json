@@ -64,9 +64,9 @@
       "platformAutomerge": true
     },
     {
-      "description": "Require dashboard approval for major updates",
+      "description": "Don't auto-merge major updates",
       "matchUpdateTypes": ["major"],
-      "dependencyDashboardApproval": true
+      "automerge": false
     }
   ]
 }
