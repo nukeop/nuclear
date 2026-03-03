@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Textarea > (Snapshot) renders with placeholder 1`] = `
+<textarea
+  class="border-border text-foreground placeholder:text-foreground-secondary w-full resize-y rounded-md border-2 px-3 py-2 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input"
+  placeholder="Add a description..."
+/>
+`;
+
+exports[`Textarea > (Snapshot) renders with secondary tone 1`] = `
+<textarea
+  class="border-border text-foreground placeholder:text-foreground-secondary w-full resize-y rounded-md border-2 px-3 py-2 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background"
+  placeholder="Notes..."
+/>
+`;
