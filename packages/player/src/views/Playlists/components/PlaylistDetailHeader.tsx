@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { Playlist } from '@nuclearplayer/model';
-import { Badge, Button, Input, Textarea, Tooltip } from '@nuclearplayer/ui';
+import { Badge, Button, cn, Input, Textarea, Tooltip } from '@nuclearplayer/ui';
 
 import { PlaylistArtwork } from './PlaylistArtwork';
 import { usePlaylistDetailHeader } from './usePlaylistDetailHeader';
@@ -11,12 +11,14 @@ import { usePlaylistDetailHeader } from './usePlaylistDetailHeader';
 type PlaylistDetailHeaderProps = {
   playlist: Playlist;
   thumbnails?: string[];
+  className?: string;
   children?: ReactNode;
 };
 
 export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   playlist,
   thumbnails,
+  className,
   children,
 }) => {
   const { t } = useTranslation('playlists');
@@ -32,7 +34,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   } = usePlaylistDetailHeader(playlist);
 
   return (
-    <div className="border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-2 p-6 md:flex-row">
+    <div className={cn("border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-2 p-6 md:flex-row", className)}>
       {!playlist.isReadOnly && !isEditing && (
         <Button
           variant="secondary"

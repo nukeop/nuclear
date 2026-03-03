@@ -3,7 +3,7 @@ import { ListMusicIcon } from 'lucide-react';
 import type { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { EmptyState, ViewShell } from '@nuclearplayer/ui';
+import { EmptyState, ScrollableArea } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
 import { PlaylistDetailHeader } from '../Playlists/components/PlaylistDetailHeader';
@@ -22,12 +22,16 @@ export const PlaylistDetail: FC = () => {
   );
 
   return (
-    <ViewShell
+    <ScrollableArea
+      className="bg-background"
       data-testid="playlist-detail-view"
-      classes={{ scrollableArea: '[&>div>:first-child]:mb-2' }}
     >
       {playlist && (
-        <PlaylistDetailHeader playlist={playlist} thumbnails={thumbnails}>
+        <PlaylistDetailHeader
+          playlist={playlist}
+          thumbnails={thumbnails}
+          className="mx-6 mt-6"
+        >
           <PlaylistDetailActions playlistId={playlistId} tracks={tracks} />
         </PlaylistDetailHeader>
       )}
@@ -39,20 +43,22 @@ export const PlaylistDetail: FC = () => {
           className="flex-1"
         />
       ) : (
-        <ConnectedTrackTable
-          tracks={tracks}
-          getItemId={editing.getItemId}
-          features={{ header: true, reorderable: editing.isEditable }}
-          display={{
-            displayThumbnail: true,
-            displayArtist: true,
-            displayDuration: tracks.some((t) => t.durationMs != null),
-            displayQueueControls: true,
-            displayDeleteButton: editing.isEditable,
-          }}
-          actions={editing.actions}
-        />
+        <div className="p-6">
+          <ConnectedTrackTable
+            tracks={tracks}
+            getItemId={editing.getItemId}
+            features={{ header: true, reorderable: editing.isEditable }}
+            display={{
+              displayThumbnail: true,
+              displayArtist: true,
+              displayDuration: tracks.some((t) => t.durationMs != null),
+              displayQueueControls: true,
+              displayDeleteButton: editing.isEditable,
+            }}
+            actions={editing.actions}
+          />
+        </div>
       )}
-    </ViewShell>
+    </ScrollableArea>
   );
 };

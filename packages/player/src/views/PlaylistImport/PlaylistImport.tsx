@@ -1,7 +1,7 @@
 import { useParams, useSearch } from '@tanstack/react-router';
 import { useCallback, useMemo, type FC } from 'react';
 
-import { ViewShell } from '@nuclearplayer/ui';
+import { ScrollableArea } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
 import { buildThumbnails } from '../../services/playlistFileService/buildThumbnails';
@@ -30,29 +30,35 @@ export const PlaylistImport: FC = () => {
   );
 
   return (
-    <ViewShell
+    <ScrollableArea
+      className="bg-background"
       data-testid="playlist-import-view"
-      classes={{ scrollableArea: '[&>div>:first-child]:mb-2' }}
     >
       {playlist && (
-        <PlaylistDetailHeader playlist={playlist} thumbnails={thumbnails}>
+        <PlaylistDetailHeader
+          playlist={playlist}
+          thumbnails={thumbnails}
+          className="mx-6 mt-6"
+        >
           <PlaylistImportActions tracks={tracks} onSaveLocally={saveLocally} />
         </PlaylistDetailHeader>
       )}
       {tracks.length > 0 && (
-        <ConnectedTrackTable
-          tracks={tracks}
-          getItemId={getItemId}
-          features={{ header: true, reorderable: false }}
-          display={{
-            displayThumbnail: true,
-            displayArtist: true,
-            displayDuration: tracks.some((track) => track.durationMs != null),
-            displayQueueControls: true,
-            displayDeleteButton: false,
-          }}
-        />
+        <div className="p-6">
+          <ConnectedTrackTable
+            tracks={tracks}
+            getItemId={getItemId}
+            features={{ header: true, reorderable: false }}
+            display={{
+              displayThumbnail: true,
+              displayArtist: true,
+              displayDuration: tracks.some((track) => track.durationMs != null),
+              displayQueueControls: true,
+              displayDeleteButton: false,
+            }}
+          />
+        </div>
       )}
-    </ViewShell>
+    </ScrollableArea>
   );
 };
