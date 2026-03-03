@@ -86,7 +86,8 @@
     "importUrlTitle": "Импортировать плейлист по URL",
     "importUrlPlaceholder": "Вставьте URL плейлиста...",
     "importUrlNoProvider": "Ни один плагин не может обработать этот URL. Установите плагин, поддерживающий этот сервис.",
-    "importUrlImporting": "Импортирование..."
+    "importUrlImporting": "Импортирование...",
+    "descriptionPlaceholder": "Add a description..."
   },
   "search": {
     "title": "Поиск",
