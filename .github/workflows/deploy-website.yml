@@ -6,6 +6,10 @@ on:
       - "website@*.*.*"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   DO_NOT_TRACK: 1
 
@@ -19,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install, build, and upload site
         uses: withastro/action@v5
