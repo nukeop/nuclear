@@ -18,13 +18,16 @@ export const usePlaylistDetailHeader = (playlist: Playlist) => {
     const trimmedName = editName.trim();
     const trimmedDescription = editDescription.trim();
 
+    const updates: Partial<Pick<Playlist, 'name' | 'description'>> = {};
     if (trimmedName && trimmedName !== playlist.name) {
-      updatePlaylist(playlist.id, { name: trimmedName });
+      updates.name = trimmedName;
     }
     if (trimmedDescription !== (playlist.description ?? '')) {
-      updatePlaylist(playlist.id, {
-        description: trimmedDescription || undefined,
-      });
+      updates.description = trimmedDescription || undefined;
+    }
+
+    if (Object.keys(updates).length > 0) {
+      updatePlaylist(playlist.id, updates);
     }
 
     setIsEditing(false);
