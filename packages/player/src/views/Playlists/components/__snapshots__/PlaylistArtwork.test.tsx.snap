@@ -1,0 +1,158 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PlaylistArtwork > (Snapshot) renders mosaic when 4+ thumbnails provided 1`] = `
+<div>
+  <div
+    class="grid grid-cols-2 grid-rows-2 h-full w-full"
+  >
+    <div
+      class="relative overflow-hidden h-full w-full"
+    >
+      <img
+        class="h-full w-full object-cover"
+        decoding="async"
+        loading="lazy"
+        src="https://example.com/1.jpg"
+      />
+    </div>
+    <div
+      class="relative overflow-hidden h-full w-full"
+    >
+      <img
+        class="h-full w-full object-cover"
+        decoding="async"
+        loading="lazy"
+        src="https://example.com/2.jpg"
+      />
+    </div>
+    <div
+      class="relative overflow-hidden h-full w-full"
+    >
+      <img
+        class="h-full w-full object-cover"
+        decoding="async"
+        loading="lazy"
+        src="https://example.com/3.jpg"
+      />
+    </div>
+    <div
+      class="relative overflow-hidden h-full w-full"
+    >
+      <img
+        class="h-full w-full object-cover"
+        decoding="async"
+        loading="lazy"
+        src="https://example.com/4.jpg"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PlaylistArtwork > (Snapshot) renders placeholder when no thumbnails 1`] = `
+<div>
+  <div
+    class="flex h-full w-full items-center justify-center"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-cassette-tape animate-pulse opacity-20"
+      fill="none"
+      height="96"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="0.5"
+      viewBox="0 0 24 24"
+      width="96"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        height="16"
+        rx="2"
+        width="20"
+        x="2"
+        y="4"
+      />
+      <circle
+        cx="8"
+        cy="10"
+        r="2"
+      />
+      <path
+        d="M8 12h8"
+      />
+      <circle
+        cx="16"
+        cy="10"
+        r="2"
+      />
+      <path
+        d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`PlaylistArtwork > (Snapshot) renders placeholder when thumbnails undefined 1`] = `
+<div>
+  <div
+    class="flex h-full w-full items-center justify-center"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-cassette-tape animate-pulse opacity-20"
+      fill="none"
+      height="96"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="0.5"
+      viewBox="0 0 24 24"
+      width="96"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        height="16"
+        rx="2"
+        width="20"
+        x="2"
+        y="4"
+      />
+      <circle
+        cx="8"
+        cy="10"
+        r="2"
+      />
+      <path
+        d="M8 12h8"
+      />
+      <circle
+        cx="16"
+        cy="10"
+        r="2"
+      />
+      <path
+        d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`PlaylistArtwork > (Snapshot) renders single image when fewer than 4 thumbnails 1`] = `
+<div>
+  <div
+    class="relative overflow-hidden h-full w-full"
+  >
+    <img
+      alt="Test Playlist"
+      class="h-full w-full object-cover"
+      decoding="async"
+      loading="lazy"
+      src="https://example.com/1.jpg"
+    />
+  </div>
+</div>
+`;

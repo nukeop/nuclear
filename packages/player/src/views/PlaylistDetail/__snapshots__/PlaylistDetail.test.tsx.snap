@@ -16,120 +16,185 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
       transition="[object Object]"
     >
       <div
-        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="relative h-full w-full bg-background"
         data-testid="playlist-detail-view"
       >
-        <h1
-          class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
-          data-testid="title"
-        >
-          Test Playlist
-        </h1>
         <div
-          class="relative h-full flex min-h-0 w-full flex-1 flex-col"
+          class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+          style="scrollbar-width: none;"
         >
           <div
-            class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
-            style="scrollbar-width: none;"
+            class="border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-2 p-6 md:flex-row mx-6 mt-6"
           >
-            <div
-              class="relative"
+            <button
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-2 hover:shadow-none size-8 justify-center absolute top-4 right-4 z-10"
+              data-headlessui-state=""
+              data-testid="edit-playlist-button"
+              type="button"
             >
-              <span
-                data-testid="playlist-detail-title"
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-pencil"
+                fill="none"
+                height="14"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="14"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Test Playlist
-              </span>
+                <path
+                  d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
+                />
+                <path
+                  d="m15 5 4 4"
+                />
+              </svg>
+            </button>
+            <div
+              class="border-border shadow-shadow h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 select-none"
+            >
               <div
-                class="mb-4 flex items-center gap-3"
-              >
-                <span
-                  class="text-foreground-secondary text-sm"
-                  data-testid="playlist-detail-track-count"
-                >
-                  2 tracks
-                </span>
-              </div>
-            </div>
-            <div
-              class="mb-6 flex items-center gap-2"
-            >
-              <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2"
-                data-headlessui-state=""
-                data-testid="play-all-button"
-                type="button"
+                class="flex h-full w-full items-center justify-center"
               >
                 <svg
                   aria-hidden="true"
-                  class="lucide lucide-play"
+                  class="lucide lucide-cassette-tape animate-pulse opacity-20"
                   fill="none"
-                  height="16"
+                  height="96"
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
+                  stroke-width="0.5"
                   viewBox="0 0 24 24"
-                  width="16"
+                  width="96"
                   xmlns="http://www.w3.org/2000/svg"
                 >
+                  <rect
+                    height="16"
+                    rx="2"
+                    width="20"
+                    x="2"
+                    y="4"
+                  />
+                  <circle
+                    cx="8"
+                    cy="10"
+                    r="2"
+                  />
                   <path
-                    d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"
+                    d="M8 12h8"
+                  />
+                  <circle
+                    cx="16"
+                    cy="10"
+                    r="2"
+                  />
+                  <path
+                    d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
                   />
                 </svg>
-                Play
-              </button>
-              <div
-                class="relative"
-                data-headlessui-state=""
-              >
-                <div
-                  aria-expanded="false"
-                  class="cursor-pointer"
-                  data-headlessui-state=""
-                  id="headlessui-popover-button-:r5:"
-                >
-                  <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center"
-                    data-headlessui-state=""
-                    data-testid="playlist-actions-button"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="lucide lucide-ellipsis-vertical"
-                      fill="none"
-                      height="16"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="1"
-                      />
-                      <circle
-                        cx="12"
-                        cy="5"
-                        r="1"
-                      />
-                      <circle
-                        cx="12"
-                        cy="19"
-                        r="1"
-                      />
-                    </svg>
-                  </button>
-                </div>
               </div>
             </div>
             <div
-              class="flex justify-end m-2"
+              class="flex flex-1 flex-col gap-4"
+            >
+              <div
+                class="flex flex-col gap-2"
+              >
+                <h1
+                  class="font-heading text-5xl font-extrabold tracking-tight"
+                  data-testid="playlist-detail-title"
+                >
+                  Test Playlist
+                </h1>
+              </div>
+              <div
+                class="flex items-center gap-2"
+              >
+                <button
+                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-2 hover:shadow-none h-10 px-4 py-2"
+                  data-headlessui-state=""
+                  data-testid="play-all-button"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-play"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"
+                    />
+                  </svg>
+                  Play
+                </button>
+                <div
+                  class="relative"
+                  data-headlessui-state=""
+                >
+                  <div
+                    aria-expanded="false"
+                    class="cursor-pointer"
+                    data-headlessui-state=""
+                    id="headlessui-popover-button-:r5:"
+                  >
+                    <button
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-2 hover:shadow-none size-10 justify-center"
+                      data-headlessui-state=""
+                      data-testid="playlist-actions-button"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-ellipsis-vertical"
+                        fill="none"
+                        height="16"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="1"
+                        />
+                        <circle
+                          cx="12"
+                          cy="5"
+                          r="1"
+                        />
+                        <circle
+                          cx="12"
+                          cy="19"
+                          r="1"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-6"
+          >
+            <div
+              class="flex justify-end mb-2"
             >
               <div
                 class="inline-flex w-full max-w-sm items-stretch"

@@ -20,6 +20,7 @@ export type PlaylistIndexEntry = Pick<
 > & {
   itemCount: number;
   totalDurationMs: number;
+  thumbnails: string[];
 };
 
 export type PlaylistItem<T extends Track = Track> = {

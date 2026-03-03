@@ -31,12 +31,47 @@ export const PlaylistDetailWrapper = {
     return component;
   },
 
-  get title() {
-    return screen.queryByTestId('title');
+  title: {
+    get display() {
+      return screen.getByTestId('playlist-detail-title');
+    },
+    get input() {
+      return screen.queryByTestId('playlist-detail-title-input');
+    },
+    async edit(newValue: string) {
+      await user.click(screen.getByTestId('edit-playlist-button'));
+      const input = screen.getByTestId('playlist-detail-title-input');
+      await user.clear(input);
+      await user.type(input, newValue);
+      await user.click(screen.getByTestId('save-edit-button'));
+    },
   },
-  get trackCount() {
-    return screen.queryByTestId('playlist-detail-track-count');
+
+  description: {
+    get display() {
+      return screen.queryByTestId('playlist-detail-description');
+    },
+    get input() {
+      return screen.queryByTestId('playlist-detail-description-input');
+    },
+    async edit(newValue: string) {
+      await user.click(screen.getByTestId('edit-playlist-button'));
+      const input = screen.getByTestId('playlist-detail-description-input');
+      await user.clear(input);
+      await user.type(input, newValue);
+      await user.click(screen.getByTestId('save-edit-button'));
+    },
   },
+
+  editButton: {
+    get element() {
+      return screen.queryByTestId('edit-playlist-button');
+    },
+    async click() {
+      await user.click(screen.getByTestId('edit-playlist-button'));
+    },
+  },
+
   get trackTable() {
     return screen.queryByRole('table');
   },
@@ -49,8 +84,8 @@ export const PlaylistDetailWrapper = {
   get emptyState() {
     return screen.queryByTestId('empty-state');
   },
-  get artwork() {
-    return screen.queryByTestId('playlist-artwork');
+  get artworkImages() {
+    return screen.queryAllByRole('img');
   },
 
   actionsButton: {

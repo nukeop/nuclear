@@ -56,13 +56,9 @@ describe('PlaylistDetail view', () => {
   it('displays the playlist name', async () => {
     await PlaylistDetailWrapper.mount('test-playlist');
 
-    expect(PlaylistDetailWrapper.title).toHaveTextContent('Test Playlist');
-  });
-
-  it('displays the track count', async () => {
-    await PlaylistDetailWrapper.mount('test-playlist');
-
-    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('2 tracks');
+    expect(PlaylistDetailWrapper.title.display).toHaveTextContent(
+      'Test Playlist',
+    );
   });
 
   it('shows read-only badge for external playlists', async () => {
@@ -152,7 +148,6 @@ describe('PlaylistDetail view', () => {
       ).not.toBeInTheDocument();
     });
     expect(PlaylistDetailWrapper.trackTitle('So What')).toBeInTheDocument();
-    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('1 track');
   });
 
   it('does not show remove buttons for read-only playlists', async () => {
@@ -214,20 +209,75 @@ describe('PlaylistDetail view', () => {
     expect(queueItems[2]?.title).toBe('So What');
   });
 
-  it('displays playlist artwork when available', async () => {
+  it('displays artwork from track thumbnails', async () => {
     PlaylistDetailWrapper.seedPlaylist(
       new PlaylistBuilder()
         .withId('art-playlist')
         .withName('Playlist With Art')
-        .withArtwork('https://example.com/cover.jpg')
-        .withTrackNames(['Track A']),
+        .withTrackArtworks([
+          'https://example.com/album1.jpg',
+          'https://example.com/album2.jpg',
+          'https://example.com/album3.jpg',
+          'https://example.com/album4.jpg',
+        ]),
     );
 
     await PlaylistDetailWrapper.mount('art-playlist');
 
-    const artwork = screen.getByTestId('playlist-artwork');
-    expect(artwork).toBeInTheDocument();
-    expect(artwork).toHaveAttribute('src', 'https://example.com/cover.jpg');
+    expect(PlaylistDetailWrapper.artworkImages.length).toBeGreaterThan(0);
+  });
+
+  it('renames the playlist via the edit button', async () => {
+    await PlaylistDetailWrapper.mount('test-playlist');
+
+    await PlaylistDetailWrapper.title.edit('Renamed Playlist');
+
+    await vi.waitFor(() => {
+      expect(PlaylistDetailWrapper.title.display).toHaveTextContent(
+        'Renamed Playlist',
+      );
+    });
+  });
+
+  it('does not show edit button for read-only playlists', async () => {
+    PlaylistDetailWrapper.seedPlaylist(
+      new PlaylistBuilder()
+        .withId('readonly-playlist')
+        .withName('Read-Only')
+        .readOnly()
+        .withOrigin({ provider: 'example-music', id: 'ext-1' })
+        .withTrackNames(['Track A']),
+    );
+
+    await PlaylistDetailWrapper.mount('readonly-playlist');
+
+    expect(PlaylistDetailWrapper.editButton.element).not.toBeInTheDocument();
+  });
+
+  it('edits the playlist description', async () => {
+    PlaylistDetailWrapper.seedPlaylist(
+      defaultPlaylist().withDescription('Old description'),
+    );
+
+    await PlaylistDetailWrapper.mount('test-playlist');
+
+    expect(PlaylistDetailWrapper.description.display).toHaveTextContent(
+      'Old description',
+    );
+
+    await PlaylistDetailWrapper.description.edit('New description');
+
+    await vi.waitFor(() => {
+      expect(PlaylistDetailWrapper.description.display).toHaveTextContent(
+        'New description',
+      );
+    });
+  });
+
+  it('does not show description when empty', async () => {
+    await PlaylistDetailWrapper.mount('test-playlist');
+
+    expect(PlaylistDetailWrapper.description.display).not.toBeInTheDocument();
   });
 
   describe('JSON export', () => {

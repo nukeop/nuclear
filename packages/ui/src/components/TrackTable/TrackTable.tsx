@@ -119,7 +119,7 @@ export function TrackTable<T extends Track = Track>({
         <FilterBar
           value={globalFilter}
           onChange={setGlobalFilter}
-          className="m-2"
+          className="mb-2"
           placeholder="Filter tracks"
         />
       )}

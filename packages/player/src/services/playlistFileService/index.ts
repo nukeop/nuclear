@@ -1,5 +1,6 @@
 import type { Playlist, PlaylistIndexEntry } from '@nuclearplayer/model';
 
+import { buildThumbnails } from './buildThumbnails';
 import { PlaylistFileStore } from './PlaylistFileStore';
 import { PlaylistIndexStore } from './PlaylistIndexStore';
 
@@ -15,6 +16,7 @@ const toIndexEntry = (playlist: Playlist): PlaylistIndexEntry => ({
     (sum, item) => sum + (item.track.durationMs ?? 0),
     0,
   ),
+  thumbnails: buildThumbnails(playlist),
 });
 
 export class PlaylistFileService {

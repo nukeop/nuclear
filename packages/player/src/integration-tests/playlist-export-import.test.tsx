@@ -74,11 +74,12 @@ describe('Playlist export → import round trip', () => {
 
     await PlaylistsWrapper.card(0).click();
     await vi.waitFor(() => {
-      expect(PlaylistDetailWrapper.title).toBeInTheDocument();
+      expect(PlaylistDetailWrapper.title.display).toBeInTheDocument();
     });
 
-    expect(PlaylistDetailWrapper.title).toHaveTextContent('Jazz Classics');
-    expect(PlaylistDetailWrapper.trackCount).toHaveTextContent('3 tracks');
+    expect(PlaylistDetailWrapper.title.display).toHaveTextContent(
+      'Jazz Classics',
+    );
     expect(PlaylistDetailWrapper.trackTitle('Giant Steps')).toBeInTheDocument();
     expect(PlaylistDetailWrapper.trackTitle('So What')).toBeInTheDocument();
     expect(

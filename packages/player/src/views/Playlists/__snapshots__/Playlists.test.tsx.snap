@@ -12,49 +12,45 @@ exports[`Playlists view > renders playlist cards when playlists exist 1`] = `
       class="border-border text-foreground flex h-full rounded-md border-2 bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
     >
       <div
-        class="overflow-hidden absolute inset-0"
+        class="flex h-full w-full items-center justify-center"
       >
-        <div
-          class="pointer-events-none absolute inset-0 flex items-center justify-center"
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-cassette-tape animate-pulse opacity-20"
+          fill="none"
+          height="96"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="0.5"
+          viewBox="0 0 24 24"
+          width="96"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-cassette-tape animate-pulse opacity-20"
-            fill="none"
-            height="96"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="0.5"
-            viewBox="0 0 24 24"
-            width="96"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              height="16"
-              rx="2"
-              width="20"
-              x="2"
-              y="4"
-            />
-            <circle
-              cx="8"
-              cy="10"
-              r="2"
-            />
-            <path
-              d="M8 12h8"
-            />
-            <circle
-              cx="16"
-              cy="10"
-              r="2"
-            />
-            <path
-              d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
-            />
-          </svg>
-        </div>
+          <rect
+            height="16"
+            rx="2"
+            width="20"
+            x="2"
+            y="4"
+          />
+          <circle
+            cx="8"
+            cy="10"
+            r="2"
+          />
+          <path
+            d="M8 12h8"
+          />
+          <circle
+            cx="16"
+            cy="10"
+            r="2"
+          />
+          <path
+            d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+          />
+        </svg>
       </div>
     </div>
     <div
@@ -83,49 +79,45 @@ exports[`Playlists view > renders playlist cards when playlists exist 1`] = `
       class="border-border text-foreground flex h-full rounded-md border-2 bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
     >
       <div
-        class="overflow-hidden absolute inset-0"
+        class="flex h-full w-full items-center justify-center"
       >
-        <div
-          class="pointer-events-none absolute inset-0 flex items-center justify-center"
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-cassette-tape animate-pulse opacity-20"
+          fill="none"
+          height="96"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="0.5"
+          viewBox="0 0 24 24"
+          width="96"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-cassette-tape animate-pulse opacity-20"
-            fill="none"
-            height="96"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="0.5"
-            viewBox="0 0 24 24"
-            width="96"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              height="16"
-              rx="2"
-              width="20"
-              x="2"
-              y="4"
-            />
-            <circle
-              cx="8"
-              cy="10"
-              r="2"
-            />
-            <path
-              d="M8 12h8"
-            />
-            <circle
-              cx="16"
-              cy="10"
-              r="2"
-            />
-            <path
-              d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
-            />
-          </svg>
-        </div>
+          <rect
+            height="16"
+            rx="2"
+            width="20"
+            x="2"
+            y="4"
+          />
+          <circle
+            cx="8"
+            cy="10"
+            r="2"
+          />
+          <path
+            d="M8 12h8"
+          />
+          <circle
+            cx="16"
+            cy="10"
+            r="2"
+          />
+          <path
+            d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+          />
+        </svg>
       </div>
     </div>
     <div

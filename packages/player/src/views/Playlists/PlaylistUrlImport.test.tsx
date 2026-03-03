@@ -85,7 +85,9 @@ describe('import from URL', () => {
       expect(PlaylistsWrapper.import.fromUrl.dialog.isOpen()).toBe(false);
     });
 
-    expect(screen.getByTestId('title')).toHaveTextContent('Summer Hits 2025');
+    expect(screen.getByTestId('playlist-detail-title')).toHaveTextContent(
+      'Summer Hits 2025',
+    );
     expect(screen.getByTestId('read-only-badge')).toHaveTextContent(
       'Example Music',
     );
@@ -125,7 +127,9 @@ describe('import from URL', () => {
       expect(usePlaylistStore.getState().index).toHaveLength(1);
     });
 
-    expect(screen.getByTestId('title')).toHaveTextContent('Summer Hits 2025');
+    expect(screen.getByTestId('playlist-detail-title')).toHaveTextContent(
+      'Summer Hits 2025',
+    );
     expect(screen.queryByTestId('read-only-badge')).not.toBeInTheDocument();
     expect(screen.getByText('Midnight Drive')).toBeInTheDocument();
     expect(screen.getByText('Coastal Breeze')).toBeInTheDocument();

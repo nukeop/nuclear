@@ -29,6 +29,12 @@ type PlaylistStore = {
     from: number,
     to: number,
   ) => Promise<void>;
+  updatePlaylist: (
+    id: string,
+    updates: Partial<
+      Pick<Playlist, 'name' | 'description' | 'tags' | 'artwork'>
+    >,
+  ) => Promise<void>;
 };
 
 export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
@@ -196,6 +202,26 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
     }));
 
     return playlist.id;
+  },
+
+  updatePlaylist: async (id, updates) => {
+    const playlist = await get().loadPlaylist(id);
+    if (!playlist) {
+      throw new Error(`Playlist ${id} not found`);
+    }
+
+    const updated: Playlist = {
+      ...playlist,
+      ...updates,
+      lastModifiedIso: new Date().toISOString(),
+    };
+
+    const index = await playlistFileService.savePlaylist(updated);
+
+    set((state) => ({
+      playlists: new Map(state.playlists).set(id, updated),
+      index,
+    }));
   },
 
   deletePlaylist: async (id: string) => {

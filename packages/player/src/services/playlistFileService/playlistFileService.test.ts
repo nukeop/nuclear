@@ -37,6 +37,7 @@ describe('PlaylistFileService', () => {
           "itemCount": 2,
           "lastModifiedIso": "2026-01-01T00:00:00.000Z",
           "name": "Test Playlist",
+          "thumbnails": [],
           "totalDurationMs": 360000,
         },
       ]

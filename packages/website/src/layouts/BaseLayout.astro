@@ -28,13 +28,24 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      async
+      defer
+      data-website-id="bf3358dd-b55b-4740-91c4-ccb76c786c76"
+      src="https://umami.gumblert.tech/umami.js"></script>
   </head>
-  <body class="bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans">
+  <body
+    class="bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans"
+  >
     <slot />
   </body>
 </html>

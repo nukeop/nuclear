@@ -3,7 +3,7 @@
 exports[`TrackTable > (Snapshot) Basic 1`] = `
 <DocumentFragment>
   <div
-    class="flex justify-end m-2"
+    class="flex justify-end mb-2"
   >
     <div
       class="inline-flex w-full max-w-sm items-stretch"
@@ -403,7 +403,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
 exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
 <DocumentFragment>
   <div
-    class="flex justify-end m-2"
+    class="flex justify-end mb-2"
   >
     <div
       class="inline-flex w-full max-w-sm items-stretch"
@@ -956,7 +956,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
 exports[`TrackTable > (Snapshot) Filtering 1`] = `
 <DocumentFragment>
   <div
-    class="flex justify-end m-2"
+    class="flex justify-end mb-2"
   >
     <div
       class="inline-flex w-full max-w-sm items-stretch"
@@ -1495,7 +1495,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
     style="height: 400px;"
   >
     <div
-      class="flex justify-end m-2"
+      class="flex justify-end mb-2"
     >
       <div
         class="inline-flex w-full max-w-sm items-stretch"

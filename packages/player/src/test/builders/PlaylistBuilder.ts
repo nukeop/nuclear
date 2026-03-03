@@ -32,6 +32,7 @@ const defaultItem = (): PlaylistItem => ({
 
 export class PlaylistBuilder {
   private playlist: Playlist;
+  private thumbnails: string[] = [];
 
   constructor() {
     this.playlist = {
@@ -73,6 +74,19 @@ export class PlaylistBuilder {
     return this;
   }
 
+  withTrackArtworks(artworkUrls: string[]): this {
+    this.playlist.items = artworkUrls.map((url, index) => ({
+      id: uuidv4(),
+      track: {
+        ...defaultTrack(),
+        title: `Track ${index + 1}`,
+        artwork: { items: [{ url }] },
+      },
+      addedAtIso: now(),
+    }));
+    return this;
+  }
+
   readOnly(): this {
     this.playlist.isReadOnly = true;
     return this;
@@ -87,6 +101,21 @@ export class PlaylistBuilder {
     this.playlist.artwork = {
       items: [{ url }],
     };
+    return this;
+  }
+
+  withDescription(description: string): this {
+    this.playlist.description = description;
+    return this;
+  }
+
+  withTags(tags: string[]): this {
+    this.playlist.tags = tags;
+    return this;
+  }
+
+  withThumbnails(thumbnails: string[]): this {
+    this.thumbnails = thumbnails;
     return this;
   }
 
@@ -108,6 +137,7 @@ export class PlaylistBuilder {
         (sum, item) => sum + (item.track.durationMs ?? 0),
         0,
       ),
+      thumbnails: this.thumbnails,
     };
   }
 }
