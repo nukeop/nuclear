@@ -5,7 +5,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import type { Track } from '@nuclearplayer/model';
 import { Popover } from '@nuclearplayer/ui';
 
-import { PlaylistActions } from '../PlaylistDetail/components/PlaylistActions';
+import { PlaylistActions } from '../Playlists/components/PlaylistActions';
 
 type PlaylistImportActionsProps = {
   tracks: Track[];

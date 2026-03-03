@@ -5,7 +5,7 @@ import { ViewShell } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
 import { buildThumbnails } from '../../services/playlistFileService/buildThumbnails';
-import { PlaylistDetailHeader } from '../PlaylistDetail/components/PlaylistDetailHeader';
+import { PlaylistDetailHeader } from '../Playlists/components/PlaylistDetailHeader';
 import { PlaylistImportActions } from './PlaylistImportActions';
 import { usePlaylistFromProvider } from './usePlaylistFromProvider';
 import { useSaveLocally } from './useSaveLocally';

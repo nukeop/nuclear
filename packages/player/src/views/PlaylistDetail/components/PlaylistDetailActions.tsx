@@ -8,7 +8,7 @@ import { Button, Dialog, Popover } from '@nuclearplayer/ui';
 
 import { usePlaylistExport } from '../../../hooks/usePlaylistExport';
 import { usePlaylistStore } from '../../../stores/playlistStore';
-import { PlaylistActions } from './PlaylistActions';
+import { PlaylistActions } from '../../Playlists/components/PlaylistActions';
 
 type PlaylistDetailActionsProps = {
   playlistId: string;

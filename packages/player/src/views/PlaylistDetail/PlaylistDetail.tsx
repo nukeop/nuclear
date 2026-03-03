@@ -6,8 +6,8 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import { EmptyState, ViewShell } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
+import { PlaylistDetailHeader } from '../Playlists/components/PlaylistDetailHeader';
 import { PlaylistDetailActions } from './components/PlaylistDetailActions';
-import { PlaylistDetailHeader } from './components/PlaylistDetailHeader';
 import { usePlaylistDetail } from './usePlaylistDetail';
 import { usePlaylistEditing } from './usePlaylistEditing';
 

@@ -4,7 +4,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import type { PlaylistIndexEntry } from '@nuclearplayer/model';
 import { Card, CardGrid } from '@nuclearplayer/ui';
 
-import { PlaylistArtwork } from '../../PlaylistDetail/components/PlaylistArtwork';
+import { PlaylistArtwork } from './PlaylistArtwork';
 
 type PlaylistCardGridProps = {
   index: PlaylistIndexEntry[];

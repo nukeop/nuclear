@@ -114,13 +114,13 @@ export class PlaylistBuilder {
     return this;
   }
 
-  build(): Playlist {
-    return cloneDeep(this.playlist);
-  }
-
   withThumbnails(thumbnails: string[]): this {
     this.thumbnails = thumbnails;
     return this;
+  }
+
+  build(): Playlist {
+    return cloneDeep(this.playlist);
   }
 
   buildIndexEntry(): PlaylistIndexEntry {
