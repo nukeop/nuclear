@@ -2,36 +2,36 @@
   "common": {
     "app": {
       "name": "Nuclear",
-      "description": "Aplicativo de streaming de música gratuito"
+      "description": "Free music streaming app"
     },
     "actions": {
-      "save": "Salvar",
-      "cancel": "Cancelar",
-      "delete": "Excluir",
-      "edit": "Editar",
-      "close": "Fechar",
-      "back": "Voltar",
-      "next": "Próximo",
-      "confirm": "Confirmar",
-      "apply": "Aplicar",
-      "reset": "Redefinir",
-      "clear": "Limpar",
-      "search": "Buscar",
-      "loading": "Carregando...",
-      "retry": "Tentar novamente"
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "close": "Close",
+      "back": "Back",
+      "next": "Next",
+      "confirm": "Confirm",
+      "apply": "Apply",
+      "reset": "Reset",
+      "clear": "Clear",
+      "search": "Search",
+      "loading": "Loading...",
+      "retry": "Retry"
     },
     "errors": {
-      "network": "Erro de rede. Verifique sua conexão.",
-      "notFound": "Não encontrado"
+      "network": "Network error. Please check your connection.",
+      "notFound": "Not found"
     }
   },
   "navigation": {
-    "explore": "Explorar",
-    "dashboard": "Painel",
-    "collection": "Coleção",
-    "favoriteAlbums": "Albums favoritos",
-    "favoriteTracks": "Tracks favoritos",
-    "favoriteArtists": "Artistas favoritos",
+    "explore": "Explore",
+    "dashboard": "Dashboard",
+    "collection": "Collection",
+    "favoriteAlbums": "Favorite albums",
+    "favoriteTracks": "Favorite tracks",
+    "favoriteArtists": "Favorite artists",
     "playlists": "Playlists"
   },
   "favorites": {
@@ -90,45 +90,45 @@
     "descriptionPlaceholder": "Add a description..."
   },
   "search": {
-    "title": "Buscar",
-    "query": "Busca",
-    "placeholder": "Buscar",
-    "noResults": "Nenhum resultado encontrado",
-    "searching": "Buscando...",
-    "failedToLoad": "Falha ao carregar resultados.",
+    "title": "Search",
+    "query": "Query",
+    "placeholder": "Search",
+    "noResults": "No results found",
+    "searching": "Searching...",
+    "failedToLoad": "Failed to load results.",
     "results": {
       "tracks": "Tracks",
       "albums": "Albums",
-      "artists": "Artistas",
+      "artists": "Artists",
       "playlists": "Playlists"
     },
     "filters": {
-      "all": "Tudo",
+      "all": "All",
       "tracks": "Tracks",
       "albums": "Albums",
-      "artists": "Artistas",
+      "artists": "Artists",
       "playlists": "Playlists"
     }
   },
   "artist": {
-    "title": "Artista",
+    "title": "Artist",
     "albums": "Albums",
     "tracks": "Tracks",
-    "similar": "Artistas similares",
-    "popularTracks": "Tracks populares",
-    "biography": "Biografia",
-    "discography": "Discografia",
+    "similar": "Similar artists",
+    "popularTracks": "Popular tracks",
+    "biography": "Biography",
+    "discography": "Discography",
     "topTracks": "Top tracks",
-    "onTour": "Em turnê",
-    "notOnTour": "Não está em turnê",
+    "onTour": "On Tour",
+    "notOnTour": "Not on Tour",
     "followers": "Followers",
     "followings": "Following",
     "playlists": "Playlists",
     "errors": {
-      "failedToLoadDetails": "Falha ao carregar detalhes do artista.",
-      "failedToLoadAlbums": "Falha ao carregar albums.",
-      "failedToLoadPopularTracks": "Falha ao carregar tracks populares.",
-      "failedToLoadSimilarArtists": "Falha ao carregar artistas similares.",
+      "failedToLoadDetails": "Failed to load artist details.",
+      "failedToLoadAlbums": "Failed to load albums.",
+      "failedToLoadPopularTracks": "Failed to load popular tracks.",
+      "failedToLoadSimilarArtists": "Failed to load similar artists.",
       "failedToLoadSocialStats": "Failed to load artist stats.",
       "failedToLoadPlaylists": "Failed to load playlists."
     }
@@ -144,14 +144,14 @@
     }
   },
   "themes": {
-    "title": "Temas",
-    "basic": "Temas básicos",
-    "advanced": "Temas avançados",
-    "default": "Padrão",
-    "description": "Temas encontrados no diretório de dados do app"
+    "title": "Themes",
+    "basic": "Basic themes",
+    "advanced": "Advanced themes",
+    "default": "Default",
+    "description": "Themes found in your app data themes directory"
   },
   "dashboard": {
-    "title": "Painel",
+    "title": "Dashboard",
     "empty-state": "No dashboard data available",
     "empty-state-description": "Enable a plugin that provides dashboard content.",
     "top-tracks": "Top Tracks",
@@ -167,7 +167,7 @@
   },
   "plugins": {
     "title": "Plugins",
-    "addPlugin": "Adicionar plugin",
+    "addPlugin": "Add Plugin",
     "tabs": {
       "installed": "Installed",
       "store": "Store"
