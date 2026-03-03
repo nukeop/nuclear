@@ -1,0 +1,72 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "schedule:weekly"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "rebaseWhen": "conflicted",
+  "postUpdateOptions": ["pnpmDedupe"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on the first day of the month"]
+  },
+  "packageRules": [
+    {
+      "description": "Group Tauri packages",
+      "matchPackageNames": ["@tauri-apps/{/,}**", "tauri-build", "tauri"],
+      "groupName": "tauri"
+    },
+    {
+      "description": "Group Testing Library packages",
+      "matchPackageNames": ["@testing-library/{/,}**"],
+      "groupName": "testing-library"
+    },
+    {
+      "description": "Group TanStack packages",
+      "matchPackageNames": ["@tanstack/{/,}**"],
+      "groupName": "tanstack"
+    },
+    {
+      "description": "Group ESLint packages",
+      "matchPackageNames": ["/^eslint/", "/^@eslint\\//", "/^@typescript-eslint\\//"],
+      "groupName": "eslint"
+    },
+    {
+      "description": "Group Tailwind CSS packages",
+      "matchPackageNames": ["@tailwindcss/{/,}**", "tailwindcss"],
+      "groupName": "tailwind"
+    },
+    {
+      "description": "Group Vitest packages",
+      "matchPackageNames": ["vitest", "@vitest/{/,}**"],
+      "groupName": "vitest"
+    },
+    {
+      "description": "Group Vite packages",
+      "matchPackageNames": ["vite", "@vitejs/{/,}**", "/^vite-plugin-/"],
+      "groupName": "vite"
+    },
+    {
+      "description": "Group GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions"
+    },
+    {
+      "description": "Group Rust crate updates",
+      "matchManagers": ["cargo"],
+      "groupName": "rust-dependencies"
+    },
+    {
+      "description": "Auto-merge patch and minor updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeStrategy": "squash",
+      "platformAutomerge": true
+    },
+    {
+      "description": "Require dashboard approval for major updates",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}
