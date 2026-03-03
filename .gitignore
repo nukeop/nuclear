@@ -5,6 +5,8 @@ build
 *.js.map
 .turbo
 .astro
+/packages/website/.astro
 storybook-static
 coverage
+test-results
 .DS_Store

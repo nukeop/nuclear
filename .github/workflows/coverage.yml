@@ -52,3 +52,13 @@ jobs:
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: true
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/*/test-results/junit.xml
+          report_type: test_results
+          name: codecov-test-results
+          fail_ci_if_error: false

@@ -1,5 +1,7 @@
 codecov:
   require_ci_to_pass: true
+  notify:
+    notify_error: true
 
 coverage:
   precision: 2
@@ -24,7 +26,7 @@ parsers:
     enable_partials: yes
 
 comment:
-  layout: "header, diff, flags, components"
+  layout: "condensed_header, diff, flags, components, condensed_files, condensed_footer"
   require_changes: true
   behavior: default
 
@@ -52,10 +54,6 @@ component_management:
       name: Player (App)
       paths:
         - "packages/player/src/**"
-    - component_id: player_tauri
-      name: Player (Tauri Rust)
-      paths:
-        - "packages/player/src-tauri/**"
     - component_id: ui
       name: UI Library
       paths:
@@ -80,6 +78,14 @@ component_management:
 ignore:
   - "packages/docs/**"
   - "packages/storybook/**"
+  - "packages/website/**"
+  - "packages/tailwind-config/**"
+  - "packages/eslint-config/**"
+  - "packages/i18n/**"
+  - "packages/app/**"
+  - "packages/core/**"
+  - "packages/main/**"
+  - "packages/scanner/**"
   - "**/__snapshots__/**"
   - "**/*.snap"
   - "packages/**/dist/**"

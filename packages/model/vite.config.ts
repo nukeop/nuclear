@@ -25,6 +25,8 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    reporters: ['default', ...(process.env.CI ? ['junit'] : [])],
+    outputFile: { junit: './test-results/junit.xml' },
     coverage: {
       reporter: ['text', 'lcov', 'html'],
       exclude: [
