@@ -34,7 +34,12 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   } = usePlaylistDetailHeader(playlist);
 
   return (
-    <div className={cn("border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-2 p-6 md:flex-row", className)}>
+    <div
+      className={cn(
+        'border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-2 p-6 md:flex-row',
+        className,
+      )}
+    >
       {!playlist.isReadOnly && !isEditing && (
         <Button
           variant="secondary"
