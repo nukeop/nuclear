@@ -103,6 +103,26 @@ export const EDITORIAL_PLAYLISTS_DASHBOARD: PlaylistRef[] = [
   },
 ];
 
+export const EDITORIAL_PLAYLISTS_WITH_URL: PlaylistRef[] = [
+  {
+    id: 'playlist-1',
+    name: 'Art Rock Essentials',
+    artwork: {
+      items: [
+        {
+          url: 'https://img/art-rock.jpg',
+          purpose: 'cover' as const,
+          width: 300,
+        },
+      ],
+    },
+    source: {
+      ...testSource('playlist-1'),
+      url: 'https://music.example.com/playlist/12345',
+    },
+  },
+];
+
 export const NEW_RELEASES_DASHBOARD: AlbumRef[] = [
   {
     title: 'In Rainbows',

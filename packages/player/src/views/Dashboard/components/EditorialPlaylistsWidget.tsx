@@ -6,22 +6,27 @@ import type { AttributedResult } from '@nuclearplayer/plugin-sdk';
 import type { CardsRowItem } from '@nuclearplayer/ui';
 
 import { useDashboardEditorialPlaylists } from '../hooks/useDashboardData';
+import { useNavigateToPlaylist } from '../hooks/useNavigateToPlaylist';
 import { DashboardCardsWidget } from './DashboardCardsWidget';
 
 export const EditorialPlaylistsWidget: FC = () => {
   const { t } = useTranslation('dashboard');
   const { data: results, isLoading } = useDashboardEditorialPlaylists();
+  const navigateToPlaylist = useNavigateToPlaylist();
 
   const mapPlaylist = useCallback(
     (
       playlist: PlaylistRef,
       result: AttributedResult<PlaylistRef>,
     ): CardsRowItem => ({
-      id: `${result.metadataProviderId}-${playlist.source.id}`,
+      id: `${result.providerId}-${playlist.source.id}`,
       title: playlist.name,
       imageUrl: pickArtwork(playlist.artwork, 'cover', 300)?.url,
+      onClick: playlist.source.url
+        ? () => navigateToPlaylist(playlist.source.url!)
+        : undefined,
     }),
-    [],
+    [navigateToPlaylist],
   );
 
   return (

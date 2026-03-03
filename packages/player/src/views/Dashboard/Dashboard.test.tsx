@@ -2,6 +2,7 @@ import { act } from '@testing-library/react';
 
 import { useStartupStore } from '../../stores/startupStore';
 import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
+import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
 import { TOP_TRACKS_RADIOHEAD } from '../../test/fixtures/dashboard';
 import { DashboardWrapper } from './Dashboard.test-wrapper';
 
@@ -139,6 +140,42 @@ describe('Dashboard view', () => {
         'Everything In Its Right Place',
       ),
     ).toBeInTheDocument();
+  });
+
+  it('navigates to playlist import when clicking a playlist card with a matching provider', async () => {
+    DashboardWrapper.seedProvider(
+      DashboardWrapper.fixtures.editorialPlaylistsWithUrlProvider(),
+    );
+    DashboardWrapper.seedPlaylistProvider(
+      new PlaylistProviderBuilder().thatMatchesUrl('music.example.com'),
+    );
+
+    const { router } = await DashboardWrapper.mount();
+
+    await DashboardWrapper.editorialPlaylists
+      .playlist('Art Rock Essentials')
+      .click();
+
+    expect(router.state.location.pathname).toBe(
+      '/playlists/import/test-playlist-provider',
+    );
+    expect(router.state.location.search).toEqual({
+      url: encodeURIComponent('https://music.example.com/playlist/12345'),
+    });
+  });
+
+  it('stays on dashboard when clicking a playlist card with no matching provider', async () => {
+    DashboardWrapper.seedProvider(
+      DashboardWrapper.fixtures.editorialPlaylistsWithUrlProvider(),
+    );
+
+    const { router } = await DashboardWrapper.mount();
+
+    await DashboardWrapper.editorialPlaylists
+      .playlist('Art Rock Essentials')
+      .click();
+
+    expect(router.state.location.pathname).toBe('/dashboard');
   });
 
   it('shows tracks from multiple providers', async () => {

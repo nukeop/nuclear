@@ -14,8 +14,10 @@ import { routeTree } from '../../routeTree.gen';
 import { providersHost } from '../../services/providersHost';
 import { useStartupStore } from '../../stores/startupStore';
 import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
+import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
 import {
   EDITORIAL_PLAYLISTS_DASHBOARD,
+  EDITORIAL_PLAYLISTS_WITH_URL,
   NEW_RELEASES_DASHBOARD,
   TOP_ALBUMS_DASHBOARD,
   TOP_ARTISTS_DASHBOARD,
@@ -49,6 +51,10 @@ export const DashboardWrapper = {
   },
 
   seedProvider(builder: DashboardProviderBuilder) {
+    providersHost.register(builder.build());
+  },
+
+  seedPlaylistProvider(builder: PlaylistProviderBuilder) {
     providersHost.register(builder.build());
   },
 
@@ -208,6 +214,13 @@ export const DashboardWrapper = {
         .withName('Acme Music')
         .withCapabilities('newReleases')
         .withFetchNewReleases(async () => NEW_RELEASES_DASHBOARD);
+    },
+    editorialPlaylistsWithUrlProvider() {
+      return new DashboardProviderBuilder()
+        .withId('acme-dashboard')
+        .withName('Acme Music')
+        .withCapabilities('editorialPlaylists')
+        .withFetchEditorialPlaylists(async () => EDITORIAL_PLAYLISTS_WITH_URL);
     },
     topArtistsProviderWithoutMetadata() {
       return new DashboardProviderBuilder()
