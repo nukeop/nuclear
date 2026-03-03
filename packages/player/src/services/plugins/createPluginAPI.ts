@@ -1,6 +1,7 @@
 import { NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
 
 import { dashboardHost } from '../../services/dashboardHost';
+import { eventBus } from '../../services/eventBus';
 import { favoritesHost } from '../../services/favoritesHost';
 import { httpHost } from '../../services/httpHost';
 import { createLoggerHost } from '../../services/loggerHost';
@@ -29,6 +30,7 @@ export const createPluginAPI = (
     playbackHost,
     playlistsHost,
     dashboardHost,
+    eventsHost: eventBus,
     loggerHost: createLoggerHost(pluginId),
   });
 };
