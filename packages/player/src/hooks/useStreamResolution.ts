@@ -9,6 +9,8 @@ import { streamingHost } from '../services/streamingHost';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 
+let activeController: AbortController | null = null;
+
 // Encode the URL in base64 and use our custom protocol to bypass CORS
 // Check packages/player/src-tauri/src/stream_proxy.rs to see how this works
 const proxyStreamUrl = (url: string): string => {
@@ -81,10 +83,15 @@ const tryResolveNextCandidate = async (
 const resolveStreamWithFallback = async (
   candidates: StreamCandidate[],
   item: QueueItem,
+  signal: AbortSignal,
 ): Promise<StreamCandidate | undefined> => {
   const tryNext = async (
     remaining: StreamCandidate[],
   ): Promise<StreamCandidate | undefined> => {
+    if (signal.aborted) {
+      return undefined;
+    }
+
     const result = await tryResolveNextCandidate(remaining);
     if (!result) {
       return undefined;
@@ -103,12 +110,20 @@ const resolveStreamWithFallback = async (
 };
 
 const resolveAndPlay = async (item: QueueItem, t: TFunction): Promise<void> => {
-  const { updateItemState } = useQueueStore.getState();
-  const { setSrc, play } = useSoundStore.getState();
+  activeController?.abort();
+  activeController = new AbortController();
+  const { signal } = activeController;
 
+  const { updateItemState } = useQueueStore.getState();
+  const { setSrc, play, stop } = useSoundStore.getState();
+
+  stop();
   updateItemState(item.id, { status: 'loading', error: undefined });
 
   const candidates = await resolveCandidates(item.track);
+  if (signal.aborted) {
+    return;
+  }
   if (!candidates) {
     setItemError(item.id, 'errors.noCandidatesFound', t);
     return;
@@ -116,7 +131,14 @@ const resolveAndPlay = async (item: QueueItem, t: TFunction): Promise<void> => {
 
   updateItemCandidates(item, candidates);
 
-  const resolvedCandidate = await resolveStreamWithFallback(candidates, item);
+  const resolvedCandidate = await resolveStreamWithFallback(
+    candidates,
+    item,
+    signal,
+  );
+  if (signal.aborted) {
+    return;
+  }
   if (!resolvedCandidate?.stream) {
     setItemError(item.id, 'errors.allCandidatesFailed', t);
     return;

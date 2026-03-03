@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 
 import { Sound } from '../Sound';
 import { AudioSource } from '../types';
@@ -31,6 +31,11 @@ describe('Sound', () => {
     const { playMock } = resetMediaSpies();
 
     rerender(<Sound src={sourceB} status="playing" />);
+
+    const audio = document.querySelector('audio')!;
+    act(() => {
+      audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+    });
 
     expect(playMock).toHaveBeenCalled();
     restore();

@@ -29,6 +29,11 @@ describe('Sound component', () => {
     const pauseMock = window.HTMLMediaElement.prototype
       .pause as unknown as ReturnType<typeof vi.fn>;
 
+    await waitFor(() => {
+      expect(SoundWrapper.getAudios().length).toBeGreaterThan(0);
+    });
+    SoundWrapper.fireCanPlay();
+
     await waitFor(() => expect(playMock).toHaveBeenCalled());
     playMock.mockClear();
     pauseMock.mockClear();

@@ -1,4 +1,4 @@
-import { render, RenderResult } from '@testing-library/react';
+import { act, render, RenderResult } from '@testing-library/react';
 
 import { AudioSource } from '@nuclearplayer/hifi';
 
@@ -32,5 +32,13 @@ export const SoundWrapper = {
   },
   getActiveAudio(): HTMLAudioElement | null {
     return document.querySelector('audio[data-is-active="true"]');
+  },
+  fireCanPlay() {
+    const audio = document.querySelector('audio');
+    if (audio) {
+      act(() => {
+        audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+      });
+    }
   },
 };

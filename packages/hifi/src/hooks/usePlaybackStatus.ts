@@ -7,6 +7,7 @@ export const usePlaybackStatus = (
   status: SoundStatus,
   context: AudioContext | null,
   isReady: boolean,
+  canPlay: boolean,
 ) => {
   useEffect(() => {
     if (!isReady) {
@@ -19,8 +20,10 @@ export const usePlaybackStatus = (
 
     switch (status) {
       case 'playing': {
-        context?.resume();
-        audio.play();
+        if (canPlay) {
+          context?.resume();
+          audio.play();
+        }
         break;
       }
       case 'paused': {
@@ -33,5 +36,5 @@ export const usePlaybackStatus = (
         break;
       }
     }
-  }, [status, isReady, context, audioRef]);
+  }, [status, isReady, canPlay, context, audioRef]);
 };

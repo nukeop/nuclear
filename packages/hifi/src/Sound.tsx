@@ -1,4 +1,11 @@
-import { Children, cloneElement, isValidElement, useRef } from 'react';
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 
 import { useAudioContext } from './hooks/useAudioContext';
 import { useAudioElementSource } from './hooks/useAudioElementSource';
@@ -26,11 +33,22 @@ export const Sound: React.FC<SoundProps> = ({
   const context = useAudioContext();
   const { source, gain } = useAudioElementSource(audioRef, context);
   const isReady = !!source && !!gain;
+  const [canPlay, setCanPlay] = useState(false);
 
-  usePlaybackStatus(audioRef, status, context, isReady);
+  usePlaybackStatus(audioRef, status, context, isReady, canPlay);
   useAudioSeek(audioRef, seek, isReady);
-  useAudioLoader(audioRef, src, status, isReady);
+  useAudioLoader(audioRef, src, isReady);
   useHlsSource(audioRef, src, isReady);
+
+  const handleCanPlay = useCallback(() => {
+    setCanPlay(true);
+    onCanPlay?.();
+  }, [onCanPlay]);
+
+  const handleLoadStart = useCallback(() => {
+    setCanPlay(false);
+    onLoadStart?.();
+  }, [onLoadStart]);
 
   const { handleTimeUpdate, handleError } = useAudioEvents({
     onTimeUpdate,
@@ -46,8 +64,8 @@ export const Sound: React.FC<SoundProps> = ({
         crossOrigin={crossOrigin}
         onTimeUpdate={handleTimeUpdate}
         onEnded={onEnd}
-        onLoadStart={onLoadStart}
-        onCanPlay={onCanPlay}
+        onLoadStart={handleLoadStart}
+        onCanPlay={handleCanPlay}
         onError={handleError}
       />
       {isReady &&
