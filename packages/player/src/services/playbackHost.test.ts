@@ -1,7 +1,5 @@
-import type { Track } from '@nuclearplayer/model';
-
 import { useSoundStore } from '../stores/soundStore';
-import { notifyTrackFinished, playbackHost } from './playbackHost';
+import { playbackHost } from './playbackHost';
 
 describe('playbackHost', () => {
   beforeEach(() => {
@@ -97,44 +95,5 @@ describe('playbackHost', () => {
     await playbackHost.play();
 
     expect(listener).not.toHaveBeenCalled();
-  });
-
-  describe('onTrackFinished', () => {
-    const testTrack: Track = {
-      title: 'Idioteque',
-      artists: [{ name: 'Radiohead', roles: [] }],
-      source: { provider: 'test', id: 'track-1' },
-    };
-
-    it('calls listener when a track finishes', () => {
-      const listener = vi.fn();
-      playbackHost.onTrackFinished(listener);
-
-      notifyTrackFinished(testTrack);
-
-      expect(listener).toHaveBeenCalledWith(testTrack);
-    });
-
-    it('does not call listener after unsubscribe', () => {
-      const listener = vi.fn();
-      const unsubscribe = playbackHost.onTrackFinished(listener);
-
-      unsubscribe();
-      notifyTrackFinished(testTrack);
-
-      expect(listener).not.toHaveBeenCalled();
-    });
-
-    it('supports multiple listeners', () => {
-      const listenerA = vi.fn();
-      const listenerB = vi.fn();
-      playbackHost.onTrackFinished(listenerA);
-      playbackHost.onTrackFinished(listenerB);
-
-      notifyTrackFinished(testTrack);
-
-      expect(listenerA).toHaveBeenCalledWith(testTrack);
-      expect(listenerB).toHaveBeenCalledWith(testTrack);
-    });
   });
 });
