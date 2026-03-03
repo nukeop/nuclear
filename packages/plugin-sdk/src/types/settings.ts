@@ -1,3 +1,5 @@
+import type { FC } from 'react';
+
 export type SettingSource =
   | { type: 'core' }
   | { type: 'plugin'; pluginId: string; pluginName?: string };
@@ -82,13 +84,43 @@ export type EnumSettingDefinition = {
   widget?: EnumWidget;
 };
 
+export type CustomSettingDefinition = {
+  id: string;
+  title: string;
+  description?: string;
+  category: SettingCategory;
+  kind: 'custom';
+  widgetId: string;
+  default?: SettingValue;
+  hidden?: boolean;
+  source?: SettingSource;
+};
+
 export type SettingDefinition =
   | BooleanSettingDefinition
   | NumberSettingDefinition
   | StringSettingDefinition
-  | EnumSettingDefinition;
+  | EnumSettingDefinition
+  | CustomSettingDefinition;
 
-export type SettingValue = boolean | number | string | undefined;
+export type JsonSerializable =
+  | string
+  | number
+  | boolean
+  | null
+  | JsonSerializable[]
+  | { [key: string]: JsonSerializable };
+
+export type SettingValue = JsonSerializable | undefined;
+
+export type CustomWidgetProps<API = unknown> = {
+  value: SettingValue | undefined;
+  setValue: (value: SettingValue) => void;
+  definition: CustomSettingDefinition;
+  api: API;
+};
+
+export type CustomWidgetComponent<API = unknown> = FC<CustomWidgetProps<API>>;
 
 export type SettingsRegistration = {
   settings: SettingDefinition[];
