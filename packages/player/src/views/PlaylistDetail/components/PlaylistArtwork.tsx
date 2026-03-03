@@ -14,7 +14,6 @@ export const PlaylistArtwork: FC<PlaylistArtworkProps> = ({
   thumbnails = [],
   className,
 }) => {
-
   if (thumbnails.length >= MOSAIC_SIZE) {
     return (
       <Mosaic urls={thumbnails} className={cn('h-full w-full', className)} />
