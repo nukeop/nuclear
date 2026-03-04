@@ -1,5 +1,65 @@
 [
   {
+    "date": "2026-03-04T00:00",
+    "description": "Plugin event bus with trackFinished and trackStarted events",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-04T00:00",
+    "description": "Custom settings widgets for plugins (render React components in settings UI)",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-04T00:00",
+    "description": "Shell API for plugins to open URLs in the system browser",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-04T00:00",
+    "description": "Plugins can use Nuclear UI components (Button, Toggle, etc.)",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-04T00:00",
+    "description": "Fixed plugin settings using wrong storage key (core prefix instead of plugin prefix)",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Settings",
+        "color": "cyan"
+      }
+    ]
+  },
+  {
     "date": "2026-03-03T00:00",
     "description": "Fixed old audio stream continuing to play when switching tracks or clearing the queue",
     "type": "fix",
