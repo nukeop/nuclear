@@ -1,6 +1,6 @@
 {
   "name": "@nuclearplayer/plugin-sdk",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Plugin SDK for Nuclear music player",
   "type": "module",
   "main": "./src/index.ts",
