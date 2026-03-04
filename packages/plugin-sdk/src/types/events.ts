@@ -2,6 +2,7 @@ import type { Track } from '@nuclearplayer/model';
 
 export type PluginEventMap = {
   trackFinished: Track;
+  trackStarted: Track;
 };
 
 export type PluginEventListener<E extends keyof PluginEventMap> = (

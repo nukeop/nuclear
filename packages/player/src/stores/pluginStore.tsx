@@ -185,17 +185,24 @@ export const usePluginStore = create<PluginStore>((set, get) => ({
       Logger.plugins.debug(`Plugin ${id} is already enabled, skipping`);
       return;
     }
-    if (plugin.instance!.onEnable) {
-      Logger.plugins.debug(`Calling onEnable for ${id}`);
-      await plugin.instance!.onEnable(plugin.api!);
+    try {
+      if (plugin.instance!.onEnable) {
+        Logger.plugins.debug(`Calling onEnable for ${id}`);
+        await plugin.instance!.onEnable(plugin.api!);
+      }
+      set(
+        produce((state: PluginStore) => {
+          state.plugins[id].enabled = true;
+        }),
+      );
+      await setRegistryEntryEnabled(id, true);
+      Logger.plugins.info(`Plugin ${id} enabled`);
+    } catch (error) {
+      Logger.plugins.error(
+        `Failed to enable plugin ${id}: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
     }
-    set(
-      produce((state: PluginStore) => {
-        state.plugins[id].enabled = true;
-      }),
-    );
-    await setRegistryEntryEnabled(id, true);
-    Logger.plugins.info(`Plugin ${id} enabled`);
   },
 
   disablePlugin: async (id: string) => {

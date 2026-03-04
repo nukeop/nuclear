@@ -6,6 +6,7 @@ import type {
 } from '@nuclearplayer/plugin-sdk';
 
 import { widgetRegistry } from '../../services/widgetRegistry';
+import { usePluginStore } from '../../stores/pluginStore';
 
 type CustomWidgetFieldProps = {
   definition: CustomSettingDefinition;
@@ -20,6 +21,7 @@ export const CustomWidgetField: FC<CustomWidgetFieldProps> = ({
 }) => {
   const pluginId = (definition.source as { pluginId: string }).pluginId;
   const Widget = widgetRegistry.get(pluginId, definition.widgetId);
+  const pluginApi = usePluginStore((state) => state.plugins[pluginId]?.api);
 
   if (!Widget) {
     throw new Error(
@@ -32,7 +34,7 @@ export const CustomWidgetField: FC<CustomWidgetFieldProps> = ({
       value={value}
       setValue={setValue}
       definition={definition}
-      api={undefined}
+      api={pluginApi}
     />
   );
 };

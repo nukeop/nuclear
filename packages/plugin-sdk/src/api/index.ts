@@ -9,6 +9,7 @@ import type { PlaylistsHost } from '../types/playlists';
 import { ProvidersHost } from '../types/providers';
 import type { QueueHost } from '../types/queue';
 import type { SettingsHost, WidgetRegistry } from '../types/settings';
+import type { ShellHost } from '../types/shell';
 import type { StreamingHost } from '../types/streaming';
 import type { YtdlpHost } from '../types/ytdlp';
 import { DashboardAPI } from './dashboard';
@@ -22,6 +23,7 @@ import { PlaylistsAPI } from './playlists';
 import { Providers } from './providers';
 import { QueueAPI } from './queue';
 import { Settings } from './settings';
+import { ShellAPI } from './shell';
 import { StreamingAPI } from './streaming';
 import { YtdlpAPI } from './ytdlp';
 
@@ -39,6 +41,7 @@ export class NuclearAPI {
   readonly Playback: PlaybackAPI;
   readonly Playlists: PlaylistsAPI;
   readonly Events: EventsAPI;
+  readonly Shell: ShellAPI;
 
   constructor(opts?: {
     settingsHost?: SettingsHost;
@@ -54,6 +57,7 @@ export class NuclearAPI {
     playbackHost?: PlaybackHost;
     playlistsHost?: PlaylistsHost;
     eventsHost?: EventsHost;
+    shellHost?: ShellHost;
     widgetRegistry?: WidgetRegistry;
     pluginId?: string;
   }) {
@@ -74,6 +78,7 @@ export class NuclearAPI {
     this.Playback = new PlaybackAPI(opts?.playbackHost);
     this.Playlists = new PlaylistsAPI(opts?.playlistsHost);
     this.Events = new EventsAPI(opts?.eventsHost);
+    this.Shell = new ShellAPI(opts?.shellHost);
   }
 }
 

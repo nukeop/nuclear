@@ -46,6 +46,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
       useQueueStore
         .getState()
         .updateItemState(currentItem.id, { status: 'success' });
+      eventBus.emit('trackStarted', currentItem.track);
     }
   }, []);
 
