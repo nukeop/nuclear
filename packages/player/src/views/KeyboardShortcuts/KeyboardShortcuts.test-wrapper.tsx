@@ -21,4 +21,16 @@ export const KeyboardShortcutsWrapper = {
 
     return component;
   },
+
+  get sections() {
+    return screen.queryAllByTestId(/^shortcut-section-/);
+  },
+
+  sectionHeading(sectionName: string) {
+    return screen.queryByRole('heading', { name: sectionName, level: 2 });
+  },
+
+  row(label: string) {
+    return screen.queryByRole('row', { name: new RegExp(label) });
+  },
 };
