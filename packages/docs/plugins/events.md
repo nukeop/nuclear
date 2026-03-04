@@ -25,6 +25,7 @@ Plugins subscribe to named events using `api.Events.on(eventName, listener)`. Ea
 
 | Event | Payload | When fired |
 |-------|---------|------------|
+| `trackStarted` | `Track` | A track begins playing (audio has buffered and started). |
 | `trackFinished` | `Track` | A track finishes playing naturally (audio reaches the end). Not fired on skip or stop. |
 
 ### Cleanup
@@ -71,7 +72,8 @@ api.Events.on<E extends keyof PluginEventMap>(
 
 ```typescript
 type PluginEventMap = {
-  trackFinished: Track;  // from @nuclearplayer/model
+  trackStarted: Track;   // from @nuclearplayer/model
+  trackFinished: Track;
 };
 
 type PluginEventListener<E extends keyof PluginEventMap> = (
