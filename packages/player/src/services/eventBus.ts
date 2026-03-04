@@ -4,7 +4,9 @@ import type {
   PluginEventMap,
 } from '@nuclearplayer/plugin-sdk';
 
-type Listener = (payload: PluginEventMap[keyof PluginEventMap]) => void;
+type Listener = (
+  payload: PluginEventMap[keyof PluginEventMap],
+) => void | Promise<void>;
 
 export const createEventBus = (): EventsHost => {
   const listeners = new Map<keyof PluginEventMap, Set<Listener>>();

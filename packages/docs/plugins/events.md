@@ -18,9 +18,8 @@ Access events via `api.Events.*` in your plugin's lifecycle hooks. The `on` meth
 
 ### Event model
 
-Plugins subscribe to named events using `api.Events.on(eventName, listener)`. Each event carries a typed payload. The player fires events at specific moments during playback, and all registered listeners for that event run synchronously in the order they were added.
+Plugins subscribe to named events using `api.Events.on(eventName, listener)`. Each event carries a typed payload. The player fires events at specific moments during playback, and all registered listeners for that event run in the order they were added.
 
-Because listeners run synchronously, keep them lightweight. Offload heavy work (network requests, file I/O) to asynchronous callbacks rather than blocking the event dispatch.
 
 ### Available events
 
@@ -55,9 +54,6 @@ export default {
 };
 ```
 
-{% hint style="warning" %}
-Events fire synchronously. If your listener does async work (network calls, disk writes), wrap it in a fire-and-forget pattern as shown in the scrobbling example. Blocking the event dispatch delays queue advancement and other listeners.
-{% endhint %}
 
 ---
 
@@ -67,7 +63,7 @@ Events fire synchronously. If your listener does async work (network calls, disk
 // Subscriptions
 api.Events.on<E extends keyof PluginEventMap>(
   event: E,
-  listener: (payload: PluginEventMap[E]) => void
+  listener: (payload: PluginEventMap[E]) => void | Promise<void>
 ): () => void
 ```
 
@@ -80,7 +76,7 @@ type PluginEventMap = {
 
 type PluginEventListener<E extends keyof PluginEventMap> = (
   payload: PluginEventMap[E],
-) => void;
+) => void | Promise<void>;
 ```
 
 The `Track` payload has this shape:
