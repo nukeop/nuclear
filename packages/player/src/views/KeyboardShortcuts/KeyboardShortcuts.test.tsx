@@ -21,15 +21,33 @@ describe('Keyboard Shortcuts settings', () => {
   it('shows a row for each shortcut command', async () => {
     await KeyboardShortcutsWrapper.mount();
 
-    expect(KeyboardShortcutsWrapper.row('Play / Pause')).toBeInTheDocument();
-    expect(KeyboardShortcutsWrapper.row('Next track')).toBeInTheDocument();
-    expect(KeyboardShortcutsWrapper.row('Previous track')).toBeInTheDocument();
-    expect(KeyboardShortcutsWrapper.row('Seek forward')).toBeInTheDocument();
-    expect(KeyboardShortcutsWrapper.row('Seek backward')).toBeInTheDocument();
-    expect(KeyboardShortcutsWrapper.row('Volume up')).toBeInTheDocument();
-    expect(KeyboardShortcutsWrapper.row('Volume down')).toBeInTheDocument();
-    expect(KeyboardShortcutsWrapper.row('Mute / Unmute')).toBeInTheDocument();
-    expect(KeyboardShortcutsWrapper.row('Open settings')).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Play / Pause').element,
+    ).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Next track').element,
+    ).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Previous track').element,
+    ).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Seek forward').element,
+    ).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Seek backward').element,
+    ).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Volume up').element,
+    ).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Volume down').element,
+    ).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Mute / Unmute').element,
+    ).toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Open settings').element,
+    ).toBeInTheDocument();
   });
 
   it('shows the default keybinding for each command', async () => {
@@ -64,5 +82,14 @@ describe('Keyboard Shortcuts settings', () => {
       'Ctrl',
       ',',
     ]);
+  });
+
+  it('enters recording mode when clicking a keybinding', async () => {
+    await KeyboardShortcutsWrapper.mount();
+
+    await KeyboardShortcutsWrapper.row('Play / Pause').startRecording();
+
+    expect(KeyboardShortcutsWrapper.row('Play / Pause').isRecording).toBe(true);
+    expect(KeyboardShortcutsWrapper.recordingPrompt).toBeInTheDocument();
   });
 });

@@ -44,6 +44,25 @@ export const KeyboardShortcutsWrapper = {
           .getAllByRole('kbd')
           .map((kbd) => kbd.textContent);
       },
+      get isRecording() {
+        if (!element) {
+          return false;
+        }
+        return (
+          within(element).queryByText('Press a key combination...') !== null
+        );
+      },
+      async startRecording() {
+        if (!element) {
+          throw new Error(`Row "${label}" not found`);
+        }
+        const keysArea = within(element).getByTestId('shortcut-keybinding');
+        await user.click(keysArea);
+      },
     };
+  },
+
+  get recordingPrompt() {
+    return screen.queryByText('Press a key combination...');
   },
 };
