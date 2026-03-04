@@ -8,7 +8,7 @@ import type { PlaybackHost } from '../types/playback';
 import type { PlaylistsHost } from '../types/playlists';
 import { ProvidersHost } from '../types/providers';
 import type { QueueHost } from '../types/queue';
-import type { SettingsHost } from '../types/settings';
+import type { SettingsHost, WidgetRegistry } from '../types/settings';
 import type { StreamingHost } from '../types/streaming';
 import type { YtdlpHost } from '../types/ytdlp';
 import { DashboardAPI } from './dashboard';
@@ -54,8 +54,14 @@ export class NuclearAPI {
     playbackHost?: PlaybackHost;
     playlistsHost?: PlaylistsHost;
     eventsHost?: EventsHost;
+    widgetRegistry?: WidgetRegistry;
+    pluginId?: string;
   }) {
-    this.Settings = new Settings(opts?.settingsHost);
+    this.Settings = new Settings(
+      opts?.settingsHost,
+      opts?.widgetRegistry,
+      opts?.pluginId,
+    );
     this.Providers = new Providers(opts?.providersHost);
     this.Queue = new QueueAPI(opts?.queueHost);
     this.Streaming = new StreamingAPI(opts?.streamingHost);

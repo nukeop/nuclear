@@ -12,6 +12,7 @@ import { providersHost } from '../../services/providersHost';
 import { queueHost } from '../../services/queueHost';
 import { createPluginSettingsHost } from '../../services/settingsHost';
 import { streamingHost } from '../../services/streamingHost';
+import { widgetRegistry } from '../../services/widgetRegistry';
 import { ytdlpHost } from '../../services/ytdlpHost';
 
 export const createPluginAPI = (
@@ -31,6 +32,8 @@ export const createPluginAPI = (
     playlistsHost,
     dashboardHost,
     eventsHost: eventBus,
+    widgetRegistry,
+    pluginId,
     loggerHost: createLoggerHost(pluginId),
   });
 };

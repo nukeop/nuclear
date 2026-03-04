@@ -1,9 +1,12 @@
-import type { CustomWidgetComponent } from '@nuclearplayer/plugin-sdk';
+import type {
+  CustomWidgetComponent,
+  WidgetRegistry,
+} from '@nuclearplayer/plugin-sdk';
 
 const toKey = (pluginId: string, widgetId: string) =>
   `plugin.${pluginId}.${widgetId}`;
 
-export const createWidgetRegistry = () => {
+export const createWidgetRegistry = (): WidgetRegistry => {
   const widgets = new Map<string, CustomWidgetComponent>();
 
   return {

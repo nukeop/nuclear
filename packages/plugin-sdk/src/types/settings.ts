@@ -130,6 +130,16 @@ export type SettingsRegistrationResult = {
   registered: string[];
 };
 
+export type WidgetRegistry = {
+  register(
+    pluginId: string,
+    widgetId: string,
+    component: CustomWidgetComponent,
+  ): void;
+  unregister(pluginId: string, widgetId: string): void;
+  get(pluginId: string, widgetId: string): CustomWidgetComponent | undefined;
+};
+
 export type SettingsHost = {
   register(defs: SettingDefinition[]): Promise<SettingsRegistrationResult>;
   get<T extends SettingValue = SettingValue>(
