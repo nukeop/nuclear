@@ -108,11 +108,17 @@ The `api` object passed to lifecycle hooks provides access to these domain APIs:
 |-----|-------------|
 | `api.Settings` | Define, read, and persist plugin settings |
 | `api.Queue` | Read and manipulate the playback queue |
+| `api.Playback` | Control audio transport: play, pause, stop, seek |
+| `api.Events` | Subscribe to player lifecycle events (e.g. track finished) |
 | `api.Favorites` | Manage the user's favorite tracks |
+| `api.Playlists` | Create, update, and delete playlists |
 | `api.Providers` | Register and unregister providers |
 | `api.Streaming` | Resolve audio stream URLs for tracks |
 | `api.Metadata` | Search and fetch artist/album/track details |
 | `api.Dashboard` | Fetch dashboard content (top tracks, new releases, etc.) |
+| `api.Http` | Make HTTP requests from plugins and bypass CORS |
+| `api.Logger` | Structured logging |
+| `api.Ytdlp` | yt-dlp integration |
 
 See the [full documentation](https://docs.nuclearplayer.com) for detailed guides on each API.
 

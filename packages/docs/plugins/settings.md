@@ -18,7 +18,7 @@ Access settings via the API object (api.Settings.\*) or the React hook described
   * Core settings: `core.<id>`
   * Plugin settings: `plugin.<pluginId>.<id>`
   * In your plugin, pass only the bare `id` (e.g. `theme`), skip the prefix.
-* Types: boolean | number | string (enum is modeled as string with predefined options).
+* Types: boolean | number | string for built-in kinds. Custom widgets can store any JSON-serializable value (objects, arrays, null).
 * Defaults: used until the user sets a value; only user-chosen values are persisted.
 * Categories: free-form strings used to group settings in the UI.
 * Hidden: settings with `hidden: true` are stored but not shown in standard UI.
@@ -144,6 +144,85 @@ type EnumSettingDefinition = {
 };
 ```
 
+#### Custom settings
+
+For settings that need a richer UI than the built-in widgets (OAuth flows, multi-field forms, live previews), use `kind: 'custom'` with a registered React component.
+
+```typescript
+type CustomSettingDefinition = {
+  id: string;
+  title: string;
+  description?: string;
+  category: SettingCategory;
+  kind: 'custom';
+  widgetId: string;
+  default?: SettingValue;
+  hidden?: boolean;
+};
+```
+
+The `widgetId` references a React component registered via `api.Settings.registerWidget()`. The component receives the current value, a setter, and the setting definition as props.
+
+{% tabs %}
+{% tab title="Register a custom widget" %}
+```typescript
+import type { NuclearPluginAPI, CustomWidgetProps } from '@nuclearplayer/plugin-sdk';
+import { FC } from 'react';
+
+const AuthWidget: FC<CustomWidgetProps> = ({ value, setValue }) => {
+  const session = value as { username: string } | undefined;
+
+  if (session) {
+    return <span>Connected as {session.username}</span>;
+  }
+
+  return (
+    <button onClick={() => setValue({ username: 'testuser' })}>
+      Connect
+    </button>
+  );
+};
+
+export default {
+  async onEnable(api: NuclearPluginAPI) {
+    api.Settings.registerWidget('auth', AuthWidget);
+
+    await api.Settings.register([{
+      id: 'session',
+      title: 'Account',
+      category: 'Integrations',
+      kind: 'custom',
+      widgetId: 'auth',
+    }]);
+  },
+
+  async onDisable(api: NuclearPluginAPI) {
+    api.Settings.unregisterWidget('auth');
+  },
+};
+```
+{% endtab %}
+{% endtabs %}
+
+Widget IDs are namespaced by plugin ID automatically. Two plugins can both register a widget called `'auth'` without conflict.
+
+The `CustomWidgetProps` type:
+
+```typescript
+type CustomWidgetProps<API = unknown> = {
+  value: SettingValue | undefined;
+  setValue: (value: SettingValue) => void;
+  definition: CustomSettingDefinition;
+  api: API;
+};
+```
+
+`SettingValue` accepts any JSON-serializable value (strings, numbers, booleans, objects, arrays, null), so custom widgets can store structured data like `{ sessionKey: string, username: string }`.
+
+{% hint style="warning" %}
+Always unregister your widget in `onDisable`. If a custom setting references a widget that isn't registered, the settings UI will throw an error.
+{% endhint %}
+
 #### ID rules
 
 * Keep IDs short and stable: `theme`, `apiKey`, `language`, `refreshInterval`.
@@ -222,15 +301,21 @@ export default {
 ### Reference
 
 ```typescript
-// Domain API (preferred)
+// Settings management
 api.Settings.register(defs: SettingDefinition[]): Promise<{ registered: string[] }>
 api.Settings.get<T extends SettingValue>(id: string): Promise<T | undefined>
 api.Settings.set<T extends SettingValue>(id: string, value: T): Promise<void>
 api.Settings.subscribe<T extends SettingValue>(id: string, cb: (v: T | undefined) => void): () => void
 
+// Custom widgets
+api.Settings.registerWidget(widgetId: string, component: CustomWidgetComponent): void
+api.Settings.unregisterWidget(widgetId: string): void
+
 // Types
-type SettingValue = boolean | number | string | undefined;
-type SettingDefinition = BooleanSettingDefinition | NumberSettingDefinition | StringSettingDefinition | EnumSettingDefinition;
+type SettingValue = JsonSerializable | undefined;
+type JsonSerializable = string | number | boolean | null | JsonSerializable[] | { [key: string]: JsonSerializable };
+type SettingDefinition = BooleanSettingDefinition | NumberSettingDefinition | StringSettingDefinition | EnumSettingDefinition | CustomSettingDefinition;
+type CustomWidgetComponent<API = unknown> = FC<CustomWidgetProps<API>>;
 ```
 
 ### Best practices
