@@ -3,11 +3,19 @@ import userEvent from '@testing-library/user-event';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { KeyboardShortcutsWrapper } from './KeyboardShortcuts.test-wrapper';
 
+const toastError = vi.fn();
+vi.mock('sonner', () => ({
+  toast: {
+    error: (...args: unknown[]) => toastError(...args),
+  },
+}));
+
 const user = userEvent.setup();
 
 describe('Keyboard Shortcuts settings', () => {
   beforeEach(() => {
     resetInMemoryTauriStore();
+    toastError.mockClear();
   });
 
   it('shows the Playback and General section headings', async () => {
@@ -153,6 +161,45 @@ describe('Keyboard Shortcuts settings', () => {
     ]);
     expect(
       KeyboardShortcutsWrapper.row('Play / Pause').reset.element,
+    ).not.toBeInTheDocument();
+  });
+
+  it('rejects a keybinding that conflicts with another command', async () => {
+    await KeyboardShortcutsWrapper.mount();
+    await KeyboardShortcutsWrapper.row('Play / Pause').startRecording();
+
+    await user.keyboard('{Control>}m{/Control}');
+
+    expect(KeyboardShortcutsWrapper.row('Play / Pause').keys).toEqual([
+      'Space',
+    ]);
+    expect(toastError).toHaveBeenCalledWith(
+      'This shortcut is already used by "Mute / Unmute"',
+    );
+  });
+
+  it('resets all overrides to defaults', async () => {
+    await KeyboardShortcutsWrapper.mount();
+
+    await KeyboardShortcutsWrapper.row('Play / Pause').startRecording();
+    await user.keyboard('{Control>}p{/Control}');
+    await KeyboardShortcutsWrapper.row('Next track').startRecording();
+    await user.keyboard('{Control>}n{/Control}');
+
+    await KeyboardShortcutsWrapper.resetAll.click();
+
+    expect(KeyboardShortcutsWrapper.row('Play / Pause').keys).toEqual([
+      'Space',
+    ]);
+    expect(KeyboardShortcutsWrapper.row('Next track').keys).toEqual([
+      'Ctrl',
+      '→',
+    ]);
+    expect(
+      KeyboardShortcutsWrapper.row('Play / Pause').reset.element,
+    ).not.toBeInTheDocument();
+    expect(
+      KeyboardShortcutsWrapper.row('Next track').reset.element,
     ).not.toBeInTheDocument();
   });
 });

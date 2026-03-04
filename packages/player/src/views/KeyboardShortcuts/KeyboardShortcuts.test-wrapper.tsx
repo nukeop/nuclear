@@ -82,4 +82,14 @@ export const KeyboardShortcutsWrapper = {
   get recordingPrompt() {
     return screen.queryByText('Press a key combination...');
   },
+
+  resetAll: {
+    get element() {
+      return screen.queryByRole('button', { name: /reset all/i });
+    },
+    async click() {
+      const button = screen.getByRole('button', { name: /reset all/i });
+      await user.click(button);
+    },
+  },
 };
