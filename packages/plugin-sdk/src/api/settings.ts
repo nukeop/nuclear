@@ -1,14 +1,24 @@
 import type {
+  CustomWidgetComponent,
   SettingDefinition,
   SettingsHost,
   SettingValue,
+  WidgetRegistry,
 } from '../types/settings';
 
 export class Settings {
   #host?: SettingsHost;
+  #widgetRegistry?: WidgetRegistry;
+  #pluginId?: string;
 
-  constructor(host?: SettingsHost) {
+  constructor(
+    host?: SettingsHost,
+    widgetRegistry?: WidgetRegistry,
+    pluginId?: string,
+  ) {
     this.#host = host;
+    this.#widgetRegistry = widgetRegistry;
+    this.#pluginId = pluginId;
   }
 
   #withHost<T>(fn: (host: SettingsHost) => T): T {
@@ -36,5 +46,19 @@ export class Settings {
     listener: (value: T | undefined) => void,
   ) {
     return this.#withHost((h) => h.subscribe<T>(id, listener));
+  }
+
+  registerWidget(widgetId: string, component: CustomWidgetComponent) {
+    if (!this.#widgetRegistry || !this.#pluginId) {
+      throw new Error('Widget registry not available');
+    }
+    this.#widgetRegistry.register(this.#pluginId, widgetId, component);
+  }
+
+  unregisterWidget(widgetId: string) {
+    if (!this.#widgetRegistry || !this.#pluginId) {
+      throw new Error('Widget registry not available');
+    }
+    this.#widgetRegistry.unregister(this.#pluginId, widgetId);
   }
 }

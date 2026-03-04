@@ -13,6 +13,8 @@
 * [Favorites](plugins/favorites.md)
 * [Playlists](plugins/playlists.md)
 * [Playback](plugins/playback.md)
+* [Events](plugins/events.md)
+* [Shell](plugins/shell.md)
 * [Streaming](plugins/streaming.md)
 * [Metadata](plugins/metadata.md)
 * [Dashboard](plugins/dashboard.md)

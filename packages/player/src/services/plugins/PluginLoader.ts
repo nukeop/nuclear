@@ -1,5 +1,7 @@
 import { join } from '@tauri-apps/api/path';
 import { readTextFile } from '@tauri-apps/plugin-fs';
+import React from 'react';
+import * as jsxRuntime from 'react/jsx-runtime';
 
 import { NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
 import type {
@@ -8,6 +10,7 @@ import type {
   PluginManifest,
   PluginMetadata,
 } from '@nuclearplayer/plugin-sdk';
+import * as nuclearUI from '@nuclearplayer/ui';
 
 import { Logger } from '../logger';
 import { compilePlugin } from './pluginCompiler';
@@ -114,6 +117,9 @@ export class PluginLoader {
     const module = { exports } as { exports: unknown };
     const ALLOWED_MODULES: Record<string, unknown> = {
       '@nuclearplayer/plugin-sdk': { NuclearPluginAPI },
+      '@nuclearplayer/ui': nuclearUI,
+      react: React,
+      'react/jsx-runtime': jsxRuntime,
     };
     const require = (id: string) => {
       if (id in ALLOWED_MODULES) {

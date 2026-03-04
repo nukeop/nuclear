@@ -4,6 +4,7 @@ import { useCallback, useEffect } from 'react';
 import { Sound, Volume } from '@nuclearplayer/hifi';
 
 import { useStreamResolution } from '../hooks/useStreamResolution';
+import { eventBus } from '../services/eventBus';
 import { useQueueStore } from '../stores/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
@@ -32,6 +33,10 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 
   const handleEnd = useCallback(() => {
+    const currentTrack = useQueueStore.getState().getCurrentItem()?.track;
+    if (currentTrack) {
+      eventBus.emit('trackFinished', currentTrack);
+    }
     useQueueStore.getState().goToNext();
   }, []);
 
@@ -41,6 +46,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
       useQueueStore
         .getState()
         .updateItemState(currentItem.id, { status: 'success' });
+      eventBus.emit('trackStarted', currentItem.track);
     }
   }, []);
 

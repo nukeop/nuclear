@@ -1,4 +1,5 @@
 import type { DashboardHost } from '../types/dashboard';
+import type { EventsHost } from '../types/events';
 import type { FavoritesHost } from '../types/favorites';
 import type { HttpHost } from '../types/http';
 import type { LoggerHost } from '../types/logger';
@@ -7,10 +8,12 @@ import type { PlaybackHost } from '../types/playback';
 import type { PlaylistsHost } from '../types/playlists';
 import { ProvidersHost } from '../types/providers';
 import type { QueueHost } from '../types/queue';
-import type { SettingsHost } from '../types/settings';
+import type { SettingsHost, WidgetRegistry } from '../types/settings';
+import type { ShellHost } from '../types/shell';
 import type { StreamingHost } from '../types/streaming';
 import type { YtdlpHost } from '../types/ytdlp';
 import { DashboardAPI } from './dashboard';
+import { EventsAPI } from './events';
 import { FavoritesAPI } from './favorites';
 import { HttpAPI } from './http';
 import { LoggerAPI } from './logger';
@@ -20,6 +23,7 @@ import { PlaylistsAPI } from './playlists';
 import { Providers } from './providers';
 import { QueueAPI } from './queue';
 import { Settings } from './settings';
+import { ShellAPI } from './shell';
 import { StreamingAPI } from './streaming';
 import { YtdlpAPI } from './ytdlp';
 
@@ -36,6 +40,8 @@ export class NuclearAPI {
   readonly Dashboard: DashboardAPI;
   readonly Playback: PlaybackAPI;
   readonly Playlists: PlaylistsAPI;
+  readonly Events: EventsAPI;
+  readonly Shell: ShellAPI;
 
   constructor(opts?: {
     settingsHost?: SettingsHost;
@@ -50,8 +56,16 @@ export class NuclearAPI {
     dashboardHost?: DashboardHost;
     playbackHost?: PlaybackHost;
     playlistsHost?: PlaylistsHost;
+    eventsHost?: EventsHost;
+    shellHost?: ShellHost;
+    widgetRegistry?: WidgetRegistry;
+    pluginId?: string;
   }) {
-    this.Settings = new Settings(opts?.settingsHost);
+    this.Settings = new Settings(
+      opts?.settingsHost,
+      opts?.widgetRegistry,
+      opts?.pluginId,
+    );
     this.Providers = new Providers(opts?.providersHost);
     this.Queue = new QueueAPI(opts?.queueHost);
     this.Streaming = new StreamingAPI(opts?.streamingHost);
@@ -63,6 +77,8 @@ export class NuclearAPI {
     this.Dashboard = new DashboardAPI(opts?.dashboardHost);
     this.Playback = new PlaybackAPI(opts?.playbackHost);
     this.Playlists = new PlaylistsAPI(opts?.playlistsHost);
+    this.Events = new EventsAPI(opts?.eventsHost);
+    this.Shell = new ShellAPI(opts?.shellHost);
   }
 }
 
