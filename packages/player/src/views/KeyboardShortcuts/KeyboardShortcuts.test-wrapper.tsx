@@ -1,4 +1,4 @@
-import { render, RenderResult, screen } from '@testing-library/react';
+import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
@@ -31,6 +31,19 @@ export const KeyboardShortcutsWrapper = {
   },
 
   row(label: string) {
-    return screen.queryByRole('row', { name: new RegExp(label) });
+    const element = screen.queryByRole('row', { name: new RegExp(label) });
+    return {
+      get element() {
+        return element;
+      },
+      get keys() {
+        if (!element) {
+          return [];
+        }
+        return within(element)
+          .getAllByRole('kbd')
+          .map((kbd) => kbd.textContent);
+      },
+    };
   },
 };
