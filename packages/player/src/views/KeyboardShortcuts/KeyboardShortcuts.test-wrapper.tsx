@@ -59,6 +59,23 @@ export const KeyboardShortcutsWrapper = {
         const keysArea = within(element).getByTestId('shortcut-keybinding');
         await user.click(keysArea);
       },
+      reset: {
+        get element() {
+          if (!element) {
+            return null;
+          }
+          return within(element).queryByRole('button', { name: /reset/i });
+        },
+        async click() {
+          if (!element) {
+            throw new Error(`Row "${label}" not found`);
+          }
+          const button = within(element).getByRole('button', {
+            name: /reset/i,
+          });
+          await user.click(button);
+        },
+      },
     };
   },
 

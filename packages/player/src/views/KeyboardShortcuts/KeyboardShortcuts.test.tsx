@@ -1,5 +1,9 @@
+import userEvent from '@testing-library/user-event';
+
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { KeyboardShortcutsWrapper } from './KeyboardShortcuts.test-wrapper';
+
+const user = userEvent.setup();
 
 describe('Keyboard Shortcuts settings', () => {
   beforeEach(() => {
@@ -91,5 +95,64 @@ describe('Keyboard Shortcuts settings', () => {
 
     expect(KeyboardShortcutsWrapper.row('Play / Pause').isRecording).toBe(true);
     expect(KeyboardShortcutsWrapper.recordingPrompt).toBeInTheDocument();
+  });
+
+  it('cancels recording when pressing Escape', async () => {
+    await KeyboardShortcutsWrapper.mount();
+    await KeyboardShortcutsWrapper.row('Play / Pause').startRecording();
+
+    await user.keyboard('{Escape}');
+
+    expect(KeyboardShortcutsWrapper.row('Play / Pause').isRecording).toBe(
+      false,
+    );
+    expect(KeyboardShortcutsWrapper.row('Play / Pause').keys).toEqual([
+      'Space',
+    ]);
+  });
+
+  it('saves a new keybinding after recording', async () => {
+    await KeyboardShortcutsWrapper.mount();
+    await KeyboardShortcutsWrapper.row('Play / Pause').startRecording();
+
+    await user.keyboard('{Control>}p{/Control}');
+
+    expect(KeyboardShortcutsWrapper.row('Play / Pause').isRecording).toBe(
+      false,
+    );
+    expect(KeyboardShortcutsWrapper.row('Play / Pause').keys).toEqual([
+      'Ctrl',
+      'P',
+    ]);
+  });
+
+  it('shows a reset button only for overridden shortcuts', async () => {
+    await KeyboardShortcutsWrapper.mount();
+
+    expect(
+      KeyboardShortcutsWrapper.row('Play / Pause').reset.element,
+    ).not.toBeInTheDocument();
+
+    await KeyboardShortcutsWrapper.row('Play / Pause').startRecording();
+    await user.keyboard('{Control>}p{/Control}');
+
+    expect(
+      KeyboardShortcutsWrapper.row('Play / Pause').reset.element,
+    ).toBeInTheDocument();
+  });
+
+  it('restores the default keybinding when clicking reset', async () => {
+    await KeyboardShortcutsWrapper.mount();
+    await KeyboardShortcutsWrapper.row('Play / Pause').startRecording();
+    await user.keyboard('{Control>}p{/Control}');
+
+    await KeyboardShortcutsWrapper.row('Play / Pause').reset.click();
+
+    expect(KeyboardShortcutsWrapper.row('Play / Pause').keys).toEqual([
+      'Space',
+    ]);
+    expect(
+      KeyboardShortcutsWrapper.row('Play / Pause').reset.element,
+    ).not.toBeInTheDocument();
   });
 });
