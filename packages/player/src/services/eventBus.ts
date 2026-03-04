@@ -6,7 +6,7 @@ import type {
 
 type Listener = (
   payload: PluginEventMap[keyof PluginEventMap],
-) => void | Promise<void>;
+) => Promise<void>;
 
 export const createEventBus = (): EventsHost => {
   const listeners = new Map<keyof PluginEventMap, Set<Listener>>();

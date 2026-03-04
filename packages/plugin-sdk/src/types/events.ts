@@ -7,7 +7,7 @@ export type PluginEventMap = {
 
 export type PluginEventListener<E extends keyof PluginEventMap> = (
   payload: PluginEventMap[E],
-) => void | Promise<void>;
+) => Promise<void>;
 
 export type EventsHost = {
   on<E extends keyof PluginEventMap>(

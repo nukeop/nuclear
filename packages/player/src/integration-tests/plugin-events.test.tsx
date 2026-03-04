@@ -37,7 +37,7 @@ describe('Plugin events integration', () => {
 
   it('notifies a plugin when a track finishes playing', async () => {
     const api = new NuclearAPI({ eventsHost: eventBus });
-    const listener = vi.fn();
+    const listener = vi.fn(async () => {});
     api.Events.on('trackFinished', listener);
 
     useQueueStore.getState().addToQueue([testTrack]);
@@ -55,6 +55,8 @@ describe('Plugin events integration', () => {
       audio?.dispatchEvent(new Event('ended', { bubbles: false }));
     });
 
-    expect(listener).toHaveBeenCalledWith(testTrack);
+    await waitFor(() => {
+      expect(listener).toHaveBeenCalledWith(testTrack);
+    });
   });
 });
