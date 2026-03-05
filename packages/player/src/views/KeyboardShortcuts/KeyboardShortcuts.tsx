@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { ViewShell } from '@nuclearplayer/ui';
+import { Button, ViewShell } from '@nuclearplayer/ui';
 
 import {
   getCommandsBySection,
@@ -16,7 +16,10 @@ export const KeyboardShortcuts: FC = () => {
   const resetAll = useShortcutsStore((state) => state.resetAll);
 
   return (
-    <ViewShell title={t('shortcuts.title')}>
+    <ViewShell
+      title={t('shortcuts.title')}
+      classes={{ scrollableArea: 'px-4' }}
+    >
       {SHORTCUT_SECTIONS.map((section) => (
         <div
           key={section}
@@ -43,13 +46,9 @@ export const KeyboardShortcuts: FC = () => {
         </div>
       ))}
       {Object.keys(overrides).length > 0 && (
-        <button
-          type="button"
-          onClick={resetAll}
-          className="text-muted-foreground hover:text-foreground mt-4 cursor-pointer text-sm transition-colors"
-        >
-          {t('shortcuts.resetAll')}
-        </button>
+        <div className="flex items-center justify-center pb-4">
+          <Button onClick={resetAll}>{t('shortcuts.resetAll')}</Button>
+        </div>
       )}
     </ViewShell>
   );

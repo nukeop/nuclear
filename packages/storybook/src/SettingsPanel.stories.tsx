@@ -17,9 +17,7 @@ const SAMPLE_TABS: SettingsTab[] = [
     content: () => (
       <div className="p-6">
         <h1 className="font-heading mb-4 text-3xl font-bold">General</h1>
-        <p className="text-muted-foreground">
-          General settings content goes here.
-        </p>
+        <p>General settings content goes here.</p>
       </div>
     ),
   },
@@ -30,7 +28,7 @@ const SAMPLE_TABS: SettingsTab[] = [
     content: () => (
       <div className="p-6">
         <h1 className="font-heading mb-4 text-3xl font-bold">Plugins</h1>
-        <p className="text-muted-foreground">Plugin management content.</p>
+        <p>Plugin management content.</p>
       </div>
     ),
   },
@@ -41,7 +39,7 @@ const SAMPLE_TABS: SettingsTab[] = [
     content: () => (
       <div className="p-6">
         <h1 className="font-heading mb-4 text-3xl font-bold">Themes</h1>
-        <p className="text-muted-foreground">Theme selection content.</p>
+        <p>Theme selection content.</p>
       </div>
     ),
   },
@@ -52,7 +50,7 @@ const SAMPLE_TABS: SettingsTab[] = [
     content: () => (
       <div className="p-6">
         <h1 className="font-heading mb-4 text-3xl font-bold">Logs</h1>
-        <p className="text-muted-foreground">Log viewer content.</p>
+        <p>Log viewer content.</p>
       </div>
     ),
   },

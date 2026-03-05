@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { KeyCombo } from '@nuclearplayer/ui';
+import { Button, KeyCombo } from '@nuclearplayer/ui';
 
 import { useShortcutsStore } from '../../stores/shortcutsStore';
 import { useShortcutRecorder } from './useShortcutRecorder';
@@ -27,7 +27,7 @@ export const ShortcutRow: FC<ShortcutRowProps> = ({
     <div
       role="row"
       aria-label={label}
-      className="flex items-center justify-between py-2"
+      className="flex items-center justify-between p-2"
     >
       <span className="text-foreground text-sm">{label}</span>
       <div className="flex items-center gap-2">
@@ -35,24 +35,18 @@ export const ShortcutRow: FC<ShortcutRowProps> = ({
           type="button"
           data-testid="shortcut-keybinding"
           onClick={startRecording}
-          className="hover:bg-muted/50 cursor-pointer rounded px-2 py-1 transition-colors"
+          className="cursor-pointer rounded px-2 py-1 transition-colors"
         >
           {isRecording ? (
-            <span className="text-muted-foreground text-sm italic">
-              {t('shortcuts.recording')}
-            </span>
+            <span className="text-sm italic">{t('shortcuts.recording')}</span>
           ) : (
             <KeyCombo shortcut={shortcut} />
           )}
         </button>
         {isOverridden && (
-          <button
-            type="button"
-            onClick={() => resetShortcut(commandId)}
-            className="text-muted-foreground hover:text-foreground cursor-pointer text-xs transition-colors"
-          >
+          <Button size="xs" onClick={() => resetShortcut(commandId)}>
             {t('shortcuts.reset')}
-          </button>
+          </Button>
         )}
       </div>
     </div>

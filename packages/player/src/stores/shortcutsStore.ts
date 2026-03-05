@@ -57,8 +57,9 @@ export const useShortcutsStore = create<ShortcutsStore>((set) => ({
 
   resetShortcut: withPersistence((commandId: string) => {
     set((state) => {
-      const { [commandId]: _, ...rest } = state.overrides;
-      return { overrides: rest };
+      const overrides = { ...state.overrides };
+      delete overrides[commandId];
+      return { overrides };
     });
   }),
 
