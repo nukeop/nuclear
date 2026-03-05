@@ -9,13 +9,13 @@ exports[`KeyCombo > (Snapshot) renders modifier combos 1`] = `
       class="inline-flex items-center gap-1"
     >
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         Ctrl
       </kbd>
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         →
@@ -25,13 +25,13 @@ exports[`KeyCombo > (Snapshot) renders modifier combos 1`] = `
       class="inline-flex items-center gap-1"
     >
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         Ctrl
       </kbd>
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         M
@@ -41,13 +41,13 @@ exports[`KeyCombo > (Snapshot) renders modifier combos 1`] = `
       class="inline-flex items-center gap-1"
     >
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         Ctrl
       </kbd>
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         ,
@@ -57,19 +57,19 @@ exports[`KeyCombo > (Snapshot) renders modifier combos 1`] = `
       class="inline-flex items-center gap-1"
     >
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         Shift
       </kbd>
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         Alt
       </kbd>
       <kbd
-        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+        class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
         role="kbd"
       >
         P
@@ -85,7 +85,7 @@ exports[`KeyCombo > (Snapshot) renders single key 1`] = `
     class="inline-flex items-center gap-1"
   >
     <kbd
-      class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      class="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
       role="kbd"
     >
       Space
