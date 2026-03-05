@@ -17,7 +17,7 @@ export const KeyboardShortcutsWrapper = {
     );
     await user.click(await screen.findByTestId('settings-tab-shortcuts'));
     await screen.findByRole('heading', {
-      name: 'Keyboard Shortcuts',
+      name: 'Key Shortcuts',
       level: 1,
     });
 

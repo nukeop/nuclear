@@ -40,4 +40,5 @@
 
 ## Misc
 
+* [Keyboard shortcuts](misc/keyboard-shortcuts.md)
 * [Platform-specific notes](misc/platform-specific.md)
