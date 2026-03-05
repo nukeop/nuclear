@@ -229,6 +229,28 @@
     "whats-new": {
       "title": "What's New"
     },
+    "shortcuts": {
+      "title": "Key Shortcuts",
+      "sections": {
+        "playback": "Playback",
+        "general": "General"
+      },
+      "commands": {
+        "playback.toggle": "Play / Pause",
+        "playback.next": "Next track",
+        "playback.previous": "Previous track",
+        "playback.seekForward": "Seek forward",
+        "playback.seekBackward": "Seek backward",
+        "playback.volumeUp": "Volume up",
+        "playback.volumeDown": "Volume down",
+        "playback.mute": "Mute / Unmute",
+        "general.toggleSettings": "Open settings"
+      },
+      "recording": "Press a key combination...",
+      "resetAll": "Reset all to defaults",
+      "reset": "Reset",
+      "conflict": "This shortcut is already used by \"{{command}}\""
+    },
     "appearance": {
       "title": "Appearance"
     },
