@@ -84,7 +84,7 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     description: 'preferences.playback.skipSeconds.description',
     category: 'playback',
     kind: 'number',
-    default: 10,
+    default: 5,
     widget: { type: 'number-input', min: 1, max: 60, step: 1, unit: 's' },
   },
   {

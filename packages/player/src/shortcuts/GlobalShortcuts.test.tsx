@@ -95,7 +95,7 @@ describe('Global keyboard shortcuts', () => {
 
     await user.keyboard('{ArrowRight}');
 
-    expect(useSoundStore.getState().seek).toBe(60);
+    expect(useSoundStore.getState().seek).toBe(55);
   });
 
   it('seeks backward when pressing Left', async () => {
@@ -103,7 +103,7 @@ describe('Global keyboard shortcuts', () => {
 
     await user.keyboard('{ArrowLeft}');
 
-    expect(useSoundStore.getState().seek).toBe(40);
+    expect(useSoundStore.getState().seek).toBe(45);
   });
 
   it('increases volume when pressing Ctrl+Up', async () => {
