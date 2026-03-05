@@ -1,0 +1,85 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`KeyCombo > (Snapshot) renders modifier combos 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-2"
+  >
+    <span
+      class="inline-flex items-center gap-1"
+    >
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        Ctrl
+      </kbd>
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        →
+      </kbd>
+    </span>
+    <span
+      class="inline-flex items-center gap-1"
+    >
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        Ctrl
+      </kbd>
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        M
+      </kbd>
+    </span>
+    <span
+      class="inline-flex items-center gap-1"
+    >
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        Ctrl
+      </kbd>
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        ,
+      </kbd>
+    </span>
+    <span
+      class="inline-flex items-center gap-1"
+    >
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        Shift
+      </kbd>
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        Alt
+      </kbd>
+      <kbd
+        class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+      >
+        P
+      </kbd>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`KeyCombo > (Snapshot) renders single key 1`] = `
+<div>
+  <span
+    class="inline-flex items-center gap-1"
+  >
+    <kbd
+      class="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
+    >
+      Space
+    </kbd>
+  </span>
+</div>
+`;
