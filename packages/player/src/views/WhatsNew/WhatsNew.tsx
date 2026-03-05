@@ -31,7 +31,7 @@ export const WhatsNew = () => {
         ))}
         {!showAll && hiddenCount > 0 && (
           <button
-            className="text-muted-foreground hover:text-foreground cursor-pointer py-4 text-sm transition-colors"
+            className="hover:text-foreground cursor-pointer py-4 text-sm transition-colors"
             onClick={() => setShowAll(true)}
           >
             {t('seeMore', { count: hiddenCount })}

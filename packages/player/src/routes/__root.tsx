@@ -28,7 +28,7 @@ import { ConnectedTopBar } from '../components/ConnectedTopBar';
 import { DevTools } from '../components/DevTools';
 import { FlatpakWarningBanner } from '../components/FlatpakWarningBanner';
 import { SoundProvider } from '../components/SoundProvider';
-import { useGlobalShortcuts } from '../shortcuts';
+import { GlobalShortcuts } from '../shortcuts';
 import { useLayoutStore } from '../stores/layoutStore';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
 
@@ -45,10 +45,9 @@ const RootComponent = () => {
   } = useLayoutStore();
   const openSettings = useSettingsModalStore((state) => state.open);
 
-  useGlobalShortcuts();
-
   return (
     <PlayerShell>
+      <GlobalShortcuts />
       <div>
         <FlatpakWarningBanner />
         <ConnectedTopBar />

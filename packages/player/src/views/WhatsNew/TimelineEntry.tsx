@@ -74,10 +74,7 @@ export const TimelineEntry: FC<TimelineEntryProps> = ({
           <span data-testid="changelog-description">{entry.description}</span>
         </div>
         <div className="flex items-center justify-between px-1">
-          <span
-            data-testid="changelog-date"
-            className="text-muted-foreground text-xs"
-          >
+          <span data-testid="changelog-date" className="text-xs">
             {DateTime.fromISO(entry.date).toLocaleString(DateTime.DATE_MED)}
           </span>
           {entry.contributors && entry.contributors.length > 0 && (
@@ -86,7 +83,7 @@ export const TimelineEntry: FC<TimelineEntryProps> = ({
                 <span
                   key={username}
                   data-testid="changelog-contributor"
-                  className="text-muted-foreground font-mono text-xs"
+                  className="font-mono text-xs"
                 >
                   @{username}
                 </span>

@@ -24,7 +24,7 @@ export const SettingsPanelNavItem: FC<SettingsPanelNavItemProps> = ({
     size="default"
     className="justify-start gap-2"
   >
-    {icon}
+    <span>{icon}</span>
     {label}
   </Button>
 );

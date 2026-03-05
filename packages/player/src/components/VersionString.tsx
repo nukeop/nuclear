@@ -12,8 +12,6 @@ export const VersionString: FC = () => {
   const versionString = `v${appVersion}${commitHash ? ` (${commitHash})` : ''}`;
 
   return (
-    <span className="text-muted-foreground cursor-text text-xs select-all">
-      {versionString}
-    </span>
+    <span className="cursor-text text-xs select-all">{versionString}</span>
   );
 };

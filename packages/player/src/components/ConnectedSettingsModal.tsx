@@ -1,5 +1,6 @@
 import {
   BlocksIcon,
+  KeyboardIcon,
   PaletteIcon,
   ScrollTextIcon,
   Settings2Icon,
@@ -14,6 +15,7 @@ import {
   useSettingsModalStore,
   type SettingsTab,
 } from '../stores/settingsModalStore';
+import { KeyboardShortcuts } from '../views/KeyboardShortcuts';
 import { Logs } from '../views/Logs/Logs';
 import { Plugins } from '../views/Plugins/Plugins';
 import { Settings } from '../views/Settings/Settings';
@@ -26,6 +28,11 @@ const SETTINGS_TABS = [
     id: 'general',
     icon: <Settings2Icon />,
     content: () => <Settings />,
+  },
+  {
+    id: 'shortcuts',
+    icon: <KeyboardIcon />,
+    content: () => <KeyboardShortcuts />,
   },
   {
     id: 'plugins',
