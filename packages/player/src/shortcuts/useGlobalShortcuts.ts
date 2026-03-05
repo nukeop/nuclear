@@ -9,7 +9,7 @@ export const useGlobalShortcuts = () => {
   const { isOpen, open, close } = useSettingsModalStore();
 
   useHotkeys(
-    COMMANDS.toggleSettings.shortcut,
+    COMMANDS['general.toggleSettings'].defaultShortcut,
     (event) => {
       event.preventDefault();
       if (isOpen) {

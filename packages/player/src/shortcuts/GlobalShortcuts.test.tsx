@@ -11,8 +11,8 @@ import {
   setSetting,
 } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
-import { createMockTrack } from '../test/utils/mockTrack';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
+import { createMockTrack } from '../test/utils/mockTrack';
 
 const user = userEvent.setup();
 
@@ -45,8 +45,18 @@ describe('Global keyboard shortcuts', () => {
   it('goes to next track when pressing Ctrl+Right', async () => {
     useQueueStore.setState({
       items: [
-        { id: '1', track: createMockTrack('Track 1'), status: 'idle', addedAtIso: '' },
-        { id: '2', track: createMockTrack('Track 2'), status: 'idle', addedAtIso: '' },
+        {
+          id: '1',
+          track: createMockTrack('Track 1'),
+          status: 'idle',
+          addedAtIso: '',
+        },
+        {
+          id: '2',
+          track: createMockTrack('Track 2'),
+          status: 'idle',
+          addedAtIso: '',
+        },
       ],
       currentIndex: 0,
     });
@@ -59,8 +69,18 @@ describe('Global keyboard shortcuts', () => {
   it('goes to previous track when pressing Ctrl+Left', async () => {
     useQueueStore.setState({
       items: [
-        { id: '1', track: createMockTrack('Track 1'), status: 'idle', addedAtIso: '' },
-        { id: '2', track: createMockTrack('Track 2'), status: 'idle', addedAtIso: '' },
+        {
+          id: '1',
+          track: createMockTrack('Track 1'),
+          status: 'idle',
+          addedAtIso: '',
+        },
+        {
+          id: '2',
+          track: createMockTrack('Track 2'),
+          status: 'idle',
+          addedAtIso: '',
+        },
       ],
       currentIndex: 1,
     });
