@@ -133,11 +133,11 @@ describe('Global keyboard shortcuts', () => {
   });
 
   it('toggles settings modal when pressing Ctrl+Comma', async () => {
-    await user.keyboard('{Control>},{/Control}');
+    await user.keyboard('{Control>}[Comma]{/Control}');
 
     expect(useSettingsModalStore.getState().isOpen).toBe(true);
 
-    await user.keyboard('{Control>},{/Control}');
+    await user.keyboard('{Control>}[Comma]{/Control}');
 
     expect(useSettingsModalStore.getState().isOpen).toBe(false);
   });

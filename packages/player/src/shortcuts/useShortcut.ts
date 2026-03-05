@@ -10,5 +10,6 @@ export const useShortcut = (commandId: string, handler: () => void): void => {
   useHotkeys(binding, handler, {
     enableOnFormTags: false,
     preventDefault: true,
+    delimiter: '|',
   });
 };
