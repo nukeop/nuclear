@@ -10,10 +10,12 @@ const store = new LazyStore(SHORTCUTS_FILE);
 
 type ShortcutsStore = {
   overrides: Record<string, string>;
+  isRecording: boolean;
   loadFromDisk: () => Promise<void>;
   setShortcut: (commandId: string, shortcut: string) => void;
   resetShortcut: (commandId: string) => void;
   resetAll: () => void;
+  setRecording: (recording: boolean) => void;
 };
 
 const saveToDisk = async (): Promise<void> => {
@@ -39,6 +41,7 @@ const withPersistence = <T extends unknown[]>(
 
 export const useShortcutsStore = create<ShortcutsStore>((set) => ({
   overrides: {},
+  isRecording: false,
 
   loadFromDisk: async () => {
     const overrides =
@@ -62,6 +65,8 @@ export const useShortcutsStore = create<ShortcutsStore>((set) => ({
   resetAll: withPersistence(() => {
     set({ overrides: {} });
   }),
+
+  setRecording: (recording: boolean) => set({ isRecording: recording }),
 }));
 
 export const getEffectiveShortcut = (commandId: string): string => {

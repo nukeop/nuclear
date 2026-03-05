@@ -10,6 +10,22 @@ const KEY_LABELS: Record<string, string> = {
   alt: isMac() ? '⌥' : 'Alt',
   shift: isMac() ? '⇧' : 'Shift',
   space: 'Space',
+  enter: 'Enter',
+  tab: 'Tab',
+  backspace: isMac() ? '⌫' : 'Backspace',
+  delete: isMac() ? '⌦' : 'Del',
+  escape: 'Esc',
+  comma: ',',
+  period: '.',
+  slash: '/',
+  backslash: '\\',
+  backquote: '`',
+  minus: '-',
+  equal: '=',
+  semicolon: ';',
+  quote: "'",
+  bracketleft: '[',
+  bracketright: ']',
   left: '←',
   right: '→',
   up: '↑',
@@ -32,6 +48,7 @@ export const KeyCombo: FC<KeyComboProps> = ({ shortcut, className }) => {
       {keys.map((key, index) => (
         <kbd
           key={index}
+          role="kbd"
           className="bg-muted text-foreground inline-flex min-w-6 items-center justify-center rounded border border-white/10 px-1.5 py-0.5 font-mono text-xs"
         >
           {key}

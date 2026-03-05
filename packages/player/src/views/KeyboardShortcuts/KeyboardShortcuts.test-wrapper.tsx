@@ -3,11 +3,13 @@ import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
 import { initializeSettingsStore } from '../../stores/settingsStore';
+import { useShortcutsStore } from '../../stores/shortcutsStore';
 
 const user = userEvent.setup();
 
 export const KeyboardShortcutsWrapper = {
   async mount(): Promise<RenderResult> {
+    useShortcutsStore.setState({ overrides: {} });
     await initializeSettingsStore();
     const component = render(<App />);
     await user.click(

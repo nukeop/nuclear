@@ -3,6 +3,7 @@ import { useRecordHotkeys } from 'react-hotkeys-hook';
 import { toast } from 'sonner';
 
 import { useTranslation } from '@nuclearplayer/i18n';
+import { isMac } from '@nuclearplayer/ui';
 
 import { COMMANDS } from '../../shortcuts/commands';
 import { useShortcutsStore } from '../../stores/shortcutsStore';
@@ -15,15 +16,23 @@ const RECORDED_KEY_TO_SHORTCUT: Record<string, string> = {
   ' ': 'space',
 };
 
+const MODIFIERS = new Set(['ctrl', 'meta', 'shift', 'alt']);
+
 const normalizeRecordedKeys = (keys: Set<string>): string => {
   const modifiers: string[] = [];
   const rest: string[] = [];
 
+  const modKey = isMac() ? 'meta' : 'ctrl';
+
   for (const key of keys) {
-    if (key === 'ctrl' || key === 'meta') {
+    if (key === modKey) {
       if (!modifiers.includes('mod')) {
         modifiers.push('mod');
       }
+    } else if (key === 'ctrl') {
+      modifiers.push('ctrl');
+    } else if (key === 'meta') {
+      modifiers.push('meta');
     } else if (key === 'shift') {
       modifiers.push('shift');
     } else if (key === 'alt') {
@@ -65,6 +74,7 @@ export const useShortcutRecorder = (
 ): UseShortcutRecorderResult => {
   const { t } = useTranslation('preferences');
   const setShortcut = useShortcutsStore((state) => state.setShortcut);
+  const setRecording = useShortcutsStore((state) => state.setRecording);
   const [keys, { start, stop, isRecording }] = useRecordHotkeys();
 
   const handleRecordedKeys = useCallback(
@@ -78,6 +88,7 @@ export const useShortcutRecorder = (
       // Shortcuts don't support escape. It's used to cancel recording
       if (normalized === 'escape') {
         stop();
+        setRecording(false);
         return;
       }
 
@@ -86,23 +97,37 @@ export const useShortcutRecorder = (
         const conflictLabel = t(`shortcuts.commands.${conflictId}`);
         toast.error(t('shortcuts.conflict', { command: conflictLabel }));
         stop();
+        setRecording(false);
         return;
       }
 
       setShortcut(commandId, normalized);
       stop();
+      setRecording(false);
     },
-    [commandId, setShortcut, stop, t],
+    [commandId, setShortcut, setRecording, stop, t],
   );
 
   useEffect(() => {
-    if (isRecording && keys.size > 0) {
-      handleRecordedKeys(keys);
+    if (!isRecording || keys.size === 0) {
+      return;
     }
+
+    const hasNonModifier = [...keys].some((key) => !MODIFIERS.has(key));
+    if (!hasNonModifier) {
+      return;
+    }
+
+    handleRecordedKeys(keys);
   }, [isRecording, keys, handleRecordedKeys]);
+
+  const startRecording = useCallback(() => {
+    setRecording(true);
+    start();
+  }, [setRecording, start]);
 
   return {
     isRecording,
-    startRecording: start,
+    startRecording,
   };
 };
