@@ -4,6 +4,7 @@ pub mod logging;
 pub mod mcp;
 mod setup;
 pub mod stream_proxy;
+pub mod stream_server;
 pub mod ytdlp;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -37,11 +38,13 @@ pub fn run() {
             logging::get_startup_logs,
             mcp::mcp_start,
             mcp::mcp_stop,
-            mcp::mcp_respond
+            mcp::mcp_respond,
+            stream_server::stream_server_port
         ])
         .setup(|app| {
             logging::mark_startup_complete();
             mcp::init_mcp(app.handle().clone());
+            stream_server::init_stream_server(app.handle().clone());
             Ok(())
         })
         .run(tauri::generate_context!())
