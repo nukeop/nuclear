@@ -70,6 +70,10 @@ export function findBoxes(data: Uint8Array): Fmp4Box[] {
   return boxes;
 }
 
+// Parses an ISO 14496-12 Segment Index Box (sidx).
+// Layout reference: ISO 14496-12:2015, Section 8.16.3
+// YouTube serves fMP4 audio with a sidx box that maps each fragment
+// to a byte range and duration, which we need for MSE seeking.
 export function parseSidx(
   data: Uint8Array,
   boxOffset: number,
@@ -77,25 +81,27 @@ export function parseSidx(
 ): { references: SegmentReference[]; timescale: number } {
   let cursor = boxOffset + BOX_HEADER_SIZE;
 
-  const version = data[cursor];
+  const version = data[cursor]; // version (1 byte) + flags (3 bytes)
   cursor += 4;
 
-  cursor += 4;
+  cursor += 4; // reference_ID
   const timescale = readUint32(data, cursor);
   cursor += 4;
 
+  // earliest_presentation_time + first_offset
+  // 32-bit each in v0, 64-bit each in v1
   let firstOffset: number;
   if (version === 0) {
-    cursor += 4;
+    cursor += 4; // earliest_presentation_time (32-bit)
     firstOffset = readUint32(data, cursor);
     cursor += 4;
   } else {
-    cursor += 8;
+    cursor += 8; // earliest_presentation_time (64-bit)
     firstOffset = readUint64(data, cursor);
     cursor += 8;
   }
 
-  cursor += 2;
+  cursor += 2; // reserved
   const referenceCount = readUint16(data, cursor);
   cursor += 2;
 
@@ -104,11 +110,12 @@ export function parseSidx(
   const references: SegmentReference[] = [];
 
   for (let index = 0; index < referenceCount; index++) {
+    // Bit 0 is reference_type (0 = media, 1 = index); mask it off
     const referencedSize = readUint32(data, cursor) & 0x7fffffff;
     cursor += 4;
     const subsegmentDuration = readUint32(data, cursor);
     cursor += 4;
-    cursor += 4;
+    cursor += 4; // starts_with_SAP + SAP_type + SAP_delta_time
 
     const startByte = byteOffset;
     const endByte = byteOffset + referencedSize - 1;
