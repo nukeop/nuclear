@@ -62,6 +62,7 @@ const buildAudioSource = async (
       url: proxyUrl,
       protocol: 'mse',
       durationSeconds: durationMs / 1000,
+      codec: stream.codec,
     };
   }
 

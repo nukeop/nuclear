@@ -106,6 +106,7 @@ export class MseController {
     audio: HTMLAudioElement,
     url: string,
     durationSeconds: number,
+    codec?: string,
   ): Promise<void> {
     this.url = url;
     const abortController = new AbortController();
@@ -126,7 +127,7 @@ export class MseController {
       return;
     }
 
-    const { initSegmentEnd, segments, codec } = index;
+    const { initSegmentEnd, segments, codec: parsedCodec } = index;
     this.segments = segments;
 
     const initSegment = headerBytes.slice(0, initSegmentEnd);
@@ -162,7 +163,8 @@ export class MseController {
       return;
     }
 
-    const mimeType = `audio/mp4; codecs="${codec}"`;
+    const resolvedCodec = codec ?? parsedCodec;
+    const mimeType = `audio/mp4; codecs="${resolvedCodec}"`;
     const sourceBuffer = mediaSource.addSourceBuffer(mimeType);
     this.sourceBuffer = sourceBuffer;
 

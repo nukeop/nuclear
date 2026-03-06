@@ -23,7 +23,7 @@ export const useMseSource = (
 
     const controller = new MseController();
     controllerRef.current = controller;
-    controller.init(audio, src.url, src.durationSeconds!);
+    controller.init(audio, src.url, src.durationSeconds!, src.codec);
 
     const onTimeUpdate = () => controller.handleTimeUpdate(audio);
     const onSeeking = () => controller.handleSeeking(audio);
