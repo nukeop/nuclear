@@ -1,3 +1,5 @@
+import { BinaryReader } from './BinaryReader';
+
 export type Fmp4Box = {
   type: string;
   offset: number;
@@ -21,50 +23,26 @@ export type Fmp4Index = {
 const BOX_HEADER_SIZE = 8;
 const EXTENDED_SIZE_MARKER = 1;
 
-function readUint32(data: Uint8Array, offset: number): number {
-  return (
-    ((data[offset] << 24) |
-      (data[offset + 1] << 16) |
-      (data[offset + 2] << 8) |
-      data[offset + 3]) >>>
-    0
-  );
-}
-
-function readUint64(data: Uint8Array, offset: number): number {
-  const high = readUint32(data, offset);
-  const low = readUint32(data, offset + 4);
-  return high * 0x100000000 + low;
-}
-
-function readAscii(data: Uint8Array, offset: number, length: number): string {
-  return String.fromCharCode(...data.slice(offset, offset + length));
-}
-
-function readUint16(data: Uint8Array, offset: number): number {
-  return ((data[offset] << 8) | data[offset + 1]) >>> 0;
-}
-
 export function findBoxes(data: Uint8Array): Fmp4Box[] {
   const boxes: Fmp4Box[] = [];
-  let offset = 0;
+  const reader = new BinaryReader(data);
 
-  while (offset < data.length) {
-    if (offset + BOX_HEADER_SIZE > data.length) {
-      break;
-    }
+  while (reader.hasRemaining(BOX_HEADER_SIZE)) {
+    const offset = reader.position;
 
-    let size = readUint32(data, offset);
-    const type = readAscii(data, offset + 4, 4);
+    let size = reader.readUint32();
+    const type = reader.readAscii(4);
 
     if (size === EXTENDED_SIZE_MARKER) {
-      size = readUint64(data, offset + BOX_HEADER_SIZE);
+      size = reader.readUint64();
     } else if (size === 0) {
       size = data.length - offset;
     }
 
     boxes.push({ type, offset, size });
-    offset += size;
+
+    const nextBox = offset + size;
+    reader.skip(nextBox - reader.position);
   }
 
   return boxes;
@@ -79,43 +57,34 @@ export function parseSidx(
   boxOffset: number,
   boxSize: number,
 ): { references: SegmentReference[]; timescale: number } {
-  let cursor = boxOffset + BOX_HEADER_SIZE;
+  const reader = new BinaryReader(data, boxOffset + BOX_HEADER_SIZE);
 
-  const version = data[cursor]; // version (1 byte) + flags (3 bytes)
-  cursor += 4;
+  const version = reader.readUint8();
+  reader.skip(3); // flags
 
-  cursor += 4; // reference_ID
-  const timescale = readUint32(data, cursor);
-  cursor += 4;
+  reader.skip(4); // reference_ID
+  const timescale = reader.readUint32();
 
-  // earliest_presentation_time + first_offset
-  // 32-bit each in v0, 64-bit each in v1
   let firstOffset: number;
   if (version === 0) {
-    cursor += 4; // earliest_presentation_time (32-bit)
-    firstOffset = readUint32(data, cursor);
-    cursor += 4;
+    reader.skip(4); // earliest_presentation_time (32-bit)
+    firstOffset = reader.readUint32();
   } else {
-    cursor += 8; // earliest_presentation_time (64-bit)
-    firstOffset = readUint64(data, cursor);
-    cursor += 8;
+    reader.skip(8); // earliest_presentation_time (64-bit)
+    firstOffset = reader.readUint64();
   }
 
-  cursor += 2; // reserved
-  const referenceCount = readUint16(data, cursor);
-  cursor += 2;
+  reader.skip(2); // reserved
+  const referenceCount = reader.readUint16();
 
   let byteOffset = boxOffset + boxSize + firstOffset;
   let timeOffset = 0;
   const references: SegmentReference[] = [];
 
   for (let index = 0; index < referenceCount; index++) {
-    // Bit 0 is reference_type (0 = media, 1 = index); mask it off
-    const referencedSize = readUint32(data, cursor) & 0x7fffffff;
-    cursor += 4;
-    const subsegmentDuration = readUint32(data, cursor);
-    cursor += 4;
-    cursor += 4; // starts_with_SAP + SAP_type + SAP_delta_time
+    const referencedSize = reader.readUint32() & 0x7fffffff;
+    const subsegmentDuration = reader.readUint32();
+    reader.skip(4); // starts_with_SAP + SAP_type + SAP_delta_time
 
     const startByte = byteOffset;
     const endByte = byteOffset + referencedSize - 1;
