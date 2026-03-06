@@ -100,6 +100,7 @@ export class MseController {
   private abortController: AbortController | null = null;
   private objectUrl: string | null = null;
   private url = '';
+  private isFetching = false;
 
   async init(
     audio: HTMLAudioElement,
@@ -179,7 +180,7 @@ export class MseController {
 
   handleTimeUpdate(audio: HTMLAudioElement): void {
     const { sourceBuffer, segments } = this;
-    if (!sourceBuffer || segments.length === 0) {
+    if (this.isFetching || !sourceBuffer || segments.length === 0) {
       return;
     }
 
@@ -205,7 +206,10 @@ export class MseController {
       return;
     }
 
-    this.fetchAndAppendSegment(nextIndex, controller.signal);
+    this.isFetching = true;
+    this.fetchAndAppendSegment(nextIndex, controller.signal).finally(() => {
+      this.isFetching = false;
+    });
   }
 
   async handleSeeking(audio: HTMLAudioElement): Promise<void> {
