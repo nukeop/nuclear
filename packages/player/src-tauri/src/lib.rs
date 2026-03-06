@@ -3,7 +3,6 @@ pub mod http;
 pub mod logging;
 pub mod mcp;
 mod setup;
-pub mod stream_proxy;
 pub mod stream_server;
 pub mod ytdlp;
 
@@ -24,9 +23,6 @@ pub fn run() {
     }
 
     builder
-        .register_asynchronous_uri_scheme_protocol("nuclear-stream", |ctx, request, responder| {
-            stream_proxy::handle_stream_request(ctx.app_handle(), request, responder);
-        })
         .invoke_handler(tauri::generate_handler![
             commands::is_flatpak,
             commands::copy_dir_recursive,

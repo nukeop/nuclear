@@ -1,3 +1,4 @@
+import { invoke } from '@tauri-apps/api/core';
 import { useEffect, useRef } from 'react';
 
 import { AudioSource } from '@nuclearplayer/hifi';
@@ -10,18 +11,28 @@ import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 
 let activeController: AbortController | null = null;
+let cachedStreamServerPort: number | null = null;
 
-// Encode the URL in base64 and use our custom protocol to bypass CORS
-// Check packages/player/src-tauri/src/stream_proxy.rs to see how this works
-const proxyStreamUrl = (url: string): string => {
+const getStreamServerPort = async (): Promise<number> => {
+  if (cachedStreamServerPort === null) {
+    cachedStreamServerPort = await invoke<number>('stream_server_port');
+  }
+  return cachedStreamServerPort;
+};
+
+// Encode the URL in base64 and proxy through the local streaming server to bypass CORS
+// Check packages/player/src-tauri/src/stream_server.rs to see how this works
+const proxyStreamUrl = (url: string, port: number): string => {
   const encoded = btoa(url)
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/, '');
-  return `nuclear-stream://localhost/${encoded}`;
+  return `http://127.0.0.1:${port}/stream/${encoded}`;
 };
 
-const buildAudioSource = (candidate: StreamCandidate): AudioSource => {
+const buildAudioSource = async (
+  candidate: StreamCandidate,
+): Promise<AudioSource> => {
   const { stream } = candidate;
   if (!stream) {
     return { url: candidate.id, protocol: 'http' };
@@ -31,7 +42,8 @@ const buildAudioSource = (candidate: StreamCandidate): AudioSource => {
     return { url: stream.url, protocol: 'hls' };
   }
 
-  return { url: proxyStreamUrl(stream.url), protocol: stream.protocol };
+  const port = await getStreamServerPort();
+  return { url: proxyStreamUrl(stream.url, port), protocol: stream.protocol };
 };
 
 const setItemError = (itemId: string, errorKey: string, t: TFunction): void => {
@@ -144,7 +156,7 @@ const resolveAndPlay = async (item: QueueItem, t: TFunction): Promise<void> => {
     return;
   }
 
-  setSrc(buildAudioSource(resolvedCandidate));
+  setSrc(await buildAudioSource(resolvedCandidate));
   play();
 };
 
