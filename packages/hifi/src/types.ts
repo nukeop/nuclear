@@ -2,7 +2,7 @@ import { ReactNode, ScriptHTMLAttributes } from 'react';
 
 export type AudioSource = {
   url: string;
-  protocol: 'file' | 'http' | 'https' | 'hls';
+  protocol: 'file' | 'http' | 'https' | 'hls' | 'mse';
 };
 
 export type SoundStatus = 'playing' | 'paused' | 'stopped';
