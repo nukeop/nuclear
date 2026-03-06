@@ -237,6 +237,7 @@ export class MseController {
       }
       sourceBuffer.remove(0, Infinity);
       await waitForUpdateEnd(sourceBuffer);
+      this.fetchedSegments.clear();
 
       if (abortController.signal.aborted) {
         return;
