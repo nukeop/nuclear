@@ -1,85 +1,5 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
-
-import { useMseSource } from '../hooks/useMseSource';
-import { AudioSource } from '../types';
-
-// ---------------------------------------------------------------------------
-// Binary helpers (same as parser.test.ts)
-// ---------------------------------------------------------------------------
-
-function writeUint32(value: number): number[] {
-  return [
-    (value >>> 24) & 0xff,
-    (value >>> 16) & 0xff,
-    (value >>> 8) & 0xff,
-    value & 0xff,
-  ];
-}
-
-function writeUint16(value: number): number[] {
-  return [(value >>> 8) & 0xff, value & 0xff];
-}
-
-function writeAscii(text: string): number[] {
-  return [...text].map((char) => char.charCodeAt(0));
-}
-
-function buildBoxHeader(type: string, size: number): number[] {
-  return [...writeUint32(size), ...writeAscii(type)];
-}
-
-function buildBoxWithPadding(type: string, totalSize: number): number[] {
-  const header = buildBoxHeader(type, totalSize);
-  const padding = new Array(totalSize - header.length).fill(0);
-  return [...header, ...padding];
-}
-
-function buildSidxBody(options: {
-  version: number;
-  timescale: number;
-  earliestPresentationTime: number;
-  firstOffset: number;
-  references: { referencedSize: number; subsegmentDuration: number }[];
-}): number[] {
-  const body: number[] = [];
-
-  body.push(options.version);
-  body.push(0, 0, 0);
-  body.push(...writeUint32(1));
-  body.push(...writeUint32(options.timescale));
-
-  if (options.version === 0) {
-    body.push(...writeUint32(options.earliestPresentationTime));
-    body.push(...writeUint32(options.firstOffset));
-  } else {
-    body.push(
-      ...writeUint32(0),
-      ...writeUint32(options.earliestPresentationTime),
-    );
-    body.push(...writeUint32(0), ...writeUint32(options.firstOffset));
-  }
-
-  body.push(...writeUint16(0));
-  body.push(...writeUint16(options.references.length));
-
-  for (const ref of options.references) {
-    body.push(...writeUint32(ref.referencedSize & 0x7fffffff));
-    body.push(...writeUint32(ref.subsegmentDuration));
-    body.push(...writeUint32(0));
-  }
-
-  return body;
-}
-
-function buildSidxBox(options: Parameters<typeof buildSidxBody>[0]): number[] {
-  const body = buildSidxBody(options);
-  const totalSize = 8 + body.length;
-  return [...buildBoxHeader('sidx', totalSize), ...body];
-}
-
-// ---------------------------------------------------------------------------
-// Fake fMP4 header: ftyp(20) + moov(100) + sidx(3 segments)
-// ---------------------------------------------------------------------------
+import { MseController } from './MseController';
+import { buildBoxWithPadding, buildSidxBox } from './test-helpers';
 
 const TIMESCALE = 44100;
 const SEGMENT_REFS = [
@@ -99,15 +19,14 @@ const SIDX = buildSidxBox({
 });
 
 const FAKE_HEADER = new Uint8Array([...FTYP, ...MOOV, ...SIDX]);
-const INIT_SEGMENT_END = 120; // ftyp(20) + moov(100) = offset of sidx
+const INIT_SEGMENT_END = 120;
 
-// Pad to 8192 bytes (the hook requests bytes 0-8191)
 const HEADER_RESPONSE = new Uint8Array(8192);
 HEADER_RESPONSE.set(FAKE_HEADER, 0);
 
-// ---------------------------------------------------------------------------
-// Mock classes
-// ---------------------------------------------------------------------------
+const MSE_URL = 'http://127.0.0.1:3000/stream/test';
+
+type EventHandler = (...args: unknown[]) => void;
 
 class MockTimeRanges {
   private ranges: [number, number][] = [];
@@ -124,8 +43,6 @@ class MockTimeRanges {
     this.ranges.push([start, end]);
   }
 }
-
-type EventHandler = (...args: unknown[]) => void;
 
 class MockSourceBuffer {
   updating = false;
@@ -215,10 +132,6 @@ class MockMediaSource {
     }
   }
 }
-
-// ---------------------------------------------------------------------------
-// Setup and teardown
-// ---------------------------------------------------------------------------
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const win = window as any;
@@ -312,46 +225,25 @@ function removeMocks() {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
+async function initController(
+  controller: MseController,
+): Promise<MockMediaSource> {
+  const initPromise = controller.init(audio, MSE_URL, 180);
 
-const MSE_SOURCE = {
-  url: 'http://127.0.0.1:3000/stream/test',
-  protocol: 'mse',
-  durationSeconds: 180,
-} as unknown as AudioSource;
+  await vi.waitFor(() => expect(latestMediaSource).not.toBeNull());
+  latestMediaSource!.open();
 
-const HTTP_SOURCE: AudioSource = { url: '/a.mp3', protocol: 'http' };
-
-async function waitForInitialization() {
-  await waitFor(() => {
-    expect(latestMediaSource).not.toBeNull();
-  });
-
-  const mediaSource = latestMediaSource!;
-  await act(async () => {
-    mediaSource.open();
-  });
-
-  // Let the init segment append + first segment fetch settle
-  await act(async () => {
-    await flushMicrotasks();
-  });
+  await initPromise;
+  return latestMediaSource!;
 }
 
 async function flushMicrotasks() {
-  // Multiple rounds to let chained promises resolve
   for (let round = 0; round < 10; round++) {
     await new Promise((resolve) => setTimeout(resolve, 0));
   }
 }
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
-
-describe('useMseSource', () => {
+describe('MseController', () => {
   beforeEach(() => {
     installMocks();
   });
@@ -360,35 +252,26 @@ describe('useMseSource', () => {
     removeMocks();
   });
 
-  it('creates MediaSource and sets audio.src to object URL when protocol is mse', async () => {
-    const audioRef = { current: audio };
-
-    renderHook(() => useMseSource(audioRef, MSE_SOURCE, true));
-
-    await waitForInitialization();
+  it('creates MediaSource and sets audio.src to object URL', async () => {
+    const controller = new MseController();
+    await initController(controller);
 
     expect(createObjectURLSpy).toHaveBeenCalledOnce();
     expect(audio.src).toContain('blob:mock-url');
   });
 
-  it('sets mediaSource.duration to the value from src.durationSeconds', async () => {
-    const audioRef = { current: audio };
-
-    renderHook(() => useMseSource(audioRef, MSE_SOURCE, true));
-
-    await waitForInitialization();
+  it('sets mediaSource.duration to the provided value', async () => {
+    const controller = new MseController();
+    await initController(controller);
 
     expect(latestMediaSource!.duration).toBe(180);
   });
 
   it('appends init segment to SourceBuffer on sourceopen', async () => {
-    const audioRef = { current: audio };
+    const controller = new MseController();
+    const mediaSource = await initController(controller);
 
-    renderHook(() => useMseSource(audioRef, MSE_SOURCE, true));
-
-    await waitForInitialization();
-
-    const sourceBuffer = latestMediaSource!.sourceBuffers[0];
+    const sourceBuffer = mediaSource.sourceBuffers[0];
     expect(sourceBuffer.appendBuffer).toHaveBeenCalled();
 
     const calls = sourceBuffer.appendBuffer.mock.calls as unknown[][];
@@ -397,14 +280,11 @@ describe('useMseSource', () => {
   });
 
   it('fetches first media segment after init segment is appended', async () => {
-    const audioRef = { current: audio };
-
-    renderHook(() => useMseSource(audioRef, MSE_SOURCE, true));
-
-    await waitForInitialization();
+    const controller = new MseController();
+    await initController(controller);
 
     expect(fetchMock).toHaveBeenCalledWith(
-      MSE_SOURCE.url,
+      MSE_URL,
       expect.objectContaining({
         headers: { Range: 'bytes=0-8191' },
       }),
@@ -419,85 +299,55 @@ describe('useMseSource', () => {
     expect(segmentFetchCall).toBeDefined();
   });
 
-  it('does not activate for non-MSE protocols', async () => {
-    const audioRef = { current: audio };
+  it('does not create MediaSource when getMseBackend returns undefined', async () => {
+    delete win.MediaSource;
+    delete win.ManagedMediaSource;
 
-    renderHook(() => useMseSource(audioRef, HTTP_SOURCE, true));
+    const controller = new MseController();
+    await controller.init(audio, MSE_URL, 180);
 
-    await act(async () => {
-      await flushMicrotasks();
-    });
+    await flushMicrotasks();
 
     expect(latestMediaSource).toBeNull();
     expect(createObjectURLSpy).not.toHaveBeenCalled();
   });
 
-  it('does not activate when isReady is false', async () => {
-    const audioRef = { current: audio };
+  it('cleans up on destroy', async () => {
+    const controller = new MseController();
+    const mediaSource = await initController(controller);
 
-    renderHook(() => useMseSource(audioRef, MSE_SOURCE, false));
-
-    await act(async () => {
-      await flushMicrotasks();
-    });
-
-    expect(latestMediaSource).toBeNull();
-    expect(fetchMock).not.toHaveBeenCalled();
-  });
-
-  it('cleans up MediaSource when source changes away from MSE', async () => {
-    const audioRef = { current: audio };
-
-    const { rerender } = renderHook(
-      ({ src }: { src: AudioSource }) => useMseSource(audioRef, src, true),
-      { initialProps: { src: MSE_SOURCE } },
-    );
-
-    await waitForInitialization();
-
-    const mediaSource = latestMediaSource!;
-
-    rerender({ src: HTTP_SOURCE });
-
-    await act(async () => {
-      await flushMicrotasks();
-    });
+    controller.destroy(audio);
 
     expect(revokeObjectURLSpy).toHaveBeenCalledWith('blob:mock-url');
     expect(mediaSource.endOfStream).toHaveBeenCalled();
   });
 
-  it('cleans up on unmount', async () => {
-    const audioRef = { current: audio };
+  it('destroy handles null audio gracefully', async () => {
+    const controller = new MseController();
+    await initController(controller);
 
-    const { unmount } = renderHook(() =>
-      useMseSource(audioRef, MSE_SOURCE, true),
-    );
-
-    await waitForInitialization();
-
-    unmount();
+    controller.destroy(null);
 
     expect(revokeObjectURLSpy).toHaveBeenCalledWith('blob:mock-url');
   });
 
   it('handles seeking by fetching the correct segment', async () => {
-    const audioRef = { current: audio };
-
-    renderHook(() => useMseSource(audioRef, MSE_SOURCE, true));
-
-    await waitForInitialization();
+    const controller = new MseController();
+    const mediaSource = await initController(controller);
 
     fetchMock.mockClear();
 
-    const sourceBuffer = latestMediaSource!.sourceBuffers[0];
+    const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
 
-    audio.currentTime = 90;
-    await act(async () => {
-      audio.dispatchEvent(new Event('seeking'));
-      await flushMicrotasks();
+    Object.defineProperty(audio, 'currentTime', {
+      value: 90,
+      writable: true,
+      configurable: true,
     });
+
+    await controller.handleSeeking(audio);
+    await flushMicrotasks();
 
     const segmentFetchCalls = fetchMock.mock.calls.filter((call: unknown[]) => {
       const opts = call[1] as { headers?: { Range?: string } } | undefined;
@@ -508,20 +358,44 @@ describe('useMseSource', () => {
   });
 
   it('prefers ManagedMediaSource over MediaSource when available', async () => {
-    const audioRef = { current: audio };
-
     const managedConstructor = vi.fn(() => {
       latestMediaSource = new MockMediaSource();
       return latestMediaSource;
     });
     win.ManagedMediaSource = managedConstructor;
 
-    renderHook(() => useMseSource(audioRef, MSE_SOURCE, true));
-
-    await waitForInitialization();
+    const controller = new MseController();
+    await initController(controller);
 
     expect(managedConstructor).toHaveBeenCalledOnce();
     expect(createObjectURLSpy).not.toHaveBeenCalled();
     expect(audio.srcObject).toBe(latestMediaSource);
+  });
+
+  it('fetches next segment on timeupdate when buffer is low', async () => {
+    const controller = new MseController();
+    const mediaSource = await initController(controller);
+
+    fetchMock.mockClear();
+
+    const sourceBuffer = mediaSource.sourceBuffers[0];
+    sourceBuffer.buffered = new MockTimeRanges();
+    sourceBuffer.buffered.addRange(0, 20);
+
+    Object.defineProperty(audio, 'currentTime', {
+      value: 10,
+      writable: true,
+      configurable: true,
+    });
+
+    controller.handleTimeUpdate(audio);
+    await flushMicrotasks();
+
+    const segmentFetchCalls = fetchMock.mock.calls.filter((call: unknown[]) => {
+      const opts = call[1] as { headers?: { Range?: string } } | undefined;
+      return opts?.headers?.Range && opts.headers.Range !== 'bytes=0-8191';
+    });
+
+    expect(segmentFetchCalls.length).toBeGreaterThan(0);
   });
 });
