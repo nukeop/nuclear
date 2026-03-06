@@ -165,7 +165,6 @@ describe('parseInitSegment', () => {
 
     expect(result.initSegmentEnd).toBe(120);
     expect(result.timescale).toBe(44100);
-    expect(result.codec).toBe('mp4a.40.2');
     expect(result.segments).toHaveLength(2);
 
     const sidxEnd = 120 + sidxBox.length;

@@ -17,7 +17,6 @@ export type Fmp4Index = {
   initSegmentEnd: number;
   segments: SegmentReference[];
   timescale: number;
-  codec: string;
 };
 
 const BOX_HEADER_SIZE = 8;
@@ -118,7 +117,5 @@ export function parseInitSegment(data: Uint8Array): Fmp4Index {
     initSegmentEnd: sidxBox.offset,
     segments: references,
     timescale,
-    // TODO: parse codec from moov > trak > mdia > minf > stbl > stsd > esds
-    codec: 'mp4a.40.2',
   };
 }
