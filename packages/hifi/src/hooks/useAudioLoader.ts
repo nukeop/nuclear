@@ -14,7 +14,7 @@ export const useAudioLoader = (
       return;
     }
 
-    if (src.protocol === 'hls' || src.protocol === 'mse') {
+    if (src.protocol === 'hls') {
       return;
     }
 

@@ -2,7 +2,7 @@ import type { ProviderRef } from './index';
 
 export type Stream = {
   url: string;
-  protocol: 'file' | 'http' | 'https' | 'hls' | 'mse';
+  protocol: 'file' | 'http' | 'https' | 'hls';
   mimeType?: string;
   bitrateKbps?: number;
   codec?: string;

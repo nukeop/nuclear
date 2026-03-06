@@ -13,7 +13,6 @@ import { useAudioEvents } from './hooks/useAudioEvents';
 import { useAudioLoader } from './hooks/useAudioLoader';
 import { useAudioSeek } from './hooks/useAudioSeek';
 import { useHlsSource } from './hooks/useHlsSource';
-import { useMseSource } from './hooks/useMseSource';
 import { usePlaybackStatus } from './hooks/usePlaybackStatus';
 import { SoundProps } from './types';
 
@@ -40,7 +39,6 @@ export const Sound: React.FC<SoundProps> = ({
   useAudioSeek(audioRef, seek, isReady);
   useAudioLoader(audioRef, src, isReady);
   useHlsSource(audioRef, src, isReady);
-  useMseSource(audioRef, src, isReady);
 
   const handleCanPlay = useCallback(() => {
     setCanPlay(true);

@@ -4,12 +4,7 @@ import { useEffect, useRef } from 'react';
 import { AudioSource } from '@nuclearplayer/hifi';
 import type { TFunction } from '@nuclearplayer/i18n';
 import { useTranslation } from '@nuclearplayer/i18n';
-import type {
-  QueueItem,
-  Stream,
-  StreamCandidate,
-  Track,
-} from '@nuclearplayer/model';
+import type { QueueItem, StreamCandidate, Track } from '@nuclearplayer/model';
 
 import { streamingHost } from '../services/streamingHost';
 import { useQueueStore } from '../stores/queueStore';
@@ -24,9 +19,6 @@ const getStreamServerPort = async (): Promise<number> => {
   }
   return cachedStreamServerPort;
 };
-
-const isFmp4Stream = (stream: Stream): boolean =>
-  stream.url.includes('googlevideo.com') || stream.container === 'm4a';
 
 // Encode the URL in base64 and proxy through the local streaming server to bypass CORS
 // Check packages/player/src-tauri/src/stream_server.rs to see how this works
@@ -51,8 +43,7 @@ const buildAudioSource = async (
   }
 
   const port = await getStreamServerPort();
-  const protocol = isFmp4Stream(stream) ? 'mse' : stream.protocol;
-  return { url: proxyStreamUrl(stream.url, port), protocol };
+  return { url: proxyStreamUrl(stream.url, port), protocol: stream.protocol };
 };
 
 const setItemError = (itemId: string, errorKey: string, t: TFunction): void => {
