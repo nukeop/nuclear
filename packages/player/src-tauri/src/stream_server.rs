@@ -6,6 +6,7 @@ use axum::http::{header, HeaderMap, Response, StatusCode};
 use axum::routing::get;
 use base64::{engine::general_purpose::URL_SAFE_NO_PAD, Engine};
 use reqwest::Client;
+use std::time::Duration;
 use tauri::{AppHandle, Manager};
 use tokio::sync::oneshot;
 use tokio_util::sync::CancellationToken;
@@ -193,6 +194,8 @@ pub fn init_stream_server(app_handle: AppHandle) {
     let client = Arc::new(
         Client::builder()
             .user_agent(USER_AGENT)
+            .read_timeout(Duration::from_secs(300))
+            .connect_timeout(Duration::from_secs(30))
             .build()
             .expect("Failed to create HTTP client for stream server"),
     );

@@ -4,6 +4,39 @@ import { AudioSource } from '../types';
 
 const MSE_MIME_TYPE = 'audio/mp4; codecs="mp4a.40.2"';
 
+const pumpStream = async (
+  reader: ReadableStreamDefaultReader<Uint8Array>,
+  sourceBuffer: SourceBuffer,
+  mediaSource: MediaSource,
+  signal: AbortSignal,
+) => {
+  const appendAndWait = (chunk: Uint8Array): Promise<void> =>
+    new Promise((resolve, reject) => {
+      sourceBuffer.addEventListener('updateend', () => resolve(), {
+        once: true,
+      });
+      sourceBuffer.addEventListener('error', () => reject(), { once: true });
+      sourceBuffer.appendBuffer(chunk as unknown as BufferSource);
+    });
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    if (signal.aborted) {
+      return;
+    }
+
+    const { done, value } = await reader.read();
+    if (done) {
+      if (mediaSource.readyState === 'open') {
+        mediaSource.endOfStream();
+      }
+      return;
+    }
+
+    await appendAndWait(value);
+  }
+};
+
 export const useMseSource = (
   audioRef: RefObject<HTMLAudioElement | null>,
   src: AudioSource,
@@ -23,28 +56,27 @@ export const useMseSource = (
     objectUrlRef.current = objectUrl;
     audio.src = objectUrl;
 
-    mediaSource.addEventListener('sourceopen', () => {
-      const sourceBuffer = mediaSource.addSourceBuffer(MSE_MIME_TYPE);
+    mediaSource.addEventListener(
+      'sourceopen',
+      () => {
+        const sourceBuffer = mediaSource.addSourceBuffer(MSE_MIME_TYPE);
 
-      fetch(src.url, { signal: abortController.signal })
-        .then((response) => response.arrayBuffer())
-        .then((data) => {
-          sourceBuffer.appendBuffer(data);
-          sourceBuffer.addEventListener('updateend', () => {
-            if (mediaSource.readyState === 'open') {
-              mediaSource.endOfStream();
+        fetch(src.url, { signal: abortController.signal })
+          .then((response) => {
+            const reader = response.body!.getReader();
+            return pumpStream(reader, sourceBuffer, mediaSource, abortController.signal);
+          })
+          .catch(() => {
+            if (abortController.signal.aborted) {
+              return;
             }
-          }, { once: true });
-        })
-        .catch(() => {
-          if (abortController.signal.aborted) {
-            return;
-          }
-          if (mediaSource.readyState === 'open') {
-            mediaSource.endOfStream('network');
-          }
-        });
-    }, { once: true });
+            if (mediaSource.readyState === 'open') {
+              mediaSource.endOfStream('network');
+            }
+          });
+      },
+      { once: true },
+    );
 
     return () => {
       abortController.abort();
