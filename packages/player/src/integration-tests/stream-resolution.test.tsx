@@ -206,6 +206,67 @@ describe('Stream Resolution Integration', () => {
     });
   });
 
+  describe('when stream is fMP4 (YouTube)', () => {
+    it('produces MSE protocol with durationSeconds for m4a container', async () => {
+      setupMetadataProvider();
+
+      const streamingProvider = new StreamingProviderBuilder()
+        .withSearchForTrack(async (artist, title) => [
+          createMockCandidate('yt-1', `${artist} - ${title}`, {
+            durationMs: 180000,
+          }),
+        ])
+        .withGetStreamUrl(async (candidateId) =>
+          createMockStream(candidateId, {
+            container: 'm4a',
+            mimeType: 'audio/mp4',
+            durationMs: 180000,
+            url: 'https://rr1---sn-abc.googlevideo.com/videoplayback?id=123',
+          }),
+        )
+        .build();
+
+      providersHost.register(streamingProvider);
+
+      await AlbumWrapper.mountDirectly();
+      await AlbumWrapper.addTrackToQueueByTitle('Countdown');
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      const src = StreamResolutionWrapper.getSoundState().src;
+      expect(src?.protocol).toBe('mse');
+      expect(src?.durationSeconds).toBe(180);
+      expect(src?.url).toContain('http://127.0.0.1:9100/stream/');
+    });
+
+    it('falls back to regular protocol when no duration is available', async () => {
+      setupMetadataProvider();
+
+      const streamingProvider = new StreamingProviderBuilder()
+        .withSearchForTrack(async (artist, title) => [
+          createMockCandidate('yt-1', `${artist} - ${title}`),
+        ])
+        .withGetStreamUrl(async (candidateId) =>
+          createMockStream(candidateId, {
+            container: 'm4a',
+            mimeType: 'audio/mp4',
+          }),
+        )
+        .build();
+
+      providersHost.register(streamingProvider);
+
+      await AlbumWrapper.mountDirectly();
+      await AlbumWrapper.addTrackToQueueByTitle('Countdown');
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      const src = StreamResolutionWrapper.getSoundState().src;
+      expect(src?.protocol).toBe('https');
+      expect(src?.durationSeconds).toBeUndefined();
+    });
+  });
+
   describe('when navigating the queue', () => {
     it('resolves stream for each track when navigating', async () => {
       setupMetadataProvider();

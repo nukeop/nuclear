@@ -30,6 +30,18 @@ const proxyStreamUrl = (url: string, port: number): string => {
   return `http://127.0.0.1:${port}/stream/${encoded}`;
 };
 
+const isFmp4Stream = (stream: StreamCandidate['stream']): boolean => {
+  if (!stream) {
+    return false;
+  }
+
+  return (
+    stream.container === 'm4a' ||
+    stream.mimeType?.includes('audio/mp4') === true ||
+    stream.url.includes('googlevideo.com')
+  );
+};
+
 const buildAudioSource = async (
   candidate: StreamCandidate,
 ): Promise<AudioSource> => {
@@ -43,7 +55,18 @@ const buildAudioSource = async (
   }
 
   const port = await getStreamServerPort();
-  return { url: proxyStreamUrl(stream.url, port), protocol: stream.protocol };
+  const proxyUrl = proxyStreamUrl(stream.url, port);
+
+  const durationMs = stream.durationMs ?? candidate.durationMs;
+  if (isFmp4Stream(stream) && durationMs) {
+    return {
+      url: proxyUrl,
+      protocol: 'mse',
+      durationSeconds: durationMs / 1000,
+    };
+  }
+
+  return { url: proxyUrl, protocol: stream.protocol };
 };
 
 const setItemError = (itemId: string, errorKey: string, t: TFunction): void => {
