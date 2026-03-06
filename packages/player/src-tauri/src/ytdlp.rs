@@ -47,6 +47,8 @@ struct YtdlpJson {
     thumbnail: Option<String>,
     ext: Option<String>,
     acodec: Option<String>,
+    playlist_title: Option<String>,
+    playlist_id: Option<String>,
 }
 
 #[cfg_attr(test, automock)]
@@ -115,6 +117,68 @@ fn search_with_runner(
 
     debug!("[yt-dlp] Found {} results", results.len());
     Ok(results)
+}
+
+fn get_playlist_with_runner(
+    runner: &impl CommandRunner,
+    url: &str,
+) -> Result<YtdlpPlaylistInfo, String> {
+    debug!("[yt-dlp] Getting playlist: {}", url);
+
+    let args = ["--dump-json", "--flat-playlist", "--no-warnings", url];
+
+    let output = runner.run("yt-dlp", &args).map_err(|error| {
+        error!("[yt-dlp] Failed to execute: {}", error);
+        format!("Failed to execute yt-dlp: {}. Is yt-dlp installed?", error)
+    })?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        error!("[yt-dlp] Playlist extraction failed: {}", stderr);
+        return Err(format!("yt-dlp playlist extraction failed: {}", stderr));
+    }
+
+    let stdout = String::from_utf8_lossy(&output.stdout);
+    let mut entries = Vec::new();
+    let mut playlist_title: Option<String> = None;
+    let mut playlist_id: Option<String> = None;
+
+    for line in stdout.lines() {
+        if line.trim().is_empty() {
+            continue;
+        }
+
+        if let Ok(info) = serde_json::from_str::<YtdlpJson>(line) {
+            if playlist_title.is_none() {
+                playlist_title = info.playlist_title;
+                playlist_id = info.playlist_id;
+            }
+
+            if let Some(id) = info.id {
+                entries.push(YtdlpPlaylistEntry {
+                    id,
+                    title: info.title.unwrap_or_else(|| "Unknown".to_string()),
+                    duration: info.duration,
+                    thumbnail: info.thumbnail,
+                });
+            }
+        }
+    }
+
+    let title = playlist_title.ok_or_else(|| {
+        error!("[yt-dlp] No playlist metadata found in output");
+        "No playlist metadata found in yt-dlp output".to_string()
+    })?;
+
+    let id = playlist_id.unwrap_or_default();
+
+    debug!(
+        "[yt-dlp] Playlist '{}' has {} entries",
+        title,
+        entries.len()
+    );
+
+    Ok(YtdlpPlaylistInfo { id, title, entries })
 }
 
 fn get_stream_with_runner(
