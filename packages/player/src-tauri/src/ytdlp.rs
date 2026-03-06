@@ -11,6 +11,8 @@ pub struct YtdlpStreamInfo {
     pub stream_url: String,
     pub duration: Option<f64>,
     pub title: Option<String>,
+    pub container: Option<String>,
+    pub codec: Option<String>,
 }
 
 #[derive(serde::Serialize, Debug, PartialEq)]
@@ -28,6 +30,8 @@ struct YtdlpJson {
     duration: Option<f64>,
     url: Option<String>,
     thumbnail: Option<String>,
+    ext: Option<String>,
+    acodec: Option<String>,
 }
 
 #[cfg_attr(test, automock)]
@@ -146,6 +150,8 @@ fn get_stream_with_runner(
         stream_url,
         duration: info.duration,
         title: info.title,
+        container: info.ext,
+        codec: info.acodec,
     })
 }
 
@@ -389,7 +395,7 @@ not json at all
 
         #[test]
         fn parses_full_response() {
-            let stdout = r#"{"id":"vid","title":"My Video","duration":212.5,"url":"https://google.com/stream"}"#;
+            let stdout = r#"{"id":"vid","title":"My Video","duration":212.5,"url":"https://google.com/stream","ext":"m4a","acodec":"mp4a.40.2"}"#;
 
             let mut mock = MockCommandRunner::new();
             mock.expect_run()
@@ -403,6 +409,8 @@ not json at all
                     stream_url: "https://google.com/stream".to_string(),
                     duration: Some(212.5),
                     title: Some("My Video".to_string()),
+                    container: Some("m4a".to_string()),
+                    codec: Some("mp4a.40.2".to_string()),
                 }
             );
         }
@@ -420,6 +428,23 @@ not json at all
             assert_eq!(info.stream_url, "https://example.com/audio.m4a");
             assert_eq!(info.duration, None);
             assert_eq!(info.title, None);
+            assert_eq!(info.container, None);
+            assert_eq!(info.codec, None);
+        }
+
+        #[test]
+        fn parses_container_and_codec() {
+            let stdout =
+                r#"{"url":"https://example.com/stream","ext":"m4a","acodec":"mp4a.40.2"}"#;
+
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(move |_, _| Ok(success_output(stdout)));
+
+            let info = get_stream_with_runner(&mock, "test").unwrap();
+
+            assert_eq!(info.container, Some("m4a".to_string()));
+            assert_eq!(info.codec, Some("mp4a.40.2".to_string()));
         }
 
         #[test]

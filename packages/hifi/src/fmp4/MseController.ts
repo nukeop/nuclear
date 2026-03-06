@@ -195,17 +195,8 @@ export class MseController {
       return;
     }
 
-    const nextSegmentIndex = findSegmentForTime(bufferedEnd, segments);
-    if (nextSegmentIndex === -1) {
-      return;
-    }
-
-    const targetIndex = nextSegmentIndex + 1;
-    if (targetIndex >= segments.length) {
-      return;
-    }
-
-    if (this.fetchedSegments.has(targetIndex)) {
+    const nextIndex = this.findNextUnfetchedSegment(bufferedEnd);
+    if (nextIndex === -1) {
       return;
     }
 
@@ -214,7 +205,7 @@ export class MseController {
       return;
     }
 
-    this.fetchAndAppendSegment(targetIndex, controller.signal);
+    this.fetchAndAppendSegment(nextIndex, controller.signal);
   }
 
   async handleSeeking(audio: HTMLAudioElement): Promise<void> {
@@ -307,6 +298,18 @@ export class MseController {
     this.initSegment = null;
     this.fetchedSegments = new Set();
     this.url = '';
+  }
+
+  private findNextUnfetchedSegment(bufferedEnd: number): number {
+    for (let index = 0; index < this.segments.length; index++) {
+      if (this.fetchedSegments.has(index)) {
+        continue;
+      }
+      if (this.segments[index].startTime >= bufferedEnd - 0.01) {
+        return index;
+      }
+    }
+    return -1;
   }
 
   private async fetchAndAppendSegment(

@@ -37,8 +37,7 @@ const isFmp4Stream = (stream: StreamCandidate['stream']): boolean => {
 
   return (
     stream.container === 'm4a' ||
-    stream.mimeType?.includes('audio/mp4') === true ||
-    stream.url.includes('googlevideo.com')
+    stream.mimeType?.includes('audio/mp4') === true
   );
 };
 

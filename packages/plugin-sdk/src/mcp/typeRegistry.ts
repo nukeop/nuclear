@@ -386,6 +386,8 @@ export const typeRegistry: TypeRegistry = {
       stream_url: { type: 'string' },
       duration: { type: 'number | null' },
       title: { type: 'string | null' },
+      container: { type: 'string | null' },
+      codec: { type: 'string | null' },
     },
   },
 
