@@ -1,5 +1,21 @@
 [
   {
+    "date": "2026-03-06T00:00",
+    "description": "YouTube tracks now play using MSE-based streaming, fixing incorrect duration display and enabling proper seeking",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      },
+      {
+        "label": "Streaming",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-03-05T00:00",
     "description": "Customizable keyboard shortcuts with settings UI for rebinding",
     "type": "feature",
