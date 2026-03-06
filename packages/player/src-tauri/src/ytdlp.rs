@@ -23,6 +23,21 @@ pub struct YtdlpSearchResult {
     pub thumbnail: Option<String>,
 }
 
+#[derive(serde::Serialize, Debug, PartialEq)]
+pub struct YtdlpPlaylistEntry {
+    pub id: String,
+    pub title: String,
+    pub duration: Option<f64>,
+    pub thumbnail: Option<String>,
+}
+
+#[derive(serde::Serialize, Debug, PartialEq)]
+pub struct YtdlpPlaylistInfo {
+    pub id: String,
+    pub title: String,
+    pub entries: Vec<YtdlpPlaylistEntry>,
+}
+
 #[derive(serde::Deserialize)]
 struct YtdlpJson {
     id: Option<String>,
