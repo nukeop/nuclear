@@ -10,6 +10,8 @@ export type YtdlpStreamInfo = {
   stream_url: string;
   duration: number | null;
   title: string | null;
+  container: string | null;
+  codec: string | null;
 };
 
 export type YtdlpHost = {

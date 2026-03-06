@@ -1,4 +1,5 @@
 import { waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { providersHost } from '../services/providersHost';
 import { useQueueStore } from '../stores/queueStore';
@@ -13,6 +14,10 @@ import {
 import { GIANT_STEPS } from '../test/fixtures/albums';
 import { AlbumWrapper } from '../views/Album/Album.test-wrapper';
 import { StreamResolutionWrapper } from './StreamResolution.test-wrapper';
+
+vi.mock('@tauri-apps/api/core', () => ({
+  invoke: vi.fn().mockResolvedValue(9100),
+}));
 
 describe('Stream Resolution Integration', () => {
   beforeEach(() => {
@@ -71,7 +76,7 @@ describe('Stream Resolution Integration', () => {
 
       const src = StreamResolutionWrapper.getSoundState().src;
       expect(src).toEqual({
-        url: 'nuclear-stream://localhost/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC0xLm1wMw',
+        url: 'http://127.0.0.1:9100/stream/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC0xLm1wMw',
         protocol: 'https',
       });
 
@@ -188,7 +193,7 @@ describe('Stream Resolution Integration', () => {
       await StreamResolutionWrapper.waitForPlayback();
 
       expect(StreamResolutionWrapper.getSoundState().src).toEqual({
-        url: 'nuclear-stream://localhost/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC1nb29kLm1wMw',
+        url: 'http://127.0.0.1:9100/stream/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC1nb29kLm1wMw',
         protocol: 'https',
       });
 
@@ -198,6 +203,67 @@ describe('Stream Resolution Integration', () => {
       expect(currentItem?.track.streamCandidates?.[1].failed).toBe(false);
 
       expect(callCount).toEqual(2);
+    });
+  });
+
+  describe('when stream is fMP4 (YouTube)', () => {
+    it('produces MSE protocol with durationSeconds for m4a container', async () => {
+      setupMetadataProvider();
+
+      const streamingProvider = new StreamingProviderBuilder()
+        .withSearchForTrack(async (artist, title) => [
+          createMockCandidate('yt-1', `${artist} - ${title}`, {
+            durationMs: 180000,
+          }),
+        ])
+        .withGetStreamUrl(async (candidateId) =>
+          createMockStream(candidateId, {
+            container: 'm4a',
+            mimeType: 'audio/mp4',
+            durationMs: 180000,
+            url: 'https://rr1---sn-abc.googlevideo.com/videoplayback?id=123',
+          }),
+        )
+        .build();
+
+      providersHost.register(streamingProvider);
+
+      await AlbumWrapper.mountDirectly();
+      await AlbumWrapper.addTrackToQueueByTitle('Countdown');
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      const src = StreamResolutionWrapper.getSoundState().src;
+      expect(src?.protocol).toBe('mse');
+      expect(src?.durationSeconds).toBe(180);
+      expect(src?.url).toContain('http://127.0.0.1:9100/stream/');
+    });
+
+    it('falls back to regular protocol when no duration is available', async () => {
+      setupMetadataProvider();
+
+      const streamingProvider = new StreamingProviderBuilder()
+        .withSearchForTrack(async (artist, title) => [
+          createMockCandidate('yt-1', `${artist} - ${title}`),
+        ])
+        .withGetStreamUrl(async (candidateId) =>
+          createMockStream(candidateId, {
+            container: 'm4a',
+            mimeType: 'audio/mp4',
+          }),
+        )
+        .build();
+
+      providersHost.register(streamingProvider);
+
+      await AlbumWrapper.mountDirectly();
+      await AlbumWrapper.addTrackToQueueByTitle('Countdown');
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      const src = StreamResolutionWrapper.getSoundState().src;
+      expect(src?.protocol).toBe('https');
+      expect(src?.durationSeconds).toBeUndefined();
     });
   });
 
@@ -230,7 +296,7 @@ describe('Stream Resolution Integration', () => {
       });
 
       expect(StreamResolutionWrapper.getSoundState().src).toEqual({
-        url: 'nuclear-stream://localhost/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC1HaWFudCBTdGVwcy5tcDM',
+        url: 'http://127.0.0.1:9100/stream/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC1HaWFudCBTdGVwcy5tcDM',
         protocol: 'https',
       });
     });

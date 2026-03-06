@@ -15,6 +15,10 @@ import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { AlbumWrapper } from '../views/Album/Album.test-wrapper';
 import { QueueWrapper } from './Queue.test-wrapper';
 
+vi.mock('@tauri-apps/api/core', () => ({
+  invoke: vi.fn().mockResolvedValue(9100),
+}));
+
 vi.mock(
   '../services/playlistFileService',
   async () =>
