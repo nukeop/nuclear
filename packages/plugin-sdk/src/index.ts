@@ -20,6 +20,7 @@ export type {
   YtdlpStreamInfo,
   YtdlpPlaylistEntry,
   YtdlpPlaylistInfo,
+  YtdlpThumbnail,
 } from './types/ytdlp';
 export type { LogLevel, LoggerHost } from './types/logger';
 export * from './types';

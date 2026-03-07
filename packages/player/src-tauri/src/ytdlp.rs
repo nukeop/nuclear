@@ -23,12 +23,20 @@ pub struct YtdlpSearchResult {
     pub thumbnail: Option<String>,
 }
 
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq)]
+pub struct YtdlpThumbnail {
+    pub url: String,
+    pub width: Option<u32>,
+    pub height: Option<u32>,
+}
+
 #[derive(serde::Serialize, Debug, PartialEq)]
 pub struct YtdlpPlaylistEntry {
     pub id: String,
     pub title: String,
     pub duration: Option<f64>,
-    pub thumbnail: Option<String>,
+    pub thumbnails: Vec<YtdlpThumbnail>,
+    pub channel: Option<String>,
 }
 
 #[derive(serde::Serialize, Debug, PartialEq)]
@@ -45,10 +53,12 @@ struct YtdlpJson {
     duration: Option<f64>,
     url: Option<String>,
     thumbnail: Option<String>,
+    thumbnails: Option<Vec<YtdlpThumbnail>>,
     ext: Option<String>,
     acodec: Option<String>,
     playlist_title: Option<String>,
     playlist_id: Option<String>,
+    channel: Option<String>,
 }
 
 #[cfg_attr(test, automock)]
@@ -159,7 +169,8 @@ fn get_playlist_with_runner(
                     id,
                     title: info.title.unwrap_or_else(|| "Unknown".to_string()),
                     duration: info.duration,
-                    thumbnail: info.thumbnail,
+                    thumbnails: info.thumbnails.unwrap_or_default(),
+                    channel: info.channel,
                 });
             }
         }
@@ -591,7 +602,7 @@ not json at all
 
         fn playlist_entry_json(id: &str, title: &str) -> String {
             format!(
-                r#"{{"id":"{}","title":"{}","duration":180.0,"thumbnail":"http://img/{}.jpg","playlist_title":"My Playlist","playlist_id":"PLtest123"}}"#,
+                r#"{{"id":"{}","title":"{}","duration":180.0,"thumbnails":[{{"url":"http://img/{}.jpg","width":336,"height":188}}],"channel":"Test Channel","playlist_title":"My Playlist","playlist_id":"PLtest123"}}"#,
                 id, title, id
             )
         }
@@ -615,6 +626,8 @@ not json at all
             assert_eq!(result.title, "My Playlist");
             assert_eq!(result.entries.len(), 3);
             assert_eq!(result.entries[0].id, "v1");
+            assert_eq!(result.entries[0].channel, Some("Test Channel".to_string()));
+            assert_eq!(result.entries[0].thumbnails[0].url, "http://img/v1.jpg");
             assert_eq!(result.entries[1].title, "Song Two");
             assert_eq!(result.entries[2].duration, Some(180.0));
         }

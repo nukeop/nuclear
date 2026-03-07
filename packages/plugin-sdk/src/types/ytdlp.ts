@@ -14,11 +14,18 @@ export type YtdlpStreamInfo = {
   codec: string | null;
 };
 
+export type YtdlpThumbnail = {
+  url: string;
+  width: number | null;
+  height: number | null;
+};
+
 export type YtdlpPlaylistEntry = {
   id: string;
   title: string;
   duration: number | null;
-  thumbnail: string | null;
+  thumbnails: YtdlpThumbnail[];
+  channel: string | null;
 };
 
 export type YtdlpPlaylistInfo = {
