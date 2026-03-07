@@ -29,8 +29,6 @@ const resetQueueStore = () => {
   useQueueStore.setState({
     items: [],
     currentIndex: 0,
-    repeatMode: 'off',
-    shuffleEnabled: false,
     isReady: true,
     isLoading: false,
   });

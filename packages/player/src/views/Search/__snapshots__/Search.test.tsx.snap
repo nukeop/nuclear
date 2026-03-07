@@ -629,6 +629,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             >
               <div
                 class="text-foreground-secondary flex size-full items-center justify-center"
+                data-testid="player-now-playing-placeholder"
               >
                 <svg
                   aria-hidden="true"
@@ -677,6 +678,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
               data-headlessui-state=""
+              data-testid="player-shuffle-button"
               type="button"
             >
               <svg
@@ -788,6 +790,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
               data-headlessui-state=""
+              data-testid="player-repeat-button"
               type="button"
             >
               <svg
@@ -856,6 +859,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             </button>
             <div
               class="w-24"
+              data-testid="player-volume-slider"
             >
               <div
                 class="flex w-full flex-col gap-2"

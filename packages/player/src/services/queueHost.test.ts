@@ -13,8 +13,6 @@ describe('queueHost', () => {
     useQueueStore.setState({
       items: [],
       currentIndex: 0,
-      repeatMode: 'off',
-      shuffleEnabled: false,
       isReady: false,
       isLoading: false,
     });
@@ -31,16 +29,12 @@ describe('queueHost', () => {
         },
       ],
       currentIndex: 0,
-      repeatMode: 'one',
-      shuffleEnabled: true,
     });
 
     const queue = await queueHost.getQueue();
     expect(queue.items).toHaveLength(1);
     expect(queue.items[0].track.title).toBe('Track 1');
     expect(queue.currentIndex).toBe(0);
-    expect(queue.repeatMode).toBe('one');
-    expect(queue.shuffleEnabled).toBe(true);
   });
 
   it('should add tracks to queue', async () => {

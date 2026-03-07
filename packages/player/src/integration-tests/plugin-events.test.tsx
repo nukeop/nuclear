@@ -19,8 +19,6 @@ describe('Plugin events integration', () => {
     useQueueStore.setState({
       items: [],
       currentIndex: 0,
-      repeatMode: 'off',
-      shuffleEnabled: false,
       isLoading: false,
       isReady: true,
     });

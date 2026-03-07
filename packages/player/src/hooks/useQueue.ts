@@ -6,10 +6,7 @@ import { useQueueStore } from '../stores/queueStore';
 
 // You can't replace this with lodash pick because it causes infinite re-renders
 export const useQueue = (): Queue => {
-  const { items, currentIndex, repeatMode, shuffleEnabled } = useQueueStore();
+  const { items, currentIndex } = useQueueStore();
 
-  return useMemo(
-    () => ({ items, currentIndex, repeatMode, shuffleEnabled }),
-    [items, currentIndex, repeatMode, shuffleEnabled],
-  );
+  return useMemo(() => ({ items, currentIndex }), [items, currentIndex]);
 };

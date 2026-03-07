@@ -1,11 +1,6 @@
 import type { QueueItem, Track } from '@nuclearplayer/model';
 
-import type {
-  Queue,
-  QueueHost,
-  QueueItemStateUpdate,
-  RepeatMode,
-} from '../types/queue';
+import type { Queue, QueueHost, QueueItemStateUpdate } from '../types/queue';
 
 export class QueueAPI {
   #host?: QueueHost;
@@ -76,14 +71,6 @@ export class QueueAPI {
 
   goToId(id: string) {
     return this.#withHost((h) => h.goToId(id));
-  }
-
-  setRepeatMode(mode: RepeatMode) {
-    return this.#withHost((h) => h.setRepeatMode(mode));
-  }
-
-  setShuffleEnabled(enabled: boolean) {
-    return this.#withHost((h) => h.setShuffleEnabled(enabled));
   }
 
   subscribe(listener: (queue: Queue) => void) {

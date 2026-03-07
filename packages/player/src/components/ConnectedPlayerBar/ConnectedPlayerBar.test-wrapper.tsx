@@ -102,11 +102,21 @@ export const ConnectedPlayerBarWrapper = {
   },
 
   seedShuffle(enabled: boolean) {
-    useQueueStore.setState({ shuffleEnabled: enabled });
+    useSettingsStore.setState({
+      values: {
+        ...useSettingsStore.getState().values,
+        'core.playback.shuffle': enabled,
+      },
+    });
   },
 
   seedRepeatMode(mode: 'off' | 'all' | 'one') {
-    useQueueStore.setState({ repeatMode: mode });
+    useSettingsStore.setState({
+      values: {
+        ...useSettingsStore.getState().values,
+        'core.playback.repeat': mode,
+      },
+    });
   },
 
   nowPlaying: {

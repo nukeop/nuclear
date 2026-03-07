@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { createMockTrack } from '../test/utils/mockTrack';
 import { initializeQueueStore, useQueueStore } from './queueStore';
+import { useSettingsStore } from './settingsStore';
 
 describe('useQueueStore', () => {
   beforeEach(() => {
@@ -12,21 +13,17 @@ describe('useQueueStore', () => {
     useQueueStore.setState({
       items: [],
       currentIndex: 0,
-      repeatMode: 'off',
-      shuffleEnabled: false,
       isReady: false,
       isLoading: false,
     });
+    useSettingsStore.setState({ values: {} });
   });
 
   describe('initial state', () => {
-    // Kinda redundant given the beforeEach, but we can ensure nothing weird happens on init
     it('starts empty and not ready', () => {
       const state = useQueueStore.getState();
       expect(state.items).toEqual([]);
       expect(state.currentIndex).toBe(0);
-      expect(state.repeatMode).toBe('off');
-      expect(state.shuffleEnabled).toBe(false);
       expect(state.isReady).toBe(false);
       expect(state.isLoading).toBe(false);
     });
@@ -274,20 +271,20 @@ describe('useQueueStore', () => {
 
     it('goToNext wraps to start when repeat mode is all', () => {
       useQueueStore.setState({ currentIndex: 2 });
-      useQueueStore.getState().setRepeatMode('all');
+      useSettingsStore.setState({ values: { 'core.playback.repeat': 'all' } });
       useQueueStore.getState().goToNext();
       expect(useQueueStore.getState().currentIndex).toBe(0);
     });
 
     it('goToPrevious wraps to end when repeat mode is all', () => {
-      useQueueStore.getState().setRepeatMode('all');
+      useSettingsStore.setState({ values: { 'core.playback.repeat': 'all' } });
       useQueueStore.getState().goToPrevious();
       expect(useQueueStore.getState().currentIndex).toBe(2);
     });
 
     it('goToNext picks a different random index when shuffle is enabled', () => {
       const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.9);
-      useQueueStore.getState().setShuffleEnabled(true);
+      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
       useQueueStore.getState().goToNext();
       expect(useQueueStore.getState().currentIndex).toBe(2);
       randomSpy.mockRestore();
@@ -298,7 +295,7 @@ describe('useQueueStore', () => {
         .spyOn(Math, 'random')
         .mockReturnValueOnce(0.1)
         .mockReturnValueOnce(0.8);
-      useQueueStore.getState().setShuffleEnabled(true);
+      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
       useQueueStore.getState().goToNext();
       expect(useQueueStore.getState().currentIndex).toBe(2);
       expect(randomSpy).toHaveBeenCalledTimes(2);
@@ -307,23 +304,11 @@ describe('useQueueStore', () => {
 
     it('goToPrevious picks a different random index when shuffle is enabled', () => {
       const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.4);
-      useQueueStore.getState().setShuffleEnabled(true);
+      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
       useQueueStore.setState({ currentIndex: 2 });
       useQueueStore.getState().goToPrevious();
       expect(useQueueStore.getState().currentIndex).toBe(1);
       randomSpy.mockRestore();
-    });
-  });
-
-  describe('mode controls', () => {
-    it('setRepeatMode updates repeat mode', () => {
-      useQueueStore.getState().setRepeatMode('all');
-      expect(useQueueStore.getState().repeatMode).toBe('all');
-    });
-
-    it('setShuffleEnabled toggles shuffle', () => {
-      useQueueStore.getState().setShuffleEnabled(true);
-      expect(useQueueStore.getState().shuffleEnabled).toBe(true);
     });
   });
 
@@ -332,15 +317,12 @@ describe('useQueueStore', () => {
       const tracks = [createMockTrack('Track 1'), createMockTrack('Track 2')];
       useQueueStore.getState().addToQueue(tracks);
       useQueueStore.getState().goToIndex(1);
-      useQueueStore.getState().setRepeatMode('all');
 
       await new Promise((resolve) => setTimeout(resolve, 10));
 
       useQueueStore.setState({
         items: [],
         currentIndex: 0,
-        repeatMode: 'off',
-        shuffleEnabled: false,
         isReady: false,
         isLoading: false,
       });
@@ -350,7 +332,6 @@ describe('useQueueStore', () => {
       const state = useQueueStore.getState();
       expect(state.items).toHaveLength(2);
       expect(state.currentIndex).toBe(1);
-      expect(state.repeatMode).toBe('all');
       expect(state.isReady).toBe(true);
     });
 

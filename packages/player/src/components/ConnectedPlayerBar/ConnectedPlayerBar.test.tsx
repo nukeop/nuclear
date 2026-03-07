@@ -10,8 +10,6 @@ beforeEach(() => {
   useQueueStore.setState({
     items: [],
     currentIndex: 0,
-    shuffleEnabled: false,
-    repeatMode: 'off',
   });
   useSettingsStore.setState({
     definitions: {},
@@ -62,15 +60,19 @@ describe('ConnectedNowPlaying', () => {
 });
 
 describe('ConnectedControls', () => {
-  it('clicking shuffle toggles shuffleEnabled in the queue store', async () => {
+  it('clicking shuffle toggles shuffleEnabled in the settings store', async () => {
     Wrapper.seedShuffle(false);
     await Wrapper.mount();
 
     await Wrapper.controls.shuffleButton.click();
-    expect(useQueueStore.getState().shuffleEnabled).toBe(true);
+    expect(useSettingsStore.getState().values['core.playback.shuffle']).toBe(
+      true,
+    );
 
     await Wrapper.controls.shuffleButton.click();
-    expect(useQueueStore.getState().shuffleEnabled).toBe(false);
+    expect(useSettingsStore.getState().values['core.playback.shuffle']).toBe(
+      false,
+    );
   });
 
   it('clicking repeat cycles through modes: off -> all -> one -> off', async () => {
@@ -78,13 +80,19 @@ describe('ConnectedControls', () => {
     await Wrapper.mount();
 
     await Wrapper.controls.repeatButton.click();
-    expect(useQueueStore.getState().repeatMode).toBe('all');
+    expect(useSettingsStore.getState().values['core.playback.repeat']).toBe(
+      'all',
+    );
 
     await Wrapper.controls.repeatButton.click();
-    expect(useQueueStore.getState().repeatMode).toBe('one');
+    expect(useSettingsStore.getState().values['core.playback.repeat']).toBe(
+      'one',
+    );
 
     await Wrapper.controls.repeatButton.click();
-    expect(useQueueStore.getState().repeatMode).toBe('off');
+    expect(useSettingsStore.getState().values['core.playback.repeat']).toBe(
+      'off',
+    );
   });
 });
 
