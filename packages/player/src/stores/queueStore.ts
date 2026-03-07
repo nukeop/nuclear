@@ -52,6 +52,10 @@ const getDirectionalIndex = (
     return currentIndex;
   }
 
+  if (repeatMode === 'one') {
+    return currentIndex;
+  }
+
   if (shuffleEnabled) {
     return getShuffledIndex(items.length, currentIndex);
   }

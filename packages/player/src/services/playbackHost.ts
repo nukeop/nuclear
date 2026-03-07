@@ -2,8 +2,10 @@ import type {
   PlaybackHost,
   PlaybackListener,
   PlaybackState,
+  RepeatMode,
 } from '@nuclearplayer/plugin-sdk';
 
+import { getSetting, setSetting } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 
 const toPlaybackState = (): PlaybackState => {
@@ -32,6 +34,18 @@ export const createPlaybackHost = (): PlaybackHost => ({
         duration: state.duration,
       }),
     ),
+
+  getVolume: async () => (getSetting('core.playback.volume') as number) ?? 1,
+  setVolume: async (volume) => setSetting('core.playback.volume', volume),
+  isMuted: async () => (getSetting('core.playback.muted') as boolean) ?? false,
+  setMuted: async (muted) => setSetting('core.playback.muted', muted),
+  isShuffleEnabled: async () =>
+    (getSetting('core.playback.shuffle') as boolean) ?? false,
+  setShuffleEnabled: async (enabled) =>
+    setSetting('core.playback.shuffle', enabled),
+  getRepeatMode: async () =>
+    (getSetting('core.playback.repeat') as RepeatMode) ?? 'off',
+  setRepeatMode: async (mode) => setSetting('core.playback.repeat', mode),
 });
 
 export const playbackHost = createPlaybackHost();

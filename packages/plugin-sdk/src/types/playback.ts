@@ -1,3 +1,7 @@
+import type { RepeatMode } from '@nuclearplayer/model';
+
+export type { RepeatMode } from '@nuclearplayer/model';
+
 export type PlaybackStatus = 'playing' | 'paused' | 'stopped';
 
 export type PlaybackState = {
@@ -16,4 +20,12 @@ export type PlaybackHost = {
   toggle: () => Promise<void>;
   seekTo: (seconds: number) => Promise<void>;
   subscribe: (listener: PlaybackListener) => () => void;
+  getVolume: () => Promise<number>;
+  setVolume: (volume: number) => Promise<void>;
+  isMuted: () => Promise<boolean>;
+  setMuted: (muted: boolean) => Promise<void>;
+  isShuffleEnabled: () => Promise<boolean>;
+  setShuffleEnabled: (enabled: boolean) => Promise<void>;
+  getRepeatMode: () => Promise<RepeatMode>;
+  setRepeatMode: (mode: RepeatMode) => Promise<void>;
 };

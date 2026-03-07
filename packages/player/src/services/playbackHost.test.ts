@@ -1,3 +1,4 @@
+import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { playbackHost } from './playbackHost';
 
@@ -12,6 +13,7 @@ describe('playbackHost', () => {
       preload: 'auto',
       crossOrigin: '',
     });
+    useSettingsStore.setState({ values: {} });
   });
 
   it('gets initial playback state', async () => {
@@ -95,5 +97,53 @@ describe('playbackHost', () => {
     await playbackHost.play();
 
     expect(listener).not.toHaveBeenCalled();
+  });
+
+  it('getVolume returns 1 when no volume is set', async () => {
+    const volume = await playbackHost.getVolume();
+    expect(volume).toBe(1);
+  });
+
+  it('setVolume updates the volume setting', async () => {
+    await playbackHost.setVolume(0.3);
+    expect(useSettingsStore.getState().getValue('core.playback.volume')).toBe(
+      0.3,
+    );
+  });
+
+  it('isMuted returns false when not set', async () => {
+    const muted = await playbackHost.isMuted();
+    expect(muted).toBe(false);
+  });
+
+  it('setMuted updates the muted setting', async () => {
+    await playbackHost.setMuted(true);
+    expect(useSettingsStore.getState().getValue('core.playback.muted')).toBe(
+      true,
+    );
+  });
+
+  it('isShuffleEnabled returns false when not set', async () => {
+    const enabled = await playbackHost.isShuffleEnabled();
+    expect(enabled).toBe(false);
+  });
+
+  it('setShuffleEnabled updates the shuffle setting', async () => {
+    await playbackHost.setShuffleEnabled(true);
+    expect(useSettingsStore.getState().getValue('core.playback.shuffle')).toBe(
+      true,
+    );
+  });
+
+  it('getRepeatMode returns off when not set', async () => {
+    const mode = await playbackHost.getRepeatMode();
+    expect(mode).toBe('off');
+  });
+
+  it('setRepeatMode updates the repeat mode', async () => {
+    await playbackHost.setRepeatMode('one');
+    expect(useSettingsStore.getState().getValue('core.playback.repeat')).toBe(
+      'one',
+    );
   });
 });
