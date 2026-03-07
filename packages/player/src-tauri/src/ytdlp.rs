@@ -247,6 +247,11 @@ pub async fn ytdlp_get_stream(video_id: String) -> Result<YtdlpStreamInfo, Strin
     get_stream_with_runner(&RealCommandRunner, &video_id)
 }
 
+#[command]
+pub async fn ytdlp_get_playlist(url: String) -> Result<YtdlpPlaylistInfo, String> {
+    get_playlist_with_runner(&RealCommandRunner, &url)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
