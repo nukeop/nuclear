@@ -580,4 +580,113 @@ not json at all
             assert!(result.unwrap_err().contains("Is yt-dlp installed?"));
         }
     }
+
+    mod get_playlist {
+        use super::*;
+
+        fn playlist_entry_json(id: &str, title: &str) -> String {
+            format!(
+                r#"{{"id":"{}","title":"{}","duration":180.0,"thumbnail":"http://img/{}.jpg","playlist_title":"My Playlist","playlist_id":"PLtest123"}}"#,
+                id, title, id
+            )
+        }
+
+        #[test]
+        fn parses_playlist_with_multiple_entries() {
+            let stdout = format!(
+                "{}\n{}\n{}",
+                playlist_entry_json("v1", "Song One"),
+                playlist_entry_json("v2", "Song Two"),
+                playlist_entry_json("v3", "Song Three"),
+            );
+
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(move |_, _| Ok(success_output(&stdout)));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PLtest123").unwrap();
+
+            assert_eq!(result.id, "PLtest123");
+            assert_eq!(result.title, "My Playlist");
+            assert_eq!(result.entries.len(), 3);
+            assert_eq!(result.entries[0].id, "v1");
+            assert_eq!(result.entries[1].title, "Song Two");
+            assert_eq!(result.entries[2].duration, Some(180.0));
+        }
+
+        #[test]
+        fn skips_malformed_lines() {
+            let stdout = format!(
+                "{}\nnot json\n{}",
+                playlist_entry_json("v1", "Good"),
+                playlist_entry_json("v2", "Also Good"),
+            );
+
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(move |_, _| Ok(success_output(&stdout)));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PL1").unwrap();
+
+            assert_eq!(result.entries.len(), 2);
+        }
+
+        #[test]
+        fn skips_entries_without_id() {
+            let stdout = format!(
+                "{}\n{}",
+                r#"{"title":"No ID","playlist_title":"My Playlist","playlist_id":"PL1"}"#,
+                playlist_entry_json("v1", "Has ID"),
+            );
+
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(move |_, _| Ok(success_output(&stdout)));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PL1").unwrap();
+
+            assert_eq!(result.entries.len(), 1);
+            assert_eq!(result.entries[0].id, "v1");
+        }
+
+        #[test]
+        fn returns_error_on_empty_output() {
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(|_, _| Ok(success_output("")));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PL1");
+
+            assert!(result.is_err());
+            assert!(result.unwrap_err().contains("No playlist metadata"));
+        }
+
+        #[test]
+        fn returns_error_on_nonzero_exit() {
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(|_, _| Ok(error_output("ERROR: Playlist not found")));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=bad");
+
+            assert!(result.is_err());
+            assert!(result.unwrap_err().contains("Playlist not found"));
+        }
+
+        #[test]
+        fn returns_error_when_command_fails_to_execute() {
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run().returning(|_, _| {
+                Err(std::io::Error::new(
+                    std::io::ErrorKind::NotFound,
+                    "not found",
+                ))
+            });
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PL1");
+
+            assert!(result.is_err());
+            assert!(result.unwrap_err().contains("Is yt-dlp installed?"));
+        }
+    }
 }
