@@ -46,7 +46,7 @@ export const ConnectedControls: FC = () => {
     <PlayerBar.Controls
       isPlaying={status === 'playing'}
       isShuffleActive={shuffleEnabled}
-      isRepeatActive={repeatMode !== 'off'}
+      repeatMode={repeatMode}
       onPlayPause={toggle}
       onNext={goToNext}
       onPrevious={goToPrevious}

@@ -2,11 +2,14 @@ import {
   Pause,
   Play,
   Repeat,
+  Repeat1,
   Shuffle,
   SkipBack,
   SkipForward,
 } from 'lucide-react';
 import { FC } from 'react';
+
+import { RepeatMode } from '@nuclearplayer/model';
 
 import { Button } from '..';
 import { cn } from '../../utils';
@@ -14,7 +17,7 @@ import { cn } from '../../utils';
 type PlayerBarControlsProps = {
   isPlaying?: boolean;
   isShuffleActive?: boolean;
-  isRepeatActive?: boolean;
+  repeatMode?: RepeatMode;
   onPlayPause?: () => void;
   onNext?: () => void;
   onPrevious?: () => void;
@@ -26,7 +29,7 @@ type PlayerBarControlsProps = {
 export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
   isPlaying = false,
   isShuffleActive = false,
-  isRepeatActive = false,
+  repeatMode = 'off',
   onPlayPause,
   onNext,
   onPrevious,
@@ -58,11 +61,12 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
     </Button>
     <Button
       size="icon"
-      variant={isRepeatActive ? 'default' : 'text'}
+      variant={repeatMode !== 'off' ? 'default' : 'text'}
       onClick={onRepeatToggle}
       data-testid="player-repeat-button"
     >
-      <Repeat size={16} />
+      {repeatMode === 'one' && <Repeat1 size={16} />}
+      {repeatMode !== 'one' && <Repeat size={16} />}
     </Button>
   </div>
 );
