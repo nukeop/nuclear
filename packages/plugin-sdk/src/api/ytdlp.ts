@@ -1,5 +1,6 @@
 import type {
   YtdlpHost,
+  YtdlpPlaylistInfo,
   YtdlpSearchResult,
   YtdlpStreamInfo,
 } from '../types/ytdlp';
@@ -30,5 +31,12 @@ export class YtdlpAPI {
       throw new Error('YtdlpAPI: No host configured');
     }
     return this.host.getStream(videoId);
+  }
+
+  async getPlaylist(url: string): Promise<YtdlpPlaylistInfo> {
+    if (!this.host) {
+      throw new Error('YtdlpAPI: No host configured');
+    }
+    return this.host.getPlaylist(url);
   }
 }
