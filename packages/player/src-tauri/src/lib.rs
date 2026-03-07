@@ -31,6 +31,7 @@ pub fn run() {
             http::http_fetch,
             ytdlp::ytdlp_search,
             ytdlp::ytdlp_get_stream,
+            ytdlp::ytdlp_get_playlist,
             logging::get_startup_logs,
             mcp::mcp_start,
             mcp::mcp_stop,

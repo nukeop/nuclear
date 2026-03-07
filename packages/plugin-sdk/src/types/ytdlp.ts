@@ -14,7 +14,28 @@ export type YtdlpStreamInfo = {
   codec: string | null;
 };
 
+export type YtdlpThumbnail = {
+  url: string;
+  width: number | null;
+  height: number | null;
+};
+
+export type YtdlpPlaylistEntry = {
+  id: string;
+  title: string;
+  duration: number | null;
+  thumbnails: YtdlpThumbnail[];
+  channel: string | null;
+};
+
+export type YtdlpPlaylistInfo = {
+  id: string;
+  title: string;
+  entries: YtdlpPlaylistEntry[];
+};
+
 export type YtdlpHost = {
   search: (query: string, maxResults?: number) => Promise<YtdlpSearchResult[]>;
   getStream: (videoId: string) => Promise<YtdlpStreamInfo>;
+  getPlaylist: (url: string) => Promise<YtdlpPlaylistInfo>;
 };

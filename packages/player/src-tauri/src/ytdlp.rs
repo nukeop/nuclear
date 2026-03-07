@@ -23,6 +23,29 @@ pub struct YtdlpSearchResult {
     pub thumbnail: Option<String>,
 }
 
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq)]
+pub struct YtdlpThumbnail {
+    pub url: String,
+    pub width: Option<u32>,
+    pub height: Option<u32>,
+}
+
+#[derive(serde::Serialize, Debug, PartialEq)]
+pub struct YtdlpPlaylistEntry {
+    pub id: String,
+    pub title: String,
+    pub duration: Option<f64>,
+    pub thumbnails: Vec<YtdlpThumbnail>,
+    pub channel: Option<String>,
+}
+
+#[derive(serde::Serialize, Debug, PartialEq)]
+pub struct YtdlpPlaylistInfo {
+    pub id: String,
+    pub title: String,
+    pub entries: Vec<YtdlpPlaylistEntry>,
+}
+
 #[derive(serde::Deserialize)]
 struct YtdlpJson {
     id: Option<String>,
@@ -30,8 +53,12 @@ struct YtdlpJson {
     duration: Option<f64>,
     url: Option<String>,
     thumbnail: Option<String>,
+    thumbnails: Option<Vec<YtdlpThumbnail>>,
     ext: Option<String>,
     acodec: Option<String>,
+    playlist_title: Option<String>,
+    playlist_id: Option<String>,
+    channel: Option<String>,
 }
 
 #[cfg_attr(test, automock)]
@@ -102,6 +129,69 @@ fn search_with_runner(
     Ok(results)
 }
 
+fn get_playlist_with_runner(
+    runner: &impl CommandRunner,
+    url: &str,
+) -> Result<YtdlpPlaylistInfo, String> {
+    debug!("[yt-dlp] Getting playlist: {}", url);
+
+    let args = ["--dump-json", "--flat-playlist", "--no-warnings", url];
+
+    let output = runner.run("yt-dlp", &args).map_err(|error| {
+        error!("[yt-dlp] Failed to execute: {}", error);
+        format!("Failed to execute yt-dlp: {}. Is yt-dlp installed?", error)
+    })?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        error!("[yt-dlp] Playlist extraction failed: {}", stderr);
+        return Err(format!("yt-dlp playlist extraction failed: {}", stderr));
+    }
+
+    let stdout = String::from_utf8_lossy(&output.stdout);
+    let mut entries = Vec::new();
+    let mut playlist_title: Option<String> = None;
+    let mut playlist_id: Option<String> = None;
+
+    for line in stdout.lines() {
+        if line.trim().is_empty() {
+            continue;
+        }
+
+        if let Ok(info) = serde_json::from_str::<YtdlpJson>(line) {
+            if playlist_title.is_none() {
+                playlist_title = info.playlist_title;
+                playlist_id = info.playlist_id;
+            }
+
+            if let Some(id) = info.id {
+                entries.push(YtdlpPlaylistEntry {
+                    id,
+                    title: info.title.unwrap_or_else(|| "Unknown".to_string()),
+                    duration: info.duration,
+                    thumbnails: info.thumbnails.unwrap_or_default(),
+                    channel: info.channel,
+                });
+            }
+        }
+    }
+
+    let title = playlist_title.ok_or_else(|| {
+        error!("[yt-dlp] No playlist metadata found in output");
+        "No playlist metadata found in yt-dlp output".to_string()
+    })?;
+
+    let id = playlist_id.unwrap_or_default();
+
+    debug!(
+        "[yt-dlp] Playlist '{}' has {} entries",
+        title,
+        entries.len()
+    );
+
+    Ok(YtdlpPlaylistInfo { id, title, entries })
+}
+
 fn get_stream_with_runner(
     runner: &impl CommandRunner,
     video_id: &str,
@@ -166,6 +256,11 @@ pub async fn ytdlp_search(
 #[command]
 pub async fn ytdlp_get_stream(video_id: String) -> Result<YtdlpStreamInfo, String> {
     get_stream_with_runner(&RealCommandRunner, &video_id)
+}
+
+#[command]
+pub async fn ytdlp_get_playlist(url: String) -> Result<YtdlpPlaylistInfo, String> {
+    get_playlist_with_runner(&RealCommandRunner, &url)
 }
 
 #[cfg(test)]
@@ -496,6 +591,117 @@ not json at all
             });
 
             let result = get_stream_with_runner(&mock, "test");
+
+            assert!(result.is_err());
+            assert!(result.unwrap_err().contains("Is yt-dlp installed?"));
+        }
+    }
+
+    mod get_playlist {
+        use super::*;
+
+        fn playlist_entry_json(id: &str, title: &str) -> String {
+            format!(
+                r#"{{"id":"{}","title":"{}","duration":180.0,"thumbnails":[{{"url":"http://img/{}.jpg","width":336,"height":188}}],"channel":"Test Channel","playlist_title":"My Playlist","playlist_id":"PLtest123"}}"#,
+                id, title, id
+            )
+        }
+
+        #[test]
+        fn parses_playlist_with_multiple_entries() {
+            let stdout = format!(
+                "{}\n{}\n{}",
+                playlist_entry_json("v1", "Song One"),
+                playlist_entry_json("v2", "Song Two"),
+                playlist_entry_json("v3", "Song Three"),
+            );
+
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(move |_, _| Ok(success_output(&stdout)));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PLtest123").unwrap();
+
+            assert_eq!(result.id, "PLtest123");
+            assert_eq!(result.title, "My Playlist");
+            assert_eq!(result.entries.len(), 3);
+            assert_eq!(result.entries[0].id, "v1");
+            assert_eq!(result.entries[0].channel, Some("Test Channel".to_string()));
+            assert_eq!(result.entries[0].thumbnails[0].url, "http://img/v1.jpg");
+            assert_eq!(result.entries[1].title, "Song Two");
+            assert_eq!(result.entries[2].duration, Some(180.0));
+        }
+
+        #[test]
+        fn skips_malformed_lines() {
+            let stdout = format!(
+                "{}\nnot json\n{}",
+                playlist_entry_json("v1", "Good"),
+                playlist_entry_json("v2", "Also Good"),
+            );
+
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(move |_, _| Ok(success_output(&stdout)));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PL1").unwrap();
+
+            assert_eq!(result.entries.len(), 2);
+        }
+
+        #[test]
+        fn skips_entries_without_id() {
+            let stdout = format!(
+                "{}\n{}",
+                r#"{"title":"No ID","playlist_title":"My Playlist","playlist_id":"PL1"}"#,
+                playlist_entry_json("v1", "Has ID"),
+            );
+
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(move |_, _| Ok(success_output(&stdout)));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PL1").unwrap();
+
+            assert_eq!(result.entries.len(), 1);
+            assert_eq!(result.entries[0].id, "v1");
+        }
+
+        #[test]
+        fn returns_error_on_empty_output() {
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(|_, _| Ok(success_output("")));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PL1");
+
+            assert!(result.is_err());
+            assert!(result.unwrap_err().contains("No playlist metadata"));
+        }
+
+        #[test]
+        fn returns_error_on_nonzero_exit() {
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run()
+                .returning(|_, _| Ok(error_output("ERROR: Playlist not found")));
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=bad");
+
+            assert!(result.is_err());
+            assert!(result.unwrap_err().contains("Playlist not found"));
+        }
+
+        #[test]
+        fn returns_error_when_command_fails_to_execute() {
+            let mut mock = MockCommandRunner::new();
+            mock.expect_run().returning(|_, _| {
+                Err(std::io::Error::new(
+                    std::io::ErrorKind::NotFound,
+                    "not found",
+                ))
+            });
+
+            let result = get_playlist_with_runner(&mock, "https://youtube.com/playlist?list=PL1");
 
             assert!(result.is_err());
             assert!(result.unwrap_err().contains("Is yt-dlp installed?"));
