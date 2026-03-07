@@ -2,10 +2,8 @@ import { act, waitFor } from '@testing-library/react';
 
 import { AudioSource } from '@nuclearplayer/hifi';
 
-import { useQueueStore } from '../stores/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
-import { createQueueItem } from '../test/fixtures/queue';
 import { SoundWrapper } from './Sound.test-wrapper';
 
 vi.mock('@tauri-apps/api/core', () => ({
@@ -81,29 +79,6 @@ describe('Sound component', () => {
 });
 
 describe('Repeat mode behavior when a track ends', () => {
-  const threeTrackQueue = [
-    createQueueItem('Track 1'),
-    createQueueItem('Track 2'),
-    createQueueItem('Track 3'),
-  ];
-
-  const seedAndPlay = async (
-    items: ReturnType<typeof createQueueItem>[],
-    startIndex = 0,
-  ) => {
-    useQueueStore.setState({
-      items,
-      currentIndex: startIndex,
-      isReady: true,
-      isLoading: false,
-    });
-    SoundWrapper.setSrc(srcA);
-    SoundWrapper.play();
-    await waitFor(() => {
-      expect(SoundWrapper.getAudios().length).toBeGreaterThan(0);
-    });
-  };
-
   beforeEach(() => {
     useSoundStore.setState({
       src: null,
@@ -119,7 +94,7 @@ describe('Repeat mode behavior when a track ends', () => {
 
   it('advances to next track when repeat is off', async () => {
     await SoundWrapper.mount();
-    await seedAndPlay(threeTrackQueue);
+    await SoundWrapper.seedAndPlay();
     expect(SoundWrapper.nowPlayingTitle).toBe('Track 1');
 
     SoundWrapper.fireEnded();
@@ -135,7 +110,7 @@ describe('Repeat mode behavior when a track ends', () => {
     useSettingsStore.setState({
       values: { 'core.playback.repeat': 'one' },
     });
-    await seedAndPlay(threeTrackQueue);
+    await SoundWrapper.seedAndPlay();
 
     SoundWrapper.fireEnded();
 
@@ -150,7 +125,7 @@ describe('Repeat mode behavior when a track ends', () => {
     useSettingsStore.setState({
       values: { 'core.playback.repeat': 'all' },
     });
-    await seedAndPlay(threeTrackQueue, 2);
+    await SoundWrapper.seedAndPlay(2);
     expect(SoundWrapper.nowPlayingTitle).toBe('Track 3');
 
     SoundWrapper.fireEnded();
@@ -163,7 +138,7 @@ describe('Repeat mode behavior when a track ends', () => {
 
   it('stays on last track when repeat is off and last track ends', async () => {
     await SoundWrapper.mount();
-    await seedAndPlay(threeTrackQueue, 2);
+    await SoundWrapper.seedAndPlay(2);
     expect(SoundWrapper.nowPlayingTitle).toBe('Track 3');
 
     SoundWrapper.fireEnded();

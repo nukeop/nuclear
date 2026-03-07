@@ -3,17 +3,40 @@ import {
   render,
   RenderResult,
   screen,
+  waitFor,
   within,
 } from '@testing-library/react';
 
 import { AudioSource } from '@nuclearplayer/hifi';
 
 import App from '../App';
+import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
+import { createQueueItem } from '../test/fixtures/queue';
+
+const defaultSrc: AudioSource = { url: '/track.mp3', protocol: 'http' };
 
 export const SoundWrapper = {
   async mount(): Promise<RenderResult> {
     return render(<App />);
+  },
+
+  async seedAndPlay(startIndex = 0) {
+    useQueueStore.setState({
+      items: [
+        createQueueItem('Track 1'),
+        createQueueItem('Track 2'),
+        createQueueItem('Track 3'),
+      ],
+      currentIndex: startIndex,
+      isReady: true,
+      isLoading: false,
+    });
+    useSoundStore.getState().setSrc(defaultSrc);
+    useSoundStore.getState().play();
+    await waitFor(() => {
+      expect(this.getAudios().length).toBeGreaterThan(0);
+    });
   },
 
   get nowPlayingTitle() {
