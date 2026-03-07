@@ -19,21 +19,7 @@ import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
 
 const user = userEvent.setup();
 
-const createQueueItem = (id: string, title: string): QueueItem => ({
-  id,
-  track: {
-    title,
-    artists: [{ name: 'Test Artist', roles: [] }],
-    durationMs: 180000,
-    source: { provider: 'test', id },
-  },
-  status: 'idle' as const,
-  addedAtIso: new Date().toISOString(),
-});
-
 export const QueueWrapper = {
-  createQueueItem,
-
   seedQueue(items: QueueItem[]) {
     useQueueStore.setState({
       items,

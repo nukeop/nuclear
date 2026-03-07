@@ -1,4 +1,10 @@
-import { act, render, RenderResult } from '@testing-library/react';
+import {
+  act,
+  render,
+  RenderResult,
+  screen,
+  within,
+} from '@testing-library/react';
 
 import { AudioSource } from '@nuclearplayer/hifi';
 
@@ -9,6 +15,30 @@ export const SoundWrapper = {
   async mount(): Promise<RenderResult> {
     return render(<App />);
   },
+
+  get nowPlayingTitle() {
+    return screen.queryByTestId('now-playing-title')?.textContent;
+  },
+
+  get nowPlayingArtist() {
+    return screen.queryByTestId('player-now-playing-artist')?.textContent;
+  },
+
+  get currentQueueItem() {
+    const items = screen.queryAllByTestId('queue-item');
+    return items.find(
+      (item) => item.getAttribute('data-is-current') === 'true',
+    );
+  },
+
+  get currentQueueItemTitle() {
+    const current = this.currentQueueItem;
+    if (!current) {
+      return undefined;
+    }
+    return within(current).queryByTestId('queue-item-title')?.textContent;
+  },
+
   setSrc(src: AudioSource) {
     useSoundStore.getState().setSrc(src);
   },
@@ -38,6 +68,14 @@ export const SoundWrapper = {
     if (audio) {
       act(() => {
         audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+      });
+    }
+  },
+  fireEnded() {
+    const audio = document.querySelector('audio');
+    if (audio) {
+      act(() => {
+        audio.dispatchEvent(new Event('ended', { bubbles: false }));
       });
     }
   },

@@ -7,7 +7,6 @@ import { useCoreSetting } from '../hooks/useCoreSetting';
 import { useStreamResolution } from '../hooks/useStreamResolution';
 import { eventBus } from '../services/eventBus';
 import { useQueueStore } from '../stores/queueStore';
-import { getSetting } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 
 export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -39,12 +38,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
       eventBus.emit('trackFinished', currentTrack);
     }
 
-    const repeatMode = getSetting('core.playback.repeat') as string;
-    if (repeatMode === 'one') {
-      useSoundStore.getState().seekTo(0);
-    } else {
-      useQueueStore.getState().goToNext();
-    }
+    useQueueStore.getState().advanceOnTrackEnd();
   }, []);
 
   const handleCanPlay = useCallback(() => {

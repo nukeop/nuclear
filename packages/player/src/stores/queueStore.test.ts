@@ -302,19 +302,6 @@ describe('useQueueStore', () => {
       randomSpy.mockRestore();
     });
 
-    it('goToNext stays on current track when repeat mode is one', () => {
-      useSettingsStore.setState({ values: { 'core.playback.repeat': 'one' } });
-      useQueueStore.getState().goToNext();
-      expect(useQueueStore.getState().currentIndex).toBe(0);
-    });
-
-    it('goToPrevious stays on current track when repeat mode is one', () => {
-      useSettingsStore.setState({ values: { 'core.playback.repeat': 'one' } });
-      useQueueStore.setState({ currentIndex: 2 });
-      useQueueStore.getState().goToPrevious();
-      expect(useQueueStore.getState().currentIndex).toBe(2);
-    });
-
     it('goToPrevious picks a different random index when shuffle is enabled', () => {
       const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.4);
       useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });

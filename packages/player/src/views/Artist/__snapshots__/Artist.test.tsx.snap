@@ -1123,11 +1123,13 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
             >
               <div
                 class="text-foreground truncate text-sm font-bold"
+                data-testid="now-playing-title"
               >
                 No track playing
               </div>
               <div
                 class="text-foreground-secondary truncate text-xs"
+                data-testid="player-now-playing-artist"
               />
             </div>
           </div>
@@ -2687,11 +2689,13 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
             >
               <div
                 class="text-foreground truncate text-sm font-bold"
+                data-testid="now-playing-title"
               >
                 No track playing
               </div>
               <div
                 class="text-foreground-secondary truncate text-xs"
+                data-testid="player-now-playing-artist"
               />
             </div>
           </div>

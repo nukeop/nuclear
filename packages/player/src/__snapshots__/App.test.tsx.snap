@@ -713,11 +713,13 @@ exports[`App > should render snapshot 1`] = `
             >
               <div
                 class="text-foreground truncate text-sm font-bold"
+                data-testid="now-playing-title"
               >
                 No track playing
               </div>
               <div
                 class="text-foreground-secondary truncate text-xs"
+                data-testid="player-now-playing-artist"
               />
             </div>
           </div>

@@ -37,8 +37,18 @@ export const PlayerBarNowPlaying: FC<PlayerBarNowPlayingProps> = ({
       )}
     </div>
     <div className="min-w-0 flex-1">
-      <div className="text-foreground truncate text-sm font-bold">{title}</div>
-      <div className="text-foreground-secondary truncate text-xs">{artist}</div>
+      <div
+        className="text-foreground truncate text-sm font-bold"
+        data-testid="now-playing-title"
+      >
+        {title}
+      </div>
+      <div
+        className="text-foreground-secondary truncate text-xs"
+        data-testid="player-now-playing-artist"
+      >
+        {artist}
+      </div>
     </div>
     {action}
   </div>
