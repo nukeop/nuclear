@@ -354,11 +354,11 @@
     "seeMore": "Vedi altro ({{count}} più vecchio)",
     "types": {
       "feature": "Caratteristica",
-      "fix": "Fix",
-      "improvement": "Improvement",
-      "chore": "Chore",
+      "fix": "Correzione",
+      "improvement": "Miglioramento",
+      "chore": "Altro",
       "plugin": "Estensione",
-      "docs": "Docs"
+      "docs": "Documentazione"
     }
   }
 }
