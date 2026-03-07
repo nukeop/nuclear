@@ -26,14 +26,14 @@ beforeEach(() => {
 });
 
 describe('ConnectedNowPlaying', () => {
-  it('shows track title, artist, and thumbnail when a track is playing', () => {
+  it('shows track title, artist, and thumbnail when a track is playing', async () => {
     const item = new Wrapper.QueueItemBuilder()
       .withTitle('Paranoid Android')
       .withArtwork('https://example.com/art.jpg')
       .withArtist('Radiohead')
       .build();
     Wrapper.seedQueueItem(item);
-    Wrapper.mount();
+    await Wrapper.mount();
 
     expect(Wrapper.nowPlaying.title('Paranoid Android')).toBeInTheDocument();
     expect(Wrapper.nowPlaying.artist('Radiohead')).toBeInTheDocument();
@@ -44,17 +44,17 @@ describe('ConnectedNowPlaying', () => {
     );
   });
 
-  it('shows placeholder when no track is playing', () => {
-    Wrapper.mount();
+  it('shows placeholder when no track is playing', async () => {
+    await Wrapper.mount();
 
     expect(Wrapper.nowPlaying.placeholder).toBeInTheDocument();
     expect(Wrapper.nowPlaying.thumbnail).not.toBeInTheDocument();
   });
 
-  it('shows placeholder when track has no artwork', () => {
+  it('shows placeholder when track has no artwork', async () => {
     const item = new Wrapper.QueueItemBuilder().build();
     Wrapper.seedQueueItem(item);
-    Wrapper.mount();
+    await Wrapper.mount();
 
     expect(Wrapper.nowPlaying.placeholder).toBeInTheDocument();
     expect(Wrapper.nowPlaying.thumbnail).not.toBeInTheDocument();
@@ -64,7 +64,7 @@ describe('ConnectedNowPlaying', () => {
 describe('ConnectedControls', () => {
   it('clicking shuffle toggles shuffleEnabled in the queue store', async () => {
     Wrapper.seedShuffle(false);
-    Wrapper.mount();
+    await Wrapper.mount();
 
     await Wrapper.controls.shuffleButton.click();
     expect(useQueueStore.getState().shuffleEnabled).toBe(true);
@@ -75,7 +75,7 @@ describe('ConnectedControls', () => {
 
   it('clicking repeat cycles through modes: off -> all -> one -> off', async () => {
     Wrapper.seedRepeatMode('off');
-    Wrapper.mount();
+    await Wrapper.mount();
 
     await Wrapper.controls.repeatButton.click();
     expect(useQueueStore.getState().repeatMode).toBe('all');
@@ -89,16 +89,16 @@ describe('ConnectedControls', () => {
 });
 
 describe('ConnectedVolume', () => {
-  it('volume slider reflects the current volume from settings store', () => {
+  it('volume slider reflects the current volume from settings store', async () => {
     Wrapper.seedVolume(0.6);
-    Wrapper.mount();
+    await Wrapper.mount();
 
     expect(Wrapper.volume.rangeInput).toHaveValue('60');
   });
 
-  it('slider updates when the store volume changes after mount', () => {
+  it('slider updates when the store volume changes after mount', async () => {
     Wrapper.seedVolume(0.5);
-    Wrapper.mount();
+    await Wrapper.mount();
 
     expect(Wrapper.volume.rangeInput).toHaveValue('50');
 
@@ -113,7 +113,7 @@ describe('ConnectedVolume', () => {
 
   it('changing the volume slider updates the settings store value', async () => {
     Wrapper.seedVolume(0.5);
-    Wrapper.mount();
+    await Wrapper.mount();
 
     await Wrapper.volume.changeValue(75);
 

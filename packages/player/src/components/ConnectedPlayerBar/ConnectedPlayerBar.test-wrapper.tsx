@@ -1,4 +1,5 @@
 import {
+  act,
   fireEvent,
   render,
   RenderResult,
@@ -81,8 +82,10 @@ class QueueItemBuilder {
 export const ConnectedPlayerBarWrapper = {
   QueueItemBuilder,
 
-  mount(): RenderResult {
-    return render(<ConnectedPlayerBar />);
+  async mount(): Promise<RenderResult> {
+    const result = render(<ConnectedPlayerBar />);
+    await act(() => Promise.resolve());
+    return result;
   },
 
   seedQueueItem(item: QueueItem) {

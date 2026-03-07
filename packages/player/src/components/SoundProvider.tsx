@@ -3,26 +3,26 @@ import { useCallback, useEffect } from 'react';
 
 import { Sound, Volume } from '@nuclearplayer/hifi';
 
+import { useCoreSetting } from '../hooks/useCoreSetting';
 import { useStreamResolution } from '../hooks/useStreamResolution';
 import { eventBus } from '../services/eventBus';
 import { useQueueStore } from '../stores/queueStore';
-import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 
 export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   useStreamResolution();
   const { src, status, seek } = useSoundStore();
-  const getValue = useSettingsStore((s) => s.getValue);
-  const crossfadeMs = getValue('core.playback.crossfadeMs') as number;
+  const [crossfadeMs] = useCoreSetting<number>('playback.crossfadeMs');
   const preload: HTMLAudioElement['preload'] = 'auto';
   const crossOrigin = '' as const;
-  const volume01 = (getValue('core.playback.volume') as number) ?? 1;
-  const muted = (getValue('core.playback.muted') as boolean) ?? false;
-  const volumePercent = muted ? 0 : Math.round(volume01 * 100);
+  const [volume01] = useCoreSetting<number>('playback.volume');
+  const [muted] = useCoreSetting<boolean>('playback.muted');
+  const volumePercent = muted ? 0 : Math.round((volume01 ?? 1) * 100);
 
   useEffect(() => {
-    const { setCrossfadeMs } = useSoundStore.getState();
-    setCrossfadeMs(crossfadeMs);
+    if (crossfadeMs !== undefined) {
+      useSoundStore.getState().setCrossfadeMs(crossfadeMs);
+    }
   }, [crossfadeMs]);
 
   const handleTimeUpdate = useCallback(
