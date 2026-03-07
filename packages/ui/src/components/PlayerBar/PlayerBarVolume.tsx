@@ -24,7 +24,7 @@ export const PlayerBarVolume: FC<PlayerBarVolumeProps> = ({
       <Button size="icon" variant="text" disabled={disabled}>
         <Volume2 size={16} />
       </Button>
-      <div className="w-24">
+      <div className="w-24" data-testid="player-volume-slider">
         <Slider
           value={value}
           defaultValue={defaultValue}

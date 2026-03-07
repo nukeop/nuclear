@@ -5,10 +5,10 @@ import { PlayerBar } from '@nuclearplayer/ui';
 import { useSettingsStore } from '../../stores/settingsStore';
 
 export const ConnectedVolume: FC = () => {
-  const getValue = useSettingsStore((s) => s.getValue);
+  const volume = useSettingsStore(
+    (s) => (s.getValue('core.playback.volume') as number) ?? 1,
+  );
   const setValue = useSettingsStore((s) => s.setValue);
-
-  const volume = (getValue('core.playback.volume') as number) ?? 1;
 
   const handleVolumeChange = (value: number) => {
     setValue('core.playback.volume', value / 100);

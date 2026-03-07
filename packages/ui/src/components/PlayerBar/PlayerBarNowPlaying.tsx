@@ -25,9 +25,13 @@ export const PlayerBarNowPlaying: FC<PlayerBarNowPlayingProps> = ({
           src={coverUrl}
           alt=""
           className="size-full object-cover select-none"
+          data-testid="player-now-playing-thumbnail"
         />
       ) : (
-        <div className="text-foreground-secondary flex size-full items-center justify-center">
+        <div
+          className="text-foreground-secondary flex size-full items-center justify-center"
+          data-testid="player-now-playing-placeholder"
+        >
           <Music2 size={20} />
         </div>
       )}

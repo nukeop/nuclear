@@ -39,6 +39,7 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
       size="icon"
       variant={isShuffleActive ? 'default' : 'text'}
       onClick={onShuffleToggle}
+      data-testid="player-shuffle-button"
     >
       <Shuffle size={16} />
     </Button>
@@ -59,6 +60,7 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
       size="icon"
       variant={isRepeatActive ? 'default' : 'text'}
       onClick={onRepeatToggle}
+      data-testid="player-repeat-button"
     >
       <Repeat size={16} />
     </Button>

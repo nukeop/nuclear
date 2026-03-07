@@ -4,16 +4,24 @@ import { useShallow } from 'zustand/react/shallow';
 import { PlayerBar } from '@nuclearplayer/ui';
 
 import { useQueueStore } from '../../stores/queueStore';
-import { useSettingsStore } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
 
 export const ConnectedControls: FC = () => {
-  const { shuffleEnabled, repeatMode, goToNext, goToPrevious } = useQueueStore(
+  const {
+    shuffleEnabled,
+    repeatMode,
+    goToNext,
+    goToPrevious,
+    setShuffleEnabled,
+    setRepeatMode,
+  } = useQueueStore(
     useShallow((s) => ({
       shuffleEnabled: s.shuffleEnabled,
       repeatMode: s.repeatMode,
       goToNext: s.goToNext,
       goToPrevious: s.goToPrevious,
+      setShuffleEnabled: s.setShuffleEnabled,
+      setRepeatMode: s.setRepeatMode,
     })),
   );
   const { status, toggle } = useSoundStore(
@@ -22,17 +30,16 @@ export const ConnectedControls: FC = () => {
       toggle: s.toggle,
     })),
   );
-  const setValue = useSettingsStore((s) => s.setValue);
 
   const handleToggleShuffle = () => {
-    setValue('core.playback.shuffle', !shuffleEnabled);
+    setShuffleEnabled(!shuffleEnabled);
   };
 
   const handleToggleRepeat = () => {
     const modes: Array<'off' | 'all' | 'one'> = ['off', 'all', 'one'];
     const currentIndex = modes.indexOf(repeatMode);
     const nextIndex = (currentIndex + 1) % modes.length;
-    setValue('core.playback.repeat', modes[nextIndex]);
+    setRepeatMode(modes[nextIndex]);
   };
 
   return (
