@@ -1,5 +1,25 @@
 [
   {
+    "date": "2026-03-07T00:00",
+    "description": "Plugins can import YouTube playlists by URL via yt-dlp",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "cyan"
+      },
+      {
+        "label": "Plugins",
+        "color": "purple"
+      },
+      {
+        "label": "YouTube",
+        "color": "red"
+      }
+    ]
+  },
+  {
     "date": "2026-03-06T00:00",
     "description": "YouTube tracks now play using MSE-based streaming, fixing incorrect duration display and enabling proper seeking",
     "type": "fix",
