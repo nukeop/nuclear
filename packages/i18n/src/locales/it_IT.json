@@ -32,35 +32,35 @@
     "favoriteAlbums": "Albums preferiti",
     "favoriteTracks": "Tracks preferiti",
     "favoriteArtists": "Artisti preferiti",
-    "playlists": "Playlists"
+    "playlists": "Scalette"
   },
   "favorites": {
     "albums": {
-      "title": "Favorite albums",
-      "empty": "No favorite albums yet",
-      "emptyDescription": "Albums you mark as favorites will appear here"
+      "title": "Album preferiti",
+      "empty": "Non ci sono ancora album preferiti",
+      "emptyDescription": "Gli album contrassegnati come preferiti appariranno qui"
     },
     "tracks": {
-      "title": "Favorite tracks",
-      "empty": "No favorite tracks yet",
-      "emptyDescription": "Tracks you mark as favorites will appear here"
+      "title": "Brani preferiti",
+      "empty": "Non ci sono ancora brani preferiti",
+      "emptyDescription": "I brani contrassegnati come preferiti appariranno qui"
     },
     "artists": {
-      "title": "Favorite artists",
-      "empty": "No favorite artists yet",
-      "emptyDescription": "Artists you mark as favorites will appear here"
+      "title": "Artisti preferiti",
+      "empty": "Non ci sono ancora artisti preferiti",
+      "emptyDescription": "Gli artisti contrassegnati come preferiti appariranno qui"
     }
   },
   "playlists": {
-    "title": "Playlists",
-    "empty": "No playlists yet",
-    "emptyDescription": "Create a playlist or import one to get started",
-    "emptyTracks": "No tracks in this playlist",
-    "emptyTracksDescription": "Add tracks from search results or your library",
-    "create": "Create new",
-    "importJson": "Import from JSON",
-    "exportJson": "Export as JSON",
-    "add": "Add",
+    "title": "Scalette",
+    "empty": "Non ci sono ancora scalette",
+    "emptyDescription": "Crea una scaletta o importane una per iniziare",
+    "emptyTracks": "Nessuna traccia in questa playlist",
+    "emptyTracksDescription": "Aggiungi brani dai risultati della ricerca o dalla tua libreria",
+    "create": "Crea nuova",
+    "importJson": "Importa da JSON",
+    "exportJson": "Esporta come JSON",
+    "add": "Aggiungi",
     "delete": "Delete playlist",
     "deleteConfirm": "Are you sure you want to delete this playlist?",
     "play": "Play",
