@@ -29,9 +29,9 @@ Main areas of concern:
 - Issues requiring physical access to the machine
 - Vulnerabilities in upstream dependencies that are already tracked upstream
 
-## Architecture notes for researchers
+## Architecture notes
 
-- **MCP server** runs on `127.0.0.1` only. It requires an `x-mcp-token` header for every request. The token is generated at server start and stored in app settings.
-- **Plugin system** runs plugin JS via `new Function()` with a sandboxed `require()`. Plugins can't import Node built-ins or arbitrary modules, but they do get access to the full player API (queue, playback, HTTP, etc).
-- **Tauri commands** (`copy_dir_recursive`, `extract_zip`, `download_file`, `http_fetch`) validate URLs and paths but are still relatively powerful from a compromised renderer.
-- **CSP** is set on the renderer. `unsafe-inline` is allowed for styles (needed for themes). WASM eval is allowed for the plugin compiler.
+- **MCP server** binds to `127.0.0.1` only, requires `x-mcp-token` header on every request. Token is generated at server start and stored in app settings.
+- **Plugin system** runs plugin JS via `new Function()` with a sandboxed `require()`. Plugins can't import arbitrary modules but do get access to the full player API (queue, playback, HTTP, etc).
+- **Tauri commands** (`copy_dir_recursive`, `extract_zip`, `download_file`, `http_fetch`) validate URLs and paths but are still fairly powerful if the renderer is compromised.
+- **CSP** is set on the webview. `unsafe-inline` is allowed for styles (needed for themes). `wasm-unsafe-eval` is allowed for the plugin compiler.

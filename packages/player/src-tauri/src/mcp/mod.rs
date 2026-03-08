@@ -80,9 +80,9 @@ async fn try_bind(port_start: u16, port_end: u16) -> Result<tokio::net::TcpListe
     ))
 }
 
-// token auth middleware - any local process or website needs this to talk to the MCP server.
-// browsers can't send custom headers cross-origin without a preflight, and we don't set
-// CORS headers, so web-based attacks are already blocked. this is mainly for local process isolation.
+// any client needs to send x-mcp-token to talk to the MCP server.
+// browsers can't send custom headers cross-origin without a CORS preflight, and we don't set
+// any CORS headers, so web-based attacks are already blocked. this is mainly for local process isolation.
 async fn check_mcp_token(token: String, request: Request, next: Next) -> Response {
     let provided = request
         .headers()

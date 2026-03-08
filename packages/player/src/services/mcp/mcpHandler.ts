@@ -111,7 +111,9 @@ const handleToolCall = async (request: BridgeRequest): Promise<void> => {
 };
 
 const startServer = async () => {
-  const { port, token } = await invoke<{ port: number; token: string }>('mcp_start');
+  const { port, token } = await invoke<{ port: number; token: string }>(
+    'mcp_start',
+  );
   const url = `http://127.0.0.1:${port}/mcp`;
   await setSetting(MCP_SERVER_URL_SETTING, url);
   await setSetting(MCP_TOKEN_SETTING, token);

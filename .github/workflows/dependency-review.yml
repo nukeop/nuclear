@@ -18,7 +18,5 @@ jobs:
       - name: Dependency Review
         uses: actions/dependency-review-action@v4
         with:
-          # fail on high or critical severity vulns in new deps
           fail-on-severity: high
-          # comment on the PR with any findings
           comment-summary-in-pr: always

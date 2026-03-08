@@ -85,8 +85,8 @@ pub fn extract_zip(zip_path: PathBuf, dest_path: PathBuf) -> Result<(), String> 
                 }
                 let mut out_file = File::create(&out_path)?;
 
-                // stream with a manual loop so we can enforce per-file and total limits.
-                // don't trust the metadata size - check actual bytes written.
+                // manual loop so we can check per-file and total limits
+                // don't trust the metadata size - zip files can lie about it
                 let mut buf = [0u8; 65536];
                 let mut file_bytes: u64 = 0;
                 loop {

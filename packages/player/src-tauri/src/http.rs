@@ -98,8 +98,8 @@ fn redact_headers(headers: &HashMap<String, String>) -> HashMap<String, String> 
         .collect()
 }
 
-// block loopback and link-local metadata addresses.
-// don't want plugins using http_fetch to probe local services.
+// block loopback and link-local metadata addresses
+// don't want plugins using http_fetch to probe local services
 fn is_loopback_or_metadata(host: &str) -> bool {
     let lower = host.to_lowercase();
 
@@ -145,8 +145,8 @@ fn is_loopback_or_metadata(host: &str) -> bool {
     false
 }
 
-// only http and https are allowed. file:, data:, ftp:, etc. are not.
-// also blocks requests to loopback / metadata addresses.
+// only http and https - no file:, data:, ftp:, etc.
+// also blocks loopback and metadata addresses
 fn validate_url(url: &str) -> Result<(), String> {
     let lower = url.to_lowercase();
     if !lower.starts_with("https://") && !lower.starts_with("http://") {
