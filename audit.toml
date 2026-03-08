@@ -1,0 +1,18 @@
+[advisories]
+ignore = [
+    # bytes 1.10.1 integer overflow - needs >=1.11.1
+    # comes through tower-http -> reqwest -> tauri, can't fix without a tauri release
+    "RUSTSEC-2026-0007",
+
+    # rkyv 0.7.45 UB in Arc/Rc from_value - needs >=0.7.46
+    # comes through rust_decimal -> byte-unit -> tauri-plugin-log
+    "RUSTSEC-2026-0001",
+
+    # slab 0.4.10 OOB in get_disjoint_mut - needs >=0.4.11
+    # comes through tokio, deep in the tauri dep tree
+    "RUSTSEC-2025-0047",
+
+    # time 0.3.41 DoS via stack exhaustion - needs >=0.3.47
+    # comes through zip and tauri-codegen, waiting on upstream releases
+    "RUSTSEC-2026-0009",
+]
