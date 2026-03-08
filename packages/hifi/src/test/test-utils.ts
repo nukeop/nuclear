@@ -10,6 +10,10 @@ type GainSpyNode = {
 export const setupAudioContextMock = () => {
   const origAudioContext = window.AudioContext;
   const gains: GainSpyNode[] = [];
+  const fakeDestination = {
+    connect: vi.fn(),
+    disconnect: vi.fn(),
+  } as unknown as AudioDestinationNode;
   const fakeCtx = {
     currentTime: 0,
     resume: vi.fn(),
@@ -30,7 +34,7 @@ export const setupAudioContextMock = () => {
       gains.push(node);
       return node as unknown as GainNode;
     },
-    destination: {} as AudioDestinationNode,
+    destination: fakeDestination,
   } as unknown as AudioContext;
   window.AudioContext = vi.fn(() => fakeCtx) as unknown as typeof AudioContext;
   const restore = () => {

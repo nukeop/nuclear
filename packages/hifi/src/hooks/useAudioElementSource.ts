@@ -14,8 +14,6 @@ export const useAudioElementSource = (
     }
 
     const audioSource = context.createMediaElementSource(audioRef.current);
-    audioSource.connect(context.destination);
-
     setSource(audioSource);
 
     return () => {
