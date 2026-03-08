@@ -32,8 +32,8 @@ export const Sound: React.FC<SoundProps> = ({
 }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const context = useAudioContext();
-  const { source, gain } = useAudioElementSource(audioRef, context);
-  const isReady = !!source && !!gain;
+  const { source } = useAudioElementSource(audioRef, context);
+  const isReady = !!source;
   const [canPlay, setCanPlay] = useState(false);
 
   usePlaybackStatus(audioRef, status, context, isReady, canPlay);

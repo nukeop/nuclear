@@ -15,7 +15,7 @@ export const setupAudioContextMock = () => {
     resume: vi.fn(),
     close: vi.fn(),
     createMediaElementSource: () => ({
-      connect: () => ({ connect: () => fakeCtx }),
+      connect: vi.fn(),
       disconnect: vi.fn(),
     }),
     createGain: () => {
