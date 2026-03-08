@@ -78,7 +78,7 @@ jobs:
       - name: cargo audit
         run: |
           cargo install cargo-audit --quiet 2>/dev/null || true
-          cargo audit --file packages/player/src-tauri/Cargo.lock --config audit.toml
+          cargo audit --file packages/player/src-tauri/Cargo.lock
 
       - name: Build
         run: pnpm build
