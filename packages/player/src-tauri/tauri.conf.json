@@ -20,7 +20,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; media-src 'self' https: blob:; connect-src 'self' https: wss: ws: blob:; font-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'"
     }
   },
   "bundle": {

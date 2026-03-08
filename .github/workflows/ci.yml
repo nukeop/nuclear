@@ -70,6 +70,16 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: pnpm audit
+        # warns on known vulns in production deps, doesn't break the build
+        # fix these manually - set to fail if you want to enforce clean audits
+        run: pnpm audit --prod || true
+
+      - name: cargo audit
+        run: |
+          cargo install cargo-audit --quiet 2>/dev/null || true
+          cargo audit --file packages/player/src-tauri/Cargo.lock
+
       - name: Build
         run: pnpm build
         env:

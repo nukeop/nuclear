@@ -3,11 +3,18 @@ pub mod tools;
 
 use std::sync::Arc;
 
+use axum::{
+    extract::Request,
+    http::StatusCode,
+    middleware::{self, Next},
+    response::{IntoResponse, Response},
+};
 use bridge::{McpBridge, McpBridgeResponse};
 use rmcp::transport::streamable_http_server::{
     session::local::LocalSessionManager, StreamableHttpServerConfig, StreamableHttpService,
 };
 use rmcp::{model::*, tool_handler, ServerHandler};
+use serde::Serialize;
 use tauri::{AppHandle, Manager};
 use tokio::sync::{oneshot, Mutex};
 use tokio_util::sync::CancellationToken;
@@ -29,10 +36,18 @@ impl ServerHandler for NuclearMcpServer {
     }
 }
 
+// returned to the UI so it can store the token for external MCP clients
+#[derive(Debug, Serialize)]
+pub struct McpStartResult {
+    pub port: u16,
+    pub token: String,
+}
+
 struct RunningServer {
     task: tauri::async_runtime::JoinHandle<()>,
     cancellation_token: CancellationToken,
     port: u16,
+    token: String,
 }
 
 pub struct McpState {
@@ -65,10 +80,27 @@ async fn try_bind(port_start: u16, port_end: u16) -> Result<tokio::net::TcpListe
     ))
 }
 
+// token auth middleware - any local process or website needs this to talk to the MCP server.
+// browsers can't send custom headers cross-origin without a preflight, and we don't set
+// CORS headers, so web-based attacks are already blocked. this is mainly for local process isolation.
+async fn check_mcp_token(token: String, request: Request, next: Next) -> Response {
+    let provided = request
+        .headers()
+        .get("x-mcp-token")
+        .and_then(|v| v.to_str().ok());
+
+    if provided != Some(token.as_str()) {
+        return (StatusCode::UNAUTHORIZED, "missing or invalid token\n").into_response();
+    }
+
+    next.run(request).await
+}
+
 async fn start_server(
     bridge: McpBridge,
     ct: CancellationToken,
     ready: oneshot::Sender<Result<u16, String>>,
+    token: String,
 ) {
     let service = StreamableHttpService::new(
         move || Ok(NuclearMcpServer::new(bridge.clone())),
@@ -79,7 +111,13 @@ async fn start_server(
         },
     );
 
-    let router = axum::Router::new().nest_service("/mcp", service);
+    // wrap with token auth - client must send x-mcp-token header
+    let auth_token = token.clone();
+    let router = axum::Router::new()
+        .nest_service("/mcp", service)
+        .layer(middleware::from_fn(move |req: Request, next: Next| {
+            check_mcp_token(auth_token.clone(), req, next)
+        }));
 
     let tcp_listener = match try_bind(MCP_PORT_START, MCP_PORT_END).await {
         Ok(listener) => listener,
@@ -109,18 +147,27 @@ pub fn init_mcp(app_handle: AppHandle) {
 }
 
 #[tauri::command]
-pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<u16, String> {
+pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<McpStartResult, String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.as_ref() {
         log::info!("MCP server already running on port {}", server.port);
-        return Ok(server.port);
+        return Ok(McpStartResult {
+            port: server.port,
+            token: server.token.clone(),
+        });
     }
 
+    // fresh token every time the server starts
+    let token = uuid::Uuid::new_v4().to_string();
     log::info!("Starting MCP server");
     let ct = CancellationToken::new();
     let (ready_tx, ready_rx) = oneshot::channel();
-    let task =
-        tauri::async_runtime::spawn(start_server(state.bridge.clone(), ct.clone(), ready_tx));
+    let task = tauri::async_runtime::spawn(start_server(
+        state.bridge.clone(),
+        ct.clone(),
+        ready_tx,
+        token.clone(),
+    ));
 
     match ready_rx.await {
         Ok(Ok(port)) => {
@@ -128,8 +175,9 @@ pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<u16, String>
                 task,
                 cancellation_token: ct,
                 port,
+                token: token.clone(),
             });
-            Ok(port)
+            Ok(McpStartResult { port, token })
         }
         Ok(Err(message)) => Err(message),
         Err(_) => Err("MCP server task exited before reporting ready".into()),

@@ -21,6 +21,9 @@ import { dispatch } from './mcpDispatcher';
 
 const MCP_ENABLED_SETTING = 'core.integrations.mcp.enabled';
 const MCP_SERVER_URL_SETTING = 'core.integrations.mcp.serverUrl';
+// token is per-session, regenerated each time the server starts.
+// external MCP clients need to pass it as the x-mcp-token header.
+const MCP_TOKEN_SETTING = 'core.integrations.mcp.token';
 
 const bridgeRequestSchema = z.object({
   traceId: z.string(),
@@ -108,13 +111,18 @@ const handleToolCall = async (request: BridgeRequest): Promise<void> => {
 };
 
 const startServer = async () => {
-  const port = await invoke<number>('mcp_start');
+  const { port, token } = await invoke<{ port: number; token: string }>('mcp_start');
   const url = `http://127.0.0.1:${port}/mcp`;
   await setSetting(MCP_SERVER_URL_SETTING, url);
+  await setSetting(MCP_TOKEN_SETTING, token);
   Logger.mcp.info(`MCP server started on ${url}`);
 };
 
-const stopServer = () => invoke('mcp_stop');
+const stopServer = async () => {
+  await invoke('mcp_stop');
+  // clear the token so stale values don't linger in settings
+  await setSetting(MCP_TOKEN_SETTING, null);
+};
 
 const watchSettings = () => {
   let previouslyEnabled = getSetting(MCP_ENABLED_SETTING) === true;

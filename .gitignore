@@ -10,3 +10,14 @@ storybook-static
 coverage
 test-results
 .DS_Store
+
+# secrets - never commit these
+.env
+.env.*
+!.env.example
+*.local
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx

@@ -57,11 +57,36 @@
       "groupName": "rust-dependencies"
     },
     {
-      "description": "Auto-merge patch and minor updates",
+      "description": "Auto-merge patch and minor for npm dev deps - low risk",
+      "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeStrategy": "squash",
       "platformAutomerge": true
+    },
+    {
+      "description": "Only patch auto-merge for npm runtime deps - minor can change behavior",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeStrategy": "squash",
+      "platformAutomerge": true
+    },
+    {
+      "description": "Require review for runtime dep minor updates",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": false
+    },
+    {
+      "description": "Require review for all Rust crate updates - compiled into binary, higher blast radius",
+      "matchManagers": ["cargo"],
+      "automerge": false
+    },
+    {
+      "description": "Require review for Tauri updates regardless of type - security boundary",
+      "matchPackageNames": ["@tauri-apps/{/,}**", "tauri-build", "tauri"],
+      "automerge": false
     },
     {
       "description": "Don't auto-merge major updates",

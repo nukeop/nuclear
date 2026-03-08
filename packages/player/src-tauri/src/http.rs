@@ -3,7 +3,9 @@ use percent_encoding::percent_decode_str;
 use reqwest::{header::HeaderMap, header::HeaderName, header::HeaderValue, Client, Method};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use std::net::IpAddr;
 use std::str::FromStr;
+use std::time::Duration;
 use tauri::command;
 
 const REDACTED_HEADERS: &[&str] = &[
@@ -32,6 +34,11 @@ const REDACTED_QUERY_PARAMS: &[&str] = &[
     "sig",
     "signature",
 ];
+
+// keep these reasonable - http_fetch is for API calls, not streaming
+const REQUEST_TIMEOUT_SECS: u64 = 60;
+const CONNECT_TIMEOUT_SECS: u64 = 10;
+const MAX_RESPONSE_BYTES: usize = 10 * 1024 * 1024; // 10 MB
 
 fn is_sensitive_param(name: &str) -> bool {
     let decoded = percent_decode_str(name).decode_utf8_lossy();
@@ -91,6 +98,92 @@ fn redact_headers(headers: &HashMap<String, String>) -> HashMap<String, String> 
         .collect()
 }
 
+// block loopback and link-local metadata addresses.
+// don't want plugins using http_fetch to probe local services.
+fn is_loopback_or_metadata(host: &str) -> bool {
+    let lower = host.to_lowercase();
+
+    // catch the obvious names first
+    if lower == "localhost" || lower == "::1" || lower == "0.0.0.0" {
+        return true;
+    }
+
+    // catch 127.x.x.x without parsing
+    if lower.starts_with("127.") {
+        return true;
+    }
+
+    if let Ok(ip) = host.parse::<IpAddr>() {
+        match ip {
+            IpAddr::V4(v4) => {
+                let o = v4.octets();
+                // loopback 127.0.0.0/8
+                if o[0] == 127 {
+                    return true;
+                }
+                // link-local / metadata service 169.254.0.0/16
+                if o[0] == 169 && o[1] == 254 {
+                    return true;
+                }
+                // unspecified 0.0.0.0
+                if o == [0, 0, 0, 0] {
+                    return true;
+                }
+            }
+            IpAddr::V6(v6) => {
+                if v6.is_loopback() || v6.is_unspecified() {
+                    return true;
+                }
+                // fe80::/10 link-local
+                if v6.segments()[0] & 0xffc0 == 0xfe80 {
+                    return true;
+                }
+            }
+        }
+    }
+
+    false
+}
+
+// only http and https are allowed. file:, data:, ftp:, etc. are not.
+// also blocks requests to loopback / metadata addresses.
+fn validate_url(url: &str) -> Result<(), String> {
+    let lower = url.to_lowercase();
+    if !lower.starts_with("https://") && !lower.starts_with("http://") {
+        return Err("URL scheme not allowed - only http and https".to_string());
+    }
+
+    // pull out the authority (host[:port]) from the URL
+    let without_scheme = &url[url.find("://").unwrap() + 3..];
+    let authority = without_scheme
+        .split(['/', '?', '#'])
+        .next()
+        .unwrap_or(without_scheme);
+
+    let host = if authority.starts_with('[') {
+        // IPv6 like [::1] or [::1]:port
+        authority
+            .trim_start_matches('[')
+            .split(']')
+            .next()
+            .unwrap_or(authority)
+    } else {
+        authority.split(':').next().unwrap_or(authority)
+    };
+
+    if host.is_empty() {
+        return Err("URL has no host".to_string());
+    }
+
+    if is_loopback_or_metadata(host) {
+        return Err(
+            "requests to loopback or link-local addresses not allowed".to_string(),
+        );
+    }
+
+    Ok(())
+}
+
 #[derive(Debug, Deserialize)]
 pub struct HttpRequest {
     url: String,
@@ -108,7 +201,11 @@ pub struct HttpResponse {
 
 #[command]
 pub async fn http_fetch(request: HttpRequest) -> Result<HttpResponse, String> {
+    validate_url(&request.url).map_err(|e| format!("invalid request URL: {e}"))?;
+
     let client = Client::builder()
+        .timeout(Duration::from_secs(REQUEST_TIMEOUT_SECS))
+        .connect_timeout(Duration::from_secs(CONNECT_TIMEOUT_SECS))
         .build()
         .map_err(|e| format!("Failed to create HTTP client: {}", e))?;
 
@@ -161,10 +258,21 @@ pub async fn http_fetch(request: HttpRequest) -> Result<HttpResponse, String> {
         .map(|(k, v)| (k.to_string(), v.to_str().unwrap_or("").to_string()))
         .collect();
 
-    let body = response.text().await.map_err(|e| {
+    // cap response size - API responses shouldn't be huge
+    let bytes = response.bytes().await.map_err(|e| {
         error!(target: "http", "{} {} failed to read body: {}", method_str, redacted_url, e);
         format!("Failed to read response body: {}", e)
     })?;
+
+    if bytes.len() > MAX_RESPONSE_BYTES {
+        return Err(format!(
+            "response too large ({} bytes, max {})",
+            bytes.len(),
+            MAX_RESPONSE_BYTES
+        ));
+    }
+
+    let body = String::from_utf8_lossy(&bytes).to_string();
 
     let response_hdrs = redact_headers(&headers);
     let response_body_log = format_body_for_log(Some(&body));
@@ -202,6 +310,60 @@ pub async fn http_fetch(request: HttpRequest) -> Result<HttpResponse, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    mod validate_url {
+        use super::*;
+
+        #[test]
+        fn allows_https() {
+            assert!(validate_url("https://api.example.com/data").is_ok());
+        }
+
+        #[test]
+        fn allows_http() {
+            assert!(validate_url("http://api.example.com/data").is_ok());
+        }
+
+        #[test]
+        fn blocks_file_scheme() {
+            assert!(validate_url("file:///etc/passwd").is_err());
+        }
+
+        #[test]
+        fn blocks_ftp_scheme() {
+            assert!(validate_url("ftp://ftp.example.com/file").is_err());
+        }
+
+        #[test]
+        fn blocks_localhost() {
+            assert!(validate_url("http://localhost:8080/api").is_err());
+        }
+
+        #[test]
+        fn blocks_127_loopback() {
+            assert!(validate_url("http://127.0.0.1:3000/").is_err());
+        }
+
+        #[test]
+        fn blocks_127_any() {
+            assert!(validate_url("http://127.1.2.3/").is_err());
+        }
+
+        #[test]
+        fn blocks_ipv6_loopback() {
+            assert!(validate_url("http://[::1]/api").is_err());
+        }
+
+        #[test]
+        fn blocks_metadata_service() {
+            assert!(validate_url("http://169.254.169.254/latest/meta-data/").is_err());
+        }
+
+        #[test]
+        fn allows_external_ip() {
+            assert!(validate_url("https://8.8.8.8/").is_ok());
+        }
+    }
 
     mod redact_headers {
         use super::*;
