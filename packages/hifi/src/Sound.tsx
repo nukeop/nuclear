@@ -19,10 +19,13 @@ import { usePlaybackStatus } from './hooks/usePlaybackStatus';
 import { Destination } from './plugins/Destination';
 import { SoundProps } from './types';
 
+const PROTOCOLS_WITHOUT_WEB_AUDIO = new Set(['mse', 'hls']);
+
 export const Sound: React.FC<SoundProps> = ({
   src,
   status,
   seek,
+  volume,
   preload = 'auto',
   crossOrigin = '',
   onTimeUpdate,
@@ -65,6 +68,17 @@ export const Sound: React.FC<SoundProps> = ({
   useAudioLoader(audioRef, src, isReady);
   useHlsSource(audioRef, src, isReady);
   useMseSource(audioRef, src, isReady);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || volume === undefined) {
+      return;
+    }
+
+    if (PROTOCOLS_WITHOUT_WEB_AUDIO.has(src.protocol)) {
+      audio.volume = Math.max(0, Math.min(1, volume / 100));
+    }
+  }, [volume, src.protocol]);
 
   const handleRegisterPlugin = useCallback((node: AudioNode) => {
     setAudioNodes((prev) => [...prev, node]);

@@ -58,6 +58,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
           src={src}
           status={status}
           seek={seek}
+          volume={volumePercent}
           preload={preload}
           crossOrigin={crossOrigin}
           onTimeUpdate={handleTimeUpdate}
