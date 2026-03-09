@@ -37,15 +37,9 @@ export const CrossfadeSound: React.FC<
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const context = useAudioContext();
-  const { source: sourceA, gain: gainA } = useAudioElementSource(
-    audioRefA,
-    context,
-  );
-  const { source: sourceB, gain: gainB } = useAudioElementSource(
-    audioRefB,
-    context,
-  );
-  const isReady = !!sourceA && !!gainA && !!sourceB && !!gainB;
+  const { source: sourceA } = useAudioElementSource(audioRefA, context);
+  const { source: sourceB } = useAudioElementSource(audioRefB, context);
+  const isReady = !!sourceA && !!sourceB;
 
   const prevSrc = useRef<AudioSource>(src);
 
@@ -56,16 +50,14 @@ export const CrossfadeSound: React.FC<
           id: 0,
           ref: audioRefA,
           source: sourceA,
-          gain: gainA,
         },
         {
           id: 1,
           ref: audioRefB,
           source: sourceB,
-          gain: gainB,
         },
       ] as const,
-    [sourceA, sourceB, gainA, gainB],
+    [sourceA, sourceB],
   );
 
   const current = adapters[activeIndex];
@@ -135,24 +127,13 @@ export const CrossfadeSound: React.FC<
       prevSrc.current = src;
       return;
     }
-    const currentGain = current.gain;
-    const nextGain = next.gain;
     const currentAudio = current.ref.current;
     const nextAudio = next.ref.current;
-    if (!currentGain || !nextGain || !nextAudio || !context) {
+    if (!currentAudio || !nextAudio || !context) {
       return;
     }
-    nextGain.gain.setValueAtTime(0, context.currentTime);
     nextAudio.load();
     nextAudio.play();
-    nextGain.gain.linearRampToValueAtTime(
-      1,
-      context.currentTime + crossfadeMs / 1000,
-    );
-    currentGain.gain.linearRampToValueAtTime(
-      0,
-      context.currentTime + crossfadeMs / 1000,
-    );
     setTimeout(() => {
       setActiveIndex(nextIndex);
       if (currentAudio) {
@@ -160,15 +141,7 @@ export const CrossfadeSound: React.FC<
       }
       prevSrc.current = src;
     }, crossfadeMs);
-  }, [
-    src,
-    crossfadeMs,
-    isReady,
-    activeIndex,
-    current.gain,
-    next.gain,
-    context,
-  ]);
+  }, [src, crossfadeMs, isReady, activeIndex, context]);
 
   const handleTimeUpdate = useCallback(
     (e: React.SyntheticEvent<HTMLAudioElement>) => {
