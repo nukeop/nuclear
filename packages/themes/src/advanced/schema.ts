@@ -5,7 +5,7 @@ export const ThemeVersion = z.literal(1);
 // Keys correspond to CSS custom properties in global.css without the leading --
 // Example: background, primary, radius, font-family, etc.
 export const ThemeVars = z
-  .record(z.string())
+  .record(z.string(), z.string())
   .refine((obj) => Object.keys(obj).every((k) => !!k && !k.startsWith('--')), {
     message: 'Keys must be CSS var names without leading --',
   });

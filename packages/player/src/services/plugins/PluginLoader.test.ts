@@ -78,7 +78,7 @@ describe('PluginLoader', () => {
       });
 
       await expect(loader.load()).rejects.toThrow(
-        /Invalid package.json: name: Required/,
+        /Invalid package.json: name:/,
       );
     });
 
@@ -89,7 +89,7 @@ describe('PluginLoader', () => {
         '/test/plugin/path/package.json': JSON.stringify(manifest),
       });
       await expect(loader.load()).rejects.toThrow(
-        /Invalid package.json: version: Required/,
+        /Invalid package.json: version:/,
       );
     });
 
@@ -100,7 +100,7 @@ describe('PluginLoader', () => {
         '/test/plugin/path/package.json': JSON.stringify(manifest),
       });
       await expect(loader.load()).rejects.toThrow(
-        /Invalid package.json: description: Required/,
+        /Invalid package.json: description:/,
       );
     });
 
@@ -111,7 +111,7 @@ describe('PluginLoader', () => {
         '/test/plugin/path/package.json': JSON.stringify(manifest),
       });
       await expect(loader.load()).rejects.toThrow(
-        /Invalid package.json: author: Required/,
+        /Invalid package.json: author:/,
       );
     });
   });
