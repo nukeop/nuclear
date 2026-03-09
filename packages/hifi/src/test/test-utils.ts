@@ -36,7 +36,9 @@ export const setupAudioContextMock = () => {
     },
     destination: fakeDestination,
   } as unknown as AudioContext;
-  window.AudioContext = vi.fn(() => fakeCtx) as unknown as typeof AudioContext;
+  window.AudioContext = vi.fn(function () {
+    return fakeCtx;
+  }) as unknown as typeof AudioContext;
   const restore = () => {
     window.AudioContext = origAudioContext;
   };

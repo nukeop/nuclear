@@ -187,7 +187,7 @@ function installMocks() {
   originalMediaSource = win.MediaSource;
   originalManagedMediaSource = win.ManagedMediaSource;
 
-  const MockMSConstructor = vi.fn(() => {
+  const MockMSConstructor = vi.fn(function () {
     latestMediaSource = new MockMediaSource();
     return latestMediaSource;
   });
@@ -360,7 +360,7 @@ describe('MseController', () => {
   });
 
   it('prefers ManagedMediaSource over MediaSource when available', async () => {
-    const managedConstructor = vi.fn(() => {
+    const managedConstructor = vi.fn(function () {
       latestMediaSource = new MockMediaSource();
       return latestMediaSource;
     });
