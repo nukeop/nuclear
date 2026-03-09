@@ -21,6 +21,7 @@ import { Plugins } from '../views/Plugins/Plugins';
 import { Settings } from '../views/Settings/Settings';
 import { Themes } from '../views/Themes/Themes';
 import { WhatsNew } from '../views/WhatsNew';
+import { SocialLinks } from './SocialLinks';
 import { VersionString } from './VersionString';
 
 const SETTINGS_TABS = [
@@ -72,7 +73,12 @@ export const ConnectedSettingsModal: FC = () => {
       tabs={tabs}
       activeTab={activeTab}
       onTabChange={(tabId) => setActiveTab(tabId as SettingsTab)}
-      navFooter={<VersionString />}
+      navFooter={
+        <div className="flex flex-col items-center gap-2">
+          <SocialLinks />
+          <VersionString />
+        </div>
+      }
     />
   );
 };
