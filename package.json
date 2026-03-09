@@ -22,7 +22,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "@vitejs/plugin-react": "^5.0.1",
     "@vitest/coverage-v8": "^3.2.4",
-    "eslint": "^9.32.0",
+    "eslint": "^10.0.0",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "lint-staged": "^16.1.4",
