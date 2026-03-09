@@ -7,7 +7,7 @@ import type { LogScope } from './logger';
 export const loadValidated = async <T>(
   store: LazyStore,
   key: string,
-  schema: z.ZodType<T, z.ZodTypeDef, unknown>,
+  schema: z.ZodType<T>,
   domain: LogScope,
 ): Promise<T | null> => {
   const raw = await store.get<unknown>(key);
