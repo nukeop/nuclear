@@ -25,7 +25,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "zod": "^3.25.76"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@nuclearplayer/eslint-config": "workspace:*",

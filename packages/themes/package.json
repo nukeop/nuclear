@@ -31,7 +31,7 @@
     "@nuclearplayer/tailwind-config": "workspace:*",
     "culori": "^4.0.2",
     "tailwindcss": "^4.1.11",
-    "zod": "^3.25.76"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@nuclearplayer/eslint-config": "workspace:*",

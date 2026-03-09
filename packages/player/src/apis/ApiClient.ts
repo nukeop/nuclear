@@ -25,7 +25,7 @@ export class ApiClient {
     } catch (error) {
       if (error instanceof z.ZodError) {
         Logger.http.error(
-          `Schema validation failed for ${url}: ${error.errors.map((e) => `${e.path.join('.')}: ${e.message}`).join(', ')}`,
+          `Schema validation failed for ${url}: ${error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`).join(', ')}`,
         );
       }
       throw error;
