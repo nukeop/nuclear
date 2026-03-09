@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-03-09T00:00",
+    "description": "Social links in settings sidebar (Discord, GitHub, Mastodon, Website)",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Settings",
+        "color": "cyan"
+      }
+    ]
+  },
+  {
     "date": "2026-03-08T00:00",
     "description": "Fixed repeat, shuffle, and volume for MSE streams",
     "type": "fix",
