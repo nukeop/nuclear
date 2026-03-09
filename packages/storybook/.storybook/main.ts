@@ -10,6 +10,9 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-docs'),
   ],
+  features: {
+    sidebarOnboardingChecklist: false,
+  },
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
