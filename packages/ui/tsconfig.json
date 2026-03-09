@@ -9,6 +9,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "types": [
+      "node",
       "vitest/globals",
       "@testing-library/jest-dom",
       "vite-plugin-svgr/client"
