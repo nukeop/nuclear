@@ -35,6 +35,7 @@
 
 ## Development
 
+* [Contributing](development/contributing.md)
 * [Logging](development/logging.md)
 * [MCP Architecture](development/mcp-architecture.md)
 
