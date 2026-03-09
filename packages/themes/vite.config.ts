@@ -43,6 +43,7 @@ export default defineConfig(({ command }) => {
     test: {
       globals: true,
       environment: 'jsdom',
+      exclude: ['dist/**', 'node_modules/**'],
       reporters: ['default', ...(process.env.CI ? ['junit'] : [])],
       outputFile: { junit: './test-results/junit.xml' },
       coverage: {
