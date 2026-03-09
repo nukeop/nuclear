@@ -43,7 +43,10 @@ export const setupAudioContextMock = () => {
   return { gains, restore };
 };
 
-export const resetMediaSpies = () => {
+export const resetMediaSpies = (): {
+  playMock: ReturnType<typeof vi.fn>;
+  pauseMock: ReturnType<typeof vi.fn>;
+} => {
   const playMock = window.HTMLMediaElement.prototype
     .play as unknown as ReturnType<typeof vi.fn>;
   const pauseMock = window.HTMLMediaElement.prototype

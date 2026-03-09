@@ -138,8 +138,10 @@ const win = window as any;
 
 let latestMediaSource: MockMediaSource | null = null;
 let fetchMock: ReturnType<typeof vi.fn>;
-let createObjectURLSpy: ReturnType<typeof vi.fn>;
-let revokeObjectURLSpy: ReturnType<typeof vi.fn>;
+let createObjectURLSpy: ReturnType<
+  typeof vi.fn<(obj: MediaSource | Blob) => string>
+>;
+let revokeObjectURLSpy: ReturnType<typeof vi.fn<(url: string) => void>>;
 let originalMediaSource: unknown;
 let originalManagedMediaSource: unknown;
 let audio: HTMLAudioElement;
