@@ -16,7 +16,7 @@ export const ConnectedNowPlaying: FC = () => {
   const track = currentItem?.track;
   const isFavorite = track ? isTrackFavorite(track.source) : false;
 
-  const artwork = pickArtwork(track?.album?.artwork, 'thumbnail', 64);
+  const artwork = pickArtwork(track?.artwork, 'thumbnail', 64);
   const title = track?.title ?? t('noTrackPlaying');
   const artist = track?.artists[0]?.name ?? '';
 

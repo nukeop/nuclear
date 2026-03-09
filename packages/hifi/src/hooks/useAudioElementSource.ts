@@ -7,7 +7,6 @@ export const useAudioElementSource = (
   const [source, setSource] = useState<MediaElementAudioSourceNode | null>(
     null,
   );
-  const [gain, setGain] = useState<GainNode | null>(null);
 
   useEffect(() => {
     if (!context || !audioRef.current) {
@@ -15,18 +14,12 @@ export const useAudioElementSource = (
     }
 
     const audioSource = context.createMediaElementSource(audioRef.current);
-    const gainNode = context.createGain();
-
-    audioSource.connect(gainNode).connect(context.destination);
-
     setSource(audioSource);
-    setGain(gainNode);
 
     return () => {
       audioSource.disconnect();
-      gainNode.disconnect();
     };
   }, [context, audioRef]);
 
-  return { source, gain };
+  return { source };
 };

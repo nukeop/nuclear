@@ -56,7 +56,9 @@ export const ActiveStates: Story = {
             coverUrl={cover}
           />
         }
-        center={<PlayerBar.Controls isPlaying isShuffleActive isRepeatActive />}
+        center={
+          <PlayerBar.Controls isPlaying isShuffleActive repeatMode="all" />
+        }
         right={<PlayerBar.Volume defaultValue={60} />}
       />
     </>

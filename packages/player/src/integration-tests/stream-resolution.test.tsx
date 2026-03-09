@@ -24,8 +24,6 @@ describe('Stream Resolution Integration', () => {
     useQueueStore.setState({
       items: [],
       currentIndex: 0,
-      repeatMode: 'off',
-      shuffleEnabled: false,
       isReady: true,
       isLoading: false,
     });

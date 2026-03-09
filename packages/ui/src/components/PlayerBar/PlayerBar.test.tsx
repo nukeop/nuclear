@@ -33,7 +33,9 @@ describe('PlayerBar', () => {
             coverUrl="https://picsum.photos/48"
           />
         }
-        center={<PlayerBar.Controls isPlaying isShuffleActive isRepeatActive />}
+        center={
+          <PlayerBar.Controls isPlaying isShuffleActive repeatMode="all" />
+        }
         right={<PlayerBar.Volume defaultValue={60} />}
       />,
     );

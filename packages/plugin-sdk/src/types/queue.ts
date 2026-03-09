@@ -25,8 +25,6 @@ export type QueueHost = {
   goToPrevious: () => Promise<void>;
   goToIndex: (index: number) => Promise<void>;
   goToId: (id: string) => Promise<void>;
-  setRepeatMode: (mode: RepeatMode) => Promise<void>;
-  setShuffleEnabled: (enabled: boolean) => Promise<void>;
   subscribe: (listener: QueueListener) => () => void;
   subscribeToCurrentItem: (listener: QueueItemListener) => () => void;
 };

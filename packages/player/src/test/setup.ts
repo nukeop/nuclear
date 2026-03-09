@@ -114,7 +114,7 @@ const makeAudioContextMock = () => {
     resume: vi.fn(async () => undefined),
     close: vi.fn(async () => undefined),
     createMediaElementSource: () => ({
-      connect: () => ({ connect: () => ctx }),
+      connect: vi.fn(),
       disconnect: vi.fn(),
     }),
     createGain: () => ({
@@ -125,7 +125,10 @@ const makeAudioContextMock = () => {
         linearRampToValueAtTime: vi.fn(),
       },
     }),
-    destination: {},
+    destination: {
+      connect: vi.fn(),
+      disconnect: vi.fn(),
+    },
   } as unknown as AudioContext;
   return ctx;
 };

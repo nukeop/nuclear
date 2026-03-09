@@ -2,21 +2,18 @@ import { FC } from 'react';
 
 import { PlayerBar } from '@nuclearplayer/ui';
 
-import { useSettingsStore } from '../../stores/settingsStore';
+import { useCoreSetting } from '../../hooks/useCoreSetting';
 
 export const ConnectedVolume: FC = () => {
-  const getValue = useSettingsStore((s) => s.getValue);
-  const setValue = useSettingsStore((s) => s.setValue);
-
-  const volume = (getValue('core.playback.volume') as number) ?? 1;
+  const [volume, setVolume] = useCoreSetting<number>('playback.volume');
 
   const handleVolumeChange = (value: number) => {
-    setValue('core.playback.volume', value / 100);
+    setVolume(value / 100);
   };
 
   return (
     <PlayerBar.Volume
-      value={Math.round(volume * 100)}
+      value={Math.round((volume ?? 1) * 100)}
       onValueChange={handleVolumeChange}
     />
   );

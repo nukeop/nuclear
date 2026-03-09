@@ -79,6 +79,16 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     widget: { type: 'toggle' },
   },
   {
+    id: 'playback.repeat',
+    title: 'preferences.playback.repeat.title',
+    description: 'preferences.playback.repeat.description',
+    category: 'playback',
+    kind: 'string',
+    default: 'off',
+    hidden: true,
+    widget: { type: 'text' },
+  },
+  {
     id: 'playback.skipSeconds',
     title: 'preferences.playback.skipSeconds.title',
     description: 'preferences.playback.skipSeconds.description',

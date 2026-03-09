@@ -3,7 +3,6 @@ import type {
   Queue,
   QueueHost,
   QueueItemStateUpdate,
-  RepeatMode,
 } from '@nuclearplayer/plugin-sdk';
 
 import { useQueueStore } from '../stores/queueStore';
@@ -15,8 +14,6 @@ export const createQueueHost = (): QueueHost => {
       return {
         items: state.items,
         currentIndex: state.currentIndex,
-        repeatMode: state.repeatMode,
-        shuffleEnabled: state.shuffleEnabled,
       };
     },
 
@@ -72,21 +69,11 @@ export const createQueueHost = (): QueueHost => {
       useQueueStore.getState().goToId(id);
     },
 
-    setRepeatMode: async (mode: RepeatMode) => {
-      useQueueStore.getState().setRepeatMode(mode);
-    },
-
-    setShuffleEnabled: async (enabled: boolean) => {
-      useQueueStore.getState().setShuffleEnabled(enabled);
-    },
-
     subscribe: (listener: (queue: Queue) => void) => {
       return useQueueStore.subscribe((state) => {
         listener({
           items: state.items,
           currentIndex: state.currentIndex,
-          repeatMode: state.repeatMode,
-          shuffleEnabled: state.shuffleEnabled,
         });
       });
     },

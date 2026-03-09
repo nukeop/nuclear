@@ -88,18 +88,6 @@ export const QueueAPIMeta: DomainMeta = {
       params: [{ name: 'id', type: 'string' }],
       returns: 'void',
     },
-    setRepeatMode: {
-      name: 'setRepeatMode',
-      description: 'Set the repeat mode.',
-      params: [{ name: 'mode', type: '"off" | "one" | "all"' }],
-      returns: 'void',
-    },
-    setShuffleEnabled: {
-      name: 'setShuffleEnabled',
-      description: 'Enable or disable shuffle mode.',
-      params: [{ name: 'enabled', type: 'boolean' }],
-      returns: 'void',
-    },
     updateItemState: {
       name: 'updateItemState',
       description: 'Update the loading status of a queue item.',

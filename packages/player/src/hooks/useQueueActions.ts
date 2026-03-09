@@ -19,8 +19,6 @@ export const useQueueActions = () => {
     goToPrevious,
     goToIndex,
     goToId,
-    setRepeatMode,
-    setShuffleEnabled,
   } = useQueueStore();
 
   const playNow = useCallback(
@@ -44,8 +42,6 @@ export const useQueueActions = () => {
     goToPrevious,
     goToIndex,
     goToId,
-    setRepeatMode,
-    setShuffleEnabled,
     playNow,
   };
 };

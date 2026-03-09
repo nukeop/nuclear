@@ -2,9 +2,14 @@ import { act, waitFor } from '@testing-library/react';
 
 import { AudioSource } from '@nuclearplayer/hifi';
 
+import { useSettingsStore } from '../stores/settingsStore';
+import { useSoundStore } from '../stores/soundStore';
 import { SoundWrapper } from './Sound.test-wrapper';
 
-const trackSource: AudioSource = { url: '/track.mp3', protocol: 'http' };
+vi.mock('@tauri-apps/api/core', () => ({
+  invoke: vi.fn().mockResolvedValue(9100),
+}));
+
 const srcA: AudioSource = { url: '/a.mp3', protocol: 'http' };
 const srcB: AudioSource = { url: '/b.mp3', protocol: 'http' };
 
@@ -13,7 +18,7 @@ describe('Sound component', () => {
     await SoundWrapper.mount();
     expect(document.querySelectorAll('audio').length).toBe(0);
 
-    SoundWrapper.setSrc(trackSource);
+    SoundWrapper.setSrc(srcA);
     await waitFor(() =>
       expect(document.querySelectorAll('audio').length).toBe(1),
     );
@@ -70,5 +75,77 @@ describe('Sound component', () => {
       [...a.querySelectorAll('source')].map((s) => s.getAttribute('src')),
     );
     expect(sources.every((s) => s === '/b.mp3')).toBe(true);
+  });
+});
+
+describe('Repeat mode behavior when a track ends', () => {
+  beforeEach(() => {
+    useSoundStore.setState({
+      src: null,
+      status: 'stopped',
+      seek: 0,
+      duration: 0,
+      crossfadeMs: 0,
+      preload: 'auto',
+      crossOrigin: '',
+    });
+    useSettingsStore.setState({ values: {} });
+  });
+
+  it('advances to next track when repeat is off', async () => {
+    await SoundWrapper.mount();
+    await SoundWrapper.seedAndPlay();
+    expect(SoundWrapper.nowPlayingTitle).toBe('Track 1');
+
+    SoundWrapper.fireEnded();
+
+    await waitFor(() => {
+      expect(SoundWrapper.nowPlayingTitle).toBe('Track 2');
+      expect(SoundWrapper.currentQueueItemTitle).toBe('Track 2');
+    });
+  });
+
+  it('replays the same track when repeat is one', async () => {
+    await SoundWrapper.mount();
+    useSettingsStore.setState({
+      values: { 'core.playback.repeat': 'one' },
+    });
+    await SoundWrapper.seedAndPlay();
+
+    SoundWrapper.fireEnded();
+
+    await waitFor(() => {
+      expect(SoundWrapper.nowPlayingTitle).toBe('Track 1');
+      expect(SoundWrapper.currentQueueItemTitle).toBe('Track 1');
+    });
+  });
+
+  it('wraps to first track when repeat is all and last track ends', async () => {
+    await SoundWrapper.mount();
+    useSettingsStore.setState({
+      values: { 'core.playback.repeat': 'all' },
+    });
+    await SoundWrapper.seedAndPlay(2);
+    expect(SoundWrapper.nowPlayingTitle).toBe('Track 3');
+
+    SoundWrapper.fireEnded();
+
+    await waitFor(() => {
+      expect(SoundWrapper.nowPlayingTitle).toBe('Track 1');
+      expect(SoundWrapper.currentQueueItemTitle).toBe('Track 1');
+    });
+  });
+
+  it('stays on last track when repeat is off and last track ends', async () => {
+    await SoundWrapper.mount();
+    await SoundWrapper.seedAndPlay(2);
+    expect(SoundWrapper.nowPlayingTitle).toBe('Track 3');
+
+    SoundWrapper.fireEnded();
+
+    await waitFor(() => {
+      expect(SoundWrapper.nowPlayingTitle).toBe('Track 3');
+      expect(SoundWrapper.currentQueueItemTitle).toBe('Track 3');
+    });
   });
 });

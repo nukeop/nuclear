@@ -3,10 +3,11 @@ import { produce } from 'immer';
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 
-import type { Queue, QueueItem, RepeatMode, Track } from '@nuclearplayer/model';
+import type { Queue, QueueItem, Track } from '@nuclearplayer/model';
 
 import { Logger } from '../services/logger';
 import { resolveErrorMessage } from '../utils/logging';
+import { getSetting } from './settingsStore';
 import { useSoundStore } from './soundStore';
 
 const QUEUE_FILE = 'queue.json';
@@ -26,10 +27,9 @@ type QueueStore = Queue & {
   updateItemState: (id: string, updates: Partial<QueueItem>) => void;
   goToNext: () => void;
   goToPrevious: () => void;
+  advanceOnTrackEnd: () => void;
   goToIndex: (index: number) => void;
   goToId: (id: string) => void;
-  setRepeatMode: (mode: RepeatMode) => void;
-  setShuffleEnabled: (enabled: boolean) => void;
   getCurrentItem: () => QueueItem | undefined;
 };
 
@@ -41,13 +41,13 @@ const createQueueItem = (track: Track): QueueItem => ({
 });
 
 const getDirectionalIndex = (
-  state: Pick<
-    QueueStore,
-    'items' | 'currentIndex' | 'repeatMode' | 'shuffleEnabled'
-  >,
+  state: Pick<QueueStore, 'items' | 'currentIndex'>,
   direction: 'forward' | 'backward',
 ): number => {
-  const { items, currentIndex, repeatMode, shuffleEnabled } = state;
+  const { items, currentIndex } = state;
+  const shuffleEnabled =
+    (getSetting('core.playback.shuffle') as boolean) ?? false;
+  const repeatMode = (getSetting('core.playback.repeat') as string) ?? 'off';
 
   if (items.length === 0) {
     return currentIndex;
@@ -89,8 +89,6 @@ const saveToDisk = async (): Promise<void> => {
     const state = useQueueStore.getState();
     await store.set('queue.items', state.items);
     await store.set('queue.currentIndex', state.currentIndex);
-    await store.set('queue.repeatMode', state.repeatMode);
-    await store.set('queue.shuffleEnabled', state.shuffleEnabled);
     await store.save();
   } catch (error) {
     Logger.queue.error(`Failed to save queue: ${resolveErrorMessage(error)}`);
@@ -109,8 +107,6 @@ const withPersistence = <T extends unknown[]>(
 export const useQueueStore = create<QueueStore>((set, get) => ({
   items: [],
   currentIndex: 0,
-  repeatMode: 'off',
-  shuffleEnabled: false,
   isReady: false,
   isLoading: false,
 
@@ -118,10 +114,6 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
     set({ isLoading: true });
     const items = (await store.get<QueueItem[]>('queue.items')) ?? [];
     const currentIndex = (await store.get<number>('queue.currentIndex')) ?? 0;
-    const repeatMode =
-      (await store.get<RepeatMode>('queue.repeatMode')) ?? 'off';
-    const shuffleEnabled =
-      (await store.get<boolean>('queue.shuffleEnabled')) ?? false;
 
     const sanitizedIndex =
       currentIndex >= 0 && currentIndex < items.length ? currentIndex : 0;
@@ -129,8 +121,6 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
     set({
       items,
       currentIndex: sanitizedIndex,
-      repeatMode,
-      shuffleEnabled,
       isReady: true,
       isLoading: false,
     });
@@ -284,6 +274,17 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
     }
   }),
 
+  advanceOnTrackEnd: () => {
+    const repeatMode = (getSetting('core.playback.repeat') as string) ?? 'off';
+
+    if (repeatMode === 'one') {
+      useSoundStore.getState().seekTo(0);
+      return;
+    }
+
+    get().goToNext();
+  },
+
   goToIndex: withPersistence((index: number) => {
     const { items } = get();
     if (index >= 0 && index < items.length) {
@@ -299,14 +300,6 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
       useSoundStore.getState().stop();
       set({ currentIndex: index });
     }
-  }),
-
-  setRepeatMode: withPersistence((mode: RepeatMode) => {
-    set({ repeatMode: mode });
-  }),
-
-  setShuffleEnabled: withPersistence((enabled: boolean) => {
-    set({ shuffleEnabled: enabled });
   }),
 
   getCurrentItem: () => {

@@ -170,8 +170,6 @@ export const typeRegistry: TypeRegistry = {
     fields: {
       items: { type: 'QueueItem[]' },
       currentIndex: { type: 'number' },
-      repeatMode: { type: '"off" | "all" | "one"' },
-      shuffleEnabled: { type: 'boolean' },
     },
   },
 
