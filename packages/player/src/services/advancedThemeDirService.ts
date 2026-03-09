@@ -25,7 +25,7 @@ export const ensureThemesDir = async (): Promise<string> => {
 
 export const listAdvancedThemes = async (): Promise<AdvancedThemeFile[]> => {
   const dir = await ensureThemesDir();
-  let entries: Array<{ name?: string; isDirectory?: boolean }> = [];
+  let entries: Array<{ name?: string; isDirectory?: boolean }>;
   try {
     entries = await readDir(dir, { baseDir: BaseDirectory.AppData });
   } catch (error) {
