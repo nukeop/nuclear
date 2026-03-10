@@ -431,7 +431,7 @@ importers:
         version: 18.3.1
       tailwind-merge:
         specifier: ^3.3.1
-        version: 3.3.1
+        version: 3.5.0
     devDependencies:
       '@microsoft/api-extractor':
         specifier: ^7.51.1
@@ -705,7 +705,7 @@ importers:
         version: 2.0.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tailwind-merge:
         specifier: ^3.3.1
-        version: 3.3.1
+        version: 3.5.0
       tailwindcss:
         specifier: ^4.1.11
         version: 4.2.1
@@ -5647,8 +5647,8 @@ packages:
     resolution: {integrity: sha512-LfOT807005OVfyxAjHpOajlIgoEaE894jqjkrhONC/HqBLS8OAhhNifnNs3Y5wD26eIdf0vk1zu9gja2oI3/1Q==}
     engines: {node: '>=18.18'}
 
-  tailwind-merge@3.3.1:
-    resolution: {integrity: sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g==}
+  tailwind-merge@3.5.0:
+    resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
 
   tailwindcss@4.2.1:
     resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
@@ -11977,7 +11977,7 @@ snapshots:
 
   tailwind-csstree@0.1.3: {}
 
-  tailwind-merge@3.3.1: {}
+  tailwind-merge@3.5.0: {}
 
   tailwindcss@4.2.1: {}
 
