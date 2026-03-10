@@ -486,10 +486,10 @@ importers:
     dependencies:
       '@fontsource/bricolage-grotesque':
         specifier: ^5.2.8
-        version: 5.2.8
+        version: 5.2.10
       '@fontsource/dm-sans':
         specifier: ^5.2.6
-        version: 5.2.6
+        version: 5.2.8
       '@fontsource/space-mono':
         specifier: ^5.2.9
         version: 5.2.9
@@ -645,10 +645,10 @@ importers:
         version: 2.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@fontsource/bricolage-grotesque':
         specifier: ^5.2.8
-        version: 5.2.8
+        version: 5.2.10
       '@fontsource/dm-sans':
         specifier: ^5.2.6
-        version: 5.2.6
+        version: 5.2.8
       '@fontsource/space-mono':
         specifier: ^5.2.9
         version: 5.2.9
@@ -1512,11 +1512,11 @@ packages:
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
-  '@fontsource/bricolage-grotesque@5.2.8':
-    resolution: {integrity: sha512-DVCqsxTGDIL/CdDgw1tiAFmtt6OKrgUx9IbzUcMu4EMrrdq7W2/AMM2hgksVy9F0mKGfao76IVL+4gxk4T4LTw==}
+  '@fontsource/bricolage-grotesque@5.2.10':
+    resolution: {integrity: sha512-V2xS+1P7C8IrSypXLUx/bLtX/LsTlYtV2k2CsU+S/0t8qepZ2hvKSlyJIx7Ub/iY8Bbnj+IjAuUF9nvFz+BbIg==}
 
-  '@fontsource/dm-sans@5.2.6':
-    resolution: {integrity: sha512-3AmJcX93hqmevsC2ixNwHj3iO3sNY/YHBqGhg0MjIyfhk6aZLNv1s2HqJ6xf8yf1rXXK3yR56rzyA3O21htKkg==}
+  '@fontsource/dm-sans@5.2.8':
+    resolution: {integrity: sha512-tlovG42m9ESG28WiHpLq3F5umAlm64rv0RkqTbYowRn70e9OlRr5a3yTJhrhrY+k5lftR/OFJjPzOLQzk8EfCA==}
 
   '@fontsource/space-mono@5.2.9':
     resolution: {integrity: sha512-b61faFOHEISQ/pD25G+cfGY9o/WW6lRv6hBQQfpWvEJ4y1V+S4gmth95EVyBE2VL3qDYHeVQ8nBzrplzdXTDDg==}
@@ -7173,9 +7173,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
-  '@fontsource/bricolage-grotesque@5.2.8': {}
+  '@fontsource/bricolage-grotesque@5.2.10': {}
 
-  '@fontsource/dm-sans@5.2.6': {}
+  '@fontsource/dm-sans@5.2.8': {}
 
   '@fontsource/space-mono@5.2.9': {}
 
