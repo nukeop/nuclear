@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@nuclearplayer/eslint-config": "workspace:*",
-    "i18next": "^24.2.1",
+    "i18next": "^25.0.0",
     "react-i18next": "^15.2.2"
   },
   "devDependencies": {
