@@ -36,14 +36,19 @@ export const setupAudioContextMock = () => {
     },
     destination: fakeDestination,
   } as unknown as AudioContext;
-  window.AudioContext = vi.fn(() => fakeCtx) as unknown as typeof AudioContext;
+  window.AudioContext = vi.fn(function () {
+    return fakeCtx;
+  }) as unknown as typeof AudioContext;
   const restore = () => {
     window.AudioContext = origAudioContext;
   };
   return { gains, restore };
 };
 
-export const resetMediaSpies = () => {
+export const resetMediaSpies = (): {
+  playMock: ReturnType<typeof vi.fn>;
+  pauseMock: ReturnType<typeof vi.fn>;
+} => {
   const playMock = window.HTMLMediaElement.prototype
     .play as unknown as ReturnType<typeof vi.fn>;
   const pauseMock = window.HTMLMediaElement.prototype

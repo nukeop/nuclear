@@ -9,11 +9,12 @@
     "declarationMap": true,
     "sourceMap": true,
     "types": [
+      "node",
       "vitest/globals",
       "@testing-library/jest-dom",
       "vite-plugin-svgr/client"
     ]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

@@ -138,8 +138,10 @@ const win = window as any;
 
 let latestMediaSource: MockMediaSource | null = null;
 let fetchMock: ReturnType<typeof vi.fn>;
-let createObjectURLSpy: ReturnType<typeof vi.fn>;
-let revokeObjectURLSpy: ReturnType<typeof vi.fn>;
+let createObjectURLSpy: ReturnType<
+  typeof vi.fn<(obj: MediaSource | Blob) => string>
+>;
+let revokeObjectURLSpy: ReturnType<typeof vi.fn<(url: string) => void>>;
 let originalMediaSource: unknown;
 let originalManagedMediaSource: unknown;
 let audio: HTMLAudioElement;
@@ -185,7 +187,7 @@ function installMocks() {
   originalMediaSource = win.MediaSource;
   originalManagedMediaSource = win.ManagedMediaSource;
 
-  const MockMSConstructor = vi.fn(() => {
+  const MockMSConstructor = vi.fn(function () {
     latestMediaSource = new MockMediaSource();
     return latestMediaSource;
   });
@@ -358,7 +360,7 @@ describe('MseController', () => {
   });
 
   it('prefers ManagedMediaSource over MediaSource when available', async () => {
-    const managedConstructor = vi.fn(() => {
+    const managedConstructor = vi.fn(function () {
       latestMediaSource = new MockMediaSource();
       return latestMediaSource;
     });

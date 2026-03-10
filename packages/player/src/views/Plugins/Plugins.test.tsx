@@ -1,5 +1,5 @@
 import { mockIPC } from '@tauri-apps/api/mocks';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { PluginDialogMock } from '../../test/mocks/plugin-dialog';
@@ -37,35 +37,43 @@ describe('Plugins view', () => {
     await userEvent.click(screen.getByText('Add Plugin'));
 
     // Manifest has been read
-    expect(readTextFileMock).nthCalledWith(1, '/path/to/plugin/package.json');
+    await waitFor(() => {
+      expect(readTextFileMock).nthCalledWith(1, '/path/to/plugin/package.json');
+    });
 
     // After copying the plugin to managed folder, its manifest has been read
-    expect(readTextFileMock).nthCalledWith(
-      3,
-      `${AppData}/plugins/nuclear-fake-plugin/0.1.0/package.json`,
-    );
+    await waitFor(() => {
+      expect(readTextFileMock).nthCalledWith(
+        3,
+        `${AppData}/plugins/nuclear-fake-plugin/0.1.0/package.json`,
+      );
+    });
 
     // Code has been read (in the managed location)
-    expect(readTextFileMock).nthCalledWith(
-      4,
-      `${AppData}/plugins/nuclear-fake-plugin/0.1.0/index.ts`,
-    );
+    await waitFor(() => {
+      expect(readTextFileMock).nthCalledWith(
+        4,
+        `${AppData}/plugins/nuclear-fake-plugin/0.1.0/index.ts`,
+      );
+    });
 
-    expect(
-      PluginsWrapper.getPlugins().map((plugin) => ({
-        name: plugin.name,
-        description: plugin.description,
-        author: plugin.author,
-      })),
-    ).toMatchInlineSnapshot(`
-      [
-        {
-          "author": "by nukeop",
-          "description": "Fake plugin for testing",
-          "name": "Fake plugin",
-        },
-      ]
-    `);
+    await waitFor(() => {
+      expect(
+        PluginsWrapper.getPlugins().map((plugin) => ({
+          name: plugin.name,
+          description: plugin.description,
+          author: plugin.author,
+        })),
+      ).toMatchInlineSnapshot(`
+        [
+          {
+            "author": "by nukeop",
+            "description": "Fake plugin for testing",
+            "name": "Fake plugin",
+          },
+        ]
+      `);
+    });
 
     expect(PluginsWrapper.getPlugins()[0].enabled).toBe(false);
     await PluginsWrapper.getPlugins()[0].toggle();
@@ -79,6 +87,17 @@ describe('Plugins view', () => {
     PluginFsMock.setExistsFor('plugins', AppData, true);
 
     const { usePluginStore } = await import('../../stores/pluginStore');
+
+    await PluginsWrapper.mount();
+    await userEvent.click(screen.getByText('Add Plugin'));
+
+    await waitFor(() => {
+      expect(readTextFileMock).toHaveBeenCalled();
+    });
+
+    const reloadButton = await screen.findByTestId('plugin-action-reload');
+    const removeButton = await screen.findByTestId('plugin-action-remove');
+
     const reloadSpy = vi
       .spyOn(usePluginStore.getState(), 'reloadPlugin')
       .mockResolvedValue(undefined);
@@ -87,14 +106,6 @@ describe('Plugins view', () => {
       .mockResolvedValue(undefined);
 
     try {
-      await PluginsWrapper.mount();
-      await userEvent.click(screen.getByText('Add Plugin'));
-
-      expect(readTextFileMock).toHaveBeenCalled();
-
-      const reloadButton = await screen.findByTestId('plugin-action-reload');
-      const removeButton = await screen.findByTestId('plugin-action-remove');
-
       await userEvent.click(reloadButton);
       expect(reloadSpy).toHaveBeenCalledWith('nuclear-fake-plugin');
 
