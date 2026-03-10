@@ -133,6 +133,8 @@ const makeAudioContextMock = () => {
   return ctx;
 };
 
-(globalThis as unknown as { AudioContext: unknown }).AudioContext = vi.fn(() =>
-  makeAudioContextMock(),
+(globalThis as unknown as { AudioContext: unknown }).AudioContext = vi.fn(
+  function () {
+    return makeAudioContextMock();
+  },
 ) as typeof AudioContext;
