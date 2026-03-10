@@ -31,7 +31,7 @@
     "eslint-plugin-prettier": "^5.5.3",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-storybook": "10.2.17",
-    "globals": "^16.3.0",
+    "globals": "^17.0.0",
     "jiti": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwind-csstree": "^0.1.3",
