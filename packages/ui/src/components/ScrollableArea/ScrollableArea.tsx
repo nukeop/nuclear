@@ -40,7 +40,7 @@ function useScrollMetrics(fadeScrollbars: boolean, autoHideDelay: number) {
   const ref = useRef<HTMLDivElement>(null);
   const [metrics, setMetrics] = useState<ScrollMetrics>(initialMetrics);
   const [isScrolling, setIsScrolling] = useState(false);
-  const hideTimeoutRef = useRef<NodeJS.Timeout>();
+  const hideTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const rafRef = useRef<number>();
 
   const update = useCallback(() => {

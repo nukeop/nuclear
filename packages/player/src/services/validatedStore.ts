@@ -4,12 +4,12 @@ import type { z } from 'zod';
 import { reportError } from '../utils/logging';
 import type { LogScope } from './logger';
 
-export const loadValidated = async <T>(
+export const loadValidated = async <S extends z.ZodType>(
   store: LazyStore,
   key: string,
-  schema: z.ZodType<T>,
+  schema: S,
   domain: LogScope,
-): Promise<T | null> => {
+): Promise<z.output<S> | null> => {
   const raw = await store.get<unknown>(key);
   if (raw == null) {
     return null;
