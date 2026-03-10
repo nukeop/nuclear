@@ -172,8 +172,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       react-i18next:
-        specifier: ^15.2.2
-        version: 15.7.4(i18next@25.8.17(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
+        specifier: ^16.0.0
+        version: 16.5.6(i18next@25.8.17(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
     devDependencies:
       '@types/react':
         specifier: ^18.3.23
@@ -318,8 +318,8 @@ importers:
         specifier: ^5.2.4
         version: 5.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-i18next:
-        specifier: ^15.7.4
-        version: 15.7.4(i18next@25.8.17(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
+        specifier: ^16.0.0
+        version: 16.5.6(i18next@25.8.17(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
       react-icons:
         specifier: ^5.6.0
         version: 5.6.0(react@18.3.1)
@@ -337,7 +337,7 @@ importers:
         version: 4.3.6
       zustand:
         specifier: ^5.0.7
-        version: 5.0.11(@types/react@18.3.23)(immer@11.1.4)(react@18.3.1)(use-sync-external-store@1.5.0(react@18.3.1))
+        version: 5.0.11(@types/react@18.3.23)(immer@11.1.4)(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))
     devDependencies:
       '@codecov/vite-plugin':
         specifier: ^1.9.1
@@ -5203,10 +5203,10 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  react-i18next@15.7.4:
-    resolution: {integrity: sha512-nyU8iKNrI5uDJch0z9+Y5XEr34b0wkyYj3Rp+tfbahxtlswxSCjcUL9H0nqXo9IR3/t5Y5PKIA3fx3MfUyR9Xw==}
+  react-i18next@16.5.6:
+    resolution: {integrity: sha512-Ua7V2/efA88ido7KyK51fb8Ki8M/sRfW8LR/rZ/9ZKr2luhuTI7kwYZN5agT1rWG7aYm5G0RYE/6JR8KJoCMDw==}
     peerDependencies:
-      i18next: '>= 23.4.0'
+      i18next: '>= 25.6.2'
       react: '>= 16.8.0'
       react-dom: '*'
       react-native: '*'
@@ -6027,8 +6027,8 @@ packages:
       '@types/react':
         optional: true
 
-  use-sync-external-store@1.5.0:
-    resolution: {integrity: sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==}
+  use-sync-external-store@1.6.0:
+    resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -7187,7 +7187,7 @@ snapshots:
       '@tanstack/react-virtual': 3.13.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      use-sync-external-store: 1.5.0(react@18.3.1)
+      use-sync-external-store: 1.6.0(react@18.3.1)
 
   '@humanfs/core@0.19.1': {}
 
@@ -8286,7 +8286,7 @@ snapshots:
       '@tanstack/store': 0.7.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      use-sync-external-store: 1.5.0(react@18.3.1)
+      use-sync-external-store: 1.6.0(react@18.3.1)
 
   '@tanstack/react-table@8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -11369,12 +11369,13 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  react-i18next@15.7.4(i18next@25.8.17(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3):
+  react-i18next@16.5.6(i18next@25.8.17(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.28.6
       html-parse-stringify: 3.0.1
       i18next: 25.8.17(typescript@5.9.3)
       react: 18.3.1
+      use-sync-external-store: 1.6.0(react@18.3.1)
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
       typescript: 5.9.3
@@ -11848,7 +11849,7 @@ snapshots:
       open: 10.2.0
       recast: 0.23.11
       semver: 7.7.4
-      use-sync-external-store: 1.5.0(react@18.3.1)
+      use-sync-external-store: 1.6.0(react@18.3.1)
       ws: 8.18.3
     optionalDependencies:
       prettier: 3.6.2
@@ -12294,7 +12295,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.23
 
-  use-sync-external-store@1.5.0(react@18.3.1):
+  use-sync-external-store@1.6.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
@@ -12694,11 +12695,11 @@ snapshots:
 
   zod@4.3.6: {}
 
-  zustand@5.0.11(@types/react@18.3.23)(immer@11.1.4)(react@18.3.1)(use-sync-external-store@1.5.0(react@18.3.1)):
+  zustand@5.0.11(@types/react@18.3.23)(immer@11.1.4)(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1)):
     optionalDependencies:
       '@types/react': 18.3.23
       immer: 11.1.4
       react: 18.3.1
-      use-sync-external-store: 1.5.0(react@18.3.1)
+      use-sync-external-store: 1.6.0(react@18.3.1)
 
   zwitch@2.0.4: {}

@@ -49,7 +49,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hotkeys-hook": "^5.2.4",
-    "react-i18next": "^15.7.4",
+    "react-i18next": "^16.0.0",
     "react-icons": "^5.6.0",
     "react-inspector": "9.0.0",
     "sonner": "^2.0.7",
