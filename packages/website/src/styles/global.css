@@ -1,7 +1,7 @@
 @import '@nuclearplayer/tailwind-config';
-@source "../components";
-@source "../layouts";
-@source "../pages";
+@source '../components';
+@source '../layouts';
+@source '../pages';
 
 :root {
   --page-bg: white;
