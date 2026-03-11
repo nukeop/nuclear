@@ -1,7 +1,10 @@
+import { QueryClient } from '@tanstack/react-query';
+import { createMemoryHistory, createRouter } from '@tanstack/react-router';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
+import { routeTree } from '../../routeTree.gen';
 import { SearchWrapper } from '../Search/Search.test-wrapper';
 
 const user = userEvent.setup();
@@ -30,8 +33,14 @@ export const AlbumWrapper = {
   async mountDirectly(
     url: string = '/album/test-metadata-provider/album-1',
   ): Promise<RenderResult> {
-    const component = render(<App />);
-    history.pushState({}, '', url);
+    const queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+    const history = createMemoryHistory({ initialEntries: [url] });
+    const router = createRouter({ routeTree, history });
+    const component = render(
+      <App queryClientProp={queryClient} routerProp={router} />,
+    );
     await screen.findByTestId('album-view');
 
     return component;
@@ -40,7 +49,7 @@ export const AlbumWrapper = {
   getTracksTable: () => screen.queryByRole('table'),
   getTracks: () => screen.queryAllByTestId('track-row'),
   async addTrackToQueueByTitle(title: string) {
-    const allTracks = screen.getAllByTestId('track-row');
+    const allTracks = await screen.findAllByTestId('track-row');
     const trackRow = allTracks.find((row) => row.textContent?.includes(title));
     await user.click(within(trackRow!).getByTestId('add-to-queue-button'));
   },
@@ -49,7 +58,7 @@ export const AlbumWrapper = {
     await user.click(button);
   },
   async openTrackContextMenu(trackTitle: string) {
-    const allTracks = screen.getAllByTestId('track-row');
+    const allTracks = await screen.findAllByTestId('track-row');
     const trackRow = allTracks.find((row) =>
       row.textContent?.includes(trackTitle),
     );
