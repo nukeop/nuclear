@@ -966,6 +966,9 @@ exports[`App > should render snapshot 1`] = `
       aria-relevant="additions text"
       tabindex="-1"
     />
+    <div
+      style="position: absolute;"
+    />
   </div>
 </DocumentFragment>
 `;

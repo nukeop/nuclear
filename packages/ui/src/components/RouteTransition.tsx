@@ -1,8 +1,8 @@
 import {
   Outlet,
   RouterContextProvider,
-  useMatches,
   useRouter,
+  useRouterState,
 } from '@tanstack/react-router';
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 import { forwardRef, useRef } from 'react';
@@ -74,13 +74,14 @@ const AnimatedOutlet = forwardRef<HTMLDivElement>((_, ref) => {
 });
 
 export const RouteTransition = () => {
-  const matches = useMatches();
-  const leafMatchId = matches[matches.length - 1]?.id ?? 'root';
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
 
   return (
     <div className="relative h-full w-full overflow-hidden">
       <AnimatePresence mode="popLayout" initial={false}>
-        <AnimatedOutlet key={leafMatchId} />
+        <AnimatedOutlet key={pathname} />
       </AnimatePresence>
     </div>
   );

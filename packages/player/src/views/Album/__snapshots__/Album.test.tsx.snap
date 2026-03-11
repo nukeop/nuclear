@@ -716,7 +716,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                                   data-headlessui-state=""
                                   data-state="closed"
                                   data-testid="track-context-menu-button"
-                                  id="radix-:r9:"
+                                  id="radix-:re:"
                                   type="button"
                                 >
                                   <svg
@@ -850,7 +850,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                                   data-headlessui-state=""
                                   data-state="closed"
                                   data-testid="track-context-menu-button"
-                                  id="radix-:rb:"
+                                  id="radix-:rg:"
                                   type="button"
                                 >
                                   <svg
@@ -1323,6 +1323,9 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       tabindex="-1"
+    />
+    <div
+      style="position: absolute;"
     />
   </div>
 </DocumentFragment>
