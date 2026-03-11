@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@source "../player";
-@source "../ui";
-@source "../storybook";
+@source '../player';
+@source '../ui';
+@source '../storybook';
 
 @theme {
   --color-background: var(--background);
