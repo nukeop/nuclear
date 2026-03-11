@@ -61,7 +61,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
               >
                 <svg
                   aria-hidden="true"
-                  class="lucide lucide-cassette-tape animate-pulse opacity-20"
+                  class="lucide lucide-cassette-tape opacity-20"
                   fill="none"
                   height="96"
                   stroke="currentColor"
@@ -395,7 +395,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                     class="border-border bg-background-secondary group border-b-2 select-none cursor-grab"
                     data-testid="track-row"
                     role="button"
-                    style="height: 42px; transition: transform 0ms linear;"
+                    style="height: 42px;"
                     tabindex="0"
                   >
                     <td
@@ -589,7 +589,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                     class="border-border bg-background-secondary group border-b-2 select-none cursor-grab"
                     data-testid="track-row"
                     role="button"
-                    style="height: 42px; transition: transform 0ms linear;"
+                    style="height: 42px;"
                     tabindex="0"
                   >
                     <td

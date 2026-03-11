@@ -38,11 +38,7 @@ export const PlaylistArtwork: FC<PlaylistArtworkProps> = ({
         className,
       )}
     >
-      <CassetteTape
-        size={96}
-        absoluteStrokeWidth
-        className="animate-pulse opacity-20"
-      />
+      <CassetteTape size={96} absoluteStrokeWidth className="opacity-20" />
     </div>
   );
 };

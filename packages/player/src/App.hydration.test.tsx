@@ -143,9 +143,8 @@ describe('App plugin hydration', () => {
     expect(PluginsWrapper.getPlugins()).toHaveLength(0);
 
     // But the registry entry remains and contains warnings
-    const { getRegistryEntry } = await import(
-      './services/plugins/pluginRegistry'
-    );
+    const { getRegistryEntry } =
+      await import('./services/plugins/pluginRegistry');
     const entry = await getRegistryEntry('broken');
     expect(entry).toBeDefined();
     expect(entry?.warnings && entry.warnings.length).toBeGreaterThan(0);

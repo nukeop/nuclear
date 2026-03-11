@@ -50,7 +50,7 @@ export const Card: FC<CardProps> = ({
             <CassetteTape
               size={96}
               absoluteStrokeWidth
-              className="animate-pulse opacity-20"
+              className="opacity-20"
             />
           }
         />

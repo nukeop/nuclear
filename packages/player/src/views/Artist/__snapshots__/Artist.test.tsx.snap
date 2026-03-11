@@ -772,7 +772,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                                       data-headlessui-state=""
                                       data-state="closed"
                                       data-testid="track-context-menu-button"
-                                      id="radix-:r9:"
+                                      id="radix-:re:"
                                       type="button"
                                     >
                                       <svg
@@ -888,7 +888,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                         >
                           <svg
                             aria-hidden="true"
-                            class="lucide lucide-cassette-tape animate-pulse opacity-20"
+                            class="lucide lucide-cassette-tape opacity-20"
                             fill="none"
                             height="96"
                             stroke="currentColor"
@@ -1455,7 +1455,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
             class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-2 h-8"
             data-headlessui-state=""
             data-testid="search-box"
-            id="input-:r1p:"
+            id="input-:r2m:"
             placeholder="Search"
             type="text"
             value="test artist"
@@ -1466,7 +1466,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
           aria-label="Toggle theme"
           class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
           data-headlessui-state=""
-          id="headlessui-switch-:r1r:"
+          id="headlessui-switch-:r2o:"
           role="switch"
           tabindex="0"
           type="button"
@@ -2357,7 +2357,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                       data-headlessui-state=""
                                       data-state="closed"
                                       data-testid="track-context-menu-button"
-                                      id="radix-:r24:"
+                                      id="radix-:r38:"
                                       type="button"
                                     >
                                       <svg
@@ -2459,7 +2459,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                         >
                           <svg
                             aria-hidden="true"
-                            class="lucide lucide-cassette-tape animate-pulse opacity-20"
+                            class="lucide lucide-cassette-tape opacity-20"
                             fill="none"
                             height="96"
                             stroke="currentColor"
@@ -2915,13 +2915,13 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                     </div>
                   </div>
                   <input
-                    aria-labelledby=":r1s:-label"
+                    aria-labelledby=":r2p:-label"
                     aria-valuemax="100"
                     aria-valuemin="0"
                     aria-valuenow="100"
                     aria-valuetext="100"
                     class="absolute inset-0 z-[1] h-6 w-full appearance-none opacity-0 cursor-pointer"
-                    id=":r1s:"
+                    id=":r2p:"
                     max="100"
                     min="0"
                     step="1"

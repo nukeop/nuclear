@@ -138,7 +138,7 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide lucide-cassette-tape animate-pulse opacity-20"
+                        class="lucide lucide-cassette-tape opacity-20"
                         fill="none"
                         height="96"
                         stroke="currentColor"
@@ -204,7 +204,7 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="lucide lucide-cassette-tape animate-pulse opacity-20"
+                        class="lucide lucide-cassette-tape opacity-20"
                         fill="none"
                         height="96"
                         stroke="currentColor"
