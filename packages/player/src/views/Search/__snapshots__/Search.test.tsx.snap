@@ -913,9 +913,6 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
       aria-relevant="additions text"
       tabindex="-1"
     />
-    <div
-      style="position: absolute;"
-    />
   </div>
 </DocumentFragment>
 `;

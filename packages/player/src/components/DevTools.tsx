@@ -11,6 +11,10 @@ if (import.meta.env.DEV) {
 }
 
 export const DevTools: FC = () => {
+  if (import.meta.env.MODE === 'test') {
+    return null;
+  }
+
   return (
     <TanStackDevtools
       plugins={[

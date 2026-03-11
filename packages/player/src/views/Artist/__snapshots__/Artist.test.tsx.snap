@@ -1376,9 +1376,6 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
       aria-relevant="additions text"
       tabindex="-1"
     />
-    <div
-      style="position: absolute;"
-    />
   </div>
 </DocumentFragment>
 `;
@@ -2944,9 +2941,6 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
       aria-live="polite"
       aria-relevant="additions text"
       tabindex="-1"
-    />
-    <div
-      style="position: absolute;"
     />
   </div>
 </DocumentFragment>
