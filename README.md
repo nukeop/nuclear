@@ -2,6 +2,36 @@
 
 Free music player that streams from any source. Search for music, and Nuclear plays it. Runs on Windows, macOS, and Linux.
 
+## Screenshots
+
+<p align="center">
+  <img src="packages/docs/.gitbook/assets/dashboard-violet.png" alt="Nuclear Music Player - Dashboard" width="100%">
+</p>
+
+Nuclear comes with multiple built-in themes:
+
+<p align="center">
+  <img src="packages/docs/.gitbook/assets/dashboard-green.png" alt="Green theme" width="32%">
+  <img src="packages/docs/.gitbook/assets/dashboard-aqua.png" alt="Aqua theme" width="32%">
+  <img src="packages/docs/.gitbook/assets/dashboard-mint.png" alt="Mint theme" width="32%">
+</p>
+<p align="center">
+  <img src="packages/docs/.gitbook/assets/dashboard-orange.png" alt="Orange theme" width="32%">
+  <img src="packages/docs/.gitbook/assets/dashboard-red.png" alt="Red theme" width="32%">
+  <img src="packages/docs/.gitbook/assets/dashboard-violet.png" alt="Violet theme" width="32%">
+</p>
+
+| | |
+|:---:|:---:|
+| ![Search artists](packages/docs/.gitbook/assets/search-artists.png) | ![Search albums](packages/docs/.gitbook/assets/search-albums.png) |
+| Artist search | Album search |
+| ![Playlists](packages/docs/.gitbook/assets/playlists.png) | ![Plugin store](packages/docs/.gitbook/assets/plugin-store.png) |
+| Playlists | Plugin store |
+| ![Installed plugins](packages/docs/.gitbook/assets/installed-plugins.png) | ![Preferences](packages/docs/.gitbook/assets/preferences.png) |
+| Installed plugins | Preferences |
+| ![What's new](packages/docs/.gitbook/assets/whats-new.png) | ![Log viewer](packages/docs/.gitbook/assets/log-viewer.png) |
+| What's new | Log viewer |
+
 ## Download
 
 Grab the latest release for your platform from the [Releases page](https://github.com/nukeop/nuclear/releases).
