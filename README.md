@@ -14,7 +14,7 @@
 ## Screenshots
 
 <p align="center">
-  <img src="packages/docs/.gitbook/assets/dashboard-violet.png" alt="Nuclear Music Player - Dashboard" width="100%">
+  <img src="packages/docs/.gitbook/assets/dashboard-main.png" alt="Nuclear Music Player - Dashboard" width="100%">
 </p>
 
 Nuclear comes with multiple built-in themes:
