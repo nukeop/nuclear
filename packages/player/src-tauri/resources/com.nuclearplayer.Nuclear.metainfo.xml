@@ -20,12 +20,10 @@
 
   <description>
     <p>
-      Nuclear is a free, open-source music player. No ads, no tracking,
-      no account required. Search for any song or artist, build playlists,
-      and start listening.
+      Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.
     </p>
     <ul>
-      <li>Search for music across multiple sources with a single query</li>
+      <li>Search for music across multiple sources</li>
       <li>Explore new releases, top tracks, and editorial playlists</li>
       <li>Extend the player with plugins - add new music sources, metadata providers, and more</li>
       <li>Customize the look and feel with themes</li>
@@ -65,6 +63,51 @@
   <project_group>Nuclear</project_group>
 
   <releases>
+    <release version="1.19.0" date="2026-03-09">
+      <description>
+        <p>Social links in settings sidebar.</p>
+      </description>
+    </release>
+    <release version="1.18.0" date="2026-03-07">
+      <description>
+        <p>YouTube playlist import via plugins.</p>
+      </description>
+    </release>
+    <release version="1.17.0" date="2026-03-06">
+      <description>
+        <p>MSE-based streaming for YouTube tracks with proper seeking and duration.</p>
+      </description>
+    </release>
+    <release version="1.16.0" date="2026-03-05">
+      <description>
+        <p>Customizable keyboard shortcuts with rebinding UI.</p>
+      </description>
+    </release>
+    <release version="1.15.0" date="2026-03-04">
+      <description>
+        <p>Plugin event bus, custom settings widgets, Shell API, and Nuclear UI components for plugins.</p>
+      </description>
+    </release>
+    <release version="1.14.0" date="2026-03-03">
+      <description>
+        <p>Fixed audio streams continuing to play when switching tracks or clearing the queue.</p>
+      </description>
+    </release>
+    <release version="1.13.0" date="2026-03-02">
+      <description>
+        <p>In-app changelog, release notes pipeline, and legacy playlist import.</p>
+      </description>
+    </release>
+    <release version="1.12.0" date="2026-03-01">
+      <description>
+        <p>Playlist import from URL and playlist provider adapter view with cover art.</p>
+      </description>
+    </release>
+    <release version="1.11.1" date="2026-02-28">
+      <description>
+        <p>Repository migrated to nukeop/nuclear.</p>
+      </description>
+    </release>
     <release version="1.6.2" date="2026-02-20">
       <description>
         <p>Fix Flatpak upload — git safe.directory in container.</p>

@@ -3608,7 +3608,7 @@ checksum = "7edddbd0b52d732b21ad9a5fab5c704c14cd949e5e9a1ec5929a24fded1b904c"
 
 [[package]]
 name = "player"
-version = "1.1.0"
+version = "1.19.0"
 dependencies = [
  "axum",
  "base64 0.22.1",

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="473.5"
+   height="100"
+   version="1.1"
+   viewBox="0 0 473.5 100"
+   id="svg2"
+   sodipodi:docname="logo-full.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.87434002"
+     inkscape:cx="236.17814"
+     inkscape:cy="50.323671"
+     inkscape:window-width="1440"
+     inkscape:window-height="847"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     d="m-0.098838 50c0-40 10-50 50-50 40 0 50 10 50 50s-10 50-50 50c-40 0-50-10-50-50z"
+     fill="#1a1a1a"
+     id="path1"
+     style="fill:#000000" />
+  <path
+     d="m29.901 23.6 20 26.4 20-26.4zm20 26.4 20 26.4 20-26.4zm0 0h-40l20 26.4z"
+     fill="#fff"
+     id="path2"
+     style="fill:#ffffff" />
+  <text
+     transform="scale(1.0009 .99913)"
+     x="119.74697"
+     y="83.319954"
+     font-family="'Rubik Mono One'"
+     font-size="85.325px"
+     stroke-width=".99913"
+     style="line-height:1.25;fill:#000000"
+     xml:space="preserve"
+     id="text2"><tspan
+       x="119.74697"
+       y="83.319954"
+       font-family="'Black Han Sans'"
+       font-size="85.325px"
+       stroke-width=".99913"
+       id="tspan2"
+       style="fill:#000000">nuclear</tspan></text>
+</svg>

@@ -16,4 +16,4 @@ Terminal=false
 Type=Application
 Categories=Audio;AudioVideo;Network;Player;Music;
 Keywords=Music;Player;Streaming;Audio;
-StartupWMClass=nuclear-music-player
+StartupWMClass=Nuclear
