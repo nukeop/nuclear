@@ -1,6 +1,15 @@
-# Nuclear Music Player
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="packages/ui/src/assets/logo-full-light-outlined.svg">
+    <source media="(prefers-color-scheme: light)" srcset="packages/ui/src/assets/logo-full-outlined.svg">
+    <img alt="Nuclear Music Player" src="packages/ui/src/assets/logo-full-outlined.svg" width="400">
+  </picture>
+</p>
 
-Free music player that streams from any source. Search for music, and Nuclear plays it. Runs on Windows, macOS, and Linux.
+<p align="center">
+  Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.<br>
+  Runs on Windows, macOS, and Linux.
+</p>
 
 ## Screenshots
 
