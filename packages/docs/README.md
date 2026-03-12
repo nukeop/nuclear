@@ -1,10 +1,10 @@
 ---
-description: Nuclear Music Player docs
+description: Nuclear - Music streaming app for your desktop
 ---
 
 # Nuclear Documentation
 
-Nuclear is a free, open‑source music player that acts as a hub for many services. This documentation is for both users and developers: start using the player, customize it with themes, or extend it with plugins.
+Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening. This documentation is for both users and developers.
 
 ## Quick links
 

@@ -4,7 +4,7 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>AGPL-3.0-only</project_license>
   <name>Nuclear</name>
-  <summary>Listen to music, your way</summary>
+  <summary>Music streaming app for your desktop</summary>
 
   <developer id="com.nuclearplayer">
     <name>nukeop</name>

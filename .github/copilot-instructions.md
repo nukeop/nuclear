@@ -2,7 +2,7 @@
 
 ## Project overview
 
-This is Nuclear Music Player, a free and open-source music player that works as a hub for many different services.
+Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.
 
 It's a monorepo managed with pnpm and turbo.
 

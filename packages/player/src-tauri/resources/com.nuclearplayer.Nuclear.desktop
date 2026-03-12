@@ -1,15 +1,15 @@
 [Desktop Entry]
 Name=Nuclear Music Player
 GenericName=Music Player
-Comment=Free desktop music player. No ads, no tracking. Listen to music however you want.
-Comment[es]=Reproductor de música de escritorio gratuito. Sin anuncios, sin rastreo. Escucha música como quieras.
-Comment[fr]=Lecteur de musique de bureau gratuit. Sans publicité, sans pistage. Écoutez votre musique comme vous voulez.
-Comment[de]=Kostenloser Desktop-Musikplayer. Keine Werbung, kein Tracking. Hör Musik, wie du willst.
-Comment[pt]=Reprodutor de música gratuito. Sem anúncios, sem rastreamento. Ouça música do seu jeito.
-Comment[ru]=Бесплатный музыкальный плеер. Без рекламы, без слежки. Слушайте музыку так, как хотите.
-Comment[zh_CN]=免费桌面音乐播放器。无广告，无追踪。随心听音乐。
-Comment[pl]=Darmowy odtwarzacz muzyki. Bez reklam, bez śledzenia. Słuchaj muzyki po swojemu.
-Comment[ja]=無料のデスクトップ音楽プレーヤー。広告なし、追跡なし。好きなように音楽を聴こう。
+Comment=Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.
+Comment[es]=Nuclear es un reproductor de música gratuito y de código abierto, sin anuncios ni rastreo. Busca cualquier canción o artista, crea listas de reproducción y empieza a escuchar.
+Comment[fr]=Nuclear est un lecteur de musique gratuit et open source, sans publicité ni pistage. Recherchez n'importe quelle chanson ou artiste, créez des playlists et commencez à écouter.
+Comment[de]=Nuclear ist ein kostenloser, quelloffener Musikplayer ohne Werbung oder Tracking. Suche nach beliebigen Songs oder Künstlern, erstelle Playlists und höre sofort los.
+Comment[pt]=Nuclear é um reprodutor de música gratuito e de código aberto, sem anúncios nem rastreamento. Pesquise qualquer música ou artista, crie playlists e comece a ouvir.
+Comment[ru]=Nuclear — бесплатный музыкальный плеер с открытым исходным кодом, без рекламы и слежки. Ищите любую песню или исполнителя, создавайте плейлисты и слушайте.
+Comment[zh_CN]=Nuclear 是一款免费开源的音乐播放器，无广告、无追踪。搜索任意歌曲或歌手，创建播放列表，即刻开始聆听。
+Comment[pl]=Nuclear to darmowy odtwarzacz muzyki o otwartym kodzie źródłowym, bez reklam i śledzenia. Wyszukaj dowolną piosenkę lub artystę, twórz playlisty i zacznij słuchać.
+Comment[ja]=Nuclearは広告やトラッキングのない、無料でオープンソースの音楽プレーヤーです。好きな曲やアーティストを検索し、プレイリストを作って、すぐに聴き始めましょう。
 Exec=nuclear-music-player %u
 Icon=com.nuclearplayer.Nuclear
 Terminal=false

@@ -1,16 +1,10 @@
-# Nuclear Music Player
+# Nuclear
 
-> Nuclear is a free, open-source desktop music player that streams from free sources and local libraries. Cross-platform (Windows, macOS, Linux), privacy-respecting (no tracking, no telemetry), and AGPL licensed.
+> Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening. Cross-platform (Windows, macOS, Linux), privacy-respecting, and AGPL licensed.
 
-The website is currently under construction. Nuclear is being rebuilt from scratch with a new player, new infrastructure, and a new website.
+## Links
 
-## Pages
-
-- [Home](https://nuclearplayer.github.io/nuclear-xrd/): Landing page (currently under construction)
-
-## External
-
-- [GitHub Repository](https://github.com/NuclearPlayer/nuclear-xrd): Source code for the new version
-- [Legacy Repository](https://github.com/nukeop/nuclear): Source code for the current released version
+- [Home](https://nuclearplayer.com): Website
+- [GitHub Repository](https://github.com/nukeop/nuclear): Source code
 - [Discord](https://discord.gg/JqPjKxE): Community chat
-- [Gitbook](https://docs.nuclearplayer.com/nuclear-xrd/): Documentation for the new version
+- [Documentation](https://docs.nuclearplayer.com): Docs

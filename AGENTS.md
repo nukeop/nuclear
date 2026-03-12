@@ -1,10 +1,10 @@
 # AGENTS.md
 
-Guidelines for AI coding agents working on Nuclear Music Player.
+Guidelines for AI coding agents working on Nuclear.
 
 ## Project Overview
 
-Nuclear is a music player desktop app built with Tauri (Rust + React). This is a pnpm monorepo managed with Turborepo.
+Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening. It's a desktop app built with Tauri (Rust + React), organized as a pnpm monorepo managed with Turborepo.
 
 ### Packages
 

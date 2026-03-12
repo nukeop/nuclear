@@ -5,13 +5,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 import '../styles/global.css';
 
-const title = 'Nuclear Music Player';
+const title = 'Nuclear';
 const description =
-  'A free, open-source desktop music player that streams from free sources.';
+  'Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.';
 ---
 
 <BaseLayout title={title} description={description}>
-  <main class="relative min-h-screen bg-background flex flex-col items-center justify-center">
+  <main
+    class="relative min-h-screen bg-background flex flex-col items-center justify-center"
+  >
     <div
       class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"
       aria-hidden="true"
@@ -22,7 +24,7 @@ const description =
       aria-hidden="true"
     >
     </div>
-    <Hero version="v1.1.0" />
+    <Hero version="v1.20.0" />
     <Downloads />
   </main>
 </BaseLayout>
