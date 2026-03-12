@@ -44,7 +44,7 @@ const AnimatedOutlet = forwardRef<HTMLDivElement>((_, ref) => {
     const snapshot = frozenState.current;
     const storeProxy = Object.create(router.__store) as typeof router.__store;
     Object.defineProperty(storeProxy, 'state', { get: () => snapshot });
-    storeProxy.get = () => snapshot;
+    Object.defineProperty(storeProxy, 'get', { value: () => snapshot });
 
     const routerProxy = Object.create(router) as typeof router;
     Object.defineProperty(routerProxy, '__store', { value: storeProxy });

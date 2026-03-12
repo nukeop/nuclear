@@ -7,37 +7,55 @@ exports[`App > should render snapshot 1`] = `
   >
     <div>
       <header
-        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-2 px-4"
+        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-2 px-3"
       >
         <div
           class="flex flex-row items-center gap-4"
         >
-          <svg
-            class="inline-flex h-6 w-6"
-            height="100"
-            viewBox="0 0 100 100"
-            width="100"
-            xmlns="http://www.w3.org/2000/svg"
+          <span
+            class="ml-0.5 dark:hidden"
           >
-            <g
-              fill="none"
-              stroke="currentColor"
-              stroke-width="8"
-              transform="matrix(.96157 0 0 .95989 1.9231 1.9198)"
+            <svg
+              class="h-6 w-6"
+              height="100"
+              id="svg2"
+              viewBox="0 0 99.999998 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:svg="http://www.w3.org/2000/svg"
             >
-              <rect
-                height="96"
-                rx="19.2"
-                ry="19.2"
-                width="96"
-                x="2"
-                y="2"
+              <defs
+                id="defs2"
               />
               <path
-                d="m30 23.6 20 26.4 20-26.4zm20 26.4 20 26.4 20-26.4zm0 0h-40l20 26.4z"
+                d="M 49.999997,5.5078125e-6 C 10.000227,5.5078125e-6 -2.8686701e-6,10.000046 -2.8686701e-6,50.000006 -2.8686701e-6,89.999966 10.000227,100.00001 49.999997,100.00001 c 39.99977,0 50,-10.000044 50,-50.000004 0,-39.99996 -10.00023,-50.0000004921875 -50,-50.0000004921875 z M 29.999997,23.599616 h 40 l -20,26.40039 h 40 l -20,26.40039 -20,-26.40039 -20,26.40039 L 9.9999971,50.000006 H 49.999997 Z"
+                id="path1"
+                style="fill: #000000; stroke-width: 0.999999;"
               />
-            </g>
-          </svg>
+            </svg>
+          </span>
+          <span
+            class="ml-0.5 hidden dark:block!"
+          >
+            <svg
+              class="h-6 w-6"
+              height="100"
+              id="svg2"
+              viewBox="0 0 99.999998 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:svg="http://www.w3.org/2000/svg"
+            >
+              <defs
+                id="defs2"
+              />
+              <path
+                d="M 50,0 C 10.00023,0 0,10.00004 0,50 0,89.99996 10.00023,100 50,100 89.99977,100 100,89.99996 100,50 100,10.00004 89.99977,0 50,0 Z M 30,23.59961 H 70 L 50,50 H 90 L 70,76.40039 50,50 30,76.40039 10,50 h 40 z"
+                id="path1"
+                style="fill: #ffffff; fill-opacity: 1; stroke-width: 0.999999;"
+              />
+            </svg>
+          </span>
         </div>
         <div
           class="flex w-full flex-col gap-2"
