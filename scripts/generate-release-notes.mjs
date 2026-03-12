@@ -13,6 +13,9 @@ const TYPE_LABELS = {
   docs: 'Docs',
 };
 
+const MACOS_GATEKEEPER_NOTE = `
+> **macOS:** If the app won't open, run \`sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app\` in Terminal.`;
+
 const version = process.argv[2];
 if (!version) {
   console.error('Usage: generate-release-notes.mjs <version>');
@@ -47,6 +50,7 @@ const entries = previousTagDate
 
 if (entries.length === 0) {
   console.log(`Nuclear Player release v${version}`);
+  console.log(MACOS_GATEKEEPER_NOTE);
   process.exit(0);
 }
 
@@ -55,9 +59,7 @@ for (const entry of entries) {
   const type = TYPE_LABELS[entry.type] || entry.type;
   const tags = entry.tags?.map((tag) => `\`${tag.label}\``).join(' ') ?? '';
   const contributors =
-    entry.contributors
-      ?.map((name) => `@${name}`)
-      .join(', ') ?? '';
+    entry.contributors?.map((name) => `@${name}`).join(', ') ?? '';
 
   let line = `- **${type}**: ${entry.description}`;
   if (tags) {
@@ -68,3 +70,5 @@ for (const entry of entries) {
   }
   console.log(line);
 }
+
+console.log(MACOS_GATEKEEPER_NOTE);

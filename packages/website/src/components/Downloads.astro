@@ -58,6 +58,39 @@ const platforms = [
   >
     All downloads
   </a>
+  <div class="text-xs text-foreground/60 mt-4 max-w-md mx-auto text-center leading-relaxed">
+    <p>
+      <strong class="text-foreground/80">macOS users:</strong> macOS may block Nuclear from opening.
+      Try right-clicking the app and selecting Open. If that doesn't work, run this in Terminal:
+    </p>
+    <div class="relative mt-1.5 mb-0.5 group">
+      <code id="xattr-cmd" class="block px-2 py-1 pr-8 bg-background-secondary rounded text-[11px] break-all">sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app</code>
+      <button
+        id="copy-xattr"
+        type="button"
+        class="absolute right-1 top-1/2 -translate-y-1/2 p-1 rounded text-foreground/40 hover:text-foreground/80 transition-colors"
+        aria-label="Copy command"
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <script>
+    document.getElementById('copy-xattr')?.addEventListener('click', async () => {
+      const cmd = document.getElementById('xattr-cmd')?.textContent ?? '';
+      await navigator.clipboard.writeText(cmd);
+      const btn = document.getElementById('copy-xattr');
+      if (btn) {
+        btn.innerHTML = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        setTimeout(() => {
+          btn.innerHTML = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+        }, 2000);
+      }
+    });
+  </script>
 </Box>
 
 <div class="relative mt-6 z-10">
