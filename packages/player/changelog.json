@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-03-12T00:00",
+    "description": "Update badge shows download progress and lets you click to update or restart",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Updates",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-03-09T00:00",
     "description": "Social links in settings sidebar (Discord, GitHub, Mastodon, Website)",
     "type": "feature",

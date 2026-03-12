@@ -1,6 +1,6 @@
 [package]
 name = "player"
-version = "1.19.1"
+version = "1.20.0"
 description = "Nuclear Music Player"
 authors = ["nukeop <12746779+nukeop@users.noreply.github.com>"]
 license = "AGPL-3.0-only"
