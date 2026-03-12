@@ -20,23 +20,27 @@ import Badge from './Badge.astro';
 import Box from './Box.astro';
 
 const themes = [
-  { src: dashboardGreen, name: 'Green' },
-  { src: dashboardAqua, name: 'Aqua' },
-  { src: dashboardMint, name: 'Mint' },
-  { src: dashboardOrange, name: 'Orange' },
-  { src: dashboardRed, name: 'Red' },
-  { src: dashboardViolet, name: 'Violet' },
+  { src: dashboardViolet, name: 'Aurora', rotate: '-rotate-1' },
+  { src: dashboardAqua, name: 'Lagoon', rotate: 'rotate-[0.7deg]' },
+  { src: dashboardMint, name: 'Arctic Moss', rotate: '-rotate-[0.5deg]' },
+  { src: dashboardOrange, name: 'Canyon', rotate: 'rotate-1' },
+  { src: dashboardRed, name: 'Molten Core', rotate: '-rotate-[0.8deg]' },
+  { src: dashboardGreen, name: 'Midnight Terminal', rotate: 'rotate-[0.6deg]' },
 ];
 
 const features = [
-  { src: searchArtists, label: 'Search artists' },
-  { src: searchAlbums, label: 'Search albums' },
-  { src: playlists, label: 'Playlists' },
-  { src: pluginStore, label: 'Plugin store' },
-  { src: installedPlugins, label: 'Installed plugins' },
-  { src: preferences, label: 'Preferences' },
-  { src: whatsNew, label: "What's new" },
-  { src: logViewer, label: 'Log viewer' },
+  { src: searchArtists, label: 'Search artists', rotate: 'rotate-[0.8deg]' },
+  { src: searchAlbums, label: 'Search albums', rotate: '-rotate-[0.6deg]' },
+  { src: playlists, label: 'Playlists', rotate: '-rotate-1' },
+  { src: pluginStore, label: 'Plugin store', rotate: 'rotate-[0.7deg]' },
+  {
+    src: installedPlugins,
+    label: 'Installed plugins',
+    rotate: 'rotate-[0.5deg]',
+  },
+  { src: preferences, label: 'Preferences', rotate: '-rotate-[0.8deg]' },
+  { src: whatsNew, label: "What's new", rotate: '-rotate-[0.6deg]' },
+  { src: logViewer, label: 'Log viewer', rotate: 'rotate-1' },
 ];
 ---
 
@@ -69,7 +73,7 @@ const features = [
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
       {
         themes.map((theme) => (
-          <div class="flex flex-col items-center gap-2">
+          <div class:list={['flex flex-col items-center gap-2', theme.rotate]}>
             <div class="themed-border border-border rounded-md shadow-shadow overflow-hidden bg-primary">
               <Image
                 src={theme.src}
@@ -98,7 +102,12 @@ const features = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 items-start">
       {
         features.map((feature) => (
-          <div class="themed-border border-border rounded-md shadow-shadow overflow-hidden bg-primary">
+          <div
+            class:list={[
+              'themed-border border-border rounded-md shadow-shadow overflow-hidden bg-primary',
+              feature.rotate,
+            ]}
+          >
             <div class="leading-0">
               <Image
                 src={feature.src}
