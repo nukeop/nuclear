@@ -36,6 +36,7 @@
     "@tauri-apps/plugin-fs": "~2.4.1",
     "@tauri-apps/plugin-log": "~2.6.0",
     "@tauri-apps/plugin-opener": "~2.5.3",
+    "@tauri-apps/plugin-process": "^2.3.1",
     "@tauri-apps/plugin-store": "~2.3.0",
     "@tauri-apps/plugin-updater": "~2.9.0",
     "@tauri-apps/plugin-upload": "~2.2.1",

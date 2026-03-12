@@ -202,7 +202,10 @@
     }
   },
   "updater": {
-    "updateAvailable": "Update available"
+    "updateAvailable": "Update available",
+    "clickToUpdate": "Click to update",
+    "downloading": "Downloading... {{progress}}%",
+    "clickToRestart": "Click to restart"
   },
   "flatpak": {
     "sandboxWarning": "You're running Nuclear in a Flatpak sandbox. Some features may not work correctly. If you experience issues, try the .deb or AppImage instead.",

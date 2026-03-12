@@ -19,7 +19,9 @@ pub fn run() {
         .plugin(setup::log_plugin());
 
     if !is_flatpak {
-        builder = builder.plugin(tauri_plugin_updater::Builder::new().build());
+        builder = builder
+            .plugin(tauri_plugin_updater::Builder::new().build())
+            .plugin(tauri_plugin_process::init());
     }
 
     builder

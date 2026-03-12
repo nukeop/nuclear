@@ -87,7 +87,7 @@ export interface FileRoutesByFullPath {
   '/favorites/artists': typeof FavoritesArtistsRoute
   '/favorites/tracks': typeof FavoritesTracksRoute
   '/playlists/$playlistId': typeof PlaylistsPlaylistIdRoute
-  '/playlists': typeof PlaylistsIndexRoute
+  '/playlists/': typeof PlaylistsIndexRoute
   '/album/$providerId/$albumId': typeof AlbumProviderIdAlbumIdRoute
   '/artist/$providerId/$artistId': typeof ArtistProviderIdArtistIdRoute
   '/playlists/import/$providerId': typeof PlaylistsImportProviderIdRoute
@@ -129,7 +129,7 @@ export interface FileRouteTypes {
     | '/favorites/artists'
     | '/favorites/tracks'
     | '/playlists/$playlistId'
-    | '/playlists'
+    | '/playlists/'
     | '/album/$providerId/$albumId'
     | '/artist/$providerId/$artistId'
     | '/playlists/import/$providerId'
@@ -201,7 +201,7 @@ declare module '@tanstack/react-router' {
     '/playlists/': {
       id: '/playlists/'
       path: '/playlists'
-      fullPath: '/playlists'
+      fullPath: '/playlists/'
       preLoaderRoute: typeof PlaylistsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }

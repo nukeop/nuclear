@@ -1,8 +1,9 @@
+import { relaunch } from '@tauri-apps/plugin-process';
 import { check, type Update } from '@tauri-apps/plugin-updater';
 import { create } from 'zustand';
 
 import { Logger } from '../services/logger';
-import { resolveErrorMessage } from '../utils/logging';
+import { reportError, resolveErrorMessage } from '../utils/logging';
 import { getSetting } from './settingsStore';
 
 type UpdaterState = {
@@ -12,10 +13,12 @@ type UpdaterState = {
   isChecking: boolean;
   isDownloading: boolean;
   isInstalling: boolean;
+  isReadyToRestart: boolean;
   downloadProgress: number;
   error: string | null;
   checkForUpdate: () => Promise<void>;
-  downloadAndInstall: () => Promise<void>;
+  downloadUpdate: () => Promise<void>;
+  restartToUpdate: () => Promise<void>;
 };
 
 export const useUpdaterStore = create<UpdaterState>((set, get) => ({
@@ -25,6 +28,7 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
   isChecking: false,
   isDownloading: false,
   isInstalling: false,
+  isReadyToRestart: false,
   downloadProgress: 0,
   error: null,
 
@@ -48,7 +52,7 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
       if (update !== null) {
         const autoInstall = getSetting('core.updates.autoInstall');
         if (autoInstall === true) {
-          await get().downloadAndInstall();
+          await get().downloadUpdate();
         }
       }
     } catch (error) {
@@ -63,7 +67,7 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
     }
   },
 
-  downloadAndInstall: async () => {
+  downloadUpdate: async () => {
     const { updateInfo } = get();
     if (!updateInfo) {
       return;
@@ -85,7 +89,8 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
         } else if (event.event === 'Finished') {
           set({
             isDownloading: false,
-            isInstalling: true,
+            isInstalling: false,
+            isReadyToRestart: true,
             downloadProgress: 100,
           });
         }
@@ -98,6 +103,18 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
         isInstalling: false,
         error: message,
       });
+    }
+  },
+
+  restartToUpdate: async () => {
+    try {
+      await relaunch();
+    } catch (error) {
+      await reportError('updates', {
+        userMessage: 'Failed to restart for update',
+        error,
+      });
+      set({ error: resolveErrorMessage(error) });
     }
   },
 }));
