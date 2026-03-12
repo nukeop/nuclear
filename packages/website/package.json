@@ -25,6 +25,7 @@
     "@nuclearplayer/eslint-config": "workspace:*",
     "@nuclearplayer/tailwind-config": "workspace:*",
     "@tailwindcss/vite": "^4.1.11",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2"
   }

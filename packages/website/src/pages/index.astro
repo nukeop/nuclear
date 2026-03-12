@@ -1,6 +1,7 @@
 ---
 import Downloads from '../components/Downloads.astro';
 import Hero from '../components/Hero.astro';
+import Screenshots from '../components/Screenshots.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 import '../styles/global.css';
@@ -11,20 +12,21 @@ const description =
 ---
 
 <BaseLayout title={title} description={description}>
-  <main
-    class="relative min-h-screen bg-background flex flex-col items-center justify-center"
-  >
-    <div
-      class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"
-      aria-hidden="true"
-    >
+  <main class="relative bg-background flex flex-col items-center">
+    <div class="relative min-h-screen flex flex-col items-center justify-center w-full">
+      <div
+        class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-radial-fade pointer-events-none"
+        aria-hidden="true"
+      >
+      </div>
+      <Hero version="v1.20.0" />
+      <Downloads />
     </div>
-    <div
-      class="absolute inset-0 bg-radial-fade pointer-events-none"
-      aria-hidden="true"
-    >
-    </div>
-    <Hero version="v1.20.0" />
-    <Downloads />
+    <Screenshots />
   </main>
 </BaseLayout>
