@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-03-14T00:00",
+    "description": "yt-dlp is now downloaded and updated automatically at runtime, fixing Flatpak and AppImage compatibility",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-03-13T00:00",
     "description": "Border width is now themable - advanced themes can set border-width to control all borders in the app",
     "type": "feature",
