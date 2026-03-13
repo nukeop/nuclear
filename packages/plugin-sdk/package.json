@@ -38,7 +38,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.542.0",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
@@ -48,11 +48,11 @@
     "@tailwindcss/vite": "^4.1.11",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
-    "@types/react": "^18.3.23",
+    "@types/react": "^19.0.0",
     "@vitejs/plugin-react": "^5.0.1",
     "@vitest/coverage-v8": "^4.0.0",
     "jsdom": "^26.1.0",
-    "react-dom": "^18.3.1",
+    "react-dom": "^19.0.0",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2",
     "vite": "^7.1.3",
