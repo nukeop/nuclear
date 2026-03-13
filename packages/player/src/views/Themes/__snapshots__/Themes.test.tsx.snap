@@ -67,7 +67,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
           </svg>
         </button>
         <nav
-          class="border-border flex w-56 flex-shrink-0 flex-col border-r-(length:--border-width) p-4"
+          class="border-border flex w-56 shrink-0 flex-col border-r-(length:--border-width) p-4"
         >
           <div
             class="flex flex-col gap-1"

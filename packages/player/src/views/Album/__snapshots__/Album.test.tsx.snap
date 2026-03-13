@@ -192,7 +192,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -232,7 +232,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -276,7 +276,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -323,7 +323,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -365,7 +365,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -413,7 +413,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                 role="button"
               >
                 <div
-                  class="flex size-8 flex-shrink-0 items-center justify-center"
+                  class="flex size-8 shrink-0 items-center justify-center"
                 >
                   <svg
                     aria-hidden="true"

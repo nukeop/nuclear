@@ -192,7 +192,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -232,7 +232,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -276,7 +276,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -323,7 +323,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -365,7 +365,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -413,7 +413,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                 role="button"
               >
                 <div
-                  class="flex size-8 flex-shrink-0 items-center justify-center"
+                  class="flex size-8 shrink-0 items-center justify-center"
                 >
                   <svg
                     aria-hidden="true"
@@ -1619,7 +1619,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -1659,7 +1659,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -1703,7 +1703,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -1750,7 +1750,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -1792,7 +1792,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -1840,7 +1840,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                 role="button"
               >
                 <div
-                  class="flex size-8 flex-shrink-0 items-center justify-center"
+                  class="flex size-8 shrink-0 items-center justify-center"
                 >
                   <svg
                     aria-hidden="true"

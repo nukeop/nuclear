@@ -12,7 +12,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in compact mode 1
         data-testid="sidebar-navigation-item"
       >
         <div
-          class="flex size-8 flex-shrink-0 items-center justify-center"
+          class="flex size-8 shrink-0 items-center justify-center"
         >
           <svg
             aria-hidden="true"
@@ -49,7 +49,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in compact mode 1
         data-testid="sidebar-navigation-item"
       >
         <div
-          class="flex size-8 flex-shrink-0 items-center justify-center"
+          class="flex size-8 shrink-0 items-center justify-center"
         >
           <svg
             aria-hidden="true"
@@ -93,7 +93,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in normal mode 1`
         data-testid="sidebar-navigation-item"
       >
         <div
-          class="flex size-8 flex-shrink-0 items-center justify-center"
+          class="flex size-8 shrink-0 items-center justify-center"
         >
           <svg
             aria-hidden="true"
@@ -130,7 +130,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in normal mode 1`
         data-testid="sidebar-navigation-item"
       >
         <div
-          class="flex size-8 flex-shrink-0 items-center justify-center"
+          class="flex size-8 shrink-0 items-center justify-center"
         >
           <svg
             aria-hidden="true"
