@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-03-13T00:00",
+    "description": "Border width is now themable - advanced themes can set border-width to control all borders in the app",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-13T00:00",
+    "description": "Improved dark mode for all basic themes with better backgrounds, toned-down primaries, and themed borders",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-03-12T00:00",
     "description": "Update badge shows download progress and lets you click to update or restart",
     "type": "feature",
