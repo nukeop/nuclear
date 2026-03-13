@@ -3,7 +3,7 @@
 exports[`PlayerBar > (Snapshot) active states render 1`] = `
 <DocumentFragment>
   <footer
-    class="bg-background-secondary border-border flex h-16 items-center border-t-2 px-4"
+    class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
   >
     <div
       class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -15,7 +15,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
           class="flex min-w-0 items-center gap-3"
         >
           <div
-            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-2"
+            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
           >
             <img
               alt=""
@@ -49,7 +49,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
           class="flex items-center justify-center gap-2"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
             data-headlessui-state=""
             data-testid="player-shuffle-button"
             type="button"
@@ -111,7 +111,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
             </svg>
           </button>
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
             data-headlessui-state=""
             data-testid="player-pause-button"
             type="button"
@@ -172,7 +172,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
             </svg>
           </button>
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
             data-headlessui-state=""
             data-testid="player-repeat-button"
             type="button"
@@ -255,14 +255,14 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
                   class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                 >
                   <div
-                    class="border-border bg-background-input relative h-3 w-full rounded-md border-2"
+                    class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
                   >
                     <div
                       class="bg-primary absolute top-0 left-0 h-full rounded-l"
                       style="width: 60%;"
                     />
                     <div
-                      class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-2 bg-white"
+                      class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width) bg-white"
                       style="left: 60%;"
                     />
                   </div>
@@ -294,7 +294,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
 exports[`PlayerBar > (Snapshot) default render 1`] = `
 <DocumentFragment>
   <footer
-    class="bg-background-secondary border-border flex h-16 items-center border-t-2 px-4"
+    class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
   >
     <div
       class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -306,7 +306,7 @@ exports[`PlayerBar > (Snapshot) default render 1`] = `
           class="flex min-w-0 items-center gap-3"
         >
           <div
-            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-2"
+            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
           >
             <img
               alt=""
@@ -402,7 +402,7 @@ exports[`PlayerBar > (Snapshot) default render 1`] = `
             </svg>
           </button>
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
             data-headlessui-state=""
             data-testid="player-play-button"
             type="button"
@@ -535,14 +535,14 @@ exports[`PlayerBar > (Snapshot) default render 1`] = `
                   class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                 >
                   <div
-                    class="border-border bg-background-input relative h-3 w-full rounded-md border-2"
+                    class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
                   >
                     <div
                       class="bg-primary absolute top-0 left-0 h-full rounded-l"
                       style="width: 75%;"
                     />
                     <div
-                      class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-2 bg-white"
+                      class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width) bg-white"
                       style="left: 75%;"
                     />
                   </div>
@@ -577,7 +577,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
     style="width: 420px;"
   >
     <footer
-      class="bg-background-secondary border-border flex h-16 items-center border-t-2 px-4"
+      class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
     >
       <div
         class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -589,7 +589,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
             class="flex min-w-0 items-center gap-3"
           >
             <div
-              class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-2"
+              class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
             >
               <img
                 alt=""
@@ -685,7 +685,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
               data-headlessui-state=""
               data-testid="player-play-button"
               type="button"
@@ -818,14 +818,14 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
                     class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                   >
                     <div
-                      class="border-border bg-background-input relative h-3 w-full rounded-md border-2"
+                      class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
                     >
                       <div
                         class="bg-primary absolute top-0 left-0 h-full rounded-l"
                         style="width: 50%;"
                       />
                       <div
-                        class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-2 bg-white"
+                        class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width) bg-white"
                         style="left: 50%;"
                       />
                     </div>
@@ -858,7 +858,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
 exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
 <DocumentFragment>
   <footer
-    class="bg-background-secondary border-border flex h-16 items-center border-t-2 px-4"
+    class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
   >
     <div
       class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -870,7 +870,7 @@ exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
           class="flex min-w-0 items-center gap-3"
         >
           <div
-            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-2"
+            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
           >
             <div
               class="text-foreground-secondary flex size-full items-center justify-center"
@@ -987,7 +987,7 @@ exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
             </svg>
           </button>
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
             data-headlessui-state=""
             data-testid="player-play-button"
             type="button"
@@ -1120,14 +1120,14 @@ exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
                   class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                 >
                   <div
-                    class="border-border bg-background-input relative h-3 w-full rounded-md border-2"
+                    class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
                   >
                     <div
                       class="bg-primary absolute top-0 left-0 h-full rounded-l"
                       style="width: 30%;"
                     />
                     <div
-                      class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-2 bg-white"
+                      class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width) bg-white"
                       style="left: 30%;"
                     />
                   </div>

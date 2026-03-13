@@ -3,7 +3,7 @@
 exports[`StatChip > (Snapshot) renders with icon 1`] = `
 <div>
   <div
-    class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-2 px-2 py-1"
+    class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-(length:--border-width) px-2 py-1"
   >
     <span
       class="shrink-0"
@@ -29,7 +29,7 @@ exports[`StatChip > (Snapshot) renders with icon 1`] = `
 exports[`StatChip > (Snapshot) renders with value and label 1`] = `
 <div>
   <div
-    class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-2 px-2 py-1"
+    class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-(length:--border-width) px-2 py-1"
   >
     <span
       class="font-heading text-lg font-extrabold"

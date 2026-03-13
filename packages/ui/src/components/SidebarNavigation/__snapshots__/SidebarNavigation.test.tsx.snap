@@ -8,7 +8,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in compact mode 1
   >
     <div>
       <div
-        class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+        class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
         data-testid="sidebar-navigation-item"
       >
         <div
@@ -45,7 +45,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in compact mode 1
     </div>
     <div>
       <div
-        class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+        class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
         data-testid="sidebar-navigation-item"
       >
         <div
@@ -89,7 +89,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in normal mode 1`
   >
     <div>
       <div
-        class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+        class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
         data-testid="sidebar-navigation-item"
       >
         <div
@@ -126,7 +126,7 @@ exports[`SidebarNavigation > (Snapshot) renders flat nav items in normal mode 1`
     </div>
     <div>
       <div
-        class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+        class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
         data-testid="sidebar-navigation-item"
       >
         <div

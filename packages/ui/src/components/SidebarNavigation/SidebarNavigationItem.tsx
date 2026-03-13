@@ -42,7 +42,7 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
             onClick={onClick}
             data-testid="sidebar-navigation-item"
             className={cn(
-              'flex w-full items-center overflow-hidden rounded-md border-2',
+              'flex w-full items-center overflow-hidden rounded-md border-(length:--border-width)',
               {
                 'cursor-pointer': onClick,
                 'bg-primary border-border font-bold': active,
@@ -50,7 +50,7 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
               },
             )}
           >
-            <div className="flex size-8 flex-shrink-0 items-center justify-center">
+            <div className="flex size-8 shrink-0 items-center justify-center">
               {icon}
             </div>
             <span

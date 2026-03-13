@@ -17,7 +17,7 @@ export const StatChip: FC<StatChipProps> = ({
 }) => (
   <div
     className={cn(
-      'border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-2 px-2 py-1',
+      'border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-(length:--border-width) px-2 py-1',
       className,
     )}
     {...props}

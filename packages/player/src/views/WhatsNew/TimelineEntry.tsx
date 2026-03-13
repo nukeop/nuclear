@@ -70,7 +70,7 @@ export const TimelineEntry: FC<TimelineEntryProps> = ({
             </div>
           )}
         </div>
-        <div className="border-border bg-background-secondary shadow-shadow flex-1 rounded-md border-2 p-4">
+        <div className="border-border bg-background-secondary shadow-shadow flex-1 rounded-md border-(length:--border-width) p-4">
           <span data-testid="changelog-description">{entry.description}</span>
         </div>
         <div className="flex items-center justify-between px-1">

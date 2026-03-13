@@ -34,7 +34,7 @@ const inputVariants = cva(
         error: 'border-accent-red',
       },
       withAddon: {
-        false: 'rounded-md border-2',
+        false: 'rounded-md border-(length:--border-width)',
         true: 'rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0',
       },
     },
@@ -102,7 +102,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         </label>
       )}
       {endAddon ? (
-        <div className="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2">
+        <div className="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2">
           <HeadlessInput
             as="input"
             id={inputId}
@@ -126,7 +126,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
             )}
             {...rest}
           />
-          <div className="bg-primary border-border flex items-center gap-2 border-l-2 px-3 text-sm">
+          <div className="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm">
             {endAddon}
           </div>
         </div>

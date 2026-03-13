@@ -10,10 +10,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none',
+          'text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none',
         secondary:
-          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-2 hover:shadow-none',
-        noShadow: 'text-foreground bg-primary border-border border-2',
+          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-(length:--border-width) hover:shadow-none',
+        noShadow:
+          'text-foreground bg-primary border-border border-(length:--border-width)',
         text: 'text-foreground bg-transparent',
         ghost: 'border border-current bg-transparent hover:bg-black/10',
       },

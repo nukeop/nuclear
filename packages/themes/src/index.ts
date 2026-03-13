@@ -64,7 +64,7 @@ const BUILT_INS: BasicThemeMeta[] = [
   },
   {
     id: 'nuclear:arctic-moss',
-    name: 'Arctic Moss',
+    name: 'Moss',
     palette: [
       'oklch(0.70 0.12 175)',
       'oklch(0.97 0.008 200)',

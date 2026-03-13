@@ -12,7 +12,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
         class="flex w-full flex-col gap-2"
       >
         <div
-          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
+          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
         >
           <input
             class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -23,7 +23,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
             value=""
           />
           <div
-            class="bg-primary border-border flex items-center gap-2 border-l-2 px-3 text-sm"
+            class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
           >
             <svg
               aria-hidden="true"
@@ -53,12 +53,12 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
     data-test-resize-observer-inline-size="1024"
   >
     <table
-      class="border-border relative w-full border-2"
+      class="border-border relative w-full border-(length:--border-width)"
       role="table"
     >
       <thead>
         <tr
-          class="border-border bg-primary border-b-2"
+          class="border-border bg-primary border-b-(length:--border-width)"
           role="row"
         >
           <th
@@ -194,7 +194,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
           aria-describedby=""
           aria-disabled="true"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -262,7 +262,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
           aria-describedby=""
           aria-disabled="true"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -330,7 +330,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
           aria-describedby=""
           aria-disabled="true"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -412,7 +412,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
         class="flex w-full flex-col gap-2"
       >
         <div
-          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
+          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
         >
           <input
             class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -423,7 +423,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
             value=""
           />
           <div
-            class="bg-primary border-border flex items-center gap-2 border-l-2 px-3 text-sm"
+            class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
           >
             <svg
               aria-hidden="true"
@@ -453,12 +453,12 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
     data-test-resize-observer-inline-size="1024"
   >
     <table
-      class="border-border relative w-full border-2"
+      class="border-border relative w-full border-(length:--border-width)"
       role="table"
     >
       <thead>
         <tr
-          class="border-border bg-primary border-b-2"
+          class="border-border bg-primary border-b-(length:--border-width)"
           role="row"
         >
           <th
@@ -594,7 +594,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
           aria-describedby="DndDescribedBy-0"
           aria-disabled="false"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none cursor-grab"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none cursor-grab"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -662,7 +662,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
           aria-describedby="DndDescribedBy-0"
           aria-disabled="false"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none cursor-grab"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none cursor-grab"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -730,7 +730,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
           aria-describedby="DndDescribedBy-0"
           aria-disabled="false"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none cursor-grab"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none cursor-grab"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -798,7 +798,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
           aria-describedby="DndDescribedBy-0"
           aria-disabled="false"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none cursor-grab"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none cursor-grab"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -866,7 +866,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
           aria-describedby="DndDescribedBy-0"
           aria-disabled="false"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none cursor-grab"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none cursor-grab"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -965,7 +965,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
         class="flex w-full flex-col gap-2"
       >
         <div
-          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
+          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
         >
           <input
             class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -976,7 +976,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
             value=""
           />
           <div
-            class="bg-primary border-border flex items-center gap-2 border-l-2 px-3 text-sm"
+            class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
           >
             <svg
               aria-hidden="true"
@@ -1006,12 +1006,12 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
     data-test-resize-observer-inline-size="1024"
   >
     <table
-      class="border-border relative w-full border-2"
+      class="border-border relative w-full border-(length:--border-width)"
       role="table"
     >
       <thead>
         <tr
-          class="border-border bg-primary border-b-2"
+          class="border-border bg-primary border-b-(length:--border-width)"
           role="row"
         >
           <th
@@ -1147,7 +1147,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
           aria-describedby=""
           aria-disabled="true"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -1215,7 +1215,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
           aria-describedby=""
           aria-disabled="true"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -1283,7 +1283,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
           aria-describedby=""
           aria-disabled="true"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -1351,7 +1351,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
           aria-describedby=""
           aria-disabled="true"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -1419,7 +1419,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
           aria-describedby=""
           aria-disabled="true"
           aria-roledescription="sortable"
-          class="border-border bg-background-secondary group border-b-2 select-none"
+          class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
           data-testid="track-row"
           role="button"
           style="height: 42px;"
@@ -1504,7 +1504,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
           class="flex w-full flex-col gap-2"
         >
           <div
-            class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
+            class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
           >
             <input
               class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -1515,7 +1515,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               value=""
             />
             <div
-              class="bg-primary border-border flex items-center gap-2 border-l-2 px-3 text-sm"
+              class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
             >
               <svg
                 aria-hidden="true"
@@ -1545,12 +1545,12 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
       data-test-resize-observer-inline-size="1024"
     >
       <table
-        class="border-border relative w-full border-2"
+        class="border-border relative w-full border-(length:--border-width)"
         role="table"
       >
         <thead>
           <tr
-            class="border-border bg-primary border-b-2"
+            class="border-border bg-primary border-b-(length:--border-width)"
             role="row"
           >
             <th
@@ -1686,7 +1686,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -1754,7 +1754,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -1822,7 +1822,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -1890,7 +1890,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -1958,7 +1958,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2026,7 +2026,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2094,7 +2094,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2162,7 +2162,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2230,7 +2230,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2298,7 +2298,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2366,7 +2366,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2434,7 +2434,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2502,7 +2502,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2570,7 +2570,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2638,7 +2638,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2706,7 +2706,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2774,7 +2774,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2842,7 +2842,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2910,7 +2910,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"
@@ -2978,7 +2978,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             aria-describedby=""
             aria-disabled="true"
             aria-roledescription="sortable"
-            class="border-border bg-background-secondary group border-b-2 select-none"
+            class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
             data-testid="track-row"
             role="button"
             style="height: 42px;"

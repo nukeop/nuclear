@@ -9,7 +9,7 @@ exports[`FilterChips > (Snapshot) renders multi-select mode 1`] = `
 >
   <button
     aria-checked="true"
-    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
+    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
     role="checkbox"
     type="button"
   >
@@ -17,7 +17,7 @@ exports[`FilterChips > (Snapshot) renders multi-select mode 1`] = `
   </button>
   <button
     aria-checked="true"
-    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
+    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
     role="checkbox"
     type="button"
   >
@@ -25,7 +25,7 @@ exports[`FilterChips > (Snapshot) renders multi-select mode 1`] = `
   </button>
   <button
     aria-checked="false"
-    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
     role="checkbox"
     type="button"
   >
@@ -43,7 +43,7 @@ exports[`FilterChips > (Snapshot) renders single-select mode 1`] = `
 >
   <button
     aria-checked="true"
-    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
+    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors bg-foreground text-background"
     role="radio"
     type="button"
   >
@@ -51,7 +51,7 @@ exports[`FilterChips > (Snapshot) renders single-select mode 1`] = `
   </button>
   <button
     aria-checked="false"
-    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
     role="radio"
     type="button"
   >
@@ -59,7 +59,7 @@ exports[`FilterChips > (Snapshot) renders single-select mode 1`] = `
   </button>
   <button
     aria-checked="false"
-    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+    class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
     role="radio"
     type="button"
   >

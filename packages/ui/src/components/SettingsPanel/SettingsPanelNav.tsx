@@ -16,7 +16,7 @@ export const SettingsPanelNav: FC<SettingsPanelNavProps> = ({
   onTabChange,
   footer,
 }) => (
-  <nav className="border-border flex w-56 flex-shrink-0 flex-col border-r-2 p-4">
+  <nav className="border-border flex w-56 shrink-0 flex-col border-r-(length:--border-width) p-4">
     <div className="flex flex-col gap-1">
       {tabs.map((tab) => (
         <SettingsPanelNavItem

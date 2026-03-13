@@ -14,7 +14,7 @@ exports[`Select > (Snapshot) renders basic with description 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
-    class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-2 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+    class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
     data-headlessui-state=""
     id="select-quality"
     type="button"
@@ -71,7 +71,7 @@ exports[`Select > (Snapshot) renders error without description 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-invalid="true"
-    class="bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-2 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm border-accent-red"
+    class="bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm border-accent-red"
     data-headlessui-state=""
     id="select-quality-error"
     type="button"

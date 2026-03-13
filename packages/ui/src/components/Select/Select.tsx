@@ -10,7 +10,7 @@ import { SelectOptions } from './SelectOptions';
 import { SelectRoot } from './SelectRoot';
 
 export const selectVariants = cva(
-  'border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-2 px-3 pr-8 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+  'border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) px-3 pr-8 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       size: {

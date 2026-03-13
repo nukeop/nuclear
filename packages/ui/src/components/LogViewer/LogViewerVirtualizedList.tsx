@@ -25,7 +25,7 @@ const LogViewerVirtualizedListImpl: FC = () => {
       ref={parentRef}
       role="log"
       aria-label="Log entries"
-      className="border-border bg-background-input flex-1 overflow-auto rounded-md border-2"
+      className="border-border bg-background-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
     >
       {filteredLogs.length === 0 ? (
         <div

@@ -49,7 +49,7 @@ export const KeyCombo: FC<KeyComboProps> = ({ shortcut, className }) => {
         <kbd
           key={index}
           role="kbd"
-          className="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-2 px-1.5 py-0.5 font-mono text-xs"
+          className="bg-background-secondary text-foreground border-border shadow-shadow inline-flex min-w-6 items-center justify-center rounded border-(length:--border-width) px-1.5 py-0.5 font-mono text-xs"
         >
           {key}
         </kbd>

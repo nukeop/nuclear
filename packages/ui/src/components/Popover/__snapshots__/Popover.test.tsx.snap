@@ -19,7 +19,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
         id="headlessui-popover-button-:rf:"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
           data-headlessui-state="hover"
           data-hover=""
           type="button"
@@ -51,7 +51,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
       />
       <div
         animate="[object Object]"
-        class="text-foreground bg-primary border-border rounded-md border-2 px-4 py-2 leading-5 select-none translate-y-0"
+        class="text-foreground bg-primary border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none translate-y-0"
         exit="[object Object]"
         initial="[object Object]"
         style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
@@ -122,7 +122,7 @@ exports[`Popover > (Snapshot) renders with all props 1`] = `
         id="headlessui-popover-button-:r2:"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
           data-headlessui-state="hover"
           data-hover=""
           type="button"
@@ -154,7 +154,7 @@ exports[`Popover > (Snapshot) renders with all props 1`] = `
       />
       <div
         animate="[object Object]"
-        class="text-foreground bg-primary border-border rounded-md border-2 px-4 py-2 leading-5 select-none translate-x-2 -translate-y-2"
+        class="text-foreground bg-primary border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none translate-x-2 -translate-y-2"
         exit="[object Object]"
         initial="[object Object]"
         style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
@@ -192,7 +192,7 @@ exports[`Popover > (Snapshot) renders with backdrop 1`] = `
         id="headlessui-popover-button-:r8:"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
           data-headlessui-state="hover"
           data-hover=""
           type="button"
@@ -227,7 +227,7 @@ exports[`Popover > (Snapshot) renders with backdrop 1`] = `
       />
       <div
         animate="[object Object]"
-        class="text-foreground bg-primary border-border rounded-md border-2 px-4 py-2 leading-5 select-none"
+        class="text-foreground bg-primary border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none"
         exit="[object Object]"
         initial="[object Object]"
       >

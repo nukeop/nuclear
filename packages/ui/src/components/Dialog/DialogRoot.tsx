@@ -49,7 +49,7 @@ export const DialogRoot: FC<DialogRootProps> = ({
               >
                 <DialogPanel
                   className={cn(
-                    'border-border bg-background shadow-shadow relative w-full max-w-md rounded-md border-2 p-6',
+                    'border-border bg-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6',
                     className,
                   )}
                 >

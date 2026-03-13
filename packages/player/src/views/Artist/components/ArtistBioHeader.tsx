@@ -28,7 +28,7 @@ export const ArtistBioHeader: FC<ArtistBioHeaderProps> = ({
 
   if (isLoading) {
     return (
-      <div className="border-border bg-primary shadow-shadow m-4 flex items-center justify-center rounded-md border-2 p-6">
+      <div className="border-border bg-primary shadow-shadow m-4 flex items-center justify-center rounded-md border-(length:--border-width) p-6">
         <Loader size="xl" data-testid="artist-header-loader" />
       </div>
     );
@@ -36,7 +36,7 @@ export const ArtistBioHeader: FC<ArtistBioHeaderProps> = ({
 
   if (isError) {
     return (
-      <div className="border-border bg-primary shadow-shadow m-4 rounded-md border-2 p-6">
+      <div className="border-border bg-primary shadow-shadow m-4 rounded-md border-(length:--border-width) p-6">
         <div className="text-accent-red">{t('errors.failedToLoadDetails')}</div>
       </div>
     );
@@ -50,12 +50,12 @@ export const ArtistBioHeader: FC<ArtistBioHeaderProps> = ({
   const avatar = pickArtwork(artist.artwork, 'avatar', AVATAR_SIZE_PX);
 
   return (
-    <div className="border-border bg-primary shadow-shadow relative m-4 rounded-md border-2 p-6">
+    <div className="border-border bg-primary shadow-shadow relative m-4 rounded-md border-(length:--border-width) p-6">
       <ConnectedFavoriteButton
         type="artist"
         source={{ provider: providerId, id: artistId }}
         data={{ name: artist.name, artwork: artist.artwork }}
-        className="bg-background border-border absolute top-4 right-4 z-10 rounded-md border-2"
+        className="bg-background border-border absolute top-4 right-4 z-10 rounded-md border-(length:--border-width)"
         data-testid="artist-favorite-button"
       />
       <div className="flex gap-6">
@@ -63,7 +63,7 @@ export const ArtistBioHeader: FC<ArtistBioHeaderProps> = ({
           <div className="flex items-center gap-5">
             {avatar && (
               <img
-                className="border-border shadow-shadow h-24 w-24 rounded-full border-2 object-cover"
+                className="border-border shadow-shadow h-24 w-24 rounded-full border-(length:--border-width) object-cover"
                 src={avatar.url}
                 alt={`${artist.name} avatar`}
               />
@@ -105,7 +105,7 @@ export const ArtistBioHeader: FC<ArtistBioHeaderProps> = ({
         {cover && (
           <div className="w-72 shrink-0 self-stretch">
             <img
-              className="border-border shadow-shadow h-full w-full rounded-md border-2 object-cover"
+              className="border-border shadow-shadow h-full w-full rounded-md border-(length:--border-width) object-cover"
               src={cover.url}
               alt={`${artist.name} cover`}
             />

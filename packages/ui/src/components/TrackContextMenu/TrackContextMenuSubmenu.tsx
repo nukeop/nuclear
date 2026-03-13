@@ -44,7 +44,7 @@ export const TrackContextMenuSubmenuContent: FC<
 > = ({ children }) => (
   <DropdownMenu.Portal>
     <DropdownMenu.SubContent
-      className="bg-background border-border data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 z-50 w-48 overflow-hidden rounded-sm border-2 shadow-lg outline-none"
+      className="bg-background border-border data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 z-50 w-48 overflow-hidden rounded-sm border-(length:--border-width) shadow-lg outline-none"
       sideOffset={4}
       data-testid="submenu-content"
     >

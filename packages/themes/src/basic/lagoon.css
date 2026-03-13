@@ -4,11 +4,11 @@
 }
 
 :root[data-theme-id='nuclear:lagoon'][data-theme='dark'] {
-  --background: oklch(0.20 0.025 205);
+  --background: oklch(0.2 0.025 205);
   --background-secondary: oklch(0.25 0.03 205);
   --background-input: oklch(0.13 0.015 205);
   --primary: oklch(0.55 0.12 205);
-  --foreground: oklch(0.90 0.008 205);
+  --foreground: oklch(0.9 0.008 205);
   --foreground-secondary: oklch(0.75 0.015 205);
   --border: oklch(0.48 0.04 205);
 }
