@@ -24,7 +24,7 @@
     "@vitest/coverage-v8": "^4.0.0",
     "eslint": "^10.0.0",
     "husky": "^9.1.7",
-    "jsdom": "^26.1.0",
+    "jsdom": "^28.0.0",
     "lint-staged": "^16.1.4",
     "prettier-plugin-tailwindcss": "^0.7.0",
     "tailwindcss": "^4.1.11",
