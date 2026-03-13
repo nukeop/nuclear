@@ -5,6 +5,7 @@ pub mod mcp;
 mod setup;
 pub mod stream_server;
 pub mod ytdlp;
+pub mod ytdlp_setup;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -38,7 +39,8 @@ pub fn run() {
             mcp::mcp_start,
             mcp::mcp_stop,
             mcp::mcp_respond,
-            stream_server::stream_server_port
+            stream_server::stream_server_port,
+            ytdlp_setup::ytdlp_ensure_installed
         ])
         .setup(|app| {
             logging::mark_startup_complete();

@@ -22,6 +22,7 @@ import {
 } from './services/languageService';
 import { initMcpHandler } from './services/mcp';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
+import { ytdlpEnsureInstalled } from './services/tauri/commands';
 import { applyThemeFromSettings } from './services/themeBootstrap';
 import { useUpdaterStore } from './stores/updaterStore';
 
@@ -44,6 +45,7 @@ initializeSettingsStore()
     void hydratePluginsFromRegistry();
     // Check for updates in the background
     void useUpdaterStore.getState().checkForUpdate();
+    void ytdlpEnsureInstalled();
   });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
