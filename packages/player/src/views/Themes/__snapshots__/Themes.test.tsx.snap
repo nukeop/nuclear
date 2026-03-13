@@ -510,7 +510,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.42 0.04 278);"
+                                style="background-color: oklch(0.22 0.03 305);"
                               />
                             </div>
                           </button>
@@ -545,7 +545,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.4 0.03 277);"
+                                style="background-color: oklch(0.22 0.03 20);"
                               />
                             </div>
                           </button>
@@ -580,7 +580,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.33 0.035 245);"
+                                style="background-color: oklch(0.2 0.025 205);"
                               />
                             </div>
                           </button>
@@ -615,7 +615,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.36 0.03 30);"
+                                style="background-color: oklch(0.22 0.025 38);"
                               />
                             </div>
                           </button>
@@ -650,7 +650,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.22 0.015 200);"
+                                style="background-color: oklch(0.2 0.02 175);"
                               />
                             </div>
                           </button>

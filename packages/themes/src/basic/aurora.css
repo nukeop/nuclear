@@ -4,6 +4,10 @@
 }
 
 :root[data-theme-id='nuclear:aurora'][data-theme='dark'] {
-  --background: oklch(0.42 0.04 278);
+  --background: oklch(0.22 0.03 305);
+  --background-secondary: oklch(0.27 0.035 305);
+  --background-input: oklch(0.15 0.02 305);
   --primary: oklch(0.74 0.15 305);
+  --foreground: oklch(0.93 0.008 305);
+  --foreground-secondary: oklch(0.78 0.015 305);
 }
