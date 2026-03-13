@@ -24,3 +24,7 @@ export const downloadFile = async (
 ): Promise<void> => {
   await invoke('download_file', { url, destPath });
 };
+
+export const ytdlpEnsureInstalled = async (): Promise<boolean> => {
+  return invoke<boolean>('ytdlp_ensure_installed');
+};
