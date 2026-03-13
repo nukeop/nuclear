@@ -490,28 +490,37 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               Aurora
                             </span>
                             <div
-                              class="block"
+                              class="block [&>:first-child>:first-child]:ml-0"
                             >
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.74 0.15 305);"
-                              />
+                                class="inline"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.74 0.15 305);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.98 0.01 340);"
+                                />
+                              </span>
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.98 0.01 340);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.74 0.15 305);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.22 0.03 305);"
-                              />
+                                class="inline"
+                                data-theme="dark"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.62 0.11 305);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.22 0.03 305);"
+                                />
+                              </span>
                             </div>
                           </button>
                           <button
@@ -525,28 +534,37 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               Ember
                             </span>
                             <div
-                              class="block"
+                              class="block [&>:first-child>:first-child]:ml-0"
                             >
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.76 0.14 30);"
-                              />
+                                class="inline"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.76 0.14 30);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.97 0.02 70);"
+                                />
+                              </span>
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.97 0.02 70);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.76 0.14 30);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.22 0.03 20);"
-                              />
+                                class="inline"
+                                data-theme="dark"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.64 0.1 30);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.22 0.03 20);"
+                                />
+                              </span>
                             </div>
                           </button>
                           <button
@@ -560,28 +578,37 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               Lagoon
                             </span>
                             <div
-                              class="block"
+                              class="block [&>:first-child>:first-child]:ml-0"
                             >
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.67 0.16 205);"
-                              />
+                                class="inline"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.67 0.16 205);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.985 0.018 210);"
+                                />
+                              </span>
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.985 0.018 210);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.67 0.16 205);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.2 0.025 205);"
-                              />
+                                class="inline"
+                                data-theme="dark"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.55 0.12 205);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.2 0.025 205);"
+                                />
+                              </span>
                             </div>
                           </button>
                           <button
@@ -595,28 +622,37 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               Canyon
                             </span>
                             <div
-                              class="block"
+                              class="block [&>:first-child>:first-child]:ml-0"
                             >
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.68 0.19 38);"
-                              />
+                                class="inline"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.68 0.19 38);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.975 0.02 70);"
+                                />
+                              </span>
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.975 0.02 70);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.68 0.19 38);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.22 0.025 38);"
-                              />
+                                class="inline"
+                                data-theme="dark"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.56 0.14 38);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.22 0.025 38);"
+                                />
+                              </span>
                             </div>
                           </button>
                           <button
@@ -630,28 +666,37 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               Arctic Moss
                             </span>
                             <div
-                              class="block"
+                              class="block [&>:first-child>:first-child]:ml-0"
                             >
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.7 0.12 175);"
-                              />
+                                class="inline"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.7 0.12 175);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.97 0.008 200);"
+                                />
+                              </span>
                               <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.97 0.008 200);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.7 0.12 175);"
-                              />
-                              <span
-                                aria-hidden="true"
-                                class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.2 0.02 175);"
-                              />
+                                class="inline"
+                                data-theme="dark"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.58 0.09 175);"
+                                />
+                                <span
+                                  aria-hidden="true"
+                                  class="ring-border -ml-1.5 inline-block size-5 rounded-full ring-2"
+                                  style="background-color: oklch(0.2 0.02 175);"
+                                />
+                              </span>
                             </div>
                           </button>
                         </div>

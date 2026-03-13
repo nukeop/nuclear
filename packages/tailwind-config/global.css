@@ -121,11 +121,18 @@
 }
 
 [data-theme='dark'] {
-  --background: oklch(0.4408 0.0838 341.75);
-  --background-secondary: oklch(39.49% 0.031 277.49);
-  --background-input: oklch(0% 0 0);
+  --background: oklch(0.22 0.03 342);
+  --background-secondary: oklch(0.27 0.035 342);
+  --background-input: oklch(0.15 0.02 342);
 
-  --foreground: oklch(0.9249 0 0);
-  --foreground-secondary: oklch(0.9249 0 0);
-  --foreground-input: oklch(100% 0 0);
+  --foreground: oklch(0.90 0.008 342);
+  --foreground-secondary: oklch(0.75 0.015 342);
+  --foreground-input: oklch(0.93 0 0);
+
+  --primary: oklch(0.65 0.13 342);
+
+  --border: oklch(0.48 0.04 342);
+
+  --shadow-x: 0px;
+  --shadow-y: 0px;
 }
