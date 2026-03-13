@@ -33,7 +33,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
       transition="[object Object]"
     >
       <div
-        class="border-border bg-background shadow-shadow relative rounded-md border-2 flex h-[80vh] max-h-[900px] w-[80vw] max-w-6xl p-0"
+        class="border-border bg-background shadow-shadow relative rounded-md border-(length:--border-width) flex h-[80vh] max-h-[900px] w-[80vw] max-w-6xl p-0"
         data-headlessui-state="open"
         data-open=""
         id="headlessui-dialog-panel-:ra:"
@@ -67,7 +67,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
           </svg>
         </button>
         <nav
-          class="border-border flex w-56 flex-shrink-0 flex-col border-r-2 p-4"
+          class="border-border flex w-56 shrink-0 flex-col border-r-(length:--border-width) p-4"
         >
           <div
             class="flex flex-col gap-1"
@@ -202,7 +202,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
               Plugins
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state="hover"
               data-hover=""
               data-testid="settings-tab-themes"
@@ -480,7 +480,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                           class="flex flex-wrap gap-4 p-1"
                         >
                           <button
-                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-2 px-4 py-2 transition hover:shadow-none"
+                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                             data-headlessui-state=""
                             type="button"
                           >
@@ -505,7 +505,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.74 0.15 305);"
+                                style="background-color: oklch(0.62 0.11 305);"
                               />
                               <span
                                 aria-hidden="true"
@@ -515,7 +515,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                             </div>
                           </button>
                           <button
-                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-2 px-4 py-2 transition hover:shadow-none"
+                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                             data-headlessui-state=""
                             type="button"
                           >
@@ -540,7 +540,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.76 0.14 30);"
+                                style="background-color: oklch(0.64 0.1 30);"
                               />
                               <span
                                 aria-hidden="true"
@@ -550,7 +550,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                             </div>
                           </button>
                           <button
-                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-2 px-4 py-2 transition hover:shadow-none"
+                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                             data-headlessui-state=""
                             type="button"
                           >
@@ -575,7 +575,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.67 0.16 205);"
+                                style="background-color: oklch(0.55 0.12 205);"
                               />
                               <span
                                 aria-hidden="true"
@@ -585,7 +585,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                             </div>
                           </button>
                           <button
-                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-2 px-4 py-2 transition hover:shadow-none"
+                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                             data-headlessui-state=""
                             type="button"
                           >
@@ -610,7 +610,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.68 0.19 38);"
+                                style="background-color: oklch(0.56 0.14 38);"
                               />
                               <span
                                 aria-hidden="true"
@@ -620,14 +620,14 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                             </div>
                           </button>
                           <button
-                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-2 px-4 py-2 transition hover:shadow-none"
+                            class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                             data-headlessui-state=""
                             type="button"
                           >
                             <span
                               class="text-foreground text-left text-base font-bold"
                             >
-                              Arctic Moss
+                              Moss
                             </span>
                             <div
                               class="block"
@@ -645,7 +645,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                               <span
                                 aria-hidden="true"
                                 class="ring-border inline-block size-5 rounded-full ring-2"
-                                style="background-color: oklch(0.7 0.12 175);"
+                                style="background-color: oklch(0.58 0.09 175);"
                               />
                               <span
                                 aria-hidden="true"
@@ -678,7 +678,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                             <button
                               aria-expanded="false"
                               aria-haspopup="listbox"
-                              class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-2 text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                              class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
                               data-headlessui-state=""
                               id="select-:rb:"
                               type="button"

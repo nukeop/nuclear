@@ -5,7 +5,7 @@ import { cn } from '../../utils';
 import { useFilterChips, UseFilterChipsConfig } from './useFilterChips';
 
 const chipVariants = cva(
-  'border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors',
+  'border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors',
   {
     variants: {
       selected: {

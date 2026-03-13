@@ -28,7 +28,7 @@ export const SelectOptions: FC<PropsWithChildren> = ({ children }) => {
             as="ul"
             id={listboxId}
             aria-labelledby={labelId}
-            className="border-border shadow-shadow bg-primary w-full rounded-md border-2 p-2 outline-none"
+            className="border-border shadow-shadow bg-primary w-full rounded-md border-(length:--border-width) p-2 outline-none"
           >
             {children}
           </ListboxOptions>

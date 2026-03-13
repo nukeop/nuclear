@@ -24,7 +24,7 @@ exports[`PlayerBarSeekBar > (Snapshot) default render 1`] = `
         </span>
       </div>
       <div
-        class="border-border bg-background-secondary absolute inset-0 border-t-2"
+        class="border-border bg-background-secondary absolute inset-0 border-t-(length:--border-width)"
       >
         <div
           class="bg-primary h-full transition-none"

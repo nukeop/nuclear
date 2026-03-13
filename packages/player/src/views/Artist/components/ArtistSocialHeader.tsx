@@ -109,20 +109,20 @@ export const ArtistSocialHeader: FC<ArtistSocialHeaderProps> = ({
 
   return (
     <div
-      className="border-border bg-primary shadow-shadow relative m-4 rounded-md border-2 p-6"
+      className="border-border bg-primary shadow-shadow relative m-4 rounded-md border-(length:--border-width) p-6"
       data-testid="artist-social-header"
     >
       <ConnectedFavoriteButton
         type="artist"
         source={{ provider: providerId, id: artistId }}
         data={{ name: stats.name, artwork: stats.artwork }}
-        className="bg-background border-border absolute top-4 right-4 z-10 rounded-md border-2"
+        className="bg-background border-border absolute top-4 right-4 z-10 rounded-md border-(length:--border-width)"
         data-testid="artist-favorite-button"
       />
       <div className="flex items-center gap-5">
         {avatar && (
           <img
-            className="border-border shadow-shadow h-24 w-24 rounded-full border-2 object-cover"
+            className="border-border shadow-shadow h-24 w-24 rounded-full border-(length:--border-width) object-cover"
             src={avatar.url}
             alt={`${stats.name} avatar`}
           />

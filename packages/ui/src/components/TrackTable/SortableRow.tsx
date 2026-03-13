@@ -43,7 +43,7 @@ export function SortableRow<T extends Track = Track>({
       ref={setNodeRef}
       style={style}
       className={cn(
-        'border-border bg-background-secondary group border-b-2 select-none',
+        'border-border bg-background-secondary group border-b-(length:--border-width) select-none',
         {
           '': !isDragging,
           'z-50': isDragging,

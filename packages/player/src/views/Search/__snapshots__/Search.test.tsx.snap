@@ -7,7 +7,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
   >
     <div>
       <header
-        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-2 px-3"
+        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3"
       >
         <div
           class="flex flex-row items-center gap-4"
@@ -61,7 +61,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           class="flex w-full flex-col gap-2"
         >
           <input
-            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-2 h-8"
+            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8"
             data-focus=""
             data-headlessui-state="hover focus"
             data-hover=""
@@ -75,7 +75,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
         <button
           aria-checked="false"
           aria-label="Toggle theme"
-          class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
+          class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
           data-headlessui-state=""
           id="headlessui-switch-:r2:"
           role="switch"
@@ -83,7 +83,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           type="button"
         >
           <span
-            class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-2 bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+            class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
           >
             <svg
               aria-hidden="true"
@@ -137,14 +137,14 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-r-2"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-r-(length:--border-width)"
         transition="[object Object]"
       >
         <span
           class="mb-4 flex flex-row items-center justify-end"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center top-2 px-2 right-1"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
             data-headlessui-state=""
             data-testid="sidebar-toggle-left"
             type="button"
@@ -190,11 +190,11 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -230,11 +230,11 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -274,11 +274,11 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -321,11 +321,11 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -363,11 +363,11 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-2 hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
-                      class="flex size-8 flex-shrink-0 items-center justify-center"
+                      class="flex size-8 shrink-0 items-center justify-center"
                     >
                       <svg
                         aria-hidden="true"
@@ -410,12 +410,12 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             </div>
             <div>
               <div
-                class="flex w-full items-center overflow-hidden rounded-md border-2 cursor-pointer hover:bg-background-secondary border-transparent"
+                class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) cursor-pointer hover:bg-background-secondary border-transparent"
                 data-testid="sidebar-navigation-item"
                 role="button"
               >
                 <div
-                  class="flex size-8 flex-shrink-0 items-center justify-center"
+                  class="flex size-8 shrink-0 items-center justify-center"
                 >
                   <svg
                     aria-hidden="true"
@@ -505,14 +505,14 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
       </main>
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-l-2"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-l-(length:--border-width)"
         transition="[object Object]"
       >
         <span
           class="mb-4 flex flex-row items-center justify-start"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center top-2 px-2 left-1"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
             data-headlessui-state=""
             data-testid="sidebar-toggle-right"
             type="button"
@@ -621,7 +621,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           </span>
         </div>
         <div
-          class="border-border bg-background-secondary absolute inset-0 border-t-2"
+          class="border-border bg-background-secondary absolute inset-0 border-t-(length:--border-width)"
         >
           <div
             class="bg-primary h-full transition-none"
@@ -631,7 +631,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
       </div>
     </div>
     <footer
-      class="bg-background-secondary border-border flex h-16 items-center border-t-2 px-4"
+      class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
     >
       <div
         class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -643,7 +643,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             class="flex min-w-0 items-center gap-3"
           >
             <div
-              class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-2"
+              class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
             >
               <div
                 class="text-foreground-secondary flex size-full items-center justify-center"
@@ -758,7 +758,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
               data-headlessui-state=""
               data-testid="player-play-button"
               type="button"
@@ -891,14 +891,14 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
                     class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                   >
                     <div
-                      class="border-border bg-background-input relative h-3 w-full rounded-md border-2"
+                      class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
                     >
                       <div
                         class="bg-primary absolute top-0 left-0 h-full rounded-l"
                         style="width: 100%;"
                       />
                       <div
-                        class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-2 bg-white"
+                        class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width) bg-white"
                         style="left: 100%;"
                       />
                     </div>

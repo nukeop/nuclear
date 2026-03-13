@@ -50,7 +50,10 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
       ref={sidebarRef}
       className={cn(
         'bg-background-secondary border-border relative flex flex-col overflow-hidden p-2',
-        { 'border-r-2': side === 'left', 'border-l-2': side === 'right' },
+        {
+          'border-r-(length:--border-width)': side === 'left',
+          'border-l-(length:--border-width)': side === 'right',
+        },
         className,
       )}
       animate={{ width: currentWidth }}

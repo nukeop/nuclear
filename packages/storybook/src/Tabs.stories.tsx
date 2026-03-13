@@ -65,7 +65,7 @@ export const Basic: Story = {
 export const WithCustomClasses: Story = {
   args: {
     items: ITEMS,
-    listClassName: 'border-b-2 border-border pb-1',
+    listClassName: 'border-b-(length:--border-width) border-border pb-1',
     tabClassName: 'rounded-t',
     panelsClassName: 'mt-4',
   },

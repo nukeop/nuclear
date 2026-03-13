@@ -29,7 +29,7 @@ const meta = {
 export default meta;
 
 export const FlatList = () => (
-  <div className="bg-background-secondary border-border h-96 w-64 border-2 p-2">
+  <div className="bg-background-secondary border-border h-96 w-64 border-(length:--border-width) p-2">
     <SidebarNavigation>
       <SidebarNavigationItem
         icon={<Home size={16} />}
@@ -49,7 +49,7 @@ export const FlatList = () => (
 );
 
 export const CompactMode = () => (
-  <div className="bg-background-secondary border-border flex h-[600px] w-[54px] flex-col border-2 p-2">
+  <div className="bg-background-secondary border-border flex h-[600px] w-[54px] flex-col border-(length:--border-width) p-2">
     <SidebarNavigation isCompact>
       <SidebarNavigationItem icon={<Home size={16} />} label="Home" />
       <SidebarNavigationItem icon={<Search size={16} />} label="Search" />
@@ -65,7 +65,7 @@ export const CompactMode = () => (
 );
 
 export const FullNavigationExample = () => (
-  <div className="bg-background-secondary border-border h-[600px] w-64 overflow-auto border-2 p-2">
+  <div className="bg-background-secondary border-border h-[600px] w-64 overflow-auto border-(length:--border-width) p-2">
     <SidebarNavigation>
       <SidebarNavigationItem
         icon={<Home size={16} />}

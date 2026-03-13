@@ -35,7 +35,7 @@ exports[`Dialog > (Snapshot) renders open dialog 1`] = `
       transition="[object Object]"
     >
       <div
-        class="border-border bg-background shadow-shadow relative w-full max-w-md rounded-md border-2 p-6"
+        class="border-border bg-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6"
         data-headlessui-state="open"
         data-open=""
         id="headlessui-dialog-panel-:r6:"

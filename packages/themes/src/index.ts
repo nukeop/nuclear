@@ -28,7 +28,7 @@ const BUILT_INS: BasicThemeMeta[] = [
     palette: [
       'oklch(0.74 0.15 305)',
       'oklch(0.98 0.01 340)',
-      'oklch(0.74 0.15 305)',
+      'oklch(0.62 0.11 305)',
       'oklch(0.22 0.03 305)',
     ],
   },
@@ -38,7 +38,7 @@ const BUILT_INS: BasicThemeMeta[] = [
     palette: [
       'oklch(0.76 0.14 30)',
       'oklch(0.97 0.02 70)',
-      'oklch(0.76 0.14 30)',
+      'oklch(0.64 0.10 30)',
       'oklch(0.22 0.03 20)',
     ],
   },
@@ -48,7 +48,7 @@ const BUILT_INS: BasicThemeMeta[] = [
     palette: [
       'oklch(0.67 0.16 205)',
       'oklch(0.985 0.018 210)',
-      'oklch(0.67 0.16 205)',
+      'oklch(0.55 0.12 205)',
       'oklch(0.20 0.025 205)',
     ],
   },
@@ -58,17 +58,17 @@ const BUILT_INS: BasicThemeMeta[] = [
     palette: [
       'oklch(0.68 0.19 38)',
       'oklch(0.975 0.02 70)',
-      'oklch(0.68 0.19 38)',
+      'oklch(0.56 0.14 38)',
       'oklch(0.22 0.025 38)',
     ],
   },
   {
     id: 'nuclear:arctic-moss',
-    name: 'Arctic Moss',
+    name: 'Moss',
     palette: [
       'oklch(0.70 0.12 175)',
       'oklch(0.97 0.008 200)',
-      'oklch(0.70 0.12 175)',
+      'oklch(0.58 0.09 175)',
       'oklch(0.20 0.02 175)',
     ],
   },

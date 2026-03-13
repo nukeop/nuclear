@@ -24,7 +24,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
         class="flex w-full flex-col gap-2"
       >
         <div
-          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
+          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
         >
           <input
             class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background h-9 text-sm rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -36,7 +36,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
             value=""
           />
           <div
-            class="bg-primary border-border flex items-center gap-2 border-l-2 px-3 text-sm"
+            class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
           >
             <button
               class="text-foreground cursor-pointer"
@@ -68,7 +68,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
         class="flex items-center gap-2"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border border-2 size-10 justify-center"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border border-(length:--border-width) size-10 justify-center"
           data-headlessui-state=""
           data-testid="cards-row-scroll-left"
           type="button"
@@ -92,7 +92,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
           </svg>
         </button>
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border border-2 size-10 justify-center"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border border-(length:--border-width) size-10 justify-center"
           data-headlessui-state=""
           data-testid="cards-row-scroll-right"
           type="button"
@@ -123,13 +123,13 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
     style="scrollbar-width: none;"
   >
     <button
-      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
+      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
       data-headlessui-state=""
       data-testid="card"
       type="button"
     >
       <div
-        class="border-border text-foreground flex h-full rounded-md border-2 bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+        class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
       >
         <div
           class="overflow-hidden absolute inset-0"
@@ -201,13 +201,13 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
       </div>
     </button>
     <button
-      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
+      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
       data-headlessui-state=""
       data-testid="card"
       type="button"
     >
       <div
-        class="border-border text-foreground flex h-full rounded-md border-2 bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+        class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
       >
         <div
           class="overflow-hidden absolute inset-0"
@@ -279,13 +279,13 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
       </div>
     </button>
     <button
-      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
+      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
       data-headlessui-state=""
       data-testid="card"
       type="button"
     >
       <div
-        class="border-border text-foreground flex h-full rounded-md border-2 bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+        class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
       >
         <div
           class="overflow-hidden absolute inset-0"

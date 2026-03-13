@@ -104,7 +104,7 @@ export const PluginItem: FC<PluginItemProps> = ({
             trigger={
               <div className="relative flex h-12 w-12 items-center">
                 {warning && (
-                  <span className="bg-accent-orange border-border inline-flex items-center justify-center rounded-md border-2 p-1 text-xs font-semibold text-black">
+                  <span className="bg-accent-orange border-border inline-flex items-center justify-center rounded-md border-(length:--border-width) p-1 text-xs font-semibold text-black">
                     <TriangleAlertIcon className="fill-accent-yellow" />
                   </span>
                 )}

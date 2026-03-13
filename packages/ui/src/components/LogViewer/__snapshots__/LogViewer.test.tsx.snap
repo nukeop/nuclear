@@ -14,7 +14,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         class="flex w-full flex-col gap-2"
       >
         <div
-          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
+          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
         >
           <input
             aria-label="Search logs"
@@ -27,7 +27,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
             value=""
           />
           <div
-            class="bg-primary border-border flex items-center gap-2 border-l-2 px-3 text-sm"
+            class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
           >
             <svg
               aria-hidden="true"
@@ -59,7 +59,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
       class="flex gap-2"
     >
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -95,7 +95,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         Clear
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -125,7 +125,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         Export
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -169,7 +169,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
       >
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -177,7 +177,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -185,7 +185,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -193,7 +193,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -201,7 +201,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -217,7 +217,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
   </div>
   <div
     aria-label="Log entries"
-    class="border-border bg-background-input flex-1 overflow-auto rounded-md border-2"
+    class="border-border bg-background-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
     role="log"
   >
     <div
@@ -244,7 +244,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         class="flex w-full flex-col gap-2"
       >
         <div
-          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
+          class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
         >
           <input
             aria-label="Search logs"
@@ -257,7 +257,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             value=""
           />
           <div
-            class="bg-primary border-border flex items-center gap-2 border-l-2 px-3 text-sm"
+            class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
           >
             <svg
               aria-hidden="true"
@@ -289,7 +289,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
       class="flex gap-2"
     >
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -325,7 +325,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         Clear
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -355,7 +355,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         Export
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -399,7 +399,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
       >
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -407,7 +407,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -415,7 +415,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -423,7 +423,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -431,7 +431,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -455,7 +455,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
       >
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -463,7 +463,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -471,7 +471,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -479,7 +479,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -487,7 +487,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -495,7 +495,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         </button>
         <button
           aria-checked="false"
-          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-2 px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+          class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
           role="checkbox"
           type="button"
         >
@@ -511,7 +511,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
   </div>
   <div
     aria-label="Log entries"
-    class="border-border bg-background-input flex-1 overflow-auto rounded-md border-2"
+    class="border-border bg-background-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
     role="log"
   >
     <div
@@ -564,7 +564,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -644,7 +644,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -724,7 +724,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -804,7 +804,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -884,7 +884,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -964,7 +964,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"

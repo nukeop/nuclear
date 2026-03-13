@@ -43,7 +43,7 @@ export const ArtistSimilarArtists: FC<ArtistSimilarArtistsProps> = ({
     !isEmpty(artists) && (
       <div className="flex flex-col">
         <h2 className="mb-2 text-lg font-semibold">{t('similar')}</h2>
-        <ul className="divide-border bg-primary border-border divide-y-2 border border-2">
+        <ul className="divide-border bg-primary border-border divide-y-(length:--border-width) border border-(length:--border-width)">
           {artists!.slice(0, 5).map((a) => {
             const thumb = pickArtwork(a.artwork, 'thumbnail', 64);
             const avatar = thumb ?? pickArtwork(a.artwork, 'avatar', 64);

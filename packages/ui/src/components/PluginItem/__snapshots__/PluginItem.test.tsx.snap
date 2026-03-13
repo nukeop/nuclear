@@ -7,14 +7,14 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
   >
     <div
       aria-busy="false"
-      class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow opacity-30 relative cursor-default overflow-hidden transition-opacity duration-250"
+      class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow opacity-30 relative cursor-default overflow-hidden transition-opacity duration-250"
       data-testid="plugin-item"
     >
       <div
         class="flex w-full flex-wrap items-start gap-4"
       >
         <div
-          class="border-border text-foreground flex rounded-md border-2 bg-background-secondary shadow-none h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden p-0"
+          class="border-border text-foreground flex rounded-md border-(length:--border-width) bg-background-secondary shadow-none h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden p-0"
         >
           <svg
             aria-hidden="true"
@@ -90,7 +90,7 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
   >
     <div
       aria-busy="false"
-      class="border-border text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow relative cursor-default overflow-hidden transition-opacity duration-250"
+      class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow relative cursor-default overflow-hidden transition-opacity duration-250"
       data-testid="plugin-item"
     >
       <div
@@ -150,14 +150,14 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
   >
     <div
       aria-busy="false"
-      class="text-foreground flex h-full w-full rounded-md border-2 p-4 bg-background-secondary shadow-shadow ring-accent-orange ring-2 select-none ring-inset relative cursor-default overflow-hidden transition-opacity duration-250 border-accent-red"
+      class="text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow ring-accent-orange ring-2 select-none ring-inset relative cursor-default overflow-hidden transition-opacity duration-250 border-accent-red"
       data-testid="plugin-item"
     >
       <div
         class="flex w-full flex-wrap items-start gap-4"
       >
         <div
-          class="border-border text-foreground flex rounded-md border-2 bg-background-secondary shadow-none h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden p-0"
+          class="border-border text-foreground flex rounded-md border-(length:--border-width) bg-background-secondary shadow-none h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden p-0"
         >
           <svg
             aria-hidden="true"
@@ -223,7 +223,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
               class="relative flex h-12 w-12 items-center"
             >
               <span
-                class="bg-accent-orange border-border inline-flex items-center justify-center rounded-md border-2 p-1 text-xs font-semibold text-black"
+                class="bg-accent-orange border-border inline-flex items-center justify-center rounded-md border-(length:--border-width) p-1 text-xs font-semibold text-black"
               >
                 <svg
                   aria-hidden="true"
@@ -266,7 +266,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
       class="flex flex-col justify-between gap-2"
     >
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-2 hover:shadow-none size-8 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
         data-headlessui-state=""
         data-testid="plugin-action-view-details"
         type="button"

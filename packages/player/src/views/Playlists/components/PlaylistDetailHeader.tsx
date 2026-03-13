@@ -36,7 +36,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   return (
     <div
       className={cn(
-        'border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-2 p-6 md:flex-row',
+        'border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row',
         className,
       )}
     >
@@ -63,7 +63,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
           </Tooltip>
         </div>
       )}
-      <div className="border-border shadow-shadow h-60 w-60 shrink-0 overflow-hidden rounded-md border-2 select-none">
+      <div className="border-border shadow-shadow h-60 w-60 shrink-0 overflow-hidden rounded-md border-(length:--border-width) select-none">
         <PlaylistArtwork name={playlist.name} thumbnails={thumbnails} />
       </div>
 
