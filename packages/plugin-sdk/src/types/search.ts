@@ -30,6 +30,7 @@ export type MetadataProvider = ProviderDescriptor<'metadata'> & {
   searchCapabilities?: SearchCapability[];
   artistMetadataCapabilities?: ArtistMetadataCapability[];
   albumMetadataCapabilities?: AlbumMetadataCapability[];
+  streamingProviderId?: string;
   search?: (params: SearchParams) => Promise<SearchResults>;
   searchArtists?: (params: Omit<SearchParams, 'types'>) => Promise<ArtistRef[]>;
   searchAlbums?: (params: Omit<SearchParams, 'types'>) => Promise<AlbumRef[]>;
