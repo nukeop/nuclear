@@ -32,7 +32,8 @@
     "favoriteAlbums": "Favorite albums",
     "favoriteTracks": "Favorite tracks",
     "favoriteArtists": "Favorite artists",
-    "playlists": "Playlists"
+    "playlists": "Playlists",
+    "sources": "Sources"
   },
   "favorites": {
     "albums": {
