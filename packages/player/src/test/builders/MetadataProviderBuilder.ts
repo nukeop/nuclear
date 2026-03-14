@@ -71,6 +71,13 @@ export class MetadataProviderBuilder {
     return this;
   }
 
+  withStreamingProviderId(
+    streamingProviderId: MetadataProvider['streamingProviderId'],
+  ): this {
+    this.provider.streamingProviderId = streamingProviderId;
+    return this;
+  }
+
   withSearchCapabilities(
     searchCapabilities: MetadataProvider['searchCapabilities'],
   ): this {
