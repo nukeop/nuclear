@@ -7,6 +7,21 @@ pub mod stream_server;
 pub mod ytdlp;
 pub mod ytdlp_setup;
 
+// Maximizes the window when running as a non-steam app in steam
+#[cfg(target_os = "linux")]
+fn maximize_for_gamescope(app: &tauri::App) {
+    use tauri::Manager;
+
+    let is_gamescope = std::env::var("GAMESCOPE_WAYLAND_DISPLAY").is_ok()
+        || std::env::var("SteamDeck").map_or(false, |v| v == "1");
+
+    if is_gamescope {
+        if let Some(window) = app.get_webview_window("main") {
+            let _ = window.maximize();
+        }
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
@@ -46,6 +61,10 @@ pub fn run() {
             logging::mark_startup_complete();
             mcp::init_mcp(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
+
+            #[cfg(target_os = "linux")]
+            maximize_for_gamescope(app);
+
             Ok(())
         })
         .run(tauri::generate_context!())

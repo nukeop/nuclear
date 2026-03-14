@@ -4,7 +4,7 @@ export const useAudioContext = () => {
   const [context, setContext] = useState<AudioContext | null>(null);
 
   useEffect(() => {
-    const ctx = new AudioContext();
+    const ctx = new AudioContext({ latencyHint: 'playback' });
     setContext(ctx);
 
     return () => {
