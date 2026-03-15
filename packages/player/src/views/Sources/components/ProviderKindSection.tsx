@@ -13,6 +13,7 @@ type ProviderWarning = {
 
 type ProviderKindSectionProps = {
   kind: ProviderKind;
+  icon: ReactNode;
   value?: string;
   disabled?: boolean;
   lockedReason?: ReactNode;
@@ -22,6 +23,7 @@ type ProviderKindSectionProps = {
 
 export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
   kind,
+  icon,
   value,
   disabled,
   lockedReason,
@@ -36,23 +38,32 @@ export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
   }));
 
   return (
-    <div data-testid={`sources-section-${kind}`} className="mb-4 px-2">
+    <div data-testid={`sources-section-${kind}`} className="mb-6 px-2">
+      <h3 className="text-foreground mb-1 flex items-center gap-2 text-sm font-semibold">
+        {icon}
+        {t(kind)}
+      </h3>
+      <p className="text-foreground-secondary mb-2 text-sm">
+        {t(`${kind}Description`)}
+      </p>
       <Select
-        label={t(kind)}
-        description={t(`${kind}Description`)}
         options={options}
         value={value}
         disabled={disabled}
         onValueChange={onValueChange}
       />
       {lockedReason && (
-        <p className="mt-4 leading-loose" data-testid="locked-reason">
+        <p
+          className="text-foreground-secondary mt-4 text-sm leading-relaxed"
+          data-testid="locked-reason"
+        >
           {lockedReason}
         </p>
       )}
       {warnings?.map((warning) => (
         <p
           key={warning.providerName}
+          className="text-foreground-secondary mt-2 text-sm"
           data-testid={`provider-warning-${warning.providerName}`}
         >
           {warning.message}

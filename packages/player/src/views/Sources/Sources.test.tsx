@@ -1,11 +1,42 @@
 import { providersHost } from '../../services/providersHost';
+import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
 import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
+import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
 import { StreamingProviderBuilder } from '../../test/builders/StreamingProviderBuilder';
 import { SourcesWrapper } from './Sources.test-wrapper';
 
 describe('Sources view', () => {
   beforeEach(() => {
     providersHost.clear();
+  });
+
+  it('(Snapshot) renders the view', async () => {
+    providersHost.register(
+      new StreamingProviderBuilder().withId('acme').withName('Acme').build(),
+    );
+    providersHost.register(
+      new MetadataProviderBuilder()
+        .withId('acme-meta')
+        .withName('Acme Metadata')
+        .withStreamingProviderId('acme')
+        .build(),
+    );
+    providersHost.register(
+      new DashboardProviderBuilder()
+        .withId('acme-dash')
+        .withName('Acme Dashboard')
+        .build(),
+    );
+    providersHost.register(
+      new PlaylistProviderBuilder()
+        .withId('acme-playlists')
+        .withName('Acme Playlists')
+        .build(),
+    );
+
+    const { asFragment } = await SourcesWrapper.mount();
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('lists registered providers as options in the provider select', async () => {

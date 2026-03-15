@@ -22,6 +22,11 @@ export const SourcesWrapper = {
         return getElement();
       },
       providerSelect: createSelectWrapper(getElement),
+      get providerNames() {
+        return within(getElement())
+          .getAllByTestId('provider-list-item')
+          .map((el) => el.textContent!.trim());
+      },
       get lockedReason() {
         return within(getElement()).queryByTestId('locked-reason');
       },

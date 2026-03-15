@@ -47,7 +47,8 @@
     "playlistsDescription": "Playlist sources let you import playlists from external services by URL.",
     "lyrics": "Lyrics",
     "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
-    "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available"
+    "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available",
+    "noProviders": "No providers installed"
   },
   "favorites": {
     "albums": {

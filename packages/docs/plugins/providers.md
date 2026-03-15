@@ -79,3 +79,9 @@ type ProviderDescriptor<K extends ProviderKind = ProviderKind> = {
 ```
 
 Each provider kind (e.g., `MetadataProvider`, `StreamingProvider`, `DashboardProvider`) extends `ProviderDescriptor` with its own methods. See the individual guides linked above for details.
+
+## Sources view
+
+Users manage providers in the Sources view (accessible from the sidebar). Metadata and streaming providers can be switched by the user. Dashboard and playlist providers are listed as informational (they're used automatically).
+
+When you register a new provider kind, it appears in the Sources view automatically.
