@@ -4,10 +4,14 @@ import type {
   ProvidersHost,
 } from '@nuclearplayer/plugin-sdk';
 
+import {
+  initializeProvidersStore,
+  useProvidersStore,
+} from '../stores/providersStore';
+
 export const createProvidersHost = (): ProvidersHost => {
   const byKind = new Map<ProviderKind, Map<string, ProviderDescriptor>>();
   const byId = new Map<string, ProviderDescriptor>();
-  const active = new Map<ProviderKind, string>();
   const subscribers = new Set<() => void>();
 
   const notify = () => {
@@ -15,6 +19,8 @@ export const createProvidersHost = (): ProvidersHost => {
       listener();
     }
   };
+
+  useProvidersStore.subscribe(() => notify());
 
   return {
     register<T extends ProviderDescriptor>(provider: T): string {
@@ -68,22 +74,20 @@ export const createProvidersHost = (): ProvidersHost => {
     clear() {
       byKind.clear();
       byId.clear();
-      active.clear();
+      useProvidersStore.getState().clearAllActive();
       notify();
     },
 
     getActive(kind: ProviderKind) {
-      return active.get(kind);
+      return useProvidersStore.getState().getActive(kind);
     },
 
     setActive(kind: ProviderKind, providerId: string) {
-      active.set(kind, providerId);
-      notify();
+      useProvidersStore.getState().setActive(kind, providerId);
     },
 
     clearActive(kind: ProviderKind) {
-      active.delete(kind);
-      notify();
+      useProvidersStore.getState().clearActive(kind);
     },
 
     subscribe(listener: () => void) {
@@ -96,3 +100,5 @@ export const createProvidersHost = (): ProvidersHost => {
 };
 
 export const providersHost: ProvidersHost = createProvidersHost();
+
+void initializeProvidersStore();
