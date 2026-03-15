@@ -1,11 +1,13 @@
 import { FC } from 'react';
 
+import { useTranslation } from '@nuclearplayer/i18n';
 import type { ProviderKind } from '@nuclearplayer/plugin-sdk';
 import { Select } from '@nuclearplayer/ui';
 
 import { useProviders } from '../../../hooks/useProviders';
 
 export const ProviderKindSection: FC<{ kind: ProviderKind }> = ({ kind }) => {
+  const { t } = useTranslation('sources');
   const providers = useProviders(kind);
   const options = providers.map((provider) => ({
     id: provider.id,
@@ -14,7 +16,7 @@ export const ProviderKindSection: FC<{ kind: ProviderKind }> = ({ kind }) => {
 
   return (
     <div data-testid={`sources-section-${kind}`}>
-      <Select label="Provider" options={options} />
+      <Select label={t(kind)} options={options} />
     </div>
   );
 };

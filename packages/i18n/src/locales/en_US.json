@@ -35,6 +35,14 @@
     "playlists": "Playlists",
     "sources": "Sources"
   },
+  "sources": {
+    "title": "Sources",
+    "streaming": "Streaming",
+    "metadata": "Metadata",
+    "dashboard": "Dashboard",
+    "playlists": "Playlists",
+    "lyrics": "Lyrics"
+  },
   "favorites": {
     "albums": {
       "title": "Favorite albums",
