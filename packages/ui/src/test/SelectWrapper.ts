@@ -6,7 +6,7 @@ export const createSelectWrapper = (container: () => HTMLElement) => {
 
   return {
     selected() {
-      return getButton().textContent!.trim();
+      return getButton().textContent!.replace('✓', '').trim();
     },
 
     async availableOptions() {
@@ -21,7 +21,10 @@ export const createSelectWrapper = (container: () => HTMLElement) => {
 
     async select(optionName: string) {
       await userEvent.click(getButton());
-      const option = await screen.findByRole('option', { name: optionName });
+      const options = await screen.findAllByRole('option');
+      const option = options.find(
+        (el) => el.textContent!.replace('✓', '').trim() === optionName,
+      )!;
       await userEvent.click(option);
     },
 

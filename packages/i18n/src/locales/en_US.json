@@ -41,7 +41,9 @@
     "metadata": "Metadata",
     "dashboard": "Dashboard",
     "playlists": "Playlists",
-    "lyrics": "Lyrics"
+    "lyrics": "Lyrics",
+    "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
+    "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available"
   },
   "favorites": {
     "albums": {

@@ -22,6 +22,9 @@ export const SourcesWrapper = {
         return getElement();
       },
       providerSelect: createSelectWrapper(getElement),
+      get lockedReason() {
+        return within(getElement()).queryByTestId('locked-reason');
+      },
       provider(name: string) {
         return {
           get warning() {

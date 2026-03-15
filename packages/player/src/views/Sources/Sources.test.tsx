@@ -94,6 +94,29 @@ describe('Sources view', () => {
     ).toBe(true);
   });
 
+  it('explains why the streaming select is locked', async () => {
+    providersHost.register(
+      new StreamingProviderBuilder()
+        .withId('bc-stream')
+        .withName('Bandcamp Stream')
+        .build(),
+    );
+    providersHost.register(
+      new MetadataProviderBuilder()
+        .withId('bc-meta')
+        .withName('Bandcamp')
+        .withStreamingProviderId('bc-stream')
+        .build(),
+    );
+
+    await SourcesWrapper.mount();
+    await SourcesWrapper.section('metadata').providerSelect.select('Bandcamp');
+
+    expect(SourcesWrapper.section('streaming').lockedReason).toHaveTextContent(
+      'Bandcamp metadata source requires Bandcamp Stream streaming source.',
+    );
+  });
+
   it('unlocks the streaming select when switching to a metadata provider without streamingProviderId', async () => {
     providersHost.register(
       new StreamingProviderBuilder()
