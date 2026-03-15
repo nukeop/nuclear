@@ -1,34 +1,27 @@
-import { within } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-export const createSelectWrapper = (
-  container: () => HTMLElement,
-  name: RegExp | string,
-) => {
-  const getButton = () => within(container()).getByRole('button', { name });
-
-  const getListbox = () =>
-    document.getElementById(getButton().getAttribute('aria-controls')!)!;
-
-  const getOptions = () =>
-    Array.from(getListbox().querySelectorAll('[role="option"]'));
+export const createSelectWrapper = (container: () => HTMLElement) => {
+  const getButton = () => within(container()).getByRole('button');
 
   return {
-    availableOptions() {
-      return getOptions().map((option) =>
-        option.textContent!.replace('✓', '').trim(),
-      );
-    },
-
     selected() {
       return getButton().textContent!.trim();
     },
 
+    async availableOptions() {
+      await userEvent.click(getButton());
+      const options = await screen.findAllByRole('option');
+      const names = options.map((option) =>
+        option.textContent!.replace('✓', '').trim(),
+      );
+      await userEvent.click(getButton());
+      return names;
+    },
+
     async select(optionName: string) {
       await userEvent.click(getButton());
-      const option = getOptions().find(
-        (el) => el.textContent!.replace('✓', '').trim() === optionName,
-      )!;
+      const option = await screen.findByRole('option', { name: optionName });
       await userEvent.click(option);
     },
 

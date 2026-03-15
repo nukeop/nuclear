@@ -22,7 +22,9 @@ describe('Sources view', () => {
     await SourcesWrapper.mount();
 
     expect(
-      SourcesWrapper.section('streaming').providerSelect.availableOptions(),
+      await SourcesWrapper.section(
+        'streaming',
+      ).providerSelect.availableOptions(),
     ).toEqual(['YouTube', 'Bandcamp']);
   });
 

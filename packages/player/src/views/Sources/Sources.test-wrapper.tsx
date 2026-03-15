@@ -21,7 +21,7 @@ export const SourcesWrapper = {
       get element() {
         return getElement();
       },
-      providerSelect: createSelectWrapper(getElement, /provider/i),
+      providerSelect: createSelectWrapper(getElement),
       provider(name: string) {
         return {
           get warning() {
