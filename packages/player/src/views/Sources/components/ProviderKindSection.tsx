@@ -1,3 +1,4 @@
+import { LucideIcon } from 'lucide-react';
 import { FC, ReactNode } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
@@ -6,24 +7,19 @@ import { Select } from '@nuclearplayer/ui';
 
 import { useProviders } from '../../../hooks/useProviders';
 
-type ProviderWarning = {
-  providerName: string;
-  message: string;
-};
-
 type ProviderKindSectionProps = {
   kind: ProviderKind;
-  icon: ReactNode;
+  Icon: LucideIcon;
   value?: string;
   disabled?: boolean;
   lockedReason?: ReactNode;
   onValueChange?: (providerId: string) => void;
-  warnings?: ProviderWarning[];
+  warnings?: { providerName: string; message: string }[];
 };
 
 export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
   kind,
-  icon,
+  Icon,
   value,
   disabled,
   lockedReason,
@@ -40,7 +36,7 @@ export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
   return (
     <div data-testid={`sources-section-${kind}`} className="mb-6 px-2">
       <h3 className="text-foreground mb-1 flex items-center gap-2 text-sm font-semibold">
-        {icon}
+        <Icon size={14} />
         {t(kind)}
       </h3>
       <p className="text-foreground-secondary mb-2 text-sm">

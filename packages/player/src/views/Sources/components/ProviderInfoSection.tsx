@@ -1,22 +1,22 @@
-import { ComponentProps, FC, ReactNode } from 'react';
+import { LucideIcon } from 'lucide-react';
+import { ComponentProps, FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { ProviderKind } from '@nuclearplayer/plugin-sdk';
 import { Badge } from '@nuclearplayer/ui';
 
 import { useProviders } from '../../../hooks/useProviders';
+import { ProviderPill } from './ProviderPill';
 
 type ProviderInfoSectionProps = {
   kind: ProviderKind;
-  icon: ReactNode;
-  pillIcon: ReactNode;
+  Icon: LucideIcon;
   color: ComponentProps<typeof Badge>['color'];
 };
 
 export const ProviderInfoSection: FC<ProviderInfoSectionProps> = ({
   kind,
-  icon,
-  pillIcon,
+  Icon,
   color,
 }) => {
   const { t } = useTranslation('sources');
@@ -25,25 +25,23 @@ export const ProviderInfoSection: FC<ProviderInfoSectionProps> = ({
   return (
     <div data-testid={`sources-section-${kind}`} className="mb-6 px-2">
       <h3 className="text-foreground mb-1 flex items-center gap-2 text-sm font-semibold">
-        {icon}
+        <Icon size={14} />
         {t(kind)}
       </h3>
       <p className="text-foreground-secondary mb-3 text-sm">
         {t(`${kind}Description`)}
       </p>
-      {providers.length > 0 ? (
+      {providers.length ? (
         <div className="flex flex-wrap gap-2">
           {providers.map((provider) => (
-            <Badge
+            <ProviderPill
               key={provider.id}
-              variant="pill"
+              Icon={Icon}
               color={color}
               data-testid="provider-list-item"
-              className="gap-1"
             >
-              {pillIcon}
               {provider.name}
-            </Badge>
+            </ProviderPill>
           ))}
         </div>
       ) : (

@@ -742,13 +742,13 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                                 aria-hidden="true"
                                 class="lucide lucide-gauge"
                                 fill="none"
-                                height="12"
+                                height="10"
                                 stroke="currentColor"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
                                 viewBox="0 0 24 24"
-                                width="12"
+                                width="10"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
                                 <path
@@ -816,13 +816,13 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                                 aria-hidden="true"
                                 class="lucide lucide-list-music"
                                 fill="none"
-                                height="12"
+                                height="10"
                                 stroke="currentColor"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
                                 viewBox="0 0 24 24"
-                                width="12"
+                                width="10"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
                                 <path

@@ -4,38 +4,17 @@ import {
   ListMusicIcon,
   SearchIcon,
 } from 'lucide-react';
-import { FC, ReactNode, useState } from 'react';
+import { FC, useState } from 'react';
 import { Trans } from 'react-i18next';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { MetadataProvider } from '@nuclearplayer/plugin-sdk';
-import { Badge, ScrollableArea, ViewShell } from '@nuclearplayer/ui';
+import { ScrollableArea, ViewShell } from '@nuclearplayer/ui';
 
 import { useProviders } from '../../hooks/useProviders';
 import { ProviderInfoSection } from './components/ProviderInfoSection';
 import { ProviderKindSection } from './components/ProviderKindSection';
-
-type MissingProviderWarning = {
-  providerName: string;
-  message: string;
-};
-
-const ICON_SIZE = 14;
-const PILL_ICON_SIZE = 10;
-
-const MetadataPill: FC<{ children?: ReactNode }> = ({ children }) => (
-  <Badge variant="pill" color="yellow" className="mx-1 gap-1 align-middle">
-    <SearchIcon size={PILL_ICON_SIZE} />
-    {children}
-  </Badge>
-);
-
-const StreamingPill: FC<{ children?: ReactNode }> = ({ children }) => (
-  <Badge variant="pill" color="cyan" className="mx-1 gap-1 align-middle">
-    <HeadphonesIcon size={PILL_ICON_SIZE} />
-    {children}
-  </Badge>
-);
+import { ProviderPill } from './components/ProviderPill';
 
 export const Sources: FC = () => {
   const { t } = useTranslation('sources');
@@ -60,13 +39,25 @@ export const Sources: FC = () => {
           streamingName: lockedStreamingProvider.name,
         }}
         components={{
-          metadata: <MetadataPill />,
-          streaming: <StreamingPill />,
+          metadata: (
+            <ProviderPill
+              Icon={SearchIcon}
+              color="yellow"
+              className="mx-1 align-middle"
+            />
+          ),
+          streaming: (
+            <ProviderPill
+              Icon={HeadphonesIcon}
+              color="cyan"
+              className="mx-1 align-middle"
+            />
+          ),
         }}
       />
     ) : undefined;
 
-  const warnings: MissingProviderWarning[] = metadataProviders
+  const warnings = metadataProviders
     .filter(
       (provider) =>
         provider.streamingProviderId &&
@@ -87,27 +78,25 @@ export const Sources: FC = () => {
         <ScrollableArea className="max-w-120 flex-1 gap-4 overflow-hidden">
           <ProviderKindSection
             kind="metadata"
-            icon={<SearchIcon size={ICON_SIZE} />}
+            Icon={SearchIcon}
             onValueChange={setActiveMetadataId}
             warnings={warnings}
           />
           <ProviderKindSection
             kind="streaming"
-            icon={<HeadphonesIcon size={ICON_SIZE} />}
+            Icon={HeadphonesIcon}
             value={lockedStreamingId}
             disabled={!!lockedStreamingId}
             lockedReason={lockedReason}
           />
           <ProviderInfoSection
             kind="dashboard"
-            icon={<GaugeIcon size={ICON_SIZE} />}
-            pillIcon={<GaugeIcon size={PILL_ICON_SIZE} />}
+            Icon={GaugeIcon}
             color="purple"
           />
           <ProviderInfoSection
             kind="playlists"
-            icon={<ListMusicIcon size={ICON_SIZE} />}
-            pillIcon={<ListMusicIcon size={PILL_ICON_SIZE} />}
+            Icon={ListMusicIcon}
             color="green"
           />
         </ScrollableArea>
