@@ -38,9 +38,13 @@
   "sources": {
     "title": "Sources",
     "streaming": "Streaming",
+    "streamingDescription": "Streaming sources provide audio. When you play a track, the streaming source finds and delivers the audio stream.",
     "metadata": "Metadata",
+    "metadataDescription": "Metadata sources provide information about artists, albums, and tracks. Search results, artist pages, and album details come from the active metadata source.",
     "dashboard": "Dashboard",
+    "dashboardDescription": "Dashboard sources provide personalized content like top tracks, new releases, and recommendations on the home screen.",
     "playlists": "Playlists",
+    "playlistsDescription": "Playlist sources let you import playlists from external services by URL.",
     "lyrics": "Lyrics",
     "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
     "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available"

@@ -39,6 +39,7 @@ export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
     <div data-testid={`sources-section-${kind}`} className="mb-4 px-2">
       <Select
         label={t(kind)}
+        description={t(`${kind}Description`)}
         options={options}
         value={value}
         disabled={disabled}
