@@ -34,4 +34,20 @@ export class Providers {
   get<T extends ProviderDescriptor>(id: string, kind: ProviderKind) {
     return this.#withHost((host) => host.get<T>(id, kind));
   }
+
+  getActive(kind: ProviderKind) {
+    return this.#withHost((host) => host.getActive(kind));
+  }
+
+  setActive(kind: ProviderKind, providerId: string) {
+    return this.#withHost((host) => host.setActive(kind, providerId));
+  }
+
+  clearActive(kind: ProviderKind) {
+    return this.#withHost((host) => host.clearActive(kind));
+  }
+
+  subscribe(listener: () => void) {
+    return this.#withHost((host) => host.subscribe(listener));
+  }
 }

@@ -11,7 +11,7 @@ export const Settings = () => {
   return (
     <ViewShell title={t('general.title')}>
       <div className="flex w-full flex-col items-center justify-center overflow-hidden">
-        <ScrollableArea className="max-w-100 flex-1 overflow-hidden">
+        <ScrollableArea className="max-w-120 flex-1 overflow-hidden">
           <div className="px-2">
             {groups.map((group) => (
               <SettingsSection

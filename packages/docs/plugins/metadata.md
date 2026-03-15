@@ -97,6 +97,24 @@ Declared via `albumMetadataCapabilities`:
 
 You don't have to support everything. Declare only what your source can provide. Nuclear adapts the UI based on what's available - for example, if you don't declare `'artistTopTracks'`, the top tracks section won't appear on artist pages.
 
+### Streaming provider pairing
+
+If your metadata provider only works with a specific streaming provider (e.g. both come from the same plugin and the same service), declare this with `streamingProviderId`:
+
+```typescript
+const provider: MetadataProvider = {
+  id: 'my-metadata',
+  kind: 'metadata',
+  name: 'My Source',
+  streamingProviderId: 'my-streaming',
+  // ...
+};
+```
+
+When the user selects this metadata provider in the Sources view, the streaming provider is locked to the one you specified. If the required streaming provider isn't installed, the Sources view shows a warning.
+
+Only set this when the pairing is a hard requirement. If your metadata provider works with any streaming provider, leave it out.
+
 ---
 
 ## Return types

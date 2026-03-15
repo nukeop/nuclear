@@ -7,6 +7,14 @@ import type {
 export const createProvidersHost = (): ProvidersHost => {
   const byKind = new Map<ProviderKind, Map<string, ProviderDescriptor>>();
   const byId = new Map<string, ProviderDescriptor>();
+  const active = new Map<ProviderKind, string>();
+  const subscribers = new Set<() => void>();
+
+  const notify = () => {
+    for (const listener of subscribers) {
+      listener();
+    }
+  };
 
   return {
     register<T extends ProviderDescriptor>(provider: T): string {
@@ -14,6 +22,7 @@ export const createProvidersHost = (): ProvidersHost => {
       kindMap.set(provider.id, provider);
       byKind.set(provider.kind, kindMap);
       byId.set(provider.id, provider);
+      notify();
       return provider.id;
     },
 
@@ -30,6 +39,7 @@ export const createProvidersHost = (): ProvidersHost => {
           byKind.delete(current.kind);
         }
       }
+      notify();
       return true;
     },
 
@@ -58,6 +68,29 @@ export const createProvidersHost = (): ProvidersHost => {
     clear() {
       byKind.clear();
       byId.clear();
+      active.clear();
+      notify();
+    },
+
+    getActive(kind: ProviderKind) {
+      return active.get(kind);
+    },
+
+    setActive(kind: ProviderKind, providerId: string) {
+      active.set(kind, providerId);
+      notify();
+    },
+
+    clearActive(kind: ProviderKind) {
+      active.delete(kind);
+      notify();
+    },
+
+    subscribe(listener: () => void) {
+      subscribers.add(listener);
+      return () => {
+        subscribers.delete(listener);
+      };
     },
   };
 };
