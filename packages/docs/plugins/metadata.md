@@ -82,9 +82,11 @@ Declared via `artistMetadataCapabilities`. Controls artist detail pages:
 
 | Capability | Method called | Returns |
 |------------|--------------|---------|
-| `'artistDetails'` | `fetchArtistDetails(artistId)` | `Artist` |
-| `'artistAlbums'` | `fetchArtistAlbums(artistId)` | `AlbumRef[]` |
+| `'artistBio'` | `fetchArtistBio(artistId)` | `ArtistBio` |
+| `'artistSocialStats'` | `fetchArtistSocialStats(artistId)` | `ArtistSocialStats` |
 | `'artistTopTracks'` | `fetchArtistTopTracks(artistId)` | `TrackRef[]` |
+| `'artistAlbums'` | `fetchArtistAlbums(artistId)` | `AlbumRef[]` |
+| `'artistPlaylists'` | `fetchArtistPlaylists(artistId)` | `PlaylistRef[]` |
 | `'artistRelatedArtists'` | `fetchArtistRelatedArtists(artistId)` | `ArtistRef[]` |
 
 #### Album metadata capabilities
@@ -140,7 +142,7 @@ type ProviderRef = {
 
 #### Compound IDs
 
-The `id` can be anything your provider understands. You'll receive it back in `fetchArtistDetails(id)`, `fetchAlbumDetails(id)`, etc.
+The `id` can be anything your provider understands. You'll receive it back in `fetchArtistBio(id)`, `fetchAlbumDetails(id)`, etc.
 
 Example: The Discogs plugin uses compound IDs like `master:12345` to encode both the release type (release/master) and ID in a single string.
 
@@ -164,7 +166,7 @@ export default {
       const providerId = results.artists[0].source.provider;
 
       // Fetch full details (routes to the same provider that returned the search result)
-      const artist = await api.Metadata.fetchArtistDetails(artistId, providerId);
+      const artist = await api.Metadata.fetchArtistBio(artistId, providerId);
       const albums = await api.Metadata.fetchArtistAlbums(artistId, providerId);
     }
   },
@@ -175,14 +177,16 @@ export default {
 
 ```typescript
 api.Metadata.search(params: SearchParams, providerId?: string): Promise<SearchResults>
-api.Metadata.fetchArtistDetails(artistId: string, providerId?: string): Promise<Artist>
+api.Metadata.fetchArtistBio(artistId: string, providerId?: string): Promise<ArtistBio>
+api.Metadata.fetchArtistSocialStats(artistId: string, providerId?: string): Promise<ArtistSocialStats>
 api.Metadata.fetchArtistAlbums(artistId: string, providerId?: string): Promise<AlbumRef[]>
 api.Metadata.fetchArtistTopTracks(artistId: string, providerId?: string): Promise<TrackRef[]>
+api.Metadata.fetchArtistPlaylists(artistId: string, providerId?: string): Promise<PlaylistRef[]>
 api.Metadata.fetchArtistRelatedArtists(artistId: string, providerId?: string): Promise<ArtistRef[]>
 api.Metadata.fetchAlbumDetails(albumId: string, providerId?: string): Promise<Album>
 ```
 
-All methods accept an optional `providerId`. If omitted, Nuclear uses the first registered metadata provider.
+All methods accept an optional `providerId`. If omitted, Nuclear uses the active metadata provider (the one selected in the Sources view).
 
 {% hint style="warning" %}
 The `artistId` and `albumId` values are provider-specific. Always pass the `providerId` from the same `ProviderRef` that gave you the ID. Mixing IDs from one provider with a different `providerId` will produce errors or wrong results.

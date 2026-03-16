@@ -54,7 +54,7 @@ export default {
 };
 ```
 
-`register()` returns the provider's ID, which you pass to `unregister()` later.
+`register()` returns the provider's ID, which you pass to `unregister()` later. The first provider registered for a given kind becomes the active provider automatically. If the user hasn't changed the selection in Sources, subsequent registrations don't override it.
 
 ## Provider lifecycle
 
@@ -82,6 +82,6 @@ Each provider kind (e.g., `MetadataProvider`, `StreamingProvider`, `DashboardPro
 
 ## Sources view
 
-Users manage providers in the Sources view (accessible from the sidebar). Metadata and streaming providers can be switched by the user. Dashboard and playlist providers are listed as informational (they're used automatically).
+Users manage providers in the Sources view, accessible from the sidebar. Metadata and streaming providers have an **active selection** that determines which provider handles search queries and stream resolution. The first provider registered for a kind becomes the active one automatically, and the selection persists across restarts. Users can switch the active provider at any time in the Sources view.
 
 When you register a new provider kind, it appears in the Sources view automatically.

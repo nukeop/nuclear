@@ -84,9 +84,10 @@ const provider: MetadataProvider = {
   kind: 'metadata',
   name: 'My Metadata',
   searchCapabilities: ['artists', 'albums'],
+  streamingProviderId: 'my-streaming', // Optional: locks streaming to this provider
   async searchArtists(params) { /* ... */ },
   async searchAlbums(params) { /* ... */ },
-  async fetchArtistDetails(id) { /* ... */ },
+  async fetchArtistBio(id) { /* ... */ },
   async fetchAlbumDetails(id) { /* ... */ },
 };
 ```
