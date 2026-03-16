@@ -26,6 +26,5 @@ export type ProvidersHost = {
   clear(): void;
   getActive(kind: ProviderKind): string | undefined;
   setActive(kind: ProviderKind, providerId: string): void;
-  clearActive(kind: ProviderKind): void;
   subscribe(listener: () => void): () => void;
 };

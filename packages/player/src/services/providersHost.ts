@@ -102,10 +102,6 @@ export const createProvidersHost = (): ProvidersHost => {
       useProvidersStore.getState().setActive(kind, providerId);
     },
 
-    clearActive(kind: ProviderKind) {
-      useProvidersStore.getState().clearActive(kind);
-    },
-
     subscribe(listener: () => void) {
       subscribers.add(listener);
       return () => {

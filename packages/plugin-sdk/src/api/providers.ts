@@ -43,10 +43,6 @@ export class Providers {
     return this.#withHost((host) => host.setActive(kind, providerId));
   }
 
-  clearActive(kind: ProviderKind) {
-    return this.#withHost((host) => host.clearActive(kind));
-  }
-
   subscribe(listener: () => void) {
     return this.#withHost((host) => host.subscribe(listener));
   }
