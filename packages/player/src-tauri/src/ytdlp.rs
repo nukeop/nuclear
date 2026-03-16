@@ -84,15 +84,22 @@ struct YtdlpJson {
 
 fn run_ytdlp(args: &[&str]) -> Result<String, String> {
     let program = get_ytdlp_path()?;
-    let output = Command::new(&program)
-        .args(args)
+    let mut cmd = Command::new(&program);
+    cmd.args(args)
         .stdout(Stdio::piped())
-        .stderr(Stdio::piped())
-        .output()
-        .map_err(|error| {
-            error!("[yt-dlp] Failed to execute: {}", error);
-            format!("Failed to execute yt-dlp: {}. Is yt-dlp installed?", error)
-        })?;
+        .stderr(Stdio::piped());
+
+    #[cfg(target_os = "windows")]
+    {
+        use std::os::windows::process::CommandExt;
+        const CREATE_NO_WINDOW: u32 = 0x08000000;
+        cmd.creation_flags(CREATE_NO_WINDOW);
+    }
+
+    let output = cmd.output().map_err(|error| {
+        error!("[yt-dlp] Failed to execute: {}", error);
+        format!("Failed to execute yt-dlp: {}. Is yt-dlp installed?", error)
+    })?;
 
     if !output.status.success() {
         let stderr = String::from_utf8_lossy(&output.stderr);
