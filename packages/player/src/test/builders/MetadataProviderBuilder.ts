@@ -1,5 +1,6 @@
 import { MetadataProvider } from '@nuclearplayer/plugin-sdk';
 
+import { GIANT_STEPS } from '../fixtures/albums';
 import {
   ALBUMS_BEATLES,
   BIO_BEATLES,
@@ -30,6 +31,13 @@ export class MetadataProviderBuilder {
       .withFetchArtistAlbums(async () => ALBUMS_BEATLES)
       .withFetchArtistTopTracks(async () => TOP_TRACKS_BEATLES)
       .withFetchArtistRelatedArtists(async () => RELATED_ARTISTS_BEATLES);
+  }
+
+  static albumDetailsProvider(): MetadataProviderBuilder {
+    return new MetadataProviderBuilder()
+      .withSearchCapabilities(['unified', 'albums'])
+      .withAlbumMetadataCapabilities(['albumDetails'])
+      .withFetchAlbumDetails(async () => GIANT_STEPS);
   }
 
   static socialStatsStyleProvider(): MetadataProviderBuilder {
@@ -68,6 +76,13 @@ export class MetadataProviderBuilder {
 
   withName(name: MetadataProvider['name']): this {
     this.provider.name = name;
+    return this;
+  }
+
+  withStreamingProviderId(
+    streamingProviderId: MetadataProvider['streamingProviderId'],
+  ): this {
+    this.provider.streamingProviderId = streamingProviderId;
     return this;
   }
 

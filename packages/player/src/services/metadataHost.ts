@@ -99,13 +99,11 @@ const executeMetadataSearch = async (
 };
 
 export const createMetadataHost = (): MetadataHost => {
-  const getProvider = (providerId?: string): MetadataProvider | undefined => {
-    if (providerId) {
-      return providersHost.get<MetadataProvider>(providerId, 'metadata');
-    }
-    const providers = providersHost.list<'metadata'>('metadata');
-    return providers[0] as MetadataProvider | undefined;
-  };
+  const getProvider = (providerId?: string): MetadataProvider | undefined =>
+    providersHost.get<MetadataProvider>(
+      providerId ?? providersHost.getActive('metadata'),
+      'metadata',
+    );
 
   const withArtistCapability =
     <TResult>(

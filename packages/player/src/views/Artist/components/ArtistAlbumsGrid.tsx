@@ -6,7 +6,7 @@ import { pickArtwork } from '@nuclearplayer/model';
 import { MetadataProvider } from '@nuclearplayer/plugin-sdk';
 import { Card, CardGrid, Loader } from '@nuclearplayer/ui';
 
-import { useProviders } from '../../../hooks/useProviders';
+import { useActiveProvider } from '../../../hooks/useActiveProvider';
 import { useArtistAlbums } from '../hooks/useArtistAlbums';
 
 type ArtistAlbumsGridProps = {
@@ -28,8 +28,9 @@ export const ArtistAlbumsGrid: FC<ArtistAlbumsGridProps> = ({
     isError,
   } = useArtistAlbums(providerId, artistId);
 
-  const providers = useProviders('metadata') as MetadataProvider[];
-  const provider = providers[0];
+  const provider = useActiveProvider('metadata') as
+    | MetadataProvider
+    | undefined;
 
   if (isLoading) {
     return (
@@ -62,7 +63,7 @@ export const ArtistAlbumsGrid: FC<ArtistAlbumsGridProps> = ({
           subtitle={album.artists?.map((a) => a.name).join(', ')}
           src={pickArtwork(album.artwork, 'cover', 300)?.url}
           onClick={() =>
-            navigate({ to: `/album/${provider.id}/${album.source.id}` })
+            navigate({ to: `/album/${provider!.id}/${album.source.id}` })
           }
         />
       ))}

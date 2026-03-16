@@ -23,6 +23,8 @@ Stream resolution happens in two phases:
 1. **Candidate discovery** — Search for potential sources (e.g., YouTube videos matching the track)
 2. **Stream resolution** — Extract the actual audio URL from the top candidate
 
+Nuclear uses the streaming provider selected by the user in the Sources view. If no streaming provider is active, resolution returns an error.
+
 ### Stream candidates
 
 A candidate represents a potential audio source before the URL is resolved. Key fields:
@@ -93,7 +95,7 @@ Once we have a candidate, Nuclear calls `resolveStreamForCandidate(candidate)` t
 | Candidate with expired or missing `stream` | Attempts resolution, returns updated candidate |
 | Resolution succeeds | Returns candidate with `stream` populated |
 | Resolution fails after retries | Returns candidate with `failed: true` |
-| No streaming provider registered | Returns `undefined` |
+| No active streaming provider | Returns `undefined` |
 
 ---
 

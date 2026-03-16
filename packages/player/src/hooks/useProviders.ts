@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
 import type {
   ProviderDescriptor,
@@ -6,12 +6,18 @@ import type {
 } from '@nuclearplayer/plugin-sdk';
 
 import { providersHost } from '../services/providersHost';
-import { useStartupStore } from '../stores/startupStore';
 
 export const useProviders = <K extends ProviderKind>(
   kind: K,
 ): ProviderDescriptor<K>[] => {
-  const isStartingUp = useStartupStore((state) => state.isStartingUp);
+  const [providers, setProviders] = useState(() => providersHost.list(kind));
 
-  return useMemo(() => providersHost.list(kind), [kind, isStartingUp]);
+  useEffect(() => {
+    setProviders(providersHost.list(kind));
+    return providersHost.subscribe(() =>
+      setProviders(providersHost.list(kind)),
+    );
+  }, [kind]);
+
+  return providers;
 };

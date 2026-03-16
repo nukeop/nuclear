@@ -10,7 +10,6 @@ import {
   createMockStream,
   StreamingProviderBuilder,
 } from '../test/builders/StreamingProviderBuilder';
-import { GIANT_STEPS } from '../test/fixtures/albums';
 import { createQueueItem } from '../test/fixtures/queue';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { AlbumWrapper } from '../views/Album/Album.test-wrapper';
@@ -44,12 +43,9 @@ describe('Queue', () => {
 
     providersHost.clear();
 
-    const metadataProvider = new MetadataProviderBuilder()
-      .withSearchCapabilities(['unified', 'albums'])
-      .withAlbumMetadataCapabilities(['albumDetails'])
-      .withFetchAlbumDetails(async () => GIANT_STEPS)
-      .build();
-    providersHost.register(metadataProvider);
+    providersHost.register(
+      MetadataProviderBuilder.albumDetailsProvider().build(),
+    );
 
     const streamingProvider = new StreamingProviderBuilder()
       .withSearchForTrack(async (artist, title) => [

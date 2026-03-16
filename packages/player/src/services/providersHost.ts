@@ -4,9 +4,23 @@ import type {
   ProvidersHost,
 } from '@nuclearplayer/plugin-sdk';
 
-export const createProvidersHost = (): ProvidersHost => {
+import {
+  initializeProvidersStore,
+  useProvidersStore,
+} from '../stores/providersStore';
+
+const createProvidersHost = (): ProvidersHost => {
   const byKind = new Map<ProviderKind, Map<string, ProviderDescriptor>>();
   const byId = new Map<string, ProviderDescriptor>();
+  const subscribers = new Set<() => void>();
+
+  const notify = () => {
+    for (const listener of subscribers) {
+      listener();
+    }
+  };
+
+  useProvidersStore.subscribe(() => notify());
 
   return {
     register<T extends ProviderDescriptor>(provider: T): string {
@@ -14,6 +28,17 @@ export const createProvidersHost = (): ProvidersHost => {
       kindMap.set(provider.id, provider);
       byKind.set(provider.kind, kindMap);
       byId.set(provider.id, provider);
+
+      const activeForKind = useProvidersStore
+        .getState()
+        .getActive(provider.kind);
+
+      // Set the first registered provider as active
+      if (!activeForKind) {
+        useProvidersStore.getState().setActive(provider.kind, provider.id);
+      }
+
+      notify();
       return provider.id;
     },
 
@@ -30,6 +55,7 @@ export const createProvidersHost = (): ProvidersHost => {
           byKind.delete(current.kind);
         }
       }
+      notify();
       return true;
     },
 
@@ -47,19 +73,44 @@ export const createProvidersHost = (): ProvidersHost => {
       return all as ProviderDescriptor<K>[];
     },
 
-    get<T extends ProviderDescriptor>(providerId: string, kind: ProviderKind) {
+    get<T extends ProviderDescriptor>(
+      providerId: string | undefined,
+      kind: ProviderKind,
+    ) {
+      if (!providerId) {
+        return undefined;
+      }
       const provider = byId.get(providerId);
       if (!provider || provider.kind !== kind) {
         return undefined;
       }
-      return provider as T | undefined;
+      return provider as T;
     },
 
     clear() {
       byKind.clear();
       byId.clear();
+      useProvidersStore.getState().clearAllActive();
+      notify();
+    },
+
+    getActive(kind: ProviderKind) {
+      return useProvidersStore.getState().getActive(kind);
+    },
+
+    setActive(kind: ProviderKind, providerId: string) {
+      useProvidersStore.getState().setActive(kind, providerId);
+    },
+
+    subscribe(listener: () => void) {
+      subscribers.add(listener);
+      return () => {
+        subscribers.delete(listener);
+      };
     },
   };
 };
 
 export const providersHost: ProvidersHost = createProvidersHost();
+
+void initializeProvidersStore();
