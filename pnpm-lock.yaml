@@ -295,7 +295,7 @@ importers:
         version: 3.7.1
       esbuild-wasm:
         specifier: ^0.27.0
-        version: 0.27.3
+        version: 0.27.4
       framer-motion:
         specifier: ^12.23.12
         version: 12.23.12(@emotion/is-prop-valid@1.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -3792,8 +3792,8 @@ packages:
     resolution: {integrity: sha512-w+5mJ3GuFL+NjVtJlvydShqE1eN3h3PbI7/5LAsYJP/2qtuMXjfL2LpHSRqo4b4eSF5K/DH1JXKUAHSB2UW50g==}
     engines: {node: '>= 0.4'}
 
-  esbuild-wasm@0.27.3:
-    resolution: {integrity: sha512-AUXuOxZ145/5Az+lIqk6TdJbxKTyDGkXMJpTExmBdbnHR6n6qAFx+F4oG9ORpVYJ9dQYeQAqzv51TO4DFKsbXw==}
+  esbuild-wasm@0.27.4:
+    resolution: {integrity: sha512-3xhVMcJ8Odvb1QjlWnjBGSYVYESsi3/oJYwLyVvbHOb2CiV4mFtD6x8Lk6JFnRxwEE3fUeVuJLbIxyVQWa867g==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -9666,7 +9666,7 @@ snapshots:
       is-date-object: 1.1.0
       is-symbol: 1.1.1
 
-  esbuild-wasm@0.27.3: {}
+  esbuild-wasm@0.27.4: {}
 
   esbuild@0.25.12:
     optionalDependencies:
