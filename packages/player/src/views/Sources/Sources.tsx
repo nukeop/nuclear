@@ -4,7 +4,7 @@ import {
   ListMusicIcon,
   SearchIcon,
 } from 'lucide-react';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Trans } from 'react-i18next';
 
 import { useTranslation } from '@nuclearplayer/i18n';
@@ -12,6 +12,8 @@ import type { MetadataProvider } from '@nuclearplayer/plugin-sdk';
 import { ScrollableArea, ViewShell } from '@nuclearplayer/ui';
 
 import { useProviders } from '../../hooks/useProviders';
+import { providersHost } from '../../services/providersHost';
+import { useProvidersStore } from '../../stores/providersStore';
 import { ProviderInfoSection } from './components/ProviderInfoSection';
 import { ProviderKindSection } from './components/ProviderKindSection';
 import { ProviderPill } from './components/ProviderPill';
@@ -20,7 +22,14 @@ export const Sources: FC = () => {
   const { t } = useTranslation('sources');
   const metadataProviders = useProviders('metadata') as MetadataProvider[];
   const streamingProviders = useProviders('streaming');
-  const [activeMetadataId, setActiveMetadataId] = useState<string>();
+  const activeMetadataId = useProvidersStore((state) => state.active.metadata);
+  const activeStreamingId = useProvidersStore(
+    (state) => state.active.streaming,
+  );
+
+  const setActiveMetadataId = (providerId: string) => {
+    providersHost.setActive('metadata', providerId);
+  };
 
   const activeMetadata = metadataProviders.find(
     (provider) => provider.id === activeMetadataId,
@@ -79,15 +88,19 @@ export const Sources: FC = () => {
           <ProviderKindSection
             kind="metadata"
             Icon={SearchIcon}
+            value={activeMetadataId}
             onValueChange={setActiveMetadataId}
             warnings={warnings}
           />
           <ProviderKindSection
             kind="streaming"
             Icon={HeadphonesIcon}
-            value={lockedStreamingId}
+            value={lockedStreamingId ?? activeStreamingId}
             disabled={!!lockedStreamingId}
             lockedReason={lockedReason}
+            onValueChange={(providerId) =>
+              providersHost.setActive('streaming', providerId)
+            }
           />
           <ProviderInfoSection
             kind="dashboard"

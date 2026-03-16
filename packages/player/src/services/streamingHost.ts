@@ -9,10 +9,11 @@ import { resolveErrorMessage } from '../utils/logging';
 import { Logger } from './logger';
 import { providersHost } from './providersHost';
 
-const getActiveStreamingProvider = (): StreamingProvider | undefined => {
-  const providers = providersHost.list<'streaming'>('streaming');
-  return providers[0] as StreamingProvider | undefined;
-};
+const getActiveStreamingProvider = (): StreamingProvider | undefined =>
+  providersHost.get<StreamingProvider>(
+    providersHost.getActive('streaming'),
+    'streaming',
+  );
 
 const isStreamExpired = (candidate: StreamCandidate): boolean => {
   if (!candidate.lastResolvedAtIso || !candidate.stream) {

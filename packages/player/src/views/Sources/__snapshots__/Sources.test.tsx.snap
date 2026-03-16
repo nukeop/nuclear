@@ -664,7 +664,9 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                               aria-expanded="false"
                               aria-haspopup="listbox"
                               class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
-                              data-headlessui-state=""
+                              data-disabled=""
+                              data-headlessui-state="disabled"
+                              disabled=""
                               id="select-:r7:"
                               type="button"
                             >
@@ -696,6 +698,62 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                               </span>
                             </button>
                           </div>
+                          <p
+                            class="text-foreground-secondary mt-4 text-sm leading-relaxed"
+                            data-testid="locked-reason"
+                          >
+                            <span
+                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-yellow text-foreground gap-1 mx-1 align-middle"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="lucide lucide-search"
+                                fill="none"
+                                height="10"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                                width="10"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="m21 21-4.34-4.34"
+                                />
+                                <circle
+                                  cx="11"
+                                  cy="11"
+                                  r="8"
+                                />
+                              </svg>
+                              Acme Metadata
+                            </span>
+                             metadata source requires 
+                            <span
+                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground gap-1 mx-1 align-middle"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="lucide lucide-headphones"
+                                fill="none"
+                                height="10"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                                width="10"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"
+                                />
+                              </svg>
+                              Acme
+                            </span>
+                             streaming source.
+                          </p>
                         </div>
                         <div
                           class="mb-6 px-2"

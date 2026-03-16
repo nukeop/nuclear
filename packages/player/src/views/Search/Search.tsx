@@ -18,7 +18,7 @@ import {
   ViewShell,
 } from '@nuclearplayer/ui';
 
-import { useProviders } from '../../hooks/useProviders';
+import { useActiveProvider } from '../../hooks/useActiveProvider';
 import { metadataHost } from '../../services/metadataHost';
 
 export const Search: FC = () => {
@@ -26,9 +26,9 @@ export const Search: FC = () => {
   const { q } = useSearch({ from: '/search' });
   const navigate = useNavigate();
 
-  // @todo: this selects the first metadata provider, when we support switching it should use the selected one
-  const providers = useProviders('metadata') as MetadataProvider[];
-  const provider = providers[0];
+  const provider = useActiveProvider('metadata') as
+    | MetadataProvider
+    | undefined;
 
   const {
     data: results,
@@ -55,7 +55,7 @@ export const Search: FC = () => {
               title={item.title}
               src={pickArtwork(item.artwork, 'cover', 300)?.url}
               onClick={() =>
-                navigate({ to: `/album/${provider.id}/${item.source.id}` })
+                navigate({ to: `/album/${provider!.id}/${item.source.id}` })
               }
             />
           ))}
@@ -73,7 +73,7 @@ export const Search: FC = () => {
               title={item.name}
               src={pickArtwork(item.artwork, 'cover', 300)?.url}
               onClick={() =>
-                navigate({ to: `/artist/${provider.id}/${item.source.id}` })
+                navigate({ to: `/artist/${provider!.id}/${item.source.id}` })
               }
             />
           ))}

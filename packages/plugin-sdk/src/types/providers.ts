@@ -20,7 +20,7 @@ export type ProvidersHost = {
     kind?: K,
   ): ProviderDescriptor<K>[];
   get<T extends ProviderDescriptor>(
-    providerId: string,
+    providerId: string | undefined,
     kind: ProviderKind,
   ): T | undefined;
   clear(): void;

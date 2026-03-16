@@ -28,6 +28,16 @@ export const createProvidersHost = (): ProvidersHost => {
       kindMap.set(provider.id, provider);
       byKind.set(provider.kind, kindMap);
       byId.set(provider.id, provider);
+
+      const activeForKind = useProvidersStore
+        .getState()
+        .getActive(provider.kind);
+
+      // Set the first registered provider as active
+      if (!activeForKind) {
+        useProvidersStore.getState().setActive(provider.kind, provider.id);
+      }
+
       notify();
       return provider.id;
     },
@@ -63,12 +73,18 @@ export const createProvidersHost = (): ProvidersHost => {
       return all as ProviderDescriptor<K>[];
     },
 
-    get<T extends ProviderDescriptor>(providerId: string, kind: ProviderKind) {
+    get<T extends ProviderDescriptor>(
+      providerId: string | undefined,
+      kind: ProviderKind,
+    ) {
+      if (!providerId) {
+        return undefined;
+      }
       const provider = byId.get(providerId);
       if (!provider || provider.kind !== kind) {
         return undefined;
       }
-      return provider as T | undefined;
+      return provider as T;
     },
 
     clear() {
