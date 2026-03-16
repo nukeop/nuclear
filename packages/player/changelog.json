@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-03-16T00:00",
+    "description": "Fixed a console window briefly appearing on Windows each time yt-dlp was invoked",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Windows",
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-16T00:00",
     "description": "Queue items are now correctly restored when restarting Nuclear.",
     "type": "fix",
     "contributors": ["nukeop"],
