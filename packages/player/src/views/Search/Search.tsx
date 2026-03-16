@@ -18,6 +18,7 @@ import {
   ViewShell,
 } from '@nuclearplayer/ui';
 
+import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
 import { useActiveProvider } from '../../hooks/useActiveProvider';
 import { metadataHost } from '../../services/metadataHost';
 
@@ -85,11 +86,7 @@ export const Search: FC = () => {
       label: t('search:results.tracks'),
       content: (
         <div className="flex flex-col">
-          {results.tracks.map((item) => (
-            <span key={item.source.id}>
-              {item.artists[0].name} - {item.title}
-            </span>
-          ))}
+          <ConnectedTrackTable tracks={results.tracks} />
         </div>
       ),
     },
