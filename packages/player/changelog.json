@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-03-16T00:00",
+    "description": "New Sources view lets you switch the active metadata and streaming providers from the sidebar",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Sources",
+        "color": "yellow"
+      }
+    ]
+  },
+  {
     "date": "2026-03-14T00:00",
     "description": "yt-dlp is now downloaded and updated automatically at runtime, fixing Flatpak and AppImage compatibility",
     "type": "improvement",
