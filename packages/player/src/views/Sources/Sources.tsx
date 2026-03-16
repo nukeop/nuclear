@@ -5,7 +5,6 @@ import {
   SearchIcon,
 } from 'lucide-react';
 import { FC } from 'react';
-import { Trans } from 'react-i18next';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { MetadataProvider } from '@nuclearplayer/plugin-sdk';
@@ -14,9 +13,11 @@ import { ScrollableArea, ViewShell } from '@nuclearplayer/ui';
 import { useProviders } from '../../hooks/useProviders';
 import { providersHost } from '../../services/providersHost';
 import { useProvidersStore } from '../../stores/providersStore';
+import { LockedReasonMessage } from './components/LockedReasonMessage';
 import { ProviderInfoSection } from './components/ProviderInfoSection';
 import { ProviderKindSection } from './components/ProviderKindSection';
-import { ProviderPill } from './components/ProviderPill';
+import { useProviderWarnings } from './hooks/useProviderWarnings';
+import { useStreamingPairing } from './hooks/useStreamingPairing';
 
 export const Sources: FC = () => {
   const { t } = useTranslation('sources');
@@ -27,59 +28,14 @@ export const Sources: FC = () => {
     (state) => state.active.streaming,
   );
 
-  const setActiveMetadataId = (providerId: string) => {
-    providersHost.setActive('metadata', providerId);
-  };
-
   const activeMetadata = metadataProviders.find(
     (provider) => provider.id === activeMetadataId,
   );
-  const lockedStreamingId = activeMetadata?.streamingProviderId;
-  const lockedStreamingProvider = lockedStreamingId
-    ? streamingProviders.find((provider) => provider.id === lockedStreamingId)
-    : undefined;
 
-  const lockedReason =
-    activeMetadata && lockedStreamingProvider ? (
-      <Trans
-        i18nKey="sources:lockedReason"
-        values={{
-          metadataName: activeMetadata.name,
-          streamingName: lockedStreamingProvider.name,
-        }}
-        components={{
-          metadata: (
-            <ProviderPill
-              Icon={SearchIcon}
-              color="yellow"
-              className="mx-1 align-middle"
-            />
-          ),
-          streaming: (
-            <ProviderPill
-              Icon={HeadphonesIcon}
-              color="cyan"
-              className="mx-1 align-middle"
-            />
-          ),
-        }}
-      />
-    ) : undefined;
+  const { lockedStreamingId, metadataName, streamingName } =
+    useStreamingPairing(activeMetadata, streamingProviders);
 
-  const warnings = metadataProviders
-    .filter(
-      (provider) =>
-        provider.streamingProviderId &&
-        !streamingProviders.some(
-          (sp) => sp.id === provider.streamingProviderId,
-        ),
-    )
-    .map((provider) => ({
-      providerName: provider.name,
-      message: t('missingStreamingProvider', {
-        providerId: provider.streamingProviderId,
-      }),
-    }));
+  const warnings = useProviderWarnings(metadataProviders, streamingProviders);
 
   return (
     <ViewShell data-testid="sources-view" title={t('title')}>
@@ -89,7 +45,9 @@ export const Sources: FC = () => {
             kind="metadata"
             Icon={SearchIcon}
             value={activeMetadataId}
-            onValueChange={setActiveMetadataId}
+            onValueChange={(providerId) =>
+              providersHost.setActive('metadata', providerId)
+            }
             warnings={warnings}
           />
           <ProviderKindSection
@@ -97,7 +55,14 @@ export const Sources: FC = () => {
             Icon={HeadphonesIcon}
             value={lockedStreamingId ?? activeStreamingId}
             disabled={!!lockedStreamingId}
-            lockedReason={lockedReason}
+            lockedReason={
+              metadataName && streamingName ? (
+                <LockedReasonMessage
+                  metadataName={metadataName}
+                  streamingName={streamingName}
+                />
+              ) : undefined
+            }
             onValueChange={(providerId) =>
               providersHost.setActive('streaming', providerId)
             }
