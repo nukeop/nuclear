@@ -6,15 +6,13 @@ import type {
   ProviderDescriptor,
 } from '@nuclearplayer/plugin-sdk';
 
-export type ProviderWarning = {
-  providerName: string;
-  message: string;
-};
-
 export const useProviderWarnings = (
   metadataProviders: MetadataProvider[],
   streamingProviders: ProviderDescriptor<'streaming'>[],
-): ProviderWarning[] => {
+): {
+  providerName: string;
+  message: string;
+}[] => {
   const { t } = useTranslation('sources');
 
   return useMemo(

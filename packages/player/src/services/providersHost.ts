@@ -9,7 +9,7 @@ import {
   useProvidersStore,
 } from '../stores/providersStore';
 
-export const createProvidersHost = (): ProvidersHost => {
+const createProvidersHost = (): ProvidersHost => {
   const byKind = new Map<ProviderKind, Map<string, ProviderDescriptor>>();
   const byId = new Map<string, ProviderDescriptor>();
   const subscribers = new Set<() => void>();

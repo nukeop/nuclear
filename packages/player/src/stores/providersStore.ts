@@ -9,7 +9,6 @@ const store = new LazyStore(STORE_FILE);
 
 type ProvidersStoreState = {
   active: Record<string, string>;
-  loaded: boolean;
   loadFromDisk: () => Promise<void>;
   getActive: (kind: ProviderKind) => string | undefined;
   setActive: (kind: ProviderKind, providerId: string) => void;
@@ -24,13 +23,11 @@ const saveToDisk = async (): Promise<void> => {
 
 export const useProvidersStore = create<ProvidersStoreState>((set, get) => ({
   active: {},
-  loaded: false,
 
   loadFromDisk: async () => {
     const record = await store.get<Record<string, string>>(STORE_KEY);
     set({
       active: record ?? {},
-      loaded: true,
     });
   },
 

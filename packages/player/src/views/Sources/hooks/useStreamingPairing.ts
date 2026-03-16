@@ -7,7 +7,6 @@ import type {
 
 type StreamingPairing = {
   lockedStreamingId: string | undefined;
-  lockedStreamingProvider: ProviderDescriptor<'streaming'> | undefined;
   metadataName: string | undefined;
   streamingName: string | undefined;
 };
@@ -24,7 +23,6 @@ export const useStreamingPairing = (
 
     return {
       lockedStreamingId,
-      lockedStreamingProvider,
       metadataName: activeMetadata?.name,
       streamingName: lockedStreamingProvider?.name,
     };
