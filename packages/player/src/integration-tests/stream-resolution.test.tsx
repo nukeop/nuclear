@@ -11,7 +11,6 @@ import {
   createMockStream,
   StreamingProviderBuilder,
 } from '../test/builders/StreamingProviderBuilder';
-import { GIANT_STEPS } from '../test/fixtures/albums';
 import { AlbumWrapper } from '../views/Album/Album.test-wrapper';
 import { StreamResolutionWrapper } from './StreamResolution.test-wrapper';
 
@@ -43,13 +42,9 @@ describe('Stream Resolution Integration', () => {
   });
 
   const setupMetadataProvider = () => {
-    const metadataProvider = new MetadataProviderBuilder()
-      .withSearchCapabilities(['unified', 'albums'])
-      .withAlbumMetadataCapabilities(['albumDetails'])
-      .withFetchAlbumDetails(async () => GIANT_STEPS)
-      .build();
-
-    providersHost.register(metadataProvider);
+    providersHost.register(
+      MetadataProviderBuilder.albumDetailsProvider().build(),
+    );
   };
 
   describe('when adding tracks to queue', () => {

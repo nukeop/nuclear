@@ -25,11 +25,15 @@ export const SearchWrapper = {
       <App queryClientProp={queryClient} routerProp={router} />,
     );
 
-    const searchBox = await component.findByTestId('search-box');
-    await user.type(searchBox, query ?? 'test');
-    await user.keyboard('{Enter}');
-    await screen.findByTestId('search-view');
+    await this.search(query ?? 'test');
 
     return component;
+  },
+
+  async search(query: string) {
+    const searchBox = await screen.findByTestId('search-box');
+    await user.type(searchBox, query);
+    await user.keyboard('{Enter}');
+    await screen.findByTestId('search-view');
   },
 };

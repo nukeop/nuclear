@@ -1,4 +1,8 @@
-import { createMemoryHistory, createRouter } from '@tanstack/react-router';
+import {
+  createMemoryHistory,
+  createRouter,
+  type RouterHistory,
+} from '@tanstack/react-router';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 
 import { createSelectWrapper } from '@nuclearplayer/ui';
@@ -7,12 +11,12 @@ import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
 
 export const SourcesWrapper = {
-  async mount(): Promise<RenderResult> {
+  async mount(): Promise<RenderResult & { history: RouterHistory }> {
     const history = createMemoryHistory({ initialEntries: ['/sources'] });
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('sources-view');
-    return component;
+    return { ...component, history };
   },
 
   section(kind: string) {
