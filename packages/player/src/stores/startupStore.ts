@@ -11,7 +11,7 @@ type StartupState = {
 };
 
 export const useStartupStore = create<StartupState>((set) => ({
-  isStartingUp: false,
+  isStartingUp: true,
   startupFinishedAt: undefined,
   totalStartupTimeMs: undefined,
   pluginDurations: {},

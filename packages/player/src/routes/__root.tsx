@@ -29,9 +29,11 @@ import { ConnectedTopBar } from '../components/ConnectedTopBar';
 import { DevTools } from '../components/DevTools';
 import { FlatpakWarningBanner } from '../components/FlatpakWarningBanner';
 import { SoundProvider } from '../components/SoundProvider';
+import { StreamResolver } from '../components/StreamResolver';
 import { GlobalShortcuts } from '../shortcuts';
 import { useLayoutStore } from '../stores/layoutStore';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
+import { useStartupStore } from '../stores/startupStore';
 
 const RootComponent = () => {
   const { t } = useTranslation('navigation');
@@ -45,6 +47,7 @@ const RootComponent = () => {
     setRightSidebarWidth,
   } = useLayoutStore();
   const openSettings = useSettingsModalStore((state) => state.open);
+  const isStartingUp = useStartupStore((state) => state.isStartingUp);
 
   return (
     <PlayerShell>
@@ -53,6 +56,7 @@ const RootComponent = () => {
         <FlatpakWarningBanner />
         <ConnectedTopBar />
       </div>
+      {!isStartingUp && <StreamResolver />}
       <SoundProvider>
         <PlayerWorkspace>
           <PlayerWorkspace.LeftSidebar

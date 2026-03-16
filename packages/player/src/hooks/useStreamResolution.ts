@@ -144,7 +144,11 @@ const resolveStreamWithFallback = async (
   return tryNext(candidates);
 };
 
-const resolveAndPlay = async (item: QueueItem, t: TFunction): Promise<void> => {
+const resolveStream = async (
+  item: QueueItem,
+  t: TFunction,
+  autoPlay: boolean,
+): Promise<void> => {
   activeController?.abort();
   activeController = new AbortController();
   const { signal } = activeController;
@@ -152,7 +156,9 @@ const resolveAndPlay = async (item: QueueItem, t: TFunction): Promise<void> => {
   const { updateItemState } = useQueueStore.getState();
   const { setSrc, play, stop } = useSoundStore.getState();
 
-  stop();
+  if (autoPlay) {
+    stop();
+  }
   updateItemState(item.id, { status: 'loading', error: undefined });
 
   const candidates = await resolveCandidates(item.track);
@@ -180,27 +186,33 @@ const resolveAndPlay = async (item: QueueItem, t: TFunction): Promise<void> => {
   }
 
   setSrc(await buildAudioSource(resolvedCandidate));
-  play();
+  if (autoPlay) {
+    play();
+  }
 };
 
 export const useStreamResolution = (): void => {
   const { t } = useTranslation('streaming');
   const currentItemIdRef = useRef<string | null>(null);
+  const isFirstResolutionRef = useRef(true);
 
   useEffect(() => {
-    const handleItemChange = (currentItem: QueueItem | undefined): void => {
+    const onCurrentItemChanged = (currentItem: QueueItem | undefined): void => {
       if (!currentItem || currentItem.id === currentItemIdRef.current) {
         return;
       }
+
+      const autoPlay = !isFirstResolutionRef.current;
+      isFirstResolutionRef.current = false;
       currentItemIdRef.current = currentItem.id;
-      void resolveAndPlay(currentItem, t);
+      void resolveStream(currentItem, t, autoPlay);
     };
 
     const unsubscribe = useQueueStore.subscribe((state) => {
-      handleItemChange(state.getCurrentItem());
+      onCurrentItemChanged(state.getCurrentItem());
     });
 
-    handleItemChange(useQueueStore.getState().getCurrentItem());
+    onCurrentItemChanged(useQueueStore.getState().getCurrentItem());
 
     return unsubscribe;
   }, [t]);

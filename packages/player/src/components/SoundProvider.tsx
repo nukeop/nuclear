@@ -4,13 +4,11 @@ import { useCallback, useEffect } from 'react';
 import { Sound, Volume } from '@nuclearplayer/hifi';
 
 import { useCoreSetting } from '../hooks/useCoreSetting';
-import { useStreamResolution } from '../hooks/useStreamResolution';
 import { eventBus } from '../services/eventBus';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 
 export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
-  useStreamResolution();
   const { src, status, seek } = useSoundStore();
   const [crossfadeMs] = useCoreSetting<number>('playback.crossfadeMs');
   const preload: HTMLAudioElement['preload'] = 'auto';

@@ -118,14 +118,20 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
     const sanitizedIndex =
       currentIndex >= 0 && currentIndex < items.length ? currentIndex : 0;
 
+    const resetItems = items.map((item) => ({
+      ...item,
+      status: 'idle' as const,
+      error: undefined,
+    }));
+
     set({
-      items,
+      items: resetItems,
       currentIndex: sanitizedIndex,
       isReady: true,
       isLoading: false,
     });
 
-    Logger.queue.info(`Loaded ${items.length} items from disk`);
+    Logger.queue.info(`Loaded ${resetItems.length} items from disk`);
   },
 
   addToQueue: withPersistence((tracks: Track[]) => {

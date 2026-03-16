@@ -5,6 +5,7 @@ import { providersHost } from '../services/providersHost';
 import { useQueueStore } from '../stores/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
+import { useStartupStore } from '../stores/startupStore';
 import { MetadataProviderBuilder } from '../test/builders/MetadataProviderBuilder';
 import {
   createMockCandidate,
@@ -37,6 +38,7 @@ describe('Stream Resolution Integration', () => {
 
     useSettingsStore.getState().setValue('playback.streamExpiryMs', 3600000);
     useSettingsStore.getState().setValue('playback.streamResolutionRetries', 1);
+    useStartupStore.setState({ isStartingUp: false });
 
     providersHost.clear();
   });
