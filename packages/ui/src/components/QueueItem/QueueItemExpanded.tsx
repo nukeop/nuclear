@@ -44,7 +44,7 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
       <div
         data-testid="queue-item-thumbnail"
         className={cn(
-          'bg-background flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-sm',
+          'bg-background flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-sm',
           classes?.thumbnail,
         )}
       >
@@ -71,10 +71,7 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
         </div>
         <div
           data-testid="queue-item-artist"
-          className={cn(
-            'text-foreground-secondary truncate text-xs',
-            classes?.artist,
-          )}
+          className={cn('text-foreground truncate text-xs', classes?.artist)}
         >
           {primaryArtist}
         </div>
@@ -92,12 +89,12 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
         )}
       </div>
 
-      <div className="relative flex flex-shrink-0 items-center">
+      <div className="relative flex shrink-0 items-center justify-start">
         {duration && (
           <div
             data-testid="queue-item-duration"
             className={cn(
-              'text-foreground-secondary text-sm tabular-nums',
+              'text-foreground mr-4 text-sm tabular-nums',
               classes?.duration,
             )}
           >
