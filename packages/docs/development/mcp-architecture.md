@@ -87,7 +87,7 @@ The `typeRegistry` in `typeRegistry.ts` maps type names (like `"Track"`, `"Queue
 
 ## How to add a new domain
 
-1. Create the Host interface, host implementation, and API class following the standard plugin SDK pattern (see [adding new domains](../plugin-sdk/adding-domains.md)).
+1. Create the host interface, host implementation, and API class following the [host pattern](host-pattern.md).
 2. Create a `yourdomain.meta.ts` file in `packages/plugin-sdk/src/mcp/` exporting a `DomainMeta`.
 3. Import and register it in the `apiMeta` object in `packages/plugin-sdk/src/mcp/meta.ts`.
 4. Update the domain list in the `list_methods` tool description string in `packages/player/src-tauri/src/mcp/tools.rs`. This is the only Rust change needed when adding a domain.
