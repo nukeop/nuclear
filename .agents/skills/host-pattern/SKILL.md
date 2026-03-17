@@ -5,12 +5,13 @@ description: Use when adding a new domain to Nuclear's plugin system, or impleme
 
 # Host pattern
 
-A host is an object the player creates and passes into each plugin. It gives plugins a typed interface into player functionality without exposing internals. Every feature area follows the same structure.
+Every feature area follows the same three-layer structure:
 
-```
-SDK: host interface (type) + API class (wrapper)
-Player: host implements the interface, passed into NuclearAPI constructor
-```
+1. Host type - the contract (SDK, no implementation)
+2. API class - what plugins actually call (SDK, wraps the host)
+3. Host implementation - bridges the API to player internals (player)
+
+Plugins call methods on an API class (e.g. `api.Queue.addToQueue()`), which holds a reference to the host and delegates to it. Plugins never touch a host directly.
 
 ## Files to create/modify
 
@@ -35,7 +36,7 @@ If the domain needs shared model types: create `packages/model/src/yourDomain.ts
 
 ## API class pattern
 
-Every API class follows this structure. The local variable binding before the null check is required — TypeScript doesn't narrow private class fields across statements.
+Every API class follows this structure.
 
 ```typescript
 // packages/plugin-sdk/src/api/yourDomain.ts
@@ -122,7 +123,7 @@ export const createYourDomainHost = (): YourDomainHost => ({
 });
 ```
 
-**Fan-out** (aggregate across all providers — dashboard):
+**Fan-out** (aggregate across all providers - dashboard):
 
 ```typescript
 export const createYourDomainHost = (): YourDomainHost => ({
