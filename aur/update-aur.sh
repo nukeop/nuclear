@@ -26,7 +26,13 @@ export SHA256SUM=$(curl -fSL "${DEB_URL}" | sha256sum | cut -d' ' -f1)
 rm -rf "${WORK_DIR}"
 mkdir -p "${WORK_DIR}"
 envsubst '$PKGVER $SHA256SUM' < "${TEMPLATE}" > "${WORK_DIR}/PKGBUILD"
-(cd "${WORK_DIR}" && makepkg --printsrcinfo > .SRCINFO)
+if [[ "$(id -u)" -eq 0 ]]; then
+    useradd -m builduser 2>/dev/null || true
+    chown -R builduser "${WORK_DIR}"
+    su builduser -c "cd ${WORK_DIR} && makepkg --printsrcinfo > .SRCINFO"
+else
+    (cd "${WORK_DIR}" && makepkg --printsrcinfo > .SRCINFO)
+fi
 
 if [[ "${DRY_RUN}" == true ]]; then
     cat "${WORK_DIR}/PKGBUILD"
