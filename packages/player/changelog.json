@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-03-18T00:00",
+    "description": "AUR packages are now automatically updated when a new release is published",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Linux",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-03-16T00:00",
     "description": "Fixed a console window briefly appearing on Windows each time yt-dlp was invoked",
     "type": "fix",

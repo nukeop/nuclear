@@ -26,17 +26,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Set up SSH for AUR
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.AUR_SSH_KEY }}" > ~/.ssh/aur
-          chmod 600 ~/.ssh/aur
-          echo "${{ secrets.AUR_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
-          cat >> ~/.ssh/config <<EOF
-          Host aur.archlinux.org
-            IdentityFile ~/.ssh/aur
-            User aur
-          EOF
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.AUR_SSH_KEY }}
+          known_hosts: ${{ secrets.AUR_KNOWN_HOSTS }}
 
       - name: Update nuclear-player-bin
         run: |
