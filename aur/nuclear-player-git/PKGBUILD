@@ -16,7 +16,7 @@ optdepends=(
     'gst-plugins-ugly: Patented codec support'
     'gst-libav: FFmpeg-based codec support'
 )
-makedepends=('git' 'cargo' 'pnpm' 'nodejs>=24' 'openssl' 'libappindicator-gtk3' 'librsvg' 'appmenu-gtk-module')
+makedepends=('git' 'cargo' 'nodejs' 'openssl' 'libappindicator-gtk3' 'librsvg')
 source=("${pkgname}::git+https://github.com/nukeop/nuclear.git")
 sha256sums=('SKIP')
 
@@ -29,7 +29,9 @@ pkgver() {
 
 prepare() {
     cd "${pkgname}"
-    pnpm install --frozen-lockfile
+    corepack enable
+    corepack prepare pnpm@latest --activate
+    pnpm install
     cd packages/player/src-tauri
     cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
 }

@@ -10,6 +10,7 @@ url='https://nuclearplayer.com'
 license=('AGPL-3.0-only')
 provides=('nuclear-player')
 conflicts=('nuclear-player' 'nuclear-player-git')
+options=('!strip' '!debug')
 depends=('webkit2gtk-4.1' 'gtk3' 'hicolor-icon-theme' 'gst-plugins-base' 'gst-plugins-good')
 optdepends=(
     'gst-plugins-bad: Additional media codec support'
