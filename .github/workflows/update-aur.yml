@@ -1,0 +1,49 @@
+name: Update AUR
+
+on:
+  workflow_run:
+    workflows: ["Release Player"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., 1.23.2)"
+        required: true
+
+jobs:
+  update-aur:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+
+    steps:
+      - name: Install dependencies
+        run: pacman -Syu --noconfirm base-devel git openssh curl
+
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up SSH for AUR
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.AUR_SSH_KEY }}" > ~/.ssh/aur
+          chmod 600 ~/.ssh/aur
+          echo "${{ secrets.AUR_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          cat >> ~/.ssh/config <<EOF
+          Host aur.archlinux.org
+            IdentityFile ~/.ssh/aur
+            User aur
+          EOF
+
+      - name: Update AUR package
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            TAG="${{ github.event.workflow_run.head_branch }}"
+            VERSION="${TAG#player@}"
+          fi
+          ./aur/update-aur.sh --version "${VERSION}"
