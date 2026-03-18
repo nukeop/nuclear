@@ -11,7 +11,7 @@ on:
         required: true
 
 jobs:
-  update-aur:
+  update-bin:
     if: >-
       github.event_name == 'workflow_dispatch' ||
       github.event.workflow_run.conclusion == 'success'
@@ -38,7 +38,7 @@ jobs:
             User aur
           EOF
 
-      - name: Update AUR package
+      - name: Update nuclear-player-bin
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             VERSION="${{ github.event.inputs.version }}"
