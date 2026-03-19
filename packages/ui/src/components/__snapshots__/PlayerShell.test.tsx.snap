@@ -72,7 +72,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-r-(length:--border-width)"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -123,7 +123,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
       />
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-l-(length:--border-width)"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span

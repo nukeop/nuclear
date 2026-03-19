@@ -55,7 +55,11 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
             className="h-full w-full object-cover"
           />
         ) : (
-          <Music size={32} className="text-foreground-secondary" />
+          <Music
+            size={32}
+            absoluteStrokeWidth
+            className="text-foreground opacity-20"
+          />
         )}
       </div>
 

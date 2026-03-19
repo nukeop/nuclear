@@ -103,7 +103,7 @@ export const QueuePanel: FC<QueuePanelProps> = ({
           <div
             className={cn(
               'flex flex-col',
-              isCollapsed ? 'gap-2 p-2' : 'gap-1 p-2',
+              isCollapsed ? 'items-center gap-1 px-1' : 'gap-1',
               classes?.list,
             )}
           >

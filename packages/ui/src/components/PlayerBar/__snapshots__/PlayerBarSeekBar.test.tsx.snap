@@ -13,12 +13,12 @@ exports[`PlayerBarSeekBar > (Snapshot) default render 1`] = `
         class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
       >
         <span
-          class="text-foreground-secondary tabular-nums"
+          class="text-foreground tabular-nums"
         >
           1:37
         </span>
         <span
-          class="text-foreground-secondary tabular-nums"
+          class="text-foreground tabular-nums"
         >
           -21:37
         </span>

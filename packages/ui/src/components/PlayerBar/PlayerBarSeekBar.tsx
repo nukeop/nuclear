@@ -41,10 +41,10 @@ export const PlayerBarSeekBar: FC<PlayerSeekBarProps> = ({
         aria-disabled={isLoading}
       >
         <div className="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none">
-          <span className="text-foreground-secondary tabular-nums">
+          <span className="text-foreground tabular-nums">
             {formatTimeSeconds(elapsedSeconds)}
           </span>
-          <span className="text-foreground-secondary tabular-nums">
+          <span className="text-foreground tabular-nums">
             {formatTimeSeconds(-Math.abs(remainingSeconds))}
           </span>
         </div>

@@ -118,7 +118,7 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
             style="scrollbar-width: none;"
           >
             <div
-              class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4"
+              class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4"
               role="grid"
             >
               <button

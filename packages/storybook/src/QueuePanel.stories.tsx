@@ -162,7 +162,7 @@ export const InSidebarWidth: Story = {
 
 export const InNarrowSidebarCollapsed: Story = {
   render: (args) => (
-    <div className="h-screen w-20">
+    <div className="h-screen w-[54px] p-2">
       <QueuePanel {...args} />
     </div>
   ),

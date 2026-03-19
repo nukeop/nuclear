@@ -63,7 +63,7 @@ exports[`Playlists view > renders playlist cards when playlists exist 1`] = `
         Rock Classics
       </div>
       <div
-        class="text-foreground-secondary truncate text-xs"
+        class="text-foreground truncate text-xs opacity-60"
       >
         10 tracks
       </div>
@@ -130,7 +130,7 @@ exports[`Playlists view > renders playlist cards when playlists exist 1`] = `
         Chill Vibes
       </div>
       <div
-        class="text-foreground-secondary truncate text-xs"
+        class="text-foreground truncate text-xs opacity-60"
       >
         8 tracks
       </div>

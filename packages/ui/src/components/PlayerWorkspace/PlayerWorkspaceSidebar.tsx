@@ -49,10 +49,11 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
     <motion.div
       ref={sidebarRef}
       className={cn(
-        'bg-background-secondary border-border relative flex flex-col overflow-hidden p-2',
+        'bg-background-secondary border-border relative flex flex-col overflow-hidden',
         {
           'border-r-(length:--border-width)': side === 'left',
           'border-l-(length:--border-width)': side === 'right',
+          'p-2': !isCollapsed,
         },
         className,
       )}
@@ -79,6 +80,7 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
           className={cn('top-2 px-2', {
             'right-1': side === 'left',
             'left-1': side === 'right',
+            'mx-1 mt-2': side === 'right' && isCollapsed,
           })}
           size="icon"
           onClick={onToggle}

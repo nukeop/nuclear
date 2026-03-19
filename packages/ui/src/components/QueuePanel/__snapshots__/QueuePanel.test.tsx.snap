@@ -60,7 +60,7 @@ exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
       style="scrollbar-width: none;"
     >
       <div
-        class="flex flex-col gap-2 p-2"
+        class="flex flex-col items-center gap-1 px-1"
       >
         <div
           aria-describedby="DndDescribedBy-1"
@@ -75,10 +75,10 @@ exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
             data-testid="queue-item"
           >
             <div
-              class="pointer-events-none absolute -top-0.75 -left-0.75 h-17.5 w-17.5 rounded-md transition-all bg-primary"
+              class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all bg-primary"
             />
             <div
-              class="border-border text-foreground rounded-md border-(length:--border-width) shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all bg-primary h-16 w-16 justify-center p-0"
+              class="border-border text-foreground rounded-md border-(length:--border-width) shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all bg-primary h-9 w-9 justify-center p-0"
               role="button"
             >
               <img
@@ -102,10 +102,10 @@ exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
             data-testid="queue-item"
           >
             <div
-              class="pointer-events-none absolute -top-0.75 -left-0.75 h-17.5 w-17.5 rounded-md transition-all"
+              class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all"
             />
             <div
-              class="border-border text-foreground rounded-md border-(length:--border-width) bg-background-secondary shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all h-16 w-16 justify-center p-0"
+              class="border-border text-foreground rounded-md border-(length:--border-width) bg-background-secondary shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all h-9 w-9 justify-center p-0"
               role="button"
             >
               <img
@@ -129,10 +129,10 @@ exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
             data-testid="queue-item"
           >
             <div
-              class="pointer-events-none absolute -top-0.75 -left-0.75 h-17.5 w-17.5 rounded-md transition-all"
+              class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all"
             />
             <div
-              class="border-border text-foreground rounded-md border-(length:--border-width) bg-background-secondary shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all opacity-70 h-16 w-16 justify-center p-0"
+              class="border-border text-foreground rounded-md border-(length:--border-width) bg-background-secondary shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all opacity-70 h-9 w-9 justify-center p-0"
               role="button"
             >
               <img
@@ -182,7 +182,7 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
       style="scrollbar-width: none;"
     >
       <div
-        class="flex flex-col gap-1 p-2"
+        class="flex flex-col gap-1"
       >
         <div
           aria-describedby="DndDescribedBy-0"

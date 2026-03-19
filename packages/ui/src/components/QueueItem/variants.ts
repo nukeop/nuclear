@@ -15,7 +15,7 @@ export const queueItemVariants = cva(
         false: '',
       },
       isCollapsed: {
-        true: 'h-16 w-16 justify-center p-0',
+        true: 'h-9 w-9 justify-center p-0',
         false: 'w-full p-0',
       },
     },

@@ -21,7 +21,7 @@ export const QueueItemCollapsed: FC<QueueItemProps> = ({
     <div className="relative" data-testid="queue-item">
       <div
         className={cn(
-          'pointer-events-none absolute -top-0.75 -left-0.75 h-17.5 w-17.5 rounded-md transition-all',
+          'pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all',
           isCurrent && 'bg-primary',
           status === 'error' && 'bg-accent-red',
         )}
@@ -43,7 +43,7 @@ export const QueueItemCollapsed: FC<QueueItemProps> = ({
             className={cn('h-full w-full object-cover', classes?.thumbnail)}
           />
         ) : (
-          <Music size={24} className="text-foreground-secondary" />
+          <Music size={16} className="text-foreground opacity-20" />
         )}
 
         {status === 'loading' && (

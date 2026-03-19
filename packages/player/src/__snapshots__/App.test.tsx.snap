@@ -135,7 +135,7 @@ exports[`App > should render snapshot 1`] = `
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-r-(length:--border-width)"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -613,7 +613,7 @@ exports[`App > should render snapshot 1`] = `
       </main>
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-l-(length:--border-width)"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -718,12 +718,12 @@ exports[`App > should render snapshot 1`] = `
           class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
         >
           <span
-            class="text-foreground-secondary tabular-nums"
+            class="text-foreground tabular-nums"
           >
             0:00
           </span>
           <span
-            class="text-foreground-secondary tabular-nums"
+            class="text-foreground tabular-nums"
           >
             0:00
           </span>

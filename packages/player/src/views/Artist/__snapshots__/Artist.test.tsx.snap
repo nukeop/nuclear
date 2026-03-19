@@ -135,7 +135,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-r-(length:--border-width)"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -934,7 +934,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                   </div>
                 </div>
                 <div
-                  class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 mx-4"
+                  class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4 mx-4"
                   role="grid"
                 >
                   <button
@@ -1009,7 +1009,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                         Hello World LP
                       </div>
                       <div
-                        class="text-foreground-secondary truncate text-xs"
+                        class="text-foreground truncate text-xs opacity-60"
                       >
                         Test Artist
                       </div>
@@ -1023,7 +1023,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
       </main>
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-l-(length:--border-width)"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -1128,12 +1128,12 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
           class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
         >
           <span
-            class="text-foreground-secondary tabular-nums"
+            class="text-foreground tabular-nums"
           >
             0:00
           </span>
           <span
-            class="text-foreground-secondary tabular-nums"
+            class="text-foreground tabular-nums"
           >
             0:00
           </span>
@@ -1617,7 +1617,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-r-(length:--border-width)"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -2578,7 +2578,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                   </div>
                 </div>
                 <div
-                  class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 px-4"
+                  class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pb-4 px-4"
                   role="grid"
                 >
                   <button
@@ -2662,7 +2662,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
       </main>
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden p-2 border-l-(length:--border-width)"
+        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -2767,12 +2767,12 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
           class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
         >
           <span
-            class="text-foreground-secondary tabular-nums"
+            class="text-foreground tabular-nums"
           >
             0:00
           </span>
           <span
-            class="text-foreground-secondary tabular-nums"
+            class="text-foreground tabular-nums"
           >
             0:00
           </span>

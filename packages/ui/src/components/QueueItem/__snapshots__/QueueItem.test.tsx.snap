@@ -6,10 +6,10 @@ exports[`QueueItem > (Snapshot) renders collapsed state 1`] = `
   data-testid="queue-item"
 >
   <div
-    class="pointer-events-none absolute -top-0.75 -left-0.75 h-17.5 w-17.5 rounded-md transition-all"
+    class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all"
   />
   <div
-    class="border-border text-foreground rounded-md border-(length:--border-width) bg-background-secondary shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all h-16 w-16 justify-center p-0"
+    class="border-border text-foreground rounded-md border-(length:--border-width) bg-background-secondary shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all h-9 w-9 justify-center p-0"
     role="button"
   >
     <img
@@ -27,10 +27,10 @@ exports[`QueueItem > (Snapshot) renders collapsed state without onSelect 1`] = `
   data-testid="queue-item"
 >
   <div
-    class="pointer-events-none absolute -top-0.75 -left-0.75 h-17.5 w-17.5 rounded-md transition-all"
+    class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all"
   />
   <div
-    class="border-border text-foreground rounded-md border-(length:--border-width) bg-background-secondary shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all h-16 w-16 justify-center p-0"
+    class="border-border text-foreground rounded-md border-(length:--border-width) bg-background-secondary shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all h-9 w-9 justify-center p-0"
   >
     <img
       alt="Bohemian Rhapsody"

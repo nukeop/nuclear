@@ -3,7 +3,7 @@
 exports[`Card grid > (Snapshot) Renders correctly 1`] = `
 <div>
   <div
-    class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4"
+    class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4"
     role="grid"
   >
     <button
@@ -78,7 +78,7 @@ exports[`Card grid > (Snapshot) Renders correctly 1`] = `
           Test album
         </div>
         <div
-          class="text-foreground-secondary truncate text-xs"
+          class="text-foreground truncate text-xs opacity-60"
         >
           Test artist
         </div>
