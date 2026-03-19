@@ -11,6 +11,8 @@
   Runs on Windows, macOS, and Linux.
 </p>
 
+[![Nuclear MCP server](https://glama.ai/mcp/servers/nukeop/nuclear/badges/card.svg)](https://glama.ai/mcp/servers/nukeop/nuclear)
+
 ## Screenshots
 
 <p align="center">
