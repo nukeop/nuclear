@@ -84,6 +84,7 @@ export function TrackTable<T extends Track = Track>({
     getSortedRowModel: getSortedRowModel(),
     meta: {
       displayQueueControls: resolvedDisplay.displayQueueControls,
+      onPlayNow: actions?.onPlayNow,
       onAddToQueue: actions?.onAddToQueue,
       onToggleFavorite: actions?.onToggleFavorite,
       onRemove: actions?.onRemove,
@@ -174,6 +175,7 @@ export function TrackTable<T extends Track = Track>({
                   itemId={getItemId(row.original, row.index)}
                   style={{ height: rowHeight }}
                   isReorderable={isReorderable}
+                  onDoubleClick={actions?.onPlayNow}
                   data-index={virtual.index}
                 />
               )}

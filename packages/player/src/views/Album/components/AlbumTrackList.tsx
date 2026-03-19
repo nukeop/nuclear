@@ -1,10 +1,12 @@
-import { FC, useMemo } from 'react';
+import { ListPlus, Play } from 'lucide-react';
+import { FC, useCallback, useMemo } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { Track, TrackRef } from '@nuclearplayer/model';
-import { Loader } from '@nuclearplayer/ui';
+import { Button, Loader } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../../components/ConnectedTrackTable';
+import { useQueueActions } from '../../../hooks/useQueueActions';
 import { useAlbumDetails } from '../hooks/useAlbumDetails';
 
 const mapTrackRefs = (refs: TrackRef[]): Track[] => {
@@ -24,6 +26,7 @@ export const AlbumTrackList: FC<AlbumTrackListProps> = ({
   albumId,
 }) => {
   const { t } = useTranslation('album');
+  const { playNow, addToQueue } = useQueueActions();
   const {
     data: album,
     isLoading,
@@ -34,6 +37,21 @@ export const AlbumTrackList: FC<AlbumTrackListProps> = ({
     () => (album?.tracks ? mapTrackRefs(album.tracks) : []),
     [album?.tracks],
   );
+
+  const handlePlayAll = useCallback(() => {
+    if (tracks.length > 0) {
+      playNow(tracks[0]);
+      if (tracks.length > 1) {
+        addToQueue(tracks.slice(1));
+      }
+    }
+  }, [tracks, playNow, addToQueue]);
+
+  const handleAddAllToQueue = useCallback(() => {
+    if (tracks.length > 0) {
+      addToQueue(tracks);
+    }
+  }, [tracks, addToQueue]);
 
   if (isLoading) {
     return (
@@ -60,10 +78,37 @@ export const AlbumTrackList: FC<AlbumTrackListProps> = ({
   );
 
   return (
-    <ConnectedTrackTable
-      tracks={tracks}
-      features={{ filterable: false }}
-      display={{ displayDuration: albumHasDuration, displayThumbnail: false }}
-    />
+    <>
+      <div className="mb-3 flex gap-2">
+        <Button
+          variant="default"
+          size="sm"
+          onClick={handlePlayAll}
+          data-testid="play-all-button"
+        >
+          <Play size={14} />
+          Play All
+        </Button>
+        <Button
+          variant="text"
+          size="sm"
+          onClick={handleAddAllToQueue}
+          data-testid="add-all-to-queue-button"
+        >
+          <ListPlus size={14} />
+          Add All to Queue
+        </Button>
+      </div>
+      <ConnectedTrackTable
+        tracks={tracks}
+        features={{ filterable: false }}
+        display={{
+          displayDuration: albumHasDuration,
+          displayThumbnail: false,
+          displayQueueControls: true,
+          displayPosition: true,
+        }}
+      />
+    </>
   );
 };

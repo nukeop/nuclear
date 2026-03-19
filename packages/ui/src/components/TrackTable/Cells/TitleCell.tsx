@@ -1,5 +1,5 @@
 import { CellContext } from '@tanstack/react-table';
-import { EllipsisVertical, Plus } from 'lucide-react';
+import { EllipsisVertical, Play, Plus } from 'lucide-react';
 import { FC, forwardRef } from 'react';
 
 import { Track } from '@nuclearplayer/model';
@@ -10,14 +10,31 @@ import { ContextMenuWrapperProps } from '../types';
 type TitleCellMeta = {
   displayQueueControls?: boolean;
   onAddToQueue?: (track: Track) => void;
+  onPlayNow?: (track: Track) => void;
   ContextMenuWrapper?: FC<ContextMenuWrapperProps>;
 };
 
-type AddToQueueButtonProps = {
+type TrackActionButtonProps = {
   onClick: () => void;
 };
 
-const AddToQueueButton: FC<AddToQueueButtonProps> = ({ onClick }) => (
+const PlayNowButton: FC<TrackActionButtonProps> = ({ onClick }) => (
+  <Button
+    data-testid="play-now-button"
+    size="icon-sm"
+    variant="text"
+    className="opacity-0 transition-none group-hover:opacity-100"
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick();
+    }}
+    aria-label="Play now"
+  >
+    <Play size={14} />
+  </Button>
+);
+
+const AddToQueueButton: FC<TrackActionButtonProps> = ({ onClick }) => (
   <Button
     data-testid="add-to-queue-button"
     size="icon-sm"
@@ -61,9 +78,10 @@ export const TitleCell = <T extends Track>({
   const showControls = meta?.displayQueueControls;
   const ContextMenuWrapper = meta?.ContextMenuWrapper;
   const track = row.original;
+  const hasPlayNow = Boolean(meta?.onPlayNow);
   const hasAddToQueue = Boolean(meta?.onAddToQueue);
   const hasContextMenu = Boolean(ContextMenuWrapper);
-  const hasActions = hasAddToQueue || hasContextMenu;
+  const hasActions = hasPlayNow || hasAddToQueue || hasContextMenu;
 
   return (
     <td className="cursor-default truncate px-2">
@@ -71,6 +89,9 @@ export const TitleCell = <T extends Track>({
         <div className="min-w-0 flex-1 truncate">{getValue()}</div>
         {showControls && hasActions && (
           <div className="flex items-center gap-1">
+            {hasPlayNow && (
+              <PlayNowButton onClick={() => meta?.onPlayNow?.(track)} />
+            )}
             {hasAddToQueue && (
               <AddToQueueButton onClick={() => meta?.onAddToQueue?.(track)} />
             )}

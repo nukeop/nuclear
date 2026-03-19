@@ -10,6 +10,7 @@ type SortableRowProps<T extends Track = Track> = {
   row: Row<T>;
   itemId: string;
   isReorderable?: boolean;
+  onDoubleClick?: (track: T) => void;
   style?: React.CSSProperties;
 };
 
@@ -17,6 +18,7 @@ export function SortableRow<T extends Track = Track>({
   row,
   itemId,
   isReorderable = false,
+  onDoubleClick,
   style: externalStyle,
 }: SortableRowProps<T>) {
   const {
@@ -48,8 +50,12 @@ export function SortableRow<T extends Track = Track>({
           '': !isDragging,
           'z-50': isDragging,
           'cursor-grab': isReorderable,
+          'cursor-pointer': !isReorderable && Boolean(onDoubleClick),
         },
       )}
+      onDoubleClick={
+        onDoubleClick ? () => onDoubleClick(row.original) : undefined
+      }
       {...attributes}
       {...listeners}
     >
