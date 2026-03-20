@@ -1,6 +1,5 @@
 import { act } from '@testing-library/react';
 
-import { useSettingsModalStore } from '../../stores/settingsModalStore';
 import { useStartupStore } from '../../stores/startupStore';
 import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
 import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
@@ -25,9 +24,8 @@ describe('Dashboard view', () => {
 
     await DashboardWrapper.emptyStateAction.click();
 
-    const { isOpen, activeTab } = useSettingsModalStore.getState();
-    expect(isOpen).toBe(true);
-    expect(activeTab).toBe('plugins');
+    expect(await DashboardWrapper.settingsDialog()).toBeInTheDocument();
+    expect(await DashboardWrapper.pluginsHeading()).toBeInTheDocument();
   });
 
   it('renders tracks in a table when a provider supplies top tracks', async () => {

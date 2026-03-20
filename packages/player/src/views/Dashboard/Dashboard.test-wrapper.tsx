@@ -98,6 +98,14 @@ export const DashboardWrapper = {
     },
   },
 
+  async settingsDialog() {
+    return screen.findByRole('dialog');
+  },
+
+  async pluginsHeading() {
+    return screen.findByRole('heading', { name: 'Plugins' });
+  },
+
   topTracks: {
     get heading() {
       return screen.queryByRole('heading', { name: /top tracks/i });
