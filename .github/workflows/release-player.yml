@@ -121,14 +121,6 @@ jobs:
           prerelease: false
           args: ${{ matrix.args }}
 
-      - name: Upload .deb for Flatpak build
-        if: matrix.platform == 'ubuntu-22.04'
-        uses: actions/upload-artifact@v7
-        with:
-          name: linux-deb
-          path: packages/player/src-tauri/target/release/bundle/deb/*.deb
-          retention-days: 1
-
   flatpak:
     needs: release
     runs-on: ubuntu-latest
@@ -147,15 +139,19 @@ jobs:
           VERSION=${GITHUB_REF#refs/tags/player@}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Download .deb artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: linux-deb
-          path: flatpak/
+      - name: Install flatpak-node-generator
+        run: pip install git+https://github.com/flatpak/flatpak-builder-tools.git#subdirectory=node
 
-      - name: Prepare Flatpak build files
-        shell: bash
-        run: flatpak/prepare-build.sh flatpak/*.deb
+      - name: Download cargo generator
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/master/cargo/flatpak-cargo-generator.py \
+            -o /tmp/flatpak-cargo-generator.py
+
+      - name: Generate pnpm-sources.json
+        run: flatpak-node-generator pnpm -o flatpak/pnpm-sources.json pnpm-lock.yaml
+
+      - name: Generate cargo-sources.json
+        run: python3 /tmp/flatpak-cargo-generator.py packages/player/src-tauri/Cargo.lock -o flatpak/cargo-sources.json
 
       - name: Build Flatpak bundle
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
