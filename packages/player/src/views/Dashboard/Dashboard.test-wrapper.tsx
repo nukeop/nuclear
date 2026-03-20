@@ -89,6 +89,15 @@ export const DashboardWrapper = {
     return screen.queryByTestId('dashboard-empty-state');
   },
 
+  emptyStateAction: {
+    get element() {
+      return screen.queryByTestId('dashboard-empty-state-action');
+    },
+    async click() {
+      await userEvent.click(screen.getByTestId('dashboard-empty-state-action'));
+    },
+  },
+
   topTracks: {
     get heading() {
       return screen.queryByRole('heading', { name: /top tracks/i });

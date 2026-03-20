@@ -168,8 +168,9 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "empty-state": "No dashboard data available",
-    "empty-state-description": "Enable a plugin that provides dashboard content.",
+    "empty-state": "Welcome to Nuclear",
+    "empty-state-description": "Install a plugin to see top tracks, new releases, and recommendations here.",
+    "empty-state-action": "Browse plugins",
     "top-tracks": "Top Tracks",
     "top-artists": "Top Artists",
     "top-albums": "Top Albums",
@@ -187,6 +188,11 @@
     "tabs": {
       "installed": "Installed",
       "store": "Store"
+    },
+    "installed": {
+      "empty-state": "No plugins installed",
+      "empty-state-description": "Browse the plugin store to find streaming, metadata, and other plugins.",
+      "empty-state-action": "Go to store"
     },
     "store": {
       "searchPlaceholder": "Search plugins...",

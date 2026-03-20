@@ -37,7 +37,7 @@ exports[`FavoriteAlbums view > (Snapshot) renders empty state 1`] = `
               data-testid="empty-state"
             >
               <div
-                class="text-foreground-secondary"
+                class="text-foreground"
               >
                 <svg
                   aria-hidden="true"
@@ -79,7 +79,7 @@ exports[`FavoriteAlbums view > (Snapshot) renders empty state 1`] = `
                   No favorite albums yet
                 </h3>
                 <p
-                  class="text-foreground-secondary text-sm"
+                  class="text-foreground text-sm opacity-60"
                 >
                   Albums you mark as favorites will appear here
                 </p>

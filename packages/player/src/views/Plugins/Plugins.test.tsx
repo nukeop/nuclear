@@ -27,6 +27,25 @@ describe('Plugins view', () => {
     expect(component).toMatchSnapshot();
   });
 
+  it('shows empty state when no plugins are installed', async () => {
+    await PluginsWrapper.mount();
+
+    expect(PluginsWrapper.installedEmptyState).toBeInTheDocument();
+    expect(PluginsWrapper.installedEmptyState).toHaveTextContent(
+      'No plugins installed',
+    );
+  });
+
+  it('switches to the Store tab when the empty state action is clicked', async () => {
+    await PluginsWrapper.mount();
+
+    await PluginsWrapper.installedEmptyStateAction.click();
+
+    expect(
+      screen.getByRole('tab', { name: 'Store', selected: true }),
+    ).toBeInTheDocument();
+  });
+
   it('adds a plugin and enables it', async () => {
     PluginDialogMock.setOpen('/path/to/plugin');
 

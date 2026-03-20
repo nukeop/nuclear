@@ -2,7 +2,9 @@ import { LayoutDashboard } from 'lucide-react';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { EmptyState } from '@nuclearplayer/ui';
+import { Button, EmptyState } from '@nuclearplayer/ui';
+
+import { useSettingsModalStore } from '../../../stores/settingsModalStore';
 
 export const DashboardEmptyState: FC = () => {
   const { t } = useTranslation('dashboard');
@@ -14,6 +16,14 @@ export const DashboardEmptyState: FC = () => {
       title={t('empty-state')}
       description={t('empty-state-description')}
       className="flex-1"
+      action={
+        <Button
+          data-testid="dashboard-empty-state-action"
+          onClick={() => useSettingsModalStore.getState().open('plugins')}
+        >
+          {t('empty-state-action')}
+        </Button>
+      }
     />
   );
 };

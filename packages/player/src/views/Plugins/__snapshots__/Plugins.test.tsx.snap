@@ -527,15 +527,62 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
                               </button>
                             </div>
                             <div
-                              class="relative h-full w-full flex-1 overflow-hidden"
+                              class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+                              data-testid="installed-plugins-empty-state"
                             >
                               <div
-                                class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
-                                style="scrollbar-width: none;"
+                                class="text-foreground"
                               >
-                                <div
-                                  class="flex flex-col gap-4 overflow-visible px-2 py-2"
-                                />
+                                <svg
+                                  aria-hidden="true"
+                                  class="lucide lucide-package"
+                                  fill="none"
+                                  height="48"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  viewBox="0 0 24 24"
+                                  width="48"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"
+                                  />
+                                  <path
+                                    d="M12 22V12"
+                                  />
+                                  <polyline
+                                    points="3.29 7 12 12 20.71 7"
+                                  />
+                                  <path
+                                    d="m7.5 4.27 9 5.15"
+                                  />
+                                </svg>
+                              </div>
+                              <div
+                                class="flex flex-col gap-1"
+                              >
+                                <h3
+                                  class="text-foreground text-lg font-bold"
+                                >
+                                  No plugins installed
+                                </h3>
+                                <p
+                                  class="text-foreground text-sm opacity-60"
+                                >
+                                  Browse the plugin store to find streaming, metadata, and other plugins.
+                                </p>
+                              </div>
+                              <div>
+                                <button
+                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+                                  data-headlessui-state=""
+                                  data-testid="installed-plugins-empty-state-action"
+                                  type="button"
+                                >
+                                  Go to store
+                                </button>
                               </div>
                             </div>
                           </div>

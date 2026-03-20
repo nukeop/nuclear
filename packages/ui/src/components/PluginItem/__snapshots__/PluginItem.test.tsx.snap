@@ -60,7 +60,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
             by Nuclear Team
           </p>
           <p
-            class="text-foreground-secondary mt-2 text-sm leading-relaxed select-none"
+            class="text-foreground mt-2 text-sm leading-relaxed select-none"
             data-testid="plugin-description"
           >
             This plugin is currently disabled.
@@ -69,11 +69,6 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
         <div
           class="flex h-full shrink-0 flex-col items-start justify-center sm:w-auto sm:items-end"
         />
-        <span
-          class="text-foreground-secondary absolute right-4 bottom-2 mt-2 text-sm"
-        >
-          Loaded in ms
-        </span>
       </div>
     </div>
     <div
@@ -112,7 +107,7 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
             by Nuclear Team
           </p>
           <p
-            class="text-foreground-secondary mt-2 text-sm leading-relaxed select-none"
+            class="text-foreground mt-2 text-sm leading-relaxed select-none"
             data-testid="plugin-description"
           >
             Has accessory on the right.
@@ -129,11 +124,6 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
             </span>
           </div>
         </div>
-        <span
-          class="text-foreground-secondary absolute right-4 bottom-2 mt-2 text-sm"
-        >
-          Loaded in ms
-        </span>
       </div>
     </div>
     <div
@@ -203,7 +193,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
             by Nuclear Team
           </p>
           <p
-            class="text-foreground-secondary mt-2 text-sm leading-relaxed select-none"
+            class="text-foreground mt-2 text-sm leading-relaxed select-none"
             data-testid="plugin-description"
           >
             Stream music directly from YouTube Music with full search and playlist support.

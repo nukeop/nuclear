@@ -9,7 +9,7 @@ exports[`EmptyState > (Snapshot) renders all size variants 1`] = `
     data-testid="empty-state"
   >
     <div
-      class="text-foreground-secondary"
+      class="text-foreground"
     >
       <svg
         aria-hidden="true"
@@ -43,7 +43,7 @@ exports[`EmptyState > (Snapshot) renders all size variants 1`] = `
         Small size
       </h3>
       <p
-        class="text-foreground-secondary text-sm"
+        class="text-foreground text-sm opacity-60"
       >
         Compact empty state
       </p>
@@ -54,7 +54,7 @@ exports[`EmptyState > (Snapshot) renders all size variants 1`] = `
     data-testid="empty-state"
   >
     <div
-      class="text-foreground-secondary"
+      class="text-foreground"
     >
       <svg
         aria-hidden="true"
@@ -88,7 +88,7 @@ exports[`EmptyState > (Snapshot) renders all size variants 1`] = `
         Default size
       </h3>
       <p
-        class="text-foreground-secondary text-sm"
+        class="text-foreground text-sm opacity-60"
       >
         Standard empty state
       </p>
@@ -99,7 +99,7 @@ exports[`EmptyState > (Snapshot) renders all size variants 1`] = `
     data-testid="empty-state"
   >
     <div
-      class="text-foreground-secondary"
+      class="text-foreground"
     >
       <svg
         aria-hidden="true"
@@ -133,7 +133,7 @@ exports[`EmptyState > (Snapshot) renders all size variants 1`] = `
         Large size
       </h3>
       <p
-        class="text-foreground-secondary text-sm"
+        class="text-foreground text-sm opacity-60"
       >
         Spacious empty state
       </p>
@@ -148,7 +148,7 @@ exports[`EmptyState > (Snapshot) renders with action button 1`] = `
   data-testid="empty-state"
 >
   <div
-    class="text-foreground-secondary"
+    class="text-foreground"
   >
     <svg
       aria-hidden="true"
@@ -195,7 +195,7 @@ exports[`EmptyState > (Snapshot) renders with action button 1`] = `
       Connection failed
     </h3>
     <p
-      class="text-foreground-secondary text-sm"
+      class="text-foreground text-sm opacity-60"
     >
       Could not reach the server.
     </p>
@@ -218,7 +218,7 @@ exports[`EmptyState > (Snapshot) renders with icon 1`] = `
   data-testid="empty-state"
 >
   <div
-    class="text-foreground-secondary"
+    class="text-foreground"
   >
     <svg
       aria-hidden="true"
@@ -250,7 +250,7 @@ exports[`EmptyState > (Snapshot) renders with icon 1`] = `
       Your inbox is empty
     </h3>
     <p
-      class="text-foreground-secondary text-sm"
+      class="text-foreground text-sm opacity-60"
     >
       New messages will appear here.
     </p>
@@ -272,7 +272,7 @@ exports[`EmptyState > (Snapshot) renders with title and description 1`] = `
       No plugins installed
     </h3>
     <p
-      class="text-foreground-secondary text-sm"
+      class="text-foreground text-sm opacity-60"
     >
       Browse the store to find plugins for your music player.
     </p>

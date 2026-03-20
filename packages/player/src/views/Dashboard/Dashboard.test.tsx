@@ -1,5 +1,6 @@
 import { act } from '@testing-library/react';
 
+import { useSettingsModalStore } from '../../stores/settingsModalStore';
 import { useStartupStore } from '../../stores/startupStore';
 import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
 import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
@@ -15,7 +16,18 @@ describe('Dashboard view', () => {
     await DashboardWrapper.mount();
 
     expect(DashboardWrapper.emptyState).toBeInTheDocument();
+    expect(DashboardWrapper.emptyStateAction.element).toBeInTheDocument();
     expect(DashboardWrapper.topTracks.table).not.toBeInTheDocument();
+  });
+
+  it('opens the plugin store when clicking the empty state action', async () => {
+    await DashboardWrapper.mount();
+
+    await DashboardWrapper.emptyStateAction.click();
+
+    const { isOpen, activeTab } = useSettingsModalStore.getState();
+    expect(isOpen).toBe(true);
+    expect(activeTab).toBe('plugins');
   });
 
   it('renders tracks in a table when a provider supplies top tracks', async () => {

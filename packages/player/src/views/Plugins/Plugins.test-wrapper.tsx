@@ -24,6 +24,17 @@ export const PluginsWrapper = {
   async goToInstalledTab(): Promise<void> {
     await userEvent.click(screen.getByRole('tab', { name: 'Installed' }));
   },
+  get installedEmptyState() {
+    return screen.queryByTestId('installed-plugins-empty-state');
+  },
+  installedEmptyStateAction: {
+    get element() {
+      return screen.getByTestId('installed-plugins-empty-state-action');
+    },
+    async click() {
+      await userEvent.click(this.element);
+    },
+  },
   getPlugins: () => {
     return screen
       .queryAllByTestId('plugin-item')

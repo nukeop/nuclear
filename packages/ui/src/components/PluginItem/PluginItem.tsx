@@ -91,7 +91,7 @@ export const PluginItem: FC<PluginItemProps> = ({
           </p>
           <p
             data-testid="plugin-description"
-            className="text-foreground-secondary mt-2 text-sm leading-relaxed select-none"
+            className="text-foreground mt-2 text-sm leading-relaxed select-none"
           >
             {description}
           </p>
@@ -122,9 +122,12 @@ export const PluginItem: FC<PluginItemProps> = ({
             </div>
           )}
         </div>
-        <span className="text-foreground-secondary absolute right-4 bottom-2 mt-2 text-sm">
-          Loaded in {loadTimeMs}ms
-        </span>
+
+        {loadTimeMs && (
+          <span className="text-foreground-secondary absolute right-4 bottom-2 mt-2 text-sm">
+            Loaded in {loadTimeMs}ms
+          </span>
+        )}
       </div>
       {isLoading && (
         <div className="bg-stripes-diagonal absolute right-0 bottom-0 left-0 h-1" />

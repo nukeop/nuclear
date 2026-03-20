@@ -41,11 +41,11 @@ export const EmptyState: FC<EmptyStateProps> = ({
     className={cn(emptyStateVariants({ size, className }))}
     {...props}
   >
-    {icon && <div className="text-foreground-secondary">{icon}</div>}
+    {icon && <div className="text-foreground">{icon}</div>}
     <div className="flex flex-col gap-1">
       <h3 className="text-foreground text-lg font-bold">{title}</h3>
       {description && (
-        <p className="text-foreground-secondary text-sm">{description}</p>
+        <p className="text-foreground text-sm opacity-60">{description}</p>
       )}
     </div>
     {action && <div>{action}</div>}

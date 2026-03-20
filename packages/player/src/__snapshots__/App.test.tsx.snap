@@ -545,7 +545,7 @@ exports[`App > should render snapshot 1`] = `
                     data-testid="dashboard-empty-state"
                   >
                     <div
-                      class="text-foreground-secondary"
+                      class="text-foreground"
                     >
                       <svg
                         aria-hidden="true"
@@ -596,13 +596,23 @@ exports[`App > should render snapshot 1`] = `
                       <h3
                         class="text-foreground text-lg font-bold"
                       >
-                        No dashboard data available
+                        Welcome to Nuclear
                       </h3>
                       <p
-                        class="text-foreground-secondary text-sm"
+                        class="text-foreground text-sm opacity-60"
                       >
-                        Enable a plugin that provides dashboard content.
+                        Install a plugin to see top tracks, new releases, and recommendations here.
                       </p>
+                    </div>
+                    <div>
+                      <button
+                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+                        data-headlessui-state=""
+                        data-testid="dashboard-empty-state-action"
+                        type="button"
+                      >
+                        Browse plugins
+                      </button>
                     </div>
                   </div>
                 </div>

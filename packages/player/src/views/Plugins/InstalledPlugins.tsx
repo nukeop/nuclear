@@ -3,15 +3,39 @@ import isString from 'lodash-es/isString';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { Button, PluginItem, ScrollableArea, Toggle } from '@nuclearplayer/ui';
+import { Button, ScrollableArea } from '@nuclearplayer/ui';
 
-import { PluginIconComponent } from '../../components/PluginIcon';
-import { usePluginStore } from '../../stores/pluginStore';
-import { useStartupStore } from '../../stores/startupStore';
+import { PluginState, usePluginStore } from '../../stores/pluginStore';
+import { ConnectedPluginItem } from './ConnectedPluginItem';
+import { InstalledPluginsEmptyState } from './InstalledPluginsEmptyState';
 
-export const InstalledPlugins: FC = () => {
+type InstalledPluginsProps = {
+  onGoToStore: () => void;
+};
+
+const InstalledPluginsContent: FC<{
+  plugins: PluginState[];
+  onGoToStore: () => void;
+}> = ({ plugins, onGoToStore }) => {
+  if (plugins.length === 0) {
+    return <InstalledPluginsEmptyState onGoToStore={onGoToStore} />;
+  }
+
+  return (
+    <ScrollableArea className="flex-1 overflow-hidden">
+      <div className="flex flex-col gap-4 overflow-visible px-2 py-2">
+        {plugins.map((plugin) => (
+          <ConnectedPluginItem key={plugin.metadata.id} plugin={plugin} />
+        ))}
+      </div>
+    </ScrollableArea>
+  );
+};
+
+export const InstalledPlugins: FC<InstalledPluginsProps> = ({
+  onGoToStore,
+}) => {
   const { t } = useTranslation('plugins');
-  const startupStore = useStartupStore();
   const store = usePluginStore();
   const plugins = store.getAllPlugins();
 
@@ -29,45 +53,7 @@ export const InstalledPlugins: FC = () => {
           {t('addPlugin')}
         </Button>
       </div>
-      <ScrollableArea className="flex-1 overflow-hidden">
-        <div className="flex flex-col gap-4 overflow-visible px-2 py-2">
-          {plugins.map((p) => (
-            <PluginItem
-              key={p.metadata.id}
-              icon={<PluginIconComponent icon={p.metadata.icon} />}
-              name={p.metadata.displayName}
-              author={p.metadata.author}
-              description={p.metadata.description}
-              disabled={!p.enabled}
-              warning={p.warning}
-              warningText={p.warnings.length > 0 ? p.warnings[0] : undefined}
-              isLoading={p.isLoading}
-              onReload={async () => {
-                if (p.installationMethod === 'dev') {
-                  await store.reloadPlugin(p.metadata.id);
-                }
-              }}
-              onRemove={async () => {
-                await store.removePlugin(p.metadata.id);
-              }}
-              rightAccessory={
-                <Toggle
-                  data-testid={`toggle-enable-plugin-${p.metadata.id}`}
-                  data-enabled={p.enabled}
-                  checked={p.enabled}
-                  onChange={(checked) =>
-                    checked
-                      ? store.enablePlugin(p.metadata.id)
-                      : store.disablePlugin(p.metadata.id)
-                  }
-                  aria-label={`Toggle ${p.metadata.displayName}`}
-                />
-              }
-              loadTimeMs={startupStore.pluginDurations[p.metadata.id]}
-            />
-          ))}
-        </div>
-      </ScrollableArea>
+      <InstalledPluginsContent plugins={plugins} onGoToStore={onGoToStore} />
     </div>
   );
 };
