@@ -24,8 +24,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Install flatpak-node-generator
-        run: pip install git+https://github.com/flatpak/flatpak-builder-tools.git#subdirectory=node
+      - name: Install flatpak-node-generator (from git master, includes pnpm support)
+        run: pip install --force-reinstall --no-cache-dir git+https://github.com/flatpak/flatpak-builder-tools.git#subdirectory=node
 
       - name: Download cargo generator
         run: |
