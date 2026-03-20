@@ -36,4 +36,25 @@ export const SearchWrapper = {
     await user.keyboard('{Enter}');
     await screen.findByTestId('search-view');
   },
+
+  get emptyState() {
+    return screen.queryByTestId('search-empty-state');
+  },
+
+  emptyStateAction: {
+    get element() {
+      return screen.queryByTestId('search-empty-state-action');
+    },
+    async click() {
+      await user.click(screen.getByTestId('search-empty-state-action'));
+    },
+  },
+
+  async settingsDialog() {
+    return screen.findByRole('dialog');
+  },
+
+  async pluginsHeading() {
+    return screen.findByRole('heading', { name: 'Plugins' });
+  },
 };

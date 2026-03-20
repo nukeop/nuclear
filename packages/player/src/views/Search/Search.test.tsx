@@ -27,4 +27,16 @@ describe('Search view', () => {
     expect(await screen.findByTestId('search-view')).toBeVisible();
     expect(await screen.findByText('Query: "hello"')).toBeVisible();
   });
+
+  it('shows empty state when no metadata provider is available', async () => {
+    await SearchWrapper.mount();
+    expect(SearchWrapper.emptyState).toBeInTheDocument();
+  });
+
+  it('opens the plugin store when clicking the search empty state action', async () => {
+    await SearchWrapper.mount();
+    await SearchWrapper.emptyStateAction.click();
+    expect(await SearchWrapper.settingsDialog()).toBeInTheDocument();
+    expect(await SearchWrapper.pluginsHeading()).toBeInTheDocument();
+  });
 });

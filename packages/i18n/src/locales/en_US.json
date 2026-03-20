@@ -124,7 +124,10 @@
       "albums": "Albums",
       "artists": "Artists",
       "playlists": "Playlists"
-    }
+    },
+    "empty-state": "No metadata plugin installed",
+    "empty-state-description": "Install a metadata plugin to search for music.",
+    "empty-state-action": "Browse plugins"
   },
   "artist": {
     "title": "Artist",

@@ -544,14 +544,61 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
                   class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
                   style="scrollbar-width: none;"
                 >
-                  <button
-                    aria-hidden="true"
-                    style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
-                    type="button"
-                  />
                   <div
-                    class="flex max-h-full w-full flex-col gap-2 flex-1"
-                  />
+                    class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+                    data-testid="search-empty-state"
+                  >
+                    <div
+                      class="text-foreground"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-search"
+                        fill="none"
+                        height="48"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="48"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="m21 21-4.34-4.34"
+                        />
+                        <circle
+                          cx="11"
+                          cy="11"
+                          r="8"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="flex flex-col gap-1"
+                    >
+                      <h3
+                        class="text-foreground text-lg font-bold"
+                      >
+                        No metadata plugin installed
+                      </h3>
+                      <p
+                        class="text-foreground text-sm opacity-60"
+                      >
+                        Install a metadata plugin to search for music.
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+                        data-headlessui-state=""
+                        data-testid="search-empty-state-action"
+                        type="button"
+                      >
+                        Browse plugins
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
