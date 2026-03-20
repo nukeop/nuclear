@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-03-20T00:00",
+    "description": "Fixed album tracks being added to the queue without thumbnails",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Queue",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-20T00:00",
+    "description": "Dashboard, search, and plugins views now prompt to install plugins when none are active",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-03-18T00:00",
     "description": "AUR packages are now automatically updated when a new release is published",
     "type": "improvement",
