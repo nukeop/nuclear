@@ -144,6 +144,7 @@ jobs:
 
       - name: Download cargo generator
         run: |
+          pip install tomlkit
           curl -fsSL https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/master/cargo/flatpak-cargo-generator.py \
             -o /tmp/flatpak-cargo-generator.py
 
