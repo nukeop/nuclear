@@ -71,9 +71,10 @@ modules:
         npm_config_cache: /run/build/nuclear-music-player/npm-cache
         npm_config_offline: "true"
     build-commands:
-      - corepack enable --install-directory /app/bin
-      - pnpm install --offline --frozen-lockfile
-      - pnpm --filter @nuclearplayer/player tauri build --no-bundle
+      - npx pnpm install --offline --frozen-lockfile
+      - npx pnpm --filter @nuclearplayer/player build:frontend
+      - npx pnpm --filter @nuclearplayer/player tauri build --no-bundle
+        -c '{"build":{"beforeBuildCommand":""}}'
 
       - install -Dm755 packages/player/src-tauri/target/release/nuclear-music-player
         /app/bin/nuclear-music-player
