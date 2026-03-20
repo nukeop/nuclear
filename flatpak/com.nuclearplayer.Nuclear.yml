@@ -1,29 +1,13 @@
 # Flatpak manifest for Nuclear Music Player (from-source build)
 #
-# This builds Nuclear from source inside the Flatpak sandbox. Because the
-# sandbox has no network access, npm and cargo dependencies must be vendored
-# into two generated JSON files before building.
-#
 # Generate vendored dependency sources:
-#
-#   # pnpm dependencies (writes pnpm-sources.json)
 #   flatpak-node-generator pnpm -o flatpak/pnpm-sources.json pnpm-lock.yaml
+#   python3 flatpak-cargo-generator.py packages/player/src-tauri/Cargo.lock -o flatpak/cargo-sources.json
 #
-#   # cargo dependencies (writes cargo-sources.json)
-#   python3 flatpak-cargo-generator.py \
-#     -o flatpak/cargo-sources.json \
-#     packages/player/src-tauri/Cargo.lock
-#
-# These files are NOT committed to the repo. Regenerate them whenever
-# pnpm-lock.yaml or Cargo.lock changes.
-#
-# Build and install locally:
-#
-#   flatpak-builder --user --install --force-clean \
-#     build-dir flatpak/com.nuclearplayer.Nuclear.yml
+# Build locally:
+#   flatpak-builder --user --install --force-clean build-dir flatpak/com.nuclearplayer.Nuclear.yml
 #
 # Run:
-#
 #   flatpak run com.nuclearplayer.Nuclear
 
 id: com.nuclearplayer.Nuclear
@@ -56,6 +40,8 @@ build-options:
   env:
     CARGO_HOME: /run/build/nuclear-music-player/cargo
     npm_config_nodedir: /usr/lib/sdk/node22
+    npm_config_prefix: /run/build/nuclear-music-player/.npm-global
+    PATH: /run/build/nuclear-music-player/.npm-global/bin:/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/node22/bin:/usr/bin:/bin
 
 modules:
   - name: nuclear-music-player
@@ -66,14 +52,18 @@ modules:
       - pnpm-sources.json
       - cargo-sources.json
     build-options:
+      build-args:
+        - --share=network
       env:
         XDG_CACHE_HOME: /run/build/nuclear-music-player/cache
         npm_config_cache: /run/build/nuclear-music-player/npm-cache
-        npm_config_offline: "true"
     build-commands:
-      - npx pnpm install --offline --frozen-lockfile
-      - npx pnpm --filter @nuclearplayer/player build:frontend
-      - npx pnpm --filter @nuclearplayer/player tauri build --no-bundle
+      - mkdir -p /run/build/nuclear-music-player/.npm-global
+      - npm install -g pnpm
+
+      - pnpm install --offline --frozen-lockfile
+      - pnpm --filter @nuclearplayer/player build:frontend
+      - pnpm --filter @nuclearplayer/player tauri build --no-bundle
         -c '{"build":{"beforeBuildCommand":""}}'
 
       - install -Dm755 packages/player/src-tauri/target/release/nuclear-music-player
