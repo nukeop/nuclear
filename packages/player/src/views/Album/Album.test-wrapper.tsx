@@ -27,7 +27,7 @@ export const AlbumWrapper = {
       throw new Error('No albums found in search results');
     }
     await user.click(albums[0]!);
-    await new Promise((r) => setTimeout(r, 0));
+    await new Promise((resolve) => setTimeout(resolve, 0));
     return component;
   },
   async mountDirectly(
@@ -48,15 +48,42 @@ export const AlbumWrapper = {
   getHeader: (name: string) => screen.getByRole('heading', { name }),
   getTracksTable: () => screen.queryByRole('table'),
   getTracks: () => screen.queryAllByTestId('track-row'),
-  async addTrackToQueueByTitle(title: string) {
-    const allTracks = await screen.findAllByTestId('track-row');
-    const trackRow = allTracks.find((row) => row.textContent?.includes(title));
-    await user.click(within(trackRow!).getByTestId('add-to-queue-button'));
+
+  headerLoader: {
+    async find() {
+      return screen.findByTestId('album-header-loader');
+    },
   },
-  async toggleFavorite() {
-    const button = await screen.findByTestId('album-favorite-button');
-    await user.click(button);
+
+  tracksLoader: {
+    async find() {
+      return screen.findByTestId('album-tracks-loader');
+    },
   },
+
+  favoriteButton: {
+    async find() {
+      return screen.findByTestId('album-favorite-button');
+    },
+    async click() {
+      const button = await screen.findByTestId('album-favorite-button');
+      await user.click(button);
+    },
+    async ariaLabel() {
+      const button = await screen.findByTestId('album-favorite-button');
+      return button.getAttribute('aria-label');
+    },
+  },
+
+  contextMenu: {
+    get items() {
+      return screen.queryAllByRole('menuitem');
+    },
+    getItem(label: string) {
+      return screen.getByText(label);
+    },
+  },
+
   async openTrackContextMenu(trackTitle: string) {
     const allTracks = await screen.findAllByTestId('track-row');
     const trackRow = allTracks.find((row) =>
@@ -79,5 +106,25 @@ export const AlbumWrapper = {
   async addTrackToQueueViaContextMenu(trackTitle: string) {
     await this.openTrackContextMenu(trackTitle);
     await user.click(screen.getByText('Add to queue'));
+  },
+  async addTrackToQueueByTitle(title: string) {
+    const allTracks = await screen.findAllByTestId('track-row');
+    const trackRow = allTracks.find((row) => row.textContent?.includes(title));
+    await user.click(within(trackRow!).getByTestId('add-to-queue-button'));
+  },
+
+  trackFavoriteButton(trackTitle: string) {
+    const allTracks = screen.getAllByTestId('track-row');
+    const trackRow = allTracks.find((row) =>
+      row.textContent?.includes(trackTitle),
+    );
+    return within(trackRow!).getByRole('button', {
+      name: /favorites/i,
+    });
+  },
+
+  async findQueueItemThumbnail() {
+    const item = await screen.findByTestId('queue-item');
+    return within(item).getByRole('img');
   },
 };

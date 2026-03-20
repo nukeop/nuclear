@@ -1,5 +1,3 @@
-import { screen } from '@testing-library/react';
-
 import { providersHost } from '../../services/providersHost';
 import { useFavoritesStore } from '../../stores/favoritesStore';
 import { useQueueStore } from '../../stores/queueStore';
@@ -157,49 +155,32 @@ describe('Album view', () => {
 
     await AlbumWrapper.mountNoWait();
 
-    expect(
-      await screen.findByTestId('album-header-loader'),
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByTestId('album-tracks-loader'),
-    ).toBeInTheDocument();
+    expect(await AlbumWrapper.headerLoader.find()).toBeInTheDocument();
+    expect(await AlbumWrapper.tracksLoader.find()).toBeInTheDocument();
   });
 
   it('adds album to favorites when clicking the heart button', async () => {
     await AlbumWrapper.mount('Prism');
-    await AlbumWrapper.toggleFavorite();
 
-    expect(useFavoritesStore.getState().albums).toMatchInlineSnapshot(`
-      [
-        {
-          "addedAtIso": "2026-01-30T12:00:00.000Z",
-          "ref": {
-            "artwork": {
-              "items": [
-                {
-                  "purpose": "cover",
-                  "url": "https://img/album-cover.jpg",
-                  "width": 600,
-                },
-              ],
-            },
-            "source": {
-              "id": "test-album-id",
-              "provider": "test-metadata-provider",
-            },
-            "title": "Prism",
-          },
-        },
-      ]
-    `);
+    expect(await AlbumWrapper.favoriteButton.ariaLabel()).toBe(
+      'Add to favorites',
+    );
+
+    await AlbumWrapper.favoriteButton.click();
+
+    expect(await AlbumWrapper.favoriteButton.ariaLabel()).toBe(
+      'Remove from favorites',
+    );
   });
 
   it('removes album from favorites when clicking the heart button again', async () => {
     await AlbumWrapper.mount('Prism');
-    await AlbumWrapper.toggleFavorite();
-    await AlbumWrapper.toggleFavorite();
+    await AlbumWrapper.favoriteButton.click();
+    await AlbumWrapper.favoriteButton.click();
 
-    expect(useFavoritesStore.getState().albums).toHaveLength(0);
+    expect(await AlbumWrapper.favoriteButton.ariaLabel()).toBe(
+      'Add to favorites',
+    );
   });
 
   describe('Track context menu', () => {
@@ -211,21 +192,24 @@ describe('Album view', () => {
       await AlbumWrapper.mount('Prism');
       await AlbumWrapper.openTrackContextMenu('Going Solo');
 
-      expect(screen.getByText('Play now')).toBeInTheDocument();
-      expect(screen.getByText('Play next')).toBeInTheDocument();
-      expect(screen.getByText('Add to queue')).toBeInTheDocument();
-      expect(screen.getByText('Add to favorites')).toBeInTheDocument();
+      expect(AlbumWrapper.contextMenu.getItem('Play now')).toBeInTheDocument();
+      expect(AlbumWrapper.contextMenu.getItem('Play next')).toBeInTheDocument();
+      expect(
+        AlbumWrapper.contextMenu.getItem('Add to queue'),
+      ).toBeInTheDocument();
+      expect(
+        AlbumWrapper.contextMenu.getItem('Add to favorites'),
+      ).toBeInTheDocument();
     });
 
     it('adds track to favorites via context menu', async () => {
       await AlbumWrapper.mount('Prism');
       await AlbumWrapper.toggleTrackFavoriteViaContextMenu('Going Solo');
 
-      expect(useFavoritesStore.getState().tracks).toHaveLength(1);
-      expect(useFavoritesStore.getState().tracks[0]?.ref.source).toEqual({
-        provider: 'test-metadata-provider',
-        id: 'track-1',
-      });
+      expect(AlbumWrapper.trackFavoriteButton('Going Solo')).toHaveAttribute(
+        'aria-label',
+        'Remove from favorites',
+      );
     });
 
     it('removes track from favorites via context menu', async () => {
@@ -233,15 +217,19 @@ describe('Album view', () => {
       await AlbumWrapper.toggleTrackFavoriteViaContextMenu('Going Solo');
       await AlbumWrapper.toggleTrackFavoriteViaContextMenu('Going Solo');
 
-      expect(useFavoritesStore.getState().tracks).toHaveLength(0);
+      expect(AlbumWrapper.trackFavoriteButton('Going Solo')).toHaveAttribute(
+        'aria-label',
+        'Add to favorites',
+      );
     });
 
     it('adds track to queue via context menu', async () => {
       await AlbumWrapper.mount('Prism');
       await AlbumWrapper.addTrackToQueueViaContextMenu('Going Solo');
 
-      expect(useQueueStore.getState().items).toHaveLength(1);
-      expect(useQueueStore.getState().items[0]?.track.title).toBe('Going Solo');
+      const thumbnail = await AlbumWrapper.findQueueItemThumbnail();
+      expect(thumbnail).toHaveAttribute('src', 'https://img/album-cover.jpg');
+      expect(thumbnail).toHaveAttribute('alt', 'Going Solo');
     });
   });
 });
