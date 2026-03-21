@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-03-21T00:00",
+    "description": "Nuclear is now built from source for Flatpak, with new app icons",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Linux",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-03-20T00:00",
     "description": "Fixed album tracks being added to the queue without thumbnails",
     "type": "fix",
