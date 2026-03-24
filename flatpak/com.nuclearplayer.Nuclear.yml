@@ -29,11 +29,9 @@ finish-args:
   - --device=dri
   - --socket=pulseaudio
   - --filesystem=xdg-music
-  - --filesystem=xdg-download
   - --own-name=org.mpris.MediaPlayer2.nuclear
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
-  - --env=FLATPAK=1
 
 build-options:
   append-path: /usr/lib/sdk/node22/bin:/usr/lib/sdk/rust-stable/bin

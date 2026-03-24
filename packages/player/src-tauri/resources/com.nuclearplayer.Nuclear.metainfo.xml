@@ -30,6 +30,29 @@
     </ul>
   </description>
 
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/dashboard-main.png</image>
+      <caption>Browse top tracks, new releases, and editorial playlists</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/search-artists.png</image>
+      <caption>Search for artists across multiple sources</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/playlists.png</image>
+      <caption>Create and manage playlists</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/plugin-store.png</image>
+      <caption>Install plugins to add new music sources and features</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/preferences.png</image>
+      <caption>Customize playback, appearance, and behavior</caption>
+    </screenshot>
+  </screenshots>
+
   <launchable type="desktop-id">com.nuclearplayer.Nuclear.desktop</launchable>
 
   <url type="homepage">https://nuclearplayer.com</url>
