@@ -29,7 +29,7 @@ export function IconHeader<T extends Track>({
   return (
     <th
       role="columnheader"
-      className={cn('text-center', {
+      className={cn('w-10 text-center', {
         'cursor-pointer': canSort,
       })}
       onClick={onClick}

@@ -640,7 +640,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                         data-test-resize-observer-inline-size="1024"
                       >
                         <table
-                          class="border-border relative w-full border-(length:--border-width)"
+                          class="border-border relative w-full table-fixed border-(length:--border-width)"
                           role="table"
                         >
                           <thead>
@@ -649,7 +649,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                               role="row"
                             >
                               <th
-                                class="text-center"
+                                class="w-10 text-center"
                                 role="columnheader"
                               >
                                 <span
@@ -675,7 +675,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                                 </span>
                               </th>
                               <th
-                                class="text-center"
+                                class="w-10 text-center"
                                 role="columnheader"
                               >
                                 <span
@@ -2298,7 +2298,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                         data-test-resize-observer-inline-size="1024"
                       >
                         <table
-                          class="border-border relative w-full border-(length:--border-width)"
+                          class="border-border relative w-full table-fixed border-(length:--border-width)"
                           role="table"
                         >
                           <thead>
@@ -2307,7 +2307,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                               role="row"
                             >
                               <th
-                                class="text-center"
+                                class="w-10 text-center"
                                 role="columnheader"
                               >
                                 <span
@@ -2333,7 +2333,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                 </span>
                               </th>
                               <th
-                                class="text-center"
+                                class="w-10 text-center"
                                 role="columnheader"
                               >
                                 <span

@@ -138,7 +138,7 @@ export function TrackTable<T extends Track = Track>({
           <table
             role="table"
             className={cn(
-              'border-border relative w-full border-(length:--border-width)',
+              'border-border relative w-full table-fixed border-(length:--border-width)',
               classes?.root,
             )}
           >

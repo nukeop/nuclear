@@ -53,7 +53,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
     data-test-resize-observer-inline-size="1024"
   >
     <table
-      class="border-border relative w-full border-(length:--border-width)"
+      class="border-border relative w-full table-fixed border-(length:--border-width)"
       role="table"
     >
       <thead>
@@ -62,7 +62,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
           role="row"
         >
           <th
-            class="text-center cursor-pointer"
+            class="w-10 text-center cursor-pointer"
             role="columnheader"
           >
             <span
@@ -109,7 +109,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
             </span>
           </th>
           <th
-            class="text-center"
+            class="w-10 text-center"
             role="columnheader"
           >
             <span
@@ -453,7 +453,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
     data-test-resize-observer-inline-size="1024"
   >
     <table
-      class="border-border relative w-full border-(length:--border-width)"
+      class="border-border relative w-full table-fixed border-(length:--border-width)"
       role="table"
     >
       <thead>
@@ -462,7 +462,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
           role="row"
         >
           <th
-            class="text-center cursor-pointer"
+            class="w-10 text-center cursor-pointer"
             role="columnheader"
           >
             <span
@@ -509,7 +509,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
             </span>
           </th>
           <th
-            class="text-center"
+            class="w-10 text-center"
             role="columnheader"
           >
             <span
@@ -1006,7 +1006,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
     data-test-resize-observer-inline-size="1024"
   >
     <table
-      class="border-border relative w-full border-(length:--border-width)"
+      class="border-border relative w-full table-fixed border-(length:--border-width)"
       role="table"
     >
       <thead>
@@ -1015,7 +1015,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
           role="row"
         >
           <th
-            class="text-center cursor-pointer"
+            class="w-10 text-center cursor-pointer"
             role="columnheader"
           >
             <span
@@ -1062,7 +1062,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
             </span>
           </th>
           <th
-            class="text-center"
+            class="w-10 text-center"
             role="columnheader"
           >
             <span
@@ -1545,7 +1545,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
       data-test-resize-observer-inline-size="1024"
     >
       <table
-        class="border-border relative w-full border-(length:--border-width)"
+        class="border-border relative w-full table-fixed border-(length:--border-width)"
         role="table"
       >
         <thead>
@@ -1554,7 +1554,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
             role="row"
           >
             <th
-              class="text-center cursor-pointer"
+              class="w-10 text-center cursor-pointer"
               role="columnheader"
             >
               <span
@@ -1601,7 +1601,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </span>
             </th>
             <th
-              class="text-center"
+              class="w-10 text-center"
               role="columnheader"
             >
               <span

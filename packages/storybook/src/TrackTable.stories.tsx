@@ -209,6 +209,45 @@ export const WithFavorites: Story = {
   },
 };
 
+export const LongTitle: Story = {
+  args: {
+    tracks: [
+      {
+        trackNumber: 1,
+        artwork: { items: [{ url: 'https://i.imgur.com/4euOws2.jpg' }] },
+        title:
+          'Several Species of Small Furry Animals Gathered Together in a Cave and Grooving with a Pict (Remastered Extended Deluxe Anniversary Edition feat. The London Philharmonic Orchestra)',
+        artists: [{ name: 'Pink Floyd', roles: [] }],
+        album: {
+          title: 'Ummagumma',
+          artists: [
+            {
+              name: 'Pink Floyd',
+              source: { provider: 'local', id: '1' },
+            },
+          ],
+          source: { provider: 'local', id: '1' },
+        },
+        source: { provider: 'local', id: 'long-1' },
+        durationMs: 305 * 1000,
+      },
+      ...tracks,
+    ],
+    display: {
+      displayPosition: true,
+      displayThumbnail: true,
+      displayArtist: true,
+      displayAlbum: true,
+      displayDuration: true,
+    },
+  },
+  render: (args) => (
+    <div className="w-[600px]">
+      <TrackTable {...(args as TrackTableProps)} />
+    </div>
+  ),
+};
+
 export const WithDeleteButton: Story = {
   args: {
     tracks,
