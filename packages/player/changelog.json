@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-03-24T00:00",
+    "description": "Introduce dark mode as persistent preference",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Settings",
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-24T00:00",
+    "description": "Fix issues with tables being way too wide with longer track titles",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "cyan"
+      }
+    ]
+  },
+  {
     "date": "2026-03-21T00:00",
     "description": "Nuclear is now built from source for Flatpak, with new app icons",
     "type": "improvement",
