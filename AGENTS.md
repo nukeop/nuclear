@@ -18,6 +18,7 @@ Nuclear is a free, open-source music player without ads or tracking. Search for 
 - `@nuclearplayer/eslint-config` - Shared linting rules
 - `@nuclearplayer/i18n` - Internationalization
 - `@nuclearplayer/storybook` - Component demos
+- `@nuclearplayer/tools` - Build and maintenance utilities
 - `@nuclearplayer/docs` - Documentation
 - `@nuclearplayer/website` - Project website (Astro)
 

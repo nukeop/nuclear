@@ -1,0 +1,19 @@
+{
+  "name": "@nuclearplayer/tools",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --run --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@nuclearplayer/eslint-config": "workspace:*",
+    "@vitest/coverage-v8": "^4.0.0",
+    "typescript": "^5.9.2",
+    "vitest": "^4.0.0"
+  }
+}
