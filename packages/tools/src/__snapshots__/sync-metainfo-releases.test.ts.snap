@@ -1,0 +1,92 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildReleaseElement > builds a list when there are entries 1`] = `
+"    <release version="1.5.0" date="2026-01-01">
+      <description>
+        <ul>
+          <li>First change</li>
+          <li>Second change</li>
+        </ul>
+      </description>
+    </release>"
+`;
+
+exports[`buildReleaseElement > builds a placeholder paragraph when there are no entries 1`] = `
+"    <release version="1.5.0" date="2026-01-01">
+      <description>
+        <p>Release 1.5.0.</p>
+      </description>
+    </release>"
+`;
+
+exports[`generateReleasesBlock > includes only the 5 most recent tags 1`] = `
+"<releases>
+    <release version="1.24.0" date="2026-03-22">
+      <description>
+        <ul>
+          <li>Flatpak from-source build</li>
+          <li>Fixed thumbnails in queue</li>
+          <li>Plugin install prompts</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.23.3" date="2026-03-18">
+      <description>
+        <ul>
+          <li>AUR auto-update</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.23.0" date="2026-03-16">
+      <description>
+        <ul>
+          <li>Console window fix</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.22.0" date="2026-03-14">
+      <description>
+        <ul>
+          <li>Auto yt-dlp download</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.20.0" date="2026-03-12">
+      <description>
+        <ul>
+          <li>Update badge</li>
+        </ul>
+      </description>
+    </release>
+  </releases>"
+`;
+
+exports[`getChangelogForRelease > collects all entries up to the tag date when there is no previous tag 1`] = `
+[
+  {
+    "date": "2026-03-09T00:00",
+    "description": "Social links",
+    "type": "feature",
+  },
+]
+`;
+
+exports[`getChangelogForRelease > collects entries between this tag and the previous one 1`] = `
+[
+  {
+    "date": "2026-03-21T00:00",
+    "description": "Flatpak from-source build",
+    "type": "improvement",
+  },
+  {
+    "date": "2026-03-20T00:00",
+    "description": "Fixed thumbnails in queue",
+    "type": "fix",
+  },
+  {
+    "date": "2026-03-20T00:00",
+    "description": "Plugin install prompts",
+    "type": "improvement",
+  },
+]
+`;

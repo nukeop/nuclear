@@ -33,6 +33,7 @@ This is a pnpm/turbo monorepo with these major packages:
 - @nuclearplayer/hifi - Advanced HTML5 audio engine
 - @nuclearplayer/storybook - Component demos
 - @nuclearplayer/tailwind-config - Shared Tailwind v4 CSS config
+- @nuclearplayer/tools - Build and maintenance utilities
 - @nuclearplayer/docs - This documentation
 
 ## For developers

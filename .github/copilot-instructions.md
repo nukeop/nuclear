@@ -39,6 +39,7 @@ This particular repo is a rewrite project, with the original Nuclear codebase in
 - `@nuclearplayer/eslint-config` - Shared linting & formatting rules.  
 - `@nuclearplayer/hifi` - Advanced HTML5 audio component for playback.
 - `@nuclearplayer/themes` - Theming system.
+- `@nuclearplayer/tools` - Build and maintenance utilities.
 - `@nuclearplayer/storybook` - Storybook stories.
 
 ### Workflow Commands

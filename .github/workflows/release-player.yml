@@ -100,7 +100,7 @@ jobs:
         id: release_notes
         shell: bash
         run: |
-          NOTES=$(node scripts/generate-release-notes.mjs "${{ steps.version.outputs.version }}")
+          NOTES=$(node packages/tools/src/generate-release-notes.mjs "${{ steps.version.outputs.version }}")
           DELIMITER=$(openssl rand -hex 16)
           echo "notes<<$DELIMITER" >> $GITHUB_OUTPUT
           echo "$NOTES" >> $GITHUB_OUTPUT
