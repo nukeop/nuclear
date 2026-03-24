@@ -1,7 +1,6 @@
 import { FC, ReactNode } from 'react';
 
 import { cn } from '../utils';
-import { ThemeController } from './ThemeController';
 
 type TopBarProps = {
   children?: ReactNode;
@@ -17,7 +16,6 @@ export const TopBar: FC<TopBarProps> = ({ children, className = '' }) => {
       )}
     >
       {children}
-      <ThemeController className="justify-self-end" />
     </header>
   );
 };

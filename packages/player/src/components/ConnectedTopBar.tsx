@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { TopBar, TopBarLogo } from '@nuclearplayer/ui';
 
+import { ConnectedThemeController } from './ConnectedThemeController';
 import { SearchBox } from './SearchBox';
 import { UpdateBadge } from './UpdateBadge';
 
@@ -13,6 +14,7 @@ export const ConnectedTopBar: FC = () => {
         <UpdateBadge />
       </div>
       <SearchBox />
+      <ConnectedThemeController />
     </TopBar>
   );
 };

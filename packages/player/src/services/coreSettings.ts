@@ -49,6 +49,16 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     format: 'path',
   },
   {
+    id: 'theme.dark',
+    title: 'preferences.theme.dark.title',
+    description: 'preferences.theme.dark.description',
+    category: 'appearance',
+    kind: 'boolean',
+    default: false,
+    hidden: true,
+    widget: { type: 'toggle' },
+  },
+  {
     id: 'playback.volume',
     title: 'preferences.playback.volume.title',
     description: 'preferences.playback.volume.description',
