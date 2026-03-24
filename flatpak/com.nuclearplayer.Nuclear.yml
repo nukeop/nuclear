@@ -28,10 +28,6 @@ finish-args:
   - --socket=wayland
   - --device=dri
   - --socket=pulseaudio
-  - --filesystem=xdg-music
-  - --own-name=org.mpris.MediaPlayer2.nuclear
-  - --talk-name=org.freedesktop.Notifications
-  - --talk-name=org.kde.StatusNotifierWatcher
 
 build-options:
   append-path: /usr/lib/sdk/node22/bin:/usr/lib/sdk/rust-stable/bin
