@@ -22,7 +22,7 @@ if (!version) {
   process.exit(1);
 }
 
-const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const changelog = JSON.parse(
   readFileSync(resolve(rootDir, 'packages/player/changelog.json'), 'utf-8'),
 );
