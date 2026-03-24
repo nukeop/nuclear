@@ -95,3 +95,4 @@ ignore:
   - "**/routeTree.gen.ts"
   - "**/*.test-wrapper.tsx"
   - "packages/player/src/test/**"
+  - "packages/plugin-sdk/src/**"
