@@ -90,3 +90,8 @@ ignore:
   - "**/*.snap"
   - "packages/**/dist/**"
   - "**/*.d.ts"
+  - "packages/tools/**"
+  - "packages/player/src-tauri/**"
+  - "**/routeTree.gen.ts"
+  - "**/*.test-wrapper.tsx"
+  - "packages/player/src/test/**"
