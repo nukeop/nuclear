@@ -12,7 +12,6 @@ import { BUILTIN_BASIC_THEME_IDS } from './basic';
 import './basic/aurora.css';
 import './basic/ember.css';
 import './basic/lagoon.css';
-import './basic/canyon.css';
 import './basic/arctic-moss.css';
 
 export type BasicThemeMeta = {
@@ -50,16 +49,6 @@ const BUILT_INS: BasicThemeMeta[] = [
       'oklch(0.985 0.018 210)',
       'oklch(0.55 0.12 205)',
       'oklch(0.20 0.025 205)',
-    ],
-  },
-  {
-    id: 'nuclear:canyon',
-    name: 'Canyon',
-    palette: [
-      'oklch(0.68 0.19 38)',
-      'oklch(0.975 0.02 70)',
-      'oklch(0.56 0.14 38)',
-      'oklch(0.22 0.025 38)',
     ],
   },
   {

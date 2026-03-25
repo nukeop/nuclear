@@ -7,6 +7,7 @@ import {
   TrackTableProps,
 } from '@nuclearplayer/ui';
 
+import { useQueueActions } from '../hooks/useQueueActions';
 import { useTrackActions } from '../hooks/useTrackActions';
 import { ConnectedTrackContextMenu } from './ConnectedTrackContextMenu';
 
@@ -20,6 +21,7 @@ type ConnectedTrackTableProps = Omit<
 export const ConnectedTrackTable: FC<ConnectedTrackTableProps> = (props) => {
   const { actions: externalActions, ...restProps } = props;
   const trackActions = useTrackActions();
+  const queueActions = useQueueActions();
 
   return (
     <TrackTable
@@ -35,6 +37,13 @@ export const ConnectedTrackTable: FC<ConnectedTrackTableProps> = (props) => {
         onToggleFavorite: trackActions.toggleFavorite,
         onRemove: externalActions?.onRemove,
         onReorder: externalActions?.onReorder,
+        onPlayAll: () => {
+          queueActions.clearQueue();
+          queueActions.addToQueue(restProps.tracks);
+        },
+        onAddAllToQueue: () => {
+          queueActions.addToQueue(restProps.tracks);
+        },
       }}
       meta={{
         isTrackFavorite: trackActions.isFavorite,

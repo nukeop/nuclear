@@ -63,7 +63,7 @@ export const AlbumTrackList: FC<AlbumTrackListProps> = ({
   return (
     <ConnectedTrackTable
       tracks={tracks}
-      features={{ filterable: false }}
+      features={{ filterable: false, playAll: true, addAllToQueue: true }}
       display={{ displayDuration: albumHasDuration, displayThumbnail: false }}
     />
   );

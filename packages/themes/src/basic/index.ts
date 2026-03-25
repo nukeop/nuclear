@@ -2,7 +2,6 @@ export const BUILTIN_BASIC_THEME_IDS = [
   'nuclear:aurora',
   'nuclear:ember',
   'nuclear:lagoon',
-  'nuclear:canyon',
   'nuclear:arctic-moss',
 ] as const;
 

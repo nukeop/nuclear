@@ -22,6 +22,8 @@ export interface TrackTableLabels {
   reorderUnavailableDueToFilter: string;
   keyboardInstructions: string;
   dragHandleLabel: string;
+  playAll: string;
+  addAllToQueue: string;
 }
 
 export type TrackTableClasses = {
@@ -35,6 +37,8 @@ export type TrackTableActions<T extends Track = Track> = {
   onAddToQueue?: (track: T) => void;
   onToggleFavorite?: (track: T) => void;
   onRemove?: (track: T, index: number) => void;
+  onPlayAll?: () => void;
+  onAddAllToQueue?: () => void;
 };
 
 export type ContextMenuWrapperProps<T extends Track = Track> = {
@@ -53,6 +57,8 @@ export type TrackTableProps<T extends Track = Track> = {
     selectable?: boolean;
     reorderable?: boolean;
     favorites?: boolean;
+    playAll?: boolean;
+    addAllToQueue?: boolean;
     contextMenu?: boolean;
   };
   display?: {
@@ -65,7 +71,7 @@ export type TrackTableProps<T extends Track = Track> = {
     displayDuration?: boolean;
     displayQueueControls?: boolean;
   };
-  actions?: TrackTableActions<T>;
+  actions: TrackTableActions<T>;
   meta?: {
     isTrackFavorite?: (track: T) => boolean;
     ContextMenuWrapper?: FC<ContextMenuWrapperProps<T>>;

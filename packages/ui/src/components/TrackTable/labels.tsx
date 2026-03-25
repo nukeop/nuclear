@@ -22,6 +22,8 @@ export const defaultTrackTableLabels: TrackTableLabels = {
   reorderUnavailableDueToFilter: 'Reordering disabled while filtering',
   keyboardInstructions: 'Use arrow keys to navigate and space to select',
   dragHandleLabel: 'Drag to reorder',
+  playAll: 'Play all',
+  addAllToQueue: 'Add all to queue',
 };
 
 export function mergeLabels(

@@ -102,7 +102,10 @@ const SearchContent: FC<{
       label: t('search:results.tracks'),
       content: (
         <div className="flex flex-col">
-          <ConnectedTrackTable tracks={results.tracks} />
+          <ConnectedTrackTable
+            features={{ playAll: true, addAllToQueue: true }}
+            tracks={results.tracks}
+          />
         </div>
       ),
     },

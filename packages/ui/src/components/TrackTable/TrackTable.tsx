@@ -13,7 +13,6 @@ import { Track } from '@nuclearplayer/model';
 
 import { cn } from '../../utils';
 import { defaultDisplay, defaultFeatures } from './defaults';
-import { FilterBar } from './FilterBar';
 import { useColumns } from './hooks/useColumns';
 import { useGlobalFilter } from './hooks/useGlobalFilter';
 import { useReorder } from './hooks/useReorder';
@@ -22,6 +21,7 @@ import { useVirtualRows } from './hooks/useVirtualRows';
 import { mergeLabels } from './labels';
 import { ReorderLayer } from './ReorderLayer';
 import { SortableRow } from './SortableRow';
+import { Toolbar } from './Toolbar';
 import { TrackTableProvider } from './TrackTableContext';
 import { TrackTableProps } from './types';
 import { DEFAULT_OVERSCAN, DEFAULT_ROW_HEIGHT } from './utils/constants';
@@ -114,15 +114,19 @@ export function TrackTable<T extends Track = Track>({
   const mockViewportHeight = rowHeight * 12;
 
   return (
-    <TrackTableProvider value={{ isReorderable }}>
-      {resolvedFeatures?.filterable && (
-        <FilterBar
-          value={globalFilter}
-          onChange={setGlobalFilter}
-          className="mb-2"
-          placeholder="Filter tracks"
-        />
-      )}
+    <TrackTableProvider
+      value={{
+        isReorderable,
+        features: resolvedFeatures,
+        actions,
+        labels: mergedLabels,
+      }}
+    >
+      <Toolbar
+        filterValue={globalFilter}
+        onFilterChange={setGlobalFilter}
+        className="mb-2"
+      />
       <div
         ref={scrollParentRef}
         className="relative flex max-h-full w-full overflow-y-auto"

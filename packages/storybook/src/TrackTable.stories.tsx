@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+import { fn } from 'storybook/test';
 
 import { Track } from '@nuclearplayer/model';
 import { TrackTable, TrackTableProps } from '@nuclearplayer/ui';
@@ -277,4 +278,27 @@ export const WithDeleteButton: Story = {
       />
     );
   },
+};
+
+export const ToolbarButtons: Story = {
+  args: {
+    tracks,
+    features: {
+      playAll: true,
+      addAllToQueue: true,
+      filterable: true,
+    },
+    display: {
+      displayPosition: true,
+      displayThumbnail: true,
+      displayArtist: true,
+      displayAlbum: true,
+      displayDuration: true,
+    },
+    actions: {
+      onPlayAll: fn(),
+      onAddAllToQueue: fn(),
+    },
+  },
+  render: (args) => <TrackTable {...(args as TrackTableProps)} />,
 };

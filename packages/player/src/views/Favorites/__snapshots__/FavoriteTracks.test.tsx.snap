@@ -123,10 +123,65 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
             style="scrollbar-width: none;"
           >
             <div
-              class="flex justify-end mb-2"
+              class="flex items-center gap-2 mb-2"
             >
+              <div>
+                <button
+                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
+                  data-headlessui-state=""
+                  data-testid="play-all-button"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-play"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="3"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div>
+                <button
+                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-10 justify-center"
+                  data-headlessui-state=""
+                  data-testid="add-all-to-queue-button"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-plus"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="3"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 12h14"
+                    />
+                    <path
+                      d="M12 5v14"
+                    />
+                  </svg>
+                </button>
+              </div>
               <div
-                class="inline-flex w-full max-w-sm items-stretch"
+                class="ml-auto inline-flex w-full max-w-sm items-stretch"
               >
                 <div
                   class="flex w-full flex-col gap-2"
@@ -135,7 +190,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
                     class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
                   >
                     <input
-                      class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-9 text-sm rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                       data-headlessui-state=""
                       id="input-:r7:"
                       placeholder="Filter tracks"

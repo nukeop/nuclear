@@ -43,7 +43,7 @@ export const ArtistPopularTracks: FC<ArtistPopularTracksProps> = ({
       <h2 className="mb-2 text-lg font-semibold">{t('popularTracks')}</h2>
       <ConnectedTrackTable
         tracks={tracks ?? []}
-        features={{ filterable: false }}
+        features={{ filterable: false, playAll: true, addAllToQueue: true }}
         display={{ displayDuration: false }}
       />
     </div>
