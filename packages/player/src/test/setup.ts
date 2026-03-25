@@ -74,8 +74,8 @@ vi.mock('uuid', async () => {
   return { v4: mockUuid.v4 };
 });
 
-vi.mock('framer-motion', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('framer-motion')>();
+vi.mock('motion/react', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('motion/react')>();
 
   // Ugly as shit cross-package import but importing @nuclearplayer/ui here causes tests to hang indefinitely
   const mockMod = await import('../../../ui/src/test/mockFramerMotion');

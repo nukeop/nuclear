@@ -293,7 +293,7 @@ packages/ui/src/components/Badge/
 
 - Neo-brutalist with premium polish - bold borders, purposeful shadows
 - Premium, designed feel
-- Animations via `framer-motion` and `tw-animate-css`
+- Animations via `motion` and `tw-animate-css`
 - Disable animations during high-friction moments (resize, drag)
 - Avoid generic AI patterns (icon-grid cards, stock heroes, "Built with love" badges)
 

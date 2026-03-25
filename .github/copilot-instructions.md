@@ -25,7 +25,7 @@ This particular repo is a rewrite project, with the original Nuclear codebase in
 - Vite - build tool
 - Vitest - for all tests
 - Lucide React - icon library
-- framer-motion and tw-animate-css - for animations
+- motion and tw-animate-css - for animations
 - TanStack Router - chosen solution for routing.
 - TanStack Query v5 - chosen solution for HTTP requests.
 
@@ -99,7 +99,7 @@ pnpm storybook      # run Storybook
 - Visual style: **neo-brutalist with premium polish**.
 - Animations should enhance UX, not slow it down.
 - Disable animations during high-friction moments (e.g., resize).
-- Use **framer-motion** + **tw-animate-css** for smooth springy physics.
+- Use **motion** + **tw-animate-css** for smooth springy physics.
 - Feel: professional yet approachable, Discord-like.
 
 #### Typography

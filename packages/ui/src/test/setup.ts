@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { MotionGlobalConfig } from 'framer-motion';
+import { MotionGlobalConfig } from 'motion/react';
 
 import { setupResizeObserverMock } from './resizeObserverMock';
 
@@ -16,8 +16,8 @@ Element.prototype.scrollIntoView = vi.fn();
 MotionGlobalConfig.skipAnimations = true;
 MotionGlobalConfig.instantAnimations = true;
 
-vi.mock('framer-motion', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('framer-motion')>();
+vi.mock('motion/react', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('motion/react')>();
   const mockMod = await import('./mockFramerMotion');
   const factory = mockMod.createFramerMotionMock;
   return factory(mod);

@@ -1,6 +1,6 @@
 import { ElementType, forwardRef, ReactNode } from 'react';
 
-export const createFramerMotionMock = (mod: typeof import('framer-motion')) => {
+export const createFramerMotionMock = (mod: typeof import('motion/react')) => {
   const make = (Tag: ElementType) =>
     forwardRef<unknown, { children?: ReactNode } & Record<string, unknown>>(
       ({ children, className, animate, exit, initial, transition }, ref) => {
@@ -49,7 +49,7 @@ export const createFramerMotionMock = (mod: typeof import('framer-motion')) => {
     MotionConfig,
     useReducedMotion: () => true,
     MotionGlobalConfig: { ...mod.MotionGlobalConfig, skipAnimations: true },
-  } as typeof import('framer-motion');
+  } as typeof import('motion/react');
 };
 
 export default createFramerMotionMock;

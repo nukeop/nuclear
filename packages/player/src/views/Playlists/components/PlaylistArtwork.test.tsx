@@ -2,8 +2,8 @@ import { render } from '@testing-library/react';
 
 import { PlaylistArtwork } from './PlaylistArtwork';
 
-vi.mock('framer-motion', async () => {
-  const actual = await vi.importActual('framer-motion');
+vi.mock('motion/react', async () => {
+  const actual = await vi.importActual('motion/react');
   return {
     ...actual,
     useReducedMotion: () => true,

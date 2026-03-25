@@ -5,7 +5,7 @@ import {
   PopoverPanel,
   PopoverPanelProps,
 } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { FC, ReactNode } from 'react';
 
 import { cn } from '../../utils';
