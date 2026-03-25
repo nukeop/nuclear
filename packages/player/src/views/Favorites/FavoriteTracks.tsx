@@ -35,6 +35,8 @@ export const FavoriteTracks: FC = () => {
             header: true,
             filterable: true,
             sortable: true,
+            playAll: true,
+            addAllToQueue: true,
           }}
           display={{
             displayThumbnail: true,

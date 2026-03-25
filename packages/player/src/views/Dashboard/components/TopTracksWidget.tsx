@@ -25,7 +25,7 @@ export const TopTracksWidget: FC = () => {
       ) : (
         <ConnectedTrackTable
           tracks={tracks}
-          features={{ filterable: false }}
+          features={{ filterable: true, playAll: true, addAllToQueue: true }}
           display={{ displayDuration: false }}
         />
       )}
