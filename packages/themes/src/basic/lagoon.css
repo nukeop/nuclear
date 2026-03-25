@@ -1,6 +1,7 @@
 :root[data-theme-id='nuclear:lagoon'] {
   --background: oklch(0.985 0.018 210);
   --primary: oklch(0.67 0.16 205);
+  --foreground-secondary: oklch(0.42 0.1 205);
 }
 
 :root[data-theme-id='nuclear:lagoon'][data-theme='dark'] {
@@ -9,6 +10,6 @@
   --background-input: oklch(0.13 0.015 205);
   --primary: oklch(0.55 0.12 205);
   --foreground: oklch(0.9 0.008 205);
-  --foreground-secondary: oklch(0.75 0.015 205);
+  --foreground-secondary: oklch(0.78 0.1 205);
   --border: oklch(0.48 0.04 205);
 }

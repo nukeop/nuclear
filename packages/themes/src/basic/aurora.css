@@ -1,6 +1,7 @@
 :root[data-theme-id='nuclear:aurora'] {
   --background: oklch(0.98 0.01 340);
   --primary: oklch(0.74 0.15 305);
+  --foreground-secondary: oklch(0.42 0.1 305);
 }
 
 :root[data-theme-id='nuclear:aurora'][data-theme='dark'] {
@@ -9,6 +10,6 @@
   --background-input: oklch(0.15 0.02 305);
   --primary: oklch(0.62 0.11 305);
   --foreground: oklch(0.9 0.008 305);
-  --foreground-secondary: oklch(0.75 0.015 305);
+  --foreground-secondary: oklch(0.78 0.1 305);
   --border: oklch(0.48 0.04 305);
 }

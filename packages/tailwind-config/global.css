@@ -60,7 +60,7 @@
 
   /* Text Colors */
   --foreground: oklch(0% 0 0);
-  --foreground-secondary: oklch(0.6 0 0);
+  --foreground-secondary: oklch(0.42 0.1 342);
   --foreground-input: oklch(0% 0 0);
 
   /* Interactive Elements */
@@ -129,7 +129,7 @@
   --background-input: oklch(0.15 0.02 342);
 
   --foreground: oklch(0.9 0.008 342);
-  --foreground-secondary: oklch(0.75 0.015 342);
+  --foreground-secondary: oklch(0.78 0.1 342);
   --foreground-input: oklch(0.93 0 0);
 
   --primary: oklch(0.65 0.13 342);
