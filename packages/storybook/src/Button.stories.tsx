@@ -13,7 +13,14 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'noShadow', 'text'],
+      options: [
+        'default',
+        'secondary',
+        'tertiary',
+        'noShadow',
+        'text',
+        'ghost',
+      ],
     },
     size: {
       control: { type: 'select' },
@@ -31,6 +38,20 @@ type Story = StoryObj<Meta<typeof Button>>;
 export const Default: Story = {
   args: {
     children: 'Button',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    children: 'Secondary',
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    variant: 'tertiary',
+    children: 'Tertiary',
   },
 };
 
@@ -88,8 +109,11 @@ export const AllVariants: Story = {
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-4">
         <Button variant="default">Default</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="tertiary">Tertiary</Button>
         <Button variant="noShadow">No Shadow</Button>
         <Button variant="text">Text</Button>
+        <Button variant="ghost">Ghost</Button>
       </div>
       <div className="flex items-center gap-4">
         <Button size="sm">Small</Button>
