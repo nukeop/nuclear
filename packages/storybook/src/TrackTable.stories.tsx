@@ -300,9 +300,5 @@ export const ToolbarButtons: Story = {
       onAddAllToQueue: fn(),
     },
   },
-  render: (args) => (
-    <div className="h-100 p-4">
-      <TrackTable {...(args as TrackTableProps)} />
-    </div>
-  ),
+  render: (args) => <TrackTable {...(args as TrackTableProps)} />,
 };

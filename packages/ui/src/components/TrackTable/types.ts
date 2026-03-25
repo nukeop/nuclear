@@ -71,7 +71,7 @@ export type TrackTableProps<T extends Track = Track> = {
     displayDuration?: boolean;
     displayQueueControls?: boolean;
   };
-  actions?: TrackTableActions<T>;
+  actions: TrackTableActions<T>;
   meta?: {
     isTrackFavorite?: (track: T) => boolean;
     ContextMenuWrapper?: FC<ContextMenuWrapperProps<T>>;

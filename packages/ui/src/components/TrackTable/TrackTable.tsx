@@ -114,24 +114,19 @@ export function TrackTable<T extends Track = Track>({
   const mockViewportHeight = rowHeight * 12;
 
   return (
-    <TrackTableProvider value={{ isReorderable }}>
-      {(resolvedFeatures?.playAll ||
-        resolvedFeatures?.addAllToQueue ||
-        resolvedFeatures?.filterable) && (
-        <Toolbar
-          playAll={resolvedFeatures?.playAll}
-          addAllToQueue={resolvedFeatures?.addAllToQueue}
-          filterable={resolvedFeatures?.filterable}
-          onPlayAll={actions?.onPlayAll}
-          onAddAllToQueue={actions?.onAddAllToQueue}
-          playAllLabel={mergedLabels.playAll}
-          addAllToQueueLabel={mergedLabels.addAllToQueue}
-          filterValue={globalFilter}
-          onFilterChange={setGlobalFilter}
-          filterPlaceholder="Filter tracks"
-          className="mb-2"
-        />
-      )}
+    <TrackTableProvider
+      value={{
+        isReorderable,
+        features: resolvedFeatures,
+        actions,
+        labels: mergedLabels,
+      }}
+    >
+      <Toolbar
+        filterValue={globalFilter}
+        onFilterChange={setGlobalFilter}
+        className="mb-2"
+      />
       <div
         ref={scrollParentRef}
         className="relative flex max-h-full w-full overflow-y-auto"

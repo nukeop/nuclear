@@ -3057,7 +3057,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
 </DocumentFragment>
 `;
 
-exports[`TrackTable > (Snapshot) ToolbarButtons 1`] = `
+exports[`TrackTable > (Snapshot) Toolbar 1`] = `
 <DocumentFragment>
   <div
     class="flex items-center gap-2 mb-2"
