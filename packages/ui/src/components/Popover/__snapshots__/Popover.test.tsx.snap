@@ -210,8 +210,11 @@ exports[`Popover > (Snapshot) renders with backdrop 1`] = `
       <div
         aria-hidden="true"
         class="fixed inset-0 bg-black/20 transition duration-150 ease-out data-closed:opacity-0"
+        data-closed=""
+        data-enter=""
         data-headlessui-state="open"
         data-open=""
+        data-transition=""
         id="headlessui-popover-backdrop-:ra:"
         style=""
       />

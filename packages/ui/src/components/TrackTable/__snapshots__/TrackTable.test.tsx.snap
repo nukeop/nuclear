@@ -3090,7 +3090,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
     </div>
     <div>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-(length:--border-width) hover:shadow-none size-10 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-10 justify-center"
         data-headlessui-state=""
         data-testid="add-all-to-queue-button"
         type="button"
