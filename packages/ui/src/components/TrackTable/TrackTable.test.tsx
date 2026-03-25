@@ -119,4 +119,23 @@ describe('TrackTable', () => {
     await findByText('Track 1');
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it('(Snapshot) Toolbar', async () => {
+    const { asFragment, findByTestId } = render(
+      <TrackTable
+        tracks={makeTracks(3)}
+        features={{ playAll: true, addAllToQueue: true, filterable: true }}
+        display={{
+          displayPosition: true,
+          displayThumbnail: true,
+          displayArtist: true,
+          displayAlbum: true,
+          displayDuration: true,
+        }}
+        actions={{ onPlayAll: vi.fn(), onAddAllToQueue: vi.fn() }}
+      />,
+    );
+    await findByTestId('add-all-to-queue-button');
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

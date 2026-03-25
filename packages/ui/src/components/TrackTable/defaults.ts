@@ -5,6 +5,8 @@ export const defaultFeatures: TrackTableProps['features'] = {
   filterable: true,
   sortable: true,
   reorderable: false,
+  playAll: false,
+  addAllToQueue: false,
   favorites: true,
   contextMenu: true,
 };
