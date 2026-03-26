@@ -71,7 +71,7 @@ describe('Discovery', () => {
 
       await SoundWrapper.mount();
       await SoundWrapper.seedAndPlay(lastTrack ? 2 : 0);
-      SoundWrapper.fireEnded();
+      SoundWrapper.fireCanPlay();
 
       await waitFor(() => {
         expect(useQueueStore.getState().items).toHaveLength(
@@ -93,7 +93,7 @@ describe('Discovery', () => {
 
       await SoundWrapper.mount();
       await SoundWrapper.seedAndPlay(2);
-      SoundWrapper.fireEnded();
+      SoundWrapper.fireCanPlay();
 
       expect(
         screen.queryByTestId('player-discovery-button'),
@@ -108,7 +108,7 @@ describe('Discovery', () => {
 
       await SoundWrapper.mount();
       await SoundWrapper.seedAndPlay(2);
-      SoundWrapper.fireEnded();
+      SoundWrapper.fireCanPlay();
 
       await waitFor(() => {
         expect(toastError).toHaveBeenCalled();
