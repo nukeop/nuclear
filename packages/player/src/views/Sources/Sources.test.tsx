@@ -1,5 +1,6 @@
 import { providersHost } from '../../services/providersHost';
 import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
+import { DiscoveryProviderBuilder } from '../../test/builders/DiscoveryProviderBuilder';
 import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
 import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
 import { StreamingProviderBuilder } from '../../test/builders/StreamingProviderBuilder';
@@ -196,6 +197,37 @@ describe('Sources view', () => {
       SourcesWrapper.section('metadata').provider('Bandcamp').warning,
     ).toHaveTextContent(
       'Required streaming provider "bc-stream" is not available',
+    );
+  });
+
+  it('lists and switches discovery providers', async () => {
+    providersHost.register(
+      new DiscoveryProviderBuilder()
+        .withId('disco-a')
+        .withName('Discovery A')
+        .build(),
+    );
+    providersHost.register(
+      new DiscoveryProviderBuilder()
+        .withId('disco-b')
+        .withName('Discovery B')
+        .build(),
+    );
+
+    await SourcesWrapper.mount();
+
+    expect(
+      await SourcesWrapper.section(
+        'discovery',
+      ).providerSelect.availableOptions(),
+    ).toEqual(['Discovery A', 'Discovery B']);
+
+    await SourcesWrapper.section('discovery').providerSelect.select(
+      'Discovery B',
+    );
+
+    expect(SourcesWrapper.section('discovery').providerSelect.selected()).toBe(
+      'Discovery B',
     );
   });
 });
