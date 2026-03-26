@@ -94,6 +94,20 @@ describe('ConnectedControls', () => {
       'off',
     );
   });
+
+  it('clicking autoradio toggles the autoradio setting', async () => {
+    await Wrapper.mount();
+
+    await Wrapper.controls.autoradioButton.click();
+    expect(useSettingsStore.getState().values['core.playback.autoradio']).toBe(
+      true,
+    );
+
+    await Wrapper.controls.autoradioButton.click();
+    expect(useSettingsStore.getState().values['core.playback.autoradio']).toBe(
+      false,
+    );
+  });
 });
 
 describe('ConnectedVolume', () => {
