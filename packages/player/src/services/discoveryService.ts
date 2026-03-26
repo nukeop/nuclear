@@ -11,7 +11,7 @@ const CONTEXT_SIZE = 10;
 const RECOMMENDATION_LIMIT = 5;
 
 export const initDiscoveryService = () => {
-  return eventBus.on('trackFinished', async () => {
+  return eventBus.on('trackStarted', async () => {
     const isEnabled = useSettingsStore
       .getState()
       .getValue('core.playback.discovery');
