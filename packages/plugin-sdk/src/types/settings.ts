@@ -8,7 +8,15 @@ export type SettingCategory = string;
 
 export type BooleanWidget = { type: 'toggle' };
 export type NumberWidget =
-  | { type: 'slider'; min?: number; max?: number; step?: number; unit?: string }
+  | {
+      type: 'slider';
+      min?: number;
+      max?: number;
+      step?: number;
+      unit?: string;
+      startLabel?: string;
+      endLabel?: string;
+    }
   | {
       type: 'number-input';
       min?: number;

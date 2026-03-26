@@ -307,7 +307,9 @@
       },
       "discoveryVariety": {
         "title": "Discovery variety",
-        "description": "How far recommendations deviate from your current listening. Lower is closer."
+        "description": "How far recommendations deviate from your current listening. Lower is closer.",
+        "startLabel": "Less crazy",
+        "endLabel": "More crazy"
       }
     },
     "layout": {

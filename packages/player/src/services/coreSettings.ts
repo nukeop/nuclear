@@ -115,7 +115,14 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     category: 'playback',
     kind: 'number',
     default: 0.5,
-    widget: { type: 'slider', min: 0, max: 1, step: 0.05 },
+    widget: {
+      type: 'slider',
+      min: 0,
+      max: 1,
+      step: 0.05,
+      startLabel: 'preferences.playback.discoveryVariety.startLabel',
+      endLabel: 'preferences.playback.discoveryVariety.endLabel',
+    },
   },
   {
     id: 'playback.skipSeconds',

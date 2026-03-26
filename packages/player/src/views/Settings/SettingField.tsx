@@ -37,7 +37,11 @@ export const SettingField: FC<SettingFieldProps> = ({
     );
   }
 
-  const { title: label, description } = useSettingTranslation(definition);
+  const {
+    title: label,
+    description,
+    translateField,
+  } = useSettingTranslation(definition);
   const widgetType = definition.widget?.type;
 
   const renderers: Record<string, () => JSX.Element> = {
@@ -61,7 +65,10 @@ export const SettingField: FC<SettingFieldProps> = ({
       const DEFAULT_MIN = 0;
       const DEFAULT_MAX = 100;
       const DEFAULT_STEP = 1;
-      const widget = definition.widget as NumberWidget;
+      const widget = definition.widget as NumberWidget & {
+        startLabel?: string;
+        endLabel?: string;
+      };
       const min = widget?.min ?? DEFAULT_MIN;
       const max = widget?.max ?? DEFAULT_MAX;
       const step = widget?.step ?? DEFAULT_STEP;
@@ -69,12 +76,15 @@ export const SettingField: FC<SettingFieldProps> = ({
       return (
         <SliderField
           label={label}
+          description={description}
           value={Number(value ?? 0)}
           setValue={(v) => setValue(v)}
           min={min}
           max={max}
           step={step}
           unit={unit}
+          startLabel={translateField(widget?.startLabel)}
+          endLabel={translateField(widget?.endLabel)}
         />
       );
     },

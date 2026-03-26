@@ -23,5 +23,6 @@ export const useSettingTranslation = (definition: SettingDefinition) => {
   return {
     title: translateField(definition.title) ?? definition.title,
     description: translateField(definition.description),
+    translateField,
   };
 };
