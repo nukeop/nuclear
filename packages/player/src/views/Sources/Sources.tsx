@@ -1,4 +1,5 @@
 import {
+  BoomBoxIcon,
   GaugeIcon,
   HeadphonesIcon,
   ListMusicIcon,
@@ -26,6 +27,9 @@ export const Sources: FC = () => {
   const activeMetadataId = useProvidersStore((state) => state.active.metadata);
   const activeStreamingId = useProvidersStore(
     (state) => state.active.streaming,
+  );
+  const activeDiscoveryId = useProvidersStore(
+    (state) => state.active.discovery,
   );
 
   const activeMetadata = metadataProviders.find(
@@ -65,6 +69,14 @@ export const Sources: FC = () => {
             }
             onValueChange={(providerId) =>
               providersHost.setActive('streaming', providerId)
+            }
+          />
+          <ProviderKindSection
+            kind="discovery"
+            Icon={BoomBoxIcon}
+            value={activeDiscoveryId}
+            onValueChange={(providerId) =>
+              providersHost.setActive('discovery', providerId)
             }
           />
           <ProviderInfoSection
