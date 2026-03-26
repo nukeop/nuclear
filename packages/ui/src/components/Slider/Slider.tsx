@@ -16,8 +16,11 @@ type SliderProps = {
   disabled?: boolean;
   className?: string;
   label?: string;
+  description?: string;
   showValue?: boolean;
   showFooter?: boolean;
+  startLabel?: string;
+  endLabel?: string;
 };
 
 const DEFAULT_MIN = 0;
@@ -129,7 +132,11 @@ export const SliderHeader: FC<{ label?: string; showValue?: boolean }> = ({
   const { inputId, labelId, unit, value } = useSliderContext();
   return (
     <div className="flex w-full items-center justify-between text-sm">
-      <label id={labelId} className="text-foreground" htmlFor={inputId}>
+      <label
+        id={labelId}
+        className="text-foreground font-semibold"
+        htmlFor={inputId}
+      >
         {label}
       </label>
       {showValue && (
@@ -201,18 +208,15 @@ export const SliderSurface: FC<PropsWithChildren> = ({ children }) => (
   <div className="relative h-6 w-full overscroll-contain">{children}</div>
 );
 
-export const SliderFooter: FC = () => {
+export const SliderFooter: FC<{
+  startLabel?: string;
+  endLabel?: string;
+}> = ({ startLabel, endLabel }) => {
   const { min, max, unit } = useSliderContext();
   return (
     <div className="text-foreground-secondary flex w-full justify-between text-xs">
-      <span>
-        {min}
-        {unit ? ` ${unit}` : ''}
-      </span>
-      <span>
-        {max}
-        {unit ? ` ${unit}` : ''}
-      </span>
+      <span>{startLabel ?? `${min}${unit ? ` ${unit}` : ''}`}</span>
+      <span>{endLabel ?? `${max}${unit ? ` ${unit}` : ''}`}</span>
     </div>
   );
 };
@@ -227,8 +231,11 @@ type SliderComponent = FC<PropsWithChildren<SliderProps>> & {
 
 const SliderImpl: FC<PropsWithChildren<SliderProps>> = ({
   label,
+  description,
   showValue = true,
   showFooter = true,
+  startLabel,
+  endLabel,
   className,
   children,
   ...rest
@@ -243,11 +250,16 @@ const SliderImpl: FC<PropsWithChildren<SliderProps>> = ({
           {(label || showValue) && (
             <SliderHeader label={label} showValue={showValue} />
           )}
+          {description && (
+            <p className="text-foreground-secondary text-xs">{description}</p>
+          )}
           <SliderSurface>
             <SliderTrack />
             <SliderRangeInput />
           </SliderSurface>
-          {showFooter && <SliderFooter />}
+          {showFooter && (
+            <SliderFooter startLabel={startLabel} endLabel={endLabel} />
+          )}
         </>
       )}
     </SliderRoot>

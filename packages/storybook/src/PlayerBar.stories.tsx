@@ -16,6 +16,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const cover = 'https://picsum.photos/64';
+const noop = () => {};
+const labels = {
+  shuffleOn: 'Shuffle: on',
+  shuffleOff: 'Shuffle: off',
+  repeatOff: 'Repeat: off',
+  repeatAll: 'Repeat: all',
+  repeatOne: 'Repeat: one',
+  discoveryOn: 'Discovery: on',
+  discoveryOff: 'Discovery: off',
+};
 
 export const Default: Story = {
   render: () => (
@@ -33,7 +43,17 @@ export const Default: Story = {
             coverUrl={cover}
           />
         }
-        center={<PlayerBar.Controls />}
+        center={
+          <PlayerBar.Controls
+            labels={labels}
+            onPlayPause={noop}
+            onNext={noop}
+            onPrevious={noop}
+            onShuffleToggle={noop}
+            onRepeatToggle={noop}
+            showDiscovery={false}
+          />
+        }
         right={<PlayerBar.Volume defaultValue={75} />}
       />
     </>
@@ -57,7 +77,20 @@ export const ActiveStates: Story = {
           />
         }
         center={
-          <PlayerBar.Controls isPlaying isShuffleActive repeatMode="all" />
+          <PlayerBar.Controls
+            isPlaying
+            isShuffleActive
+            repeatMode="all"
+            isDiscoveryActive
+            showDiscovery
+            labels={labels}
+            onPlayPause={noop}
+            onNext={noop}
+            onPrevious={noop}
+            onShuffleToggle={noop}
+            onRepeatToggle={noop}
+            onDiscoveryToggle={noop}
+          />
         }
         right={<PlayerBar.Volume defaultValue={60} />}
       />
@@ -80,7 +113,17 @@ export const NoArtwork: Story = {
             artist="Unknown Artist"
           />
         }
-        center={<PlayerBar.Controls />}
+        center={
+          <PlayerBar.Controls
+            labels={labels}
+            onPlayPause={noop}
+            onNext={noop}
+            onPrevious={noop}
+            onShuffleToggle={noop}
+            onRepeatToggle={noop}
+            showDiscovery={false}
+          />
+        }
         right={<PlayerBar.Volume defaultValue={30} />}
       />
     </>
@@ -103,7 +146,17 @@ export const LongMetadata: Story = {
             coverUrl={cover}
           />
         }
-        center={<PlayerBar.Controls />}
+        center={
+          <PlayerBar.Controls
+            labels={labels}
+            onPlayPause={noop}
+            onNext={noop}
+            onPrevious={noop}
+            onShuffleToggle={noop}
+            onRepeatToggle={noop}
+            showDiscovery={false}
+          />
+        }
         right={<PlayerBar.Volume defaultValue={50} />}
       />
     </div>

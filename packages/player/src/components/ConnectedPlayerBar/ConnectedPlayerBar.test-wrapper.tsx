@@ -151,6 +151,14 @@ export const ConnectedPlayerBarWrapper = {
         await user.click(this.element);
       },
     },
+    discoveryButton: {
+      get element() {
+        return screen.getByTestId('player-discovery-button');
+      },
+      async click() {
+        await user.click(this.element);
+      },
+    },
   },
 
   volume: {

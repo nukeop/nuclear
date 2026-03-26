@@ -1,5 +1,6 @@
 export { NuclearPluginAPI, NuclearAPI } from './api';
 export { DashboardAPI } from './api/dashboard';
+export { DiscoveryAPI } from './api/discovery';
 export { EventsAPI } from './api/events';
 export { FavoritesAPI } from './api/favorites';
 export { HttpAPI } from './api/http';
@@ -33,6 +34,7 @@ export * from './types/favorites';
 export * from './types/playback';
 export * from './types/playlists';
 export * from './types/dashboard';
+export * from './types/discovery';
 export * from './types/events';
 export * from './types/shell';
 export type {

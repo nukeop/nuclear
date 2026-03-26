@@ -16,6 +16,7 @@ import '@nuclearplayer/i18n';
 import { initLogStream } from './hooks/useLogStream';
 import { startAdvancedThemeWatcher } from './services/advancedThemeDirService';
 import { applyAdvancedThemeFromSettingsIfAny } from './services/advancedThemeService';
+import { initDiscoveryService } from './services/discoveryService';
 import {
   applyLanguageFromSettings,
   initLanguageWatcher,
@@ -34,6 +35,7 @@ initializeSettingsStore()
   .then(() => initializeFavoritesStore())
   .then(() => initializePlaylistStore())
   .then(() => registerBuiltInCoreSettings())
+  .then(() => initDiscoveryService())
   .then(() => initMcpHandler())
   .then(() => applyLanguageFromSettings())
   .then(() => initLanguageWatcher())
