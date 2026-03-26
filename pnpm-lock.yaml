@@ -31,7 +31,7 @@ importers:
         version: 26.1.0
       lint-staged:
         specifier: ^16.1.4
-        version: 16.3.3
+        version: 16.4.0
       prettier-plugin-tailwindcss:
         specifier: ^0.7.0
         version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.8.1))(prettier@3.8.1)
@@ -4637,8 +4637,8 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  lint-staged@16.3.3:
-    resolution: {integrity: sha512-RLq2koZ5fGWrx7tcqx2tSTMQj4lRkfNJaebO/li/uunhCJbtZqwTuwPHpgIimAHHi/2nZIiGrkCHDCOeR1onxA==}
+  lint-staged@16.4.0:
+    resolution: {integrity: sha512-lBWt8hujh/Cjysw5GYVmZpFHXDCgZzhrOm8vbcUdobADZNOK/bRshr2kM3DfgrrtR1DQhfupW9gnIXOfiFi+bw==}
     engines: {node: '>=20.17'}
     hasBin: true
 
@@ -4861,10 +4861,6 @@ packages:
 
   micromark@4.0.2:
     resolution: {integrity: sha512-zpe98Q6kvavpCr1NPVSCMebCKfD7CA2NqZ+rykeNhONIJBpc1tFKt9hucLGwha3jNTNI8lHpctWJWoimVF4PfA==}
-
-  micromatch@4.0.8:
-    resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
-    engines: {node: '>=8.6'}
 
   mimic-function@5.0.1:
     resolution: {integrity: sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==}
@@ -10600,11 +10596,11 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@16.3.3:
+  lint-staged@16.4.0:
     dependencies:
       commander: 14.0.3
       listr2: 9.0.5
-      micromatch: 4.0.8
+      picomatch: 4.0.4
       string-argv: 0.3.2
       tinyexec: 1.0.4
       yaml: 2.8.3
@@ -11026,11 +11022,6 @@ snapshots:
       micromark-util-types: 2.0.2
     transitivePeerDependencies:
       - supports-color
-
-  micromatch@4.0.8:
-    dependencies:
-      braces: 3.0.3
-      picomatch: 2.3.2
 
   mimic-function@5.0.1: {}
 
