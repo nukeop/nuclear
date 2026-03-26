@@ -1,5 +1,21 @@
 [
   {
+    "date": "2026-03-26T00:00",
+    "description": "Plugins can provide music discovery recommendations based on the current queue",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      },
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-03-24T00:00",
     "description": "Introduce dark mode as persistent preference",
     "type": "improvement",
