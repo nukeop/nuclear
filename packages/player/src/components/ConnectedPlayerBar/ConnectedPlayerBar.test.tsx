@@ -95,16 +95,16 @@ describe('ConnectedControls', () => {
     );
   });
 
-  it('clicking autoradio toggles the autoradio setting', async () => {
+  it('clicking discovery toggles the discovery setting', async () => {
     await Wrapper.mount();
 
-    await Wrapper.controls.autoradioButton.click();
-    expect(useSettingsStore.getState().values['core.playback.autoradio']).toBe(
+    await Wrapper.controls.discoveryButton.click();
+    expect(useSettingsStore.getState().values['core.playback.discovery']).toBe(
       true,
     );
 
-    await Wrapper.controls.autoradioButton.click();
-    expect(useSettingsStore.getState().values['core.playback.autoradio']).toBe(
+    await Wrapper.controls.discoveryButton.click();
+    expect(useSettingsStore.getState().values['core.playback.discovery']).toBe(
       false,
     );
   });

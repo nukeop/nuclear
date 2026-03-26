@@ -58,7 +58,7 @@ describe('Discovery', () => {
     'enabled: $enabled, last track: $lastTrack → adds track: $shouldAddTrack',
     async ({ enabled, lastTrack, shouldAddTrack }) => {
       useSettingsStore.setState({
-        values: { 'core.playback.autoradio': enabled },
+        values: { 'core.playback.discovery': enabled },
       });
 
       await SoundWrapper.mount();
@@ -76,11 +76,11 @@ describe('Discovery', () => {
   describe('when enabled', () => {
     beforeEach(() => {
       useSettingsStore.setState({
-        values: { 'core.playback.autoradio': true },
+        values: { 'core.playback.discovery': true },
       });
     });
 
-    it('does not show the autoradio button and does not add tracks when no discovery provider is registered', async () => {
+    it('does not show the discovery button and does not add tracks when no discovery provider is registered', async () => {
       providersHost.clear();
 
       await SoundWrapper.mount();
@@ -88,7 +88,7 @@ describe('Discovery', () => {
       SoundWrapper.fireEnded();
 
       expect(
-        screen.queryByTestId('player-autoradio-button'),
+        screen.queryByTestId('player-discovery-button'),
       ).not.toBeInTheDocument();
       expect(useQueueStore.getState().items).toHaveLength(3);
     });
