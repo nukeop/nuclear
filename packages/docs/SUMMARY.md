@@ -2,6 +2,17 @@
 
 * [Nuclear Documentation](README.md)
 
+## Theming
+
+* [Themes](themes/themes.md)
+* [Basic themes](themes/themes-basic.md)
+* [Advanced themes](themes/themes-advanced.md)
+
+## Misc
+
+* [Keyboard shortcuts](misc/keyboard-shortcuts.md)
+* [Platform-specific notes](misc/platform-specific.md)
+
 ## Plugins
 
 * [Getting started](plugins/getting-started.md)
@@ -27,20 +38,9 @@
 
 * [MCP Server](integrations/mcp-server.md)
 
-## Theming
-
-* [Themes](themes/themes.md)
-* [Basic themes](themes/themes-basic.md)
-* [Advanced themes](themes/themes-advanced.md)
-
 ## Development
 
 * [Contributing](development/contributing.md)
 * [Host pattern](development/host-pattern.md)
 * [Logging](development/logging.md)
 * [MCP Architecture](development/mcp-architecture.md)
-
-## Misc
-
-* [Keyboard shortcuts](misc/keyboard-shortcuts.md)
-* [Platform-specific notes](misc/platform-specific.md)

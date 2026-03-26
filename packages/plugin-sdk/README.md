@@ -2,7 +2,7 @@
 
 Build plugins for Nuclear music player.
 
-Plugins are JavaScript/TypeScript modules that extend Nuclear's functionality. Write lifecycle hooks, register providers, and ship it as an npm package or local bundle.
+Plugins are JavaScript/TypeScript modules that extend Nuclear's functionality. Write lifecycle hooks, register providers, distribute it through the [plugin registry](https://github.com/NuclearPlayer/plugin-registry).
 
 ## Quick Start
 
@@ -24,16 +24,16 @@ export default {
   async onEnable(api: NuclearPluginAPI) {
     console.log('Plugin enabled');
   },
-  async onDisable() {
+  async onDisable(api: NuclearPluginAPI) {
     console.log('Plugin disabled');
   },
-  async onUnload() {
+  async onUnload(api: NuclearPluginAPI) {
     console.log('Plugin unloaded');
   },
 };
 ```
 
-Build it to `dist/index.js` as a CommonJS bundle.
+You can load both TS and JS files. Nuclear compiles TS using esbuild.
 
 ## Manifest (package.json)
 
@@ -76,7 +76,7 @@ Add a `nuclear` object for extra metadata:
 type PluginIcon = { type: 'link'; link: string };
 ```
 
-Link icons should point to a local file path or remote URL; keep them small (<= 64x64, optimized).
+Link icons should point to a local file path or remote URL.
 
 ## Lifecycle Hooks
 
@@ -84,8 +84,8 @@ All hooks are optional. Export a default object with any of:
 
 - `onLoad(api)` - Runs after plugin code loads and manifest is parsed
 - `onEnable(api)` - Runs when user enables the plugin
-- `onDisable()` - Runs when user disables it
-- `onUnload()` - Runs before plugin is removed from memory
+- `onDisable(api)` - Runs when user disables it
+- `onUnload(api)` - Runs before plugin is removed from memory
 
 ```ts
 export default {
@@ -93,9 +93,9 @@ export default {
   },
   async onEnable(api) {
   },
-  async onDisable() {
+  async onDisable(api) {
   },
-  async onUnload() {
+  async onUnload(api) {
   },
 };
 ```
@@ -108,7 +108,7 @@ The `api` object passed to lifecycle hooks provides access to these domain APIs:
 |-----|-------------|
 | `api.Settings` | Define, read, and persist plugin settings |
 | `api.Queue` | Read and manipulate the playback queue |
-| `api.Playback` | Control audio transport: play, pause, stop, seek |
+| `api.Playback` | Control playback, volume, shuffle, and repeat |
 | `api.Events` | Subscribe to player lifecycle events (e.g. track finished) |
 | `api.Favorites` | Manage the user's favorite tracks |
 | `api.Playlists` | Create, update, and delete playlists |
@@ -116,6 +116,8 @@ The `api` object passed to lifecycle hooks provides access to these domain APIs:
 | `api.Streaming` | Resolve audio stream URLs for tracks |
 | `api.Metadata` | Search and fetch artist/album/track details |
 | `api.Dashboard` | Fetch dashboard content (top tracks, new releases, etc.) |
+| `api.Discovery` | Fetch track recommendations from providers |
+| `api.Shell` | Open URLs in the system browser |
 | `api.Http` | Make HTTP requests from plugins and bypass CORS |
 | `api.Logger` | Structured logging |
 | `api.Ytdlp` | yt-dlp integration |
@@ -159,21 +161,7 @@ Run `pnpm build` and you'll get `dist/index.js`.
 1. Create your plugin folder
 2. Build to produce the entry file
 3. Load it in Nuclear
-4. Rebuild after changes; you'll need to reload the plugin
-
-## Tips
-
-- Keep startup fast, defer heavy work to `onEnable`
-- Validate network responses
-- Minimize dependencies, smaller = faster
-
-## Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| Can't find entry file | Check `main` in package.json or make sure `index.js` or `dist/index.js` exists |
-| Missing fields error | Add all required fields: name, version, description, author |
-| Hooks don't fire | Export a default object, not a function or class |
+4. You'll need to reload the plugin after changes
 
 ## Types
 
@@ -183,7 +171,7 @@ import type {
   PluginManifest,
   PluginIcon,
   // Model types (re-exported from @nuclearplayer/model)
-  Artist,
+  ArtistCredit,
   Album,
   Track,
   // ... and many more

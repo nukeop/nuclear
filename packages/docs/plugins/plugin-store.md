@@ -26,8 +26,6 @@ You can also install plugins from a local folder. In the Installed tab, click "A
 
 Manually installed plugins have one extra feature: a reload button. Click it to re-read the plugin source from the original folder, recompile, and reload. This is useful during development. Store-installed plugins don't support reload; remove and reinstall to get a new version. Auto-update is planned for the future.
 
-
-
 ## Managing plugins
 
 <figure><img src="../.gitbook/assets/installed-plugins.png" alt="Installed plugins with enable/disable toggles"><figcaption></figcaption></figure>

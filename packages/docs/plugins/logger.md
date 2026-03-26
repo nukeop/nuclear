@@ -63,5 +63,5 @@ api.Logger.log(level: LogLevel, message: string): void
 ## Notes
 
 * All methods are synchronous. They accept a string and return nothing.
-* If no logger host is provided (e.g. during testing), every method silently no-ops.
+* If no logger host is provided (e.g. during testing), every method no-ops.
 * Log output goes to Nuclear's logging system, which writes to the app's log file on disk devtools console, terminal console, and the built-in log viewer (Preferences → Logs).

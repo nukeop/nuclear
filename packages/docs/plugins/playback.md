@@ -32,14 +32,32 @@ type PlaybackStatus = 'playing' | 'paused' | 'stopped';
 
 `seek` and `duration` are always in seconds, not milliseconds.
 
+### Repeat modes
+
+```typescript
+type RepeatMode = 'off' | 'all' | 'one';
+```
+
+* `off` - Stop at the end of the queue
+* `all` - Loop back to the beginning when reaching the end
+* `one` - Repeat the current track indefinitely
+
+Repeat mode is stored in the settings under the `core.playback.repeat` key.
+
+### Shuffle
+
+When shuffle is enabled, `goToNext()` and `goToPrevious()` on the Queue API pick random indices instead of sequential ones. The algorithm avoids repeating the same track twice in a row.
+
+Shuffle state is stored in the settings under the `core.playback.shuffle` key.
+
 ### Playback vs. Queue
 
 These two domains divide playback responsibilities:
 
 | Domain | Responsibility |
 |--------|---------------|
-| **Playback** | Audio transport: play, pause, stop, seek |
-| **Queue** | Track navigation: next, previous, shuffle, repeat |
+| **Playback** | Audio transport: play, pause, stop, seek, shuffle, repeat |
+| **Queue** | Track navigation: next, previous |
 
 ---
 
@@ -138,6 +156,14 @@ api.Playback.toggle(): Promise<void>
 // Seeking
 api.Playback.seekTo(seconds: number): Promise<void>
 
+// Shuffle
+api.Playback.isShuffleEnabled(): Promise<boolean>
+api.Playback.setShuffleEnabled(enabled: boolean): Promise<void>
+
+// Repeat
+api.Playback.getRepeatMode(): Promise<RepeatMode>
+api.Playback.setRepeatMode(mode: RepeatMode): Promise<void>
+
 // Subscriptions
 api.Playback.subscribe(listener: PlaybackListener): () => void
 ```
@@ -154,4 +180,6 @@ type PlaybackState = {
 };
 
 type PlaybackListener = (state: PlaybackState) => void;
+
+type RepeatMode = 'off' | 'all' | 'one';
 ```

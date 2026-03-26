@@ -31,10 +31,13 @@ This is a pnpm/turbo monorepo with these major packages:
 - @nuclearplayer/plugin-sdk - Plugin framework and helpers
 - @nuclearplayer/model - Shared data model
 - @nuclearplayer/hifi - Advanced HTML5 audio engine
+- @nuclearplayer/i18n - Internationalization
 - @nuclearplayer/storybook - Component demos
 - @nuclearplayer/tailwind-config - Shared Tailwind v4 CSS config
+- @nuclearplayer/eslint-config - Shared linting rules
 - @nuclearplayer/tools - Build and maintenance utilities
 - @nuclearplayer/docs - This documentation
+- @nuclearplayer/website - Project website
 
 ## For developers
 

@@ -41,7 +41,7 @@ Both `vars` and `dark` are optional. You only need to include the properties you
 - accent-green, accent-yellow, accent-purple, accent-blue, accent-orange, accent-cyan, accent-red
 
 **Typography**
-- font-family, font-family-heading
+- font-family, font-family-heading, font-family-mono
 - font-weight-normal, font-weight-bold, font-weight-extra-bold
 
 Custom fonts must be installed on the user's system.
@@ -75,13 +75,12 @@ A complete template with Nuclear's default values. Copy this and change what you
     "background-input": "oklch(100% 0 0)",
 
     "foreground": "oklch(0% 0 0)",
-    "foreground-secondary": "oklch(0.3 0 0)",
+    "foreground-secondary": "oklch(0.42 0.1 342)",
     "foreground-input": "oklch(0% 0 0)",
 
     "primary": "oklch(76.91% 0.173 341.75)",
 
     "border": "oklch(0% 0 0)",
-    "border-input": "oklch(0% 0 0)",
     "ring": "oklch(100% 0 0)",
 
     "accent-green": "oklch(79.05% 0.209 147.58)",
@@ -100,7 +99,8 @@ A complete template with Nuclear's default values. Copy this and change what you
     "shadow-blur": "0px",
 
     "font-family": "'DM Sans', system-ui, -apple-system, sans-serif",
-    "font-family-heading": "'Bricolage Grotesque', 'DM Sans', system-ui, sans-serif",
+    "font-family-heading": "'Bricolage Grotesque', var(--default-font-family)",
+    "font-family-mono": "'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
     "font-weight-normal": "400",
     "font-weight-bold": "700",
     "font-weight-extra-bold": "800",
@@ -115,7 +115,7 @@ A complete template with Nuclear's default values. Copy this and change what you
     "background-input": "oklch(0.15 0.02 342)",
 
     "foreground": "oklch(0.90 0.008 342)",
-    "foreground-secondary": "oklch(0.75 0.015 342)",
+    "foreground-secondary": "oklch(0.78 0.1 342)",
     "foreground-input": "oklch(0.93 0 0)",
 
     "primary": "oklch(0.65 0.13 342)",

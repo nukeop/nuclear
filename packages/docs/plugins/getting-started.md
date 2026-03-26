@@ -98,17 +98,3 @@ type Plugin = {
 * `nuclear.displayName` (optional UI name)
 * `nuclear.category` (shown in the Plugins list)
 * `nuclear.icon` and `nuclear.permissions` (optional; unknown permissions get a warning)
-
-## Common checks
-
-| Symptom                               | Cause                                  | Fix                                                                      |
-| ------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------ |
-| Plugin not listed after Add           | Missing/invalid `package.json`         | Ensure required fields and a resolvable entry file                       |
-| "Plugin must export a default object" | Entry doesn’t default-export an object | Export `module.exports = { ... }` or `export default { ... }`            |
-| "Module X not found"                  | Importing unsupported dependency       | Only `@nuclearplayer/plugin-sdk` is provided; bundle or avoid other deps |
-| Setting doesn’t appear                | Not registered                         | Call `api.Settings.register([...])` in `onLoad`                          |
-
-## Next steps
-
-* Use the [Settings](settings.md) guide to define richer options.
-* Add a real feature under `onEnable`, and store user prefs with the Settings API.

@@ -6,7 +6,7 @@ description: Control playback order, manipulate the queue, and react to track ch
 
 ## Queue API for Plugins
 
-The Queue API gives plugins full control over Nuclear's playback queue. Add tracks, reorder items, control navigation, and subscribe to queue changes—all from your plugin code.
+The Queue API gives plugins control over Nuclear's playback queue. Add tracks, reorder items, control navigation, and subscribe to queue changes.
 
 {% hint style="info" %}
 Access the queue via `api.Queue.*` in your plugin's lifecycle hooks. All queue operations are asynchronous and return Promises.
@@ -24,8 +24,6 @@ The queue is a list of items with a pointer to the current playback position:
 type Queue = {
   items: QueueItem[];        // Ordered list of tracks
   currentIndex: number;      // Position of currently playing item (0-based)
-  repeatMode: RepeatMode;    // 'off' | 'all' | 'one'
-  shuffleEnabled: boolean;   // Random navigation when true
 };
 ```
 
@@ -48,24 +46,10 @@ type QueueItem = {
 ```
 
 **Status lifecycle:**
-* `idle` — Item is in queue but hasn't been played yet
-* `loading` — Stream resolution in progress
-* `success` — Stream resolved and ready for playback
-* `error` — All streams failed or playback error occurred
-
-### Repeat modes
-
-```typescript
-type RepeatMode = 'off' | 'all' | 'one';
-```
-
-* **`off`** — Stop at the end of the queue
-* **`all`** — Loop back to the beginning when reaching the end
-* **`one`** — Repeat the current track (handled by playback service, not queue navigation)
-
-### Shuffle
-
-When `shuffleEnabled` is `true`, `goToNext()` and `goToPrevious()` pick random indices instead of sequential ones. The algorithm avoids repeating the same track twice in a row.
+* `idle` - Item is in queue but hasn't been played yet
+* `loading` - Finding candidates, or stream resolution in progress
+* `success` - Stream resolved and ready for playback
+* `error` - All streams failed or playback error occurred
 
 ---
 
@@ -198,10 +182,6 @@ api.Queue.goToId(id: string): Promise<void>
 // Reordering
 api.Queue.reorder(fromIndex: number, toIndex: number): Promise<void>
 
-// Modes
-api.Queue.setRepeatMode(mode: RepeatMode): Promise<void>
-api.Queue.setShuffleEnabled(enabled: boolean): Promise<void>
-
 // State updates
 api.Queue.updateItemState(id: string, updates: QueueItemStateUpdate): Promise<void>
 
@@ -210,22 +190,6 @@ api.Queue.subscribe(listener: (queue: Queue) => void): () => void
 api.Queue.subscribeToCurrentItem(listener: (item: QueueItem | undefined) => void): () => void
 ```
 
----
-
 ## Best practices
 
-* **Use subscriptions for reactive features** — `subscribe()` for queue-wide changes, `subscribeToCurrentItem()` for playback tracking
-* **Batch operations** — All add/remove methods accept arrays; use them instead of looping
-* **Clean up subscriptions** — Always unsubscribe in `onDisable` to prevent memory leaks
-* **Check queue state before navigation** — Use `getQueue()` to verify bounds before calling `goToIndex()`
-* **Respect user intent** — Don't manipulate shuffle/repeat modes unless your plugin explicitly manages playback
-
----
-
-## Troubleshooting
-
-| Symptom | Cause | Fix |
-|---------|-------|-----|
-| "Queue host not available" | Called before plugin loaded or outside runtime | Move to `onLoad/onEnable` lifecycle hooks |
-| Added tracks disappear on restart | Not using the API, modifying state directly | Only use `api.Queue.*` methods, never manipulate queue state directly |
-| `goToId()` does nothing | ID doesn't exist in queue | Verify ID exists by checking `queue.items` first |
+* Use subscriptions for reactive features. `subscribe()` for queue-wide changes, `subscribeToCurrentItem()` for playback tracking

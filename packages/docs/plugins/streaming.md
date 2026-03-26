@@ -20,8 +20,8 @@ Access streaming via `api.Streaming.*` in your plugin's lifecycle hooks.
 
 Stream resolution happens in two phases:
 
-1. **Candidate discovery** — Search for potential sources (e.g., YouTube videos matching the track)
-2. **Stream resolution** — Extract the actual audio URL from the top candidate
+1. Candidate discovery - Search for potential sources (e.g., YouTube videos matching the track)
+2. Stream resolution - Extract the actual audio URL from the top candidate
 
 Nuclear uses the streaming provider selected by the user in the Sources view. If no streaming provider is active, resolution returns an error.
 

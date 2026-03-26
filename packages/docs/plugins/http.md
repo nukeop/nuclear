@@ -80,8 +80,8 @@ This means you can use the response exactly like a normal `fetch` response: call
 
 ## Limitations
 
-- **String bodies only.** Request bodies must be strings. If you pass `FormData`, `Blob`, `ArrayBuffer`, or other non-string types, the body is silently dropped. Serialize to a string (e.g., `JSON.stringify`) before sending.
-- **Headers are flattened.** The SDK converts headers to `Record<string, string>`. Multi-value headers (e.g., multiple `Set-Cookie` values) are not preserved.
+- String bodies only. Request bodies must be strings. Serialize to a string (e.g., `JSON.stringify`) before sending.
+- Headers are flattened. The SDK converts headers to `Record<string, string>`. Multi-value headers (e.g., multiple `Set-Cookie` values) are not preserved.
 
 ---
 

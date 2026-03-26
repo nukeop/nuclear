@@ -20,7 +20,7 @@ Your plugin's `package.json` must include these fields:
 | `version` | yes | Semver (e.g., `1.0.0`) |
 | `description` | yes | Short description |
 | `author` | yes | Your name or GitHub username |
-| `main` | yes | Entry point (e.g., `dist/index.js`). If omitted, Nuclear tries `index.js`, `index.ts`, `index.tsx`, then `dist/index.*`. |
+| `main` | no | Entry point (e.g., `dist/index.js`). If omitted, Nuclear tries `index.js`, `index.ts`, `index.tsx`, then `dist/index.*`. |
 
 ### The `nuclear` field
 
@@ -43,7 +43,7 @@ The `nuclear` field holds Nuclear-specific config:
 | Property | Required | Description |
 |----------|----------|-------------|
 | `displayName` | no | Human-readable name shown in the UI. Falls back to `name`. |
-| `category` | yes | One of: `streaming`, `metadata`, `lyrics`, `scrobbling`, `dashboard`, `ui`, `other` |
+| `category` | no | One of: `streaming`, `metadata`, `lyrics`, `scrobbling`, `dashboard`, `other`. Required for registry submission. |
 | `icon` | no | Plugin icon. Only `{"type": "link", "link": "url"}` is supported. |
 | `permissions` | no | Informational list. No permissions are enforced yet; this is for future use. |
 
@@ -114,7 +114,7 @@ Set up CI to build and create the release automatically. Manual zip creation is 
   "repo": "NuclearPlayer/nuclear-plugin-discogs",
   "category": "metadata",
   "tags": ["discogs", "metadata"],
-  "addedAt": "2026-01-25"
+  "addedAt": "2026-01-25T00:00:00Z"
 }
 ```
 
@@ -131,7 +131,7 @@ Set up CI to build and create the release automatically. Manual zip creation is 
 | `repo` | yes | `owner/repo-name` format. |
 | `category` | yes | Must match your `package.json` `nuclear.category`. |
 | `tags` | no | Up to 10 tags, lowercase with hyphens, unique. |
-| `addedAt` | yes | Today's date in ISO 8601 format. |
+| `addedAt` | yes | ISO 8601 datetime (e.g., `2026-01-25T00:00:00Z`). |
 
 ---
 
@@ -145,6 +145,6 @@ Only submit a registry PR if you need to change the plugin's metadata (descripti
 There is no automatic update push to users who already have your plugin installed. They need to remove and reinstall to get the latest version.
 {% endhint %}
 
-# Examples
+## Examples
 
 You can find example plugins on Github: [github.com/NuclearPlayer](https://github.com/NuclearPlayer).

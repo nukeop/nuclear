@@ -21,7 +21,7 @@ Access settings via the API object (api.Settings.\*) or the React hook described
 * Types: boolean | number | string for built-in kinds. Custom widgets can store any JSON-serializable value (objects, arrays, null).
 * Defaults: used until the user sets a value; only user-chosen values are persisted.
 * Categories: free-form strings used to group settings in the UI.
-* Hidden: settings with `hidden: true` are stored but not shown in standard UI.
+* Hidden: settings with `hidden: true` are stored but not shown in standard UI. This is used for settings that are controlled elsewhere, such as the volume slider.
 * Persistence: values are saved to disk via Tauri's Store plugin.
 
 ### Usage
@@ -223,11 +223,6 @@ type CustomWidgetProps<API = unknown> = {
 Always unregister your widget in `onDisable`. If a custom setting references a widget that isn't registered, the settings UI will throw an error.
 {% endhint %}
 
-#### ID rules
-
-* Keep IDs short and stable: `theme`, `apiKey`, `language`, `refreshInterval`.
-* Avoid dots in your IDs. Namespacing is automatic; you don’t need `plugin.my-id.theme`.
-
 #### Categories
 
 * Any string. Use i18n strings, or sentence case, e.g. `General`, `Appearance`, `Integrations`.
@@ -236,31 +231,6 @@ Always unregister your widget in `onDisable`. If a custom setting references a w
 
 * If the user hasn’t set a value, `get(id)` resolves to the definition’s `default` or `undefined`.
 * When a user sets a value, it’s persisted to disk and takes precedence over `default` on the next run.
-
-### React hook (advanced)
-
-The SDK exposes a React hook for live values: `useSetting(host, id)`.
-
-```typescript
-import { useSetting, type SettingsHost } from '@nuclearplayer/plugin-sdk';
-
-function ThemeBadge({ host }: { host: SettingsHost }) {
-  const [theme, setTheme] = useSetting<string>(host, 'theme');
-  return (
-    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-      {theme ?? 'system'}
-    </button>
-  );
-}
-```
-
-{% hint style="warning" %}
-In typical plugins you won’t have direct access to the `SettingsHost`. Prefer the async API on `api.Settings`. The hook is primarily for the core UI and advanced integrations where the app provides a `host` prop.
-{% endhint %}
-
-### Error handling
-
-* If you call `api.Settings.*` before the settings host is available, an error is thrown: “Settings host not available”. In normal plugin lifecycles, the host is ready in `onLoad` and `onEnable`.
 * `get(id)` returns `undefined` if neither a user value nor a default exists.
 
 ### End-to-end example
@@ -317,23 +287,3 @@ type JsonSerializable = string | number | boolean | null | JsonSerializable[] | 
 type SettingDefinition = BooleanSettingDefinition | NumberSettingDefinition | StringSettingDefinition | EnumSettingDefinition | CustomSettingDefinition;
 type CustomWidgetComponent<API = unknown> = FC<CustomWidgetProps<API>>;
 ```
-
-### Best practices
-
-* Keep IDs stable to preserve persisted values across releases.
-* Use `hidden: true` for internal toggles and feature flags.
-* For secrets, prefer `widget: { type: 'password' }` and `format: 'token'`.
-* Use enums for constrained strings and supply friendly labels.
-* Validate and sanitize inputs that leave your plugin (e.g., network calls).
-
-### Troubleshooting
-
-| Symptom                       | Cause                                                    | Fix                                                                                                |
-| ----------------------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| “Settings host not available” | Called before plugin `onLoad` or outside runtime         | Move to `onLoad/onEnable` or use provided API only                                                 |
-| `get(id)` returns `undefined` | No default and not yet set                               | Provide a `default` or handle `undefined`                                                          |
-| Value reverts after restart   | Not calling `set(id, value)` or overriding with defaults | Ensure you persist via `set` and avoid re-registering with a different default for already-set IDs |
-
-***
-
-If you spot issues or want new widgets/kinds, open a discussion or PR.
