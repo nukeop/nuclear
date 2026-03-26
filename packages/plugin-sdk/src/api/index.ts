@@ -1,4 +1,5 @@
 import type { DashboardHost } from '../types/dashboard';
+import type { DiscoveryHost } from '../types/discovery';
 import type { EventsHost } from '../types/events';
 import type { FavoritesHost } from '../types/favorites';
 import type { HttpHost } from '../types/http';
@@ -13,6 +14,7 @@ import type { ShellHost } from '../types/shell';
 import type { StreamingHost } from '../types/streaming';
 import type { YtdlpHost } from '../types/ytdlp';
 import { DashboardAPI } from './dashboard';
+import { DiscoveryAPI } from './discovery';
 import { EventsAPI } from './events';
 import { FavoritesAPI } from './favorites';
 import { HttpAPI } from './http';
@@ -38,6 +40,7 @@ export class NuclearAPI {
   readonly Favorites: FavoritesAPI;
   readonly Logger: LoggerAPI;
   readonly Dashboard: DashboardAPI;
+  readonly Discovery: DiscoveryAPI;
   readonly Playback: PlaybackAPI;
   readonly Playlists: PlaylistsAPI;
   readonly Events: EventsAPI;
@@ -54,6 +57,7 @@ export class NuclearAPI {
     favoritesHost?: FavoritesHost;
     loggerHost?: LoggerHost;
     dashboardHost?: DashboardHost;
+    discoveryHost?: DiscoveryHost;
     playbackHost?: PlaybackHost;
     playlistsHost?: PlaylistsHost;
     eventsHost?: EventsHost;
@@ -75,6 +79,7 @@ export class NuclearAPI {
     this.Favorites = new FavoritesAPI(opts?.favoritesHost);
     this.Logger = new LoggerAPI(opts?.loggerHost);
     this.Dashboard = new DashboardAPI(opts?.dashboardHost);
+    this.Discovery = new DiscoveryAPI(opts?.discoveryHost);
     this.Playback = new PlaybackAPI(opts?.playbackHost);
     this.Playlists = new PlaylistsAPI(opts?.playlistsHost);
     this.Events = new EventsAPI(opts?.eventsHost);

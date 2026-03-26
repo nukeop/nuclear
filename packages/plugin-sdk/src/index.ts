@@ -1,5 +1,6 @@
 export { NuclearPluginAPI, NuclearAPI } from './api';
 export { DashboardAPI } from './api/dashboard';
+export { DiscoveryAPI } from './api/discovery';
 export { EventsAPI } from './api/events';
 export { FavoritesAPI } from './api/favorites';
 export { HttpAPI } from './api/http';
