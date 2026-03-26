@@ -37,13 +37,14 @@ type PlayerBarControlsProps = {
   isShuffleActive?: boolean;
   isDiscoveryActive?: boolean;
   repeatMode?: RepeatMode;
-  labels?: PlayerBarControlsLabels;
-  onPlayPause?: () => void;
-  onNext?: () => void;
-  onPrevious?: () => void;
-  onShuffleToggle?: () => void;
-  onRepeatToggle?: () => void;
+  labels: PlayerBarControlsLabels;
+  onPlayPause: () => void;
+  onNext: () => void;
+  onPrevious: () => void;
+  onShuffleToggle: () => void;
+  onRepeatToggle: () => void;
   onDiscoveryToggle?: () => void;
+  showDiscovery: boolean;
   className?: string;
 };
 
@@ -59,6 +60,7 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
   onShuffleToggle,
   onRepeatToggle,
   onDiscoveryToggle,
+  showDiscovery,
   className = '',
 }) => (
   <div className={cn('flex items-center justify-center gap-2', className)}>
@@ -99,18 +101,20 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
         {repeatMode !== 'one' && <Repeat size={16} />}
       </Button>
     </Tooltip>
-    <Tooltip
-      content={isDiscoveryActive ? labels?.discoveryOn : labels?.discoveryOff}
-      side="top"
-    >
-      <Button
-        size="icon"
-        variant={isDiscoveryActive ? 'default' : 'text'}
-        onClick={onDiscoveryToggle}
-        data-testid="player-discovery-button"
+    {showDiscovery && (
+      <Tooltip
+        content={isDiscoveryActive ? labels?.discoveryOn : labels?.discoveryOff}
+        side="top"
       >
-        <BoomBox size={16} />
-      </Button>
-    </Tooltip>
+        <Button
+          size="icon"
+          variant={isDiscoveryActive ? 'default' : 'text'}
+          onClick={onDiscoveryToggle}
+          data-testid="player-discovery-button"
+        >
+          <BoomBox size={16} />
+        </Button>
+      </Tooltip>
+    )}
   </div>
 );

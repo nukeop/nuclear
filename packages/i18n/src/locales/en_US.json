@@ -52,6 +52,9 @@
     "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available",
     "noProviders": "No providers installed"
   },
+  "discovery": {
+    "recommendationError": "Failed to get recommendations"
+  },
   "favorites": {
     "albums": {
       "title": "Favorite albums",

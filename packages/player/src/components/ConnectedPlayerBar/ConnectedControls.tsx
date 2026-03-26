@@ -6,6 +6,7 @@ import { RepeatMode } from '@nuclearplayer/plugin-sdk';
 import { PlayerBar } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../../hooks/useCoreSetting';
+import { useProviders } from '../../hooks/useProviders';
 import { useQueueStore } from '../../stores/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
 
@@ -17,6 +18,7 @@ export const ConnectedControls: FC = () => {
     useCoreSetting<RepeatMode>('playback.repeat');
   const [discoveryEnabled, setDiscoveryEnabled] =
     useCoreSetting<boolean>('playback.discovery');
+  const hasDiscoveryProviders = useProviders('discovery').length > 0;
 
   const { goToNext, goToPrevious } = useQueueStore(
     useShallow((state) => ({
@@ -56,8 +58,11 @@ export const ConnectedControls: FC = () => {
       onPrevious={goToPrevious}
       onShuffleToggle={handleToggleShuffle}
       onRepeatToggle={handleToggleRepeat}
-      isDiscoveryActive={!!discoveryEnabled}
-      onDiscoveryToggle={handleToggleDiscovery}
+      isDiscoveryActive={hasDiscoveryProviders && Boolean(discoveryEnabled)}
+      onDiscoveryToggle={
+        hasDiscoveryProviders ? handleToggleDiscovery : undefined
+      }
+      showDiscovery={hasDiscoveryProviders}
       labels={{
         shuffleOn: t('shuffleOn'),
         shuffleOff: t('shuffleOff'),

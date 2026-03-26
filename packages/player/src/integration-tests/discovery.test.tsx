@@ -2,6 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 
 import type { Track } from '@nuclearplayer/model';
 
+import { initDiscoveryService } from '../services/discoveryService';
 import { providersHost } from '../services/providersHost';
 import { useQueueStore } from '../stores/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
@@ -26,7 +27,10 @@ const recommendedTrack: Track = {
 const getRecommendations = vi.fn().mockResolvedValue([recommendedTrack]);
 
 describe('Discovery', () => {
+  let cleanup: () => void;
+
   beforeEach(() => {
+    cleanup = initDiscoveryService();
     providersHost.clear();
     useQueueStore.setState({
       items: [],
@@ -43,6 +47,10 @@ describe('Discovery', () => {
         .withGetRecommendations(getRecommendations)
         .build(),
     );
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   it.each<{

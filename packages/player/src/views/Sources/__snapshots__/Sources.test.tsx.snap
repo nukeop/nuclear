@@ -810,7 +810,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                           <p
                             class="text-foreground-secondary mb-2 text-sm"
                           >
-                            Discovery sources recommend new tracks based on what you're listening to. Used by the discovery feature to automatically add tracks to the queue.
+                            Discovery sources recommend new tracks based on what you're listening to. Enable music discovery bu using the boombox icon in the bottom bar.
                           </p>
                           <div
                             class="relative flex w-full flex-col gap-2"
@@ -1344,58 +1344,6 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                   />
                   <path
                     d="M21 13v1a4 4 0 0 1-4 4H3"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div>
-              <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
-                data-headlessui-state=""
-                data-testid="player-discovery-button"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="lucide lucide-boom-box"
-                  fill="none"
-                  height="16"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4 9V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"
-                  />
-                  <path
-                    d="M8 8v1"
-                  />
-                  <path
-                    d="M12 8v1"
-                  />
-                  <path
-                    d="M16 8v1"
-                  />
-                  <rect
-                    height="12"
-                    rx="2"
-                    width="20"
-                    x="2"
-                    y="9"
-                  />
-                  <circle
-                    cx="8"
-                    cy="15"
-                    r="2"
-                  />
-                  <circle
-                    cx="16"
-                    cy="15"
-                    r="2"
                   />
                 </svg>
               </button>

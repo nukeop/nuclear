@@ -1,12 +1,15 @@
 import { act } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { providersHost } from '../../services/providersHost';
 import { useQueueStore } from '../../stores/queueStore';
 import { useSettingsStore } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
+import { DiscoveryProviderBuilder } from '../../test/builders/DiscoveryProviderBuilder';
 import { ConnectedPlayerBarWrapper as Wrapper } from './ConnectedPlayerBar.test-wrapper';
 
 beforeEach(() => {
+  providersHost.clear();
   useQueueStore.setState({
     items: [],
     currentIndex: 0,
@@ -96,6 +99,7 @@ describe('ConnectedControls', () => {
   });
 
   it('clicking discovery toggles the discovery setting', async () => {
+    providersHost.register(new DiscoveryProviderBuilder().build());
     await Wrapper.mount();
 
     await Wrapper.controls.discoveryButton.click();
