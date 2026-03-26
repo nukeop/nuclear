@@ -304,6 +304,10 @@
       "streamResolutionRetries": {
         "title": "Stream resolution retries",
         "description": "Number of times to retry resolving a stream URL before moving to the next candidate"
+      },
+      "discoveryVariety": {
+        "title": "Discovery variety",
+        "description": "How far recommendations deviate from your current listening. Lower is closer."
       }
     },
     "layout": {
