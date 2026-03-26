@@ -108,8 +108,8 @@ importers:
         specifier: ^0.7.0
         version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.8.1))(prettier@3.8.1)
       tailwind-csstree:
-        specifier: ^0.1.3
-        version: 0.1.4
+        specifier: ^0.3.0
+        version: 0.3.0(@eslint/css@1.0.0)
       typescript-eslint:
         specifier: ^8.57.0
         version: 8.57.2(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
@@ -5716,9 +5716,14 @@ packages:
   tabbable@6.4.0:
     resolution: {integrity: sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg==}
 
-  tailwind-csstree@0.1.4:
-    resolution: {integrity: sha512-FzD187HuFIZEyeR7Xy6sJbJll2d4SybS90satC8SKIuaNRC05CxMvdzN7BUsfDQffcnabckRM5OIcfArjsZ0mg==}
+  tailwind-csstree@0.3.0:
+    resolution: {integrity: sha512-FJmLCkH1ZDTEqJRVxMVhdiEbk/W67exqvDYrIQ759jsfv3mp3Gp/rrlgtr7dD5q7BK/t8LfaNqXM+BN6BrTKGA==}
     engines: {node: '>=18.18'}
+    peerDependencies:
+      '@eslint/css': '>=1.0.0'
+    peerDependenciesMeta:
+      '@eslint/css':
+        optional: true
 
   tailwind-merge@3.5.0:
     resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
@@ -11983,7 +11988,9 @@ snapshots:
 
   tabbable@6.4.0: {}
 
-  tailwind-csstree@0.1.4: {}
+  tailwind-csstree@0.3.0(@eslint/css@1.0.0):
+    optionalDependencies:
+      '@eslint/css': 1.0.0
 
   tailwind-merge@3.5.0: {}
 
