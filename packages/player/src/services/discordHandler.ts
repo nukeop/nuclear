@@ -70,7 +70,7 @@ const updatePresence = () => {
 
   const presence = buildPresence(currentItem.track, status, seek, duration);
   setActivity(presence).catch((err) =>
-    Logger.discord.error(`Failed to set activity: ${errorMessage(err)}`),
+    Logger.discord.warn(`Failed to set activity: ${errorMessage(err)}`),
   );
 };
 

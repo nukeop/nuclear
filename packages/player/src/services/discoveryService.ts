@@ -16,7 +16,8 @@ export const initDiscoveryService = () => {
     const isEnabled = useSettingsStore
       .getState()
       .getValue('core.playback.discovery');
-    if (!isEnabled || !providersHost.getActive('discovery')) {
+    const activeDiscoveryId = providersHost.getActive('discovery');
+    if (!isEnabled || !providersHost.get(activeDiscoveryId, 'discovery')) {
       return;
     }
 
