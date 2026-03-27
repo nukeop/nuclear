@@ -3588,6 +3588,7 @@ dependencies = [
  "fix-path-env",
  "futures",
  "http",
+ "libc",
  "log",
  "percent-encoding",
  "reqwest 0.12.22",

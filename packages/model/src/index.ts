@@ -12,6 +12,9 @@ export type ArtistCredit = {
   source?: ProviderRef;
 };
 
+export const formatArtistNames = (artists: ArtistCredit[]): string =>
+  artists.map((artist) => artist.name).join(', ');
+
 export type ArtworkPurpose = 'avatar' | 'cover' | 'background' | 'thumbnail';
 
 export type Artwork = {
