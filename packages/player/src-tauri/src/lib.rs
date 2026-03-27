@@ -1,4 +1,5 @@
 pub mod commands;
+pub mod discord;
 pub mod http;
 pub mod logging;
 pub mod mcp;
@@ -61,6 +62,7 @@ pub fn run() {
             logging::mark_startup_complete();
             mcp::init_mcp(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
+            discord::init_discord(app.handle().clone());
 
             #[cfg(target_os = "linux")]
             maximize_for_gamescope(app);
