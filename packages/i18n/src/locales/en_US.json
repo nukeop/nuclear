@@ -337,6 +337,12 @@
           "title": "MCP Server URL",
           "description": "Point your AI tool to this URL to connect to Nuclear."
         }
+      },
+      "discord": {
+        "enabled": {
+          "title": "Discord Rich Presence",
+          "description": "Show what you're listening to on your Discord profile."
+        }
       }
     }
   },

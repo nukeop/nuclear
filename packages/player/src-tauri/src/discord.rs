@@ -3,6 +3,8 @@ use std::sync::Mutex;
 use discord_rich_presence::DiscordIpcClient;
 use tauri::Manager;
 
+const DISCORD_APP_ID: &str = "1038970224050962582";
+
 pub struct DiscordState {
     pub client: Mutex<Option<DiscordIpcClient>>,
 }
