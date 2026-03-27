@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-03-27T00:00",
+    "description": "Add Hebrew (עברית) language with full RTL layout support",
+    "type": "feature",
+    "contributors": ["copilot"],
+    "tags": [
+      {
+        "label": "i18n",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-03-26T00:00",
     "description": "Plugins can provide music discovery recommendations based on the current queue",
     "type": "feature",
