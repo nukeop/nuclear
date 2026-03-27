@@ -36,6 +36,7 @@ pub fn discord_disconnect(state: State<'_, DiscordState>) -> Result<(), String> 
     let mut client_guard = state.client.lock().map_err(|err| err.to_string())?;
 
     if let Some(mut client) = client_guard.take() {
+        let _ = client.clear_activity();
         let _ = client.close();
     }
 
