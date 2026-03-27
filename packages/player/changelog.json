@@ -1,9 +1,25 @@
 [
   {
+    "date": "2026-03-27T00:00",
+    "description": "Discord rich presence integration",
+    "type": "feature",
+    "contributors": [
+      "nukeop"
+    ],
+    "tags": [
+      {
+        "label": "Integrations",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-03-26T00:00",
     "description": "Plugins can provide music discovery recommendations based on the current queue",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Plugins",
@@ -19,7 +35,9 @@
     "date": "2026-03-24T00:00",
     "description": "Introduce dark mode as persistent preference",
     "type": "improvement",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Settings",
@@ -31,7 +49,9 @@
     "date": "2026-03-24T00:00",
     "description": "Fix issues with tables being way too wide with longer track titles",
     "type": "fix",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "UI",
@@ -43,7 +63,9 @@
     "date": "2026-03-21T00:00",
     "description": "Nuclear is now built from source for Flatpak, with new app icons",
     "type": "improvement",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Linux",
@@ -55,7 +77,9 @@
     "date": "2026-03-20T00:00",
     "description": "Fixed album tracks being added to the queue without thumbnails",
     "type": "fix",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Queue",
@@ -67,7 +91,9 @@
     "date": "2026-03-20T00:00",
     "description": "Dashboard, search, and plugins views now prompt to install plugins when none are active",
     "type": "improvement",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Plugins",
@@ -79,7 +105,9 @@
     "date": "2026-03-18T00:00",
     "description": "AUR packages are now automatically updated when a new release is published",
     "type": "improvement",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Linux",
@@ -91,7 +119,9 @@
     "date": "2026-03-16T00:00",
     "description": "Fixed a console window briefly appearing on Windows each time yt-dlp was invoked",
     "type": "fix",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Windows",
@@ -103,7 +133,9 @@
     "date": "2026-03-16T00:00",
     "description": "Queue items are now correctly restored when restarting Nuclear.",
     "type": "fix",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playback",
@@ -115,7 +147,9 @@
     "date": "2026-03-16T00:00",
     "description": "New Sources view lets you switch the active metadata and streaming providers from the sidebar",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Sources",
@@ -127,7 +161,9 @@
     "date": "2026-03-14T00:00",
     "description": "yt-dlp is now downloaded and updated automatically at runtime, fixing Flatpak and AppImage compatibility",
     "type": "improvement",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playback",
@@ -139,7 +175,9 @@
     "date": "2026-03-13T00:00",
     "description": "Border width is now themable - advanced themes can set border-width to control all borders in the app",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Themes",
@@ -151,7 +189,9 @@
     "date": "2026-03-13T00:00",
     "description": "Improved dark mode for all basic themes with better backgrounds, toned-down primaries, and themed borders",
     "type": "improvement",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Themes",
@@ -163,7 +203,9 @@
     "date": "2026-03-12T00:00",
     "description": "Update badge shows download progress and lets you click to update or restart",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Updates",
@@ -175,7 +217,9 @@
     "date": "2026-03-09T00:00",
     "description": "Social links in settings sidebar (Discord, GitHub, Mastodon, Website)",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Settings",
@@ -187,7 +231,9 @@
     "date": "2026-03-08T00:00",
     "description": "Fixed repeat, shuffle, and volume for MSE streams",
     "type": "fix",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playback",
@@ -199,7 +245,9 @@
     "date": "2026-03-07T00:00",
     "description": "Plugins can import YouTube playlists by URL via yt-dlp",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playlists",
@@ -219,7 +267,9 @@
     "date": "2026-03-06T00:00",
     "description": "YouTube tracks now play using MSE-based streaming, fixing incorrect duration display and enabling proper seeking",
     "type": "fix",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playback",
@@ -235,7 +285,9 @@
     "date": "2026-03-05T00:00",
     "description": "Customizable keyboard shortcuts with settings UI for rebinding",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Settings",
@@ -251,7 +303,9 @@
     "date": "2026-03-04T00:00",
     "description": "Plugin event bus with trackFinished and trackStarted events",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Plugins",
@@ -263,7 +317,9 @@
     "date": "2026-03-04T00:00",
     "description": "Custom settings widgets for plugins (render React components in settings UI)",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Plugins",
@@ -275,7 +331,9 @@
     "date": "2026-03-04T00:00",
     "description": "Shell API for plugins to open URLs in the system browser",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Plugins",
@@ -287,7 +345,9 @@
     "date": "2026-03-04T00:00",
     "description": "Plugins can use Nuclear UI components (Button, Toggle, etc.)",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Plugins",
@@ -299,7 +359,9 @@
     "date": "2026-03-04T00:00",
     "description": "Fixed plugin settings using wrong storage key (core prefix instead of plugin prefix)",
     "type": "fix",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Settings",
@@ -311,7 +373,9 @@
     "date": "2026-03-03T00:00",
     "description": "Fixed old audio stream continuing to play when switching tracks or clearing the queue",
     "type": "fix",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playback",
@@ -323,7 +387,9 @@
     "date": "2026-03-01T00:00",
     "description": "In-app changelog in settings (What's New tab)",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Settings",
@@ -335,13 +401,17 @@
     "date": "2026-03-01T00:00",
     "description": "Release pipeline auto-generates GitHub release notes from changelog data",
     "type": "improvement",
-    "contributors": ["nukeop"]
+    "contributors": [
+      "nukeop"
+    ]
   },
   {
     "date": "2026-03-01T00:00",
     "description": "Support importing legacy format playlists (from old Nuclear)",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playlists",
@@ -353,13 +423,17 @@
     "date": "2026-02-28T00:00",
     "description": "Migrated repository to nukeop/nuclear",
     "type": "chore",
-    "contributors": ["nukeop"]
+    "contributors": [
+      "nukeop"
+    ]
   },
   {
     "date": "2026-02-25T00:00",
     "description": "Playlist import from URL",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playlists",
@@ -371,7 +445,9 @@
     "date": "2026-02-25T00:00",
     "description": "Playlist provider adapter view with cover art",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Playlists",
@@ -387,13 +463,17 @@
     "date": "2026-02-25T00:00",
     "description": "Fixed loading status getting stuck on stream resolution",
     "type": "fix",
-    "contributors": ["nukeop"]
+    "contributors": [
+      "nukeop"
+    ]
   },
   {
     "date": "2026-02-20T00:00",
     "description": "MCP server for controlling Nuclear from AI agents and other tools",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "MCP",
@@ -405,7 +485,9 @@
     "date": "2026-02-20T00:00",
     "description": "Plugin store with browsing, search, and installation",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Plugins",
@@ -417,7 +499,9 @@
     "date": "2026-02-20T00:00",
     "description": "Flatpak packaging",
     "type": "feature",
-    "contributors": ["nukeop"],
+    "contributors": [
+      "nukeop"
+    ],
     "tags": [
       {
         "label": "Linux",
