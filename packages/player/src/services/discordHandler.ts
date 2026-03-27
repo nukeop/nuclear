@@ -1,4 +1,5 @@
 import { invoke } from '@tauri-apps/api/core';
+import { toast } from 'sonner';
 
 import type { SoundStatus } from '@nuclearplayer/hifi';
 import { formatArtistNames, type Track } from '@nuclearplayer/model';
@@ -22,9 +23,13 @@ type TrackPresence = {
 
 const connect = () => invoke('discord_connect');
 const disconnect = () => invoke('discord_disconnect');
-const setActivity = (track: TrackPresence) =>
-  invoke('discord_set_activity', { track });
-const clearActivity = () => invoke('discord_clear_activity');
+const setActivity = async (track: TrackPresence) => {
+  const reconnected = await invoke<boolean>('discord_set_activity', { track });
+  if (reconnected) {
+    toast.info('Reconnected to Discord');
+  }
+};
+const clearActivity = () => invoke<boolean>('discord_clear_activity');
 
 const isEnabled = () => getSetting(DISCORD_ENABLED_SETTING);
 
@@ -124,9 +129,15 @@ const watchSettings = () => {
   });
 };
 
+const HEARTBEAT_INTERVAL_MS = 30_000;
+
+const startHeartbeat = () =>
+  setInterval(() => updatePresence(), HEARTBEAT_INTERVAL_MS);
+
 export const initDiscordHandler = () => {
   watchSettings();
   watchPlayback();
+  startHeartbeat();
 
   if (getSetting(DISCORD_ENABLED_SETTING)) {
     connect().catch((err) =>

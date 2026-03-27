@@ -10,6 +10,43 @@ pub struct DiscordState {
     pub client: Mutex<Option<DiscordIpcClient>>,
 }
 
+fn try_reconnect(client_guard: &mut Option<DiscordIpcClient>) -> bool {
+    if let Some(mut old) = client_guard.take() {
+        let _ = old.close();
+    }
+
+    let mut client = DiscordIpcClient::new(DISCORD_APP_ID);
+    match client.connect() {
+        Ok(()) => {
+            *client_guard = Some(client);
+            true
+        }
+        Err(_) => false,
+    }
+}
+
+fn with_reconnect<F>(
+    client_guard: &mut Option<DiscordIpcClient>,
+    operation: F,
+) -> Result<bool, String>
+where
+    F: Fn(&mut DiscordIpcClient) -> Result<(), Box<dyn std::error::Error>>,
+{
+    let client = client_guard.as_mut().ok_or("Discord not connected")?;
+    if operation(client).is_ok() {
+        return Ok(false);
+    }
+
+    log::debug!("Discord IPC call failed, attempting reconnect");
+    if !try_reconnect(client_guard) {
+        return Err("Discord reconnection failed".into());
+    }
+
+    let client = client_guard.as_mut().ok_or("Discord not connected")?;
+    operation(client).map_err(|err| err.to_string())?;
+    Ok(true)
+}
+
 pub fn init_discord(app_handle: tauri::AppHandle) {
     app_handle.manage(DiscordState {
         client: Mutex::new(None),
@@ -54,14 +91,7 @@ pub struct TrackPresence {
     end_timestamp: Option<i64>,
 }
 
-#[command]
-pub fn discord_set_activity(
-    state: State<'_, DiscordState>,
-    track: TrackPresence,
-) -> Result<(), String> {
-    let mut client_guard = state.client.lock().map_err(|err| err.to_string())?;
-    let client = client_guard.as_mut().ok_or("Discord not connected")?;
-
+fn build_activity(track: &TrackPresence) -> activity::Activity<'_> {
     let mut payload = activity::Activity::new()
         .activity_type(activity::ActivityType::Listening)
         .details(&track.title)
@@ -85,19 +115,29 @@ pub fn discord_set_activity(
     }
     payload = payload.timestamps(timestamps);
 
-    client
-        .set_activity(payload)
-        .map_err(|err| err.to_string())?;
-
-    Ok(())
+    payload
 }
 
 #[command]
-pub fn discord_clear_activity(state: State<'_, DiscordState>) -> Result<(), String> {
+pub fn discord_set_activity(
+    state: State<'_, DiscordState>,
+    track: TrackPresence,
+) -> Result<bool, String> {
     let mut client_guard = state.client.lock().map_err(|err| err.to_string())?;
-    let client = client_guard.as_mut().ok_or("Discord not connected")?;
 
-    client.clear_activity().map_err(|err| err.to_string())?;
+    with_reconnect(&mut client_guard, |client| {
+        let payload = build_activity(&track);
+        client.set_activity(payload)?;
+        Ok(())
+    })
+}
 
-    Ok(())
+#[command]
+pub fn discord_clear_activity(state: State<'_, DiscordState>) -> Result<bool, String> {
+    let mut client_guard = state.client.lock().map_err(|err| err.to_string())?;
+
+    with_reconnect(&mut client_guard, |client| {
+        client.clear_activity()?;
+        Ok(())
+    })
 }
