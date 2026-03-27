@@ -58,7 +58,9 @@ pub fn run() {
             stream_server::stream_server_port,
             ytdlp_setup::ytdlp_ensure_installed,
             discord::discord_connect,
-            discord::discord_disconnect
+            discord::discord_disconnect,
+            discord::discord_set_activity,
+            discord::discord_clear_activity
         ])
         .setup(|app| {
             logging::mark_startup_complete();
