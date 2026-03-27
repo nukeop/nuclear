@@ -1,0 +1,410 @@
+{
+  "common": {
+    "app": {
+      "name": "Nuclear",
+      "description": "אפליקציית סטרימינג מוזיקה לשולחן העבודה שלך"
+    },
+    "actions": {
+      "save": "שמור",
+      "cancel": "ביטול",
+      "delete": "מחק",
+      "edit": "ערוך",
+      "close": "סגור",
+      "back": "חזרה",
+      "next": "הבא",
+      "confirm": "אישור",
+      "apply": "החל",
+      "reset": "אפס",
+      "clear": "נקה",
+      "search": "חיפוש",
+      "loading": "טוען...",
+      "retry": "נסה שוב"
+    },
+    "errors": {
+      "network": "שגיאת רשת. אנא בדוק את החיבור שלך.",
+      "notFound": "לא נמצא"
+    }
+  },
+  "navigation": {
+    "explore": "גלה",
+    "dashboard": "לוח בקרה",
+    "collection": "אוסף",
+    "favoriteAlbums": "אלבומים מועדפים",
+    "favoriteTracks": "שירים מועדפים",
+    "favoriteArtists": "אמנים מועדפים",
+    "playlists": "פלייליסטים",
+    "sources": "מקורות"
+  },
+  "sources": {
+    "title": "מקורות",
+    "streaming": "סטרימינג",
+    "streamingDescription": "מקורות סטרימינג מספקים שמע. כאשר אתה מנגן רצועה, מקור הסטרימינג מוצא ומעביר את הזרם.",
+    "metadata": "מטא-נתונים",
+    "metadataDescription": "מקורות מטא-נתונים מספקים מידע על אמנים, אלבומים ורצועות. תוצאות חיפוש, עמודי אמנים ופרטי אלבומים מגיעים ממקור המטא-נתונים הפעיל.",
+    "dashboard": "לוח בקרה",
+    "dashboardDescription": "מקורות לוח הבקרה מספקים תוכן מותאם אישית כגון רצועות מובילות, יציאות חדשות והמלצות במסך הבית.",
+    "playlists": "פלייליסטים",
+    "playlistsDescription": "מקורות פלייליסטים מאפשרים לך לייבא פלייליסטים משירותים חיצוניים לפי כתובת URL.",
+    "discovery": "גילוי",
+    "discoveryDescription": "מקורות גילוי ממליצים על רצועות חדשות בהתבסס על מה שאתה מאזין לו. הפעל גילוי מוזיקה על ידי שימוש בסמל הרמקול בסרגל התחתון.",
+    "lyrics": "מילים",
+    "lockedReason": "מקור המטא-נתונים <metadata>{{metadataName}}</metadata> דורש מקור סטרימינג <streaming>{{streamingName}}</streaming>.",
+    "missingStreamingProvider": "ספק הסטרימינג הנדרש \"{{providerId}}\" אינו זמין",
+    "noProviders": "אין ספקים מותקנים"
+  },
+  "discovery": {
+    "recommendationError": "נכשל בקבלת המלצות"
+  },
+  "favorites": {
+    "albums": {
+      "title": "אלבומים מועדפים",
+      "empty": "אין אלבומים מועדפים עדיין",
+      "emptyDescription": "אלבומים שתסמן כמועדפים יופיעו כאן"
+    },
+    "tracks": {
+      "title": "שירים מועדפים",
+      "empty": "אין שירים מועדפים עדיין",
+      "emptyDescription": "שירים שתסמן כמועדפים יופיעו כאן"
+    },
+    "artists": {
+      "title": "אמנים מועדפים",
+      "empty": "אין אמנים מועדפים עדיין",
+      "emptyDescription": "אמנים שתסמן כמועדפים יופיעו כאן"
+    }
+  },
+  "playlists": {
+    "title": "פלייליסטים",
+    "empty": "אין פלייליסטים עדיין",
+    "emptyDescription": "צור פלייליסט או ייבא אחד כדי להתחיל",
+    "emptyTracks": "אין רצועות בפלייליסט זה",
+    "emptyTracksDescription": "הוסף רצועות מתוצאות החיפוש או מהספרייה שלך",
+    "create": "צור חדש",
+    "importJson": "ייבא מ-JSON",
+    "exportJson": "ייצא כ-JSON",
+    "add": "הוסף",
+    "delete": "מחק פלייליסט",
+    "deleteConfirm": "האם אתה בטוח שברצונך למחוק את הפלייליסט?",
+    "play": "נגן",
+    "addToQueue": "הוסף לתור",
+    "saveLocally": "שמור מקומית",
+    "readOnlyBadge": "{{source}}",
+    "readOnlyTooltip": "פלייליסט זה הוא מ-{{source}} והוא לקריאה בלבד. שמור עותק מקומי כדי לערוך אותו.",
+    "trackCount": "{{count}} רצועה",
+    "trackCount_other": "{{count}} רצועות",
+    "addToPlaylist": "הוסף לפלייליסט",
+    "filterPlaylists": "סנן פלייליסטים...",
+    "createNew": "צור פלייליסט חדש",
+    "saveQueueAsPlaylist": "שמור תור כפלייליסט",
+    "name": "שם",
+    "namePlaceholder": "שם פלייליסט...",
+    "exportSuccess": "הפלייליסט יוצא",
+    "exportError": "נכשל בייצוא הפלייליסט",
+    "importSuccess": "הפלייליסט יובא",
+    "importBatchSuccess": "{{count}} פלייליסטים יובאו",
+    "importError": "נכשל בייבוא הפלייליסט",
+    "importNoPlaylists": "לא נמצאו פלייליסטים בקובץ זה",
+    "importUrl": "ייבא מ-URL",
+    "importUrlTitle": "ייבא פלייליסט מ-URL",
+    "importUrlPlaceholder": "הדבק כתובת URL של פלייליסט...",
+    "importUrlNoProvider": "אין תוסף שיכול לטפל בכתובת URL זו. התקן תוסף שתומך בשירות זה.",
+    "importUrlImporting": "מייבא...",
+    "descriptionPlaceholder": "הוסף תיאור..."
+  },
+  "search": {
+    "title": "חיפוש",
+    "query": "שאילתה",
+    "placeholder": "חיפוש",
+    "noResults": "לא נמצאו תוצאות",
+    "searching": "מחפש...",
+    "failedToLoad": "נכשל בטעינת תוצאות.",
+    "results": {
+      "tracks": "רצועות",
+      "albums": "אלבומים",
+      "artists": "אמנים",
+      "playlists": "פלייליסטים"
+    },
+    "filters": {
+      "all": "הכל",
+      "tracks": "רצועות",
+      "albums": "אלבומים",
+      "artists": "אמנים",
+      "playlists": "פלייליסטים"
+    },
+    "empty-state": "לא מותקן תוסף מטא-נתונים",
+    "empty-state-description": "התקן תוסף מטא-נתונים כדי לחפש מוזיקה.",
+    "empty-state-action": "עיין בתוספים"
+  },
+  "artist": {
+    "title": "אמן",
+    "albums": "אלבומים",
+    "tracks": "רצועות",
+    "similar": "אמנים דומים",
+    "popularTracks": "רצועות פופולריות",
+    "biography": "ביוגרפיה",
+    "discography": "דיסקוגרפיה",
+    "topTracks": "רצועות מובילות",
+    "onTour": "בסיבוב הופעות",
+    "notOnTour": "לא בסיבוב הופעות",
+    "followers": "עוקבים",
+    "followings": "עוקב אחרי",
+    "playlists": "פלייליסטים",
+    "errors": {
+      "failedToLoadDetails": "נכשל בטעינת פרטי האמן.",
+      "failedToLoadAlbums": "נכשל בטעינת אלבומים.",
+      "failedToLoadPopularTracks": "נכשל בטעינת רצועות פופולריות.",
+      "failedToLoadSimilarArtists": "נכשל בטעינת אמנים דומים.",
+      "failedToLoadSocialStats": "נכשל בטעינת נתוני האמן.",
+      "failedToLoadPlaylists": "נכשל בטעינת פלייליסטים."
+    }
+  },
+  "album": {
+    "title": "אלבום",
+    "genre": "ז'אנר",
+    "year": "שנה",
+    "tracks": "רצועות",
+    "errors": {
+      "failedToLoadDetails": "נכשל בטעינת פרטי האלבום.",
+      "failedToLoadTracks": "נכשל בטעינת רצועות."
+    }
+  },
+  "themes": {
+    "title": "ערכות נושא",
+    "basic": "ערכות נושא בסיסיות",
+    "advanced": "ערכות נושא מתקדמות",
+    "default": "ברירת מחדל",
+    "description": "ערכות נושא שנמצאות בתיקיית ערכות הנושא של האפליקציה"
+  },
+  "dashboard": {
+    "title": "לוח בקרה",
+    "empty-state": "ברוכים הבאים ל-Nuclear",
+    "empty-state-description": "התקן תוסף כדי לראות רצועות מובילות, יציאות חדשות והמלצות כאן.",
+    "empty-state-action": "עיין בתוספים",
+    "top-tracks": "רצועות מובילות",
+    "top-artists": "אמנים מובילים",
+    "top-albums": "אלבומים מובילים",
+    "editorial-playlists": "פלייליסטים מובילים",
+    "new-releases": "יציאות חדשות",
+    "filter-artists": "סנן אמנים...",
+    "filter-albums": "סנן אלבומים...",
+    "filter-playlists": "סנן פלייליסטים...",
+    "filter-releases": "סנן יציאות...",
+    "nothing-found": "לא נמצא כלום"
+  },
+  "plugins": {
+    "title": "תוספים",
+    "addPlugin": "הוסף תוסף",
+    "tabs": {
+      "installed": "מותקנים",
+      "store": "חנות"
+    },
+    "installed": {
+      "empty-state": "לא מותקנים תוספים",
+      "empty-state-description": "עיין בחנות התוספים כדי למצוא תוספי סטרימינג, מטא-נתונים ותוספים נוספים.",
+      "empty-state-action": "עבור לחנות"
+    },
+    "store": {
+      "searchPlaceholder": "חפש תוספים...",
+      "install": "התקן",
+      "installing": "מתקין",
+      "installed": "מותקן",
+      "by": "מאת",
+      "categories": {
+        "all": "הכל",
+        "streaming": "סטרימינג",
+        "metadata": "מטא-נתונים",
+        "lyrics": "מילים",
+        "scrobbling": "סקרובלינג",
+        "other": "אחר"
+      },
+      "error": {
+        "title": "נכשל בטעינת תוספים",
+        "description": "לא ניתן לאחזר את רשימת התוספים. אנא בדוק את חיבור האינטרנט שלך.",
+        "retry": "נסה שוב"
+      },
+      "noResults": {
+        "title": "לא נמצאו תוספים",
+        "filtered": "נסה לשנות את החיפוש או המסננים שלך.",
+        "empty": "אין תוספים זמינים עדיין."
+      },
+      "installError": {
+        "title": "נכשל בהתקנת {{name}}"
+      }
+    }
+  },
+  "updater": {
+    "updateAvailable": "עדכון זמין",
+    "clickToUpdate": "לחץ לעדכון",
+    "downloading": "מוריד... {{progress}}%",
+    "clickToRestart": "לחץ להפעלה מחדש"
+  },
+  "flatpak": {
+    "sandboxWarning": "אתה מריץ את Nuclear בסביבת Flatpak. ייתכן שחלק מהפיצ'רים לא יעבדו כראוי. אם נתקלת בבעיות, נסה את גרסת .deb או AppImage במקום.",
+    "dismiss": "הבנתי"
+  },
+  "preferences": {
+    "title": "העדפות",
+    "general": {
+      "title": "כללי",
+      "language": {
+        "title": "שפה",
+        "description": "בחר את השפה המועדפת שלך"
+      }
+    },
+    "plugins": {
+      "title": "תוספים"
+    },
+    "themes": {
+      "title": "ערכות נושא"
+    },
+    "logs": {
+      "title": "יומנים"
+    },
+    "whats-new": {
+      "title": "מה חדש"
+    },
+    "shortcuts": {
+      "title": "קיצורי מקשים",
+      "sections": {
+        "playback": "ניגון",
+        "general": "כללי"
+      },
+      "commands": {
+        "playback.toggle": "נגן / השהה",
+        "playback.next": "רצועה הבאה",
+        "playback.previous": "רצועה קודמת",
+        "playback.seekForward": "דלג קדימה",
+        "playback.seekBackward": "דלג אחורה",
+        "playback.volumeUp": "הגבר עוצמה",
+        "playback.volumeDown": "הנמך עוצמה",
+        "playback.mute": "השתק / בטל השתקה",
+        "general.toggleSettings": "פתח הגדרות"
+      },
+      "recording": "לחץ על צירוף מקשים...",
+      "resetAll": "אפס הכל לברירות מחדל",
+      "reset": "אפס",
+      "conflict": "קיצור זה כבר בשימוש על ידי \"{{command}}\""
+    },
+    "appearance": {
+      "title": "מראה"
+    },
+    "playback": {
+      "title": "ניגון",
+      "skipSeconds": {
+        "title": "משך הדילוג",
+        "description": "מספר השניות לדלג קדימה/אחורה"
+      },
+      "crossfadeMs": {
+        "title": "מעבר חלק",
+        "description": "משך המעבר החלק בין רצועות במילישניות"
+      },
+      "streamExpiryMs": {
+        "title": "זמן תפוגת הזרם",
+        "description": "כמה זמן לפני שכתובת URL של זרם נחשבת פגת תוקף וצריכה פתרון מחדש"
+      },
+      "streamResolutionRetries": {
+        "title": "ניסיונות חוזרים לפתרון זרם",
+        "description": "מספר הניסיונות לפתרון כתובת URL של זרם לפני המעבר למועמד הבא"
+      },
+      "discoveryVariety": {
+        "title": "מגוון גילוי",
+        "description": "עד כמה ההמלצות חורגות מהאזנה הנוכחית שלך. נמוך יותר אומר קרוב יותר.",
+        "startLabel": "פחות מגוון",
+        "endLabel": "יותר מגוון"
+      }
+    },
+    "layout": {
+      "title": "פריסה"
+    },
+    "updates": {
+      "title": "עדכונים",
+      "checkForUpdates": {
+        "title": "בדוק עדכונים",
+        "description": "בדוק אוטומטית גרסאות חדשות בהפעלה"
+      },
+      "autoInstall": {
+        "title": "התקן עדכונים אוטומטית",
+        "description": "הורד והתקן עדכונים אוטומטית כשזמינים"
+      }
+    },
+    "integrations": {
+      "title": "אינטגרציות",
+      "mcp": {
+        "enabled": {
+          "title": "הפעל שרת MCP",
+          "description": "הפעל שרת MCP מקומי שמאפשר לכלי AI לשלוט ב-Nuclear."
+        },
+        "serverUrl": {
+          "title": "כתובת URL של שרת MCP",
+          "description": "הפנה את כלי ה-AI שלך לכתובת URL זו כדי להתחבר ל-Nuclear."
+        }
+      }
+    }
+  },
+  "queue": {
+    "title": "תור",
+    "empty": {
+      "title": "התור ריק",
+      "subtitle": "הוסף רצועות להתחלת ניגון"
+    },
+    "actions": {
+      "remove": "הסר מהתור",
+      "clear": "נקה תור",
+      "saveAsPlaylist": "שמור תור כפלייליסט"
+    },
+    "errors": {
+      "playback": "שגיאת ניגון"
+    }
+  },
+  "track": {
+    "actions": {
+      "playNow": "נגן עכשיו",
+      "playNext": "נגן הבא",
+      "addToQueue": "הוסף לתור",
+      "addToFavorites": "הוסף למועדפים",
+      "removeFromFavorites": "הסר מהמועדפים"
+    }
+  },
+  "streaming": {
+    "errors": {
+      "noCandidatesFound": "נכשל במציאת מועמדי זרם",
+      "allCandidatesFailed": "כל מועמדי הזרם נכשלו"
+    }
+  },
+  "playerBar": {
+    "noTrackPlaying": "אין רצועה מנוגנת",
+    "shuffleOn": "ערבוב: פעיל",
+    "shuffleOff": "ערבוב: כבוי",
+    "repeatOff": "חזרה: כבוי",
+    "repeatAll": "חזרה: הכל",
+    "repeatOne": "חזרה: אחד",
+    "discoveryOn": "גילוי: פעיל",
+    "discoveryOff": "גילוי: כבוי"
+  },
+  "logs": {
+    "title": "יומנים",
+    "searchPlaceholder": "חפש יומנים...",
+    "searchAriaLabel": "חפש יומנים",
+    "levelLabel": "רמה:",
+    "scopeLabel": "היקף:",
+    "clearButton": "נקה",
+    "exportButton": "ייצא",
+    "openLogFolderButton": "פתח תיקיית יומנים",
+    "noLogsMessage": "אין יומנים להצגה",
+    "invalidRegexMessage": "תבנית regex לא חוקית",
+    "entryCount": "{{count}} רשומה",
+    "entryCount_other": "{{count}} רשומות",
+    "exportSuccess": "היומנים יוצאו"
+  },
+  "changelog": {
+    "title": "מה חדש",
+    "seeMore": "הצג עוד ({{count}} ישנים)",
+    "types": {
+      "feature": "פיצ'ר",
+      "fix": "תיקון",
+      "improvement": "שיפור",
+      "chore": "משימה",
+      "plugin": "תוסף",
+      "docs": "תיעוד"
+    }
+  }
+}

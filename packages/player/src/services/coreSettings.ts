@@ -7,6 +7,7 @@ const LANGUAGE_OPTIONS = [
   { value: 'de_DE', label: 'Deutsch' },
   { value: 'es_ES', label: 'Español' },
   { value: 'fr_FR', label: 'Français' },
+  { value: 'he_IL', label: 'עברית' },
   { value: 'it_IT', label: 'Italiano' },
   { value: 'pt_BR', label: 'Português (Brasil)' },
   { value: 'ru_RU', label: 'Русский' },
