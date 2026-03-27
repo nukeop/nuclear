@@ -12,6 +12,7 @@
 
 * [Keyboard shortcuts](misc/keyboard-shortcuts.md)
 * [Platform-specific notes](misc/platform-specific.md)
+* [Music discovery](misc/discovery.md)
 
 ## Plugins
 
@@ -29,6 +30,7 @@
 * [Streaming](plugins/streaming.md)
 * [Metadata](plugins/metadata.md)
 * [Dashboard](plugins/dashboard.md)
+* [Discovery](plugins/discovery.md)
 * [Logger](plugins/logger.md)
 * [HTTP](plugins/http.md)
 * [yt-dlp](plugins/ytdlp.md)

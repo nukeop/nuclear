@@ -232,6 +232,15 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     default: 'http://127.0.0.1:8800/mcp',
     widget: { type: 'info' },
   },
+  {
+    id: 'integrations.discord.enabled',
+    title: 'preferences.integrations.discord.enabled.title',
+    description: 'preferences.integrations.discord.enabled.description',
+    category: 'integrations',
+    kind: 'boolean',
+    default: false,
+    widget: { type: 'toggle' },
+  },
 ];
 
 export const registerBuiltInCoreSettings = () => {

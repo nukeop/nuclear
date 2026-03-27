@@ -15,6 +15,7 @@ export type ScopedLogger = {
 export const LOG_SCOPES = [
   'app',
   'dashboard',
+  'discord',
   'discovery',
   'mcp',
   'playback',

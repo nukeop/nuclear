@@ -1,4 +1,5 @@
 pub mod commands;
+pub mod discord;
 pub mod http;
 pub mod logging;
 pub mod mcp;
@@ -55,12 +56,17 @@ pub fn run() {
             mcp::mcp_stop,
             mcp::mcp_respond,
             stream_server::stream_server_port,
-            ytdlp_setup::ytdlp_ensure_installed
+            ytdlp_setup::ytdlp_ensure_installed,
+            discord::discord_connect,
+            discord::discord_disconnect,
+            discord::discord_set_activity,
+            discord::discord_clear_activity
         ])
         .setup(|app| {
             logging::mark_startup_complete();
             mcp::init_mcp(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
+            discord::init_discord(app.handle().clone());
 
             #[cfg(target_os = "linux")]
             maximize_for_gamescope(app);
