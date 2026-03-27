@@ -6,6 +6,7 @@ import { useSettingsStore } from '../stores/settingsStore';
 import { reportError } from '../utils/logging';
 import { discoveryHost } from './discoveryHost';
 import { eventBus } from './eventBus';
+import { providersHost } from './providersHost';
 
 const CONTEXT_SIZE = 10;
 const RECOMMENDATION_LIMIT = 5;
@@ -15,7 +16,7 @@ export const initDiscoveryService = () => {
     const isEnabled = useSettingsStore
       .getState()
       .getValue('core.playback.discovery');
-    if (!isEnabled) {
+    if (!isEnabled || !providersHost.getActive('discovery')) {
       return;
     }
 
