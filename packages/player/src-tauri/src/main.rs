@@ -2,7 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    let _ = fix_path_env::fix();
+    let _ = fix_path_env::fix_all_vars();
 
     #[cfg(target_os = "linux")]
     apply_linux_workarounds();

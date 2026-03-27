@@ -16,6 +16,7 @@ import '@nuclearplayer/i18n';
 import { initLogStream } from './hooks/useLogStream';
 import { startAdvancedThemeWatcher } from './services/advancedThemeDirService';
 import { applyAdvancedThemeFromSettingsIfAny } from './services/advancedThemeService';
+import { initDiscordHandler } from './services/discordHandler';
 import { initDiscoveryService } from './services/discoveryService';
 import {
   applyLanguageFromSettings,
@@ -37,6 +38,7 @@ initializeSettingsStore()
   .then(() => registerBuiltInCoreSettings())
   .then(() => initDiscoveryService())
   .then(() => initMcpHandler())
+  .then(() => initDiscordHandler())
   .then(() => applyLanguageFromSettings())
   .then(() => initLanguageWatcher())
   .then(() => startAdvancedThemeWatcher())
