@@ -1,0 +1,22 @@
+name: Close external PRs
+
+on:
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  close-if-external:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.pull_request.user.login != 'nukeop'
+      && github.event.pull_request.user.login != 'renovate[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Close PR with explanation
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const script = require('./.github/scripts/close-external-pr.js');
+            await script({ github, context });
