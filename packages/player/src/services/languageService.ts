@@ -6,7 +6,7 @@ const RTL_LOCALES = new Set(['he_IL']);
 
 const applyDocumentDirection = (locale: string) => {
   document.documentElement.dir = RTL_LOCALES.has(locale) ? 'rtl' : 'ltr';
-  document.documentElement.lang = locale.replace('_', '-');
+  document.documentElement.lang = locale.replace(/_/g, '-');
 };
 
 export const changeLanguage = async (locale: string) => {
