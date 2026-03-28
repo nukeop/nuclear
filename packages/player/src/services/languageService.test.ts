@@ -41,11 +41,11 @@ describe('languageService', () => {
   });
 
   it('sets ltr direction and BCP-47 lang for non-RTL locale', async () => {
-    await changeLanguage('en_US');
+    await changeLanguage('pt_BR');
 
-    expect(changeLanguageMock).toHaveBeenCalledWith('en_US');
+    expect(changeLanguageMock).toHaveBeenCalledWith('pt_BR');
     expect(document.documentElement.dir).toBe('ltr');
-    expect(document.documentElement.lang).toBe('en-US');
+    expect(document.documentElement.lang).toBe('pt-BR');
   });
 
   it('updates dir/lang when switching between locales', async () => {
