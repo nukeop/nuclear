@@ -48,6 +48,16 @@ describe('languageService', () => {
     expect(document.documentElement.lang).toBe('en-US');
   });
 
+  it('updates dir/lang when switching between locales', async () => {
+    await changeLanguage('he_IL');
+    expect(document.documentElement.dir).toBe('rtl');
+    expect(document.documentElement.lang).toBe('he-IL');
+
+    await changeLanguage('en_US');
+    expect(document.documentElement.dir).toBe('ltr');
+    expect(document.documentElement.lang).toBe('en-US');
+  });
+
   it('normalizes locales with multiple underscores to valid lang tags', async () => {
     await changeLanguage('zh_Hans_CN');
 
