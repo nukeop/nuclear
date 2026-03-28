@@ -227,4 +227,17 @@ describe('Themes view', async () => {
       ),
     );
   });
+
+  describe('Store tab', () => {
+    it.todo('shows a loading state while themes are fetched');
+    it.todo(
+      'shows theme cards with names, descriptions, authors, and palette swatches',
+    );
+    it.todo(
+      'filters themes by search input matching name, description, author, and tags',
+    );
+    it.todo('installs a theme when the user clicks install');
+    it.todo('shows already-installed themes as installed');
+    it.todo('shows an error state when the store fails to load');
+  });
 });
