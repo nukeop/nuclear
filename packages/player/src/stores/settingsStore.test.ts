@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { SettingDefinition } from '@nuclearplayer/plugin-sdk';
 
@@ -15,8 +15,50 @@ import {
   useSettingsStore,
 } from './settingsStore';
 
+const { mockReportError, mockEntries, mockSet, mockSave } = vi.hoisted(() => ({
+  mockReportError: vi.fn(),
+  mockEntries: vi.fn(),
+  mockSet: vi.fn(),
+  mockSave: vi.fn(),
+}));
+
+vi.mock('../utils/logging', () => ({
+  reportError: mockReportError,
+}));
+
+vi.mock('@tauri-apps/plugin-store', async () => {
+  const mod = await import('../test/utils/inMemoryTauriStore');
+
+  return {
+    LazyStore: class MockLazyStore extends mod.LazyStore {
+      async entries() {
+        const mockResult = mockEntries();
+        if (mockResult !== undefined) {
+          return mockResult;
+        }
+        return super.entries();
+      }
+      async set(key: string, value: unknown) {
+        const mockResult = mockSet(key, value);
+        if (mockResult !== undefined) {
+          return mockResult;
+        }
+        return super.set(key, value);
+      }
+      async save() {
+        const mockResult = mockSave();
+        if (mockResult !== undefined) {
+          return mockResult;
+        }
+        return super.save();
+      }
+    },
+  };
+});
+
 describe('useSettingsStore', () => {
   beforeEach(() => {
+    vi.clearAllMocks();
     resetInMemoryTauriStore();
     useSettingsStore.setState({ definitions: {}, values: {}, loaded: false });
   });
@@ -138,6 +180,54 @@ describe('useSettingsStore', () => {
       await initializeSettingsStore();
       const loaded = getSetting('core.general.language');
       expect(loaded).toBe('fr');
+    });
+
+    it('initializeSettingsStore marks loaded and reports error when store read fails', async () => {
+      mockEntries.mockImplementationOnce(() =>
+        Promise.reject(new Error('store read failed')),
+      );
+
+      await initializeSettingsStore();
+
+      expect(useSettingsStore.getState().loaded).toBe(true);
+      expect(mockReportError).toHaveBeenCalledWith(
+        'settings',
+        expect.objectContaining({
+          userMessage: 'Failed to load settings from disk',
+        }),
+      );
+    });
+
+    it('setSetting keeps in-memory value and reports error when store save fails', async () => {
+      mockSave.mockImplementationOnce(() =>
+        Promise.reject(new Error('store save failed')),
+      );
+
+      await setSetting('core.general.language', 'he_IL');
+
+      expect(getSetting('core.general.language')).toBe('he_IL');
+      expect(mockReportError).toHaveBeenCalledWith(
+        'settings',
+        expect.objectContaining({
+          userMessage: 'Failed to persist settings to disk',
+        }),
+      );
+    });
+
+    it('setSetting keeps in-memory value and reports error when store set fails', async () => {
+      mockSet.mockImplementationOnce(() =>
+        Promise.reject(new Error('store set failed')),
+      );
+
+      await setSetting('core.general.language', 'he_IL');
+
+      expect(getSetting('core.general.language')).toBe('he_IL');
+      expect(mockReportError).toHaveBeenCalledWith(
+        'settings',
+        expect.objectContaining({
+          userMessage: 'Failed to persist settings to disk',
+        }),
+      );
     });
   });
 });

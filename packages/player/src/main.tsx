@@ -21,34 +21,51 @@ import {
   applyLanguageFromSettings,
   initLanguageWatcher,
 } from './services/languageService';
+import type { LogScope } from './services/logger';
 import { initMcpHandler } from './services/mcp';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
 import { applyThemeFromSettings } from './services/themeBootstrap';
 import { useUpdaterStore } from './stores/updaterStore';
+import { reportError } from './utils/logging';
+
+const runBootstrapStep = async (
+  scope: LogScope,
+  step: () => Promise<unknown> | unknown,
+) => {
+  try {
+    await step();
+  } catch (error) {
+    reportError(scope, {
+      userMessage: 'Application bootstrap step failed',
+      error,
+    });
+  }
+};
 
 initLogStream();
 
-initializeSettingsStore()
-  .then(() => initializeShortcutsStore())
-  .then(() => initializeQueueStore())
-  .then(() => initializeFavoritesStore())
-  .then(() => initializePlaylistStore())
-  .then(() => registerBuiltInCoreSettings())
-  .then(() => initDiscoveryService())
-  .then(() => initMcpHandler())
-  .then(() => applyLanguageFromSettings())
-  .then(() => initLanguageWatcher())
-  .then(() => startAdvancedThemeWatcher())
-  .then(() => applyThemeFromSettings())
-  .then(() => applyAdvancedThemeFromSettingsIfAny())
-  .then(() => {
-    // Run plugin hydration in the background
-    void hydratePluginsFromRegistry();
-    // Check for updates in the background
-    void useUpdaterStore.getState().checkForUpdate();
-    void ytdlpEnsureInstalled();
-  });
+const bootstrap = async () => {
+  await runBootstrapStep('settings', initializeSettingsStore);
+  await runBootstrapStep('settings', initializeShortcutsStore);
+  await runBootstrapStep('queue', initializeQueueStore);
+  await runBootstrapStep('settings', initializeFavoritesStore);
+  await runBootstrapStep('playlists', initializePlaylistStore);
+  await runBootstrapStep('settings', registerBuiltInCoreSettings);
+  await runBootstrapStep('discovery', initDiscoveryService);
+  await runBootstrapStep('mcp', initMcpHandler);
+  await runBootstrapStep('settings', applyLanguageFromSettings);
+  await runBootstrapStep('settings', initLanguageWatcher);
+  await runBootstrapStep('themes', startAdvancedThemeWatcher);
+  await runBootstrapStep('themes', applyThemeFromSettings);
+  await runBootstrapStep('themes', applyAdvancedThemeFromSettingsIfAny);
+
+  void hydratePluginsFromRegistry();
+  void useUpdaterStore.getState().checkForUpdate();
+  void ytdlpEnsureInstalled();
+};
+
+void bootstrap();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

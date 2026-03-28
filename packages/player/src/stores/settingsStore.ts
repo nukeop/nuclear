@@ -7,6 +7,8 @@ import type {
   SettingValue,
 } from '@nuclearplayer/plugin-sdk';
 
+import { reportError } from '../utils/logging';
+
 const SETTINGS_FILE = 'settings.json';
 const store = new LazyStore(SETTINGS_FILE);
 
@@ -31,12 +33,20 @@ export const useSettingsStore = create<State>((set, get) => ({
   values: {},
   loaded: false,
   loadFromDisk: async () => {
-    const storeEntries = await store.entries();
-    const loadedValues: Values = {};
-    for (const [key, entryValue] of storeEntries) {
-      loadedValues[String(key)] = entryValue as SettingValue;
+    try {
+      const storeEntries = await store.entries();
+      const loadedValues: Values = {};
+      for (const [key, entryValue] of storeEntries) {
+        loadedValues[String(key)] = entryValue as SettingValue;
+      }
+      set({ values: loadedValues, loaded: true });
+    } catch (error) {
+      set({ loaded: true });
+      reportError('settings', {
+        userMessage: 'Failed to load settings from disk',
+        error,
+      });
     }
-    set({ values: loadedValues, loaded: true });
   },
   register: (definitions, source) => {
     const fullyQualifiedIds: string[] = [];
@@ -64,8 +74,15 @@ export const useSettingsStore = create<State>((set, get) => ({
   setValue: async (fullyQualifiedId, value) => {
     const nextValues = { ...get().values, [fullyQualifiedId]: value };
     set({ values: nextValues });
-    await store.set(fullyQualifiedId, value as unknown);
-    await store.save();
+    try {
+      await store.set(fullyQualifiedId, value as unknown);
+      await store.save();
+    } catch (error) {
+      reportError('settings', {
+        userMessage: 'Failed to persist settings to disk',
+        error,
+      });
+    }
   },
 }));
 
