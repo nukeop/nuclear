@@ -15,40 +15,40 @@ import {
   useSettingsStore,
 } from './settingsStore';
 
-const { reportErrorMock, entriesMock, setMock, saveMock } = vi.hoisted(() => ({
-  reportErrorMock: vi.fn(),
-  entriesMock: vi.fn(),
-  setMock: vi.fn(),
-  saveMock: vi.fn(),
+const { mockReportError, mockEntries, mockSet, mockSave } = vi.hoisted(() => ({
+  mockReportError: vi.fn(),
+  mockEntries: vi.fn(),
+  mockSet: vi.fn(),
+  mockSave: vi.fn(),
 }));
 
 vi.mock('../utils/logging', () => ({
-  reportError: reportErrorMock,
+  reportError: mockReportError,
 }));
 
 vi.mock('@tauri-apps/plugin-store', async () => {
   const mod = await import('../test/utils/inMemoryTauriStore');
 
   return {
-    LazyStore: class extends mod.LazyStore {
+    LazyStore: class MockLazyStore extends mod.LazyStore {
       async entries() {
-        const override = entriesMock();
-        if (override !== undefined) {
-          return override;
+        const mockResult = mockEntries();
+        if (mockResult !== undefined) {
+          return mockResult;
         }
         return super.entries();
       }
       async set(key: string, value: unknown) {
-        const override = setMock(key, value);
-        if (override !== undefined) {
-          return override;
+        const mockResult = mockSet(key, value);
+        if (mockResult !== undefined) {
+          return mockResult;
         }
         return super.set(key, value);
       }
       async save() {
-        const override = saveMock();
-        if (override !== undefined) {
-          return override;
+        const mockResult = mockSave();
+        if (mockResult !== undefined) {
+          return mockResult;
         }
         return super.save();
       }
@@ -183,14 +183,14 @@ describe('useSettingsStore', () => {
     });
 
     it('initializeSettingsStore marks loaded and reports error when store read fails', async () => {
-      entriesMock.mockImplementationOnce(() => {
-        throw new Error('store read failed');
-      });
+      mockEntries.mockImplementationOnce(() =>
+        Promise.reject(new Error('store read failed')),
+      );
 
       await initializeSettingsStore();
 
       expect(useSettingsStore.getState().loaded).toBe(true);
-      expect(reportErrorMock).toHaveBeenCalledWith(
+      expect(mockReportError).toHaveBeenCalledWith(
         'settings',
         expect.objectContaining({
           userMessage: 'Failed to load settings from disk',
@@ -199,14 +199,30 @@ describe('useSettingsStore', () => {
     });
 
     it('setSetting keeps in-memory value and reports error when store save fails', async () => {
-      saveMock.mockImplementationOnce(() => {
-        throw new Error('store save failed');
-      });
+      mockSave.mockImplementationOnce(() =>
+        Promise.reject(new Error('store save failed')),
+      );
 
       await setSetting('core.general.language', 'he_IL');
 
       expect(getSetting('core.general.language')).toBe('he_IL');
-      expect(reportErrorMock).toHaveBeenCalledWith(
+      expect(mockReportError).toHaveBeenCalledWith(
+        'settings',
+        expect.objectContaining({
+          userMessage: 'Failed to persist settings to disk',
+        }),
+      );
+    });
+
+    it('setSetting keeps in-memory value and reports error when store set fails', async () => {
+      mockSet.mockImplementationOnce(() =>
+        Promise.reject(new Error('store set failed')),
+      );
+
+      await setSetting('core.general.language', 'he_IL');
+
+      expect(getSetting('core.general.language')).toBe('he_IL');
+      expect(mockReportError).toHaveBeenCalledWith(
         'settings',
         expect.objectContaining({
           userMessage: 'Failed to persist settings to disk',

@@ -31,7 +31,7 @@ import { reportError } from './utils/logging';
 
 const runBootstrapStep = async (
   scope: LogScope,
-  step: () => Promise<void> | void,
+  step: () => Promise<unknown> | unknown,
 ) => {
   try {
     await step();
@@ -52,9 +52,7 @@ const bootstrap = async () => {
   await runBootstrapStep('settings', initializeFavoritesStore);
   await runBootstrapStep('playlists', initializePlaylistStore);
   await runBootstrapStep('settings', registerBuiltInCoreSettings);
-  await runBootstrapStep('discovery', () => {
-    initDiscoveryService();
-  });
+  await runBootstrapStep('discovery', initDiscoveryService);
   await runBootstrapStep('mcp', initMcpHandler);
   await runBootstrapStep('settings', applyLanguageFromSettings);
   await runBootstrapStep('settings', initLanguageWatcher);
