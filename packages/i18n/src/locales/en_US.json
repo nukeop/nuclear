@@ -172,7 +172,11 @@
     "basic": "Basic themes",
     "advanced": "Advanced themes",
     "default": "Default",
-    "description": "Themes found in your app data themes directory"
+    "description": "Themes found in your app data themes directory",
+    "tabs": {
+      "local": "Local",
+      "store": "Store"
+    }
   },
   "dashboard": {
     "title": "Dashboard",
