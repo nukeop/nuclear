@@ -2,6 +2,7 @@ import { Check, Download } from 'lucide-react';
 import { FC } from 'react';
 
 import { cn } from '../../utils';
+import { Badge } from '../Badge';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Loader } from '../Loader';
@@ -31,6 +32,7 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
   description,
   author,
   palette,
+  tags,
   isInstalled = false,
   isInstalling = false,
   onInstall,
@@ -69,12 +71,19 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
         className="relative flex-1 flex-row items-center justify-between gap-4"
       >
         <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <h3
-            data-testid="theme-store-item-name"
-            className="text-foreground text-base font-bold"
-          >
-            {name}
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3
+              data-testid="theme-store-item-name"
+              className="text-foreground text-base font-bold"
+            >
+              {name}
+            </h3>
+            {tags?.map((tag) => (
+              <Badge key={tag} variant="pill" color="cyan">
+                {tag}
+              </Badge>
+            ))}
+          </div>
           <p
             data-testid="theme-store-item-description"
             className="text-foreground-secondary line-clamp-2 text-sm"

@@ -4,10 +4,10 @@ import { FC, useMemo, useState } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import {
   Button,
+  CenteredLoader,
   EmptyState,
   FilterChips,
   Input,
-  Loader,
   PluginStoreItem,
   ScrollableArea,
 } from '@nuclearplayer/ui';
@@ -76,11 +76,7 @@ export const PluginStore: FC = () => {
     isPending && variables?.plugin.id === plugin.id;
 
   if (isLoading) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <Loader />
-      </div>
-    );
+    return <CenteredLoader />;
   }
 
   if (error) {

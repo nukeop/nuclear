@@ -1,1 +1,1 @@
-export { Loader } from './Loader';
+export { CenteredLoader, Loader } from './Loader';

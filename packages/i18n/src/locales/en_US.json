@@ -176,6 +176,13 @@
     "tabs": {
       "local": "Local",
       "store": "Store"
+    },
+    "store": {
+      "searchPlaceholder": "Search themes...",
+      "install": "Install",
+      "installing": "Installing",
+      "installed": "Installed",
+      "by": "by"
     }
   },
   "dashboard": {
