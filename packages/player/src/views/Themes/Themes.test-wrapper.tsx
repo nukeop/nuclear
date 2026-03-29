@@ -1,3 +1,4 @@
+import { QueryClient } from '@tanstack/react-query';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -54,7 +55,10 @@ export const ThemesWrapper = {
     if (opts?.advancedThemes) {
       useAdvancedThemeStore.getState().setThemes(opts.advancedThemes);
     }
-    const component = render(<App />);
+    const queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+    const component = render(<App queryClientProp={queryClient} />);
     await userEvent.click(
       await component.findByRole('button', { name: 'Preferences' }),
     );

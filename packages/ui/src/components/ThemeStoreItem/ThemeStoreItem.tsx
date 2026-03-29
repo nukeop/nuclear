@@ -50,7 +50,7 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
     <Box
       data-testid="theme-store-item"
       variant="tertiary"
-      className={cn('relative overflow-hidden p-4', className)}
+      className={cn('relative h-auto overflow-hidden p-2', className)}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

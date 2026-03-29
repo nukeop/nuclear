@@ -23,9 +23,9 @@ export const Default: Story = {
     author: 'nukeop',
     palette: [
       'oklch(0.96 0.055 96)',
-      'oklch(0.28 0.000 263)',
-      'oklch(0.62 0.171 46)',
+      'oklch(0.6303 0.0168 90.30)',
       'oklch(0.34 0.007 48)',
+      'oklch(0.62 0.171 46)',
     ],
     tags: ['retro', 'warm'],
     onInstall: fn(),
@@ -40,7 +40,7 @@ export const Installed: Story = {
     author: 'nukeop',
     palette: [
       'oklch(0.97 0.011 72)',
-      'oklch(0.21 0.025 291)',
+      'oklch(0.46 0.063 290)',
       'oklch(0.60 0.107 3)',
       'oklch(0.46 0.063 290)',
     ],

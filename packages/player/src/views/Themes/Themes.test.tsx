@@ -23,6 +23,10 @@ const logError = vi.fn();
 const toastError = vi.fn();
 vi.mock('@tauri-apps/plugin-log', () => ({
   error: (...args: unknown[]) => logError(...args),
+  warn: () => Promise.resolve(),
+  debug: () => Promise.resolve(),
+  trace: () => Promise.resolve(),
+  info: () => Promise.resolve(),
 }));
 vi.mock('sonner', () => ({
   toast: { error: (...args: unknown[]) => toastError(...args) },
@@ -235,7 +239,7 @@ describe('Themes view', async () => {
 
   describe('Store tab', () => {
     beforeEach(() => {
-      FetchMock.reset();
+      FetchMock.init();
       FetchMock.get('theme-registry', THEME_REGISTRY_RESPONSE);
     });
 
@@ -247,7 +251,7 @@ describe('Themes view', async () => {
       expect(storeThemes.map((theme) => theme.data)).toEqual([
         {
           name: 'Sakura',
-          description: 'Cherry blossom inspired warm pink theme',
+          description: 'Cherry blossom',
           author: 'by nukeop',
           isInstalled: false,
         },
@@ -261,8 +265,6 @@ describe('Themes view', async () => {
     });
 
     it('filters themes by search input matching name, description, author, and tags', async () => {
-      FetchMock.get('theme-registry', THEME_REGISTRY_RESPONSE);
-
       await ThemesWrapper.mount();
       await ThemesWrapper.goToStoreTab();
       await ThemesWrapper.getStoreThemes();

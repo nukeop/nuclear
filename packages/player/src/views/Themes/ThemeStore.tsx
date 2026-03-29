@@ -9,7 +9,7 @@ export const ThemeStore: FC = () => {
   const { data: themes } = useMarketplaceThemes();
 
   return (
-    <div data-testid="theme-store">
+    <div data-testid="theme-store" className="flex flex-col gap-4 p-1">
       {themes?.map((theme) => (
         <ThemeStoreItem key={theme.id} {...theme} onInstall={noop} />
       ))}

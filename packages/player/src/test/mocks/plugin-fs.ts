@@ -8,6 +8,7 @@ vi.mock('@tauri-apps/plugin-fs', () => ({
   readDir: vi.fn(),
   readTextFile: vi.fn(),
   remove: vi.fn(),
+  writeTextFile: vi.fn(),
   watchImmediate: vi.fn(
     async (
       _paths: string | string[] | URL | URL[],
