@@ -6,6 +6,9 @@ import {
   AdvancedTheme,
   AdvancedThemeSchema,
   parseAdvancedTheme,
+  ThemeRegistryEntry,
+  ThemeRegistryEntrySchema,
+  ThemeRegistrySchema,
 } from './advanced/schema';
 import { BUILTIN_BASIC_THEME_IDS } from './basic';
 
@@ -98,6 +101,11 @@ export function clearAdvancedTheme(): void {
   }
 }
 
-export type { AdvancedTheme };
-export { BUILTIN_BASIC_THEME_IDS };
+export type { AdvancedTheme, ThemeRegistryEntry };
+export {
+  AdvancedThemeSchema,
+  BUILTIN_BASIC_THEME_IDS,
+  ThemeRegistryEntrySchema,
+  ThemeRegistrySchema,
+};
 export { parseAdvancedTheme, generateAdvancedThemeCSSFromJSON };
