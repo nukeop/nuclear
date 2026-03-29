@@ -11,6 +11,11 @@ import {
   stopAdvancedThemeWatcher,
 } from '../../services/advancedThemeDirService';
 import { useSettingsStore } from '../../stores/settingsStore';
+import {
+  SAKURA_THEME_FILE,
+  THEME_REGISTRY_RESPONSE,
+} from '../../test/fixtures/themeRegistry';
+import { FetchMock } from '../../test/mocks/fetch';
 import { PluginFsMock, watchImmediateCb } from '../../test/mocks/plugin-fs';
 import { ThemesWrapper } from './Themes.test-wrapper';
 
@@ -229,15 +234,99 @@ describe('Themes view', async () => {
   });
 
   describe('Store tab', () => {
-    it.todo('shows a loading state while themes are fetched');
-    it.todo(
-      'shows theme cards with names, descriptions, authors, and palette swatches',
-    );
-    it.todo(
-      'filters themes by search input matching name, description, author, and tags',
-    );
-    it.todo('installs a theme when the user clicks install');
-    it.todo('shows already-installed themes as installed');
-    it.todo('shows an error state when the store fails to load');
+    beforeEach(() => {
+      FetchMock.reset();
+      FetchMock.get('theme-registry', THEME_REGISTRY_RESPONSE);
+    });
+
+    it('shows theme cards with names, descriptions, authors, and palette swatches', async () => {
+      await ThemesWrapper.mount();
+      await ThemesWrapper.goToStoreTab();
+
+      const storeThemes = await ThemesWrapper.getStoreThemes();
+      expect(storeThemes.map((theme) => theme.data)).toEqual([
+        {
+          name: 'Sakura',
+          description: 'Cherry blossom inspired warm pink theme',
+          author: 'by nukeop',
+          isInstalled: false,
+        },
+        {
+          name: 'Nordic Frost',
+          description: 'Cool blue Scandinavian theme',
+          author: 'by someone',
+          isInstalled: false,
+        },
+      ]);
+    });
+
+    it('filters themes by search input matching name, description, author, and tags', async () => {
+      FetchMock.get('theme-registry', THEME_REGISTRY_RESPONSE);
+
+      await ThemesWrapper.mount();
+      await ThemesWrapper.goToStoreTab();
+      await ThemesWrapper.getStoreThemes();
+
+      await ThemesWrapper.searchStore('sakura');
+      expect(ThemesWrapper.storeThemeNames).toEqual(['Sakura']);
+
+      await ThemesWrapper.searchStore('someone');
+      expect(ThemesWrapper.storeThemeNames).toEqual(['Nordic Frost']);
+
+      await ThemesWrapper.searchStore('blue');
+      expect(ThemesWrapper.storeThemeNames).toEqual(['Nordic Frost']);
+
+      await ThemesWrapper.searchStore('nonexistent');
+      expect(ThemesWrapper.storeThemeNames).toEqual([]);
+    });
+
+    it('installs a theme when the user clicks install', async () => {
+      FetchMock.get('themes/sakura.json', SAKURA_THEME_FILE);
+      PluginFsMock.setExists(true);
+      PluginFsMock.setMkdir(undefined);
+
+      await ThemesWrapper.mount();
+      await ThemesWrapper.goToStoreTab();
+
+      const storeThemes = await ThemesWrapper.getStoreThemes();
+      const sakura = storeThemes.find((theme) => theme.name === 'Sakura');
+      await sakura.install();
+
+      await waitFor(() => {
+        expect(sakura.isInstalled).toBe(true);
+      });
+
+      expect(fs.writeTextFile).toHaveBeenCalledWith(
+        'themes/sakura.json',
+        JSON.stringify(SAKURA_THEME_FILE, null, 2),
+        { baseDir: fs.BaseDirectory.AppData },
+      );
+    });
+
+    it('shows already-installed themes as installed', async () => {
+      await ThemesWrapper.mount({
+        advancedThemes: [
+          { id: 'sakura', name: 'Sakura', path: 'themes/sakura.json' },
+        ],
+      });
+      await ThemesWrapper.goToStoreTab();
+
+      const storeThemes = await ThemesWrapper.getStoreThemes();
+      const sakura = storeThemes.find((theme) => theme.name === 'Sakura');
+      const nordic = storeThemes.find((theme) => theme.name === 'Nordic Frost');
+
+      expect(sakura.isInstalled).toBe(true);
+      expect(nordic.isInstalled).toBe(false);
+    });
+
+    it('shows an error state when the store fails to load', async () => {
+      FetchMock.reset();
+      FetchMock.getError('theme-registry', 500, 'Internal Server Error');
+
+      await ThemesWrapper.mount();
+      await ThemesWrapper.goToStoreTab();
+
+      expect(await ThemesWrapper.storeErrorState).toBeInTheDocument();
+    });
   });
 });
