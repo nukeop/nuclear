@@ -1,6 +1,6 @@
 import {
   AdvancedThemeSchema,
-  ThemeRegistrySchema,
+  MarketplaceThemeRegistrySchema,
 } from '@nuclearplayer/themes';
 
 import { ApiClient } from './ApiClient';
@@ -13,7 +13,10 @@ class ThemeRegistryApi extends ApiClient {
   }
 
   async getThemes() {
-    const registry = await this.fetch('/themes.json', ThemeRegistrySchema);
+    const registry = await this.fetch(
+      '/themes.json',
+      MarketplaceThemeRegistrySchema,
+    );
     return registry.themes;
   }
 

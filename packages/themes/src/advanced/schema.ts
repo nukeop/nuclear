@@ -26,7 +26,7 @@ export type AdvancedTheme = z.infer<typeof AdvancedThemeSchema>;
 export const parseAdvancedTheme = (input: unknown): AdvancedTheme =>
   AdvancedThemeSchema.parse(input);
 
-export const ThemeRegistryEntrySchema = AdvancedThemeSchema.pick({
+export const MarketplaceThemeSchema = AdvancedThemeSchema.pick({
   name: true,
   author: true,
   description: true,
@@ -39,9 +39,9 @@ export const ThemeRegistryEntrySchema = AdvancedThemeSchema.pick({
     path: z.string().min(1),
   });
 
-export type ThemeRegistryEntry = z.infer<typeof ThemeRegistryEntrySchema>;
+export type MarketplaceTheme = z.infer<typeof MarketplaceThemeSchema>;
 
-export const ThemeRegistrySchema = z.object({
+export const MarketplaceThemeRegistrySchema = z.object({
   version: z.number(),
-  themes: z.array(ThemeRegistryEntrySchema),
+  themes: z.array(MarketplaceThemeSchema),
 });

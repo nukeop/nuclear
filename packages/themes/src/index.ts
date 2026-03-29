@@ -5,10 +5,10 @@ import {
 import {
   AdvancedTheme,
   AdvancedThemeSchema,
+  MarketplaceTheme,
+  MarketplaceThemeRegistrySchema,
+  MarketplaceThemeSchema,
   parseAdvancedTheme,
-  ThemeRegistryEntry,
-  ThemeRegistryEntrySchema,
-  ThemeRegistrySchema,
 } from './advanced/schema';
 import { BUILTIN_BASIC_THEME_IDS } from './basic';
 
@@ -101,11 +101,11 @@ export function clearAdvancedTheme(): void {
   }
 }
 
-export type { AdvancedTheme, ThemeRegistryEntry };
+export type { AdvancedTheme, MarketplaceTheme };
 export {
   AdvancedThemeSchema,
   BUILTIN_BASIC_THEME_IDS,
-  ThemeRegistryEntrySchema,
-  ThemeRegistrySchema,
+  MarketplaceThemeRegistrySchema,
+  MarketplaceThemeSchema,
 };
 export { parseAdvancedTheme, generateAdvancedThemeCSSFromJSON };
