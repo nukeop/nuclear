@@ -27,7 +27,7 @@ tauri-plugin-dialog = "2"
 tauri-plugin-store = "2"
 tauri-plugin-upload = "2"
 zip = "2.1"
-reqwest = { version = "0.12", features = ["json", "cookies", "stream"] }
+reqwest = { version = "0.13", features = ["json", "cookies", "stream"] }
 futures = "0.3"
 tokio = { version = "1", features = ["full"] }
 base64 = "0.22"
@@ -36,7 +36,7 @@ percent-encoding = "2.3"
 tempfile = "3.10"
 tauri-plugin-opener = "2"
 fix-path-env = { git = "https://github.com/tauri-apps/fix-path-env-rs" }
-rmcp = { version = "0.16", features = ["server", "transport-streamable-http-server"] }
+rmcp = { version = "0.17", features = ["server", "transport-streamable-http-server"] }
 schemars = "1.0"
 axum = { version = "0.8", default-features = false, features = ["http1", "tokio"] }
 tokio-util = { version = "0.7", features = ["rt"] }
