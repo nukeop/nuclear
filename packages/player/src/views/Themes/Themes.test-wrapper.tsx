@@ -48,9 +48,13 @@ class ThemeStoreItemWrapper {
 export const ThemesWrapper = {
   async mount(opts?: {
     advancedThemes?: AdvancedThemeFile[];
+    marketplaceThemes?: AdvancedThemeFile[];
   }): Promise<RenderResult> {
     if (opts?.advancedThemes) {
       useThemeStore.getState().setAdvancedThemes(opts.advancedThemes);
+    }
+    if (opts?.marketplaceThemes) {
+      useThemeStore.getState().setMarketplaceThemes(opts.marketplaceThemes);
     }
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },
@@ -96,6 +100,11 @@ export const ThemesWrapper = {
   async getStoreThemes() {
     const items = await screen.findAllByTestId('theme-store-item');
     return items.map((element) => new ThemeStoreItemWrapper(element));
+  },
+
+  async getStoreTheme(name: string) {
+    const themes = await this.getStoreThemes();
+    return themes.find((theme) => theme.name === name)!;
   },
 
   get storeThemeNames() {

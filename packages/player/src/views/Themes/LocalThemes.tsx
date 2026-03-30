@@ -11,16 +11,13 @@ import {
 } from '@nuclearplayer/ui';
 
 import { loadAndApplyAdvancedThemeFromFile } from '../../services/advancedThemeService';
-import {
-  resetToDefaultTheme,
-  setAndPersistThemeId,
-} from '../../services/themeService';
 import { useThemeStore } from '../../stores/themeStore';
 
 export const LocalThemes = () => {
   const { t } = useTranslation('themes');
   const basicThemes = useMemo(() => listBasicThemes(), []);
-  const { advancedThemes, isSelected } = useThemeStore();
+  const { advancedThemes, isSelected, selectBasicTheme, resetTheme } =
+    useThemeStore();
 
   return (
     <ScrollableArea className="overflow-hidden">
@@ -39,7 +36,7 @@ export const LocalThemes = () => {
                     'bg-primary': isActive,
                   },
                 )}
-                onClick={() => setAndPersistThemeId(theme.id)}
+                onClick={() => selectBasicTheme(theme.id)}
               >
                 <span className="text-foreground text-left text-base font-bold">
                   {theme.name}
@@ -72,7 +69,7 @@ export const LocalThemes = () => {
             ]}
             onValueChange={async (val) => {
               if (!val) {
-                await resetToDefaultTheme();
+                await resetTheme();
                 return;
               }
               await loadAndApplyAdvancedThemeFromFile(val);

@@ -1,15 +1,21 @@
-import { noop } from 'lodash-es';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { CenteredLoader, Input, ThemeStoreItem } from '@nuclearplayer/ui';
 
 import { useFilteredMarketplaceThemes } from '../../hooks/useFilteredMarketplaceThemes';
+import { useInstallTheme } from '../../hooks/useInstallTheme';
+import { useThemeStore } from '../../stores/themeStore';
 
 export const ThemeStore: FC = () => {
   const { t } = useTranslation('themes');
   const { themes, search, setSearch, isLoading } =
     useFilteredMarketplaceThemes();
+  const { mutate: installTheme, isPending, variables } = useInstallTheme();
+  const marketplaceThemes = useThemeStore((state) => state.marketplaceThemes);
+
+  const isInstalled = (themeId: string) =>
+    marketplaceThemes.some((theme) => theme.id === themeId);
 
   if (isLoading) {
     return <CenteredLoader />;
@@ -26,7 +32,9 @@ export const ThemeStore: FC = () => {
         <ThemeStoreItem
           key={theme.id}
           {...theme}
-          onInstall={noop}
+          onInstall={() => installTheme({ theme })}
+          isInstalled={isInstalled(theme.id)}
+          isInstalling={isPending && variables?.theme.id === theme.id}
           labels={{
             install: t('store.install'),
             installing: t('store.installing'),

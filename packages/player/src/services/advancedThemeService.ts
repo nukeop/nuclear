@@ -17,7 +17,7 @@ export const loadAndApplyAdvancedThemeFromFile = async (
   const theme = parseAdvancedTheme(json);
   setThemeId('');
   applyAdvancedTheme(theme);
-  await useThemeStore.getState().selectTheme({ type: 'advanced', path });
+  await useThemeStore.getState().selectAdvancedTheme(path);
 };
 
 export const applyAdvancedThemeFromSettingsIfAny = async (): Promise<void> => {

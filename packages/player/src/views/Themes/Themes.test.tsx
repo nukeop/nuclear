@@ -10,7 +10,7 @@ import {
   startAdvancedThemeWatcher,
   stopAdvancedThemeWatcher,
 } from '../../services/advancedThemeDirService';
-import { useSettingsStore } from '../../stores/settingsStore';
+import { useThemeStore } from '../../stores/themeStore';
 import {
   SAKURA_THEME_FILE,
   THEME_REGISTRY_RESPONSE,
@@ -61,9 +61,11 @@ describe('Themes view', async () => {
   it('switches to basic themes', async () => {
     await ThemesWrapper.mount();
     await userEvent.click(await screen.findByText('Ember'));
-    expect(useSettingsStore.getState().getValue('core.theme.id')).toBe(
-      'nuclear:ember',
-    );
+    expect(
+      useThemeStore
+        .getState()
+        .isSelected({ type: 'basic', id: 'nuclear:ember' }),
+    ).toBe(true);
   });
 
   it('loads and applies selected advanced theme file', async () => {
@@ -84,12 +86,12 @@ describe('Themes view', async () => {
     });
     expect(themes.setThemeId).toHaveBeenCalledWith('');
     expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
-    expect(useSettingsStore.getState().getValue('core.theme.mode')).toBe(
-      'advanced',
-    );
+    expect(useThemeStore.getState().isAdvancedThemeSelected()).toBe(true);
     expect(
-      useSettingsStore.getState().getValue('core.theme.advanced.path'),
-    ).toBe('/themes/my.json');
+      useThemeStore
+        .getState()
+        .isSelected({ type: 'advanced', path: '/themes/my.json' }),
+    ).toBe(true);
   });
 
   it('reset to default from advanced themes select', async () => {
@@ -108,12 +110,7 @@ describe('Themes view', async () => {
     await ThemesWrapper.selectAdvancedTheme('My Theme');
     await ThemesWrapper.selectDefaultTheme();
 
-    expect(useSettingsStore.getState().getValue('core.theme.mode')).toBe(
-      'basic',
-    );
-    expect(
-      useSettingsStore.getState().getValue('core.theme.advanced.path'),
-    ).toBe('');
+    expect(useThemeStore.getState().isBasicThemeSelected()).toBe(true);
   });
 
   it('populates advanced themes from the app data themes directory on watcher start and shows them in the UI', async () => {
@@ -240,7 +237,10 @@ describe('Themes view', async () => {
   describe('Store tab', () => {
     beforeEach(() => {
       FetchMock.init();
-      FetchMock.get('theme-registry', THEME_REGISTRY_RESPONSE);
+      FetchMock.get(
+        'https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master/themes.json',
+        THEME_REGISTRY_RESPONSE,
+      );
     });
 
     it('shows theme cards with names, descriptions, authors, and palette swatches', async () => {
@@ -283,15 +283,17 @@ describe('Themes view', async () => {
     });
 
     it('installs a theme when the user clicks install', async () => {
-      FetchMock.get('themes/sakura.json', SAKURA_THEME_FILE);
+      FetchMock.get(
+        'https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master/themes/sakura.json',
+        SAKURA_THEME_FILE,
+      );
       PluginFsMock.setExists(true);
       PluginFsMock.setMkdir(undefined);
 
       await ThemesWrapper.mount();
       await ThemesWrapper.goToStoreTab();
 
-      const storeThemes = await ThemesWrapper.getStoreThemes();
-      const sakura = storeThemes.find((theme) => theme.name === 'Sakura');
+      const sakura = await ThemesWrapper.getStoreTheme('Sakura');
       await sakura.install();
 
       await waitFor(() => {
@@ -299,7 +301,7 @@ describe('Themes view', async () => {
       });
 
       expect(fs.writeTextFile).toHaveBeenCalledWith(
-        'themes/sakura.json',
+        'themes/store/sakura.json',
         JSON.stringify(SAKURA_THEME_FILE, null, 2),
         { baseDir: fs.BaseDirectory.AppData },
       );
@@ -307,23 +309,68 @@ describe('Themes view', async () => {
 
     it('shows already-installed themes as installed', async () => {
       await ThemesWrapper.mount({
-        advancedThemes: [
-          { id: 'sakura', name: 'Sakura', path: 'themes/sakura.json' },
+        marketplaceThemes: [
+          { id: 'sakura', name: 'Sakura', path: 'themes/store/sakura.json' },
         ],
       });
       await ThemesWrapper.goToStoreTab();
 
-      const storeThemes = await ThemesWrapper.getStoreThemes();
-      const sakura = storeThemes.find((theme) => theme.name === 'Sakura');
-      const nordic = storeThemes.find((theme) => theme.name === 'Nordic Frost');
+      const sakura = await ThemesWrapper.getStoreTheme('Sakura');
+      const nordic = await ThemesWrapper.getStoreTheme('Nordic Frost');
 
       expect(sakura.isInstalled).toBe(true);
       expect(nordic.isInstalled).toBe(false);
     });
 
+    it('shows an error toast and logs the error when installation fails', async () => {
+      FetchMock.get(
+        'https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master/themes/sakura.json',
+        SAKURA_THEME_FILE,
+      );
+      vi.mocked(fs.mkdir).mockRejectedValueOnce(new Error('Permission denied'));
+
+      await ThemesWrapper.mount();
+      await ThemesWrapper.goToStoreTab();
+
+      const sakura = await ThemesWrapper.getStoreTheme('Sakura');
+      await sakura.install();
+
+      await waitFor(() => {
+        expect(toastError).toHaveBeenCalled();
+      });
+      expect(logError).toHaveBeenCalledWith(
+        expect.stringContaining('Permission denied'),
+      );
+      expect(sakura.isInstalled).toBe(false);
+    });
+
+    it('shows an error toast and logs the error when fetching the theme file fails', async () => {
+      FetchMock.getError(
+        'https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master/themes/sakura.json',
+        404,
+        'Not Found',
+      );
+
+      await ThemesWrapper.mount();
+      await ThemesWrapper.goToStoreTab();
+
+      const sakura = await ThemesWrapper.getStoreTheme('Sakura');
+      await sakura.install();
+
+      await waitFor(() => {
+        expect(toastError).toHaveBeenCalled();
+      });
+      expect(logError).toHaveBeenCalledWith(expect.stringContaining('404'));
+      expect(sakura.isInstalled).toBe(false);
+    });
+
     it('shows an error state when the store fails to load', async () => {
-      FetchMock.reset();
-      FetchMock.getError('theme-registry', 500, 'Internal Server Error');
+      FetchMock.init();
+      FetchMock.getError(
+        'https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master/themes.json',
+        500,
+        'Internal Server Error',
+      );
 
       await ThemesWrapper.mount();
       await ThemesWrapper.goToStoreTab();

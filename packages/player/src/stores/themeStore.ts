@@ -19,6 +19,11 @@ export type ActiveTheme = BasicTheme | AdvancedTheme | MarketplaceTheme;
 const activeThemeId = (theme: ActiveTheme): string =>
   theme.type === 'advanced' ? theme.path : theme.id;
 
+const persistActiveTheme = async (theme: ActiveTheme) => {
+  await setSetting('core.theme.active.type', theme.type);
+  await setSetting('core.theme.active.id', activeThemeId(theme));
+};
+
 type ThemeStoreState = {
   advancedThemes: AdvancedThemeFile[];
   marketplaceThemes: AdvancedThemeFile[];
@@ -26,9 +31,9 @@ type ThemeStoreState = {
 
   setAdvancedThemes: (themes: AdvancedThemeFile[]) => void;
   setMarketplaceThemes: (themes: AdvancedThemeFile[]) => void;
-  setActiveTheme: (theme: ActiveTheme) => void;
-  selectTheme: (theme: ActiveTheme) => Promise<void>;
   selectBasicTheme: (id: string) => Promise<void>;
+  selectAdvancedTheme: (path: string) => Promise<void>;
+  selectMarketplaceTheme: (id: string) => Promise<void>;
   resetTheme: () => Promise<void>;
   isSelected: (theme: ActiveTheme) => boolean;
   isBasicThemeSelected: () => boolean;
@@ -44,24 +49,33 @@ export const useThemeStore = create<ThemeStoreState>((set, get) => ({
 
   setAdvancedThemes: (advancedThemes) => set({ advancedThemes }),
   setMarketplaceThemes: (marketplaceThemes) => set({ marketplaceThemes }),
-  setActiveTheme: (activeTheme) => set({ activeTheme }),
-
-  selectTheme: async (theme) => {
-    set({ activeTheme: theme });
-    await setSetting('core.theme.active.type', theme.type);
-    await setSetting('core.theme.active.id', activeThemeId(theme));
-  },
 
   selectBasicTheme: async (id) => {
     clearAdvancedTheme();
     setThemeId(id);
-    await get().selectTheme({ type: 'basic', id });
+    const theme: BasicTheme = { type: 'basic', id };
+    set({ activeTheme: theme });
+    await persistActiveTheme(theme);
+  },
+
+  selectAdvancedTheme: async (path) => {
+    const theme: AdvancedTheme = { type: 'advanced', path };
+    set({ activeTheme: theme });
+    await persistActiveTheme(theme);
+  },
+
+  selectMarketplaceTheme: async (id) => {
+    const theme: MarketplaceTheme = { type: 'marketplace', id };
+    set({ activeTheme: theme });
+    await persistActiveTheme(theme);
   },
 
   resetTheme: async () => {
     clearAdvancedTheme();
     setThemeId('');
-    await get().selectTheme({ type: 'basic', id: '' });
+    const theme: BasicTheme = { type: 'basic', id: '' };
+    set({ activeTheme: theme });
+    await persistActiveTheme(theme);
   },
 
   isSelected: (theme) => {
@@ -77,21 +91,24 @@ export const useThemeStore = create<ThemeStoreState>((set, get) => ({
   isMarketplaceThemeSelected: () => get().activeTheme.type === 'marketplace',
 
   hydrate: () => {
-    const settings = useSettingsStore.getState();
-    const type = settings.getValue('core.theme.active.type');
-    const id = settings.getValue('core.theme.active.id');
+    const type = useSettingsStore
+      .getState()
+      .getValue('core.theme.active.type') as string;
+    const id = useSettingsStore
+      .getState()
+      .getValue('core.theme.active.id') as string;
 
-    if (typeof type !== 'string' || typeof id !== 'string' || !id) {
-      return;
-    }
-
-    if (type === 'basic') {
+    if (type === 'basic' && id) {
       set({ activeTheme: { type: 'basic', id } });
       setThemeId(id);
-    } else if (type === 'advanced') {
+    } else if (type === 'advanced' && id) {
       set({ activeTheme: { type: 'advanced', path: id } });
-    } else if (type === 'marketplace') {
+    } else if (type === 'marketplace' && id) {
       set({ activeTheme: { type: 'marketplace', id } });
     }
   },
 }));
+
+export const hydrateThemeStore = (): void => {
+  useThemeStore.getState().hydrate();
+};
