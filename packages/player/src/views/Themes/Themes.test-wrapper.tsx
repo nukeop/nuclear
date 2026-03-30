@@ -3,10 +3,7 @@ import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
-import {
-  AdvancedThemeFile,
-  useAdvancedThemeStore,
-} from '../../stores/advancedThemeStore';
+import { AdvancedThemeFile, useThemeStore } from '../../stores/themeStore';
 
 class ThemeStoreItemWrapper {
   constructor(private element: HTMLElement) {}
@@ -53,7 +50,7 @@ export const ThemesWrapper = {
     advancedThemes?: AdvancedThemeFile[];
   }): Promise<RenderResult> {
     if (opts?.advancedThemes) {
-      useAdvancedThemeStore.getState().setThemes(opts.advancedThemes);
+      useThemeStore.getState().setAdvancedThemes(opts.advancedThemes);
     }
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },

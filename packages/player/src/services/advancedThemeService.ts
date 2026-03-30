@@ -7,7 +7,7 @@ import {
   setThemeId,
 } from '@nuclearplayer/themes';
 
-import { setSetting, useSettingsStore } from '../stores/settingsStore';
+import { useThemeStore, type AdvancedTheme } from '../stores/themeStore';
 
 export const loadAndApplyAdvancedThemeFromFile = async (
   path: string,
@@ -17,21 +17,23 @@ export const loadAndApplyAdvancedThemeFromFile = async (
   const theme = parseAdvancedTheme(json);
   setThemeId('');
   applyAdvancedTheme(theme);
-  await setSetting('core.theme.mode', 'advanced');
-  await setSetting('core.theme.advanced.path', path);
+  await useThemeStore.getState().selectTheme({ type: 'advanced', path });
 };
 
 export const applyAdvancedThemeFromSettingsIfAny = async (): Promise<void> => {
-  const mode = useSettingsStore.getState().getValue('core.theme.mode');
-  const path = useSettingsStore.getState().getValue('core.theme.advanced.path');
-  if (mode === 'advanced' && typeof path === 'string' && path) {
-    try {
-      setThemeId('');
-      await loadAndApplyAdvancedThemeFromFile(path);
-    } catch (error) {
-      toast.error("Couldn't load advanced theme", {
-        description: error instanceof Error ? error.message : String(error),
-      });
-    }
+  const { activeTheme, isAdvancedThemeSelected } = useThemeStore.getState();
+  if (!isAdvancedThemeSelected()) {
+    return;
+  }
+
+  const { path } = activeTheme as AdvancedTheme;
+
+  try {
+    setThemeId('');
+    await loadAndApplyAdvancedThemeFromFile(path);
+  } catch (error) {
+    toast.error("Couldn't load advanced theme", {
+      description: error instanceof Error ? error.message : String(error),
+    });
   }
 };

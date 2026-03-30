@@ -20,15 +20,14 @@ import { useThemeStore } from '../../stores/themeStore';
 export const LocalThemes = () => {
   const { t } = useTranslation('themes');
   const basicThemes = useMemo(() => listBasicThemes(), []);
-  const { advancedThemes, activeTheme } = useThemeStore();
+  const { advancedThemes, isSelected } = useThemeStore();
 
   return (
     <ScrollableArea className="overflow-hidden">
       <SectionShell data-testid="basic-themes" title={t('basic')}>
         <div className="flex flex-wrap gap-4 p-1">
           {basicThemes.map((theme) => {
-            const isActive =
-              activeTheme.type === 'basic' && activeTheme.id === theme.id;
+            const isActive = isSelected({ type: 'basic', id: theme.id });
             return (
               <Button
                 key={theme.id}

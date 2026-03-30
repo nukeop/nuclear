@@ -53,9 +53,7 @@ const PLUGIN_ASSET_NAME = 'plugin.zip';
 
 class PluginRegistryApi extends ApiClient {
   constructor() {
-    super(
-      'https://raw.githubusercontent.com/NuclearPlayer/plugin-registry/master',
-    );
+    super('https://cdn.jsdelivr.net/gh/NuclearPlayer/plugin-registry@master');
   }
 
   async getPlugins(): Promise<MarketplacePlugin[]> {

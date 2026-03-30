@@ -7,9 +7,7 @@ import { ApiClient } from './ApiClient';
 
 class ThemeRegistryApi extends ApiClient {
   constructor() {
-    super(
-      'https://raw.githubusercontent.com/NuclearPlayer/theme-registry/master',
-    );
+    super('https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master');
   }
 
   async getThemes() {
