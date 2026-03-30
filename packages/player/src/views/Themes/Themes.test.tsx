@@ -234,6 +234,22 @@ describe('Themes view', async () => {
     );
   });
 
+  describe('Theme selection', () => {
+    it.todo('unhighlights basic themes when an advanced theme is selected');
+
+    it.todo('unhighlights basic themes when a marketplace theme is active');
+
+    it.todo(
+      'shows "Store theme active" in the advanced dropdown when a marketplace theme is active',
+    );
+
+    it.todo('deselects the marketplace theme when a basic theme is clicked');
+
+    it.todo(
+      'deselects the marketplace theme when an advanced theme is selected from the dropdown',
+    );
+  });
+
   describe('Store tab', () => {
     beforeEach(() => {
       FetchMock.init();
@@ -377,5 +393,11 @@ describe('Themes view', async () => {
 
       expect(await ThemesWrapper.storeErrorState).toBeInTheDocument();
     });
+
+    it.todo('shows an apply button on installed store themes');
+
+    it.todo('applies a marketplace theme when the apply button is clicked');
+
+    it.todo('shows the active marketplace theme as active');
   });
 });
