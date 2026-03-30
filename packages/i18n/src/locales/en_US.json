@@ -182,7 +182,8 @@
       "install": "Install",
       "installing": "Installing",
       "installed": "Installed",
-      "by": "by"
+      "by": "by",
+      "installError": "Failed to install {{name}}"
     }
   },
   "dashboard": {
