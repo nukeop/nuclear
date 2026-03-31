@@ -14,6 +14,7 @@ export const SelectButton: FC = () => {
     describedBy,
     hasLabel,
     hasError,
+    placeholder,
     selected,
     open,
     disabled,
@@ -36,7 +37,7 @@ export const SelectButton: FC = () => {
         selectVariants({ size, state, className: buttonClassName }),
       )}
     >
-      <span className="block truncate">{selected?.label}</span>
+      <span className="block truncate">{selected?.label ?? placeholder}</span>
       <span className="flex items-center">
         <ChevronDown
           size={16}

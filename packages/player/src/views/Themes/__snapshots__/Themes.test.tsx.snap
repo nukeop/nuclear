@@ -535,6 +535,42 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                     class="flex flex-wrap gap-4 p-1"
                                   >
                                     <button
+                                      aria-pressed="true"
+                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none bg-primary"
+                                      data-headlessui-state=""
+                                      type="button"
+                                    >
+                                      <span
+                                        class="text-foreground text-left text-base font-bold"
+                                      >
+                                        Default
+                                      </span>
+                                      <div
+                                        class="block"
+                                      >
+                                        <span
+                                          aria-hidden="true"
+                                          class="ring-border inline-block size-5 rounded-full ring-2"
+                                          style="background-color: oklch(0.77 0.17 342);"
+                                        />
+                                        <span
+                                          aria-hidden="true"
+                                          class="ring-border inline-block size-5 rounded-full ring-2"
+                                          style="background-color: oklch(0.95 0.02 342);"
+                                        />
+                                        <span
+                                          aria-hidden="true"
+                                          class="ring-border inline-block size-5 rounded-full ring-2"
+                                          style="background-color: oklch(0.42 0.1 342);"
+                                        />
+                                        <span
+                                          aria-hidden="true"
+                                          class="ring-border inline-block size-5 rounded-full ring-2"
+                                          style="background-color: oklch(0.15 0.02 342);"
+                                        />
+                                      </div>
+                                    </button>
+                                    <button
                                       aria-pressed="false"
                                       class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
@@ -681,69 +717,71 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                   </div>
                                 </div>
                               </section>
-                              <section
-                                class="mb-6 flex w-full flex-col items-start justify-start"
-                                data-testid="advanced-themes"
+                              <div
+                                class="flex gap-4"
                               >
-                                <h2
-                                  class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                                <section
+                                  class="mb-6 flex w-full flex-col items-start justify-start"
+                                  data-testid="advanced-themes"
                                 >
-                                  Advanced themes
-                                </h2>
-                                <div
-                                  class="flex w-full flex-1 flex-col"
-                                >
+                                  <h2
+                                    class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                                  >
+                                    Advanced themes
+                                  </h2>
                                   <div
-                                    class="max-w-80 p-1"
+                                    class="flex w-full flex-1 flex-col"
                                   >
                                     <div
-                                      class="relative flex w-full flex-col gap-2"
+                                      class="max-w-80 p-1"
                                     >
-                                      <button
-                                        aria-expanded="false"
-                                        aria-haspopup="listbox"
-                                        class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
-                                        data-headlessui-state=""
-                                        id="select-:ri:"
-                                        type="button"
+                                      <div
+                                        class="relative flex w-full flex-col gap-2"
                                       >
-                                        <span
-                                          class="block truncate"
+                                        <button
+                                          aria-expanded="false"
+                                          aria-haspopup="listbox"
+                                          class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                                          data-headlessui-state=""
+                                          id="select-:ri:"
+                                          type="button"
                                         >
-                                          Default
-                                        </span>
-                                        <span
-                                          class="flex items-center"
-                                        >
-                                          <svg
-                                            aria-hidden="true"
-                                            class="lucide lucide-chevron-down text-foreground transition-transform"
-                                            fill="none"
-                                            height="16"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            viewBox="0 0 24 24"
-                                            width="16"
-                                            xmlns="http://www.w3.org/2000/svg"
+                                          <span
+                                            class="block truncate"
+                                          />
+                                          <span
+                                            class="flex items-center"
                                           >
-                                            <path
-                                              d="m6 9 6 6 6-6"
-                                            />
-                                          </svg>
-                                        </span>
-                                      </button>
-                                      <p
-                                        class="text-foreground-secondary text-sm select-none"
-                                        id="select-:ri:-description"
-                                      >
-                                        Themes found in your app data themes directory
-                                      </p>
+                                            <svg
+                                              aria-hidden="true"
+                                              class="lucide lucide-chevron-down text-foreground transition-transform"
+                                              fill="none"
+                                              height="16"
+                                              stroke="currentColor"
+                                              stroke-linecap="round"
+                                              stroke-linejoin="round"
+                                              stroke-width="2"
+                                              viewBox="0 0 24 24"
+                                              width="16"
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                              <path
+                                                d="m6 9 6 6 6-6"
+                                              />
+                                            </svg>
+                                          </span>
+                                        </button>
+                                        <p
+                                          class="text-foreground-secondary text-sm select-none"
+                                          id="select-:ri:-description"
+                                        >
+                                          Themes found in your app data themes directory
+                                        </p>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </section>
+                                </section>
+                              </div>
                             </div>
                           </div>
                         </div>

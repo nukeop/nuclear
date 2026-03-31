@@ -12,6 +12,7 @@ type SelectContextValue = {
     listboxId: string;
   };
   value: string;
+  placeholder?: string;
   size?: VariantProps<typeof selectVariants>['size'];
   disabled?: boolean;
   state: 'normal' | 'error';
