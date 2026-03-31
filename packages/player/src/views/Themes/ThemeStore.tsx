@@ -9,7 +9,7 @@ import { useThemeStore } from '../../stores/themeStore';
 
 export const ThemeStore: FC = () => {
   const { t } = useTranslation('themes');
-  const { themes, search, setSearch, isLoading } =
+  const { themes, search, setSearch, isLoading, isError } =
     useFilteredMarketplaceThemes();
   const { mutate: installTheme, isPending, variables } = useInstallTheme();
   const marketplaceThemes = useThemeStore((state) => state.marketplaceThemes);
@@ -19,6 +19,17 @@ export const ThemeStore: FC = () => {
 
   if (isLoading) {
     return <CenteredLoader />;
+  }
+
+  if (isError) {
+    return (
+      <p
+        data-testid="theme-store-error"
+        className="text-foreground-secondary p-4 text-sm"
+      >
+        {t('store.loadError')}
+      </p>
+    );
   }
 
   return (

@@ -9,14 +9,18 @@ import {
 
 import { useThemeStore, type AdvancedTheme } from '../stores/themeStore';
 
-export const loadAndApplyAdvancedThemeFromFile = async (
-  path: string,
-): Promise<void> => {
+export const loadAndApplyThemeFile = async (path: string): Promise<void> => {
   const contents = await readTextFile(path, { baseDir: BaseDirectory.AppData });
   const json = JSON.parse(contents);
   const theme = parseAdvancedTheme(json);
   setThemeId('');
   applyAdvancedTheme(theme);
+};
+
+export const loadAndApplyAdvancedThemeFromFile = async (
+  path: string,
+): Promise<void> => {
+  await loadAndApplyThemeFile(path);
   await useThemeStore.getState().selectAdvancedTheme(path);
 };
 

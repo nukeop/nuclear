@@ -16,6 +16,7 @@ import {
   THEME_REGISTRY_RESPONSE,
 } from '../../test/fixtures/themeRegistry';
 import { FetchMock } from '../../test/mocks/fetch';
+import { PluginFsMock } from '../../test/mocks/plugin-fs';
 
 const REGISTRY_BASE_URL =
   'https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master';
@@ -180,6 +181,7 @@ export const ThemesWrapper = {
     advancedThemes?: AdvancedThemeFile[];
   }) {
     this.setupStoreIndex();
+    PluginFsMock.setReadTextFile(JSON.stringify(SAKURA_THEME_FILE));
     return this.mount({
       ...opts,
       marketplaceThemes: [
