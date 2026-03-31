@@ -387,7 +387,9 @@ describe('Themes view', async () => {
 
     it('shows an error toast and logs the error when installation fails', async () => {
       ThemesWrapper.setupThemeFile('sakura');
-      vi.mocked(fs.mkdir).mockRejectedValueOnce(new Error('Permission denied'));
+      vi.mocked(fs.writeTextFile).mockRejectedValueOnce(
+        new Error('Permission denied'),
+      );
 
       await ThemesWrapper.mount();
       await ThemesWrapper.goToStoreTab();

@@ -477,7 +477,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                       tabindex="0"
                       type="button"
                     >
-                      Local
+                      My themes
                     </button>
                     <button
                       aria-controls="headlessui-tabs-panel-:rm:"
@@ -535,6 +535,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                     class="flex flex-wrap gap-4 p-1"
                                   >
                                     <button
+                                      aria-pressed="false"
                                       class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"
@@ -570,6 +571,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                       </div>
                                     </button>
                                     <button
+                                      aria-pressed="false"
                                       class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"
@@ -605,6 +607,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                       </div>
                                     </button>
                                     <button
+                                      aria-pressed="false"
                                       class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"
@@ -640,6 +643,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                       </div>
                                     </button>
                                     <button
+                                      aria-pressed="false"
                                       class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground h-auto bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"

@@ -109,7 +109,11 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
               <span className="ml-2">{installed}</span>
             </Button>
           ) : (
-            <Button onClick={onInstall} className="w-28">
+            <Button
+              onClick={onInstall}
+              className="w-28"
+              data-testid="theme-store-item-install"
+            >
               <Download size={16} />
               <span className="ml-2">{install}</span>
             </Button>

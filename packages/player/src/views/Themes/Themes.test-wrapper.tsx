@@ -93,15 +93,11 @@ export const ThemesWrapper = {
     marketplaceThemes?: AdvancedThemeFile[];
     activeTheme?: ActiveTheme;
   }): Promise<RenderResult> {
-    if (opts?.advancedThemes) {
-      useThemeStore.getState().setAdvancedThemes(opts.advancedThemes);
-    }
-    if (opts?.marketplaceThemes) {
-      useThemeStore.getState().setMarketplaceThemes(opts.marketplaceThemes);
-    }
-    if (opts?.activeTheme) {
-      useThemeStore.setState({ activeTheme: opts.activeTheme });
-    }
+    useThemeStore.setState({
+      advancedThemes: opts?.advancedThemes ?? [],
+      marketplaceThemes: opts?.marketplaceThemes ?? [],
+      activeTheme: opts?.activeTheme ?? { type: 'basic', id: '' },
+    });
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },
     });

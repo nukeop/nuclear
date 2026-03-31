@@ -1,0 +1,213 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
+<DocumentFragment>
+  <div
+    class="border-border text-foreground flex w-full rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow relative h-auto overflow-hidden p-2"
+    data-testid="theme-store-item"
+  >
+    <div
+      class="absolute inset-0 flex"
+    >
+      <div
+        class="-mx-4 flex-1 scale-y-110 -skew-x-12 first:-ml-8 last:-mr-8"
+        style="background-color: oklch(0.96 0.055 96);"
+      />
+      <div
+        class="-mx-4 flex-1 scale-y-110 -skew-x-12 first:-ml-8 last:-mr-8"
+        style="background-color: oklch(0.28 0 263);"
+      />
+      <div
+        class="-mx-4 flex-1 scale-y-110 -skew-x-12 first:-ml-8 last:-mr-8"
+        style="background-color: oklch(0.62 0.171 46);"
+      />
+      <div
+        class="-mx-4 flex-1 scale-y-110 -skew-x-12 first:-ml-8 last:-mr-8"
+        style="background-color: oklch(0.34 0.007 48);"
+      />
+    </div>
+    <div
+      class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-none relative flex-1 flex-row items-center justify-between gap-4"
+    >
+      <div
+        class="flex min-w-0 flex-1 flex-col gap-1"
+      >
+        <div
+          class="flex items-center gap-2"
+        >
+          <h3
+            class="text-foreground text-base font-bold"
+            data-testid="theme-store-item-name"
+          >
+            Gruvbox
+          </h3>
+          <span
+            class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+          >
+            retro
+          </span>
+          <span
+            class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+          >
+            warm
+          </span>
+        </div>
+        <p
+          class="text-foreground-secondary line-clamp-2 text-sm"
+          data-testid="theme-store-item-description"
+        >
+          Retro groove color scheme. Based on the classic Vim theme.
+        </p>
+        <p
+          class="text-foreground-secondary text-xs"
+          data-testid="theme-store-item-author"
+        >
+          by nukeop
+        </p>
+      </div>
+      <div
+        class="shrink-0"
+      >
+        <button
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
+          data-disabled=""
+          data-headlessui-state="disabled"
+          disabled=""
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-check"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 6 9 17l-5-5"
+            />
+          </svg>
+          <span
+            class="ml-2"
+          >
+            Installed
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ThemeStoreItem > (Snapshot) renders with all props 1`] = `
+<DocumentFragment>
+  <div
+    class="border-border text-foreground flex w-full rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow relative h-auto overflow-hidden p-2"
+    data-testid="theme-store-item"
+  >
+    <div
+      class="absolute inset-0 flex"
+    >
+      <div
+        class="-mx-4 flex-1 scale-y-110 -skew-x-12 first:-ml-8 last:-mr-8"
+        style="background-color: oklch(0.96 0.055 96);"
+      />
+      <div
+        class="-mx-4 flex-1 scale-y-110 -skew-x-12 first:-ml-8 last:-mr-8"
+        style="background-color: oklch(0.28 0 263);"
+      />
+      <div
+        class="-mx-4 flex-1 scale-y-110 -skew-x-12 first:-ml-8 last:-mr-8"
+        style="background-color: oklch(0.62 0.171 46);"
+      />
+      <div
+        class="-mx-4 flex-1 scale-y-110 -skew-x-12 first:-ml-8 last:-mr-8"
+        style="background-color: oklch(0.34 0.007 48);"
+      />
+    </div>
+    <div
+      class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-none relative flex-1 flex-row items-center justify-between gap-4"
+    >
+      <div
+        class="flex min-w-0 flex-1 flex-col gap-1"
+      >
+        <div
+          class="flex items-center gap-2"
+        >
+          <h3
+            class="text-foreground text-base font-bold"
+            data-testid="theme-store-item-name"
+          >
+            Gruvbox
+          </h3>
+          <span
+            class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+          >
+            retro
+          </span>
+          <span
+            class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+          >
+            warm
+          </span>
+        </div>
+        <p
+          class="text-foreground-secondary line-clamp-2 text-sm"
+          data-testid="theme-store-item-description"
+        >
+          Retro groove color scheme. Based on the classic Vim theme.
+        </p>
+        <p
+          class="text-foreground-secondary text-xs"
+          data-testid="theme-store-item-author"
+        >
+          by nukeop
+        </p>
+      </div>
+      <div
+        class="shrink-0"
+      >
+        <button
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
+          data-headlessui-state=""
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-download"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 15V3"
+            />
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+            />
+            <path
+              d="m7 10 5 5 5-5"
+            />
+          </svg>
+          <span
+            class="ml-2"
+          >
+            Install
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
