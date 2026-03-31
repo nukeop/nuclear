@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import { Tabs, ViewShell } from '@nuclearplayer/ui';
 
-import { LocalThemes } from './LocalThemes';
+import { MyThemes } from './MyThemes';
 import { ThemeStore } from './ThemeStore';
 
 export const Themes = () => {
@@ -20,9 +20,9 @@ export const Themes = () => {
         panelClassName="flex flex-1 overflow-hidden"
         items={[
           {
-            id: 'local',
-            label: t('tabs.local'),
-            content: <LocalThemes />,
+            id: 'my-themes',
+            label: t('tabs.myThemes'),
+            content: <MyThemes />,
           },
           {
             id: 'store',

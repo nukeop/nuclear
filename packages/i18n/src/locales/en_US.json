@@ -176,7 +176,7 @@
     "selectPlaceholder": "Select a theme",
     "description": "Themes found in your app data themes directory",
     "tabs": {
-      "local": "My themes",
+      "myThemes": "My themes",
       "store": "Store"
     },
     "store": {

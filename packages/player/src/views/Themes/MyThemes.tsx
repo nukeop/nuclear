@@ -13,11 +13,16 @@ import {
 import { loadAndApplyAdvancedThemeFromFile } from '../../services/advancedThemeService';
 import { useThemeStore } from '../../stores/themeStore';
 
-export const LocalThemes = () => {
+export const MyThemes = () => {
   const { t } = useTranslation('themes');
   const basicThemes = useMemo(() => listBasicThemes(), []);
-  const { advancedThemes, isSelected, selectBasicTheme, resetTheme } =
-    useThemeStore();
+  const {
+    advancedThemes,
+    marketplaceThemes,
+    isSelected,
+    selectBasicTheme,
+    resetTheme,
+  } = useThemeStore();
 
   return (
     <ScrollableArea className="overflow-hidden">
@@ -57,27 +62,47 @@ export const LocalThemes = () => {
           })}
         </div>
       </SectionShell>
-      <SectionShell data-testid="advanced-themes" title={t('advanced')}>
-        <div className="max-w-80 p-1">
-          <Select
-            description={t('description')}
-            options={[
-              { id: '', label: t('default') },
-              ...advancedThemes.map((theme) => ({
-                id: theme.path,
-                label: theme.name,
-              })),
-            ]}
-            onValueChange={async (val) => {
-              if (!val) {
-                await resetTheme();
-                return;
-              }
-              await loadAndApplyAdvancedThemeFromFile(val);
-            }}
-          />
-        </div>
-      </SectionShell>
+      <div className="flex gap-4">
+        <SectionShell data-testid="advanced-themes" title={t('advanced')}>
+          <div className="max-w-80 p-1">
+            <Select
+              description={t('description')}
+              options={[
+                { id: '', label: t('default') },
+                ...advancedThemes.map((theme) => ({
+                  id: theme.path,
+                  label: theme.name,
+                })),
+              ]}
+              onValueChange={async (val) => {
+                if (!val) {
+                  await resetTheme();
+                  return;
+                }
+                await loadAndApplyAdvancedThemeFromFile(val);
+              }}
+            />
+          </div>
+        </SectionShell>
+        {marketplaceThemes.length > 0 && (
+          <SectionShell
+            data-testid="marketplace-themes"
+            title={t('marketplace')}
+          >
+            <div className="max-w-80 p-1">
+              <Select
+                options={marketplaceThemes
+                  .filter((theme) => theme.id)
+                  .map((theme) => ({
+                    id: theme.id!,
+                    label: theme.name,
+                  }))}
+                onValueChange={() => {}}
+              />
+            </div>
+          </SectionShell>
+        )}
+      </div>
     </ScrollableArea>
   );
 };
