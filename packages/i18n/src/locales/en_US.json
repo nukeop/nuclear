@@ -171,10 +171,12 @@
     "title": "Themes",
     "basic": "Basic themes",
     "advanced": "Advanced themes",
+    "marketplace": "Store themes",
     "default": "Default",
+    "selectPlaceholder": "Select a theme",
     "description": "Themes found in your app data themes directory",
     "tabs": {
-      "local": "Local",
+      "local": "My themes",
       "store": "Store"
     },
     "store": {

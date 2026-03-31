@@ -2,8 +2,22 @@ import { QueryClient } from '@tanstack/react-query';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { createSelectWrapper } from '@nuclearplayer/ui';
+
 import App from '../../App';
-import { AdvancedThemeFile, useThemeStore } from '../../stores/themeStore';
+import {
+  useThemeStore,
+  type ActiveTheme,
+  type AdvancedThemeFile,
+} from '../../stores/themeStore';
+import {
+  SAKURA_THEME_FILE,
+  THEME_REGISTRY_RESPONSE,
+} from '../../test/fixtures/themeRegistry';
+import { FetchMock } from '../../test/mocks/fetch';
+
+const REGISTRY_BASE_URL =
+  'https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master';
 
 class ThemeStoreItemWrapper {
   constructor(private element: HTMLElement) {}
@@ -23,12 +37,20 @@ class ThemeStoreItemWrapper {
       .textContent;
   }
 
-  get installButton() {
-    return within(this.element).getByRole('button');
+  get isActive() {
+    return (
+      within(this.element)
+        .getByTestId('theme-store-item-apply')
+        .textContent?.includes('Active') ?? false
+    );
   }
 
   get isInstalled() {
-    return this.installButton.textContent?.includes('Installed') ?? false;
+    return (
+      within(this.element)
+        .getByRole('button')
+        .textContent?.includes('Installed') ?? false
+    );
   }
 
   get data() {
@@ -40,21 +62,45 @@ class ThemeStoreItemWrapper {
     };
   }
 
-  install = async () => {
-    await userEvent.click(this.installButton);
-  };
+  get installButton() {
+    const container = this.element;
+    return {
+      get element() {
+        return within(container).getByTestId('theme-store-item-install');
+      },
+      async click() {
+        await userEvent.click(this.element);
+      },
+    };
+  }
+
+  get applyButton() {
+    const container = this.element;
+    return {
+      get element() {
+        return within(container).queryByTestId('theme-store-item-apply');
+      },
+      async click() {
+        await userEvent.click(this.element!);
+      },
+    };
+  }
 }
 
 export const ThemesWrapper = {
   async mount(opts?: {
     advancedThemes?: AdvancedThemeFile[];
     marketplaceThemes?: AdvancedThemeFile[];
+    activeTheme?: ActiveTheme;
   }): Promise<RenderResult> {
     if (opts?.advancedThemes) {
       useThemeStore.getState().setAdvancedThemes(opts.advancedThemes);
     }
     if (opts?.marketplaceThemes) {
       useThemeStore.getState().setMarketplaceThemes(opts.marketplaceThemes);
+    }
+    if (opts?.activeTheme) {
+      useThemeStore.setState({ activeTheme: opts.activeTheme });
     }
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },
@@ -70,31 +116,36 @@ export const ThemesWrapper = {
     );
     return component;
   },
-  async getAdvancedTheme(name: string | RegExp) {
-    const section = await screen.findByTestId('advanced-themes');
-    return within(section).getByRole('option', { name });
+  get activeBasicTheme() {
+    const section = screen.getByTestId('basic-themes');
+    const active = within(section).queryByRole('button', { pressed: true });
+    return active?.textContent?.trim() ?? null;
   },
-  async openAdvancedThemeSelect() {
-    const section = await screen.findByTestId('advanced-themes');
-    const trigger = within(section).getByRole('button');
-    await userEvent.click(trigger);
-    return section;
+
+  advancedThemeSelect: createSelectWrapper(() =>
+    screen.getByTestId('advanced-themes'),
+  ),
+
+  get marketplaceThemeSelect() {
+    const section = screen.queryByTestId('marketplace-themes');
+    if (!section) {
+      return null;
+    }
+    return createSelectWrapper(() => section);
   },
-  async selectAdvancedTheme(label: string) {
-    const section = await this.openAdvancedThemeSelect();
-    const labelElement = within(section).getByRole('option', { name: label });
-    await userEvent.click(labelElement);
-  },
-  async selectDefaultTheme() {
-    await this.selectAdvancedTheme('Default');
+
+  async selectBasicTheme(name: string) {
+    const section = screen.getByTestId('basic-themes');
+    const button = within(section).getByRole('button', { name });
+    await userEvent.click(button);
   },
 
   async goToStoreTab() {
     await userEvent.click(screen.getByRole('tab', { name: 'Store' }));
   },
 
-  async goToLocalTab() {
-    await userEvent.click(screen.getByRole('tab', { name: 'Local' }));
+  async goToMyThemesTab() {
+    await userEvent.click(screen.getByRole('tab', { name: 'My themes' }));
   },
 
   async getStoreThemes() {
@@ -124,5 +175,51 @@ export const ThemesWrapper = {
 
   get storeErrorState() {
     return screen.findByTestId('theme-store-error');
+  },
+
+  async mountWithMarketplaceTheme(opts?: {
+    advancedThemes?: AdvancedThemeFile[];
+  }) {
+    this.setupStoreIndex();
+    return this.mount({
+      ...opts,
+      marketplaceThemes: [
+        { id: 'sakura', name: 'Sakura', path: 'themes/store/sakura.json' },
+      ],
+    });
+  },
+
+  async installTheme(name: string) {
+    const theme = await this.getStoreTheme(name);
+    await theme.installButton.click();
+  },
+
+  async applyMarketplaceTheme(name: string) {
+    await this.goToStoreTab();
+    const theme = await this.getStoreTheme(name);
+    await theme.applyButton.click();
+    await this.goToMyThemesTab();
+  },
+
+  setupStoreIndex() {
+    FetchMock.init();
+    FetchMock.get(`${REGISTRY_BASE_URL}/themes.json`, THEME_REGISTRY_RESPONSE);
+  },
+
+  setupThemeFile(id: string) {
+    FetchMock.get(`${REGISTRY_BASE_URL}/themes/${id}.json`, SAKURA_THEME_FILE);
+  },
+
+  setupThemeFileError(id: string, status: number, statusText: string) {
+    FetchMock.getError(
+      `${REGISTRY_BASE_URL}/themes/${id}.json`,
+      status,
+      statusText,
+    );
+  },
+
+  setupStoreIndexError(status: number, statusText: string) {
+    FetchMock.init();
+    FetchMock.getError(`${REGISTRY_BASE_URL}/themes.json`, status, statusText);
   },
 };

@@ -28,6 +28,7 @@ export const LocalThemes = () => {
             return (
               <Button
                 key={theme.id}
+                aria-pressed={isActive}
                 variant="text"
                 size="flexible"
                 className={cn(
