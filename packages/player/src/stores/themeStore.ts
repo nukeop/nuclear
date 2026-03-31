@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 
-import { clearAdvancedTheme, setThemeId } from '@nuclearplayer/themes';
+import {
+  clearAdvancedTheme,
+  DEFAULT_THEME_ID,
+  setThemeId,
+} from '@nuclearplayer/themes';
 
 import { setSetting, useSettingsStore } from './settingsStore';
 
@@ -34,7 +38,6 @@ type ThemeStoreState = {
   selectBasicTheme: (id: string) => Promise<void>;
   selectAdvancedTheme: (path: string) => Promise<void>;
   selectMarketplaceTheme: (id: string) => Promise<void>;
-  resetTheme: () => Promise<void>;
   isSelected: (theme: ActiveTheme) => boolean;
   isBasicThemeSelected: () => boolean;
   isAdvancedThemeSelected: () => boolean;
@@ -45,7 +48,7 @@ type ThemeStoreState = {
 export const useThemeStore = create<ThemeStoreState>((set, get) => ({
   advancedThemes: [],
   marketplaceThemes: [],
-  activeTheme: { type: 'basic', id: '' },
+  activeTheme: { type: 'basic', id: DEFAULT_THEME_ID },
 
   setAdvancedThemes: (advancedThemes) => set({ advancedThemes }),
   setMarketplaceThemes: (marketplaceThemes) => set({ marketplaceThemes }),
@@ -66,14 +69,6 @@ export const useThemeStore = create<ThemeStoreState>((set, get) => ({
 
   selectMarketplaceTheme: async (id) => {
     const theme: MarketplaceTheme = { type: 'marketplace', id };
-    set({ activeTheme: theme });
-    await persistActiveTheme(theme);
-  },
-
-  resetTheme: async () => {
-    clearAdvancedTheme();
-    setThemeId('');
-    const theme: BasicTheme = { type: 'basic', id: '' };
     set({ activeTheme: theme });
     await persistActiveTheme(theme);
   },

@@ -2,6 +2,7 @@ import { QueryClient } from '@tanstack/react-query';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { DEFAULT_THEME_ID } from '@nuclearplayer/themes';
 import { createSelectWrapper } from '@nuclearplayer/ui';
 
 import App from '../../App';
@@ -94,9 +95,11 @@ export const ThemesWrapper = {
     activeTheme?: ActiveTheme;
   }): Promise<RenderResult> {
     useThemeStore.setState({
-      advancedThemes: opts?.advancedThemes ?? [],
+      ...(opts?.advancedThemes !== undefined && {
+        advancedThemes: opts.advancedThemes,
+      }),
       marketplaceThemes: opts?.marketplaceThemes ?? [],
-      activeTheme: opts?.activeTheme ?? { type: 'basic', id: '' },
+      activeTheme: opts?.activeTheme ?? { type: 'basic', id: DEFAULT_THEME_ID },
     });
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },

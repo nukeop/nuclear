@@ -1,32 +1,20 @@
 import { useTranslation } from '@nuclearplayer/i18n';
 import { SectionShell, Select } from '@nuclearplayer/ui';
 
+import { useAdvancedThemeOptions } from '../../hooks/useAdvancedThemeOptions';
 import { loadAndApplyAdvancedThemeFromFile } from '../../services/advancedThemeService';
-import { useThemeStore } from '../../stores/themeStore';
 
 export const AdvancedThemeSelect = () => {
   const { t } = useTranslation('themes');
-  const { advancedThemes, resetTheme } = useThemeStore();
+  const options = useAdvancedThemeOptions();
 
   return (
     <SectionShell data-testid="advanced-themes" title={t('advanced')}>
       <div className="max-w-80 p-1">
         <Select
           description={t('description')}
-          options={[
-            { id: '', label: t('default') },
-            ...advancedThemes.map((theme) => ({
-              id: theme.path,
-              label: theme.name,
-            })),
-          ]}
-          onValueChange={async (val) => {
-            if (!val) {
-              await resetTheme();
-              return;
-            }
-            await loadAndApplyAdvancedThemeFromFile(val);
-          }}
+          options={options}
+          onValueChange={loadAndApplyAdvancedThemeFromFile}
         />
       </div>
     </SectionShell>

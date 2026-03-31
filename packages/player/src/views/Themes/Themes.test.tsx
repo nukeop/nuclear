@@ -75,7 +75,6 @@ describe('Themes view', async () => {
 
     await ThemesWrapper.mount();
     const options = await ThemesWrapper.advancedThemeSelect.availableOptions();
-    expect(options).toContain('Default');
     expect(options).toContain('Another');
     expect(options).toContain('My Theme');
 
@@ -143,7 +142,7 @@ describe('Themes view', async () => {
     expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
 
     // Switch back to Default (basic mode)
-    await ThemesWrapper.advancedThemeSelect.select('Default');
+    await ThemesWrapper.selectBasicTheme('Default');
 
     // Now even if the same file changes, no reload should occur
     watchImmediateCb?.({
@@ -208,7 +207,7 @@ describe('Themes view', async () => {
       ).toBe(true);
     });
 
-    it('resets to default from advanced themes select', async () => {
+    it('resets to default when the Default basic theme is clicked', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
           version: 1,
@@ -222,7 +221,7 @@ describe('Themes view', async () => {
       });
 
       await ThemesWrapper.advancedThemeSelect.select('My Theme');
-      await ThemesWrapper.advancedThemeSelect.select('Default');
+      await ThemesWrapper.selectBasicTheme('Default');
 
       expect(useThemeStore.getState().isBasicThemeSelected()).toBe(true);
     });
