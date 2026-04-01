@@ -5,9 +5,12 @@ import {
 import {
   AdvancedTheme,
   AdvancedThemeSchema,
+  MarketplaceTheme,
+  MarketplaceThemeRegistrySchema,
+  MarketplaceThemeSchema,
   parseAdvancedTheme,
 } from './advanced/schema';
-import { BUILTIN_BASIC_THEME_IDS } from './basic';
+import { BUILTIN_BASIC_THEME_IDS, DEFAULT_THEME_ID } from './basic';
 
 import './basic/aurora.css';
 import './basic/ember.css';
@@ -21,6 +24,16 @@ export type BasicThemeMeta = {
 };
 
 const BUILT_INS: BasicThemeMeta[] = [
+  {
+    id: DEFAULT_THEME_ID,
+    name: 'Default',
+    palette: [
+      'oklch(0.77 0.17 342)',
+      'oklch(0.95 0.02 342)',
+      'oklch(0.42 0.10 342)',
+      'oklch(0.15 0.02 342)',
+    ],
+  },
   {
     id: 'nuclear:aurora',
     name: 'Aurora',
@@ -98,6 +111,12 @@ export function clearAdvancedTheme(): void {
   }
 }
 
-export type { AdvancedTheme };
-export { BUILTIN_BASIC_THEME_IDS };
+export type { AdvancedTheme, MarketplaceTheme };
+export {
+  AdvancedThemeSchema,
+  BUILTIN_BASIC_THEME_IDS,
+  DEFAULT_THEME_ID,
+  MarketplaceThemeRegistrySchema,
+  MarketplaceThemeSchema,
+};
 export { parseAdvancedTheme, generateAdvancedThemeCSSFromJSON };

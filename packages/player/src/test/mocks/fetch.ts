@@ -69,6 +69,13 @@ export const FetchMock = {
   reset: () => {
     routes.length = 0;
   },
+
+  init: () => {
+    routes.length = 0;
+    vi.spyOn(global, 'fetch').mockImplementation(
+      mockFetchImplementation as typeof fetch,
+    );
+  },
 };
 
 vi.spyOn(global, 'fetch').mockImplementation(

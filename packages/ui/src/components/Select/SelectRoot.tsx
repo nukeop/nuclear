@@ -16,6 +16,7 @@ export const SelectRoot: FC<SelectRootProps> = ({
   options,
   value,
   defaultValue,
+  placeholder,
   onValueChange,
   size,
   label,
@@ -46,14 +47,11 @@ export const SelectRoot: FC<SelectRootProps> = ({
 
   const isControlled = value !== undefined;
   const [internal, setInternal] = useState<string | undefined>(
-    defaultValue ?? options[0]?.id,
+    defaultValue ?? (placeholder ? undefined : options[0]?.id),
   );
-  const currentValue =
-    (isControlled ? (value as string) : (internal as string)) ??
-    options[0]?.id ??
-    '';
+  const currentValue = (isControlled ? value : internal) ?? '';
   const selected = useMemo(
-    () => options.find((o) => o.id === currentValue) ?? options[0],
+    () => options.find((option) => option.id === currentValue),
     [currentValue, options],
   );
 
@@ -71,6 +69,7 @@ export const SelectRoot: FC<SelectRootProps> = ({
           value={{
             ids: { selectId, labelId, descriptionId, errorId, listboxId },
             value: currentValue,
+            placeholder,
             size,
             disabled,
             state,

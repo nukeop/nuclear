@@ -45,4 +45,24 @@ describe('Select', () => {
     await userEvent.click(await screen.findByRole('option', { name: 'High' }));
     expect(onValueChange).toHaveBeenCalledWith('high');
   });
+
+  it('shows placeholder text when value does not match any option', () => {
+    render(<Select options={OPTIONS} value="" placeholder="Pick one" />);
+    expect(screen.getByRole('button')).toHaveTextContent('Pick one');
+  });
+
+  it('shows the selected option label when value matches', () => {
+    render(<Select options={OPTIONS} value="high" placeholder="Pick one" />);
+    expect(screen.getByRole('button')).toHaveTextContent('High');
+  });
+
+  it('updates the displayed value when the controlled value changes', () => {
+    const { rerender } = render(
+      <Select options={OPTIONS} value="low" placeholder="Pick one" />,
+    );
+    expect(screen.getByRole('button')).toHaveTextContent('Low');
+
+    rerender(<Select options={OPTIONS} value="" placeholder="Pick one" />);
+    expect(screen.getByRole('button')).toHaveTextContent('Pick one');
+  });
 });

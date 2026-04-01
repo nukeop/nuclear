@@ -8,9 +8,8 @@ import {
 
 import { parseAdvancedTheme } from '@nuclearplayer/themes';
 
-import type { AdvancedThemeFile } from '../stores/advancedThemeStore';
-import { useAdvancedThemeStore } from '../stores/advancedThemeStore';
-import { useSettingsStore } from '../stores/settingsStore';
+import type { AdvancedThemeFile } from '../stores/themeStore';
+import { useThemeStore } from '../stores/themeStore';
 import { reportError } from '../utils/logging';
 import { ensureDir } from '../utils/path';
 import { loadAndApplyAdvancedThemeFromFile } from './advancedThemeService';
@@ -63,7 +62,7 @@ export const listAdvancedThemes = async (): Promise<AdvancedThemeFile[]> => {
 
 export const refreshAdvancedThemeList = async (): Promise<void> => {
   const themes = await listAdvancedThemes();
-  useAdvancedThemeStore.getState().setThemes(themes);
+  useThemeStore.getState().setAdvancedThemes(themes);
 };
 
 export const startAdvancedThemeWatcher = async (): Promise<void> => {
@@ -78,24 +77,18 @@ export const startAdvancedThemeWatcher = async (): Promise<void> => {
       async (event) => {
         await refreshAdvancedThemeList();
 
-        const state = useSettingsStore.getState();
-        const mode = state.getValue('core.theme.mode');
-        const currentPath = state.getValue('core.theme.advanced.path');
+        const { activeTheme } = useThemeStore.getState();
 
-        if (
-          mode !== 'advanced' ||
-          typeof currentPath !== 'string' ||
-          !currentPath
-        ) {
+        if (activeTheme.type !== 'advanced' || !activeTheme.path) {
           return;
         }
 
-        if (!event.paths.some((p) => p.endsWith(currentPath))) {
+        if (!event.paths.some((p) => p.endsWith(activeTheme.path))) {
           return;
         }
 
         try {
-          await loadAndApplyAdvancedThemeFromFile(currentPath);
+          await loadAndApplyAdvancedThemeFromFile(activeTheme.path);
         } catch (error) {
           await reportError('themes', {
             userMessage: 'Theme reload failed',

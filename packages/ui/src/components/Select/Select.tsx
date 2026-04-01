@@ -36,6 +36,7 @@ export type SelectProps = VariantProps<typeof selectVariants> & {
   label?: string;
   description?: string;
   error?: string;
+  placeholder?: string;
   options: SelectOption[];
   value?: string;
   defaultValue?: string;
@@ -58,6 +59,7 @@ const SelectImpl: FC<SelectProps> = ({
   label,
   description,
   error,
+  placeholder,
   options,
   value,
   defaultValue,
@@ -73,6 +75,7 @@ const SelectImpl: FC<SelectProps> = ({
         label={label}
         description={description}
         error={error}
+        placeholder={placeholder}
         options={options}
         value={value}
         defaultValue={defaultValue}

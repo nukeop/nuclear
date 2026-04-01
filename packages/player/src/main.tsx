@@ -22,10 +22,11 @@ import {
   applyLanguageFromSettings,
   initLanguageWatcher,
 } from './services/languageService';
+import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
 import { initMcpHandler } from './services/mcp';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
-import { applyThemeFromSettings } from './services/themeBootstrap';
+import { hydrateThemeStore } from './stores/themeStore';
 import { useUpdaterStore } from './stores/updaterStore';
 
 initLogStream();
@@ -42,7 +43,8 @@ initializeSettingsStore()
   .then(() => applyLanguageFromSettings())
   .then(() => initLanguageWatcher())
   .then(() => startAdvancedThemeWatcher())
-  .then(() => applyThemeFromSettings())
+  .then(() => loadMarketplaceThemes())
+  .then(() => hydrateThemeStore())
   .then(() => applyAdvancedThemeFromSettingsIfAny())
   .then(() => {
     // Run plugin hydration in the background

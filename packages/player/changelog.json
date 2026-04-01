@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-04-01T00:00",
+    "description": "Theme store for browsing and installing community themes",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-03-27T00:00",
     "description": "Discord rich presence integration",
     "type": "feature",

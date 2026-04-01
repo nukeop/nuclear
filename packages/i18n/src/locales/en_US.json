@@ -171,8 +171,27 @@
     "title": "Themes",
     "basic": "Basic themes",
     "advanced": "Advanced themes",
+    "marketplace": "Store themes",
     "default": "Default",
-    "description": "Themes found in your app data themes directory"
+    "selectPlaceholder": "Select a theme",
+    "description": "Themes found in your app data themes directory",
+    "tabs": {
+      "myThemes": "My themes",
+      "store": "Store"
+    },
+    "store": {
+      "searchPlaceholder": "Search themes...",
+      "install": "Install",
+      "installing": "Installing",
+      "installed": "Installed",
+      "by": "by",
+      "installError": "Failed to install {{name}}",
+      "loadError": "Failed to load the theme store.",
+      "apply": "Apply",
+      "active": "Active",
+      "uninstall": "Uninstall",
+      "uninstallError": "Failed to uninstall {{name}}"
+    }
   },
   "dashboard": {
     "title": "Dashboard",

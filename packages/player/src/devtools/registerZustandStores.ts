@@ -1,10 +1,10 @@
-import { useAdvancedThemeStore } from '../stores/advancedThemeStore';
 import { useLayoutStore } from '../stores/layoutStore';
 import { usePluginStore } from '../stores/pluginStore';
 import { useQueueStore } from '../stores/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { useStartupStore } from '../stores/startupStore';
+import { useThemeStore } from '../stores/themeStore';
 import { registerZustandStore } from './zustandRegistry';
 
 export const registerZustandStores = (): void => {
@@ -40,8 +40,8 @@ export const registerZustandStores = (): void => {
 
   registerZustandStore({
     name: 'Themes',
-    getState: useAdvancedThemeStore.getState,
-    subscribe: useAdvancedThemeStore.subscribe,
+    getState: useThemeStore.getState,
+    subscribe: useThemeStore.subscribe,
   });
 
   registerZustandStore({

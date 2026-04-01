@@ -10,16 +10,38 @@ export const ThemeVars = z
     message: 'Keys must be CSS var names without leading --',
   });
 
-export const AdvancedThemeSchema = z
-  .object({
-    version: ThemeVersion,
-    name: z.string().min(1),
-    vars: ThemeVars.optional(),
-    dark: ThemeVars.optional(),
-  })
-  .strict();
+export const AdvancedThemeSchema = z.object({
+  version: ThemeVersion,
+  name: z.string().min(1),
+  author: z.string().min(1).optional(),
+  description: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  palette: z.tuple([z.string(), z.string(), z.string(), z.string()]).optional(),
+  vars: ThemeVars.optional(),
+  dark: ThemeVars.optional(),
+});
 
 export type AdvancedTheme = z.infer<typeof AdvancedThemeSchema>;
 
 export const parseAdvancedTheme = (input: unknown): AdvancedTheme =>
   AdvancedThemeSchema.parse(input);
+
+export const MarketplaceThemeSchema = AdvancedThemeSchema.pick({
+  name: true,
+  author: true,
+  description: true,
+  tags: true,
+  palette: true,
+})
+  .required({ author: true, description: true, palette: true })
+  .extend({
+    id: z.string().min(1),
+    path: z.string().min(1),
+  });
+
+export type MarketplaceTheme = z.infer<typeof MarketplaceThemeSchema>;
+
+export const MarketplaceThemeRegistrySchema = z.object({
+  version: z.number(),
+  themes: z.array(MarketplaceThemeSchema),
+});

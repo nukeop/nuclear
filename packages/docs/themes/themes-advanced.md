@@ -7,6 +7,8 @@ description: Create and use custom JSON-based themes.
 ## Getting to your themes
 Navigate to Nuclear > Preferences > Themes and look for the "Advanced themes" dropdown. Any JSON files you've added to your themes folder will show up here, ready to apply.
 
+<figure><img src="../.gitbook/assets/my-themes.png" alt="The themes view showing available themes"><figcaption></figcaption></figure>
+
 Your themes folder lives at:
 - Linux: `~/.local/share/com.nuclearplayer/themes`
 - macOS: `~/Library/Application Support/com.nuclearplayer/themes`

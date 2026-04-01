@@ -9,7 +9,20 @@
     "core:default",
     "dialog:allow-open",
     "dialog:allow-save",
-    "fs:allow-write-text-file",
+    {
+      "identifier": "fs:allow-write-text-file",
+      "allow": [
+        {
+          "path": "$APPDATA/themes/**/*"
+        },
+        {
+          "path": "$APPDATA/plugins/**/*"
+        },
+        {
+          "path": "$APPDATA/plugins/.downloads/**/*"
+        }
+      ]
+    },
     "log:default",
     {
       "identifier": "fs:allow-exists",
@@ -41,6 +54,9 @@
           "path": "$APPDATA/themes"
         },
         {
+          "path": "$APPDATA/themes/store"
+        },
+        {
           "path": "$APPDATA/plugins/**/*"
         },
         {
@@ -56,6 +72,9 @@
       "allow": [
         {
           "path": "$APPDATA/themes"
+        },
+        {
+          "path": "$APPDATA/themes/store"
         },
         {
           "path": "$APPDATA/plugins"
@@ -78,6 +97,9 @@
           "path": "$APPDATA/themes"
         },
         {
+          "path": "$APPDATA/themes/store"
+        },
+        {
           "path": "$APPDATA/playlists"
         }
       ]
@@ -86,7 +108,7 @@
       "identifier": "fs:allow-read-file",
       "allow": [
         {
-          "path": "$APPDATA/themes/*"
+          "path": "$APPDATA/themes/**/*"
         },
         {
           "path": "$APPDATA/plugins/**/*"
@@ -113,6 +135,9 @@
     {
       "identifier": "fs:allow-remove",
       "allow": [
+        {
+          "path": "$APPDATA/themes/store/**/*"
+        },
         {
           "path": "$APPDATA/plugins/**/*"
         },

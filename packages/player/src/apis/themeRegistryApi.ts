@@ -1,0 +1,26 @@
+import {
+  AdvancedThemeSchema,
+  MarketplaceThemeRegistrySchema,
+} from '@nuclearplayer/themes';
+
+import { ApiClient } from './ApiClient';
+
+class ThemeRegistryApi extends ApiClient {
+  constructor() {
+    super('https://cdn.jsdelivr.net/gh/NuclearPlayer/theme-registry@master');
+  }
+
+  async getThemes() {
+    const registry = await this.fetch(
+      '/themes.json',
+      MarketplaceThemeRegistrySchema,
+    );
+    return registry.themes;
+  }
+
+  async getThemeFile(path: string) {
+    return this.fetch(`/${path}`, AdvancedThemeSchema);
+  }
+}
+
+export const themeRegistryApi = new ThemeRegistryApi();
