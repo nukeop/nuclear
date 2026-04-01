@@ -748,7 +748,9 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                         >
                                           <span
                                             class="block truncate"
-                                          />
+                                          >
+                                            Select a theme
+                                          </span>
                                           <span
                                             class="flex items-center"
                                           >
