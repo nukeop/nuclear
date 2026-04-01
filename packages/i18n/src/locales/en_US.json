@@ -189,7 +189,8 @@
       "loadError": "Failed to load the theme store.",
       "apply": "Apply",
       "active": "Active",
-      "uninstall": "Uninstall"
+      "uninstall": "Uninstall",
+      "uninstallError": "Failed to uninstall {{name}}"
     }
   },
   "dashboard": {

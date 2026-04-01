@@ -5,6 +5,7 @@ import { CenteredLoader, Input, ThemeStoreItem } from '@nuclearplayer/ui';
 
 import { useFilteredMarketplaceThemes } from '../../hooks/useFilteredMarketplaceThemes';
 import { useInstallTheme } from '../../hooks/useInstallTheme';
+import { useUninstallTheme } from '../../hooks/useUninstallTheme';
 import { loadAndApplyMarketplaceTheme } from '../../services/advancedThemeService';
 import { useThemeStore } from '../../stores/themeStore';
 
@@ -13,6 +14,7 @@ export const ThemeStore: FC = () => {
   const { themes, search, setSearch, isLoading, isError } =
     useFilteredMarketplaceThemes();
   const { mutate: installTheme, isPending, variables } = useInstallTheme();
+  const { mutate: uninstallTheme } = useUninstallTheme();
   const { marketplaceThemes, isMarketplaceThemeActive } = useThemeStore();
 
   const isInstalled = (themeId: string) =>
@@ -46,6 +48,13 @@ export const ThemeStore: FC = () => {
           {...theme}
           onInstall={() => installTheme({ theme })}
           onApply={() => loadAndApplyMarketplaceTheme(theme.id)}
+          onUninstall={() =>
+            uninstallTheme({
+              id: theme.id,
+              name: theme.name,
+              path: `themes/store/${theme.id}.json`,
+            })
+          }
           isInstalled={isInstalled(theme.id)}
           isInstalling={isPending && variables?.theme.id === theme.id}
           isActive={isMarketplaceThemeActive(theme.id)}
