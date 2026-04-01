@@ -467,5 +467,55 @@ describe('Themes view', async () => {
       await sakura.applyButton.click();
       expect(sakura.isActive).toBe(true);
     });
+
+    it('shows an uninstall button on installed store themes', async () => {
+      await ThemesWrapper.mount({
+        marketplaceThemes: [
+          { id: 'sakura', name: 'Sakura', path: 'themes/store/sakura.json' },
+        ],
+      });
+      await ThemesWrapper.goToStoreTab();
+
+      const sakura = await ThemesWrapper.getStoreTheme('Sakura');
+      expect(sakura.uninstallButton.element).toBeInTheDocument();
+
+      const nordic = await ThemesWrapper.getStoreTheme('Nordic Frost');
+      expect(nordic.uninstallButton.element).not.toBeInTheDocument();
+    });
+
+    it('uninstalls a theme and shows it as not installed', async () => {
+      await ThemesWrapper.mountWithMarketplaceTheme();
+      await ThemesWrapper.goToStoreTab();
+
+      const sakura = await ThemesWrapper.getStoreTheme('Sakura');
+      expect(sakura.isInstalled).toBe(true);
+
+      await sakura.uninstallButton.click();
+
+      await waitFor(() => {
+        expect(sakura.isInstalled).toBe(false);
+      });
+      expect(fs.remove).toHaveBeenCalledWith('themes/store/sakura.json', {
+        baseDir: '/home/user/.local/share/com.nuclearplayer',
+      });
+    });
+
+    it('resets to default when the active theme is uninstalled', async () => {
+      await ThemesWrapper.mountWithMarketplaceTheme();
+      await ThemesWrapper.goToStoreTab();
+
+      const sakura = await ThemesWrapper.getStoreTheme('Sakura');
+      await sakura.applyButton.click();
+      expect(sakura.isActive).toBe(true);
+
+      await sakura.uninstallButton.click();
+
+      await waitFor(() => {
+        expect(sakura.isInstalled).toBe(false);
+      });
+
+      await ThemesWrapper.goToMyThemesTab();
+      expect(ThemesWrapper.activeBasicTheme).toBe('Default');
+    });
   });
 });

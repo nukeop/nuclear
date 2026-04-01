@@ -49,9 +49,7 @@ class ThemeStoreItemWrapper {
 
   get isInstalled() {
     return (
-      within(this.element)
-        .getByRole('button')
-        .textContent?.includes('Installed') ?? false
+      within(this.element).queryByRole('button', { name: /Installed/ }) !== null
     );
   }
 
@@ -81,6 +79,18 @@ class ThemeStoreItemWrapper {
     return {
       get element() {
         return within(container).queryByTestId('theme-store-item-apply');
+      },
+      async click() {
+        await userEvent.click(this.element!);
+      },
+    };
+  }
+
+  get uninstallButton() {
+    const container = this.element;
+    return {
+      get element() {
+        return within(container).queryByTestId('theme-store-item-uninstall');
       },
       async click() {
         await userEvent.click(this.element!);

@@ -15,13 +15,17 @@ type ThemeStoreItemProps = {
   tags?: string[];
   isInstalled?: boolean;
   isInstalling?: boolean;
+  isActive?: boolean;
   onInstall: () => void;
+  onApply?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   labels?: {
     install?: string;
     installing?: string;
     installed?: string;
+    apply?: string;
+    active?: string;
     by?: string;
   };
   className?: string;
@@ -35,7 +39,9 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
   tags,
   isInstalled = false,
   isInstalling = false,
+  isActive = false,
   onInstall,
+  onApply,
   onMouseEnter,
   onMouseLeave,
   labels = {},
@@ -45,6 +51,8 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
     install = 'Install',
     installing = 'Installing',
     installed = 'Installed',
+    apply = 'Apply',
+    active = 'Active',
     by = 'by',
   } = labels;
 
@@ -97,17 +105,34 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
             {by} {author}
           </p>
         </div>
-        <div className="shrink-0">
+        <div className="flex shrink-0 gap-2">
           {isInstalling ? (
             <Button disabled className="w-28">
               <Loader size="sm" />
               <span className="ml-2">{installing}</span>
             </Button>
           ) : isInstalled ? (
-            <Button disabled className="w-28">
-              <Check size={16} />
-              <span className="ml-2">{installed}</span>
-            </Button>
+            <>
+              <Button disabled className="w-28">
+                <Check size={16} />
+                <span className="ml-2">{installed}</span>
+              </Button>
+              <Button
+                size="icon-sm"
+                disabled={isActive}
+                onClick={onApply}
+                data-testid="theme-store-item-apply"
+              >
+                {isActive ? (
+                  <>
+                    <Check size={16} />
+                    {active}
+                  </>
+                ) : (
+                  apply
+                )}
+              </Button>
+            </>
           ) : (
             <Button
               onClick={onInstall}

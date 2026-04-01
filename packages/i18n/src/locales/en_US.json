@@ -186,7 +186,9 @@
       "installed": "Installed",
       "by": "by",
       "installError": "Failed to install {{name}}",
-      "loadError": "Failed to load the theme store."
+      "loadError": "Failed to load the theme store.",
+      "apply": "Apply",
+      "active": "Active"
     }
   },
   "dashboard": {
