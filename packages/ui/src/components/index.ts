@@ -42,6 +42,7 @@ export * from './Toggle';
 export * from './Tooltip';
 export * from './TopBar';
 export * from './TopBarLogo';
+export * from './TopBarNavigation';
 export * from './TrackContextMenu';
 export * from './ViewShell';
 export * from '../utils/platform';

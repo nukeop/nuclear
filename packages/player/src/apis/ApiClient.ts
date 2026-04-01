@@ -6,7 +6,7 @@ export class ApiClient {
   constructor(protected readonly baseUrl: string) {}
 
   protected async fetch<T>(path: string, schema: z.ZodType<T>): Promise<T> {
-    const url = `${this.baseUrl}${path}`;
+    const url = `${this.baseUrl}${path}?t=${Date.now()}`;
     Logger.http.debug(`GET ${url}`);
 
     const response = await fetch(url);
