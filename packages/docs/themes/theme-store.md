@@ -26,7 +26,7 @@ You can apply an installed store theme in two ways: select it from the Store the
 
 Selecting a store theme deselects any basic or advanced theme. Only one theme can be active at a time. The active store theme shows a checkmark in the Store tab.
 
-<figure><img src="../.gitbook/assets/applied-store-theme.png" alt="The theme store, showing available themes"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/applied-store-theme.png" alt="An installed store theme applied to the player"><figcaption></figcaption></figure>
 
 ## Uninstalling themes
 
