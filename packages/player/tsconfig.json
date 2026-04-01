@@ -23,5 +23,10 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src", "vite.env.d.ts"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.test-wrapper.tsx", "src/test/**"]
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.test-wrapper.tsx",
+    "src/test/**"
+  ]
 }
