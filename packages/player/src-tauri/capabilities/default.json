@@ -136,6 +136,9 @@
       "identifier": "fs:allow-remove",
       "allow": [
         {
+          "path": "$APPDATA/themes/store/**/*"
+        },
+        {
           "path": "$APPDATA/plugins/**/*"
         },
         {

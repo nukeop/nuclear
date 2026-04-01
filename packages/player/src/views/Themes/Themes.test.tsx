@@ -465,7 +465,9 @@ describe('Themes view', async () => {
       expect(sakura.isActive).toBe(false);
 
       await sakura.applyButton.click();
-      expect(sakura.isActive).toBe(true);
+      await waitFor(() => {
+        expect(sakura.isActive).toBe(true);
+      });
     });
 
     it('shows an uninstall button on installed store themes', async () => {

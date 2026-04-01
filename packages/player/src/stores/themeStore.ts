@@ -42,6 +42,7 @@ type ThemeStoreState = {
   isBasicThemeSelected: () => boolean;
   isAdvancedThemeSelected: () => boolean;
   isMarketplaceThemeSelected: () => boolean;
+  isMarketplaceThemeActive: (id: string) => boolean;
   hydrate: () => void;
 };
 
@@ -84,6 +85,10 @@ export const useThemeStore = create<ThemeStoreState>((set, get) => ({
   isBasicThemeSelected: () => get().activeTheme.type === 'basic',
   isAdvancedThemeSelected: () => get().activeTheme.type === 'advanced',
   isMarketplaceThemeSelected: () => get().activeTheme.type === 'marketplace',
+  isMarketplaceThemeActive: (id) => {
+    const { activeTheme } = get();
+    return activeTheme.type === 'marketplace' && activeTheme.id === id;
+  },
 
   hydrate: () => {
     const type = useSettingsStore

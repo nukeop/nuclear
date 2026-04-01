@@ -40,11 +40,10 @@ class ThemeStoreItemWrapper {
   }
 
   get isActive() {
-    return (
-      within(this.element)
-        .getByTestId('theme-store-item-apply')
-        .textContent?.includes('Active') ?? false
+    const applyButton = within(this.element).queryByTestId(
+      'theme-store-item-apply',
     );
+    return applyButton?.hasAttribute('disabled') ?? false;
   }
 
   get isInstalled() {

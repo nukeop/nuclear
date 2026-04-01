@@ -24,6 +24,19 @@ export const loadAndApplyAdvancedThemeFromFile = async (
   await useThemeStore.getState().selectAdvancedTheme(path);
 };
 
+export const loadAndApplyMarketplaceTheme = async (
+  id: string,
+): Promise<void> => {
+  const theme = useThemeStore
+    .getState()
+    .marketplaceThemes.find((theme) => theme.id === id);
+  if (!theme) {
+    return;
+  }
+  await loadAndApplyThemeFile(theme.path);
+  await useThemeStore.getState().selectMarketplaceTheme(id);
+};
+
 export const applyAdvancedThemeFromSettingsIfAny = async (): Promise<void> => {
   const { activeTheme, isAdvancedThemeSelected } = useThemeStore.getState();
   if (!isAdvancedThemeSelected()) {
