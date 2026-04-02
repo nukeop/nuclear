@@ -52,6 +52,12 @@ vi.mock('esbuild-wasm/esbuild.wasm?url', () => ({
   default: '/esbuild.wasm',
 }));
 
+vi.mock('@tauri-apps/api/window', () => ({
+  getCurrentWindow: () => ({
+    setDecorations: vi.fn(),
+  }),
+}));
+
 vi.mock('@tauri-apps/plugin-dialog', () => ({
   open: () => Promise.resolve(undefined),
 }));

@@ -7,7 +7,8 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
   >
     <div>
       <header
-        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3"
+        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
+        data-tauri-drag-region="true"
       >
         <div
           class="flex flex-row items-center gap-4"
@@ -1604,7 +1605,8 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
   >
     <div>
       <header
-        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3"
+        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
+        data-tauri-drag-region="true"
       >
         <div
           class="flex flex-row items-center gap-4"

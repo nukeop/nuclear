@@ -304,7 +304,11 @@
       "conflict": "This shortcut is already used by \"{{command}}\""
     },
     "appearance": {
-      "title": "Appearance"
+      "title": "Appearance",
+      "framelessWindow": {
+        "title": "Frameless window",
+        "description": "Hide the native title bar. Drag the top bar to move the window."
+      }
     },
     "playback": {
       "title": "Playback",

@@ -6,7 +6,8 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
     class="grid h-screen w-screen grid-rows-[auto_1fr_auto] overflow-hidden"
   >
     <header
-      class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3"
+      class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
+      data-tauri-drag-region="true"
     />
     <div
       class="bg-background-secondary relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"

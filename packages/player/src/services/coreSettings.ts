@@ -14,6 +14,15 @@ const LANGUAGE_OPTIONS = [
 
 export const CORE_SETTINGS: SettingDefinition[] = [
   {
+    id: 'appearance.framelessWindow',
+    title: 'preferences.appearance.framelessWindow.title',
+    description: 'preferences.appearance.framelessWindow.description',
+    category: 'appearance',
+    kind: 'boolean',
+    default: false,
+    widget: { type: 'toggle' },
+  },
+  {
     id: 'theme.active.type',
     title: 'preferences.theme.active.type.title',
     description: 'preferences.theme.active.type.description',
