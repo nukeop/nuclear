@@ -83,5 +83,38 @@
     <display_length compare="ge">768</display_length>
   </requires>
 
-  <!-- releases generated at build time -->
+  <releases>
+    <release version="1.32.1" date="2026-04-03">
+      <description>
+        <p>Flatpak metadata updates.</p>
+      </description>
+    </release>
+    <release version="1.32.0" date="2026-04-02">
+      <description>
+        <ul>
+          <li>Frameless window toggle in settings</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.31.0" date="2026-04-01">
+      <description>
+        <p>Release 1.31.0.</p>
+      </description>
+    </release>
+    <release version="1.30.0" date="2026-04-01">
+      <description>
+        <ul>
+          <li>Back and forward navigation buttons in the top bar</li>
+          <li>Theme store for browsing and installing community themes</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.29.0" date="2026-03-27">
+      <description>
+        <ul>
+          <li>Discord rich presence integration</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
 </component>
