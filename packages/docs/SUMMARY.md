@@ -2,6 +2,11 @@
 
 * [Nuclear Documentation](README.md)
 
+## User Manual
+
+* [Getting started](user-manual/getting-started.md)
+* [Installation](user-manual/installation.md)
+
 ## Theming
 
 * [Themes](themes/themes.md)
