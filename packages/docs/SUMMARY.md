@@ -7,6 +7,10 @@
 * [Getting started](user-manual/getting-started.md)
 * [Installation](user-manual/installation.md)
 
+## Core Concepts
+
+* [How Nuclear works](core-concepts/how-nuclear-works.md)
+
 ## Theming
 
 * [Themes](themes/themes.md)
