@@ -10,6 +10,7 @@
 ## Core Concepts
 
 * [How Nuclear works](core-concepts/how-nuclear-works.md)
+* [Plugins and providers](core-concepts/plugins-and-providers.md)
 
 ## Theming
 
