@@ -2,6 +2,19 @@
 
 * [Nuclear Documentation](README.md)
 
+## User Manual
+
+* [Getting started](user-manual/getting-started.md)
+* [Installation](user-manual/installation.md)
+
+## Core Concepts
+
+* [How Nuclear works](core-concepts/how-nuclear-works.md)
+* [Plugins and providers](core-concepts/plugins-and-providers.md)
+* [The queue](core-concepts/the-queue.md)
+* [Favorites](core-concepts/favorites.md)
+* [Playlists](core-concepts/playlists.md)
+
 ## Theming
 
 * [Themes](themes/themes.md)
@@ -17,7 +30,7 @@
 
 ## Plugins
 
-* [Getting started](plugins/getting-started.md)
+* [Getting started with plugins](plugins/getting-started.md)
 * [Plugin system](plugins/plugin-system.md)
 * [Plugin store](plugins/plugin-store.md)
 * [Publishing](plugins/publishing.md)

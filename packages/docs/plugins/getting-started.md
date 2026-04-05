@@ -2,7 +2,7 @@
 description: Create and load your first Nuclear plugin and verify the SDK works end-to-end.
 ---
 
-# Getting started
+# Getting started with plugins
 
 Spin up a bare plugin, load it in Nuclear, and poke the Plugin SDK to make sure everything is wired.
 
