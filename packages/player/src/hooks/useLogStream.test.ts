@@ -181,6 +181,7 @@ describe('useLogStream', () => {
     const { result } = renderHook(() => useLogStream());
 
     await vi.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(0);
 
     act(() => {
       for (let i = 0; i < 1050; i++) {

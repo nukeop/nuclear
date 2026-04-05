@@ -142,7 +142,7 @@ describe('Settings integration', () => {
       expect(
         screen.getByRole('switch', { name: 'Toggle theme' }),
       ).toHaveAttribute('aria-checked', 'true');
+      expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
     });
-    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
   });
 });
