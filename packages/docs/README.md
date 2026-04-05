@@ -18,8 +18,13 @@ Nuclear is a free, open-source music player without ads or tracking. Search for 
 
 ## For users
 
-- Themes: Nuclear supports theming. You can load your own JSON themes or choose built‑ins.
-- Plugins: Extend Nuclear with plugins. There is no sandbox, plugins can control the player directly. Only install plugins you trust.
+New to Nuclear? Start here:
+
+- [Getting started](user-manual/getting-started.md) - install Nuclear and play your first song
+- [How Nuclear works](core-concepts/how-nuclear-works.md) - understand the plugin model and how playback works
+- [Plugins and providers](core-concepts/plugins-and-providers.md) - what plugins do and how to manage your sources
+- [Installation](user-manual/installation.md) - platform-specific download and install instructions
+- [Themes](themes/themes.md) - customize Nuclear's appearance with built-in, custom, or community themes
 
 ## What is in this repo?
 
