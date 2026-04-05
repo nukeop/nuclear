@@ -28,6 +28,8 @@ Click a playlist card to open it. The detail view shows the tracklist with the s
 - **Export as JSON** from the three-dot action menu
 - **Delete** the playlist from the three-dot action menu (asks for confirmation)
 
+<figure><img src="../.gitbook/assets/playlist-detail-view.png" alt="A playlist detail view showing tracks and action buttons"><figcaption><p>The playlist detail view</p></figcaption></figure>
+
 ## Importing playlists
 
 Click the import button (next to the + button) to see two options:

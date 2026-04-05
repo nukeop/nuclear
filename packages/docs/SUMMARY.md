@@ -30,7 +30,7 @@
 
 ## Plugins
 
-* [Getting started](plugins/getting-started.md)
+* [Getting started with plugins](plugins/getting-started.md)
 * [Plugin system](plugins/plugin-system.md)
 * [Plugin store](plugins/plugin-store.md)
 * [Publishing](plugins/publishing.md)

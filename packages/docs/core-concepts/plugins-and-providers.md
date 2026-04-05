@@ -68,3 +68,5 @@ Sources are split into two groups:
 Some metadata providers are designed to be paired with a specific streaming provider. When you select a paired metadata provider, the streaming dropdown switches to the matching provider and becomes locked. A message explains the pairing.
 
 If the required streaming provider isn't installed, a warning appears on the metadata provider option in the dropdown.
+
+<figure><img src="../.gitbook/assets/sources-view.png" alt="The Sources view showing provider selection dropdowns" width="400"><figcaption><p>The Sources view</p></figcaption></figure>

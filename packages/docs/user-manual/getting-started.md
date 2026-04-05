@@ -24,6 +24,8 @@ The app layout has five main areas:
 - **Queue panel** on the right showing upcoming tracks
 - **Player bar** at the bottom with playback controls
 
+<figure><img src="../.gitbook/assets/app-layout-overview.png" alt="The Nuclear app layout, showing the five main areas"><figcaption><p>The Nuclear app layout with the five main areas</p></figcaption></figure>
+
 ## Install your first plugins
 
 Nuclear needs at least two types of plugins to play music:
@@ -42,6 +44,8 @@ To install plugins:
 
 You can filter by category (Streaming, Metadata, Lyrics, etc.) and search by name. Installed plugins activate immediately.
 
+<figure><img src="../.gitbook/assets/plugin-store.png" alt="The plugin store showing available plugins"><figcaption><p>The plugin store</p></figcaption></figure>
+
 While you're in the store, consider installing a **dashboard plugin** too. Dashboard plugins populate the home screen with top tracks, new releases, and recommendations so you have something to browse when you open Nuclear.
 
 ## Search for music
@@ -49,6 +53,8 @@ While you're in the store, consider installing a **dashboard plugin** too. Dashb
 With your plugins installed, type an artist or song name in the search box at the top of the window and press Enter.
 
 Results appear in tabs (Albums, Artists, Tracks) depending on what the metadata plugin found. Click an album to see its tracklist, or go to the Tracks tab to see individual songs.
+
+<figure><img src="../.gitbook/assets/search-albums.png" alt="Search results showing album cards"><figcaption><p>Search results with the Albums tab active</p></figcaption></figure>
 
 ## Play a track
 
@@ -59,6 +65,8 @@ Each track in a list has a **+** button that adds it to the queue. You can also 
 - **Add to queue**: appends the track to the end of the queue
 - **Add to favorites**: saves the track to your favorites
 - **Add to playlist**: adds the track to one of your playlists
+
+<figure><img src="../.gitbook/assets/track-context-menu.png" alt="The three-dot menu on a track showing all available actions"><figcaption><p>The track context menu</p></figcaption></figure>
 
 The player bar at the bottom shows the current track with album art, playback controls, a seek bar, and volume. The queue panel on the right shows what's coming up next. You can drag tracks in the queue to reorder them.
 

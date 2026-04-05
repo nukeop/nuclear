@@ -6,6 +6,8 @@ description: How the queue works, playback modes, and managing your listening se
 
 The queue is your current listening session. It's the list of tracks Nuclear will play through, shown in the panel on the right side of the window.
 
+<figure><img src="../.gitbook/assets/queue-panel.png" alt="The queue panel showing several tracks with one playing" width="300"><figcaption><p>The queue panel</p></figcaption></figure>
+
 ## Adding tracks
 
 You can add tracks to the queue from search results, album pages, artist pages, and playlists:
