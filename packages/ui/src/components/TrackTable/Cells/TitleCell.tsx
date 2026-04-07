@@ -5,6 +5,7 @@ import { FC, forwardRef } from 'react';
 import { Track } from '@nuclearplayer/model';
 
 import { Button } from '../../Button';
+import { useTrackTableContext } from '../TrackTableContext';
 import { ContextMenuWrapperProps } from '../types';
 
 type TitleCellMeta = {
@@ -58,6 +59,7 @@ export const TitleCell = <T extends Track>({
   table,
 }: CellContext<T, string | number | undefined>) => {
   const meta = table.options.meta as TitleCellMeta | undefined;
+  const { actions } = useTrackTableContext<T>();
   const showControls = meta?.displayQueueControls;
   const ContextMenuWrapper = meta?.ContextMenuWrapper;
   const track = row.original;
@@ -66,9 +68,17 @@ export const TitleCell = <T extends Track>({
   const hasActions = hasAddToQueue || hasContextMenu;
 
   return (
-    <td className="cursor-default truncate px-2">
+    <td className="truncate px-2">
       <div className="flex items-center justify-between gap-2">
-        <div className="min-w-0 flex-1 truncate">{getValue()}</div>
+        <button
+          className="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+          onClick={(e) => {
+            e.stopPropagation();
+            actions.onPlayNow?.(track);
+          }}
+        >
+          {getValue()}
+        </button>
         {showControls && hasActions && (
           <div className="flex items-center gap-1">
             {hasAddToQueue && (

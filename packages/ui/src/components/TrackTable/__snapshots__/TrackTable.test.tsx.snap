@@ -227,16 +227,16 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 1
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -295,16 +295,16 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 2
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -363,16 +363,16 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 3
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -627,16 +627,16 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 1
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -695,16 +695,16 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 2
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -763,16 +763,16 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 3
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -831,16 +831,16 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 4
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -899,16 +899,16 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 5
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -1180,16 +1180,16 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 1
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -1248,16 +1248,16 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 2
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -1316,16 +1316,16 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 3
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -1384,16 +1384,16 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 4
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -1452,16 +1452,16 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 5
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -1719,16 +1719,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 1
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -1787,16 +1787,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 2
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -1855,16 +1855,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 3
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -1923,16 +1923,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 4
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -1991,16 +1991,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 5
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2059,16 +2059,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 6
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2127,16 +2127,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 7
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2195,16 +2195,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 8
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2263,16 +2263,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 9
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2331,16 +2331,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 10
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2399,16 +2399,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 11
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2467,16 +2467,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 12
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2535,16 +2535,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 13
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2603,16 +2603,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 14
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2671,16 +2671,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 15
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2739,16 +2739,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 16
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2807,16 +2807,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 17
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2875,16 +2875,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 18
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -2943,16 +2943,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 19
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -3011,16 +3011,16 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
               </div>
             </td>
             <td
-              class="cursor-default truncate px-2"
+              class="truncate px-2"
             >
               <div
                 class="flex items-center justify-between gap-2"
               >
-                <div
-                  class="min-w-0 flex-1 truncate"
+                <button
+                  class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                 >
                   Track 20
-                </div>
+                </button>
               </div>
             </td>
             <td
@@ -3339,16 +3339,16 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 1
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -3407,16 +3407,16 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 2
-              </div>
+              </button>
             </div>
           </td>
           <td
@@ -3475,16 +3475,16 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
             </div>
           </td>
           <td
-            class="cursor-default truncate px-2"
+            class="truncate px-2"
           >
             <div
               class="flex items-center justify-between gap-2"
             >
-              <div
-                class="min-w-0 flex-1 truncate"
+              <button
+                class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
               >
                 Track 3
-              </div>
+              </button>
             </div>
           </td>
           <td

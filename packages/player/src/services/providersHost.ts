@@ -8,6 +8,7 @@ import {
   initializeProvidersStore,
   useProvidersStore,
 } from '../stores/providersStore';
+import { setupStreamingPairingSync } from './streamingPairingSync';
 
 const createProvidersHost = (): ProvidersHost => {
   const byKind = new Map<ProviderKind, Map<string, ProviderDescriptor>>();
@@ -112,5 +113,7 @@ const createProvidersHost = (): ProvidersHost => {
 };
 
 export const providersHost: ProvidersHost = createProvidersHost();
+
+setupStreamingPairingSync(providersHost);
 
 void initializeProvidersStore();

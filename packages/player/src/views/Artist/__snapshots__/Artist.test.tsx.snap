@@ -908,16 +908,16 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                                 </div>
                               </td>
                               <td
-                                class="cursor-default truncate px-2"
+                                class="truncate px-2"
                               >
                                 <div
                                   class="flex items-center justify-between gap-2"
                                 >
-                                  <div
-                                    class="min-w-0 flex-1 truncate"
+                                  <button
+                                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                                   >
                                     Smells Like Cheap Spirit
-                                  </div>
+                                  </button>
                                   <div
                                     class="flex items-center gap-1"
                                   >
@@ -2682,16 +2682,16 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                 </div>
                               </td>
                               <td
-                                class="cursor-default truncate px-2"
+                                class="truncate px-2"
                               >
                                 <div
                                   class="flex items-center justify-between gap-2"
                                 >
-                                  <div
-                                    class="min-w-0 flex-1 truncate"
+                                  <button
+                                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
                                   >
                                     Strobe
-                                  </div>
+                                  </button>
                                   <div
                                     class="flex items-center gap-1"
                                   >
