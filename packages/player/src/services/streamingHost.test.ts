@@ -89,6 +89,88 @@ describe('streamingHost', () => {
       );
     });
 
+    it('prefers searchForTrackV2 over searchForTrack when available', async () => {
+      const mockCandidates = [
+        {
+          id: 'candidate-1',
+          title: 'Test Track',
+          source: { provider: 'test', id: 'vid1' },
+          failed: false,
+        },
+      ];
+
+      const searchForTrack = vi.fn();
+      const searchForTrackV2 = vi.fn().mockResolvedValue(mockCandidates);
+
+      const provider: StreamingProvider = {
+        id: 'test',
+        kind: 'streaming',
+        name: 'Test',
+        searchForTrack,
+        searchForTrackV2,
+        getStreamUrl: vi.fn(),
+      };
+
+      providersHost.register(provider);
+
+      const track: Track = {
+        title: 'Test Track',
+        artists: [{ name: 'Test Artist', roles: [] }],
+        source: { provider: 'test', id: 'track-1' },
+      };
+
+      const result = await streamingHost.resolveCandidatesForTrack(track);
+
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.candidates).toEqual(mockCandidates);
+      }
+      expect(searchForTrackV2).toHaveBeenCalledWith(track);
+      expect(searchForTrack).not.toHaveBeenCalled();
+    });
+
+    it('falls back to searchForTrack when searchForTrackV2 is not defined', async () => {
+      const mockCandidates = [
+        {
+          id: 'candidate-1',
+          title: 'Test Track',
+          source: { provider: 'test', id: 'vid1' },
+          failed: false,
+        },
+      ];
+
+      const searchForTrack = vi.fn().mockResolvedValue(mockCandidates);
+
+      const provider: StreamingProvider = {
+        id: 'test',
+        kind: 'streaming',
+        name: 'Test',
+        searchForTrack,
+        getStreamUrl: vi.fn(),
+      };
+
+      providersHost.register(provider);
+
+      const track: Track = {
+        title: 'Test Track',
+        artists: [{ name: 'Test Artist', roles: [] }],
+        album: {
+          title: 'Test Album',
+          source: { provider: 'test', id: 'alb1' },
+        },
+        source: { provider: 'test', id: 'track-1' },
+      };
+
+      const result = await streamingHost.resolveCandidatesForTrack(track);
+
+      expect(result.success).toBe(true);
+      expect(searchForTrack).toHaveBeenCalledWith(
+        'Test Artist',
+        'Test Track',
+        'Test Album',
+      );
+    });
+
     it('handles search errors', async () => {
       const searchForTrack = vi
         .fn()
@@ -224,6 +306,41 @@ describe('streamingHost', () => {
         lastResolvedAtIso: '2025-01-01T00:00:00.000Z',
         failed: false,
       });
+    });
+
+    it('prefers getStreamUrlV2 over getStreamUrl when available', async () => {
+      const mockStream = {
+        url: 'https://example.com/stream.mp3',
+        protocol: 'https' as const,
+        source: { provider: 'test', id: 'vid1' },
+      };
+
+      const getStreamUrl = vi.fn();
+      const getStreamUrlV2 = vi.fn().mockResolvedValue(mockStream);
+
+      const provider: StreamingProvider = {
+        id: 'test',
+        kind: 'streaming',
+        name: 'Test',
+        searchForTrack: vi.fn(),
+        getStreamUrl,
+        getStreamUrlV2,
+      };
+
+      providersHost.register(provider);
+
+      const candidate: StreamCandidate = {
+        id: 'candidate-1',
+        title: 'Test Track',
+        source: { provider: 'test', id: 'vid1' },
+        failed: false,
+      };
+
+      const result = await streamingHost.resolveStreamForCandidate(candidate);
+
+      expect(getStreamUrlV2).toHaveBeenCalledWith(candidate);
+      expect(getStreamUrl).not.toHaveBeenCalled();
+      expect(result!.stream).toEqual(mockStream);
     });
 
     it('retries on failure and returns failed candidate after max retries', async () => {
