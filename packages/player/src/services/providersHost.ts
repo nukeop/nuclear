@@ -34,8 +34,9 @@ const createProvidersHost = (): ProvidersHost => {
         .getState()
         .getActive(provider.kind);
 
-      // Set the first registered provider as active
-      if (!activeForKind) {
+      // Activate the first registered provider if none is active
+      const activeProviderExists = activeForKind && byId.has(activeForKind);
+      if (!activeProviderExists) {
         useProvidersStore.getState().setActive(provider.kind, provider.id);
       }
 
@@ -56,6 +57,20 @@ const createProvidersHost = (): ProvidersHost => {
           byKind.delete(current.kind);
         }
       }
+
+      const activeForKind = useProvidersStore
+        .getState()
+        .getActive(current.kind);
+
+      if (activeForKind === providerId) {
+        const remaining = kindMap?.values().next().value;
+        if (remaining) {
+          useProvidersStore.getState().setActive(current.kind, remaining.id);
+        } else {
+          useProvidersStore.getState().clearActive(current.kind);
+        }
+      }
+
       notify();
       return true;
     },

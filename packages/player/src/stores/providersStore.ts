@@ -12,6 +12,7 @@ type ProvidersStoreState = {
   loadFromDisk: () => Promise<void>;
   getActive: (kind: ProviderKind) => string | undefined;
   setActive: (kind: ProviderKind, providerId: string) => void;
+  clearActive: (kind: ProviderKind) => void;
   clearAllActive: () => void;
 };
 
@@ -39,6 +40,16 @@ export const useProvidersStore = create<ProvidersStoreState>((set, get) => ({
     set((state) => ({
       active: { ...state.active, [kind]: providerId },
     }));
+    void saveToDisk();
+  },
+
+  clearActive: (kind: ProviderKind) => {
+    set((state) => {
+      const rest = Object.fromEntries(
+        Object.entries(state.active).filter(([key]) => key !== kind),
+      );
+      return { active: rest };
+    });
     void saveToDisk();
   },
 
