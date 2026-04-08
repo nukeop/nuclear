@@ -217,6 +217,27 @@ describe('Sources view', () => {
     expect(useProvidersStore.getState().active.streaming).toBe('beta-stream');
   });
 
+  it('activates the paired streaming provider when it registers after the metadata provider', async () => {
+    providersHost.register(PAIRED_METADATA_PROVIDER);
+    providersHost.register(PAIRED_STREAMING_PROVIDER);
+
+    expect(useProvidersStore.getState().active.streaming).toBe('beta-stream');
+  });
+
+  it('does not lock the streaming select before the paired streaming provider registers', async () => {
+    providersHost.register(UNPAIRED_STREAMING_PROVIDER);
+    providersHost.register(PAIRED_METADATA_PROVIDER);
+
+    await SourcesWrapper.mount();
+
+    expect(
+      SourcesWrapper.section('streaming').providerSelect.isDisabled(),
+    ).toBe(false);
+    expect(SourcesWrapper.section('streaming').providerSelect.selected()).toBe(
+      'Alpha Stream',
+    );
+  });
+
   it('lists and switches discovery providers', async () => {
     providersHost.register(
       new DiscoveryProviderBuilder()

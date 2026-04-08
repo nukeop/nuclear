@@ -62,14 +62,14 @@ export const createStreamingHost = (): StreamingHost => ({
     }
 
     try {
-      const artistName = track.artists[0]?.name ?? 'Unknown Artist';
-      const albumName = track.album?.title;
-
-      const candidates = await provider.searchForTrack(
-        artistName,
-        track.title,
-        albumName,
-      );
+      // Temporarily provide both methods to avoid breaking existing providers until we have autoupdate for plugins
+      const candidates = provider.searchForTrackV2
+        ? await provider.searchForTrackV2(track)
+        : await provider.searchForTrack(
+            track.artists[0]?.name ?? 'Unknown Artist',
+            track.title,
+            track.album?.title,
+          );
 
       return {
         success: true,
@@ -110,8 +110,12 @@ export const createStreamingHost = (): StreamingHost => ({
         .getValue('playback.streamResolutionRetries') as number) ?? 3;
 
     try {
+      // Temporarily provide both methods to avoid breaking existing providers until we have autoupdate for plugins
       const stream = await withRetry(
-        () => provider.getStreamUrl(candidate.id),
+        () =>
+          provider.getStreamUrlV2
+            ? provider.getStreamUrlV2(candidate)
+            : provider.getStreamUrl(candidate.id),
         retries,
       );
 
