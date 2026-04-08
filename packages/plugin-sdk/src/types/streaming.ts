@@ -11,7 +11,11 @@ export type StreamingProvider = ProviderDescriptor<'streaming'> & {
     album?: string,
   ) => Promise<StreamCandidate[]>;
 
+  searchForTrackV2?: (track: Track) => Promise<StreamCandidate[]>;
+
   getStreamUrl: (candidateId: string) => Promise<Stream>;
+
+  getStreamUrlV2?: (candidate: StreamCandidate) => Promise<Stream>;
 
   supportsLocalFiles?: boolean;
 };
