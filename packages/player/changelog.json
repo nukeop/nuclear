@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-04-08T00:00",
+    "description": "Streaming providers can now access full track metadata when resolving streams",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-08T00:00",
+    "description": "Fix paired streaming provider not activating when registered after the metadata provider",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-04-02T00:00",
     "description": "Frameless window toggle in settings",
     "type": "feature",
