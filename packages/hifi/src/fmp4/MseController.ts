@@ -67,18 +67,24 @@ function findSegmentForTime(
   return -1;
 }
 
-function fetchRange(
+async function fetchRange(
   url: string,
   startByte: number,
   endByte: number,
   signal: AbortSignal,
 ): Promise<Uint8Array> {
-  return fetch(url, {
+  const response = await fetch(url, {
     headers: { Range: `bytes=${startByte}-${endByte}` },
     signal,
-  })
-    .then((response) => response.arrayBuffer())
-    .then((buffer) => new Uint8Array(buffer));
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(body || `Fetch failed with status ${response.status}`);
+  }
+
+  const buffer = await response.arrayBuffer();
+  return new Uint8Array(buffer);
 }
 
 function isTimeBuffered(sourceBuffer: SourceBuffer, time: number): boolean {
@@ -107,6 +113,7 @@ export class MseController {
     url: string,
     durationSeconds: number,
     codec?: string,
+    onError?: (error: Error) => void,
   ): Promise<void> {
     this.url = url;
     const abortController = new AbortController();
@@ -116,7 +123,12 @@ export class MseController {
     let headerBytes: Uint8Array;
     try {
       headerBytes = await fetchRange(url, 0, HEADER_FETCH_SIZE - 1, signal);
-    } catch {
+    } catch (error) {
+      onError?.(
+        error instanceof Error
+          ? error
+          : new Error(`Failed to load stream: ${url}`),
+      );
       return;
     }
 
@@ -124,6 +136,7 @@ export class MseController {
     try {
       index = parseInitSegment(headerBytes);
     } catch {
+      onError?.(new Error('Failed to parse audio stream header'));
       return;
     }
 

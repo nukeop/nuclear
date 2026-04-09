@@ -108,10 +108,10 @@ async fn proxy_stream(
 
     let upstream_status = upstream_response.status();
     if !upstream_status.is_success() && upstream_status != StatusCode::PARTIAL_CONTENT {
-        log::warn!("[StreamServer] Upstream returned: {upstream_status}");
+        log::error!("[StreamServer] Streaming service returned: {upstream_status}");
         return error_response(
             StatusCode::BAD_GATEWAY,
-            format!("Upstream returned error: {upstream_status}"),
+            format!("Streaming service returned error: {upstream_status}"),
         );
     }
 

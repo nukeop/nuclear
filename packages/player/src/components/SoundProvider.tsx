@@ -5,8 +5,10 @@ import { Sound, Volume } from '@nuclearplayer/hifi';
 
 import { useCoreSetting } from '../hooks/useCoreSetting';
 import { eventBus } from '../services/eventBus';
+import { Logger } from '../services/logger';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
+import { resolveErrorMessage } from '../utils/logging';
 
 export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   const { src, status, seek } = useSoundStore();
@@ -49,6 +51,18 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   }, []);
 
+  const handleError = useCallback((error: Error) => {
+    const message = resolveErrorMessage(error);
+    Logger.streaming.error(`Playback error: ${message}`);
+
+    const currentItem = useQueueStore.getState().getCurrentItem();
+    if (currentItem) {
+      useQueueStore
+        .getState()
+        .updateItemState(currentItem.id, { status: 'error', error: message });
+    }
+  }, []);
+
   return (
     <>
       {src && (
@@ -62,6 +76,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
           onTimeUpdate={handleTimeUpdate}
           onEnd={handleEnd}
           onCanPlay={handleCanPlay}
+          onError={handleError}
         >
           <Volume value={volumePercent} />
         </Sound>

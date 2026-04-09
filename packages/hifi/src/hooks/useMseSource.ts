@@ -7,6 +7,7 @@ export const useMseSource = (
   audioRef: RefObject<HTMLAudioElement | null>,
   src: AudioSource,
   isReady: boolean,
+  onError?: (error: Error) => void,
 ) => {
   const controllerRef = useRef<MseController | null>(null);
 
@@ -23,7 +24,7 @@ export const useMseSource = (
 
     const controller = new MseController();
     controllerRef.current = controller;
-    controller.init(audio, src.url, src.durationSeconds!, src.codec);
+    controller.init(audio, src.url, src.durationSeconds!, src.codec, onError);
 
     const onTimeUpdate = () => controller.handleTimeUpdate(audio);
     const onSeeking = () => controller.handleSeeking(audio);
@@ -37,5 +38,5 @@ export const useMseSource = (
       controller.destroy(audio);
       controllerRef.current = null;
     };
-  }, [src.url, src.protocol, src.durationSeconds, isReady, audioRef]);
+  }, [src.url, src.protocol, src.durationSeconds, isReady, audioRef, onError]);
 };
