@@ -2,11 +2,12 @@
 import Downloads from '../components/Downloads.astro';
 import Hero from '../components/Hero.astro';
 import Screenshots from '../components/Screenshots.astro';
+import Testimonials from '../components/Testimonials.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 import '../styles/global.css';
 
-const title = 'Nuclear';
+const title = 'Nuclear - Free Open-Source Music Player';
 const description =
   'Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.';
 ---
@@ -26,9 +27,10 @@ const description =
         aria-hidden="true"
       >
       </div>
-      <Hero version="v1.29.0" />
+      <Hero />
       <Downloads />
     </div>
     <Screenshots />
+    <Testimonials />
   </main>
 </BaseLayout>

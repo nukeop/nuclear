@@ -1,0 +1,18 @@
+---
+import type { Testimonial } from '../data/testimonials';
+
+type Props = Testimonial;
+
+const { quote, author, source, url } = Astro.props;
+const Element = url ? 'a' : 'div';
+---
+
+<Element
+  href={url}
+  class="themed-border border-border bg-background-secondary rounded-md shadow-shadow p-5 flex flex-col gap-3 text-left"
+>
+  <p class="text-sm">{quote}</p>
+  <span class="text-xs text-foreground-secondary font-bold self-end">
+    — {author}{source ? `, ${source}` : ''}
+  </span>
+</Element>

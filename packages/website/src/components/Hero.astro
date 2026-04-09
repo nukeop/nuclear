@@ -1,9 +1,5 @@
 ---
-type Props = {
-  version?: string;
-};
-
-const { version = 'v1.29.0' } = Astro.props;
+import { versionTag } from '../data/version';
 ---
 
 <section class="px-4 py-8 md:p-8 z-10 relative">
@@ -11,7 +7,7 @@ const { version = 'v1.29.0' } = Astro.props;
     <div
       class="inline-block mb-6 themed-border border-border bg-[var(--color-badge)] rounded-md px-4 py-1 text-sm font-bold uppercase tracking-widest shadow-shadow"
     >
-      {version} Available Now
+      {versionTag} Available Now
     </div>
 
     <h1
