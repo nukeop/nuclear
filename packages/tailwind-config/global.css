@@ -50,21 +50,19 @@
   --spacing-shadow-y: var(--shadow-y);
 }
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
 :root {
   /* Core Backgrounds */
-  --background: oklch(0.9491 0.023 341.75);
+  --background: oklch(0.9163 0.0361 7.16);
   --background-secondary: oklch(100% 0 0);
   --background-input: oklch(100% 0 0);
 
   /* Text Colors */
   --foreground: oklch(0% 0 0);
-  --foreground-secondary: oklch(0.42 0.1 342);
+  --foreground-secondary: oklch(0.42 0.1 5);
   --foreground-input: oklch(0% 0 0);
 
   /* Interactive Elements */
-  --primary: oklch(76.91% 0.173 341.75);
+  --primary: oklch(0.8 0.12 4.56);
 
   /* Borders & Outlines */
   --border: oklch(0% 0 0);
@@ -124,17 +122,17 @@
 }
 
 [data-theme='dark'] {
-  --background: oklch(0.22 0.03 342);
-  --background-secondary: oklch(0.27 0.035 342);
-  --background-input: oklch(0.15 0.02 342);
+  --background: oklch(0.22 0.03 5);
+  --background-secondary: oklch(0.27 0.035 5);
+  --background-input: oklch(0.15 0.02 5);
 
-  --foreground: oklch(0.9 0.008 342);
-  --foreground-secondary: oklch(0.78 0.1 342);
+  --foreground: oklch(0.9 0.008 5);
+  --foreground-secondary: oklch(0.78 0.1 5);
   --foreground-input: oklch(0.93 0 0);
 
-  --primary: oklch(0.65 0.13 342);
+  --primary: oklch(0.5 0.1 5);
 
-  --border: oklch(0.48 0.04 342);
+  --border: oklch(0.48 0.04 5);
 
   --border-width: 1px;
 

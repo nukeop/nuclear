@@ -3,34 +3,47 @@
 @source '../layouts';
 @source '../pages';
 
+@custom-variant prefers-dark (@media (prefers-color-scheme: dark));
+
 :root {
-  --page-bg: white;
-  --background: white;
-  --background-secondary: white;
-  --color-badge: #ffd6e0;
+  --page-bg: oklch(100% 0 0);
+  --background: oklch(100% 0 0);
+  --background-secondary: oklch(100% 0 0);
+  --color-badge: oklch(0.9135 0.0475 1.69);
   --color-heading-accent: var(--primary);
   --color-heading-shadow: var(--foreground);
   --color-star: var(--foreground);
   --color-star-bg: var(--accent-yellow);
+  --color-discord: oklch(0.5774 0.2091 273.85);
   --border-width: 2px;
 }
 
 @media (prefers-color-scheme: dark) {
+  .dark-mode-hidden {
+    display: none;
+  }
+  .dark-mode-block {
+    display: block;
+  }
+
   :root {
-    --page-bg: #282828;
-    --background: #282828;
-    --background-secondary: #3c3836;
-    --foreground: #ebdbb2;
-    --foreground-secondary: #a89984;
-    --primary: #3c3836;
-    --border: #7c6f64;
+    --page-bg: oklch(0.22 0.03 5);
+    --background: oklch(0.22 0.03 5);
+    --background-secondary: oklch(0.27 0.035 5);
+    --background-input: oklch(0.15 0.02 5);
+    --foreground: oklch(0.9 0.008 5);
+    --foreground-secondary: oklch(0.78 0.1 5);
+    --foreground-input: oklch(0.93 0 0);
+    --primary: oklch(0.5 0.1 5);
+    --border: oklch(0.48 0.04 5);
     --shadow-x: 0px;
     --shadow-y: 0px;
-    --color-badge: #722529;
-    --color-heading-accent: #ebdbb2;
+    --color-badge: oklch(0.35 0.1 5);
+    --color-heading-accent: oklch(0.5 0.1 5);
     --color-heading-shadow: none;
-    --color-star: #fabd2f;
-    --color-star-bg: #3c3836;
+    --color-star: oklch(0.9553 0.134 112.76);
+    --color-star-bg: oklch(0.27 0.035 5);
+    --color-discord: oklch(0.45 0.13 273.85);
     --border-width: 1px;
   }
 

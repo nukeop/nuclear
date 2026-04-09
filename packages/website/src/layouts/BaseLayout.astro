@@ -1,4 +1,6 @@
 ---
+import Header from '../components/Header.astro';
+
 type Props = {
   title: string;
   description: string;
@@ -46,6 +48,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   <body
     class="bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans"
   >
+    <Header />
     <slot />
   </body>
 </html>

@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+import { stars } from '../data/github';
 import Badge from './Badge.astro';
 import Box from './Box.astro';
 
@@ -119,7 +120,7 @@ const platforms = [
     class="absolute -top-3 -right-3 themed-border border-border rounded-md px-2 py-0.5 text-xs font-black rotate-6 pointer-events-none whitespace-nowrap z-20"
     style={`color: var(--color-star); background: var(--color-star-bg)`}
   >
-    17k &#9733;
+    {stars ?? '17k'} &#9733;
   </span>
   <a
     href="https://github.com/nukeop/nuclear"

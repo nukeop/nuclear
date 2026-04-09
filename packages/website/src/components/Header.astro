@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import { stars } from '../data/github';
+import Button from './Button.astro';
+---
+
+<header
+  class="border-b border-border px-4 md:px-8 h-16 flex items-center justify-between"
+>
+  <a href="/">
+    <img
+      src="/images/logo-full-outlined.svg"
+      alt="Nuclear"
+      class="h-8 dark-mode-hidden"
+    />
+    <img
+      src="/images/logo-full-light-outlined.svg"
+      alt="Nuclear"
+      class="h-8 hidden dark-mode-block"
+    />
+  </a>
+
+  <nav></nav>
+
+  <div class="flex items-center gap-3">
+    <Button
+      href="https://discord.gg/JqPjKxE"
+      variant="discord"
+      size="sm"
+      class="gap-2 font-bold text-white bg-(--color-discord) prefers-dark:text-foreground prefers-dark:bg-background prefers-dark:border-(--color-discord)"
+    >
+      <Icon name="simple-icons:discord" class="w-5 h-5" />
+      Join our Discord
+    </Button>
+    <Button
+      href="https://github.com/nukeop/nuclear"
+      variant="secondary"
+      size="sm"
+      class="gap-2 font-bold"
+    >
+      <Icon name="simple-icons:github" class="w-5 h-5" />
+      {stars ? `${stars} stars` : 'Star on GitHub'}
+    </Button>
+  </div>
+</header>
