@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+import { stars } from '../data/github';
+import { version, releaseUrl } from '../data/version';
 import Badge from './Badge.astro';
 import Box from './Box.astro';
 
@@ -8,17 +10,17 @@ const platforms = [
   {
     name: 'macOS',
     icon: 'simple-icons:apple',
-    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.29.0/Nuclear_1.29.0_aarch64.dmg',
+    url: releaseUrl(`Nuclear_${version}_aarch64.dmg`),
   },
   {
     name: 'Windows',
     icon: 'simple-icons:windows',
-    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.29.0/Nuclear_1.29.0_x64-setup.exe',
+    url: releaseUrl(`Nuclear_${version}_x64-setup.exe`),
   },
   {
     name: 'Linux',
     icon: 'simple-icons:linux',
-    url: 'https://github.com/nukeop/nuclear/releases/download/player@1.29.0/Nuclear_1.29.0_amd64.AppImage',
+    url: releaseUrl(`Nuclear_${version}_amd64.AppImage`),
   },
 ];
 ---
@@ -119,7 +121,7 @@ const platforms = [
     class="absolute -top-3 -right-3 themed-border border-border rounded-md px-2 py-0.5 text-xs font-black rotate-6 pointer-events-none whitespace-nowrap z-20"
     style={`color: var(--color-star); background: var(--color-star-bg)`}
   >
-    17k &#9733;
+    {stars ?? '17k'} &#9733;
   </span>
   <a
     href="https://github.com/nukeop/nuclear"

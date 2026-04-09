@@ -1,9 +1,6 @@
 ---
-type Props = {
-  version?: string;
-};
-
-const { version = 'v1.29.0' } = Astro.props;
+import { versionTag } from '../data/version';
+import { Typewriter } from './Typewriter';
 ---
 
 <section class="px-4 py-8 md:p-8 z-10 relative">
@@ -11,25 +8,31 @@ const { version = 'v1.29.0' } = Astro.props;
     <div
       class="inline-block mb-6 themed-border border-border bg-[var(--color-badge)] rounded-md px-4 py-1 text-sm font-bold uppercase tracking-widest shadow-shadow"
     >
-      {version} Available Now
+      {versionTag} Available Now
     </div>
 
     <h1
-      class="font-heading mb-8 text-5xl font-black uppercase leading-none md:text-6xl lg:text-7xl xl:text-8xl"
+      class="font-heading mb-8 text-3xl font-black uppercase leading-tight md:text-4xl lg:text-5xl xl:text-6xl"
     >
-      A GODDAMN<br />
+      Nuclear is a
       <span
         class="font-heading"
         style="color: var(--color-heading-accent); text-shadow: 2px 2px 0px var(--color-heading-shadow);"
-        >MUSIC PLAYER</span
-      >
+        >music player</span
+      ><br />
+      <Typewriter client:load />
     </h1>
-
-    <p
-      class="mb-8 text-xl md:text-2xl font-medium text-foreground-secondary max-w-xl mx-auto"
-    >
-      Nuclear was built with one purpose: to let you listen to music however you
-      want.
-    </p>
   </div>
 </section>
+
+<style>
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>

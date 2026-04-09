@@ -1,4 +1,7 @@
 ---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
 type Props = {
   title: string;
   description: string;
@@ -6,6 +9,25 @@ type Props = {
 
 const { title, description } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL('/images/social-banner.png', Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Nuclear',
+  description,
+  url: Astro.site?.toString(),
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Windows, macOS, Linux',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  license: 'https://www.gnu.org/licenses/agpl-3.0.html',
+  image: ogImageUrl.toString(),
+  screenshot: new URL('/images/social-banner.png', Astro.site).toString(),
+};
 ---
 
 <!doctype html>
@@ -16,6 +38,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <meta name="theme-color" content="#ff9cb4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#2a2022" media="(prefers-color-scheme: dark)" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -23,11 +50,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Nuclear Music Player" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,6 +81,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   <body
     class="bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans"
   >
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>
