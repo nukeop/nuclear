@@ -1,15 +1,37 @@
 ---
 import { testimonials } from '../data/testimonials';
 import Testimonial from './Testimonial.astro';
+
+const row1 = testimonials.filter((_, index) => index % 2 === 0);
+const row2 = testimonials.filter((_, index) => index % 2 !== 0);
 ---
 
-<section class="px-4 pb-16 md:px-8 w-full max-w-5xl mx-auto">
+<section class="pb-16 w-full overflow-hidden group">
   <h3
-    class="font-heading font-black text-2xl md:text-3xl uppercase tracking-widest text-center mb-8"
+    class="font-heading font-black text-2xl md:text-3xl uppercase tracking-widest text-center mb-8 px-4"
   >
     People love Nuclear
   </h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-    {testimonials.map((testimonial) => <Testimonial {...testimonial} />)}
+  <div class="flex flex-col gap-5">
+    <div
+      class="flex gap-5 w-fit"
+      style="animation: marquee-scroll 30s linear infinite; animation-play-state: running;"
+    >
+      {row1.map((testimonial) => <Testimonial {...testimonial} />)}
+      {row1.map((testimonial) => <Testimonial {...testimonial} />)}
+    </div>
+    <div
+      class="flex gap-5 w-fit"
+      style="animation: marquee-scroll 45s linear infinite; animation-play-state: running;"
+    >
+      {row2.map((testimonial) => <Testimonial {...testimonial} />)}
+      {row2.map((testimonial) => <Testimonial {...testimonial} />)}
+    </div>
   </div>
 </section>
+
+<style>
+  section:hover > div > div {
+    animation-play-state: paused;
+  }
+</style>
