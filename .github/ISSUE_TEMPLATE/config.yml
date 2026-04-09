@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Features, bug reports, questions
+    url: https://github.com/nukeop/nuclear/discussions
+    about: Please use this section for feature requests, bug reports, and questions.
   - name: Contributing guidelines
     url: https://docs.nuclearplayer.com/nuclear/development/contributing
     about: Issues and PRs are not accepted. Please read the contribution guidelines above.
