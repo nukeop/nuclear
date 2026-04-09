@@ -1,4 +1,5 @@
 ---
+import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 
 type Props = {
@@ -50,5 +51,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   >
     <Header />
     <slot />
+    <Footer />
   </body>
 </html>

@@ -1,0 +1,56 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import Button from './Button.astro';
+---
+
+<footer class="border-t border-border py-8 flex flex-col items-center gap-4 bg-primary">
+  <a href="/">
+    <img
+      src="/images/logo-full-outlined.svg"
+      alt="Nuclear"
+      class="h-16 dark-mode-hidden"
+    />
+    <img
+      src="/images/logo-full-light-outlined.svg"
+      alt="Nuclear"
+      class="h-16 hidden dark-mode-block"
+    />
+  </a>
+  <p class="text-foreground-secondary text-center text-lg font-bold max-w-xl px-4">
+    Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.
+  </p>
+  <Button href="https://github.com/nukeop/nuclear/releases" variant="secondary" size="lg" class="font-bold">
+    Download →
+  </Button>
+  <div class="flex flex-col md:flex-row gap-12 md:gap-20 mt-4 px-4">
+    <div>
+      <h3 class="font-heading font-bold uppercase tracking-widest text-sm">Follow us</h3>
+      <div class="flex gap-3 mt-3">
+        <a href="https://github.com/nukeop/nuclear" aria-label="GitHub"><Icon name="simple-icons:github" class="w-5 h-5" /></a>
+        <a href="https://fosstodon.org/@nuclearplayer" aria-label="Mastodon"><Icon name="simple-icons:mastodon" class="w-5 h-5" /></a>
+        <a href="https://twitter.com/nuclear_player" aria-label="Twitter"><Icon name="simple-icons:twitter" class="w-5 h-5" /></a>
+        <a href="https://discord.gg/JqPjKxE" aria-label="Discord"><Icon name="simple-icons:discord" class="w-5 h-5" /></a>
+      </div>
+    </div>
+    <div>
+      <h3 class="font-heading font-bold uppercase tracking-widest text-sm">Get started</h3>
+      <ul class="mt-3 flex flex-col gap-2 text-sm">
+        <li><a href="https://docs.nuclearplayer.com" class="hover:underline">Documentation</a></li>
+        <li><a href="https://docs.nuclearplayer.com/nuclear/user-manual/getting-started" class="hover:underline">Getting started</a></li>
+        <li><a href="https://docs.nuclearplayer.com/nuclear/theming/themes" class="hover:underline">Themes</a></li>
+        <li><a href="https://docs.nuclearplayer.com/nuclear/plugins/plugin-store" class="hover:underline">Plugin store</a></li>
+        <li><a href="https://github.com/nukeop/nuclear/releases" class="hover:underline">Releases</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-heading font-bold uppercase tracking-widest text-sm">Resources</h3>
+      <ul class="mt-3 flex flex-col gap-2 text-sm">
+        <li><a href="https://docs.nuclearplayer.com/nuclear/user-manual/installation" class="hover:underline">Installation</a></li>
+        <li><a href="https://flathub.org/en/apps/com.nuclearplayer.Nuclear" class="hover:underline">Flathub</a></li>
+        <li><a href="https://aur.archlinux.org/packages/nuclear-player-bin" class="hover:underline">AUR</a></li>
+        <li><a href="https://github.com/nukeop/nuclear/discussions" class="hover:underline">Discuss</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
