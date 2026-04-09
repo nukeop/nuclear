@@ -14,17 +14,22 @@
     "clean": "rm -rf dist .turbo node_modules/.cache .astro"
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.3",
     "@astrojs/sitemap": "^3.7.0",
     "@iconify-json/simple-icons": "^1.2.67",
     "@lucide/astro": "^0.563.0",
     "astro": "^5.16.15",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@nuclearplayer/eslint-config": "workspace:*",
     "@nuclearplayer/tailwind-config": "workspace:*",
     "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2"
