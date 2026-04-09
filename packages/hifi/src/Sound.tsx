@@ -67,7 +67,7 @@ export const Sound: React.FC<SoundProps> = ({
   useAudioSeek(audioRef, seek, isReady);
   useAudioLoader(audioRef, src, isReady);
   useHlsSource(audioRef, src, isReady);
-  useMseSource(audioRef, src, isReady);
+  useMseSource(audioRef, src, isReady, onError);
 
   useEffect(() => {
     const audio = audioRef.current;

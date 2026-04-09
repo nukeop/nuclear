@@ -1,15 +1,24 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="packages/ui/src/assets/logo-full-light-outlined.svg">
-    <source media="(prefers-color-scheme: light)" srcset="packages/ui/src/assets/logo-full-outlined.svg">
-    <img alt="Nuclear Music Player" src="packages/ui/src/assets/logo-full-outlined.svg" width="400">
+    <source alt="Nuclear Music Player"  srcset="packages/docs/.gitbook/assets/readme-banner.png">
+    <img alt="Nuclear Music Player"  srcset="packages/docs/.gitbook/assets/readme-banner.png">
   </picture>
+
+
 </p>
 
-<p align="center">
+<div align="center">
+
+# Nuclear 
+
+</div>
+
+<div align="center">
+
   Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.<br>
   Runs on Windows, macOS, and Linux.
-</p>
+  
+</div>
 
 ## Screenshots
 
