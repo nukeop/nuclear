@@ -1,6 +1,7 @@
 use std::fs::{self, File};
 use std::io::BufReader;
 use std::path::{Path, PathBuf};
+use std::process::Command;
 use tauri::command;
 use zip::ZipArchive;
 
@@ -62,7 +63,6 @@ pub fn extract_zip(zip_path: PathBuf, dest_path: PathBuf) -> Result<(), String> 
 
         for i in 0..archive.len() {
             let mut entry = archive.by_index(i)?;
-            // Use mangled_name to prevent zip slip attacks
             let out_path = dest_path.join(entry.mangled_name());
 
             if entry.is_dir() {
@@ -133,6 +133,37 @@ pub async fn download_file(url: String, dest_path: PathBuf) -> Result<(), String
         log::error!("download_file failed for {}: {}", url, e);
         e.to_string()
     })
+}
+
+#[command]
+pub fn is_matugen_available() -> bool {
+    Command::new("matugen")
+        .arg("--version")
+        .output()
+        .map(|o| o.status.success())
+        .unwrap_or(false)
+}
+
+#[command]
+pub fn get_matugen_css_path() -> Result<String, String> {
+    let config_dir = dirs::config_dir()
+        .ok_or_else(|| "Could not find config directory".to_string())?;
+    let matugen_css_path = config_dir.join("nuclear").join("matugen.css");
+    Ok(matugen_css_path.to_string_lossy().to_string())
+}
+
+#[command]
+pub fn read_matugen_css() -> Result<String, String> {
+    let config_dir = dirs::config_dir()
+        .ok_or_else(|| "Could not find config directory".to_string())?;
+    let matugen_css_path = config_dir.join("nuclear").join("matugen.css");
+    
+    if !matugen_css_path.exists() {
+        return Err("matugen.css not found".to_string());
+    }
+    
+    fs::read_to_string(&matugen_css_path)
+        .map_err(|e| format!("Failed to read matugen.css: {}", e))
 }
 
 #[cfg(test)]

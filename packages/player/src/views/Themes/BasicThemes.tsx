@@ -1,19 +1,62 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { listBasicThemes } from '@nuclearplayer/themes';
-import { Button, cn, SectionShell } from '@nuclearplayer/ui';
+import { Button, cn, SectionShell, Toggle } from '@nuclearplayer/ui';
 
+import {
+  applyMatugenTheme,
+  checkMatugenAvailability,
+  disableMatugenTheme,
+  matugenCssExists,
+} from '../../services/matugenService';
 import { useThemeStore } from '../../stores/themeStore';
 
 export const BasicThemes = () => {
   const { t } = useTranslation('themes');
   const basicThemes = useMemo(() => listBasicThemes(), []);
-  const { isSelected, selectBasicTheme } = useThemeStore();
+  const { isSelected, selectBasicTheme, isMatugenEnabled } = useThemeStore();
+
+  const [cssExists, setCssExists] = useState(false);
+  const [isToggling, setIsToggling] = useState(false);
+
+  useEffect(() => {
+    const checkCss = async () => {
+      const available = await checkMatugenAvailability();
+      if (available) {
+        const exists = await matugenCssExists();
+        setCssExists(exists);
+      }
+    };
+    checkCss();
+  }, []);
+
+  const handleMatugenToggle = async (enabled: boolean) => {
+    setIsToggling(true);
+    try {
+      if (enabled) {
+        await applyMatugenTheme();
+      } else {
+        await disableMatugenTheme();
+      }
+    } finally {
+      setIsToggling(false);
+    }
+  };
 
   return (
     <SectionShell data-testid="basic-themes" title={t('basic')}>
       <div className="flex flex-wrap gap-4 p-1">
+        {cssExists && (
+          <div className="border-border bg-background-secondary flex items-center gap-2 rounded-md border px-3 py-2">
+            <span className="text-foreground text-sm">Matugen</span>
+            <Toggle
+              checked={isMatugenEnabled}
+              onChange={handleMatugenToggle}
+              disabled={isToggling}
+            />
+          </div>
+        )}
         {basicThemes.map((theme) => {
           const isActive = isSelected({ type: 'basic', id: theme.id });
           return (

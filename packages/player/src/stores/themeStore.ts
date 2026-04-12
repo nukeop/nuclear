@@ -32,12 +32,16 @@ type ThemeStoreState = {
   advancedThemes: AdvancedThemeFile[];
   marketplaceThemes: AdvancedThemeFile[];
   activeTheme: ActiveTheme;
+  isMatugenAvailable: boolean;
+  isMatugenEnabled: boolean;
 
   setAdvancedThemes: (themes: AdvancedThemeFile[]) => void;
   setMarketplaceThemes: (themes: AdvancedThemeFile[]) => void;
   selectBasicTheme: (id: string) => Promise<void>;
   selectAdvancedTheme: (path: string) => Promise<void>;
   selectMarketplaceTheme: (id: string) => Promise<void>;
+  setMatugenAvailable: (available: boolean) => void;
+  setMatugenEnabled: (enabled: boolean) => void;
   isSelected: (theme: ActiveTheme) => boolean;
   isBasicThemeSelected: () => boolean;
   isAdvancedThemeSelected: () => boolean;
@@ -50,9 +54,13 @@ export const useThemeStore = create<ThemeStoreState>((set, get) => ({
   advancedThemes: [],
   marketplaceThemes: [],
   activeTheme: { type: 'basic', id: DEFAULT_THEME_ID },
+  isMatugenAvailable: false,
+  isMatugenEnabled: false,
 
   setAdvancedThemes: (advancedThemes) => set({ advancedThemes }),
   setMarketplaceThemes: (marketplaceThemes) => set({ marketplaceThemes }),
+  setMatugenAvailable: (available) => set({ isMatugenAvailable: available }),
+  setMatugenEnabled: (enabled) => set({ isMatugenEnabled: enabled }),
 
   selectBasicTheme: async (id) => {
     clearAdvancedTheme();
@@ -97,8 +105,13 @@ export const useThemeStore = create<ThemeStoreState>((set, get) => ({
     const id = useSettingsStore
       .getState()
       .getValue('core.theme.active.id') as string;
+    const matugenEnabled = useSettingsStore
+      .getState()
+      .getValue('core.theme.matugen.enabled') as boolean;
 
-    if (type === 'basic' && id) {
+    if (matugenEnabled) {
+      set({ isMatugenEnabled: true });
+    } else if (type === 'basic' && id) {
       set({ activeTheme: { type: 'basic', id } });
       setThemeId(id);
     } else if (type === 'advanced' && id) {

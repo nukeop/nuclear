@@ -23,10 +23,16 @@ import {
   initLanguageWatcher,
 } from './services/languageService';
 import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
+import {
+  applyMatugenTheme,
+  checkMatugenAvailability,
+  matugenCssExists,
+} from './services/matugenService';
 import { initMcpHandler } from './services/mcp';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
-import { hydrateThemeStore } from './stores/themeStore';
+import { setSetting, useSettingsStore } from './stores/settingsStore';
+import { hydrateThemeStore, useThemeStore } from './stores/themeStore';
 import { useUpdaterStore } from './stores/updaterStore';
 
 initLogStream();
@@ -46,6 +52,30 @@ initializeSettingsStore()
   .then(() => loadMarketplaceThemes())
   .then(() => hydrateThemeStore())
   .then(() => applyAdvancedThemeFromSettingsIfAny())
+  .then(async () => {
+    console.log('[Main] Checking matugen...');
+    const available = await checkMatugenAvailability();
+    console.log('[Main] Matugen available:', available);
+    const cssExists = await matugenCssExists();
+    console.log('[Main] CSS exists:', cssExists);
+
+    if (available && cssExists) {
+      const currentSetting = useSettingsStore
+        .getState()
+        .getValue('core.theme.matugen.enabled');
+      console.log('[Main] Current matugen setting:', currentSetting);
+      if (
+        currentSetting === undefined ||
+        currentSetting === null ||
+        currentSetting === true
+      ) {
+        console.log('[Main] Enabling matugen and applying theme...');
+        useThemeStore.getState().setMatugenEnabled(true);
+        await setSetting('core.theme.matugen.enabled', true);
+        await applyMatugenTheme();
+      }
+    }
+  })
   .then(() => {
     // Run plugin hydration in the background
     void hydratePluginsFromRegistry();
