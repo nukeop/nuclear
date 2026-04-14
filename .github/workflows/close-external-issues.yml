@@ -1,0 +1,22 @@
+name: Close external issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  close-if-external:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.issue.user.login != 'nukeop'
+      && github.event.issue.user.login != 'renovate[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Close issue with explanation
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const script = require('./.github/scripts/close-external-issue.cjs');
+            await script({ github, context });

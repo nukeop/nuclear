@@ -18,5 +18,5 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const script = require('./.github/scripts/close-external-pr.js');
+            const script = require('./.github/scripts/close-external-pr.cjs');
             await script({ github, context });
