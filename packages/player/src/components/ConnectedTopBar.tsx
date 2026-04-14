@@ -1,8 +1,14 @@
 import { useCanGoBack, useRouter } from '@tanstack/react-router';
 import { FC } from 'react';
 
-import { TopBar, TopBarLogo, TopBarNavigation } from '@nuclearplayer/ui';
+import {
+  Tooltip,
+  TopBar,
+  TopBarLogo,
+  TopBarNavigation,
+} from '@nuclearplayer/ui';
 
+import { useAppVersion } from '../hooks/useAppVersion';
 import { useCanGoForward } from '../hooks/useCanGoForward';
 import { useFramelessWindow } from '../hooks/useFramelessWindow';
 import { ConnectedThemeController } from './ConnectedThemeController';
@@ -11,6 +17,7 @@ import { UpdateBadge } from './UpdateBadge';
 
 export const ConnectedTopBar: FC = () => {
   const router = useRouter();
+  const { version } = useAppVersion();
   const canGoBack = useCanGoBack();
   const canGoForward = useCanGoForward();
   const frameless = useFramelessWindow();
@@ -18,7 +25,13 @@ export const ConnectedTopBar: FC = () => {
   return (
     <TopBar draggable={frameless}>
       <div className="flex flex-row items-center gap-4">
-        <TopBarLogo />
+        <Tooltip
+          content={`Nuclear ${version}`}
+          side="bottom"
+          wrapperClassName="flex items-center"
+        >
+          <TopBarLogo />
+        </Tooltip>
         <TopBarNavigation
           onBack={() => router.history.back()}
           onForward={() => router.history.forward()}

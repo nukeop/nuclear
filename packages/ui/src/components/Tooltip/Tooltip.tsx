@@ -20,6 +20,7 @@ type TooltipProps = PropsWithChildren<{
   side?: TooltipSide;
   disabled?: boolean;
   className?: string;
+  wrapperClassName?: string;
 }>;
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -28,6 +29,7 @@ export const Tooltip: FC<TooltipProps> = ({
   side = 'right',
   disabled = false,
   className,
+  wrapperClassName,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { refs, floatingStyles } = useFloating({
@@ -44,6 +46,7 @@ export const Tooltip: FC<TooltipProps> = ({
   return (
     <div
       ref={refs.setReference}
+      className={wrapperClassName}
       onMouseEnter={disabled ? undefined : () => setIsOpen(true)}
       onMouseLeave={disabled ? undefined : () => setIsOpen(false)}
     >
