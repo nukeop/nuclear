@@ -16,7 +16,7 @@ layout:
 apps:
   nuclear:
     command: usr/bin/nuclear-music-player
-    desktop: usr/share/applications/nuclear-music-player.desktop
+    desktop: usr/share/applications/Nuclear.desktop
     extensions: [gnome]
     environment:
       ALWAYS_USE_PULSEAUDIO: "1"
@@ -71,5 +71,5 @@ parts:
       dpkg -x src-tauri/target/release/bundle/deb/*.deb $SNAPCRAFT_PART_INSTALL/
 
       sed -i \
-        "s|Icon=nuclear-music-player|Icon=/usr/share/icons/hicolor/32x32/apps/nuclear-music-player.png|g" \
-        $SNAPCRAFT_PART_INSTALL/usr/share/applications/nuclear-music-player.desktop
+        "s|Icon=nuclear-music-player|Icon=/usr/share/icons/hicolor/512x512/apps/nuclear-music-player.png|g" \
+        $SNAPCRAFT_PART_INSTALL/usr/share/applications/Nuclear.desktop
