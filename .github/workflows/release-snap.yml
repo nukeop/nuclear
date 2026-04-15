@@ -1,0 +1,56 @@
+name: Release Snap
+
+on:
+  workflow_run:
+    workflows: ["Release Player"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., 1.23.2)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  snap:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Extract version
+        id: version
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            TAG="${{ github.event.workflow_run.head_branch }}"
+            VERSION="${TAG#player@}"
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Generate snapcraft.yaml from template
+        env:
+          SNAP_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          envsubst '$SNAP_VERSION' < snap/snapcraft.yaml > snap/snapcraft.resolved.yaml
+          mv snap/snapcraft.resolved.yaml snap/snapcraft.yaml
+
+      - name: Build snap
+        uses: snapcore/action-build@v1
+        id: snapcraft
+
+      - name: Upload snap to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "player@${{ steps.version.outputs.version }}" \
+            ${{ steps.snapcraft.outputs.snap }} \
+            --clobber
