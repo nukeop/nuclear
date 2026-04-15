@@ -10,6 +10,7 @@ jobs:
     if: >-
       github.event.pull_request.user.login != 'nukeop'
       && github.event.pull_request.user.login != 'renovate[bot]'
+      && github.event.pull_request.user.login != 'crowdin-bot'
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
