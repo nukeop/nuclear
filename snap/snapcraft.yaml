@@ -66,7 +66,7 @@ parts:
       pnpm install --frozen-lockfile
 
       cd packages/player
-      pnpm tauri build --bundles deb
+      pnpm tauri build --bundles deb -c '{"bundle":{"createUpdaterArtifacts":false}}'
 
       dpkg -x src-tauri/target/release/bundle/deb/*.deb $SNAPCRAFT_PART_INSTALL/
 
