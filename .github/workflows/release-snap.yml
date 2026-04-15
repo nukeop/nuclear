@@ -54,3 +54,11 @@ jobs:
           gh release upload "player@${{ steps.version.outputs.version }}" \
             ${{ steps.snapcraft.outputs.snap }} \
             --clobber
+
+      - name: Publish to Snap Store
+        uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
+        with:
+          snap: ${{ steps.snapcraft.outputs.snap }}
+          release: stable

@@ -59,7 +59,10 @@ parts:
     override-build: |
       set -eu
 
+      rustup default stable
+
       npm install -g pnpm
+      pnpm approve-builds
       pnpm install --frozen-lockfile
 
       cd packages/player
