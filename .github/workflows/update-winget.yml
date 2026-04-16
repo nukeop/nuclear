@@ -1,0 +1,41 @@
+name: Update WinGet
+
+on:
+  workflow_run:
+    workflows: ["Release Player"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., 1.23.2)"
+        required: true
+
+jobs:
+  publish:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Extract version
+        id: version
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            TAG="${{ github.event.workflow_run.head_branch }}"
+            VERSION="${TAG#player@}"
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Publish to WinGet
+        uses: vedantmgoyal9/winget-releaser@v2
+        with:
+          identifier: nukeop.nuclear
+          version: ${{ steps.version.outputs.version }}
+          installers-regex: '\.(exe|msi)$'
+          release-tag: player@${{ steps.version.outputs.version }}
+          max-versions-to-keep: 5
+          token: ${{ secrets.WINGET_TOKEN }}
