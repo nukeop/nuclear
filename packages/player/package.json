@@ -41,7 +41,7 @@
     "@tauri-apps/plugin-updater": "~2.10.0",
     "@tauri-apps/plugin-upload": "~2.4.0",
     "@types/luxon": "^3.7.1",
-    "esbuild-wasm": "^0.27.0",
+    "esbuild-wasm": "^0.28.0",
     "framer-motion": "^12.23.12",
     "immer": "^11.0.0",
     "lodash-es": "^4.17.21",
