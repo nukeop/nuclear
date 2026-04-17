@@ -44,8 +44,4 @@ export const setupStreamingPairingSync = (host: ProvidersHost): void => {
       tryPairStreaming(host);
     }
   });
-
-  host.subscribe(() => {
-    tryPairStreaming(host);
-  });
 };

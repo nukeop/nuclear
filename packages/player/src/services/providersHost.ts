@@ -1,4 +1,7 @@
+import { isUndefined } from 'lodash-es';
+
 import type {
+  MetadataProvider,
   ProviderDescriptor,
   ProviderKind,
   ProvidersHost,
@@ -9,6 +12,15 @@ import {
   useProvidersStore,
 } from '../stores/providersStore';
 import { setupStreamingPairingSync } from './streamingPairingSync';
+
+const PROVIDER_KINDS: ProviderKind[] = [
+  'metadata',
+  'streaming',
+  'discovery',
+  'lyrics',
+  'dashboard',
+  'playlists',
+];
 
 const createProvidersHost = (): ProvidersHost => {
   const byKind = new Map<ProviderKind, Map<string, ProviderDescriptor>>();
@@ -21,6 +33,22 @@ const createProvidersHost = (): ProvidersHost => {
     }
   };
 
+  const firstOfKind = (kind: ProviderKind): ProviderDescriptor | undefined =>
+    byKind.get(kind)?.values().next().value;
+
+  const isRegistered = (providerId: string | undefined): boolean =>
+    !isUndefined(providerId) && byId.has(providerId);
+
+  const pairedStreamingProviderIdFor = (
+    metadataProviderId: string | undefined,
+  ): string | undefined => {
+    const metadataProvider = metadataProviderId
+      ? (byId.get(metadataProviderId) as MetadataProvider)
+      : undefined;
+    const pairedId = metadataProvider?.streamingProviderId;
+    return isRegistered(pairedId) ? pairedId : undefined;
+  };
+
   useProvidersStore.subscribe(() => notify());
 
   return {
@@ -30,14 +58,12 @@ const createProvidersHost = (): ProvidersHost => {
       byKind.set(provider.kind, kindMap);
       byId.set(provider.id, provider);
 
-      const activeForKind = useProvidersStore
-        .getState()
-        .getActive(provider.kind);
-
-      // Activate the first registered provider if none is active
-      const activeProviderExists = activeForKind && byId.has(activeForKind);
-      if (!activeProviderExists) {
-        useProvidersStore.getState().setActive(provider.kind, provider.id);
+      const store = useProvidersStore.getState();
+      // Activate the first registered provider if no selection is persisted.
+      // A persisted id that isn't registered yet is preserved: the matching
+      // provider may still register later.
+      if (!store.getActive(provider.kind)) {
+        store.setActive(provider.kind, provider.id);
       }
 
       notify();
@@ -51,23 +77,18 @@ const createProvidersHost = (): ProvidersHost => {
       }
       byId.delete(providerId);
       const kindMap = byKind.get(current.kind);
-      if (kindMap) {
-        kindMap.delete(providerId);
-        if (kindMap.size === 0) {
-          byKind.delete(current.kind);
-        }
+      kindMap?.delete(providerId);
+      if (kindMap?.size === 0) {
+        byKind.delete(current.kind);
       }
 
-      const activeForKind = useProvidersStore
-        .getState()
-        .getActive(current.kind);
-
-      if (activeForKind === providerId) {
-        const remaining = kindMap?.values().next().value;
-        if (remaining) {
-          useProvidersStore.getState().setActive(current.kind, remaining.id);
+      const store = useProvidersStore.getState();
+      if (store.getActive(current.kind) === providerId) {
+        const fallback = firstOfKind(current.kind);
+        if (fallback) {
+          store.setActive(current.kind, fallback.id);
         } else {
-          useProvidersStore.getState().clearActive(current.kind);
+          store.clearActive(current.kind);
         }
       }
 
@@ -123,6 +144,31 @@ const createProvidersHost = (): ProvidersHost => {
       return () => {
         subscribers.delete(listener);
       };
+    },
+
+    resolveActiveOnBootstrap() {
+      const store = useProvidersStore.getState();
+
+      PROVIDER_KINDS.filter(
+        (kind) => !isRegistered(store.getActive(kind)),
+      ).forEach((kind) => {
+        const fallback = firstOfKind(kind);
+        if (fallback) {
+          store.setActive(kind, fallback.id);
+        }
+      });
+
+      const pairedStreamingProviderId = pairedStreamingProviderIdFor(
+        store.getActive('metadata'),
+      );
+      if (
+        pairedStreamingProviderId &&
+        store.getActive('streaming') !== pairedStreamingProviderId
+      ) {
+        store.setActive('streaming', pairedStreamingProviderId);
+      }
+
+      notify();
     },
   };
 };

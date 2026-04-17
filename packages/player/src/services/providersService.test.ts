@@ -1,10 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import type {
+  MetadataProvider,
   ProviderDescriptor,
   ProviderKind,
 } from '@nuclearplayer/plugin-sdk';
 
+import { useProvidersStore } from '../stores/providersStore';
 import { providersHost } from './providersHost';
 
 const createProvider = <K extends ProviderKind>(
@@ -118,5 +120,80 @@ describe('Providers service', () => {
     providersHost.register(provider);
 
     expect(providersHost.get('test-prov-6', 'streaming')).toBeUndefined();
+  });
+
+  it('keeps a persisted active provider id when a different provider registers first', () => {
+    useProvidersStore.setState({ active: { metadata: 'persisted-id' } });
+
+    const first = createProvider('first-id', 'metadata', 'First');
+    providersHost.register(first);
+
+    expect(useProvidersStore.getState().active.metadata).toBe('persisted-id');
+
+    const persisted = createProvider('persisted-id', 'metadata', 'Persisted');
+    providersHost.register(persisted);
+
+    expect(useProvidersStore.getState().active.metadata).toBe('persisted-id');
+  });
+
+  describe('resolveActiveOnBootstrap', () => {
+    it('falls back to the first available provider when the persisted id is not registered', () => {
+      useProvidersStore.setState({ active: { metadata: 'ghost' } });
+      providersHost.register(createProvider('real', 'metadata', 'Real'));
+
+      providersHost.resolveActiveOnBootstrap();
+
+      expect(useProvidersStore.getState().active.metadata).toBe('real');
+    });
+
+    it('keeps the persisted id when the matching provider is registered', () => {
+      providersHost.register(createProvider('first', 'metadata', 'First'));
+      providersHost.register(createProvider('keep-me', 'metadata', 'Keep'));
+      useProvidersStore.setState({ active: { metadata: 'keep-me' } });
+
+      providersHost.resolveActiveOnBootstrap();
+
+      expect(useProvidersStore.getState().active.metadata).toBe('keep-me');
+    });
+
+    it('leaves a kind untouched when no providers of that kind are registered', () => {
+      useProvidersStore.setState({ active: { metadata: 'ghost' } });
+
+      providersHost.resolveActiveOnBootstrap();
+
+      expect(useProvidersStore.getState().active.metadata).toBe('ghost');
+    });
+
+    it('forces streaming to the paired provider when the active metadata declares a pair', () => {
+      const paired = {
+        id: 'meta-paired',
+        kind: 'metadata',
+        name: 'Paired Meta',
+        streamingProviderId: 'stream-a',
+      } as MetadataProvider;
+      providersHost.register(paired);
+      providersHost.register(createProvider('stream-a', 'streaming', 'A'));
+      providersHost.register(createProvider('stream-b', 'streaming', 'B'));
+      useProvidersStore.setState({
+        active: { metadata: 'meta-paired', streaming: 'stream-b' },
+      });
+
+      providersHost.resolveActiveOnBootstrap();
+
+      expect(useProvidersStore.getState().active.streaming).toBe('stream-a');
+    });
+
+    it('does not touch streaming when the active metadata has no pair', () => {
+      providersHost.register(createProvider('meta', 'metadata', 'Meta'));
+      providersHost.register(createProvider('stream-a', 'streaming', 'A'));
+      providersHost.register(createProvider('stream-b', 'streaming', 'B'));
+      useProvidersStore.setState({
+        active: { metadata: 'meta', streaming: 'stream-b' },
+      });
+
+      providersHost.resolveActiveOnBootstrap();
+
+      expect(useProvidersStore.getState().active.streaming).toBe('stream-b');
+    });
   });
 });

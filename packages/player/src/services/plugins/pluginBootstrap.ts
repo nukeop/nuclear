@@ -3,6 +3,7 @@ import { normalize } from '@tauri-apps/api/path';
 import { usePluginStore } from '../../stores/pluginStore';
 import { useStartupStore } from '../../stores/startupStore';
 import { resolveErrorMessage } from '../../utils/logging';
+import { providersHost } from '../providersHost';
 import { createPluginAPI } from './createPluginAPI';
 import { getPluginsDir } from './pluginDir';
 import { PluginLoader } from './PluginLoader';
@@ -74,6 +75,8 @@ export const hydratePluginsFromRegistry = async (): Promise<void> => {
         );
     }
   }
+
+  providersHost.resolveActiveOnBootstrap();
 
   const startupFinishTime = Date.now();
   useStartupStore.getState().finishStartup(startupFinishTime - now);
