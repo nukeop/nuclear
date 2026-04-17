@@ -84,6 +84,22 @@
   </requires>
 
   <releases>
+    <release version="1.34.0" date="2026-04-17">
+      <description>
+        <ul>
+          <li>Fix source selection being reset to the first available provider on startup</li>
+          <li>Show an empty state in Sources when no providers of a given kind are installed</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.33.0" date="2026-04-08">
+      <description>
+        <ul>
+          <li>Streaming providers can now access full track metadata when resolving streams</li>
+          <li>Fix paired streaming provider not activating when registered after the metadata provider</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.32.1" date="2026-04-03">
       <description>
         <p>Flatpak metadata updates.</p>
