@@ -42,12 +42,21 @@ export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
       <p className="text-foreground-secondary mb-2 text-sm">
         {t(`${kind}Description`)}
       </p>
-      <Select
-        options={options}
-        value={value}
-        disabled={disabled}
-        onValueChange={onValueChange}
-      />
+      {providers.length ? (
+        <Select
+          options={options}
+          value={value}
+          disabled={disabled}
+          onValueChange={onValueChange}
+        />
+      ) : (
+        <p
+          className="text-foreground-secondary text-sm italic"
+          data-testid="no-providers-message"
+        >
+          {t('noProviders')}
+        </p>
+      )}
       {lockedReason && (
         <p
           className="text-foreground-secondary mt-4 text-sm leading-relaxed"

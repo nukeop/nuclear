@@ -34,6 +34,12 @@ export const SourcesWrapper = {
       get lockedReason() {
         return within(getElement()).queryByTestId('locked-reason');
       },
+      get emptyState() {
+        return within(getElement()).queryByTestId('no-providers-message');
+      },
+      get select() {
+        return within(getElement()).queryByRole('button');
+      },
       provider(name: string) {
         return {
           get warning() {

@@ -46,7 +46,7 @@
     "playlists": "Playlists",
     "playlistsDescription": "Playlist sources let you import playlists from external services by URL.",
     "discovery": "Discovery",
-    "discoveryDescription": "Discovery sources recommend new tracks based on what you're listening to. Enable music discovery bu using the boombox icon in the bottom bar.",
+    "discoveryDescription": "Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.",
     "lyrics": "Lyrics",
     "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
     "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available",

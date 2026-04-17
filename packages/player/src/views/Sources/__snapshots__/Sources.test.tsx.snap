@@ -869,45 +869,14 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                           <p
                             class="text-foreground-secondary mb-2 text-sm"
                           >
-                            Discovery sources recommend new tracks based on what you're listening to. Enable music discovery bu using the boombox icon in the bottom bar.
+                            Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.
                           </p>
-                          <div
-                            class="relative flex w-full flex-col gap-2"
+                          <p
+                            class="text-foreground-secondary text-sm italic"
+                            data-testid="no-providers-message"
                           >
-                            <button
-                              aria-expanded="false"
-                              aria-haspopup="listbox"
-                              class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
-                              data-headlessui-state=""
-                              id="select-:rb:"
-                              type="button"
-                            >
-                              <span
-                                class="block truncate"
-                              />
-                              <span
-                                class="flex items-center"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  class="lucide lucide-chevron-down text-foreground transition-transform"
-                                  fill="none"
-                                  height="16"
-                                  stroke="currentColor"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  viewBox="0 0 24 24"
-                                  width="16"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="m6 9 6 6 6-6"
-                                  />
-                                </svg>
-                              </span>
-                            </button>
-                          </div>
+                            No providers installed
+                          </p>
                         </div>
                         <div
                           class="mb-6 px-2"
@@ -1471,13 +1440,13 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                     </div>
                   </div>
                   <input
-                    aria-labelledby=":rf:-label"
+                    aria-labelledby=":rb:-label"
                     aria-valuemax="100"
                     aria-valuemin="0"
                     aria-valuenow="100"
                     aria-valuetext="100"
                     class="absolute inset-0 z-[1] h-6 w-full appearance-none opacity-0 cursor-pointer"
-                    id=":rf:"
+                    id=":rb:"
                     max="100"
                     min="0"
                     step="1"

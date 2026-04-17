@@ -45,7 +45,10 @@ export const ProviderInfoSection: FC<ProviderInfoSectionProps> = ({
           ))}
         </div>
       ) : (
-        <p className="text-foreground-secondary text-sm italic">
+        <p
+          className="text-foreground-secondary text-sm italic"
+          data-testid="no-providers-message"
+        >
           {t('noProviders')}
         </p>
       )}

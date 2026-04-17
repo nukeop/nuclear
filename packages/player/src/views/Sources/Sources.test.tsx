@@ -238,6 +238,13 @@ describe('Sources view', () => {
     );
   });
 
+  it('shows an empty state and hides the select when no providers of a kind are registered', async () => {
+    await SourcesWrapper.mount();
+
+    expect(SourcesWrapper.section('discovery').emptyState).toBeInTheDocument();
+    expect(SourcesWrapper.section('discovery').select).not.toBeInTheDocument();
+  });
+
   it('lists and switches discovery providers', async () => {
     providersHost.register(
       new DiscoveryProviderBuilder()
