@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { parseLegacyDuration } from './parseLegacyDuration';
+
 const providerRefSchema = z.object({
   provider: z.string(),
   id: z.string(),
@@ -82,7 +84,7 @@ export const legacyTrackSchema = z.object({
   album: z.string().optional(),
   thumbnail: z.string().optional(),
   duration: z
-    .union([z.number(), z.string().transform(Number)])
+    .union([z.number(), z.string().transform(parseLegacyDuration)])
     .refine((val) => Number.isFinite(val), { message: 'Invalid duration' })
     .optional(),
 });

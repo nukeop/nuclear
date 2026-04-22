@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-04-22T00:00",
+    "description": "Fix legacy playlist import failing when track durations use mm:ss or hh:mm:ss format",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "cyan"
+      }
+    ]
+  },
+  {
     "date": "2026-04-17T00:00",
     "description": "Fix source selection being reset to the first available provider on startup",
     "type": "fix",

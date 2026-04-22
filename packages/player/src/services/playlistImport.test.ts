@@ -245,4 +245,70 @@ describe('importPlaylistFromJson', () => {
       'Unrecognized playlist format',
     );
   });
+
+  it('imports a legacy playlist with mm:ss duration strings and produces correct durationMs', () => {
+    const result = importPlaylistFromJson({
+      name: 'Old Playlist',
+      tracks: [
+        {
+          artist: 'Artist A',
+          name: 'Track A',
+          album: 'Album A',
+          thumbnail: 'https://example.com/thumb-a.jpg',
+          duration: '3:05',
+          stream: null,
+        },
+        {
+          artist: 'Artist B',
+          name: 'Track B',
+          album: 'Album B',
+          thumbnail: 'https://example.com/thumb-b.jpg',
+          duration: '2:47',
+          stream: null,
+        },
+      ],
+    });
+
+    expect(result[0].items[0].track.durationMs).toBe(185_000);
+    expect(result[0].items[1].track.durationMs).toBe(167_000);
+  });
+
+  it('imports a legacy playlist with hh:mm:ss duration strings', () => {
+    const result = importPlaylistFromJson({
+      name: 'Long Tracks',
+      tracks: [
+        {
+          artist: 'Artist C',
+          name: 'Long Track',
+          duration: '1:02:30',
+        },
+      ],
+    });
+
+    expect(result[0].items[0].track.durationMs).toBe(3_750_000);
+  });
+
+  it('imports a playlist with mixed duration formats (number, numeric string, mm:ss)', () => {
+    const result = importPlaylistFromJson({
+      name: 'Mixed Formats',
+      tracks: [
+        { name: 'Track A', duration: 180 },
+        { name: 'Track B', duration: '240' },
+        { name: 'Track C', duration: '3:05' },
+      ],
+    });
+
+    expect(result[0].items[0].track.durationMs).toBe(180_000);
+    expect(result[0].items[1].track.durationMs).toBe(240_000);
+    expect(result[0].items[2].track.durationMs).toBe(185_000);
+  });
+
+  it('rejects a playlist containing an invalid duration string', () => {
+    expect(() =>
+      importPlaylistFromJson({
+        name: 'Bad Duration',
+        tracks: [{ name: 'Track', duration: 'foo' }],
+      }),
+    ).toThrow();
+  });
 });
