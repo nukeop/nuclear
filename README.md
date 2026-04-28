@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/nukeop-nuclear-badge.png)](https://mseep.ai/app/nukeop-nuclear)
+
 <p align="center">
   <picture>
     <source alt="Nuclear Music Player"  srcset="packages/docs/.gitbook/assets/readme-banner.png">
