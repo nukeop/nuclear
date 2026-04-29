@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @source '../player';
 @source '../ui';
 @source '../storybook';
