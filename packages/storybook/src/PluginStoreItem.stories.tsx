@@ -51,6 +51,17 @@ export const Installing: Story = {
   },
 };
 
+export const LegacySingleCategory: Story = {
+  args: {
+    name: 'Bandcamp Plugin',
+    description:
+      'Browse and stream music from Bandcamp. Supports artist pages, albums, and tags.',
+    author: 'Community',
+    category: 'streaming',
+    onInstall: fn(),
+  },
+};
+
 export const LongDescription: Story = {
   args: {
     name: 'Advanced Audio Processor',

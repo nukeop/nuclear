@@ -112,6 +112,18 @@ describe('PluginStoreItem', () => {
     expect(getByText('Streaming')).toBeInTheDocument();
   });
 
+  it('displays a badge from the legacy category prop', () => {
+    const { getByText } = render(
+      <PluginStoreItem
+        {...defaultProps}
+        categories={undefined}
+        category="Lyrics"
+      />,
+    );
+
+    expect(getByText('Lyrics')).toBeInTheDocument();
+  });
+
   it('applies custom className', () => {
     const { getByTestId } = render(
       <PluginStoreItem {...defaultProps} className="custom-class" />,

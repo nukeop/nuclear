@@ -11,7 +11,9 @@ type PluginStoreItemProps = Omit<ComponentProps<'div'>, 'children'> & {
   name: string;
   description: string;
   author: string;
-  categories: string[];
+  // TODO: Remove category after registry migration to categories
+  category?: string;
+  categories?: string[];
   isInstalled?: boolean;
   isInstalling?: boolean;
   onInstall: () => void;
@@ -27,6 +29,7 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
   name,
   description,
   author,
+  category,
   categories,
   isInstalled = false,
   isInstalling = false,
@@ -57,9 +60,9 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
           >
             {name}
           </h3>
-          {categories.map((category) => (
-            <Badge key={category} variant="pill" color="cyan">
-              {category}
+          {(categories ?? (category ? [category] : [])).map((cat) => (
+            <Badge key={cat} variant="pill" color="cyan">
+              {cat}
             </Badge>
           ))}
         </div>

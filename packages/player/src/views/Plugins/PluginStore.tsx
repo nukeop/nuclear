@@ -52,8 +52,10 @@ export const PluginStore: FC = () => {
     }
 
     return plugins.filter((plugin) => {
+      const pluginCategories =
+        plugin.categories ?? (plugin.category ? [plugin.category] : []);
       const matchesCategory =
-        category === CATEGORY_ALL || plugin.category === category;
+        category === CATEGORY_ALL || pluginCategories.includes(category);
 
       if (!search) {
         return matchesCategory;
@@ -130,6 +132,7 @@ export const PluginStore: FC = () => {
                 description={plugin.description}
                 author={plugin.author}
                 category={plugin.category}
+                categories={plugin.categories}
                 isInstalled={isPluginInstalled(plugin)}
                 isInstalling={isPluginInstalling(plugin)}
                 onInstall={() => installPlugin({ plugin })}
