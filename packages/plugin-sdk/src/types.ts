@@ -1,4 +1,5 @@
 import type { NuclearPluginAPI } from './api';
+import type { ProviderKind } from './types/providers';
 
 export type PluginIcon = { type: 'link'; link: string };
 
@@ -13,6 +14,7 @@ export type PluginManifest = {
     // TODO: Remove category after registry migration to categories
     category?: string;
     categories?: string[];
+    providers?: ProviderKind[];
     icon?: PluginIcon;
     permissions?: string[];
   };
@@ -35,6 +37,7 @@ export type PluginMetadata = {
   // TODO: Remove category after registry migration to categories
   category?: string;
   categories: string[];
+  providers: ProviderKind[];
   icon?: PluginIcon;
   permissions: string[];
 };

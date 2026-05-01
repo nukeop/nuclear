@@ -52,7 +52,7 @@ export const PluginStore: FC = () => {
     }
 
     return plugins.filter((plugin) => {
-      const pluginCategories =
+      const pluginCategories: string[] =
         plugin.categories ?? (plugin.category ? [plugin.category] : []);
       const matchesCategory =
         category === CATEGORY_ALL || pluginCategories.includes(category);
