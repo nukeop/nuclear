@@ -11,7 +11,7 @@ type PluginStoreItemProps = Omit<ComponentProps<'div'>, 'children'> & {
   name: string;
   description: string;
   author: string;
-  category: string;
+  categories: string[];
   isInstalled?: boolean;
   isInstalling?: boolean;
   onInstall: () => void;
@@ -27,7 +27,7 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
   name,
   description,
   author,
-  category,
+  categories,
   isInstalled = false,
   isInstalling = false,
   onInstall,
@@ -57,9 +57,11 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
           >
             {name}
           </h3>
-          <Badge variant="pill" color="cyan">
-            {category}
-          </Badge>
+          {categories.map((category) => (
+            <Badge key={category} variant="pill" color="cyan">
+              {category}
+            </Badge>
+          ))}
         </div>
         <p
           data-testid="plugin-store-item-description"

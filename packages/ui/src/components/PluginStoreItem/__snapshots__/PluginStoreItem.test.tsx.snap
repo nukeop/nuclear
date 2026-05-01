@@ -22,6 +22,11 @@ exports[`PluginStoreItem > (Snapshot) renders default state 1`] = `
       >
         Streaming
       </span>
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+      >
+        Metadata
+      </span>
     </div>
     <p
       class="text-foreground-secondary line-clamp-2 text-sm"
@@ -101,6 +106,11 @@ exports[`PluginStoreItem > (Snapshot) renders installed state 1`] = `
       >
         Streaming
       </span>
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+      >
+        Metadata
+      </span>
     </div>
     <p
       class="text-foreground-secondary line-clamp-2 text-sm"
@@ -175,6 +185,11 @@ exports[`PluginStoreItem > (Snapshot) renders installing state 1`] = `
         class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
       >
         Streaming
+      </span>
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+      >
+        Metadata
       </span>
     </div>
     <p
@@ -263,6 +278,11 @@ exports[`PluginStoreItem > (Snapshot) renders with custom labels 1`] = `
       >
         Streaming
       </span>
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+      >
+        Metadata
+      </span>
     </div>
     <p
       class="text-foreground-secondary line-clamp-2 text-sm"
@@ -341,6 +361,11 @@ exports[`PluginStoreItem > (Snapshot) renders with long description 1`] = `
         class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
       >
         Streaming
+      </span>
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+      >
+        Metadata
       </span>
     </div>
     <p

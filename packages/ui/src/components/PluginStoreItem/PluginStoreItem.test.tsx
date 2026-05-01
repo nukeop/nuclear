@@ -9,7 +9,7 @@ describe('PluginStoreItem', () => {
     description:
       'Stream music directly from YouTube Music with full search and playlist support.',
     author: 'Nuclear Team',
-    category: 'Streaming',
+    categories: ['Streaming', 'Metadata'],
     onInstall: vi.fn(),
   };
 
@@ -100,12 +100,16 @@ describe('PluginStoreItem', () => {
     expect(button).toBeDisabled();
   });
 
-  it('displays the category badge', () => {
+  it('displays category badges', () => {
     const { getByText } = render(
-      <PluginStoreItem {...defaultProps} category="Metadata" />,
+      <PluginStoreItem
+        {...defaultProps}
+        categories={['Metadata', 'Streaming']}
+      />,
     );
 
     expect(getByText('Metadata')).toBeInTheDocument();
+    expect(getByText('Streaming')).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
