@@ -59,6 +59,7 @@ export class PluginLoader {
       description: manifest.description,
       author: manifest.author,
       category: manifest.nuclear?.category,
+      categories: manifest.nuclear?.categories ?? [],
       icon: manifest.nuclear?.icon,
       permissions: manifest.nuclear?.permissions || [],
     };
