@@ -60,7 +60,6 @@ export class PluginLoader {
       author: manifest.author,
       category: manifest.nuclear?.category,
       categories: manifest.nuclear?.categories ?? [],
-      providers: manifest.nuclear?.providers ?? [],
       icon: manifest.nuclear?.icon,
       permissions: manifest.nuclear?.permissions || [],
     };

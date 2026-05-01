@@ -20,7 +20,6 @@ const MarketplacePluginSchema = z.object({
   // TODO: Remove category after registry migration to categories
   category: PluginCategorySchema.optional(),
   categories: z.array(PluginCategorySchema).optional(),
-  providers: z.array(z.string().min(1)).optional(),
   tags: z.array(z.string()).optional(),
   addedAt: z.string().datetime(),
 });

@@ -14,7 +14,6 @@ const NuclearSchema = z
     // TODO: Remove category after registry migration to categories
     category: z.string().min(1).optional(),
     categories: z.array(z.string().min(1)).optional(),
-    providers: z.array(z.string().min(1)).optional(),
     icon: PluginIconSchema.optional(),
     permissions: z.array(z.string().min(1)).optional(),
   })
@@ -60,7 +59,6 @@ const collectUnknownNuclearKeys = (
         'displayName',
         'category',
         'categories',
-        'providers',
         'icon',
         'permissions',
       ].includes(k),
@@ -84,7 +82,6 @@ const normalizeNuclear = (
     displayName: nuclear.displayName?.trim(),
     category,
     categories,
-    providers: nuclear.providers,
     icon: nuclear.icon as NuclearType['icon'],
     permissions,
   };
