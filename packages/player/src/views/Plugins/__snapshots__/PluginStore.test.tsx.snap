@@ -615,10 +615,27 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                         class="flex items-center gap-2"
                                       >
                                         <h3
-                                          class="text-foreground truncate text-base font-bold"
-                                          data-testid="plugin-store-item-name"
+                                          class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
                                         >
-                                          YouTube Music
+                                          <span
+                                            data-testid="plugin-store-item-name"
+                                          >
+                                            YouTube Music
+                                          </span>
+                                          <p
+                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                          >
+                                            <span
+                                              class="mr-1 opacity-60"
+                                            >
+                                              by
+                                            </span>
+                                            <span
+                                              data-testid="plugin-store-item-author"
+                                            >
+                                              nukeop
+                                            </span>
+                                          </p>
                                         </h3>
                                         <span
                                           class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
@@ -632,18 +649,6 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       >
                                         Stream music from YouTube
                                       </p>
-                                      <div
-                                        class="flex items-center gap-2 text-xs"
-                                      >
-                                        <p
-                                          class="text-foreground-secondary"
-                                          data-testid="plugin-store-item-author"
-                                        >
-                                          by
-                                           
-                                          nukeop
-                                        </p>
-                                      </div>
                                     </div>
                                     <div
                                       class="shrink-0"
@@ -695,10 +700,27 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                         class="flex items-center gap-2"
                                       >
                                         <h3
-                                          class="text-foreground truncate text-base font-bold"
-                                          data-testid="plugin-store-item-name"
+                                          class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
                                         >
-                                          Last.fm Scrobbler
+                                          <span
+                                            data-testid="plugin-store-item-name"
+                                          >
+                                            Last.fm Scrobbler
+                                          </span>
+                                          <p
+                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                          >
+                                            <span
+                                              class="mr-1 opacity-60"
+                                            >
+                                              by
+                                            </span>
+                                            <span
+                                              data-testid="plugin-store-item-author"
+                                            >
+                                              nukeop
+                                            </span>
+                                          </p>
                                         </h3>
                                         <span
                                           class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
@@ -712,18 +734,6 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       >
                                         Scrobble your listening history to Last.fm
                                       </p>
-                                      <div
-                                        class="flex items-center gap-2 text-xs"
-                                      >
-                                        <p
-                                          class="text-foreground-secondary"
-                                          data-testid="plugin-store-item-author"
-                                        >
-                                          by
-                                           
-                                          nukeop
-                                        </p>
-                                      </div>
                                     </div>
                                     <div
                                       class="shrink-0"
@@ -775,10 +785,27 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                         class="flex items-center gap-2"
                                       >
                                         <h3
-                                          class="text-foreground truncate text-base font-bold"
-                                          data-testid="plugin-store-item-name"
+                                          class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
                                         >
-                                          MusicBrainz Metadata
+                                          <span
+                                            data-testid="plugin-store-item-name"
+                                          >
+                                            MusicBrainz Metadata
+                                          </span>
+                                          <p
+                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                          >
+                                            <span
+                                              class="mr-1 opacity-60"
+                                            >
+                                              by
+                                            </span>
+                                            <span
+                                              data-testid="plugin-store-item-author"
+                                            >
+                                              nukeop
+                                            </span>
+                                          </p>
                                         </h3>
                                         <span
                                           class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
@@ -792,18 +819,6 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       >
                                         Fetch metadata from MusicBrainz database
                                       </p>
-                                      <div
-                                        class="flex items-center gap-2 text-xs"
-                                      >
-                                        <p
-                                          class="text-foreground-secondary"
-                                          data-testid="plugin-store-item-author"
-                                        >
-                                          by
-                                           
-                                          nukeop
-                                        </p>
-                                      </div>
                                     </div>
                                     <div
                                       class="shrink-0"

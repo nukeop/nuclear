@@ -39,6 +39,7 @@ export const ConnectedPluginItem: FC<ConnectedPluginItemProps> = ({
       name={plugin.metadata.displayName}
       author={plugin.metadata.author}
       description={plugin.metadata.description}
+      version={plugin.metadata.version}
       disabled={!plugin.enabled}
       warning={plugin.warning}
       warningText={plugin.warnings.length > 0 ? plugin.warnings[0] : undefined}

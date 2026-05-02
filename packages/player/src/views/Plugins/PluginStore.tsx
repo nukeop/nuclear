@@ -133,6 +133,7 @@ export const PluginStore: FC = () => {
                 author={plugin.author}
                 category={plugin.category}
                 categories={plugin.categories}
+                version={plugin.version}
                 isInstalled={isPluginInstalled(plugin)}
                 isInstalling={isPluginInstalling(plugin)}
                 onInstall={() => installPlugin({ plugin })}

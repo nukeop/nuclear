@@ -7,7 +7,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
   >
     <div
       aria-busy="false"
-      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow opacity-30 relative flex cursor-default flex-col gap-2 transition-opacity duration-250"
+      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow opacity-30 relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
       data-testid="plugin-item"
     >
       <div
@@ -52,19 +52,25 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
           >
             <h3
               class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-              data-testid="plugin-name"
             >
-              Disabled Plugin
+              <span
+                data-testid="plugin-name"
+              >
+                Disabled Plugin
+              </span>
               <p
                 class="text-foreground-secondary text-sm font-normal select-none"
-                data-testid="plugin-author"
               >
                 <span
                   class="mr-1 opacity-60"
                 >
                   by
                 </span>
-                Nuclear Team
+                <span
+                  data-testid="plugin-author"
+                >
+                  Nuclear Team
+                </span>
               </p>
             </h3>
             <p
@@ -99,7 +105,7 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
   >
     <div
       aria-busy="false"
-      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow relative flex cursor-default flex-col gap-2 transition-opacity duration-250"
+      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
       data-testid="plugin-item"
     >
       <div
@@ -113,19 +119,25 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
           >
             <h3
               class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-              data-testid="plugin-name"
             >
-              Accessory Plugin
+              <span
+                data-testid="plugin-name"
+              >
+                Accessory Plugin
+              </span>
               <p
                 class="text-foreground-secondary text-sm font-normal select-none"
-                data-testid="plugin-author"
               >
                 <span
                   class="mr-1 opacity-60"
                 >
                   by
                 </span>
-                Nuclear Team
+                <span
+                  data-testid="plugin-author"
+                >
+                  Nuclear Team
+                </span>
               </p>
             </h3>
             <p
@@ -167,7 +179,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
   >
     <div
       aria-busy="false"
-      class="text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-accent-orange/30 shadow-shadow ring-accent-orange ring-2 select-none ring-inset relative flex cursor-default flex-col gap-2 transition-opacity duration-250 border-accent-red"
+      class="text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-accent-orange/30 shadow-shadow ring-accent-orange ring-2 select-none ring-inset relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250 border-accent-red"
       data-testid="plugin-item"
     >
       <div
@@ -212,19 +224,25 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
           >
             <h3
               class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-              data-testid="plugin-name"
             >
-              YouTube Music
+              <span
+                data-testid="plugin-name"
+              >
+                YouTube Music
+              </span>
               <p
                 class="text-foreground-secondary text-sm font-normal select-none"
-                data-testid="plugin-author"
               >
                 <span
                   class="mr-1 opacity-60"
                 >
                   by
                 </span>
-                Nuclear Team
+                <span
+                  data-testid="plugin-author"
+                >
+                  Nuclear Team
+                </span>
               </p>
             </h3>
             <p

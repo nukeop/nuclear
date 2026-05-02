@@ -13,19 +13,25 @@ exports[`PluginStoreItem > (Snapshot) renders default state 1`] = `
     >
       <h3
         class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-        data-testid="plugin-store-item-name"
       >
-        YouTube Music
+        <span
+          data-testid="plugin-store-item-name"
+        >
+          YouTube Music
+        </span>
         <p
           class="text-foreground-secondary text-sm font-normal select-none"
-          data-testid="plugin-store-item-author"
         >
           <span
             class="mr-1 opacity-60"
           >
             by
           </span>
-          Nuclear Team
+          <span
+            data-testid="plugin-store-item-author"
+          >
+            Nuclear Team
+          </span>
         </p>
       </h3>
       <span
@@ -100,19 +106,25 @@ exports[`PluginStoreItem > (Snapshot) renders installed state 1`] = `
     >
       <h3
         class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-        data-testid="plugin-store-item-name"
       >
-        YouTube Music
+        <span
+          data-testid="plugin-store-item-name"
+        >
+          YouTube Music
+        </span>
         <p
           class="text-foreground-secondary text-sm font-normal select-none"
-          data-testid="plugin-store-item-author"
         >
           <span
             class="mr-1 opacity-60"
           >
             by
           </span>
-          Nuclear Team
+          <span
+            data-testid="plugin-store-item-author"
+          >
+            Nuclear Team
+          </span>
         </p>
       </h3>
       <span
@@ -183,19 +195,25 @@ exports[`PluginStoreItem > (Snapshot) renders installing state 1`] = `
     >
       <h3
         class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-        data-testid="plugin-store-item-name"
       >
-        YouTube Music
+        <span
+          data-testid="plugin-store-item-name"
+        >
+          YouTube Music
+        </span>
         <p
           class="text-foreground-secondary text-sm font-normal select-none"
-          data-testid="plugin-store-item-author"
         >
           <span
             class="mr-1 opacity-60"
           >
             by
           </span>
-          Nuclear Team
+          <span
+            data-testid="plugin-store-item-author"
+          >
+            Nuclear Team
+          </span>
         </p>
       </h3>
       <span
@@ -278,19 +296,25 @@ exports[`PluginStoreItem > (Snapshot) renders with custom labels 1`] = `
     >
       <h3
         class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-        data-testid="plugin-store-item-name"
       >
-        YouTube Music
+        <span
+          data-testid="plugin-store-item-name"
+        >
+          YouTube Music
+        </span>
         <p
           class="text-foreground-secondary text-sm font-normal select-none"
-          data-testid="plugin-store-item-author"
         >
           <span
             class="mr-1 opacity-60"
           >
-            by
+            from
           </span>
-          Nuclear Team
+          <span
+            data-testid="plugin-store-item-author"
+          >
+            Nuclear Team
+          </span>
         </p>
       </h3>
       <span
@@ -365,19 +389,25 @@ exports[`PluginStoreItem > (Snapshot) renders with long description 1`] = `
     >
       <h3
         class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-        data-testid="plugin-store-item-name"
       >
-        YouTube Music
+        <span
+          data-testid="plugin-store-item-name"
+        >
+          YouTube Music
+        </span>
         <p
           class="text-foreground-secondary text-sm font-normal select-none"
-          data-testid="plugin-store-item-author"
         >
           <span
             class="mr-1 opacity-60"
           >
             by
           </span>
-          Nuclear Team
+          <span
+            data-testid="plugin-store-item-author"
+          >
+            Nuclear Team
+          </span>
         </p>
       </h3>
       <span

@@ -23,7 +23,7 @@ const MarketplacePluginSchema = z.object({
   tags: z.array(z.string()).optional(),
   version: z.string().min(1).optional(),
   downloadUrl: z.url().optional(),
-  addedAt: z.date(),
+  addedAt: z.iso.datetime(),
 });
 
 const RegistrySchema = z.object({

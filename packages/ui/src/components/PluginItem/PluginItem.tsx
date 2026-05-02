@@ -87,17 +87,11 @@ export const PluginItem: FC<PluginItemProps> = ({
           )}
 
           <div className="min-w-0 flex-1">
-            <h3
-              data-testid="plugin-name"
-              className="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
-            >
-              {name}
-              <p
-                data-testid="plugin-author"
-                className="text-foreground-secondary text-sm font-normal select-none"
-              >
+            <h3 className="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none">
+              <span data-testid="plugin-name">{name}</span>
+              <p className="text-foreground-secondary text-sm font-normal select-none">
                 <span className="mr-1 opacity-60">{labels.by ?? 'by'}</span>
-                {author}
+                <span data-testid="plugin-author">{author}</span>
               </p>
             </h3>
             <p
