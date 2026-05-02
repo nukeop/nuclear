@@ -59,7 +59,7 @@
     "zustand": "^5.0.7"
   },
   "devDependencies": {
-    "@codecov/vite-plugin": "^1.9.1",
+    "@codecov/vite-plugin": "^2.0.0",
     "@tailwindcss/vite": "^4.1.11",
     "@tanstack/router-vite-plugin": "^1.131.2",
     "@tauri-apps/cli": "^2.8.1",
