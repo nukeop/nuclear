@@ -167,7 +167,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
   >
     <div
       aria-busy="false"
-      class="text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-accent-orange/10 shadow-shadow ring-accent-orange ring-2 select-none ring-inset relative flex cursor-default flex-col gap-2 transition-opacity duration-250 border-accent-red"
+      class="text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-accent-orange/30 shadow-shadow ring-accent-orange ring-2 select-none ring-inset relative flex cursor-default flex-col gap-2 transition-opacity duration-250 border-accent-red"
       data-testid="plugin-item"
     >
       <div

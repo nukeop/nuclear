@@ -219,7 +219,9 @@
     "installed": {
       "empty-state": "No plugins installed",
       "empty-state-description": "Browse the plugin store to find streaming, metadata, and other plugins.",
-      "empty-state-action": "Go to store"
+      "empty-state-action": "Go to store",
+      "update-available": "Update available",
+      "by": "by"
     },
     "store": {
       "searchPlaceholder": "Search plugins...",

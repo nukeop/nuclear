@@ -33,6 +33,10 @@ type PluginItemProps = {
   reloadDisabled?: boolean;
   removeDisabled?: boolean;
   isLoading?: boolean;
+  labels?: {
+    by?: string;
+    updateAvailable?: string;
+  };
 };
 
 export const PluginItem: FC<PluginItemProps> = ({
@@ -54,6 +58,7 @@ export const PluginItem: FC<PluginItemProps> = ({
   reloadDisabled = false,
   removeDisabled = false,
   isLoading = false,
+  labels = {},
 }) => (
   <div className="flex flex-row gap-2">
     <Box
@@ -91,7 +96,7 @@ export const PluginItem: FC<PluginItemProps> = ({
                 data-testid="plugin-author"
                 className="text-foreground-secondary text-sm font-normal select-none"
               >
-                <span className="mr-1 opacity-60">by</span>
+                <span className="mr-1 opacity-60">{labels.by ?? 'by'}</span>
                 {author}
               </p>
             </h3>
@@ -131,7 +136,7 @@ export const PluginItem: FC<PluginItemProps> = ({
                   className="flex flex-row gap-1"
                 >
                   <ArrowUpCircle size={12} />
-                  Update available
+                  {labels.updateAvailable ?? 'Update available'}
                 </Badge>
               )}
             </span>
