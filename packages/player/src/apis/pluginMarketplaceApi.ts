@@ -21,9 +21,9 @@ const MarketplacePluginSchema = z.object({
   category: PluginCategorySchema.optional(),
   categories: z.array(PluginCategorySchema).optional(),
   tags: z.array(z.string()).optional(),
-  latestVersion: z.string().min(1).optional(),
-  downloadUrl: z.string().url().optional(),
-  addedAt: z.string().datetime(),
+  version: z.string().min(1).optional(),
+  downloadUrl: z.url().optional(),
+  addedAt: z.date(),
 });
 
 const RegistrySchema = z.object({

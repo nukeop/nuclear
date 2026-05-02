@@ -70,7 +70,7 @@ export const PluginItem: FC<PluginItemProps> = ({
             warning,
           'opacity-30': disabled && !isLoading,
         },
-        'relative flex cursor-default flex-col gap-2 transition-opacity duration-250',
+        'relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250',
         className,
       )}
       aria-busy={isLoading}
