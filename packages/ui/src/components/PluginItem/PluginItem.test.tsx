@@ -50,6 +50,35 @@ describe('PluginItem', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  it('displays the version', () => {
+    const { getByTestId } = render(
+      <PluginItem
+        name="YouTube Music"
+        author="Nuclear Team"
+        description="Stream music from YouTube."
+        version="1.2.3"
+      />,
+    );
+
+    expect(getByTestId('plugin-version')).toHaveTextContent('v1.2.3');
+  });
+
+  it('displays an update available indicator', () => {
+    const { getByTestId } = render(
+      <PluginItem
+        name="YouTube Music"
+        author="Nuclear Team"
+        description="Stream music from YouTube."
+        version="1.2.3"
+        updateAvailable
+      />,
+    );
+
+    expect(getByTestId('plugin-update-available')).toHaveTextContent(
+      'Update available',
+    );
+  });
+
   it.each([
     {
       title: 'reloads the plugin when reload button is clicked',

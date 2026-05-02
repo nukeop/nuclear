@@ -12,10 +12,21 @@ exports[`PluginStoreItem > (Snapshot) renders default state 1`] = `
       class="flex items-center gap-2"
     >
       <h3
-        class="text-foreground truncate text-base font-bold"
+        class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
         data-testid="plugin-store-item-name"
       >
         YouTube Music
+        <p
+          class="text-foreground-secondary text-sm font-normal select-none"
+          data-testid="plugin-store-item-author"
+        >
+          <span
+            class="mr-1 opacity-60"
+          >
+            by
+          </span>
+          Nuclear Team
+        </p>
       </h3>
       <span
         class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
@@ -33,14 +44,6 @@ exports[`PluginStoreItem > (Snapshot) renders default state 1`] = `
       data-testid="plugin-store-item-description"
     >
       Stream music directly from YouTube Music with full search and playlist support.
-    </p>
-    <p
-      class="text-foreground-secondary text-xs"
-      data-testid="plugin-store-item-author"
-    >
-      by
-       
-      Nuclear Team
     </p>
   </div>
   <div
@@ -96,10 +99,21 @@ exports[`PluginStoreItem > (Snapshot) renders installed state 1`] = `
       class="flex items-center gap-2"
     >
       <h3
-        class="text-foreground truncate text-base font-bold"
+        class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
         data-testid="plugin-store-item-name"
       >
         YouTube Music
+        <p
+          class="text-foreground-secondary text-sm font-normal select-none"
+          data-testid="plugin-store-item-author"
+        >
+          <span
+            class="mr-1 opacity-60"
+          >
+            by
+          </span>
+          Nuclear Team
+        </p>
       </h3>
       <span
         class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
@@ -117,14 +131,6 @@ exports[`PluginStoreItem > (Snapshot) renders installed state 1`] = `
       data-testid="plugin-store-item-description"
     >
       Stream music directly from YouTube Music with full search and playlist support.
-    </p>
-    <p
-      class="text-foreground-secondary text-xs"
-      data-testid="plugin-store-item-author"
-    >
-      by
-       
-      Nuclear Team
     </p>
   </div>
   <div
@@ -176,10 +182,21 @@ exports[`PluginStoreItem > (Snapshot) renders installing state 1`] = `
       class="flex items-center gap-2"
     >
       <h3
-        class="text-foreground truncate text-base font-bold"
+        class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
         data-testid="plugin-store-item-name"
       >
         YouTube Music
+        <p
+          class="text-foreground-secondary text-sm font-normal select-none"
+          data-testid="plugin-store-item-author"
+        >
+          <span
+            class="mr-1 opacity-60"
+          >
+            by
+          </span>
+          Nuclear Team
+        </p>
       </h3>
       <span
         class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
@@ -197,14 +214,6 @@ exports[`PluginStoreItem > (Snapshot) renders installing state 1`] = `
       data-testid="plugin-store-item-description"
     >
       Stream music directly from YouTube Music with full search and playlist support.
-    </p>
-    <p
-      class="text-foreground-secondary text-xs"
-      data-testid="plugin-store-item-author"
-    >
-      by
-       
-      Nuclear Team
     </p>
   </div>
   <div
@@ -268,10 +277,21 @@ exports[`PluginStoreItem > (Snapshot) renders with custom labels 1`] = `
       class="flex items-center gap-2"
     >
       <h3
-        class="text-foreground truncate text-base font-bold"
+        class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
         data-testid="plugin-store-item-name"
       >
         YouTube Music
+        <p
+          class="text-foreground-secondary text-sm font-normal select-none"
+          data-testid="plugin-store-item-author"
+        >
+          <span
+            class="mr-1 opacity-60"
+          >
+            by
+          </span>
+          Nuclear Team
+        </p>
       </h3>
       <span
         class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
@@ -289,14 +309,6 @@ exports[`PluginStoreItem > (Snapshot) renders with custom labels 1`] = `
       data-testid="plugin-store-item-description"
     >
       Stream music directly from YouTube Music with full search and playlist support.
-    </p>
-    <p
-      class="text-foreground-secondary text-xs"
-      data-testid="plugin-store-item-author"
-    >
-      from
-       
-      Nuclear Team
     </p>
   </div>
   <div
@@ -352,10 +364,21 @@ exports[`PluginStoreItem > (Snapshot) renders with long description 1`] = `
       class="flex items-center gap-2"
     >
       <h3
-        class="text-foreground truncate text-base font-bold"
+        class="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none"
         data-testid="plugin-store-item-name"
       >
         YouTube Music
+        <p
+          class="text-foreground-secondary text-sm font-normal select-none"
+          data-testid="plugin-store-item-author"
+        >
+          <span
+            class="mr-1 opacity-60"
+          >
+            by
+          </span>
+          Nuclear Team
+        </p>
       </h3>
       <span
         class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
@@ -373,14 +396,6 @@ exports[`PluginStoreItem > (Snapshot) renders with long description 1`] = `
       data-testid="plugin-store-item-description"
     >
       This is a very long description that should be truncated after two lines. It contains a lot of text that explains what the plugin does in great detail, including all the features and capabilities it provides to users.
-    </p>
-    <p
-      class="text-foreground-secondary text-xs"
-      data-testid="plugin-store-item-author"
-    >
-      by
-       
-      Nuclear Team
     </p>
   </div>
   <div

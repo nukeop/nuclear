@@ -124,6 +124,16 @@ describe('PluginStoreItem', () => {
     expect(getByText('Lyrics')).toBeInTheDocument();
   });
 
+  it('displays the latest version', () => {
+    const { getByTestId } = render(
+      <PluginStoreItem {...defaultProps} version="2.1.0" />,
+    );
+
+    expect(getByTestId('plugin-store-item-version')).toHaveTextContent(
+      'v2.1.0',
+    );
+  });
+
   it('applies custom className', () => {
     const { getByTestId } = render(
       <PluginStoreItem {...defaultProps} className="custom-class" />,

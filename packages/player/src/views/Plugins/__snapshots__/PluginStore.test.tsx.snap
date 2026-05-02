@@ -632,14 +632,18 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       >
                                         Stream music from YouTube
                                       </p>
-                                      <p
-                                        class="text-foreground-secondary text-xs"
-                                        data-testid="plugin-store-item-author"
+                                      <div
+                                        class="flex items-center gap-2 text-xs"
                                       >
-                                        by
-                                         
-                                        nukeop
-                                      </p>
+                                        <p
+                                          class="text-foreground-secondary"
+                                          data-testid="plugin-store-item-author"
+                                        >
+                                          by
+                                           
+                                          nukeop
+                                        </p>
+                                      </div>
                                     </div>
                                     <div
                                       class="shrink-0"
@@ -708,14 +712,18 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       >
                                         Scrobble your listening history to Last.fm
                                       </p>
-                                      <p
-                                        class="text-foreground-secondary text-xs"
-                                        data-testid="plugin-store-item-author"
+                                      <div
+                                        class="flex items-center gap-2 text-xs"
                                       >
-                                        by
-                                         
-                                        nukeop
-                                      </p>
+                                        <p
+                                          class="text-foreground-secondary"
+                                          data-testid="plugin-store-item-author"
+                                        >
+                                          by
+                                           
+                                          nukeop
+                                        </p>
+                                      </div>
                                     </div>
                                     <div
                                       class="shrink-0"
@@ -784,14 +792,18 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       >
                                         Fetch metadata from MusicBrainz database
                                       </p>
-                                      <p
-                                        class="text-foreground-secondary text-xs"
-                                        data-testid="plugin-store-item-author"
+                                      <div
+                                        class="flex items-center gap-2 text-xs"
                                       >
-                                        by
-                                         
-                                        nukeop
-                                      </p>
+                                        <p
+                                          class="text-foreground-secondary"
+                                          data-testid="plugin-store-item-author"
+                                        >
+                                          by
+                                           
+                                          nukeop
+                                        </p>
+                                      </div>
                                     </div>
                                     <div
                                       class="shrink-0"

@@ -23,6 +23,7 @@ export const Default: Story = {
       'Stream music directly from YouTube Music with full search and playlist support.',
     author: 'Nuclear Team',
     categories: ['Streaming', 'Metadata'],
+    version: '1.2.0',
     onInstall: fn(),
   },
 };
@@ -34,6 +35,7 @@ export const Installed: Story = {
       'Fetch album and artist metadata from Discogs, including cover art and release information.',
     author: 'nukeop',
     categories: ['Metadata', 'Streaming'],
+    version: '3.0.1',
     isInstalled: true,
     onInstall: fn(),
   },
@@ -46,6 +48,7 @@ export const Installing: Story = {
       'Display song lyrics from Genius with support for synced lyrics when available.',
     author: 'Community',
     categories: ['Lyrics', 'Metadata'],
+    version: '1.0.0',
     isInstalling: true,
     onInstall: fn(),
   },
