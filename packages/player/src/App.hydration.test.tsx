@@ -5,7 +5,7 @@ import { usePluginStore } from './stores/pluginStore';
 import { useStartupStore } from './stores/startupStore';
 import { PluginFsMock } from './test/mocks/plugin-fs';
 import { resetInMemoryTauriStore } from './test/utils/inMemoryTauriStore';
-import { seedRegistryEntry } from './test/utils/seedPluginRegistry';
+import { seedRegistryEntry } from './test/utils/seedPlugins';
 import { createPluginFolder } from './test/utils/testPluginFolder';
 import { PluginsWrapper } from './views/Plugins/Plugins.test-wrapper';
 

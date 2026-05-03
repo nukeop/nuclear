@@ -1,4 +1,7 @@
 import { upsertRegistryEntry } from '../../services/plugins/pluginRegistry';
+import { usePluginStore } from '../../stores/pluginStore';
+import { NuclearPluginBuilder } from '../builders/NuclearPluginBuilder';
+import { PluginStateBuilder } from '../builders/PluginStateBuilder';
 
 type SeedParams = {
   id: string;
@@ -14,6 +17,25 @@ type SeedParams = {
 
 const managedPathFor = (id: string, version: string) =>
   `/home/user/.local/share/com.nuclearplayer/plugins/${id}/${version}`;
+
+export const seedPlugin = async ({
+  id,
+  version = '1.0.0',
+  installationMethod = 'store',
+}: Pick<SeedParams, 'id' | 'version' | 'installationMethod'>) => {
+  usePluginStore.setState((state) => ({
+    plugins: {
+      ...state.plugins,
+      [id]: new PluginStateBuilder()
+        .withId(id)
+        .withVersion(version)
+        .withInstallationMethod(installationMethod)
+        .withInstance(new NuclearPluginBuilder().build())
+        .build(),
+    },
+  }));
+  await seedRegistryEntry({ id, version, installationMethod });
+};
 
 export const seedRegistryEntry = async ({
   id,
