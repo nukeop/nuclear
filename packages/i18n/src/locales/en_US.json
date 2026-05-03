@@ -272,7 +272,11 @@
       }
     },
     "plugins": {
-      "title": "Plugins"
+      "title": "Plugins",
+      "auto-update": {
+        "title": "Auto-update plugins",
+        "description": "Automatically download and install new versions of store plugins on startup"
+      }
     },
     "themes": {
       "title": "Themes"
