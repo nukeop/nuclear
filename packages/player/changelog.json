@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-05-04T00:00",
+    "description": "Installed plugins are automatically updated to the latest version on startup",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-04-22T00:00",
     "description": "Fix legacy playlist import failing when track durations use mm:ss or hh:mm:ss format",
     "type": "fix",
