@@ -1,3 +1,5 @@
+import '../../test/mocks/plugin-fs';
+
 import { mockIPC } from '@tauri-apps/api/mocks';
 
 import { usePluginStore } from '../../stores/pluginStore';
@@ -26,7 +28,7 @@ describe('checkAndUpdatePlugins', () => {
   beforeEach(() => {
     resetInMemoryTauriStore();
     PluginFsMock.reset();
-    FetchMock.reset();
+    FetchMock.init();
     usePluginStore.setState({ plugins: {} });
     mockIPC((cmd) => {
       if (cmd === 'copy_dir_recursive') {
