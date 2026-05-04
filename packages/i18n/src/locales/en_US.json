@@ -235,6 +235,9 @@
         "metadata": "Metadata",
         "lyrics": "Lyrics",
         "scrobbling": "Scrobbling",
+        "dashboard": "Dashboard",
+        "playlists": "Playlists",
+        "discovery": "Discovery",
         "other": "Other"
       },
       "error": {

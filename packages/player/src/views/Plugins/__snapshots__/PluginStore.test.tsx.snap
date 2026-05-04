@@ -590,6 +590,30 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                   role="radio"
                                   type="button"
                                 >
+                                  Dashboard
+                                </button>
+                                <button
+                                  aria-checked="false"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                  role="radio"
+                                  type="button"
+                                >
+                                  Playlists
+                                </button>
+                                <button
+                                  aria-checked="false"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                  role="radio"
+                                  type="button"
+                                >
+                                  Discovery
+                                </button>
+                                <button
+                                  aria-checked="false"
+                                  class="border-border inline-flex cursor-pointer items-center justify-center rounded-full border-(length:--border-width) px-3 py-1 text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 bg-transparent"
+                                  role="radio"
+                                  type="button"
+                                >
                                   Other
                                 </button>
                               </div>

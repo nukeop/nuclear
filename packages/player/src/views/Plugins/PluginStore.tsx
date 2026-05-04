@@ -25,6 +25,9 @@ const CATEGORIES = [
   'metadata',
   'lyrics',
   'scrobbling',
+  'dashboard',
+  'playlists',
+  'discovery',
   'other',
 ] as const;
 

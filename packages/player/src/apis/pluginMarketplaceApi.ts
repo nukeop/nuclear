@@ -8,6 +8,8 @@ const PluginCategorySchema = z.enum([
   'lyrics',
   'scrobbling',
   'dashboard',
+  'playlists',
+  'discovery',
   'other',
 ]);
 
