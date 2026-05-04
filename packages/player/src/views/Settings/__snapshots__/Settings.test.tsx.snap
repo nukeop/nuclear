@@ -921,6 +921,56 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                           <h2
                             class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
                           >
+                            Plugins
+                          </h2>
+                          <div
+                            class="flex w-full flex-1 flex-col"
+                          >
+                            <div
+                              class="flex flex-col gap-6"
+                            >
+                              <div
+                                class="flex flex-col gap-2"
+                              >
+                                <div
+                                  class="flex items-center gap-3"
+                                >
+                                  <button
+                                    aria-checked="true"
+                                    aria-label="Auto-update plugins"
+                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                    data-checked=""
+                                    data-headlessui-state="checked"
+                                    id="headlessui-switch-:rr:"
+                                    role="switch"
+                                    tabindex="0"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                    />
+                                  </button>
+                                  <span
+                                    class="text-foreground text-sm font-semibold"
+                                  >
+                                    Auto-update plugins
+                                  </span>
+                                </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Automatically download and install new versions of store plugins on startup
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <section
+                          class="mb-6 flex w-full flex-col items-start justify-start"
+                        >
+                          <h2
+                            class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+                          >
                             Updates
                           </h2>
                           <div
@@ -941,7 +991,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-checked=""
                                     data-headlessui-state="checked"
-                                    id="headlessui-switch-:rr:"
+                                    id="headlessui-switch-:rs:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -973,7 +1023,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     aria-label="Auto-install updates"
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
-                                    id="headlessui-switch-:rs:"
+                                    id="headlessui-switch-:rt:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
