@@ -24,7 +24,7 @@ After installation, the plugin appears in the Installed tab. Toggle it on to ena
 
 You can also install plugins from a local folder. In the Installed tab, click "Add Plugin" and select a folder containing a plugin (a directory with a `package.json` and an entry file).
 
-Manually installed plugins have one extra feature: a reload button. Click it to re-read the plugin source from the original folder, recompile, and reload. This is useful during development. Store-installed plugins don't support reload; remove and reinstall to get a new version. Auto-update is planned for the future.
+Manually installed plugins have one extra feature: a reload button. Click it to re-read the plugin source from the original folder, recompile, and reload. This is useful during development. Store-installed plugins don't support reload; remove and reinstall to get a new version. Store plugins are updated automatically on startup (see Plugin updates below).
 
 ## Managing plugins
 
@@ -44,7 +44,11 @@ Dev plugins show a reload button that re-reads the source from the original fold
 
 ## Plugin updates
 
-There's no automatic update mechanism yet, but it's planned for the future. To update a store-installed plugin, remove it and reinstall from the store. Nuclear always fetches the latest GitHub release, so reinstalling picks up any new version the developer has published.
+Nuclear checks for updates when it starts. If a newer version is available in the registry and auto-update is enabled (the default), the update is downloaded and installed automatically. The old version's files remain on disk but the new version takes over.
+
+To disable auto-update, go to Settings and turn off "Auto-update plugins" under the Plugins section.
+
+Dev plugins are never auto-updated. To update a dev plugin, edit the source and click reload.
 
 ## Where plugins are stored
 

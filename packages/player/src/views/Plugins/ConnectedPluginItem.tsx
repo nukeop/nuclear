@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { useTranslation } from '@nuclearplayer/i18n';
 import { PluginItem, Toggle } from '@nuclearplayer/ui';
 
 import { PluginIconComponent } from '../../components/PluginIcon';
@@ -13,6 +14,7 @@ type ConnectedPluginItemProps = {
 export const ConnectedPluginItem: FC<ConnectedPluginItemProps> = ({
   plugin,
 }) => {
+  const { t } = useTranslation('plugins');
   const store = usePluginStore();
   const startupStore = useStartupStore();
 
@@ -37,6 +39,7 @@ export const ConnectedPluginItem: FC<ConnectedPluginItemProps> = ({
       name={plugin.metadata.displayName}
       author={plugin.metadata.author}
       description={plugin.metadata.description}
+      version={plugin.metadata.version}
       disabled={!plugin.enabled}
       warning={plugin.warning}
       warningText={plugin.warnings.length > 0 ? plugin.warnings[0] : undefined}
@@ -53,6 +56,10 @@ export const ConnectedPluginItem: FC<ConnectedPluginItemProps> = ({
         />
       }
       loadTimeMs={startupStore.pluginDurations[plugin.metadata.id]}
+      labels={{
+        by: t('installed.by'),
+        updateAvailable: t('installed.update-available'),
+      }}
     />
   );
 };

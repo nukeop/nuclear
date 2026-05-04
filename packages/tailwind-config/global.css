@@ -71,13 +71,13 @@
   --ring: oklch(100% 0 0);
 
   /* Accent Colors */
-  --accent-green: oklch(79.05% 0.209 147.58);
-  --accent-yellow: oklch(95.53% 0.134 112.76);
-  --accent-purple: oklch(74.2% 0.149 301.88);
-  --accent-blue: oklch(55.98% 0.08 270.09);
-  --accent-orange: oklch(83.39% 0.124 66.56);
-  --accent-cyan: oklch(88.26% 0.093 212.85);
-  --accent-red: oklch(68.22% 0.206 24.43);
+  --accent-green: oklch(0.88 0.13 145);
+  --accent-yellow: oklch(0.9 0.13 95);
+  --accent-purple: oklch(0.82 0.1 300);
+  --accent-blue: oklch(0.84 0.083 250);
+  --accent-orange: oklch(0.88 0.085 65);
+  --accent-cyan: oklch(0.88 0.09 200);
+  --accent-red: oklch(0.78 0.12 18);
 
   /* Borders */
   --border-width: 2px;
@@ -135,6 +135,14 @@
   --primary: oklch(0.5 0.1 5);
 
   --border: oklch(0.48 0.04 5);
+
+  --accent-green: oklch(0.72 0.14 145);
+  --accent-yellow: oklch(0.78 0.14 95);
+  --accent-purple: oklch(0.7 0.13 300);
+  --accent-blue: oklch(0.72 0.12 250);
+  --accent-orange: oklch(0.75 0.12 65);
+  --accent-cyan: oklch(0.75 0.11 200);
+  --accent-red: oklch(0.68 0.14 18);
 
   --border-width: 1px;
 

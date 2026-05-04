@@ -11,6 +11,8 @@ const boxVariants = cva(
         primary: 'bg-primary',
         secondary: 'bg-background',
         tertiary: 'bg-background-secondary',
+        warning:
+          'bg-accent-orange/30 ring-accent-orange ring ring-2 ring-inset',
       },
       shadow: {
         default: 'shadow-shadow',

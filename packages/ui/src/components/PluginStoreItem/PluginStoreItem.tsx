@@ -11,7 +11,10 @@ type PluginStoreItemProps = Omit<ComponentProps<'div'>, 'children'> & {
   name: string;
   description: string;
   author: string;
-  category: string;
+  // TODO: Remove category after registry migration to categories
+  category?: string;
+  categories?: string[];
+  version?: string;
   isInstalled?: boolean;
   isInstalling?: boolean;
   onInstall: () => void;
@@ -28,6 +31,8 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
   description,
   author,
   category,
+  categories,
+  version,
   isInstalled = false,
   isInstalling = false,
   onInstall,
@@ -51,27 +56,33 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
     >
       <div className="flex min-w-0 flex-1 flex-col gap-1">
         <div className="flex items-center gap-2">
-          <h3
-            data-testid="plugin-store-item-name"
-            className="text-foreground truncate text-base font-bold"
-          >
-            {name}
+          <h3 className="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none">
+            <span data-testid="plugin-store-item-name">{name}</span>
+            <p className="text-foreground-secondary text-sm font-normal select-none">
+              <span className="mr-1 opacity-60">{by}</span>
+              <span data-testid="plugin-store-item-author">{author}</span>
+            </p>
           </h3>
-          <Badge variant="pill" color="cyan">
-            {category}
-          </Badge>
+          {version && (
+            <Badge
+              data-testid="plugin-store-item-version"
+              color="inverted"
+              variant="pill"
+            >
+              v{version}
+            </Badge>
+          )}
+          {(categories ?? (category ? [category] : [])).map((cat) => (
+            <Badge key={cat} variant="pill" color="cyan">
+              {cat}
+            </Badge>
+          ))}
         </div>
         <p
           data-testid="plugin-store-item-description"
           className="text-foreground-secondary line-clamp-2 text-sm"
         >
           {description}
-        </p>
-        <p
-          data-testid="plugin-store-item-author"
-          className="text-foreground-secondary text-xs"
-        >
-          {by} {author}
         </p>
       </div>
 

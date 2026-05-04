@@ -10,7 +10,9 @@ export type PluginManifest = {
   main?: string;
   nuclear?: {
     displayName?: string;
+    // TODO: Remove category after registry migration to categories
     category?: string;
+    categories?: string[];
     icon?: PluginIcon;
     permissions?: string[];
   };
@@ -30,7 +32,9 @@ export type PluginMetadata = {
   version: string;
   description: string;
   author: string;
+  // TODO: Remove category after registry migration to categories
   category?: string;
+  categories: string[];
   icon?: PluginIcon;
   permissions: string[];
 };

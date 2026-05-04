@@ -22,7 +22,8 @@ export const Default: Story = {
     description:
       'Stream music directly from YouTube Music with full search and playlist support.',
     author: 'Nuclear Team',
-    category: 'Streaming',
+    categories: ['Streaming', 'Metadata'],
+    version: '1.2.0',
     onInstall: fn(),
   },
 };
@@ -33,7 +34,8 @@ export const Installed: Story = {
     description:
       'Fetch album and artist metadata from Discogs, including cover art and release information.',
     author: 'nukeop',
-    category: 'Metadata',
+    categories: ['Metadata', 'Streaming'],
+    version: '3.0.1',
     isInstalled: true,
     onInstall: fn(),
   },
@@ -45,8 +47,20 @@ export const Installing: Story = {
     description:
       'Display song lyrics from Genius with support for synced lyrics when available.',
     author: 'Community',
-    category: 'Lyrics',
+    categories: ['Lyrics', 'Metadata'],
+    version: '1.0.0',
     isInstalling: true,
+    onInstall: fn(),
+  },
+};
+
+export const LegacySingleCategory: Story = {
+  args: {
+    name: 'Bandcamp Plugin',
+    description:
+      'Browse and stream music from Bandcamp. Supports artist pages, albums, and tags.',
+    author: 'Community',
+    category: 'streaming',
     onInstall: fn(),
   },
 };
@@ -57,7 +71,7 @@ export const LongDescription: Story = {
     description:
       'Professional-grade audio processing plugin that includes a 10-band equalizer, bass boost, treble enhancement, spatial audio effects, and real-time spectrum analysis. Perfect for audiophiles who want complete control over their listening experience.',
     author: 'AudioTech Solutions',
-    category: 'Other',
+    categories: ['Other'],
     onInstall: fn(),
   },
 };

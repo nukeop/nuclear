@@ -209,6 +209,15 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     widget: { type: 'toggle' },
   },
   {
+    id: 'plugins.autoUpdate',
+    title: 'preferences.plugins.auto-update.title',
+    description: 'preferences.plugins.auto-update.description',
+    category: 'plugins',
+    kind: 'boolean',
+    default: true,
+    widget: { type: 'toggle' },
+  },
+  {
     id: 'integrations.mcp.enabled',
     title: 'preferences.integrations.mcp.enabled.title',
     description: 'preferences.integrations.mcp.enabled.description',

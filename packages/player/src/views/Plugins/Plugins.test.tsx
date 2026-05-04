@@ -86,7 +86,7 @@ describe('Plugins view', () => {
       ).toMatchInlineSnapshot(`
         [
           {
-            "author": "by nukeop",
+            "author": "nukeop",
             "description": "Fake plugin for testing",
             "name": "Fake plugin",
           },

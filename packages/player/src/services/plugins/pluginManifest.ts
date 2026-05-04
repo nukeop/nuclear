@@ -11,7 +11,9 @@ const PluginIconSchema = PluginIconLinkSchema;
 const NuclearSchema = z
   .object({
     displayName: z.string().min(1).optional(),
+    // TODO: Remove category after registry migration to categories
     category: z.string().min(1).optional(),
+    categories: z.array(z.string().min(1)).optional(),
     icon: PluginIconSchema.optional(),
     permissions: z.array(z.string().min(1)).optional(),
   })
@@ -52,7 +54,14 @@ const collectUnknownNuclearKeys = (
   nuclear: Record<string, unknown>,
 ): string[] =>
   Object.keys(nuclear).filter(
-    (k) => !['displayName', 'category', 'icon', 'permissions'].includes(k),
+    (k) =>
+      ![
+        'displayName',
+        'category',
+        'categories',
+        'icon',
+        'permissions',
+      ].includes(k),
   );
 
 const normalizeNuclear = (
@@ -67,9 +76,12 @@ const normalizeNuclear = (
     warnings.push(`nuclear contains unknown keys: ${unknown.join(', ')}`);
   }
   const permissions = normalizePermissions(nuclear.permissions, warnings);
+  const category = nuclear.category?.trim();
+  const categories = nuclear.categories ?? (category ? [category] : []);
   return {
     displayName: nuclear.displayName?.trim(),
-    category: nuclear.category?.trim(),
+    category,
+    categories,
     icon: nuclear.icon as NuclearType['icon'],
     permissions,
   };

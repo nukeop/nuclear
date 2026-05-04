@@ -19,6 +19,8 @@ const badgeVariants = cva(
         yellow: '',
         purple: '',
         blue: '',
+        secondary: '',
+        inverted: '',
       },
       animated: {
         true: 'animate-pulse',
@@ -60,6 +62,16 @@ const badgeVariants = cva(
         variant: 'dot',
         color: 'blue',
         className: 'bg-accent-blue',
+      },
+      {
+        variant: 'pill',
+        color: 'secondary',
+        className: 'bg-background text-foreground',
+      },
+      {
+        variant: 'pill',
+        color: 'inverted',
+        className: 'bg-foreground text-background-secondary',
       },
       {
         variant: 'pill',

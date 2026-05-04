@@ -25,7 +25,16 @@ export const Default: Story = {
     author: 'Nuclear Team',
     description:
       'Stream music directly from YouTube Music with full search and playlist support.',
+    version: '1.2.0',
     icon: <Music size={24} />,
+    loadTimeMs: 150,
+    rightAccessory: (
+      <Toggle
+        defaultChecked={false}
+        aria-label="Enable plugin"
+        onChange={fn()}
+      />
+    ),
   },
 };
 
@@ -87,12 +96,33 @@ export const WithRightAccessory: Story = {
   },
 };
 
+export const UpdateAvailable: Story = {
+  args: {
+    name: 'Discogs Metadata',
+    author: 'nukeop',
+    description:
+      'Fetch album and artist metadata from Discogs, including cover art and release information.',
+    version: '1.3.0',
+    updateAvailable: true,
+    loadTimeMs: 200,
+    icon: <Music size={24} />,
+    rightAccessory: (
+      <Toggle
+        defaultChecked={false}
+        aria-label="Enable plugin"
+        onChange={fn()}
+      />
+    ),
+  },
+};
+
 export const WithActions: Story = {
   args: {
     name: 'Dev Plugin',
     author: 'Nuclear Team',
     description:
       'Reload and remove controls are available for development plugins.',
+    version: '0.5.0',
     icon: <Music size={24} />,
     onReload: fn(),
     onRemove: fn(),

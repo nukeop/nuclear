@@ -30,7 +30,7 @@ The `nuclear` field holds Nuclear-specific config:
 {
   "nuclear": {
     "displayName": "My Plugin",
-    "category": "metadata",
+    "categories": ["metadata"],
     "icon": {
       "type": "link",
       "link": "https://example.com/icon.png"
@@ -43,12 +43,12 @@ The `nuclear` field holds Nuclear-specific config:
 | Property | Required | Description |
 |----------|----------|-------------|
 | `displayName` | no | Human-readable name shown in the UI. Falls back to `name`. |
-| `category` | no | One of: `streaming`, `metadata`, `lyrics`, `scrobbling`, `dashboard`, `other`. Required for registry submission. |
+| `categories` | no | Array of categories. Valid values: `streaming`, `metadata`, `lyrics`, `scrobbling`, `dashboard`, `playlists`, `discovery`, `other`. Required for registry submission. |
 | `icon` | no | Plugin icon. Only `{"type": "link", "link": "url"}` is supported. |
 | `permissions` | no | Informational list. No permissions are enforced yet; this is for future use. |
 
 {% hint style="info" %}
-Categories are convenience tags for filtering in the store. Pick the one that best describes your plugin's primary function.
+A plugin can belong to multiple categories. Pick all that apply based on the provider types your plugin registers.
 {% endhint %}
 
 ### Full example
@@ -63,7 +63,7 @@ Categories are convenience tags for filtering in the store. Pick the one that be
   "main": "dist/index.js",
   "nuclear": {
     "displayName": "Discogs",
-    "category": "metadata"
+    "categories": ["metadata"]
   }
 }
 ```
@@ -113,7 +113,10 @@ Set up CI to build and create the release automatically. Manual zip creation is 
   "author": "nukeop",
   "repo": "NuclearPlayer/nuclear-plugin-discogs",
   "category": "metadata",
+  "categories": ["metadata"],
   "tags": ["discogs", "metadata"],
+  "version": "1.0.0",
+  "downloadUrl": "https://github.com/NuclearPlayer/nuclear-plugin-discogs/releases/download/v1.0.0/plugin.zip",
   "addedAt": "2026-01-25T00:00:00Z"
 }
 ```
@@ -130,7 +133,10 @@ Set up CI to build and create the release automatically. Manual zip creation is 
 | `author` | yes | 1-64 chars. |
 | `repo` | yes | `owner/repo-name` format. |
 | `category` | yes | Must match your `package.json` `nuclear.category`. |
+| `categories` | yes | Array of categories matching your plugin's provider types. Same valid values as `nuclear.categories` in package.json. |
 | `tags` | no | Up to 10 tags, lowercase with hyphens, unique. |
+| `version` | no | Latest released semver version. Populated automatically by CI. |
+| `downloadUrl` | no | Direct URL to the latest `plugin.zip`. Populated automatically by CI. |
 | `addedAt` | yes | ISO 8601 datetime (e.g., `2026-01-25T00:00:00Z`). |
 
 ---
@@ -142,7 +148,7 @@ You don't need to update the registry to release new versions. Create a new GitH
 Only submit a registry PR if you need to change the plugin's metadata (description, category, tags, etc.).
 
 {% hint style="info" %}
-There is no automatic update push to users who already have your plugin installed. They need to remove and reinstall to get the latest version.
+Nuclear checks for plugin updates on startup. If auto-update is enabled (it is by default), installed store plugins are automatically updated to the latest version. Users can disable this in Settings under Plugins.
 {% endhint %}
 
 ## Examples

@@ -19,7 +19,7 @@ export class PluginStateBuilder {
     enabled: false,
     warning: false,
     warnings: [],
-    installationMethod: 'dev',
+    installationMethod: 'store',
   };
 
   withId(id: string): PluginStateBuilder {

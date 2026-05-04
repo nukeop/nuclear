@@ -29,7 +29,7 @@ Run `npm init` inside.
   "main": "index.ts",
   "nuclear": {
     "displayName": "Hello Plugin",
-    "category": "Examples"
+    "categories": ["other"]
   }
 }
 ```
@@ -96,5 +96,5 @@ type Plugin = {
 * `name`, `version`, `description`, `author`
 * `main` (optional). If missing, the app tries `index.js`, `index.ts`, `index.tsx`, then `dist/index.*`.
 * `nuclear.displayName` (optional UI name)
-* `nuclear.category` (shown in the Plugins list)
+* `nuclear.categories` (shown in the Plugins list)
 * `nuclear.icon` and `nuclear.permissions` (optional; unknown permissions get a warning)

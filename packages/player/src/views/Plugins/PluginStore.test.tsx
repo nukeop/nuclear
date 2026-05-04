@@ -47,19 +47,19 @@ describe('Plugin Store', () => {
     expect(storePlugins.map((p) => p.data)).toMatchInlineSnapshot(`
       [
         {
-          "author": "by nukeop",
+          "author": "nukeop",
           "description": "Stream music from YouTube",
           "isInstalled": false,
           "name": "YouTube Music",
         },
         {
-          "author": "by nukeop",
+          "author": "nukeop",
           "description": "Scrobble your listening history to Last.fm",
           "isInstalled": false,
           "name": "Last.fm Scrobbler",
         },
         {
-          "author": "by nukeop",
+          "author": "nukeop",
           "description": "Fetch metadata from MusicBrainz database",
           "isInstalled": false,
           "name": "MusicBrainz Metadata",

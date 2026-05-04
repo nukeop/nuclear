@@ -219,7 +219,9 @@
     "installed": {
       "empty-state": "No plugins installed",
       "empty-state-description": "Browse the plugin store to find streaming, metadata, and other plugins.",
-      "empty-state-action": "Go to store"
+      "empty-state-action": "Go to store",
+      "update-available": "Update available",
+      "by": "by"
     },
     "store": {
       "searchPlaceholder": "Search plugins...",
@@ -233,6 +235,9 @@
         "metadata": "Metadata",
         "lyrics": "Lyrics",
         "scrobbling": "Scrobbling",
+        "dashboard": "Dashboard",
+        "playlists": "Playlists",
+        "discovery": "Discovery",
         "other": "Other"
       },
       "error": {
@@ -270,7 +275,11 @@
       }
     },
     "plugins": {
-      "title": "Plugins"
+      "title": "Plugins",
+      "auto-update": {
+        "title": "Auto-update plugins",
+        "description": "Automatically download and install new versions of store plugins on startup"
+      }
     },
     "themes": {
       "title": "Themes"
