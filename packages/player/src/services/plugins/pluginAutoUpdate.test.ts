@@ -38,7 +38,7 @@ describe('checkAndUpdatePlugins', () => {
   });
 
   it('skips entirely if plugins.autoUpdate is disabled', async () => {
-    useSettingsStore.getState().setValue('plugins.autoUpdate', false);
+    useSettingsStore.getState().setValue('core.plugins.autoUpdate', false);
     await seedPlugin({ id: 'outdated' });
 
     FetchMock.get('plugin-registry', {
@@ -60,7 +60,7 @@ describe('checkAndUpdatePlugins', () => {
   });
 
   it('does nothing when all plugins are up to date', async () => {
-    useSettingsStore.getState().setValue('plugins.autoUpdate', true);
+    useSettingsStore.getState().setValue('core.plugins.autoUpdate', true);
     await seedPlugin({ id: 'current', version: '2.0.0' });
 
     FetchMock.get('plugin-registry', {
@@ -82,7 +82,7 @@ describe('checkAndUpdatePlugins', () => {
   });
 
   it('updates multiple plugins, skipping ones that are already current', async () => {
-    useSettingsStore.getState().setValue('plugins.autoUpdate', true);
+    useSettingsStore.getState().setValue('core.plugins.autoUpdate', true);
     await seedPlugin({ id: 'outdated-1' });
     await seedPlugin({ id: 'up-to-date', version: '3.0.0' });
     await seedPlugin({ id: 'outdated-2', version: '1.5.0' });
@@ -126,7 +126,7 @@ describe('checkAndUpdatePlugins', () => {
   });
 
   it('skips dev plugins', async () => {
-    useSettingsStore.getState().setValue('plugins.autoUpdate', true);
+    useSettingsStore.getState().setValue('core.plugins.autoUpdate', true);
     await seedPlugin({ id: 'dev-plugin', installationMethod: 'dev' });
     await seedPlugin({ id: 'store-plugin' });
 
@@ -159,7 +159,7 @@ describe('checkAndUpdatePlugins', () => {
   });
 
   it('keeps old version and logs warning when update fails', async () => {
-    useSettingsStore.getState().setValue('plugins.autoUpdate', true);
+    useSettingsStore.getState().setValue('core.plugins.autoUpdate', true);
     await seedPlugin({ id: 'failing-plugin' });
     await seedPlugin({ id: 'good-plugin' });
 
@@ -207,7 +207,7 @@ describe('checkAndUpdatePlugins', () => {
   });
 
   it('skips plugins missing version or downloadUrl in marketplace', async () => {
-    useSettingsStore.getState().setValue('plugins.autoUpdate', true);
+    useSettingsStore.getState().setValue('core.plugins.autoUpdate', true);
     await seedPlugin({ id: 'no-version' });
     await seedPlugin({ id: 'no-url' });
     await seedPlugin({ id: 'has-both' });
@@ -242,5 +242,46 @@ describe('checkAndUpdatePlugins', () => {
     expect(plugins.getPlugin('no-version')?.metadata.version).toBe('1.0.0');
     expect(plugins.getPlugin('no-url')?.metadata.version).toBe('1.0.0');
     expect(plugins.getPlugin('has-both')?.metadata.version).toBe('2.0.0');
+  });
+
+  it('preserves enabled state after updating a plugin', async () => {
+    useSettingsStore.getState().setValue('core.plugins.autoUpdate', true);
+    await seedPlugin({ id: 'enabled-plugin', enabled: true });
+    await seedPlugin({ id: 'disabled-plugin', enabled: false });
+
+    FetchMock.get('plugin-registry', {
+      version: 1,
+      plugins: [
+        new MarketplacePluginBuilder()
+          .withId('enabled-plugin')
+          .withVersion('2.0.0')
+          .withDownloadUrl('https://example.com/enabled-plugin.zip')
+          .build(),
+        new MarketplacePluginBuilder()
+          .withId('disabled-plugin')
+          .withVersion('2.0.0')
+          .withDownloadUrl('https://example.com/disabled-plugin.zip')
+          .build(),
+      ],
+    });
+
+    createPluginFolder(`${DOWNLOAD_BASE}/enabled-plugin`, {
+      id: 'enabled-plugin',
+      version: '2.0.0',
+    });
+    createPluginFolder(`${DOWNLOAD_BASE}/disabled-plugin`, {
+      id: 'disabled-plugin',
+      version: '2.0.0',
+    });
+
+    await checkAndUpdatePlugins();
+
+    const plugins = usePluginStore.getState();
+    expect(plugins.getPlugin('enabled-plugin')?.metadata.version).toBe('2.0.0');
+    expect(plugins.getPlugin('enabled-plugin')?.enabled).toBe(true);
+    expect(plugins.getPlugin('disabled-plugin')?.metadata.version).toBe(
+      '2.0.0',
+    );
+    expect(plugins.getPlugin('disabled-plugin')?.enabled).toBe(false);
   });
 });

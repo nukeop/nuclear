@@ -5,6 +5,7 @@ import { useStartupStore } from '../../stores/startupStore';
 import { resolveErrorMessage } from '../../utils/logging';
 import { providersHost } from '../providersHost';
 import { createPluginAPI } from './createPluginAPI';
+import { checkAndUpdatePlugins } from './pluginAutoUpdate';
 import { getPluginsDir } from './pluginDir';
 import { PluginLoader } from './PluginLoader';
 import {
@@ -80,4 +81,6 @@ export const hydratePluginsFromRegistry = async (): Promise<void> => {
 
   const startupFinishTime = Date.now();
   useStartupStore.getState().finishStartup(startupFinishTime - now);
+
+  void checkAndUpdatePlugins();
 };

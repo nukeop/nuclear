@@ -21,20 +21,22 @@ const managedPathFor = (id: string, version: string) =>
 export const seedPlugin = async ({
   id,
   version = '1.0.0',
+  enabled = false,
   installationMethod = 'store',
-}: Pick<SeedParams, 'id' | 'version' | 'installationMethod'>) => {
+}: Pick<SeedParams, 'id' | 'version' | 'enabled' | 'installationMethod'>) => {
   usePluginStore.setState((state) => ({
     plugins: {
       ...state.plugins,
       [id]: new PluginStateBuilder()
         .withId(id)
         .withVersion(version)
+        .withEnabled(enabled)
         .withInstallationMethod(installationMethod)
         .withInstance(new NuclearPluginBuilder().build())
         .build(),
     },
   }));
-  await seedRegistryEntry({ id, version, installationMethod });
+  await seedRegistryEntry({ id, version, enabled, installationMethod });
 };
 
 export const seedRegistryEntry = async ({
