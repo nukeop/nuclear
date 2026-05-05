@@ -1,4 +1,5 @@
 ---
+import FAQ from '../components/FAQ.astro';
 import Features from '../components/Features.astro';
 import Hero from '../components/Hero.astro';
 import { McpShowcase } from '../components/McpShowcase';
@@ -36,5 +37,6 @@ const description =
     </section>
     <McpShowcase client:load />
     <Testimonials />
+    <FAQ />
   </main>
 </BaseLayout>
