@@ -5,6 +5,7 @@ import { stars } from '../data/github';
 import { releaseUrl, version } from '../data/version';
 import Badge from './Badge.astro';
 import Box from './Box.astro';
+import { CopyButton } from './CopyButton';
 
 const platforms = [
   {
@@ -75,49 +76,18 @@ const platforms = [
       from opening. Try right-clicking the app and selecting Open. If that doesn't
       work, run this in Terminal:
     </p>
-    <div class="group relative mt-1.5 mb-0.5">
+    <div class="relative mt-1.5 mb-0.5">
       <code
-        id="xattr-cmd"
         class="bg-background-secondary block rounded px-2 py-1 pr-8 text-[11px] break-all"
         >sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app</code
       >
-      <button
-        id="copy-xattr"
-        type="button"
-        class="text-foreground/40 hover:text-foreground/80 absolute top-1/2 right-1 -translate-y-1/2 rounded p-1 transition-colors"
-        aria-label="Copy command"
-      >
-        <svg
-          class="h-3.5 w-3.5"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-          ></path>
-        </svg>
-      </button>
+      <CopyButton
+        client:load
+        text="sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app"
+        className="absolute top-1/2 right-1 -translate-y-1/2"
+      />
     </div>
   </div>
-  <script>
-    document
-      .getElementById('copy-xattr')
-      ?.addEventListener('click', async () => {
-        const cmd = document.getElementById('xattr-cmd')?.textContent ?? '';
-        await navigator.clipboard.writeText(cmd);
-        const btn = document.getElementById('copy-xattr');
-        if (btn) {
-          btn.innerHTML = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-          setTimeout(() => {
-            btn.innerHTML = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
-          }, 2000);
-        }
-      });
-  </script>
 </Box>
 
 <div class="relative z-10 mt-6">
