@@ -3,60 +3,277 @@ import { Image } from 'astro:assets';
 
 import installedPlugins from '../../../docs/.gitbook/assets/installed-plugins.png';
 import logViewer from '../../../docs/.gitbook/assets/log-viewer.png';
+import playlistDetailView from '../../../docs/.gitbook/assets/playlist-detail-view.png';
 import playlists from '../../../docs/.gitbook/assets/playlists.png';
 import pluginStore from '../../../docs/.gitbook/assets/plugin-store.png';
 import preferences from '../../../docs/.gitbook/assets/preferences.png';
 import searchAlbums from '../../../docs/.gitbook/assets/search-albums.png';
 import searchArtists from '../../../docs/.gitbook/assets/search-artists.png';
+import searchTracks from '../../../docs/.gitbook/assets/search-tracks.png';
 import whatsNew from '../../../docs/.gitbook/assets/whats-new.png';
+import ThemeShowcase from './ThemeShowcase.astro';
 
-const features = [
-  { src: searchArtists, label: 'Search artists', rotate: 'rotate-[0.8deg]' },
-  { src: searchAlbums, label: 'Search albums', rotate: '-rotate-[0.6deg]' },
-  { src: playlists, label: 'Playlists', rotate: '-rotate-1' },
-  { src: pluginStore, label: 'Plugin store', rotate: 'rotate-[0.7deg]' },
+type ScreenshotEntry = {
+  src: typeof searchArtists;
+  alt: string;
+};
+
+type FeatureBlock = {
+  heading: string;
+  description: string;
+  images: ScreenshotEntry[];
+  layout: 'text-left' | 'text-right';
+};
+
+const featureBlocks: FeatureBlock[] = [
   {
-    src: installedPlugins,
-    label: 'Installed plugins',
-    rotate: 'rotate-[0.5deg]',
+    heading: 'Search',
+    description:
+      'Look up artists, albums, and tracks across multiple sources. More sources can be added with plugins.',
+    images: [
+      { src: searchArtists, alt: 'Search artists in Nuclear' },
+      { src: searchAlbums, alt: 'Search albums in Nuclear' },
+      { src: searchTracks, alt: 'Search tracks in Nuclear' },
+    ],
+    layout: 'text-left',
   },
-  { src: preferences, label: 'Preferences', rotate: '-rotate-[0.8deg]' },
-  { src: whatsNew, label: "What's new", rotate: '-rotate-[0.6deg]' },
-  { src: logViewer, label: 'Log viewer', rotate: 'rotate-1' },
+  {
+    heading: 'Playlists',
+    description:
+      'Put together playlists from any source. Reorder, rename, and come back to them later. Import from any service, or from JSON files.',
+    images: [
+      { src: playlists, alt: 'Playlists view in Nuclear' },
+      { src: playlistDetailView, alt: 'Playlist detail view in Nuclear' },
+    ],
+    layout: 'text-right',
+  },
+  {
+    heading: 'Plugins',
+    description:
+      'Nuclear can be extended with a powerful plugin API. Auto-update is built in.',
+    images: [
+      { src: pluginStore, alt: 'Plugin store in Nuclear' },
+      { src: installedPlugins, alt: 'Installed plugins in Nuclear' },
+    ],
+    layout: 'text-left',
+  },
+  {
+    heading: 'Under the hood',
+    description:
+      'Preferences for everything. Power users can use the built-in log viewer for easy debugging and support.',
+    images: [
+      { src: preferences, alt: 'Preferences in Nuclear' },
+      { src: logViewer, alt: 'Log viewer in Nuclear' },
+      { src: whatsNew, alt: "What's new in Nuclear" },
+    ],
+    layout: 'text-right',
+  },
 ];
 ---
 
-<div class="w-full">
-  <h3
-    class="font-heading mb-8 text-center text-2xl font-black tracking-widest uppercase md:text-3xl"
-  >
-    Features
-  </h3>
-  <div class="grid grid-cols-1 items-start gap-5 md:grid-cols-2 md:gap-6">
-    {
-      features.map((feature) => (
+<div class="features-root w-full">
+  {
+    featureBlocks.map((block, blockIndex) => (
+      <>
         <div
           class:list={[
-            'themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md',
-            feature.rotate,
+            'feature-block',
+            block.layout === 'text-right' ? 'reverse' : '',
           ]}
         >
-          <div class="leading-0">
-            <Image
-              src={feature.src}
-              alt={feature.label}
-              widths={[640, 960, 1280]}
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 480px"
-              class="block w-full"
-            />
+          <div class="feature-text">
+            <h3 class="font-heading feature-heading">{block.heading}</h3>
+            <p class="feature-description">{block.description}</p>
           </div>
-          <div class="border-border bg-background-secondary flex border-t px-3 py-2">
-            <span class="font-heading w-full text-center text-sm font-bold tracking-wider uppercase">
-              {feature.label}
-            </span>
+
+          <div
+            class:list={[
+              'screenshot-stack',
+              block.images.length === 2 ? 'stack-2' : 'stack-3',
+            ]}
+          >
+            {block.images.map((image, imageIndex) => (
+              <div
+                class="screenshot-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
+                style={`--card-index: ${imageIndex}; --card-count: ${block.images.length};`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  inferSize
+                  widths={[720, 1080, 1440]}
+                  sizes="(max-width: 768px) 75vw, (max-width: 1024px) 40vw, 420px"
+                  quality={90}
+                  class="block w-full"
+                />
+              </div>
+            ))}
           </div>
         </div>
-      ))
-    }
-  </div>
+
+        {blockIndex === 1 && (
+          <div class="theme-showcase-interlude">
+            <ThemeShowcase />
+          </div>
+        )}
+      </>
+    ))
+  }
 </div>
+
+<style>
+  .features-root {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
+
+  /* ── Feature block layout ── */
+
+  .feature-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .feature-block.reverse {
+    direction: rtl;
+  }
+
+  .feature-block.reverse > * {
+    direction: ltr;
+  }
+
+  /* ── Text side ── */
+
+  .feature-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .feature-heading {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+  }
+
+  .feature-description {
+    font-size: 1rem;
+    line-height: 1.65;
+    opacity: 0.75;
+    max-width: 38ch;
+  }
+
+  /* ── Screenshot stack ── */
+
+  .screenshot-stack {
+    --card-width: 420px;
+    --perspective: 1200px;
+    --fan-angle: 28deg;
+    --overlap: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: var(--perspective);
+    min-height: 200px;
+  }
+
+  .screenshot-card {
+    flex-shrink: 0;
+    width: var(--card-width);
+    margin-right: calc(-1 * var(--overlap));
+    transform: rotateY(calc(-1 * var(--fan-angle)));
+    transition:
+      transform 0.25s ease,
+      filter 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .screenshot-card:hover {
+    filter: brightness(0.9);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .screenshot-card:last-child {
+    margin-right: 0;
+  }
+
+  .reverse .screenshot-card {
+    transform: rotateY(var(--fan-angle));
+  }
+
+  .stack-2 .screenshot-card:nth-child(1) {
+    z-index: 1;
+  }
+
+  .stack-2 .screenshot-card:nth-child(2) {
+    z-index: 2;
+  }
+
+  .stack-3 .screenshot-card:nth-child(1) {
+    z-index: 1;
+  }
+
+  .stack-3 .screenshot-card:nth-child(2) {
+    z-index: 2;
+  }
+
+  .stack-3 .screenshot-card:nth-child(3) {
+    z-index: 3;
+  }
+
+  /* ── ThemeShowcase divider ── */
+
+  .theme-showcase-interlude {
+    width: 100%;
+  }
+
+  /* ── Responsive ── */
+
+  @media (max-width: 900px) {
+    .screenshot-stack {
+      --card-width: 320px;
+      --overlap: 200px;
+      --fan-angle: 22deg;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .features-root {
+      gap: 4rem;
+    }
+
+    .feature-block {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .feature-block.reverse {
+      direction: ltr;
+    }
+
+    .feature-block .feature-text {
+      order: 0;
+    }
+
+    .feature-block .screenshot-stack {
+      order: 1;
+    }
+
+    .screenshot-stack {
+      --fan-angle: 0deg;
+      --card-width: 75vw;
+      --overlap: 60vw;
+      --perspective: none;
+    }
+
+    .reverse .screenshot-card {
+      transform: rotateY(0deg);
+    }
+  }
+</style>
