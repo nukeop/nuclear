@@ -53,7 +53,12 @@ const faqJsonLd = {
     FAQ
   </h2>
 
-  <div class="flex flex-col gap-3">
+  <div class="relative flex flex-col gap-3">
+    <img
+      src="/images/nuki-crawling-out.png"
+      alt="Nuki peeking out with a magnifying glass"
+      class="pointer-events-none absolute right-4 bottom-full z-10 -mb-1.5 w-32 select-none md:w-40"
+    />
     {
       faqItems.map((item) => (
         <details class="themed-border border-border bg-background-secondary shadow-shadow group rounded-md">
