@@ -51,7 +51,10 @@ export const McpShowcase: FC = () => {
   const activeTab = tabs.find((tab) => tab.id === activeId) ?? tabs[0];
 
   return (
-    <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 py-16">
+    <section
+      id="mcp"
+      className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 py-16"
+    >
       <h2 className="font-heading text-3xl font-black tracking-widest uppercase md:text-4xl">
         MCP
       </h2>
