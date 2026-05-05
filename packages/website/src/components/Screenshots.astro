@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 
 import dashboardAqua from '../../../docs/.gitbook/assets/dashboard-aqua.png';
 import dashboardGreen from '../../../docs/.gitbook/assets/dashboard-green.png';
-import dashboardMain from '../../../docs/.gitbook/assets/dashboard-main.png';
 import dashboardMint from '../../../docs/.gitbook/assets/dashboard-mint.png';
 import dashboardOrange from '../../../docs/.gitbook/assets/dashboard-orange.png';
 import dashboardRed from '../../../docs/.gitbook/assets/dashboard-red.png';
@@ -16,8 +15,6 @@ import preferences from '../../../docs/.gitbook/assets/preferences.png';
 import searchAlbums from '../../../docs/.gitbook/assets/search-albums.png';
 import searchArtists from '../../../docs/.gitbook/assets/search-artists.png';
 import whatsNew from '../../../docs/.gitbook/assets/whats-new.png';
-import Badge from './Badge.astro';
-import Box from './Box.astro';
 
 const themes = [
   { src: dashboardViolet, name: 'Aurora' },
@@ -47,22 +44,6 @@ const features = [
 <section
   class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-16 px-4 py-16 md:px-8"
 >
-  {/* Section A - Hero screenshot */}
-  <div class="w-full rotate-1">
-    <Box>
-      <Badge slot="badge">Screenshots</Badge>
-      <div class="leading-0">
-        <Image
-          src={dashboardMain}
-          alt="Nuclear music player dashboard"
-          widths={[960, 1280, 1920, 2972]}
-          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 960px"
-          class="block w-full"
-        />
-      </div>
-    </Box>
-  </div>
-
   {/* Section B - Theme showcase */}
   <div class="w-full">
     <h3

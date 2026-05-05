@@ -1,11 +1,18 @@
 ---
+import { Image } from 'astro:assets';
+
+import dashboardMain from '../../../docs/.gitbook/assets/dashboard-main.png';
+import Box from './Box.astro';
+import Downloads from './Downloads.astro';
 import { Typewriter } from './Typewriter';
 ---
 
-<section class="relative z-20 px-4 py-8 md:p-8">
-  <div class="text-center">
+<section
+  class="relative z-20 mx-auto w-full max-w-7xl px-4 py-8 md:px-8 md:py-12"
+>
+  <div class="mb-10 text-center">
     <h1
-      class="font-heading mb-8 text-3xl leading-tight font-black uppercase md:text-4xl lg:text-5xl xl:text-6xl"
+      class="font-heading text-3xl leading-tight font-black uppercase md:text-4xl lg:text-5xl xl:text-6xl"
     >
       Nuclear is a
       <span
@@ -15,9 +22,31 @@ import { Typewriter } from './Typewriter';
       ><br />
       <Typewriter client:load />
     </h1>
-    <span class="absolute z-20 flex">
-      <img class="relative w-30" src="images/new-nuki-hello.png" />
-    </span>
+  </div>
+
+  <div class="grid grid-cols-1 items-center gap-8 xl:grid-cols-[3fr_2fr]">
+    <div class="relative z-10 rotate-1">
+      <Box>
+        <div class="leading-0">
+          <Image
+            src={dashboardMain}
+            alt="Nuclear music player dashboard"
+            widths={[960, 1280, 1920, 2972]}
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 960px"
+            class="block w-full"
+          />
+        </div>
+      </Box>
+      <img
+        src="images/new-nuki-hello.png"
+        alt="Nuclear mascot waving"
+        class="pointer-events-none absolute right-0 bottom-0 z-10 w-36 select-none md:-right-8 md:w-48 lg:-right-12"
+      />
+    </div>
+
+    <div class="flex flex-col items-center">
+      <Downloads />
+    </div>
   </div>
 </section>
 
