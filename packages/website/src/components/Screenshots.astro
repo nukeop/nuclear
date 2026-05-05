@@ -20,12 +20,12 @@ import Badge from './Badge.astro';
 import Box from './Box.astro';
 
 const themes = [
-  { src: dashboardViolet, name: 'Aurora', rotate: '-rotate-1' },
-  { src: dashboardAqua, name: 'Lagoon', rotate: 'rotate-[0.7deg]' },
-  { src: dashboardMint, name: 'Arctic Moss', rotate: '-rotate-[0.5deg]' },
-  { src: dashboardOrange, name: 'Canyon', rotate: 'rotate-1' },
-  { src: dashboardRed, name: 'Molten Core', rotate: '-rotate-[0.8deg]' },
-  { src: dashboardGreen, name: 'Midnight Terminal', rotate: 'rotate-[0.6deg]' },
+  { src: dashboardViolet, name: 'Aurora' },
+  { src: dashboardAqua, name: 'Lagoon' },
+  { src: dashboardMint, name: 'Arctic Moss' },
+  { src: dashboardOrange, name: 'Canyon' },
+  { src: dashboardRed, name: 'Molten Core' },
+  { src: dashboardGreen, name: 'Midnight Terminal' },
 ];
 
 const features = [
@@ -45,7 +45,7 @@ const features = [
 ---
 
 <section
-  class="px-4 py-16 md:px-8 z-10 relative w-full max-w-5xl mx-auto flex flex-col items-center gap-16"
+  class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-16 px-4 py-16 md:px-8"
 >
   {/* Section A - Hero screenshot */}
   <div class="w-full rotate-1">
@@ -57,7 +57,7 @@ const features = [
           alt="Nuclear music player dashboard"
           widths={[960, 1280, 1920, 2972]}
           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 960px"
-          class="w-full block"
+          class="block w-full"
         />
       </div>
     </Box>
@@ -66,26 +66,24 @@ const features = [
   {/* Section B - Theme showcase */}
   <div class="w-full">
     <h3
-      class="font-heading font-black text-2xl md:text-3xl uppercase tracking-widest text-center mb-8"
+      class="font-heading mb-8 text-center text-2xl font-black tracking-widest uppercase md:text-3xl"
     >
       Built-in themes
     </h3>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+    <div class="themes-cascade">
       {
-        themes.map((theme) => (
-          <div class:list={['flex flex-col items-center gap-2', theme.rotate]}>
-            <div class="themed-border border-border rounded-md shadow-shadow overflow-hidden bg-primary">
-              <Image
-                src={theme.src}
-                alt={`Nuclear dashboard with ${theme.name} theme`}
-                widths={[480, 720, 960]}
-                sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 300px"
-                class="w-full block"
-              />
-            </div>
-            <span class="font-heading font-bold text-sm uppercase tracking-wider">
-              {theme.name}
-            </span>
+        themes.map((theme, index) => (
+          <div
+            class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
+            style={`--index: ${index};`}
+          >
+            <Image
+              src={theme.src}
+              alt={`Nuclear dashboard with ${theme.name} theme`}
+              widths={[480, 720, 960]}
+              sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 300px"
+              class="block w-full"
+            />
           </div>
         ))
       }
@@ -95,16 +93,16 @@ const features = [
   {/* Section C - Feature grid */}
   <div class="w-full">
     <h3
-      class="font-heading font-black text-2xl md:text-3xl uppercase tracking-widest text-center mb-8"
+      class="font-heading mb-8 text-center text-2xl font-black tracking-widest uppercase md:text-3xl"
     >
       Features
     </h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 items-start">
+    <div class="grid grid-cols-1 items-start gap-5 md:grid-cols-2 md:gap-6">
       {
         features.map((feature) => (
           <div
             class:list={[
-              'themed-border border-border rounded-md shadow-shadow overflow-hidden bg-primary',
+              'themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md',
               feature.rotate,
             ]}
           >
@@ -114,11 +112,11 @@ const features = [
                 alt={feature.label}
                 widths={[640, 960, 1280]}
                 sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 480px"
-                class="w-full block"
+                class="block w-full"
               />
             </div>
-            <div class="px-3 py-2 border-t border-border bg-background-secondary">
-              <span class="font-heading font-bold text-sm uppercase tracking-wider">
+            <div class="border-border bg-background-secondary flex border-t px-3 py-2">
+              <span class="font-heading w-full text-center text-sm font-bold tracking-wider uppercase">
                 {feature.label}
               </span>
             </div>
@@ -128,3 +126,45 @@ const features = [
     </div>
   </div>
 </section>
+
+<style>
+  .themes-cascade {
+    --card-width: 320px;
+    --overlap: 200px;
+    --rotate-y: 25deg;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1400px;
+  }
+
+  .theme-card {
+    flex-shrink: 0;
+    width: var(--card-width);
+    margin-right: calc(-1 * var(--overlap));
+    transform: rotateY(calc(-1 * var(--rotate-y)));
+  }
+
+  .theme-card:last-child {
+    margin-right: 0;
+  }
+
+  @media (max-width: 768px) {
+    .themes-cascade {
+      --card-width: 220px;
+      --overlap: 140px;
+      --rotate-y: 22deg;
+      perspective: 1000px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .themes-cascade {
+      --card-width: 160px;
+      --overlap: 100px;
+      --rotate-y: 20deg;
+      perspective: 800px;
+    }
+  }
+</style>

@@ -18,7 +18,16 @@ export default {
   importOrderParserPlugins: ['typescript', 'jsx'],
   plugins: [
     '@ianvs/prettier-plugin-sort-imports',
+    'prettier-plugin-astro',
     'prettier-plugin-tailwindcss',
+  ],
+  overrides: [
+    {
+      files: '*.astro',
+      options: {
+        parser: 'astro',
+      },
+    },
   ],
   tailwindFunctions: ['clsx', 'cn', 'cva'],
 };

@@ -1,18 +1,11 @@
 ---
-import { versionTag } from '../data/version';
 import { Typewriter } from './Typewriter';
 ---
 
-<section class="px-4 py-8 md:p-8 z-10 relative">
+<section class="relative z-20 px-4 py-8 md:p-8">
   <div class="text-center">
-    <div
-      class="inline-block mb-6 themed-border border-border bg-[var(--color-badge)] rounded-md px-4 py-1 text-sm font-bold uppercase tracking-widest shadow-shadow"
-    >
-      {versionTag} Available Now
-    </div>
-
     <h1
-      class="font-heading mb-8 text-3xl font-black uppercase leading-tight md:text-4xl lg:text-5xl xl:text-6xl"
+      class="font-heading mb-8 text-3xl leading-tight font-black uppercase md:text-4xl lg:text-5xl xl:text-6xl"
     >
       Nuclear is a
       <span
@@ -22,6 +15,9 @@ import { Typewriter } from './Typewriter';
       ><br />
       <Typewriter client:load />
     </h1>
+    <span class="absolute z-20 flex">
+      <img class="relative w-30" src="images/new-nuki-hello.png" />
+    </span>
   </div>
 </section>
 
