@@ -113,8 +113,10 @@ const featureBlocks: FeatureBlock[] = [
                   src={block.nuki.src}
                   alt={block.nuki.alt}
                   class:list={[
-                    'pointer-events-none absolute -bottom-4 z-10 hidden w-50 select-none md:block',
-                    isReversed ? '-right-12 rotate-6' : '-left-12 -rotate-6',
+                    'pointer-events-none absolute -bottom-4 z-10 w-40 select-none md:w-36 xl:w-50',
+                    isReversed
+                      ? 'right-4 rotate-6 md:-right-8'
+                      : 'left-4 -rotate-6 md:-left-8',
                   ]}
                 />
               )}
