@@ -16,9 +16,15 @@ export const Typewriter = () => {
     let cancelled = false;
 
     const loop = async () => {
-      let index = 0;
+      let lastIndex = -1;
       while (!cancelled) {
-        const phrase = taglines[index % taglines.length];
+        let nextIndex: number;
+        do {
+          nextIndex = Math.floor(Math.random() * taglines.length);
+        } while (nextIndex === lastIndex && taglines.length > 1);
+        lastIndex = nextIndex;
+
+        const phrase = taglines[nextIndex];
 
         for (let i = 0; i <= phrase.length && !cancelled; i++) {
           setText(phrase.slice(0, i));
@@ -31,8 +37,6 @@ export const Typewriter = () => {
           await sleep(DELETE_SPEED);
         }
         await sleep(PAUSE_AFTER_DELETE);
-
-        index++;
       }
     };
 

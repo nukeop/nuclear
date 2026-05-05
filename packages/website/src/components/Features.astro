@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+
+import installedPlugins from '../../../docs/.gitbook/assets/installed-plugins.png';
+import logViewer from '../../../docs/.gitbook/assets/log-viewer.png';
+import playlists from '../../../docs/.gitbook/assets/playlists.png';
+import pluginStore from '../../../docs/.gitbook/assets/plugin-store.png';
+import preferences from '../../../docs/.gitbook/assets/preferences.png';
+import searchAlbums from '../../../docs/.gitbook/assets/search-albums.png';
+import searchArtists from '../../../docs/.gitbook/assets/search-artists.png';
+import whatsNew from '../../../docs/.gitbook/assets/whats-new.png';
+
+const features = [
+  { src: searchArtists, label: 'Search artists', rotate: 'rotate-[0.8deg]' },
+  { src: searchAlbums, label: 'Search albums', rotate: '-rotate-[0.6deg]' },
+  { src: playlists, label: 'Playlists', rotate: '-rotate-1' },
+  { src: pluginStore, label: 'Plugin store', rotate: 'rotate-[0.7deg]' },
+  {
+    src: installedPlugins,
+    label: 'Installed plugins',
+    rotate: 'rotate-[0.5deg]',
+  },
+  { src: preferences, label: 'Preferences', rotate: '-rotate-[0.8deg]' },
+  { src: whatsNew, label: "What's new", rotate: '-rotate-[0.6deg]' },
+  { src: logViewer, label: 'Log viewer', rotate: 'rotate-1' },
+];
+---
+
+<div class="w-full">
+  <h3
+    class="font-heading mb-8 text-center text-2xl font-black tracking-widest uppercase md:text-3xl"
+  >
+    Features
+  </h3>
+  <div class="grid grid-cols-1 items-start gap-5 md:grid-cols-2 md:gap-6">
+    {
+      features.map((feature) => (
+        <div
+          class:list={[
+            'themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md',
+            feature.rotate,
+          ]}
+        >
+          <div class="leading-0">
+            <Image
+              src={feature.src}
+              alt={feature.label}
+              widths={[640, 960, 1280]}
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 480px"
+              class="block w-full"
+            />
+          </div>
+          <div class="border-border bg-background-secondary flex border-t px-3 py-2">
+            <span class="font-heading w-full text-center text-sm font-bold tracking-wider uppercase">
+              {feature.label}
+            </span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

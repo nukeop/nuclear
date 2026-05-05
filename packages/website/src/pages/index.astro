@@ -1,7 +1,8 @@
 ---
+import Features from '../components/Features.astro';
 import Hero from '../components/Hero.astro';
-import Screenshots from '../components/Screenshots.astro';
 import Testimonials from '../components/Testimonials.astro';
+import ThemeShowcase from '../components/ThemeShowcase.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 import '../styles/global.css';
@@ -28,7 +29,12 @@ const description =
       </div>
       <Hero />
     </div>
-    <Screenshots />
+    <section
+      class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-16 px-4 py-16 md:px-8"
+    >
+      <ThemeShowcase />
+      <Features />
+    </section>
     <Testimonials />
   </main>
 </BaseLayout>
