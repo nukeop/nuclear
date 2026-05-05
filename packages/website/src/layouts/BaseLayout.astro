@@ -41,8 +41,16 @@ const jsonLd = {
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/icon.png" />
-    <meta name="theme-color" content="#ff9cb4" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#2a2022" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="theme-color"
+      content="#ff9cb4"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#2a2022"
+      media="(prefers-color-scheme: dark)"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -79,7 +87,7 @@ const jsonLd = {
       src="https://umami.gumblert.tech/umami.js"></script>
   </head>
   <body
-    class="bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans"
+    class="bg-background-secondary text-foreground selection:bg-primary selection:text-primary-foreground font-sans antialiased"
   >
     <Header />
     <slot />
