@@ -1,0 +1,164 @@
+---
+import { Image } from 'astro:assets';
+
+import dashboardAqua from '../../../docs/.gitbook/assets/dashboard-aqua.png';
+import dashboardGreen from '../../../docs/.gitbook/assets/dashboard-green.png';
+import dashboardMint from '../../../docs/.gitbook/assets/dashboard-mint.png';
+import dashboardOrange from '../../../docs/.gitbook/assets/dashboard-orange.png';
+import dashboardRed from '../../../docs/.gitbook/assets/dashboard-red.png';
+import dashboardViolet from '../../../docs/.gitbook/assets/dashboard-violet.png';
+
+const topRow = [
+  { src: dashboardViolet, name: 'Aurora' },
+  { src: dashboardAqua, name: 'Lagoon' },
+  { src: dashboardMint, name: 'Arctic Moss' },
+];
+
+const bottomRow = [
+  { src: dashboardOrange, name: 'Canyon' },
+  { src: dashboardRed, name: 'Molten Core' },
+  { src: dashboardGreen, name: 'Midnight Terminal' },
+];
+
+const allThemes = [...topRow, ...bottomRow];
+---
+
+<div class="w-full">
+  <h3
+    class="font-heading mb-8 text-center text-2xl font-black tracking-widest uppercase md:text-3xl"
+  >
+    Built-in themes
+  </h3>
+
+  <div class="themes-cascade desktop">
+    {
+      allThemes.map((theme, index) => (
+        <div
+          class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
+          style={`--index: ${index};`}
+        >
+          <Image
+            src={theme.src}
+            alt={`Nuclear dashboard with ${theme.name} theme`}
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 1024px) 30vw, 320px"
+            quality={90}
+            class="block w-full"
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="mobile-rows">
+    <div class="themes-cascade mobile-row">
+      {
+        topRow.map((theme, index) => (
+          <div
+            class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
+            style={`--index: ${index};`}
+          >
+            <Image
+              src={theme.src}
+              alt={`Nuclear dashboard with ${theme.name} theme`}
+              widths={[720, 1080, 1440]}
+              sizes="45vw"
+              quality={90}
+              class="block w-full"
+            />
+          </div>
+        ))
+      }
+    </div>
+    <div class="themes-cascade mobile-row reverse">
+      {
+        bottomRow.map((theme, index) => (
+          <div
+            class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
+            style={`--index: ${index};`}
+          >
+            <Image
+              src={theme.src}
+              alt={`Nuclear dashboard with ${theme.name} theme`}
+              widths={[720, 1080, 1440]}
+              sizes="45vw"
+              quality={90}
+              class="block w-full"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .themes-cascade {
+    --card-width: 320px;
+    --overlap: 200px;
+    --rotate-y: 25deg;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1400px;
+  }
+
+  .theme-card {
+    flex-shrink: 0;
+    width: var(--card-width);
+    margin-right: calc(-1 * var(--overlap));
+    transform: rotateY(calc(-1 * var(--rotate-y)));
+  }
+
+  .theme-card:last-child {
+    margin-right: 0;
+  }
+
+  .mobile-rows {
+    display: none;
+  }
+
+  .desktop {
+    display: flex;
+  }
+
+  @media (max-width: 1024px) {
+    .desktop {
+      display: none;
+    }
+
+    .mobile-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mobile-row {
+      --card-width: 220px;
+      --overlap: 140px;
+      --rotate-y: 22deg;
+      perspective: 1000px;
+    }
+
+    .mobile-row.reverse .theme-card {
+      transform: rotateY(var(--rotate-y));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .mobile-row {
+      --card-width: 160px;
+      --overlap: 100px;
+      --rotate-y: 20deg;
+      perspective: 800px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mobile-row {
+      --card-width: 140px;
+      --overlap: 85px;
+    }
+  }
+</style>

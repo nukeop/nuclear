@@ -1,8 +1,8 @@
 ---
-type Props = {
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'div'> & {
   as?: string;
-  class?: string;
-  [key: string]: unknown;
 };
 
 const { as: Element = 'div', class: className, ...rest } = Astro.props;
@@ -10,11 +10,15 @@ const { as: Element = 'div', class: className, ...rest } = Astro.props;
 
 <Element
   class:list={[
-    'themed-border border-border bg-primary rounded-md shadow-shadow relative text-center',
+    'themed-border border-border bg-background shadow-shadow relative overflow-visible rounded-md text-center',
     className,
   ]}
   {...rest}
 >
   <slot name="badge" />
-  <slot />
+  <div
+    class="overflow-hidden rounded-[calc(var(--radius,0.375rem)-var(--border-width,2px))]"
+  >
+    <slot />
+  </div>
 </Element>

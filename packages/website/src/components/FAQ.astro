@@ -1,0 +1,87 @@
+---
+type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+const faqItems: FaqItem[] = [
+  {
+    question: 'Is Nuclear music player free?',
+    answer:
+      'Yes. Nuclear is completely free and open-source, released under the AGPL-3.0 license. There are no ads, no trackers, no premium tier, and no in-app purchases. Anyone can download it, use it, and audit the source code.',
+  },
+  {
+    question: 'What is Nuclear music player?',
+    answer:
+      'Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening. Runs on Windows, macOS, and Linux.',
+  },
+  {
+    question: 'Is Nuclear music player safe?',
+    answer:
+      'Yes. Nuclear is open source, so the entire code is publicly auditable on GitHub. Releases are built by GitHub Actions from the public repository. There is no telemetry, no analytics, and no data collection.',
+  },
+  {
+    question: 'Is Nuclear music player available for Android?',
+    answer:
+      'No. Nuclear is a desktop application, available for Windows, macOS (Intel and Apple Silicon), and Linux (Flatpak, AUR, AppImage, and others). There is no official Android or iOS version.',
+  },
+  {
+    question: 'How do I install Nuclear?',
+    answer:
+      'Download the latest release for your platform from the GitHub releases page. Linux users can also install Nuclear from Flathub, the AUR, or as an AppImage, while Windows users can use winget, and Mac users can use homebrew. Full installation instructions are available in the documentation.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<section id="faq" class="mx-auto w-full max-w-3xl px-4 py-16">
+  <h2
+    class="font-heading mb-8 text-center text-3xl font-black tracking-widest uppercase md:text-4xl"
+  >
+    FAQ
+  </h2>
+
+  <div class="relative flex flex-col gap-3">
+    <img
+      src="/images/nuki-crawling-out.png"
+      alt="Nuki peeking out with a magnifying glass"
+      class="pointer-events-none absolute right-4 bottom-full z-10 -mb-1.5 w-32 select-none md:w-40"
+    />
+    {
+      faqItems.map((item) => (
+        <details class="themed-border border-border bg-background-secondary shadow-shadow group rounded-md">
+          <summary class="font-heading cursor-pointer list-none px-5 py-4 text-base font-bold tracking-wide uppercase select-none [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center justify-between gap-4">
+              <span>{item.question}</span>
+              <span
+                class="text-primary text-2xl leading-none transition-transform group-open:rotate-45"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </span>
+          </summary>
+          <div class="border-border border-t-2 px-5 py-4">
+            <p class="text-foreground/80 text-sm leading-relaxed">
+              {item.answer}
+            </p>
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />

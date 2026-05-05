@@ -5,5 +5,11 @@ export const taglines = [
   'for Linux',
   'for Mac',
   'for Windows',
-  "that's free as in freedom",
+  "that's free and open source",
+  'for AI agents',
+  'with a built-in MCP',
+  'for music discovery',
+  'with themes',
+  'with a ton of plugins',
+  'with a built-in log viewer',
 ];

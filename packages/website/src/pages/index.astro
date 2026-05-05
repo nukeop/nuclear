@@ -1,7 +1,8 @@
 ---
-import Downloads from '../components/Downloads.astro';
+import FAQ from '../components/FAQ.astro';
+import Features from '../components/Features.astro';
 import Hero from '../components/Hero.astro';
-import Screenshots from '../components/Screenshots.astro';
+import { McpShowcase } from '../components/McpShowcase';
 import Testimonials from '../components/Testimonials.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -13,24 +14,30 @@ const description =
 ---
 
 <BaseLayout title={title} description={description}>
-  <main class="relative bg-background flex flex-col items-center">
-    <div
-      class="relative min-h-screen flex flex-col items-center justify-center w-full"
-    >
+  <main
+    class="bg-background-secondary relative flex w-full flex-col items-center overflow-x-clip"
+  >
+    <div class="relative flex w-full flex-col items-center justify-center">
       <div
-        class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"
+        class="bg-grid-pattern pointer-events-none absolute inset-0 opacity-10"
         aria-hidden="true"
       >
       </div>
       <div
-        class="absolute inset-0 bg-radial-fade pointer-events-none"
+        class="bg-radial-fade pointer-events-none absolute inset-0"
         aria-hidden="true"
       >
       </div>
       <Hero />
-      <Downloads />
     </div>
-    <Screenshots />
+    <section
+      id="features"
+      class="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-16 px-4 py-16 md:px-8"
+    >
+      <Features />
+    </section>
+    <McpShowcase client:load />
     <Testimonials />
+    <FAQ />
   </main>
 </BaseLayout>

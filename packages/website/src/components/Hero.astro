@@ -1,18 +1,20 @@
 ---
-import { versionTag } from '../data/version';
+import { Image } from 'astro:assets';
+
+import dashboardMain from '../../../docs/.gitbook/assets/dashboard-main.png';
+import Box from './Box.astro';
+import Downloads from './Downloads.astro';
 import { Typewriter } from './Typewriter';
 ---
 
-<section class="px-4 py-8 md:p-8 z-10 relative">
-  <div class="text-center">
-    <div
-      class="inline-block mb-6 themed-border border-border bg-[var(--color-badge)] rounded-md px-4 py-1 text-sm font-bold uppercase tracking-widest shadow-shadow"
+<section class="relative z-20 mx-auto w-full max-w-7xl px-4 py-8 md:px-8">
+  <div class="mb-10 text-center">
+    <span
+      class="font-heading text-foreground/50 mb-3 inline-block text-xs font-bold tracking-[0.3em] uppercase"
+      >Est. 2016</span
     >
-      {versionTag} Available Now
-    </div>
-
     <h1
-      class="font-heading mb-8 text-3xl font-black uppercase leading-tight md:text-4xl lg:text-5xl xl:text-6xl"
+      class="font-heading text-3xl leading-tight font-black uppercase md:text-4xl lg:text-5xl xl:text-6xl"
     >
       Nuclear is a
       <span
@@ -22,6 +24,31 @@ import { Typewriter } from './Typewriter';
       ><br />
       <Typewriter client:load />
     </h1>
+  </div>
+
+  <div class="grid grid-cols-1 items-center gap-8 xl:grid-cols-[3fr_2fr]">
+    <div class="relative z-10 rotate-1">
+      <Box>
+        <div class="leading-0">
+          <Image
+            src={dashboardMain}
+            alt="Nuclear music player dashboard"
+            widths={[960, 1280, 1920, 2972]}
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 960px"
+            class="block w-full"
+          />
+        </div>
+      </Box>
+      <img
+        src="images/nuki-hello.png"
+        alt="Nuclear mascot Nuki waving"
+        class="pointer-events-none absolute right-0 bottom-0 z-10 w-36 select-none md:-right-8 md:w-48 lg:-right-12"
+      />
+    </div>
+
+    <div class="flex flex-col items-center">
+      <Downloads />
+    </div>
   </div>
 </section>
 

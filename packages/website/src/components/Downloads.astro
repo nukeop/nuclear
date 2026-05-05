@@ -2,9 +2,10 @@
 import { Icon } from 'astro-icon/components';
 
 import { stars } from '../data/github';
-import { version, releaseUrl } from '../data/version';
+import { releaseUrl, version } from '../data/version';
 import Badge from './Badge.astro';
 import Box from './Box.astro';
+import { CopyButton } from './CopyButton';
 
 const platforms = [
   {
@@ -25,33 +26,37 @@ const platforms = [
 ];
 ---
 
-<Box class="md:hidden px-6 py-5 z-10">
+<Box class="z-10 px-6 py-5 md:hidden">
   <Badge slot="badge" size="sm">Desktop only</Badge>
   <div
-    class="flex flex-col items-center gap-3 mt-1 pointer-events-none select-none min-[400px]:flex-row min-[400px]:justify-center"
+    class="pointer-events-none mt-1 flex items-center justify-center gap-2 select-none min-[400px]:gap-3"
   >
     {
       platforms.map((platform) => (
-        <span class="inline-flex items-center justify-center gap-2 themed-border border-border/40 bg-background-secondary/40 text-foreground/40 rounded-md w-32 py-2 text-sm font-bold">
-          <Icon name={platform.icon} class="w-4 h-4" />
+        <span class="themed-border border-border/40 bg-background-secondary/40 text-foreground/40 inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-2 text-xs font-bold min-[400px]:gap-2 min-[400px]:px-4 min-[400px]:text-sm">
+          <Icon name={platform.icon} class="h-4 w-4" />
           {platform.name}
         </span>
       ))
     }
   </div>
-  <p class="text-xs mt-3">Downloads are only available on a desktop device.</p>
+  <p class="mt-3 text-xs">Downloads are only available on a desktop device.</p>
 </Box>
 
-<Box as="section" id="downloads" class="hidden md:block px-8 py-6 z-10">
+<Box
+  as="section"
+  id="downloads"
+  class="bg-primary z-10 hidden px-8 py-6 md:block"
+>
   <Badge slot="badge">Downloads</Badge>
-  <div class="flex justify-center gap-4 mt-2">
+  <div class="mt-2 flex justify-center gap-3">
     {
       platforms.map((platform) => (
         <a
           href={platform.url}
-          class="themed-border btn-interactive inline-flex items-center justify-center gap-2.5 border-border bg-background-secondary rounded-md w-36 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none"
+          class="themed-border btn-interactive border-border bg-background-secondary shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold transition-all hover:shadow-none"
         >
-          <Icon name={platform.icon} class="w-5 h-5" />
+          <Icon name={platform.icon} class="h-4 w-4" />
           {platform.name}
         </a>
       ))
@@ -59,75 +64,44 @@ const platforms = [
   </div>
   <a
     href="https://github.com/nukeop/nuclear/releases"
-    class="block text-center text-sm font-medium mt-4 underline underline-offset-2 hover:no-underline"
+    class="mt-4 block text-center text-sm font-medium underline underline-offset-2 hover:no-underline"
   >
     All downloads
   </a>
   <div
-    class="text-xs text-foreground/60 mt-4 max-w-md mx-auto text-center leading-relaxed"
+    class="text-foreground/60 mx-auto mt-4 max-w-md text-center text-xs leading-relaxed"
   >
     <p>
       <strong class="text-foreground/80">macOS users:</strong> macOS may block Nuclear
       from opening. Try right-clicking the app and selecting Open. If that doesn't
       work, run this in Terminal:
     </p>
-    <div class="relative mt-1.5 mb-0.5 group">
+    <div class="relative mt-1.5 mb-0.5">
       <code
-        id="xattr-cmd"
-        class="block px-2 py-1 pr-8 bg-background-secondary rounded text-[11px] break-all"
+        class="bg-background-secondary block rounded px-2 py-1 pr-8 text-[11px] break-all"
         >sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app</code
       >
-      <button
-        id="copy-xattr"
-        type="button"
-        class="absolute right-1 top-1/2 -translate-y-1/2 p-1 rounded text-foreground/40 hover:text-foreground/80 transition-colors"
-        aria-label="Copy command"
-      >
-        <svg
-          class="w-3.5 h-3.5"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-          ></path>
-        </svg>
-      </button>
+      <CopyButton
+        client:load
+        text="sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app"
+        className="absolute top-1/2 right-1 -translate-y-1/2"
+      />
     </div>
   </div>
-  <script>
-    document
-      .getElementById('copy-xattr')
-      ?.addEventListener('click', async () => {
-        const cmd = document.getElementById('xattr-cmd')?.textContent ?? '';
-        await navigator.clipboard.writeText(cmd);
-        const btn = document.getElementById('copy-xattr');
-        if (btn) {
-          btn.innerHTML = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-          setTimeout(() => {
-            btn.innerHTML = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
-          }, 2000);
-        }
-      });
-  </script>
 </Box>
 
-<div class="relative mt-6 z-10">
+<div class="relative z-10 mt-6">
   <span
-    class="absolute -top-3 -right-3 themed-border border-border rounded-md px-2 py-0.5 text-xs font-black rotate-6 pointer-events-none whitespace-nowrap z-20"
+    class="themed-border border-border pointer-events-none absolute -top-3 -right-3 z-20 rotate-6 rounded-md px-2 py-0.5 text-xs font-black whitespace-nowrap"
     style={`color: var(--color-star); background: var(--color-star-bg)`}
   >
     {stars ?? '17k'} &#9733;
   </span>
   <a
     href="https://github.com/nukeop/nuclear"
-    class="themed-border btn-interactive inline-flex items-center justify-center gap-2.5 border-border bg-background-secondary rounded-md px-6 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none"
+    class="themed-border btn-interactive border-border bg-background-secondary shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2.5 rounded-md px-6 py-3 font-bold transition-all hover:shadow-none"
   >
-    <Icon name="simple-icons:github" class="w-5 h-5" />
+    <Icon name="simple-icons:github" class="h-5 w-5" />
     Learn more
   </a>
 </div>
