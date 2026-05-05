@@ -18,11 +18,17 @@ type ScreenshotEntry = {
   alt: string;
 };
 
+type Nuki = {
+  src: string;
+  alt: string;
+};
+
 type FeatureBlock = {
   heading: string;
   description: string;
   images: ScreenshotEntry[];
   layout: 'text-left' | 'text-right';
+  nuki?: Nuki;
 };
 
 const featureBlocks: FeatureBlock[] = [
@@ -46,6 +52,10 @@ const featureBlocks: FeatureBlock[] = [
       { src: playlistDetailView, alt: 'Playlist detail view in Nuclear' },
     ],
     layout: 'text-right',
+    nuki: {
+      src: '/images/nuki-studying.png',
+      alt: 'Nuki studying at a desk',
+    },
   },
   {
     heading: 'Plugins',
@@ -56,6 +66,10 @@ const featureBlocks: FeatureBlock[] = [
       { src: installedPlugins, alt: 'Installed plugins in Nuclear' },
     ],
     layout: 'text-left',
+    nuki: {
+      src: '/images/nuki-ready-to-work.png',
+      alt: 'Nuki holding a wrench and toolbox',
+    },
   },
   {
     heading: 'Settings for everything',
@@ -71,209 +85,67 @@ const featureBlocks: FeatureBlock[] = [
 ];
 ---
 
-<div class="features-root w-full">
+<div class="flex w-full flex-col gap-16 md:gap-24">
   {
-    featureBlocks.map((block, blockIndex) => (
-      <>
-        <div
-          class:list={[
-            'feature-block',
-            block.layout === 'text-right' ? 'reverse' : '',
-          ]}
-        >
-          <div class="feature-text">
-            <h3 class="font-heading feature-heading">{block.heading}</h3>
-            <p class="feature-description">{block.description}</p>
-          </div>
+    featureBlocks.map((block, blockIndex) => {
+      const isReversed = block.layout === 'text-right';
 
+      return (
+        <>
           <div
             class:list={[
-              'screenshot-stack',
-              block.images.length === 2 ? 'stack-2' : 'stack-3',
+              'grid items-center gap-8 md:grid-cols-2 md:gap-12',
+              isReversed && 'md:*:first:order-2',
             ]}
           >
-            {block.images.map((image, imageIndex) => (
-              <div
-                class="screenshot-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
-                style={`--card-index: ${imageIndex}; --card-count: ${block.images.length};`}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  inferSize
-                  widths={[720, 1080, 1440]}
-                  sizes="(max-width: 768px) 75vw, (max-width: 1024px) 40vw, 420px"
-                  quality={90}
-                  class="block w-full"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+            <div class="flex flex-col gap-4">
+              <h3 class="font-heading text-[clamp(1.75rem,3vw,2.5rem)] leading-tight font-black tracking-wider uppercase">
+                {block.heading}
+              </h3>
+              <p class="max-w-[38ch] text-base leading-relaxed opacity-75">
+                {block.description}
+              </p>
+            </div>
 
-        {blockIndex === 1 && (
-          <div class="theme-showcase-interlude">
-            <ThemeShowcase />
+            <div class="relative flex min-h-50 items-center justify-center perspective-distant">
+              {block.nuki && (
+                <img
+                  src={block.nuki.src}
+                  alt={block.nuki.alt}
+                  class:list={[
+                    'pointer-events-none absolute -bottom-4 z-10 hidden w-50 select-none md:block',
+                    isReversed ? '-right-12 rotate-6' : '-left-12 -rotate-6',
+                  ]}
+                />
+              )}
+              {block.images.map((image, imageIndex) => (
+                <div
+                  class:list={[
+                    'themed-border border-border shadow-shadow bg-primary block w-[75vw] shrink-0 overflow-hidden rounded-md transition duration-200 last:mr-0 hover:shadow-lg hover:brightness-90',
+                    'mr-[-60vw] md:-mr-50 md:w-[320px] xl:-mr-70 xl:w-105',
+                    isReversed
+                      ? 'md:transform-[rotateY(28deg)]'
+                      : 'md:transform-[rotateY(-28deg)]',
+                  ]}
+                  style={{ zIndex: imageIndex + 1 }}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    inferSize
+                    widths={[720, 1080, 1440]}
+                    sizes="(max-width: 768px) 75vw, (max-width: 1024px) 40vw, 420px"
+                    quality={90}
+                    class="block w-full"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        )}
-      </>
-    ))
+
+          {blockIndex === 1 && <ThemeShowcase />}
+        </>
+      );
+    })
   }
 </div>
-
-<style>
-  .features-root {
-    display: flex;
-    flex-direction: column;
-    gap: 6rem;
-  }
-
-  /* ── Feature block layout ── */
-
-  .feature-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
-
-  .feature-block.reverse {
-    direction: rtl;
-  }
-
-  .feature-block.reverse > * {
-    direction: ltr;
-  }
-
-  /* ── Text side ── */
-
-  .feature-text {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .feature-heading {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    line-height: 1.1;
-  }
-
-  .feature-description {
-    font-size: 1rem;
-    line-height: 1.65;
-    opacity: 0.75;
-    max-width: 38ch;
-  }
-
-  /* ── Screenshot stack ── */
-
-  .screenshot-stack {
-    --card-width: 420px;
-    --perspective: 1200px;
-    --fan-angle: 28deg;
-    --overlap: 280px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    perspective: var(--perspective);
-    min-height: 200px;
-  }
-
-  .screenshot-card {
-    flex-shrink: 0;
-    width: var(--card-width);
-    margin-right: calc(-1 * var(--overlap));
-    transform: rotateY(calc(-1 * var(--fan-angle)));
-    transition:
-      transform 0.25s ease,
-      filter 0.25s ease,
-      box-shadow 0.25s ease;
-  }
-
-  .screenshot-card:hover {
-    filter: brightness(0.9);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  }
-
-  .screenshot-card:last-child {
-    margin-right: 0;
-  }
-
-  .reverse .screenshot-card {
-    transform: rotateY(var(--fan-angle));
-  }
-
-  .stack-2 .screenshot-card:nth-child(1) {
-    z-index: 1;
-  }
-
-  .stack-2 .screenshot-card:nth-child(2) {
-    z-index: 2;
-  }
-
-  .stack-3 .screenshot-card:nth-child(1) {
-    z-index: 1;
-  }
-
-  .stack-3 .screenshot-card:nth-child(2) {
-    z-index: 2;
-  }
-
-  .stack-3 .screenshot-card:nth-child(3) {
-    z-index: 3;
-  }
-
-  /* ── ThemeShowcase divider ── */
-
-  .theme-showcase-interlude {
-    width: 100%;
-  }
-
-  /* ── Responsive ── */
-
-  @media (max-width: 900px) {
-    .screenshot-stack {
-      --card-width: 320px;
-      --overlap: 200px;
-      --fan-angle: 22deg;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .features-root {
-      gap: 4rem;
-    }
-
-    .feature-block {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .feature-block.reverse {
-      direction: ltr;
-    }
-
-    .feature-block .feature-text {
-      order: 0;
-    }
-
-    .feature-block .screenshot-stack {
-      order: 1;
-    }
-
-    .screenshot-stack {
-      --fan-angle: 0deg;
-      --card-width: 75vw;
-      --overlap: 60vw;
-      --perspective: none;
-    }
-
-    .reverse .screenshot-card {
-      transform: rotateY(0deg);
-    }
-  }
-</style>
