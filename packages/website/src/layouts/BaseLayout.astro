@@ -10,23 +10,59 @@ type Props = {
 const { title, description } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = new URL('/images/social-banner.png', Astro.site);
+const siteUrl = Astro.site?.toString() ?? 'https://nuclearplayer.com/';
+const logoUrl = new URL('/images/logo-full-outlined.svg', Astro.site).toString();
+
+const organizationId = `${siteUrl}#organization`;
+const websiteId = `${siteUrl}#website`;
+const softwareId = `${siteUrl}#software`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Nuclear',
-  description,
-  url: Astro.site?.toString(),
-  applicationCategory: 'MultimediaApplication',
-  operatingSystem: 'Windows, macOS, Linux',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-  },
-  license: 'https://www.gnu.org/licenses/agpl-3.0.html',
-  image: ogImageUrl.toString(),
-  screenshot: new URL('/images/social-banner.png', Astro.site).toString(),
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: 'Nuclear',
+      url: siteUrl,
+      logo: logoUrl,
+      sameAs: [
+        'https://github.com/nukeop/nuclear',
+        'https://fosstodon.org/@nuclearplayer',
+        'https://twitter.com/nuclear_player',
+        'https://discord.gg/JqPjKxE',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: siteUrl,
+      name: 'Nuclear Music Player',
+      description,
+      publisher: { '@id': organizationId },
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': softwareId,
+      name: 'Nuclear',
+      description,
+      url: siteUrl,
+      applicationCategory: 'MultimediaApplication',
+      operatingSystem: 'Windows, macOS, Linux',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      license: 'https://www.gnu.org/licenses/agpl-3.0.html',
+      downloadUrl: 'https://github.com/nukeop/nuclear/releases',
+      image: ogImageUrl.toString(),
+      screenshot: ogImageUrl.toString(),
+      author: { '@id': organizationId },
+      publisher: { '@id': organizationId },
+    },
+  ],
 };
 ---
 
@@ -72,14 +108,7 @@ const jsonLd = {
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
-      rel="stylesheet"
-    />
-
+    <link rel="preconnect" href="https://umami.gumblert.tech" />
     <script
       async
       defer

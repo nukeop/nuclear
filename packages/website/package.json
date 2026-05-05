@@ -16,6 +16,8 @@
   "dependencies": {
     "@astrojs/react": "^5.0.3",
     "@astrojs/sitemap": "^3.7.0",
+    "@fontsource-variable/bricolage-grotesque": "^5.2.10",
+    "@fontsource-variable/dm-sans": "^5.2.8",
     "@iconify-json/simple-icons": "^1.2.67",
     "astro": "^6.0.0",
     "astro-icon": "^1.1.5",
