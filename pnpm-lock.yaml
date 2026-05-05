@@ -309,8 +309,8 @@ importers:
         specifier: ^4.17.21
         version: 4.18.1
       lucide-react:
-        specifier: ^0.542.0
-        version: 0.542.0(react@18.3.1)
+        specifier: ^1.0.0
+        version: 1.14.0(react@18.3.1)
       luxon:
         specifier: ^3.7.1
         version: 3.7.2
@@ -436,8 +436,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       lucide-react:
-        specifier: ^0.542.0
-        version: 0.542.0(react@18.3.1)
+        specifier: ^1.0.0
+        version: 1.14.0(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -515,8 +515,8 @@ importers:
         specifier: workspace:*
         version: link:../ui
       lucide-react:
-        specifier: ^0.542.0
-        version: 0.542.0(react@18.3.1)
+        specifier: ^1.0.0
+        version: 1.14.0(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -716,8 +716,8 @@ importers:
         specifier: ^4.17.21
         version: 4.18.1
       lucide-react:
-        specifier: ^0.542.0
-        version: 0.542.0(react@18.3.1)
+        specifier: ^1.0.0
+        version: 1.14.0(react@18.3.1)
       luxon:
         specifier: ^3.7.1
         version: 3.7.2
@@ -816,8 +816,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       lucide-react:
-        specifier: ^0.542.0
-        version: 0.542.0(react@18.3.1)
+        specifier: ^1.0.0
+        version: 1.14.0(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -4567,8 +4567,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.542.0:
-    resolution: {integrity: sha512-w3hD8/SQB7+lzU2r4VdFyzzOzKnUjTZIF/MQJGSSvni7Llewni4vuViRppfRAa2guOsY5k4jZyxw/i9DQHv+dw==}
+  lucide-react@1.14.0:
+    resolution: {integrity: sha512-+1mdWcfSJVUsaTIjN9zoezmUhfXo5l0vP7ekBMPo3jcS/aIkxHnXqAPsByszMZx/Y8oQBRJxJx5xg+RH3urzxA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -10421,7 +10421,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.542.0(react@18.3.1):
+  lucide-react@1.14.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
