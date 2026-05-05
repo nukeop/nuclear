@@ -31,7 +31,7 @@ import Button from './Button.astro';
       class="gap-2 font-bold text-white bg-(--color-discord) prefers-dark:text-foreground prefers-dark:bg-background prefers-dark:border-(--color-discord)"
     >
       <Icon name="simple-icons:discord" class="w-5 h-5" />
-      Join our Discord
+      <span class="hidden md:inline">Join our Discord</span>
     </Button>
     <Button
       href="https://github.com/nukeop/nuclear"
@@ -40,7 +40,7 @@ import Button from './Button.astro';
       class="gap-2 font-bold"
     >
       <Icon name="simple-icons:github" class="w-5 h-5" />
-      {stars ? `${stars} stars` : 'Star on GitHub'}
+      <span class="hidden md:inline">{stars ? `${stars} stars` : 'Star on GitHub'}</span>
     </Button>
   </div>
 </header>

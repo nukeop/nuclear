@@ -28,11 +28,11 @@ const platforms = [
 <Box class="md:hidden px-6 py-5 z-10">
   <Badge slot="badge" size="sm">Desktop only</Badge>
   <div
-    class="flex flex-col items-center gap-3 mt-1 pointer-events-none select-none min-[400px]:flex-row min-[400px]:justify-center"
+    class="flex items-center justify-center gap-2 mt-1 pointer-events-none select-none min-[400px]:gap-3"
   >
     {
       platforms.map((platform) => (
-        <span class="inline-flex items-center justify-center gap-2 themed-border border-border/40 bg-background-secondary/40 text-foreground/40 rounded-md w-32 py-2 text-sm font-bold">
+        <span class="inline-flex items-center justify-center gap-1.5 themed-border border-border/40 bg-background-secondary/40 text-foreground/40 rounded-md px-3 py-2 text-xs font-bold min-[400px]:px-4 min-[400px]:text-sm min-[400px]:gap-2">
           <Icon name={platform.icon} class="w-4 h-4" />
           {platform.name}
         </span>
@@ -44,14 +44,14 @@ const platforms = [
 
 <Box as="section" id="downloads" class="hidden md:block px-8 py-6 z-10">
   <Badge slot="badge">Downloads</Badge>
-  <div class="flex justify-center gap-4 mt-2">
+  <div class="flex justify-center gap-3 mt-2">
     {
       platforms.map((platform) => (
         <a
           href={platform.url}
-          class="themed-border btn-interactive inline-flex items-center justify-center gap-2.5 border-border bg-background-secondary rounded-md w-36 py-3 font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none"
+          class="themed-border btn-interactive inline-flex items-center justify-center gap-2 border-border bg-background-secondary rounded-md px-4 py-2.5 text-sm font-bold shadow-shadow transition-all hover:translate-x-shadow-x hover:translate-y-shadow-y hover:shadow-none"
         >
-          <Icon name={platform.icon} class="w-5 h-5" />
+          <Icon name={platform.icon} class="w-4 h-4" />
           {platform.name}
         </a>
       ))
