@@ -23,16 +23,16 @@
     "astro-icon": "^1.1.5",
     "clsx": "^2.1.1",
     "lucide-react": "^0.542.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@nuclearplayer/eslint-config": "workspace:*",
     "@nuclearplayer/tailwind-config": "workspace:*",
     "@tailwindcss/vite": "^4.1.11",
-    "@types/react": "^18.3.23",
-    "@types/react-dom": "^18.3.7",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2"
