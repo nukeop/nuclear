@@ -630,9 +630,10 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                         Prism
                       </h1>
                       <div
-                        class="text-text-secondary text-lg"
+                        class="text-text-secondary block text-lg"
                       >
-                        by John Butler
+                        by 
+                        <span />
                       </div>
                     </div>
                     <div

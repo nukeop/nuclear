@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import isEmpty from 'lodash-es/isEmpty';
 import { FC } from 'react';
 
@@ -48,20 +49,23 @@ export const ArtistSimilarArtists: FC<ArtistSimilarArtistsProps> = ({
             const thumb = pickArtwork(a.artwork, 'thumbnail', 64);
             const avatar = thumb ?? pickArtwork(a.artwork, 'avatar', 64);
             return (
-              <li
-                key={a.source.id}
-                className="flex cursor-default items-center gap-3 select-none"
-              >
-                {avatar ? (
-                  <img
-                    src={avatar.url}
-                    alt={a.name}
-                    className="h-10 w-10 object-cover"
-                  />
-                ) : (
-                  <div className="h-10 w-10" />
-                )}
-                <span className="truncate">{a.name}</span>
+              <li key={a.source.id}>
+                <Link
+                  to="/artist/$providerId/$artistId"
+                  params={{ providerId, artistId: a.source.id }}
+                  className="flex items-center gap-3"
+                >
+                  {avatar ? (
+                    <img
+                      src={avatar.url}
+                      alt={a.name}
+                      className="h-10 w-10 object-cover"
+                    />
+                  ) : (
+                    <div className="h-10 w-10" />
+                  )}
+                  <span className="truncate">{a.name}</span>
+                </Link>
               </li>
             );
           })}

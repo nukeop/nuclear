@@ -1017,33 +1017,39 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                       <ul
                         class="divide-border bg-primary border-border divide-y-(length:--border-width) border border-(length:--border-width)"
                       >
-                        <li
-                          class="flex cursor-default items-center gap-3 select-none"
-                        >
-                          <img
-                            alt="John Lennon"
-                            class="h-10 w-10 object-cover"
-                            src="https://img/similar1.jpg"
-                          />
-                          <span
-                            class="truncate"
+                        <li>
+                          <a
+                            class="flex items-center gap-3"
+                            href="/artist/test-metadata-provider/artist-2"
                           >
-                            John Lennon
-                          </span>
+                            <img
+                              alt="John Lennon"
+                              class="h-10 w-10 object-cover"
+                              src="https://img/similar1.jpg"
+                            />
+                            <span
+                              class="truncate"
+                            >
+                              John Lennon
+                            </span>
+                          </a>
                         </li>
-                        <li
-                          class="flex cursor-default items-center gap-3 select-none"
-                        >
-                          <img
-                            alt="Kurt Cobain"
-                            class="h-10 w-10 object-cover"
-                            src="https://img/similar2.jpg"
-                          />
-                          <span
-                            class="truncate"
+                        <li>
+                          <a
+                            class="flex items-center gap-3"
+                            href="/artist/test-metadata-provider/artist-3"
                           >
-                            Kurt Cobain
-                          </span>
+                            <img
+                              alt="Kurt Cobain"
+                              class="h-10 w-10 object-cover"
+                              src="https://img/similar2.jpg"
+                            />
+                            <span
+                              class="truncate"
+                            >
+                              Kurt Cobain
+                            </span>
+                          </a>
                         </li>
                       </ul>
                     </div>
@@ -2795,19 +2801,22 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                       <ul
                         class="divide-border bg-primary border-border divide-y-(length:--border-width) border border-(length:--border-width)"
                       >
-                        <li
-                          class="flex cursor-default items-center gap-3 select-none"
-                        >
-                          <img
-                            alt="Skrillex"
-                            class="h-10 w-10 object-cover"
-                            src="https://img/similar1.jpg"
-                          />
-                          <span
-                            class="truncate"
+                        <li>
+                          <a
+                            class="flex items-center gap-3"
+                            href="/artist/test-metadata-provider/artist-2"
                           >
-                            Skrillex
-                          </span>
+                            <img
+                              alt="Skrillex"
+                              class="h-10 w-10 object-cover"
+                              src="https://img/similar1.jpg"
+                            />
+                            <span
+                              class="truncate"
+                            >
+                              Skrillex
+                            </span>
+                          </a>
                         </li>
                       </ul>
                     </div>
