@@ -1,3 +1,4 @@
+pub mod bridge;
 pub mod commands;
 pub mod discord;
 pub mod http;
