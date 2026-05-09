@@ -12,6 +12,23 @@ pub const BRIDGE_CHANNEL: BridgeChannel = BridgeChannel {
     notify: "bridge:notify",
 };
 
+#[derive(Debug)]
+pub enum BridgeError {
+    InfrastructureError(String),
+    HandlerError(String),
+}
+
+// Infrastructure error means something went wrong with the bridge itself
+// Handler errror means there was an error in the method called through the bridge
+impl std::fmt::Display for BridgeError {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            BridgeError::InfrastructureError(message) => write!(formatter, "{message}"),
+            BridgeError::HandlerError(message) => write!(formatter, "{message}"),
+        }
+    }
+}
+
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BridgeRequest {
