@@ -65,6 +65,7 @@ pub fn run() {
         ])
         .setup(|app| {
             logging::mark_startup_complete();
+            bridge::init_bridge(app.handle().clone());
             mcp::init_mcp(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
             discord::init_discord(app.handle().clone());
