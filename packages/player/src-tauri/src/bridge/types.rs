@@ -1,5 +1,17 @@
 use serde::{Deserialize, Serialize};
 
+pub struct BridgeChannel {
+    pub request: &'static str,
+    pub respond: &'static str,
+    pub notify: &'static str,
+}
+
+pub const BRIDGE_CHANNEL: BridgeChannel = BridgeChannel {
+    request: "bridge:request",
+    respond: "bridge:respond",
+    notify: "bridge:notify",
+};
+
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BridgeRequest {
