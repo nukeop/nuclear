@@ -72,7 +72,15 @@ impl Bridge {
     }
 
     pub async fn handle_response(&self, response: BridgeResponse) {
-        todo!()
+        let mut pending = self.pending.lock().await;
+        if let Some(sender) = pending.remove(&response.trace_id) {
+            let _ = sender.send(response);
+        } else {
+            log::warn!(
+                "Received bridge response for unknown trace ID: {}",
+                response.trace_id
+            );
+        }
     }
 
     pub async fn handle_notification(&self, notification: serde_json::Value) {
