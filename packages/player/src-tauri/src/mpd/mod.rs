@@ -1,3 +1,7 @@
+mod commands;
+mod connection;
+mod protocol;
+
 use std::sync::Arc;
 
 use tauri::{AppHandle, Manager};
