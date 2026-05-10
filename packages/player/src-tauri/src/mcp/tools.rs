@@ -128,9 +128,15 @@ impl NuclearMcpServer {
         &self,
         Parameters(params): Parameters<CallParams>,
     ) -> Result<CallToolResult, McpError> {
+        let parsed_params = match &params.params {
+            serde_json::Value::String(s) => serde_json::from_str(s).unwrap_or(params.params),
+            serde_json::Value::Null => serde_json::Value::Object(Default::default()),
+            other => other.clone(),
+        };
+
         bridge_result_to_mcp(
             &format!("call({})", params.method),
-            self.bridge.call(&params.method, params.params).await,
+            self.bridge.call(&params.method, parsed_params).await,
         )
     }
 }

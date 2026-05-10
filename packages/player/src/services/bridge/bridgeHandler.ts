@@ -3,7 +3,7 @@ import { listen } from '@tauri-apps/api/event';
 import { z } from 'zod';
 
 import { errorMessage } from '../../utils/error';
-import { BridgeChannel } from '../tauri/bridge';
+import { BridgeCommand, BridgeEvent } from '../tauri/bridge';
 import { dispatch } from './bridgeDispatcher';
 
 const bridgeRequestSchema = z.object({
@@ -29,7 +29,7 @@ type BridgeErrorResponse = {
 type BridgeResponse = BridgeSuccessResponse | BridgeErrorResponse;
 
 const respond = (response: BridgeResponse): Promise<void> =>
-  invoke(BridgeChannel.respond, { response });
+  invoke(BridgeCommand.respond, { response });
 
 const handleRequest = async (request: BridgeRequest): Promise<void> => {
   try {
@@ -49,7 +49,7 @@ const handleRequest = async (request: BridgeRequest): Promise<void> => {
 };
 
 export const initBridgeHandler = async (): Promise<void> => {
-  await listen(BridgeChannel.request, (event) => {
+  await listen(BridgeEvent.request, (event) => {
     const request = bridgeRequestSchema.parse(event.payload);
     void handleRequest(request);
   });

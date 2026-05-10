@@ -5,7 +5,7 @@ use tauri::{AppHandle, Emitter};
 use tokio::sync::{oneshot, Mutex};
 use uuid::Uuid;
 
-use super::types::{BridgeError, BridgeRequest, BridgeResponse, BridgeResponseBody, BRIDGE_CHANNEL};
+use super::types::{BridgeError, BridgeRequest, BridgeResponse, BridgeResponseBody, BRIDGE_EVENT};
 
 type PendingRequests = Arc<Mutex<HashMap<String, oneshot::Sender<BridgeResponse>>>>;
 
@@ -43,7 +43,7 @@ impl Bridge {
         };
 
         self.app_handle
-            .emit(BRIDGE_CHANNEL.request, &request)
+            .emit(BRIDGE_EVENT.request, &request)
             .map_err(|err| {
                 BridgeError::InfrastructureError(format!("Failed to emit event: {err}"))
             })?;

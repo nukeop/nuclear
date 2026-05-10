@@ -1,15 +1,11 @@
 use serde::{Deserialize, Serialize};
 
-pub struct BridgeChannel {
+pub struct BridgeEvent {
     pub request: &'static str,
-    pub respond: &'static str,
-    pub notify: &'static str,
 }
 
-pub const BRIDGE_CHANNEL: BridgeChannel = BridgeChannel {
+pub const BRIDGE_EVENT: BridgeEvent = BridgeEvent {
     request: "bridge:request",
-    respond: "bridge:respond",
-    notify: "bridge:notify",
 };
 
 #[derive(Debug)]

@@ -1,5 +1,8 @@
-export const BridgeChannel = {
+export const BridgeEvent = {
   request: 'bridge:request',
-  respond: 'bridge:respond',
-  notify: 'bridge:notify',
+} as const;
+
+export const BridgeCommand = {
+  respond: 'bridge_respond',
+  notify: 'bridge_notify',
 } as const;
