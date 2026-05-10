@@ -43,14 +43,14 @@ async fn start_server(
     {
         Ok(listener) => listener,
         Err(message) => {
-            log::error!("Failed to bind MPD server: {message}");
+            log::error!(target: "mpd", "Failed to bind: {message}");
             let _ = ready.send(Err(message));
             return;
         }
     };
 
     let bound_port = tcp_listener.local_addr().unwrap().port();
-    log::info!("MPD server listening on 127.0.0.1:{bound_port}");
+    log::info!(target: "mpd", "Listening on 127.0.0.1:{bound_port}");
     let _ = ready.send(Ok(bound_port));
 
     loop {
@@ -62,19 +62,19 @@ async fn start_server(
                         let bridge = bridge.clone();
                         tauri::async_runtime::spawn(async move {
                             if let Err(err) = connection::handle_connection(bridge, stream).await {
-                                log::warn!("MPD connection error: {err}");
+                                log::warn!(target: "mpd", "Connection error: {err}");
                             }
                         });
                     }
                     Err(err) => {
-                        log::error!("MPD accept error: {err}");
+                        log::error!(target: "mpd", "Accept error: {err}");
                     }
                 }
             }
         }
     }
 
-    log::info!("MPD server stopped");
+    log::info!(target: "mpd", "Server stopped");
 }
 
 pub fn init_mpd(app_handle: AppHandle) {
@@ -89,11 +89,11 @@ pub async fn mpd_start(
 ) -> Result<u16, String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.as_ref() {
-        log::info!("MPD server already running on port {}", server.port);
+        log::info!(target: "mpd", "Server already running on port {}", server.port);
         return Ok(server.port);
     }
 
-    log::info!("Starting MPD server");
+    log::info!(target: "mpd", "Starting server");
     let ct = CancellationToken::new();
     let (ready_tx, ready_rx) = oneshot::channel();
     let task = tauri::async_runtime::spawn(start_server(
@@ -120,11 +120,11 @@ pub async fn mpd_start(
 pub async fn mpd_stop(state: tauri::State<'_, MpdState>) -> Result<(), String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.take() {
-        log::info!("Stopping MPD server");
+        log::info!(target: "mpd", "Stopping server");
         server.cancellation_token.cancel();
         let _ = server.task.await;
     } else {
-        log::info!("MPD server already stopped");
+        log::info!(target: "mpd", "Server already stopped");
     }
     Ok(())
 }
