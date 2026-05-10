@@ -37,7 +37,9 @@ const handleRequest = async (request: BridgeRequest): Promise<void> => {
     await respond({
       traceId: request.traceId,
       status: 'success',
-      data,
+      // Void methods return undefined, which gets dropped from JSON serialization.
+      // Rust expects the field to exist, so we coerce to null.
+      data: data ?? null,
     });
   } catch (error) {
     await respond({
