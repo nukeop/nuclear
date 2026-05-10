@@ -55,7 +55,6 @@ pub fn run() {
             logging::get_startup_logs,
             mcp::mcp_start,
             mcp::mcp_stop,
-            mcp::mcp_respond,
             stream_server::stream_server_port,
             ytdlp_setup::ytdlp_ensure_installed,
             discord::discord_connect,

@@ -1,9 +1,8 @@
-pub mod bridge;
+pub mod metadata;
 pub mod tools;
 
 use std::sync::Arc;
 
-use bridge::{McpBridge, McpBridgeResponse};
 use rmcp::transport::streamable_http_server::{
     session::local::LocalSessionManager, StreamableHttpServerConfig, StreamableHttpService,
 };
@@ -36,14 +35,12 @@ struct RunningServer {
 }
 
 pub struct McpState {
-    bridge: McpBridge,
     running: Arc<Mutex<Option<RunningServer>>>,
 }
 
 impl McpState {
-    fn new(app_handle: AppHandle) -> Self {
+    fn new() -> Self {
         Self {
-            bridge: McpBridge::new(app_handle),
             running: Arc::new(Mutex::new(None)),
         }
     }
@@ -66,7 +63,7 @@ async fn try_bind(port_start: u16, port_end: u16) -> Result<tokio::net::TcpListe
 }
 
 async fn start_server(
-    bridge: McpBridge,
+    bridge: crate::bridge::bridge::Bridge,
     ct: CancellationToken,
     ready: oneshot::Sender<Result<u16, String>>,
 ) {
@@ -104,12 +101,15 @@ async fn start_server(
 }
 
 pub fn init_mcp(app_handle: AppHandle) {
-    let state = McpState::new(app_handle.clone());
+    let state = McpState::new();
     app_handle.manage(state);
 }
 
 #[tauri::command]
-pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<u16, String> {
+pub async fn mcp_start(
+    state: tauri::State<'_, McpState>,
+    bridge: tauri::State<'_, crate::bridge::bridge::Bridge>,
+) -> Result<u16, String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.as_ref() {
         log::info!("MCP server already running on port {}", server.port);
@@ -119,8 +119,11 @@ pub async fn mcp_start(state: tauri::State<'_, McpState>) -> Result<u16, String>
     log::info!("Starting MCP server");
     let ct = CancellationToken::new();
     let (ready_tx, ready_rx) = oneshot::channel();
-    let task =
-        tauri::async_runtime::spawn(start_server(state.bridge.clone(), ct.clone(), ready_tx));
+    let task = tauri::async_runtime::spawn(start_server(
+        bridge.inner().clone(),
+        ct.clone(),
+        ready_tx,
+    ));
 
     match ready_rx.await {
         Ok(Ok(port)) => {
@@ -146,14 +149,5 @@ pub async fn mcp_stop(state: tauri::State<'_, McpState>) -> Result<(), String> {
     } else {
         log::info!("MCP server already stopped");
     }
-    Ok(())
-}
-
-#[tauri::command]
-pub async fn mcp_respond(
-    state: tauri::State<'_, McpState>,
-    response: McpBridgeResponse,
-) -> Result<(), String> {
-    state.bridge.handle_response(response).await;
     Ok(())
 }
