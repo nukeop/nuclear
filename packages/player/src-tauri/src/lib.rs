@@ -4,6 +4,7 @@ pub mod discord;
 pub mod http;
 pub mod logging;
 pub mod mcp;
+pub mod net;
 mod setup;
 pub mod stream_server;
 pub mod ytdlp;

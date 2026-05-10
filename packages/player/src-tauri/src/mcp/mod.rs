@@ -46,22 +46,6 @@ impl McpState {
     }
 }
 
-async fn try_bind(port_start: u16, port_end: u16) -> Result<tokio::net::TcpListener, String> {
-    let mut last_error = String::new();
-    for port in port_start..=port_end {
-        match tokio::net::TcpListener::bind(format!("127.0.0.1:{port}")).await {
-            Ok(listener) => return Ok(listener),
-            Err(err) => {
-                log::debug!("Port {port} unavailable: {err}");
-                last_error = format!("{err}");
-            }
-        }
-    }
-    Err(format!(
-        "No available port in range {port_start}-{port_end}: {last_error}"
-    ))
-}
-
 async fn start_server(
     bridge: crate::bridge::bridge::Bridge,
     ct: CancellationToken,
@@ -78,7 +62,13 @@ async fn start_server(
 
     let router = axum::Router::new().nest_service("/mcp", service);
 
-    let tcp_listener = match try_bind(MCP_PORT_START, MCP_PORT_END).await {
+    let tcp_listener = match crate::net::bind_first_available_port(
+        "127.0.0.1",
+        MCP_PORT_START,
+        MCP_PORT_END,
+    )
+    .await
+    {
         Ok(listener) => listener,
         Err(message) => {
             log::error!("Failed to bind MCP server: {message}");
