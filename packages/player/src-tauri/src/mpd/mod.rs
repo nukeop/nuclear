@@ -30,7 +30,7 @@ impl MpdState {
 }
 
 async fn start_server(
-    _bridge: crate::bridge::bridge::Bridge,
+    bridge: crate::bridge::bridge::Bridge,
     ct: CancellationToken,
     ready: oneshot::Sender<Result<u16, String>>,
 ) {
@@ -53,7 +53,26 @@ async fn start_server(
     log::info!("MPD server listening on 127.0.0.1:{bound_port}");
     let _ = ready.send(Ok(bound_port));
 
-    ct.cancelled().await;
+    loop {
+        tokio::select! {
+            _ = ct.cancelled() => break,
+            accept_result = tcp_listener.accept() => {
+                match accept_result {
+                    Ok((stream, _)) => {
+                        let bridge = bridge.clone();
+                        tauri::async_runtime::spawn(async move {
+                            if let Err(err) = connection::handle_connection(bridge, stream).await {
+                                log::warn!("MPD connection error: {err}");
+                            }
+                        });
+                    }
+                    Err(err) => {
+                        log::error!("MPD accept error: {err}");
+                    }
+                }
+            }
+        }
+    }
 
     log::info!("MPD server stopped");
 }
