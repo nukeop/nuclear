@@ -4,6 +4,7 @@ pub mod discord;
 pub mod http;
 pub mod logging;
 pub mod mcp;
+pub mod mpd;
 pub mod net;
 mod setup;
 pub mod stream_server;
@@ -56,6 +57,8 @@ pub fn run() {
             logging::get_startup_logs,
             mcp::mcp_start,
             mcp::mcp_stop,
+            mpd::mpd_start,
+            mpd::mpd_stop,
             stream_server::stream_server_port,
             ytdlp_setup::ytdlp_ensure_installed,
             discord::discord_connect,
@@ -68,6 +71,7 @@ pub fn run() {
             logging::mark_startup_complete();
             bridge::init_bridge(app.handle().clone());
             mcp::init_mcp(app.handle().clone());
+            mpd::init_mpd(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
             discord::init_discord(app.handle().clone());
 

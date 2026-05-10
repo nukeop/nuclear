@@ -370,6 +370,16 @@
           "description": "Point your AI tool to this URL to connect to Nuclear."
         }
       },
+      "mpd": {
+        "enabled": {
+          "title": "Enable MPD Server",
+          "description": "Start a local MPD-compatible server so MPD clients can control Nuclear."
+        },
+        "serverUrl": {
+          "title": "MPD Server URL",
+          "description": "Point your MPD client to this address to connect to Nuclear."
+        }
+      },
       "discord": {
         "enabled": {
           "title": "Discord Rich Presence",

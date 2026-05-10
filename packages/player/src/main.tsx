@@ -25,6 +25,7 @@ import {
 } from './services/languageService';
 import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
 import { initMcpHandler } from './services/mcp';
+import { initMpdHandler } from './services/mpd';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
 import { hydrateThemeStore } from './stores/themeStore';
@@ -40,6 +41,7 @@ initializeSettingsStore()
   .then(() => registerBuiltInCoreSettings())
   .then(() => initDiscoveryService())
   .then(() => initMcpHandler())
+  .then(() => initMpdHandler())
   .then(() => initBridgeHandler())
   .then(() => initDiscordHandler())
   .then(() => applyLanguageFromSettings())
