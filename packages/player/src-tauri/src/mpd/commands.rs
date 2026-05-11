@@ -1,15 +1,32 @@
-use serde_json::json;
+use serde_json::{json, Value};
 
 use crate::bridge::bridge::Bridge;
 use crate::bridge::types::BridgeError;
 
-use super::protocol::{Command, MpdError, MpdResponse, ACK_ERROR_SYSTEM, ACK_ERROR_UNKNOWN};
+use super::protocol::{
+    Command, MpdError, MpdResponse, PlaylistRange, ACK_ERROR_ARG, ACK_ERROR_SYSTEM,
+    ACK_ERROR_UNKNOWN,
+};
 
 type Fields = Vec<(String, String)>;
 type CommandResult = Result<MpdResponse, MpdError>;
 
 fn field(key: &str, value: impl ToString) -> (String, String) {
     (key.to_string(), value.to_string())
+}
+
+async fn call(
+    bridge: &Bridge,
+    command: &str,
+    method: &str,
+    params: Value,
+) -> Result<Value, MpdError> {
+    bridge.call(method, params).await.map_err(|err| MpdError {
+        code: ACK_ERROR_SYSTEM,
+        command: command.to_string(),
+        list_index: 0,
+        message: err.to_string(),
+    })
 }
 
 fn track_fields(item: &serde_json::Value, position: usize) -> Fields {
@@ -62,30 +79,11 @@ fn bridge_error(command: &str, error: BridgeError) -> MpdError {
 }
 
 async fn status(bridge: &Bridge) -> CommandResult {
-    let state = bridge
-        .call("Playback.getState", json!({}))
-        .await
-        .map_err(|err| bridge_error("status", err))?;
-
-    let volume = bridge
-        .call("Playback.getVolume", json!({}))
-        .await
-        .map_err(|err| bridge_error("status", err))?;
-
-    let queue = bridge
-        .call("Queue.getQueue", json!({}))
-        .await
-        .map_err(|err| bridge_error("status", err))?;
-
-    let shuffle = bridge
-        .call("Playback.isShuffleEnabled", json!({}))
-        .await
-        .map_err(|err| bridge_error("status", err))?;
-
-    let repeat_mode = bridge
-        .call("Playback.getRepeatMode", json!({}))
-        .await
-        .map_err(|err| bridge_error("status", err))?;
+    let state = call(bridge, "status", "Playback.getState", json!({})).await?;
+    let volume = call(bridge, "status", "Playback.getVolume", json!({})).await?;
+    let queue = call(bridge, "status", "Queue.getQueue", json!({})).await?;
+    let shuffle = call(bridge, "status", "Playback.isShuffleEnabled", json!({})).await?;
+    let repeat_mode = call(bridge, "status", "Playback.getRepeatMode", json!({})).await?;
 
     let mpd_volume = (volume.as_f64().unwrap_or(1.0) * 100.0).round() as i32;
     let playback_status = state["status"].as_str().unwrap_or("stopped");
@@ -145,10 +143,7 @@ async fn status(bridge: &Bridge) -> CommandResult {
 }
 
 async fn currentsong(bridge: &Bridge) -> CommandResult {
-    let queue = bridge
-        .call("Queue.getQueue", json!({}))
-        .await
-        .map_err(|err| bridge_error("currentsong", err))?;
+    let queue = call(bridge, "currentsong", "Queue.getQueue", json!({})).await?;
 
     let current_index = queue["currentIndex"].as_u64().unwrap_or(0) as usize;
     let items = queue["items"].as_array();
@@ -161,17 +156,122 @@ async fn currentsong(bridge: &Bridge) -> CommandResult {
     Ok(MpdResponse { fields })
 }
 
+async fn playlistinfo(bridge: &Bridge, range: &Option<PlaylistRange>) -> CommandResult {
+    let queue = call(bridge, "playlistinfo", "Queue.getQueue", json!({})).await?;
+
+    let items = queue["items"].as_array();
+    let all_items = match items {
+        Some(items) => items,
+        None => return Ok(MpdResponse { fields: Vec::new() }),
+    };
+
+    let selected: Vec<(usize, &serde_json::Value)> = match range {
+        None => all_items.iter().enumerate().collect(),
+        Some(PlaylistRange::Position(pos)) => {
+            let pos = *pos as usize;
+            match all_items.get(pos) {
+                Some(item) => vec![(pos, item)],
+                None => {
+                    return Err(MpdError {
+                        code: ACK_ERROR_ARG,
+                        command: "playlistinfo".to_string(),
+                        list_index: 0,
+                        message: format!("Bad song index: {pos}"),
+                    })
+                }
+            }
+        }
+        Some(PlaylistRange::Range { start, end }) => {
+            let start = *start as usize;
+            let end = *end as usize;
+            all_items
+                .iter()
+                .enumerate()
+                .skip(start)
+                .take(end.saturating_sub(start))
+                .collect()
+        }
+    };
+
+    let fields = selected
+        .iter()
+        .flat_map(|(pos, item)| track_fields(item, *pos))
+        .collect();
+
+    Ok(MpdResponse { fields })
+}
+
+async fn play(bridge: &Bridge, position: &Option<i32>) -> CommandResult {
+    if let Some(pos) = position.filter(|pos| *pos >= 0) {
+        call(bridge, "play", "Queue.goToIndex", json!({ "index": pos })).await?;
+    }
+    call(bridge, "play", "Playback.play", json!({})).await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn pause(bridge: &Bridge, state: &Option<bool>) -> CommandResult {
+    let method = match state {
+        Some(true) => "Playback.pause",
+        Some(false) => "Playback.play",
+        None => "Playback.toggle",
+    };
+    call(bridge, "pause", method, json!({})).await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn stop(bridge: &Bridge) -> CommandResult {
+    call(bridge, "stop", "Playback.stop", json!({})).await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn next(bridge: &Bridge) -> CommandResult {
+    call(bridge, "next", "Queue.goToNext", json!({})).await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn previous(bridge: &Bridge) -> CommandResult {
+    call(bridge, "previous", "Queue.goToPrevious", json!({})).await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn setvol(bridge: &Bridge, volume: u8) -> CommandResult {
+    let normalized = volume as f64 / 100.0;
+    call(
+        bridge,
+        "setvol",
+        "Playback.setVolume",
+        json!({ "volume": normalized }),
+    )
+    .await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn getvol(bridge: &Bridge) -> CommandResult {
+    let volume = call(bridge, "getvol", "Playback.getVolume", json!({})).await?;
+    let mpd_volume = (volume.as_f64().unwrap_or(1.0) * 100.0).round() as i32;
+    Ok(MpdResponse {
+        fields: vec![field("volume", mpd_volume)],
+    })
+}
+
 pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
     match command {
-        Command::Ping | Command::Password => Ok(MpdResponse { fields: Vec::new() }),
+        Command::Ping | Command::Password | Command::Noop => Ok(MpdResponse { fields: Vec::new() }),
         Command::Status => status(bridge).await,
         Command::CurrentSong => currentsong(bridge).await,
+        Command::PlaylistInfo(range) => playlistinfo(bridge, range).await,
+        Command::Play(position) => play(bridge, position).await,
+        Command::Pause(state) => pause(bridge, state).await,
+        Command::Stop => stop(bridge).await,
+        Command::Next => next(bridge).await,
+        Command::Previous => previous(bridge).await,
+        Command::SetVol(vol) => setvol(bridge, *vol).await,
+        Command::GetVol => getvol(bridge).await,
         Command::Unknown(name) => Err(MpdError {
             code: ACK_ERROR_UNKNOWN,
             command: name.clone(),
             list_index: 0,
             message: "unknown command".to_string(),
         }),
-        _ => Ok(MpdResponse { fields: Vec::new() }),
     }
 }

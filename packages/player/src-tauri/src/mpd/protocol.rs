@@ -3,6 +3,7 @@ pub const GREETING: &[u8] = b"OK MPD 0.25.0\n";
 pub enum Command {
     Ping,
     Password,
+    Noop,
     Status,
     CurrentSong,
     PlaylistInfo(Option<PlaylistRange>),
@@ -37,55 +38,106 @@ pub const ACK_ERROR_UNKNOWN: u32 = 5;
 pub const ACK_ERROR_NO_EXIST: u32 = 50;
 pub const ACK_ERROR_SYSTEM: u32 = 52;
 
+fn tokenize_args(input: &str) -> Vec<String> {
+    let mut tokens = Vec::new();
+    let mut chars = input.chars().peekable();
+
+    while let Some(&ch) = chars.peek() {
+        match ch {
+            ' ' | '\t' => {
+                chars.next();
+            }
+            '"' => {
+                chars.next();
+                let mut token = String::new();
+                while let Some(&ch) = chars.peek() {
+                    match ch {
+                        '"' => {
+                            chars.next();
+                            break;
+                        }
+                        '\\' => {
+                            chars.next();
+                            if let Some(&escaped) = chars.peek() {
+                                token.push(escaped);
+                                chars.next();
+                            }
+                        }
+                        _ => {
+                            token.push(ch);
+                            chars.next();
+                        }
+                    }
+                }
+                tokens.push(token);
+            }
+            _ => {
+                let mut token = String::new();
+                while let Some(&ch) = chars.peek() {
+                    if ch == ' ' || ch == '\t' {
+                        break;
+                    }
+                    token.push(ch);
+                    chars.next();
+                }
+                tokens.push(token);
+            }
+        }
+    }
+
+    tokens
+}
+
 pub fn parse_command(line: &str) -> Command {
     let trimmed = line.trim_end_matches(['\r', '\n']);
     let mut parts = trimmed.splitn(2, ' ');
     let name = parts.next().unwrap_or("");
-    let args = parts.next().unwrap_or("").trim();
+    let args = tokenize_args(parts.next().unwrap_or(""));
+    let first_arg = args.first().map(|arg| arg.as_str()).unwrap_or("");
 
     match name {
         "ping" => Command::Ping,
-        "password" => Command::Password,
+        "password" | "tagtypes" | "outputs" | "noidle" => Command::Noop,
         "status" => Command::Status,
         "currentsong" => Command::CurrentSong,
         "stop" => Command::Stop,
         "next" => Command::Next,
         "previous" => Command::Previous,
         "getvol" => Command::GetVol,
-        "play" => Command::Play(parse_optional_i32(args)),
-        "pause" => Command::Pause(match args {
+        "play" => Command::Play(parse_optional_i32(first_arg)),
+        "pause" => Command::Pause(match first_arg {
             "0" => Some(false),
             "1" => Some(true),
             _ => None,
         }),
-        "setvol" => match args.parse::<i32>() {
+        "setvol" => match first_arg.parse::<i32>() {
             Ok(vol) => Command::SetVol(vol.clamp(0, 100) as u8),
             Err(_) => Command::Unknown(name.to_string()),
         },
-        "playlistinfo" => Command::PlaylistInfo(parse_playlist_range(args)),
+        "playlistinfo" => Command::PlaylistInfo(parse_playlist_range(first_arg)),
         _ => Command::Unknown(name.to_string()),
     }
 }
 
-fn parse_optional_i32(args: &str) -> Option<i32> {
-    if args.is_empty() {
+fn parse_optional_i32(arg: &str) -> Option<i32> {
+    if arg.is_empty() {
         None
     } else {
-        args.parse().ok()
+        arg.parse().ok()
     }
 }
 
-fn parse_playlist_range(args: &str) -> Option<PlaylistRange> {
-    if args.is_empty() {
+fn parse_playlist_range(arg: &str) -> Option<PlaylistRange> {
+    if arg.is_empty() {
         return None;
     }
 
-    if let Some((start, end)) = args.split_once(':') {
+    if let Some((start, end)) = arg.split_once(':') {
         let start = start.parse().ok()?;
         let end = end.parse().ok()?;
         Some(PlaylistRange::Range { start, end })
     } else {
-        let pos = args.parse().ok()?;
+        let pos = arg.parse().ok()?;
         Some(PlaylistRange::Position(pos))
     }
 }
