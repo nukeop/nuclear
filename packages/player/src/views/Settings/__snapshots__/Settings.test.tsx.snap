@@ -698,10 +698,98 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                 >
                                   <button
                                     aria-checked="false"
-                                    aria-label="Discord Rich Presence"
+                                    aria-label="Enable MPD Server"
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
                                     id="headlessui-switch-:rh:"
+                                    role="switch"
+                                    tabindex="0"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                    />
+                                  </button>
+                                  <span
+                                    class="text-foreground text-sm font-semibold"
+                                  >
+                                    Enable MPD Server
+                                  </span>
+                                </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Start a local MPD-compatible server so MPD clients can control Nuclear.
+                                </p>
+                              </div>
+                              <div
+                                class="flex flex-col gap-2"
+                              >
+                                <span
+                                  class="text-foreground text-sm font-semibold"
+                                >
+                                  MPD Server URL
+                                </span>
+                                <div
+                                  class="flex items-center gap-2"
+                                >
+                                  <div
+                                    class="border-border bg-background-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
+                                    data-testid="info-field-value"
+                                  >
+                                    mpd://127.0.0.1:6600
+                                  </div>
+                                  <button
+                                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border border-current bg-transparent hover:bg-black/10 size-8 justify-center"
+                                    data-headlessui-state=""
+                                    data-testid="info-field-copy-button"
+                                    type="button"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      class="lucide lucide-copy size-3.5"
+                                      fill="none"
+                                      height="24"
+                                      stroke="currentColor"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      viewBox="0 0 24 24"
+                                      width="24"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <rect
+                                        height="14"
+                                        rx="2"
+                                        ry="2"
+                                        width="14"
+                                        x="8"
+                                        y="8"
+                                      />
+                                      <path
+                                        d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Point your MPD client to this address to connect to Nuclear.
+                                </p>
+                              </div>
+                              <div
+                                class="flex flex-col gap-2"
+                              >
+                                <div
+                                  class="flex items-center gap-3"
+                                >
+                                  <button
+                                    aria-checked="false"
+                                    aria-label="Discord Rich Presence"
+                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                    data-headlessui-state=""
+                                    id="headlessui-switch-:ri:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -750,8 +838,8 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   >
                                     <label
                                       class="text-foreground font-semibold"
-                                      for=":ri:"
-                                      id=":ri:-label"
+                                      for=":rj:"
+                                      id=":rj:-label"
                                     >
                                       Discovery variety
                                     </label>
@@ -786,13 +874,13 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       </div>
                                     </div>
                                     <input
-                                      aria-labelledby=":ri:-label"
+                                      aria-labelledby=":rj:-label"
                                       aria-valuemax="1"
                                       aria-valuemin="0"
                                       aria-valuenow="0.5"
                                       aria-valuetext="0.5"
                                       class="absolute inset-0 z-[1] h-6 w-full appearance-none opacity-0 cursor-pointer"
-                                      id=":ri:"
+                                      id=":rj:"
                                       max="1"
                                       min="0"
                                       step="0.05"
@@ -817,22 +905,22 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                               >
                                 <label
                                   class="text-foreground text-sm font-semibold"
-                                  for="input-:rj:"
-                                  id="input-:rj:-label"
+                                  for="input-:rk:"
+                                  id="input-:rk:-label"
                                 >
                                   Skip duration
                                 </label>
                                 <input
                                   class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
-                                  id="input-:rj:"
+                                  id="input-:rk:"
                                   inputmode="numeric"
                                   type="number"
                                   value="5"
                                 />
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rj:-description"
+                                  id="input-:rk:-description"
                                 >
                                   Number of seconds to skip forward/backward
                                 </p>
@@ -842,22 +930,22 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                               >
                                 <label
                                   class="text-foreground text-sm font-semibold"
-                                  for="input-:rl:"
-                                  id="input-:rl:-label"
+                                  for="input-:rm:"
+                                  id="input-:rm:-label"
                                 >
                                   Crossfade
                                 </label>
                                 <input
                                   class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
-                                  id="input-:rl:"
+                                  id="input-:rm:"
                                   inputmode="numeric"
                                   type="number"
                                   value="0"
                                 />
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rl:-description"
+                                  id="input-:rm:-description"
                                 >
                                   Crossfade duration between tracks in milliseconds
                                 </p>
@@ -867,22 +955,22 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                               >
                                 <label
                                   class="text-foreground text-sm font-semibold"
-                                  for="input-:rn:"
-                                  id="input-:rn:-label"
+                                  for="input-:ro:"
+                                  id="input-:ro:-label"
                                 >
                                   Stream expiry time
                                 </label>
                                 <input
                                   class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
-                                  id="input-:rn:"
+                                  id="input-:ro:"
                                   inputmode="numeric"
                                   type="number"
                                   value="3600000"
                                 />
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rn:-description"
+                                  id="input-:ro:-description"
                                 >
                                   How long before a resolved stream URL is considered expired and needs re-resolution
                                 </p>
@@ -892,22 +980,22 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                               >
                                 <label
                                   class="text-foreground text-sm font-semibold"
-                                  for="input-:rp:"
-                                  id="input-:rp:-label"
+                                  for="input-:rq:"
+                                  id="input-:rq:-label"
                                 >
                                   Stream resolution retries
                                 </label>
                                 <input
                                   class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
-                                  id="input-:rp:"
+                                  id="input-:rq:"
                                   inputmode="numeric"
                                   type="number"
                                   value="3"
                                 />
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rp:-description"
+                                  id="input-:rq:-description"
                                 >
                                   Number of times to retry resolving a stream URL before moving to the next candidate
                                 </p>
@@ -941,7 +1029,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-checked=""
                                     data-headlessui-state="checked"
-                                    id="headlessui-switch-:rr:"
+                                    id="headlessui-switch-:rs:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -991,7 +1079,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-checked=""
                                     data-headlessui-state="checked"
-                                    id="headlessui-switch-:rs:"
+                                    id="headlessui-switch-:rt:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -1023,7 +1111,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     aria-label="Auto-install updates"
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
-                                    id="headlessui-switch-:rt:"
+                                    id="headlessui-switch-:ru:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
