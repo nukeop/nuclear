@@ -98,7 +98,6 @@ pub fn format_response(response: &MpdResponse) -> Vec<u8> {
         output.extend_from_slice(value.as_bytes());
         output.push(b'\n');
     }
-    output.extend_from_slice(b"OK\n");
     output
 }
 
