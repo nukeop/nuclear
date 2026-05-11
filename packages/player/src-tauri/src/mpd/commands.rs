@@ -12,6 +12,46 @@ fn field(key: &str, value: impl ToString) -> (String, String) {
     (key.to_string(), value.to_string())
 }
 
+fn track_fields(item: &serde_json::Value, position: usize) -> Fields {
+    let track = &item["track"];
+    let source = &track["source"];
+
+    let file = format!(
+        "nuclear://{}/{}",
+        source["provider"].as_str().unwrap_or("unknown"),
+        source["id"].as_str().unwrap_or("unknown")
+    );
+
+    let title = track["title"].as_str().unwrap_or("");
+    let artist = track["artists"]
+        .as_array()
+        .and_then(|artists| artists.first())
+        .and_then(|artist| artist["name"].as_str())
+        .unwrap_or("");
+    let album = track["album"]["title"].as_str().unwrap_or("");
+    let duration_ms = track["durationMs"].as_f64().unwrap_or(0.0);
+    let duration_secs = duration_ms / 1000.0;
+
+    let mut fields: Fields = vec![field("file", &file)];
+
+    if !title.is_empty() {
+        fields.push(field("Title", title));
+    }
+    if !artist.is_empty() {
+        fields.push(field("Artist", artist));
+    }
+    if !album.is_empty() {
+        fields.push(field("Album", album));
+    }
+
+    fields.push(field("Time", duration_secs as i64));
+    fields.push(field("duration", format!("{duration_secs:.3}")));
+    fields.push(field("Pos", position));
+    fields.push(field("Id", position));
+
+    fields
+}
+
 fn bridge_error(command: &str, error: BridgeError) -> MpdError {
     MpdError {
         code: ACK_ERROR_SYSTEM,
@@ -59,7 +99,11 @@ async fn status(bridge: &Bridge) -> CommandResult {
     let queue_length = items.map(|arr| arr.len()).unwrap_or(0);
     let current_index = queue["currentIndex"].as_i64().unwrap_or(0);
 
-    let mpd_random = if shuffle.as_bool().unwrap_or(false) { 1 } else { 0 };
+    let mpd_random = if shuffle.as_bool().unwrap_or(false) {
+        1
+    } else {
+        0
+    };
     let repeat_str = repeat_mode.as_str().unwrap_or("off");
     let mpd_repeat = if repeat_str != "off" { 1 } else { 0 };
     let mpd_single = if repeat_str == "one" { 1 } else { 0 };
@@ -81,7 +125,10 @@ async fn status(bridge: &Bridge) -> CommandResult {
 
         fields.push(field("song", current_index));
         fields.push(field("songid", current_index));
-        fields.push(field("time", format!("{}:{}", seek as i64, duration as i64)));
+        fields.push(field(
+            "time",
+            format!("{}:{}", seek as i64, duration as i64),
+        ));
         fields.push(field("elapsed", format!("{seek:.3}")));
         fields.push(field("duration", format!("{duration:.3}")));
 
@@ -97,20 +144,34 @@ async fn status(bridge: &Bridge) -> CommandResult {
     Ok(MpdResponse { fields })
 }
 
+async fn currentsong(bridge: &Bridge) -> CommandResult {
+    let queue = bridge
+        .call("Queue.getQueue", json!({}))
+        .await
+        .map_err(|err| bridge_error("currentsong", err))?;
+
+    let current_index = queue["currentIndex"].as_u64().unwrap_or(0) as usize;
+    let items = queue["items"].as_array();
+
+    let fields = match items.and_then(|items| items.get(current_index)) {
+        Some(item) => track_fields(item, current_index),
+        None => Vec::new(),
+    };
+
+    Ok(MpdResponse { fields })
+}
+
 pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
     match command {
-        Command::Ping | Command::Password => Ok(MpdResponse {
-            fields: Vec::new(),
-        }),
+        Command::Ping | Command::Password => Ok(MpdResponse { fields: Vec::new() }),
         Command::Status => status(bridge).await,
+        Command::CurrentSong => currentsong(bridge).await,
         Command::Unknown(name) => Err(MpdError {
             code: ACK_ERROR_UNKNOWN,
             command: name.clone(),
             list_index: 0,
             message: "unknown command".to_string(),
         }),
-        _ => Ok(MpdResponse {
-            fields: Vec::new(),
-        }),
+        _ => Ok(MpdResponse { fields: Vec::new() }),
     }
 }
