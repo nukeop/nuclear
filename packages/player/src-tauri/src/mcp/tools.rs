@@ -3,7 +3,10 @@ use rmcp::{
     schemars, tool, tool_router, ErrorData as McpError,
 };
 
-use super::bridge::{BridgeError, McpBridge};
+use crate::bridge::bridge::Bridge;
+use crate::bridge::types::BridgeError;
+
+use super::metadata;
 
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
 pub struct ListMethodsParams {
@@ -43,21 +46,32 @@ fn bridge_result_to_mcp(
             log::error!("MCP {tool_label} infrastructure error: {message}");
             Err(McpError::internal_error(message, None))
         }
-        Err(BridgeError::ToolError(message)) => {
+        Err(BridgeError::HandlerError(message)) => {
             Ok(CallToolResult::error(vec![Content::text(message)]))
         }
     }
 }
 
+fn metadata_result_to_mcp(
+    result: Result<serde_json::Value, String>,
+) -> Result<CallToolResult, McpError> {
+    match result {
+        Ok(data) => Ok(CallToolResult::success(vec![Content::text(
+            serde_json::to_string_pretty(&data).unwrap_or_default(),
+        )])),
+        Err(message) => Ok(CallToolResult::error(vec![Content::text(message)])),
+    }
+}
+
 #[derive(Clone)]
 pub struct NuclearMcpServer {
-    pub bridge: McpBridge,
+    pub bridge: Bridge,
     pub(crate) tool_router: ToolRouter<NuclearMcpServer>,
 }
 
 #[tool_router]
 impl NuclearMcpServer {
-    pub fn new(bridge: McpBridge) -> Self {
+    pub fn new(bridge: Bridge) -> Self {
         Self {
             bridge,
             tool_router: Self::tool_router(),
@@ -72,15 +86,7 @@ impl NuclearMcpServer {
         &self,
         Parameters(params): Parameters<ListMethodsParams>,
     ) -> Result<CallToolResult, McpError> {
-        bridge_result_to_mcp(
-            &format!("list_methods({})", params.domain),
-            self.bridge
-                .call_tool(
-                    "list_methods",
-                    serde_json::to_value(&params.domain).unwrap(),
-                )
-                .await,
-        )
+        metadata_result_to_mcp(metadata::list_methods(&params.domain))
     }
 
     #[tool(
@@ -91,15 +97,16 @@ impl NuclearMcpServer {
         &self,
         Parameters(params): Parameters<MethodDetailsParams>,
     ) -> Result<CallToolResult, McpError> {
-        bridge_result_to_mcp(
-            &format!("method_details({})", params.method),
-            self.bridge
-                .call_tool(
-                    "method_details",
-                    serde_json::to_value(&params.method).unwrap(),
-                )
-                .await,
-        )
+        let (domain, method) = match params.method.split_once('.') {
+            Some(parts) => parts,
+            None => {
+                return Ok(CallToolResult::error(vec![Content::text(format!(
+                    "Invalid method format '{}': expected 'Domain.method', e.g. 'Queue.addToQueue'.",
+                    params.method
+                ))]));
+            }
+        };
+        metadata_result_to_mcp(metadata::method_details(domain, method))
     }
 
     #[tool(
@@ -110,15 +117,7 @@ impl NuclearMcpServer {
         &self,
         Parameters(params): Parameters<DescribeTypeParams>,
     ) -> Result<CallToolResult, McpError> {
-        bridge_result_to_mcp(
-            &format!("describe_type({})", params.type_name),
-            self.bridge
-                .call_tool(
-                    "describe_type",
-                    serde_json::to_value(&params.type_name).unwrap(),
-                )
-                .await,
-        )
+        metadata_result_to_mcp(metadata::describe_type(&params.type_name))
     }
 
     #[tool(
@@ -129,9 +128,15 @@ impl NuclearMcpServer {
         &self,
         Parameters(params): Parameters<CallParams>,
     ) -> Result<CallToolResult, McpError> {
+        let parsed_params = match &params.params {
+            serde_json::Value::String(s) => serde_json::from_str(s).unwrap_or(params.params),
+            serde_json::Value::Null => serde_json::Value::Object(Default::default()),
+            other => other.clone(),
+        };
+
         bridge_result_to_mcp(
             &format!("call({})", params.method),
-            self.bridge.call_tool(&params.method, params.params).await,
+            self.bridge.call(&params.method, parsed_params).await,
         )
     }
 }

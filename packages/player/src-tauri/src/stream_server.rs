@@ -142,22 +142,6 @@ async fn options_handler() -> Response<Body> {
     response
 }
 
-async fn try_bind() -> Result<tokio::net::TcpListener, String> {
-    let mut last_error = String::new();
-    for port in PORT_START..=PORT_END {
-        match tokio::net::TcpListener::bind(format!("127.0.0.1:{port}")).await {
-            Ok(listener) => return Ok(listener),
-            Err(err) => {
-                log::debug!("Port {port} unavailable: {err}");
-                last_error = format!("{err}");
-            }
-        }
-    }
-    Err(format!(
-        "No available port in range {PORT_START}-{PORT_END}: {last_error}"
-    ))
-}
-
 async fn start_server(client: Arc<Client>, ready: oneshot::Sender<Result<u16, String>>) {
     let cancellation_token = CancellationToken::new();
 
@@ -168,7 +152,7 @@ async fn start_server(client: Arc<Client>, ready: oneshot::Sender<Result<u16, St
         )
         .with_state(client);
 
-    let tcp_listener = match try_bind().await {
+    let tcp_listener = match crate::net::bind_first_available_port("127.0.0.1", PORT_START, PORT_END).await {
         Ok(listener) => listener,
         Err(message) => {
             log::error!("Failed to bind stream server: {message}");

@@ -18,6 +18,7 @@ export const LOG_SCOPES = [
   'discord',
   'discovery',
   'mcp',
+  'mpd',
   'playback',
   'streaming',
   'plugins',

@@ -53,6 +53,7 @@
 ## Integrations
 
 * [MCP Server](integrations/mcp-server.md)
+* [MPD Server](integrations/mpd-server.md)
 
 ## Development
 

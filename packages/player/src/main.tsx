@@ -16,6 +16,7 @@ import '@nuclearplayer/i18n';
 import { initLogStream } from './hooks/useLogStream';
 import { startAdvancedThemeWatcher } from './services/advancedThemeDirService';
 import { applyAdvancedThemeFromSettingsIfAny } from './services/advancedThemeService';
+import { initBridgeHandler } from './services/bridge/bridgeHandler';
 import { initDiscordHandler } from './services/discordHandler';
 import { initDiscoveryService } from './services/discoveryService';
 import {
@@ -24,6 +25,7 @@ import {
 } from './services/languageService';
 import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
 import { initMcpHandler } from './services/mcp';
+import { initMpdHandler } from './services/mpd';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
 import { hydrateThemeStore } from './stores/themeStore';
@@ -39,6 +41,8 @@ initializeSettingsStore()
   .then(() => registerBuiltInCoreSettings())
   .then(() => initDiscoveryService())
   .then(() => initMcpHandler())
+  .then(() => initMpdHandler())
+  .then(() => initBridgeHandler())
   .then(() => initDiscordHandler())
   .then(() => applyLanguageFromSettings())
   .then(() => initLanguageWatcher())
