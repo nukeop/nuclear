@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-05-11T00:00",
+    "description": "MPD server lets you control Nuclear from MPD clients like mpc and ncmpcpp",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Integrations",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-05-04T00:00",
     "description": "Installed plugins are automatically updated to the latest version on startup",
     "type": "feature",
