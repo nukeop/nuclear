@@ -2,10 +2,10 @@ use std::collections::HashMap;
 use std::sync::Arc;
 
 use tauri::{AppHandle, Emitter};
-use tokio::sync::{oneshot, Mutex};
+use tokio::sync::{broadcast, oneshot, Mutex};
 use uuid::Uuid;
 
-use super::types::{BridgeError, BridgeRequest, BridgeResponse, BridgeResponseBody, BRIDGE_EVENT};
+use super::types::{BridgeError, BridgeNotification, BridgeRequest, BridgeResponse, BridgeResponseBody, BRIDGE_EVENT};
 
 type PendingRequests = Arc<Mutex<HashMap<String, oneshot::Sender<BridgeResponse>>>>;
 
@@ -13,13 +13,16 @@ type PendingRequests = Arc<Mutex<HashMap<String, oneshot::Sender<BridgeResponse>
 pub struct Bridge {
     app_handle: AppHandle,
     pending: PendingRequests,
+    notifications: broadcast::Sender<BridgeNotification>,
 }
 
 impl Bridge {
     pub fn new(app_handle: AppHandle) -> Self {
+        let (notifications, _) = broadcast::channel(16);
         Self {
             app_handle,
             pending: Arc::new(Mutex::new(HashMap::new())),
+            notifications,
         }
     }
 
@@ -83,7 +86,12 @@ impl Bridge {
         }
     }
 
-    pub async fn handle_notification(&self, notification: serde_json::Value) {
-        todo!()
+    pub async fn handle_notification(&self, notification: BridgeNotification) {
+        log::debug!(target: "bridge", "bridge notification: {}", notification.subsystem);
+        let _ = self.notifications.send(notification);
+    }
+
+    pub fn subscribe_notifications(&self) -> broadcast::Receiver<BridgeNotification> {
+        self.notifications.subscribe()
     }
 }

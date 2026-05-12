@@ -47,3 +47,8 @@ pub enum BridgeResponseBody {
     Success { data: serde_json::Value },
     Error { error: String },
 }
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct BridgeNotification {
+    pub subsystem: String,
+}
