@@ -4,6 +4,8 @@ pub enum Command {
     Ping,
     Password,
     Noop,
+    Idle(Vec<String>),
+    NoIdle,
     Status,
     CurrentSong,
     PlaylistInfo(Option<PlaylistRange>),
@@ -97,7 +99,9 @@ pub fn parse_command(line: &str) -> Command {
 
     match name {
         "ping" => Command::Ping,
-        "password" | "tagtypes" | "outputs" | "noidle" => Command::Noop,
+        "password" | "tagtypes" | "outputs" => Command::Noop,
+        "idle" => Command::Idle(args),
+        "noidle" => Command::NoIdle,
         "status" => Command::Status,
         "currentsong" => Command::CurrentSong,
         "stop" => Command::Stop,

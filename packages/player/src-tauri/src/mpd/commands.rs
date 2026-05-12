@@ -256,7 +256,15 @@ async fn getvol(bridge: &Bridge) -> CommandResult {
 
 pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
     match command {
-        Command::Ping | Command::Password | Command::Noop => Ok(MpdResponse { fields: Vec::new() }),
+        Command::Ping | Command::Password | Command::Noop | Command::NoIdle => {
+            Ok(MpdResponse { fields: Vec::new() })
+        }
+        Command::Idle(_) => Err(MpdError {
+            code: ACK_ERROR_UNKNOWN,
+            command: "idle".to_string(),
+            list_index: 0,
+            message: "idle not allowed in command lists".to_string(),
+        }),
         Command::Status => status(bridge).await,
         Command::CurrentSong => currentsong(bridge).await,
         Command::PlaylistInfo(range) => playlistinfo(bridge, range).await,
