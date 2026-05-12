@@ -13,6 +13,11 @@ const VOLUME_SETTING = 'core.playback.volume';
 const notifyPlayer = () =>
   void invoke(BridgeCommand.notify, { notification: { subsystem: 'player' } });
 
+const notifyPlaylist = () =>
+  void invoke(BridgeCommand.notify, {
+    notification: { subsystem: 'playlist' },
+  });
+
 const notifyMixer = () =>
   void invoke(BridgeCommand.notify, { notification: { subsystem: 'mixer' } });
 
@@ -40,6 +45,25 @@ const watchQueueIndex = () => {
   });
 };
 
+const itemFingerprint = () =>
+  useQueueStore
+    .getState()
+    .items.map((item) => item.id)
+    .join(',');
+
+const watchQueueContents = () => {
+  let previousFingerprint = itemFingerprint();
+
+  useQueueStore.subscribe(() => {
+    const fingerprint = itemFingerprint();
+    if (fingerprint === previousFingerprint) {
+      return;
+    }
+    previousFingerprint = fingerprint;
+    notifyPlaylist();
+  });
+};
+
 const watchVolume = () => {
   let previousVolume: SettingValue = useSettingsStore
     .getState()
@@ -58,5 +82,6 @@ const watchVolume = () => {
 export const initBridgeNotifier = (): void => {
   watchSoundStatus();
   watchQueueIndex();
+  watchQueueContents();
   watchVolume();
 };
