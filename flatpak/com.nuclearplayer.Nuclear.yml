@@ -53,7 +53,7 @@ modules:
         npm_config_cache: /run/build/nuclear-music-player/npm-cache
     build-commands:
       - mkdir -p /run/build/nuclear-music-player/.npm-global
-      - npm install -g pnpm
+      - npm install -g pnpm@11.0.6
 
       - pnpm install --offline --frozen-lockfile
       - pnpm --filter @nuclearplayer/player build:frontend
