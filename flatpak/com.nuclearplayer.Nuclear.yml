@@ -55,7 +55,7 @@ modules:
       - mkdir -p /run/build/nuclear-music-player/.npm-global
       - npm install -g pnpm@11.0.6
 
-      - pnpm install --offline --frozen-lockfile
+      - pnpm install --offline --frozen-lockfile --store-dir=$PWD/flatpak-node/pnpm-store
       - pnpm --filter @nuclearplayer/player build:frontend
       - pnpm --filter @nuclearplayer/player tauri build --no-bundle
         -c '{"build":{"beforeBuildCommand":""}}'
