@@ -3,7 +3,7 @@
   "version": "0.0.10",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.0.6",
+  "packageManager": "pnpm@10.33.3",
   "scripts": {
     "dev": "turbo dev --filter=@nuclearplayer/player --filter=@nuclearplayer/ui",
     "build": "turbo build",
