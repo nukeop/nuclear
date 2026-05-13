@@ -1,7 +1,7 @@
 # Flatpak manifest for Nuclear Music Player (from-source build)
 #
 # Generate vendored dependency sources:
-#   flatpak-node-generator pnpm --pnpm-store-version v11 -o flatpak/pnpm-sources.json pnpm-lock.yaml
+#   flatpak-node-generator pnpm -o flatpak/pnpm-sources.json pnpm-lock.yaml
 #   python3 flatpak-cargo-generator.py packages/player/src-tauri/Cargo.lock -o flatpak/cargo-sources.json
 #
 # Build locally:
@@ -53,9 +53,9 @@ modules:
         npm_config_cache: /run/build/nuclear-music-player/npm-cache
     build-commands:
       - mkdir -p /run/build/nuclear-music-player/.npm-global
-      - npm install -g pnpm@11.0.6
+      - npm install -g pnpm@10.33.3
 
-      - pnpm install --offline --frozen-lockfile --store-dir=$PWD/flatpak-node/pnpm-store
+      - pnpm install --offline --frozen-lockfile
       - pnpm --filter @nuclearplayer/player build:frontend
       - pnpm --filter @nuclearplayer/player tauri build --no-bundle
         -c '{"build":{"beforeBuildCommand":""}}'

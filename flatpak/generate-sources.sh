@@ -6,7 +6,7 @@
 #   cargo-sources.json   — Rust crates referenced by Cargo.lock
 #
 # Prerequisites:
-#   flatpak-node-generator  (pipx install git+https://github.com/YUCLing/flatpak-builder-tools.git@feat/pnpm-store-v11#subdirectory=node)
+#   flatpak-node-generator  (pipx install git+https://github.com/flatpak/flatpak-builder-tools.git#subdirectory=node)
 #   python3                 (for the cargo generator)
 #
 # The cargo generator (flatpak-cargo-generator.py) is downloaded automatically
@@ -24,7 +24,7 @@ CARGO_GENERATOR="$SCRIPT_DIR/.flatpak-cargo-generator.py"
 
 if ! command -v flatpak-node-generator &>/dev/null; then
   echo "Error: flatpak-node-generator not found." >&2
-  echo "Install it with:  pipx install git+https://github.com/YUCLing/flatpak-builder-tools.git@feat/pnpm-store-v11#subdirectory=node" >&2
+  echo "Install it with:  pipx install git+https://github.com/flatpak/flatpak-builder-tools.git#subdirectory=node" >&2
   exit 1
 fi
 
@@ -44,7 +44,6 @@ fi
 
 echo "Generating pnpm-sources.json..."
 flatpak-node-generator pnpm \
-  --pnpm-store-version v11 \
   -o "$SCRIPT_DIR/pnpm-sources.json" \
   "$REPO_ROOT/pnpm-lock.yaml"
 
