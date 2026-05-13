@@ -1,5 +1,6 @@
 mod commands;
 mod connection;
+mod idle;
 mod protocol;
 
 use std::sync::Arc;

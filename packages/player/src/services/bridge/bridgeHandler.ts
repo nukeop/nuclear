@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { errorMessage } from '../../utils/error';
 import { BridgeCommand, BridgeEvent } from '../tauri/bridge';
 import { dispatch } from './bridgeDispatcher';
+import { initBridgeNotifier } from './bridgeNotifier';
 
 const bridgeRequestSchema = z.object({
   traceId: z.string(),
@@ -55,4 +56,6 @@ export const initBridgeHandler = async (): Promise<void> => {
     const request = bridgeRequestSchema.parse(event.payload);
     void handleRequest(request);
   });
+
+  initBridgeNotifier();
 };

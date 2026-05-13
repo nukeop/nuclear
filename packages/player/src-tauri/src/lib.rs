@@ -65,7 +65,8 @@ pub fn run() {
             discord::discord_disconnect,
             discord::discord_set_activity,
             discord::discord_clear_activity,
-            bridge::bridge_respond
+            bridge::bridge_respond,
+            bridge::bridge_notify
         ])
         .setup(|app| {
             logging::mark_startup_complete();
