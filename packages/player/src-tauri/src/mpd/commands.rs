@@ -1,7 +1,6 @@
 use serde_json::{json, Value};
 
 use crate::bridge::bridge::Bridge;
-use crate::bridge::types::BridgeError;
 
 use super::protocol::{
     Command, MpdError, MpdResponse, PlaylistRange, ACK_ERROR_ARG, ACK_ERROR_SYSTEM,
@@ -67,15 +66,6 @@ fn track_fields(item: &serde_json::Value, position: usize) -> Fields {
     fields.push(field("Id", position));
 
     fields
-}
-
-fn bridge_error(command: &str, error: BridgeError) -> MpdError {
-    MpdError {
-        code: ACK_ERROR_SYSTEM,
-        command: command.to_string(),
-        list_index: 0,
-        message: error.to_string(),
-    }
 }
 
 async fn status(bridge: &Bridge) -> CommandResult {
@@ -254,6 +244,116 @@ async fn getvol(bridge: &Bridge) -> CommandResult {
     })
 }
 
+async fn seek(bridge: &Bridge, position: u32, time: f64) -> CommandResult {
+    call(bridge, "seek", "Queue.goToIndex", json!({ "index": position })).await?;
+    call(bridge, "seek", "Playback.seekTo", json!({ "seconds": time })).await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn seekid(bridge: &Bridge, id: u32, time: f64) -> CommandResult {
+    seek(bridge, id, time).await
+}
+
+async fn seekcur(bridge: &Bridge, raw_time: &str) -> CommandResult {
+    let parse_err = || MpdError {
+        code: ACK_ERROR_ARG,
+        command: "seekcur".to_string(),
+        list_index: 0,
+        message: format!("Invalid time: {raw_time}"),
+    };
+
+    let time = match raw_time.strip_prefix(['+', '-']) {
+        Some(offset_str) => {
+            let offset = offset_str.parse::<f64>().map_err(|_| parse_err())?;
+            let state = call(bridge, "seekcur", "Playback.getState", json!({})).await?;
+            let current = state["seek"].as_f64().unwrap_or(0.0);
+            let signed_offset = if raw_time.starts_with('-') { -offset } else { offset };
+            (current + signed_offset).max(0.0)
+        }
+        None => raw_time.parse::<f64>().map_err(|_| parse_err())?,
+    };
+
+    call(bridge, "seekcur", "Playback.seekTo", json!({ "seconds": time })).await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn clear(bridge: &Bridge) -> CommandResult {
+    call(bridge, "clear", "Queue.clearQueue", json!({})).await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn delete(bridge: &Bridge, range: &PlaylistRange) -> CommandResult {
+    let indices: Vec<u32> = match range {
+        PlaylistRange::Position(pos) => vec![*pos],
+        PlaylistRange::Range { start, end } => (*start..*end).collect(),
+    };
+    call(
+        bridge,
+        "delete",
+        "Queue.removeByIndices",
+        json!({ "indices": indices }),
+    )
+    .await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn deleteid(bridge: &Bridge, id: u32) -> CommandResult {
+    call(
+        bridge,
+        "deleteid",
+        "Queue.removeByIndices",
+        json!({ "indices": [id] }),
+    )
+    .await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn move_track(bridge: &Bridge, from: u32, to: u32) -> CommandResult {
+    call(
+        bridge,
+        "move",
+        "Queue.reorder",
+        json!({ "fromIndex": from, "toIndex": to }),
+    )
+    .await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn random(bridge: &Bridge, enabled: bool) -> CommandResult {
+    call(
+        bridge,
+        "random",
+        "Playback.setShuffleEnabled",
+        json!({ "enabled": enabled }),
+    )
+    .await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn repeat(bridge: &Bridge, enabled: bool) -> CommandResult {
+    let mode = if enabled { "all" } else { "off" };
+    call(
+        bridge,
+        "repeat",
+        "Playback.setRepeatMode",
+        json!({ "mode": mode }),
+    )
+    .await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
+async fn single(bridge: &Bridge, enabled: bool) -> CommandResult {
+    let mode = if enabled { "one" } else { "off" };
+    call(
+        bridge,
+        "single",
+        "Playback.setRepeatMode",
+        json!({ "mode": mode }),
+    )
+    .await?;
+    Ok(MpdResponse { fields: Vec::new() })
+}
+
 pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
     match command {
         Command::Ping | Command::Password | Command::Noop | Command::NoIdle => {
@@ -275,6 +375,17 @@ pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
         Command::Previous => previous(bridge).await,
         Command::SetVol(vol) => setvol(bridge, *vol).await,
         Command::GetVol => getvol(bridge).await,
+        Command::Seek(position, time) => seek(bridge, *position, *time).await,
+        Command::SeekId(id, time) => seekid(bridge, *id, *time).await,
+        Command::SeekCur(raw_time) => seekcur(bridge, raw_time).await,
+        Command::Clear => clear(bridge).await,
+        Command::Delete(range) => delete(bridge, range).await,
+        Command::DeleteId(id) => deleteid(bridge, *id).await,
+        Command::Move(from, to) => move_track(bridge, *from, *to).await,
+        Command::Shuffle => Ok(MpdResponse { fields: Vec::new() }),
+        Command::Random(enabled) => random(bridge, *enabled).await,
+        Command::Repeat(enabled) => repeat(bridge, *enabled).await,
+        Command::Single(enabled) => single(bridge, *enabled).await,
         Command::Unknown(name) => Err(MpdError {
             code: ACK_ERROR_UNKNOWN,
             command: name.clone(),

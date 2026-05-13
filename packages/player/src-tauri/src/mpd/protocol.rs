@@ -16,6 +16,17 @@ pub enum Command {
     Previous,
     SetVol(u8),
     GetVol,
+    Seek(u32, f64),
+    SeekId(u32, f64),
+    SeekCur(String),
+    Clear,
+    Delete(PlaylistRange),
+    DeleteId(u32),
+    Move(u32, u32),
+    Shuffle,
+    Random(bool),
+    Repeat(bool),
+    Single(bool),
     Unknown(String),
 }
 
@@ -119,6 +130,59 @@ pub fn parse_command(line: &str) -> Command {
             Err(_) => Command::Unknown(name.to_string()),
         },
         "playlistinfo" => Command::PlaylistInfo(parse_playlist_range(first_arg)),
+        "seek" => match (
+            first_arg.parse::<u32>(),
+            args.get(1).and_then(|arg| arg.parse::<f64>().ok()),
+        ) {
+            (Ok(pos), Some(time)) => Command::Seek(pos, time),
+            _ => Command::Unknown(name.to_string()),
+        },
+        "seekid" => match (
+            first_arg.parse::<u32>(),
+            args.get(1).and_then(|arg| arg.parse::<f64>().ok()),
+        ) {
+            (Ok(id), Some(time)) => Command::SeekId(id, time),
+            _ => Command::Unknown(name.to_string()),
+        },
+        "seekcur" => {
+            if first_arg.is_empty() {
+                Command::Unknown(name.to_string())
+            } else {
+                Command::SeekCur(first_arg.to_string())
+            }
+        }
+        "clear" => Command::Clear,
+        "delete" => match parse_playlist_range(first_arg) {
+            Some(range) => Command::Delete(range),
+            None => Command::Unknown(name.to_string()),
+        },
+        "deleteid" => match first_arg.parse::<u32>() {
+            Ok(id) => Command::DeleteId(id),
+            Err(_) => Command::Unknown(name.to_string()),
+        },
+        "move" => match (
+            first_arg.parse::<u32>(),
+            args.get(1).and_then(|arg| arg.parse::<u32>().ok()),
+        ) {
+            (Ok(from), Some(to)) => Command::Move(from, to),
+            _ => Command::Unknown(name.to_string()),
+        },
+        "shuffle" => Command::Shuffle,
+        "random" => match first_arg {
+            "0" => Command::Random(false),
+            "1" => Command::Random(true),
+            _ => Command::Unknown(name.to_string()),
+        },
+        "repeat" => match first_arg {
+            "0" => Command::Repeat(false),
+            "1" => Command::Repeat(true),
+            _ => Command::Unknown(name.to_string()),
+        },
+        "single" => match first_arg {
+            "0" => Command::Single(false),
+            "1" => Command::Single(true),
+            _ => Command::Unknown(name.to_string()),
+        },
         _ => Command::Unknown(name.to_string()),
     }
 }
