@@ -41,6 +41,13 @@ export const Sound: React.FC<SoundProps> = ({
   const isReady = !!source;
   const [canPlay, setCanPlay] = useState(false);
   const [audioNodes, setAudioNodes] = useState<AudioNode[]>([]);
+  const loadedUrlRef = useRef<string | null>(null);
+  if (loadedUrlRef.current !== src.url) {
+    loadedUrlRef.current = src.url;
+    if (canPlay) {
+      setCanPlay(false);
+    }
+  }
 
   useEffect(() => {
     if (source) {

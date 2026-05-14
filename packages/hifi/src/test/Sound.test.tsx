@@ -55,4 +55,33 @@ describe('Sound', () => {
     expect(playMock).not.toHaveBeenCalled();
     restore();
   });
+
+  it('does not call play during a track switch until the new source is ready', () => {
+    const { restore } = setupAudioContextMock();
+    const sourceA: AudioSource = { url: '/a.mp3', protocol: 'http' };
+    const sourceB: AudioSource = { url: '/b.mp3', protocol: 'http' };
+
+    const { rerender } = render(<Sound src={sourceA} status="playing" />);
+
+    const audio = document.querySelector('audio')!;
+    act(() => {
+      audio.dispatchEvent(new Event('loadstart', { bubbles: false }));
+      audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+    });
+
+    rerender(<Sound src={sourceA} status="stopped" />);
+
+    const { playMock } = resetMediaSpies();
+
+    rerender(<Sound src={sourceB} status="playing" />);
+
+    expect(playMock).not.toHaveBeenCalled();
+
+    act(() => {
+      audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+    });
+
+    expect(playMock).toHaveBeenCalled();
+    restore();
+  });
 });
