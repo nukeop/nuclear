@@ -443,7 +443,7 @@ importers:
         version: 18.3.1
       tailwind-merge:
         specifier: ^3.3.1
-        version: 3.5.0
+        version: 3.6.0
     devDependencies:
       '@microsoft/api-extractor':
         specifier: ^7.51.1
@@ -732,7 +732,7 @@ importers:
         version: 2.0.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tailwind-merge:
         specifier: ^3.3.1
-        version: 3.5.0
+        version: 3.6.0
       tailwindcss:
         specifier: ^4.1.11
         version: 4.2.4
@@ -5647,8 +5647,8 @@ packages:
       '@eslint/css':
         optional: true
 
-  tailwind-merge@3.5.0:
-    resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
+  tailwind-merge@3.6.0:
+    resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
 
   tailwindcss@4.2.4:
     resolution: {integrity: sha512-HhKppgO81FQof5m6TEnuBWCZGgfRAWbaeOaGT00KOy/Pf/j6oUihdvBpA7ltCeAvZpFhW3j0PTclkxsd4IXYDA==}
@@ -11845,7 +11845,7 @@ snapshots:
     optionalDependencies:
       '@eslint/css': 1.1.0
 
-  tailwind-merge@3.5.0: {}
+  tailwind-merge@3.6.0: {}
 
   tailwindcss@4.2.4: {}
 
