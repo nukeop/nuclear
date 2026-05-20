@@ -1,5 +1,5 @@
 import { ListboxOptions } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { FC, PropsWithChildren } from 'react';
 
 import { useSelectContext } from './context';

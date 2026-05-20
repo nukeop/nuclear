@@ -4,7 +4,7 @@ import {
   useRouter,
   useRouterState,
 } from '@tanstack/react-router';
-import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
+import { AnimatePresence, motion, useIsPresent } from 'motion/react';
 import { forwardRef, useRef } from 'react';
 
 const SLIDE_DISTANCE = 24;

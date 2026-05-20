@@ -1,5 +1,5 @@
 import { DialogPanel, Dialog as HeadlessDialog } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import React, { FC, PropsWithChildren } from 'react';
 
 import { cn } from '../../utils';

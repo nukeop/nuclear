@@ -1,5 +1,5 @@
 import { DialogBackdrop } from '@headlessui/react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { FC } from 'react';
 
 export const DialogOverlayBackdrop: FC = () => (

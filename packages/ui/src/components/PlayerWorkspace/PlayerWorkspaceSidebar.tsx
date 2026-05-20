@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { PanelLeft, PanelRight } from 'lucide-react';
+import { motion } from 'motion/react';
 import { FC, ReactNode, useRef } from 'react';
 
 import { cn } from '../../utils';
