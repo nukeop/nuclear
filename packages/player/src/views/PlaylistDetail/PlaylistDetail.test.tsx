@@ -1,13 +1,22 @@
 import * as dialog from '@tauri-apps/plugin-dialog';
 import * as fs from '@tauri-apps/plugin-fs';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { type Mock } from 'vitest';
+import { vi, type Mock } from 'vitest';
+
+import type { PlaylistItem } from '@nuclearplayer/model';
 
 import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper';
 import { QueueWrapper } from '../../integration-tests/Queue.test-wrapper';
+import { providersHost } from '../../services/providersHost';
 import { useQueueStore } from '../../stores/queueStore';
+import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
+import {
+  createMockCandidate,
+  createMockStream,
+  StreamingProviderBuilder,
+} from '../../test/builders/StreamingProviderBuilder';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { mockUuid } from '../../test/utils/mockUuid';
 import { PlaylistDetailWrapper } from './PlaylistDetail.test-wrapper';
@@ -29,6 +38,10 @@ vi.mock('sonner', () => ({
     error: (...args: unknown[]) => toastError(...args),
     success: (...args: unknown[]) => toastSuccess(...args),
   },
+}));
+
+vi.mock('@tauri-apps/api/core', () => ({
+  invoke: vi.fn().mockResolvedValue(9100),
 }));
 
 const defaultPlaylist = () =>
@@ -120,6 +133,70 @@ describe('PlaylistDetail view', () => {
     expect(queueItems[0]?.title).toBe('Giant Steps');
     expect(queueItems[1]?.title).toBe('So What');
     expect(PlayerBarWrapper.isPlaying).toBe(true);
+  });
+
+  it('asks the streaming provider for fresh streams even when the playlist contains previously resolved candidates', async () => {
+    const staleItem: PlaylistItem = {
+      id: 'stale-item-1',
+      addedAtIso: new Date().toISOString(),
+      track: {
+        title: 'Paranoid Android',
+        artists: [{ name: 'Radiohead', roles: ['primary'] }],
+        source: { provider: 'test', id: 'paranoid-android' },
+        streamCandidates: [
+          {
+            id: 'stale-candidate',
+            title: 'Paranoid Android',
+            failed: false,
+            source: { provider: 'yt', id: 'stale-yt-id' },
+            stream: {
+              url: 'https://stale.example.com/expired.m4a?token=dead',
+              protocol: 'https',
+              source: { provider: 'yt', id: 'stale-yt-id' },
+            },
+            lastResolvedAtIso: new Date(Date.now() - 1000).toISOString(),
+          },
+        ],
+      },
+    };
+
+    PlaylistDetailWrapper.seedPlaylist(
+      new PlaylistBuilder()
+        .withId('stale-playlist')
+        .withName('OK Computer')
+        .withItems([staleItem]),
+    );
+
+    providersHost.clear();
+    providersHost.register(
+      MetadataProviderBuilder.albumDetailsProvider().build(),
+    );
+    const searchForTrack = vi.fn(async (artist: string, title: string) => [
+      createMockCandidate(`fresh-${title}`, `${artist} - ${title}`),
+    ]);
+    const getStreamUrl = vi.fn(async (candidateId: string) =>
+      createMockStream(candidateId, { mimeType: 'audio/mpeg' }),
+    );
+    providersHost.register(
+      new StreamingProviderBuilder()
+        .withSearchForTrack(searchForTrack)
+        .withGetStreamUrl(getStreamUrl)
+        .build(),
+    );
+
+    await PlaylistDetailWrapper.mount('stale-playlist');
+    await PlaylistDetailWrapper.playButton.click();
+
+    await waitFor(() => {
+      expect(searchForTrack).toHaveBeenCalledWith(
+        'Radiohead',
+        'Paranoid Android',
+        undefined,
+      );
+    });
+    await waitFor(() => {
+      expect(getStreamUrl).toHaveBeenCalledWith('fresh-Paranoid Android');
+    });
   });
 
   it('shows empty state when playlist has no tracks', async () => {
