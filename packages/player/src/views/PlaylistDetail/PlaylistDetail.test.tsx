@@ -10,6 +10,7 @@ import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper
 import { QueueWrapper } from '../../integration-tests/Queue.test-wrapper';
 import { providersHost } from '../../services/providersHost';
 import { useQueueStore } from '../../stores/queueStore';
+import { useStartupStore } from '../../stores/startupStore';
 import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 import {
@@ -55,6 +56,8 @@ describe('PlaylistDetail view', () => {
     mockUuid.reset();
     resetInMemoryTauriStore();
     useQueueStore.setState({ items: [], currentIndex: 0 });
+    useStartupStore.setState({ isStartingUp: false });
+    providersHost.clear();
     PlaylistDetailWrapper.seedPlaylist(defaultPlaylist());
     (dialog.save as Mock).mockResolvedValue(null);
     toastError.mockClear();
@@ -167,7 +170,6 @@ describe('PlaylistDetail view', () => {
         .withItems([staleItem]),
     );
 
-    providersHost.clear();
     providersHost.register(
       MetadataProviderBuilder.albumDetailsProvider().build(),
     );
