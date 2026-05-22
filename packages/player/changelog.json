@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-05-22T00:00",
+    "description": "Fix HLS tracks getting stuck at 0:00 when the queue advances",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "date": "2026-05-21T00:00",
+    "description": "Fix tracks failing to play in saved playlists and in queues restored after restart by re-resolving stream URLs when they expire",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-05-11T00:00",
     "description": "MPD server lets you control Nuclear from MPD clients like mpc and ncmpcpp",
     "type": "feature",

@@ -7,6 +7,7 @@ import type {
   PlaylistItem,
   Track,
 } from '@nuclearplayer/model';
+import { stripResolutionState } from '@nuclearplayer/model';
 
 import { playlistFileService } from '../services/playlistFileService';
 import { useQueueStore } from './queueStore';
@@ -178,7 +179,9 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
   },
 
   saveQueueAsPlaylist: async (name: string) => {
-    const tracks = useQueueStore.getState().items.map((item) => item.track);
+    const tracks = useQueueStore
+      .getState()
+      .items.map((item) => stripResolutionState(item.track));
     const now = new Date().toISOString();
 
     const playlist: Playlist = {

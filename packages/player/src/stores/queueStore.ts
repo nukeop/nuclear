@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 
 import type { Queue, QueueItem, Track } from '@nuclearplayer/model';
+import { stripResolutionState } from '@nuclearplayer/model';
 
 import { Logger } from '../services/logger';
 import { resolveErrorMessage } from '../utils/logging';
@@ -35,7 +36,7 @@ type QueueStore = Queue & {
 
 const createQueueItem = (track: Track): QueueItem => ({
   id: uuidv4(),
-  track,
+  track: stripResolutionState(track),
   status: 'idle',
   addedAtIso: new Date().toISOString(),
 });

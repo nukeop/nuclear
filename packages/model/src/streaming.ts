@@ -1,4 +1,4 @@
-import type { ProviderRef } from './index';
+import type { ProviderRef, Track } from './index';
 
 export type Stream = {
   url: string;
@@ -33,4 +33,10 @@ export type StreamCandidate = {
   lastResolvedAtIso?: string;
   failed: boolean;
   source: ProviderRef;
+};
+
+export const stripResolutionState = (track: Track): Track => {
+  const next = { ...track };
+  delete next.streamCandidates;
+  return next;
 };

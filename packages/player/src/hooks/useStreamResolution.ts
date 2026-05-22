@@ -8,6 +8,7 @@ import type { QueueItem, StreamCandidate, Track } from '@nuclearplayer/model';
 
 import { streamingHost } from '../services/streamingHost';
 import { useQueueStore } from '../stores/queueStore';
+import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 
 let activeController: AbortController | null = null;
@@ -85,10 +86,28 @@ const updateItemCandidates = (
   });
 };
 
+const haveCandidatesGoneStale = (candidates: StreamCandidate[]): boolean => {
+  const expiryMs = useSettingsStore
+    .getState()
+    .getValue('playback.streamExpiryMs') as number;
+  const now = Date.now();
+
+  return candidates.some((candidate) => {
+    if (!candidate.lastResolvedAtIso) {
+      return false;
+    }
+    const resolvedAt = new Date(candidate.lastResolvedAtIso).getTime();
+    return now - resolvedAt > expiryMs;
+  });
+};
+
 const resolveCandidates = async (
   track: Track,
 ): Promise<StreamCandidate[] | undefined> => {
-  if (track.streamCandidates?.length) {
+  if (
+    track.streamCandidates?.length &&
+    !haveCandidatesGoneStale(track.streamCandidates)
+  ) {
     return track.streamCandidates;
   }
 
@@ -185,7 +204,8 @@ const resolveStream = async (
     return;
   }
 
-  setSrc(await buildAudioSource(resolvedCandidate));
+  const audioSource = await buildAudioSource(resolvedCandidate);
+  setSrc(audioSource);
   if (autoPlay) {
     play();
   }

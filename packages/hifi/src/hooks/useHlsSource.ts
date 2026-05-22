@@ -41,8 +41,14 @@ export const useHlsSource = (
     }
 
     if (canPlayNativeHls(audio)) {
-      // Mac & Linux path
-      // Native HTML5 audio can play HLS, just set src
+      // Mac & Linux path (WebKit / WebKitGTK)
+      // WebKit has a known quirk where assigning a new HLS URL to an audio
+      // element that already has one loaded leaves it in a half-broken state:
+      // loadstart fires but canplay never does, so playback silently stalls.
+      // Fully reset the element before assigning the new URL.
+      audio.pause();
+      audio.removeAttribute('src');
+      audio.load();
       audio.src = src.url;
       audio.load();
       return;

@@ -262,6 +262,96 @@ describe('Stream Resolution Integration', () => {
     });
   });
 
+  describe('when the queue contains tracks with cached candidates', () => {
+    const setupQueueWithCachedCandidates = (lastResolvedAtIso: string) => {
+      useQueueStore.setState({
+        items: [
+          {
+            id: 'restored-item-1',
+            status: 'idle',
+            addedAtIso: new Date().toISOString(),
+            track: {
+              title: 'Karma Police',
+              artists: [{ name: 'Radiohead', roles: ['primary'] }],
+              source: { provider: 'test', id: 'karma-police' },
+              streamCandidates: [
+                {
+                  id: 'cached-yt-id',
+                  title: 'Karma Police',
+                  failed: false,
+                  source: { provider: 'yt', id: 'cached-yt-id' },
+                  stream: {
+                    url: 'https://cached.example.com/karma.m4a?token=old',
+                    protocol: 'https',
+                    source: { provider: 'yt', id: 'cached-yt-id' },
+                  },
+                  lastResolvedAtIso,
+                },
+              ],
+            },
+          },
+        ],
+        currentIndex: 0,
+        isReady: true,
+        isLoading: false,
+      });
+    };
+
+    it('performs a fresh search when the most recent candidate is past the expiry window', async () => {
+      setupMetadataProvider();
+
+      const searchForTrack = vi.fn(async (artist: string, title: string) => [
+        createMockCandidate(`fresh-${title}`, `${artist} - ${title}`),
+      ]);
+      providersHost.register(
+        new StreamingProviderBuilder()
+          .withSearchForTrack(searchForTrack)
+          .withGetStreamUrl(async (candidateId) =>
+            createMockStream(candidateId),
+          )
+          .build(),
+      );
+
+      const twoHoursAgo = new Date(Date.now() - 2 * 3600000).toISOString();
+      setupQueueWithCachedCandidates(twoHoursAgo);
+
+      await AlbumWrapper.mountDirectly();
+
+      await waitFor(() => {
+        expect(searchForTrack).toHaveBeenCalledWith(
+          'Radiohead',
+          'Karma Police',
+          undefined,
+        );
+      });
+    });
+
+    it('reuses cached candidates when they are still within the expiry window', async () => {
+      setupMetadataProvider();
+
+      const searchForTrack = vi.fn(async (artist: string, title: string) => [
+        createMockCandidate(`fresh-${title}`, `${artist} - ${title}`),
+      ]);
+      providersHost.register(
+        new StreamingProviderBuilder()
+          .withSearchForTrack(searchForTrack)
+          .withGetStreamUrl(async (candidateId) =>
+            createMockStream(candidateId),
+          )
+          .build(),
+      );
+
+      const fiveMinutesAgo = new Date(Date.now() - 5 * 60000).toISOString();
+      setupQueueWithCachedCandidates(fiveMinutesAgo);
+
+      await AlbumWrapper.mountDirectly();
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      expect(searchForTrack).not.toHaveBeenCalled();
+    });
+  });
+
   describe('when navigating the queue', () => {
     it('resolves stream for each track when navigating', async () => {
       setupMetadataProvider();
