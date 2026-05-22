@@ -204,7 +204,8 @@ const resolveStream = async (
     return;
   }
 
-  setSrc(await buildAudioSource(resolvedCandidate));
+  const audioSource = await buildAudioSource(resolvedCandidate);
+  setSrc(audioSource);
   if (autoPlay) {
     play();
   }

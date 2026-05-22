@@ -90,6 +90,10 @@ export const SoundWrapper = {
     const audio = document.querySelector('audio');
     if (audio) {
       act(() => {
+        Object.defineProperty(audio, 'readyState', {
+          value: 4,
+          configurable: true,
+        });
         audio.dispatchEvent(new Event('canplay', { bubbles: false }));
       });
     }

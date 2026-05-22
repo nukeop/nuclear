@@ -17,6 +17,7 @@ export const DevTools: FC = () => {
 
   return (
     <TanStackDevtools
+      config={{ hideUntilHover: true }}
       plugins={[
         {
           name: 'React Query',

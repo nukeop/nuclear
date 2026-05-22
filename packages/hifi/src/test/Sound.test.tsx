@@ -2,7 +2,12 @@ import { act, render } from '@testing-library/react';
 
 import { Sound } from '../Sound';
 import { AudioSource } from '../types';
-import { resetMediaSpies, setupAudioContextMock } from './test-utils';
+import {
+  fireMediaCanPlay,
+  fireMediaLoadStart,
+  resetMediaSpies,
+  setupAudioContextMock,
+} from './test-utils';
 
 const httpSource: AudioSource = { url: '/a.mp3', protocol: 'http' };
 
@@ -34,7 +39,7 @@ describe('Sound', () => {
 
     const audio = document.querySelector('audio')!;
     act(() => {
-      audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+      fireMediaCanPlay(audio);
     });
 
     expect(playMock).toHaveBeenCalled();
@@ -65,11 +70,14 @@ describe('Sound', () => {
 
     const audio = document.querySelector('audio')!;
     act(() => {
-      audio.dispatchEvent(new Event('loadstart', { bubbles: false }));
-      audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+      fireMediaLoadStart(audio);
+      fireMediaCanPlay(audio);
     });
 
     rerender(<Sound src={sourceA} status="stopped" />);
+    act(() => {
+      fireMediaLoadStart(audio);
+    });
 
     const { playMock } = resetMediaSpies();
 
@@ -78,7 +86,32 @@ describe('Sound', () => {
     expect(playMock).not.toHaveBeenCalled();
 
     act(() => {
-      audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+      fireMediaCanPlay(audio);
+    });
+
+    expect(playMock).toHaveBeenCalled();
+    restore();
+  });
+
+  it('plays the new source when the queue auto-advances without an intermediate render', () => {
+    const { restore } = setupAudioContextMock();
+    const sourceA: AudioSource = { url: '/a.mp3', protocol: 'http' };
+    const sourceB: AudioSource = { url: '/b.mp3', protocol: 'http' };
+
+    const { rerender } = render(<Sound src={sourceA} status="playing" />);
+    const audio = document.querySelector('audio')!;
+
+    act(() => {
+      fireMediaCanPlay(audio);
+    });
+
+    const { playMock } = resetMediaSpies();
+
+    rerender(<Sound src={sourceB} status="playing" />);
+
+    act(() => {
+      fireMediaLoadStart(audio);
+      fireMediaCanPlay(audio);
     });
 
     expect(playMock).toHaveBeenCalled();

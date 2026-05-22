@@ -39,15 +39,7 @@ export const Sound: React.FC<SoundProps> = ({
   const context = useAudioContext();
   const { source } = useAudioElementSource(audioRef, context);
   const isReady = !!source;
-  const [canPlay, setCanPlay] = useState(false);
   const [audioNodes, setAudioNodes] = useState<AudioNode[]>([]);
-  const loadedUrlRef = useRef<string | null>(null);
-  if (loadedUrlRef.current !== src.url) {
-    loadedUrlRef.current = src.url;
-    if (canPlay) {
-      setCanPlay(false);
-    }
-  }
 
   useEffect(() => {
     if (source) {
@@ -70,11 +62,11 @@ export const Sound: React.FC<SoundProps> = ({
     }
   }, [source, context, children]);
 
-  usePlaybackStatus(audioRef, status, context, isReady, canPlay);
   useAudioSeek(audioRef, seek, isReady);
   useAudioLoader(audioRef, src, isReady);
   useHlsSource(audioRef, src, isReady);
   useMseSource(audioRef, src, isReady, onError);
+  usePlaybackStatus(audioRef, status, src.url, context, isReady, onError);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -92,12 +84,10 @@ export const Sound: React.FC<SoundProps> = ({
   }, []);
 
   const handleCanPlay = useCallback(() => {
-    setCanPlay(true);
     onCanPlay?.();
   }, [onCanPlay]);
 
   const handleLoadStart = useCallback(() => {
-    setCanPlay(false);
     onLoadStart?.();
   }, [onLoadStart]);
 

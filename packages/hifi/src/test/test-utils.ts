@@ -57,3 +57,19 @@ export const resetMediaSpies = (): {
   pauseMock.mockClear();
   return { playMock, pauseMock };
 };
+
+export const fireMediaCanPlay = (audio: HTMLAudioElement): void => {
+  Object.defineProperty(audio, 'readyState', {
+    value: 4,
+    configurable: true,
+  });
+  audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+};
+
+export const fireMediaLoadStart = (audio: HTMLAudioElement): void => {
+  Object.defineProperty(audio, 'readyState', {
+    value: 0,
+    configurable: true,
+  });
+  audio.dispatchEvent(new Event('loadstart', { bubbles: false }));
+};
