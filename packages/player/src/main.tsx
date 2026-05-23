@@ -27,6 +27,7 @@ import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
 import { initMcpHandler } from './services/mcp';
 import { initMpdHandler } from './services/mpd';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
+import { initRemoteControlHandler } from './services/remoteControl';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
 import { hydrateThemeStore } from './stores/themeStore';
 import { useUpdaterStore } from './stores/updaterStore';
@@ -42,6 +43,7 @@ initializeSettingsStore()
   .then(() => initDiscoveryService())
   .then(() => initMcpHandler())
   .then(() => initMpdHandler())
+  .then(() => initRemoteControlHandler())
   .then(() => initBridgeHandler())
   .then(() => initDiscordHandler())
   .then(() => applyLanguageFromSettings())

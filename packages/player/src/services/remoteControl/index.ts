@@ -1,0 +1,1 @@
+export { initRemoteControlHandler } from './remoteControlHandler';

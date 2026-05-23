@@ -28,6 +28,7 @@ export const LOG_SCOPES = [
   'themes',
   'updates',
   'queue',
+  'remote-control',
   'metadata',
   'playlists',
 ] as const;
