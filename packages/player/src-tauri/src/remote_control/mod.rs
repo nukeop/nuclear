@@ -28,11 +28,11 @@ impl RemoteControlState {
 }
 
 async fn start_server(
-    _bridge: crate::bridge::bridge::Bridge,
+    bridge: crate::bridge::bridge::Bridge,
     ct: CancellationToken,
     ready: oneshot::Sender<Result<u16, String>>,
 ) {
-    let router = routes::router();
+    let router = routes::router(bridge);
 
     let tcp_listener = match crate::net::bind_first_available_port(
         "0.0.0.0",
