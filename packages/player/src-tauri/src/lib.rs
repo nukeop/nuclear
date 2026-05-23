@@ -5,6 +5,7 @@ pub mod http;
 pub mod logging;
 pub mod mcp;
 pub mod mpd;
+pub mod remote_control;
 pub mod net;
 mod setup;
 pub mod stream_server;
@@ -57,6 +58,8 @@ pub fn run() {
             logging::get_startup_logs,
             mcp::mcp_start,
             mcp::mcp_stop,
+            remote_control::remote_control_start,
+            remote_control::remote_control_stop,
             mpd::mpd_start,
             mpd::mpd_stop,
             stream_server::stream_server_port,
@@ -73,6 +76,7 @@ pub fn run() {
             bridge::init_bridge(app.handle().clone());
             mcp::init_mcp(app.handle().clone());
             mpd::init_mpd(app.handle().clone());
+            remote_control::init_remote_control(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
             discord::init_discord(app.handle().clone());
 
