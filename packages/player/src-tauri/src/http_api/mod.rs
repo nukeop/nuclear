@@ -43,12 +43,12 @@ struct RunningServer {
     port: u16,
 }
 
-pub struct RemoteControlState {
+pub struct HttpApiState {
     running: Arc<Mutex<Option<RunningServer>>>,
     pub events_tx: broadcast::Sender<RemoteEvent>,
 }
 
-impl RemoteControlState {
+impl HttpApiState {
     fn new() -> Self {
         let (events_tx, _) = broadcast::channel(64);
         Self {
@@ -75,14 +75,14 @@ async fn start_server(
     {
         Ok(listener) => listener,
         Err(message) => {
-            log::error!("Failed to bind remote control server: {message}");
+            log::error!("Failed to bind HTTP API server: {message}");
             let _ = ready.send(Err(message));
             return;
         }
     };
 
     let bound_port = tcp_listener.local_addr().unwrap().port();
-    log::info!("Remote control server listening on http://0.0.0.0:{bound_port}/api/health");
+    log::info!("HTTP API server listening on http://0.0.0.0:{bound_port}/api/health");
     let _ = ready.send(Ok(bound_port));
 
     let _ = axum::serve(tcp_listener, router)
@@ -91,7 +91,7 @@ async fn start_server(
         })
         .await;
 
-    log::info!("Remote control server stopped");
+    log::info!("HTTP API server stopped");
 }
 
 fn listen_for_event(app_handle: &AppHandle, kind: RemoteEventKind, tx: &broadcast::Sender<RemoteEvent>) {
@@ -104,8 +104,8 @@ fn listen_for_event(app_handle: &AppHandle, kind: RemoteEventKind, tx: &broadcas
     });
 }
 
-pub fn init_remote_control(app_handle: AppHandle) {
-    let state = RemoteControlState::new();
+pub fn init_http_api(app_handle: AppHandle) {
+    let state = HttpApiState::new();
 
     listen_for_event(&app_handle, RemoteEventKind::Queue, &state.events_tx);
     listen_for_event(&app_handle, RemoteEventKind::Playback, &state.events_tx);
@@ -114,17 +114,17 @@ pub fn init_remote_control(app_handle: AppHandle) {
 }
 
 #[tauri::command]
-pub async fn remote_control_start(
-    state: tauri::State<'_, RemoteControlState>,
+pub async fn http_api_start(
+    state: tauri::State<'_, HttpApiState>,
     bridge: tauri::State<'_, crate::bridge::bridge::Bridge>,
 ) -> Result<u16, String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.as_ref() {
-        log::info!("Remote control server already running on port {}", server.port);
+        log::info!("HTTP API server already running on port {}", server.port);
         return Ok(server.port);
     }
 
-    log::info!("Starting remote control server");
+    log::info!("Starting HTTP API server");
     let ct = CancellationToken::new();
     let (ready_tx, ready_rx) = oneshot::channel();
     let task = tauri::async_runtime::spawn(start_server(
@@ -144,19 +144,19 @@ pub async fn remote_control_start(
             Ok(port)
         }
         Ok(Err(message)) => Err(message),
-        Err(_) => Err("Remote control server task exited before reporting ready".into()),
+        Err(_) => Err("HTTP API server task exited before reporting ready".into()),
     }
 }
 
 #[tauri::command]
-pub async fn remote_control_stop(state: tauri::State<'_, RemoteControlState>) -> Result<(), String> {
+pub async fn http_api_stop(state: tauri::State<'_, HttpApiState>) -> Result<(), String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.take() {
-        log::info!("Stopping remote control server");
+        log::info!("Stopping HTTP API server");
         server.cancellation_token.cancel();
         let _ = server.task.await;
     } else {
-        log::info!("Remote control server already stopped");
+        log::info!("HTTP API server already stopped");
     }
     Ok(())
 }
