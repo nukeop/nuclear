@@ -3,11 +3,17 @@ mod routes;
 use std::sync::Arc;
 
 use tauri::{AppHandle, Manager};
-use tokio::sync::{oneshot, Mutex};
+use tokio::sync::{broadcast, oneshot, Mutex};
 use tokio_util::sync::CancellationToken;
 
 const REMOTE_PORT_START: u16 = 4120;
 const REMOTE_PORT_END: u16 = 4129;
+
+#[derive(Debug, Clone)]
+pub struct RemoteEvent {
+    pub name: String,
+    pub data: String,
+}
 
 struct RunningServer {
     task: tauri::async_runtime::JoinHandle<()>,
@@ -17,12 +23,15 @@ struct RunningServer {
 
 pub struct RemoteControlState {
     running: Arc<Mutex<Option<RunningServer>>>,
+    pub events_tx: broadcast::Sender<RemoteEvent>,
 }
 
 impl RemoteControlState {
     fn new() -> Self {
+        let (events_tx, _) = broadcast::channel(64);
         Self {
             running: Arc::new(Mutex::new(None)),
+            events_tx,
         }
     }
 }
