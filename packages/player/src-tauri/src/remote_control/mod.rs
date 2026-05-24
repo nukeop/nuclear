@@ -60,10 +60,11 @@ impl RemoteControlState {
 
 async fn start_server(
     bridge: crate::bridge::bridge::Bridge,
+    events_tx: broadcast::Sender<RemoteEvent>,
     ct: CancellationToken,
     ready: oneshot::Sender<Result<u16, String>>,
 ) {
-    let router = routes::router(bridge);
+    let router = routes::router(bridge, events_tx);
 
     let tcp_listener = match crate::net::bind_first_available_port(
         "0.0.0.0",
@@ -128,6 +129,7 @@ pub async fn remote_control_start(
     let (ready_tx, ready_rx) = oneshot::channel();
     let task = tauri::async_runtime::spawn(start_server(
         bridge.inner().clone(),
+        state.events_tx.clone(),
         ct.clone(),
         ready_tx,
     ));

@@ -1,17 +1,26 @@
+use std::convert::Infallible;
+
 use axum::{
     extract::State,
     http::StatusCode,
-    response::{IntoResponse, Response},
+    response::{
+        sse::{Event, KeepAlive, Sse},
+        IntoResponse, Response,
+    },
     routing::get,
     Json, Router,
 };
+use futures::Stream;
 use serde_json::{json, Value};
+use tokio::sync::broadcast;
 
+use super::RemoteEvent;
 use crate::bridge::{bridge::Bridge, types::BridgeError};
 
 #[derive(Clone)]
 pub struct AppState {
     bridge: Bridge,
+    events_tx: broadcast::Sender<RemoteEvent>,
 }
 
 struct BridgeErrorResponse(BridgeError);
@@ -45,12 +54,42 @@ async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, Brid
         .map_err(BridgeErrorResponse)
 }
 
-pub fn router(bridge: Bridge) -> Router {
-    let state = AppState { bridge };
+fn events_stream(
+    mut receiver: broadcast::Receiver<RemoteEvent>,
+) -> impl Stream<Item = Result<Event, Infallible>> {
+    async_stream::stream! {
+        loop {
+            match receiver.recv().await {
+                Ok(remote_event) => {
+                    let event = Event::default()
+                        .event(remote_event.kind.as_str())
+                        .data(remote_event.data);
+                    yield Ok(event);
+                }
+                Err(broadcast::error::RecvError::Lagged(count)) => {
+                    log::warn!("SSE client lagged, skipped {count} events");
+                    continue;
+                }
+                Err(broadcast::error::RecvError::Closed) => break,
+            }
+        }
+    }
+}
+
+async fn get_events(
+    State(state): State<AppState>,
+) -> Sse<impl Stream<Item = Result<Event, Infallible>>> {
+    let receiver = state.events_tx.subscribe();
+    Sse::new(events_stream(receiver)).keep_alive(KeepAlive::default())
+}
+
+pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Router {
+    let state = AppState { bridge, events_tx };
 
     Router::new()
         .route("/api/health", get(health))
         .route("/api/queue", get(get_queue))
         .route("/api/playback", get(get_playback))
+        .route("/api/events", get(get_events))
         .with_state(state)
 }
