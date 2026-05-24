@@ -9,9 +9,31 @@ use tokio_util::sync::CancellationToken;
 const REMOTE_PORT_START: u16 = 4120;
 const REMOTE_PORT_END: u16 = 4129;
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum RemoteEventKind {
+    Queue,
+    Playback,
+}
+
+impl RemoteEventKind {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Self::Queue => "queue",
+            Self::Playback => "playback",
+        }
+    }
+
+    fn tauri_event_name(&self) -> &'static str {
+        match self {
+            Self::Queue => "remote:queue",
+            Self::Playback => "remote:playback",
+        }
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct RemoteEvent {
-    pub name: String,
+    pub kind: RemoteEventKind,
     pub data: String,
 }
 
@@ -71,12 +93,11 @@ async fn start_server(
     log::info!("Remote control server stopped");
 }
 
-fn listen_for_event(app_handle: &AppHandle, tauri_event: &str, sse_name: &str, tx: &broadcast::Sender<RemoteEvent>) {
-    let sse_name = sse_name.to_string();
+fn listen_for_event(app_handle: &AppHandle, kind: RemoteEventKind, tx: &broadcast::Sender<RemoteEvent>) {
     let tx = tx.clone();
-    app_handle.listen(tauri_event, move |event| {
+    app_handle.listen(kind.tauri_event_name(), move |event| {
         let _ = tx.send(RemoteEvent {
-            name: sse_name.clone(),
+            kind,
             data: event.payload().to_string(),
         });
     });
@@ -85,8 +106,8 @@ fn listen_for_event(app_handle: &AppHandle, tauri_event: &str, sse_name: &str, t
 pub fn init_remote_control(app_handle: AppHandle) {
     let state = RemoteControlState::new();
 
-    listen_for_event(&app_handle, "remote:queue", "queue", &state.events_tx);
-    listen_for_event(&app_handle, "remote:playback", "playback", &state.events_tx);
+    listen_for_event(&app_handle, RemoteEventKind::Queue, &state.events_tx);
+    listen_for_event(&app_handle, RemoteEventKind::Playback, &state.events_tx);
 
     app_handle.manage(state);
 }
