@@ -6,6 +6,7 @@
   "packageManager": "pnpm@10.33.3",
   "scripts": {
     "dev": "turbo dev --filter=@nuclearplayer/player --filter=@nuclearplayer/ui",
+    "dev:remote": "VITE_HOST=0.0.0.0 turbo dev --filter=@nuclearplayer/player --filter=@nuclearplayer/ui",
     "build": "turbo build",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",

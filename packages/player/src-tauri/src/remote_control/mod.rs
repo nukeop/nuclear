@@ -2,7 +2,7 @@ mod routes;
 
 use std::sync::Arc;
 
-use tauri::{AppHandle, Manager};
+use tauri::{AppHandle, Listener, Manager};
 use tokio::sync::{broadcast, oneshot, Mutex};
 use tokio_util::sync::CancellationToken;
 
@@ -71,8 +71,23 @@ async fn start_server(
     log::info!("Remote control server stopped");
 }
 
+fn listen_for_event(app_handle: &AppHandle, tauri_event: &str, sse_name: &str, tx: &broadcast::Sender<RemoteEvent>) {
+    let sse_name = sse_name.to_string();
+    let tx = tx.clone();
+    app_handle.listen(tauri_event, move |event| {
+        let _ = tx.send(RemoteEvent {
+            name: sse_name.clone(),
+            data: event.payload().to_string(),
+        });
+    });
+}
+
 pub fn init_remote_control(app_handle: AppHandle) {
     let state = RemoteControlState::new();
+
+    listen_for_event(&app_handle, "remote:queue", "queue", &state.events_tx);
+    listen_for_event(&app_handle, "remote:playback", "playback", &state.events_tx);
+
     app_handle.manage(state);
 }
 
