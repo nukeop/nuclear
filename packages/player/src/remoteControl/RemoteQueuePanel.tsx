@@ -3,6 +3,12 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import type { Queue } from '@nuclearplayer/model';
 import { QueuePanel } from '@nuclearplayer/ui';
 
+import {
+  EventSourceEvent,
+  useEventSource,
+  useEventSourceListener,
+} from './useEventSource';
+
 type PlaybackState = {
   status: 'playing' | 'paused' | 'stopped';
   seek: number;
@@ -52,6 +58,16 @@ export const RemoteQueuePanel: FC = () => {
     fetchPlayback();
   }, [fetchQueue, fetchPlayback]);
 
+  const [source] = useEventSource('/api/events');
+
+  useEventSourceListener(source, ['queue'], (event: EventSourceEvent) => {
+    setQueue(JSON.parse(event.data));
+  });
+
+  useEventSourceListener(source, ['playback'], (event: EventSourceEvent) => {
+    setPlayback(JSON.parse(event.data));
+  });
+
   if (error) {
     return (
       <div className="text-accent-red flex h-full items-center justify-center">
@@ -73,13 +89,13 @@ export const RemoteQueuePanel: FC = () => {
 
   return (
     <div className="flex h-full flex-col">
-      {currentTrack && (
+      {currentTrack && playback && playback.status !== 'stopped' && (
         <NowPlaying
           title={currentTrack.title}
           artist={currentTrack.artists?.[0]?.name}
-          status={playback?.status ?? 'stopped'}
-          seek={playback?.seek ?? 0}
-          duration={playback?.duration ?? 0}
+          status={playback.status}
+          seek={playback.seek}
+          duration={playback.duration}
         />
       )}
       <div className="flex-1">
