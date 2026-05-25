@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
+import { ComponentProps } from 'react';
 
 import { NuclearJam } from '@nuclearplayer/ui';
 
@@ -12,24 +13,26 @@ export default meta;
 
 const noop = () => {};
 
+const defaultProps: ComponentProps<typeof NuclearJam.Controls> = {
+  isPlaying: false,
+  shuffleActive: false,
+  repeatMode: 'off',
+  progress: 35,
+  elapsedSeconds: 88,
+  remainingSeconds: 163,
+  onPlayPause: noop,
+  onNext: noop,
+  onPrevious: noop,
+  onShuffleToggle: noop,
+  onRepeatToggle: noop,
+  onDiscoveryToggle: noop,
+  onSeek: noop,
+};
+
 export const Playing = {
   render: () => (
     <div className="bg-background">
-      <NuclearJam.Controls
-        isPlaying
-        shuffleActive={false}
-        repeatMode="off"
-        progress={35}
-        elapsedSeconds={88}
-        remainingSeconds={163}
-        onPlayPause={noop}
-        onNext={noop}
-        onPrevious={noop}
-        onShuffleToggle={noop}
-        onRepeatToggle={noop}
-        onDiscoveryToggle={noop}
-        onSeek={noop}
-      />
+      <NuclearJam.Controls {...defaultProps} isPlaying />
     </div>
   ),
 };
@@ -38,20 +41,10 @@ export const TogglesActive = {
   render: () => (
     <div className="bg-background">
       <NuclearJam.Controls
-        isPlaying={false}
+        {...defaultProps}
         shuffleActive
         repeatMode="all"
         isDiscoveryActive
-        progress={62}
-        elapsedSeconds={212}
-        remainingSeconds={130}
-        onPlayPause={noop}
-        onNext={noop}
-        onPrevious={noop}
-        onShuffleToggle={noop}
-        onRepeatToggle={noop}
-        onDiscoveryToggle={noop}
-        onSeek={noop}
       />
     </div>
   ),
@@ -61,20 +54,11 @@ export const Loading = {
   render: () => (
     <div className="bg-background">
       <NuclearJam.Controls
-        isPlaying={false}
+        {...defaultProps}
         isLoading
-        shuffleActive={false}
-        repeatMode="off"
         progress={0}
         elapsedSeconds={0}
         remainingSeconds={0}
-        onPlayPause={noop}
-        onNext={noop}
-        onPrevious={noop}
-        onShuffleToggle={noop}
-        onRepeatToggle={noop}
-        onDiscoveryToggle={noop}
-        onSeek={noop}
       />
     </div>
   ),
@@ -84,19 +68,12 @@ export const RepeatOne = {
   render: () => (
     <div className="bg-background">
       <NuclearJam.Controls
+        {...defaultProps}
         isPlaying
-        shuffleActive={false}
         repeatMode="one"
         progress={80}
         elapsedSeconds={247}
         remainingSeconds={62}
-        onPlayPause={noop}
-        onNext={noop}
-        onPrevious={noop}
-        onShuffleToggle={noop}
-        onRepeatToggle={noop}
-        onDiscoveryToggle={noop}
-        onSeek={noop}
       />
     </div>
   ),
