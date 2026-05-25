@@ -28,7 +28,7 @@
   },
   "keywords": [],
   "author": "",
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@10.33.4",
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
