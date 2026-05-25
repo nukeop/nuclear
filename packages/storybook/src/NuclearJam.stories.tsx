@@ -112,6 +112,15 @@ const mockQueueItems: QueueItem[] = [
   },
 ];
 
+const queueProps = {
+  items: mockQueueItems,
+  currentItemId: '1',
+  labels: {
+    title: 'Queue is empty',
+    subtitle: 'Add tracks in Nuclear to see them here',
+  },
+};
+
 export const FullPage = {
   render: () => (
     <NuclearJam>
@@ -136,14 +145,7 @@ export const FullPage = {
         onDiscoveryToggle={noop}
         onSeek={noop}
       />
-      <NuclearJam.Queue
-        items={mockQueueItems}
-        currentItemId="1"
-        labels={{
-          title: 'Queue is empty',
-          subtitle: 'Add tracks in Nuclear to see them here',
-        }}
-      />
+      <NuclearJam.Queue {...queueProps} />
     </NuclearJam>
   ),
 };
@@ -190,14 +192,7 @@ export const Interactive = {
           onDiscoveryToggle={() => setIsDiscoveryActive((prev) => !prev)}
           onSeek={setProgress}
         />
-        <NuclearJam.Queue
-          items={mockQueueItems}
-          currentItemId="1"
-          labels={{
-            title: 'Queue is empty',
-            subtitle: 'Add tracks in Nuclear to see them here',
-          }}
-        />
+        <NuclearJam.Queue {...queueProps} />
       </NuclearJam>
     );
   },

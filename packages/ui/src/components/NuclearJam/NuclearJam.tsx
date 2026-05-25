@@ -4,6 +4,7 @@ import {
   NuclearJamControls,
   NuclearJamControlsProps,
 } from './NuclearJamControls';
+import { NuclearJamEmptyQueueLabels } from './NuclearJamEmptyQueue';
 import {
   ConnectionStatus,
   NuclearJamHeader,
@@ -13,11 +14,7 @@ import {
   NuclearJamNowPlaying,
   NuclearJamNowPlayingProps,
 } from './NuclearJamNowPlaying';
-import {
-  NuclearJamQueue,
-  NuclearJamQueueLabels,
-  NuclearJamQueueProps,
-} from './NuclearJamQueue';
+import { NuclearJamQueue, NuclearJamQueueProps } from './NuclearJamQueue';
 import { NuclearJamProps, NuclearJamRoot } from './NuclearJamRoot';
 
 type NuclearJamComponent = FC<NuclearJamProps> & {
@@ -38,7 +35,7 @@ export type {
   NuclearJamHeaderProps,
   NuclearJamNowPlayingProps,
   NuclearJamControlsProps,
-  NuclearJamQueueLabels,
+  NuclearJamEmptyQueueLabels,
   NuclearJamQueueProps,
   ConnectionStatus,
 };

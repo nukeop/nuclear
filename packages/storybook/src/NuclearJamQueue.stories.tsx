@@ -11,6 +11,11 @@ const meta = {
 
 export default meta;
 
+const queueLabels = {
+  title: 'Queue is empty',
+  subtitle: 'Add tracks in Nuclear to see them here',
+};
+
 const mockQueueItems: QueueItem[] = [
   {
     id: '1',
@@ -86,10 +91,7 @@ export const Default = {
       <NuclearJam.Queue
         items={mockQueueItems}
         currentItemId="3"
-        labels={{
-          title: 'Queue is empty',
-          subtitle: 'Add tracks in Nuclear to see them here',
-        }}
+        labels={queueLabels}
       />
     </div>
   ),
@@ -98,13 +100,7 @@ export const Default = {
 export const Empty = {
   render: () => (
     <div className="bg-background h-80">
-      <NuclearJam.Queue
-        items={[]}
-        labels={{
-          title: 'Queue is empty',
-          subtitle: 'Add tracks in Nuclear to see them here',
-        }}
-      />
+      <NuclearJam.Queue items={[]} labels={queueLabels} />
     </div>
   ),
 };
