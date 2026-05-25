@@ -443,6 +443,12 @@
     "entryCount_other": "{{count}} entries",
     "exportSuccess": "Logs exported"
   },
+  "remote": {
+    "queue": {
+      "emptyTitle": "Queue is empty",
+      "emptySubtitle": "Add tracks in Nuclear to see them here"
+    }
+  },
   "changelog": {
     "title": "What's New",
     "seeMore": "See more ({{count}} older)",

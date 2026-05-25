@@ -19,6 +19,7 @@ const meta = {
 export default meta;
 
 const noop = () => {};
+const cover = 'https://picsum.photos/208';
 
 const mockQueueItems: QueueItem[] = [
   {
@@ -111,99 +112,6 @@ const mockQueueItems: QueueItem[] = [
   },
 ];
 
-export const ConnectionStates = {
-  render: () => (
-    <div className="bg-background flex flex-col gap-2 p-4">
-      <NuclearJam.Header connectionStatus="connected" />
-      <NuclearJam.Header connectionStatus="reconnecting" />
-      <NuclearJam.Header connectionStatus="disconnected" />
-    </div>
-  ),
-};
-
-const cover = 'https://picsum.photos/208';
-
-export const NowPlaying = {
-  render: () => (
-    <div className="bg-background flex flex-col gap-4 p-4">
-      <NuclearJam.NowPlaying
-        title="Everything In Its Right Place"
-        artist="Radiohead"
-        coverUrl={cover}
-      />
-      <NuclearJam.NowPlaying
-        title="Everything In Its Right Place"
-        artist="Radiohead"
-        coverUrl={cover}
-        isLoading
-      />
-      <NuclearJam.NowPlaying title="No Cover Art" artist="Unknown Artist" />
-    </div>
-  ),
-};
-
-export const Controls = {
-  render: () => (
-    <div className="bg-background flex flex-col gap-4 p-4">
-      <NuclearJam.Controls
-        isPlaying
-        shuffleActive={false}
-        repeatMode="off"
-        progress={35}
-        elapsedSeconds={88}
-        remainingSeconds={163}
-        onPlayPause={noop}
-        onNext={noop}
-        onPrevious={noop}
-        onShuffleToggle={noop}
-        onRepeatToggle={noop}
-        onDiscoveryToggle={noop}
-        onSeek={noop}
-      />
-      <NuclearJam.Controls
-        isPlaying={false}
-        shuffleActive
-        repeatMode="all"
-        isDiscoveryActive
-        progress={62}
-        elapsedSeconds={212}
-        remainingSeconds={130}
-        onPlayPause={noop}
-        onNext={noop}
-        onPrevious={noop}
-        onShuffleToggle={noop}
-        onRepeatToggle={noop}
-        onDiscoveryToggle={noop}
-        onSeek={noop}
-      />
-      <NuclearJam.Controls
-        isPlaying={false}
-        isLoading
-        shuffleActive={false}
-        repeatMode="off"
-        progress={0}
-        elapsedSeconds={0}
-        remainingSeconds={0}
-        onPlayPause={noop}
-        onNext={noop}
-        onPrevious={noop}
-        onShuffleToggle={noop}
-        onRepeatToggle={noop}
-        onDiscoveryToggle={noop}
-        onSeek={noop}
-      />
-    </div>
-  ),
-};
-
-export const Queue = {
-  render: () => (
-    <div className="bg-background h-80">
-      <NuclearJam.Queue items={mockQueueItems} currentItemId="4" />
-    </div>
-  ),
-};
-
 export const FullPage = {
   render: () => (
     <NuclearJam>
@@ -228,7 +136,14 @@ export const FullPage = {
         onDiscoveryToggle={noop}
         onSeek={noop}
       />
-      <NuclearJam.Queue items={mockQueueItems} currentItemId="1" />
+      <NuclearJam.Queue
+        items={mockQueueItems}
+        currentItemId="1"
+        labels={{
+          title: 'Queue is empty',
+          subtitle: 'Add tracks in Nuclear to see them here',
+        }}
+      />
     </NuclearJam>
   ),
 };
@@ -238,7 +153,7 @@ export const Interactive = {
     const [isPlaying, setIsPlaying] = useState(true);
     const [shuffleActive, setShuffleActive] = useState(false);
     const [repeatMode, setRepeatMode] = useState<'off' | 'all' | 'one'>('off');
-    const [discoveryActive, setDiscoveryActive] = useState(false);
+    const [isDiscoveryActive, setIsDiscoveryActive] = useState(false);
     const [progress, setProgress] = useState(35);
 
     const cycleRepeat = () => {
@@ -263,7 +178,7 @@ export const Interactive = {
           isPlaying={isPlaying}
           shuffleActive={shuffleActive}
           repeatMode={repeatMode}
-          isDiscoveryActive={discoveryActive}
+          isDiscoveryActive={isDiscoveryActive}
           progress={progress}
           elapsedSeconds={elapsed}
           remainingSeconds={remaining}
@@ -272,10 +187,17 @@ export const Interactive = {
           onPrevious={noop}
           onShuffleToggle={() => setShuffleActive((prev) => !prev)}
           onRepeatToggle={cycleRepeat}
-          onDiscoveryToggle={() => setDiscoveryActive((prev) => !prev)}
+          onDiscoveryToggle={() => setIsDiscoveryActive((prev) => !prev)}
           onSeek={setProgress}
         />
-        <NuclearJam.Queue items={mockQueueItems} currentItemId="1" />
+        <NuclearJam.Queue
+          items={mockQueueItems}
+          currentItemId="1"
+          labels={{
+            title: 'Queue is empty',
+            subtitle: 'Add tracks in Nuclear to see them here',
+          }}
+        />
       </NuclearJam>
     );
   },

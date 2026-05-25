@@ -6,16 +6,24 @@ import { pickArtwork, QueueItem } from '@nuclearplayer/model';
 import { cn } from '../../utils';
 import { formatTimeMillis } from '../../utils/time';
 import { ScrollableArea } from '../ScrollableArea';
+import {
+  NuclearJamEmptyQueue,
+  NuclearJamEmptyQueueLabels,
+} from './NuclearJamEmptyQueue';
+
+export type NuclearJamQueueLabels = NuclearJamEmptyQueueLabels;
 
 export type NuclearJamQueueProps = {
   items: QueueItem[];
   currentItemId?: string;
+  labels: NuclearJamQueueLabels;
   className?: string;
 };
 
 export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
   items,
   currentItemId,
+  labels,
   className,
 }) => {
   const currentRef = useRef<HTMLDivElement>(null);
@@ -35,6 +43,15 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
     }
   }, [currentItemId, scrollToCurrent]);
 
+  if (items.length === 0) {
+    return (
+      <NuclearJamEmptyQueue
+        labels={labels}
+        className={cn('min-h-0 flex-1', className)}
+      />
+    );
+  }
+
   return (
     <div className={cn('min-h-0 flex-1', className)}>
       <ScrollableArea className="h-full">
@@ -50,7 +67,7 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
               ref={isCurrent ? currentRef : undefined}
               className={cn(
                 'border-border flex items-center gap-3 border-b-(length:--border-width) px-4 py-2',
-                isCurrent && 'bg-primary/10',
+                isCurrent && 'bg-primary',
               )}
               data-testid="jam-queue-item"
               data-is-current={isCurrent}
@@ -68,12 +85,7 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
               </div>
 
               <div className="min-w-0 flex-1">
-                <div
-                  className={cn(
-                    'truncate text-sm font-bold',
-                    isCurrent ? 'text-primary' : 'text-foreground',
-                  )}
-                >
+                <div className="text-foreground truncate text-sm font-bold">
                   {item.track.title}
                 </div>
                 {primaryArtist && (
