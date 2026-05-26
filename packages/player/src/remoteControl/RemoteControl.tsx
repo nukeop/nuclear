@@ -9,11 +9,7 @@ import { useRemoteState } from './useRemoteState';
 const RemoteControl: FC = () => {
   const { t } = useTranslation('remote');
   const state = useRemoteState();
-  const actions = useRemoteActions({
-    shuffleActive: state.settings.shuffle,
-    repeatMode: state.settings.repeat,
-    duration: state.elapsedSeconds + state.remainingSeconds,
-  });
+  const actions = useRemoteActions();
 
   return (
     <NuclearJam>

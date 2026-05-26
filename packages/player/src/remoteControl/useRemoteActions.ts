@@ -1,10 +1,6 @@
 import type { RepeatMode } from '@nuclearplayer/model';
 
-type UseRemoteActionsParams = {
-  shuffleActive: boolean;
-  repeatMode: RepeatMode;
-  duration: number;
-};
+import { useRemoteStore } from './remoteStore';
 
 type RemoteActions = {
   onPlayPause: () => void;
@@ -15,7 +11,11 @@ type RemoteActions = {
   onRepeatToggle: () => void;
 };
 
-const nextRepeatMode = { off: 'all', all: 'one', one: 'off' } as const;
+const nextRepeatMode: Record<RepeatMode, RepeatMode> = {
+  off: 'all',
+  all: 'one',
+  one: 'off',
+};
 
 const postAction = async (path: string, body?: unknown) => {
   try {
@@ -29,18 +29,24 @@ const postAction = async (path: string, body?: unknown) => {
   }
 };
 
-export const useRemoteActions = ({
-  shuffleActive,
-  repeatMode,
-  duration,
-}: UseRemoteActionsParams): RemoteActions => ({
-  onPlayPause: () => postAction('/api/playback/toggle'),
-  onNext: () => postAction('/api/playback/next'),
-  onPrevious: () => postAction('/api/playback/previous'),
-  onSeek: (percent: number) =>
-    postAction('/api/playback/seek', { seconds: (percent / 100) * duration }),
-  onShuffleToggle: () =>
-    postAction('/api/playback/shuffle', { enabled: !shuffleActive }),
-  onRepeatToggle: () =>
-    postAction('/api/playback/repeat', { mode: nextRepeatMode[repeatMode] }),
-});
+export const useRemoteActions = (): RemoteActions => {
+  const getState = () => useRemoteStore.getState();
+
+  return {
+    onPlayPause: () => postAction('/api/playback/toggle'),
+    onNext: () => postAction('/api/playback/next'),
+    onPrevious: () => postAction('/api/playback/previous'),
+    onSeek: (percent: number) => {
+      const duration = getState().playback?.duration ?? 0;
+      postAction('/api/playback/seek', { seconds: (percent / 100) * duration });
+    },
+    onShuffleToggle: () => {
+      const shuffle = getState().settings.shuffle;
+      postAction('/api/playback/shuffle', { enabled: !shuffle });
+    },
+    onRepeatToggle: () => {
+      const repeat = getState().settings.repeat;
+      postAction('/api/playback/repeat', { mode: nextRepeatMode[repeat] });
+    },
+  };
+};

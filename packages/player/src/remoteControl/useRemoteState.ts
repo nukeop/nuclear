@@ -1,27 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 
-import type { Queue, RepeatMode } from '@nuclearplayer/model';
+import type { Queue } from '@nuclearplayer/model';
 import { pickArtwork } from '@nuclearplayer/model';
 import type { ConnectionStatus } from '@nuclearplayer/ui';
 
-import {
-  EventSourceEvent,
-  EventSourceStatus,
-  useEventSource,
-  useEventSourceListener,
-} from './useEventSource';
-
-type PlaybackState = {
-  status: 'playing' | 'paused' | 'stopped';
-  seek: number;
-  duration: number;
-};
-
-export type SettingsState = {
-  shuffle: boolean;
-  repeat: RepeatMode;
-  discovery: boolean;
-};
+import type { PlaybackState, SettingsState } from './remoteStore';
+import { useRemoteStore } from './remoteStore';
+import { EventSourceStatus, useEventSource } from './useEventSource';
+import { useInitialSync } from './useInitialSync';
+import { useSSESync } from './useSSESync';
 
 const mapConnectionStatus = (
   sseStatus: EventSourceStatus,
@@ -40,19 +27,6 @@ type CurrentTrack = {
   title: string;
   artist?: string;
   coverUrl?: string;
-};
-
-type RemoteState = {
-  connectionStatus: ConnectionStatus;
-  currentTrack?: CurrentTrack;
-  isLoading: boolean;
-  isPlaying: boolean;
-  progress: number;
-  elapsedSeconds: number;
-  remainingSeconds: number;
-  settings: SettingsState;
-  queue: { items: Queue['items']; currentItemId?: string };
-  hasQueue: boolean;
 };
 
 const deriveCurrentTrack = (
@@ -89,59 +63,35 @@ const derivePlayback = (playback: PlaybackState | null) => {
   };
 };
 
+type RemoteState = {
+  connectionStatus: ConnectionStatus;
+  currentTrack?: CurrentTrack;
+  isLoading: boolean;
+  isPlaying: boolean;
+  progress: number;
+  elapsedSeconds: number;
+  remainingSeconds: number;
+  settings: SettingsState;
+  queue: { items: Queue['items']; currentItemId?: string };
+  hasQueue: boolean;
+};
+
 export const useRemoteState = (): RemoteState => {
-  const [queue, setQueue] = useState<Queue | null>(null);
-  const [playback, setPlayback] = useState<PlaybackState | null>(null);
-  const [settings, setSettings] = useState<SettingsState>({
-    shuffle: false,
-    repeat: 'off',
-    discovery: false,
-  });
-
-  const fetchEndpoint = useCallback(
-    async <T>(path: string, setter: (data: T) => void) => {
-      try {
-        const response = await fetch(path);
-        if (response.ok) {
-          setter(await response.json());
-        }
-      } catch {
-        // Connection will recover via SSE
-      }
-    },
-    [],
-  );
-
-  const refetchAll = useCallback(() => {
-    fetchEndpoint('/api/queue', setQueue);
-    fetchEndpoint('/api/playback', setPlayback);
-  }, [fetchEndpoint]);
-
-  useEffect(() => {
-    refetchAll();
-  }, [refetchAll]);
-
   const [source, sseStatus] = useEventSource('/api/events');
-  const prevSseStatus = useRef(sseStatus);
 
+  const setConnectionStatus = useRemoteStore(
+    (state) => state.setConnectionStatus,
+  );
   useEffect(() => {
-    if (prevSseStatus.current !== 'open' && sseStatus === 'open') {
-      refetchAll();
-    }
-    prevSseStatus.current = sseStatus;
-  }, [sseStatus, refetchAll]);
+    setConnectionStatus(sseStatus);
+  }, [sseStatus, setConnectionStatus]);
 
-  useEventSourceListener(source, ['queue'], (event: EventSourceEvent) => {
-    setQueue(JSON.parse(event.data));
-  });
+  useInitialSync(sseStatus);
+  useSSESync(source);
 
-  useEventSourceListener(source, ['playback'], (event: EventSourceEvent) => {
-    setPlayback(JSON.parse(event.data));
-  });
-
-  useEventSourceListener(source, ['settings'], (event: EventSourceEvent) => {
-    setSettings(JSON.parse(event.data));
-  });
+  const queue = useRemoteStore((state) => state.queue);
+  const playback = useRemoteStore((state) => state.playback);
+  const settings = useRemoteStore((state) => state.settings);
 
   const current = deriveCurrentTrack(queue);
   const playbackState = derivePlayback(playback);
