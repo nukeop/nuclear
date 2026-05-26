@@ -1,16 +1,54 @@
 import { FC } from 'react';
 
-import { RemoteQueuePanel } from './RemoteQueuePanel';
+import { useTranslation } from '@nuclearplayer/i18n';
+import { NuclearJam } from '@nuclearplayer/ui';
 
-const RemoteControl: FC = () => (
-  <div className="bg-background text-foreground flex min-h-screen flex-col">
-    <header className="border-border border-b-(length:--border-width) p-4">
-      <h1 className="text-xl font-bold">Nuclear Jam</h1>
-    </header>
-    <main className="flex-1">
-      <RemoteQueuePanel />
-    </main>
-  </div>
-);
+import { useRemoteActions } from './useRemoteActions';
+import { useRemoteState } from './useRemoteState';
+
+const RemoteControl: FC = () => {
+  const { t } = useTranslation('remote');
+  const state = useRemoteState();
+  const actions = useRemoteActions({
+    shuffleActive: state.settings.shuffle,
+    repeatMode: state.settings.repeat,
+    duration: state.elapsedSeconds + state.remainingSeconds,
+  });
+
+  return (
+    <NuclearJam>
+      <NuclearJam.Header connectionStatus={state.connectionStatus} />
+      {state.hasQueue && state.currentTrack && (
+        <NuclearJam.NowPlaying
+          title={state.currentTrack.title}
+          artist={state.currentTrack.artist}
+          coverUrl={state.currentTrack.coverUrl}
+          isLoading={state.isLoading}
+        />
+      )}
+      {state.hasQueue && (
+        <NuclearJam.Controls
+          isPlaying={state.isPlaying}
+          isLoading={state.isLoading}
+          shuffleActive={state.settings.shuffle}
+          repeatMode={state.settings.repeat}
+          isDiscoveryActive={state.settings.discovery}
+          progress={state.progress}
+          elapsedSeconds={state.elapsedSeconds}
+          remainingSeconds={state.remainingSeconds}
+          {...actions}
+        />
+      )}
+      <NuclearJam.Queue
+        items={state.queue.items}
+        currentItemId={state.queue.currentItemId}
+        labels={{
+          title: t('queue.emptyTitle'),
+          subtitle: t('queue.emptySubtitle'),
+        }}
+      />
+    </NuclearJam>
+  );
+};
 
 export default RemoteControl;

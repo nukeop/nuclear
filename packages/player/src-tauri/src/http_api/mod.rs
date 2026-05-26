@@ -13,6 +13,7 @@ const REMOTE_PORT_END: u16 = 4129;
 pub enum RemoteEventKind {
     Queue,
     Playback,
+    Settings,
 }
 
 impl RemoteEventKind {
@@ -20,6 +21,7 @@ impl RemoteEventKind {
         match self {
             Self::Queue => "queue",
             Self::Playback => "playback",
+            Self::Settings => "settings",
         }
     }
 
@@ -27,6 +29,7 @@ impl RemoteEventKind {
         match self {
             Self::Queue => "remote:queue",
             Self::Playback => "remote:playback",
+            Self::Settings => "remote:settings",
         }
     }
 }
@@ -109,6 +112,7 @@ pub fn init_http_api(app_handle: AppHandle) {
 
     listen_for_event(&app_handle, RemoteEventKind::Queue, &state.events_tx);
     listen_for_event(&app_handle, RemoteEventKind::Playback, &state.events_tx);
+    listen_for_event(&app_handle, RemoteEventKind::Settings, &state.events_tx);
 
     app_handle.manage(state);
 }

@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
+import { fn } from 'storybook/test';
 
 import type { QueueItem } from '@nuclearplayer/model';
 import { NuclearJam } from '@nuclearplayer/ui';
@@ -18,7 +19,6 @@ const meta = {
 
 export default meta;
 
-const noop = () => {};
 const cover = 'https://picsum.photos/208';
 
 const mockQueueItems: QueueItem[] = [
@@ -137,13 +137,12 @@ export const FullPage = {
         progress={35}
         elapsedSeconds={88}
         remainingSeconds={163}
-        onPlayPause={noop}
-        onNext={noop}
-        onPrevious={noop}
-        onShuffleToggle={noop}
-        onRepeatToggle={noop}
-        onDiscoveryToggle={noop}
-        onSeek={noop}
+        onPlayPause={fn()}
+        onNext={fn()}
+        onPrevious={fn()}
+        onShuffleToggle={fn()}
+        onRepeatToggle={fn()}
+        onSeek={fn()}
       />
       <NuclearJam.Queue {...queueProps} />
     </NuclearJam>
@@ -185,8 +184,8 @@ export const Interactive = {
           elapsedSeconds={elapsed}
           remainingSeconds={remaining}
           onPlayPause={() => setIsPlaying((prev) => !prev)}
-          onNext={noop}
-          onPrevious={noop}
+          onNext={fn()}
+          onPrevious={fn()}
           onShuffleToggle={() => setShuffleActive((prev) => !prev)}
           onRepeatToggle={cycleRepeat}
           onDiscoveryToggle={() => setIsDiscoveryActive((prev) => !prev)}

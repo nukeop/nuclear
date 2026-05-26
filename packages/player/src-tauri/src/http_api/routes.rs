@@ -7,7 +7,7 @@ use axum::{
         sse::{Event, KeepAlive, Sse},
         IntoResponse, Response,
     },
-    routing::get,
+    routing::{get, post},
     Json, Router,
 };
 use futures::Stream;
@@ -32,6 +32,18 @@ impl IntoResponse for BridgeErrorResponse {
     }
 }
 
+async fn bridge_action(
+    bridge: &Bridge,
+    method: &str,
+    params: Value,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge
+        .call(method, params)
+        .await
+        .map(|_| StatusCode::OK)
+        .map_err(BridgeErrorResponse)
+}
+
 async fn health() -> Json<Value> {
     Json(json!({ "status": "ok" }))
 }
@@ -52,6 +64,43 @@ async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, Brid
         .await
         .map(Json)
         .map_err(BridgeErrorResponse)
+}
+
+async fn toggle_playback(
+    State(state): State<AppState>,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Playback.toggle", json!({})).await
+}
+
+async fn next_track(State(state): State<AppState>) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Queue.goToNext", json!({})).await
+}
+
+async fn previous_track(
+    State(state): State<AppState>,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Queue.goToPrevious", json!({})).await
+}
+
+async fn seek(
+    State(state): State<AppState>,
+    Json(body): Json<Value>,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Playback.seekTo", body).await
+}
+
+async fn set_shuffle(
+    State(state): State<AppState>,
+    Json(body): Json<Value>,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Playback.setShuffleEnabled", body).await
+}
+
+async fn set_repeat(
+    State(state): State<AppState>,
+    Json(body): Json<Value>,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Playback.setRepeatMode", body).await
 }
 
 fn events_stream(
@@ -91,5 +140,11 @@ pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Rout
         .route("/api/queue", get(get_queue))
         .route("/api/playback", get(get_playback))
         .route("/api/events", get(get_events))
+        .route("/api/playback/toggle", post(toggle_playback))
+        .route("/api/playback/next", post(next_track))
+        .route("/api/playback/previous", post(previous_track))
+        .route("/api/playback/seek", post(seek))
+        .route("/api/playback/shuffle", post(set_shuffle))
+        .route("/api/playback/repeat", post(set_repeat))
         .with_state(state)
 }

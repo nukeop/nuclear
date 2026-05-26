@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
 import { ComponentProps } from 'react';
+import { fn } from 'storybook/test';
 
 import { NuclearJam } from '@nuclearplayer/ui';
 
@@ -11,8 +12,6 @@ const meta = {
 
 export default meta;
 
-const noop = () => {};
-
 const defaultProps: ComponentProps<typeof NuclearJam.Controls> = {
   isPlaying: false,
   shuffleActive: false,
@@ -20,13 +19,12 @@ const defaultProps: ComponentProps<typeof NuclearJam.Controls> = {
   progress: 35,
   elapsedSeconds: 88,
   remainingSeconds: 163,
-  onPlayPause: noop,
-  onNext: noop,
-  onPrevious: noop,
-  onShuffleToggle: noop,
-  onRepeatToggle: noop,
-  onDiscoveryToggle: noop,
-  onSeek: noop,
+  onPlayPause: fn(),
+  onNext: fn(),
+  onPrevious: fn(),
+  onShuffleToggle: fn(),
+  onRepeatToggle: fn(),
+  onSeek: fn(),
 };
 
 export const Playing = {

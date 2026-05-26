@@ -23,14 +23,18 @@ export const useEventSource = (url: string) => {
       const eventSource = new EventSource(url);
       source.current = eventSource;
 
-      eventSource.addEventListener('open', () => setStatus('open'));
-      eventSource.addEventListener('error', () => {
-        setStatus('error');
+      eventSource.addEventListener('open', () => {
+        setStatus('open');
+      });
 
+      eventSource.addEventListener('error', () => {
         if (eventSource.readyState === EventSource.CLOSED && !cancelled) {
+          setStatus('error');
           eventSource.close();
           source.current = null;
           reconnectTimeout = setTimeout(connect, RECONNECT_DELAY_MS);
+        } else if (eventSource.readyState === EventSource.CONNECTING) {
+          setStatus('error');
         }
       });
     };
