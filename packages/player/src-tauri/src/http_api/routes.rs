@@ -14,34 +14,22 @@ use futures::Stream;
 use serde_json::{json, Value};
 use tokio::sync::broadcast;
 
-use super::RemoteEvent;
+use super::{actions, RemoteEvent};
 use crate::bridge::{bridge::Bridge, types::BridgeError};
 
 #[derive(Clone)]
 pub struct AppState {
-    bridge: Bridge,
+    pub(super) bridge: Bridge,
     events_tx: broadcast::Sender<RemoteEvent>,
 }
 
-struct BridgeErrorResponse(BridgeError);
+pub(super) struct BridgeErrorResponse(pub(super) BridgeError);
 
 impl IntoResponse for BridgeErrorResponse {
     fn into_response(self) -> Response {
         let message = self.0.to_string();
         (StatusCode::INTERNAL_SERVER_ERROR, Json(json!({ "error": message }))).into_response()
     }
-}
-
-async fn bridge_action(
-    bridge: &Bridge,
-    method: &str,
-    params: Value,
-) -> Result<StatusCode, BridgeErrorResponse> {
-    bridge
-        .call(method, params)
-        .await
-        .map(|_| StatusCode::OK)
-        .map_err(BridgeErrorResponse)
 }
 
 async fn health() -> Json<Value> {
@@ -64,43 +52,6 @@ async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, Brid
         .await
         .map(Json)
         .map_err(BridgeErrorResponse)
-}
-
-async fn toggle_playback(
-    State(state): State<AppState>,
-) -> Result<StatusCode, BridgeErrorResponse> {
-    bridge_action(&state.bridge, "Playback.toggle", json!({})).await
-}
-
-async fn next_track(State(state): State<AppState>) -> Result<StatusCode, BridgeErrorResponse> {
-    bridge_action(&state.bridge, "Queue.goToNext", json!({})).await
-}
-
-async fn previous_track(
-    State(state): State<AppState>,
-) -> Result<StatusCode, BridgeErrorResponse> {
-    bridge_action(&state.bridge, "Queue.goToPrevious", json!({})).await
-}
-
-async fn seek(
-    State(state): State<AppState>,
-    Json(body): Json<Value>,
-) -> Result<StatusCode, BridgeErrorResponse> {
-    bridge_action(&state.bridge, "Playback.seekTo", body).await
-}
-
-async fn set_shuffle(
-    State(state): State<AppState>,
-    Json(body): Json<Value>,
-) -> Result<StatusCode, BridgeErrorResponse> {
-    bridge_action(&state.bridge, "Playback.setShuffleEnabled", body).await
-}
-
-async fn set_repeat(
-    State(state): State<AppState>,
-    Json(body): Json<Value>,
-) -> Result<StatusCode, BridgeErrorResponse> {
-    bridge_action(&state.bridge, "Playback.setRepeatMode", body).await
 }
 
 fn events_stream(
@@ -140,11 +91,11 @@ pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Rout
         .route("/api/queue", get(get_queue))
         .route("/api/playback", get(get_playback))
         .route("/api/events", get(get_events))
-        .route("/api/playback/toggle", post(toggle_playback))
-        .route("/api/playback/next", post(next_track))
-        .route("/api/playback/previous", post(previous_track))
-        .route("/api/playback/seek", post(seek))
-        .route("/api/playback/shuffle", post(set_shuffle))
-        .route("/api/playback/repeat", post(set_repeat))
+        .route("/api/playback/toggle", post(actions::toggle_playback))
+        .route("/api/playback/next", post(actions::next_track))
+        .route("/api/playback/previous", post(actions::previous_track))
+        .route("/api/playback/seek", post(actions::seek))
+        .route("/api/playback/shuffle", post(actions::set_shuffle))
+        .route("/api/playback/repeat", post(actions::set_repeat))
         .with_state(state)
 }

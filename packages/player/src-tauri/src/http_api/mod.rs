@@ -1,3 +1,4 @@
+mod actions;
 mod routes;
 
 use std::sync::Arc;
