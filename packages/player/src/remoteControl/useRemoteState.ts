@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { i18n } from '@nuclearplayer/i18n';
 import type { Queue } from '@nuclearplayer/model';
 import { pickArtwork } from '@nuclearplayer/model';
+import { setThemeId } from '@nuclearplayer/themes';
 import type { ConnectionStatus } from '@nuclearplayer/ui';
 
 import type { PlaybackState, SettingsState } from './remoteStore';
@@ -97,6 +98,18 @@ export const useRemoteState = (): RemoteState => {
   useEffect(() => {
     void i18n.changeLanguage(settings.language);
   }, [settings.language]);
+
+  useEffect(() => {
+    if (settings.dark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [settings.dark]);
+
+  useEffect(() => {
+    setThemeId(settings.themeId);
+  }, [settings.themeId]);
 
   const current = deriveCurrentTrack(queue);
   const playbackState = derivePlayback(playback);

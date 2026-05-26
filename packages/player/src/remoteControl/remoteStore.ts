@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 import type { Queue, RepeatMode } from '@nuclearplayer/model';
+import { DEFAULT_THEME_ID } from '@nuclearplayer/themes';
 
 import type { EventSourceStatus } from './useEventSource';
 
@@ -15,6 +16,8 @@ export type SettingsState = {
   repeat: RepeatMode;
   discovery: boolean;
   language: string;
+  dark: boolean;
+  themeId: string;
 };
 
 type RemoteStore = {
@@ -37,6 +40,8 @@ export const useRemoteStore = create<RemoteStore>((set) => ({
     repeat: 'off',
     discovery: false,
     language: 'en_US',
+    dark: false,
+    themeId: DEFAULT_THEME_ID,
   },
   connectionStatus: 'init',
 

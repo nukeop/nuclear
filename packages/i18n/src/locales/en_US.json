@@ -360,6 +360,12 @@
     },
     "integrations": {
       "title": "Integrations",
+      "jam": {
+        "enabled": {
+          "title": "Nuclear Jam",
+          "description": "Start a local web server that lets you control Nuclear from other devices on your network."
+        }
+      },
       "mcp": {
         "enabled": {
           "title": "Enable MCP Server",
