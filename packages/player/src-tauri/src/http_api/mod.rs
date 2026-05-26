@@ -64,12 +64,18 @@ impl HttpApiState {
     }
 }
 
+#[derive(serde::Serialize)]
+pub struct HttpApiStartResult {
+    pub port: u16,
+    pub lan_address: Option<String>,
+}
+
 async fn start_server(
     bridge: crate::bridge::bridge::Bridge,
     events_tx: broadcast::Sender<RemoteEvent>,
     latest_settings: Arc<Mutex<Option<String>>>,
     ct: CancellationToken,
-    ready: oneshot::Sender<Result<u16, String>>,
+    ready: oneshot::Sender<Result<HttpApiStartResult, String>>,
 ) {
     let router = routes::router(bridge, events_tx, latest_settings);
 
@@ -89,8 +95,9 @@ async fn start_server(
     };
 
     let bound_port = tcp_listener.local_addr().unwrap().port();
+    let lan_address = crate::net::local_lan_ip().map(|ip| ip.to_string());
     log::info!("HTTP API server listening on http://0.0.0.0:{bound_port}/api/health");
-    let _ = ready.send(Ok(bound_port));
+    let _ = ready.send(Ok(HttpApiStartResult { port: bound_port, lan_address }));
 
     let _ = axum::serve(tcp_listener, router)
         .with_graceful_shutdown(async move {
@@ -134,11 +141,12 @@ pub fn init_http_api(app_handle: AppHandle) {
 pub async fn http_api_start(
     state: tauri::State<'_, HttpApiState>,
     bridge: tauri::State<'_, crate::bridge::bridge::Bridge>,
-) -> Result<u16, String> {
+) -> Result<HttpApiStartResult, String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.as_ref() {
         log::info!("HTTP API server already running on port {}", server.port);
-        return Ok(server.port);
+        let lan_address = crate::net::local_lan_ip().map(|ip| ip.to_string());
+        return Ok(HttpApiStartResult { port: server.port, lan_address });
     }
 
     log::info!("Starting HTTP API server");
@@ -153,13 +161,13 @@ pub async fn http_api_start(
     ));
 
     match ready_rx.await {
-        Ok(Ok(port)) => {
+        Ok(Ok(result)) => {
             *guard = Some(RunningServer {
                 task,
                 cancellation_token: ct,
-                port,
+                port: result.port,
             });
-            Ok(port)
+            Ok(result)
         }
         Ok(Err(message)) => Err(message),
         Err(_) => Err("HTTP API server task exited before reporting ready".into()),

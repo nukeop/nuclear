@@ -364,6 +364,14 @@
         "enabled": {
           "title": "Nuclear Jam",
           "description": "Start a local web server that lets you control Nuclear from other devices on your network."
+        },
+        "remoteUrl": {
+          "title": "Remote URL",
+          "description": "Open this URL on another device to control Nuclear."
+        },
+        "apiUrl": {
+          "title": "API URL",
+          "description": "HTTP API base URL for programmatic access."
         }
       },
       "mcp": {
