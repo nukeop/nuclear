@@ -50,6 +50,7 @@ struct RunningServer {
 pub struct HttpApiState {
     running: Arc<Mutex<Option<RunningServer>>>,
     pub events_tx: broadcast::Sender<RemoteEvent>,
+    pub latest_settings: Arc<Mutex<Option<String>>>,
 }
 
 impl HttpApiState {
@@ -58,6 +59,7 @@ impl HttpApiState {
         Self {
             running: Arc::new(Mutex::new(None)),
             events_tx,
+            latest_settings: Arc::new(Mutex::new(None)),
         }
     }
 }
@@ -65,10 +67,11 @@ impl HttpApiState {
 async fn start_server(
     bridge: crate::bridge::bridge::Bridge,
     events_tx: broadcast::Sender<RemoteEvent>,
+    latest_settings: Arc<Mutex<Option<String>>>,
     ct: CancellationToken,
     ready: oneshot::Sender<Result<u16, String>>,
 ) {
-    let router = routes::router(bridge, events_tx);
+    let router = routes::router(bridge, events_tx, latest_settings);
 
     let tcp_listener = match crate::net::bind_first_available_port(
         "0.0.0.0",
@@ -115,6 +118,15 @@ pub fn init_http_api(app_handle: AppHandle) {
     listen_for_event(&app_handle, RemoteEventKind::Playback, &state.events_tx);
     listen_for_event(&app_handle, RemoteEventKind::Settings, &state.events_tx);
 
+    let latest_settings = state.latest_settings.clone();
+    app_handle.listen(RemoteEventKind::Settings.tauri_event_name(), move |event| {
+        let payload = event.payload().to_string();
+        let cache = latest_settings.clone();
+        tauri::async_runtime::spawn(async move {
+            *cache.lock().await = Some(payload);
+        });
+    });
+
     app_handle.manage(state);
 }
 
@@ -135,6 +147,7 @@ pub async fn http_api_start(
     let task = tauri::async_runtime::spawn(start_server(
         bridge.inner().clone(),
         state.events_tx.clone(),
+        state.latest_settings.clone(),
         ct.clone(),
         ready_tx,
     ));

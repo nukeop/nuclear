@@ -19,14 +19,11 @@ const fetchEndpoint = async <T>(
 
 export const useInitialSync = (connectionStatus: EventSourceStatus) => {
   const refetchAll = useCallback(() => {
-    const { setQueue, setPlayback } = useRemoteStore.getState();
+    const { setQueue, setPlayback, setSettings } = useRemoteStore.getState();
     fetchEndpoint('/api/queue', setQueue);
     fetchEndpoint('/api/playback', setPlayback);
+    fetchEndpoint('/api/settings', setSettings);
   }, []);
-
-  useEffect(() => {
-    refetchAll();
-  }, [refetchAll]);
 
   const prevStatus = useRef(connectionStatus);
 
