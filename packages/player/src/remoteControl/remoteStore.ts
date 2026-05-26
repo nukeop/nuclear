@@ -14,6 +14,7 @@ export type SettingsState = {
   shuffle: boolean;
   repeat: RepeatMode;
   discovery: boolean;
+  language: string;
 };
 
 type RemoteStore = {
@@ -31,7 +32,12 @@ type RemoteStore = {
 export const useRemoteStore = create<RemoteStore>((set) => ({
   queue: null,
   playback: null,
-  settings: { shuffle: false, repeat: 'off', discovery: false },
+  settings: {
+    shuffle: false,
+    repeat: 'off',
+    discovery: false,
+    language: 'en_US',
+  },
   connectionStatus: 'init',
 
   setQueue: (queue) => set({ queue }),

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { i18n } from '@nuclearplayer/i18n';
 import type { Queue } from '@nuclearplayer/model';
 import { pickArtwork } from '@nuclearplayer/model';
 import type { ConnectionStatus } from '@nuclearplayer/ui';
@@ -92,6 +93,10 @@ export const useRemoteState = (): RemoteState => {
   const queue = useRemoteStore((state) => state.queue);
   const playback = useRemoteStore((state) => state.playback);
   const settings = useRemoteStore((state) => state.settings);
+
+  useEffect(() => {
+    void i18n.changeLanguage(settings.language);
+  }, [settings.language]);
 
   const current = deriveCurrentTrack(queue);
   const playbackState = derivePlayback(playback);

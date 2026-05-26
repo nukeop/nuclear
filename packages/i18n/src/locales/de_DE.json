@@ -360,5 +360,11 @@
       "plugin": "Plugin",
       "docs": "Docs"
     }
+  },
+  "remote": {
+    "queue": {
+      "emptyTitle": "Warteschlange ist leer",
+      "emptySubtitle": "Füge Titel in Nuclear hinzu, um sie hier zu sehen"
+    }
   }
 }

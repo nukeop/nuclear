@@ -44,6 +44,7 @@ const getSettingsSnapshot = () => {
     shuffle: (getValue('core.playback.shuffle') as boolean) ?? false,
     repeat: (getValue('core.playback.repeat') as string) ?? 'off',
     discovery: (getValue('core.playback.discovery') as boolean) ?? false,
+    language: (getValue('core.general.language') as string) ?? 'en_US',
   };
 };
 
