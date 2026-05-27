@@ -1,5 +1,5 @@
 use std::convert::Infallible;
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 
 use axum::{
     extract::State,
@@ -13,7 +13,7 @@ use axum::{
 };
 use futures::Stream;
 use serde_json::{json, Value};
-use tokio::sync::{broadcast, Mutex};
+use tokio::sync::broadcast;
 
 use super::{actions, RemoteEvent};
 use crate::bridge::{bridge::Bridge, types::BridgeError};
@@ -57,7 +57,7 @@ async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, Brid
 }
 
 async fn get_settings(State(state): State<AppState>) -> Response {
-    let guard = state.latest_settings.lock().await;
+    let guard = state.latest_settings.lock().unwrap();
     match guard.as_ref() {
         Some(data) => {
             let value = serde_json::from_str::<Value>(data).unwrap_or(json!({}));
