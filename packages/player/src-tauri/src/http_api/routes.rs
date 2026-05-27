@@ -115,5 +115,6 @@ pub fn router(
         .route("/api/playback/seek", post(actions::seek))
         .route("/api/playback/shuffle", post(actions::set_shuffle))
         .route("/api/playback/repeat", post(actions::set_repeat))
+        .fallback(super::frontend::serve_frontend)
         .with_state(state)
 }

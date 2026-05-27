@@ -40,6 +40,8 @@ rmcp = { version = "0.17", features = ["server", "transport-streamable-http-serv
 schemars = "1.0"
 async-stream = "0.3"
 axum = { version = "0.8", default-features = false, features = ["http1", "tokio", "json"] }
+rust-embed = "8"
+mime_guess = "2"
 tokio-util = { version = "0.7", features = ["rt"] }
 uuid = { version = "1.20.0", features = ["v4"] }
 discord-rich-presence = "1.1.0"

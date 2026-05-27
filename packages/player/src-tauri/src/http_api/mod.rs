@@ -1,4 +1,5 @@
 mod actions;
+mod frontend;
 mod routes;
 
 use std::sync::{Arc, Mutex as StdMutex};
