@@ -1,5 +1,5 @@
 @utility text-stroke-* {
-  -webkit-text-stroke-width: --value(integer) px;
+  -webkit-text-stroke-width: --value(integer)px;
   -webkit-text-stroke-width: --value([length]);
   paint-order: stroke fill;
 }

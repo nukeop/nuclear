@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { cn } from '../../utils';
 import { Badge } from '../Badge';
+import { PulsingText } from '../PulsingText';
 import { TopBarLogo } from '../TopBarLogo';
 
 export type ConnectionStatus = 'connected' | 'reconnecting' | 'disconnected';
@@ -34,9 +35,10 @@ export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
       <TopBarLogo />
       <h1 className="text-foreground inline text-base font-black tracking-tight uppercase">
         Nuclear{' '}
-        <span className="text-primary text-stroke-4 stroke-text-black">
-          Jam
-        </span>
+        <PulsingText
+          text="Jam"
+          className="text-primary text-stroke-4 stroke-text-black"
+        />
       </h1>
     </span>
     <Badge

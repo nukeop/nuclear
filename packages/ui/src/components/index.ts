@@ -22,6 +22,7 @@ export * from './PlayerShell';
 export * from './PlayerWorkspace';
 export * from './PluginItem';
 export * from './PluginStoreItem';
+export * from './PulsingText';
 export * from './ThemeStoreItem';
 export * from './Popover';
 export * from './QueueItem';
