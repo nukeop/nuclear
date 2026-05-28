@@ -41,10 +41,33 @@ describe('Settings (SDK)', () => {
     expect(updated).toBe(true);
   });
 
+  it('getGlobal/setGlobal bypasses namespace scoping', async () => {
+    const host = new InMemorySettingsHost({ type: 'plugin', pluginId: 'p1' });
+    const api = new NuclearAPI({ settingsHost: host });
+
+    await api.Settings.setGlobal('core.theme.dark', true);
+
+    const inaccessible = await api.Settings.get('core.theme.dark');
+    expect(inaccessible).toBeUndefined();
+
+    const accessible = await api.Settings.getGlobal('core.theme.dark');
+    expect(accessible).toBe(true);
+
+    await api.Settings.setGlobal('core.theme.dark', false);
+    const updated = await api.Settings.getGlobal('core.theme.dark');
+    expect(updated).toBe(false);
+  });
+
   it('throws clearly when host is missing', async () => {
     const api = new NuclearAPI();
     expect(() => api.Settings.get('x')).toThrow('Settings host not available');
     expect(() => api.Settings.set('x', 'y')).toThrow(
+      'Settings host not available',
+    );
+    expect(() => api.Settings.getGlobal('x')).toThrow(
+      'Settings host not available',
+    );
+    expect(() => api.Settings.setGlobal('x', 'y')).toThrow(
       'Settings host not available',
     );
     expect(() => api.Settings.register([])).toThrow(
