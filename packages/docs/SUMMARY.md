@@ -6,6 +6,7 @@
 
 * [Getting started](user-manual/getting-started.md)
 * [Installation](user-manual/installation.md)
+* [Remote control](user-manual/remote-control.md)
 
 ## Core Concepts
 
