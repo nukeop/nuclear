@@ -4,6 +4,7 @@ import { FC, useCallback, useEffect, useRef } from 'react';
 import { QueueItem } from '@nuclearplayer/model';
 
 import { cn } from '../../utils';
+import { Badge } from '../Badge';
 import { ScrollableArea } from '../ScrollableArea';
 import {
   NuclearJamEmptyQueue,
@@ -11,10 +12,14 @@ import {
 } from './NuclearJamEmptyQueue';
 import { NuclearJamQueueItem } from './NuclearJamQueueItem';
 
+export type NuclearJamQueueLabels = NuclearJamEmptyQueueLabels & {
+  upNext: string;
+};
+
 export type NuclearJamQueueProps = {
   items: QueueItem[];
   currentItemId?: string;
-  labels: NuclearJamEmptyQueueLabels;
+  labels: NuclearJamQueueLabels;
   className?: string;
 };
 
@@ -52,6 +57,23 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
 
   return (
     <div className={cn('min-h-0 flex-1', className)}>
+      <div
+        className="bg-foreground dark:bg-foreground-secondary border-border flex items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
+        data-testid="jam-queue-header"
+      >
+        <span className="font-heading dark:text-background font-extrabold tracking-tight text-white uppercase">
+          {labels.upNext}
+        </span>
+
+        <Badge
+          variant="pill"
+          color="yellow"
+          data-testid="jam-queue-count"
+          className="dark:bg-accent-green dark:border-background dark:text-white"
+        >
+          {items.length}
+        </Badge>
+      </div>
       <ScrollableArea className="h-full">
         {items.map((item) => {
           const isCurrent = item.id === currentItemId;

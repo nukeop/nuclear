@@ -39,7 +39,15 @@ const RemoteControl: FC = () => {
 
   return (
     <NuclearJam>
-      <NuclearJam.Header connectionStatus={state.connectionStatus} />
+      <NuclearJam.Header
+        connectionStatus={state.connectionStatus}
+        connectionStatusLabels={{
+          connecting: t('connection.connecting'),
+          connected: t('connection.connected'),
+          reconnecting: t('connection.reconnecting'),
+          failed: t('connection.failed'),
+        }}
+      />
       {state.hasQueue && state.currentTrack && (
         <NuclearJam.NowPlaying
           title={state.currentTrack.title}
@@ -65,6 +73,7 @@ const RemoteControl: FC = () => {
         items={state.queue.items}
         currentItemId={state.queue.currentItemId}
         labels={{
+          upNext: t('queue.upNext'),
           title: t('queue.emptyTitle'),
           subtitle: t('queue.emptySubtitle'),
         }}

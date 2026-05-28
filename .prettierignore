@@ -5,4 +5,4 @@ src-tauri/Cargo.lock
 *.json
 *.md
 .astro/
-packages/tailwind-config/utilities.css
+utilities.css

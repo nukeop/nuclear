@@ -12,6 +12,7 @@ const meta = {
 export default meta;
 
 const queueLabels = {
+  upNext: 'Up next',
   title: 'Queue is empty',
   subtitle: 'Add tracks in Nuclear to see them here',
 };

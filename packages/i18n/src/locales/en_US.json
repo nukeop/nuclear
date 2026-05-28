@@ -466,7 +466,14 @@
       "title": "Could not connect to Nuclear",
       "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled in Settings"
     },
+    "connection": {
+      "connecting": "Connecting",
+      "connected": "Connected",
+      "reconnecting": "Reconnecting",
+      "failed": "Disconnected"
+    },
     "queue": {
+      "upNext": "Up next",
       "emptyTitle": "Queue is empty",
       "emptySubtitle": "Add tracks in Nuclear to see them here"
     },

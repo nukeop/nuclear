@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import { cn } from '../../utils';
-import { Badge } from '../Badge';
 import { PulsingText } from '../PulsingText';
 import { TopBarLogo } from '../TopBarLogo';
 
@@ -11,23 +10,24 @@ export type ConnectionStatus =
   | 'reconnecting'
   | 'failed';
 
+export type ConnectionStatusLabels = Record<ConnectionStatus, string>;
+
 export type NuclearJamHeaderProps = {
   connectionStatus: ConnectionStatus;
+  connectionStatusLabels: ConnectionStatusLabels;
   className?: string;
 };
 
-export const CONNECTION_DOT_COLOR: Record<
-  ConnectionStatus,
-  'green' | 'yellow' | 'red'
-> = {
-  connecting: 'yellow',
-  connected: 'green',
-  reconnecting: 'yellow',
-  failed: 'red',
+const CONNECTION_DOT_COLOR: Record<ConnectionStatus, string> = {
+  connecting: 'bg-accent-yellow',
+  connected: 'bg-accent-green',
+  reconnecting: 'bg-accent-yellow',
+  failed: 'bg-accent-red',
 };
 
 export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
   connectionStatus,
+  connectionStatusLabels,
   className,
 }) => (
   <div
@@ -42,15 +42,25 @@ export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
         Nuclear{' '}
         <PulsingText
           text="Jam"
-          className="text-primary text-stroke-4 stroke-text-black"
+          className="text-primary text-stroke-4 stroke-text-black dark:stroke-text-foreground"
         />
       </h1>
     </span>
-    <Badge
-      variant="dot"
-      color={CONNECTION_DOT_COLOR[connectionStatus]}
-      animated={connectionStatus === 'reconnecting'}
-      data-testid="connection-status-dot"
-    />
+    <span
+      className="border-border bg-foreground inline-flex items-center gap-1.5 rounded-full border-(length:--border-width) px-2.5 py-0.5"
+      data-testid="connection-status-badge"
+    >
+      <span
+        className={cn(
+          'size-2 rounded-full',
+          CONNECTION_DOT_COLOR[connectionStatus],
+          connectionStatus === 'reconnecting' && 'animate-pulse',
+        )}
+        data-testid="connection-status-dot"
+      />
+      <span className="text-background dark:text-background text-xs font-semibold text-white">
+        {connectionStatusLabels[connectionStatus]}
+      </span>
+    </span>
   </div>
 );

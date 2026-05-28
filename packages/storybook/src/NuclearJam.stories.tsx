@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { fn } from 'storybook/test';
 
 import type { QueueItem } from '@nuclearplayer/model';
-import { NuclearJam } from '@nuclearplayer/ui';
+import { ConnectionStatusLabels, NuclearJam } from '@nuclearplayer/ui';
 
 const meta = {
   title: 'Remote/NuclearJam',
@@ -112,10 +112,18 @@ const mockQueueItems: QueueItem[] = [
   },
 ];
 
+const connectionStatusLabels: ConnectionStatusLabels = {
+  connecting: 'Connecting',
+  connected: 'Connected',
+  reconnecting: 'Reconnecting',
+  failed: 'Disconnected',
+};
+
 const queueProps = {
   items: mockQueueItems,
   currentItemId: '1',
   labels: {
+    upNext: 'Up next',
     title: 'Queue is empty',
     subtitle: 'Add tracks in Nuclear to see them here',
   },
@@ -124,7 +132,10 @@ const queueProps = {
 export const FullPage = {
   render: () => (
     <NuclearJam>
-      <NuclearJam.Header connectionStatus="connected" />
+      <NuclearJam.Header
+        connectionStatus="connected"
+        connectionStatusLabels={connectionStatusLabels}
+      />
       <NuclearJam.NowPlaying
         title="Everything In Its Right Place"
         artist="Radiohead"
@@ -169,7 +180,10 @@ export const Interactive = {
 
     return (
       <NuclearJam>
-        <NuclearJam.Header connectionStatus="connected" />
+        <NuclearJam.Header
+          connectionStatus="connected"
+          connectionStatusLabels={connectionStatusLabels}
+        />
         <NuclearJam.NowPlaying
           title="Everything In Its Right Place"
           artist="Radiohead"

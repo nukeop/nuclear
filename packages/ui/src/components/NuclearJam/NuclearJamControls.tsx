@@ -63,7 +63,7 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
   return (
     <div
       className={cn(
-        'border-border shrink-0 border-y-(length:--border-width) px-4 py-4',
+        'border-border shrink-0 border-t-(length:--border-width) border-b-0 px-4 py-4',
         className,
       )}
     >
