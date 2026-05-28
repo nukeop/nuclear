@@ -1,7 +1,7 @@
 use std::convert::Infallible;
 
 use axum::{
-    extract::State,
+    extract::{Path, State},
     http::StatusCode,
     response::{
         sse::{Event, KeepAlive, Sse},
@@ -55,11 +55,49 @@ async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, Brid
 }
 
 async fn get_settings(State(state): State<AppState>) -> Result<Json<Value>, BridgeErrorResponse> {
+    let bridge = &state.bridge;
+    let (shuffle, repeat, discovery, language, dark, theme_id) = tokio::try_join!(
+        bridge.call("Settings.getGlobal", json!({"id": "core.playback.shuffle"})),
+        bridge.call("Settings.getGlobal", json!({"id": "core.playback.repeat"})),
+        bridge.call("Settings.getGlobal", json!({"id": "core.playback.discovery"})),
+        bridge.call("Settings.getGlobal", json!({"id": "core.general.language"})),
+        bridge.call("Settings.getGlobal", json!({"id": "core.theme.dark"})),
+        bridge.call("Settings.getGlobal", json!({"id": "core.theme.active.id"})),
+    )
+    .map_err(BridgeErrorResponse)?;
+
+    Ok(Json(json!({
+        "shuffle": shuffle,
+        "repeat": repeat,
+        "discovery": discovery,
+        "language": language,
+        "dark": dark,
+        "themeId": theme_id,
+    })))
+}
+
+async fn get_setting(
+    State(state): State<AppState>,
+    Path(id): Path<String>,
+) -> Result<Json<Value>, BridgeErrorResponse> {
     state
         .bridge
-        .call("Remote.getSettings", json!({}))
+        .call("Settings.getGlobal", json!({"id": id}))
         .await
         .map(Json)
+        .map_err(BridgeErrorResponse)
+}
+
+async fn set_setting(
+    State(state): State<AppState>,
+    Path(id): Path<String>,
+    Json(body): Json<Value>,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    state
+        .bridge
+        .call("Settings.setGlobal", json!({"id": id, "value": body}))
+        .await
+        .map(|_| StatusCode::OK)
         .map_err(BridgeErrorResponse)
 }
 
@@ -94,10 +132,7 @@ async fn get_events(
     Sse::new(events_stream(receiver)).keep_alive(KeepAlive::default())
 }
 
-pub fn router(
-    bridge: Bridge,
-    events_tx: broadcast::Sender<RemoteEvent>,
-) -> Router {
+pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Router {
     let state = AppState { bridge, events_tx };
 
     Router::new()
@@ -105,6 +140,7 @@ pub fn router(
         .route("/api/queue", get(get_queue))
         .route("/api/playback", get(get_playback))
         .route("/api/settings", get(get_settings))
+        .route("/api/settings/{id}", get(get_setting).post(set_setting))
         .route("/api/events", get(get_events))
         .route("/api/playback/toggle", post(actions::toggle_playback))
         .route("/api/playback/next", post(actions::next_track))

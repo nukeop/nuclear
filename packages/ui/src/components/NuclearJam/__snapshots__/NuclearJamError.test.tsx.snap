@@ -8,7 +8,7 @@ exports[`NuclearJamError > (Snapshot) renders with labels 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="lucide lucide-wifi-off text-accent-red opacity-75"
+      class="lucide lucide-wifi-off text-accent-red"
       fill="none"
       height="48"
       stroke="currentColor"

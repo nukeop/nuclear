@@ -11,7 +11,6 @@ import {
 } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
 import { errorMessage } from '../../utils/error';
-import { registerBridgeHandler } from '../bridge/bridgeDispatcher';
 import { Logger } from '../logger';
 
 const JAM_ENABLED_SETTING = 'core.integrations.jam.enabled';
@@ -128,7 +127,6 @@ const watchEnabledSetting = () => {
 };
 
 export const initHttpApiHandler = async () => {
-  registerBridgeHandler('Remote.getSettings', getSettingsSnapshot);
   watchEnabledSetting();
 
   if (getSetting(JAM_ENABLED_SETTING) === true) {
