@@ -1,5 +1,4 @@
 import {
-  BoomBox,
   Pause,
   Play,
   Repeat,
@@ -41,7 +40,6 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
   isLoading = false,
   shuffleActive,
   repeatMode,
-  isDiscoveryActive = false,
   progress,
   elapsedSeconds,
   remainingSeconds,
@@ -50,7 +48,6 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
   onPrevious,
   onShuffleToggle,
   onRepeatToggle,
-  onDiscoveryToggle,
   onSeek,
   className,
 }) => {
@@ -67,7 +64,16 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
         className,
       )}
     >
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-1">
+        <Button
+          size="icon"
+          variant={shuffleActive ? 'default' : 'text'}
+          onClick={onShuffleToggle}
+          data-testid="jam-shuffle-button"
+        >
+          <Shuffle size={18} />
+        </Button>
+
         <Button
           size="icon"
           variant="text"
@@ -94,6 +100,15 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
           data-testid="jam-next-button"
         >
           <SkipForward size={24} />
+        </Button>
+
+        <Button
+          size="icon"
+          variant={repeatMode !== 'off' ? 'default' : 'text'}
+          onClick={onRepeatToggle}
+          data-testid="jam-repeat-button"
+        >
+          {repeatMode === 'one' ? <Repeat1 size={18} /> : <Repeat size={18} />}
         </Button>
       </div>
 
@@ -126,37 +141,6 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
             />
           )}
         </div>
-      </div>
-
-      <div className="mt-3 flex items-center justify-center gap-2">
-        <Button
-          size="icon"
-          variant={shuffleActive ? 'default' : 'text'}
-          onClick={onShuffleToggle}
-          data-testid="jam-shuffle-button"
-        >
-          <Shuffle size={18} />
-        </Button>
-
-        <Button
-          size="icon"
-          variant={repeatMode !== 'off' ? 'default' : 'text'}
-          onClick={onRepeatToggle}
-          data-testid="jam-repeat-button"
-        >
-          {repeatMode === 'one' ? <Repeat1 size={18} /> : <Repeat size={18} />}
-        </Button>
-
-        {onDiscoveryToggle && (
-          <Button
-            size="icon"
-            variant={isDiscoveryActive ? 'default' : 'text'}
-            onClick={onDiscoveryToggle}
-            data-testid="jam-discovery-button"
-          >
-            <BoomBox size={18} />
-          </Button>
-        )}
       </div>
     </div>
   );

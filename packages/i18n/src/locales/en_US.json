@@ -478,6 +478,7 @@
       "emptySubtitle": "Add tracks in Nuclear to see them here"
     },
     "qrCode": {
+      "tooltip": "Nuclear Jam remote control",
       "instructions": "Scan the QR code or copy the address below to connect to Nuclear Jam"
     }
   },
