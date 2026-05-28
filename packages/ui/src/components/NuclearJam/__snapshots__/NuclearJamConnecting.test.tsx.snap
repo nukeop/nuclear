@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamConnecting > (Snapshot) renders with labels 1`] = `
+<div>
+  <div
+    class="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center"
+    data-testid="jam-connecting"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-loader-pinwheel animate-spin"
+      data-testid="loader"
+      fill="none"
+      height="48"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M22 12a1 1 0 0 1-10 0 1 1 0 0 0-10 0"
+      />
+      <path
+        d="M7 20.7a1 1 0 1 1 5-8.7 1 1 0 1 0 5-8.6"
+      />
+      <path
+        d="M7 3.3a1 1 0 1 1 5 8.6 1 1 0 1 0 5 8.6"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+      />
+    </svg>
+    <h1
+      class="text-foreground text-3xl"
+    >
+      Connecting to Nuclear...
+    </h1>
+    <h2
+      class="text-foreground-secondary text-xl"
+    >
+      Make sure Nuclear is running
+    </h2>
+  </div>
+</div>
+`;

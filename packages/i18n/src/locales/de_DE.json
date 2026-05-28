@@ -362,6 +362,10 @@
     }
   },
   "remote": {
+    "connecting": {
+      "title": "Verbindung zu Nuclear wird hergestellt...",
+      "subtitle": "Stelle sicher, dass Nuclear läuft und Nuclear Jam aktiviert ist"
+    },
     "queue": {
       "emptyTitle": "Warteschlange ist leer",
       "emptySubtitle": "Füge Titel in Nuclear hinzu, um sie hier zu sehen"

@@ -25,11 +25,13 @@ type RemoteStore = {
   playback: PlaybackState | null;
   settings: SettingsState;
   connectionStatus: EventSourceStatus;
+  synced: boolean;
 
   setQueue: (queue: Queue) => void;
   setPlayback: (playback: PlaybackState) => void;
   setSettings: (settings: SettingsState) => void;
   setConnectionStatus: (status: EventSourceStatus) => void;
+  setSynced: (synced: boolean) => void;
 };
 
 export const useRemoteStore = create<RemoteStore>((set) => ({
@@ -44,9 +46,11 @@ export const useRemoteStore = create<RemoteStore>((set) => ({
     themeId: DEFAULT_THEME_ID,
   },
   connectionStatus: 'init',
+  synced: false,
 
   setQueue: (queue) => set({ queue }),
   setPlayback: (playback) => set({ playback }),
   setSettings: (settings) => set({ settings }),
   setConnectionStatus: (connectionStatus) => set({ connectionStatus }),
+  setSynced: (synced) => set({ synced }),
 }));

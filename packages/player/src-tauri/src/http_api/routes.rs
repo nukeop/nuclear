@@ -56,21 +56,19 @@ async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, Brid
         .map_err(BridgeErrorResponse)
 }
 
-async fn get_settings(State(state): State<AppState>) -> Response {
+async fn get_settings(State(state): State<AppState>) -> Result<Json<Value>, StatusCode> {
     let guard = state.latest_settings.lock().unwrap();
-    match guard.as_ref() {
-        Some(data) => {
-            let value = serde_json::from_str::<Value>(data).unwrap_or(json!({}));
-            (StatusCode::OK, Json(value)).into_response()
-        }
-        None => StatusCode::NO_CONTENT.into_response(),
-    }
+    let data = guard.as_ref().ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
+    let value = serde_json::from_str::<Value>(data).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(value))
 }
 
 fn events_stream(
     mut receiver: broadcast::Receiver<RemoteEvent>,
 ) -> impl Stream<Item = Result<Event, Infallible>> {
     async_stream::stream! {
+        yield Ok(Event::default().comment("connected"));
+
         loop {
             match receiver.recv().await {
                 Ok(remote_event) => {

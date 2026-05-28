@@ -1,28 +1,40 @@
 import { useCallback, useEffect, useRef } from 'react';
 
+import type { Queue } from '@nuclearplayer/model';
+
+import type { PlaybackState, SettingsState } from './remoteStore';
 import { useRemoteStore } from './remoteStore';
 import type { EventSourceStatus } from './useEventSource';
 
-const fetchEndpoint = async <T>(
-  path: string,
-  setter: (data: T) => void,
-): Promise<void> => {
-  try {
-    const response = await fetch(path);
-    if (response.ok) {
-      setter(await response.json());
-    }
-  } catch {
-    // Connection will recover via SSE
+const fetchJSON = async <T>(path: string): Promise<T> => {
+  const response = await fetch(path);
+
+  if (!response.ok) {
+    throw new Error(`${path} returned ${response.status}`);
   }
+
+  return response.json() as Promise<T>;
 };
 
 export const useInitialSync = (connectionStatus: EventSourceStatus) => {
-  const refetchAll = useCallback(() => {
-    const { setQueue, setPlayback, setSettings } = useRemoteStore.getState();
-    fetchEndpoint('/api/queue', setQueue);
-    fetchEndpoint('/api/playback', setPlayback);
-    fetchEndpoint('/api/settings', setSettings);
+  const refetchAll = useCallback(async () => {
+    const { setQueue, setPlayback, setSettings, setSynced } =
+      useRemoteStore.getState();
+
+    try {
+      const [queue, playback, settings] = await Promise.all([
+        fetchJSON<Queue>('/api/queue'),
+        fetchJSON<PlaybackState>('/api/playback'),
+        fetchJSON<SettingsState>('/api/settings'),
+      ]);
+
+      setQueue(queue);
+      setPlayback(playback);
+      setSettings(settings);
+      setSynced(true);
+    } catch (error) {
+      console.error('Initial sync failed:', error);
+    }
   }, []);
 
   const prevStatus = useRef(connectionStatus);

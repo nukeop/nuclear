@@ -11,6 +11,19 @@ const RemoteControl: FC = () => {
   const state = useRemoteState();
   const actions = useRemoteActions();
 
+  if (state.connectionStatus === 'disconnected' || !state.synced) {
+    return (
+      <NuclearJam>
+        <NuclearJam.Connecting
+          labels={{
+            title: t('connecting.title'),
+            subtitle: t('connecting.subtitle'),
+          }}
+        />
+      </NuclearJam>
+    );
+  }
+
   return (
     <NuclearJam>
       <NuclearJam.Header connectionStatus={state.connectionStatus} />

@@ -458,6 +458,10 @@
     "exportSuccess": "Logs exported"
   },
   "remote": {
+    "connecting": {
+      "title": "Connecting to Nuclear...",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled"
+    },
     "queue": {
       "emptyTitle": "Queue is empty",
       "emptySubtitle": "Add tracks in Nuclear to see them here"

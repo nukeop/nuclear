@@ -67,6 +67,7 @@ const derivePlayback = (playback: PlaybackState | null) => {
 
 type RemoteState = {
   connectionStatus: ConnectionStatus;
+  synced: boolean;
   currentTrack?: CurrentTrack;
   isLoading: boolean;
   isPlaying: boolean;
@@ -94,6 +95,7 @@ export const useRemoteState = (): RemoteState => {
   const queue = useRemoteStore((state) => state.queue);
   const playback = useRemoteStore((state) => state.playback);
   const settings = useRemoteStore((state) => state.settings);
+  const synced = useRemoteStore((state) => state.synced);
 
   useEffect(() => {
     void i18n.changeLanguage(settings.language);
@@ -116,6 +118,7 @@ export const useRemoteState = (): RemoteState => {
 
   return {
     connectionStatus: mapConnectionStatus(sseStatus),
+    synced,
     currentTrack: current?.track,
     isLoading: current?.isLoading ?? false,
     ...playbackState,
