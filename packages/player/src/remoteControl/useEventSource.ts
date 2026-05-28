@@ -1,40 +1,50 @@
 import { useEffect, useRef, useState } from 'react';
 
-export type EventSourceStatus = 'init' | 'open' | 'closed' | 'error';
+import type { ConnectionStatus } from '@nuclearplayer/ui';
 
 export type EventSourceEvent = Event & { data: string };
 
 const RECONNECT_DELAY_MS = 3000;
+const MAX_RETRIES = 3;
 
 export const useEventSource = (url: string) => {
   const source = useRef<EventSource | null>(null);
-  const [status, setStatus] = useState<EventSourceStatus>('init');
+  const [status, setStatus] = useState<ConnectionStatus>('connecting');
 
   useEffect(() => {
     if (!url) {
-      setStatus('closed');
+      setStatus('failed');
       return;
     }
 
     let reconnectTimeout: ReturnType<typeof setTimeout>;
     let cancelled = false;
+    let retries = 0;
 
     const connect = () => {
       const eventSource = new EventSource(url);
       source.current = eventSource;
 
       eventSource.addEventListener('open', () => {
-        setStatus('open');
+        retries = 0;
+        setStatus('connected');
       });
 
       eventSource.addEventListener('error', () => {
         if (eventSource.readyState === EventSource.CLOSED && !cancelled) {
-          setStatus('error');
           eventSource.close();
           source.current = null;
+          retries++;
+
+          if (retries > MAX_RETRIES) {
+            setStatus('failed');
+            return;
+          }
+
+          setStatus('reconnecting');
           reconnectTimeout = setTimeout(connect, RECONNECT_DELAY_MS);
         } else if (eventSource.readyState === EventSource.CONNECTING) {
-          setStatus('error');
+          setStatus('reconnecting');
         }
       });
     };

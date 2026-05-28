@@ -1,5 +1,4 @@
 use std::convert::Infallible;
-use std::sync::{Arc, Mutex};
 
 use axum::{
     extract::State,
@@ -22,7 +21,6 @@ use crate::bridge::{bridge::Bridge, types::BridgeError};
 pub struct AppState {
     pub(super) bridge: Bridge,
     events_tx: broadcast::Sender<RemoteEvent>,
-    pub(super) latest_settings: Arc<Mutex<Option<String>>>,
 }
 
 pub(super) struct BridgeErrorResponse(pub(super) BridgeError);
@@ -56,11 +54,13 @@ async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, Brid
         .map_err(BridgeErrorResponse)
 }
 
-async fn get_settings(State(state): State<AppState>) -> Result<Json<Value>, StatusCode> {
-    let guard = state.latest_settings.lock().unwrap();
-    let data = guard.as_ref().ok_or(StatusCode::INTERNAL_SERVER_ERROR)?;
-    let value = serde_json::from_str::<Value>(data).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    Ok(Json(value))
+async fn get_settings(State(state): State<AppState>) -> Result<Json<Value>, BridgeErrorResponse> {
+    state
+        .bridge
+        .call("Remote.getSettings", json!({}))
+        .await
+        .map(Json)
+        .map_err(BridgeErrorResponse)
 }
 
 fn events_stream(
@@ -97,9 +97,8 @@ async fn get_events(
 pub fn router(
     bridge: Bridge,
     events_tx: broadcast::Sender<RemoteEvent>,
-    latest_settings: Arc<Mutex<Option<String>>>,
 ) -> Router {
-    let state = AppState { bridge, events_tx, latest_settings };
+    let state = AppState { bridge, events_tx };
 
     Router::new()
         .route("/api/health", get(health))

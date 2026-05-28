@@ -5,7 +5,11 @@ import { Badge } from '../Badge';
 import { PulsingText } from '../PulsingText';
 import { TopBarLogo } from '../TopBarLogo';
 
-export type ConnectionStatus = 'connected' | 'reconnecting' | 'disconnected';
+export type ConnectionStatus =
+  | 'connecting'
+  | 'connected'
+  | 'reconnecting'
+  | 'failed';
 
 export type NuclearJamHeaderProps = {
   connectionStatus: ConnectionStatus;
@@ -16,9 +20,10 @@ export const CONNECTION_DOT_COLOR: Record<
   ConnectionStatus,
   'green' | 'yellow' | 'red'
 > = {
+  connecting: 'yellow',
   connected: 'green',
   reconnecting: 'yellow',
-  disconnected: 'red',
+  failed: 'red',
 };
 
 export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({

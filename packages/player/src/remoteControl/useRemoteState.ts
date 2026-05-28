@@ -8,22 +8,9 @@ import type { ConnectionStatus } from '@nuclearplayer/ui';
 
 import type { PlaybackState, SettingsState } from './remoteStore';
 import { useRemoteStore } from './remoteStore';
-import { EventSourceStatus, useEventSource } from './useEventSource';
+import { useEventSource } from './useEventSource';
 import { useInitialSync } from './useInitialSync';
 import { useSSESync } from './useSSESync';
-
-const mapConnectionStatus = (
-  sseStatus: EventSourceStatus,
-): ConnectionStatus => {
-  switch (sseStatus) {
-    case 'open':
-      return 'connected';
-    case 'error':
-      return 'reconnecting';
-    default:
-      return 'disconnected';
-  }
-};
 
 type CurrentTrack = {
   title: string;
@@ -80,16 +67,16 @@ type RemoteState = {
 };
 
 export const useRemoteState = (): RemoteState => {
-  const [source, sseStatus] = useEventSource('/api/events');
+  const [source, connectionStatus] = useEventSource('/api/events');
 
   const setConnectionStatus = useRemoteStore(
     (state) => state.setConnectionStatus,
   );
   useEffect(() => {
-    setConnectionStatus(sseStatus);
-  }, [sseStatus, setConnectionStatus]);
+    setConnectionStatus(connectionStatus);
+  }, [connectionStatus, setConnectionStatus]);
 
-  useInitialSync(sseStatus);
+  useInitialSync(connectionStatus);
   useSSESync(source);
 
   const queue = useRemoteStore((state) => state.queue);
@@ -117,7 +104,7 @@ export const useRemoteState = (): RemoteState => {
   const playbackState = derivePlayback(playback);
 
   return {
-    connectionStatus: mapConnectionStatus(sseStatus),
+    connectionStatus,
     synced,
     currentTrack: current?.track,
     isLoading: current?.isLoading ?? false,

@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
 
 import type { Queue } from '@nuclearplayer/model';
+import type { ConnectionStatus } from '@nuclearplayer/ui';
 
 import type { PlaybackState, SettingsState } from './remoteStore';
 import { useRemoteStore } from './remoteStore';
-import type { EventSourceStatus } from './useEventSource';
 
 const fetchJSON = async <T>(path: string): Promise<T> => {
   const response = await fetch(path);
@@ -16,7 +16,7 @@ const fetchJSON = async <T>(path: string): Promise<T> => {
   return response.json() as Promise<T>;
 };
 
-export const useInitialSync = (connectionStatus: EventSourceStatus) => {
+export const useInitialSync = (connectionStatus: ConnectionStatus) => {
   const refetchAll = useCallback(async () => {
     const { setQueue, setPlayback, setSettings, setSynced } =
       useRemoteStore.getState();
@@ -40,7 +40,10 @@ export const useInitialSync = (connectionStatus: EventSourceStatus) => {
   const prevStatus = useRef(connectionStatus);
 
   useEffect(() => {
-    if (prevStatus.current !== 'open' && connectionStatus === 'open') {
+    if (
+      prevStatus.current !== 'connected' &&
+      connectionStatus === 'connected'
+    ) {
       refetchAll();
     }
     prevStatus.current = connectionStatus;

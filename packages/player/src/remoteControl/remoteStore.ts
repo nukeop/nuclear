@@ -2,8 +2,7 @@ import { create } from 'zustand';
 
 import type { Queue, RepeatMode } from '@nuclearplayer/model';
 import { DEFAULT_THEME_ID } from '@nuclearplayer/themes';
-
-import type { EventSourceStatus } from './useEventSource';
+import type { ConnectionStatus } from '@nuclearplayer/ui';
 
 export type PlaybackState = {
   status: 'playing' | 'paused' | 'stopped';
@@ -24,13 +23,13 @@ type RemoteStore = {
   queue: Queue | null;
   playback: PlaybackState | null;
   settings: SettingsState;
-  connectionStatus: EventSourceStatus;
+  connectionStatus: ConnectionStatus;
   synced: boolean;
 
   setQueue: (queue: Queue) => void;
   setPlayback: (playback: PlaybackState) => void;
   setSettings: (settings: SettingsState) => void;
-  setConnectionStatus: (status: EventSourceStatus) => void;
+  setConnectionStatus: (status: ConnectionStatus) => void;
   setSynced: (synced: boolean) => void;
 };
 
@@ -45,7 +44,7 @@ export const useRemoteStore = create<RemoteStore>((set) => ({
     dark: false,
     themeId: DEFAULT_THEME_ID,
   },
-  connectionStatus: 'init',
+  connectionStatus: 'connecting',
   synced: false,
 
   setQueue: (queue) => set({ queue }),

@@ -462,6 +462,10 @@
       "title": "Connecting to Nuclear...",
       "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled"
     },
+    "error": {
+      "title": "Could not connect to Nuclear",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled in Settings"
+    },
     "queue": {
       "emptyTitle": "Queue is empty",
       "emptySubtitle": "Add tracks in Nuclear to see them here"

@@ -9,6 +9,7 @@ import {
   NuclearJamControlsProps,
 } from './NuclearJamControls';
 import { NuclearJamEmptyQueueLabels } from './NuclearJamEmptyQueue';
+import { NuclearJamError, NuclearJamErrorLabels } from './NuclearJamError';
 import {
   ConnectionStatus,
   NuclearJamHeader,
@@ -23,6 +24,7 @@ import { NuclearJamProps, NuclearJamRoot } from './NuclearJamRoot';
 
 type NuclearJamComponent = FC<NuclearJamProps> & {
   Connecting: typeof NuclearJamConnecting;
+  Error: typeof NuclearJamError;
   Header: typeof NuclearJamHeader;
   NowPlaying: typeof NuclearJamNowPlaying;
   Controls: typeof NuclearJamControls;
@@ -31,6 +33,7 @@ type NuclearJamComponent = FC<NuclearJamProps> & {
 
 export const NuclearJam = NuclearJamRoot as NuclearJamComponent;
 NuclearJam.Connecting = NuclearJamConnecting;
+NuclearJam.Error = NuclearJamError;
 NuclearJam.Header = NuclearJamHeader;
 NuclearJam.NowPlaying = NuclearJamNowPlaying;
 NuclearJam.Controls = NuclearJamControls;
@@ -42,6 +45,7 @@ export type {
   NuclearJamNowPlayingProps,
   NuclearJamControlsProps,
   NuclearJamConnectingLabels,
+  NuclearJamErrorLabels,
   NuclearJamEmptyQueueLabels,
   NuclearJamQueueProps,
   ConnectionStatus,
