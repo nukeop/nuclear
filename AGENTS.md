@@ -27,6 +27,7 @@ Nuclear is a free, open-source music player without ads or tracking. Search for 
 ```bash
 # Development
 pnpm dev                    # Run player in dev mode
+pnpm dev:remote             # Same, but binds Vite to 0.0.0.0 so the remote control UI is reachable from other devices
 pnpm storybook              # Run Storybook
 
 # Build

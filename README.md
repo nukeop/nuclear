@@ -148,6 +148,7 @@ pnpm dev
 
 ```bash
 pnpm dev            # Run the player in dev mode
+pnpm dev:remote     # Same, but binds Vite to 0.0.0.0 so you can open the remote control UI from other devices on your LAN
 pnpm build          # Build all packages
 pnpm test           # Run all tests
 pnpm lint           # Lint all packages

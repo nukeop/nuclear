@@ -63,6 +63,7 @@ Run these from the repo root:
 
 ```bash
 pnpm dev            # Run player (and UI) in dev mode
+pnpm dev:remote     # Same, but binds Vite to 0.0.0.0 so the remote control UI is reachable from other devices
 pnpm build          # Build all packages
 pnpm lint           # Lint all packages
 pnpm test           # Run all tests
