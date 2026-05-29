@@ -14,7 +14,7 @@ How does it work? Nuclear can start a small web server that can be accessed on y
 2. Toggle **Nuclear Jam** on.
 3. Two read-only fields appear below the toggle: **Remote URL** and **API URL**. The Remote URL is what you open in a browser to use the remote. The API URL is for scripts and other integrations. See [HTTP API](../integrations/http-api.md) if you want to use it. Intended for programmers.
 
-<figure><img src="../.gitbook/assets/jam-settings.png" alt="The Integrations section of Settings with the Nuclear Jam toggle on, showing Remote URL and API URL fields"><figcaption><p>Enabling Nuclear Jam in Settings</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/jam-settings.png" alt="The Integrations section of Settings with the Nuclear Jam toggle on, showing Remote URL and API URL fields" width="450"><figcaption><p>Enabling Nuclear Jam in Settings</p></figcaption></figure>
 
 The server binds to your LAN address on a port in the 4120-4129 range. If your computer's address is `192.168.1.42`, the Remote URL looks like `http://192.168.1.42:4120`.
 
@@ -26,11 +26,11 @@ Nuclear Jam only listens on your local network. Devices need to be on the same W
 
 Once Jam is on, a small QR code icon appears in the top bar of Nuclear, next to the theme switcher.
 
-<figure><img src="../.gitbook/assets/jam-qr-button.png" alt="The top bar of Nuclear with the QR code icon highlighted"><figcaption><p>The QR code button in the top bar</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/jam-qr-button.png" alt="The top bar of Nuclear with the QR code icon highlighted" width="500"><figcaption><p>The QR code button in the top bar</p></figcaption></figure>
 
 Click it to open a popover with the QR code and the Remote URL.
 
-<figure><img src="../.gitbook/assets/jam-qr-popover.png" alt="QR code popover showing the QR and the Remote URL below it"><figcaption><p>The QR code popover</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/jam-qr-popover.png" alt="QR code popover showing the QR and the Remote URL below it" width="300"><figcaption><p>The QR code popover</p></figcaption></figure>
 
 Scan the QR with your phone's camera, or just type the Remote URL into a browser on any device on the same network to load Nuclear Jam.
 
@@ -42,7 +42,7 @@ The remote is a single screen with three sections:
 - **Controls** in the middle: previous, play/pause, next, plus a seek bar, shuffle, and repeat
 - **Queue** at the bottom, with the currently playing track highlighted
 
-<figure><img src="../.gitbook/assets/jam-remote.png" alt="Nuclear Jam remote control UI on a phone showing now playing, controls, and queue"><figcaption><p>Nuclear Jam on a phone</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/jam-remote.png" alt="Nuclear Jam remote control UI on a phone showing now playing, controls, and queue" width="300"><figcaption><p>Nuclear Jam on a phone</p></figcaption></figure>
 
 Anything you do on the remote happens in Nuclear immediately, and conversely, anything that happens in Nuclear (a track ends, the queue changes, you skip from the desktop) shows up on the remote. Multiple devices can connect at the same time and they all stay in sync.
 
