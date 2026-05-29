@@ -1,0 +1,66 @@
+id: com.nuclearplayer.Nuclear
+
+runtime: org.gnome.Platform
+runtime-version: "50"
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.node22
+
+command: nuclear-music-player
+
+finish-args:
+  - --share=network
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --socket=pulseaudio
+
+build-options:
+  append-path: /run/build/nuclear-music-player/.npm-global/bin:/usr/lib/sdk/node22/bin:/usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_HOME: /run/build/nuclear-music-player/cargo
+    XDG_CACHE_HOME: /run/build/nuclear-music-player/cache
+    npm_config_nodedir: /usr/lib/sdk/node22
+    npm_config_prefix: /run/build/nuclear-music-player/.npm-global
+    npm_config_cache: /run/build/nuclear-music-player/npm-cache
+
+modules:
+  - name: nuclear-music-player
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/nukeop/nuclear.git
+        tag: ${TAG}
+        commit: ${COMMIT}
+      - type: file
+        url: https://registry.npmjs.org/pnpm/-/pnpm-${PNPM_VERSION}.tgz
+        sha256: ${PNPM_SHA256}
+        dest-filename: pnpm-${PNPM_VERSION}.tgz
+      - pnpm-sources.json
+      - cargo-sources.json
+    build-commands:
+      - mkdir -p /run/build/nuclear-music-player/.npm-global
+      - npm install -g pnpm-${PNPM_VERSION}.tgz
+
+      - pnpm install --offline --frozen-lockfile
+      - pnpm --filter @nuclearplayer/player build:frontend
+      - pnpm --filter @nuclearplayer/player tauri build --no-bundle
+        -c '{"build":{"beforeBuildCommand":""}}'
+
+      - install -Dm755 packages/player/src-tauri/target/release/nuclear-music-player
+        /app/bin/nuclear-music-player
+
+      - install -Dm644 packages/player/src-tauri/resources/com.nuclearplayer.Nuclear.desktop
+        /app/share/applications/com.nuclearplayer.Nuclear.desktop
+      - install -Dm644 packages/player/src-tauri/resources/com.nuclearplayer.Nuclear.metainfo.xml
+        /app/share/metainfo/com.nuclearplayer.Nuclear.metainfo.xml
+
+      - install -Dm644 flatpak/icons/512x512.png /app/share/icons/hicolor/512x512/apps/com.nuclearplayer.Nuclear.png
+      - install -Dm644 flatpak/icons/256x256.png /app/share/icons/hicolor/256x256/apps/com.nuclearplayer.Nuclear.png
+      - install -Dm644 flatpak/icons/128x128.png /app/share/icons/hicolor/128x128/apps/com.nuclearplayer.Nuclear.png
+      - install -Dm644 flatpak/icons/64x64.png /app/share/icons/hicolor/64x64/apps/com.nuclearplayer.Nuclear.png
+      - install -Dm644 flatpak/icons/32x32.png /app/share/icons/hicolor/32x32/apps/com.nuclearplayer.Nuclear.png
+
+      - install -Dm644 LICENSE /app/share/licenses/com.nuclearplayer.Nuclear/LICENSE

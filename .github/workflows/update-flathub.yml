@@ -1,0 +1,55 @@
+name: Update Flathub
+
+on:
+  workflow_run:
+    workflows: ["Release Player"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., 1.38.0)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  update:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-tags: true
+          fetch-depth: 0
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            TAG="${{ github.event.workflow_run.head_branch }}"
+            VERSION="${TAG#player@}"
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install source generators
+        run: |
+          pip install --force-reinstall --no-cache-dir git+https://github.com/flatpak/flatpak-builder-tools.git#subdirectory=node
+          pip install tomlkit aiohttp toml
+
+      - name: Open Flathub update PR
+        env:
+          GH_TOKEN: ${{ secrets.FLATHUB_TOKEN }}
+        run: ./flatpak/update-flathub.sh "${{ steps.version.outputs.version }}"

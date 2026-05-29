@@ -17,6 +17,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+OUTPUT_DIR="${1:-$SCRIPT_DIR}"
+
 CARGO_GENERATOR_URL="https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/refs/heads/master/cargo/flatpak-cargo-generator.py"
 CARGO_GENERATOR="$SCRIPT_DIR/.flatpak-cargo-generator.py"
 
@@ -44,7 +46,7 @@ fi
 
 echo "Generating pnpm-sources.json..."
 flatpak-node-generator pnpm \
-  -o "$SCRIPT_DIR/pnpm-sources.json" \
+  -o "$OUTPUT_DIR/pnpm-sources.json" \
   "$REPO_ROOT/pnpm-lock.yaml"
 
 # --- generate cargo sources ---------------------------------------------------
@@ -52,11 +54,11 @@ flatpak-node-generator pnpm \
 echo "Generating cargo-sources.json..."
 python3 "$CARGO_GENERATOR" \
   "$REPO_ROOT/packages/player/src-tauri/Cargo.lock" \
-  -o "$SCRIPT_DIR/cargo-sources.json"
+  -o "$OUTPUT_DIR/cargo-sources.json"
 
 # --- summary ------------------------------------------------------------------
 
 echo ""
 echo "Generated:"
-echo "  $SCRIPT_DIR/pnpm-sources.json"
-echo "  $SCRIPT_DIR/cargo-sources.json"
+echo "  $OUTPUT_DIR/pnpm-sources.json"
+echo "  $OUTPUT_DIR/cargo-sources.json"
