@@ -60,6 +60,11 @@ export const RemoteControlWrapper = {
       });
     }
   },
+  simulateConnectionDrop() {
+    act(() => {
+      MockEventSource.lastInstance?.simulateError();
+    });
+  },
 
   get connectingState() {
     return screen.queryByTestId('jam-connecting');

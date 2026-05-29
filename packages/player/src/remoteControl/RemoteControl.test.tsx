@@ -49,6 +49,16 @@ describe('RemoteControl', () => {
     expect(RemoteControlWrapper.queue.items).toHaveLength(2);
   });
 
+  it('shows reconnecting when the connection drops', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+    expect(RemoteControlWrapper.header.statusText).toBe('Connected');
+
+    RemoteControlWrapper.simulateConnectionDrop();
+
+    expect(RemoteControlWrapper.header.statusText).toBe('Reconnecting');
+  });
+
   it('shows empty queue state when synced with no tracks', async () => {
     await RemoteControlWrapper.mount();
     await RemoteControlWrapper.simulateConnection({ emptyQueue: true });
