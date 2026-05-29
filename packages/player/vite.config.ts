@@ -35,10 +35,17 @@ export default defineConfig(() => ({
   ],
   clearScreen: false,
   server: {
+    host: process.env.VITE_HOST ?? 'localhost',
     port: 5173,
     strictPort: true,
     watch: {
       ignored: ['**/src-tauri/**'],
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:4120',
+        changeOrigin: true,
+      },
     },
   },
   test: {

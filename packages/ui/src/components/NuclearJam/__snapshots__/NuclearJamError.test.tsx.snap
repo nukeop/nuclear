@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamError > (Snapshot) renders with labels 1`] = `
+<div>
+  <div
+    class="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center"
+    data-testid="jam-error"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-wifi-off text-accent-red"
+      fill="none"
+      height="48"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 20h.01"
+      />
+      <path
+        d="M8.5 16.429a5 5 0 0 1 7 0"
+      />
+      <path
+        d="M5 12.859a10 10 0 0 1 5.17-2.69"
+      />
+      <path
+        d="M19 12.859a10 10 0 0 0-2.007-1.523"
+      />
+      <path
+        d="M2 8.82a15 15 0 0 1 4.177-2.643"
+      />
+      <path
+        d="M22 8.82a15 15 0 0 0-11.288-3.764"
+      />
+      <path
+        d="m2 2 20 20"
+      />
+    </svg>
+    <h1
+      class="text-foreground text-3xl"
+    >
+      Could not connect
+    </h1>
+    <h2
+      class="text-foreground-secondary text-xl"
+    >
+      Make sure Nuclear is running
+    </h2>
+  </div>
+</div>
+`;

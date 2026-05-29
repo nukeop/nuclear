@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-05-27T00:00",
+    "description": "Nuclear Jam lets you control playback from any device on your local network. Enable it in Settings -> Integrations, then scan the QR code with your phone.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Integrations",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-05-22T00:00",
     "description": "Fix HLS tracks getting stuck at 0:00 when the queue advances",
     "type": "fix",

@@ -38,7 +38,10 @@ tauri-plugin-opener = "2"
 fix-path-env = { git = "https://github.com/tauri-apps/fix-path-env-rs" }
 rmcp = { version = "0.17", features = ["server", "transport-streamable-http-server"] }
 schemars = "1.0"
-axum = { version = "0.8", default-features = false, features = ["http1", "tokio"] }
+async-stream = "0.3"
+axum = { version = "0.8", default-features = false, features = ["http1", "tokio", "json"] }
+rust-embed = "8"
+mime_guess = "2"
 tokio-util = { version = "0.7", features = ["rt"] }
 uuid = { version = "1.20.0", features = ["v4"] }
 discord-rich-presence = "1.1.0"

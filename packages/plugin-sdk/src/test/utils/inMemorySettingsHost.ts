@@ -62,6 +62,20 @@ export class InMemorySettingsHost implements SettingsHost {
     }
   }
 
+  async getGlobal<T extends SettingValue = SettingValue>(id: string) {
+    return this.values.get(id) as T | undefined;
+  }
+
+  async setGlobal<T extends SettingValue = SettingValue>(id: string, value: T) {
+    this.values.set(id, value);
+    const listenerFunctions = this.listeners.get(id);
+    if (listenerFunctions) {
+      for (const fn of listenerFunctions) {
+        fn(value);
+      }
+    }
+  }
+
   subscribe<T extends SettingValue = SettingValue>(
     id: string,
     listener: (value: T | undefined) => void,

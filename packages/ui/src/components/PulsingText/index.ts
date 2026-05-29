@@ -1,0 +1,1 @@
+export { PulsingText } from './PulsingText';

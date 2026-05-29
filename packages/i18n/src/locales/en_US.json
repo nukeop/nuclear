@@ -360,6 +360,20 @@
     },
     "integrations": {
       "title": "Integrations",
+      "jam": {
+        "enabled": {
+          "title": "Nuclear Jam",
+          "description": "Start a local web server that lets you control Nuclear from other devices on your network."
+        },
+        "remoteUrl": {
+          "title": "Remote URL",
+          "description": "Open this URL on another device to control Nuclear."
+        },
+        "apiUrl": {
+          "title": "API URL",
+          "description": "HTTP API base URL for programmatic access."
+        }
+      },
       "mcp": {
         "enabled": {
           "title": "Enable MCP Server",
@@ -442,6 +456,31 @@
     "entryCount": "{{count}} entry",
     "entryCount_other": "{{count}} entries",
     "exportSuccess": "Logs exported"
+  },
+  "remote": {
+    "connecting": {
+      "title": "Connecting to Nuclear...",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled"
+    },
+    "error": {
+      "title": "Could not connect to Nuclear",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled in Settings"
+    },
+    "connection": {
+      "connecting": "Connecting",
+      "connected": "Connected",
+      "reconnecting": "Reconnecting",
+      "failed": "Disconnected"
+    },
+    "queue": {
+      "upNext": "Up next",
+      "emptyTitle": "Queue is empty",
+      "emptySubtitle": "Add tracks in Nuclear to see them here"
+    },
+    "qrCode": {
+      "tooltip": "Nuclear Jam remote control",
+      "instructions": "Scan the QR code or copy the address below to connect to Nuclear Jam"
+    }
   },
   "changelog": {
     "title": "What's New",

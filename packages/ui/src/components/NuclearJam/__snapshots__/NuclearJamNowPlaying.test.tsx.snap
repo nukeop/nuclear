@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamNowPlaying > (Snapshot) renders with cover art 1`] = `
+<div>
+  <div
+    class="flex shrink-0 flex-col items-center gap-4 px-6 py-6"
+  >
+    <div
+      class="border-border bg-background-secondary shadow-shadow relative flex size-52 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+      data-testid="now-playing-cover"
+    >
+      <img
+        alt="Weird Fishes"
+        class="size-full object-cover select-none"
+        src="https://example.com/cover.jpg"
+      />
+    </div>
+    <div
+      class="w-full text-center"
+    >
+      <div
+        class="text-foreground truncate text-xl font-black"
+        data-testid="now-playing-title"
+      >
+        Weird Fishes
+      </div>
+      <div
+        class="text-foreground-secondary mt-1 truncate text-sm"
+        data-testid="now-playing-artist"
+      >
+        Radiohead
+      </div>
+    </div>
+  </div>
+</div>
+`;

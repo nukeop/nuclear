@@ -6,6 +6,7 @@
 
 * [Getting started](user-manual/getting-started.md)
 * [Installation](user-manual/installation.md)
+* [Remote control](user-manual/remote-control.md)
 
 ## Core Concepts
 
@@ -52,6 +53,7 @@
 
 ## Integrations
 
+* [HTTP API](integrations/http-api.md)
 * [MCP Server](integrations/mcp-server.md)
 * [MPD Server](integrations/mpd-server.md)
 

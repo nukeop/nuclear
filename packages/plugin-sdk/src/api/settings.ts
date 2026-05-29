@@ -41,6 +41,14 @@ export class Settings {
     return this.#withHost((h) => h.set<T>(id, value));
   }
 
+  getGlobal<T extends SettingValue = SettingValue>(id: string) {
+    return this.#withHost((h) => h.getGlobal<T>(id));
+  }
+
+  setGlobal<T extends SettingValue = SettingValue>(id: string, value: T) {
+    return this.#withHost((h) => h.setGlobal<T>(id, value));
+  }
+
   subscribe<T extends SettingValue = SettingValue>(
     id: string,
     listener: (value: T | undefined) => void,

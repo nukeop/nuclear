@@ -5,6 +5,7 @@ import { PlaybackAPIMeta } from './playback.meta';
 import { PlaylistsAPIMeta } from './playlists.meta';
 import { ProvidersAPIMeta } from './providers.meta';
 import { QueueAPIMeta } from './queue.meta';
+import { SettingsAPIMeta } from './settings.meta';
 
 export type ParamMeta = {
   name: string;
@@ -28,6 +29,7 @@ export type ApiMeta = Record<string, DomainMeta>;
 export const apiMeta: ApiMeta = {
   Queue: QueueAPIMeta,
   Playback: PlaybackAPIMeta,
+  Settings: SettingsAPIMeta,
   Metadata: MetadataAPIMeta,
   Favorites: FavoritesAPIMeta,
   Playlists: PlaylistsAPIMeta,

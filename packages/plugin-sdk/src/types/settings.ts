@@ -157,6 +157,13 @@ export type SettingsHost = {
     id: string,
     value: T,
   ): Promise<void>;
+  getGlobal<T extends SettingValue = SettingValue>(
+    id: string,
+  ): Promise<T | undefined>;
+  setGlobal<T extends SettingValue = SettingValue>(
+    id: string,
+    value: T,
+  ): Promise<void>;
   subscribe<T extends SettingValue = SettingValue>(
     id: string,
     listener: (value: T | undefined) => void,

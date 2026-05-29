@@ -78,6 +78,19 @@ const unsubscribe = api.Settings.subscribe<string>('theme', (value) => {
 unsubscribe();
 ```
 {% endtab %}
+
+{% tab title="Global settings" %}
+```typescript
+// Read a core setting by its fully-qualified ID
+const shuffle = await api.Settings.getGlobal<boolean>('core.playback.shuffle');
+
+// Read another plugin's setting
+const otherValue = await api.Settings.getGlobal<string>('plugin.other-plugin.apiKey');
+
+// Write a global setting
+await api.Settings.setGlobal<boolean>('core.playback.shuffle', true);
+```
+{% endtab %}
 {% endtabs %}
 
 ### Setting definitions
@@ -229,8 +242,8 @@ Always unregister your widget in `onDisable`. If a custom setting references a w
 
 #### Defaults and persistence
 
-* If the user hasn’t set a value, `get(id)` resolves to the definition’s `default` or `undefined`.
-* When a user sets a value, it’s persisted to disk and takes precedence over `default` on the next run.
+* If the user hasn't set a value, `get(id)` resolves to the definition's `default` or `undefined`.
+* When a user sets a value, it's persisted to disk and takes precedence over `default` on the next run.
 * `get(id)` returns `undefined` if neither a user value nor a default exists.
 
 ### End-to-end example
@@ -271,11 +284,15 @@ export default {
 ### Reference
 
 ```typescript
-// Settings management
+// Namespaced settings (auto-prefixed with core. or plugin.<pluginId>.)
 api.Settings.register(defs: SettingDefinition[]): Promise<{ registered: string[] }>
 api.Settings.get<T extends SettingValue>(id: string): Promise<T | undefined>
 api.Settings.set<T extends SettingValue>(id: string, value: T): Promise<void>
 api.Settings.subscribe<T extends SettingValue>(id: string, cb: (v: T | undefined) => void): () => void
+
+// Global settings (fully-qualified IDs, no prefix added)
+api.Settings.getGlobal<T extends SettingValue>(id: string): Promise<T | undefined>
+api.Settings.setGlobal<T extends SettingValue>(id: string, value: T): Promise<void>
 
 // Custom widgets
 api.Settings.registerWidget(widgetId: string, component: CustomWidgetComponent): void

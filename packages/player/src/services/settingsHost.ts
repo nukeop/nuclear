@@ -14,6 +14,19 @@ const normalizeId = (source: SettingSource, id: string): string => {
   return `core.${id}`;
 };
 
+const getGlobalSetting = async <T extends SettingValue = SettingValue>(
+  id: string,
+): Promise<T | undefined> => {
+  return useSettingsStore.getState().getValue(id) as T | undefined;
+};
+
+const setGlobalSetting = async (
+  id: string,
+  value: SettingValue,
+): Promise<void> => {
+  await useSettingsStore.getState().setValue(id, value);
+};
+
 export const createPluginSettingsHost = (
   pluginId: string,
   pluginName?: string,
@@ -37,6 +50,8 @@ export const createPluginSettingsHost = (
       const fullyQualifiedId = normalizeId(pluginSource, id);
       await useSettingsStore.getState().setValue(fullyQualifiedId, value);
     },
+    getGlobal: getGlobalSetting,
+    setGlobal: setGlobalSetting,
     subscribe: <T extends SettingValue = SettingValue>(
       id: string,
       listener: (value: T | undefined) => void,
@@ -77,6 +92,8 @@ export const createCoreSettingsHost = (): SettingsHost => {
       const fullyQualifiedId = normalizeId(coreSource, id);
       await useSettingsStore.getState().setValue(fullyQualifiedId, value);
     },
+    getGlobal: getGlobalSetting,
+    setGlobal: setGlobalSetting,
     subscribe: <T extends SettingValue = SettingValue>(
       id: string,
       listener: (value: T | undefined) => void,
