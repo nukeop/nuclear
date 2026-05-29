@@ -1,0 +1,220 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamQueue > (Snapshot) renders the empty state when there are no items 1`] = `
+<div>
+  <div
+    class="flex flex-col items-center justify-center gap-3 p-6 text-center min-h-0 flex-1"
+    data-testid="jam-queue-empty"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-music text-foreground-secondary opacity-50"
+      fill="none"
+      height="48"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 18V5l12-2v13"
+      />
+      <circle
+        cx="6"
+        cy="18"
+        r="3"
+      />
+      <circle
+        cx="18"
+        cy="16"
+        r="3"
+      />
+    </svg>
+    <div
+      class="text-foreground text-base font-bold"
+    >
+      Queue is empty
+    </div>
+    <div
+      class="text-foreground-secondary text-sm"
+    >
+      Add tracks in Nuclear to see them here
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+  >
+    <div
+      class="bg-foreground dark:bg-foreground-secondary border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
+      data-testid="jam-queue-header"
+    >
+      <span
+        class="font-heading dark:text-background font-extrabold tracking-tight text-white uppercase"
+      >
+        Up next
+      </span>
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-yellow text-foreground dark:bg-accent-green dark:border-background dark:text-white"
+        data-testid="jam-queue-count"
+      >
+        3
+      </span>
+    </div>
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="border-border flex items-center gap-3 border-b-(length:--border-width) px-4 py-2"
+          data-is-current="false"
+          data-testid="jam-queue-item"
+        >
+          <div
+            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-music2 lucide-music-2 text-foreground opacity-20"
+              fill="none"
+              height="20"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="18"
+                r="4"
+              />
+              <path
+                d="M12 18V2l7 4"
+              />
+            </svg>
+          </div>
+          <div
+            class="min-w-0 flex-1"
+          >
+            <div
+              class="text-foreground truncate text-sm font-bold"
+            >
+              Everything In Its Right Place
+            </div>
+            <div
+              class="text-foreground-secondary truncate text-xs"
+            >
+              Radiohead
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-border flex items-center gap-3 border-b-(length:--border-width) px-4 py-2 bg-primary"
+          data-is-current="true"
+          data-testid="jam-queue-item"
+        >
+          <div
+            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-music2 lucide-music-2 text-foreground opacity-20"
+              fill="none"
+              height="20"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="18"
+                r="4"
+              />
+              <path
+                d="M12 18V2l7 4"
+              />
+            </svg>
+          </div>
+          <div
+            class="min-w-0 flex-1"
+          >
+            <div
+              class="text-foreground truncate text-sm font-bold"
+            >
+              Kid A
+            </div>
+            <div
+              class="text-foreground-secondary truncate text-xs"
+            >
+              Radiohead
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-border flex items-center gap-3 border-b-(length:--border-width) px-4 py-2"
+          data-is-current="false"
+          data-testid="jam-queue-item"
+        >
+          <div
+            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-music2 lucide-music-2 text-foreground opacity-20"
+              fill="none"
+              height="20"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="18"
+                r="4"
+              />
+              <path
+                d="M12 18V2l7 4"
+              />
+            </svg>
+          </div>
+          <div
+            class="min-w-0 flex-1"
+          >
+            <div
+              class="text-foreground truncate text-sm font-bold"
+            >
+              The National Anthem
+            </div>
+            <div
+              class="text-foreground-secondary truncate text-xs"
+            >
+              Radiohead
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

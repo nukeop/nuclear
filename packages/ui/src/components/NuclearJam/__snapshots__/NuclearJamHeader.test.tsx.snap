@@ -1,0 +1,103 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamHeader > (Snapshot) renders the connected header 1`] = `
+<div>
+  <div
+    class="border-border flex shrink-0 items-center justify-between border-b-(length:--border-width) px-4 py-3"
+  >
+    <span
+      class="flex flex-row gap-2"
+    >
+      <span
+        class="ml-0.5 dark:hidden"
+      >
+        <svg
+          class="h-6 w-6"
+          height="100"
+          id="svg2"
+          viewBox="0 0 99.999998 100"
+          width="100"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:svg="http://www.w3.org/2000/svg"
+        >
+          <defs
+            id="defs2"
+          />
+          <path
+            d="M 49.999997,5.5078125e-6 C 10.000227,5.5078125e-6 -2.8686701e-6,10.000046 -2.8686701e-6,50.000006 -2.8686701e-6,89.999966 10.000227,100.00001 49.999997,100.00001 c 39.99977,0 50,-10.000044 50,-50.000004 0,-39.99996 -10.00023,-50.0000004921875 -50,-50.0000004921875 z M 29.999997,23.599616 h 40 l -20,26.40039 h 40 l -20,26.40039 -20,-26.40039 -20,26.40039 L 9.9999971,50.000006 H 49.999997 Z"
+            id="path1"
+            style="fill: #000000; stroke-width: 0.999999;"
+          />
+        </svg>
+      </span>
+      <span
+        class="ml-0.5 hidden dark:block!"
+      >
+        <svg
+          class="h-6 w-6"
+          height="100"
+          id="svg2"
+          viewBox="0 0 99.999998 100"
+          width="100"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:svg="http://www.w3.org/2000/svg"
+        >
+          <defs
+            id="defs2"
+          />
+          <path
+            d="M 50,0 C 10.00023,0 0,10.00004 0,50 0,89.99996 10.00023,100 50,100 89.99977,100 100,89.99996 100,50 100,10.00004 89.99977,0 50,0 Z M 30,23.59961 H 70 L 50,50 H 90 L 70,76.40039 50,50 30,76.40039 10,50 h 40 z"
+            id="path1"
+            style="fill: #ffffff; fill-opacity: 1; stroke-width: 0.999999;"
+          />
+        </svg>
+      </span>
+      <h1
+        class="text-foreground inline text-base font-black tracking-tight uppercase"
+      >
+        Nuclear
+         
+        <span
+          class="text-primary text-stroke-4 stroke-text-black dark:stroke-text-foreground"
+        >
+          <span
+            animate="[object Object]"
+            class="inline-block"
+            transition="[object Object]"
+          >
+            J
+          </span>
+          <span
+            animate="[object Object]"
+            class="inline-block"
+            transition="[object Object]"
+          >
+            a
+          </span>
+          <span
+            animate="[object Object]"
+            class="inline-block"
+            transition="[object Object]"
+          >
+            m
+          </span>
+        </span>
+      </h1>
+    </span>
+    <span
+      class="border-border bg-foreground inline-flex items-center gap-1.5 rounded-full border-(length:--border-width) px-2.5 py-0.5"
+      data-testid="connection-status-badge"
+    >
+      <span
+        class="size-2 rounded-full bg-accent-green"
+        data-testid="connection-status-dot"
+      />
+      <span
+        class="text-background dark:text-background text-xs font-semibold text-white"
+      >
+        Connected
+      </span>
+    </span>
+  </div>
+</div>
+`;
