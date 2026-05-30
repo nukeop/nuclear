@@ -1,6 +1,6 @@
 import { useMemo, useState, type FC } from 'react';
 
-import { collectTags, type PostSummary } from '../data/blog-utils';
+import type { PostSummary } from '../lib/blog/types';
 import { FeaturedPost } from './FeaturedPost';
 import { ALL_TAG, FilterBar } from './FilterBar';
 import { PostGrid } from './PostGrid';
@@ -11,7 +11,6 @@ type BlogListProps = {
 
 export const BlogList: FC<BlogListProps> = ({ posts }) => {
   const [selectedTag, setSelectedTag] = useState(ALL_TAG);
-  const tags = useMemo(() => collectTags(posts), [posts]);
 
   const visiblePosts = useMemo(
     () =>
@@ -25,7 +24,7 @@ export const BlogList: FC<BlogListProps> = ({ posts }) => {
 
   return (
     <>
-      <FilterBar tags={tags} selected={selectedTag} onSelect={setSelectedTag} />
+      <FilterBar selected={selectedTag} onSelect={setSelectedTag} />
 
       {featured ? (
         <section className="mb-16">

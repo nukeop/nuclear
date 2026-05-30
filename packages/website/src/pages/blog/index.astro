@@ -1,0 +1,40 @@
+---
+import BlogEmptyState from '../../components/BlogEmptyState.astro';
+import { BlogList } from '../../components/BlogList';
+import { getPublishedPosts, toSummary } from '../../lib/blog/queries';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import '../../styles/global.css';
+
+const posts = (await getPublishedPosts()).map(toSummary);
+
+const title = 'Blog - Nuclear';
+const description =
+  'Read about interesting tech stories from the development of Nuclear. Our promise to you: everything on the blog is written manually, without the help of AI!';
+---
+
+<BaseLayout title={title} description={description}>
+  <main
+    class="bg-background-secondary w-full bg-[radial-gradient(var(--background)_1px,transparent_1px)] bg-size-[20px_20px]"
+  >
+    <div class="mx-auto w-full max-w-6xl px-4 py-16 md:px-8">
+      {posts.length === 0 && <BlogEmptyState />}
+
+      {
+        posts.length > 0 && (
+          <>
+            <header class="mb-10">
+              <h1 class="font-heading text-4xl font-black tracking-widest uppercase md:text-5xl">
+                Blog
+              </h1>
+              <p class="text-foreground-secondary mt-3 max-w-2xl font-bold">
+                {description}
+              </p>
+            </header>
+            <BlogList posts={posts} client:load />
+          </>
+        )
+      }
+    </div>
+  </main>
+</BaseLayout>

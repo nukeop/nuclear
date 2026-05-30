@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import type { PostSummary } from '../data/blog-utils';
+import type { PostSummary } from '../lib/blog/types';
 import { BlogCard } from './BlogCard';
 
 type PostGridProps = {

@@ -1,12 +1,11 @@
 import clsx from 'clsx';
 import { type FC } from 'react';
 
-import { tagColor } from '../data/blog-utils';
+import { categories, tagColor } from '../lib/blog/tags';
 
 export const ALL_TAG = 'all';
 
 type FilterBarProps = {
-  tags: string[];
   selected: string;
   onSelect: (tag: string) => void;
 };
@@ -17,7 +16,7 @@ const pillClasses = (active: boolean, color: string) =>
     active ? color : 'bg-background-secondary hover:brightness-95',
   );
 
-export const FilterBar: FC<FilterBarProps> = ({ tags, selected, onSelect }) => (
+export const FilterBar: FC<FilterBarProps> = ({ selected, onSelect }) => (
   <div className="themed-border border-border bg-background shadow-shadow mb-12 flex flex-wrap items-center gap-2 rounded-md p-4">
     <span className="font-heading text-foreground-secondary mr-2 text-xs font-bold tracking-widest uppercase">
       Filter
@@ -29,14 +28,14 @@ export const FilterBar: FC<FilterBarProps> = ({ tags, selected, onSelect }) => (
     >
       All
     </button>
-    {tags.map((tag) => (
+    {categories.map((category) => (
       <button
-        key={tag}
+        key={category}
         type="button"
-        onClick={() => onSelect(tag)}
-        className={pillClasses(selected === tag, tagColor(tag))}
+        onClick={() => onSelect(category)}
+        className={pillClasses(selected === category, tagColor(category))}
       >
-        {tag}
+        {category}
       </button>
     ))}
   </div>

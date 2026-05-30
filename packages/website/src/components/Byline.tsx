@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { type FC } from 'react';
 
-import { avatarUrl, formatDate } from '../data/blog-utils';
+import { avatarUrl, formatDate } from '../lib/blog/format';
 
 type BylineProps = {
   author: string;

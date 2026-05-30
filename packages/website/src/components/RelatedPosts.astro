@@ -1,0 +1,25 @@
+---
+import { BlogCard } from './BlogCard';
+import type { PostSummary } from '../lib/blog/types';
+
+type Props = {
+  posts: PostSummary[];
+};
+
+const { posts } = Astro.props;
+---
+
+{
+  posts.length > 0 && (
+    <section class="border-border mt-16 border-t-2 pt-10">
+      <h2 class="font-heading mb-6 text-2xl font-black tracking-widest uppercase">
+        Related posts
+      </h2>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {posts.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+    </section>
+  )
+}

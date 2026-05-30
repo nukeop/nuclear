@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import type { PostSummary } from '../data/blog-utils';
+import type { PostSummary } from '../lib/blog/types';
 import { Byline } from './Byline';
 import { PostTag } from './PostTag';
 

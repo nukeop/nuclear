@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { type FC } from 'react';
 
-import { tagColor } from '../data/blog-utils';
+import { tagColor } from '../lib/blog/tags';
 
 type PostTagProps = {
   tag: string;
