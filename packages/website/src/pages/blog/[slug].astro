@@ -13,8 +13,6 @@ import {
 } from '../../lib/blog/queries';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-import '../../styles/global.css';
-
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
   return posts.map((post) => ({

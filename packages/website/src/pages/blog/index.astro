@@ -4,8 +4,6 @@ import { BlogList } from '../../components/BlogList';
 import { getPublishedPosts, toSummary } from '../../lib/blog/queries';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-import '../../styles/global.css';
-
 const posts = (await getPublishedPosts()).map(toSummary);
 
 const title = 'Blog - Nuclear';
