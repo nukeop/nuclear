@@ -1,8 +1,11 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 import BlogEmptyState from '../../components/BlogEmptyState.astro';
 import { BlogList } from '../../components/BlogList';
-import { getPublishedPosts, toSummary } from '../../lib/blog/queries';
+import Button from '../../components/Button.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPublishedPosts, toSummary } from '../../lib/blog/queries';
 
 const posts = (await getPublishedPosts()).map(toSummary);
 
@@ -29,7 +32,17 @@ const description =
                 {description}
               </p>
             </header>
-            <BlogList posts={posts} client:load />
+            <BlogList posts={posts} client:load>
+              <Button
+                slot="rss"
+                href="/rss.xml"
+                variant="secondary"
+                size="lg"
+                class="flex aspect-square! flex-row items-center justify-center px-0!"
+              >
+                <Icon name="simple-icons:rss" class="h-5 w-5" />
+              </Button>
+            </BlogList>
           </>
         )
       }

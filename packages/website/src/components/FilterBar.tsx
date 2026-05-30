@@ -17,7 +17,7 @@ const pillClasses = (active: boolean, color: string) =>
   );
 
 export const FilterBar: FC<FilterBarProps> = ({ selected, onSelect }) => (
-  <div className="themed-border border-border bg-background shadow-shadow mb-12 flex flex-wrap items-center gap-2 rounded-md p-4">
+  <div className="themed-border border-border bg-background shadow-shadow flex flex-1 flex-wrap items-center gap-2 rounded-md px-4 py-1">
     <span className="font-heading text-foreground-secondary mr-2 text-xs font-bold tracking-widest uppercase">
       Filter
     </span>
