@@ -1,0 +1,14 @@
+---
+type Props = {
+  src: string;
+  alt: string;
+};
+
+const { src, alt } = Astro.props;
+---
+
+<img
+  src={src}
+  alt={alt}
+  class="themed-border border-border shadow-shadow mb-8 aspect-video w-full rounded-md object-cover"
+/>
