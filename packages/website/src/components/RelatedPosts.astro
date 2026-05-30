@@ -1,6 +1,7 @@
 ---
 import type { PostSummary } from '../lib/blog/types';
 import { BlogCard } from './BlogCard';
+import Button from './Button.astro';
 
 type Props = {
   posts: PostSummary[];
@@ -12,9 +13,14 @@ const { posts } = Astro.props;
 {
   posts.length > 0 && (
     <section class="border-border mt-8 border-t-2 pt-10">
-      <h2 class="font-heading mb-6 text-2xl font-black tracking-widest uppercase">
-        Related posts
-      </h2>
+      <div class="mb-6 flex flex-row items-center justify-between gap-4">
+        <h2 class="font-heading text-2xl font-black tracking-widest uppercase">
+          Related posts
+        </h2>
+        <Button href="/blog/" size="sm" class="font-bold">
+          View all blog posts →
+        </Button>
+      </div>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
         {posts.map((post) => (
           <BlogCard post={post} />
