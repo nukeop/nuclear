@@ -1,18 +1,19 @@
 ---
 import { render } from 'astro:content';
 
+import Button from '../../components/Button.astro';
 import PostBody from '../../components/PostBody.astro';
 import PostCover from '../../components/PostCover.astro';
 import PostHeader from '../../components/PostHeader.astro';
 import PostToolbar from '../../components/PostToolbar.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { profileUrl, readingTime } from '../../lib/blog/format';
 import {
   getPublishedPosts,
   getRelatedPosts,
   toSummary,
 } from '../../lib/blog/queries';
-import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
@@ -71,12 +72,9 @@ const breadcrumbSchema = {
     class="bg-background-secondary w-full bg-[radial-gradient(var(--background)_1px,transparent_1px)] bg-size-[20px_20px]"
   >
     <div class="mx-auto w-full max-w-3xl px-4 py-16 md:px-8">
-      <a
-        href="/blog/"
-        class="text-primary mb-8 inline-block text-sm font-bold hover:underline"
-      >
+      <Button href="/blog/" class="mb-4" variant="text" size="sm">
         ← Back to blog
-      </a>
+      </Button>
 
       <article>
         <PostHeader
