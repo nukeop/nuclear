@@ -12,5 +12,5 @@ export const formatDate = (date: string): string =>
     day: 'numeric',
   });
 
-export const avatarUrl = (author: string): string =>
-  `https://github.com/${author}.png?size=80`;
+export const profileUrl = (author: string): string =>
+  `https://github.com/${author}`;

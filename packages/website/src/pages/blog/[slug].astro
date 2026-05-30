@@ -6,7 +6,7 @@ import PostCover from '../../components/PostCover.astro';
 import PostHeader from '../../components/PostHeader.astro';
 import PostToolbar from '../../components/PostToolbar.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
-import { readingTime } from '../../lib/blog/format';
+import { profileUrl, readingTime } from '../../lib/blog/format';
 import {
   getPublishedPosts,
   getRelatedPosts,
@@ -39,7 +39,7 @@ const blogPostingSchema = {
   headline: title,
   description,
   datePublished: date.toISOString(),
-  author: { '@type': 'Person', name: author },
+  author: { '@type': 'Person', name: author, url: profileUrl(author) },
   publisher: { '@id': `${siteUrl}#organization` },
   mainEntityOfPage: postUrl,
   keywords: tags,
