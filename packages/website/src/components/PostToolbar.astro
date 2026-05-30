@@ -1,0 +1,19 @@
+---
+import { CopyButton } from './CopyButton';
+
+type Props = {
+  url: string;
+};
+
+const { url } = Astro.props;
+---
+
+<div class="flex flex-row items-center justify-end pt-4">
+  <CopyButton
+    client:load
+    text={url}
+    className="themed-border border-border bg-background-secondary rounded-md px-3 py-1 font-bold hover:brightness-95"
+  >
+    Copy link
+  </CopyButton>
+</div>
