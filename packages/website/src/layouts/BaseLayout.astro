@@ -4,14 +4,36 @@ import Header from '../components/Header.astro';
 
 import '../styles/global.css';
 
+type ArticleMeta = {
+  publishedTime: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+};
+
 type Props = {
   title: string;
   description: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  article?: ArticleMeta;
+  extraSchema?: Record<string, unknown>[];
 };
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  ogType = 'website',
+  ogImage,
+  article,
+  extraSchema = [],
+} = Astro.props;
+
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = new URL('/images/social-banner.png', Astro.site);
+const ogImageUrl = new URL(
+  ogImage ?? '/images/social-banner.png',
+  Astro.site,
+);
 const siteUrl = Astro.site?.toString() ?? 'https://nuclearplayer.com/';
 const logoUrl = new URL('/images/logo-full-outlined.svg', Astro.site).toString();
 
@@ -64,6 +86,7 @@ const jsonLd = {
       author: { '@id': organizationId },
       publisher: { '@id': organizationId },
     },
+    ...extraSchema,
   ],
 };
 ---
@@ -91,15 +114,43 @@ const jsonLd = {
     />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Nuclear Music Player" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
+    {
+      !ogImage && (
+        <>
+          <meta property="og:image:width" content="1280" />
+          <meta property="og:image:height" content="640" />
+        </>
+      )
+    }
+    {
+      ogType === 'article' && article && (
+        <>
+          <meta
+            property="article:published_time"
+            content={article.publishedTime}
+          />
+          {article.modifiedTime && (
+            <meta
+              property="article:modified_time"
+              content={article.modifiedTime}
+            />
+          )}
+          {article.author && (
+            <meta property="article:author" content={article.author} />
+          )}
+          {article.tags?.map((tag) => (
+            <meta property="article:tag" content={tag} />
+          ))}
+        </>
+      )
+    }
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
