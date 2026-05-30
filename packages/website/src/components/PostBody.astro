@@ -1,13 +1,5 @@
----
-import clsx from 'clsx';
-
-const proseClasses = clsx(
-  'prose prose-neutral dark:prose-invert max-w-none cursor-auto select-text',
-  'prose-headings:font-heading prose-headings:font-black prose-headings:tracking-wide',
-  'prose-a:text-primary prose-a:font-bold',
-);
----
-
-<div class={proseClasses}>
+<div
+  class="prose prose-neutral dark:prose-invert prose-headings:font-heading prose-headings:font-black prose-headings:tracking-wide prose-a:text-primary prose-a:font-bold prose-code:font-mono prose-pre:font-mono max-w-none cursor-auto font-sans select-text [&_pre_::selection]:text-[HighlightText]"
+>
   <slot />
 </div>

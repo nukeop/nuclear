@@ -809,6 +809,9 @@ importers:
       '@fontsource-variable/dm-sans':
         specifier: ^5.2.8
         version: 5.2.8
+      '@fontsource/space-mono':
+        specifier: ^5.2.9
+        version: 5.2.9
       '@iconify-json/simple-icons':
         specifier: ^1.2.67
         version: 1.2.82

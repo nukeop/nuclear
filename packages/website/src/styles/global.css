@@ -1,6 +1,7 @@
 @import '@fontsource-variable/dm-sans';
 @import '@fontsource-variable/dm-sans/wght-italic.css';
 @import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource/space-mono';
 @import '@nuclearplayer/tailwind-config';
 @plugin '@tailwindcss/typography';
 @source '../components';
