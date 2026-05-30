@@ -3,7 +3,9 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "bundler",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "declaration": false,
+    "declarationMap": false
   },
   "include": ["src/**/*", "astro.config.ts"],
   "exclude": ["node_modules", "dist"]

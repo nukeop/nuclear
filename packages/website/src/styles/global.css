@@ -2,6 +2,7 @@
 @import '@fontsource-variable/dm-sans/wght-italic.css';
 @import '@fontsource-variable/bricolage-grotesque';
 @import '@nuclearplayer/tailwind-config';
+@plugin '@tailwindcss/typography';
 @source '../components';
 @source '../layouts';
 @source '../pages';
