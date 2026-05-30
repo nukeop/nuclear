@@ -1,6 +1,6 @@
 ---
-import { BlogCard } from './BlogCard';
 import type { PostSummary } from '../lib/blog/types';
+import { BlogCard } from './BlogCard';
 
 type Props = {
   posts: PostSummary[];
@@ -11,7 +11,7 @@ const { posts } = Astro.props;
 
 {
   posts.length > 0 && (
-    <section class="border-border mt-16 border-t-2 pt-10">
+    <section class="border-border mt-8 border-t-2 pt-10">
       <h2 class="font-heading mb-6 text-2xl font-black tracking-widest uppercase">
         Related posts
       </h2>

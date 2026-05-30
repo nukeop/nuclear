@@ -4,6 +4,7 @@ import { render } from 'astro:content';
 import PostBody from '../../components/PostBody.astro';
 import PostCover from '../../components/PostCover.astro';
 import PostHeader from '../../components/PostHeader.astro';
+import PostToolbar from '../../components/PostToolbar.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
 import { readingTime } from '../../lib/blog/format';
 import {
@@ -26,6 +27,8 @@ const { title, description, date, author, tags, cover } = post.data;
 const related = getRelatedPosts(post, posts).map(toSummary);
 const readTime = readingTime(post.body);
 const { Content } = await render(post);
+
+const postUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <BaseLayout title={`${title} - Nuclear`} description={description}>
@@ -53,6 +56,8 @@ const { Content } = await render(post);
           <Content />
         </PostBody>
       </article>
+
+      <PostToolbar url={postUrl} />
 
       <RelatedPosts posts={related} />
     </div>
