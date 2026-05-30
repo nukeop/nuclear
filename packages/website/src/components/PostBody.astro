@@ -1,11 +1,11 @@
 ---
-const proseClasses = [
+import clsx from 'clsx';
+
+const proseClasses = clsx(
   'prose prose-neutral dark:prose-invert max-w-none cursor-auto select-text',
   'prose-headings:font-heading prose-headings:font-black prose-headings:tracking-wide',
   'prose-a:text-primary prose-a:font-bold',
-  'prose-code:font-mono prose-code:bg-background prose-code:rounded prose-code:px-1',
-  'prose-pre:themed-border prose-pre:border-border prose-pre:bg-background',
-].join(' ');
+);
 ---
 
 <div class={proseClasses}>
