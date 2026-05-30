@@ -1,0 +1,93 @@
+---
+import { render } from 'astro:content';
+
+import BlogCard from '../../components/BlogCard.astro';
+import Byline from '../../components/Byline.astro';
+import PostTag from '../../components/PostTag.astro';
+import {
+  getPublishedPosts,
+  getRelatedPosts,
+  readingTime,
+} from '../../data/blog';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post, posts },
+  }));
+}
+
+const { post, posts } = Astro.props;
+const { title, description, date, author, tags, cover } = post.data;
+const related = getRelatedPosts(post, posts);
+const readTime = readingTime(post.body);
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${title} - Nuclear`} description={description}>
+  <main
+    class="bg-background-secondary w-full bg-[radial-gradient(var(--background)_1px,transparent_1px)] bg-size-[20px_20px]"
+  >
+    <div class="mx-auto w-full max-w-3xl px-4 py-16 md:px-8">
+      <a
+        href="/blog/"
+        class="text-primary mb-8 inline-block text-sm font-bold hover:underline"
+      >
+        ← Back to blog
+      </a>
+
+      <article>
+        <header class="mb-8 flex flex-col gap-4">
+          <div class="flex flex-wrap gap-2">
+            {
+              tags.map((tag: string) => (
+                <PostTag tag={tag} href={`/blog/?tag=${tag}`} />
+              ))
+            }
+          </div>
+          <h1
+            class="font-heading text-3xl font-black tracking-wide md:text-4xl"
+          >
+            {title}
+          </h1>
+          <Byline author={author} date={date} readTime={readTime} />
+        </header>
+
+        {
+          cover && (
+            <img
+              src={cover}
+              alt={title}
+              class="themed-border border-border shadow-shadow mb-8 aspect-video w-full rounded-md object-cover"
+            />
+          )
+        }
+
+        <div
+          class="prose prose-neutral dark:prose-invert prose-headings:font-heading prose-headings:font-black prose-headings:tracking-wide prose-a:text-primary prose-a:font-bold prose-code:font-mono prose-pre:themed-border prose-pre:border-border prose-pre:bg-background prose-code:bg-background prose-code:rounded prose-code:px-1 max-w-none"
+        >
+          <Content />
+        </div>
+      </article>
+
+      {
+        related.length > 0 && (
+          <section class="border-border mt-16 border-t-2 pt-10">
+            <h2 class="font-heading mb-6 text-2xl font-black tracking-widest uppercase">
+              Related posts
+            </h2>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {related.map((relatedPost) => (
+                <BlogCard post={relatedPost} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+  </main>
+</BaseLayout>
