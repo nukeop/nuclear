@@ -22,6 +22,7 @@
     "@fontsource/space-mono": "^5.2.9",
     "@iconify-json/simple-icons": "^1.2.67",
     "astro": "^6.0.0",
+    "astro-expressive-code": "^0.42.0",
     "astro-icon": "^1.1.5",
     "clsx": "^2.1.1",
     "lucide-react": "^0.542.0",
