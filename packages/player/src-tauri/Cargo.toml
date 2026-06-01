@@ -51,3 +51,6 @@ libc = "0.2.183"
 tauri-plugin-updater = "2"
 tauri-plugin-process = "2"
 
+[target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]
+tauri-plugin-window-state = "2.4.1"
+

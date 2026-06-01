@@ -11,6 +11,7 @@
   "permissions": [
     "updater:default",
     "process:default",
+    "window-state:default",
     "core:window:allow-set-decorations",
     "core:window:allow-start-dragging"
   ]

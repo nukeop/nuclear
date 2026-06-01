@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-06-01T00:00",
+    "description": "The window now remembers its size, position, and maximized state between restarts",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-05-27T00:00",
     "description": "Nuclear Jam lets you control playback from any device on your local network. Enable it in Settings -> Integrations, then scan the QR code with your phone.",
     "type": "feature",
