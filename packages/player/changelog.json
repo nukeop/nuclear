@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-06-02T00:00",
+    "description": "Add a desktop tray icon with optional close-to-tray and minimize-to-tray behavior.",
+    "type": "feature",
+    "contributors": ["blockedby"],
+    "tags": [
+      {
+        "label": "Desktop",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-06-01T00:00",
     "description": "The window now remembers its size, position, and maximized state between restarts",
     "type": "feature",

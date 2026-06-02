@@ -55,6 +55,10 @@ vi.mock('esbuild-wasm/esbuild.wasm?url', () => ({
 vi.mock('@tauri-apps/api/window', () => ({
   getCurrentWindow: () => ({
     setDecorations: vi.fn(),
+    onCloseRequested: vi.fn(async () => vi.fn()),
+    onResized: vi.fn(async () => vi.fn()),
+    isMinimized: vi.fn(async () => false),
+    hide: vi.fn(async () => undefined),
   }),
 }));
 

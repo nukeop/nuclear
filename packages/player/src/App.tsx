@@ -5,6 +5,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import { i18n } from '@nuclearplayer/i18n';
 
+import { useTrayWindowBehavior } from './hooks/useTrayWindowBehavior';
 import { routeTree } from './routeTree.gen';
 
 const router = createRouter({ routeTree });
@@ -22,6 +23,8 @@ type AppProps = {
 };
 
 const App: FC<AppProps> = ({ routerProp, queryClientProp }) => {
+  useTrayWindowBehavior();
+
   return (
     <I18nextProvider i18n={i18n}>
       <QueryClientProvider client={queryClientProp ?? defaultQueryClient}>

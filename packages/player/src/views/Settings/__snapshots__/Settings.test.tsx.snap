@@ -534,12 +534,76 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                               class="flex flex-col gap-6"
                             >
                               <div
+                                class="flex flex-col gap-2"
+                              >
+                                <div
+                                  class="flex items-center gap-3"
+                                >
+                                  <button
+                                    aria-checked="false"
+                                    aria-label="Close to tray"
+                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                    data-headlessui-state=""
+                                    id="headlessui-switch-:rc:"
+                                    role="switch"
+                                    tabindex="0"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                    />
+                                  </button>
+                                  <span
+                                    class="text-foreground text-sm font-semibold"
+                                  >
+                                    Close to tray
+                                  </span>
+                                </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Hide Nuclear to the tray instead of quitting when the main window is closed.
+                                </p>
+                              </div>
+                              <div
+                                class="flex flex-col gap-2"
+                              >
+                                <div
+                                  class="flex items-center gap-3"
+                                >
+                                  <button
+                                    aria-checked="false"
+                                    aria-label="Minimize to tray"
+                                    class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
+                                    data-headlessui-state=""
+                                    id="headlessui-switch-:rd:"
+                                    role="switch"
+                                    tabindex="0"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+                                    />
+                                  </button>
+                                  <span
+                                    class="text-foreground text-sm font-semibold"
+                                  >
+                                    Minimize to tray
+                                  </span>
+                                </div>
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                >
+                                  Hide Nuclear to the tray when the main window is minimized.
+                                </p>
+                              </div>
+                              <div
                                 class="relative flex w-full flex-col gap-2"
                               >
                                 <label
                                   class="text-foreground text-sm font-semibold"
-                                  for="select-:rc:"
-                                  id="select-:rc:-label"
+                                  for="select-:re:"
+                                  id="select-:re:-label"
                                 >
                                   Language
                                 </label>
@@ -548,7 +612,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   aria-haspopup="listbox"
                                   class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
                                   data-headlessui-state=""
-                                  id="select-:rc:"
+                                  id="select-:re:"
                                   type="button"
                                 >
                                   <span
@@ -580,7 +644,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                 </button>
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
-                                  id="select-:rc:-description"
+                                  id="select-:re:-description"
                                 >
                                   Select your preferred language
                                 </p>
@@ -613,7 +677,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     aria-label="Nuclear Jam"
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
-                                    id="headlessui-switch-:rg:"
+                                    id="headlessui-switch-:ri:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -753,7 +817,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     aria-label="Enable MCP Server"
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
-                                    id="headlessui-switch-:rh:"
+                                    id="headlessui-switch-:rj:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -841,7 +905,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     aria-label="Enable MPD Server"
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
-                                    id="headlessui-switch-:ri:"
+                                    id="headlessui-switch-:rk:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -929,7 +993,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     aria-label="Discord Rich Presence"
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
-                                    id="headlessui-switch-:rj:"
+                                    id="headlessui-switch-:rl:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -978,8 +1042,8 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   >
                                     <label
                                       class="text-foreground font-semibold"
-                                      for=":rk:"
-                                      id=":rk:-label"
+                                      for=":rm:"
+                                      id=":rm:-label"
                                     >
                                       Discovery variety
                                     </label>
@@ -1014,13 +1078,13 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       </div>
                                     </div>
                                     <input
-                                      aria-labelledby=":rk:-label"
+                                      aria-labelledby=":rm:-label"
                                       aria-valuemax="1"
                                       aria-valuemin="0"
                                       aria-valuenow="0.5"
                                       aria-valuetext="0.5"
                                       class="absolute inset-0 z-[1] h-6 w-full appearance-none opacity-0 cursor-pointer"
-                                      id=":rk:"
+                                      id=":rm:"
                                       max="1"
                                       min="0"
                                       step="0.05"
@@ -1045,35 +1109,10 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                               >
                                 <label
                                   class="text-foreground text-sm font-semibold"
-                                  for="input-:rl:"
-                                  id="input-:rl:-label"
-                                >
-                                  Skip duration
-                                </label>
-                                <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
-                                  data-headlessui-state=""
-                                  id="input-:rl:"
-                                  inputmode="numeric"
-                                  type="number"
-                                  value="5"
-                                />
-                                <p
-                                  class="text-foreground-secondary text-sm select-none"
-                                  id="input-:rl:-description"
-                                >
-                                  Number of seconds to skip forward/backward
-                                </p>
-                              </div>
-                              <div
-                                class="flex w-full flex-col gap-2"
-                              >
-                                <label
-                                  class="text-foreground text-sm font-semibold"
                                   for="input-:rn:"
                                   id="input-:rn:-label"
                                 >
-                                  Crossfade
+                                  Skip duration
                                 </label>
                                 <input
                                   class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
@@ -1081,13 +1120,13 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   id="input-:rn:"
                                   inputmode="numeric"
                                   type="number"
-                                  value="0"
+                                  value="5"
                                 />
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
                                   id="input-:rn:-description"
                                 >
-                                  Crossfade duration between tracks in milliseconds
+                                  Number of seconds to skip forward/backward
                                 </p>
                               </div>
                               <div
@@ -1098,7 +1137,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   for="input-:rp:"
                                   id="input-:rp:-label"
                                 >
-                                  Stream expiry time
+                                  Crossfade
                                 </label>
                                 <input
                                   class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
@@ -1106,13 +1145,13 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   id="input-:rp:"
                                   inputmode="numeric"
                                   type="number"
-                                  value="3600000"
+                                  value="0"
                                 />
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
                                   id="input-:rp:-description"
                                 >
-                                  How long before a resolved stream URL is considered expired and needs re-resolution
+                                  Crossfade duration between tracks in milliseconds
                                 </p>
                               </div>
                               <div
@@ -1123,7 +1162,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   for="input-:rr:"
                                   id="input-:rr:-label"
                                 >
-                                  Stream resolution retries
+                                  Stream expiry time
                                 </label>
                                 <input
                                   class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
@@ -1131,11 +1170,36 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   id="input-:rr:"
                                   inputmode="numeric"
                                   type="number"
-                                  value="3"
+                                  value="3600000"
                                 />
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
                                   id="input-:rr:-description"
+                                >
+                                  How long before a resolved stream URL is considered expired and needs re-resolution
+                                </p>
+                              </div>
+                              <div
+                                class="flex w-full flex-col gap-2"
+                              >
+                                <label
+                                  class="text-foreground text-sm font-semibold"
+                                  for="input-:rt:"
+                                  id="input-:rt:-label"
+                                >
+                                  Stream resolution retries
+                                </label>
+                                <input
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
+                                  data-headlessui-state=""
+                                  id="input-:rt:"
+                                  inputmode="numeric"
+                                  type="number"
+                                  value="3"
+                                />
+                                <p
+                                  class="text-foreground-secondary text-sm select-none"
+                                  id="input-:rt:-description"
                                 >
                                   Number of times to retry resolving a stream URL before moving to the next candidate
                                 </p>
@@ -1169,7 +1233,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-checked=""
                                     data-headlessui-state="checked"
-                                    id="headlessui-switch-:rt:"
+                                    id="headlessui-switch-:rv:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -1219,7 +1283,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-checked=""
                                     data-headlessui-state="checked"
-                                    id="headlessui-switch-:ru:"
+                                    id="headlessui-switch-:r10:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"
@@ -1251,7 +1315,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                     aria-label="Auto-install updates"
                                     class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group"
                                     data-headlessui-state=""
-                                    id="headlessui-switch-:rv:"
+                                    id="headlessui-switch-:r11:"
                                     role="switch"
                                     tabindex="0"
                                     type="button"

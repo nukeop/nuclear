@@ -21,6 +21,7 @@
         "visible": false
       }
     ],
+    "enableGTKAppId": true,
     "security": {
       "csp": null
     }
