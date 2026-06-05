@@ -112,6 +112,8 @@ export function TrackTable<T extends Track = Track>({
 
   const dndItems = rows.map((row) => getItemId(row.original, row.index));
 
+  const testViewportHeight = rowHeight * 12;
+
   return (
     <TrackTableProvider
       value={{
@@ -130,6 +132,7 @@ export function TrackTable<T extends Track = Track>({
         <ScrollableArea
           viewportRef={scrollParentRef}
           className="min-h-0 flex-1"
+          testViewportHeight={testViewportHeight}
         >
           <ReorderLayer
             enabled={isReorderable}
