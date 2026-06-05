@@ -16,7 +16,7 @@ export const Album: FC<AlbumProps> = () => {
   return (
     <ScrollableArea className="bg-background" data-testid="album-view">
       <AlbumHeader providerId={providerId} albumId={albumId} />
-      <div className="p-6">
+      <div className="h-full p-6">
         <AlbumTrackList providerId={providerId} albumId={albumId} />
       </div>
     </ScrollableArea>

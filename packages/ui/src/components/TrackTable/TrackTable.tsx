@@ -12,6 +12,7 @@ import { useMemo, useRef } from 'react';
 import { Track } from '@nuclearplayer/model';
 
 import { cn } from '../../utils';
+import { ScrollableArea } from '../ScrollableArea';
 import { defaultDisplay, defaultFeatures } from './defaults';
 import { useColumns } from './hooks/useColumns';
 import { useGlobalFilter } from './hooks/useGlobalFilter';
@@ -111,7 +112,7 @@ export function TrackTable<T extends Track = Track>({
 
   const dndItems = rows.map((row) => getItemId(row.original, row.index));
 
-  const mockViewportHeight = rowHeight * 12;
+  const testViewportHeight = rowHeight * 12;
 
   return (
     <TrackTableProvider
@@ -122,68 +123,69 @@ export function TrackTable<T extends Track = Track>({
         labels: mergedLabels,
       }}
     >
-      <Toolbar
-        filterValue={globalFilter}
-        onFilterChange={setGlobalFilter}
-        className="mb-2"
-      />
-      <div
-        ref={scrollParentRef}
-        className="relative flex max-h-full w-full overflow-y-auto"
-        data-test-resize-observer-inline-size="1024"
-        data-test-resize-observer-block-size={String(mockViewportHeight)}
-      >
-        <ReorderLayer
-          enabled={isReorderable}
-          items={dndItems}
-          onDragStart={onDragStart}
-          onDragEnd={onDragEnd as (evt: DragEndEvent) => void}
+      <div className="flex h-full flex-col">
+        <Toolbar
+          filterValue={globalFilter}
+          onFilterChange={setGlobalFilter}
+          className="mb-2 shrink-0"
+        />
+        <ScrollableArea
+          viewportRef={scrollParentRef}
+          className="min-h-0 flex-1"
+          testViewportHeight={testViewportHeight}
         >
-          <table
-            role="table"
-            className={cn(
-              'border-border relative w-full table-fixed border-(length:--border-width)',
-              classes?.root,
-            )}
+          <ReorderLayer
+            enabled={isReorderable}
+            items={dndItems}
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd as (evt: DragEndEvent) => void}
           >
-            {resolvedFeatures?.header && (
-              <thead>
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <tr
-                    key={headerGroup.id}
-                    role="row"
-                    className="border-border bg-primary border-b-(length:--border-width)"
-                  >
-                    {headerGroup.headers.map((header) =>
-                      flexRender(header.column.columnDef.header, {
-                        ...header.getContext(),
-                        key: header.id,
-                      }),
-                    )}
-                  </tr>
-                ))}
-              </thead>
-            )}
-            <VirtualizedBody
-              rows={rows}
-              virtualItems={virtualItems}
-              paddingTop={paddingTop}
-              paddingBottom={paddingBottom}
-              colSpan={colCount}
-              rowHeight={rowHeight}
-              renderRow={({ row, virtual }) => (
-                <SortableRow
-                  key={getItemId(row.original, row.index)}
-                  row={row}
-                  itemId={getItemId(row.original, row.index)}
-                  style={{ height: rowHeight }}
-                  isReorderable={isReorderable}
-                  data-index={virtual.index}
-                />
+            <table
+              role="table"
+              className={cn(
+                'border-border relative w-full table-fixed border-(length:--border-width)',
+                classes?.root,
               )}
-            />
-          </table>
-        </ReorderLayer>
+            >
+              {resolvedFeatures?.header && (
+                <thead>
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <tr
+                      key={headerGroup.id}
+                      role="row"
+                      className="border-border bg-primary border-b-(length:--border-width)"
+                    >
+                      {headerGroup.headers.map((header) =>
+                        flexRender(header.column.columnDef.header, {
+                          ...header.getContext(),
+                          key: header.id,
+                        }),
+                      )}
+                    </tr>
+                  ))}
+                </thead>
+              )}
+              <VirtualizedBody
+                rows={rows}
+                virtualItems={virtualItems}
+                paddingTop={paddingTop}
+                paddingBottom={paddingBottom}
+                colSpan={colCount}
+                rowHeight={rowHeight}
+                renderRow={({ row, virtual }) => (
+                  <SortableRow
+                    key={getItemId(row.original, row.index)}
+                    row={row}
+                    itemId={getItemId(row.original, row.index)}
+                    style={{ height: rowHeight }}
+                    isReorderable={isReorderable}
+                    data-index={virtual.index}
+                  />
+                )}
+              />
+            </table>
+          </ReorderLayer>
+        </ScrollableArea>
       </div>
     </TrackTableProvider>
   );

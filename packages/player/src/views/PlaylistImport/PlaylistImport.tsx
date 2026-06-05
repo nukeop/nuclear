@@ -44,7 +44,7 @@ export const PlaylistImport: FC = () => {
         </PlaylistDetailHeader>
       )}
       {tracks.length > 0 && (
-        <div className="p-6">
+        <div className="h-full p-6">
           <ConnectedTrackTable
             tracks={tracks}
             getItemId={getItemId}

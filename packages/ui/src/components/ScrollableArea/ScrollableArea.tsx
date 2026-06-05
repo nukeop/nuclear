@@ -1,5 +1,6 @@
 import {
   FC,
+  MutableRefObject,
   ReactNode,
   useCallback,
   useEffect,
@@ -15,6 +16,8 @@ export type ScrollableAreaProps = {
   className?: string;
   fadeScrollbars?: boolean;
   autoHideDelay?: number; // ms, default 1000
+  viewportRef?: MutableRefObject<HTMLDivElement | null>;
+  testViewportHeight?: number;
   'data-testid'?: string;
 };
 
@@ -37,7 +40,7 @@ const initialMetrics: ScrollMetrics = {
 };
 
 function useScrollMetrics(fadeScrollbars: boolean, autoHideDelay: number) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [metrics, setMetrics] = useState<ScrollMetrics>(initialMetrics);
   const [isScrolling, setIsScrolling] = useState(false);
   const hideTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
@@ -247,11 +250,23 @@ export const ScrollableArea: FC<ScrollableAreaProps> = ({
   className,
   fadeScrollbars = true,
   autoHideDelay = 1000,
+  viewportRef,
+  testViewportHeight,
   'data-testid': testId,
 }) => {
   const { ref, metrics, isScrolling, handleScroll } = useScrollMetrics(
     fadeScrollbars,
     autoHideDelay,
+  );
+
+  const setViewportNode = useCallback(
+    (node: HTMLDivElement | null) => {
+      ref.current = node;
+      if (viewportRef) {
+        viewportRef.current = node;
+      }
+    },
+    [ref, viewportRef],
   );
 
   const needsVertical = metrics.scrollHeight > metrics.clientHeight;
@@ -264,10 +279,13 @@ export const ScrollableArea: FC<ScrollableAreaProps> = ({
       data-testid={testId}
     >
       <div
-        ref={ref}
+        ref={setViewportNode}
         className="scrollbar-hide flex h-full w-full flex-col overflow-auto"
         onScroll={handleScroll}
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        data-test-resize-observer-block-size={
+          testViewportHeight != null ? String(testViewportHeight) : undefined
+        }
       >
         {children}
       </div>

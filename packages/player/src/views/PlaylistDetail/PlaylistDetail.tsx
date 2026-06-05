@@ -43,7 +43,7 @@ export const PlaylistDetail: FC = () => {
           className="flex-1"
         />
       ) : (
-        <div className="p-6">
+        <div className="h-full p-6">
           <ConnectedTrackTable
             tracks={tracks}
             getItemId={editing.getItemId}
