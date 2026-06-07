@@ -26,6 +26,7 @@ export * from './PulsingText';
 export * from './ThemeStoreItem';
 export * from './Popover';
 export * from './QueueItem';
+export * from './QueueItemPopover';
 export * from './QueuePanel';
 export * from './RouteTransition';
 export * from './ImageReveal';
