@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-06-09T00:00",
+    "description": "Fix TSX plugins failing with 'React is not defined' unless they imported React manually, and fix stale plugin code being served when an imported file changed but the entry file didn't",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-06-01T00:00",
     "description": "The window now remembers its size, position, and maximized state between restarts",
     "type": "feature",
