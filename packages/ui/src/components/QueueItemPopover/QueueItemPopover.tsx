@@ -11,35 +11,33 @@ import { TrackHeader } from './TrackHeader';
 type QueueItemPopoverProps = {
   track: Track;
   children: ReactNode;
-  selectedCandidateId?: string;
+  className?: string;
   onSelectCandidate?: (candidateId: string) => void;
 };
 
 const findSelectedCandidate = (
   candidates: StreamCandidate[],
-  selectedId?: string,
-): StreamCandidate | undefined => {
-  const explicit = candidates.find((candidate) => candidate.id === selectedId);
-  return explicit ?? candidates.find((candidate) => !candidate.failed);
-};
+): StreamCandidate | undefined =>
+  candidates.find((candidate) => !candidate.failed);
 
 export const QueueItemPopover: FC<QueueItemPopoverProps> = ({
   track,
   children,
-  selectedCandidateId,
+  className,
   onSelectCandidate,
 }) => {
   const candidates = track.streamCandidates ?? [];
-  const selected = findSelectedCandidate(candidates, selectedCandidateId);
+  const selected = findSelectedCandidate(candidates);
 
   return (
     <Popover
+      className={className}
       panelClassName="p-0"
       anchor="left"
       triggerOn="contextmenu"
       trigger={children}
     >
-      <div className="w-80">
+      <div data-testid="queue-item-popover" className="w-80">
         <TrackHeader track={track} />
         {selected && <StreamThumbnail candidate={selected} />}
         {selected?.stream && <StreamQualityInfo stream={selected.stream} />}

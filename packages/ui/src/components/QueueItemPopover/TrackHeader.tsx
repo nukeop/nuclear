@@ -14,9 +14,17 @@ export const TrackHeader: FC<TrackHeaderProps> = ({ track }) => {
       data-testid="track-header"
       className="border-border border-b-2 px-3 py-2"
     >
-      <div className="truncate text-sm font-bold">{track.title}</div>
+      <div
+        data-testid="track-header-title"
+        className="truncate text-sm font-bold"
+      >
+        {track.title}
+      </div>
       {primaryArtist && (
-        <div className="text-foreground-secondary truncate text-xs">
+        <div
+          data-testid="track-header-artist"
+          className="text-foreground-secondary truncate text-xs"
+        >
           {primaryArtist}
         </div>
       )}

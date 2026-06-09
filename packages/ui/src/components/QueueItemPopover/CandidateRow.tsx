@@ -40,7 +40,9 @@ export const CandidateRow: FC<CandidateRowProps> = ({
       </div>
     )}
     <div className="min-w-0 flex-1 py-2 pr-2">
-      <div className="truncate text-xs">{candidate.title}</div>
+      <div data-testid="candidate-row-title" className="truncate text-xs">
+        {candidate.title}
+      </div>
       <div className="text-foreground/50 text-xs">
         {formatTimeMillis(candidate.durationMs)}
         {candidate.failed && (

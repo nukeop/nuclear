@@ -7,6 +7,7 @@ import type { QueueItem as QueueItemType } from '@nuclearplayer/model';
 import { cn } from '../../utils';
 import { QueueItem } from '../QueueItem';
 import { type QueueItemLabels } from '../QueueItem/types';
+import { QueueItemPopover } from '../QueueItemPopover';
 
 export type ReorderableQueueItemProps = {
   item: QueueItemType;
@@ -55,16 +56,18 @@ export const ReorderableQueueItem: FC<ReorderableQueueItemProps> = ({
       {...attributes}
       {...listeners}
     >
-      <QueueItem
-        track={item.track}
-        status={item.status}
-        isCurrent={isCurrent}
-        isCollapsed={isCollapsed}
-        errorMessage={item.error}
-        onSelect={() => onSelect?.(item.id)}
-        onRemove={() => onRemove?.(item.id)}
-        labels={labels}
-      />
+      <QueueItemPopover track={item.track} className="relative">
+        <QueueItem
+          track={item.track}
+          status={item.status}
+          isCurrent={isCurrent}
+          isCollapsed={isCollapsed}
+          errorMessage={item.error}
+          onSelect={() => onSelect?.(item.id)}
+          onRemove={() => onRemove?.(item.id)}
+          labels={labels}
+        />
+      </QueueItemPopover>
     </div>
   );
 };
