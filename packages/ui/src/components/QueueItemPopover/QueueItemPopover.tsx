@@ -32,12 +32,15 @@ export const QueueItemPopover: FC<QueueItemPopoverProps> = ({
   return (
     <Popover
       className={className}
-      panelClassName="p-0"
+      panelClassName="box-content p-0"
       anchor="left"
       triggerOn="contextmenu"
       trigger={children}
     >
-      <div data-testid="queue-item-popover" className="w-80">
+      <div
+        data-testid="queue-item-popover"
+        className="flex max-h-(--anchor-max-height) w-80 flex-col"
+      >
         <TrackHeader track={track} />
         {selected && <StreamThumbnail candidate={selected} />}
         {selected?.stream && <StreamQualityInfo stream={selected.stream} />}

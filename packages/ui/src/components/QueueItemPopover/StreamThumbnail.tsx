@@ -10,7 +10,7 @@ type StreamThumbnailProps = {
 };
 
 export const StreamThumbnail: FC<StreamThumbnailProps> = ({ candidate }) => (
-  <div className="relative">
+  <div className="relative shrink-0">
     {candidate.thumbnail ? (
       <img
         src={candidate.thumbnail}

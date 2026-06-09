@@ -16,7 +16,11 @@ export const CandidateList: FC<CandidateListProps> = ({
   selectedId,
   onSelectCandidate,
 }) => (
-  <ScrollableArea data-testid="candidate-list" viewportClassName="max-h-80">
+  <ScrollableArea
+    data-testid="candidate-list"
+    className="min-h-0"
+    viewportClassName="max-h-80"
+  >
     {candidates.map((candidate) => (
       <CandidateRow
         key={candidate.id}

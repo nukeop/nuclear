@@ -14,7 +14,7 @@ export const StreamQualityInfo: FC<StreamQualityInfoProps> = ({ stream }) => {
   ].filter(Boolean);
 
   return parts.length ? (
-    <div className="text-foreground border-x-0 border-y-2 px-3 py-1.5 text-xs">
+    <div className="text-foreground shrink-0 border-x-0 border-y-2 px-3 py-1.5 text-xs">
       {parts.join(' · ')}
     </div>
   ) : null;
