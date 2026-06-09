@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn } from 'storybook/test';
+import { FC, useState } from 'react';
 
-import type { Track } from '@nuclearplayer/model';
+import type { StreamCandidate, Track } from '@nuclearplayer/model';
 import { QueueItemPopover } from '@nuclearplayer/ui';
 
 const meta = {
@@ -21,6 +21,20 @@ const Trigger = () => (
     Right-click me
   </div>
 );
+
+const StatefulPopover: FC<{ track: Track }> = ({ track }) => {
+  const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
+
+  return (
+    <QueueItemPopover
+      track={track}
+      selectedCandidateId={selectedId}
+      onSelectCandidate={setSelectedId}
+    >
+      <Trigger />
+    </QueueItemPopover>
+  );
+};
 
 const trackWithCandidates: Track = {
   title: 'Bohemian Rhapsody',
@@ -63,6 +77,23 @@ const trackWithCandidates: Track = {
   ],
 };
 
+const manyCandidates: StreamCandidate[] = Array.from(
+  { length: 12 },
+  (_, index) => ({
+    id: `${index + 1}`,
+    title: `Bohemian Rhapsody (Upload ${index + 1})`,
+    durationMs: 354000 + index * 1000,
+    thumbnail: `https://picsum.photos/seed/queen-${index}/288/144`,
+    source: { provider: 'youtube', id: `video-${index}` },
+    failed: index === 4,
+  }),
+);
+
+const trackWithManyCandidates: Track = {
+  ...trackWithCandidates,
+  streamCandidates: manyCandidates,
+};
+
 const trackWithNoQualityInfo: Track = {
   title: 'Bohemian Rhapsody',
   artists: [{ name: 'Queen', roles: ['primary'] }],
@@ -78,9 +109,9 @@ const trackWithNoQualityInfo: Track = {
       failed: false,
       stream: {
         url: 'https://example.com/stream',
+        protocol: 'https',
         source: { provider: 'youtube', id: 'fJ9rUzIMcZQ' },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any,
+      },
     },
   ],
 };
@@ -92,18 +123,15 @@ const trackNoCandidates: Track = {
 };
 
 export const WithCandidates: Story = {
-  render: () => (
-    <QueueItemPopover track={trackWithCandidates} onSelectCandidate={fn()}>
-      <Trigger />
-    </QueueItemPopover>
-  ),
+  render: () => <StatefulPopover track={trackWithCandidates} />,
 };
+
+export const ManyCandidates: Story = {
+  render: () => <StatefulPopover track={trackWithManyCandidates} />,
+};
+
 export const WithNoQualityInfo: Story = {
-  render: () => (
-    <QueueItemPopover track={trackWithNoQualityInfo} onSelectCandidate={fn()}>
-      <Trigger />
-    </QueueItemPopover>
-  ),
+  render: () => <StatefulPopover track={trackWithNoQualityInfo} />,
 };
 
 export const NoCandidates: Story = {

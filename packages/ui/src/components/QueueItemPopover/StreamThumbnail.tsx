@@ -15,14 +15,14 @@ export const StreamThumbnail: FC<StreamThumbnailProps> = ({ candidate }) => (
       <img
         src={candidate.thumbnail}
         alt={candidate.title}
-        className="h-36 w-full rounded-t-md object-cover"
+        className="h-36 w-full object-cover"
       />
     ) : (
-      <div className="bg-background flex h-36 w-full items-center justify-center rounded-t-md">
+      <div className="bg-background flex h-36 w-full items-center justify-center">
         <Music size={48} className="text-foreground/20" />
       </div>
     )}
-    <Badge variant="pill" color="secondary" className="absolute top-2 right-2">
+    <Badge variant="pill" color="secondary" className="absolute top-2 left-2">
       {candidate.source.provider}
     </Badge>
   </div>

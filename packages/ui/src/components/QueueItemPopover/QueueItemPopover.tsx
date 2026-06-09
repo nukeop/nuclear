@@ -3,27 +3,34 @@ import { FC, ReactNode } from 'react';
 import type { StreamCandidate, Track } from '@nuclearplayer/model';
 
 import { Popover } from '../Popover';
-import { CandidateSelect } from './CandidateSelect';
+import { CandidateList } from './CandidateList';
 import { StreamQualityInfo } from './StreamQualityInfo';
 import { StreamThumbnail } from './StreamThumbnail';
+import { TrackHeader } from './TrackHeader';
 
 type QueueItemPopoverProps = {
   track: Track;
   children: ReactNode;
+  selectedCandidateId?: string;
   onSelectCandidate?: (candidateId: string) => void;
 };
 
 const findSelectedCandidate = (
   candidates: StreamCandidate[],
-): StreamCandidate | undefined => candidates.find((c) => !c.failed);
+  selectedId?: string,
+): StreamCandidate | undefined => {
+  const explicit = candidates.find((candidate) => candidate.id === selectedId);
+  return explicit ?? candidates.find((candidate) => !candidate.failed);
+};
 
 export const QueueItemPopover: FC<QueueItemPopoverProps> = ({
   track,
   children,
+  selectedCandidateId,
   onSelectCandidate,
 }) => {
   const candidates = track.streamCandidates ?? [];
-  const selected = findSelectedCandidate(candidates);
+  const selected = findSelectedCandidate(candidates, selectedCandidateId);
 
   return (
     <Popover
@@ -32,7 +39,8 @@ export const QueueItemPopover: FC<QueueItemPopoverProps> = ({
       triggerOn="contextmenu"
       trigger={children}
     >
-      <div className="w-72">
+      <div className="w-80">
+        <TrackHeader track={track} />
         {selected && <StreamThumbnail candidate={selected} />}
         {selected?.stream && <StreamQualityInfo stream={selected.stream} />}
 
@@ -41,13 +49,11 @@ export const QueueItemPopover: FC<QueueItemPopoverProps> = ({
             No stream candidates
           </div>
         ) : (
-          <div className="px-3 py-2">
-            <CandidateSelect
-              candidates={candidates}
-              selectedId={selected?.id}
-              onSelectCandidate={onSelectCandidate}
-            />
-          </div>
+          <CandidateList
+            candidates={candidates}
+            selectedId={selected?.id}
+            onSelectCandidate={onSelectCandidate}
+          />
         )}
       </div>
     </Popover>
