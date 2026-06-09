@@ -1,9 +1,17 @@
 import { ListboxOptions } from '@headlessui/react';
 import { FC, PropsWithChildren } from 'react';
 
+import { cn } from '../../utils';
 import { useSelectContext } from './context';
 
-export const SelectOptions: FC<PropsWithChildren> = ({ children }) => {
+type SelectOptionsProps = {
+  className?: string;
+};
+
+export const SelectOptions: FC<PropsWithChildren<SelectOptionsProps>> = ({
+  children,
+  className,
+}) => {
   const {
     ids: { listboxId, labelId },
   } = useSelectContext();
@@ -16,7 +24,10 @@ export const SelectOptions: FC<PropsWithChildren> = ({ children }) => {
       anchor={{ to: 'bottom', gap: 8 }}
       portal
       transition
-      className="border-border shadow-shadow bg-primary z-50 min-w-(--button-width) rounded-md border-(length:--border-width) p-2 transition duration-150 ease-out outline-none data-closed:scale-98 data-closed:opacity-0"
+      className={cn(
+        'border-border shadow-shadow bg-primary z-50 min-w-(--button-width) rounded-md border-(length:--border-width) p-2 transition duration-150 ease-out outline-none data-closed:scale-98 data-closed:opacity-0',
+        className,
+      )}
     >
       {children}
     </ListboxOptions>
