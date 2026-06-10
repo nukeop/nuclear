@@ -4,6 +4,7 @@ export type YtdlpSearchResult = {
   title: string;
   duration: number | null;
   thumbnail: string | null;
+  channel: string | null;
 };
 
 export type YtdlpStreamInfo = {

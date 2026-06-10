@@ -42,6 +42,7 @@ pub struct YtdlpSearchResult {
     pub title: String,
     pub duration: Option<f64>,
     pub thumbnail: Option<String>,
+    pub channel: Option<String>,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq)]
@@ -148,6 +149,7 @@ pub async fn ytdlp_search(
                         .last()
                         .map(|thumbnail| thumbnail.url.clone())
                 }),
+                channel: entry.channel,
             })
         })
         .collect();
