@@ -16,6 +16,8 @@
  * - Only compile TS/TSX. For plain JS we skip compilation and just read the file.
  * - Externalize bare module imports (e.g., @nuclearplayer/plugin-sdk) so plugins don't
  *   accidentally try to bundle our runtime dependencies.
+ * - Cache compiled bundles per entry path, invalidated by re-hashing every file
+ *   that participated in the previous build (see CompileCacheEntry below).
  */
 import { dirname, extname, isAbsolute, resolve } from '@tauri-apps/api/path';
 import { readTextFile } from '@tauri-apps/plugin-fs';
@@ -62,9 +64,37 @@ function getEsbuildState(): EsbuildGlobal {
 
 const es = getEsbuildState();
 
-const cache = new Map<string, string>();
+/**
+ * Compile cache, keyed by entry path.
+ *
+ * Because we bundle, the output depends on EVERY file the build touched, not
+ * just the entry. A cache keyed by the entry's content hash alone would serve
+ * stale bundles when an imported file changes (edit ./utils.ts, reload, get
+ * stale code). So each entry records the content hash of all of its
+ * inputs, collected in the onLoad hook during the build. Before reusing a
+ * cached bundle we re-read and re-hash every recorded input; any mismatch or
+ * read failure triggers a recompile.
+ *
+ * Keying by entry path (instead of path + hash) also bounds the cache to one
+ * entry per plugin, so repeated edit/reload cycles don't accumulate dead
+ * bundles in memory.
+ */
+type CompileCacheEntry = {
+  inputHashes: Map<string, string>;
+  code: string;
+};
+
+const cache = new Map<string, CompileCacheEntry>();
 
 const isTs = (p: string) => p.endsWith('.ts') || p.endsWith('.tsx');
+
+const tryRead = async (path: string): Promise<string | null> => {
+  try {
+    return await readTextFile(path);
+  } catch {
+    return null;
+  }
+};
 
 /**
  * Initialize esbuild-wasm exactly once within this JS context.
@@ -109,17 +139,35 @@ const simpleHash = (str: string) => {
   return h.toString(16);
 };
 
+const isCacheEntryFresh = async (
+  entry: CompileCacheEntry,
+): Promise<boolean> => {
+  for (const [path, hash] of entry.inputHashes) {
+    const contents = await tryRead(path);
+    if (contents === null || simpleHash(contents) !== hash) {
+      return false;
+    }
+  }
+  return true;
+};
+
 export async function compilePlugin(
   entryPath: string,
 ): Promise<string | undefined> {
   if (!isTs(entryPath)) {
     return undefined;
   }
-  const entrySource = await readTextFile(entryPath);
-  const key = entryPath + ':' + simpleHash(entrySource);
-  if (cache.has(key)) {
-    return cache.get(key);
+
+  const cached = cache.get(entryPath);
+  if (cached && (await isCacheEntryFresh(cached))) {
+    return cached.code;
   }
+
+  const entrySource = await readTextFile(entryPath);
+
+  const inputHashes = new Map<string, string>([
+    [entryPath, simpleHash(entrySource)],
+  ]);
 
   const mod = await getEsbuild();
   const entryDir = await dirname(entryPath);
@@ -149,6 +197,13 @@ export async function compilePlugin(
     platform: 'browser',
     target: ['es2022'],
     sourcemap: 'inline',
+    // Use the automatic JSX runtime. The PluginLoader's require shim provides
+    // 'react/jsx-runtime', and the bare import esbuild emits for it gets
+    // externalized by our onResolve below. Without this, esbuild defaults to
+    // the classic transform (React.createElement), and any TSX plugin that
+    // doesn't manually `import React` compiles fine but explodes at eval time
+    // with "React is not defined".
+    jsx: 'automatic',
     // Do not bundle our host SDK. Plugins import it at runtime from the app,
     // not from the plugin bundle.
     external: ['@nuclearplayer/plugin-sdk'],
@@ -204,14 +259,6 @@ export async function compilePlugin(
                 };
               }
 
-              const tryRead = async (p: string): Promise<string | null> => {
-                try {
-                  return await readTextFile(p);
-                } catch {
-                  return null;
-                }
-              };
-
               let hasExt = false;
               try {
                 const ext = await extname(args.path);
@@ -237,6 +284,10 @@ export async function compilePlugin(
               for (const p of candidates) {
                 const contents = await tryRead(p);
                 if (contents != null) {
+                  // Record the resolved file in the freshness manifest so the
+                  // cache invalidates when this import changes, not just when
+                  // the entry does.
+                  inputHashes.set(p, simpleHash(contents));
                   const loader: EsbuildTypes.Loader = p.endsWith('.tsx')
                     ? 'tsx'
                     : p.endsWith('.ts')
@@ -258,6 +309,6 @@ export async function compilePlugin(
     throw new Error('Plugin compile failed');
   }
   const code = result.outputFiles[0].text;
-  cache.set(key, code);
+  cache.set(entryPath, { inputHashes, code });
   return code;
 }

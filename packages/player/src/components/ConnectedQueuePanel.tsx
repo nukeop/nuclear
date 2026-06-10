@@ -43,11 +43,14 @@ export const ConnectedQueuePanel: FC<ConnectedQueuePanelProps> = ({
       onReorder={handleReorder}
       onSelectItem={handleSelectItem}
       onRemoveItem={handleRemoveItem}
+      onSelectCandidate={actions.selectCandidate}
       labels={{
         emptyTitle: t('empty.title'),
         emptySubtitle: t('empty.subtitle'),
         removeButton: t('actions.remove'),
         playbackError: t('errors.playback'),
+        noCandidates: t('candidates.empty'),
+        candidateFailed: t('candidates.failed'),
       }}
     />
   );

@@ -23,6 +23,18 @@ Drag tracks in the queue panel to reorder them. To remove a track, hover over it
 
 The queue header has a clear button (trash icon) that removes all tracks and stops playback. You can also save the current queue as a playlist from the queue header menu.
 
+## Stream candidates
+
+When a track starts playing, the streaming provider searches for matching audio and usually finds several possible results. These are the track's **stream candidates**. Nuclear plays the first one that works, moving down the list if a candidate fails. The match isn't always perfect, though: you might get a live version, a remix, or a cover instead of the studio recording.
+
+Right-click a track in the queue to see its stream candidates. The popover shows the currently playing stream with its thumbnail and quality details (quality, bitrate, and codec, when the provider reports them), followed by the full list of candidates with their titles and durations.
+
+If the wrong version is playing, click a different candidate to switch to it. Your choice stays selected for that queue entry until its stream links expire and Nuclear fetches a fresh list. Candidates that couldn't be played are marked as failed.
+
+{% hint style="info" %}
+Candidates are fetched when a track starts playing, so tracks you haven't played yet show "No stream candidates".
+{% endhint %}
+
 ## Playback modes
 
 The player bar has shuffle and repeat buttons that control how Nuclear moves through the queue:

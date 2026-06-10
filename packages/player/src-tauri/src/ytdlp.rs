@@ -42,6 +42,7 @@ pub struct YtdlpSearchResult {
     pub title: String,
     pub duration: Option<f64>,
     pub thumbnail: Option<String>,
+    pub channel: Option<String>,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq)]
@@ -141,7 +142,14 @@ pub async fn ytdlp_search(
                 id,
                 title: entry.title.unwrap_or_else(|| "Unknown".to_string()),
                 duration: entry.duration,
-                thumbnail: entry.thumbnail,
+                thumbnail: entry.thumbnail.or_else(|| {
+                    entry
+                        .thumbnails
+                        .unwrap_or_default()
+                        .last()
+                        .map(|thumbnail| thumbnail.url.clone())
+                }),
+                channel: entry.channel,
             })
         })
         .collect();

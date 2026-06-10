@@ -50,7 +50,7 @@ const RootComponent = () => {
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
 
   return (
-    <PlayerShell>
+    <PlayerShell onContextMenu={(e) => e.preventDefault()}>
       <GlobalShortcuts />
       <div>
         <FlatpakWarningBanner />

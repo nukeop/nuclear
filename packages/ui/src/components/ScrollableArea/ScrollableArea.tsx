@@ -14,6 +14,7 @@ import { cn } from '../../utils';
 export type ScrollableAreaProps = {
   children: ReactNode;
   className?: string;
+  viewportClassName?: string;
   fadeScrollbars?: boolean;
   autoHideDelay?: number; // ms, default 1000
   viewportRef?: MutableRefObject<HTMLDivElement | null>;
@@ -248,6 +249,7 @@ const Scrollbar: FC<BarProps> = ({
 export const ScrollableArea: FC<ScrollableAreaProps> = ({
   children,
   className,
+  viewportClassName,
   fadeScrollbars = true,
   autoHideDelay = 1000,
   viewportRef,
@@ -280,7 +282,10 @@ export const ScrollableArea: FC<ScrollableAreaProps> = ({
     >
       <div
         ref={setViewportNode}
-        className="scrollbar-hide flex h-full w-full flex-col overflow-auto"
+        className={cn(
+          'scrollbar-hide flex h-full w-full flex-col overflow-auto',
+          viewportClassName,
+        )}
         onScroll={handleScroll}
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         data-test-resize-observer-block-size={

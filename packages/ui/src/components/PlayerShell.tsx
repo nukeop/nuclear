@@ -1,15 +1,13 @@
-import { FC, ReactNode } from 'react';
+import { ComponentProps, FC } from 'react';
 
 import { cn } from '../utils';
 
-type PlayerShellProps = {
-  children: ReactNode;
-  className?: string;
-};
+type PlayerShellProps = ComponentProps<'div'>;
 
 export const PlayerShell: FC<PlayerShellProps> = ({
   children,
-  className = '',
+  className,
+  ...props
 }) => {
   return (
     <div
@@ -17,6 +15,7 @@ export const PlayerShell: FC<PlayerShellProps> = ({
         'grid h-screen w-screen grid-rows-[auto_1fr_auto] overflow-hidden',
         className,
       )}
+      {...props}
     >
       {children}
     </div>

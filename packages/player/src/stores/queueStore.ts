@@ -1,5 +1,6 @@
 import { LazyStore } from '@tauri-apps/plugin-store';
 import { produce } from 'immer';
+import partition from 'lodash-es/partition';
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 
@@ -26,6 +27,7 @@ type QueueStore = Queue & {
   clearQueue: () => void;
   reorder: (fromIndex: number, toIndex: number) => void;
   updateItemState: (id: string, updates: Partial<QueueItem>) => void;
+  selectCandidate: (itemId: string, candidateId: string) => void;
   goToNext: () => void;
   goToPrevious: () => void;
   advanceOnTrackEnd: () => void;
@@ -83,6 +85,18 @@ const getShuffledIndex = (length: number, currentIndex: number): number => {
   }
 
   return nextIndex;
+};
+
+const promoteCandidate = (track: Track, candidateId: string): Track => {
+  const [promoted, rest] = partition(
+    track.streamCandidates ?? [],
+    (candidate) => candidate.id === candidateId,
+  );
+  const retried = promoted.map((candidate) => ({
+    ...candidate,
+    failed: false,
+  }));
+  return { ...track, streamCandidates: [...retried, ...rest] };
 };
 
 const saveToDisk = async (): Promise<void> => {
@@ -260,6 +274,17 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
       );
     },
   ),
+
+  selectCandidate: withPersistence((itemId: string, candidateId: string) => {
+    set((state) => ({
+      items: state.items.map((item) => {
+        if (item.id !== itemId) {
+          return item;
+        }
+        return { ...item, track: promoteCandidate(item.track, candidateId) };
+      }),
+    }));
+  }),
 
   goToNext: withPersistence(() => {
     const state = get();
