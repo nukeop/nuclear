@@ -39,7 +39,7 @@ export const QueueItemPopover: FC<QueueItemPopoverProps> = ({
   return (
     <Popover
       className={className}
-      panelClassName="box-content p-0"
+      panelClassName="box-content overflow-hidden! p-0"
       anchor="left"
       triggerOn="contextmenu"
       trigger={children}

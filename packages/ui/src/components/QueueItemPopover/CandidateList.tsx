@@ -25,7 +25,7 @@ export const CandidateList: FC<CandidateListProps> = ({
   <ScrollableArea
     data-testid="candidate-list"
     className="min-h-0"
-    viewportClassName="max-h-80"
+    viewportClassName="max-h-80 overscroll-contain"
   >
     {candidates.map((candidate) => (
       <CandidateRow
