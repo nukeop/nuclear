@@ -92,7 +92,11 @@ const promoteCandidate = (track: Track, candidateId: string): Track => {
     track.streamCandidates ?? [],
     (candidate) => candidate.id === candidateId,
   );
-  return { ...track, streamCandidates: [...promoted, ...rest] };
+  const retried = promoted.map((candidate) => ({
+    ...candidate,
+    failed: false,
+  }));
+  return { ...track, streamCandidates: [...retried, ...rest] };
 };
 
 const saveToDisk = async (): Promise<void> => {

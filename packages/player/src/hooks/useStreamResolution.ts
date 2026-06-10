@@ -211,20 +211,34 @@ const resolveStream = async (
   }
 };
 
+const buildResolutionKey = (item: QueueItem): string => {
+  const headCandidate = item.track.streamCandidates?.[0];
+  return [item.id, headCandidate?.id, headCandidate?.failed].join(':');
+};
+
 export const useStreamResolution = (): void => {
   const { t } = useTranslation('streaming');
-  const currentItemIdRef = useRef<string | null>(null);
+  const resolutionKeyRef = useRef<string | null>(null);
   const isFirstResolutionRef = useRef(true);
 
   useEffect(() => {
     const onCurrentItemChanged = (currentItem: QueueItem | undefined): void => {
-      if (!currentItem || currentItem.id === currentItemIdRef.current) {
+      if (!currentItem) {
+        return;
+      }
+
+      const resolutionKey = buildResolutionKey(currentItem);
+      if (resolutionKey === resolutionKeyRef.current) {
+        return;
+      }
+      resolutionKeyRef.current = resolutionKey;
+
+      if (currentItem.status === 'loading') {
         return;
       }
 
       const autoPlay = !isFirstResolutionRef.current;
       isFirstResolutionRef.current = false;
-      currentItemIdRef.current = currentItem.id;
       void resolveStream(currentItem, t, autoPlay);
     };
 
