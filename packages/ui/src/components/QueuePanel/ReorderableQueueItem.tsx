@@ -16,6 +16,7 @@ export type ReorderableQueueItemProps = {
   isReorderable?: boolean;
   onSelect?: (id: string) => void;
   onRemove?: (id: string) => void;
+  onSelectCandidate?: (itemId: string, candidateId: string) => void;
   labels: QueueItemLabels & {
     noCandidates?: string;
     candidateFailed?: string;
@@ -29,6 +30,7 @@ export const ReorderableQueueItem: FC<ReorderableQueueItemProps> = ({
   isReorderable = false,
   onSelect,
   onRemove,
+  onSelectCandidate,
   labels,
 }) => {
   const {
@@ -66,6 +68,9 @@ export const ReorderableQueueItem: FC<ReorderableQueueItemProps> = ({
           noCandidates: labels.noCandidates,
           failed: labels.candidateFailed,
         }}
+        onSelectCandidate={(candidateId) =>
+          onSelectCandidate?.(item.id, candidateId)
+        }
       >
         <QueueItem
           track={item.track}
