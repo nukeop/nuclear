@@ -415,6 +415,10 @@
     },
     "errors": {
       "playback": "Playback error"
+    },
+    "candidates": {
+      "empty": "No stream candidates",
+      "failed": "failed"
     }
   },
   "track": {

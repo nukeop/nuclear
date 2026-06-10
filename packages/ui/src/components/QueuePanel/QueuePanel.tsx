@@ -21,6 +21,8 @@ export type QueuePanelProps = {
   labels: QueueItemLabels & {
     emptyTitle?: string;
     emptySubtitle?: string;
+    noCandidates?: string;
+    candidateFailed?: string;
   };
   classes?: {
     root?: string;
@@ -119,6 +121,8 @@ export const QueuePanel: FC<QueuePanelProps> = ({
                 labels={{
                   removeButton: labels?.removeButton,
                   playbackError: labels?.playbackError,
+                  noCandidates: labels?.noCandidates,
+                  candidateFailed: labels?.candidateFailed,
                 }}
               />
             ))}

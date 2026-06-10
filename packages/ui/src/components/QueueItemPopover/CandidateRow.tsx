@@ -6,20 +6,27 @@ import type { StreamCandidate } from '@nuclearplayer/model';
 import { cn } from '../../utils';
 import { formatTimeMillis } from '../../utils/time';
 
+type CandidateRowLabels = {
+  failed?: string;
+};
+
 type CandidateRowProps = {
   candidate: StreamCandidate;
   isSelected: boolean;
+  labels?: CandidateRowLabels;
   onSelect?: () => void;
 };
 
 export const CandidateRow: FC<CandidateRowProps> = ({
   candidate,
   isSelected,
+  labels,
   onSelect,
 }) => (
   <button
     type="button"
     data-testid="candidate-row"
+    data-selected={isSelected}
     onClick={onSelect}
     className={cn(
       'hover:bg-background-secondary flex w-full shrink-0 cursor-pointer items-center gap-2 overflow-hidden text-left',
@@ -46,7 +53,7 @@ export const CandidateRow: FC<CandidateRowProps> = ({
       <div className="text-foreground/50 text-xs">
         {formatTimeMillis(candidate.durationMs)}
         {candidate.failed && (
-          <span className="text-accent-red ml-2">failed</span>
+          <span className="text-accent-red ml-2">{labels?.failed}</span>
         )}
       </div>
     </div>

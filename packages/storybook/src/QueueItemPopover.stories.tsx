@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { fn } from 'storybook/test';
 
 import type { StreamCandidate, Track } from '@nuclearplayer/model';
 import { QueueItemPopover } from '@nuclearplayer/ui';
@@ -22,19 +23,15 @@ const Trigger = () => (
   </div>
 );
 
-const StatefulPopover: FC<{ track: Track }> = ({ track }) => {
-  const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
-
-  return (
-    <QueueItemPopover
-      track={track}
-      selectedCandidateId={selectedId}
-      onSelectCandidate={setSelectedId}
-    >
-      <Trigger />
-    </QueueItemPopover>
-  );
-};
+const PopoverStory: FC<{ track: Track }> = ({ track }) => (
+  <QueueItemPopover
+    track={track}
+    labels={{ noCandidates: 'No stream candidates', failed: 'failed' }}
+    onSelectCandidate={fn()}
+  >
+    <Trigger />
+  </QueueItemPopover>
+);
 
 const trackWithCandidates: Track = {
   title: 'Bohemian Rhapsody',
@@ -123,21 +120,17 @@ const trackNoCandidates: Track = {
 };
 
 export const WithCandidates: Story = {
-  render: () => <StatefulPopover track={trackWithCandidates} />,
+  render: () => <PopoverStory track={trackWithCandidates} />,
 };
 
 export const ManyCandidates: Story = {
-  render: () => <StatefulPopover track={trackWithManyCandidates} />,
+  render: () => <PopoverStory track={trackWithManyCandidates} />,
 };
 
 export const WithNoQualityInfo: Story = {
-  render: () => <StatefulPopover track={trackWithNoQualityInfo} />,
+  render: () => <PopoverStory track={trackWithNoQualityInfo} />,
 };
 
 export const NoCandidates: Story = {
-  render: () => (
-    <QueueItemPopover track={trackNoCandidates}>
-      <Trigger />
-    </QueueItemPopover>
-  ),
+  render: () => <PopoverStory track={trackNoCandidates} />,
 };

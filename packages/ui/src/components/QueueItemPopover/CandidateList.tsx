@@ -5,15 +5,21 @@ import type { StreamCandidate } from '@nuclearplayer/model';
 import { ScrollableArea } from '../ScrollableArea';
 import { CandidateRow } from './CandidateRow';
 
+type CandidateListLabels = {
+  failed?: string;
+};
+
 type CandidateListProps = {
   candidates: StreamCandidate[];
   selectedId?: string;
+  labels?: CandidateListLabels;
   onSelectCandidate?: (candidateId: string) => void;
 };
 
 export const CandidateList: FC<CandidateListProps> = ({
   candidates,
   selectedId,
+  labels,
   onSelectCandidate,
 }) => (
   <ScrollableArea
@@ -26,6 +32,7 @@ export const CandidateList: FC<CandidateListProps> = ({
         key={candidate.id}
         candidate={candidate}
         isSelected={candidate.id === selectedId}
+        labels={labels}
         onSelect={() => onSelectCandidate?.(candidate.id)}
       />
     ))}

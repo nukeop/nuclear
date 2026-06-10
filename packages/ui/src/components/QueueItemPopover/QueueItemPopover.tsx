@@ -8,10 +8,16 @@ import { StreamQualityInfo } from './StreamQualityInfo';
 import { StreamThumbnail } from './StreamThumbnail';
 import { TrackHeader } from './TrackHeader';
 
+export type QueueItemPopoverLabels = {
+  noCandidates?: string;
+  failed?: string;
+};
+
 type QueueItemPopoverProps = {
   track: Track;
   children: ReactNode;
   className?: string;
+  labels?: QueueItemPopoverLabels;
   onSelectCandidate?: (candidateId: string) => void;
 };
 
@@ -24,6 +30,7 @@ export const QueueItemPopover: FC<QueueItemPopoverProps> = ({
   track,
   children,
   className,
+  labels,
   onSelectCandidate,
 }) => {
   const candidates = track.streamCandidates ?? [];
@@ -46,13 +53,17 @@ export const QueueItemPopover: FC<QueueItemPopoverProps> = ({
         {selected?.stream && <StreamQualityInfo stream={selected.stream} />}
 
         {candidates.length === 0 ? (
-          <div className="text-foreground/50 px-3 py-3 text-center text-xs">
-            No stream candidates
+          <div
+            data-testid="queue-item-popover-empty"
+            className="text-foreground/50 px-3 py-3 text-center text-xs"
+          >
+            {labels?.noCandidates}
           </div>
         ) : (
           <CandidateList
             candidates={candidates}
             selectedId={selected?.id}
+            labels={labels}
             onSelectCandidate={onSelectCandidate}
           />
         )}
