@@ -226,6 +226,7 @@ export class MseController {
     this.isFetching = true;
     this.fetchAndAppendSegment(nextIndex, controller.signal).finally(() => {
       this.isFetching = false;
+      this.handleTimeUpdate(audio);
     });
   }
 

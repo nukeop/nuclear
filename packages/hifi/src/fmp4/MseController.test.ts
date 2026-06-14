@@ -395,6 +395,33 @@ describe('MseController', () => {
     expect(mediaSource.endOfStream).toHaveBeenCalled();
   });
 
+  it('chain-fetches all remaining segments after a single handleTimeUpdate call', async () => {
+    const controller = new MseController();
+    const mediaSource = await initController(controller);
+
+    fetchMock.mockClear();
+
+    const sourceBuffer = mediaSource.sourceBuffers[0];
+    sourceBuffer.buffered = new MockTimeRanges();
+    sourceBuffer.buffered.addRange(0, 60);
+
+    Object.defineProperty(audio, 'currentTime', {
+      value: 50,
+      writable: true,
+      configurable: true,
+    });
+
+    controller.handleTimeUpdate(audio);
+    await flushMicrotasks();
+
+    const segmentFetchCalls = fetchMock.mock.calls.filter((call: unknown[]) => {
+      const opts = call[1] as { headers?: { Range?: string } } | undefined;
+      return opts?.headers?.Range && opts.headers.Range !== 'bytes=0-8191';
+    });
+
+    expect(segmentFetchCalls.length).toBe(2);
+  });
+
   it('fetches next segment on timeupdate when buffer is low', async () => {
     const controller = new MseController();
     const mediaSource = await initController(controller);
