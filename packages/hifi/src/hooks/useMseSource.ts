@@ -24,7 +24,7 @@ export const useMseSource = (
 
     const controller = new MseController();
     controllerRef.current = controller;
-    controller.init(audio, src.url, src.durationSeconds!, src.codec, onError);
+    controller.init(audio, src.url, src.codec, onError);
 
     const onTimeUpdate = () => controller.handleTimeUpdate(audio);
     const onSeeking = () => controller.handleSeeking(audio);
@@ -38,5 +38,5 @@ export const useMseSource = (
       controller.destroy(audio);
       controllerRef.current = null;
     };
-  }, [src.url, src.protocol, src.durationSeconds, isReady, audioRef, onError]);
+  }, [src.url, src.protocol, isReady, audioRef, onError]);
 };
