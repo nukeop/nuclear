@@ -12,6 +12,7 @@ import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 
 let activeController: AbortController | null = null;
+let activeItemId: string | null = null;
 let cachedStreamServerPort: number | null = null;
 
 const getStreamServerPort = async (): Promise<number> => {
@@ -168,8 +169,16 @@ const resolveStream = async (
   t: TFunction,
   autoPlay: boolean,
 ): Promise<void> => {
-  activeController?.abort();
+  if (activeController) {
+    activeController.abort();
+    if (activeItemId) {
+      useQueueStore
+        .getState()
+        .updateItemState(activeItemId, { status: undefined, error: undefined });
+    }
+  }
   activeController = new AbortController();
+  activeItemId = item.id;
   const { signal } = activeController;
 
   const { updateItemState } = useQueueStore.getState();
@@ -206,6 +215,8 @@ const resolveStream = async (
 
   const audioSource = await buildAudioSource(resolvedCandidate);
   setSrc(audioSource);
+  updateItemState(item.id, { status: 'success' });
+  activeItemId = null;
   if (autoPlay) {
     play();
   }

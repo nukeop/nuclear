@@ -93,6 +93,25 @@ describe('Sound', () => {
     restore();
   });
 
+  it('plays when status changes from stopped to playing and audio is already buffered', () => {
+    const { restore } = setupAudioContextMock();
+    const source: AudioSource = { url: '/a.mp3', protocol: 'http' };
+
+    const { rerender } = render(<Sound src={source} status="stopped" />);
+
+    const audio = document.querySelector('audio')!;
+    act(() => {
+      fireMediaCanPlay(audio);
+    });
+
+    const { playMock } = resetMediaSpies();
+
+    rerender(<Sound src={source} status="playing" />);
+
+    expect(playMock).toHaveBeenCalled();
+    restore();
+  });
+
   it('plays the new source when the queue auto-advances without an intermediate render', () => {
     const { restore } = setupAudioContextMock();
     const sourceA: AudioSource = { url: '/a.mp3', protocol: 'http' };

@@ -15,7 +15,7 @@ export const usePlaybackStatus = (
   isReady: boolean,
   onError?: (error: Error) => void,
 ) => {
-  const activeSrcRef = useRef<string | null>(null);
+  const activeSrcRef = useRef(srcUrl);
 
   useEffect(() => {
     if (!isReady) {
@@ -59,7 +59,6 @@ export const usePlaybackStatus = (
         return;
       }
       case 'stopped': {
-        activeSrcRef.current = null;
         audio.pause();
         audio.currentTime = 0;
         return;
