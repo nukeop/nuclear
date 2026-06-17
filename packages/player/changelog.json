@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-06-17T00:00",
+    "description": "Navigate to playlists directly from artist pages that have them",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Artists",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-06-14T00:00",
     "description": "Fix the queue getting stuck at the end of some tracks, where playback parked a fraction of a second before the end and never advanced to the next track",
     "type": "fix",
