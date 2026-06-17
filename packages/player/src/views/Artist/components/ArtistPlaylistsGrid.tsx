@@ -4,6 +4,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import { pickArtwork } from '@nuclearplayer/model';
 import { Card, CardGrid, Loader } from '@nuclearplayer/ui';
 
+import { useNavigateToPlaylist } from '../../../hooks/useNavigateToPlaylist';
 import { useArtistPlaylists } from '../hooks/useArtistPlaylists';
 
 type ArtistPlaylistsGridProps = {
@@ -18,6 +19,7 @@ export const ArtistPlaylistsGrid: FC<ArtistPlaylistsGridProps> = ({
   'data-testid': dataTestId,
 }) => {
   const { t } = useTranslation('artist');
+  const navigateToPlaylist = useNavigateToPlaylist();
   const {
     data: playlists,
     isLoading,
@@ -55,6 +57,11 @@ export const ArtistPlaylistsGrid: FC<ArtistPlaylistsGridProps> = ({
           key={playlist.source.id}
           title={playlist.name}
           src={pickArtwork(playlist.artwork, 'cover', 300)?.url}
+          onClick={
+            playlist.source.url
+              ? () => navigateToPlaylist(playlist.source.url!)
+              : undefined
+          }
         />
       ))}
     </CardGrid>

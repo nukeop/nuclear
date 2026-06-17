@@ -5,8 +5,8 @@ import { pickArtwork, PlaylistRef } from '@nuclearplayer/model';
 import type { AttributedResult } from '@nuclearplayer/plugin-sdk';
 import type { CardsRowItem } from '@nuclearplayer/ui';
 
+import { useNavigateToPlaylist } from '../../../hooks/useNavigateToPlaylist';
 import { useDashboardEditorialPlaylists } from '../hooks/useDashboardData';
-import { useNavigateToPlaylist } from '../hooks/useNavigateToPlaylist';
 import { DashboardCardsWidget } from './DashboardCardsWidget';
 
 export const EditorialPlaylistsWidget: FC = () => {

@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 
 import type { PlaylistProvider } from '@nuclearplayer/plugin-sdk';
 
-import { providersHost } from '../../../services/providersHost';
+import { providersHost } from '../services/providersHost';
 
 export const useNavigateToPlaylist = () => {
   const navigate = useNavigate();
