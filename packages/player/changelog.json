@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-06-19T00:00",
+    "description": "We're temporarily switching to nightly yt-dlp due to a regression. This will fix playlist imports.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-06-17T00:00",
     "description": "Navigate to playlists directly from artist pages that have them",
     "type": "feature",
