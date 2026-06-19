@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-06-19T00:00",
+    "description": "Fix HLS playback failing on Windows with Chromium 147+",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-06-19T00:00",
     "description": "We're temporarily switching to nightly yt-dlp due to a regression. This will fix playlist imports.",
     "type": "fix",
     "contributors": ["nukeop"],
