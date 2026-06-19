@@ -40,8 +40,20 @@ export const useHlsSource = (
       hlsRef.current = null;
     }
 
-    if (canPlayNativeHls(audio)) {
-      // Mac & Linux path (WebKit / WebKitGTK)
+    if (Hls.isSupported()) {
+      // Use hls.js wherever MSE is available (Chrome, Chromium,
+      // WebView2, Firefox, etc.). Chrome 147+ returns "maybe" for the native
+      // HLS canPlayType check, but its built-in HLS demuxer is broken and
+      // throws DEMUXER_ERROR_COULD_NOT_PARSE, so hls.js must take priority.
+      // First reported on Discord
+      // Reference: https://github.com/video-dev/hls.js/issues/7827
+      const hls = new Hls();
+      hls.attachMedia(audio);
+      hls.loadSource(src.url);
+      hlsRef.current = hls;
+    } else if (canPlayNativeHls(audio)) {
+      // Fallback: native HLS for environments where hls.js can't run but the
+      // browser handles HLS natively (Safari / iOS WebKit).
       // WebKit has a known quirk where assigning a new HLS URL to an audio
       // element that already has one loaded leaves it in a half-broken state:
       // loadstart fires but canplay never does, so playback silently stalls.
@@ -51,16 +63,6 @@ export const useHlsSource = (
       audio.load();
       audio.src = src.url;
       audio.load();
-      return;
-    }
-
-    if (Hls.isSupported()) {
-      // Windows path
-      // Uses HLS.js
-      const hls = new Hls();
-      hls.attachMedia(audio);
-      hls.loadSource(src.url);
-      hlsRef.current = hls;
     }
   }, [src, isReady, audioRef]);
 
