@@ -5,12 +5,13 @@ import { useCoreSetting } from './useCoreSetting';
 
 export const useFramelessWindow = () => {
   const [frameless] = useCoreSetting<boolean>('appearance.framelessWindow');
+  const [customTitleBar] = useCoreSetting<boolean>('appearance.customTitleBar');
 
   useEffect(() => {
-    if (frameless !== undefined) {
+    if (!customTitleBar && frameless !== undefined) {
       getCurrentWindow().setDecorations(!frameless);
     }
-  }, [frameless]);
+  }, [frameless, customTitleBar]);
 
   return Boolean(frameless);
 };

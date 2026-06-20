@@ -317,6 +317,14 @@
       "framelessWindow": {
         "title": "Frameless window",
         "description": "Hide the native title bar. Drag the top bar to move the window."
+      },
+      "customTitleBar": {
+        "title": "Custom title bar",
+        "description": "Replace the native title bar with a styled one that matches the app."
+      },
+      "titleBarStyle": {
+        "title": "Title bar style",
+        "description": "Choose the visual style for the custom title bar controls."
       }
     },
     "playback": {
@@ -485,6 +493,12 @@
       "tooltip": "Nuclear Jam remote control",
       "instructions": "Scan the QR code or copy the address below to connect to Nuclear Jam"
     }
+  },
+  "titleBar": {
+    "title": "Nuclear Music Player",
+    "minimize": "Minimize",
+    "maximize": "Maximize",
+    "close": "Close"
   },
   "changelog": {
     "title": "What's New",

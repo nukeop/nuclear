@@ -25,6 +25,7 @@ import {
   QueueHeaderActions,
 } from '../components/ConnectedQueuePanel';
 import { ConnectedSettingsModal } from '../components/ConnectedSettingsModal';
+import { ConnectedTitleBar } from '../components/ConnectedTitleBar';
 import { ConnectedTopBar } from '../components/ConnectedTopBar';
 import { DevTools } from '../components/DevTools';
 import { FlatpakWarningBanner } from '../components/FlatpakWarningBanner';
@@ -48,11 +49,11 @@ const RootComponent = () => {
   } = useLayoutStore();
   const openSettings = useSettingsModalStore((state) => state.open);
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
-
   return (
     <PlayerShell onContextMenu={(e) => e.preventDefault()}>
       <GlobalShortcuts />
       <div>
+        <ConnectedTitleBar />
         <FlatpakWarningBanner />
         <ConnectedTopBar />
       </div>
