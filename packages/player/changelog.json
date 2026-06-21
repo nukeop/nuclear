@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-06-21T00:00",
+    "description": "Custom title bar for frameless window mode. Enable in Settings -> Appearance",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-06-19T00:00",
     "description": "Fix HLS playback failing on Windows with Chromium 147+",
     "type": "fix",
