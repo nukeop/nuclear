@@ -28,7 +28,11 @@ pub(super) struct BridgeErrorResponse(pub(super) BridgeError);
 impl IntoResponse for BridgeErrorResponse {
     fn into_response(self) -> Response {
         let message = self.0.to_string();
-        (StatusCode::INTERNAL_SERVER_ERROR, Json(json!({ "error": message }))).into_response()
+        (
+            StatusCode::INTERNAL_SERVER_ERROR,
+            Json(json!({ "error": message })),
+        )
+            .into_response()
     }
 }
 
@@ -59,7 +63,10 @@ async fn get_settings(State(state): State<AppState>) -> Result<Json<Value>, Brid
     let (shuffle, repeat, discovery, language, dark, theme_id) = tokio::try_join!(
         bridge.call("Settings.getGlobal", json!({"id": "core.playback.shuffle"})),
         bridge.call("Settings.getGlobal", json!({"id": "core.playback.repeat"})),
-        bridge.call("Settings.getGlobal", json!({"id": "core.playback.discovery"})),
+        bridge.call(
+            "Settings.getGlobal",
+            json!({"id": "core.playback.discovery"})
+        ),
         bridge.call("Settings.getGlobal", json!({"id": "core.general.language"})),
         bridge.call("Settings.getGlobal", json!({"id": "core.theme.dark"})),
         bridge.call("Settings.getGlobal", json!({"id": "core.theme.active.id"})),

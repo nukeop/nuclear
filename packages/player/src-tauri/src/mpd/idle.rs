@@ -15,7 +15,10 @@ pub struct IdleWait {
 
 impl IdleWait {
     pub fn new(receiver: broadcast::Receiver<BridgeNotification>, subsystems: Vec<String>) -> Self {
-        Self { receiver, subsystems }
+        Self {
+            receiver,
+            subsystems,
+        }
     }
 
     pub async fn wait(&mut self) -> IdleResult {

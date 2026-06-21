@@ -5,7 +5,10 @@ use tauri::{AppHandle, Emitter};
 use tokio::sync::{broadcast, oneshot, Mutex};
 use uuid::Uuid;
 
-use super::types::{BridgeError, BridgeNotification, BridgeRequest, BridgeResponse, BridgeResponseBody, BRIDGE_EVENT};
+use super::types::{
+    BridgeError, BridgeNotification, BridgeRequest, BridgeResponse, BridgeResponseBody,
+    BRIDGE_EVENT,
+};
 
 type PendingRequests = Arc<Mutex<HashMap<String, oneshot::Sender<BridgeResponse>>>>;
 

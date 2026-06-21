@@ -1,6 +1,6 @@
 use tokio::io::{AsyncBufReadExt, AsyncWriteExt, BufReader};
-use tokio::net::TcpStream;
 use tokio::net::tcp::{OwnedReadHalf, OwnedWriteHalf};
+use tokio::net::TcpStream;
 
 use crate::bridge::bridge::Bridge;
 
@@ -31,7 +31,12 @@ impl Connection {
         let (read_half, writer) = stream.into_split();
         let reader = BufReader::new(read_half);
 
-        Connection { reader, writer, bridge, peer }
+        Connection {
+            reader,
+            writer,
+            bridge,
+            peer,
+        }
     }
 
     async fn write_ok(&mut self) -> std::io::Result<()> {
@@ -46,9 +51,7 @@ impl Connection {
     }
 
     async fn write_error(&mut self, error: &MpdError) -> std::io::Result<()> {
-        self.writer
-            .write_all(&protocol::format_error(error))
-            .await
+        self.writer.write_all(&protocol::format_error(error)).await
     }
 
     async fn read_line(&mut self, buf: &mut String) -> std::io::Result<usize> {
@@ -194,7 +197,6 @@ impl Connection {
         Ok(())
     }
 }
-
 
 pub async fn handle_connection(bridge: Bridge, stream: TcpStream) -> std::io::Result<()> {
     let mut conn = Connection::new(stream, bridge);
