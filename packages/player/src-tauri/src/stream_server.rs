@@ -32,8 +32,7 @@ fn decode_stream_url(encoded: &str) -> Result<String, String> {
         .decode(encoded)
         .map_err(|err| format!("Invalid base64 URL: {err}"))?;
 
-    let url =
-        String::from_utf8(bytes).map_err(|err| format!("Invalid UTF-8 in URL: {err}"))?;
+    let url = String::from_utf8(bytes).map_err(|err| format!("Invalid UTF-8 in URL: {err}"))?;
 
     if !url.starts_with("http://") && !url.starts_with("https://") {
         return Err("Invalid URL scheme. Expected http(s)".to_string());
@@ -43,10 +42,7 @@ fn decode_stream_url(encoded: &str) -> Result<String, String> {
 }
 
 fn cors_headers(headers: &mut HeaderMap) {
-    headers.insert(
-        header::ACCESS_CONTROL_ALLOW_ORIGIN,
-        "*".parse().unwrap(),
-    );
+    headers.insert(header::ACCESS_CONTROL_ALLOW_ORIGIN, "*".parse().unwrap());
     headers.insert(
         header::ACCESS_CONTROL_ALLOW_METHODS,
         "GET, OPTIONS, HEAD".parse().unwrap(),
@@ -99,10 +95,7 @@ async fn proxy_stream(
         Ok(response) => response,
         Err(err) => {
             log::error!("[StreamServer] Request failed: {err}");
-            return error_response(
-                StatusCode::BAD_GATEWAY,
-                format!("Failed to fetch: {err}"),
-            );
+            return error_response(StatusCode::BAD_GATEWAY, format!("Failed to fetch: {err}"));
         }
     };
 
@@ -152,14 +145,15 @@ async fn start_server(client: Arc<Client>, ready: oneshot::Sender<Result<u16, St
         )
         .with_state(client);
 
-    let tcp_listener = match crate::net::bind_first_available_port("127.0.0.1", PORT_START, PORT_END).await {
-        Ok(listener) => listener,
-        Err(message) => {
-            log::error!("Failed to bind stream server: {message}");
-            let _ = ready.send(Err(message));
-            return;
-        }
-    };
+    let tcp_listener =
+        match crate::net::bind_first_available_port("127.0.0.1", PORT_START, PORT_END).await {
+            Ok(listener) => listener,
+            Err(message) => {
+                log::error!("Failed to bind stream server: {message}");
+                let _ = ready.send(Err(message));
+                return;
+            }
+        };
 
     let bound_port = tcp_listener.local_addr().unwrap().port();
     log::info!("Stream proxy listening on http://127.0.0.1:{bound_port}");

@@ -5,7 +5,8 @@ use std::path::{Path, PathBuf};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use tauri::{command, AppHandle, Manager};
 
-const RELEASE_BASE_URL: &str = "https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download";
+const RELEASE_BASE_URL: &str =
+    "https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download";
 const UPDATE_CHECK_INTERVAL_SECS: u64 = 3600;
 
 #[derive(Serialize, Deserialize)]

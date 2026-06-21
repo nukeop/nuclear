@@ -86,9 +86,7 @@ struct YtdlpJson {
 fn run_ytdlp(args: &[&str]) -> Result<String, String> {
     let program = get_ytdlp_path()?;
     let mut cmd = Command::new(&program);
-    cmd.args(args)
-        .stdout(Stdio::piped())
-        .stderr(Stdio::piped());
+    cmd.args(args).stdout(Stdio::piped()).stderr(Stdio::piped());
 
     #[cfg(target_os = "windows")]
     {

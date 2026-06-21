@@ -245,8 +245,20 @@ async fn getvol(bridge: &Bridge) -> CommandResult {
 }
 
 async fn seek(bridge: &Bridge, position: u32, time: f64) -> CommandResult {
-    call(bridge, "seek", "Queue.goToIndex", json!({ "index": position })).await?;
-    call(bridge, "seek", "Playback.seekTo", json!({ "seconds": time })).await?;
+    call(
+        bridge,
+        "seek",
+        "Queue.goToIndex",
+        json!({ "index": position }),
+    )
+    .await?;
+    call(
+        bridge,
+        "seek",
+        "Playback.seekTo",
+        json!({ "seconds": time }),
+    )
+    .await?;
     Ok(MpdResponse { fields: Vec::new() })
 }
 
@@ -267,13 +279,23 @@ async fn seekcur(bridge: &Bridge, raw_time: &str) -> CommandResult {
             let offset = offset_str.parse::<f64>().map_err(|_| parse_err())?;
             let state = call(bridge, "seekcur", "Playback.getState", json!({})).await?;
             let current = state["seek"].as_f64().unwrap_or(0.0);
-            let signed_offset = if raw_time.starts_with('-') { -offset } else { offset };
+            let signed_offset = if raw_time.starts_with('-') {
+                -offset
+            } else {
+                offset
+            };
             (current + signed_offset).max(0.0)
         }
         None => raw_time.parse::<f64>().map_err(|_| parse_err())?,
     };
 
-    call(bridge, "seekcur", "Playback.seekTo", json!({ "seconds": time })).await?;
+    call(
+        bridge,
+        "seekcur",
+        "Playback.seekTo",
+        json!({ "seconds": time }),
+    )
+    .await?;
     Ok(MpdResponse { fields: Vec::new() })
 }
 

@@ -97,11 +97,8 @@ pub async fn mpd_start(
     log::info!(target: "mpd", "Starting server");
     let ct = CancellationToken::new();
     let (ready_tx, ready_rx) = oneshot::channel();
-    let task = tauri::async_runtime::spawn(start_server(
-        bridge.inner().clone(),
-        ct.clone(),
-        ready_tx,
-    ));
+    let task =
+        tauri::async_runtime::spawn(start_server(bridge.inner().clone(), ct.clone(), ready_tx));
 
     match ready_rx.await {
         Ok(Ok(port)) => {

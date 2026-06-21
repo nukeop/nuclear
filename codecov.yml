@@ -26,7 +26,7 @@ parsers:
     enable_partials: yes
 
 comment:
-  layout: "condensed_header, diff, flags, components, condensed_files, condensed_footer"
+  layout: "condensed_header, diff, flags, components, condensed_files"
   require_changes: true
   behavior: default
 

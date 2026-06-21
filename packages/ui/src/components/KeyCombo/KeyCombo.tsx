@@ -1,19 +1,32 @@
 import { FC } from 'react';
 
+import { Platform, usePlatform } from '../../providers/PlatformProvider';
 import { cn } from '../../utils';
-import { isMac } from '../../utils/platform';
 
-const KEY_LABELS: Record<string, string> = {
-  mod: isMac() ? '⌘' : 'Ctrl',
-  meta: isMac() ? '⌘' : 'Win',
+const PLATFORM_KEY_LABELS: Record<string, Record<string, string>> = {
+  mac: {
+    mod: '⌘',
+    meta: '⌘',
+    alt: '⌥',
+    shift: '⇧',
+    backspace: '⌫',
+    delete: '⌦',
+  },
+  default: {
+    mod: 'Ctrl',
+    meta: 'Win',
+    alt: 'Alt',
+    shift: 'Shift',
+    backspace: 'Backspace',
+    delete: 'Del',
+  },
+};
+
+const COMMON_KEY_LABELS: Record<string, string> = {
   ctrl: 'Ctrl',
-  alt: isMac() ? '⌥' : 'Alt',
-  shift: isMac() ? '⇧' : 'Shift',
   space: 'Space',
   enter: 'Enter',
   tab: 'Tab',
-  backspace: isMac() ? '⌫' : 'Backspace',
-  delete: isMac() ? '⌦' : 'Del',
   escape: 'Esc',
   comma: ',',
   period: '.',
@@ -32,8 +45,18 @@ const KEY_LABELS: Record<string, string> = {
   down: '↓',
 };
 
-const formatKey = (key: string): string =>
-  KEY_LABELS[key.toLowerCase()] ?? (key.length === 1 ? key.toUpperCase() : key);
+const formatKey = (key: string, platform: Platform): string => {
+  const lower = key.toLowerCase();
+  const platformLabels =
+    platform === 'macos'
+      ? PLATFORM_KEY_LABELS.mac
+      : PLATFORM_KEY_LABELS.default;
+  return (
+    platformLabels[lower] ??
+    COMMON_KEY_LABELS[lower] ??
+    (key.length === 1 ? key.toUpperCase() : key)
+  );
+};
 
 type KeyComboProps = {
   shortcut: string;
@@ -41,7 +64,8 @@ type KeyComboProps = {
 };
 
 export const KeyCombo: FC<KeyComboProps> = ({ shortcut, className }) => {
-  const keys = shortcut.split('+').map(formatKey);
+  const platform = usePlatform();
+  const keys = shortcut.split('+').map((key) => formatKey(key, platform));
 
   return (
     <span className={cn('inline-flex items-center gap-1', className)}>

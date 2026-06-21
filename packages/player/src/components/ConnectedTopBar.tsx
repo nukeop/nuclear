@@ -10,6 +10,7 @@ import {
 
 import { useAppVersion } from '../hooks/useAppVersion';
 import { useCanGoForward } from '../hooks/useCanGoForward';
+import { useCoreSetting } from '../hooks/useCoreSetting';
 import { useFramelessWindow } from '../hooks/useFramelessWindow';
 import { ConnectedThemeController } from './ConnectedThemeController';
 import { JamQrCodeButton } from './JamQrCodeButton';
@@ -22,17 +23,22 @@ export const ConnectedTopBar: FC = () => {
   const canGoBack = useCanGoBack();
   const canGoForward = useCanGoForward();
   const frameless = useFramelessWindow();
+  const [isTitleBarEnabled] = useCoreSetting<boolean>(
+    'appearance.customTitleBar',
+  );
 
   return (
     <TopBar draggable={frameless}>
       <div className="flex flex-row items-center gap-4">
-        <Tooltip
-          content={`Nuclear ${version}`}
-          side="bottom"
-          wrapperClassName="flex items-center"
-        >
-          <TopBarLogo />
-        </Tooltip>
+        {!isTitleBarEnabled && (
+          <Tooltip
+            content={`Nuclear ${version}`}
+            side="bottom"
+            wrapperClassName="flex items-center"
+          >
+            <TopBarLogo />
+          </Tooltip>
+        )}
         <TopBarNavigation
           onBack={() => router.history.back()}
           onForward={() => router.history.forward()}

@@ -3,7 +3,7 @@ import { useRecordHotkeys } from 'react-hotkeys-hook';
 import { toast } from 'sonner';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { isMac } from '@nuclearplayer/ui';
+import { Platform, usePlatform } from '@nuclearplayer/ui';
 
 import { COMMANDS } from '../../shortcuts/commands';
 import { useShortcutsStore } from '../../stores/shortcutsStore';
@@ -18,11 +18,14 @@ const RECORDED_KEY_TO_SHORTCUT: Record<string, string> = {
 
 const MODIFIERS = new Set(['ctrl', 'meta', 'shift', 'alt']);
 
-const normalizeRecordedKeys = (keys: Set<string>): string => {
+const normalizeRecordedKeys = (
+  keys: Set<string>,
+  platform: Platform,
+): string => {
   const modifiers: string[] = [];
   const rest: string[] = [];
 
-  const modKey = isMac() ? 'meta' : 'ctrl';
+  const modKey = platform === 'macos' ? 'meta' : 'ctrl';
 
   for (const key of keys) {
     if (key === modKey) {
@@ -72,6 +75,7 @@ type UseShortcutRecorderResult = {
 export const useShortcutRecorder = (
   commandId: string,
 ): UseShortcutRecorderResult => {
+  const platform = usePlatform();
   const { t } = useTranslation('preferences');
   const setShortcut = useShortcutsStore((state) => state.setShortcut);
   const setRecording = useShortcutsStore((state) => state.setRecording);
@@ -83,7 +87,7 @@ export const useShortcutRecorder = (
         return;
       }
 
-      const normalized = normalizeRecordedKeys(recorded);
+      const normalized = normalizeRecordedKeys(recorded, platform);
 
       // Shortcuts don't support escape. It's used to cancel recording
       if (normalized === 'escape') {
@@ -105,7 +109,7 @@ export const useShortcutRecorder = (
       stop();
       setRecording(false);
     },
-    [commandId, setShortcut, setRecording, stop, t],
+    [commandId, platform, setShortcut, setRecording, stop, t],
   );
 
   useEffect(() => {

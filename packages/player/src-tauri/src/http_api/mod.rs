@@ -77,25 +77,25 @@ async fn start_server(
 ) {
     let router = routes::router(bridge, events_tx);
 
-    let tcp_listener = match crate::net::bind_first_available_port(
-        "0.0.0.0",
-        REMOTE_PORT_START,
-        REMOTE_PORT_END,
-    )
-    .await
-    {
-        Ok(listener) => listener,
-        Err(message) => {
-            log::error!("Failed to bind HTTP API server: {message}");
-            let _ = ready.send(Err(message));
-            return;
-        }
-    };
+    let tcp_listener =
+        match crate::net::bind_first_available_port("0.0.0.0", REMOTE_PORT_START, REMOTE_PORT_END)
+            .await
+        {
+            Ok(listener) => listener,
+            Err(message) => {
+                log::error!("Failed to bind HTTP API server: {message}");
+                let _ = ready.send(Err(message));
+                return;
+            }
+        };
 
     let bound_port = tcp_listener.local_addr().unwrap().port();
     let lan_address = crate::net::local_lan_ip().map(|ip| ip.to_string());
     log::info!("HTTP API server listening on http://0.0.0.0:{bound_port}/api/health");
-    let _ = ready.send(Ok(HttpApiStartResult { port: bound_port, lan_address }));
+    let _ = ready.send(Ok(HttpApiStartResult {
+        port: bound_port,
+        lan_address,
+    }));
 
     let _ = axum::serve(tcp_listener, router)
         .with_graceful_shutdown(async move {
@@ -106,7 +106,11 @@ async fn start_server(
     log::info!("HTTP API server stopped");
 }
 
-fn listen_for_event(app_handle: &AppHandle, kind: RemoteEventKind, tx: &broadcast::Sender<RemoteEvent>) {
+fn listen_for_event(
+    app_handle: &AppHandle,
+    kind: RemoteEventKind,
+    tx: &broadcast::Sender<RemoteEvent>,
+) {
     let tx = tx.clone();
     app_handle.listen(kind.tauri_event_name(), move |event| {
         let _ = tx.send(RemoteEvent {
@@ -135,7 +139,10 @@ pub async fn http_api_start(
     if let Some(server) = guard.as_ref() {
         log::info!("HTTP API server already running on port {}", server.port);
         let lan_address = crate::net::local_lan_ip().map(|ip| ip.to_string());
-        return Ok(HttpApiStartResult { port: server.port, lan_address });
+        return Ok(HttpApiStartResult {
+            port: server.port,
+            lan_address,
+        });
     }
 
     log::info!("Starting HTTP API server");

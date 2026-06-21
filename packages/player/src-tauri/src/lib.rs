@@ -2,10 +2,10 @@ pub mod bridge;
 pub mod commands;
 pub mod discord;
 pub mod http;
+pub mod http_api;
 pub mod logging;
 pub mod mcp;
 pub mod mpd;
-pub mod http_api;
 pub mod net;
 mod setup;
 pub mod stream_server;
@@ -32,6 +32,7 @@ pub fn run() {
     let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
 
     let mut builder = tauri::Builder::default()
+        .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())

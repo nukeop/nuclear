@@ -52,9 +52,19 @@ vi.mock('esbuild-wasm/esbuild.wasm?url', () => ({
   default: '/esbuild.wasm',
 }));
 
+vi.mock('@tauri-apps/plugin-os', () => ({
+  platform: () => 'linux',
+}));
+
 vi.mock('@tauri-apps/api/window', () => ({
   getCurrentWindow: () => ({
     setDecorations: vi.fn(),
+    setMinimizable: vi.fn(),
+    minimize: vi.fn(),
+    toggleMaximize: vi.fn(),
+    close: vi.fn(),
+    startDragging: vi.fn(),
+    isMaximized: vi.fn().mockResolvedValue(false),
   }),
 }));
 
