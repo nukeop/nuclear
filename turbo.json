@@ -31,6 +31,13 @@
       "cache": false,
       "persistent": true
     },
+    "@nuclearplayer/player#dev": {
+      "dependsOn": [
+        "@nuclearplayer/player#build:frontend"
+      ],
+      "cache": false,
+      "persistent": true
+    },
     "lint": {},
     "lint:fix": {},
     "test": {
