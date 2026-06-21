@@ -13,6 +13,13 @@ export type TitleBarLabels = {
   close: string;
 };
 
+export type WindowControlsProps = {
+  onMinimize: () => void;
+  onMaximize: () => void;
+  onClose: () => void;
+  labels: TitleBarLabels;
+};
+
 type TitleBarProps = {
   title: string;
   onMinimize: () => void;
@@ -57,6 +64,7 @@ export const TitleBar: FC<TitleBarProps> = ({
 
   return (
     <div
+      data-testid="title-bar"
       onMouseDown={handleMouseDown}
       className={cn(
         'border-border bg-background relative flex h-6 items-center border-b-2 select-none',

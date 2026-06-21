@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { MouseEvent, useCallback } from 'react';
 
 type UseTitleBarDragOptions = {
   onMaximize: () => void;
@@ -10,7 +10,7 @@ export const useTitleBarDrag = ({
   onStartDrag,
 }: UseTitleBarDragOptions) =>
   useCallback(
-    (event: React.MouseEvent) => {
+    (event: MouseEvent) => {
       if (
         (event.target as HTMLElement).closest('button') ||
         event.buttons !== 1

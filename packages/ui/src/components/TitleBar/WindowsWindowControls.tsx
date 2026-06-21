@@ -1,22 +1,18 @@
 import { Minus, Square, X } from 'lucide-react';
 import { FC } from 'react';
 
-import { TitleBarLabels } from './TitleBar';
+import { WindowControlsProps } from './TitleBar';
 
-type WindowsWindowControlsProps = {
-  onMinimize: () => void;
-  onMaximize: () => void;
-  onClose: () => void;
-  labels: TitleBarLabels;
-};
-
-export const WindowsWindowControls: FC<WindowsWindowControlsProps> = ({
+export const WindowsWindowControls: FC<WindowControlsProps> = ({
   onMinimize,
   onMaximize,
   onClose,
   labels,
 }) => (
-  <div className="flex h-full items-center">
+  <div
+    data-testid="windows-window-controls"
+    className="flex h-full items-center"
+  >
     <button
       onClick={onMinimize}
       title={labels.minimize}

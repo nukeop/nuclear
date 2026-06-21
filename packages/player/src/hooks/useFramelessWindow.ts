@@ -19,6 +19,7 @@ export const useFramelessWindow = () => {
 
     if (!customTitleBar && frameless !== undefined) {
       window.setDecorations(!frameless);
+      window.setMinimizable(true);
     }
   }, [frameless, customTitleBar]);
 

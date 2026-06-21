@@ -3,9 +3,11 @@
 exports[`TitleBar > (Snapshot) renders Mac variant 1`] = `
 <div
   class="border-border bg-background relative flex h-6 items-center border-b-2 select-none justify-start"
+  data-testid="title-bar"
 >
   <div
     class="group flex items-center gap-1.5 pl-3"
+    data-testid="mac-window-controls"
   >
     <button
       class="bg-accent-red outline-foreground h-3 w-3 rounded-full opacity-80 outline-2 group-hover:opacity-100"
@@ -21,14 +23,11 @@ exports[`TitleBar > (Snapshot) renders Mac variant 1`] = `
     />
   </div>
   <span
-    class="text-foreground font-heading text-md pointer-events-none absolute inset-x-0 flex flex-col text-center font-medium"
+    class="text-foreground font-heading text-md pointer-events-none absolute inset-x-0 flex text-center font-medium"
   >
     <span
-      class="align-center flex w-full items-center gap-2"
+      class="flex w-full items-center justify-center gap-2"
     >
-      <span
-        class="flex-1"
-      />
       <span
         class="ml-0.5 dark:hidden"
       >
@@ -74,9 +73,6 @@ exports[`TitleBar > (Snapshot) renders Mac variant 1`] = `
         </svg>
       </span>
       Nuclear
-      <span
-        class="flex-1"
-      />
     </span>
   </span>
 </div>
@@ -85,9 +81,11 @@ exports[`TitleBar > (Snapshot) renders Mac variant 1`] = `
 exports[`TitleBar > (Snapshot) renders Windows variant 1`] = `
 <div
   class="border-border bg-background relative flex h-6 items-center border-b-2 select-none justify-end"
+  data-testid="title-bar"
 >
   <div
     class="flex h-full items-center"
+    data-testid="windows-window-controls"
   >
     <button
       class="text-foreground hover:bg-primary hover:text-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
@@ -164,14 +162,11 @@ exports[`TitleBar > (Snapshot) renders Windows variant 1`] = `
     </button>
   </div>
   <span
-    class="text-foreground font-heading text-md pointer-events-none absolute inset-x-0 flex flex-col text-center font-medium"
+    class="text-foreground font-heading text-md pointer-events-none absolute inset-x-0 flex text-center font-medium"
   >
     <span
-      class="align-center flex w-full items-center gap-2"
+      class="flex w-full items-center justify-center gap-2"
     >
-      <span
-        class="flex-1"
-      />
       <span
         class="ml-0.5 dark:hidden"
       >
@@ -217,9 +212,6 @@ exports[`TitleBar > (Snapshot) renders Windows variant 1`] = `
         </svg>
       </span>
       Nuclear
-      <span
-        class="flex-1"
-      />
     </span>
   </span>
 </div>

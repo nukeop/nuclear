@@ -1,21 +1,17 @@
 import { FC } from 'react';
 
-import { TitleBarLabels } from './TitleBar';
+import { WindowControlsProps } from './TitleBar';
 
-type MacWindowControlsProps = {
-  onMinimize: () => void;
-  onMaximize: () => void;
-  onClose: () => void;
-  labels: TitleBarLabels;
-};
-
-export const MacWindowControls: FC<MacWindowControlsProps> = ({
+export const MacWindowControls: FC<WindowControlsProps> = ({
   onMinimize,
   onMaximize,
   onClose,
   labels,
 }) => (
-  <div className="group flex items-center gap-1.5 pl-3">
+  <div
+    data-testid="mac-window-controls"
+    className="group flex items-center gap-1.5 pl-3"
+  >
     <button
       onClick={onClose}
       title={labels.close}

@@ -102,7 +102,7 @@ describe('TitleBar', () => {
 
   it('calls onStartDrag on mousedown on the drag area', async () => {
     const onStartDrag = vi.fn();
-    const { container } = render(
+    render(
       <TitleBar
         title="Nuclear"
         styleOverride="windows"
@@ -114,8 +114,10 @@ describe('TitleBar', () => {
       />,
     );
 
-    const titleBar = container.firstChild as HTMLElement;
-    fireEvent.mouseDown(titleBar, { buttons: 1, detail: 1 });
+    fireEvent.mouseDown(screen.getByTestId('title-bar'), {
+      buttons: 1,
+      detail: 1,
+    });
     expect(onStartDrag).toHaveBeenCalled();
   });
 });
