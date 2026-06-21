@@ -8,6 +8,10 @@ export const useFramelessWindow = () => {
   const [customTitleBar] = useCoreSetting<boolean>('appearance.customTitleBar');
 
   useEffect(() => {
+    if (customTitleBar) {
+      getCurrentWindow().setDecorations(false);
+    }
+
     if (!customTitleBar && frameless !== undefined) {
       getCurrentWindow().setDecorations(!frameless);
     }
