@@ -8,12 +8,17 @@ export const useFramelessWindow = () => {
   const [customTitleBar] = useCoreSetting<boolean>('appearance.customTitleBar');
 
   useEffect(() => {
+    const window = getCurrentWindow();
+
     if (customTitleBar) {
-      getCurrentWindow().setDecorations(false);
+      window.setDecorations(false);
+      // Removing decorations causes the window to become unminimizable
+      // We need to explicitly add the attribute back
+      window.setMinimizable(true);
     }
 
     if (!customTitleBar && frameless !== undefined) {
-      getCurrentWindow().setDecorations(!frameless);
+      window.setDecorations(!frameless);
     }
   }, [frameless, customTitleBar]);
 
