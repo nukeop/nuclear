@@ -340,7 +340,7 @@ importers:
         version: 9.0.0(react@18.3.1)
       semver:
         specifier: ^7.7.4
-        version: 7.8.4
+        version: 7.8.5
       sonner:
         specifier: ^2.0.7
         version: 2.0.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -799,7 +799,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: ^5.0.6
-        version: 5.0.6(astro@6.4.4(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3))
+        version: 5.0.6(astro@6.4.6(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3))
       '@astrojs/react':
         specifier: ^5.0.3
         version: 5.0.7(@types/node@25.9.2)(@types/react-dom@18.3.7(@types/react@18.3.29))(@types/react@18.3.29)(jiti@2.6.1)(lightningcss@1.32.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tsx@4.21.0)(yaml@2.8.3)
@@ -823,10 +823,10 @@ importers:
         version: 1.2.85
       astro:
         specifier: ^6.0.0
-        version: 6.4.4(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3)
+        version: 6.4.6(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3)
       astro-expressive-code:
         specifier: ^0.42.0
-        version: 0.42.0(astro@6.4.4(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3))
+        version: 0.42.0(astro@6.4.6(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3))
       astro-icon:
         specifier: ^1.1.5
         version: 1.1.5
@@ -1081,12 +1081,12 @@ packages:
     resolution: {integrity: sha512-CuNiSqg7+e1cO/GjffyMOm5Tt2jUF9CWHHnvQ/UkqvtkGfHdgwEC0wpmq7fkN3gxwpRnrAN0WzO3vREKmNolMQ==}
     engines: {node: '>=18'}
 
-  '@clack/core@1.4.1':
-    resolution: {integrity: sha512-FILJa1gGKEFTGZAJE9RpVhrjKz3c3h4ar60dSv6cGuDqufQ84YEIS3GAGvZiN+H6yaLbbvTFNejjCC4tXpZEuw==}
+  '@clack/core@1.4.2':
+    resolution: {integrity: sha512-0Ty/1Gfm+Kb07sXcuESjyKfwEhSy4Ns1AgeEisHb/bDY5fWme0tTeTkU14T1Gmcs17YIjB/teiDe4uaCghbYqQ==}
     engines: {node: '>= 20.12.0'}
 
-  '@clack/prompts@1.5.1':
-    resolution: {integrity: sha512-zccHj2z2oCCO4yrDiRSlFOxWerGqRiysP7a5jPK6uoI9URKAquwY42Dd/iUP8JWHxEzdRe4TlbvZCo8z1/mhrw==}
+  '@clack/prompts@1.6.0':
+    resolution: {integrity: sha512-EYlRokl8szrP9Z25qT5aepMdBjzBvHF9ZEhzIiUBc9guz/T31EqRgvD0QSgZcpE93xiwrr+OkB4nz0BZyF6fSA==}
     engines: {node: '>= 20.12.0'}
 
   '@codecov/bundler-plugin-core@2.0.1':
@@ -3305,8 +3305,8 @@ packages:
   astro-icon@1.1.5:
     resolution: {integrity: sha512-CJYS5nWOw9jz4RpGWmzNQY7D0y2ZZacH7atL2K9DeJXJVaz7/5WrxeyIxO8KASk1jCM96Q4LjRx/F3R+InjJrw==}
 
-  astro@6.4.4:
-    resolution: {integrity: sha512-hVe8tq3lqt/Dr0UyB//yUmQSlHMTU8scTiF/vQddQVahLE4TTaSdH5H0nb7OvRcwo0UmlAO8DWYar4jNaS7H+A==}
+  astro@6.4.6:
+    resolution: {integrity: sha512-48OBTBKR9ctbf+DQxpOuxGl8ebfn59zTuNQMBzptmG/Mi/H8IdfMSbJgGuX1I/4U6g9yazG1p4BHlf4+2hWU4Q==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -5640,8 +5640,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  semver@7.8.4:
-    resolution: {integrity: sha512-rUCObTnP32Q08R2uuIrt7r9PlEonuTmtuXYcW6s5kjdlj3xbnwe+21yXptAUYcMAABLkYYTtnmzb3w3EDZfueA==}
+  semver@7.8.5:
+    resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -5736,8 +5736,8 @@ packages:
     resolution: {integrity: sha512-stxByr12oeeOyY2BlviTNQlYV5xOj47GirPr4yA1hE9JCtxfQN0+tVbkxwCtYDQWhEKWFHsEK48ORg5jrouCAg==}
     engines: {node: '>=20'}
 
-  smol-toml@1.6.1:
-    resolution: {integrity: sha512-dWUG8F5sIIARXih1DTaQAX4SsiTXhInKf1buxdY9DIg4ZYPZK5nGM1VRIYmEbDbsHt7USo99xSLFu5Q1IqTmsg==}
+  smol-toml@1.7.0:
+    resolution: {integrity: sha512-aqVvWoyO21L23mb+drl4RmMXbf6N7FdHjAhTRA9ZBL7apWBgfWC16KjrASI+1p9GAroljyMHj6fK67i0UiTNvQ==}
     engines: {node: '>= 18'}
 
   snake-case@3.0.4:
@@ -6698,7 +6698,7 @@ snapshots:
       picomatch: 4.0.4
       retext-smartypants: 6.2.0
       shiki: 4.2.0
-      smol-toml: 1.6.1
+      smol-toml: 1.7.0
       unified: 11.0.5
 
   '@astrojs/internal-helpers@0.9.1':
@@ -6748,7 +6748,7 @@ snapshots:
       remark-smartypants: 3.0.2
       retext-smartypants: 6.2.0
       shiki: 4.2.0
-      smol-toml: 1.6.1
+      smol-toml: 1.7.0
       unified: 11.0.5
       unist-util-remove-position: 5.0.0
       unist-util-visit: 5.1.0
@@ -6779,12 +6779,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@5.0.6(astro@6.4.4(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3))':
+  '@astrojs/mdx@5.0.6(astro@6.4.6(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3))':
     dependencies:
       '@astrojs/markdown-remark': 7.1.2
       '@mdx-js/mdx': 3.1.1
       acorn: 8.16.0
-      astro: 6.4.4(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3)
+      astro: 6.4.6(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3)
       es-module-lexer: 2.1.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -6981,14 +6981,14 @@ snapshots:
     dependencies:
       fontkitten: 1.0.3
 
-  '@clack/core@1.4.1':
+  '@clack/core@1.4.2':
     dependencies:
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
 
-  '@clack/prompts@1.5.1':
+  '@clack/prompts@1.6.0':
     dependencies:
-      '@clack/core': 1.4.1
+      '@clack/core': 1.4.2
       fast-string-width: 3.0.2
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
@@ -6998,7 +6998,7 @@ snapshots:
       '@actions/core': 3.0.1
       '@actions/github': 9.1.1
       chalk: 4.1.2
-      semver: 7.8.4
+      semver: 7.8.5
       unplugin: 1.16.1
       zod: 3.25.76
 
@@ -7344,7 +7344,7 @@ snapshots:
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.7
       prettier: 3.8.3
-      semver: 7.8.4
+      semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
 
@@ -8900,7 +8900,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.59.3
       debug: 4.4.3
       minimatch: 10.2.5
-      semver: 7.8.4
+      semver: 7.8.5
       tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@5.9.3)
       typescript: 5.9.3
@@ -9256,9 +9256,9 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-expressive-code@0.42.0(astro@6.4.4(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3)):
+  astro-expressive-code@0.42.0(astro@6.4.6(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3)):
     dependencies:
-      astro: 6.4.4(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3)
+      astro: 6.4.6(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3)
       rehype-expressive-code: 0.42.0
 
   astro-icon@1.1.5:
@@ -9269,14 +9269,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro@6.4.4(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3):
+  astro@6.4.6(@types/node@25.9.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.61.0)(tsx@4.21.0)(yaml@2.8.3):
     dependencies:
       '@astrojs/compiler': 4.0.0
       '@astrojs/internal-helpers': 0.10.0
       '@astrojs/markdown-remark': 7.2.0
       '@astrojs/telemetry': 3.3.2
       '@capsizecss/unpack': 4.0.1
-      '@clack/prompts': 1.5.1
+      '@clack/prompts': 1.6.0
       '@oslojs/encoding': 1.1.0
       '@rollup/pluginutils': 5.4.0(rollup@4.61.0)
       aria-query: 5.3.2
@@ -9309,9 +9309,9 @@ snapshots:
       piccolore: 0.1.3
       picomatch: 4.0.4
       rehype: 13.0.2
-      semver: 7.8.4
+      semver: 7.8.5
       shiki: 4.2.0
-      smol-toml: 1.6.1
+      smol-toml: 1.7.0
       svgo: 4.0.1
       tinyclip: 0.1.14
       tinyexec: 1.2.4
@@ -11018,7 +11018,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.8.4
+      semver: 7.8.5
 
   markdown-extensions@2.0.0: {}
 
@@ -12253,7 +12253,7 @@ snapshots:
 
   semver@7.7.4: {}
 
-  semver@7.8.4: {}
+  semver@7.8.5: {}
 
   seroval-plugins@1.3.3(seroval@1.3.2):
     dependencies:
@@ -12293,7 +12293,7 @@ snapshots:
     dependencies:
       '@img/colour': 1.1.0
       detect-libc: 2.1.2
-      semver: 7.8.4
+      semver: 7.8.5
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.34.5
       '@img/sharp-darwin-x64': 0.34.5
@@ -12390,7 +12390,7 @@ snapshots:
       ansi-styles: 6.2.3
       is-fullwidth-code-point: 5.1.0
 
-  smol-toml@1.6.1: {}
+  smol-toml@1.7.0: {}
 
   snake-case@3.0.4:
     dependencies:
@@ -12439,7 +12439,7 @@ snapshots:
       esbuild: 0.27.7
       open: 10.2.0
       recast: 0.23.11
-      semver: 7.8.4
+      semver: 7.8.5
       use-sync-external-store: 1.6.0(react@18.3.1)
       ws: 8.20.0
     optionalDependencies:
@@ -12463,7 +12463,7 @@ snapshots:
       esbuild: 0.27.7
       open: 10.2.0
       recast: 0.23.11
-      semver: 7.8.4
+      semver: 7.8.5
       use-sync-external-store: 1.6.0(react@19.2.5)
       ws: 8.20.0
     optionalDependencies:
@@ -12753,7 +12753,7 @@ snapshots:
 
   typescript-auto-import-cache@0.3.6:
     dependencies:
-      semver: 7.8.4
+      semver: 7.8.5
 
   typescript-eslint@8.59.3(eslint@10.5.0(jiti@2.6.1))(typescript@5.9.3):
     dependencies:
@@ -13052,7 +13052,7 @@ snapshots:
   volar-service-typescript@0.0.70(@volar/language-service@2.4.28):
     dependencies:
       path-browserify: 1.0.1
-      semver: 7.8.4
+      semver: 7.8.5
       typescript-auto-import-cache: 0.3.6
       vscode-languageserver-textdocument: 1.0.12
       vscode-nls: 5.2.0
