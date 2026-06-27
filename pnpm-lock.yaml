@@ -301,7 +301,7 @@ importers:
         version: 3.7.2
       esbuild-wasm:
         specifier: ^0.28.0
-        version: 0.28.0
+        version: 0.28.1
       immer:
         specifier: ^11.0.0
         version: 11.1.8
@@ -3979,8 +3979,8 @@ packages:
   esast-util-from-js@2.0.1:
     resolution: {integrity: sha512-8Ja+rNJ0Lt56Pcf3TAmpBZjmx8ZcK5Ts4cAzIOjsjevg9oSXJnl6SUQ2EevU8tv3h6ZLWmoKL5H4fgWvdvfETw==}
 
-  esbuild-wasm@0.28.0:
-    resolution: {integrity: sha512-5TRVKExcEmeMkccIZMzUq+Az6X2RoMAJyfl6SMMO1dMVhmvt0I2mx7gAb6zYi42n4d1ETcatFXazGKzA+aW7fg==}
+  esbuild-wasm@0.28.1:
+    resolution: {integrity: sha512-p/GD4E8oYRjg3kjdKrnMb0s4PzXgJF42e0MF4H0+ACyK/kIlFRp3e0fzOleIG+wBBm6MM3XQrbpe7soEA+vJIA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -10263,7 +10263,7 @@ snapshots:
       esast-util-from-estree: 2.0.0
       vfile-message: 4.0.3
 
-  esbuild-wasm@0.28.0: {}
+  esbuild-wasm@0.28.1: {}
 
   esbuild@0.27.7:
     optionalDependencies:
