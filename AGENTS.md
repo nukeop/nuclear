@@ -353,7 +353,7 @@ git add packages/player/package.json packages/player/src-tauri/tauri.conf.json &
 
 # 4. Tag and push
 git tag player@X.Y.Z
-git push origin master --tags
+git push origin player@X.Y.Z
 ```
 
 The `release-player.yml` workflow creates a GitHub release with platform binaries.
@@ -369,7 +369,7 @@ git add packages/plugin-sdk/package.json && git commit -m "plugin-sdk@X.Y.Z"
 
 # 3. Tag and push
 git tag plugin-sdk@X.Y.Z
-git push origin master --tags
+git push origin plugin-sdk@X.Y.Z
 ```
 
 The workflow builds with `build:npm`, runs tests, and publishes to npm.

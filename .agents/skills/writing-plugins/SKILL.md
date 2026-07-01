@@ -127,5 +127,5 @@ jobs:
           generate_release_notes: true
 ```
 
-3. Tag release: `git tag v0.1.0 && git push --tags`
+3. Tag release: `git tag v0.1.0 && git push origin v0.1.0`
 4. Submit PR to `NuclearPlayer/plugin-registry` adding your plugin to `plugins.json`
