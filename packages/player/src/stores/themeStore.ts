@@ -43,6 +43,7 @@ type ThemeStoreState = {
   isAdvancedThemeSelected: () => boolean;
   isMarketplaceThemeSelected: () => boolean;
   isMarketplaceThemeActive: (id: string) => boolean;
+  getMarketplaceThemePath: (id: string) => string | undefined;
   hydrate: () => void;
 };
 
@@ -88,6 +89,10 @@ export const useThemeStore = create<ThemeStoreState>((set, get) => ({
   isMarketplaceThemeActive: (id) => {
     const { activeTheme } = get();
     return activeTheme.type === 'marketplace' && activeTheme.id === id;
+  },
+
+  getMarketplaceThemePath: (id) => {
+    return get().marketplaceThemes.find((entry) => entry.id === id)?.path;
   },
 
   hydrate: () => {

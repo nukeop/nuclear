@@ -3,7 +3,7 @@ import React from 'react';
 import App from './App';
 import { initLogStream } from './hooks/useLogStream';
 import { startAdvancedThemeWatcher } from './services/advancedThemeDirService';
-import { applyAdvancedThemeFromSettingsIfAny } from './services/advancedThemeService';
+import { applyThemeFromSettingsIfAny } from './services/advancedThemeService';
 import { initBridgeHandler } from './services/bridge/bridgeHandler';
 import { registerBuiltInCoreSettings } from './services/coreSettings';
 import { initDiscordHandler } from './services/discordHandler';
@@ -48,7 +48,7 @@ export const initPlayerApp = async (
     .then(() => startAdvancedThemeWatcher())
     .then(() => loadMarketplaceThemes())
     .then(() => hydrateThemeStore())
-    .then(() => applyAdvancedThemeFromSettingsIfAny())
+    .then(() => applyThemeFromSettingsIfAny())
     .then(() => {
       void hydratePluginsFromRegistry();
       void useUpdaterStore.getState().checkForUpdate();

@@ -9,6 +9,7 @@ import {
   startAdvancedThemeWatcher,
   stopAdvancedThemeWatcher,
 } from '../../services/advancedThemeDirService';
+import { applyThemeFromSettingsIfAny } from '../../services/advancedThemeService';
 import { useThemeStore } from '../../stores/themeStore';
 import { SAKURA_THEME_FILE } from '../../test/fixtures/themeRegistry';
 import { PluginFsMock, watchImmediateCb } from '../../test/mocks/plugin-fs';
@@ -518,6 +519,76 @@ describe('Themes view', async () => {
 
       await ThemesWrapper.goToMyThemesTab();
       expect(ThemesWrapper.activeBasicTheme).toBe('Default');
+    });
+  });
+
+  describe('Theme restoration on restart', () => {
+    afterEach(() => {
+      // needed to clean up injected style between tests
+      document.getElementById('advanced-theme')?.remove();
+    });
+
+    it('restores and applies a marketplace theme on startup', async () => {
+      ThemesWrapper.setupStoreIndex();
+      PluginFsMock.setReadTextFile(JSON.stringify(SAKURA_THEME_FILE));
+
+      await ThemesWrapper.mount({
+        marketplaceThemes: [
+          { id: 'sakura', name: 'Sakura', path: 'themes/store/sakura.json' },
+        ],
+        activeTheme: { type: 'marketplace', id: 'sakura' },
+      });
+      await applyThemeFromSettingsIfAny();
+
+      const styleElement = document.getElementById('advanced-theme');
+      expect(styleElement).toBeInTheDocument();
+      expect(styleElement!.textContent).toContain(
+        SAKURA_THEME_FILE.vars.background,
+      );
+
+      expect(ThemesWrapper.activeBasicTheme).toBeNull();
+      expect(ThemesWrapper.marketplaceThemeSelect!.selected()).toBe('Sakura');
+    });
+
+    it('restores and applies an advanced theme on startup', async () => {
+      const advancedThemeFile = {
+        version: 1,
+        name: 'Custom',
+        vars: { background: 'oklch(0.2 0.05 280)' },
+      };
+      PluginFsMock.setReadTextFile(JSON.stringify(advancedThemeFile));
+
+      await ThemesWrapper.mount({
+        advancedThemes: [{ name: 'Custom', path: '/themes/custom.json' }],
+        activeTheme: { type: 'advanced', path: '/themes/custom.json' },
+      });
+      await applyThemeFromSettingsIfAny();
+
+      const styleElement = document.getElementById('advanced-theme');
+      expect(styleElement).toBeInTheDocument();
+      expect(styleElement!.textContent).toContain('oklch(0.2 0.05 280)');
+    });
+
+    it('does not inject a style element when a basic theme is active', async () => {
+      await ThemesWrapper.mount({
+        activeTheme: { type: 'basic', id: 'nuclear:default' },
+      });
+      await applyThemeFromSettingsIfAny();
+
+      expect(document.getElementById('advanced-theme')).toBeNull();
+      expect(ThemesWrapper.activeBasicTheme).toBe('Default');
+    });
+
+    it('does nothing when a marketplace theme id is not found in installed themes', async () => {
+      await ThemesWrapper.mount({
+        marketplaceThemes: [
+          { id: 'sakura', name: 'Sakura', path: 'themes/store/sakura.json' },
+        ],
+        activeTheme: { type: 'marketplace', id: 'deleted-theme' },
+      });
+      await applyThemeFromSettingsIfAny();
+
+      expect(document.getElementById('advanced-theme')).toBeNull();
     });
   });
 });
