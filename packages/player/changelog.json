@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-07-01T00:00",
+    "description": "Fix marketplace themes resetting to default on restart",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-06-21T00:00",
     "description": "Custom title bar for frameless window mode. Enable in Settings -> Appearance",
     "type": "feature",
