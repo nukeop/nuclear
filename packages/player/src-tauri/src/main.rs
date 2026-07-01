@@ -58,4 +58,16 @@ fn apply_linux_workarounds() {
             std::env::set_var("WEBKIT_DISABLE_COMPOSITING_MODE", "1");
         }
     }
+
+    // WebKitGTK's Web Audio GStreamer pipeline stalls on Bluetooth A2DP when
+    // GStreamer autoselects pipewiresink: the pipeline is hardcoded to 44100 Hz
+    // while A2DP sinks on PipeWire expect 48000 Hz, and audio goes silent after
+    // about a second. Demoting pipewiresink's rank makes autoaudiosink fall back
+    // to pulsesink (via pipewire-pulse), which resamples correctly.
+    // Reported here: https://github.com/nukeop/nuclear/discussions/1980
+    if std::env::var("GST_PLUGIN_FEATURE_RANK").is_err() {
+        unsafe {
+            std::env::set_var("GST_PLUGIN_FEATURE_RANK", "pipewiresink:NONE");
+        }
+    }
 }

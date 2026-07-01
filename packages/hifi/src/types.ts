@@ -13,6 +13,7 @@ export type SoundProps = {
   status: SoundStatus;
   seek?: number;
   volume?: number;
+  sampleRate?: number;
   preload?: HTMLAudioElement['preload'];
   crossOrigin?: ScriptHTMLAttributes<HTMLAudioElement>['crossOrigin'];
   onTimeUpdate?: (args: { position: number; duration: number }) => void;

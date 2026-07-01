@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-07-01T00:00",
+    "description": "Fix audio going silent after about a second over Bluetooth on Linux",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-07-01T00:00",
     "description": "Fix yt-dlp playback stalling at segment boundaries (e.g. 0:09, 0:29) when buffered audio drifted past the next segment's start time",
     "type": "fix",
     "contributors": ["nukeop"],

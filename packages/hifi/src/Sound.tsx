@@ -26,6 +26,7 @@ export const Sound: React.FC<SoundProps> = ({
   status,
   seek,
   volume,
+  sampleRate,
   preload = 'auto',
   crossOrigin = '',
   onTimeUpdate,
@@ -36,7 +37,7 @@ export const Sound: React.FC<SoundProps> = ({
   children,
 }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const context = useAudioContext();
+  const context = useAudioContext(sampleRate);
   const { source } = useAudioElementSource(audioRef, context);
   const isReady = !!source;
   const [audioNodes, setAudioNodes] = useState<AudioNode[]>([]);
