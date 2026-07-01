@@ -3,6 +3,7 @@ import { parseInitSegment, SegmentReference } from './parser';
 const HEADER_FETCH_SIZE = 8192;
 const LOOKAHEAD_SECONDS = 30;
 const SEEK_PREFETCH_COUNT = 3;
+const BUFFERED_END_TOLERANCE_SECONDS = 0.01;
 
 type MseBackend = {
   Constructor: typeof MediaSource;
@@ -328,7 +329,10 @@ export class MseController {
       if (this.fetchedSegments.has(index)) {
         continue;
       }
-      if (this.segments[index].startTime >= bufferedEnd - 0.01) {
+      if (
+        this.segments[index].endTime >
+        bufferedEnd + BUFFERED_END_TOLERANCE_SECONDS
+      ) {
         return index;
       }
     }

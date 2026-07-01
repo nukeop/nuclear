@@ -448,4 +448,39 @@ describe('MseController', () => {
 
     expect(segmentFetchCalls.length).toBeGreaterThan(0);
   });
+
+  it('fetches the next contiguous segment when the buffered end drifts past its start time', async () => {
+    const controller = new MseController();
+    const mediaSource = await initController(controller);
+
+    fetchMock.mockClear();
+
+    const sourceBuffer = mediaSource.sourceBuffers[0];
+    sourceBuffer.buffered = new MockTimeRanges();
+    sourceBuffer.buffered.addRange(0, 60.05);
+
+    Object.defineProperty(audio, 'currentTime', {
+      value: 55,
+      writable: true,
+      configurable: true,
+    });
+
+    controller.handleTimeUpdate(audio);
+    await flushMicrotasks();
+
+    const firstSegmentStart = FTYP.length + MOOV.length + SIDX.length;
+    const secondSegmentStart =
+      firstSegmentStart + SEGMENT_REFS[0].referencedSize;
+    const secondSegmentEnd =
+      secondSegmentStart + SEGMENT_REFS[1].referencedSize - 1;
+
+    const fetchedRanges = fetchMock.mock.calls.map((call: unknown[]) => {
+      const opts = call[1] as { headers?: { Range?: string } } | undefined;
+      return opts?.headers?.Range;
+    });
+
+    expect(fetchedRanges).toContain(
+      `bytes=${secondSegmentStart}-${secondSegmentEnd}`,
+    );
+  });
 });
