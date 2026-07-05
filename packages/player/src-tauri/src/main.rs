@@ -59,15 +59,24 @@ fn apply_linux_workarounds() {
         }
     }
 
-    // WebKitGTK's Web Audio GStreamer pipeline stalls on Bluetooth A2DP when
-    // GStreamer autoselects pipewiresink: the pipeline is hardcoded to 44100 Hz
-    // while A2DP sinks on PipeWire expect 48000 Hz, and audio goes silent after
-    // about a second. Demoting pipewiresink's rank makes autoaudiosink fall back
-    // to pulsesink (via pipewire-pulse), which resamples correctly.
-    // Reported here: https://github.com/nukeop/nuclear/discussions/1980
+    // Route WebKitGTK's audio through pulsesink so PULSE_LATENCY_MSEC applies.
     if std::env::var("GST_PLUGIN_FEATURE_RANK").is_err() {
         unsafe {
             std::env::set_var("GST_PLUGIN_FEATURE_RANK", "pipewiresink:NONE");
+        }
+    }
+
+    // Request high-latency audio streams. Web Audio's low-latency request
+    // forces the PipeWire quantum down below what Bluetooth A2DP can service,
+    // killing playback: https://github.com/nukeop/nuclear/discussions/1980
+    if std::env::var("PULSE_LATENCY_MSEC").is_err() {
+        unsafe {
+            std::env::set_var("PULSE_LATENCY_MSEC", "60");
+        }
+    }
+    if std::env::var("PIPEWIRE_LATENCY").is_err() {
+        unsafe {
+            std::env::set_var("PIPEWIRE_LATENCY", "1024/48000");
         }
     }
 }
