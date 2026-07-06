@@ -117,17 +117,43 @@ exports[`App > should render snapshot 1`] = `
           </div>
         </div>
         <div
-          class="flex w-full flex-col gap-2"
+          class="relative w-full"
         >
-          <input
-            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8"
-            data-headlessui-state=""
-            data-testid="search-box"
-            id="input-:r0:"
-            placeholder="Search"
-            type="text"
-            value=""
-          />
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-search text-foreground-secondary pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m21 21-4.34-4.34"
+            />
+            <circle
+              cx="11"
+              cy="11"
+              r="8"
+            />
+          </svg>
+          <div
+            class="flex w-full flex-col gap-2"
+          >
+            <input
+              class="border-border text-foreground placeholder:text-foreground-secondary w-full transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
+              data-headlessui-state=""
+              data-testid="search-box"
+              id="input-:r0:"
+              placeholder="Search"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
         <div
           class="flex flex-row items-center justify-end gap-2"

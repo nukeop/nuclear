@@ -115,17 +115,70 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
           </div>
         </div>
         <div
-          class="flex w-full flex-col gap-2"
+          class="relative w-full"
         >
-          <input
-            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-search text-foreground-secondary pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m21 21-4.34-4.34"
+            />
+            <circle
+              cx="11"
+              cy="11"
+              r="8"
+            />
+          </svg>
+          <div
+            class="flex w-full flex-col gap-2"
+          >
+            <input
+              class="border-border text-foreground placeholder:text-foreground-secondary w-full transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
+              data-headlessui-state=""
+              data-testid="search-box"
+              id="input-:r0:"
+              placeholder="Search"
+              type="text"
+              value="test artist"
+            />
+          </div>
+          <button
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent absolute top-1/2 right-1 size-6 -translate-y-1/2 justify-center p-0"
             data-headlessui-state=""
-            data-testid="search-box"
-            id="input-:r0:"
-            placeholder="Search"
-            type="text"
-            value="test artist"
-          />
+            data-testid="search-box-clear"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-x size-4"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 6 6 18"
+              />
+              <path
+                d="m6 6 12 12"
+              />
+            </svg>
+          </button>
         </div>
         <div
           class="flex flex-row items-center justify-end gap-2"
@@ -1735,17 +1788,70 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
           </div>
         </div>
         <div
-          class="flex w-full flex-col gap-2"
+          class="relative w-full"
         >
-          <input
-            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8"
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-search text-foreground-secondary pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m21 21-4.34-4.34"
+            />
+            <circle
+              cx="11"
+              cy="11"
+              r="8"
+            />
+          </svg>
+          <div
+            class="flex w-full flex-col gap-2"
+          >
+            <input
+              class="border-border text-foreground placeholder:text-foreground-secondary w-full transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
+              data-headlessui-state=""
+              data-testid="search-box"
+              id="input-:r2e:"
+              placeholder="Search"
+              type="text"
+              value="test artist"
+            />
+          </div>
+          <button
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent absolute top-1/2 right-1 size-6 -translate-y-1/2 justify-center p-0"
             data-headlessui-state=""
-            data-testid="search-box"
-            id="input-:r2m:"
-            placeholder="Search"
-            type="text"
-            value="test artist"
-          />
+            data-testid="search-box-clear"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-x size-4"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 6 6 18"
+              />
+              <path
+                d="m6 6 12 12"
+              />
+            </svg>
+          </button>
         </div>
         <div
           class="flex flex-row items-center justify-end gap-2"
@@ -1755,7 +1861,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
             aria-label="Toggle theme"
             class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
             data-headlessui-state=""
-            id="headlessui-switch-:r2o:"
+            id="headlessui-switch-:r2g:"
             role="switch"
             tabindex="0"
             type="button"
@@ -2767,7 +2873,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                           data-headlessui-state=""
                                           data-state="closed"
                                           data-testid="track-context-menu-button"
-                                          id="radix-:r38:"
+                                          id="radix-:r2s:"
                                           type="button"
                                         >
                                           <svg
@@ -3334,13 +3440,13 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                     </div>
                   </div>
                   <input
-                    aria-labelledby=":r2p:-label"
+                    aria-labelledby=":r2h:-label"
                     aria-valuemax="100"
                     aria-valuemin="0"
                     aria-valuenow="100"
                     aria-valuetext="100"
                     class="absolute inset-0 z-[1] h-6 w-full appearance-none opacity-0 cursor-pointer"
-                    id=":r2p:"
+                    id=":r2h:"
                     max="100"
                     min="0"
                     step="1"
