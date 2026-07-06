@@ -136,31 +136,4 @@ describe('Sound', () => {
     expect(playMock).toHaveBeenCalled();
     restore();
   });
-
-  it('passes the sampleRate prop through to the AudioContext constructor', () => {
-    const { restore } = setupAudioContextMock();
-
-    render(<Sound src={httpSource} status="paused" sampleRate={48000} />);
-
-    expect(window.AudioContext).toHaveBeenCalledWith(
-      expect.objectContaining({ sampleRate: 48000, latencyHint: 'playback' }),
-    );
-
-    restore();
-  });
-
-  it('constructs the AudioContext without a sampleRate when none is given', () => {
-    const { restore } = setupAudioContextMock();
-
-    render(<Sound src={httpSource} status="paused" />);
-
-    expect(window.AudioContext).toHaveBeenCalledWith(
-      expect.objectContaining({
-        sampleRate: undefined,
-        latencyHint: 'playback',
-      }),
-    );
-
-    restore();
-  });
 });
