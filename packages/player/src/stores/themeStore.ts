@@ -1,3 +1,4 @@
+import isEqual from 'lodash-es/isEqual';
 import { create } from 'zustand';
 
 import {
@@ -52,7 +53,12 @@ export const useThemeStore = create<ThemeStoreState>((set, get) => ({
   marketplaceThemes: [],
   activeTheme: { type: 'basic', id: DEFAULT_THEME_ID },
 
-  setAdvancedThemes: (advancedThemes) => set({ advancedThemes }),
+  setAdvancedThemes: (advancedThemes) => {
+    if (isEqual(get().advancedThemes, advancedThemes)) {
+      return;
+    }
+    set({ advancedThemes });
+  },
   setMarketplaceThemes: (marketplaceThemes) => set({ marketplaceThemes }),
 
   selectBasicTheme: async (id) => {

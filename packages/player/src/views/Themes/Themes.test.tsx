@@ -1,15 +1,17 @@
 import '../../test/mocks/plugin-fs';
 
 import * as fs from '@tauri-apps/plugin-fs';
+import { LazyStore } from '@tauri-apps/plugin-store';
 import { screen, waitFor } from '@testing-library/react';
 
 import * as themes from '@nuclearplayer/themes';
 
+import { applyThemeFromSettingsIfAny } from '../../services/advancedThemeService';
 import {
   startAdvancedThemeWatcher,
   stopAdvancedThemeWatcher,
-} from '../../services/advancedThemeDirService';
-import { applyThemeFromSettingsIfAny } from '../../services/advancedThemeService';
+  WATCH_DEBOUNCE_MS,
+} from '../../services/advancedThemeWatcher';
 import { useThemeStore } from '../../stores/themeStore';
 import { SAKURA_THEME_FILE } from '../../test/fixtures/themeRegistry';
 import { PluginFsMock, watchImmediateCb } from '../../test/mocks/plugin-fs';
@@ -41,6 +43,7 @@ describe('Themes view', async () => {
   });
   afterEach(() => {
     stopAdvancedThemeWatcher();
+    vi.useRealTimers();
   });
 
   it('(Snapshot) renders the themes view', async () => {
@@ -85,73 +88,121 @@ describe('Themes view', async () => {
     });
   });
 
-  it('reloads the currently selected advanced theme when the watched file changes', async () => {
-    PluginFsMock.setExists(true);
-    PluginFsMock.setReadDir([{ name: 'my.json', isDirectory: false }]);
-    PluginFsMock.setReadTextFile(
-      JSON.stringify({ version: 1, name: 'My Theme', vars: { p: '#111' } }),
-    );
+  describe('Live reload', () => {
+    const fireWatchEvent = (paths: string[]) => {
+      watchImmediateCb?.({ paths, type: 'any', attrs: {} });
+    };
 
-    await startAdvancedThemeWatcher();
+    const emitWatchEventsAndFlush = async (events: string[][]) => {
+      vi.useFakeTimers();
+      events.forEach(fireWatchEvent);
+      await vi.advanceTimersByTimeAsync(WATCH_DEBOUNCE_MS);
+      vi.useRealTimers();
+    };
 
-    await ThemesWrapper.mount();
-    await ThemesWrapper.advancedThemeSelect.select('My Theme');
-    expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
+    const mountWithActiveAdvancedTheme = async () => {
+      PluginFsMock.setExists(true);
+      PluginFsMock.setReadDir([
+        { name: 'my.json', isDirectory: false },
+        { name: 'other.json', isDirectory: false },
+      ]);
+      PluginFsMock.setReadTextFileByMap({
+        'themes/my.json': JSON.stringify({
+          version: 1,
+          name: 'My Theme',
+          vars: { p: '#111' },
+        }),
+        'themes/other.json': JSON.stringify({
+          version: 1,
+          name: 'Other',
+          vars: { p: '#222' },
+        }),
+      });
 
-    watchImmediateCb?.({ paths: ['themes/my.json'], type: 'any', attrs: {} });
+      await startAdvancedThemeWatcher();
+      await ThemesWrapper.mount();
+      await ThemesWrapper.advancedThemeSelect.select('My Theme');
+    };
 
-    await waitFor(() =>
-      expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(2),
-    );
-    expect(fs.readTextFile).toHaveBeenCalledWith('themes/my.json', {
-      baseDir: '/home/user/.local/share/com.nuclearplayer',
+    it('reloads the active advanced theme once when its file changes several times in quick succession', async () => {
+      await mountWithActiveAdvancedTheme();
+      expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
+
+      await emitWatchEventsAndFlush([
+        ['/appdata/themes/my.json'],
+        ['/appdata/themes/my.json'],
+        ['/appdata/themes/my.json'],
+      ]);
+
+      expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(2);
+      expect(fs.readTextFile).toHaveBeenCalledWith('themes/my.json', {
+        baseDir: '/home/user/.local/share/com.nuclearplayer',
+      });
     });
-  });
 
-  it("doesn't reload when a different file changes or when not in advanced mode", async () => {
-    PluginFsMock.setExists(true);
-    PluginFsMock.setReadDir([
-      { name: 'my.json', isDirectory: false },
-      { name: 'other.json', isDirectory: false },
-    ]);
-    PluginFsMock.setReadTextFileByMap({
-      'themes/my.json': JSON.stringify({
-        version: 1,
-        name: 'My Theme',
-        vars: { p: '#111' },
-      }),
-      'themes/other.json': JSON.stringify({
-        version: 1,
-        name: 'Other',
-        vars: { p: '#222' },
-      }),
+    it('refreshes the theme list once for a burst of changes', async () => {
+      await mountWithActiveAdvancedTheme();
+      vi.mocked(fs.readDir).mockClear();
+
+      await emitWatchEventsAndFlush([
+        ['/appdata/themes/a.json'],
+        ['/appdata/themes/b.json'],
+        ['/appdata/themes/c.json'],
+      ]);
+
+      expect(fs.readDir).toHaveBeenCalledTimes(1);
     });
 
-    await startAdvancedThemeWatcher();
+    it("doesn't rewrite settings when the active theme file changes on disk", async () => {
+      await mountWithActiveAdvancedTheme();
+      const saveSettings = vi.spyOn(LazyStore.prototype, 'save');
 
-    await ThemesWrapper.mount();
-    await ThemesWrapper.advancedThemeSelect.select('My Theme');
-    expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
+      await emitWatchEventsAndFlush([['/appdata/themes/my.json']]);
 
-    // Change unrelated file -> no reload
-    watchImmediateCb?.({
-      paths: ['/appdata/themes/other.json'],
-      type: 'any',
-      attrs: {},
+      expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(2);
+      expect(saveSettings).not.toHaveBeenCalled();
     });
-    await new Promise((r) => setTimeout(r, 0));
-    expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
 
-    // Switch back to Default (basic mode)
-    await ThemesWrapper.selectBasicTheme('Default');
+    it("doesn't reload when a different file changes", async () => {
+      await mountWithActiveAdvancedTheme();
 
-    // Now even if the same file changes, no reload should occur
-    watchImmediateCb?.({
-      paths: ['/appdata/themes/my.json'],
-      type: 'any',
-      attrs: {},
+      await emitWatchEventsAndFlush([['/appdata/themes/other.json']]);
+
+      expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
     });
-    expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
+
+    it("doesn't reload when a basic theme is active", async () => {
+      await mountWithActiveAdvancedTheme();
+      await ThemesWrapper.selectBasicTheme('Default');
+
+      await emitWatchEventsAndFlush([['/appdata/themes/my.json']]);
+
+      expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
+    });
+
+    it("doesn't reload after the watcher is stopped", async () => {
+      await mountWithActiveAdvancedTheme();
+
+      vi.useFakeTimers();
+      fireWatchEvent(['/appdata/themes/my.json']);
+      stopAdvancedThemeWatcher();
+      await vi.advanceTimersByTimeAsync(WATCH_DEBOUNCE_MS);
+      vi.useRealTimers();
+
+      expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
+    });
+
+    it('starts a single filesystem watcher when initialized concurrently', async () => {
+      PluginFsMock.setExists(true);
+      PluginFsMock.setReadDir([]);
+
+      await Promise.all([
+        startAdvancedThemeWatcher(),
+        startAdvancedThemeWatcher(),
+      ]);
+
+      expect(fs.watchImmediate).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('gracefully reports errors when reading the themes directory fails', async () => {

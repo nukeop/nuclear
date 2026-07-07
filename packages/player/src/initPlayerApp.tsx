@@ -2,8 +2,8 @@ import React from 'react';
 
 import App from './App';
 import { initLogStream } from './hooks/useLogStream';
-import { startAdvancedThemeWatcher } from './services/advancedThemeDirService';
 import { applyThemeFromSettingsIfAny } from './services/advancedThemeService';
+import { startAdvancedThemeWatcher } from './services/advancedThemeWatcher';
 import { initBridgeHandler } from './services/bridge/bridgeHandler';
 import { registerBuiltInCoreSettings } from './services/coreSettings';
 import { initDiscordHandler } from './services/discordHandler';

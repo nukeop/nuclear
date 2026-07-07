@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-07-07T00:00",
+    "description": "Theme loading performance improvements",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-07-07T00:00",
     "description": "Recent searches appear under the search box, with keyboard navigation and one-click history clearing",
     "type": "improvement",
     "contributors": ["nukeop"],
