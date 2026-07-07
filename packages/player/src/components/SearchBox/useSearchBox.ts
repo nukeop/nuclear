@@ -1,4 +1,4 @@
-import { useRouter } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { KeyboardEvent, RefObject, useRef } from 'react';
 
 import { useRecentSearches } from './useRecentSearches';
@@ -8,13 +8,13 @@ export const useSearchBox = () => {
   const { query, setQuery } = useSearchQuery();
   const addRecentSearch = useRecentSearches((state) => state.addRecentSearch);
   const inputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const submit = () => {
     const trimmed = query.trim();
     if (trimmed.length > 0) {
       addRecentSearch(trimmed);
-      router.navigate({ to: '/search', search: { q: trimmed } });
+      navigate({ to: '/search', search: { q: trimmed } });
       inputRef.current?.blur();
     }
   };

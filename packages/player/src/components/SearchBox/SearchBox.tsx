@@ -1,17 +1,16 @@
 import { Search, X } from 'lucide-react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Input } from '@nuclearplayer/ui';
 
 import { SearchBoxPopover } from './SearchBoxPopover';
 import { useSearchBox } from './useSearchBox';
-import { useSearchPopover } from './useSearchPopover';
 
 export const SearchBox: FC = () => {
   const { t } = useTranslation('search');
   const { query, setQuery, inputRef, handleKeyDown, clear } = useSearchBox();
-  const { isOpen, handleFocus, handleBlur } = useSearchPopover();
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <div className="relative w-full">
@@ -22,8 +21,8 @@ export const SearchBox: FC = () => {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         placeholder={t('placeholder')}
         tone="secondary"
         className="h-8 px-8"
@@ -38,7 +37,7 @@ export const SearchBox: FC = () => {
           <X className="size-4" />
         </Button>
       )}
-      <SearchBoxPopover isOpen={isOpen} />
+      <SearchBoxPopover isOpen={isFocused} />
     </div>
   );
 };

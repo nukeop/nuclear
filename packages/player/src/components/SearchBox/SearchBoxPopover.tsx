@@ -1,10 +1,11 @@
+import { History, Trash2 } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@nuclearplayer/ui';
+import { Popover } from '@nuclearplayer/ui';
 
-import { useRecentSearches } from './useRecentSearches';
+import { useSearchPopover } from './useSearchPopover';
 
 type SearchBoxPopoverProps = {
   isOpen: boolean;
@@ -14,7 +15,8 @@ const keepFocus = (event: MouseEvent) => event.preventDefault();
 
 export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({ isOpen }) => {
   const { t } = useTranslation('search');
-  const { recentSearches, clearRecentSearches } = useRecentSearches();
+  const { recentSearches, clearRecentSearches, navigateToSearch } =
+    useSearchPopover();
   const hasHistory = recentSearches.length > 0;
 
   return (
@@ -31,26 +33,30 @@ export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({ isOpen }) => {
             damping: 17,
             mass: 0.8,
           }}
-          className="bg-primary border-border absolute top-full right-0 left-0 z-50 mt-2 rounded-md border-(length:--border-width) p-2"
+          className="bg-background border-border absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-md border-(length:--border-width)"
         >
-          {recentSearches.map((recentSearch, index) => (
-            <div
-              key={`${index}-${recentSearch}`}
-              data-testid="search-box-recent-search"
-              className="text-foreground rounded-sm px-2 py-1.5 text-sm"
+          <Popover.Menu>
+            {recentSearches.map((recentSearch) => (
+              <Popover.Item
+                key={recentSearch}
+                icon={<History size={16} />}
+                data-testid="search-box-recent-search"
+                onMouseDown={() => navigateToSearch(recentSearch)}
+              >
+                {recentSearch}
+              </Popover.Item>
+            ))}
+            <Popover.Item
+              intent="danger"
+              align="center"
+              icon={<Trash2 size={16} />}
+              data-testid="search-box-clear-history"
+              onMouseDown={keepFocus}
+              onClick={clearRecentSearches}
             >
-              {recentSearch}
-            </div>
-          ))}
-          <Button
-            data-testid="search-box-clear-history"
-            variant="text"
-            onMouseDown={keepFocus}
-            onClick={clearRecentSearches}
-            className="mt-1 w-full justify-center text-sm"
-          >
-            {t('clearRecentSearches')}
-          </Button>
+              {t('clearRecentSearches')}
+            </Popover.Item>
+          </Popover.Menu>
         </motion.div>
       )}
     </AnimatePresence>

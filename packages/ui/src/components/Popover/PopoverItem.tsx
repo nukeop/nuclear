@@ -11,9 +11,14 @@ const popoverItemVariants = cva(
         default: '',
         danger: 'text-accent-red',
       },
+      align: {
+        left: '',
+        center: 'justify-center text-center',
+      },
     },
     defaultVariants: {
       intent: 'default',
+      align: 'left',
     },
   },
 );
@@ -27,11 +32,15 @@ type PopoverItemProps = Omit<ComponentProps<'button'>, 'children'> &
 export const PopoverItem: FC<PopoverItemProps> = ({
   className,
   intent,
+  align,
   icon,
   children,
   ...props
 }) => (
-  <button className={cn(popoverItemVariants({ intent, className }))} {...props}>
+  <button
+    className={cn(popoverItemVariants({ intent, align, className }))}
+    {...props}
+  >
     <span className="w-4 shrink-0">{icon}</span>
     <span>{children}</span>
   </button>
