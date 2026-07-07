@@ -66,6 +66,16 @@ describe('Search box', () => {
     expect(SearchWrapper.searchBox.input).toHaveFocus();
   });
 
+  it('does not open the popover when clicking the clear button', async () => {
+    await SearchWrapper.mount();
+    await SearchWrapper.search('nirvana');
+
+    await SearchWrapper.searchBox.clearButton.click();
+
+    expect(SearchWrapper.searchBox.input).toHaveFocus();
+    expect(SearchWrapper.searchBox.popover).not.toBeInTheDocument();
+  });
+
   it('clears the text on Escape, then blurs on a second Escape', async () => {
     await SearchWrapper.mount();
     await SearchWrapper.searchBox.type('nirvana');
@@ -78,6 +88,117 @@ describe('Search box', () => {
     await SearchWrapper.searchBox.clear();
 
     expect(SearchWrapper.searchBox.input).not.toHaveFocus();
+  });
+
+  it('shows the last 5 searches in the popover, most recent first', async () => {
+    await SearchWrapper.mount();
+
+    const queries = ['one', 'two', 'three', 'four', 'five', 'six'];
+    for (const query of queries) {
+      await SearchWrapper.search(query);
+    }
+
+    await SearchWrapper.searchBox.focus();
+
+    expect(SearchWrapper.searchBox.recentSearches).toEqual([
+      'six',
+      'five',
+      'four',
+      'three',
+      'two',
+    ]);
+  });
+
+  it('does not show the popover when there are no recent searches', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.searchBox.focus();
+
+    expect(SearchWrapper.searchBox.popover).not.toBeInTheDocument();
+  });
+
+  it('deduplicates recent searches, moving repeats to the top', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('nirvana');
+    await SearchWrapper.search('pixies');
+    await SearchWrapper.search('nirvana');
+
+    await SearchWrapper.searchBox.focus();
+
+    expect(SearchWrapper.searchBox.recentSearches).toEqual([
+      'nirvana',
+      'pixies',
+    ]);
+  });
+
+  it('clears the recent searches when clicking the clear history button', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('nirvana');
+    await SearchWrapper.searchBox.focus();
+
+    await SearchWrapper.searchBox.clearHistoryButton.click();
+
+    expect(SearchWrapper.searchBox.recentSearches).toEqual([]);
+    expect(
+      SearchWrapper.searchBox.clearHistoryButton.element,
+    ).not.toBeInTheDocument();
+  });
+
+  it('navigates to a recent search when clicking it', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('nirvana');
+    await SearchWrapper.search('pixies');
+
+    await SearchWrapper.searchBox.focus();
+    await SearchWrapper.searchBox.clickRecentSearch('nirvana');
+
+    expect(await SearchWrapper.findSearchQuery('nirvana')).toBeVisible();
+    await waitFor(() => {
+      expect(SearchWrapper.searchBox.input).toHaveValue('nirvana');
+    });
+  });
+
+  it('navigates to a recent search with arrow keys and Enter', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('one');
+    await SearchWrapper.search('two');
+    await SearchWrapper.search('three');
+
+    await SearchWrapper.searchBox.focus();
+    await SearchWrapper.searchBox.highlightNext();
+    await SearchWrapper.searchBox.highlightNext();
+
+    expect(SearchWrapper.searchBox.highlightedRecentSearch).toBe('two');
+
+    await SearchWrapper.searchBox.selectHighlighted();
+
+    expect(await SearchWrapper.findSearchQuery('two')).toBeVisible();
+    await waitFor(() => {
+      expect(SearchWrapper.searchBox.input).toHaveValue('two');
+    });
+  });
+
+  it('keeps a single highlight across keyboard and mouse', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('one');
+    await SearchWrapper.search('two');
+    await SearchWrapper.search('three');
+
+    await SearchWrapper.searchBox.focus();
+    await SearchWrapper.searchBox.highlightNext();
+
+    expect(SearchWrapper.searchBox.highlightedRecentSearches).toEqual([
+      'three',
+    ]);
+
+    await SearchWrapper.searchBox.hoverRecentSearch('one');
+
+    expect(SearchWrapper.searchBox.highlightedRecentSearches).toEqual(['one']);
   });
 
   it('reflects the query from the URL', async () => {

@@ -46,6 +46,27 @@ describe('Popover', () => {
     expect(document.body).toMatchSnapshot();
   });
 
+  it('(Snapshot) renders menu with a section and a footer', async () => {
+    render(
+      <Popover trigger={<Button>Open</Button>} anchor="bottom">
+        <Popover.Menu>
+          <Popover.Section label="Recent">
+            <Popover.Item>Action One</Popover.Item>
+            <Popover.Item>Action Two</Popover.Item>
+          </Popover.Section>
+          <Popover.Footer>
+            <Popover.Item intent="danger" align="center">
+              Clear
+            </Popover.Item>
+          </Popover.Footer>
+        </Popover.Menu>
+      </Popover>,
+    );
+    await userEvent.click(screen.getByText('Open'));
+    await screen.findByText('Action One');
+    expect(document.body).toMatchSnapshot();
+  });
+
   it('calls onClick when a menu item is clicked', async () => {
     const handleClick = vi.fn();
     render(

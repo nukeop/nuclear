@@ -1,10 +1,18 @@
 import { ElementType, forwardRef, ReactNode } from 'react';
 
 export const createFramerMotionMock = (mod: typeof import('motion/react')) => {
+  const isDataProp = (key: string) => key.startsWith('data-');
+
   const make = (Tag: ElementType) =>
     forwardRef<unknown, { children?: ReactNode } & Record<string, unknown>>(
-      ({ children, className, animate, exit, initial, transition }, ref) => {
+      (
+        { children, className, animate, exit, initial, transition, ...rest },
+        ref,
+      ) => {
         const Comp = Tag as ElementType;
+        const domSafeProps = Object.fromEntries(
+          Object.entries(rest).filter(([key]) => isDataProp(key)),
+        );
         return (
           <Comp
             ref={ref}
@@ -13,6 +21,7 @@ export const createFramerMotionMock = (mod: typeof import('motion/react')) => {
             exit={exit}
             initial={initial}
             transition={transition}
+            {...domSafeProps}
           >
             {children}
           </Comp>

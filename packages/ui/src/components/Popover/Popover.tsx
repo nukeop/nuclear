@@ -10,8 +10,10 @@ import { FC, ReactNode } from 'react';
 import { cn } from '../../utils';
 import { ClickTrigger } from './ClickTrigger';
 import { ContextMenuTrigger } from './ContextMenuTrigger';
+import { PopoverFooter } from './PopoverFooter';
 import { PopoverItem } from './PopoverItem';
 import { PopoverMenu } from './PopoverMenu';
+import { PopoverSection } from './PopoverSection';
 
 export type PopoverProps = {
   trigger: ReactNode;
@@ -26,6 +28,8 @@ export type PopoverProps = {
 type PopoverComponent = FC<PopoverProps> & {
   Item: typeof PopoverItem;
   Menu: typeof PopoverMenu;
+  Section: typeof PopoverSection;
+  Footer: typeof PopoverFooter;
 };
 
 const PopoverImpl: FC<PopoverProps> = ({
@@ -86,3 +90,5 @@ const PopoverImpl: FC<PopoverProps> = ({
 export const Popover = PopoverImpl as PopoverComponent;
 Popover.Item = PopoverItem;
 Popover.Menu = PopoverMenu;
+Popover.Section = PopoverSection;
+Popover.Footer = PopoverFooter;

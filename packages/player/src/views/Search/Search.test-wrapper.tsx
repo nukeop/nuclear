@@ -4,6 +4,7 @@ import { render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
+import { useRecentSearches } from '../../components/SearchBox/useRecentSearches';
 import { routeTree } from '../../routeTree.gen';
 
 const user = userEvent.setup();
@@ -13,6 +14,7 @@ let router: AppRouter;
 
 export const SearchWrapper = {
   async mount(query?: string): Promise<RenderResult> {
+    useRecentSearches.setState({ recentSearches: [] });
     // Fresh instances prevent flaky tests caused by stale state from previous
     // tests bleeding into subsequent ones (route subscriptions, query cache
     // observers). This causes tests to fail if running with coverage.
@@ -42,6 +44,7 @@ export const SearchWrapper = {
 
   async search(query: string) {
     const searchBox = await screen.findByTestId('search-box');
+    await user.clear(searchBox);
     await user.type(searchBox, query);
     await user.keyboard('{Enter}');
     await screen.findByTestId('search-view');
@@ -50,6 +53,69 @@ export const SearchWrapper = {
   searchBox: {
     get input(): HTMLInputElement {
       return screen.getByTestId('search-box') as HTMLInputElement;
+    },
+
+    async focus() {
+      await user.click(this.input);
+    },
+
+    get popover() {
+      return screen.queryByTestId('search-box-popover');
+    },
+
+    get recentSearches() {
+      return screen
+        .queryAllByTestId('search-box-recent-search')
+        .map((item) => item.textContent);
+    },
+
+    get highlightedRecentSearch() {
+      const highlighted = screen
+        .queryAllByTestId('search-box-recent-search')
+        .find((item) => item.dataset.highlighted === 'true');
+      return highlighted?.textContent;
+    },
+
+    get highlightedRecentSearches() {
+      return screen
+        .queryAllByTestId('search-box-recent-search')
+        .filter((item) => item.dataset.highlighted === 'true')
+        .map((item) => item.textContent);
+    },
+
+    async hoverRecentSearch(text: string) {
+      const item = screen
+        .getAllByTestId('search-box-recent-search')
+        .find((candidate) => candidate.textContent === text);
+      await user.hover(item!);
+    },
+
+    async clickRecentSearch(text: string) {
+      const item = screen
+        .getAllByTestId('search-box-recent-search')
+        .find((candidate) => candidate.textContent === text);
+      await user.click(item!);
+    },
+
+    async highlightNext() {
+      await user.keyboard('{ArrowDown}');
+    },
+
+    async highlightPrevious() {
+      await user.keyboard('{ArrowUp}');
+    },
+
+    async selectHighlighted() {
+      await user.keyboard('{Enter}');
+    },
+
+    clearHistoryButton: {
+      get element() {
+        return screen.queryByTestId('search-box-clear-history');
+      },
+      async click() {
+        await user.click(screen.getByTestId('search-box-clear-history'));
+      },
     },
 
     async type(text: string) {
@@ -73,6 +139,10 @@ export const SearchWrapper = {
         await user.click(screen.getByTestId('search-box-clear'));
       },
     },
+  },
+
+  async findSearchQuery(query: string) {
+    return screen.findByText(`Query: "${query}"`);
   },
 
   async navigateToSearch(query: string) {

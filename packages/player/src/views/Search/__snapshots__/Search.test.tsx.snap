@@ -144,8 +144,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           >
             <input
               class="border-border text-foreground placeholder:text-foreground-secondary w-full transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
-              data-focus=""
-              data-headlessui-state="hover focus"
+              data-headlessui-state="hover"
               data-hover=""
               data-testid="search-box"
               id="input-:r0:"

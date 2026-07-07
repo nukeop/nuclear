@@ -4,11 +4,22 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Input } from '@nuclearplayer/ui';
 
+import { SearchBoxPopover } from './SearchBoxPopover';
 import { useSearchBox } from './useSearchBox';
 
 export const SearchBox: FC = () => {
   const { t } = useTranslation('search');
-  const { query, setQuery, inputRef, handleKeyDown, clear } = useSearchBox();
+  const {
+    query,
+    setQuery,
+    inputRef,
+    isPopoverOpen,
+    openPopover,
+    closePopover,
+    handleKeyDown,
+    clear,
+    popover,
+  } = useSearchBox();
 
   return (
     <div className="relative w-full">
@@ -19,6 +30,8 @@ export const SearchBox: FC = () => {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         onKeyDown={handleKeyDown}
+        onFocus={openPopover}
+        onBlur={closePopover}
         placeholder={t('placeholder')}
         tone="secondary"
         className="h-8 px-8"
@@ -33,6 +46,14 @@ export const SearchBox: FC = () => {
           <X className="size-4" />
         </Button>
       )}
+      <SearchBoxPopover
+        isOpen={isPopoverOpen}
+        recentSearches={popover.recentSearches}
+        highlightedIndex={popover.highlightedIndex}
+        onHighlight={popover.highlightIndex}
+        onSelect={popover.select}
+        onClearHistory={popover.clearHistory}
+      />
     </div>
   );
 };
