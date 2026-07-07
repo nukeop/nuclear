@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-07-07T00:00",
+    "description": "Recent searches appear under the search box, with keyboard navigation and one-click history clearing",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-07-06T00:00",
     "description": "Search box with clear button, search icon, Escape to clear, and URL sync",
     "type": "improvement",
