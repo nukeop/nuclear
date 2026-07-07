@@ -54,6 +54,38 @@ export const AllAnchors: Story = {
   ),
 };
 
+export const SectionedMenu: Story = {
+  render: () => (
+    <Popover
+      className="relative"
+      panelClassName="bg-background px-0 py-0"
+      trigger={<Button>Recent</Button>}
+      anchor="bottom"
+    >
+      <Popover.Menu>
+        <Popover.Section label="Recent searches">
+          <Popover.Item onClick={() => console.log('nirvana')}>
+            nirvana
+          </Popover.Item>
+          <Popover.Item onClick={() => console.log('pixies')}>
+            pixies
+          </Popover.Item>
+        </Popover.Section>
+        <Popover.Footer>
+          <Popover.Item
+            intent="danger"
+            align="center"
+            icon={<Trash2Icon size={16} />}
+            onClick={() => console.log('clear')}
+          >
+            Clear recent searches
+          </Popover.Item>
+        </Popover.Footer>
+      </Popover.Menu>
+    </Popover>
+  ),
+};
+
 export const DropdownMenu: Story = {
   render: () => (
     <Popover

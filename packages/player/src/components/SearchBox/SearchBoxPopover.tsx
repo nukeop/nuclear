@@ -47,39 +47,43 @@ export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({
           className="bg-background border-border absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-md border-(length:--border-width)"
         >
           <Popover.Menu>
-            {recentSearches.map((recentSearch, index) => (
+            <Popover.Section label={t('recentSearches')}>
+              {recentSearches.map((recentSearch, index) => (
+                <Popover.Item
+                  key={recentSearch}
+                  icon={<History size={16} />}
+                  highlight="controlled"
+                  data-testid="search-box-recent-search"
+                  data-highlighted={index === highlightedIndex}
+                  className={cn({
+                    [highlightClasses]: index === highlightedIndex,
+                  })}
+                  onMouseEnter={() => onHighlight(index)}
+                  onMouseDown={keepFocus}
+                  onClick={() => onSelect(recentSearch)}
+                >
+                  {recentSearch}
+                </Popover.Item>
+              ))}
+            </Popover.Section>
+            <Popover.Footer>
               <Popover.Item
-                key={recentSearch}
-                icon={<History size={16} />}
+                intent="danger"
+                align="center"
                 highlight="controlled"
-                data-testid="search-box-recent-search"
-                data-highlighted={index === highlightedIndex}
+                icon={<Trash2 size={16} />}
+                data-testid="search-box-clear-history"
+                data-highlighted={clearIndex === highlightedIndex}
                 className={cn({
-                  [highlightClasses]: index === highlightedIndex,
+                  [highlightClasses]: clearIndex === highlightedIndex,
                 })}
-                onMouseEnter={() => onHighlight(index)}
+                onMouseEnter={() => onHighlight(clearIndex)}
                 onMouseDown={keepFocus}
-                onClick={() => onSelect(recentSearch)}
+                onClick={onClearHistory}
               >
-                {recentSearch}
+                {t('clearRecentSearches')}
               </Popover.Item>
-            ))}
-            <Popover.Item
-              intent="danger"
-              align="center"
-              highlight="controlled"
-              icon={<Trash2 size={16} />}
-              data-testid="search-box-clear-history"
-              data-highlighted={clearIndex === highlightedIndex}
-              className={cn({
-                [highlightClasses]: clearIndex === highlightedIndex,
-              })}
-              onMouseEnter={() => onHighlight(clearIndex)}
-              onMouseDown={keepFocus}
-              onClick={onClearHistory}
-            >
-              {t('clearRecentSearches')}
-            </Popover.Item>
+            </Popover.Footer>
           </Popover.Menu>
         </motion.div>
       )}

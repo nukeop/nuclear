@@ -118,6 +118,7 @@
     "searching": "Searching...",
     "failedToLoad": "Failed to load results.",
     "clearRecentSearches": "Clear recent searches",
+    "recentSearches": "Recent searches",
     "results": {
       "tracks": "Tracks",
       "albums": "Albums",

@@ -1,5 +1,125 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Popover > (Snapshot) renders menu with a section and a footer 1`] = `
+<body>
+  <div>
+    <div
+      class="absolute"
+      data-headlessui-state="open"
+      data-open=""
+    >
+      <div
+        aria-controls="headlessui-popover-panel-:rn:"
+        aria-expanded="true"
+        class="cursor-pointer"
+        data-active=""
+        data-headlessui-state="open active hover"
+        data-hover=""
+        data-open=""
+        id="headlessui-popover-button-:rl:"
+      >
+        <button
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+          data-headlessui-state="hover"
+          data-hover=""
+          type="button"
+        >
+          Open
+        </button>
+      </div>
+      <button
+        aria-hidden="true"
+        data-headlessui-focus-guard="true"
+        id="headlessui-focus-sentinel-:rm:"
+        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+        type="button"
+      />
+    </div>
+  </div>
+  <div
+    id="headlessui-portal-root"
+  >
+    <div
+      data-headlessui-portal=""
+    >
+      <button
+        aria-hidden="true"
+        data-headlessui-focus-guard="true"
+        id="headlessui-focus-sentinel-before-:rn:"
+        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+        type="button"
+      />
+      <div
+        animate="[object Object]"
+        class="text-foreground bg-primary border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none translate-y-0"
+        data-anchor="bottom center"
+        data-floating-ui-focusable=""
+        data-headlessui-state="open"
+        data-open=""
+        exit="[object Object]"
+        initial="[object Object]"
+        style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
+      >
+        <div
+          class="flex min-w-48 flex-col overflow-hidden"
+        >
+          <div
+            class="flex flex-col"
+          >
+            <div
+              class="text-foreground-secondary px-3 pt-2.5 pb-1 text-xs font-bold tracking-wide uppercase"
+            >
+              Recent
+            </div>
+            <button
+              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-background-secondary hover:border-border"
+            >
+              <span
+                class="w-4 shrink-0"
+              />
+              <span>
+                Action One
+              </span>
+            </button>
+            <button
+              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-background-secondary hover:border-border"
+            >
+              <span
+                class="w-4 shrink-0"
+              />
+              <span>
+                Action Two
+              </span>
+            </button>
+          </div>
+          <div
+            class="border-border bg-background-secondary/40 flex flex-col border-t"
+          >
+            <button
+              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 text-accent-red justify-center text-center hover:bg-background-secondary hover:border-border"
+            >
+              <span
+                class="w-4 shrink-0"
+              />
+              <span>
+                Clear
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-hidden="true"
+        data-headlessui-focus-guard="true"
+        id="headlessui-focus-sentinel-after-:rn:"
+        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+        type="button"
+      />
+    </div>
+  </div>
+</body>
+`;
+
 exports[`Popover > (Snapshot) renders menu with items 1`] = `
 <body>
   <div>

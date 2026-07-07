@@ -13,8 +13,9 @@ export const SearchBox: FC = () => {
     query,
     setQuery,
     inputRef,
-    isFocused,
-    setIsFocused,
+    isPopoverOpen,
+    openPopover,
+    closePopover,
     handleKeyDown,
     clear,
     popover,
@@ -29,8 +30,8 @@ export const SearchBox: FC = () => {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         onKeyDown={handleKeyDown}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={openPopover}
+        onBlur={closePopover}
         placeholder={t('placeholder')}
         tone="secondary"
         className="h-8 px-8"
@@ -46,7 +47,7 @@ export const SearchBox: FC = () => {
         </Button>
       )}
       <SearchBoxPopover
-        isOpen={isFocused}
+        isOpen={isPopoverOpen}
         recentSearches={popover.recentSearches}
         highlightedIndex={popover.highlightedIndex}
         onHighlight={popover.highlightIndex}

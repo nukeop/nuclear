@@ -66,6 +66,16 @@ describe('Search box', () => {
     expect(SearchWrapper.searchBox.input).toHaveFocus();
   });
 
+  it('does not open the popover when clicking the clear button', async () => {
+    await SearchWrapper.mount();
+    await SearchWrapper.search('nirvana');
+
+    await SearchWrapper.searchBox.clearButton.click();
+
+    expect(SearchWrapper.searchBox.input).toHaveFocus();
+    expect(SearchWrapper.searchBox.popover).not.toBeInTheDocument();
+  });
+
   it('clears the text on Escape, then blurs on a second Escape', async () => {
     await SearchWrapper.mount();
     await SearchWrapper.searchBox.type('nirvana');

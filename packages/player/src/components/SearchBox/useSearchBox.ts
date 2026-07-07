@@ -10,14 +10,20 @@ export const useSearchBox = () => {
   const addRecentSearch = useRecentSearches((state) => state.addRecentSearch);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  const [isFocused, setIsFocused] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const openPopover = () => setIsPopoverOpen(true);
+  const closePopover = () => setIsPopoverOpen(false);
 
   const goToSearch = (searchQuery: string) => {
     navigate({ to: '/search', search: { q: searchQuery } });
     inputRef.current?.blur();
   };
 
-  const popover = useSearchPopover({ isOpen: isFocused, onSelect: goToSearch });
+  const popover = useSearchPopover({
+    isOpen: isPopoverOpen,
+    onSelect: goToSearch,
+  });
 
   const submit = () => {
     const trimmed = query.trim();
@@ -30,6 +36,7 @@ export const useSearchBox = () => {
   const clear = () => {
     setQuery('');
     inputRef.current?.focus();
+    closePopover();
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -56,8 +63,9 @@ export const useSearchBox = () => {
     query,
     setQuery,
     inputRef: inputRef as RefObject<HTMLInputElement>,
-    isFocused,
-    setIsFocused,
+    isPopoverOpen,
+    openPopover,
+    closePopover,
     handleKeyDown,
     clear,
     popover,
