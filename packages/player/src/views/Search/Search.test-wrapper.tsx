@@ -67,6 +67,41 @@ export const SearchWrapper = {
         .map((item) => item.textContent);
     },
 
+    get highlightedRecentSearch() {
+      const highlighted = screen
+        .queryAllByTestId('search-box-recent-search')
+        .find((item) => item.dataset.highlighted === 'true');
+      return highlighted?.textContent;
+    },
+
+    async clickRecentSearch(text: string) {
+      const item = screen
+        .getAllByTestId('search-box-recent-search')
+        .find((candidate) => candidate.textContent === text);
+      await user.click(item!);
+    },
+
+    async highlightNext() {
+      await user.keyboard('{ArrowDown}');
+    },
+
+    async highlightPrevious() {
+      await user.keyboard('{ArrowUp}');
+    },
+
+    async selectHighlighted() {
+      await user.keyboard('{Enter}');
+    },
+
+    clearHistoryButton: {
+      get element() {
+        return screen.queryByTestId('search-box-clear-history');
+      },
+      async click() {
+        await user.click(screen.getByTestId('search-box-clear-history'));
+      },
+    },
+
     async type(text: string) {
       await user.type(this.input, text);
     },
@@ -88,6 +123,10 @@ export const SearchWrapper = {
         await user.click(screen.getByTestId('search-box-clear'));
       },
     },
+  },
+
+  async findSearchQuery(query: string) {
+    return screen.findByText(`Query: "${query}"`);
   },
 
   async navigateToSearch(query: string) {

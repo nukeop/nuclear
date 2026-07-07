@@ -99,6 +99,71 @@ describe('Search box', () => {
     ]);
   });
 
+  it('deduplicates recent searches, moving repeats to the top', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('nirvana');
+    await SearchWrapper.search('pixies');
+    await SearchWrapper.search('nirvana');
+
+    await SearchWrapper.searchBox.focus();
+
+    expect(SearchWrapper.searchBox.recentSearches).toEqual([
+      'nirvana',
+      'pixies',
+    ]);
+  });
+
+  it('clears the recent searches when clicking the clear history button', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('nirvana');
+    await SearchWrapper.searchBox.focus();
+
+    await SearchWrapper.searchBox.clearHistoryButton.click();
+
+    expect(SearchWrapper.searchBox.recentSearches).toEqual([]);
+    expect(
+      SearchWrapper.searchBox.clearHistoryButton.element,
+    ).not.toBeInTheDocument();
+  });
+
+  it('navigates to a recent search when clicking it', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('nirvana');
+    await SearchWrapper.search('pixies');
+
+    await SearchWrapper.searchBox.focus();
+    await SearchWrapper.searchBox.clickRecentSearch('nirvana');
+
+    expect(await SearchWrapper.findSearchQuery('nirvana')).toBeVisible();
+    await waitFor(() => {
+      expect(SearchWrapper.searchBox.input).toHaveValue('nirvana');
+    });
+  });
+
+  it('navigates to a recent search with arrow keys and Enter', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('one');
+    await SearchWrapper.search('two');
+    await SearchWrapper.search('three');
+
+    await SearchWrapper.searchBox.focus();
+    await SearchWrapper.searchBox.highlightNext();
+    await SearchWrapper.searchBox.highlightNext();
+
+    expect(SearchWrapper.searchBox.highlightedRecentSearch).toBe('two');
+
+    await SearchWrapper.searchBox.selectHighlighted();
+
+    expect(await SearchWrapper.findSearchQuery('two')).toBeVisible();
+    await waitFor(() => {
+      expect(SearchWrapper.searchBox.input).toHaveValue('two');
+    });
+  });
+
   it('reflects the query from the URL', async () => {
     await SearchWrapper.mount();
 
