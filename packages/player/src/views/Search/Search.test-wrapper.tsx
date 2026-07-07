@@ -42,6 +42,7 @@ export const SearchWrapper = {
 
   async search(query: string) {
     const searchBox = await screen.findByTestId('search-box');
+    await user.clear(searchBox);
     await user.type(searchBox, query);
     await user.keyboard('{Enter}');
     await screen.findByTestId('search-view');
@@ -50,6 +51,20 @@ export const SearchWrapper = {
   searchBox: {
     get input(): HTMLInputElement {
       return screen.getByTestId('search-box') as HTMLInputElement;
+    },
+
+    async focus() {
+      await user.click(this.input);
+    },
+
+    get popover() {
+      return screen.queryByTestId('search-box-popover');
+    },
+
+    get recentSearches() {
+      return screen
+        .queryAllByTestId('search-box-recent-search')
+        .map((item) => item.textContent);
     },
 
     async type(text: string) {

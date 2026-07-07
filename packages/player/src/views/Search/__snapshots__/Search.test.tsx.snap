@@ -181,6 +181,21 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               />
             </svg>
           </button>
+          <div
+            animate="[object Object]"
+            class="bg-primary border-border absolute top-full right-0 left-0 z-50 mt-2 rounded-md border-(length:--border-width) p-2"
+            data-testid="search-box-popover"
+            exit="[object Object]"
+            initial="[object Object]"
+            transition="[object Object]"
+          >
+            <div
+              class="text-foreground rounded-sm px-2 py-1.5 text-sm"
+              data-testid="search-box-recent-search"
+            >
+              test
+            </div>
+          </div>
         </div>
         <div
           class="flex flex-row items-center justify-end gap-2"

@@ -52,6 +52,10 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
       <div
         animate="[object Object]"
         class="text-foreground bg-primary border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none translate-y-0"
+        data-anchor="bottom center"
+        data-floating-ui-focusable=""
+        data-headlessui-state="open"
+        data-open=""
         exit="[object Object]"
         initial="[object Object]"
         style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
@@ -155,6 +159,10 @@ exports[`Popover > (Snapshot) renders with all props 1`] = `
       <div
         animate="[object Object]"
         class="text-foreground bg-primary border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none translate-x-2 -translate-y-2"
+        data-anchor="left center"
+        data-floating-ui-focusable=""
+        data-headlessui-state="open"
+        data-open=""
         exit="[object Object]"
         initial="[object Object]"
         style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
@@ -228,6 +236,8 @@ exports[`Popover > (Snapshot) renders with backdrop 1`] = `
       <div
         animate="[object Object]"
         class="text-foreground bg-primary border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none"
+        data-headlessui-state="open"
+        data-open=""
         exit="[object Object]"
         initial="[object Object]"
       >

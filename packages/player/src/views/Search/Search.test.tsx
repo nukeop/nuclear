@@ -80,6 +80,25 @@ describe('Search box', () => {
     expect(SearchWrapper.searchBox.input).not.toHaveFocus();
   });
 
+  it('shows the last 5 searches in the popover, most recent first', async () => {
+    await SearchWrapper.mount();
+
+    const queries = ['one', 'two', 'three', 'four', 'five', 'six'];
+    for (const query of queries) {
+      await SearchWrapper.search(query);
+    }
+
+    await SearchWrapper.searchBox.focus();
+
+    expect(SearchWrapper.searchBox.recentSearches).toEqual([
+      'six',
+      'five',
+      'four',
+      'three',
+      'two',
+    ]);
+  });
+
   it('reflects the query from the URL', async () => {
     await SearchWrapper.mount();
 

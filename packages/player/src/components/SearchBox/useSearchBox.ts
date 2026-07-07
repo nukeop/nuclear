@@ -1,16 +1,19 @@
 import { useRouter } from '@tanstack/react-router';
 import { KeyboardEvent, RefObject, useRef } from 'react';
 
+import { useRecentSearches } from './useRecentSearches';
 import { useSearchQuery } from './useSearchQuery';
 
 export const useSearchBox = () => {
   const { query, setQuery } = useSearchQuery();
+  const { recentSearches, addRecentSearch } = useRecentSearches();
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   const submit = () => {
     const trimmed = query.trim();
     if (trimmed.length > 0) {
+      addRecentSearch(trimmed);
       router.navigate({ to: '/search', search: { q: trimmed } });
     }
   };
@@ -42,5 +45,6 @@ export const useSearchBox = () => {
     inputRef: inputRef as RefObject<HTMLInputElement>,
     handleKeyDown,
     clear,
+    recentSearches,
   };
 };
