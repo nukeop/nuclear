@@ -1,7 +1,8 @@
 import { useNavigate } from '@tanstack/react-router';
-import { KeyboardEvent, RefObject, useRef } from 'react';
+import { KeyboardEvent, RefObject, useRef, useState } from 'react';
 
 import { useRecentSearches } from './useRecentSearches';
+import { useSearchPopover } from './useSearchPopover';
 import { useSearchQuery } from './useSearchQuery';
 
 export const useSearchBox = () => {
@@ -9,13 +10,20 @@ export const useSearchBox = () => {
   const addRecentSearch = useRecentSearches((state) => state.addRecentSearch);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const [isFocused, setIsFocused] = useState(false);
+
+  const goToSearch = (searchQuery: string) => {
+    navigate({ to: '/search', search: { q: searchQuery } });
+    inputRef.current?.blur();
+  };
+
+  const popover = useSearchPopover({ isOpen: isFocused, onSelect: goToSearch });
 
   const submit = () => {
     const trimmed = query.trim();
     if (trimmed.length > 0) {
       addRecentSearch(trimmed);
-      navigate({ to: '/search', search: { q: trimmed } });
-      inputRef.current?.blur();
+      goToSearch(trimmed);
     }
   };
 
@@ -25,7 +33,7 @@ export const useSearchBox = () => {
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.defaultPrevented) {
+    if (popover.handleKeyDown(event)) {
       return;
     }
 
@@ -48,7 +56,10 @@ export const useSearchBox = () => {
     query,
     setQuery,
     inputRef: inputRef as RefObject<HTMLInputElement>,
+    isFocused,
+    setIsFocused,
     handleKeyDown,
     clear,
+    popover,
   };
 };

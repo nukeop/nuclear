@@ -1,78 +1,70 @@
-import { useNavigate } from '@tanstack/react-router';
-import { RefObject, useEffect, useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 
 import { useRecentSearches } from './useRecentSearches';
 
-export const useSearchPopover = (
-  inputRef: RefObject<HTMLInputElement>,
-  isOpen: boolean,
-) => {
+type SearchPopoverParams = {
+  isOpen: boolean;
+  onSelect: (query: string) => void;
+};
+
+const NO_HIGHLIGHT = -1;
+
+export const useSearchPopover = ({ isOpen, onSelect }: SearchPopoverParams) => {
   const { recentSearches, clearRecentSearches } = useRecentSearches();
-  const navigate = useNavigate();
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [highlightedIndex, setHighlightedIndex] = useState(NO_HIGHLIGHT);
 
   const clearIndex = recentSearches.length;
-
-  const navigateToSearch = (query: string) =>
-    navigate({ to: '/search', search: { q: query } });
+  const rowCount = recentSearches.length + 1;
 
   useEffect(() => {
     if (!isOpen) {
-      setHighlightedIndex(-1);
+      setHighlightedIndex(NO_HIGHLIGHT);
     }
   }, [isOpen]);
 
-  useEffect(() => {
-    const input = inputRef.current;
-    if (!input || !isOpen || recentSearches.length === 0) {
-      return;
+  const clearHistory = () => {
+    clearRecentSearches();
+    setHighlightedIndex(NO_HIGHLIGHT);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): boolean => {
+    if (!isOpen || recentSearches.length === 0) {
+      return false;
     }
 
-    const rowCount = recentSearches.length + 1;
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      setHighlightedIndex((previous) => (previous + 1) % rowCount);
+      return true;
+    }
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        setHighlightedIndex((previous) => (previous + 1) % rowCount);
-        return;
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setHighlightedIndex((previous) =>
+        previous <= 0 ? rowCount - 1 : previous - 1,
+      );
+      return true;
+    }
+
+    if (event.key === 'Enter' && highlightedIndex !== NO_HIGHLIGHT) {
+      if (highlightedIndex === clearIndex) {
+        clearHistory();
+        return true;
       }
 
-      if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        setHighlightedIndex((previous) =>
-          previous <= 0 ? rowCount - 1 : previous - 1,
-        );
-        return;
-      }
+      onSelect(recentSearches[highlightedIndex]);
+      return true;
+    }
 
-      if (event.key === 'Enter' && highlightedIndex >= 0) {
-        event.preventDefault();
-        if (highlightedIndex === recentSearches.length) {
-          clearRecentSearches();
-          return;
-        }
-        navigateToSearch(recentSearches[highlightedIndex]);
-        input.blur();
-      }
-    };
-
-    input.addEventListener('keydown', handleKeyDown);
-    return () => input.removeEventListener('keydown', handleKeyDown);
-  }, [
-    inputRef,
-    isOpen,
-    recentSearches,
-    highlightedIndex,
-    navigate,
-    clearRecentSearches,
-  ]);
+    return false;
+  };
 
   return {
     recentSearches,
-    clearRecentSearches,
-    navigateToSearch,
     highlightedIndex,
-    setHighlightedIndex,
-    clearIndex,
+    highlightIndex: setHighlightedIndex,
+    select: onSelect,
+    clearHistory,
+    handleKeyDown,
   };
 };

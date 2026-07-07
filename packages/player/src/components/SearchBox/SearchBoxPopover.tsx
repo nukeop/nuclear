@@ -1,34 +1,33 @@
 import { History, Trash2 } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import { FC, MouseEvent, RefObject } from 'react';
+import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { cn, Popover } from '@nuclearplayer/ui';
-
-import { useSearchPopover } from './useSearchPopover';
 
 const highlightClasses = 'bg-background-secondary border-border';
 
 type SearchBoxPopoverProps = {
   isOpen: boolean;
-  inputRef: RefObject<HTMLInputElement>;
+  recentSearches: string[];
+  highlightedIndex: number;
+  onHighlight: (index: number) => void;
+  onSelect: (query: string) => void;
+  onClearHistory: () => void;
 };
 
 const keepFocus = (event: MouseEvent) => event.preventDefault();
 
 export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({
   isOpen,
-  inputRef,
+  recentSearches,
+  highlightedIndex,
+  onHighlight,
+  onSelect,
+  onClearHistory,
 }) => {
   const { t } = useTranslation('search');
-  const {
-    recentSearches,
-    clearRecentSearches,
-    navigateToSearch,
-    highlightedIndex,
-    setHighlightedIndex,
-    clearIndex,
-  } = useSearchPopover(inputRef, isOpen);
+  const clearIndex = recentSearches.length;
   const hasHistory = recentSearches.length > 0;
 
   return (
@@ -58,8 +57,9 @@ export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({
                 className={cn({
                   [highlightClasses]: index === highlightedIndex,
                 })}
-                onMouseEnter={() => setHighlightedIndex(index)}
-                onMouseDown={() => navigateToSearch(recentSearch)}
+                onMouseEnter={() => onHighlight(index)}
+                onMouseDown={keepFocus}
+                onClick={() => onSelect(recentSearch)}
               >
                 {recentSearch}
               </Popover.Item>
@@ -74,9 +74,9 @@ export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({
               className={cn({
                 [highlightClasses]: clearIndex === highlightedIndex,
               })}
-              onMouseEnter={() => setHighlightedIndex(clearIndex)}
+              onMouseEnter={() => onHighlight(clearIndex)}
               onMouseDown={keepFocus}
-              onClick={clearRecentSearches}
+              onClick={onClearHistory}
             >
               {t('clearRecentSearches')}
             </Popover.Item>
