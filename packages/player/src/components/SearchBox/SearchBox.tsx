@@ -37,7 +37,7 @@ export const SearchBox: FC = () => {
           <X className="size-4" />
         </Button>
       )}
-      <SearchBoxPopover isOpen={isFocused} />
+      <SearchBoxPopover isOpen={isFocused} inputRef={inputRef} />
     </div>
   );
 };

@@ -172,6 +172,25 @@ describe('Search box', () => {
     });
   });
 
+  it('keeps a single highlight across keyboard and mouse', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('one');
+    await SearchWrapper.search('two');
+    await SearchWrapper.search('three');
+
+    await SearchWrapper.searchBox.focus();
+    await SearchWrapper.searchBox.highlightNext();
+
+    expect(SearchWrapper.searchBox.highlightedRecentSearches).toEqual([
+      'three',
+    ]);
+
+    await SearchWrapper.searchBox.hoverRecentSearch('one');
+
+    expect(SearchWrapper.searchBox.highlightedRecentSearches).toEqual(['one']);
+  });
+
   it('reflects the query from the URL', async () => {
     await SearchWrapper.mount();
 

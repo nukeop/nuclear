@@ -64,7 +64,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
           class="flex min-w-48 flex-col overflow-hidden"
         >
           <button
-            class="hover:bg-background-secondary hover:border-border flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0"
+            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-background-secondary hover:border-border"
           >
             <span
               class="w-4 shrink-0"
@@ -74,7 +74,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
             </span>
           </button>
           <button
-            class="hover:bg-background-secondary hover:border-border flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0"
+            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-background-secondary hover:border-border"
           >
             <span
               class="w-4 shrink-0"
@@ -84,7 +84,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
             </span>
           </button>
           <button
-            class="hover:bg-background-secondary hover:border-border flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 text-accent-red"
+            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 text-accent-red hover:bg-background-secondary hover:border-border"
           >
             <span
               class="w-4 shrink-0"

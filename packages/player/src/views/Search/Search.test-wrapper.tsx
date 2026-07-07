@@ -76,6 +76,20 @@ export const SearchWrapper = {
       return highlighted?.textContent;
     },
 
+    get highlightedRecentSearches() {
+      return screen
+        .queryAllByTestId('search-box-recent-search')
+        .filter((item) => item.dataset.highlighted === 'true')
+        .map((item) => item.textContent);
+    },
+
+    async hoverRecentSearch(text: string) {
+      const item = screen
+        .getAllByTestId('search-box-recent-search')
+        .find((candidate) => candidate.textContent === text);
+      await user.hover(item!);
+    },
+
     async clickRecentSearch(text: string) {
       const item = screen
         .getAllByTestId('search-box-recent-search')

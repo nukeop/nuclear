@@ -25,6 +25,10 @@ export const useSearchBox = () => {
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.defaultPrevented) {
+      return;
+    }
+
     if (event.key === 'Enter') {
       submit();
       return;
