@@ -15,6 +15,7 @@ export const useSearchBox = () => {
     if (trimmed.length > 0) {
       addRecentSearch(trimmed);
       router.navigate({ to: '/search', search: { q: trimmed } });
+      inputRef.current?.blur();
     }
   };
 

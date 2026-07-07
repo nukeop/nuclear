@@ -144,8 +144,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           >
             <input
               class="border-border text-foreground placeholder:text-foreground-secondary w-full transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
-              data-focus=""
-              data-headlessui-state="hover focus"
+              data-headlessui-state="hover"
               data-hover=""
               data-testid="search-box"
               id="input-:r0:"
@@ -181,29 +180,6 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               />
             </svg>
           </button>
-          <div
-            animate="[object Object]"
-            class="bg-primary border-border absolute top-full right-0 left-0 z-50 mt-2 rounded-md border-(length:--border-width) p-2"
-            data-testid="search-box-popover"
-            exit="[object Object]"
-            initial="[object Object]"
-            transition="[object Object]"
-          >
-            <div
-              class="text-foreground rounded-sm px-2 py-1.5 text-sm"
-              data-testid="search-box-recent-search"
-            >
-              test
-            </div>
-            <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 mt-1 w-full justify-center text-sm"
-              data-headlessui-state=""
-              data-testid="search-box-clear-history"
-              type="button"
-            >
-              Clear recent searches
-            </button>
-          </div>
         </div>
         <div
           class="flex flex-row items-center justify-end gap-2"

@@ -15,10 +15,11 @@ const keepFocus = (event: MouseEvent) => event.preventDefault();
 export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({ isOpen }) => {
   const { t } = useTranslation('search');
   const { recentSearches, clearRecentSearches } = useRecentSearches();
+  const hasHistory = recentSearches.length > 0;
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen && hasHistory && (
         <motion.div
           data-testid="search-box-popover"
           initial={{ opacity: 0, y: -8, scale: 0.95 }}
@@ -41,17 +42,15 @@ export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({ isOpen }) => {
               {recentSearch}
             </div>
           ))}
-          {recentSearches.length > 0 && (
-            <Button
-              data-testid="search-box-clear-history"
-              variant="text"
-              onMouseDown={keepFocus}
-              onClick={clearRecentSearches}
-              className="mt-1 w-full justify-center text-sm"
-            >
-              {t('clearRecentSearches')}
-            </Button>
-          )}
+          <Button
+            data-testid="search-box-clear-history"
+            variant="text"
+            onMouseDown={keepFocus}
+            onClick={clearRecentSearches}
+            className="mt-1 w-full justify-center text-sm"
+          >
+            {t('clearRecentSearches')}
+          </Button>
         </motion.div>
       )}
     </AnimatePresence>
