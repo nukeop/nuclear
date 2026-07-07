@@ -6,7 +6,7 @@ import { useSearchQuery } from './useSearchQuery';
 
 export const useSearchBox = () => {
   const { query, setQuery } = useSearchQuery();
-  const { recentSearches, addRecentSearch } = useRecentSearches();
+  const addRecentSearch = useRecentSearches((state) => state.addRecentSearch);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -45,6 +45,5 @@ export const useSearchBox = () => {
     inputRef: inputRef as RefObject<HTMLInputElement>,
     handleKeyDown,
     clear,
-    recentSearches,
   };
 };

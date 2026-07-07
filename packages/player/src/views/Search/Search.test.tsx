@@ -99,6 +99,14 @@ describe('Search box', () => {
     ]);
   });
 
+  it('does not show the popover when there are no recent searches', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.searchBox.focus();
+
+    expect(SearchWrapper.searchBox.popover).not.toBeInTheDocument();
+  });
+
   it('deduplicates recent searches, moving repeats to the top', async () => {
     await SearchWrapper.mount();
 

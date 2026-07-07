@@ -4,6 +4,7 @@ import { render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
+import { useRecentSearches } from '../../components/SearchBox/useRecentSearches';
 import { routeTree } from '../../routeTree.gen';
 
 const user = userEvent.setup();
@@ -13,6 +14,7 @@ let router: AppRouter;
 
 export const SearchWrapper = {
   async mount(query?: string): Promise<RenderResult> {
+    useRecentSearches.setState({ recentSearches: [] });
     // Fresh instances prevent flaky tests caused by stale state from previous
     // tests bleeding into subsequent ones (route subscriptions, query cache
     // observers). This causes tests to fail if running with coverage.

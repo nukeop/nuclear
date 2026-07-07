@@ -195,6 +195,14 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             >
               test
             </div>
+            <button
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 mt-1 w-full justify-center text-sm"
+              data-headlessui-state=""
+              data-testid="search-box-clear-history"
+              type="button"
+            >
+              Clear recent searches
+            </button>
           </div>
         </div>
         <div

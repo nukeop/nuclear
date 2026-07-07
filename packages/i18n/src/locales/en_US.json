@@ -117,6 +117,7 @@
     "noResults": "No results found",
     "searching": "Searching...",
     "failedToLoad": "Failed to load results.",
+    "clearRecentSearches": "Clear recent searches",
     "results": {
       "tracks": "Tracks",
       "albums": "Albums",

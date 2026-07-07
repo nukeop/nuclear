@@ -10,8 +10,7 @@ import { useSearchPopover } from './useSearchPopover';
 
 export const SearchBox: FC = () => {
   const { t } = useTranslation('search');
-  const { query, setQuery, inputRef, handleKeyDown, clear, recentSearches } =
-    useSearchBox();
+  const { query, setQuery, inputRef, handleKeyDown, clear } = useSearchBox();
   const { isOpen, handleFocus, handleBlur } = useSearchPopover();
 
   return (
@@ -39,7 +38,7 @@ export const SearchBox: FC = () => {
           <X className="size-4" />
         </Button>
       )}
-      <SearchBoxPopover isOpen={isOpen} recentSearches={recentSearches} />
+      <SearchBoxPopover isOpen={isOpen} />
     </div>
   );
 };
