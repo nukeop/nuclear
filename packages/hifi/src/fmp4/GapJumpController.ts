@@ -1,9 +1,12 @@
+import { StallDetector } from './StallDetector';
+
 const GAP_DETECTION_THRESHOLD_SECONDS = 0.5;
 const BROWSER_GAP_TOLERANCE_SECONDS = 0.001;
 const GAP_JUMP_POLL_INTERVAL_MS = 250;
 
 export class GapJumpController {
   private intervalId: ReturnType<typeof setInterval> | null = null;
+  private stallDetector = new StallDetector();
 
   start(
     audio: HTMLAudioElement,
@@ -12,9 +15,17 @@ export class GapJumpController {
   ): void {
     this.stop();
     this.intervalId = setInterval(() => {
-      this.jumpGap(audio, sourceBuffer.buffered);
+      this.poll(audio, sourceBuffer.buffered);
       onPollTick?.();
     }, GAP_JUMP_POLL_INTERVAL_MS);
+  }
+
+  poll(audio: HTMLAudioElement, buffered: TimeRanges): void {
+    if (this.stallDetector.poll(audio, buffered)) {
+      return;
+    }
+
+    this.jumpGap(audio, buffered);
   }
 
   stop(): void {

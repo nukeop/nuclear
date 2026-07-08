@@ -29,7 +29,7 @@ export const useMseSource = (
     const onTimeUpdate = () => controller.handleTimeUpdate(audio);
     const onSeeking = () => controller.handleSeeking(audio);
     const onWaiting = () => {
-      controller.handleGapJump(audio);
+      controller.handleStall(audio);
       controller.handleTimeUpdate(audio);
     };
 

@@ -214,13 +214,13 @@ export class MseController {
     await this.fetchAndAppendSegment(0, signal);
   }
 
-  handleGapJump(audio: HTMLAudioElement): void {
+  handleStall(audio: HTMLAudioElement): void {
     const { sourceBuffer } = this;
     if (!sourceBuffer) {
       return;
     }
 
-    this.gapJumpController.jumpGap(audio, sourceBuffer.buffered);
+    this.gapJumpController.poll(audio, sourceBuffer.buffered);
   }
 
   handleTimeUpdate(audio: HTMLAudioElement): void {

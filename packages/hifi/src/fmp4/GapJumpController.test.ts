@@ -4,7 +4,7 @@ import { MockTimeRanges } from './mse-test-mocks';
 const POLL_INTERVAL_MS = 250;
 
 function createMockAudio(currentTime: number, paused: boolean) {
-  return { currentTime, paused } as HTMLAudioElement;
+  return { currentTime, paused, playbackRate: 1 } as HTMLAudioElement;
 }
 
 describe('GapJumpController', () => {
@@ -59,6 +59,31 @@ describe('GapJumpController', () => {
       controller.jumpGap(audio, buffered as TimeRanges);
 
       expect(audio.currentTime).toBe(9.9999);
+    });
+  });
+
+  describe('poll', () => {
+    it('nudges a playhead frozen inside a single merged buffered range', async () => {
+      const controller = new GapJumpController();
+      const buffered = new MockTimeRanges();
+      buffered.addRange(0, 60);
+
+      const sourceBuffer = { buffered } as unknown as SourceBuffer;
+      const audio = createMockAudio(9.98, false);
+
+      vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval', 'Date'] });
+      try {
+        controller.start(audio, sourceBuffer);
+
+        await vi.advanceTimersByTimeAsync(POLL_INTERVAL_MS);
+        expect(audio.currentTime).toBe(9.98);
+
+        await vi.advanceTimersByTimeAsync(POLL_INTERVAL_MS * 4);
+        expect(audio.currentTime).toBeCloseTo(10.08);
+      } finally {
+        vi.useRealTimers();
+        controller.stop();
+      }
     });
   });
 

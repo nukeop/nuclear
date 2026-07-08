@@ -7,42 +7,42 @@ import {
   MockSourceBuffer,
   MockTimeRanges,
   MSE_URL,
-  MseTestHarness,
+  MseTestFixture,
   SEGMENT_REFS,
-} from './MseController.test-harness';
+} from './MseController.test-fixture';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const win = window as any;
 
-const harness = new MseTestHarness();
+const fixture = new MseTestFixture();
 
 describe('MseController', () => {
   beforeEach(() => {
-    harness.install();
+    fixture.install();
   });
 
   afterEach(() => {
-    harness.teardown();
+    fixture.teardown();
   });
 
   it('creates MediaSource and sets audio.src to object URL', async () => {
     const controller = new MseController();
-    await harness.initController(controller);
+    await fixture.initController(controller);
 
-    expect(harness.createObjectURLSpy).toHaveBeenCalledOnce();
-    expect(harness.audio.src).toContain('blob:mock-url');
+    expect(fixture.createObjectURLSpy).toHaveBeenCalledOnce();
+    expect(fixture.audio.src).toContain('blob:mock-url');
   });
 
   it('sets mediaSource.duration from the sidx index', async () => {
     const controller = new MseController();
-    await harness.initController(controller);
+    await fixture.initController(controller);
 
-    expect(harness.latestMediaSource!.duration).toBe(180);
+    expect(fixture.latestMediaSource!.duration).toBe(180);
   });
 
   it('appends init segment to SourceBuffer on sourceopen', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     expect(sourceBuffer.appendBuffer).toHaveBeenCalled();
@@ -54,16 +54,16 @@ describe('MseController', () => {
 
   it('fetches first media segment after init segment is appended', async () => {
     const controller = new MseController();
-    await harness.initController(controller);
+    await fixture.initController(controller);
 
-    expect(harness.fetchMock).toHaveBeenCalledWith(
+    expect(fixture.fetchMock).toHaveBeenCalledWith(
       MSE_URL,
       expect.objectContaining({
         headers: { Range: 'bytes=0-8191' },
       }),
     );
 
-    const segmentFetchCall = harness.fetchMock.mock.calls.find(
+    const segmentFetchCall = fixture.fetchMock.mock.calls.find(
       (call: unknown[]) => {
         const opts = call[1] as { headers?: { Range?: string } } | undefined;
         const range = opts?.headers?.Range;
@@ -79,52 +79,52 @@ describe('MseController', () => {
     delete win.ManagedMediaSource;
 
     const controller = new MseController();
-    await controller.init(harness.audio, MSE_URL);
+    await controller.init(fixture.audio, MSE_URL);
 
     await flushMicrotasks();
 
-    expect(harness.latestMediaSource).toBeNull();
-    expect(harness.createObjectURLSpy).not.toHaveBeenCalled();
+    expect(fixture.latestMediaSource).toBeNull();
+    expect(fixture.createObjectURLSpy).not.toHaveBeenCalled();
   });
 
   it('cleans up on destroy', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
-    controller.destroy(harness.audio);
+    controller.destroy(fixture.audio);
 
-    expect(harness.revokeObjectURLSpy).toHaveBeenCalledWith('blob:mock-url');
+    expect(fixture.revokeObjectURLSpy).toHaveBeenCalledWith('blob:mock-url');
     expect(mediaSource.endOfStream).toHaveBeenCalled();
   });
 
   it('destroy handles null audio gracefully', async () => {
     const controller = new MseController();
-    await harness.initController(controller);
+    await fixture.initController(controller);
 
     controller.destroy(null);
 
-    expect(harness.revokeObjectURLSpy).toHaveBeenCalledWith('blob:mock-url');
+    expect(fixture.revokeObjectURLSpy).toHaveBeenCalledWith('blob:mock-url');
   });
 
   it('handles seeking by fetching the correct segment', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
-    harness.fetchMock.mockClear();
+    fixture.fetchMock.mockClear();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
 
-    Object.defineProperty(harness.audio, 'currentTime', {
+    Object.defineProperty(fixture.audio, 'currentTime', {
       value: 90,
       writable: true,
       configurable: true,
     });
 
-    await controller.handleSeeking(harness.audio);
+    await controller.handleSeeking(fixture.audio);
     await flushMicrotasks();
 
-    const segmentFetchCalls = harness.fetchMock.mock.calls.filter(
+    const segmentFetchCalls = fixture.fetchMock.mock.calls.filter(
       (call: unknown[]) => {
         const opts = call[1] as { headers?: { Range?: string } } | undefined;
         return opts?.headers?.Range && opts.headers.Range !== 'bytes=0-8191';
@@ -136,35 +136,35 @@ describe('MseController', () => {
 
   it('prefers ManagedMediaSource over MediaSource when available', async () => {
     const managedConstructor = vi.fn(function () {
-      harness.latestMediaSource = new MockMediaSource();
-      return harness.latestMediaSource;
+      fixture.latestMediaSource = new MockMediaSource();
+      return fixture.latestMediaSource;
     });
     win.ManagedMediaSource = managedConstructor;
 
     const controller = new MseController();
-    await harness.initController(controller);
+    await fixture.initController(controller);
 
     expect(managedConstructor).toHaveBeenCalledOnce();
-    expect(harness.createObjectURLSpy).not.toHaveBeenCalled();
-    expect(harness.audio.srcObject).toBe(harness.latestMediaSource);
+    expect(fixture.createObjectURLSpy).not.toHaveBeenCalled();
+    expect(fixture.audio.srcObject).toBe(fixture.latestMediaSource);
   });
 
   it('calls endOfStream after the final media segment is appended', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
     expect(mediaSource.endOfStream).not.toHaveBeenCalled();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
 
-    Object.defineProperty(harness.audio, 'currentTime', {
+    Object.defineProperty(fixture.audio, 'currentTime', {
       value: 170,
       writable: true,
       configurable: true,
     });
 
-    await controller.handleSeeking(harness.audio);
+    await controller.handleSeeking(fixture.audio);
     await flushMicrotasks();
 
     expect(mediaSource.endOfStream).toHaveBeenCalled();
@@ -172,24 +172,24 @@ describe('MseController', () => {
 
   it('chain-fetches all remaining segments after a single handleTimeUpdate call', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
-    harness.fetchMock.mockClear();
+    fixture.fetchMock.mockClear();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
     sourceBuffer.buffered.addRange(0, 60);
 
-    Object.defineProperty(harness.audio, 'currentTime', {
+    Object.defineProperty(fixture.audio, 'currentTime', {
       value: 50,
       writable: true,
       configurable: true,
     });
 
-    controller.handleTimeUpdate(harness.audio);
+    controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
-    const segmentFetchCalls = harness.fetchMock.mock.calls.filter(
+    const segmentFetchCalls = fixture.fetchMock.mock.calls.filter(
       (call: unknown[]) => {
         const opts = call[1] as { headers?: { Range?: string } } | undefined;
         return opts?.headers?.Range && opts.headers.Range !== 'bytes=0-8191';
@@ -201,24 +201,24 @@ describe('MseController', () => {
 
   it('fetches next segment on timeupdate when buffer is low', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
-    harness.fetchMock.mockClear();
+    fixture.fetchMock.mockClear();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
     sourceBuffer.buffered.addRange(0, 20);
 
-    Object.defineProperty(harness.audio, 'currentTime', {
+    Object.defineProperty(fixture.audio, 'currentTime', {
       value: 10,
       writable: true,
       configurable: true,
     });
 
-    controller.handleTimeUpdate(harness.audio);
+    controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
-    const segmentFetchCalls = harness.fetchMock.mock.calls.filter(
+    const segmentFetchCalls = fixture.fetchMock.mock.calls.filter(
       (call: unknown[]) => {
         const opts = call[1] as { headers?: { Range?: string } } | undefined;
         return opts?.headers?.Range && opts.headers.Range !== 'bytes=0-8191';
@@ -230,27 +230,27 @@ describe('MseController', () => {
 
   it('fetches the next contiguous segment when the buffered end drifts past its start time', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
-    harness.fetchMock.mockClear();
+    fixture.fetchMock.mockClear();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
     sourceBuffer.buffered.addRange(0, 60.05);
 
-    Object.defineProperty(harness.audio, 'currentTime', {
+    Object.defineProperty(fixture.audio, 'currentTime', {
       value: 55,
       writable: true,
       configurable: true,
     });
 
-    controller.handleTimeUpdate(harness.audio);
+    controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
     const { startByte: secondSegmentStart, endByte: secondSegmentEnd } =
       computeSegmentByteRange(1);
 
-    const fetchedRanges = harness.fetchMock.mock.calls.map(
+    const fetchedRanges = fixture.fetchMock.mock.calls.map(
       (call: unknown[]) => {
         const opts = call[1] as { headers?: { Range?: string } } | undefined;
         return opts?.headers?.Range;
@@ -264,15 +264,15 @@ describe('MseController', () => {
 
   it('retries a segment that failed to append, on a subsequent handleTimeUpdate', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
-    harness.fetchMock.mockClear();
+    fixture.fetchMock.mockClear();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
     sourceBuffer.buffered.addRange(0, 60);
 
-    Object.defineProperty(harness.audio, 'currentTime', {
+    Object.defineProperty(fixture.audio, 'currentTime', {
       value: 50,
       writable: true,
       configurable: true,
@@ -282,13 +282,13 @@ describe('MseController', () => {
       throw new Error('InvalidStateError: append failed');
     });
 
-    controller.handleTimeUpdate(harness.audio);
+    controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
     const { startByte, endByte } = computeSegmentByteRange(1);
     const failedSegmentRange = `bytes=${startByte}-${endByte}`;
 
-    const failedSegmentFetches = harness.fetchMock.mock.calls.filter(
+    const failedSegmentFetches = fixture.fetchMock.mock.calls.filter(
       (call: unknown[]) => {
         const opts = call[1] as { headers?: { Range?: string } } | undefined;
         return opts?.headers?.Range === failedSegmentRange;
@@ -300,13 +300,13 @@ describe('MseController', () => {
 
   it('discards a stale pre-seek fetch instead of appending it after the seek clears the buffer', async () => {
     const controller = new MseController();
-    const mediaSource = await harness.initController(controller);
+    const mediaSource = await fixture.initController(controller);
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
     sourceBuffer.buffered.addRange(0, 60);
 
-    Object.defineProperty(harness.audio, 'currentTime', {
+    Object.defineProperty(fixture.audio, 'currentTime', {
       value: 50,
       writable: true,
       configurable: true,
@@ -317,7 +317,7 @@ describe('MseController', () => {
       releaseHeldFetch = resolve;
     });
 
-    harness.fetchMock.mockImplementationOnce(
+    fixture.fetchMock.mockImplementationOnce(
       async (_url: string, options?: RequestInit) => {
         await heldFetchGate;
         const rangeHeader = (options?.headers as Record<string, string>)?.Range;
@@ -327,15 +327,15 @@ describe('MseController', () => {
         return {
           ok: true,
           arrayBuffer: async () =>
-            harness.makeSegmentData(endByte - startByte + 1).buffer,
+            fixture.makeSegmentData(endByte - startByte + 1).buffer,
         };
       },
     );
 
-    controller.handleTimeUpdate(harness.audio);
+    controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
-    Object.defineProperty(harness.audio, 'currentTime', {
+    Object.defineProperty(fixture.audio, 'currentTime', {
       value: 150,
       writable: true,
       configurable: true,
@@ -343,7 +343,7 @@ describe('MseController', () => {
 
     sourceBuffer.buffered = new MockTimeRanges();
 
-    await controller.handleSeeking(harness.audio);
+    await controller.handleSeeking(fixture.audio);
     await flushMicrotasks();
 
     releaseHeldFetch();
@@ -374,24 +374,24 @@ describe('MseController', () => {
     const controller = new MseController();
     const onError = vi.fn();
     const initPromise = controller.init(
-      harness.audio,
+      fixture.audio,
       MSE_URL,
       undefined,
       onError,
     );
 
-    await vi.waitFor(() => expect(harness.latestMediaSource).not.toBeNull());
+    await vi.waitFor(() => expect(fixture.latestMediaSource).not.toBeNull());
 
-    harness.latestMediaSource!.addSourceBuffer.mockImplementationOnce(() => {
+    fixture.latestMediaSource!.addSourceBuffer.mockImplementationOnce(() => {
       const sourceBuffer = new MockSourceBuffer();
       sourceBuffer.appendBuffer.mockImplementation(() => {
         throw new Error('QuotaExceededError');
       });
-      harness.latestMediaSource!.sourceBuffers.push(sourceBuffer);
+      fixture.latestMediaSource!.sourceBuffers.push(sourceBuffer);
       return sourceBuffer;
     });
 
-    harness.latestMediaSource!.open();
+    fixture.latestMediaSource!.open();
     await initPromise;
 
     expect(onError).toHaveBeenCalledWith(

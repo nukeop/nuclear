@@ -54,7 +54,7 @@ export async function flushMicrotasks() {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const win = window as any;
 
-export class MseTestHarness {
+export class MseTestFixture {
   latestMediaSource: MockMediaSource | null = null;
   fetchMock!: ReturnType<typeof vi.fn>;
   createObjectURLSpy!: ReturnType<
