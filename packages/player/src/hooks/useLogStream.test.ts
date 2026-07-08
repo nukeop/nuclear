@@ -54,8 +54,8 @@ describe('useLogStream', () => {
 
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(0));
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(invoke).toHaveBeenCalledWith('get_startup_logs');
     expect(result.current.logs).toHaveLength(1);
@@ -70,7 +70,7 @@ describe('useLogStream', () => {
   it('parses incoming log messages and extracts scope', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({
@@ -79,7 +79,7 @@ describe('useLogStream', () => {
       });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.logs).toHaveLength(1);
     expect(result.current.logs[0]).toMatchObject({
@@ -93,7 +93,7 @@ describe('useLogStream', () => {
   it('identifies plugin logs from plugin: prefix', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({
@@ -102,7 +102,7 @@ describe('useLogStream', () => {
       });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.logs[0]).toMatchObject({
       level: 'info',
@@ -115,7 +115,7 @@ describe('useLogStream', () => {
   it('handles Tauri-internal logs without scope prefix', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({
@@ -124,7 +124,7 @@ describe('useLogStream', () => {
       });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.logs[0]).toMatchObject({
       level: 'debug',
@@ -137,13 +137,13 @@ describe('useLogStream', () => {
   it('handles messages without any format', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({ level: 4, message: 'Raw message without format' });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.logs[0]).toMatchObject({
       level: 'warn',
@@ -156,7 +156,7 @@ describe('useLogStream', () => {
   it('maps Tauri log levels correctly', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({ level: 1, message: '[TRACE][webview] [app] trace' });
@@ -166,7 +166,7 @@ describe('useLogStream', () => {
       logCallback({ level: 5, message: '[ERROR][webview] [app] error' });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.logs.map((l: { level: string }) => l.level)).toEqual([
       'trace',
@@ -180,8 +180,8 @@ describe('useLogStream', () => {
   it('limits buffer to 1000 entries (ring buffer)', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       for (let i = 0; i < 1050; i++) {
@@ -192,7 +192,7 @@ describe('useLogStream', () => {
       }
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.logs).toHaveLength(1000);
     expect(result.current.logs[0].message).toBe('Message 50');
@@ -202,27 +202,27 @@ describe('useLogStream', () => {
   it('clears logs and continues receiving new ones', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({ level: 3, message: '[INFO][webview] [app] Before clear' });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
     expect(result.current.logs).toHaveLength(1);
 
     act(() => {
       result.current.clearLogs();
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
     expect(result.current.logs).toHaveLength(0);
 
     act(() => {
       logCallback({ level: 3, message: '[INFO][webview] [app] After clear' });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
     expect(result.current.logs).toHaveLength(1);
     expect(result.current.logs[0].message).toBe('After clear');
   });
@@ -230,7 +230,7 @@ describe('useLogStream', () => {
   it('exposes unique scopes from logs', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({ level: 3, message: '[INFO][webview] [app] msg1' });
@@ -239,7 +239,7 @@ describe('useLogStream', () => {
       logCallback({ level: 3, message: '[INFO][webview] [app] msg4' });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.scopes).toEqual(
       expect.arrayContaining(['app', 'streaming', 'yt']),
@@ -250,7 +250,7 @@ describe('useLogStream', () => {
   it('filters empty scopes from scopes list', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({ level: 3, message: '[INFO][webview] [app] msg1' });
@@ -260,7 +260,7 @@ describe('useLogStream', () => {
       });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.scopes).toEqual(['app']);
     expect(result.current.scopes).not.toContain('');
@@ -269,7 +269,7 @@ describe('useLogStream', () => {
   it('exposes unique targets from logs', async () => {
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({ level: 3, message: '[INFO][webview] [app] msg1' });
@@ -284,7 +284,7 @@ describe('useLogStream', () => {
       logCallback({ level: 3, message: '[INFO][webview] [streaming] msg2' });
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.targets).toEqual(
       expect.arrayContaining([
@@ -311,7 +311,7 @@ describe('useLogStream', () => {
 
     const { result } = renderHook(() => useLogStream());
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
     act(() => {
       logCallback({
@@ -330,7 +330,7 @@ describe('useLogStream', () => {
       ]);
     });
 
-    await vi.advanceTimersByTimeAsync(100);
+    await act(() => vi.advanceTimersByTimeAsync(100));
 
     expect(result.current.logs).toHaveLength(2);
     expect(result.current.logs[0].message).toBe('Startup log');
