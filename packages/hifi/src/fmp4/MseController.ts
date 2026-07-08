@@ -1,3 +1,4 @@
+import { GapJumpController } from './GapJumpController';
 import { parseInitSegment, SegmentReference } from './parser';
 
 const HEADER_FETCH_SIZE = 8192;
@@ -108,6 +109,9 @@ export class MseController {
   private objectUrl: string | null = null;
   private url = '';
   private isFetching = false;
+  private bufferOperationChain: Promise<void> = Promise.resolve();
+  private seekGeneration = 0;
+  private gapJumpController = new GapJumpController();
 
   async init(
     audio: HTMLAudioElement,
@@ -186,14 +190,37 @@ export class MseController {
 
     mediaSource.duration = sidxDuration;
 
-    sourceBuffer.appendBuffer(initSegment.buffer as ArrayBuffer);
-    await waitForUpdateEnd(sourceBuffer);
+    try {
+      await this.enqueueBufferOperation(() =>
+        sourceBuffer.appendBuffer(initSegment.buffer as ArrayBuffer),
+      );
+    } catch {
+      onError?.(new Error('Failed to append init segment'));
+      return;
+    }
 
-    if (signal.aborted || segments.length === 0) {
+    if (signal.aborted) {
+      return;
+    }
+
+    this.gapJumpController.start(audio, sourceBuffer, () =>
+      this.handleTimeUpdate(audio),
+    );
+
+    if (segments.length === 0) {
       return;
     }
 
     await this.fetchAndAppendSegment(0, signal);
+  }
+
+  handleGapJump(audio: HTMLAudioElement): void {
+    const { sourceBuffer } = this;
+    if (!sourceBuffer) {
+      return;
+    }
+
+    this.gapJumpController.jumpGap(audio, sourceBuffer.buffered);
   }
 
   handleTimeUpdate(audio: HTMLAudioElement): void {
@@ -254,20 +281,19 @@ export class MseController {
       return;
     }
 
+    this.seekGeneration += 1;
+
     try {
-      if (sourceBuffer.updating) {
-        sourceBuffer.abort();
-      }
-      sourceBuffer.remove(0, Infinity);
-      await waitForUpdateEnd(sourceBuffer);
+      await this.enqueueBufferOperation(() => sourceBuffer.remove(0, Infinity));
       this.fetchedSegments.clear();
 
       if (abortController.signal.aborted) {
         return;
       }
 
-      sourceBuffer.appendBuffer(initSegment.buffer as ArrayBuffer);
-      await waitForUpdateEnd(sourceBuffer);
+      await this.enqueueBufferOperation(() =>
+        sourceBuffer.appendBuffer(initSegment.buffer as ArrayBuffer),
+      );
 
       if (abortController.signal.aborted) {
         return;
@@ -293,6 +319,8 @@ export class MseController {
   }
 
   destroy(audio: HTMLAudioElement | null): void {
+    this.gapJumpController.stop();
+
     if (this.abortController) {
       this.abortController.abort();
       this.abortController = null;
@@ -356,6 +384,7 @@ export class MseController {
     this.fetchedSegments.add(segmentIndex);
 
     const segment = segments[segmentIndex];
+    const generation = this.seekGeneration;
 
     let segmentData: Uint8Array;
     try {
@@ -375,8 +404,19 @@ export class MseController {
       return;
     }
 
-    sourceBuffer.appendBuffer(segmentData.buffer as ArrayBuffer);
-    await waitForUpdateEnd(sourceBuffer);
+    if (this.seekGeneration !== generation) {
+      this.fetchedSegments.delete(segmentIndex);
+      return;
+    }
+
+    try {
+      await this.enqueueBufferOperation(() =>
+        sourceBuffer.appendBuffer(segmentData.buffer as ArrayBuffer),
+      );
+    } catch {
+      this.fetchedSegments.delete(segmentIndex);
+      return;
+    }
 
     const isFinalSegment = segmentIndex === segments.length - 1;
     const mediaSource = this.mediaSource;
@@ -389,5 +429,21 @@ export class MseController {
     ) {
       mediaSource.endOfStream();
     }
+  }
+
+  private enqueueBufferOperation(operation: () => void): Promise<void> {
+    const nextOperation = this.bufferOperationChain.then(async () => {
+      const { sourceBuffer } = this;
+      if (!sourceBuffer) {
+        return;
+      }
+
+      operation();
+      await waitForUpdateEnd(sourceBuffer);
+    });
+
+    this.bufferOperationChain = nextOperation.catch(() => undefined);
+
+    return nextOperation;
   }
 }

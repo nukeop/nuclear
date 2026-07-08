@@ -28,7 +28,10 @@ export const useMseSource = (
 
     const onTimeUpdate = () => controller.handleTimeUpdate(audio);
     const onSeeking = () => controller.handleSeeking(audio);
-    const onWaiting = () => controller.handleTimeUpdate(audio);
+    const onWaiting = () => {
+      controller.handleGapJump(audio);
+      controller.handleTimeUpdate(audio);
+    };
 
     audio.addEventListener('timeupdate', onTimeUpdate);
     audio.addEventListener('seeking', onSeeking);
