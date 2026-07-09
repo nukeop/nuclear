@@ -87,13 +87,16 @@ pub struct PlayFinalization {
     pub ms_played: i64,
 }
 
-async fn last_position(conn: &mut sqlx::SqliteConnection, play_id: i64) -> Result<i64, String> {
-    sqlx::query("SELECT position_ms FROM play_events WHERE play_id = ? ORDER BY at DESC LIMIT 1")
+async fn last_event(
+    conn: &mut sqlx::SqliteConnection,
+    play_id: i64,
+) -> Result<(i64, i64), String> {
+    sqlx::query("SELECT at, position_ms FROM play_events WHERE play_id = ? ORDER BY at DESC LIMIT 1")
         .bind(play_id)
         .fetch_one(&mut *conn)
         .await
-        .map(|row| row.get("position_ms"))
-        .map_err(|err| format!("Failed to fetch last position: {err}"))
+        .map(|row| (row.get("at"), row.get("position_ms")))
+        .map_err(|err| format!("Failed to fetch last event: {err}"))
 }
 
 async fn do_finalize(
@@ -180,7 +183,7 @@ async fn finalize_one_open_play(
     end_at: i64,
     reason: EndReason,
 ) -> Result<(), String> {
-    let position_ms = last_position(&mut *conn, play_id).await?;
+    let (_, position_ms) = last_event(&mut *conn, play_id).await?;
     let ms_played = compute_ms_played(&mut *conn, play_id, end_at).await?;
 
     do_finalize(
@@ -228,6 +231,26 @@ impl HistoryDb {
         .await
         .map(|row| row.get("id"))
         .map_err(|err| format!("Failed to upsert track: {err}"))
+    }
+
+    pub async fn sweep_open_plays(&self) -> Result<(), String> {
+        let mut tx = self
+            .pool()
+            .begin()
+            .await
+            .map_err(|err| format!("Failed to begin transaction: {err}"))?;
+
+        let open_ids = fetch_open_play_ids(&mut *tx).await?;
+        for play_id in open_ids {
+            let (last_at, _) = last_event(&mut *tx, play_id).await?;
+            finalize_one_open_play(&mut *tx, play_id, last_at, EndReason::Abandoned).await?;
+        }
+
+        tx.commit()
+            .await
+            .map_err(|err| format!("Failed to commit transaction: {err}"))?;
+
+        Ok(())
     }
 
     async fn replace_open_plays(&self, at: i64) -> Result<(), String> {
@@ -474,6 +497,33 @@ mod tests {
             Some("https://example.com/new.jpg".into()),
             "NULL artwork_url should be backfilled"
         );
+    }
+
+    #[tokio::test]
+    async fn sweep_closes_open_plays_conservatively() {
+        let db = db().await;
+
+        // started@1000, paused@3000 (2s played), resumed@5000
+        // sweep should count: (3000-1000) + (5000-5000) = 2000
+        // the trailing open interval gets zero because end_at = last event's timestamp
+        let play_id = db.start_play(snapshot()).await.unwrap();
+        db.record_event(PlayEvent {
+            play_id, kind: PlayEventKind::Paused, at: 3000, position_ms: 2000, seek_to_ms: None,
+        }).await.unwrap();
+        db.record_event(PlayEvent {
+            play_id, kind: PlayEventKind::Resumed, at: 5000, position_ms: 2000, seek_to_ms: None,
+        }).await.unwrap();
+
+        db.sweep_open_plays().await.unwrap();
+
+        let play = sqlx::query("SELECT end_reason, ended_at, ms_played FROM plays WHERE id = ?")
+            .bind(play_id)
+            .fetch_one(db.pool())
+            .await
+            .unwrap();
+        assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("abandoned".into()));
+        assert_eq!(play.get::<Option<i64>, _>("ended_at"), Some(5000));
+        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(2000));
     }
 
     #[tokio::test]
