@@ -160,6 +160,43 @@ impl HistoryDb {
     }
 
     pub async fn finalize_play(&self, finalization: PlayFinalization) -> Result<(), String> {
-        todo!()
+        let already_finalized: bool = sqlx::query(
+            "SELECT end_reason IS NOT NULL as finalized FROM plays WHERE id = ?",
+        )
+        .bind(finalization.play_id)
+        .fetch_one(self.pool())
+        .await
+        .map(|row| row.get("finalized"))
+        .map_err(|err| format!("Failed to fetch play: {err}"))?;
+
+        if already_finalized {
+            return Ok(());
+        }
+
+        sqlx::query(
+            "UPDATE plays SET ended_at = ?, end_reason = ?, end_position_ms = ?, ms_played = ? \
+             WHERE id = ?",
+        )
+        .bind(finalization.at)
+        .bind(finalization.reason.as_str())
+        .bind(finalization.position_ms)
+        .bind(finalization.ms_played)
+        .bind(finalization.play_id)
+        .execute(self.pool())
+        .await
+        .map_err(|err| format!("Failed to finalize play: {err}"))?;
+
+        sqlx::query(
+            "INSERT INTO play_events (play_id, kind, at, position_ms) \
+             VALUES (?, 'ended', ?, ?)",
+        )
+        .bind(finalization.play_id)
+        .bind(finalization.at)
+        .bind(finalization.position_ms)
+        .execute(self.pool())
+        .await
+        .map_err(|err| format!("Failed to insert ended event: {err}"))?;
+
+        Ok(())
     }
 }
