@@ -114,12 +114,49 @@ impl HistoryDb {
     }
 
     pub async fn start_play(&self, snapshot: TrackSnapshot) -> Result<i64, String> {
-        let _track_id = self.upsert_track(&snapshot).await?;
-        todo!()
+        let track_id = self.upsert_track(&snapshot).await?;
+
+        let play_id: i64 = sqlx::query(
+            "INSERT INTO plays (track_id, provider, provider_id, started_at) \
+             VALUES (?, ?, ?, ?) RETURNING id",
+        )
+        .bind(track_id)
+        .bind(&snapshot.provider)
+        .bind(&snapshot.provider_id)
+        .bind(snapshot.started_at)
+        .fetch_one(self.pool())
+        .await
+        .map(|row| row.get("id"))
+        .map_err(|err| format!("Failed to insert play: {err}"))?;
+
+        sqlx::query(
+            "INSERT INTO play_events (play_id, kind, at, position_ms) \
+             VALUES (?, 'started', ?, 0)",
+        )
+        .bind(play_id)
+        .bind(snapshot.started_at)
+        .execute(self.pool())
+        .await
+        .map_err(|err| format!("Failed to insert started event: {err}"))?;
+
+        Ok(play_id)
     }
 
     pub async fn record_event(&self, event: PlayEvent) -> Result<(), String> {
-        todo!()
+        sqlx::query(
+            "INSERT INTO play_events (play_id, kind, at, position_ms, seek_to_ms) \
+             VALUES (?, ?, ?, ?, ?)",
+        )
+        .bind(event.play_id)
+        .bind(event.kind.as_str())
+        .bind(event.at)
+        .bind(event.position_ms)
+        .bind(event.seek_to_ms)
+        .execute(self.pool())
+        .await
+        .map_err(|err| format!("Failed to insert event: {err}"))?;
+
+        Ok(())
     }
 
     pub async fn finalize_play(&self, finalization: PlayFinalization) -> Result<(), String> {
