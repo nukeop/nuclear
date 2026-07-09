@@ -1,3 +1,5 @@
+use tauri::Manager;
+
 pub mod bridge;
 pub mod commands;
 pub mod db;
@@ -93,6 +95,11 @@ pub fn run() {
 
             Ok(())
         })
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .build(tauri::generate_context!())
+        .expect("error while building tauri application")
+        .run(|app_handle, event| {
+            if let tauri::RunEvent::Exit = event {
+                history::on_exit(app_handle);
+            }
+        });
 }

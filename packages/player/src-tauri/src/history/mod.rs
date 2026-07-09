@@ -7,6 +7,19 @@ use writes::{PlayEvent, PlayFinalization, TrackSnapshot};
 
 pub struct HistoryDb(pub SqlitePool);
 
+pub fn on_exit(app_handle: &tauri::AppHandle) {
+    if let Some(db) = app_handle.try_state::<HistoryDb>() {
+        let now_ms = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap_or_default()
+            .as_millis() as i64;
+
+        if let Err(err) = tauri::async_runtime::block_on(db.close_open_plays_at(now_ms)) {
+            log::warn!("Failed to close open plays on exit: {err}");
+        }
+    }
+}
+
 pub fn init_history(app_handle: tauri::AppHandle) {
     tauri::async_runtime::spawn(async move {
         let data_dir = match app_handle.path().app_data_dir() {
@@ -30,7 +43,12 @@ pub fn init_history(app_handle: tauri::AppHandle) {
             return;
         }
 
-        app_handle.manage(HistoryDb(pool));
+        let db = HistoryDb(pool);
+        if let Err(err) = db.sweep_open_plays().await {
+            log::warn!("Failed to sweep orphaned plays: {err}");
+        }
+
+        app_handle.manage(db);
         log::info!("History database initialized");
     });
 }
