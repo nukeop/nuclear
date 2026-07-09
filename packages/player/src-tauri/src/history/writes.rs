@@ -166,6 +166,36 @@ async fn compute_ms_played(
     Ok(ms_played)
 }
 
+async fn fetch_open_play_ids(conn: &mut sqlx::SqliteConnection) -> Result<Vec<i64>, String> {
+    sqlx::query("SELECT id FROM plays WHERE end_reason IS NULL")
+        .fetch_all(&mut *conn)
+        .await
+        .map(|rows| rows.iter().map(|row| row.get("id")).collect())
+        .map_err(|err| format!("Failed to fetch open plays: {err}"))
+}
+
+async fn finalize_one_open_play(
+    conn: &mut sqlx::SqliteConnection,
+    play_id: i64,
+    end_at: i64,
+    reason: EndReason,
+) -> Result<(), String> {
+    let position_ms = last_position(&mut *conn, play_id).await?;
+    let ms_played = compute_ms_played(&mut *conn, play_id, end_at).await?;
+
+    do_finalize(
+        &mut *conn,
+        PlayFinalization {
+            play_id,
+            reason,
+            at: end_at,
+            position_ms,
+            ms_played,
+        },
+    )
+    .await
+}
+
 impl HistoryDb {
     fn pool(&self) -> &SqlitePool {
         &self.0
@@ -207,27 +237,9 @@ impl HistoryDb {
             .await
             .map_err(|err| format!("Failed to begin transaction: {err}"))?;
 
-        let open_ids: Vec<i64> = sqlx::query("SELECT id FROM plays WHERE end_reason IS NULL")
-            .fetch_all(&mut *tx)
-            .await
-            .map(|rows| rows.iter().map(|row| row.get("id")).collect())
-            .map_err(|err| format!("Failed to fetch open plays: {err}"))?;
-
+        let open_ids = fetch_open_play_ids(&mut *tx).await?;
         for play_id in open_ids {
-            let position_ms = last_position(&mut *tx, play_id).await?;
-            let ms_played = compute_ms_played(&mut *tx, play_id, at).await?;
-
-            do_finalize(
-                &mut *tx,
-                PlayFinalization {
-                    play_id,
-                    reason: EndReason::Replaced,
-                    at,
-                    position_ms,
-                    ms_played,
-                },
-            )
-            .await?;
+            finalize_one_open_play(&mut *tx, play_id, at, EndReason::Replaced).await?;
         }
 
         tx.commit()
