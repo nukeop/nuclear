@@ -324,10 +324,13 @@ mod tests {
         }
     }
 
+    async fn db() -> HistoryDb {
+        HistoryDb(test_pool().await)
+    }
+
     #[tokio::test]
     async fn start_and_finalize_play() {
-        let pool = test_pool().await;
-        let db = HistoryDb(pool);
+        let db = db().await;
 
         let play_id = db.start_play(snapshot()).await.unwrap();
 
@@ -364,5 +367,127 @@ mod tests {
         assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("completed".into()));
         assert_eq!(play.get::<Option<i64>, _>("ended_at"), Some(245_000));
         assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(240_000));
+    }
+
+    #[tokio::test]
+    async fn starting_new_play_replaces_open_one() {
+        let db = db().await;
+
+        let first_id = db.start_play(snapshot()).await.unwrap();
+
+        let mut second = snapshot();
+        second.title = "Karma Police".into();
+        second.started_at = 5000;
+        let second_id = db.start_play(second).await.unwrap();
+
+        let first = sqlx::query("SELECT end_reason, ended_at FROM plays WHERE id = ?")
+            .bind(first_id)
+            .fetch_one(db.pool())
+            .await
+            .unwrap();
+        assert_eq!(first.get::<Option<String>, _>("end_reason"), Some("replaced".into()));
+        assert_eq!(first.get::<Option<i64>, _>("ended_at"), Some(5000));
+
+        let second = sqlx::query("SELECT end_reason FROM plays WHERE id = ?")
+            .bind(second_id)
+            .fetch_one(db.pool())
+            .await
+            .unwrap();
+        assert_eq!(second.get::<Option<String>, _>("end_reason"), None);
+    }
+
+    #[tokio::test]
+    async fn finalize_is_idempotent() {
+        let db = db().await;
+        let play_id = db.start_play(snapshot()).await.unwrap();
+
+        let finalization = PlayFinalization {
+            play_id,
+            reason: EndReason::Completed,
+            at: 241_000,
+            position_ms: 240_000,
+            ms_played: 240_000,
+        };
+
+        db.finalize_play(finalization).await.unwrap();
+        db.finalize_play(PlayFinalization {
+            play_id,
+            reason: EndReason::Skipped,
+            at: 300_000,
+            position_ms: 100_000,
+            ms_played: 100_000,
+        }).await.unwrap();
+
+        let play = sqlx::query("SELECT end_reason, ms_played FROM plays WHERE id = ?")
+            .bind(play_id)
+            .fetch_one(db.pool())
+            .await
+            .unwrap();
+        assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("completed".into()));
+        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(240_000));
+    }
+
+    #[tokio::test]
+    async fn same_track_reuses_row_and_backfills_nulls() {
+        let db = db().await;
+
+        let mut first = snapshot();
+        first.artwork_url = None;
+        db.start_play(first).await.unwrap();
+
+        let mut second = snapshot();
+        second.album_title = Some("Greatest Hits".into());
+        second.artwork_url = Some("https://example.com/new.jpg".into());
+        second.started_at = 2000;
+        db.start_play(second).await.unwrap();
+
+        let count: i64 = sqlx::query("SELECT COUNT(*) as c FROM tracks")
+            .fetch_one(db.pool())
+            .await
+            .unwrap()
+            .get("c");
+        assert_eq!(count, 1);
+
+        let track = sqlx::query("SELECT album_title, artwork_url FROM tracks")
+            .fetch_one(db.pool())
+            .await
+            .unwrap();
+        assert_eq!(
+            track.get::<Option<String>, _>("album_title"),
+            Some("Pablo Honey".into()),
+            "existing album_title should not be overwritten"
+        );
+        assert_eq!(
+            track.get::<Option<String>, _>("artwork_url"),
+            Some("https://example.com/new.jpg".into()),
+            "NULL artwork_url should be backfilled"
+        );
+    }
+
+    #[tokio::test]
+    async fn replaced_play_gets_correct_ms_played() {
+        let db = db().await;
+
+        // started@1000, paused@3000 (2s played), resumed@5000, replaced@8000 (3s more)
+        let play_id = db.start_play(snapshot()).await.unwrap();
+        db.record_event(PlayEvent {
+            play_id, kind: PlayEventKind::Paused, at: 3000, position_ms: 2000, seek_to_ms: None,
+        }).await.unwrap();
+        db.record_event(PlayEvent {
+            play_id, kind: PlayEventKind::Resumed, at: 5000, position_ms: 2000, seek_to_ms: None,
+        }).await.unwrap();
+
+        let mut next = snapshot();
+        next.title = "Karma Police".into();
+        next.started_at = 8000;
+        db.start_play(next).await.unwrap();
+
+        let play = sqlx::query("SELECT ms_played FROM plays WHERE id = ?")
+            .bind(play_id)
+            .fetch_one(db.pool())
+            .await
+            .unwrap();
+        // (3000-1000) + (8000-5000) = 2000 + 3000 = 5000
+        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(5000));
     }
 }
