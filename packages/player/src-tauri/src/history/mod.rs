@@ -2,8 +2,62 @@ pub mod fingerprint;
 pub mod writes;
 
 use sqlx::sqlite::SqlitePool;
+use tauri::Manager;
+use writes::{PlayEvent, PlayFinalization, TrackSnapshot};
 
 pub struct HistoryDb(pub SqlitePool);
+
+pub fn init_history(app_handle: tauri::AppHandle) {
+    tauri::async_runtime::spawn(async move {
+        let data_dir = match app_handle.path().app_data_dir() {
+            Ok(dir) => dir,
+            Err(err) => {
+                log::error!("Failed to resolve app data dir: {err}");
+                return;
+            }
+        };
+
+        let pool = match crate::db::open(&data_dir.join("databases").join("history.db")).await {
+            Ok(pool) => pool,
+            Err(err) => {
+                log::error!("Failed to open history database: {err}");
+                return;
+            }
+        };
+
+        if let Err(err) = sqlx::migrate!("./migrations/history").run(&pool).await {
+            log::error!("Failed to run history migrations: {err}");
+            return;
+        }
+
+        app_handle.manage(HistoryDb(pool));
+        log::info!("History database initialized");
+    });
+}
+
+#[tauri::command]
+pub async fn history_start_play(
+    state: tauri::State<'_, HistoryDb>,
+    snapshot: TrackSnapshot,
+) -> Result<i64, String> {
+    state.start_play(snapshot).await
+}
+
+#[tauri::command]
+pub async fn history_record_event(
+    state: tauri::State<'_, HistoryDb>,
+    event: PlayEvent,
+) -> Result<(), String> {
+    state.record_event(event).await
+}
+
+#[tauri::command]
+pub async fn history_finalize_play(
+    state: tauri::State<'_, HistoryDb>,
+    finalization: PlayFinalization,
+) -> Result<(), String> {
+    state.finalize_play(finalization).await
+}
 
 #[cfg(test)]
 pub mod test_helpers {
