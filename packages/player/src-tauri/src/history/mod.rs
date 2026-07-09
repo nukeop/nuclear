@@ -1,4 +1,5 @@
 pub mod fingerprint;
+pub mod writes;
 
 use sqlx::sqlite::SqlitePool;
 
