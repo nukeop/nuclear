@@ -233,27 +233,23 @@ impl HistoryDb {
         .map_err(|err| format!("Failed to upsert track: {err}"))
     }
 
+    pub async fn close_open_plays_at(&self, now_ms: i64) -> Result<(), String> {
+        self.finalize_all_open_plays(Some(now_ms), EndReason::Abandoned).await
+    }
+
     pub async fn sweep_open_plays(&self) -> Result<(), String> {
-        let mut tx = self
-            .pool()
-            .begin()
-            .await
-            .map_err(|err| format!("Failed to begin transaction: {err}"))?;
-
-        let open_ids = fetch_open_play_ids(&mut *tx).await?;
-        for play_id in open_ids {
-            let (last_at, _) = last_event(&mut *tx, play_id).await?;
-            finalize_one_open_play(&mut *tx, play_id, last_at, EndReason::Abandoned).await?;
-        }
-
-        tx.commit()
-            .await
-            .map_err(|err| format!("Failed to commit transaction: {err}"))?;
-
-        Ok(())
+        self.finalize_all_open_plays(None, EndReason::Abandoned).await
     }
 
     async fn replace_open_plays(&self, at: i64) -> Result<(), String> {
+        self.finalize_all_open_plays(Some(at), EndReason::Replaced).await
+    }
+
+    async fn finalize_all_open_plays(
+        &self,
+        end_at: Option<i64>,
+        reason: EndReason,
+    ) -> Result<(), String> {
         let mut tx = self
             .pool()
             .begin()
@@ -262,7 +258,11 @@ impl HistoryDb {
 
         let open_ids = fetch_open_play_ids(&mut *tx).await?;
         for play_id in open_ids {
-            finalize_one_open_play(&mut *tx, play_id, at, EndReason::Replaced).await?;
+            let end_at = match end_at {
+                Some(t) => t,
+                None => last_event(&mut *tx, play_id).await?.0,
+            };
+            finalize_one_open_play(&mut *tx, play_id, end_at, reason).await?;
         }
 
         tx.commit()
@@ -524,6 +524,32 @@ mod tests {
         assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("abandoned".into()));
         assert_eq!(play.get::<Option<i64>, _>("ended_at"), Some(5000));
         assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(2000));
+    }
+
+    #[tokio::test]
+    async fn close_at_extends_trailing_interval() {
+        let db = db().await;
+
+        // started@1000, paused@3000 (2s), resumed@5000, close_at(10000)
+        // ms_played: (3000-1000) + (10000-5000) = 2000 + 5000 = 7000
+        let play_id = db.start_play(snapshot()).await.unwrap();
+        db.record_event(PlayEvent {
+            play_id, kind: PlayEventKind::Paused, at: 3000, position_ms: 2000, seek_to_ms: None,
+        }).await.unwrap();
+        db.record_event(PlayEvent {
+            play_id, kind: PlayEventKind::Resumed, at: 5000, position_ms: 2000, seek_to_ms: None,
+        }).await.unwrap();
+
+        db.close_open_plays_at(10_000).await.unwrap();
+
+        let play = sqlx::query("SELECT end_reason, ended_at, ms_played FROM plays WHERE id = ?")
+            .bind(play_id)
+            .fetch_one(db.pool())
+            .await
+            .unwrap();
+        assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("abandoned".into()));
+        assert_eq!(play.get::<Option<i64>, _>("ended_at"), Some(10_000));
+        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(7000));
     }
 
     #[tokio::test]
