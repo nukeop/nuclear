@@ -305,3 +305,64 @@ impl HistoryDb {
         do_finalize(&mut *conn, finalization).await
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::history::test_helpers::test_pool;
+
+    fn snapshot() -> TrackSnapshot {
+        TrackSnapshot {
+            title: "Creep".into(),
+            artists: vec!["Radiohead".into()],
+            album_title: Some("Pablo Honey".into()),
+            duration_ms: Some(240_000),
+            artwork_url: Some("https://example.com/art.jpg".into()),
+            provider: "youtube".into(),
+            provider_id: "abc123".into(),
+            started_at: 1000,
+        }
+    }
+
+    #[tokio::test]
+    async fn start_and_finalize_play() {
+        let pool = test_pool().await;
+        let db = HistoryDb(pool);
+
+        let play_id = db.start_play(snapshot()).await.unwrap();
+
+        db.record_event(PlayEvent {
+            play_id,
+            kind: PlayEventKind::Paused,
+            at: 5000,
+            position_ms: 4000,
+            seek_to_ms: None,
+        }).await.unwrap();
+
+        db.record_event(PlayEvent {
+            play_id,
+            kind: PlayEventKind::Resumed,
+            at: 8000,
+            position_ms: 4000,
+            seek_to_ms: None,
+        }).await.unwrap();
+
+        db.finalize_play(PlayFinalization {
+            play_id,
+            reason: EndReason::Completed,
+            at: 245_000,
+            position_ms: 240_000,
+            ms_played: 240_000,
+        }).await.unwrap();
+
+        let play = sqlx::query("SELECT * FROM plays WHERE id = ?")
+            .bind(play_id)
+            .fetch_one(db.pool())
+            .await
+            .unwrap();
+
+        assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("completed".into()));
+        assert_eq!(play.get::<Option<i64>, _>("ended_at"), Some(245_000));
+        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(240_000));
+    }
+}
