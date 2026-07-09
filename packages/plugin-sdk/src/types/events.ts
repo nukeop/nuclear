@@ -3,6 +3,11 @@ import type { Track } from '@nuclearplayer/model';
 export type PluginEventMap = {
   trackFinished: Track;
   trackStarted: Track;
+  playbackPaused: { positionMs: number };
+  playbackResumed: { positionMs: number };
+  playbackSeeked: { fromMs: number; toMs: number };
+  playbackStopped: { positionMs: number };
+  playbackSkipped: { positionMs: number };
 };
 
 export type PluginEventListener<E extends keyof PluginEventMap> = (

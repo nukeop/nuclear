@@ -1,5 +1,3 @@
-use tauri::Manager;
-
 pub mod bridge;
 pub mod commands;
 pub mod db;
