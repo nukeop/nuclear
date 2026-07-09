@@ -82,7 +82,9 @@ pub struct PlayFinalization {
 }
 
 impl HistoryDb {
-    fn pool(&self) -> &SqlitePool { &self.0 }
+    fn pool(&self) -> &SqlitePool {
+        &self.0
+    }
 
     async fn upsert_track(&self, snapshot: &TrackSnapshot) -> Result<i64, String> {
         let fp = fingerprint::fingerprint(&snapshot.artists, &snapshot.title);
@@ -113,8 +115,78 @@ impl HistoryDb {
         .map_err(|err| format!("Failed to upsert track: {err}"))
     }
 
+    // Called when a new track starts playing, to finalize any open plays
+    // that might not have already been handled.
+    async fn replace_open_plays(&self, at: i64) -> Result<(), String> {
+        let open_ids: Vec<i64> = sqlx::query("SELECT id FROM plays WHERE end_reason IS NULL")
+            .fetch_all(self.pool())
+            .await
+            .map(|rows| rows.iter().map(|row| row.get("id")).collect())
+            .map_err(|err| format!("Failed to fetch open plays: {err}"))?;
+
+        for play_id in open_ids {
+            self.finalize_play(PlayFinalization {
+                play_id,
+                reason: EndReason::Replaced,
+                at,
+                position_ms: self.last_position(play_id).await?,
+                ms_played: self.compute_ms_played(play_id, at).await?,
+            })
+            .await?;
+        }
+
+        Ok(())
+    }
+
+    async fn last_position(&self, play_id: i64) -> Result<i64, String> {
+        sqlx::query(
+            "SELECT position_ms FROM play_events WHERE play_id = ? ORDER BY at DESC LIMIT 1",
+        )
+        .bind(play_id)
+        .fetch_one(self.pool())
+        .await
+        .map(|row| row.get("position_ms"))
+        .map_err(|err| format!("Failed to fetch last position: {err}"))
+    }
+
+    async fn compute_ms_played(&self, play_id: i64, end_at: i64) -> Result<i64, String> {
+        let events = sqlx::query("SELECT kind, at FROM play_events WHERE play_id = ? ORDER BY at")
+            .bind(play_id)
+            .fetch_all(self.pool())
+            .await
+            .map_err(|err| format!("Failed to fetch play events: {err}"))?;
+
+        let mut ms_played: i64 = 0;
+        let mut interval_start: Option<i64> = None;
+
+        for event in &events {
+            let kind: &str = event.get("kind");
+            let at: i64 = event.get("at");
+
+            match kind {
+                "started" | "resumed" => {
+                    interval_start = Some(at);
+                }
+                "paused" | "ended" => {
+                    if let Some(start) = interval_start {
+                        ms_played += at - start;
+                        interval_start = None;
+                    }
+                }
+                _ => {}
+            }
+        }
+
+        if let Some(start) = interval_start {
+            ms_played += end_at - start;
+        }
+
+        Ok(ms_played)
+    }
+
     pub async fn start_play(&self, snapshot: TrackSnapshot) -> Result<i64, String> {
         let track_id = self.upsert_track(&snapshot).await?;
+        self.replace_open_plays(snapshot.started_at).await?;
 
         let play_id: i64 = sqlx::query(
             "INSERT INTO plays (track_id, provider, provider_id, started_at) \
@@ -160,14 +232,13 @@ impl HistoryDb {
     }
 
     pub async fn finalize_play(&self, finalization: PlayFinalization) -> Result<(), String> {
-        let already_finalized: bool = sqlx::query(
-            "SELECT end_reason IS NOT NULL as finalized FROM plays WHERE id = ?",
-        )
-        .bind(finalization.play_id)
-        .fetch_one(self.pool())
-        .await
-        .map(|row| row.get("finalized"))
-        .map_err(|err| format!("Failed to fetch play: {err}"))?;
+        let already_finalized: bool =
+            sqlx::query("SELECT end_reason IS NOT NULL as finalized FROM plays WHERE id = ?")
+                .bind(finalization.play_id)
+                .fetch_one(self.pool())
+                .await
+                .map(|row| row.get("finalized"))
+                .map_err(|err| format!("Failed to fetch play: {err}"))?;
 
         if already_finalized {
             return Ok(());
