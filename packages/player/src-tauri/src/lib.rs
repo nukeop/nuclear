@@ -2,6 +2,7 @@ pub mod bridge;
 pub mod commands;
 pub mod db;
 pub mod discord;
+pub mod history;
 pub mod http;
 pub mod http_api;
 pub mod logging;
