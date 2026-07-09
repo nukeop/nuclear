@@ -1,4 +1,5 @@
 use serde::Deserialize;
+use sqlx::sqlite::SqlitePool;
 use sqlx::Row;
 
 use crate::history::fingerprint;
@@ -42,10 +43,15 @@ impl PlayEventKind {
 #[derive(Clone, Copy, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum EndReason {
+    /// Track played to the end naturally.
     Completed,
+    /// User skipped to another track.
     Skipped,
+    /// User explicitly stopped playback.
     Stopped,
+    /// Another track started playing while this one was still open.
     Replaced,
+    /// App exited or crashed while this track was playing.
     Abandoned,
 }
 
@@ -79,6 +85,85 @@ pub struct PlayFinalization {
     pub at: i64,
     pub position_ms: i64,
     pub ms_played: i64,
+}
+
+async fn last_position(conn: &mut sqlx::SqliteConnection, play_id: i64) -> Result<i64, String> {
+    sqlx::query("SELECT position_ms FROM play_events WHERE play_id = ? ORDER BY at DESC LIMIT 1")
+        .bind(play_id)
+        .fetch_one(&mut *conn)
+        .await
+        .map(|row| row.get("position_ms"))
+        .map_err(|err| format!("Failed to fetch last position: {err}"))
+}
+
+async fn do_finalize(
+    conn: &mut sqlx::SqliteConnection,
+    finalization: PlayFinalization,
+) -> Result<(), String> {
+    sqlx::query(
+        "UPDATE plays SET ended_at = ?, end_reason = ?, end_position_ms = ?, ms_played = ? \
+         WHERE id = ?",
+    )
+    .bind(finalization.at)
+    .bind(finalization.reason.as_str())
+    .bind(finalization.position_ms)
+    .bind(finalization.ms_played)
+    .bind(finalization.play_id)
+    .execute(&mut *conn)
+    .await
+    .map_err(|err| format!("Failed to finalize play: {err}"))?;
+
+    sqlx::query(
+        "INSERT INTO play_events (play_id, kind, at, position_ms) \
+         VALUES (?, 'ended', ?, ?)",
+    )
+    .bind(finalization.play_id)
+    .bind(finalization.at)
+    .bind(finalization.position_ms)
+    .execute(&mut *conn)
+    .await
+    .map_err(|err| format!("Failed to insert ended event: {err}"))?;
+
+    Ok(())
+}
+
+async fn compute_ms_played(
+    conn: &mut sqlx::SqliteConnection,
+    play_id: i64,
+    end_at: i64,
+) -> Result<i64, String> {
+    let events = sqlx::query("SELECT kind, at FROM play_events WHERE play_id = ? ORDER BY at")
+        .bind(play_id)
+        .fetch_all(&mut *conn)
+        .await
+        .map_err(|err| format!("Failed to fetch play events: {err}"))?;
+
+    let mut ms_played: i64 = 0;
+    let mut interval_start: Option<i64> = None;
+
+    for event in &events {
+        let kind: &str = event.get("kind");
+        let at: i64 = event.get("at");
+
+        match kind {
+            "started" | "resumed" => {
+                interval_start = Some(at);
+            }
+            "paused" | "ended" => {
+                if let Some(start) = interval_start {
+                    ms_played += at - start;
+                    interval_start = None;
+                }
+            }
+            _ => {}
+        }
+    }
+
+    if let Some(start) = interval_start {
+        ms_played += end_at - start;
+    }
+
+    Ok(ms_played)
 }
 
 impl HistoryDb {
@@ -115,73 +200,41 @@ impl HistoryDb {
         .map_err(|err| format!("Failed to upsert track: {err}"))
     }
 
-    // Called when a new track starts playing, to finalize any open plays
-    // that might not have already been handled.
     async fn replace_open_plays(&self, at: i64) -> Result<(), String> {
+        let mut tx = self
+            .pool()
+            .begin()
+            .await
+            .map_err(|err| format!("Failed to begin transaction: {err}"))?;
+
         let open_ids: Vec<i64> = sqlx::query("SELECT id FROM plays WHERE end_reason IS NULL")
-            .fetch_all(self.pool())
+            .fetch_all(&mut *tx)
             .await
             .map(|rows| rows.iter().map(|row| row.get("id")).collect())
             .map_err(|err| format!("Failed to fetch open plays: {err}"))?;
 
         for play_id in open_ids {
-            self.finalize_play(PlayFinalization {
-                play_id,
-                reason: EndReason::Replaced,
-                at,
-                position_ms: self.last_position(play_id).await?,
-                ms_played: self.compute_ms_played(play_id, at).await?,
-            })
+            let position_ms = last_position(&mut *tx, play_id).await?;
+            let ms_played = compute_ms_played(&mut *tx, play_id, at).await?;
+
+            do_finalize(
+                &mut *tx,
+                PlayFinalization {
+                    play_id,
+                    reason: EndReason::Replaced,
+                    at,
+                    position_ms,
+                    ms_played,
+                },
+            )
             .await?;
         }
 
-        Ok(())
-    }
-
-    async fn last_position(&self, play_id: i64) -> Result<i64, String> {
-        sqlx::query(
-            "SELECT position_ms FROM play_events WHERE play_id = ? ORDER BY at DESC LIMIT 1",
-        )
-        .bind(play_id)
-        .fetch_one(self.pool())
-        .await
-        .map(|row| row.get("position_ms"))
-        .map_err(|err| format!("Failed to fetch last position: {err}"))
-    }
-
-    async fn compute_ms_played(&self, play_id: i64, end_at: i64) -> Result<i64, String> {
-        let events = sqlx::query("SELECT kind, at FROM play_events WHERE play_id = ? ORDER BY at")
-            .bind(play_id)
-            .fetch_all(self.pool())
+        tx.commit()
             .await
-            .map_err(|err| format!("Failed to fetch play events: {err}"))?;
+            .map_err(|err| format!("Failed to commit transaction: {err}"))?;
 
-        let mut ms_played: i64 = 0;
-        let mut interval_start: Option<i64> = None;
-
-        for event in &events {
-            let kind: &str = event.get("kind");
-            let at: i64 = event.get("at");
-
-            match kind {
-                "started" | "resumed" => {
-                    interval_start = Some(at);
-                }
-                "paused" | "ended" => {
-                    if let Some(start) = interval_start {
-                        ms_played += at - start;
-                        interval_start = None;
-                    }
-                }
-                _ => {}
-            }
-        }
-
-        if let Some(start) = interval_start {
-            ms_played += end_at - start;
-        }
-
-        Ok(ms_played)
+        Ok(())
     }
 
     pub async fn start_play(&self, snapshot: TrackSnapshot) -> Result<i64, String> {
@@ -244,30 +297,11 @@ impl HistoryDb {
             return Ok(());
         }
 
-        sqlx::query(
-            "UPDATE plays SET ended_at = ?, end_reason = ?, end_position_ms = ?, ms_played = ? \
-             WHERE id = ?",
-        )
-        .bind(finalization.at)
-        .bind(finalization.reason.as_str())
-        .bind(finalization.position_ms)
-        .bind(finalization.ms_played)
-        .bind(finalization.play_id)
-        .execute(self.pool())
-        .await
-        .map_err(|err| format!("Failed to finalize play: {err}"))?;
-
-        sqlx::query(
-            "INSERT INTO play_events (play_id, kind, at, position_ms) \
-             VALUES (?, 'ended', ?, ?)",
-        )
-        .bind(finalization.play_id)
-        .bind(finalization.at)
-        .bind(finalization.position_ms)
-        .execute(self.pool())
-        .await
-        .map_err(|err| format!("Failed to insert ended event: {err}"))?;
-
-        Ok(())
+        let mut conn = self
+            .pool()
+            .acquire()
+            .await
+            .map_err(|err| format!("Failed to acquire connection: {err}"))?;
+        do_finalize(&mut *conn, finalization).await
     }
 }
