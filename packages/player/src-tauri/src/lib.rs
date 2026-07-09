@@ -73,7 +73,10 @@ pub fn run() {
             discord::discord_set_activity,
             discord::discord_clear_activity,
             bridge::bridge_respond,
-            bridge::bridge_notify
+            bridge::bridge_notify,
+            history::history_start_play,
+            history::history_record_event,
+            history::history_finalize_play
         ])
         .setup(|app| {
             logging::mark_startup_complete();
@@ -83,6 +86,7 @@ pub fn run() {
             http_api::init_http_api(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
             discord::init_discord(app.handle().clone());
+            history::init_history(app.handle().clone());
 
             #[cfg(target_os = "linux")]
             maximize_for_gamescope(app);
