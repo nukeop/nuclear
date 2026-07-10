@@ -6,3 +6,4 @@ src-tauri/Cargo.lock
 *.md
 .astro/
 utilities.css
+packages/player/src/services/tauri/bindings.ts

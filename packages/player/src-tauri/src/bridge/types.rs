@@ -44,8 +44,13 @@ pub struct BridgeResponse {
 #[derive(Debug, Clone, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase", tag = "status")]
 pub enum BridgeResponseBody {
-    Success { data: serde_json::Value },
-    Error { error: String },
+    Success {
+        #[specta(type = specta_typescript::Unknown)]
+        data: serde_json::Value,
+    },
+    Error {
+        error: String,
+    },
 }
 
 #[derive(Debug, Clone, Deserialize, specta::Type)]

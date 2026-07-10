@@ -29,11 +29,12 @@ fn maximize_for_gamescope(app: &tauri::App) {
     }
 }
 
-#[cfg_attr(mobile, tauri::mobile_entry_point)]
-pub fn run() {
-    let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
+fn typescript_export_config() -> specta_typescript::Typescript {
+    specta_typescript::Typescript::default().header("/* eslint-disable */")
+}
 
-    let specta_builder = tauri_specta::Builder::<tauri::Wry>::new().commands(
+fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
+    tauri_specta::Builder::<tauri::Wry>::new().commands(
         tauri_specta::collect_commands![
             commands::is_flatpak,
             commands::copy_dir_recursive,
@@ -62,13 +63,23 @@ pub fn run() {
             history::history_record_event,
             history::history_finalize_play
         ],
-    );
+    )
+}
+
+#[cfg_attr(mobile, tauri::mobile_entry_point)]
+pub fn run() {
+    let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
+
+    let specta_builder = specta_builder();
 
     #[cfg(debug_assertions)]
     specta_builder
         .export(
-            specta_typescript::Typescript::default(),
-            "../src/services/tauri/bindings.ts",
+            typescript_export_config(),
+            concat!(
+                env!("CARGO_MANIFEST_DIR"),
+                "/../src/services/tauri/bindings.ts"
+            ),
         )
         .expect("failed to export typescript bindings");
 
