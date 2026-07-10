@@ -1,5 +1,5 @@
 import type { FC, PropsWithChildren } from 'react';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { Sound, Volume } from '@nuclearplayer/hifi';
 import { usePlatform } from '@nuclearplayer/ui';
@@ -33,6 +33,12 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   }, [crossfadeMs]);
 
+  const startedItemId = useRef<string | null>(null);
+
+  useEffect(() => {
+    startedItemId.current = null;
+  }, [src]);
+
   const handleTimeUpdate = useCallback(
     ({ position, duration }: { position: number; duration: number }) => {
       useSoundStore.getState().updatePlayback(position, duration);
@@ -55,7 +61,10 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
       useQueueStore
         .getState()
         .updateItemState(currentItem.id, { status: 'success' });
-      eventBus.emit('trackStarted', currentItem.track);
+      if (startedItemId.current !== currentItem.id) {
+        startedItemId.current = currentItem.id;
+        eventBus.emit('trackStarted', currentItem.track);
+      }
     }
   }, []);
 

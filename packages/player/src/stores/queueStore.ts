@@ -321,6 +321,10 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
 
     if (repeatMode === 'one') {
       useSoundStore.getState().seekTo(0);
+      const currentTrack = get().getCurrentItem()?.track;
+      if (currentTrack) {
+        eventBus.emit('trackStarted', currentTrack);
+      }
       return;
     }
 
