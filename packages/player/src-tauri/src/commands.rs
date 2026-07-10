@@ -5,11 +5,13 @@ use tauri::command;
 use zip::ZipArchive;
 
 #[command]
+#[specta::specta]
 pub fn is_flatpak() -> bool {
     std::env::var("FLATPAK_ID").is_ok()
 }
 
 #[command]
+#[specta::specta]
 pub fn copy_dir_recursive(from: PathBuf, to: PathBuf) -> Result<(), String> {
     fn inner(from: &Path, to: &Path) -> Result<(), std::io::Error> {
         fs::create_dir_all(to)?;
@@ -54,6 +56,7 @@ pub fn copy_dir_recursive(from: PathBuf, to: PathBuf) -> Result<(), String> {
 }
 
 #[command]
+#[specta::specta]
 pub fn extract_zip(zip_path: PathBuf, dest_path: PathBuf) -> Result<(), String> {
     fn inner(zip_path: &Path, dest_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
         let file = File::open(zip_path)?;
@@ -94,6 +97,7 @@ pub fn extract_zip(zip_path: PathBuf, dest_path: PathBuf) -> Result<(), String> 
 }
 
 #[command]
+#[specta::specta]
 pub async fn download_file(url: String, dest_path: PathBuf) -> Result<(), String> {
     use std::time::Duration;
     use tokio::io::AsyncWriteExt;

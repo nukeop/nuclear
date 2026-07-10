@@ -5,7 +5,7 @@ use sqlx::Row;
 use crate::history::fingerprint;
 use crate::history::HistoryDb;
 
-#[derive(Clone, Deserialize)]
+#[derive(Clone, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct TrackSnapshot {
     pub title: String,
@@ -18,7 +18,7 @@ pub struct TrackSnapshot {
     pub started_at: i64,
 }
 
-#[derive(Clone, Copy, Deserialize)]
+#[derive(Clone, Copy, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub enum PlayEventKind {
     Started,
@@ -40,7 +40,7 @@ impl PlayEventKind {
     }
 }
 
-#[derive(Clone, Copy, Deserialize)]
+#[derive(Clone, Copy, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub enum EndReason {
     /// Track played to the end naturally.
@@ -67,7 +67,7 @@ impl EndReason {
     }
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayEvent {
     pub play_id: i64,
@@ -77,7 +77,7 @@ pub struct PlayEvent {
     pub seek_to_ms: Option<i64>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayFinalization {
     pub play_id: i64,

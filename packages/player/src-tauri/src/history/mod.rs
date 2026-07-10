@@ -54,6 +54,7 @@ pub fn init_history(app_handle: tauri::AppHandle) {
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn history_start_play(
     state: tauri::State<'_, HistoryDb>,
     snapshot: TrackSnapshot,
@@ -62,6 +63,7 @@ pub async fn history_start_play(
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn history_record_event(
     state: tauri::State<'_, HistoryDb>,
     event: PlayEvent,
@@ -70,6 +72,7 @@ pub async fn history_record_event(
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn history_finalize_play(
     state: tauri::State<'_, HistoryDb>,
     finalization: PlayFinalization,
