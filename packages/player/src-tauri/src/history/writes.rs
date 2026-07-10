@@ -1,9 +1,14 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
+use specta_typescript::Number;
 use sqlx::sqlite::SqlitePool;
 use sqlx::Row;
 
 use crate::history::fingerprint;
 use crate::history::HistoryDb;
+
+#[derive(Serialize, specta::Type)]
+#[specta(type = Number<i64>)]
+pub struct PlayId(pub i64);
 
 #[derive(Clone, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
@@ -11,10 +16,12 @@ pub struct TrackSnapshot {
     pub title: String,
     pub artists: Vec<String>,
     pub album_title: Option<String>,
+    #[specta(type = Option<Number<i64>>)]
     pub duration_ms: Option<i64>,
     pub artwork_url: Option<String>,
     pub provider: String,
     pub provider_id: String,
+    #[specta(type = Number<i64>)]
     pub started_at: i64,
 }
 
@@ -70,20 +77,28 @@ impl EndReason {
 #[derive(Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayEvent {
+    #[specta(type = Number<i64>)]
     pub play_id: i64,
     pub kind: PlayEventKind,
+    #[specta(type = Number<i64>)]
     pub at: i64,
+    #[specta(type = Number<i64>)]
     pub position_ms: i64,
+    #[specta(type = Option<Number<i64>>)]
     pub seek_to_ms: Option<i64>,
 }
 
 #[derive(Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayFinalization {
+    #[specta(type = Number<i64>)]
     pub play_id: i64,
     pub reason: EndReason,
+    #[specta(type = Number<i64>)]
     pub at: i64,
+    #[specta(type = Number<i64>)]
     pub position_ms: i64,
+    #[specta(type = Number<i64>)]
     pub ms_played: i64,
 }
 

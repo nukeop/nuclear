@@ -3,7 +3,7 @@ pub mod writes;
 
 use sqlx::sqlite::SqlitePool;
 use tauri::Manager;
-use writes::{PlayEvent, PlayFinalization, TrackSnapshot};
+use writes::{PlayEvent, PlayFinalization, PlayId, TrackSnapshot};
 
 pub struct HistoryDb(pub SqlitePool);
 
@@ -58,8 +58,8 @@ pub fn init_history(app_handle: tauri::AppHandle) {
 pub async fn history_start_play(
     state: tauri::State<'_, HistoryDb>,
     snapshot: TrackSnapshot,
-) -> Result<i64, String> {
-    state.start_play(snapshot).await
+) -> Result<PlayId, String> {
+    state.start_play(snapshot).await.map(PlayId)
 }
 
 #[tauri::command]

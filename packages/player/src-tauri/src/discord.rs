@@ -89,7 +89,9 @@ pub struct TrackPresence {
     artist: String,
     album: Option<String>,
     artwork_url: Option<String>,
+    #[specta(type = Option<specta_typescript::Number<i64>>)]
     start_timestamp: Option<i64>,
+    #[specta(type = Option<specta_typescript::Number<i64>>)]
     end_timestamp: Option<i64>,
 }
 
