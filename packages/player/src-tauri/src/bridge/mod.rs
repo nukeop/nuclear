@@ -11,6 +11,7 @@ pub fn init_bridge(app_handle: AppHandle) {
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn bridge_respond(
     bridge: tauri::State<'_, Bridge>,
     response: BridgeResponse,
@@ -20,6 +21,7 @@ pub async fn bridge_respond(
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn bridge_notify(
     bridge: tauri::State<'_, Bridge>,
     notification: BridgeNotification,

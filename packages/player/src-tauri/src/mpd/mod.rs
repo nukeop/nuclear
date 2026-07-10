@@ -84,6 +84,7 @@ pub fn init_mpd(app_handle: AppHandle) {
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn mpd_start(
     state: tauri::State<'_, MpdState>,
     bridge: tauri::State<'_, crate::bridge::bridge::Bridge>,
@@ -115,6 +116,7 @@ pub async fn mpd_start(
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn mpd_stop(state: tauri::State<'_, MpdState>) -> Result<(), String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.take() {

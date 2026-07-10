@@ -54,6 +54,7 @@ pub fn init_discord(app_handle: tauri::AppHandle) {
 }
 
 #[command]
+#[specta::specta]
 pub fn discord_connect(state: State<'_, DiscordState>) -> Result<(), String> {
     let mut client_guard = state.client.lock().map_err(|err| err.to_string())?;
 
@@ -69,6 +70,7 @@ pub fn discord_connect(state: State<'_, DiscordState>) -> Result<(), String> {
 }
 
 #[command]
+#[specta::specta]
 pub fn discord_disconnect(state: State<'_, DiscordState>) -> Result<(), String> {
     let mut client_guard = state.client.lock().map_err(|err| err.to_string())?;
 
@@ -80,7 +82,7 @@ pub fn discord_disconnect(state: State<'_, DiscordState>) -> Result<(), String> 
     Ok(())
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct TrackPresence {
     title: String,
@@ -119,6 +121,7 @@ fn build_activity(track: &TrackPresence) -> activity::Activity<'_> {
 }
 
 #[command]
+#[specta::specta]
 pub fn discord_set_activity(
     state: State<'_, DiscordState>,
     track: TrackPresence,
@@ -133,6 +136,7 @@ pub fn discord_set_activity(
 }
 
 #[command]
+#[specta::specta]
 pub fn discord_clear_activity(state: State<'_, DiscordState>) -> Result<bool, String> {
     let mut client_guard = state.client.lock().map_err(|err| err.to_string())?;
 

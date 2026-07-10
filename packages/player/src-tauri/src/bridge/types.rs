@@ -33,7 +33,7 @@ pub struct BridgeRequest {
     pub params: serde_json::Value,
 }
 
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct BridgeResponse {
     pub trace_id: String,
@@ -41,14 +41,14 @@ pub struct BridgeResponse {
     pub body: BridgeResponseBody,
 }
 
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase", tag = "status")]
 pub enum BridgeResponseBody {
     Success { data: serde_json::Value },
     Error { error: String },
 }
 
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, specta::Type)]
 pub struct BridgeNotification {
     pub subsystem: String,
 }
