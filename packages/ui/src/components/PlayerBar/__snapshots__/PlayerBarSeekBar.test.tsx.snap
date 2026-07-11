@@ -8,6 +8,7 @@ exports[`PlayerBarSeekBar > (Snapshot) default render 1`] = `
     <div
       aria-disabled="false"
       class="relative h-4 w-full"
+      data-testid="player-seek-bar"
     >
       <div
         class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"

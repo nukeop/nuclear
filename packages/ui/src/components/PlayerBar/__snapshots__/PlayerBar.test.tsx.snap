@@ -150,6 +150,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
           <button
             class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
             data-headlessui-state=""
+            data-testid="player-next-button"
             type="button"
           >
             <svg
@@ -434,6 +435,7 @@ exports[`PlayerBar > (Snapshot) default render 1`] = `
           <button
             class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
             data-headlessui-state=""
+            data-testid="player-next-button"
             type="button"
           >
             <svg
@@ -721,6 +723,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
               data-headlessui-state=""
+              data-testid="player-next-button"
               type="button"
             >
               <svg
@@ -1027,6 +1030,7 @@ exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
           <button
             class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
             data-headlessui-state=""
+            data-testid="player-next-button"
             type="button"
           >
             <svg

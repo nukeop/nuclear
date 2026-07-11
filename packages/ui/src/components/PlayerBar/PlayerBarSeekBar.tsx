@@ -33,6 +33,7 @@ export const PlayerBarSeekBar: FC<PlayerSeekBarProps> = ({
     <div className={cn('w-full select-none', className)}>
       <div
         ref={containerRef}
+        data-testid="player-seek-bar"
         className={cn('relative h-4 w-full', {
           'pointer-events-none cursor-not-allowed': isLoading,
           'cursor-pointer': isInteractive,
