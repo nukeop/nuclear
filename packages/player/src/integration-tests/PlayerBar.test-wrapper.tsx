@@ -15,6 +15,33 @@ export const PlayerBarWrapper = {
     },
   },
 
+  pauseButton: {
+    get element() {
+      return screen.getByTestId('player-pause-button');
+    },
+    async click() {
+      await userEvent.click(this.element);
+    },
+  },
+
+  playButton: {
+    get element() {
+      return screen.getByTestId('player-play-button');
+    },
+    async click() {
+      await userEvent.click(this.element);
+    },
+  },
+
+  repeatButton: {
+    get element() {
+      return screen.getByTestId('player-repeat-button');
+    },
+    async click() {
+      await userEvent.click(this.element);
+    },
+  },
+
   seekBar: {
     get element() {
       return screen.getByTestId('player-seek-bar');
