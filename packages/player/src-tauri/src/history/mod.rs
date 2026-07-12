@@ -1,9 +1,11 @@
 pub mod fingerprint;
+pub mod reads;
+pub mod types;
 pub mod writes;
 
 use sqlx::sqlite::SqlitePool;
 use tauri::Manager;
-use writes::PlayEvent;
+use types::PlayEvent;
 
 pub struct HistoryDb(pub SqlitePool);
 

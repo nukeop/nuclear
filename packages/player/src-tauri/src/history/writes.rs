@@ -1,63 +1,9 @@
-use serde::Deserialize;
-use specta_typescript::Number;
 use sqlx::sqlite::SqlitePool;
 use sqlx::Row;
 
 use crate::history::fingerprint;
+use crate::history::types::{PlayEvent, PlayEventKind, TrackSnapshot};
 use crate::history::HistoryDb;
-
-#[derive(Clone, Deserialize, specta::Type)]
-#[serde(rename_all = "camelCase")]
-pub struct TrackSnapshot {
-    pub title: String,
-    pub artists: Vec<String>,
-    pub album_title: Option<String>,
-    #[specta(type = Option<Number<i64>>)]
-    pub duration_ms: Option<i64>,
-    pub artwork_url: Option<String>,
-    pub provider: String,
-    pub provider_id: String,
-}
-
-#[derive(Clone, Copy, PartialEq, Deserialize, specta::Type)]
-#[serde(rename_all = "camelCase")]
-pub enum PlayEventKind {
-    Started,
-    Paused,
-    Resumed,
-    Seeked,
-    Finished,
-    Skipped,
-    Stopped,
-}
-
-impl PlayEventKind {
-    fn as_str(self) -> &'static str {
-        match self {
-            Self::Started => "started",
-            Self::Paused => "paused",
-            Self::Resumed => "resumed",
-            Self::Seeked => "seeked",
-            Self::Finished => "finished",
-            Self::Skipped => "skipped",
-            Self::Stopped => "stopped",
-        }
-    }
-}
-
-#[derive(Deserialize, specta::Type)]
-#[serde(rename_all = "camelCase")]
-pub struct PlayEvent {
-    pub play_id: String,
-    pub kind: PlayEventKind,
-    #[specta(type = Number<i64>)]
-    pub at: i64,
-    #[specta(type = Number<i64>)]
-    pub position_ms: i64,
-    #[specta(type = Option<Number<i64>>)]
-    pub seek_to_ms: Option<i64>,
-    pub snapshot: Option<TrackSnapshot>,
-}
 
 impl HistoryDb {
     fn pool(&self) -> &SqlitePool {
