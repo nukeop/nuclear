@@ -812,6 +812,7 @@ exports[`App > should render snapshot 1`] = `
       <div
         aria-disabled="false"
         class="relative h-4 w-full cursor-pointer"
+        data-testid="player-seek-bar"
       >
         <div
           class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
@@ -993,6 +994,7 @@ exports[`App > should render snapshot 1`] = `
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
               data-headlessui-state=""
+              data-testid="player-next-button"
               type="button"
             >
               <svg

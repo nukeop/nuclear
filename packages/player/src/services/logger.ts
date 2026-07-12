@@ -24,6 +24,7 @@ export const LOG_SCOPES = [
   'plugins',
   'http',
   'fs',
+  'history',
   'settings',
   'themes',
   'updates',

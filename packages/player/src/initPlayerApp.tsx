@@ -8,6 +8,7 @@ import { initBridgeHandler } from './services/bridge/bridgeHandler';
 import { registerBuiltInCoreSettings } from './services/coreSettings';
 import { initDiscordHandler } from './services/discordHandler';
 import { initDiscoveryService } from './services/discoveryService';
+import { initHistoryService } from './services/history';
 import { initHttpApiHandler } from './services/httpApi';
 import {
   applyLanguageFromSettings,
@@ -45,6 +46,7 @@ export const initPlayerApp = async (
     .then(() => initBridgeHandler())
     .then(() => initDiscordHandler())
     .then(() => initPlaybackEventBridge())
+    .then(() => initHistoryService())
     .then(() => applyLanguageFromSettings())
     .then(() => initLanguageWatcher())
     .then(() => startAdvancedThemeWatcher())
