@@ -94,7 +94,7 @@ pub mod test_helpers {
             format!("sqlite:file:testdb_{id}?mode=memory&cache=shared")
                 .parse()
                 .unwrap();
-        let options = options.foreign_keys(true);
+        let options = crate::db::configure(options);
 
         let pool = SqlitePool::connect_with(options).await.unwrap();
         sqlx::migrate!("./migrations/history")
