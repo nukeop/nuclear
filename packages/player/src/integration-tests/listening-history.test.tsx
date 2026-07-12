@@ -2,7 +2,6 @@ import { act, waitFor } from '@testing-library/react';
 
 import { initHistoryService } from '../services/history';
 import { initPlaybackEventBridge } from '../services/playbackEventBridge';
-import { useSettingsStore } from '../stores/settingsStore';
 import { createListeningHistoryWrapper } from './ListeningHistory.test-wrapper';
 import { PlayerBarWrapper } from './PlayerBar.test-wrapper';
 import { QueueWrapper } from './Queue.test-wrapper';
@@ -21,10 +20,10 @@ describe('Listening history', () => {
   let stopHistoryService: () => void;
   let stopPlaybackEventBridge: () => void;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     vi.useFakeTimers({ toFake: ['Date'] });
     vi.setSystemTime(Date.parse('2026-07-11T12:00:00Z'));
-    Wrapper.init();
+    await Wrapper.init();
     stopPlaybackEventBridge = initPlaybackEventBridge();
     stopHistoryService = initHistoryService();
   });
@@ -239,16 +238,25 @@ describe('Listening history', () => {
     expect(Wrapper.events).toHaveLength(1);
   });
 
-  it('records nothing when listening history is disabled in settings', async () => {
-    useSettingsStore.setState((state) => ({
-      values: { ...state.values, 'core.history.enabled': false },
-    }));
-
+  it('records nothing when the user has turned listening history off', async () => {
     await Wrapper.mountWithoutWaitingForEvents();
+    await Wrapper.historyToggle.toggle();
+
     SoundWrapper.fireCanPlay();
     SoundWrapper.fireEnded();
     await act(() => Promise.resolve());
 
     expect(Wrapper.events).toHaveLength(0);
+  });
+
+  it('stops recording mid-play when the user turns listening history off', async () => {
+    await Wrapper.startPlayback();
+
+    await Wrapper.historyToggle.toggle();
+    SoundWrapper.fireEnded();
+    await act(() => Promise.resolve());
+
+    expect(Wrapper.events).toHaveLength(1);
+    expect(Wrapper.events[0].kind).toBe('started');
   });
 });

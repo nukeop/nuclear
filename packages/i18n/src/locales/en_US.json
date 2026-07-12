@@ -354,6 +354,13 @@
         "endLabel": "More crazy"
       }
     },
+    "history": {
+      "title": "History",
+      "enabled": {
+        "title": "Record listening history",
+        "description": "Keep a local record of the music you play."
+      }
+    },
     "layout": {
       "title": "Layout"
     },
