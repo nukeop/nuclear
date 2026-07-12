@@ -10,28 +10,17 @@ CREATE TABLE tracks (
     updated_at INTEGER NOT NULL
 );
 
-CREATE TABLE plays (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    track_id INTEGER NOT NULL REFERENCES tracks(id),
-    provider TEXT NOT NULL,
-    provider_id TEXT NOT NULL,
-    started_at INTEGER NOT NULL,
-    ended_at INTEGER,
-    ms_played INTEGER,
-    end_position_ms INTEGER,
-    end_reason TEXT CHECK (end_reason IN ('completed', 'skipped', 'stopped', 'replaced', 'abandoned'))
-);
-
 CREATE TABLE play_events (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    play_id INTEGER NOT NULL REFERENCES plays(id) ON DELETE CASCADE,
-    kind TEXT NOT NULL CHECK (kind IN ('started', 'paused', 'resumed', 'seeked', 'ended')),
+    play_id TEXT NOT NULL,
+    track_id INTEGER REFERENCES tracks(id),
+    kind TEXT NOT NULL CHECK (kind IN ('started', 'paused', 'resumed', 'seeked', 'finished', 'skipped', 'stopped')),
     at INTEGER NOT NULL,
     position_ms INTEGER NOT NULL,
-    seek_to_ms INTEGER
+    seek_to_ms INTEGER,
+    provider TEXT,
+    provider_id TEXT
 );
 
-CREATE INDEX idx_plays_started_at ON plays(started_at DESC);
-CREATE INDEX idx_plays_track_id ON plays(track_id);
 CREATE INDEX idx_play_events_play_id ON play_events(play_id);
-CREATE INDEX idx_plays_open ON plays(id) WHERE end_reason IS NULL;
+CREATE INDEX idx_play_events_started_at ON play_events(at DESC) WHERE kind = 'started';
