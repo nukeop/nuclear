@@ -89,20 +89,91 @@ mod tests {
     }
 
     #[test]
-    fn seeking_while_playing_still_counts_as_listening_time() {}
+    fn seeking_while_playing_still_counts_as_listening_time() {
+        let play = Play::from_events(&[
+            event(PlayEventKind::Started, 1000, 0),
+            event(PlayEventKind::Seeked, 3000, 2000),
+            event(PlayEventKind::Paused, 5000, 62_000),
+        ])
+        .unwrap();
+
+        assert_eq!(play.ms_played, 4000);
+    }
 
     #[test]
-    fn seeking_while_paused_does_not_count_as_listening_time() {}
+    fn seeking_while_paused_does_not_count_as_listening_time() {
+        let play = Play::from_events(&[
+            event(PlayEventKind::Started, 1000, 0),
+            event(PlayEventKind::Paused, 2000, 1000),
+            event(PlayEventKind::Seeked, 3000, 1000),
+            event(PlayEventKind::Resumed, 4000, 60_000),
+            event(PlayEventKind::Finished, 5000, 61_000),
+        ])
+        .unwrap();
+
+        assert_eq!(play.ms_played, 2000);
+    }
 
     #[test]
-    fn interrupted_play_has_no_end_reason_and_counts_time_up_to_its_last_event() {}
+    fn interrupted_play_has_no_end_reason_and_counts_time_up_to_its_last_event() {
+        let play = Play::from_events(&[
+            event(PlayEventKind::Started, 1000, 0),
+            event(PlayEventKind::Paused, 3000, 2000),
+            event(PlayEventKind::Resumed, 5000, 2000),
+        ])
+        .unwrap();
+
+        assert_eq!(
+            play,
+            Play {
+                started_at: 1000,
+                ms_played: 2000,
+                end_reason: None,
+                end_position_ms: None,
+            }
+        );
+    }
 
     #[test]
-    fn skipped_play_records_the_position_at_the_moment_of_skipping() {}
+    fn skipped_play_records_the_position_at_the_moment_of_skipping() {
+        let play = Play::from_events(&[
+            event(PlayEventKind::Started, 1000, 0),
+            event(PlayEventKind::Skipped, 4000, 3000),
+        ])
+        .unwrap();
+
+        assert_eq!(
+            play,
+            Play {
+                started_at: 1000,
+                ms_played: 3000,
+                end_reason: Some(PlayEndReason::Skipped),
+                end_position_ms: Some(3000),
+            }
+        );
+    }
 
     #[test]
-    fn stopped_play_records_the_position_at_the_moment_of_stopping() {}
+    fn stopped_play_records_the_position_at_the_moment_of_stopping() {
+        let play = Play::from_events(&[
+            event(PlayEventKind::Started, 1000, 0),
+            event(PlayEventKind::Stopped, 2500, 1500),
+        ])
+        .unwrap();
+
+        assert_eq!(
+            play,
+            Play {
+                started_at: 1000,
+                ms_played: 1500,
+                end_reason: Some(PlayEndReason::Stopped),
+                end_position_ms: Some(1500),
+            }
+        );
+    }
 
     #[test]
-    fn no_events_produce_no_play() {}
+    fn no_events_produce_no_play() {
+        assert_eq!(Play::from_events(&[]), None);
+    }
 }
