@@ -3,22 +3,9 @@ pub mod writes;
 
 use sqlx::sqlite::SqlitePool;
 use tauri::Manager;
-use writes::{PlayEvent, PlayFinalization, PlayId, TrackSnapshot};
+use writes::PlayEvent;
 
 pub struct HistoryDb(pub SqlitePool);
-
-pub fn on_exit(app_handle: &tauri::AppHandle) {
-    if let Some(db) = app_handle.try_state::<HistoryDb>() {
-        let now_ms = std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)
-            .unwrap_or_default()
-            .as_millis() as i64;
-
-        if let Err(err) = tauri::async_runtime::block_on(db.close_open_plays_at(now_ms)) {
-            log::warn!("Failed to close open plays on exit: {err}");
-        }
-    }
-}
 
 pub fn init_history(app_handle: tauri::AppHandle) {
     tauri::async_runtime::spawn(async move {
@@ -43,23 +30,9 @@ pub fn init_history(app_handle: tauri::AppHandle) {
             return;
         }
 
-        let db = HistoryDb(pool);
-        if let Err(err) = db.sweep_open_plays().await {
-            log::warn!("Failed to sweep orphaned plays: {err}");
-        }
-
-        app_handle.manage(db);
+        app_handle.manage(HistoryDb(pool));
         log::info!("History database initialized");
     });
-}
-
-#[tauri::command]
-#[specta::specta]
-pub async fn history_start_play(
-    state: tauri::State<'_, HistoryDb>,
-    snapshot: TrackSnapshot,
-) -> Result<PlayId, String> {
-    state.start_play(snapshot).await.map(PlayId)
 }
 
 #[tauri::command]
@@ -69,15 +42,6 @@ pub async fn history_record_event(
     event: PlayEvent,
 ) -> Result<(), String> {
     state.record_event(event).await
-}
-
-#[tauri::command]
-#[specta::specta]
-pub async fn history_finalize_play(
-    state: tauri::State<'_, HistoryDb>,
-    finalization: PlayFinalization,
-) -> Result<(), String> {
-    state.finalize_play(finalization).await
 }
 
 #[cfg(test)]

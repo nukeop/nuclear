@@ -59,9 +59,7 @@ fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
             discord::discord_clear_activity,
             bridge::bridge_respond,
             bridge::bridge_notify,
-            history::history_start_play,
-            history::history_record_event,
-            history::history_finalize_play
+            history::history_record_event
         ],
     )
 }
@@ -116,11 +114,6 @@ pub fn run() {
 
             Ok(())
         })
-        .build(tauri::generate_context!())
-        .expect("error while building tauri application")
-        .run(|app_handle, event| {
-            if let tauri::RunEvent::Exit = event {
-                history::on_exit(app_handle);
-            }
-        });
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }

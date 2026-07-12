@@ -28,9 +28,7 @@ export const commands = {
 	discordClearActivity: () => typedError<boolean, string>(__TAURI_INVOKE("discord_clear_activity")),
 	bridgeRespond: (response: BridgeResponse) => typedError<null, string>(__TAURI_INVOKE("bridge_respond", { response })),
 	bridgeNotify: (notification: BridgeNotification) => typedError<null, string>(__TAURI_INVOKE("bridge_notify", { notification })),
-	historyStartPlay: (snapshot: TrackSnapshot) => typedError<PlayId, string>(__TAURI_INVOKE("history_start_play", { snapshot })),
 	historyRecordEvent: (event: PlayEvent) => typedError<null, string>(__TAURI_INVOKE("history_record_event", { event })),
-	historyFinalizePlay: (finalization: PlayFinalization) => typedError<null, string>(__TAURI_INVOKE("history_finalize_play", { finalization })),
 };
 
 /* Types */
@@ -43,18 +41,6 @@ export type BridgeResponse = {
 } & BridgeResponseBody;
 
 export type BridgeResponseBody = { status: "success"; data: unknown } | { status: "error"; error: string };
-
-export type EndReason = 
-/**  Track played to the end naturally. */
-"completed" | 
-/**  User skipped to another track. */
-"skipped" | 
-/**  User explicitly stopped playback. */
-"stopped" | 
-/**  Another track started playing while this one was still open. */
-"replaced" | 
-/**  App exited or crashed while this track was playing. */
-"abandoned";
 
 export type HttpApiStartResult = {
 	port: number,
@@ -75,24 +61,15 @@ export type HttpResponse = {
 };
 
 export type PlayEvent = {
-	playId: number,
+	playId: string,
 	kind: PlayEventKind,
 	at: number,
 	positionMs: number,
 	seekToMs: number | null,
+	snapshot: TrackSnapshot | null,
 };
 
-export type PlayEventKind = "started" | "paused" | "resumed" | "seeked" | "ended";
-
-export type PlayFinalization = {
-	playId: number,
-	reason: EndReason,
-	at: number,
-	positionMs: number,
-	msPlayed: number,
-};
-
-export type PlayId = number;
+export type PlayEventKind = "started" | "paused" | "resumed" | "seeked" | "finished" | "skipped" | "stopped";
 
 export type StartupLogEntry = {
 	timestamp: string,
@@ -117,7 +94,6 @@ export type TrackSnapshot = {
 	artworkUrl: string | null,
 	provider: string,
 	providerId: string,
-	startedAt: number,
 };
 
 export type YtdlpPlaylistEntry = {

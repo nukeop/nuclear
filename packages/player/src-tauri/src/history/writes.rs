@@ -1,14 +1,10 @@
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use specta_typescript::Number;
 use sqlx::sqlite::SqlitePool;
 use sqlx::Row;
 
 use crate::history::fingerprint;
 use crate::history::HistoryDb;
-
-#[derive(Serialize, specta::Type)]
-#[specta(type = Number<i64>)]
-pub struct PlayId(pub i64);
 
 #[derive(Clone, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
@@ -21,18 +17,18 @@ pub struct TrackSnapshot {
     pub artwork_url: Option<String>,
     pub provider: String,
     pub provider_id: String,
-    #[specta(type = Number<i64>)]
-    pub started_at: i64,
 }
 
-#[derive(Clone, Copy, Deserialize, specta::Type)]
+#[derive(Clone, Copy, PartialEq, Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub enum PlayEventKind {
     Started,
     Paused,
     Resumed,
     Seeked,
-    Ended,
+    Finished,
+    Skipped,
+    Stopped,
 }
 
 impl PlayEventKind {
@@ -42,34 +38,9 @@ impl PlayEventKind {
             Self::Paused => "paused",
             Self::Resumed => "resumed",
             Self::Seeked => "seeked",
-            Self::Ended => "ended",
-        }
-    }
-}
-
-#[derive(Clone, Copy, Deserialize, specta::Type)]
-#[serde(rename_all = "camelCase")]
-pub enum EndReason {
-    /// Track played to the end naturally.
-    Completed,
-    /// User skipped to another track.
-    Skipped,
-    /// User explicitly stopped playback.
-    Stopped,
-    /// Another track started playing while this one was still open.
-    Replaced,
-    /// App exited or crashed while this track was playing.
-    Abandoned,
-}
-
-impl EndReason {
-    fn as_str(self) -> &'static str {
-        match self {
-            Self::Completed => "completed",
+            Self::Finished => "finished",
             Self::Skipped => "skipped",
             Self::Stopped => "stopped",
-            Self::Replaced => "replaced",
-            Self::Abandoned => "abandoned",
         }
     }
 }
@@ -77,8 +48,7 @@ impl EndReason {
 #[derive(Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayEvent {
-    #[specta(type = Number<i64>)]
-    pub play_id: i64,
+    pub play_id: String,
     pub kind: PlayEventKind,
     #[specta(type = Number<i64>)]
     pub at: i64,
@@ -86,132 +56,7 @@ pub struct PlayEvent {
     pub position_ms: i64,
     #[specta(type = Option<Number<i64>>)]
     pub seek_to_ms: Option<i64>,
-}
-
-#[derive(Deserialize, specta::Type)]
-#[serde(rename_all = "camelCase")]
-pub struct PlayFinalization {
-    #[specta(type = Number<i64>)]
-    pub play_id: i64,
-    pub reason: EndReason,
-    #[specta(type = Number<i64>)]
-    pub at: i64,
-    #[specta(type = Number<i64>)]
-    pub position_ms: i64,
-    #[specta(type = Number<i64>)]
-    pub ms_played: i64,
-}
-
-async fn last_event(
-    conn: &mut sqlx::SqliteConnection,
-    play_id: i64,
-) -> Result<(i64, i64), String> {
-    sqlx::query("SELECT at, position_ms FROM play_events WHERE play_id = ? ORDER BY at DESC LIMIT 1")
-        .bind(play_id)
-        .fetch_one(&mut *conn)
-        .await
-        .map(|row| (row.get("at"), row.get("position_ms")))
-        .map_err(|err| format!("Failed to fetch last event: {err}"))
-}
-
-async fn do_finalize(
-    conn: &mut sqlx::SqliteConnection,
-    finalization: PlayFinalization,
-) -> Result<(), String> {
-    sqlx::query(
-        "UPDATE plays SET ended_at = ?, end_reason = ?, end_position_ms = ?, ms_played = ? \
-         WHERE id = ?",
-    )
-    .bind(finalization.at)
-    .bind(finalization.reason.as_str())
-    .bind(finalization.position_ms)
-    .bind(finalization.ms_played)
-    .bind(finalization.play_id)
-    .execute(&mut *conn)
-    .await
-    .map_err(|err| format!("Failed to finalize play: {err}"))?;
-
-    sqlx::query(
-        "INSERT INTO play_events (play_id, kind, at, position_ms) \
-         VALUES (?, 'ended', ?, ?)",
-    )
-    .bind(finalization.play_id)
-    .bind(finalization.at)
-    .bind(finalization.position_ms)
-    .execute(&mut *conn)
-    .await
-    .map_err(|err| format!("Failed to insert ended event: {err}"))?;
-
-    Ok(())
-}
-
-async fn compute_ms_played(
-    conn: &mut sqlx::SqliteConnection,
-    play_id: i64,
-    end_at: i64,
-) -> Result<i64, String> {
-    let events = sqlx::query("SELECT kind, at FROM play_events WHERE play_id = ? ORDER BY at")
-        .bind(play_id)
-        .fetch_all(&mut *conn)
-        .await
-        .map_err(|err| format!("Failed to fetch play events: {err}"))?;
-
-    let mut ms_played: i64 = 0;
-    let mut interval_start: Option<i64> = None;
-
-    for event in &events {
-        let kind: &str = event.get("kind");
-        let at: i64 = event.get("at");
-
-        match kind {
-            "started" | "resumed" => {
-                interval_start = Some(at);
-            }
-            "paused" | "ended" => {
-                if let Some(start) = interval_start {
-                    ms_played += at - start;
-                    interval_start = None;
-                }
-            }
-            _ => {}
-        }
-    }
-
-    if let Some(start) = interval_start {
-        ms_played += end_at - start;
-    }
-
-    Ok(ms_played)
-}
-
-async fn fetch_open_play_ids(conn: &mut sqlx::SqliteConnection) -> Result<Vec<i64>, String> {
-    sqlx::query("SELECT id FROM plays WHERE end_reason IS NULL")
-        .fetch_all(&mut *conn)
-        .await
-        .map(|rows| rows.iter().map(|row| row.get("id")).collect())
-        .map_err(|err| format!("Failed to fetch open plays: {err}"))
-}
-
-async fn finalize_one_open_play(
-    conn: &mut sqlx::SqliteConnection,
-    play_id: i64,
-    end_at: i64,
-    reason: EndReason,
-) -> Result<(), String> {
-    let (_, position_ms) = last_event(&mut *conn, play_id).await?;
-    let ms_played = compute_ms_played(&mut *conn, play_id, end_at).await?;
-
-    do_finalize(
-        &mut *conn,
-        PlayFinalization {
-            play_id,
-            reason,
-            at: end_at,
-            position_ms,
-            ms_played,
-        },
-    )
-    .await
+    pub snapshot: Option<TrackSnapshot>,
 }
 
 impl HistoryDb {
@@ -219,7 +64,7 @@ impl HistoryDb {
         &self.0
     }
 
-    async fn upsert_track(&self, snapshot: &TrackSnapshot) -> Result<i64, String> {
+    async fn upsert_track(&self, snapshot: &TrackSnapshot, at: i64) -> Result<i64, String> {
         let fp = fingerprint::fingerprint(&snapshot.artists, &snapshot.title);
         let artists_json = serde_json::to_string(&snapshot.artists)
             .map_err(|err| format!("Failed to serialize artists: {err}"))?;
@@ -240,119 +85,50 @@ impl HistoryDb {
         .bind(&snapshot.album_title)
         .bind(snapshot.duration_ms)
         .bind(&snapshot.artwork_url)
-        .bind(snapshot.started_at)
-        .bind(snapshot.started_at)
+        .bind(at)
+        .bind(at)
         .fetch_one(self.pool())
         .await
         .map(|row| row.get("id"))
         .map_err(|err| format!("Failed to upsert track: {err}"))
     }
 
-    pub async fn close_open_plays_at(&self, now_ms: i64) -> Result<(), String> {
-        self.finalize_all_open_plays(Some(now_ms), EndReason::Abandoned).await
-    }
-
-    pub async fn sweep_open_plays(&self) -> Result<(), String> {
-        self.finalize_all_open_plays(None, EndReason::Abandoned).await
-    }
-
-    async fn replace_open_plays(&self, at: i64) -> Result<(), String> {
-        self.finalize_all_open_plays(Some(at), EndReason::Replaced).await
-    }
-
-    async fn finalize_all_open_plays(
-        &self,
-        end_at: Option<i64>,
-        reason: EndReason,
-    ) -> Result<(), String> {
-        let mut tx = self
-            .pool()
-            .begin()
-            .await
-            .map_err(|err| format!("Failed to begin transaction: {err}"))?;
-
-        let open_ids = fetch_open_play_ids(&mut *tx).await?;
-        for play_id in open_ids {
-            let end_at = match end_at {
-                Some(t) => t,
-                None => last_event(&mut *tx, play_id).await?.0,
-            };
-            finalize_one_open_play(&mut *tx, play_id, end_at, reason).await?;
+    pub async fn record_event(&self, event: PlayEvent) -> Result<(), String> {
+        let is_started = matches!(event.kind, PlayEventKind::Started);
+        if event.snapshot.is_some() != is_started {
+            return Err(format!(
+                "Event kind '{}' and snapshot presence do not match: only 'started' events carry a snapshot",
+                event.kind.as_str()
+            ));
         }
 
-        tx.commit()
-            .await
-            .map_err(|err| format!("Failed to commit transaction: {err}"))?;
+        let track_id = match &event.snapshot {
+            Some(snapshot) => Some(self.upsert_track(snapshot, event.at).await?),
+            None => None,
+        };
+        let provider_ref = event
+            .snapshot
+            .as_ref()
+            .map(|snapshot| (snapshot.provider.clone(), snapshot.provider_id.clone()));
+        let (provider, provider_id) = provider_ref.unzip();
 
-        Ok(())
-    }
-
-    pub async fn start_play(&self, snapshot: TrackSnapshot) -> Result<i64, String> {
-        let track_id = self.upsert_track(&snapshot).await?;
-        self.replace_open_plays(snapshot.started_at).await?;
-
-        let play_id: i64 = sqlx::query(
-            "INSERT INTO plays (track_id, provider, provider_id, started_at) \
-             VALUES (?, ?, ?, ?) RETURNING id",
+        sqlx::query(
+            "INSERT INTO play_events (play_id, track_id, kind, at, position_ms, seek_to_ms, provider, provider_id) \
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
         )
+        .bind(&event.play_id)
         .bind(track_id)
-        .bind(&snapshot.provider)
-        .bind(&snapshot.provider_id)
-        .bind(snapshot.started_at)
-        .fetch_one(self.pool())
-        .await
-        .map(|row| row.get("id"))
-        .map_err(|err| format!("Failed to insert play: {err}"))?;
-
-        sqlx::query(
-            "INSERT INTO play_events (play_id, kind, at, position_ms) \
-             VALUES (?, 'started', ?, 0)",
-        )
-        .bind(play_id)
-        .bind(snapshot.started_at)
-        .execute(self.pool())
-        .await
-        .map_err(|err| format!("Failed to insert started event: {err}"))?;
-
-        Ok(play_id)
-    }
-
-    pub async fn record_event(&self, event: PlayEvent) -> Result<(), String> {
-        sqlx::query(
-            "INSERT INTO play_events (play_id, kind, at, position_ms, seek_to_ms) \
-             VALUES (?, ?, ?, ?, ?)",
-        )
-        .bind(event.play_id)
         .bind(event.kind.as_str())
         .bind(event.at)
         .bind(event.position_ms)
         .bind(event.seek_to_ms)
+        .bind(provider)
+        .bind(provider_id)
         .execute(self.pool())
         .await
         .map_err(|err| format!("Failed to insert event: {err}"))?;
 
         Ok(())
-    }
-
-    pub async fn finalize_play(&self, finalization: PlayFinalization) -> Result<(), String> {
-        let already_finalized: bool =
-            sqlx::query("SELECT end_reason IS NOT NULL as finalized FROM plays WHERE id = ?")
-                .bind(finalization.play_id)
-                .fetch_one(self.pool())
-                .await
-                .map(|row| row.get("finalized"))
-                .map_err(|err| format!("Failed to fetch play: {err}"))?;
-
-        if already_finalized {
-            return Ok(());
-        }
-
-        let mut conn = self
-            .pool()
-            .acquire()
-            .await
-            .map_err(|err| format!("Failed to acquire connection: {err}"))?;
-        do_finalize(&mut *conn, finalization).await
     }
 }
 
@@ -370,7 +146,28 @@ mod tests {
             artwork_url: Some("https://example.com/art.jpg".into()),
             provider: "youtube".into(),
             provider_id: "abc123".into(),
-            started_at: 1000,
+        }
+    }
+
+    fn started(play_id: &str, at: i64, snapshot: TrackSnapshot) -> PlayEvent {
+        PlayEvent {
+            play_id: play_id.into(),
+            kind: PlayEventKind::Started,
+            at,
+            position_ms: 0,
+            seek_to_ms: None,
+            snapshot: Some(snapshot),
+        }
+    }
+
+    fn bare(play_id: &str, kind: PlayEventKind, at: i64, position_ms: i64) -> PlayEvent {
+        PlayEvent {
+            play_id: play_id.into(),
+            kind,
+            at,
+            position_ms,
+            seek_to_ms: None,
+            snapshot: None,
         }
     }
 
@@ -379,102 +176,41 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn start_and_finalize_play() {
+    async fn started_event_inserts_track_and_stamped_event_row() {
         let db = db().await;
 
-        let play_id = db.start_play(snapshot()).await.unwrap();
-
-        db.record_event(PlayEvent {
-            play_id,
-            kind: PlayEventKind::Paused,
-            at: 5000,
-            position_ms: 4000,
-            seek_to_ms: None,
-        }).await.unwrap();
-
-        db.record_event(PlayEvent {
-            play_id,
-            kind: PlayEventKind::Resumed,
-            at: 8000,
-            position_ms: 4000,
-            seek_to_ms: None,
-        }).await.unwrap();
-
-        db.finalize_play(PlayFinalization {
-            play_id,
-            reason: EndReason::Completed,
-            at: 245_000,
-            position_ms: 240_000,
-            ms_played: 240_000,
-        }).await.unwrap();
-
-        let play = sqlx::query("SELECT * FROM plays WHERE id = ?")
-            .bind(play_id)
-            .fetch_one(db.pool())
+        db.record_event(started("play-1", 1000, snapshot()))
             .await
             .unwrap();
 
-        assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("completed".into()));
-        assert_eq!(play.get::<Option<i64>, _>("ended_at"), Some(245_000));
-        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(240_000));
-    }
-
-    #[tokio::test]
-    async fn starting_new_play_replaces_open_one() {
-        let db = db().await;
-
-        let first_id = db.start_play(snapshot()).await.unwrap();
-
-        let mut second = snapshot();
-        second.title = "Karma Police".into();
-        second.started_at = 5000;
-        let second_id = db.start_play(second).await.unwrap();
-
-        let first = sqlx::query("SELECT end_reason, ended_at FROM plays WHERE id = ?")
-            .bind(first_id)
+        let track = sqlx::query("SELECT * FROM tracks")
             .fetch_one(db.pool())
             .await
             .unwrap();
-        assert_eq!(first.get::<Option<String>, _>("end_reason"), Some("replaced".into()));
-        assert_eq!(first.get::<Option<i64>, _>("ended_at"), Some(5000));
+        assert_eq!(track.get::<String, _>("title"), "Creep");
+        assert_eq!(track.get::<String, _>("artists"), r#"["Radiohead"]"#);
+        assert_eq!(track.get::<i64, _>("created_at"), 1000);
 
-        let second = sqlx::query("SELECT end_reason FROM plays WHERE id = ?")
-            .bind(second_id)
+        let event = sqlx::query("SELECT * FROM play_events")
             .fetch_one(db.pool())
             .await
             .unwrap();
-        assert_eq!(second.get::<Option<String>, _>("end_reason"), None);
-    }
-
-    #[tokio::test]
-    async fn finalize_is_idempotent() {
-        let db = db().await;
-        let play_id = db.start_play(snapshot()).await.unwrap();
-
-        let finalization = PlayFinalization {
-            play_id,
-            reason: EndReason::Completed,
-            at: 241_000,
-            position_ms: 240_000,
-            ms_played: 240_000,
-        };
-
-        db.finalize_play(finalization).await.unwrap();
-        db.finalize_play(PlayFinalization {
-            play_id,
-            reason: EndReason::Skipped,
-            at: 300_000,
-            position_ms: 100_000,
-            ms_played: 100_000,
-        }).await.unwrap();
-
-        let play = sqlx::query("SELECT end_reason, ms_played FROM plays WHERE id = ?")
-            .bind(play_id)
-            .fetch_one(db.pool())
-            .await
-            .unwrap();
-        assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("completed".into()));
-        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(240_000));
+        assert_eq!(event.get::<String, _>("play_id"), "play-1");
+        assert_eq!(
+            event.get::<Option<i64>, _>("track_id"),
+            Some(track.get::<i64, _>("id"))
+        );
+        assert_eq!(event.get::<String, _>("kind"), "started");
+        assert_eq!(event.get::<i64, _>("at"), 1000);
+        assert_eq!(event.get::<i64, _>("position_ms"), 0);
+        assert_eq!(
+            event.get::<Option<String>, _>("provider"),
+            Some("youtube".into())
+        );
+        assert_eq!(
+            event.get::<Option<String>, _>("provider_id"),
+            Some("abc123".into())
+        );
     }
 
     #[tokio::test]
@@ -483,13 +219,14 @@ mod tests {
 
         let mut first = snapshot();
         first.artwork_url = None;
-        db.start_play(first).await.unwrap();
+        db.record_event(started("play-1", 1000, first)).await.unwrap();
 
         let mut second = snapshot();
         second.album_title = Some("Greatest Hits".into());
         second.artwork_url = Some("https://example.com/new.jpg".into());
-        second.started_at = 2000;
-        db.start_play(second).await.unwrap();
+        db.record_event(started("play-2", 2000, second))
+            .await
+            .unwrap();
 
         let count: i64 = sqlx::query("SELECT COUNT(*) as c FROM tracks")
             .fetch_one(db.pool())
@@ -515,82 +252,84 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn sweep_closes_open_plays_conservatively() {
+    async fn bare_events_append_rows_without_track_or_provider() {
         let db = db().await;
 
-        // started@1000, paused@3000 (2s played), resumed@5000
-        // sweep should count: (3000-1000) + (5000-5000) = 2000
-        // the trailing open interval gets zero because end_at = last event's timestamp
-        let play_id = db.start_play(snapshot()).await.unwrap();
-        db.record_event(PlayEvent {
-            play_id, kind: PlayEventKind::Paused, at: 3000, position_ms: 2000, seek_to_ms: None,
-        }).await.unwrap();
-        db.record_event(PlayEvent {
-            play_id, kind: PlayEventKind::Resumed, at: 5000, position_ms: 2000, seek_to_ms: None,
-        }).await.unwrap();
-
-        db.sweep_open_plays().await.unwrap();
-
-        let play = sqlx::query("SELECT end_reason, ended_at, ms_played FROM plays WHERE id = ?")
-            .bind(play_id)
-            .fetch_one(db.pool())
+        db.record_event(started("play-1", 1000, snapshot()))
             .await
             .unwrap();
-        assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("abandoned".into()));
-        assert_eq!(play.get::<Option<i64>, _>("ended_at"), Some(5000));
-        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(2000));
+        db.record_event(bare("play-1", PlayEventKind::Paused, 3000, 2000))
+            .await
+            .unwrap();
+        db.record_event(PlayEvent {
+            play_id: "play-1".into(),
+            kind: PlayEventKind::Seeked,
+            at: 4000,
+            position_ms: 2000,
+            seek_to_ms: Some(60_000),
+            snapshot: None,
+        })
+        .await
+        .unwrap();
+        db.record_event(bare("play-1", PlayEventKind::Finished, 245_000, 240_000))
+            .await
+            .unwrap();
+
+        let events = sqlx::query(
+            "SELECT kind, at, position_ms, seek_to_ms, track_id, provider FROM play_events \
+             WHERE kind != 'started' ORDER BY at",
+        )
+        .fetch_all(db.pool())
+        .await
+        .unwrap();
+
+        assert_eq!(events.len(), 3);
+
+        assert_eq!(events[0].get::<String, _>("kind"), "paused");
+        assert_eq!(events[0].get::<i64, _>("at"), 3000);
+        assert_eq!(events[0].get::<i64, _>("position_ms"), 2000);
+        assert_eq!(events[0].get::<Option<i64>, _>("seek_to_ms"), None);
+        assert_eq!(events[0].get::<Option<i64>, _>("track_id"), None);
+        assert_eq!(events[0].get::<Option<String>, _>("provider"), None);
+
+        assert_eq!(events[1].get::<String, _>("kind"), "seeked");
+        assert_eq!(events[1].get::<Option<i64>, _>("seek_to_ms"), Some(60_000));
+
+        assert_eq!(events[2].get::<String, _>("kind"), "finished");
+        assert_eq!(events[2].get::<i64, _>("position_ms"), 240_000);
     }
 
     #[tokio::test]
-    async fn close_at_extends_trailing_interval() {
+    async fn snapshot_on_non_started_event_is_rejected() {
         let db = db().await;
 
-        // started@1000, paused@3000 (2s), resumed@5000, close_at(10000)
-        // ms_played: (3000-1000) + (10000-5000) = 2000 + 5000 = 7000
-        let play_id = db.start_play(snapshot()).await.unwrap();
-        db.record_event(PlayEvent {
-            play_id, kind: PlayEventKind::Paused, at: 3000, position_ms: 2000, seek_to_ms: None,
-        }).await.unwrap();
-        db.record_event(PlayEvent {
-            play_id, kind: PlayEventKind::Resumed, at: 5000, position_ms: 2000, seek_to_ms: None,
-        }).await.unwrap();
+        let mut event = started("play-1", 1000, snapshot());
+        event.kind = PlayEventKind::Paused;
 
-        db.close_open_plays_at(10_000).await.unwrap();
+        let result = db.record_event(event).await;
+        assert_eq!(
+            result,
+            Err("Event kind 'paused' and snapshot presence do not match: only 'started' events carry a snapshot".into())
+        );
 
-        let play = sqlx::query("SELECT end_reason, ended_at, ms_played FROM plays WHERE id = ?")
-            .bind(play_id)
+        let count: i64 = sqlx::query("SELECT COUNT(*) as c FROM play_events")
             .fetch_one(db.pool())
             .await
-            .unwrap();
-        assert_eq!(play.get::<Option<String>, _>("end_reason"), Some("abandoned".into()));
-        assert_eq!(play.get::<Option<i64>, _>("ended_at"), Some(10_000));
-        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(7000));
+            .unwrap()
+            .get("c");
+        assert_eq!(count, 0);
     }
 
     #[tokio::test]
-    async fn replaced_play_gets_correct_ms_played() {
+    async fn started_without_snapshot_is_rejected() {
         let db = db().await;
 
-        // started@1000, paused@3000 (2s played), resumed@5000, replaced@8000 (3s more)
-        let play_id = db.start_play(snapshot()).await.unwrap();
-        db.record_event(PlayEvent {
-            play_id, kind: PlayEventKind::Paused, at: 3000, position_ms: 2000, seek_to_ms: None,
-        }).await.unwrap();
-        db.record_event(PlayEvent {
-            play_id, kind: PlayEventKind::Resumed, at: 5000, position_ms: 2000, seek_to_ms: None,
-        }).await.unwrap();
-
-        let mut next = snapshot();
-        next.title = "Karma Police".into();
-        next.started_at = 8000;
-        db.start_play(next).await.unwrap();
-
-        let play = sqlx::query("SELECT ms_played FROM plays WHERE id = ?")
-            .bind(play_id)
-            .fetch_one(db.pool())
-            .await
-            .unwrap();
-        // (3000-1000) + (8000-5000) = 2000 + 3000 = 5000
-        assert_eq!(play.get::<Option<i64>, _>("ms_played"), Some(5000));
+        let result = db
+            .record_event(bare("play-1", PlayEventKind::Started, 1000, 0))
+            .await;
+        assert_eq!(
+            result,
+            Err("Event kind 'started' and snapshot presence do not match: only 'started' events carry a snapshot".into())
+        );
     }
 }
