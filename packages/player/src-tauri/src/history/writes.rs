@@ -64,7 +64,7 @@ impl HistoryDb {
         )
         .bind(&event.play_id)
         .bind(track_id)
-        .bind(event.kind.as_str())
+        .bind(event.kind)
         .bind(event.at)
         .bind(event.position_ms)
         .bind(event.seek_to_ms)
