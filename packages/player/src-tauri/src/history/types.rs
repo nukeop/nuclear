@@ -64,6 +64,13 @@ pub enum PlayEndReason {
 }
 
 #[derive(sqlx::FromRow)]
+pub struct PlayEventLogRow {
+    pub play_id: String,
+    #[sqlx(flatten)]
+    pub event: PlayEventRow,
+}
+
+#[derive(sqlx::FromRow)]
 pub struct PlayEventRow {
     pub kind: PlayEventKind,
     pub at: i64,

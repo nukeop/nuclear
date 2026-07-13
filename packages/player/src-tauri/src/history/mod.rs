@@ -9,6 +9,12 @@ use types::PlayEvent;
 
 pub struct HistoryDb(pub SqlitePool);
 
+impl HistoryDb {
+    pub(crate) fn pool(&self) -> &SqlitePool {
+        &self.0
+    }
+}
+
 pub fn init_history(app_handle: tauri::AppHandle) {
     tauri::async_runtime::spawn(async move {
         let data_dir = match app_handle.path().app_data_dir() {

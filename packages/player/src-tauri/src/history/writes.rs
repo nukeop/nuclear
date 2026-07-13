@@ -1,4 +1,3 @@
-use sqlx::sqlite::SqlitePool;
 use sqlx::Row;
 
 use crate::history::fingerprint;
@@ -6,10 +5,6 @@ use crate::history::types::{PlayEvent, PlayEventKind, TrackSnapshot};
 use crate::history::HistoryDb;
 
 impl HistoryDb {
-    fn pool(&self) -> &SqlitePool {
-        &self.0
-    }
-
     async fn upsert_track(&self, snapshot: &TrackSnapshot, at: i64) -> Result<i64, String> {
         let fp = fingerprint::fingerprint(&snapshot.artists, &snapshot.title);
         let artists_json = serde_json::to_string(&snapshot.artists)
@@ -75,6 +70,37 @@ impl HistoryDb {
         .map_err(|err| format!("Failed to insert event: {err}"))?;
 
         Ok(())
+    }
+
+    pub async fn delete_range(&self, from: i64, to: i64) -> Result<(), String> {
+        let mut tx = self
+            .pool()
+            .begin()
+            .await
+            .map_err(|err| format!("Failed to start delete transaction: {err}"))?;
+
+        sqlx::query(
+            "DELETE FROM play_events WHERE play_id IN ( \
+             SELECT play_id FROM play_events \
+             WHERE kind = 'started' AND at >= ? AND at < ?)",
+        )
+        .bind(from)
+        .bind(to)
+        .execute(&mut *tx)
+        .await
+        .map_err(|err| format!("Failed to delete play events: {err}"))?;
+
+        sqlx::query(
+            "DELETE FROM tracks WHERE NOT EXISTS ( \
+             SELECT 1 FROM play_events WHERE track_id = tracks.id)",
+        )
+        .execute(&mut *tx)
+        .await
+        .map_err(|err| format!("Failed to delete orphaned tracks: {err}"))?;
+
+        tx.commit()
+            .await
+            .map_err(|err| format!("Failed to commit delete transaction: {err}"))
     }
 }
 

@@ -1,4 +1,9 @@
-use crate::history::types::{Play, PlayEndReason, PlayEventKind, PlayEventRow};
+use std::collections::HashMap;
+
+use crate::history::types::{
+    HistoryEntry, Play, PlayEndReason, PlayEventKind, PlayEventLogRow, PlayEventRow, StartedRow,
+};
+use crate::history::HistoryDb;
 
 impl PlayEndReason {
     fn from_terminal_kind(kind: PlayEventKind) -> Option<PlayEndReason> {
@@ -52,6 +57,66 @@ impl Play {
             end_reason,
             end_position_ms,
         })
+    }
+}
+
+impl HistoryDb {
+    pub async fn recent_plays(&self, limit: i64, offset: i64) -> Result<Vec<HistoryEntry>, String> {
+        let starts = sqlx::query_as::<_, StartedRow>(
+            "SELECT e.play_id, e.provider, e.provider_id, \
+             t.title, t.artists, t.album_title, t.duration_ms, t.artwork_url \
+             FROM play_events e JOIN tracks t ON t.id = e.track_id \
+             WHERE e.kind = 'started' \
+             ORDER BY e.at DESC LIMIT ? OFFSET ?",
+        )
+        .bind(limit)
+        .bind(offset)
+        .fetch_all(self.pool())
+        .await
+        .map_err(|err| format!("Failed to fetch recent plays: {err}"))?;
+
+        if starts.is_empty() {
+            return Ok(Vec::new());
+        }
+
+        let play_ids: Vec<&str> = starts.iter().map(|row| row.play_id.as_str()).collect();
+        let mut events_by_play = self.events_by_play(&play_ids).await?;
+
+        starts
+            .into_iter()
+            .map(|start| {
+                let events = events_by_play.remove(&start.play_id).unwrap_or_default();
+                let play = Play::from_events(&events)
+                    .ok_or_else(|| format!("Play '{}' has no events", start.play_id))?;
+                start.into_entry(play)
+            })
+            .collect()
+    }
+
+    async fn events_by_play(
+        &self,
+        play_ids: &[&str],
+    ) -> Result<HashMap<String, Vec<PlayEventRow>>, String> {
+        let placeholders = vec!["?"; play_ids.len()].join(", ");
+        let sql = format!(
+            "SELECT play_id, kind, at, position_ms FROM play_events \
+             WHERE play_id IN ({placeholders}) ORDER BY at, id",
+        );
+        let query = play_ids
+            .iter()
+            .fold(sqlx::query_as::<_, PlayEventLogRow>(&sql), |query, id| {
+                query.bind(*id)
+            });
+        let rows = query
+            .fetch_all(self.pool())
+            .await
+            .map_err(|err| format!("Failed to fetch play events: {err}"))?;
+
+        let mut grouped: HashMap<String, Vec<PlayEventRow>> = HashMap::new();
+        for row in rows {
+            grouped.entry(row.play_id).or_default().push(row.event);
+        }
+        Ok(grouped)
     }
 }
 
