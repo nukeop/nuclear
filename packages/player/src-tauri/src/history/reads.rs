@@ -70,6 +70,49 @@ mod tests {
         }
     }
 
+    fn snapshot(title: &str) -> TrackSnapshot {
+        TrackSnapshot {
+            title: title.into(),
+            artists: vec!["Test Artist".into()],
+            album_title: None,
+            duration_ms: None,
+            artwork_url: None,
+            provider: "test".into(),
+            provider_id: title.to_lowercase(),
+        }
+    }
+
+    async fn seed_started(db: &HistoryDb, play_id: &str, title: &str, at: i64) {
+        db.record_event(PlayEvent {
+            play_id: play_id.into(),
+            kind: PlayEventKind::Started,
+            at,
+            position_ms: 0,
+            seek_to_ms: None,
+            snapshot: Some(snapshot(title)),
+        })
+        .await
+        .unwrap();
+    }
+
+    async fn seed_finished_play(db: &HistoryDb, play_id: &str, title: &str, at: i64) {
+        seed_started(db, play_id, title, at).await;
+        db.record_event(PlayEvent {
+            play_id: play_id.into(),
+            kind: PlayEventKind::Finished,
+            at: at + 1000,
+            position_ms: 1000,
+            seek_to_ms: None,
+            snapshot: None,
+        })
+        .await
+        .unwrap();
+    }
+
+    fn play_ids(entries: &[HistoryEntry]) -> Vec<&str> {
+        entries.iter().map(|entry| entry.play_id.as_str()).collect()
+    }
+
     #[test]
     fn finished_play_sums_playing_time_and_excludes_pauses() {
         let play = Play::from_events(&[
@@ -214,7 +257,7 @@ mod tests {
         .await
         .unwrap();
 
-        let entries = HistoryDb::recent_plays(&db.0, 10, 0).await.unwrap();
+        let entries = db.recent_plays(10, 0).await.unwrap();
         assert_eq!(entries.len(), 1);
         assert_eq!(
             entries[0],
@@ -236,14 +279,70 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn recent_plays_orders_newest_first() {}
+    async fn recent_plays_orders_newest_first() {
+        let db = HistoryDb(test_pool().await);
+        seed_finished_play(&db, "play-1", "First", 1000).await;
+        seed_finished_play(&db, "play-2", "Second", 5000).await;
+        seed_finished_play(&db, "play-3", "Third", 9000).await;
+
+        let entries = db.recent_plays(10, 0).await.unwrap();
+
+        assert_eq!(play_ids(&entries), ["play-3", "play-2", "play-1"]);
+    }
 
     #[tokio::test]
-    async fn recent_plays_paginates_with_limit_and_offset() {}
+    async fn recent_plays_paginates_with_limit_and_offset() {
+        let db = HistoryDb(test_pool().await);
+        seed_finished_play(&db, "play-1", "First", 1000).await;
+        seed_finished_play(&db, "play-2", "Second", 5000).await;
+        seed_finished_play(&db, "play-3", "Third", 9000).await;
+
+        let first_page = db.recent_plays(2, 0).await.unwrap();
+        let second_page = db.recent_plays(2, 2).await.unwrap();
+
+        assert_eq!(play_ids(&first_page), ["play-3", "play-2"]);
+        assert_eq!(play_ids(&second_page), ["play-1"]);
+    }
 
     #[tokio::test]
-    async fn recent_plays_includes_interrupted_plays() {}
+    async fn recent_plays_includes_interrupted_plays() {
+        let db = HistoryDb(test_pool().await);
+        seed_started(&db, "play-1", "Interrupted", 1000).await;
+
+        let entries = db.recent_plays(10, 0).await.unwrap();
+
+        assert_eq!(play_ids(&entries), ["play-1"]);
+        assert_eq!(entries[0].end_reason, None);
+        assert_eq!(entries[0].end_position_ms, None);
+    }
 
     #[tokio::test]
-    async fn clear_empties_history_and_recording_still_works_afterwards() {}
+    async fn delete_range_removes_plays_started_within_it_and_keeps_the_rest() {
+        let db = HistoryDb(test_pool().await);
+        seed_finished_play(&db, "play-1", "First", 1000).await;
+        seed_finished_play(&db, "play-2", "Second", 5000).await;
+        seed_finished_play(&db, "play-3", "Third", 9000).await;
+
+        db.delete_range(1000, 5000).await.unwrap();
+
+        assert_eq!(
+            play_ids(&db.recent_plays(10, 0).await.unwrap()),
+            ["play-3", "play-2"],
+        );
+    }
+
+    #[tokio::test]
+    async fn delete_range_drops_tracks_that_no_longer_have_any_plays() {
+        let db = HistoryDb(test_pool().await);
+        seed_finished_play(&db, "play-1", "Kept", 1000).await;
+        seed_finished_play(&db, "play-2", "Deleted", 5000).await;
+
+        db.delete_range(5000, 6000).await.unwrap();
+
+        let titles: Vec<String> = sqlx::query_scalar("SELECT title FROM tracks")
+            .fetch_all(&db.0)
+            .await
+            .unwrap();
+        assert_eq!(titles, ["Kept"]);
+    }
 }
