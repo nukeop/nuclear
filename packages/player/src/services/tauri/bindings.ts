@@ -29,6 +29,8 @@ export const commands = {
 	bridgeRespond: (response: BridgeResponse) => typedError<null, string>(__TAURI_INVOKE("bridge_respond", { response })),
 	bridgeNotify: (notification: BridgeNotification) => typedError<null, string>(__TAURI_INVOKE("bridge_notify", { notification })),
 	historyRecordEvent: (event: PlayEvent) => typedError<null, string>(__TAURI_INVOKE("history_record_event", { event })),
+	historyGetRecent: (page: PlaysPage) => typedError<HistoryEntry[], string>(__TAURI_INVOKE("history_get_recent", { page })),
+	historyDeleteRange: (range: TimeRange) => typedError<null, string>(__TAURI_INVOKE("history_delete_range", { range })),
 };
 
 /* Types */
@@ -41,6 +43,21 @@ export type BridgeResponse = {
 } & BridgeResponseBody;
 
 export type BridgeResponseBody = { status: "success"; data: unknown } | { status: "error"; error: string };
+
+export type HistoryEntry = {
+	playId: string,
+	title: string,
+	artists: string[],
+	albumTitle: string | null,
+	durationMs: number | null,
+	artworkUrl: string | null,
+	provider: string | null,
+	providerId: string | null,
+	startedAt: number,
+	msPlayed: number,
+	endReason: PlayEndReason | null,
+	endPositionMs: number | null,
+};
 
 export type HttpApiStartResult = {
 	port: number,
@@ -60,6 +77,8 @@ export type HttpResponse = {
 	body: string,
 };
 
+export type PlayEndReason = "finished" | "skipped" | "stopped";
+
 export type PlayEvent = {
 	playId: string,
 	kind: PlayEventKind,
@@ -71,10 +90,20 @@ export type PlayEvent = {
 
 export type PlayEventKind = "started" | "paused" | "resumed" | "seeked" | "finished" | "skipped" | "stopped";
 
+export type PlaysPage = {
+	limit: number,
+	offset: number,
+};
+
 export type StartupLogEntry = {
 	timestamp: string,
 	level: string,
 	message: string,
+};
+
+export type TimeRange = {
+	from: number,
+	to: number,
 };
 
 export type TrackPresence = {

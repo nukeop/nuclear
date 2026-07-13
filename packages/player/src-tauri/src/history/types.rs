@@ -55,6 +55,24 @@ pub struct PlayEvent {
     pub snapshot: Option<TrackSnapshot>,
 }
 
+#[derive(Deserialize, specta::Type)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaysPage {
+    #[specta(type = Number<i64>)]
+    pub limit: i64,
+    #[specta(type = Number<i64>)]
+    pub offset: i64,
+}
+
+#[derive(Deserialize, specta::Type)]
+#[serde(rename_all = "camelCase")]
+pub struct TimeRange {
+    #[specta(type = Number<i64>)]
+    pub from: i64,
+    #[specta(type = Number<i64>)]
+    pub to: i64,
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
 pub enum PlayEndReason {

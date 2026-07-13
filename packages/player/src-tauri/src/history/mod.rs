@@ -5,7 +5,7 @@ pub mod writes;
 
 use sqlx::sqlite::SqlitePool;
 use tauri::Manager;
-use types::PlayEvent;
+use types::{HistoryEntry, PlayEvent, PlaysPage, TimeRange};
 
 pub struct HistoryDb(pub SqlitePool);
 
@@ -50,6 +50,24 @@ pub async fn history_record_event(
     event: PlayEvent,
 ) -> Result<(), String> {
     state.record_event(event).await
+}
+
+#[tauri::command]
+#[specta::specta]
+pub async fn history_get_recent(
+    state: tauri::State<'_, HistoryDb>,
+    page: PlaysPage,
+) -> Result<Vec<HistoryEntry>, String> {
+    state.recent_plays(page.limit, page.offset).await
+}
+
+#[tauri::command]
+#[specta::specta]
+pub async fn history_delete_range(
+    state: tauri::State<'_, HistoryDb>,
+    range: TimeRange,
+) -> Result<(), String> {
+    state.delete_range(range.from, range.to).await
 }
 
 #[cfg(test)]
