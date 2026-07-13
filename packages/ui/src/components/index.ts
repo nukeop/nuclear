@@ -17,6 +17,7 @@ export * from './LogViewer';
 export * from './Loader';
 export * from './Mosaic';
 export * from './NuclearJam';
+export * from './Pagination';
 export * from './PlayerBar';
 export * from './PlayerShell';
 export * from './PlayerWorkspace';
