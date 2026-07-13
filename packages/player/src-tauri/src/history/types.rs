@@ -75,3 +75,24 @@ pub struct Play {
     pub end_reason: Option<PlayEndReason>,
     pub end_position_ms: Option<i64>,
 }
+
+#[derive(Debug, PartialEq, Serialize, specta::Type)]
+#[serde(rename_all = "camelCase")]
+pub struct HistoryEntry {
+    pub play_id: String,
+    pub title: String,
+    pub artists: Vec<String>,
+    pub album_title: Option<String>,
+    #[specta(type = Option<Number<i64>>)]
+    pub duration_ms: Option<i64>,
+    pub artwork_url: Option<String>,
+    pub provider: Option<String>,
+    pub provider_id: Option<String>,
+    #[specta(type = Number<i64>)]
+    pub started_at: i64,
+    #[specta(type = Number<i64>)]
+    pub ms_played: i64,
+    pub end_reason: Option<PlayEndReason>,
+    #[specta(type = Option<Number<i64>>)]
+    pub end_position_ms: Option<i64>,
+}

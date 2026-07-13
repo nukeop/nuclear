@@ -58,6 +58,9 @@ impl Play {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::history::test_helpers::test_pool;
+    use crate::history::types::{HistoryEntry, PlayEvent, TrackSnapshot};
+    use crate::history::HistoryDb;
 
     fn event(kind: PlayEventKind, at: i64, position_ms: i64) -> PlayEventRow {
         PlayEventRow {
@@ -176,4 +179,71 @@ mod tests {
     fn no_events_produce_no_play() {
         assert_eq!(Play::from_events(&[]), None);
     }
+
+    #[tokio::test]
+    async fn recent_plays_returns_track_metadata_with_each_play() {
+        let db = HistoryDb(test_pool().await);
+
+        db.record_event(PlayEvent {
+            play_id: "play-1".into(),
+            kind: PlayEventKind::Started,
+            at: 1000,
+            position_ms: 0,
+            seek_to_ms: None,
+            snapshot: Some(TrackSnapshot {
+                title: "Creep".into(),
+                artists: vec!["Radiohead".into()],
+                album_title: Some("Pablo Honey".into()),
+                duration_ms: Some(240_000),
+                artwork_url: Some("https://example.com/art.jpg".into()),
+                provider: "youtube".into(),
+                provider_id: "abc123".into(),
+            }),
+        })
+        .await
+        .unwrap();
+
+        db.record_event(PlayEvent {
+            play_id: "play-1".into(),
+            kind: PlayEventKind::Finished,
+            at: 241_000,
+            position_ms: 240_000,
+            seek_to_ms: None,
+            snapshot: None,
+        })
+        .await
+        .unwrap();
+
+        let entries = HistoryDb::recent_plays(&db.0, 10, 0).await.unwrap();
+        assert_eq!(entries.len(), 1);
+        assert_eq!(
+            entries[0],
+            HistoryEntry {
+                play_id: "play-1".into(),
+                title: "Creep".into(),
+                artists: vec!["Radiohead".into()],
+                album_title: Some("Pablo Honey".into()),
+                duration_ms: Some(240_000),
+                artwork_url: Some("https://example.com/art.jpg".into()),
+                provider: Some("youtube".into()),
+                provider_id: Some("abc123".into()),
+                started_at: 1000,
+                ms_played: 240_000,
+                end_reason: Some(PlayEndReason::Finished),
+                end_position_ms: Some(240_000),
+            }
+        );
+    }
+
+    #[tokio::test]
+    async fn recent_plays_orders_newest_first() {}
+
+    #[tokio::test]
+    async fn recent_plays_paginates_with_limit_and_offset() {}
+
+    #[tokio::test]
+    async fn recent_plays_includes_interrupted_plays() {}
+
+    #[tokio::test]
+    async fn clear_empties_history_and_recording_still_works_afterwards() {}
 }
