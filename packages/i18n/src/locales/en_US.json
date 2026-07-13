@@ -33,7 +33,11 @@
     "favoriteTracks": "Favorite tracks",
     "favoriteArtists": "Favorite artists",
     "playlists": "Playlists",
+    "history": "History",
     "sources": "Sources"
+  },
+  "history": {
+    "title": "History"
   },
   "sources": {
     "title": "Sources",
