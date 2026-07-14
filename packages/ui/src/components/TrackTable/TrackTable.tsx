@@ -19,7 +19,6 @@ import { useGlobalFilter } from './hooks/useGlobalFilter';
 import { useReorder } from './hooks/useReorder';
 import { useSorting } from './hooks/useSorting';
 import { useVirtualRows } from './hooks/useVirtualRows';
-import { mergeLabels } from './labels';
 import { ReorderLayer } from './ReorderLayer';
 import { SortableRow } from './SortableRow';
 import { Toolbar } from './Toolbar';
@@ -64,8 +63,6 @@ export function TrackTable<T extends Track = Track>({
   const { globalFilter, setGlobalFilter, globalFilterFn, hasFilter } =
     useGlobalFilter<T>();
 
-  const mergedLabels = mergeLabels(labels);
-
   const columns: ColumnDef<T>[] = useColumns<T>({
     display: resolvedDisplay,
     labels,
@@ -90,8 +87,6 @@ export function TrackTable<T extends Track = Track>({
       onRemove: actions?.onRemove,
       isTrackFavorite: meta?.isTrackFavorite,
       ContextMenuWrapper: meta?.ContextMenuWrapper,
-      favoriteLabel: mergedLabels.favorite,
-      unfavoriteLabel: mergedLabels.unfavorite,
     },
   });
 
@@ -120,7 +115,7 @@ export function TrackTable<T extends Track = Track>({
         isReorderable,
         features: resolvedFeatures,
         actions,
-        labels: mergedLabels,
+        labels,
       }}
     >
       <div className="flex h-full flex-col">

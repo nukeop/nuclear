@@ -6,5 +6,9 @@ import { ViewShell } from '@nuclearplayer/ui';
 export const History: FC = () => {
   const { t } = useTranslation('history');
 
-  return <ViewShell data-testid="history-view" title={t('title')} />;
+  return (
+    <ViewShell data-testid="history-view" title={t('title')}>
+      <div />
+    </ViewShell>
+  );
 };

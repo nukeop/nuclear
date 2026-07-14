@@ -3,7 +3,28 @@ import { useState } from 'react';
 import { fn } from 'storybook/test';
 
 import { Track } from '@nuclearplayer/model';
-import { TrackTable, TrackTableProps } from '@nuclearplayer/ui';
+import {
+  TrackTable,
+  TrackTableLabels,
+  TrackTableProps,
+} from '@nuclearplayer/ui';
+
+const labels: TrackTableLabels = {
+  headers: {
+    artist: 'Artist',
+    title: 'Title',
+    album: 'Album',
+    duration: 'Duration',
+  },
+  favorite: 'Add to favorites',
+  unfavorite: 'Remove from favorites',
+  playAll: 'Play all',
+  addAllToQueue: 'Add all to queue',
+  addToQueue: 'Add to queue',
+  trackOptions: 'Track options',
+  remove: 'Remove from list',
+  filterPlaceholder: 'Filter tracks',
+};
 
 const meta: Meta<typeof TrackTable> = {
   title: 'Components/TrackTable',
@@ -69,6 +90,7 @@ const tracks: Track[] = [
 export const Basic: Story = {
   args: {
     tracks,
+    labels,
     display: {
       displayPosition: true,
       displayThumbnail: true,
@@ -83,6 +105,7 @@ export const Basic: Story = {
 export const DragAndDrop: Story = {
   args: {
     tracks,
+    labels,
     features: {
       reorderable: true,
     },
@@ -117,6 +140,7 @@ export const DragAndDrop: Story = {
 
 export const LargeDataset: Story = {
   args: {
+    labels,
     tracks: Array.from({ length: 5000 }).map(
       (_, i) =>
         ({
@@ -153,6 +177,7 @@ export const LargeDataset: Story = {
 export const Filtering: Story = {
   args: {
     tracks,
+    labels,
     features: {
       filterable: true,
     },
@@ -174,6 +199,7 @@ export const Filtering: Story = {
 export const WithFavorites: Story = {
   args: {
     tracks,
+    labels,
     display: {
       displayFavorite: true,
       displayPosition: true,
@@ -212,6 +238,7 @@ export const WithFavorites: Story = {
 
 export const LongTitle: Story = {
   args: {
+    labels,
     tracks: [
       {
         trackNumber: 1,
@@ -252,6 +279,7 @@ export const LongTitle: Story = {
 export const WithDeleteButton: Story = {
   args: {
     tracks,
+    labels,
     display: {
       displayPosition: true,
       displayThumbnail: true,
@@ -283,6 +311,7 @@ export const WithDeleteButton: Story = {
 export const ToolbarButtons: Story = {
   args: {
     tracks,
+    labels,
     features: {
       playAll: true,
       addAllToQueue: true,

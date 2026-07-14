@@ -15,10 +15,11 @@ type TitleCellMeta = {
 };
 
 type AddToQueueButtonProps = {
+  label: string;
   onClick: () => void;
 };
 
-const AddToQueueButton: FC<AddToQueueButtonProps> = ({ onClick }) => (
+const AddToQueueButton: FC<AddToQueueButtonProps> = ({ label, onClick }) => (
   <Button
     data-testid="add-to-queue-button"
     size="icon-sm"
@@ -28,14 +29,18 @@ const AddToQueueButton: FC<AddToQueueButtonProps> = ({ onClick }) => (
       e.stopPropagation();
       onClick();
     }}
-    aria-label="Add to queue"
+    aria-label={label}
   >
     <Plus size={16} />
   </Button>
 );
 
-const ContextMenuButton = forwardRef<HTMLElement>(
-  function ContextMenuButton(props, ref) {
+type ContextMenuButtonProps = {
+  label: string;
+};
+
+const ContextMenuButton = forwardRef<HTMLElement, ContextMenuButtonProps>(
+  function ContextMenuButton({ label, ...props }, ref) {
     return (
       <Button
         {...props}
@@ -45,7 +50,7 @@ const ContextMenuButton = forwardRef<HTMLElement>(
         variant="text"
         className="opacity-0 transition-none group-hover:opacity-100"
         onClick={(e) => e.stopPropagation()}
-        aria-label="Track options"
+        aria-label={label}
       >
         <EllipsisVertical size={16} />
       </Button>
@@ -59,7 +64,7 @@ export const TitleCell = <T extends Track>({
   table,
 }: CellContext<T, string | number | undefined>) => {
   const meta = table.options.meta as TitleCellMeta | undefined;
-  const { actions } = useTrackTableContext<T>();
+  const { actions, labels } = useTrackTableContext<T>();
   const showControls = meta?.displayQueueControls;
   const ContextMenuWrapper = meta?.ContextMenuWrapper;
   const track = row.original;
@@ -82,11 +87,14 @@ export const TitleCell = <T extends Track>({
         {showControls && hasActions && (
           <div className="flex items-center gap-1">
             {hasAddToQueue && (
-              <AddToQueueButton onClick={() => meta?.onAddToQueue?.(track)} />
+              <AddToQueueButton
+                label={labels.addToQueue}
+                onClick={() => meta?.onAddToQueue?.(track)}
+              />
             )}
             {ContextMenuWrapper && (
               <ContextMenuWrapper track={track}>
-                <ContextMenuButton />
+                <ContextMenuButton label={labels.trackOptions} />
               </ContextMenuWrapper>
             )}
           </div>
