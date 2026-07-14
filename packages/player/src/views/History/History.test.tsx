@@ -1,3 +1,4 @@
+import { HistoryEntryBuilder } from '../../test/builders/HistoryEntryBuilder';
 import { createHistoryWrapper } from './History.test-wrapper';
 
 const commandMocks = await vi.hoisted(async () => {
@@ -11,7 +12,13 @@ const Wrapper = createHistoryWrapper(commandMocks);
 
 describe('Listening history view', () => {
   beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(Date.parse('2026-07-11T12:00:00Z'));
     Wrapper.init();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   it('shows an empty state when nothing has been played yet', async () => {
@@ -21,7 +28,27 @@ describe('Listening history view', () => {
     expect(Wrapper.emptyState).toHaveTextContent('Nothing played yet');
   });
 
-  it.todo('shows recent plays with artwork, title, artist, and relative time');
+  it('shows recent plays with artwork, title, artist, and start time', async () => {
+    Wrapper.mockHistoryEntries(
+      new HistoryEntryBuilder()
+        .withTitle('Paranoid Android')
+        .withArtists(['Radiohead'])
+        .withArtworkUrl('https://example.com/ok-computer.jpg')
+        .withStartedAt(Date.parse('2026-07-11T11:55:00Z'))
+        .build(),
+    );
+    await Wrapper.mount();
+
+    const row = Wrapper.row(0);
+    expect(row.title).toBe('Paranoid Android');
+    expect(row.artist).toBe('Radiohead');
+    expect(row.artwork).toHaveAttribute(
+      'src',
+      'https://example.com/ok-computer.jpg',
+    );
+    expect(row.playedAt).toBe('11:55 AM');
+  });
+
   it.todo(
     'separates plays with day markers: Today, Yesterday, then calendar dates',
   );
