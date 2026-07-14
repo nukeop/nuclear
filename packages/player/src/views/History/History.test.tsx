@@ -10,6 +10,17 @@ vi.mock('../../services/tauri/bindings', () => commandMocks.moduleFactory());
 
 const Wrapper = createHistoryWrapper(commandMocks);
 
+const TODAY_10_AM = Date.parse('2026-07-11T10:00:00Z');
+const MINUTE_MS = 60_000;
+
+const numberedEntries = (count: number) =>
+  Array.from({ length: count }, (_, index) =>
+    new HistoryEntryBuilder()
+      .withTitle(`Track ${index + 1}`)
+      .withStartedAt(TODAY_10_AM - index * MINUTE_MS)
+      .build(),
+  );
+
 describe('Listening history view', () => {
   beforeEach(() => {
     vi.useFakeTimers({ toFake: ['Date'] });
@@ -49,20 +60,111 @@ describe('Listening history view', () => {
     expect(row.playedAt).toBe('11:55 AM');
   });
 
-  it.todo(
-    'separates plays with day markers: Today, Yesterday, then calendar dates',
-  );
+  it('separates plays with day markers: Today, Yesterday, then calendar dates', async () => {
+    Wrapper.mockHistoryEntries(
+      new HistoryEntryBuilder()
+        .withTitle('Airbag')
+        .withStartedAt(Date.parse('2026-07-11T09:00:00Z'))
+        .build(),
+      new HistoryEntryBuilder()
+        .withTitle('Karma Police')
+        .withStartedAt(Date.parse('2026-07-10T22:00:00Z'))
+        .build(),
+      new HistoryEntryBuilder()
+        .withTitle('Let Down')
+        .withStartedAt(Date.parse('2026-07-08T15:00:00Z'))
+        .build(),
+    );
+    await Wrapper.mount();
+
+    expect(Wrapper.dayGroups).toEqual([
+      { marker: 'Today', rowTitles: ['Airbag'] },
+      { marker: 'Yesterday', rowTitles: ['Karma Police'] },
+      { marker: 'July 8, 2026', rowTitles: ['Let Down'] },
+    ]);
+  });
 
   describe('Pagination', () => {
-    it.todo('shows page numbers and highlights the current page');
-    it.todo('moves between pages with next and previous');
-    it.todo('changes how many plays are shown per page');
-    it.todo('hides the pagination controls when all plays fit on one page');
+    it('shows page numbers and highlights the current page', async () => {
+      Wrapper.mockHistoryEntries(...numberedEntries(25));
+      await Wrapper.mount();
+
+      expect(Wrapper.pagination.pages).toEqual(['1', '2', '3']);
+      expect(Wrapper.pagination.currentPage).toBe('1');
+    });
+
+    it('moves between pages with next and previous', async () => {
+      Wrapper.mockHistoryEntries(...numberedEntries(25));
+      await Wrapper.mount();
+
+      await Wrapper.pagination.next.click();
+      expect(Wrapper.row(0).title).toBe('Track 11');
+      expect(Wrapper.pagination.currentPage).toBe('2');
+
+      await Wrapper.pagination.previous.click();
+      expect(Wrapper.row(0).title).toBe('Track 1');
+      expect(Wrapper.pagination.currentPage).toBe('1');
+    });
+
+    it('changes how many plays are shown per page', async () => {
+      Wrapper.mockHistoryEntries(...numberedEntries(25));
+      await Wrapper.mount();
+
+      expect(Wrapper.rows).toHaveLength(10);
+
+      await Wrapper.pageSizeSelect.select('25');
+      expect(Wrapper.rows).toHaveLength(25);
+    });
+
+    it('hides the pagination controls when all plays fit on one page', async () => {
+      Wrapper.mockHistoryEntries(...numberedEntries(3));
+      await Wrapper.mount();
+
+      expect(Wrapper.rows).toHaveLength(3);
+      expect(Wrapper.pagination.isVisible).toBe(false);
+    });
   });
 
   describe('Row actions', () => {
-    it.todo('favorites a track from its history row');
-    it.todo('adds a track to the queue from its history row');
-    it.todo('plays a track immediately from its history row');
+    it('favorites a track from its history row', async () => {
+      Wrapper.mockHistoryEntries(
+        new HistoryEntryBuilder().withTitle('Paranoid Android').build(),
+      );
+      await Wrapper.mount();
+
+      const row = Wrapper.row(0);
+      expect(row.favoriteButton.isFavorited).toBe(false);
+
+      await row.favoriteButton.click();
+
+      expect(row.favoriteButton.isFavorited).toBe(true);
+    });
+
+    it('adds a track to the queue from its history row', async () => {
+      Wrapper.mockHistoryEntries(
+        new HistoryEntryBuilder()
+          .withTitle('Paranoid Android')
+          .withArtists(['Radiohead'])
+          .build(),
+      );
+      await Wrapper.mount();
+
+      await Wrapper.row(0).addToQueueButton.click();
+
+      expect(Wrapper.queue.tracks).toEqual([
+        { title: 'Paranoid Android', artist: 'Radiohead' },
+      ]);
+    });
+
+    it('plays a track immediately from its history row', async () => {
+      Wrapper.mockHistoryEntries(
+        new HistoryEntryBuilder().withTitle('Paranoid Android').build(),
+      );
+      await Wrapper.mount();
+
+      await Wrapper.row(0).playButton.click();
+
+      expect(Wrapper.queue.currentTrackTitle).toBe('Paranoid Android');
+    });
   });
 });
