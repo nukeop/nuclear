@@ -33,6 +33,7 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
   <button
     aria-label="Page 1"
     class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
+    data-testid="pagination-item"
     type="button"
   >
     1
@@ -40,12 +41,14 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
   <span
     aria-hidden="true"
     class="text-foreground-secondary inline-flex size-8 items-center justify-center select-none"
+    data-testid="pagination-item"
   >
     …
   </span>
   <button
     aria-label="Page 11"
     class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
+    data-testid="pagination-item"
     type="button"
   >
     11
@@ -54,6 +57,7 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
     aria-current="page"
     aria-label="Page 12"
     class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors bg-primary text-foreground border-border"
+    data-testid="pagination-item"
     type="button"
   >
     12
@@ -61,6 +65,7 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
   <button
     aria-label="Page 13"
     class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
+    data-testid="pagination-item"
     type="button"
   >
     13
@@ -68,12 +73,14 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
   <span
     aria-hidden="true"
     class="text-foreground-secondary inline-flex size-8 items-center justify-center select-none"
+    data-testid="pagination-item"
   >
     …
   </span>
   <button
     aria-label="Page 24"
     class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
+    data-testid="pagination-item"
     type="button"
   >
     24
@@ -82,315 +89,6 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
     aria-label="Next page"
     class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
     data-headlessui-state=""
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="lucide lucide-chevron-right size-4"
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="m9 18 6-6-6-6"
-      />
-    </svg>
-  </button>
-</nav>
-`;
-
-exports[`Pagination > (Snapshot) renders all pages without ellipses when they fit 1`] = `
-<nav
-  aria-label="Pagination"
-  class="flex items-center gap-2"
-  data-testid="pagination"
->
-  <button
-    aria-label="Previous page"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
-    data-headlessui-state=""
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="lucide lucide-chevron-left size-4"
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="m15 18-6-6 6-6"
-      />
-    </svg>
-  </button>
-  <button
-    aria-label="Page 1"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    1
-  </button>
-  <button
-    aria-label="Page 2"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    2
-  </button>
-  <button
-    aria-current="page"
-    aria-label="Page 3"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors bg-primary text-foreground border-border"
-    type="button"
-  >
-    3
-  </button>
-  <button
-    aria-label="Page 4"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    4
-  </button>
-  <button
-    aria-label="Page 5"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    5
-  </button>
-  <button
-    aria-label="Next page"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
-    data-headlessui-state=""
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="lucide lucide-chevron-right size-4"
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="m9 18 6-6-6-6"
-      />
-    </svg>
-  </button>
-</nav>
-`;
-
-exports[`Pagination > (Snapshot) renders the first page with previous disabled and the tail compressed 1`] = `
-<nav
-  aria-label="Pagination"
-  class="flex items-center gap-2"
-  data-testid="pagination"
->
-  <button
-    aria-label="Previous page"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
-    data-disabled=""
-    data-headlessui-state="disabled"
-    disabled=""
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="lucide lucide-chevron-left size-4"
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="m15 18-6-6 6-6"
-      />
-    </svg>
-  </button>
-  <button
-    aria-current="page"
-    aria-label="Page 1"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors bg-primary text-foreground border-border"
-    type="button"
-  >
-    1
-  </button>
-  <button
-    aria-label="Page 2"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    2
-  </button>
-  <button
-    aria-label="Page 3"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    3
-  </button>
-  <button
-    aria-label="Page 4"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    4
-  </button>
-  <button
-    aria-label="Page 5"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    5
-  </button>
-  <span
-    aria-hidden="true"
-    class="text-foreground-secondary inline-flex size-8 items-center justify-center select-none"
-  >
-    …
-  </span>
-  <button
-    aria-label="Page 24"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    24
-  </button>
-  <button
-    aria-label="Next page"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
-    data-headlessui-state=""
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="lucide lucide-chevron-right size-4"
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="m9 18 6-6-6-6"
-      />
-    </svg>
-  </button>
-</nav>
-`;
-
-exports[`Pagination > (Snapshot) renders the last page with next disabled and the head compressed 1`] = `
-<nav
-  aria-label="Pagination"
-  class="flex items-center gap-2"
-  data-testid="pagination"
->
-  <button
-    aria-label="Previous page"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
-    data-headlessui-state=""
-    type="button"
-  >
-    <svg
-      aria-hidden="true"
-      class="lucide lucide-chevron-left size-4"
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="m15 18-6-6 6-6"
-      />
-    </svg>
-  </button>
-  <button
-    aria-label="Page 1"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    1
-  </button>
-  <span
-    aria-hidden="true"
-    class="text-foreground-secondary inline-flex size-8 items-center justify-center select-none"
-  >
-    …
-  </span>
-  <button
-    aria-label="Page 20"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    20
-  </button>
-  <button
-    aria-label="Page 21"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    21
-  </button>
-  <button
-    aria-label="Page 22"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    22
-  </button>
-  <button
-    aria-label="Page 23"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors text-foreground hover:bg-foreground/10 border-transparent bg-transparent"
-    type="button"
-  >
-    23
-  </button>
-  <button
-    aria-current="page"
-    aria-label="Page 24"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors bg-primary text-foreground border-border"
-    type="button"
-  >
-    24
-  </button>
-  <button
-    aria-label="Next page"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
-    data-disabled=""
-    data-headlessui-state="disabled"
-    disabled=""
     type="button"
   >
     <svg

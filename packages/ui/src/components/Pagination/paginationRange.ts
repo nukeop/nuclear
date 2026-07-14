@@ -33,6 +33,11 @@ export const paginationRange = (
   totalPages: number,
   siblingCount: number,
 ): PageItem[] => {
+  const rowLengthWithEllipsis = edgePageCount(siblingCount) + 2;
+  if (totalPages <= rowLengthWithEllipsis) {
+    return pages(1, totalPages);
+  }
+
   const windowStart = currentPage - siblingCount;
   const windowEnd = currentPage + siblingCount;
 

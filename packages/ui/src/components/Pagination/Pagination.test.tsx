@@ -1,8 +1,13 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Pagination } from './Pagination';
 import { PaginationLabels } from './types';
+
+const pageRow = (): (string | null)[] =>
+  screen
+    .getAllByTestId('pagination-item')
+    .map((element) => element.textContent);
 
 const labels: PaginationLabels = {
   navigation: 'Pagination',
@@ -24,8 +29,8 @@ describe('Pagination', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('(Snapshot) renders the first page with previous disabled and the tail compressed', () => {
-    const { container } = render(
+  it('renders the first page with previous disabled and the tail compressed', () => {
+    render(
       <Pagination
         currentPage={1}
         totalPages={24}
@@ -33,11 +38,14 @@ describe('Pagination', () => {
         labels={labels}
       />,
     );
-    expect(container.firstChild).toMatchSnapshot();
+    expect(pageRow()).toEqual(['1', '2', '3', '4', '5', '…', '24']);
+    expect(
+      screen.getByRole('button', { name: 'Previous page' }),
+    ).toBeDisabled();
   });
 
-  it('(Snapshot) renders the last page with next disabled and the head compressed', () => {
-    const { container } = render(
+  it('renders the last page with next disabled and the head compressed', () => {
+    render(
       <Pagination
         currentPage={24}
         totalPages={24}
@@ -45,11 +53,12 @@ describe('Pagination', () => {
         labels={labels}
       />,
     );
-    expect(container.firstChild).toMatchSnapshot();
+    expect(pageRow()).toEqual(['1', '…', '20', '21', '22', '23', '24']);
+    expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
   });
 
-  it('(Snapshot) renders all pages without ellipses when they fit', () => {
-    const { container } = render(
+  it('renders all pages without ellipses when they fit', () => {
+    render(
       <Pagination
         currentPage={3}
         totalPages={5}
@@ -57,7 +66,31 @@ describe('Pagination', () => {
         labels={labels}
       />,
     );
-    expect(container.firstChild).toMatchSnapshot();
+    expect(pageRow()).toEqual(['1', '2', '3', '4', '5']);
+  });
+
+  it('renders all pages when they fit even from the first page', () => {
+    render(
+      <Pagination
+        currentPage={1}
+        totalPages={5}
+        onPageChange={vi.fn()}
+        labels={labels}
+      />,
+    );
+    expect(pageRow()).toEqual(['1', '2', '3', '4', '5']);
+  });
+
+  it('renders all pages when they fit even from the last page', () => {
+    render(
+      <Pagination
+        currentPage={5}
+        totalPages={5}
+        onPageChange={vi.fn()}
+        labels={labels}
+      />,
+    );
+    expect(pageRow()).toEqual(['1', '2', '3', '4', '5']);
   });
 
   it('calls onPageChange with the page number when a page is clicked', async () => {

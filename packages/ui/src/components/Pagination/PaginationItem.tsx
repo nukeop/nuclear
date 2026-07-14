@@ -37,6 +37,7 @@ export const PaginationItem: FC<PaginationItemProps> = ({
     return (
       <span
         aria-hidden="true"
+        data-testid="pagination-item"
         className="text-foreground-secondary inline-flex size-8 items-center justify-center select-none"
       >
         …
@@ -48,6 +49,7 @@ export const PaginationItem: FC<PaginationItemProps> = ({
   return (
     <button
       type="button"
+      data-testid="pagination-item"
       aria-label={pageLabel(item.page)}
       aria-current={isCurrent ? 'page' : undefined}
       className={cn(pageVariants({ selected: isCurrent }))}
