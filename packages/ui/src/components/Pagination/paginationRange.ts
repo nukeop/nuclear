@@ -16,13 +16,19 @@ const pages = (from: number, to: number): PageItem[] =>
 
 const edgePageCount = (siblingCount: number): number => 2 * siblingCount + 3;
 
-const compressTail = (totalPages: number, siblingCount: number): PageItem[] => [
+const tailEllipsisRow = (
+  totalPages: number,
+  siblingCount: number,
+): PageItem[] => [
   ...pages(1, edgePageCount(siblingCount)),
   { kind: 'ellipsis', side: 'end' },
   { kind: 'page', page: totalPages },
 ];
 
-const compressHead = (totalPages: number, siblingCount: number): PageItem[] => [
+const headEllipsisRow = (
+  totalPages: number,
+  siblingCount: number,
+): PageItem[] => [
   { kind: 'page', page: 1 },
   { kind: 'ellipsis', side: 'start' },
   ...pages(totalPages - edgePageCount(siblingCount) + 1, totalPages),
@@ -55,11 +61,11 @@ export const paginationRange = (
   }
 
   if (gapBeforeLastPage) {
-    return compressTail(totalPages, siblingCount);
+    return tailEllipsisRow(totalPages, siblingCount);
   }
 
   if (gapAfterFirstPage) {
-    return compressHead(totalPages, siblingCount);
+    return headEllipsisRow(totalPages, siblingCount);
   }
 
   return pages(1, totalPages);

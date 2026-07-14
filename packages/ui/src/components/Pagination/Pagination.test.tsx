@@ -29,7 +29,7 @@ describe('Pagination', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders the first page with previous disabled and the tail compressed', () => {
+  it('renders the first page with previous disabled and the tail behind an ellipsis', () => {
     render(
       <Pagination
         currentPage={1}
@@ -44,7 +44,7 @@ describe('Pagination', () => {
     ).toBeDisabled();
   });
 
-  it('renders the last page with next disabled and the head compressed', () => {
+  it('renders the last page with next disabled and the head behind an ellipsis', () => {
     render(
       <Pagination
         currentPage={24}
