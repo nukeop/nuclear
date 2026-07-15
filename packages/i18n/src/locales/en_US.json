@@ -39,7 +39,12 @@
   "history": {
     "title": "History",
     "empty": "Nothing played yet",
-    "emptyDescription": "Tracks you play will appear here"
+    "emptyDescription": "Tracks you play will appear here",
+    "row": {
+      "favorite": "Add to favorites",
+      "unfavorite": "Remove from favorites",
+      "addToQueue": "Add to queue"
+    }
   },
   "sources": {
     "title": "Sources",
