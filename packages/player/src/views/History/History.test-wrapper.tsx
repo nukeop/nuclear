@@ -159,7 +159,7 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
       },
       playButton: {
         async click() {
-          await user.click(within(element()).getByTestId('history-row-play'));
+          await user.click(within(element()).getByTestId('history-row-title'));
         },
       },
     };
