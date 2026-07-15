@@ -40,6 +40,8 @@
     "title": "History",
     "empty": "Nothing played yet",
     "emptyDescription": "Tracks you play will appear here",
+    "today": "Today",
+    "yesterday": "Yesterday",
     "row": {
       "favorite": "Add to favorites",
       "unfavorite": "Remove from favorites",

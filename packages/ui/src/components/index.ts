@@ -10,6 +10,7 @@ export * from './FavoriteButton';
 export * from './CardGrid';
 export * from './EmptyState';
 export * from './FilterChips';
+export * from './HistoryDayGroup';
 export * from './HistoryRow';
 export * from './Input';
 export * from './KeyCombo';
