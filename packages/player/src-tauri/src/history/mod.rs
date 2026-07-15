@@ -54,11 +54,11 @@ pub async fn history_record_event(
 
 #[tauri::command]
 #[specta::specta]
-pub async fn history_get_recent(
+pub async fn history_fetch(
     state: tauri::State<'_, HistoryDb>,
     page: PlaysPage,
 ) -> Result<Vec<HistoryEntry>, String> {
-    state.recent_plays(page.limit, page.offset).await
+    state.entries(page.limit, page.offset).await
 }
 
 #[tauri::command]

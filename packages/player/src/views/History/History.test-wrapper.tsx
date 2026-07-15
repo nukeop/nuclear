@@ -28,7 +28,7 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
 
   mockHistoryEntries(...entries: HistoryEntry[]) {
     commandMocks
-      .command('historyGetRecent')
+      .command('historyFetch')
       .mockImplementation(async (page) =>
         ok(entries.slice(page.offset, page.offset + page.limit)),
       );

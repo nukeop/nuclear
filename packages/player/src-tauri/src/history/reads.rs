@@ -61,7 +61,7 @@ impl Play {
 }
 
 impl HistoryDb {
-    pub async fn recent_plays(&self, limit: i64, offset: i64) -> Result<Vec<HistoryEntry>, String> {
+    pub async fn entries(&self, limit: i64, offset: i64) -> Result<Vec<HistoryEntry>, String> {
         let starts = sqlx::query_as::<_, StartedRow>(
             "SELECT e.play_id, e.provider, e.provider_id, \
              t.title, t.artists, t.album_title, t.duration_ms, t.artwork_url \
@@ -289,7 +289,7 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn recent_plays_returns_track_metadata_with_each_play() {
+    async fn entries_returns_track_metadata_with_each_play() {
         let db = HistoryDb(test_pool().await);
 
         db.record_event(PlayEvent {
@@ -322,7 +322,7 @@ mod tests {
         .await
         .unwrap();
 
-        let entries = db.recent_plays(10, 0).await.unwrap();
+        let entries = db.entries(10, 0).await.unwrap();
         assert_eq!(entries.len(), 1);
         assert_eq!(
             entries[0],
@@ -344,37 +344,37 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn recent_plays_orders_newest_first() {
+    async fn entries_orders_newest_first() {
         let db = HistoryDb(test_pool().await);
         seed_finished_play(&db, "play-1", "First", 1000).await;
         seed_finished_play(&db, "play-2", "Second", 5000).await;
         seed_finished_play(&db, "play-3", "Third", 9000).await;
 
-        let entries = db.recent_plays(10, 0).await.unwrap();
+        let entries = db.entries(10, 0).await.unwrap();
 
         assert_eq!(play_ids(&entries), ["play-3", "play-2", "play-1"]);
     }
 
     #[tokio::test]
-    async fn recent_plays_paginates_with_limit_and_offset() {
+    async fn entries_paginates_with_limit_and_offset() {
         let db = HistoryDb(test_pool().await);
         seed_finished_play(&db, "play-1", "First", 1000).await;
         seed_finished_play(&db, "play-2", "Second", 5000).await;
         seed_finished_play(&db, "play-3", "Third", 9000).await;
 
-        let first_page = db.recent_plays(2, 0).await.unwrap();
-        let second_page = db.recent_plays(2, 2).await.unwrap();
+        let first_page = db.entries(2, 0).await.unwrap();
+        let second_page = db.entries(2, 2).await.unwrap();
 
         assert_eq!(play_ids(&first_page), ["play-3", "play-2"]);
         assert_eq!(play_ids(&second_page), ["play-1"]);
     }
 
     #[tokio::test]
-    async fn recent_plays_includes_interrupted_plays() {
+    async fn entries_includes_interrupted_plays() {
         let db = HistoryDb(test_pool().await);
         seed_started(&db, "play-1", "Interrupted", 1000).await;
 
-        let entries = db.recent_plays(10, 0).await.unwrap();
+        let entries = db.entries(10, 0).await.unwrap();
 
         assert_eq!(play_ids(&entries), ["play-1"]);
         assert_eq!(entries[0].end_reason, None);
@@ -391,7 +391,7 @@ mod tests {
         db.delete_range(1000, 5000).await.unwrap();
 
         assert_eq!(
-            play_ids(&db.recent_plays(10, 0).await.unwrap()),
+            play_ids(&db.entries(10, 0).await.unwrap()),
             ["play-3", "play-2"],
         );
     }

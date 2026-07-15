@@ -8,7 +8,10 @@ export const History: FC = () => {
 
   return (
     <ViewShell data-testid="history-view" title={t('title')}>
-      <div />
+      <div className="flex w-full flex-1 flex-col gap-6 pb-6">
+        <div className="flex flex-1 flex-col gap-6" />
+        <footer className="flex items-center justify-between" />
+      </div>
     </ViewShell>
   );
 };

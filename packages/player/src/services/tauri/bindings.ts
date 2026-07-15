@@ -29,7 +29,7 @@ export const commands = {
 	bridgeRespond: (response: BridgeResponse) => typedError<null, string>(__TAURI_INVOKE("bridge_respond", { response })),
 	bridgeNotify: (notification: BridgeNotification) => typedError<null, string>(__TAURI_INVOKE("bridge_notify", { notification })),
 	historyRecordEvent: (event: PlayEvent) => typedError<null, string>(__TAURI_INVOKE("history_record_event", { event })),
-	historyGetRecent: (page: PlaysPage) => typedError<HistoryEntry[], string>(__TAURI_INVOKE("history_get_recent", { page })),
+	historyFetch: (page: PlaysPage) => typedError<HistoryEntry[], string>(__TAURI_INVOKE("history_fetch", { page })),
 	historyDeleteRange: (range: TimeRange) => typedError<null, string>(__TAURI_INVOKE("history_delete_range", { range })),
 };
 
