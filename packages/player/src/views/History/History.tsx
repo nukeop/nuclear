@@ -3,15 +3,21 @@ import { FC } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import { ViewShell } from '@nuclearplayer/ui';
 
+import { HistoryBody } from './components/HistoryBody';
+import { useListeningHistory } from './hooks/useListeningHistory';
+
+const PAGE_SIZE = 10;
+
 export const History: FC = () => {
   const { t } = useTranslation('history');
+  const { data: entries, isPending } = useListeningHistory({
+    limit: PAGE_SIZE,
+    offset: 0,
+  });
 
   return (
     <ViewShell data-testid="history-view" title={t('title')}>
-      <div className="flex w-full flex-1 flex-col gap-6 pb-6">
-        <div className="flex flex-1 flex-col gap-6" />
-        <footer className="flex items-center justify-between" />
-      </div>
+      <HistoryBody isPending={isPending} entries={entries ?? []} />
     </ViewShell>
   );
 };

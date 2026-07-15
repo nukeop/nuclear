@@ -37,7 +37,9 @@
     "sources": "Sources"
   },
   "history": {
-    "title": "History"
+    "title": "History",
+    "empty": "Nothing played yet",
+    "emptyDescription": "Tracks you play will appear here"
   },
   "sources": {
     "title": "Sources",

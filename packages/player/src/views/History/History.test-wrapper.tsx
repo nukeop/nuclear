@@ -1,5 +1,11 @@
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
-import { render, RenderResult, screen, within } from '@testing-library/react';
+import {
+  render,
+  RenderResult,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
@@ -39,11 +45,14 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('history-view');
+    await waitFor(() => {
+      expect(screen.queryByTestId('history-loading')).not.toBeInTheDocument();
+    });
     return component;
   },
 
   get emptyState() {
-    return screen.getByTestId('empty-state');
+    return screen.getByTestId('history-empty-state');
   },
 
   get rows() {
