@@ -716,7 +716,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                 <p
                                   class="text-foreground-secondary text-sm select-none"
                                 >
-                                  Keep a local record of everything you play. The data never leaves your device.
+                                  Keep a local record of the music you play.
                                 </p>
                               </div>
                             </div>

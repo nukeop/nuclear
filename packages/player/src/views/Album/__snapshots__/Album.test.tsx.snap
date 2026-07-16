@@ -520,6 +520,49 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                 </div>
               </a>
               <a
+                href="/history"
+              >
+                <div>
+                  <div
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    data-testid="sidebar-navigation-item"
+                  >
+                    <div
+                      class="flex size-8 shrink-0 items-center justify-center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-history"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+                        />
+                        <path
+                          d="M3 3v5h5"
+                        />
+                        <path
+                          d="M12 7v5l4 2"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
+                    >
+                      History
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <a
                 href="/sources"
               >
                 <div>
@@ -1253,6 +1296,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
       <div
         aria-disabled="false"
         class="relative h-4 w-full cursor-pointer"
+        data-testid="player-seek-bar"
       >
         <div
           class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
@@ -1434,6 +1478,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
               data-headlessui-state=""
+              data-testid="player-next-button"
               type="button"
             >
               <svg
