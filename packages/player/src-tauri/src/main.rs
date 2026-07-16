@@ -59,24 +59,21 @@ fn apply_linux_workarounds() {
         }
     }
 
-    // Route WebKitGTK's audio through pulsesink so PULSE_LATENCY_MSEC applies.
-    if std::env::var("GST_PLUGIN_FEATURE_RANK").is_err() {
-        unsafe {
-            std::env::set_var("GST_PLUGIN_FEATURE_RANK", "pipewiresink:NONE");
-        }
-    }
-
-    // Request high-latency audio streams. Web Audio's low-latency request
-    // forces the PipeWire quantum down below what Bluetooth A2DP can service,
-    // killing playback: https://github.com/nukeop/nuclear/discussions/1980
+    // Request high-latency audio streams. WebKitGTK's Web Audio pipeline
+    // hardcodes a 100ms buffer on its sink, too small for Bluetooth A2DP
+    // (which needs 250-500ms), so playback goes silent after about a second.
+    // PULSE_LATENCY_MSEC overrides the buffer size that the application
+    // requests at the libpulse level. PIPEWIRE_LATENCY covers native PipeWire
+    // clients the same way.
+    // https://github.com/nukeop/nuclear/discussions/1980
     if std::env::var("PULSE_LATENCY_MSEC").is_err() {
         unsafe {
-            std::env::set_var("PULSE_LATENCY_MSEC", "60");
+            std::env::set_var("PULSE_LATENCY_MSEC", "200");
         }
     }
     if std::env::var("PIPEWIRE_LATENCY").is_err() {
         unsafe {
-            std::env::set_var("PIPEWIRE_LATENCY", "1024/48000");
+            std::env::set_var("PIPEWIRE_LATENCY", "2048/48000");
         }
     }
 }

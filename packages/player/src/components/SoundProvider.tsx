@@ -2,7 +2,6 @@ import type { FC, PropsWithChildren } from 'react';
 import { useCallback, useEffect, useRef } from 'react';
 
 import { Sound, Volume } from '@nuclearplayer/hifi';
-import { usePlatform } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../hooks/useCoreSetting';
 import { eventBus } from '../services/eventBus';
@@ -10,11 +9,6 @@ import { Logger } from '../services/logger';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 import { resolveErrorMessage } from '../utils/logging';
-
-// WebKitGTK's Web Audio GStreamer pipeline is hardcoded to 44100 Hz, which
-// causes silent audio over Bluetooth A2DP (PipeWire sinks expect 48000 Hz).
-// Forcing the AudioContext to 48000 Hz on Linux avoids the mismatch.
-const LINUX_SAMPLE_RATE_HZ = 48000;
 
 export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   const { src, status, seek } = useSoundStore();
@@ -24,8 +18,6 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   const [volume01] = useCoreSetting<number>('playback.volume');
   const [muted] = useCoreSetting<boolean>('playback.muted');
   const volumePercent = muted ? 0 : Math.round((volume01 ?? 1) * 100);
-  const platform = usePlatform();
-  const sampleRate = platform === 'linux' ? LINUX_SAMPLE_RATE_HZ : undefined;
 
   useEffect(() => {
     if (crossfadeMs !== undefined) {
@@ -88,7 +80,6 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
           status={status}
           seek={seek}
           volume={volumePercent}
-          sampleRate={sampleRate}
           preload={preload}
           crossOrigin={crossOrigin}
           onTimeUpdate={handleTimeUpdate}
