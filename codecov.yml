@@ -96,3 +96,4 @@ ignore:
   - "**/*.test-wrapper.tsx"
   - "packages/player/src/test/**"
   - "packages/plugin-sdk/src/**"
+  - "bindings.ts"
