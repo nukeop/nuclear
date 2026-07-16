@@ -87,7 +87,12 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
     >
       {isPlaying ? <Pause size={16} /> : <Play size={16} />}
     </Button>
-    <Button size="icon" variant="text" onClick={onNext}>
+    <Button
+      size="icon"
+      variant="text"
+      onClick={onNext}
+      data-testid="player-next-button"
+    >
       <SkipForward size={16} />
     </Button>
     <Tooltip content={labels?.[REPEAT_LABEL_KEY[repeatMode]]} side="top">

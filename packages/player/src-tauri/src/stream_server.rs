@@ -199,6 +199,7 @@ pub fn init_stream_server(app_handle: AppHandle) {
 }
 
 #[tauri::command]
+#[specta::specta]
 pub fn stream_server_port(state: tauri::State<'_, StreamServerState>) -> u16 {
     state.port
 }

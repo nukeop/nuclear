@@ -95,4 +95,5 @@ ignore:
   - "**/routeTree.gen.ts"
   - "**/*.test-wrapper.tsx"
   - "packages/player/src/test/**"
+  - "packages/player/src/services/tauri/bindings.ts"
   - "packages/plugin-sdk/src/**"

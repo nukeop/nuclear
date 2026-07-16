@@ -3,6 +3,7 @@ import {
   CableIcon,
   DiscIcon,
   GaugeIcon,
+  HistoryIcon,
   ListMusicIcon,
   MusicIcon,
   SettingsIcon,
@@ -92,6 +93,11 @@ const RootComponent = () => {
                   to="/playlists"
                   icon={<ListMusicIcon />}
                   label={t('playlists')}
+                />
+                <SidebarNavigationItem
+                  to="/history"
+                  icon={<HistoryIcon />}
+                  label={t('history')}
                 />
                 <SidebarNavigationItem
                   to="/sources"

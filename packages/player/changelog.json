@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-07-16T00:00",
+    "description": "Listening history: Nuclear now keeps a history of the tracks you play. Cane be disabled in the preferences.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "History",
+        "color": "yellow"
+      }
+    ]
+  },
+  {
     "date": "2026-07-08T00:00",
     "description": "Fix playback stalling at 10-second fMP4 segment boundaries (0:09, 0:19, 0:29...) when streaming via yt-dlp, caused by sub-frame gaps between appended segments",
     "type": "fix",

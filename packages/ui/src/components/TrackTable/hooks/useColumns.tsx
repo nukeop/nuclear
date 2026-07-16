@@ -13,7 +13,6 @@ import { ThumbnailCell } from '../Cells/ThumbnailCell';
 import { TitleCell } from '../Cells/TitleCell';
 import { IconHeader } from '../Headers/IconHeader';
 import { TextHeader } from '../Headers/TextHeader';
-import { mergeLabels } from '../labels';
 import { TrackTableProps } from '../types';
 
 export function useColumns<T extends Track = Track>(
@@ -21,7 +20,6 @@ export function useColumns<T extends Track = Track>(
 ): ColumnDef<T>[] {
   const { display, labels, actions } = props;
   const columnHelper = createColumnHelper<T>();
-  const mergedLabels = useMemo(() => mergeLabels(labels), [labels]);
 
   const showFavorite =
     display?.displayFavorite && Boolean(actions?.onToggleFavorite);
@@ -58,9 +56,7 @@ export function useColumns<T extends Track = Track>(
         id: 'artist',
         enableSorting: true,
         header: (context) => (
-          <TextHeader context={context}>
-            {mergedLabels.headers.artistHeader}
-          </TextHeader>
+          <TextHeader context={context}>{labels.headers.artist}</TextHeader>
         ),
         cell: TextCell,
       }),
@@ -68,9 +64,7 @@ export function useColumns<T extends Track = Track>(
         id: 'title',
         enableSorting: true,
         header: (context) => (
-          <TextHeader context={context}>
-            {mergedLabels.headers.titleHeader}
-          </TextHeader>
+          <TextHeader context={context}>{labels.headers.title}</TextHeader>
         ),
         cell: TitleCell,
       }),
@@ -79,9 +73,7 @@ export function useColumns<T extends Track = Track>(
           id: 'album',
           enableSorting: true,
           header: (context) => (
-            <TextHeader context={context}>
-              {mergedLabels.headers.albumHeader}
-            </TextHeader>
+            <TextHeader context={context}>{labels.headers.album}</TextHeader>
           ),
           cell: TextCell,
         }),
@@ -90,9 +82,7 @@ export function useColumns<T extends Track = Track>(
           id: 'duration',
           enableSorting: true,
           header: (context) => (
-            <TextHeader context={context}>
-              {mergedLabels.headers.durationHeader}
-            </TextHeader>
+            <TextHeader context={context}>{labels.headers.duration}</TextHeader>
           ),
           cell: TextCell,
         }),
@@ -103,7 +93,7 @@ export function useColumns<T extends Track = Track>(
           cell: RemoveCell,
         }),
     ],
-    [mergedLabels, display, showFavorite, showDelete],
+    [labels, display, showFavorite, showDelete],
   ).filter(Boolean) as ColumnDef<T>[];
 
   return columns;

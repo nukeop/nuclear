@@ -7,7 +7,7 @@ const STARTUP_LOG_BUFFER_SIZE: usize = 100;
 static STARTUP_COMPLETE: AtomicBool = AtomicBool::new(false);
 static STARTUP_LOG_BUFFER: Mutex<VecDeque<StartupLogEntry>> = Mutex::new(VecDeque::new());
 
-#[derive(Clone, serde::Serialize)]
+#[derive(Clone, serde::Serialize, specta::Type)]
 pub struct StartupLogEntry {
     pub timestamp: String,
     pub level: String,
@@ -36,6 +36,7 @@ pub fn mark_startup_complete() {
 }
 
 #[tauri::command]
+#[specta::specta]
 pub fn get_startup_logs() -> Vec<StartupLogEntry> {
     STARTUP_LOG_BUFFER
         .lock()

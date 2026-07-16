@@ -8,6 +8,7 @@ import { initBridgeHandler } from './services/bridge/bridgeHandler';
 import { registerBuiltInCoreSettings } from './services/coreSettings';
 import { initDiscordHandler } from './services/discordHandler';
 import { initDiscoveryService } from './services/discoveryService';
+import { initHistoryService } from './services/history';
 import { initHttpApiHandler } from './services/httpApi';
 import {
   applyLanguageFromSettings,
@@ -16,6 +17,7 @@ import {
 import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
 import { initMcpHandler } from './services/mcp';
 import { initMpdHandler } from './services/mpd';
+import { initPlaybackEventBridge } from './services/playbackEventBridge';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
 import { initializeFavoritesStore } from './stores/favoritesStore';
@@ -43,6 +45,8 @@ export const initPlayerApp = async (
     .then(() => initHttpApiHandler())
     .then(() => initBridgeHandler())
     .then(() => initDiscordHandler())
+    .then(() => initPlaybackEventBridge())
+    .then(() => initHistoryService())
     .then(() => applyLanguageFromSettings())
     .then(() => initLanguageWatcher())
     .then(() => startAdvancedThemeWatcher())

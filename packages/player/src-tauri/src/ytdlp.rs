@@ -27,7 +27,7 @@ fn get_ytdlp_path() -> Result<String, String> {
     }
 }
 
-#[derive(serde::Serialize, Debug, PartialEq)]
+#[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
 pub struct YtdlpStreamInfo {
     pub stream_url: String,
     pub duration: Option<f64>,
@@ -36,7 +36,7 @@ pub struct YtdlpStreamInfo {
     pub codec: Option<String>,
 }
 
-#[derive(serde::Serialize, Debug, PartialEq)]
+#[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
 pub struct YtdlpSearchResult {
     pub id: String,
     pub title: String,
@@ -45,14 +45,14 @@ pub struct YtdlpSearchResult {
     pub channel: Option<String>,
 }
 
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq, specta::Type)]
 pub struct YtdlpThumbnail {
     pub url: String,
     pub width: Option<u32>,
     pub height: Option<u32>,
 }
 
-#[derive(serde::Serialize, Debug, PartialEq)]
+#[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
 pub struct YtdlpPlaylistEntry {
     pub id: String,
     pub title: String,
@@ -61,7 +61,7 @@ pub struct YtdlpPlaylistEntry {
     pub channel: Option<String>,
 }
 
-#[derive(serde::Serialize, Debug, PartialEq)]
+#[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
 pub struct YtdlpPlaylistInfo {
     pub id: String,
     pub title: String,
@@ -118,6 +118,7 @@ fn parse_ndjson_entries(stdout: &str) -> Vec<YtdlpJson> {
 }
 
 #[command]
+#[specta::specta]
 pub async fn ytdlp_search(
     query: String,
     max_results: Option<u32>,
@@ -157,6 +158,7 @@ pub async fn ytdlp_search(
 }
 
 #[command]
+#[specta::specta]
 pub async fn ytdlp_get_stream(video_id: String) -> Result<YtdlpStreamInfo, String> {
     debug!("[yt-dlp] Getting stream for: {}", video_id);
 
@@ -196,6 +198,7 @@ pub async fn ytdlp_get_stream(video_id: String) -> Result<YtdlpStreamInfo, Strin
 }
 
 #[command]
+#[specta::specta]
 pub async fn ytdlp_get_playlist(url: String) -> Result<YtdlpPlaylistInfo, String> {
     debug!("[yt-dlp] Getting playlist: {}", url);
 

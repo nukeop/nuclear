@@ -9,11 +9,12 @@ import {
 
 import { useQueueActions } from '../hooks/useQueueActions';
 import { useTrackActions } from '../hooks/useTrackActions';
+import { useTrackTableLabels } from '../hooks/useTrackTableLabels';
 import { ConnectedTrackContextMenu } from './ConnectedTrackContextMenu';
 
 type ConnectedTrackTableProps = Omit<
   TrackTableProps<Track>,
-  'actions' | 'meta'
+  'actions' | 'meta' | 'labels'
 > & {
   actions?: Pick<TrackTableActions<Track>, 'onRemove' | 'onReorder'>;
 };
@@ -22,10 +23,12 @@ export const ConnectedTrackTable: FC<ConnectedTrackTableProps> = (props) => {
   const { actions: externalActions, ...restProps } = props;
   const trackActions = useTrackActions();
   const queueActions = useQueueActions();
+  const labels = useTrackTableLabels();
 
   return (
     <TrackTable
       {...restProps}
+      labels={labels}
       display={{
         displayFavorite: true,
         ...restProps.display,

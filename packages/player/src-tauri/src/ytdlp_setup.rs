@@ -317,6 +317,7 @@ async fn check_for_update(ytdlp_dir: &Path, binary_path: &Path) {
 }
 
 #[command]
+#[specta::specta]
 pub async fn ytdlp_ensure_installed(app_handle: AppHandle) -> Result<bool, String> {
     let ytdlp_dir = ytdlp_dir(&app_handle)?;
     let binary_path = ytdlp_dir.join(binary_name());

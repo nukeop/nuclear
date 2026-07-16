@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HistoryDayGroup > (Snapshot) renders a marker with content 1`] = `
+<div>
+  <section
+    class="flex w-full flex-col items-start justify-start"
+    data-testid="history-day-group"
+  >
+    <h2
+      class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
+      data-testid="history-day-marker"
+    >
+      Today
+    </h2>
+    <div
+      class="border-border w-full border-(length:--border-width)"
+    >
+      <div>
+        row content
+      </div>
+    </div>
+  </section>
+</div>
+`;

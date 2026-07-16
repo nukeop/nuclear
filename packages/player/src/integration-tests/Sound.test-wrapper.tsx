@@ -86,7 +86,7 @@ export const SoundWrapper = {
   getActiveAudio(): HTMLAudioElement | null {
     return document.querySelector('audio[data-is-active="true"]');
   },
-  fireCanPlay() {
+  fireCanPlay(durationSeconds?: number) {
     const audio = document.querySelector('audio');
     if (audio) {
       act(() => {
@@ -94,7 +94,16 @@ export const SoundWrapper = {
           value: 4,
           configurable: true,
         });
+        if (durationSeconds !== undefined) {
+          Object.defineProperty(audio, 'duration', {
+            value: durationSeconds,
+            configurable: true,
+          });
+        }
         audio.dispatchEvent(new Event('canplay', { bubbles: false }));
+        if (durationSeconds !== undefined) {
+          audio.dispatchEvent(new Event('timeupdate', { bubbles: false }));
+        }
       });
     }
   },

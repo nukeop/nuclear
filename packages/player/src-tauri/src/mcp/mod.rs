@@ -96,6 +96,7 @@ pub fn init_mcp(app_handle: AppHandle) {
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn mcp_start(
     state: tauri::State<'_, McpState>,
     bridge: tauri::State<'_, crate::bridge::bridge::Bridge>,
@@ -127,6 +128,7 @@ pub async fn mcp_start(
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn mcp_stop(state: tauri::State<'_, McpState>) -> Result<(), String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.take() {

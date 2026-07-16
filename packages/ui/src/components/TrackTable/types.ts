@@ -2,29 +2,22 @@ import { FC, ReactNode } from 'react';
 
 import { Track } from '@nuclearplayer/model';
 
-export interface TrackTableLabels {
+export type TrackTableLabels = {
   headers: {
-    positionHeader: React.ReactNode;
-    thumbnailHeader: React.ReactNode;
-    artistHeader: string;
-    titleHeader: string;
-    albumHeader: string;
-    durationHeader: string;
+    artist: string;
+    title: string;
+    album: string;
+    duration: string;
   };
-  playNow: string;
-  addToQueue: string;
-  playNext: string;
   favorite: string;
   unfavorite: string;
-  contextMenu: string;
-  selectAll: string;
-  reorderUnavailableDueToSort: string;
-  reorderUnavailableDueToFilter: string;
-  keyboardInstructions: string;
-  dragHandleLabel: string;
   playAll: string;
   addAllToQueue: string;
-}
+  addToQueue: string;
+  trackOptions: string;
+  remove: string;
+  filterPlaceholder: string;
+};
 
 export type TrackTableClasses = {
   root?: string;
@@ -79,6 +72,6 @@ export type TrackTableProps<T extends Track = Track> = {
   rowHeight?: number;
   overscan?: number;
   classes?: TrackTableClasses;
-  labels?: Partial<TrackTableLabels>;
+  labels: TrackTableLabels;
   'aria-label'?: string;
 };

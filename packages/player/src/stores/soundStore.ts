@@ -2,7 +2,9 @@ import { create } from 'zustand';
 
 import { AudioSource, SoundStatus } from '@nuclearplayer/hifi';
 
+import { eventBus } from '../services/eventBus';
 import { Logger } from '../services/logger';
+import { secondsToMs } from '../utils/time';
 
 type SoundState = {
   src: AudioSource | null;
@@ -54,12 +56,18 @@ export const useSoundStore = create<SoundState & SoundActions>((set, get) => ({
   toggle: () => {
     const { status } = get();
     if (status === 'playing') {
-      set({ status: 'paused' });
+      get().pause();
     } else {
-      set({ status: 'playing' });
+      get().play();
     }
   },
-  seekTo: (seconds) => set({ seek: seconds }),
+  seekTo: (seconds) => {
+    eventBus.emit('playbackSeeked', {
+      fromMs: secondsToMs(get().seek),
+      toMs: secondsToMs(seconds),
+    });
+    set({ seek: seconds });
+  },
   updatePlayback: (position, duration) => set({ seek: position, duration }),
   setCrossfadeMs: (ms) => set({ crossfadeMs: ms }),
   setPreload: (mode) => set({ preload: mode }),

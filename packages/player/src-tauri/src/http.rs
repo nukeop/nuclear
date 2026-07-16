@@ -91,7 +91,7 @@ fn redact_headers(headers: &HashMap<String, String>) -> HashMap<String, String> 
         .collect()
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, specta::Type)]
 pub struct HttpRequest {
     url: String,
     method: Option<String>,
@@ -99,7 +99,7 @@ pub struct HttpRequest {
     body: Option<String>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, specta::Type)]
 pub struct HttpResponse {
     status: u16,
     headers: HashMap<String, String>,
@@ -107,6 +107,7 @@ pub struct HttpResponse {
 }
 
 #[command]
+#[specta::specta]
 pub async fn http_fetch(request: HttpRequest) -> Result<HttpResponse, String> {
     let client = Client::builder()
         .build()

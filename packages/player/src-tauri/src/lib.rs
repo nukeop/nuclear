@@ -1,12 +1,15 @@
 pub mod bridge;
 pub mod commands;
+pub mod db;
 pub mod discord;
+pub mod history;
 pub mod http;
 pub mod http_api;
 pub mod logging;
 pub mod mcp;
 pub mod mpd;
 pub mod net;
+pub mod pagination;
 mod setup;
 pub mod stream_server;
 pub mod ytdlp;
@@ -27,28 +30,13 @@ fn maximize_for_gamescope(app: &tauri::App) {
     }
 }
 
-#[cfg_attr(mobile, tauri::mobile_entry_point)]
-pub fn run() {
-    let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
+fn typescript_export_config() -> specta_typescript::Typescript {
+    specta_typescript::Typescript::default().header("/* eslint-disable */")
+}
 
-    let mut builder = tauri::Builder::default()
-        .plugin(tauri_plugin_os::init())
-        .plugin(tauri_plugin_opener::init())
-        .plugin(tauri_plugin_dialog::init())
-        .plugin(tauri_plugin_fs::init())
-        .plugin(tauri_plugin_store::Builder::new().build())
-        .plugin(tauri_plugin_upload::init())
-        .plugin(tauri_plugin_window_state::Builder::default().build())
-        .plugin(setup::log_plugin());
-
-    if !is_flatpak {
-        builder = builder
-            .plugin(tauri_plugin_updater::Builder::new().build())
-            .plugin(tauri_plugin_process::init());
-    }
-
-    builder
-        .invoke_handler(tauri::generate_handler![
+fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
+    tauri_specta::Builder::<tauri::Wry>::new().commands(
+        tauri_specta::collect_commands![
             commands::is_flatpak,
             commands::copy_dir_recursive,
             commands::extract_zip,
@@ -71,8 +59,49 @@ pub fn run() {
             discord::discord_set_activity,
             discord::discord_clear_activity,
             bridge::bridge_respond,
-            bridge::bridge_notify
-        ])
+            bridge::bridge_notify,
+            history::history_record_event,
+            history::history_fetch,
+            history::history_delete_range
+        ],
+    )
+}
+
+#[cfg_attr(mobile, tauri::mobile_entry_point)]
+pub fn run() {
+    let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
+
+    let specta_builder = specta_builder();
+
+    #[cfg(debug_assertions)]
+    specta_builder
+        .export(
+            typescript_export_config(),
+            concat!(
+                env!("CARGO_MANIFEST_DIR"),
+                "/../src/services/tauri/bindings.ts"
+            ),
+        )
+        .expect("failed to export typescript bindings");
+
+    let mut builder = tauri::Builder::default()
+        .plugin(tauri_plugin_os::init())
+        .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_fs::init())
+        .plugin(tauri_plugin_store::Builder::new().build())
+        .plugin(tauri_plugin_upload::init())
+        .plugin(tauri_plugin_window_state::Builder::default().build())
+        .plugin(setup::log_plugin());
+
+    if !is_flatpak {
+        builder = builder
+            .plugin(tauri_plugin_updater::Builder::new().build())
+            .plugin(tauri_plugin_process::init());
+    }
+
+    builder
+        .invoke_handler(specta_builder.invoke_handler())
         .setup(|app| {
             logging::mark_startup_complete();
             bridge::init_bridge(app.handle().clone());
@@ -81,6 +110,7 @@ pub fn run() {
             http_api::init_http_api(app.handle().clone());
             stream_server::init_stream_server(app.handle().clone());
             discord::init_discord(app.handle().clone());
+            history::init_history(app.handle().clone());
 
             #[cfg(target_os = "linux")]
             maximize_for_gamescope(app);

@@ -54,7 +54,7 @@ export function Toolbar({
             size="sm"
             value={filterValue}
             onChange={(event) => onFilterChange(event.target.value)}
-            placeholder="Filter tracks"
+            placeholder={labels.filterPlaceholder}
             endAddon={
               <FilterIcon
                 className="h-4 w-4"

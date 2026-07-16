@@ -184,6 +184,15 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     widget: { type: 'number-input', min: 1, max: 10, step: 1 },
   },
   {
+    id: 'history.enabled',
+    title: 'preferences.history.enabled.title',
+    description: 'preferences.history.enabled.description',
+    category: 'history',
+    kind: 'boolean',
+    default: true,
+    widget: { type: 'toggle' },
+  },
+  {
     id: 'layout.leftSidebarWidth',
     title: 'preferences.layout.leftSidebarWidth.title',
     description: 'preferences.layout.leftSidebarWidth.description',

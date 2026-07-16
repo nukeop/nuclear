@@ -63,7 +63,7 @@ impl HttpApiState {
     }
 }
 
-#[derive(serde::Serialize)]
+#[derive(serde::Serialize, specta::Type)]
 pub struct HttpApiStartResult {
     pub port: u16,
     pub lan_address: Option<String>,
@@ -131,6 +131,7 @@ pub fn init_http_api(app_handle: AppHandle) {
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn http_api_start(
     state: tauri::State<'_, HttpApiState>,
     bridge: tauri::State<'_, crate::bridge::bridge::Bridge>,
@@ -170,6 +171,7 @@ pub async fn http_api_start(
 }
 
 #[tauri::command]
+#[specta::specta]
 pub async fn http_api_stop(state: tauri::State<'_, HttpApiState>) -> Result<(), String> {
     let mut guard = state.running.lock().await;
     if let Some(server) = guard.take() {

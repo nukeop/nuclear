@@ -47,6 +47,10 @@ uuid = { version = "1.20.0", features = ["v4"] }
 discord-rich-presence = "1.1.0"
 libc = "0.2.183"
 tauri-plugin-os = "2"
+sqlx = { version = "0.8", features = ["runtime-tokio", "sqlite", "migrate"] }
+specta = { version = "=2.0.0-rc.25", features = ["derive"] }
+specta-typescript = "0.0.12"
+tauri-specta = { version = "=2.0.0-rc.25", features = ["derive", "typescript"] }
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-updater = "2"

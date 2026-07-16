@@ -3,7 +3,24 @@ import { vi } from 'vitest';
 
 import type { Track } from '@nuclearplayer/model';
 
-import { TrackTable } from '.';
+import { TrackTable, TrackTableLabels } from '.';
+
+const labels: TrackTableLabels = {
+  headers: {
+    artist: 'Artist',
+    title: 'Title',
+    album: 'Album',
+    duration: 'Duration',
+  },
+  favorite: 'Add to favorites',
+  unfavorite: 'Remove from favorites',
+  playAll: 'Play all',
+  addAllToQueue: 'Add all to queue',
+  addToQueue: 'Add to queue',
+  trackOptions: 'Track options',
+  remove: 'Remove from list',
+  filterPlaceholder: 'Filter tracks',
+};
 
 const TEST_ROW_HEIGHT = 42;
 const TEST_MAX_VISIBLE = 20;
@@ -52,6 +69,7 @@ describe('TrackTable', () => {
     const { asFragment, findByText } = render(
       <TrackTable
         tracks={makeTracks(3)}
+        labels={labels}
         display={{
           displayPosition: true,
           displayThumbnail: true,
@@ -69,6 +87,7 @@ describe('TrackTable', () => {
     const { asFragment, findByText } = render(
       <TrackTable
         tracks={makeTracks(5)}
+        labels={labels}
         features={{ reorderable: true }}
         display={{
           displayPosition: true,
@@ -87,6 +106,7 @@ describe('TrackTable', () => {
     const { asFragment, findByPlaceholderText } = render(
       <TrackTable
         tracks={makeTracks(5)}
+        labels={labels}
         features={{ filterable: true }}
         display={{
           displayPosition: true,
@@ -106,6 +126,7 @@ describe('TrackTable', () => {
       <div style={{ height: TEST_CONTAINER_HEIGHT }}>
         <TrackTable
           tracks={makeTracks(500)}
+          labels={labels}
           display={{
             displayPosition: true,
             displayThumbnail: true,
@@ -124,6 +145,7 @@ describe('TrackTable', () => {
     const { asFragment, findByTestId } = render(
       <TrackTable
         tracks={makeTracks(3)}
+        labels={labels}
         features={{ playAll: true, addAllToQueue: true, filterable: true }}
         display={{
           displayPosition: true,

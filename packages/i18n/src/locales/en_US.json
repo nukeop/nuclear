@@ -33,7 +33,20 @@
     "favoriteTracks": "Favorite tracks",
     "favoriteArtists": "Favorite artists",
     "playlists": "Playlists",
+    "history": "History",
     "sources": "Sources"
+  },
+  "history": {
+    "title": "History",
+    "empty": "Nothing played yet",
+    "emptyDescription": "Tracks you play will appear here",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "row": {
+      "favorite": "Add to favorites",
+      "unfavorite": "Remove from favorites",
+      "addToQueue": "Add to queue"
+    }
   },
   "sources": {
     "title": "Sources",
@@ -354,6 +367,13 @@
         "endLabel": "More crazy"
       }
     },
+    "history": {
+      "title": "History",
+      "enabled": {
+        "title": "Record listening history",
+        "description": "Keep a local record of the music you play."
+      }
+    },
     "layout": {
       "title": "Layout"
     },
@@ -439,6 +459,28 @@
       "addToFavorites": "Add to favorites",
       "removeFromFavorites": "Remove from favorites"
     }
+  },
+  "trackTable": {
+    "headers": {
+      "artist": "Artist",
+      "title": "Title",
+      "album": "Album",
+      "duration": "Duration"
+    },
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites",
+    "playAll": "Play all",
+    "addAllToQueue": "Add all to queue",
+    "addToQueue": "Add to queue",
+    "trackOptions": "Track options",
+    "remove": "Remove from list",
+    "filterPlaceholder": "Filter tracks"
+  },
+  "pagination": {
+    "navigation": "Pagination",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {{pageNumber}}"
   },
   "streaming": {
     "errors": {

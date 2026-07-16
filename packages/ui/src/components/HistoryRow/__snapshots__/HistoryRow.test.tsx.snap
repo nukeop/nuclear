@@ -1,0 +1,175 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HistoryRow > (Snapshot) renders a placeholder when artwork is missing 1`] = `
+<div>
+  <div
+    class="border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0"
+    data-testid="history-row"
+  >
+    <div
+      class="flex w-10 justify-center"
+    />
+    <div
+      class="flex h-10 w-10 min-w-10 items-center justify-center overflow-hidden"
+      data-testid="history-row-thumbnail"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-music text-foreground opacity-20"
+        fill="none"
+        height="20"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2.4"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 18V5l12-2v13"
+        />
+        <circle
+          cx="6"
+          cy="18"
+          r="3"
+        />
+        <circle
+          cx="18"
+          cy="16"
+          r="3"
+        />
+      </svg>
+    </div>
+    <div
+      class="truncate px-2"
+      data-testid="history-row-artist"
+    >
+      Radiohead
+    </div>
+    <div
+      class="truncate px-2"
+    >
+      <div
+        class="flex items-center justify-between gap-2"
+      >
+        <button
+          class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+          data-testid="history-row-title"
+        >
+          Paranoid Android
+        </button>
+      </div>
+    </div>
+    <div
+      class="w-24 px-2 whitespace-nowrap tabular-nums"
+      data-testid="history-row-played-at"
+    >
+      11:55 AM
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HistoryRow > (Snapshot) renders with artwork and all actions 1`] = `
+<div>
+  <div
+    class="border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0"
+    data-testid="history-row"
+  >
+    <div
+      class="flex w-10 justify-center"
+    >
+      <button
+        aria-label="Add to favorites"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+        data-headlessui-state=""
+        data-testid="history-row-favorite"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-heart transition-colors text-foreground-secondary hover:text-foreground"
+          fill="none"
+          height="16"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex h-10 w-10 min-w-10 items-center justify-center overflow-hidden"
+      data-testid="history-row-thumbnail"
+    >
+      <img
+        alt="Paranoid Android"
+        class="h-full w-full object-cover"
+        src="https://example.com/ok-computer.jpg"
+      />
+    </div>
+    <div
+      class="truncate px-2"
+      data-testid="history-row-artist"
+    >
+      Radiohead
+    </div>
+    <div
+      class="truncate px-2"
+    >
+      <div
+        class="flex items-center justify-between gap-2"
+      >
+        <button
+          class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+          data-testid="history-row-title"
+        >
+          Paranoid Android
+        </button>
+        <button
+          aria-label="Add to queue"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
+          data-headlessui-state=""
+          data-testid="history-row-add-to-queue"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-plus"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12h14"
+            />
+            <path
+              d="M12 5v14"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="w-24 px-2 whitespace-nowrap tabular-nums"
+      data-testid="history-row-played-at"
+    >
+      11:55 AM
+    </div>
+  </div>
+</div>
+`;
