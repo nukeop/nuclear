@@ -93,6 +93,13 @@ impl HistoryDb {
             .collect()
     }
 
+    pub async fn count_plays(&self) -> Result<i64, String> {
+        sqlx::query_scalar("SELECT COUNT(*) FROM play_events WHERE kind = 'started'")
+            .fetch_one(self.pool())
+            .await
+            .map_err(|err| format!("Failed to count plays: {err}"))
+    }
+
     async fn events_by_play(
         &self,
         play_ids: &[&str],
@@ -379,6 +386,15 @@ mod tests {
         assert_eq!(play_ids(&entries), ["play-1"]);
         assert_eq!(entries[0].end_reason, None);
         assert_eq!(entries[0].end_position_ms, None);
+    }
+
+    #[tokio::test]
+    async fn count_plays_counts_plays() {
+        let db = HistoryDb(test_pool().await);
+        seed_finished_play(&db, "play-1", "First", 1000).await;
+        seed_finished_play(&db, "play-2", "Second", 5000).await;
+
+        assert_eq!(db.count_plays().await.unwrap(), 2);
     }
 
     #[tokio::test]

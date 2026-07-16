@@ -9,6 +9,7 @@ pub mod logging;
 pub mod mcp;
 pub mod mpd;
 pub mod net;
+pub mod pagination;
 mod setup;
 pub mod stream_server;
 pub mod ytdlp;

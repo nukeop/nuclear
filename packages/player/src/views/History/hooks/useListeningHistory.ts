@@ -1,11 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 
-import type { HistoryEntry, PlaysPage } from '../../../services/tauri/bindings';
+import type {
+  HistoryEntry,
+  Page,
+  PageRequest,
+} from '../../../services/tauri/bindings';
 import { commands } from '../../../services/tauri/bindings';
 
 const fetchListeningHistory = async (
-  page: PlaysPage,
-): Promise<HistoryEntry[]> => {
+  page: PageRequest,
+): Promise<Page<HistoryEntry>> => {
   const result = await commands.historyFetch(page);
   if (result.status === 'error') {
     throw new Error(result.error);
@@ -13,7 +17,7 @@ const fetchListeningHistory = async (
   return result.data;
 };
 
-export const useListeningHistory = (page: PlaysPage) =>
+export const useListeningHistory = (page: PageRequest) =>
   useQuery({
     queryKey: ['history', page.limit, page.offset],
     queryFn: () => fetchListeningHistory(page),

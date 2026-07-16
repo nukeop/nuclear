@@ -33,11 +33,12 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
   },
 
   mockHistoryEntries(...entries: HistoryEntry[]) {
-    commandMocks
-      .command('historyFetch')
-      .mockImplementation(async (page) =>
-        ok(entries.slice(page.offset, page.offset + page.limit)),
-      );
+    commandMocks.command('historyFetch').mockImplementation(async (page) =>
+      ok({
+        items: entries.slice(page.offset, page.offset + page.limit),
+        total: entries.length,
+      }),
+    );
   },
 
   async mount(): Promise<RenderResult> {

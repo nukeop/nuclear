@@ -29,7 +29,7 @@ export const commands = {
 	bridgeRespond: (response: BridgeResponse) => typedError<null, string>(__TAURI_INVOKE("bridge_respond", { response })),
 	bridgeNotify: (notification: BridgeNotification) => typedError<null, string>(__TAURI_INVOKE("bridge_notify", { notification })),
 	historyRecordEvent: (event: PlayEvent) => typedError<null, string>(__TAURI_INVOKE("history_record_event", { event })),
-	historyFetch: (page: PlaysPage) => typedError<HistoryEntry[], string>(__TAURI_INVOKE("history_fetch", { page })),
+	historyFetch: (page: PageRequest) => typedError<Page<HistoryEntry>, string>(__TAURI_INVOKE("history_fetch", { page })),
 	historyDeleteRange: (range: TimeRange) => typedError<null, string>(__TAURI_INVOKE("history_delete_range", { range })),
 };
 
@@ -77,6 +77,16 @@ export type HttpResponse = {
 	body: string,
 };
 
+export type Page<T> = {
+	items: T[],
+	total: number,
+};
+
+export type PageRequest = {
+	limit: number,
+	offset: number,
+};
+
 export type PlayEndReason = "finished" | "skipped" | "stopped";
 
 export type PlayEvent = {
@@ -89,11 +99,6 @@ export type PlayEvent = {
 };
 
 export type PlayEventKind = "started" | "paused" | "resumed" | "seeked" | "finished" | "skipped" | "stopped";
-
-export type PlaysPage = {
-	limit: number,
-	offset: number,
-};
 
 export type StartupLogEntry = {
 	timestamp: string,

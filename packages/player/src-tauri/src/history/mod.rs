@@ -5,7 +5,9 @@ pub mod writes;
 
 use sqlx::sqlite::SqlitePool;
 use tauri::Manager;
-use types::{HistoryEntry, PlayEvent, PlaysPage, TimeRange};
+use types::{HistoryEntry, PlayEvent, TimeRange};
+
+use crate::pagination::{Page, PageRequest};
 
 pub struct HistoryDb(pub SqlitePool);
 
@@ -56,9 +58,11 @@ pub async fn history_record_event(
 #[specta::specta]
 pub async fn history_fetch(
     state: tauri::State<'_, HistoryDb>,
-    page: PlaysPage,
-) -> Result<Vec<HistoryEntry>, String> {
-    state.entries(page.limit, page.offset).await
+    page: PageRequest,
+) -> Result<Page<HistoryEntry>, String> {
+    let items = state.entries(page.limit, page.offset).await?;
+    let total = state.count_plays().await?;
+    Ok(Page { items, total })
 }
 
 #[tauri::command]

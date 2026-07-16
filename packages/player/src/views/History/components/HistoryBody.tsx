@@ -7,6 +7,7 @@ import { HistoryDayGroup, HistoryRow } from '@nuclearplayer/ui';
 import type { HistoryEntry } from '../../../services/tauri/bindings';
 import { formatTimeOfDay } from '../../../utils/time';
 import { useDayMarker } from '../hooks/useDayMarker';
+import { useHistoryRowActions } from '../hooks/useHistoryRowActions';
 import { groupEntriesByDay } from '../utils/groupEntriesByDay';
 import { HistoryEmptyState } from './HistoryEmptyState';
 
@@ -18,6 +19,7 @@ type HistoryBodyProps = {
 export const HistoryBody: FC<HistoryBodyProps> = ({ isPending, entries }) => {
   const { t } = useTranslation('history');
   const markerFor = useDayMarker();
+  const actionsFor = useHistoryRowActions();
   const rowLabels: HistoryRowLabels = {
     favorite: t('row.favorite'),
     unfavorite: t('row.unfavorite'),
@@ -48,6 +50,7 @@ export const HistoryBody: FC<HistoryBodyProps> = ({ isPending, entries }) => {
                 time={formatTimeOfDay(entry.startedAt)}
                 artworkUrl={entry.artworkUrl}
                 labels={rowLabels}
+                {...(actionsFor(entry) ?? {})}
               />
             ))}
           </HistoryDayGroup>

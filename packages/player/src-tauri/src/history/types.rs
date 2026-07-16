@@ -57,15 +57,6 @@ pub struct PlayEvent {
 
 #[derive(Deserialize, specta::Type)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaysPage {
-    #[specta(type = Number<i64>)]
-    pub limit: i64,
-    #[specta(type = Number<i64>)]
-    pub offset: i64,
-}
-
-#[derive(Deserialize, specta::Type)]
-#[serde(rename_all = "camelCase")]
 pub struct TimeRange {
     #[specta(type = Number<i64>)]
     pub from: i64,
