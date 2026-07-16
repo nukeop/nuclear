@@ -15,6 +15,7 @@
 * [The queue](core-concepts/the-queue.md)
 * [Favorites](core-concepts/favorites.md)
 * [Playlists](core-concepts/playlists.md)
+* [Listening history](core-concepts/listening-history.md)
 
 ## Theming
 
