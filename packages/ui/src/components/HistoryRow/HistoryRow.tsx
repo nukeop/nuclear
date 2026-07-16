@@ -23,7 +23,7 @@ export const HistoryRow: FC<HistoryRowProps> = ({
   <div
     data-testid="history-row"
     className={cn(
-      'border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none',
+      'border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0',
       classes?.root,
       className,
     )}

@@ -36,27 +36,24 @@ export const HistoryBody: FC<HistoryBodyProps> = ({ isPending, entries }) => {
 
   return (
     <div className="flex w-full flex-1 flex-col gap-6 pb-6">
-      <div className="flex flex-1 flex-col gap-6">
-        {groupEntriesByDay(entries).map((group) => (
-          <HistoryDayGroup
-            key={group.day.toISODate()}
-            marker={markerFor(group.day)}
-          >
-            {group.entries.map((entry) => (
-              <HistoryRow
-                key={entry.playId}
-                title={entry.title}
-                artist={entry.artists.join(', ')}
-                time={formatTimeOfDay(entry.startedAt)}
-                artworkUrl={entry.artworkUrl}
-                labels={rowLabels}
-                {...(actionsFor(entry) ?? {})}
-              />
-            ))}
-          </HistoryDayGroup>
-        ))}
-      </div>
-      <footer className="flex items-center justify-between" />
+      {groupEntriesByDay(entries).map((group) => (
+        <HistoryDayGroup
+          key={group.day.toISODate()}
+          marker={markerFor(group.day)}
+        >
+          {group.entries.map((entry) => (
+            <HistoryRow
+              key={entry.playId}
+              title={entry.title}
+              artist={entry.artists.join(', ')}
+              time={formatTimeOfDay(entry.startedAt)}
+              artworkUrl={entry.artworkUrl}
+              labels={rowLabels}
+              {...(actionsFor(entry) ?? {})}
+            />
+          ))}
+        </HistoryDayGroup>
+      ))}
     </div>
   );
 };

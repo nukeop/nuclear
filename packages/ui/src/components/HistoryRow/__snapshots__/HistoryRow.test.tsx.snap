@@ -3,7 +3,7 @@
 exports[`HistoryRow > (Snapshot) renders a placeholder when artwork is missing 1`] = `
 <div>
   <div
-    class="border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none"
+    class="border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0"
     data-testid="history-row"
   >
     <div
@@ -74,7 +74,7 @@ exports[`HistoryRow > (Snapshot) renders a placeholder when artwork is missing 1
 exports[`HistoryRow > (Snapshot) renders with artwork and all actions 1`] = `
 <div>
   <div
-    class="border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none"
+    class="border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0"
     data-testid="history-row"
   >
     <div

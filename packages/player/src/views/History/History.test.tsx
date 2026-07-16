@@ -123,6 +123,17 @@ describe('Listening history view', () => {
       expect(Wrapper.rows).toHaveLength(3);
       expect(Wrapper.pagination.isVisible).toBe(false);
     });
+
+    it('keeps the page size control available when the chosen size fits all plays', async () => {
+      Wrapper.mockHistoryEntries(...numberedEntries(15));
+      await Wrapper.mount();
+
+      await Wrapper.pageSizeSelect.select('25');
+      expect(Wrapper.rows).toHaveLength(15);
+
+      await Wrapper.pageSizeSelect.select('10');
+      expect(Wrapper.rows).toHaveLength(10);
+    });
   });
 
   describe('Row actions', () => {

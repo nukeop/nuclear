@@ -93,7 +93,8 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
       return screen.getByTestId('history-page-size');
     },
     async select(size: string) {
-      await user.selectOptions(this.element, size);
+      await user.click(within(this.element).getByRole('button'));
+      await user.click(await screen.findByRole('option', { name: size }));
     },
   },
 

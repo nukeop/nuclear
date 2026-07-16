@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import type {
   HistoryEntry,
@@ -21,4 +21,5 @@ export const useListeningHistory = (page: PageRequest) =>
   useQuery({
     queryKey: ['history', page.limit, page.offset],
     queryFn: () => fetchListeningHistory(page),
+    placeholderData: keepPreviousData,
   });
