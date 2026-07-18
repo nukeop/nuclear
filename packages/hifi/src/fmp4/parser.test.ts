@@ -1,17 +1,12 @@
+import { ByteWriter, paddedBox, SidxBoxBuilder } from '../test/builders/boxes';
 import { findBoxes, parseInitSegment, parseSidx } from './parser';
-import {
-  buildBoxWithPadding,
-  buildSidxBox,
-  writeAscii,
-  writeUint32,
-} from './test-helpers';
 
 describe('findBoxes', () => {
   it('correctly identifies ftyp, moov, sidx boxes from a minimal header', () => {
     const buffer = new Uint8Array([
-      ...buildBoxWithPadding('ftyp', 20),
-      ...buildBoxWithPadding('moov', 100),
-      ...buildBoxWithPadding('sidx', 50),
+      ...paddedBox('ftyp', 20),
+      ...paddedBox('moov', 100),
+      ...paddedBox('sidx', 50),
     ]);
 
     const boxes = findBoxes(buffer);
@@ -29,8 +24,8 @@ describe('findBoxes', () => {
   });
 
   it('handles box with size 0 (extends to EOF)', () => {
-    const ftypBox = buildBoxWithPadding('ftyp', 20);
-    const mdatHeader = [...writeUint32(0), ...writeAscii('mdat')];
+    const ftypBox = paddedBox('ftyp', 20);
+    const mdatHeader = new ByteWriter().uint32(0).ascii('mdat').toBytes();
     const mdatPayload = new Array(64).fill(0xab);
     const buffer = new Uint8Array([...ftypBox, ...mdatHeader, ...mdatPayload]);
 
@@ -46,13 +41,13 @@ describe('findBoxes', () => {
 
   it('handles 64-bit extended size', () => {
     const extendedSize = 24;
-    const extendedBox = [
-      ...writeUint32(1),
-      ...writeAscii('moov'),
-      ...writeUint32(0),
-      ...writeUint32(extendedSize),
-      ...new Array(extendedSize - 16).fill(0),
-    ];
+    const extendedBox = new ByteWriter()
+      .uint32(1)
+      .ascii('moov')
+      .uint32(0)
+      .uint32(extendedSize)
+      .zeros(extendedSize - 16)
+      .toBytes();
     const buffer = new Uint8Array(extendedBox);
 
     const boxes = findBoxes(buffer);
@@ -63,19 +58,12 @@ describe('findBoxes', () => {
 
 describe('parseSidx', () => {
   it('version 0: extracts segment references with correct byte ranges and times', () => {
-    const timescale = 44100;
-    const references = [
-      { referencedSize: 50000, subsegmentDuration: 44100 },
-      { referencedSize: 60000, subsegmentDuration: 88200 },
-      { referencedSize: 45000, subsegmentDuration: 44100 },
-    ];
-    const sidxBox = buildSidxBox({
-      version: 0,
-      timescale,
-      earliestPresentationTime: 0,
-      firstOffset: 0,
-      references,
-    });
+    const sidxBox = new SidxBoxBuilder()
+      .withTimescale(44100)
+      .withReference(50000, 44100)
+      .withReference(60000, 88200)
+      .withReference(45000, 44100)
+      .build();
 
     const boxOffset = 0;
     const boxSize = sidxBox.length;
@@ -107,18 +95,12 @@ describe('parseSidx', () => {
   });
 
   it('version 1: handles 64-bit fields', () => {
-    const timescale = 48000;
-    const references = [
-      { referencedSize: 70000, subsegmentDuration: 48000 },
-      { referencedSize: 80000, subsegmentDuration: 96000 },
-    ];
-    const sidxBox = buildSidxBox({
-      version: 1,
-      timescale,
-      earliestPresentationTime: 0,
-      firstOffset: 0,
-      references,
-    });
+    const sidxBox = new SidxBoxBuilder()
+      .withVersion(1)
+      .withTimescale(48000)
+      .withReference(70000, 48000)
+      .withReference(80000, 96000)
+      .build();
 
     const boxSize = sidxBox.length;
     const result = parseSidx(new Uint8Array(sidxBox), 0, boxSize);
@@ -144,21 +126,13 @@ describe('parseSidx', () => {
 
 describe('parseInitSegment', () => {
   it('returns correct initSegmentEnd and segment array', () => {
-    const timescale = 44100;
-    const references = [
-      { referencedSize: 30000, subsegmentDuration: 44100 },
-      { referencedSize: 40000, subsegmentDuration: 44100 },
-    ];
-
-    const ftypBox = buildBoxWithPadding('ftyp', 20);
-    const moovBox = buildBoxWithPadding('moov', 100);
-    const sidxBox = buildSidxBox({
-      version: 0,
-      timescale,
-      earliestPresentationTime: 0,
-      firstOffset: 0,
-      references,
-    });
+    const ftypBox = paddedBox('ftyp', 20);
+    const moovBox = paddedBox('moov', 100);
+    const sidxBox = new SidxBoxBuilder()
+      .withTimescale(44100)
+      .withReference(30000, 44100)
+      .withReference(40000, 44100)
+      .build();
 
     const buffer = new Uint8Array([...ftypBox, ...moovBox, ...sidxBox]);
     const result = parseInitSegment(buffer);
@@ -174,8 +148,8 @@ describe('parseInitSegment', () => {
 
   it('throws when no sidx box is found', () => {
     const buffer = new Uint8Array([
-      ...buildBoxWithPadding('ftyp', 20),
-      ...buildBoxWithPadding('moov', 100),
+      ...paddedBox('ftyp', 20),
+      ...paddedBox('moov', 100),
     ]);
 
     expect(() => parseInitSegment(buffer)).toThrow(
@@ -185,23 +159,15 @@ describe('parseInitSegment', () => {
 });
 
 describe('segment contiguity', () => {
-  const timescale = 44100;
-  const references = [
-    { referencedSize: 50000, subsegmentDuration: 44100 },
-    { referencedSize: 60000, subsegmentDuration: 88200 },
-    { referencedSize: 45000, subsegmentDuration: 44100 },
-    { referencedSize: 55000, subsegmentDuration: 66150 },
-  ];
-
-  const ftypBox = buildBoxWithPadding('ftyp', 20);
-  const moovBox = buildBoxWithPadding('moov', 100);
-  const sidxBox = buildSidxBox({
-    version: 0,
-    timescale,
-    earliestPresentationTime: 0,
-    firstOffset: 0,
-    references,
-  });
+  const ftypBox = paddedBox('ftyp', 20);
+  const moovBox = paddedBox('moov', 100);
+  const sidxBox = new SidxBoxBuilder()
+    .withTimescale(44100)
+    .withReference(50000, 44100)
+    .withReference(60000, 88200)
+    .withReference(45000, 44100)
+    .withReference(55000, 66150)
+    .build();
 
   const buffer = new Uint8Array([...ftypBox, ...moovBox, ...sidxBox]);
   const result = parseInitSegment(buffer);

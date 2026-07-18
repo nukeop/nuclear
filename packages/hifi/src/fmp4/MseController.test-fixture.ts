@@ -1,7 +1,7 @@
 import { LoggerProvider } from '../LoggerProvider';
+import { DEFAULT_TRACK, MSE_URL } from '../test/fixtures/fmp4Stream';
 import { MockMediaSource, MockTimeRanges } from './mse-test-mocks';
 import { MseController } from './MseController';
-import { buildBoxWithPadding, buildSidxBox } from './test-helpers';
 
 export {
   MockMediaSource,
@@ -9,42 +9,7 @@ export {
   MockTimeRanges,
 } from './mse-test-mocks';
 
-export const TIMESCALE = 44100;
-export const SEGMENT_REFS = [
-  { referencedSize: 50000, subsegmentDuration: TIMESCALE * 60 },
-  { referencedSize: 60000, subsegmentDuration: TIMESCALE * 60 },
-  { referencedSize: 45000, subsegmentDuration: TIMESCALE * 60 },
-];
-
-export const FTYP = buildBoxWithPadding('ftyp', 20);
-export const MOOV = buildBoxWithPadding('moov', 100);
-export const SIDX = buildSidxBox({
-  version: 0,
-  timescale: TIMESCALE,
-  earliestPresentationTime: 0,
-  firstOffset: 0,
-  references: SEGMENT_REFS,
-});
-
-export const FAKE_HEADER = new Uint8Array([...FTYP, ...MOOV, ...SIDX]);
-export const INIT_SEGMENT_END = 120;
-
-export const HEADER_RESPONSE = new Uint8Array(8192);
-HEADER_RESPONSE.set(FAKE_HEADER, 0);
-
-export const MSE_URL = 'http://127.0.0.1:3000/stream/test';
-
-export function computeSegmentByteRange(segmentIndex: number): {
-  startByte: number;
-  endByte: number;
-} {
-  let startByte = FTYP.length + MOOV.length + SIDX.length;
-  for (let index = 0; index < segmentIndex; index++) {
-    startByte += SEGMENT_REFS[index].referencedSize;
-  }
-  const endByte = startByte + SEGMENT_REFS[segmentIndex].referencedSize - 1;
-  return { startByte, endByte };
-}
+const HEADER_FETCH_SIZE = 8192;
 
 export async function flushMicrotasks() {
   for (let round = 0; round < 10; round++) {
@@ -123,10 +88,6 @@ export class MseTestFixture {
     }
   }
 
-  makeSegmentData(size: number): Uint8Array {
-    return new Uint8Array(size).fill(0xab);
-  }
-
   setCurrentTime(value: number): void {
     Object.defineProperty(this.audio, 'currentTime', {
       value,
@@ -136,7 +97,8 @@ export class MseTestFixture {
   }
 
   fetchCallsForSegment(segmentIndex: number): unknown[][] {
-    const { startByte, endByte } = computeSegmentByteRange(segmentIndex);
+    const { startByte, endByte } =
+      DEFAULT_TRACK.byteRangeForSegment(segmentIndex);
     const range = `bytes=${startByte}-${endByte}`;
     return this.fetchMock.mock.calls.filter((call: unknown[]) => {
       const opts = call[1] as { headers?: { Range?: string } } | undefined;
@@ -189,7 +151,11 @@ export class MseTestFixture {
     return vi.fn(async (_url: string, options?: RequestInit) => {
       const rangeHeader = (options?.headers as Record<string, string>)?.Range;
       if (!rangeHeader) {
-        return { ok: true, arrayBuffer: async () => HEADER_RESPONSE.buffer };
+        return {
+          ok: true,
+          arrayBuffer: async () =>
+            DEFAULT_TRACK.headerResponse(HEADER_FETCH_SIZE).buffer,
+        };
       }
 
       const match = rangeHeader.match(/bytes=(\d+)-(\d+)/);
@@ -203,17 +169,10 @@ export class MseTestFixture {
       const startByte = parseInt(match[1], 10);
       const endByte = parseInt(match[2], 10);
 
-      if (startByte === 0 && endByte === 8191) {
-        return {
-          ok: true,
-          arrayBuffer: async () => HEADER_RESPONSE.buffer.slice(0),
-        };
-      }
-
-      const size = endByte - startByte + 1;
       return {
         ok: true,
-        arrayBuffer: async () => this.makeSegmentData(size).buffer,
+        arrayBuffer: async () =>
+          DEFAULT_TRACK.bytesForRange(startByte, endByte).buffer,
       };
     });
   }

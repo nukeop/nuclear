@@ -1,14 +1,11 @@
+import { DEFAULT_TRACK, MSE_URL } from '../test/fixtures/fmp4Stream';
 import { MseController } from './MseController';
 import {
-  computeSegmentByteRange,
   flushMicrotasks,
-  INIT_SEGMENT_END,
   MockMediaSource,
   MockSourceBuffer,
   MockTimeRanges,
-  MSE_URL,
   MseTestFixture,
-  SEGMENT_REFS,
 } from './MseController.test-fixture';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,7 +46,9 @@ describe('MseController', () => {
 
     const calls = sourceBuffer.appendBuffer.mock.calls as unknown[][];
     const firstAppendArg = calls[0][0] as ArrayBuffer;
-    expect(new Uint8Array(firstAppendArg).byteLength).toBe(INIT_SEGMENT_END);
+    expect(new Uint8Array(firstAppendArg).byteLength).toBe(
+      DEFAULT_TRACK.initSegmentEnd,
+    );
   });
 
   it('fetches first media segment after init segment is appended', async () => {
@@ -299,7 +298,7 @@ describe('MseController', () => {
     await flushMicrotasks();
 
     const { startByte: secondSegmentStart, endByte: secondSegmentEnd } =
-      computeSegmentByteRange(1);
+      DEFAULT_TRACK.byteRangeForSegment(1);
 
     const fetchedRanges = fixture.fetchMock.mock.calls.map(
       (call: unknown[]) => {
@@ -336,7 +335,7 @@ describe('MseController', () => {
     controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
-    const { startByte, endByte } = computeSegmentByteRange(1);
+    const { startByte, endByte } = DEFAULT_TRACK.byteRangeForSegment(1);
     const failedSegmentRange = `bytes=${startByte}-${endByte}`;
 
     const failedSegmentFetches = fixture.fetchMock.mock.calls.filter(
@@ -378,7 +377,7 @@ describe('MseController', () => {
         return {
           ok: true,
           arrayBuffer: async () =>
-            fixture.makeSegmentData(endByte - startByte + 1).buffer,
+            DEFAULT_TRACK.bytesForRange(startByte, endByte).buffer,
         };
       },
     );
@@ -400,7 +399,7 @@ describe('MseController', () => {
     releaseHeldFetch();
     await flushMicrotasks();
 
-    const staleSegmentSize = SEGMENT_REFS[1].referencedSize;
+    const staleSegmentSize = DEFAULT_TRACK.segmentSize(1);
     const staleAppendCalls = sourceBuffer.appendBuffer.mock.calls.filter(
       (call: unknown[]) => {
         const [data] = call as [ArrayBuffer];
@@ -410,7 +409,7 @@ describe('MseController', () => {
 
     expect(staleAppendCalls.length).toBe(0);
 
-    const postSeekSegmentSize = SEGMENT_REFS[2].referencedSize;
+    const postSeekSegmentSize = DEFAULT_TRACK.segmentSize(2);
     const postSeekAppendCalls = sourceBuffer.appendBuffer.mock.calls.filter(
       (call: unknown[]) => {
         const [data] = call as [ArrayBuffer];
