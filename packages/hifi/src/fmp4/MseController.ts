@@ -1,103 +1,15 @@
+import { LoggerProvider } from '../LoggerProvider';
+import { BufferOperationQueue } from './BufferOperationQueue';
+import { FetchBackoff } from './FetchBackoff';
 import { GapJumpController } from './GapJumpController';
+import { getMseBackend } from './MseBackend';
 import { parseInitSegment, SegmentReference } from './parser';
+import { SegmentFetcher } from './SegmentFetcher';
 
 const HEADER_FETCH_SIZE = 8192;
 const LOOKAHEAD_SECONDS = 30;
 const SEEK_PREFETCH_COUNT = 3;
 const BUFFERED_END_TOLERANCE_SECONDS = 0.01;
-
-type MseBackend = {
-  Constructor: typeof MediaSource;
-  managed: boolean;
-};
-
-function getMseBackend(): MseBackend | undefined {
-  if (typeof window === 'undefined') {
-    return undefined;
-  }
-
-  if ('ManagedMediaSource' in window) {
-    return {
-      Constructor: (window as unknown as Record<string, typeof MediaSource>)
-        .ManagedMediaSource,
-      managed: true,
-    };
-  }
-
-  if ('MediaSource' in window) {
-    return { Constructor: MediaSource, managed: false };
-  }
-
-  return undefined;
-}
-
-function waitForUpdateEnd(sourceBuffer: SourceBuffer): Promise<void> {
-  return new Promise((resolve) => {
-    if (!sourceBuffer.updating) {
-      resolve();
-      return;
-    }
-
-    const onUpdateEnd = () => {
-      sourceBuffer.removeEventListener('updateend', onUpdateEnd);
-      resolve();
-    };
-    sourceBuffer.addEventListener('updateend', onUpdateEnd);
-  });
-}
-
-function findSegmentForTime(
-  time: number,
-  segments: SegmentReference[],
-): number {
-  let low = 0;
-  let high = segments.length - 1;
-
-  while (low <= high) {
-    const mid = (low + high) >>> 1;
-    const segment = segments[mid];
-
-    if (time < segment.startTime) {
-      high = mid - 1;
-    } else if (time >= segment.endTime) {
-      low = mid + 1;
-    } else {
-      return mid;
-    }
-  }
-
-  return -1;
-}
-
-async function fetchRange(
-  url: string,
-  startByte: number,
-  endByte: number,
-  signal: AbortSignal,
-): Promise<Uint8Array> {
-  const response = await fetch(url, {
-    headers: { Range: `bytes=${startByte}-${endByte}` },
-    signal,
-  });
-
-  if (!response.ok) {
-    const body = await response.text();
-    throw new Error(body || `Fetch failed with status ${response.status}`);
-  }
-
-  const buffer = await response.arrayBuffer();
-  return new Uint8Array(buffer);
-}
-
-function isTimeBuffered(sourceBuffer: SourceBuffer, time: number): boolean {
-  const { buffered } = sourceBuffer;
-  for (let index = 0; index < buffered.length; index++) {
-    if (time >= buffered.start(index) && time < buffered.end(index)) {
-      return true;
-    }
-  }
-  return false;
-}
 
 export class MseController {
   private mediaSource: MediaSource | null = null;
@@ -107,10 +19,11 @@ export class MseController {
   private fetchedSegments = new Set<number>();
   private abortController: AbortController | null = null;
   private objectUrl: string | null = null;
-  private url = '';
+  private fetcher: SegmentFetcher | null = null;
   private isFetching = false;
-  private bufferOperationChain: Promise<void> = Promise.resolve();
+  private bufferQueue: BufferOperationQueue | null = null;
   private seekGeneration = 0;
+  private backoff = new FetchBackoff();
   private gapJumpController = new GapJumpController();
 
   async init(
@@ -119,20 +32,18 @@ export class MseController {
     codec?: string,
     onError?: (error: Error) => void,
   ): Promise<void> {
-    this.url = url;
+    const fetcher = new SegmentFetcher(url);
+    this.fetcher = fetcher;
     const abortController = new AbortController();
     this.abortController = abortController;
     const { signal } = abortController;
 
     let headerBytes: Uint8Array;
     try {
-      headerBytes = await fetchRange(url, 0, HEADER_FETCH_SIZE - 1, signal);
+      headerBytes = await fetcher.fetchRange(0, HEADER_FETCH_SIZE - 1, signal);
     } catch (error) {
-      onError?.(
-        error instanceof Error
-          ? error
-          : new Error(`Failed to load stream: ${url}`),
-      );
+      const reason = error instanceof Error ? error.message : String(error);
+      onError?.(new Error(`Could not load the audio stream: ${reason}`));
       return;
     }
 
@@ -140,7 +51,11 @@ export class MseController {
     try {
       index = parseInitSegment(headerBytes);
     } catch {
-      onError?.(new Error('Failed to parse audio stream header'));
+      onError?.(
+        new Error(
+          'The audio stream is not in a supported format. Try a different source for this track.',
+        ),
+      );
       return;
     }
 
@@ -156,6 +71,11 @@ export class MseController {
 
     const backend = getMseBackend();
     if (!backend) {
+      onError?.(
+        new Error(
+          'Streaming is not available because this system lacks MediaSource Extensions. Updating your system web engine may fix this.',
+        ),
+      );
       return;
     }
 
@@ -187,15 +107,21 @@ export class MseController {
 
     const sourceBuffer = mediaSource.addSourceBuffer(mimeType);
     this.sourceBuffer = sourceBuffer;
+    const bufferQueue = new BufferOperationQueue(sourceBuffer);
+    this.bufferQueue = bufferQueue;
 
     mediaSource.duration = sidxDuration;
 
     try {
-      await this.enqueueBufferOperation(() =>
+      await bufferQueue.enqueue(() =>
         sourceBuffer.appendBuffer(initSegment.buffer as ArrayBuffer),
       );
     } catch {
-      onError?.(new Error('Failed to append init segment'));
+      onError?.(
+        new Error(
+          'The audio engine rejected the stream data. The codec may be unsupported. Try a different source for this track.',
+        ),
+      );
       return;
     }
 
@@ -229,6 +155,10 @@ export class MseController {
       return;
     }
 
+    if (this.backoff.isWaiting) {
+      return;
+    }
+
     const { buffered } = sourceBuffer;
     if (buffered.length === 0) {
       return;
@@ -259,10 +189,17 @@ export class MseController {
   }
 
   async handleSeeking(audio: HTMLAudioElement): Promise<void> {
-    const { sourceBuffer, segments, initSegment, abortController } = this;
+    const {
+      sourceBuffer,
+      bufferQueue,
+      segments,
+      initSegment,
+      abortController,
+    } = this;
 
     if (
       !sourceBuffer ||
+      !bufferQueue ||
       !initSegment ||
       !abortController ||
       abortController.signal.aborted ||
@@ -272,26 +209,26 @@ export class MseController {
     }
 
     const seekTime = audio.currentTime;
-    const targetIndex = findSegmentForTime(seekTime, segments);
+    const targetIndex = this.findSegmentForTime(seekTime);
     if (targetIndex === -1) {
       return;
     }
 
-    if (isTimeBuffered(sourceBuffer, seekTime)) {
+    if (this.isTimeBuffered(sourceBuffer, seekTime)) {
       return;
     }
 
     this.seekGeneration += 1;
 
     try {
-      await this.enqueueBufferOperation(() => sourceBuffer.remove(0, Infinity));
+      await bufferQueue.enqueue(() => sourceBuffer.remove(0, Infinity));
       this.fetchedSegments.clear();
 
       if (abortController.signal.aborted) {
         return;
       }
 
-      await this.enqueueBufferOperation(() =>
+      await bufferQueue.enqueue(() =>
         sourceBuffer.appendBuffer(initSegment.buffer as ArrayBuffer),
       );
 
@@ -344,12 +281,45 @@ export class MseController {
       }
     }
 
+    this.bufferQueue?.close();
+    this.bufferQueue = null;
     this.mediaSource = null;
     this.sourceBuffer = null;
     this.segments = [];
     this.initSegment = null;
     this.fetchedSegments = new Set();
-    this.url = '';
+    this.fetcher = null;
+  }
+
+  private findSegmentForTime(time: number): number {
+    const { segments } = this;
+    let low = 0;
+    let high = segments.length - 1;
+
+    while (low <= high) {
+      const mid = (low + high) >>> 1;
+      const segment = segments[mid];
+
+      if (time < segment.startTime) {
+        high = mid - 1;
+      } else if (time >= segment.endTime) {
+        low = mid + 1;
+      } else {
+        return mid;
+      }
+    }
+
+    return -1;
+  }
+
+  private isTimeBuffered(sourceBuffer: SourceBuffer, time: number): boolean {
+    const { buffered } = sourceBuffer;
+    for (let index = 0; index < buffered.length; index++) {
+      if (time >= buffered.start(index) && time < buffered.end(index)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private findNextUnfetchedSegment(bufferedEnd: number): number {
@@ -371,9 +341,14 @@ export class MseController {
     segmentIndex: number,
     signal: AbortSignal,
   ): Promise<void> {
-    const { segments, sourceBuffer } = this;
+    const { segments, sourceBuffer, fetcher, bufferQueue } = this;
 
-    if (!sourceBuffer || segmentIndex >= segments.length) {
+    if (
+      !sourceBuffer ||
+      !fetcher ||
+      !bufferQueue ||
+      segmentIndex >= segments.length
+    ) {
       return;
     }
 
@@ -388,16 +363,20 @@ export class MseController {
 
     let segmentData: Uint8Array;
     try {
-      segmentData = await fetchRange(
-        this.url,
+      segmentData = await fetcher.fetchRange(
         segment.startByte,
         segment.endByte,
         signal,
       );
-    } catch {
+    } catch (error) {
       this.fetchedSegments.delete(segmentIndex);
+      if (!signal.aborted) {
+        this.reportFetchFailure(segmentIndex, error);
+      }
       return;
     }
+
+    this.backoff.reset();
 
     if (signal.aborted) {
       this.fetchedSegments.delete(segmentIndex);
@@ -410,7 +389,7 @@ export class MseController {
     }
 
     try {
-      await this.enqueueBufferOperation(() =>
+      await bufferQueue.enqueue(() =>
         sourceBuffer.appendBuffer(segmentData.buffer as ArrayBuffer),
       );
     } catch {
@@ -431,19 +410,11 @@ export class MseController {
     }
   }
 
-  private enqueueBufferOperation(operation: () => void): Promise<void> {
-    const nextOperation = this.bufferOperationChain.then(async () => {
-      const { sourceBuffer } = this;
-      if (!sourceBuffer) {
-        return;
-      }
-
-      operation();
-      await waitForUpdateEnd(sourceBuffer);
-    });
-
-    this.bufferOperationChain = nextOperation.catch(() => undefined);
-
-    return nextOperation;
+  private reportFetchFailure(segmentIndex: number, error: unknown): void {
+    const { attempt, backoffMs } = this.backoff.registerFailure();
+    const reason = error instanceof Error ? error.message : String(error);
+    void LoggerProvider.get().warn(
+      `[MSE] Segment ${segmentIndex} fetch failed (attempt ${attempt}, retrying in ${backoffMs}ms): ${reason}`,
+    );
   }
 }

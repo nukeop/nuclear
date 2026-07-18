@@ -1,4 +1,5 @@
-import { MockMediaSource } from './mse-test-mocks';
+import { LoggerProvider } from '../LoggerProvider';
+import { MockMediaSource, MockTimeRanges } from './mse-test-mocks';
 import { MseController } from './MseController';
 import { buildBoxWithPadding, buildSidxBox } from './test-helpers';
 
@@ -67,6 +68,14 @@ export class MseTestFixture {
   private originalManagedMediaSource: unknown;
 
   install(): void {
+    LoggerProvider.init({
+      trace: vi.fn(),
+      debug: vi.fn(),
+      info: vi.fn(),
+      warn: vi.fn(),
+      error: vi.fn(),
+    });
+
     this.originalMediaSource = win.MediaSource;
     this.originalManagedMediaSource = win.ManagedMediaSource;
 
@@ -116,6 +125,54 @@ export class MseTestFixture {
 
   makeSegmentData(size: number): Uint8Array {
     return new Uint8Array(size).fill(0xab);
+  }
+
+  setCurrentTime(value: number): void {
+    Object.defineProperty(this.audio, 'currentTime', {
+      value,
+      writable: true,
+      configurable: true,
+    });
+  }
+
+  fetchCallsForSegment(segmentIndex: number): unknown[][] {
+    const { startByte, endByte } = computeSegmentByteRange(segmentIndex);
+    const range = `bytes=${startByte}-${endByte}`;
+    return this.fetchMock.mock.calls.filter((call: unknown[]) => {
+      const opts = call[1] as { headers?: { Range?: string } } | undefined;
+      return opts?.headers?.Range === range;
+    });
+  }
+
+  async initControllerAtLowBuffer(
+    controller: MseController,
+  ): Promise<MockMediaSource> {
+    const mediaSource = await this.initController(controller);
+
+    const sourceBuffer = mediaSource.sourceBuffers[0];
+    sourceBuffer.buffered = new MockTimeRanges();
+    sourceBuffer.buffered.addRange(0, 60);
+    this.setCurrentTime(50);
+
+    return mediaSource;
+  }
+
+  mockHangingFetchOnce(): void {
+    this.fetchMock.mockImplementationOnce(
+      (_url: string, options?: RequestInit) =>
+        new Promise((_resolve, reject) => {
+          options?.signal?.addEventListener('abort', () =>
+            reject(options.signal!.reason),
+          );
+        }),
+    );
+  }
+
+  mockFailingFetchOnce(): void {
+    this.fetchMock.mockImplementationOnce(async () => ({
+      ok: false,
+      text: async () => 'Streaming service returned error: 403 Forbidden',
+    }));
   }
 
   async initController(controller: MseController): Promise<MockMediaSource> {

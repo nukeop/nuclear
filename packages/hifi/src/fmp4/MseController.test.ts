@@ -87,6 +87,57 @@ describe('MseController', () => {
     expect(fixture.createObjectURLSpy).not.toHaveBeenCalled();
   });
 
+  it('reports an error through onError when no MSE backend is available', async () => {
+    delete win.MediaSource;
+    delete win.ManagedMediaSource;
+
+    const controller = new MseController();
+    const onError = vi.fn();
+    await controller.init(fixture.audio, MSE_URL, undefined, onError);
+
+    await flushMicrotasks();
+
+    expect(onError).toHaveBeenCalledWith(
+      new Error(
+        'Streaming is not available because this system lacks MediaSource Extensions. Updating your system web engine may fix this.',
+      ),
+    );
+  });
+
+  it('reports an error through onError when the stream header cannot be downloaded', async () => {
+    fixture.fetchMock.mockImplementationOnce(async () => ({
+      ok: false,
+      text: async () => 'Streaming service returned error: 403 Forbidden',
+    }));
+
+    const controller = new MseController();
+    const onError = vi.fn();
+    await controller.init(fixture.audio, MSE_URL, undefined, onError);
+
+    expect(onError).toHaveBeenCalledWith(
+      new Error(
+        'Could not load the audio stream: Streaming service returned error: 403 Forbidden',
+      ),
+    );
+  });
+
+  it('reports an error through onError when the stream header cannot be parsed', async () => {
+    fixture.fetchMock.mockImplementationOnce(async () => ({
+      ok: true,
+      arrayBuffer: async () => new Uint8Array(8192).buffer,
+    }));
+
+    const controller = new MseController();
+    const onError = vi.fn();
+    await controller.init(fixture.audio, MSE_URL, undefined, onError);
+
+    expect(onError).toHaveBeenCalledWith(
+      new Error(
+        'The audio stream is not in a supported format. Try a different source for this track.',
+      ),
+    );
+  });
+
   it('cleans up on destroy', async () => {
     const controller = new MseController();
     const mediaSource = await fixture.initController(controller);
@@ -395,7 +446,82 @@ describe('MseController', () => {
     await initPromise;
 
     expect(onError).toHaveBeenCalledWith(
-      new Error('Failed to append init segment'),
+      new Error(
+        'The audio engine rejected the stream data. The codec may be unsupported. Try a different source for this track.',
+      ),
     );
+  });
+
+  describe('segment fetch resilience', () => {
+    const SEGMENT_FETCH_TIMEOUT_MS = 10000;
+    const FIRST_RETRY_BACKOFF_MS = 1000;
+    const SECOND_RETRY_BACKOFF_MS = 2000;
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('aborts a segment fetch that hangs past the timeout so a later poll can retry it', async () => {
+      const controller = new MseController();
+      await fixture.initControllerAtLowBuffer(controller);
+      vi.useFakeTimers();
+
+      fixture.mockHangingFetchOnce();
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(SEGMENT_FETCH_TIMEOUT_MS);
+      await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
+
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(0);
+
+      expect(fixture.fetchCallsForSegment(1).length).toBe(2);
+    });
+
+    it('waits for the backoff delay before refetching a segment after a failed fetch', async () => {
+      const controller = new MseController();
+      await fixture.initControllerAtLowBuffer(controller);
+      vi.useFakeTimers();
+
+      fixture.mockFailingFetchOnce();
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(0);
+
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(0);
+      expect(fixture.fetchCallsForSegment(1).length).toBe(1);
+
+      await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(0);
+      expect(fixture.fetchCallsForSegment(1).length).toBe(2);
+    });
+
+    it('doubles the backoff delay after consecutive fetch failures', async () => {
+      const controller = new MseController();
+      await fixture.initControllerAtLowBuffer(controller);
+      vi.useFakeTimers();
+
+      fixture.mockFailingFetchOnce();
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(0);
+
+      await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
+      fixture.mockFailingFetchOnce();
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(0);
+      expect(fixture.fetchCallsForSegment(1).length).toBe(2);
+
+      await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(0);
+      expect(fixture.fetchCallsForSegment(1).length).toBe(2);
+
+      await vi.advanceTimersByTimeAsync(
+        SECOND_RETRY_BACKOFF_MS - FIRST_RETRY_BACKOFF_MS,
+      );
+      controller.handleTimeUpdate(fixture.audio);
+      await vi.advanceTimersByTimeAsync(0);
+      expect(fixture.fetchCallsForSegment(1).length).toBe(3);
+    });
   });
 });

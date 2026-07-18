@@ -7,6 +7,12 @@ export type AudioSource = {
   codec?: string;
 };
 
+export type LogLevel = 'trace' | 'debug' | 'info' | 'warn' | 'error';
+
+export type HifiLogger = {
+  [Level in LogLevel]: (message: string) => void | Promise<void>;
+};
+
 export type SoundStatus = 'playing' | 'paused' | 'stopped';
 export type SoundProps = {
   src: AudioSource;

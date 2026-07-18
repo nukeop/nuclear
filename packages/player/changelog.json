@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-07-18T00:00",
+    "description": "Fix streaming getting permanently stuck at 10s intervals.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-07-16T00:00",
     "description": "Listening history: Nuclear now keeps a history of the tracks you play. Cane be disabled in the preferences.",
     "type": "feature",

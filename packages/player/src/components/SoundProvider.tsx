@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from 'react';
 import { useCallback, useEffect, useRef } from 'react';
 
-import { Sound, Volume } from '@nuclearplayer/hifi';
+import { LoggerProvider, Sound, Volume } from '@nuclearplayer/hifi';
 import { usePlatform } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../hooks/useCoreSetting';
@@ -26,6 +26,10 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   const volumePercent = muted ? 0 : Math.round((volume01 ?? 1) * 100);
   const platform = usePlatform();
   const sampleRate = platform === 'linux' ? LINUX_SAMPLE_RATE_HZ : undefined;
+
+  useEffect(() => {
+    LoggerProvider.init(Logger.streaming);
+  }, []);
 
   useEffect(() => {
     if (crossfadeMs !== undefined) {
