@@ -1,4 +1,3 @@
-import { LoggerProvider } from '../LoggerProvider';
 import { MSE_URL } from '../test/fixtures/fmp4Stream';
 import { MockMediaSource, MockTimeRanges } from './mse-test-mocks';
 import { MseController } from './MseController';
@@ -8,12 +7,6 @@ export {
   MockSourceBuffer,
   MockTimeRanges,
 } from './mse-test-mocks';
-
-export async function flushMicrotasks() {
-  for (let round = 0; round < 10; round++) {
-    await new Promise((resolve) => setTimeout(resolve, 0));
-  }
-}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const win = window as any;
@@ -30,14 +23,6 @@ export class MseTestFixture {
   private originalManagedMediaSource: unknown;
 
   setup(): void {
-    LoggerProvider.init({
-      trace: vi.fn(),
-      debug: vi.fn(),
-      info: vi.fn(),
-      warn: vi.fn(),
-      error: vi.fn(),
-    });
-
     this.originalMediaSource = win.MediaSource;
     this.originalManagedMediaSource = win.ManagedMediaSource;
 

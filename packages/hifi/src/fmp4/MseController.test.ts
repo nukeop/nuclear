@@ -1,8 +1,9 @@
 import { FakeStreamServer } from '../test/fakes/FakeStreamServer';
 import { DEFAULT_TRACK, MSE_URL } from '../test/fixtures/fmp4Stream';
+import { initMockLogger } from '../test/mocks/mockLogger';
+import { flushMicrotasks } from '../test/test-utils';
 import { MseController } from './MseController';
 import {
-  flushMicrotasks,
   MockMediaSource,
   MockSourceBuffer,
   MockTimeRanges,
@@ -17,6 +18,7 @@ const server = new FakeStreamServer(DEFAULT_TRACK);
 
 describe('MseController', () => {
   beforeEach(() => {
+    initMockLogger();
     fixture.setup();
     server.setup();
   });

@@ -66,6 +66,12 @@ export const fireMediaCanPlay = (audio: HTMLAudioElement): void => {
   audio.dispatchEvent(new Event('canplay', { bubbles: false }));
 };
 
+export async function flushMicrotasks() {
+  for (let round = 0; round < 10; round++) {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  }
+}
+
 export const fireMediaLoadStart = (audio: HTMLAudioElement): void => {
   Object.defineProperty(audio, 'readyState', {
     value: 0,
