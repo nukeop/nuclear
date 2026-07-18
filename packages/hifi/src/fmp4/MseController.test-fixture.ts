@@ -67,7 +67,7 @@ export class MseTestFixture {
   private originalMediaSource: unknown;
   private originalManagedMediaSource: unknown;
 
-  install(): void {
+  setup(): void {
     LoggerProvider.init({
       trace: vi.fn(),
       debug: vi.fn(),

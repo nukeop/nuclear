@@ -18,7 +18,7 @@ const fixture = new MseTestFixture();
 
 describe('MseController', () => {
   beforeEach(() => {
-    fixture.install();
+    fixture.setup();
   });
 
   afterEach(() => {
