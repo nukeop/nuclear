@@ -1,5 +1,5 @@
 import { LoggerProvider } from '../LoggerProvider';
-import { DEFAULT_TRACK, MSE_URL } from '../test/fixtures/fmp4Stream';
+import { MSE_URL } from '../test/fixtures/fmp4Stream';
 import { MockMediaSource, MockTimeRanges } from './mse-test-mocks';
 import { MseController } from './MseController';
 
@@ -8,8 +8,6 @@ export {
   MockSourceBuffer,
   MockTimeRanges,
 } from './mse-test-mocks';
-
-const HEADER_FETCH_SIZE = 8192;
 
 export async function flushMicrotasks() {
   for (let round = 0; round < 10; round++) {
@@ -22,7 +20,6 @@ const win = window as any;
 
 export class MseTestFixture {
   latestMediaSource: MockMediaSource | null = null;
-  fetchMock!: ReturnType<typeof vi.fn>;
   createObjectURLSpy!: ReturnType<
     typeof vi.fn<(obj: MediaSource | Blob) => string>
   >;
@@ -54,9 +51,6 @@ export class MseTestFixture {
     });
     win.MediaSource = MockMSConstructor;
     delete win.ManagedMediaSource;
-
-    this.fetchMock = this.createFetchMock();
-    vi.stubGlobal('fetch', this.fetchMock);
 
     this.createObjectURLSpy = vi.fn(() => 'blob:mock-url');
     this.revokeObjectURLSpy = vi.fn();
@@ -96,16 +90,6 @@ export class MseTestFixture {
     });
   }
 
-  fetchCallsForSegment(segmentIndex: number): unknown[][] {
-    const { startByte, endByte } =
-      DEFAULT_TRACK.byteRangeForSegment(segmentIndex);
-    const range = `bytes=${startByte}-${endByte}`;
-    return this.fetchMock.mock.calls.filter((call: unknown[]) => {
-      const opts = call[1] as { headers?: { Range?: string } } | undefined;
-      return opts?.headers?.Range === range;
-    });
-  }
-
   async initControllerAtLowBuffer(
     controller: MseController,
   ): Promise<MockMediaSource> {
@@ -119,24 +103,6 @@ export class MseTestFixture {
     return mediaSource;
   }
 
-  mockHangingFetchOnce(): void {
-    this.fetchMock.mockImplementationOnce(
-      (_url: string, options?: RequestInit) =>
-        new Promise((_resolve, reject) => {
-          options?.signal?.addEventListener('abort', () =>
-            reject(options.signal!.reason),
-          );
-        }),
-    );
-  }
-
-  mockFailingFetchOnce(): void {
-    this.fetchMock.mockImplementationOnce(async () => ({
-      ok: false,
-      text: async () => 'Streaming service returned error: 403 Forbidden',
-    }));
-  }
-
   async initController(controller: MseController): Promise<MockMediaSource> {
     const initPromise = controller.init(this.audio, MSE_URL);
 
@@ -145,35 +111,5 @@ export class MseTestFixture {
 
     await initPromise;
     return this.latestMediaSource!;
-  }
-
-  private createFetchMock() {
-    return vi.fn(async (_url: string, options?: RequestInit) => {
-      const rangeHeader = (options?.headers as Record<string, string>)?.Range;
-      if (!rangeHeader) {
-        return {
-          ok: true,
-          arrayBuffer: async () =>
-            DEFAULT_TRACK.headerResponse(HEADER_FETCH_SIZE).buffer,
-        };
-      }
-
-      const match = rangeHeader.match(/bytes=(\d+)-(\d+)/);
-      if (!match) {
-        return {
-          ok: true,
-          arrayBuffer: async () => new ArrayBuffer(0),
-        };
-      }
-
-      const startByte = parseInt(match[1], 10);
-      const endByte = parseInt(match[2], 10);
-
-      return {
-        ok: true,
-        arrayBuffer: async () =>
-          DEFAULT_TRACK.bytesForRange(startByte, endByte).buffer,
-      };
-    });
   }
 }

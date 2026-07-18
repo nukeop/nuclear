@@ -1,3 +1,4 @@
+import { FakeStreamServer } from '../test/fakes/FakeStreamServer';
 import { DEFAULT_TRACK, MSE_URL } from '../test/fixtures/fmp4Stream';
 import { MseController } from './MseController';
 import {
@@ -12,14 +13,17 @@ import {
 const win = window as any;
 
 const fixture = new MseTestFixture();
+const server = new FakeStreamServer(DEFAULT_TRACK);
 
 describe('MseController', () => {
   beforeEach(() => {
     fixture.setup();
+    server.setup();
   });
 
   afterEach(() => {
     fixture.teardown();
+    server.teardown();
   });
 
   it('creates MediaSource and sets audio.src to object URL', async () => {
@@ -55,22 +59,10 @@ describe('MseController', () => {
     const controller = new MseController();
     await fixture.initController(controller);
 
-    expect(fixture.fetchMock).toHaveBeenCalledWith(
-      MSE_URL,
-      expect.objectContaining({
-        headers: { Range: 'bytes=0-8191' },
-      }),
-    );
-
-    const segmentFetchCall = fixture.fetchMock.mock.calls.find(
-      (call: unknown[]) => {
-        const opts = call[1] as { headers?: { Range?: string } } | undefined;
-        const range = opts?.headers?.Range;
-        return range && range !== 'bytes=0-8191';
-      },
-    );
-
-    expect(segmentFetchCall).toBeDefined();
+    expect(server.headerRequests).toEqual([
+      { url: MSE_URL, startByte: 0, endByte: 8191 },
+    ]);
+    expect(server.segmentRequests.length).toBeGreaterThan(0);
   });
 
   it('does not create MediaSource when getMseBackend returns undefined', async () => {
@@ -104,10 +96,7 @@ describe('MseController', () => {
   });
 
   it('reports an error through onError when the stream header cannot be downloaded', async () => {
-    fixture.fetchMock.mockImplementationOnce(async () => ({
-      ok: false,
-      text: async () => 'Streaming service returned error: 403 Forbidden',
-    }));
+    server.failNextRequest();
 
     const controller = new MseController();
     const onError = vi.fn();
@@ -121,10 +110,7 @@ describe('MseController', () => {
   });
 
   it('reports an error through onError when the stream header cannot be parsed', async () => {
-    fixture.fetchMock.mockImplementationOnce(async () => ({
-      ok: true,
-      arrayBuffer: async () => new Uint8Array(8192).buffer,
-    }));
+    server.corruptNextResponse();
 
     const controller = new MseController();
     const onError = vi.fn();
@@ -160,7 +146,7 @@ describe('MseController', () => {
     const controller = new MseController();
     const mediaSource = await fixture.initController(controller);
 
-    fixture.fetchMock.mockClear();
+    server.clearRequestLog();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
@@ -174,14 +160,7 @@ describe('MseController', () => {
     await controller.handleSeeking(fixture.audio);
     await flushMicrotasks();
 
-    const segmentFetchCalls = fixture.fetchMock.mock.calls.filter(
-      (call: unknown[]) => {
-        const opts = call[1] as { headers?: { Range?: string } } | undefined;
-        return opts?.headers?.Range && opts.headers.Range !== 'bytes=0-8191';
-      },
-    );
-
-    expect(segmentFetchCalls.length).toBeGreaterThan(0);
+    expect(server.segmentRequests.length).toBeGreaterThan(0);
   });
 
   it('prefers ManagedMediaSource over MediaSource when available', async () => {
@@ -224,7 +203,7 @@ describe('MseController', () => {
     const controller = new MseController();
     const mediaSource = await fixture.initController(controller);
 
-    fixture.fetchMock.mockClear();
+    server.clearRequestLog();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
@@ -239,21 +218,14 @@ describe('MseController', () => {
     controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
-    const segmentFetchCalls = fixture.fetchMock.mock.calls.filter(
-      (call: unknown[]) => {
-        const opts = call[1] as { headers?: { Range?: string } } | undefined;
-        return opts?.headers?.Range && opts.headers.Range !== 'bytes=0-8191';
-      },
-    );
-
-    expect(segmentFetchCalls.length).toBe(2);
+    expect(server.segmentRequests.length).toBe(2);
   });
 
   it('fetches next segment on timeupdate when buffer is low', async () => {
     const controller = new MseController();
     const mediaSource = await fixture.initController(controller);
 
-    fixture.fetchMock.mockClear();
+    server.clearRequestLog();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
@@ -268,21 +240,14 @@ describe('MseController', () => {
     controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
-    const segmentFetchCalls = fixture.fetchMock.mock.calls.filter(
-      (call: unknown[]) => {
-        const opts = call[1] as { headers?: { Range?: string } } | undefined;
-        return opts?.headers?.Range && opts.headers.Range !== 'bytes=0-8191';
-      },
-    );
-
-    expect(segmentFetchCalls.length).toBeGreaterThan(0);
+    expect(server.segmentRequests.length).toBeGreaterThan(0);
   });
 
   it('fetches the next contiguous segment when the buffered end drifts past its start time', async () => {
     const controller = new MseController();
     const mediaSource = await fixture.initController(controller);
 
-    fixture.fetchMock.mockClear();
+    server.clearRequestLog();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
@@ -297,26 +262,14 @@ describe('MseController', () => {
     controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
-    const { startByte: secondSegmentStart, endByte: secondSegmentEnd } =
-      DEFAULT_TRACK.byteRangeForSegment(1);
-
-    const fetchedRanges = fixture.fetchMock.mock.calls.map(
-      (call: unknown[]) => {
-        const opts = call[1] as { headers?: { Range?: string } } | undefined;
-        return opts?.headers?.Range;
-      },
-    );
-
-    expect(fetchedRanges).toContain(
-      `bytes=${secondSegmentStart}-${secondSegmentEnd}`,
-    );
+    expect(server.requestCountForSegment(1)).toBe(1);
   });
 
   it('retries a segment that failed to append, on a subsequent handleTimeUpdate', async () => {
     const controller = new MseController();
     const mediaSource = await fixture.initController(controller);
 
-    fixture.fetchMock.mockClear();
+    server.clearRequestLog();
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
@@ -335,17 +288,7 @@ describe('MseController', () => {
     controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
 
-    const { startByte, endByte } = DEFAULT_TRACK.byteRangeForSegment(1);
-    const failedSegmentRange = `bytes=${startByte}-${endByte}`;
-
-    const failedSegmentFetches = fixture.fetchMock.mock.calls.filter(
-      (call: unknown[]) => {
-        const opts = call[1] as { headers?: { Range?: string } } | undefined;
-        return opts?.headers?.Range === failedSegmentRange;
-      },
-    );
-
-    expect(failedSegmentFetches.length).toBe(2);
+    expect(server.requestCountForSegment(1)).toBe(2);
   });
 
   it('discards a stale pre-seek fetch instead of appending it after the seek clears the buffer', async () => {
@@ -362,25 +305,7 @@ describe('MseController', () => {
       configurable: true,
     });
 
-    let releaseHeldFetch: () => void = () => {};
-    const heldFetchGate = new Promise<void>((resolve) => {
-      releaseHeldFetch = resolve;
-    });
-
-    fixture.fetchMock.mockImplementationOnce(
-      async (_url: string, options?: RequestInit) => {
-        await heldFetchGate;
-        const rangeHeader = (options?.headers as Record<string, string>)?.Range;
-        const match = rangeHeader!.match(/bytes=(\d+)-(\d+)/)!;
-        const startByte = parseInt(match[1], 10);
-        const endByte = parseInt(match[2], 10);
-        return {
-          ok: true,
-          arrayBuffer: async () =>
-            DEFAULT_TRACK.bytesForRange(startByte, endByte).buffer,
-        };
-      },
-    );
+    const releaseHeldFetch = server.holdNextRequest();
 
     controller.handleTimeUpdate(fixture.audio);
     await flushMicrotasks();
@@ -465,7 +390,7 @@ describe('MseController', () => {
       await fixture.initControllerAtLowBuffer(controller);
       vi.useFakeTimers();
 
-      fixture.mockHangingFetchOnce();
+      server.hangNextRequest();
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(SEGMENT_FETCH_TIMEOUT_MS);
       await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
@@ -473,7 +398,7 @@ describe('MseController', () => {
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(0);
 
-      expect(fixture.fetchCallsForSegment(1).length).toBe(2);
+      expect(server.requestCountForSegment(1)).toBe(2);
     });
 
     it('waits for the backoff delay before refetching a segment after a failed fetch', async () => {
@@ -481,18 +406,18 @@ describe('MseController', () => {
       await fixture.initControllerAtLowBuffer(controller);
       vi.useFakeTimers();
 
-      fixture.mockFailingFetchOnce();
+      server.failNextRequest();
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(0);
 
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(0);
-      expect(fixture.fetchCallsForSegment(1).length).toBe(1);
+      expect(server.requestCountForSegment(1)).toBe(1);
 
       await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(0);
-      expect(fixture.fetchCallsForSegment(1).length).toBe(2);
+      expect(server.requestCountForSegment(1)).toBe(2);
     });
 
     it('doubles the backoff delay after consecutive fetch failures', async () => {
@@ -500,27 +425,27 @@ describe('MseController', () => {
       await fixture.initControllerAtLowBuffer(controller);
       vi.useFakeTimers();
 
-      fixture.mockFailingFetchOnce();
+      server.failNextRequest();
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(0);
 
       await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
-      fixture.mockFailingFetchOnce();
+      server.failNextRequest();
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(0);
-      expect(fixture.fetchCallsForSegment(1).length).toBe(2);
+      expect(server.requestCountForSegment(1)).toBe(2);
 
       await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(0);
-      expect(fixture.fetchCallsForSegment(1).length).toBe(2);
+      expect(server.requestCountForSegment(1)).toBe(2);
 
       await vi.advanceTimersByTimeAsync(
         SECOND_RETRY_BACKOFF_MS - FIRST_RETRY_BACKOFF_MS,
       );
       controller.handleTimeUpdate(fixture.audio);
       await vi.advanceTimersByTimeAsync(0);
-      expect(fixture.fetchCallsForSegment(1).length).toBe(3);
+      expect(server.requestCountForSegment(1)).toBe(3);
     });
   });
 });
