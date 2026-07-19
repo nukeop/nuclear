@@ -1,18 +1,7 @@
-import isError from 'lodash-es/isError';
-import isString from 'lodash-es/isString';
 import { toast } from 'sonner';
 
 import { formatLogValue, Logger, LogScope } from '../services/logger';
-
-export const resolveErrorMessage = (error: unknown): string => {
-  if (isError(error)) {
-    return error.message;
-  }
-  if (isString(error)) {
-    return error;
-  }
-  return 'Unknown error';
-};
+import { errorMessage } from './error';
 
 const TOAST_MAX_LENGTH = 100;
 
@@ -32,12 +21,11 @@ export const reportError = async (
   scope: LogScope,
   { userMessage, error }: ReportErrorOptions,
 ): Promise<void> => {
-  const errorMessage = resolveErrorMessage(error);
   const fullLogMessage = `${userMessage}: ${formatLogValue(error)}`;
 
   await Logger[scope].error(fullLogMessage);
 
   toast.error(userMessage, {
-    description: truncateForToast(errorMessage),
+    description: truncateForToast(errorMessage(error)),
   });
 };

@@ -9,7 +9,7 @@ import { stripResolutionState } from '@nuclearplayer/model';
 
 import { eventBus } from '../services/eventBus';
 import { Logger } from '../services/logger';
-import { resolveErrorMessage } from '../utils/logging';
+import { errorMessage } from '../utils/error';
 import { secondsToMs } from '../utils/time';
 import { getSetting } from './settingsStore';
 import { useSoundStore } from './soundStore';
@@ -114,7 +114,7 @@ const saveToDisk = async (): Promise<void> => {
     await store.set('queue.currentIndex', state.currentIndex);
     await store.save();
   } catch (error) {
-    Logger.queue.error(`Failed to save queue: ${resolveErrorMessage(error)}`);
+    Logger.queue.error(`Failed to save queue: ${errorMessage(error)}`);
   }
 };
 

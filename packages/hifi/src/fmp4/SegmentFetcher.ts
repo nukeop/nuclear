@@ -1,25 +1,50 @@
-const SEGMENT_FETCH_TIMEOUT_MS = 10_000;
+import { errorMessage } from '../utils/errorMessage';
+
+export type RangeFetchResult =
+  | { kind: 'ok'; bytes: Uint8Array }
+  | { kind: 'httpError'; status: number; body: string }
+  | { kind: 'timeout'; timeoutMs: number }
+  | { kind: 'aborted' }
+  | { kind: 'networkError'; message: string };
+
+export type RangeFetchFailure = Exclude<RangeFetchResult, { kind: 'ok' }>;
+
+export const isSourceInvalidStatus = (status: number): boolean =>
+  status === 403 || status === 410;
+
+export const describeFetchFailure = (failure: RangeFetchFailure): string => {
+  switch (failure.kind) {
+    case 'httpError':
+      return failure.body || `HTTP ${failure.status}`;
+    case 'timeout':
+      return `The streaming server stopped responding (no data after ${failure.timeoutMs / 1000}s)`;
+    case 'aborted':
+      return 'The request was aborted';
+    case 'networkError':
+      return failure.message;
+  }
+};
 
 export class SegmentFetcher {
-  constructor(private readonly url: string) {}
+  constructor(
+    private readonly url: string,
+    private readonly timeoutMs = 10_000,
+  ) {}
 
   async fetchRange(
     startByte: number,
     endByte: number,
     signal: AbortSignal,
-  ): Promise<Uint8Array> {
+  ): Promise<RangeFetchResult> {
     const timeoutController = new AbortController();
     const abortWithParentReason = () => timeoutController.abort(signal.reason);
     signal.addEventListener('abort', abortWithParentReason, { once: true });
-    const timeoutId = setTimeout(
-      () =>
-        timeoutController.abort(
-          new Error(
-            `The streaming server stopped responding (no data after ${SEGMENT_FETCH_TIMEOUT_MS / 1000}s)`,
-          ),
-        ),
-      SEGMENT_FETCH_TIMEOUT_MS,
-    );
+
+    let timedOut = false;
+    const timeoutId = setTimeout(() => {
+      timedOut = true;
+      timeoutController.abort();
+    }, this.timeoutMs);
 
     try {
       const response = await fetch(this.url, {
@@ -29,11 +54,19 @@ export class SegmentFetcher {
 
       if (!response.ok) {
         const body = await response.text();
-        throw new Error(body || `Fetch failed with status ${response.status}`);
+        return { kind: 'httpError', status: response.status, body };
       }
 
       const buffer = await response.arrayBuffer();
-      return new Uint8Array(buffer);
+      return { kind: 'ok', bytes: new Uint8Array(buffer) };
+    } catch (error) {
+      if (signal.aborted) {
+        return { kind: 'aborted' };
+      }
+      if (timedOut) {
+        return { kind: 'timeout', timeoutMs: this.timeoutMs };
+      }
+      return { kind: 'networkError', message: errorMessage(error) };
     } finally {
       clearTimeout(timeoutId);
       signal.removeEventListener('abort', abortWithParentReason);

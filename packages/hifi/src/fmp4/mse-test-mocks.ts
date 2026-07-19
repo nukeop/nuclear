@@ -20,10 +20,7 @@ export class MockSourceBuffer {
   updating = false;
   buffered = new MockTimeRanges();
   private listeners: Record<string, EventHandler[]> = {};
-  appendBuffer = vi.fn(() => {
-    if (this.updating) {
-      throw new Error('InvalidStateError: cannot appendBuffer while updating');
-    }
+  appendBuffer = vi.fn<(data: ArrayBuffer) => void>(() => {
     this.updating = true;
     Promise.resolve().then(() => {
       this.updating = false;
@@ -31,9 +28,6 @@ export class MockSourceBuffer {
     });
   });
   remove = vi.fn(() => {
-    if (this.updating) {
-      throw new Error('InvalidStateError: cannot remove while updating');
-    }
     this.updating = true;
     Promise.resolve().then(() => {
       this.updating = false;

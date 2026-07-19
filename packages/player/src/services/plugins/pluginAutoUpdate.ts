@@ -3,7 +3,7 @@ import gt from 'semver/functions/gt';
 import { pluginMarketplaceApi } from '../../apis/pluginMarketplaceApi';
 import { usePluginStore } from '../../stores/pluginStore';
 import { getSetting } from '../../stores/settingsStore';
-import { resolveErrorMessage } from '../../utils/logging';
+import { errorMessage } from '../../utils/error';
 import { Logger } from '../logger';
 import { downloadAndExtractPlugin } from './pluginDownloader';
 import { listRegistryEntries } from './pluginRegistry';
@@ -58,7 +58,7 @@ export const checkAndUpdatePlugins = async (): Promise<void> => {
       );
     } catch (error) {
       Logger.plugins.warn(
-        `Failed to auto-update plugin ${entry.id}: ${resolveErrorMessage(error)}`,
+        `Failed to auto-update plugin ${entry.id}: ${errorMessage(error)}`,
       );
     }
   }

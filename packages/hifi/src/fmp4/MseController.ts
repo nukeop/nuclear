@@ -1,131 +1,83 @@
 import { LoggerProvider } from '../LoggerProvider';
+import { SoundError } from '../SoundError';
 import { BufferOperationQueue } from './BufferOperationQueue';
-import { FetchBackoff } from './FetchBackoff';
 import { GapJumpController } from './GapJumpController';
-import { getMseBackend } from './MseBackend';
-import { parseInitSegment, SegmentReference } from './parser';
-import { SegmentFetcher } from './SegmentFetcher';
+import {
+  MediaSourceAttachment,
+  waitForSourceOpen,
+} from './MediaSourceAttachment';
+import { parseInitSegment } from './parser';
+import {
+  describeFetchFailure,
+  isSourceInvalidStatus,
+  RangeFetchFailure,
+  SegmentFetcher,
+} from './SegmentFetcher';
+import { SegmentTimeline } from './SegmentTimeline';
+import { StreamHealth } from './StreamHealth';
 
 const HEADER_FETCH_SIZE = 8192;
 const LOOKAHEAD_SECONDS = 30;
 const SEEK_PREFETCH_COUNT = 3;
-const BUFFERED_END_TOLERANCE_SECONDS = 0.01;
+
+export type MseInitOptions = {
+  codec?: string;
+  onError?: (error: SoundError) => void;
+  onSourceInvalid?: () => void;
+};
 
 export class MseController {
-  private mediaSource: MediaSource | null = null;
+  private attachment = new MediaSourceAttachment();
   private sourceBuffer: SourceBuffer | null = null;
-  private segments: SegmentReference[] = [];
+  private timeline = new SegmentTimeline([]);
   private initSegment: Uint8Array | null = null;
-  private fetchedSegments = new Set<number>();
   private abortController: AbortController | null = null;
-  private objectUrl: string | null = null;
   private fetcher: SegmentFetcher | null = null;
   private isFetching = false;
   private bufferQueue: BufferOperationQueue | null = null;
   private seekGeneration = 0;
-  private backoff = new FetchBackoff();
+  private health = new StreamHealth();
   private gapJumpController = new GapJumpController();
 
   async init(
     audio: HTMLAudioElement,
     url: string,
-    codec?: string,
-    onError?: (error: Error) => void,
+    options: MseInitOptions = {},
   ): Promise<void> {
+    this.health = new StreamHealth(options.onSourceInvalid);
     const fetcher = new SegmentFetcher(url);
     this.fetcher = fetcher;
     const abortController = new AbortController();
     this.abortController = abortController;
     const { signal } = abortController;
 
-    let headerBytes: Uint8Array;
-    try {
-      headerBytes = await fetcher.fetchRange(0, HEADER_FETCH_SIZE - 1, signal);
-    } catch (error) {
-      const reason = error instanceof Error ? error.message : String(error);
-      onError?.(new Error(`Could not load the audio stream: ${reason}`));
+    const headerBytes = await this.fetchHeader(fetcher, signal, options);
+    if (!headerBytes) {
       return;
     }
 
-    let index;
-    try {
-      index = parseInitSegment(headerBytes);
-    } catch {
-      onError?.(
-        new Error(
-          'The audio stream is not in a supported format. Try a different source for this track.',
-        ),
-      );
+    const initSegment = this.parseHeader(headerBytes, options);
+    if (!initSegment) {
       return;
     }
 
-    const { initSegmentEnd, segments } = index;
-    this.segments = segments;
-
-    const sidxDuration =
-      segments.length > 0 ? segments[segments.length - 1].endTime : 0;
-
-    const initSegment = headerBytes.slice(0, initSegmentEnd);
-    this.initSegment = initSegment;
-    this.fetchedSegments = new Set();
-
-    const backend = getMseBackend();
-    if (!backend) {
-      onError?.(
-        new Error(
-          'Streaming is not available because this system lacks MediaSource Extensions. Updating your system web engine may fix this.',
-        ),
-      );
+    const mediaSource = this.attachment.attach(audio);
+    if (!mediaSource) {
+      options.onError?.(new SoundError('mseUnavailable'));
       return;
     }
 
-    const mediaSource = new backend.Constructor();
-    this.mediaSource = mediaSource;
-
-    if (backend.managed) {
-      audio.disableRemotePlayback = true;
-      audio.srcObject = mediaSource;
-    } else {
-      const objectUrl = URL.createObjectURL(mediaSource);
-      this.objectUrl = objectUrl;
-      audio.src = objectUrl;
-    }
-
-    await new Promise<void>((resolve) => {
-      const onSourceOpen = () => {
-        mediaSource.removeEventListener('sourceopen', onSourceOpen);
-        resolve();
-      };
-      mediaSource.addEventListener('sourceopen', onSourceOpen);
-    });
-
+    await waitForSourceOpen(mediaSource);
     if (signal.aborted) {
       return;
     }
 
-    const mimeType = `audio/mp4; codecs="${codec ?? 'mp4a.40.2'}"`;
-
-    const sourceBuffer = mediaSource.addSourceBuffer(mimeType);
-    this.sourceBuffer = sourceBuffer;
-    const bufferQueue = new BufferOperationQueue(sourceBuffer);
-    this.bufferQueue = bufferQueue;
-
-    mediaSource.duration = sidxDuration;
-
-    try {
-      await bufferQueue.enqueue(() =>
-        sourceBuffer.appendBuffer(initSegment.buffer as ArrayBuffer),
-      );
-    } catch {
-      onError?.(
-        new Error(
-          'The audio engine rejected the stream data. The codec may be unsupported. Try a different source for this track.',
-        ),
-      );
-      return;
-    }
-
-    if (signal.aborted) {
+    const sourceBuffer = await this.prepareSourceBuffer(
+      mediaSource,
+      initSegment,
+      options,
+    );
+    if (!sourceBuffer || signal.aborted) {
       return;
     }
 
@@ -133,11 +85,76 @@ export class MseController {
       this.handleTimeUpdate(audio),
     );
 
-    if (segments.length === 0) {
+    if (this.timeline.isEmpty) {
       return;
     }
 
     await this.fetchAndAppendSegment(0, signal);
+  }
+
+  private async fetchHeader(
+    fetcher: SegmentFetcher,
+    signal: AbortSignal,
+    options: MseInitOptions,
+  ): Promise<Uint8Array | null> {
+    const result = await fetcher.fetchRange(0, HEADER_FETCH_SIZE - 1, signal);
+    if (result.kind === 'ok') {
+      return result.bytes;
+    }
+    if (result.kind === 'aborted') {
+      return null;
+    }
+    if (result.kind === 'httpError' && isSourceInvalidStatus(result.status)) {
+      if (this.health.invalidate()) {
+        void LoggerProvider.get().warn(
+          `[MSE] Header fetch rejected with status ${result.status}; the stream URL is no longer valid`,
+        );
+      }
+      return null;
+    }
+    options.onError?.(
+      new SoundError('loadFailed', describeFetchFailure(result)),
+    );
+    return null;
+  }
+
+  private parseHeader(
+    headerBytes: Uint8Array,
+    options: MseInitOptions,
+  ): Uint8Array | null {
+    try {
+      const { initSegmentEnd, segments } = parseInitSegment(headerBytes);
+      this.timeline = new SegmentTimeline(segments);
+      this.initSegment = headerBytes.slice(0, initSegmentEnd);
+      return this.initSegment;
+    } catch {
+      options.onError?.(new SoundError('unsupportedFormat'));
+      return null;
+    }
+  }
+
+  private async prepareSourceBuffer(
+    mediaSource: MediaSource,
+    initSegment: Uint8Array,
+    options: MseInitOptions,
+  ): Promise<SourceBuffer | null> {
+    const mimeType = `audio/mp4; codecs="${options.codec ?? 'mp4a.40.2'}"`;
+    const sourceBuffer = mediaSource.addSourceBuffer(mimeType);
+    this.sourceBuffer = sourceBuffer;
+    const bufferQueue = new BufferOperationQueue(sourceBuffer);
+    this.bufferQueue = bufferQueue;
+    mediaSource.duration = this.timeline.durationSeconds;
+
+    try {
+      await bufferQueue.enqueue(() =>
+        sourceBuffer.appendBuffer(initSegment.buffer as ArrayBuffer),
+      );
+    } catch {
+      options.onError?.(new SoundError('appendRejected'));
+      return null;
+    }
+
+    return sourceBuffer;
   }
 
   handleStall(audio: HTMLAudioElement): void {
@@ -150,66 +167,70 @@ export class MseController {
   }
 
   handleTimeUpdate(audio: HTMLAudioElement): void {
-    const { sourceBuffer, segments } = this;
-    if (this.isFetching || !sourceBuffer || segments.length === 0) {
+    const { sourceBuffer, abortController } = this;
+    if (!sourceBuffer || !abortController || abortController.signal.aborted) {
       return;
     }
 
-    if (this.backoff.isWaiting) {
+    if (
+      this.health.isInvalid ||
+      this.health.isWaitingToRetry ||
+      this.isFetching
+    ) {
       return;
     }
 
-    const { buffered } = sourceBuffer;
-    if (buffered.length === 0) {
-      return;
-    }
-
-    const bufferedEnd = buffered.end(buffered.length - 1);
-    const lookAheadThreshold = audio.currentTime + LOOKAHEAD_SECONDS;
-
-    if (bufferedEnd >= lookAheadThreshold) {
-      return;
-    }
-
-    const nextIndex = this.findNextUnfetchedSegment(bufferedEnd);
+    const nextIndex = this.nextSegmentIndexToBuffer(
+      sourceBuffer,
+      audio.currentTime,
+    );
     if (nextIndex === -1) {
       return;
     }
 
-    const controller = this.abortController;
-    if (!controller || controller.signal.aborted) {
-      return;
+    this.isFetching = true;
+    this.fetchAndAppendSegment(nextIndex, abortController.signal).finally(
+      () => {
+        this.isFetching = false;
+        this.handleTimeUpdate(audio);
+      },
+    );
+  }
+
+  private nextSegmentIndexToBuffer(
+    sourceBuffer: SourceBuffer,
+    currentTime: number,
+  ): number {
+    const { buffered } = sourceBuffer;
+    if (buffered.length === 0) {
+      return -1;
     }
 
-    this.isFetching = true;
-    this.fetchAndAppendSegment(nextIndex, controller.signal).finally(() => {
-      this.isFetching = false;
-      this.handleTimeUpdate(audio);
-    });
+    const bufferedEnd = buffered.end(buffered.length - 1);
+    if (bufferedEnd >= currentTime + LOOKAHEAD_SECONDS) {
+      return -1;
+    }
+
+    return this.timeline.nextUnfetchedIndex(bufferedEnd);
   }
 
   async handleSeeking(audio: HTMLAudioElement): Promise<void> {
-    const {
-      sourceBuffer,
-      bufferQueue,
-      segments,
-      initSegment,
-      abortController,
-    } = this;
+    const { sourceBuffer, bufferQueue, initSegment, abortController } = this;
 
     if (
+      this.health.isInvalid ||
       !sourceBuffer ||
       !bufferQueue ||
       !initSegment ||
       !abortController ||
       abortController.signal.aborted ||
-      segments.length === 0
+      this.timeline.isEmpty
     ) {
       return;
     }
 
     const seekTime = audio.currentTime;
-    const targetIndex = this.findSegmentForTime(seekTime);
+    const targetIndex = this.timeline.segmentIndexForTime(seekTime);
     if (targetIndex === -1) {
       return;
     }
@@ -222,7 +243,7 @@ export class MseController {
 
     try {
       await bufferQueue.enqueue(() => sourceBuffer.remove(0, Infinity));
-      this.fetchedSegments.clear();
+      this.timeline.clearFetched();
 
       if (abortController.signal.aborted) {
         return;
@@ -238,7 +259,7 @@ export class MseController {
 
       const lastIndex = Math.min(
         targetIndex + SEEK_PREFETCH_COUNT,
-        segments.length,
+        this.timeline.length,
       );
       for (
         let segmentIndex = targetIndex;
@@ -263,53 +284,15 @@ export class MseController {
       this.abortController = null;
     }
 
-    if (this.objectUrl) {
-      URL.revokeObjectURL(this.objectUrl);
-      this.objectUrl = null;
-    }
-
-    if (audio && audio.srcObject) {
-      audio.srcObject = null;
-    }
-
-    const mediaSource = this.mediaSource;
-    if (mediaSource && mediaSource.readyState === 'open') {
-      try {
-        mediaSource.endOfStream();
-      } catch {
-        // MediaSource may already be closing
-      }
-    }
+    this.attachment.detach(audio);
 
     this.bufferQueue?.close();
     this.bufferQueue = null;
-    this.mediaSource = null;
     this.sourceBuffer = null;
-    this.segments = [];
+    this.timeline = new SegmentTimeline([]);
     this.initSegment = null;
-    this.fetchedSegments = new Set();
     this.fetcher = null;
-  }
-
-  private findSegmentForTime(time: number): number {
-    const { segments } = this;
-    let low = 0;
-    let high = segments.length - 1;
-
-    while (low <= high) {
-      const mid = (low + high) >>> 1;
-      const segment = segments[mid];
-
-      if (time < segment.startTime) {
-        high = mid - 1;
-      } else if (time >= segment.endTime) {
-        low = mid + 1;
-      } else {
-        return mid;
-      }
-    }
-
-    return -1;
+    this.health = new StreamHealth();
   }
 
   private isTimeBuffered(sourceBuffer: SourceBuffer, time: number): boolean {
@@ -322,69 +305,53 @@ export class MseController {
     return false;
   }
 
-  private findNextUnfetchedSegment(bufferedEnd: number): number {
-    for (let index = 0; index < this.segments.length; index++) {
-      if (this.fetchedSegments.has(index)) {
-        continue;
-      }
-      if (
-        this.segments[index].endTime >
-        bufferedEnd + BUFFERED_END_TOLERANCE_SECONDS
-      ) {
-        return index;
-      }
-    }
-    return -1;
-  }
-
   private async fetchAndAppendSegment(
     segmentIndex: number,
     signal: AbortSignal,
   ): Promise<void> {
-    const { segments, sourceBuffer, fetcher, bufferQueue } = this;
+    const { timeline, sourceBuffer, fetcher, bufferQueue } = this;
 
     if (
       !sourceBuffer ||
       !fetcher ||
       !bufferQueue ||
-      segmentIndex >= segments.length
+      !timeline.contains(segmentIndex)
     ) {
       return;
     }
 
-    if (this.fetchedSegments.has(segmentIndex)) {
+    if (timeline.isFetched(segmentIndex)) {
       return;
     }
 
-    this.fetchedSegments.add(segmentIndex);
+    timeline.markFetched(segmentIndex);
 
-    const segment = segments[segmentIndex];
+    const segment = timeline.get(segmentIndex);
     const generation = this.seekGeneration;
 
-    let segmentData: Uint8Array;
-    try {
-      segmentData = await fetcher.fetchRange(
-        segment.startByte,
-        segment.endByte,
-        signal,
-      );
-    } catch (error) {
-      this.fetchedSegments.delete(segmentIndex);
-      if (!signal.aborted) {
-        this.reportFetchFailure(segmentIndex, error);
+    const result = await fetcher.fetchRange(
+      segment.startByte,
+      segment.endByte,
+      signal,
+    );
+    if (result.kind !== 'ok') {
+      timeline.unmarkFetched(segmentIndex);
+      if (result.kind !== 'aborted') {
+        this.reportFetchFailure(segmentIndex, result);
       }
       return;
     }
 
-    this.backoff.reset();
+    const segmentData = result.bytes;
+    this.health.registerSuccess();
 
     if (signal.aborted) {
-      this.fetchedSegments.delete(segmentIndex);
+      timeline.unmarkFetched(segmentIndex);
       return;
     }
 
     if (this.seekGeneration !== generation) {
-      this.fetchedSegments.delete(segmentIndex);
+      timeline.unmarkFetched(segmentIndex);
       return;
     }
 
@@ -393,28 +360,37 @@ export class MseController {
         sourceBuffer.appendBuffer(segmentData.buffer as ArrayBuffer),
       );
     } catch {
-      this.fetchedSegments.delete(segmentIndex);
+      timeline.unmarkFetched(segmentIndex);
       return;
     }
 
-    const isFinalSegment = segmentIndex === segments.length - 1;
-    const mediaSource = this.mediaSource;
-
-    if (
-      isFinalSegment &&
-      mediaSource &&
-      mediaSource.readyState === 'open' &&
-      !sourceBuffer.updating
-    ) {
-      mediaSource.endOfStream();
+    if (timeline.isFinal(segmentIndex) && !sourceBuffer.updating) {
+      this.attachment.endStream();
     }
   }
 
-  private reportFetchFailure(segmentIndex: number, error: unknown): void {
-    const { attempt, backoffMs } = this.backoff.registerFailure();
-    const reason = error instanceof Error ? error.message : String(error);
-    void LoggerProvider.get().warn(
-      `[MSE] Segment ${segmentIndex} fetch failed (attempt ${attempt}, retrying in ${backoffMs}ms): ${reason}`,
-    );
+  private reportFetchFailure(
+    segmentIndex: number,
+    failure: RangeFetchFailure,
+  ): void {
+    const logger = LoggerProvider.get();
+
+    this.health.registerFailure(failure, {
+      invalidByStatus: (status) => {
+        void logger.warn(
+          `[MSE] Segment ${segmentIndex} fetch rejected with status ${status}; the stream URL is no longer valid`,
+        );
+      },
+      exhausted: (attempt) => {
+        void logger.warn(
+          `[MSE] Segment ${segmentIndex} fetch failed ${attempt} times in a row; giving up on the stream URL`,
+        );
+      },
+      retrying: (attempt, backoffMs) => {
+        void logger.warn(
+          `[MSE] Segment ${segmentIndex} fetch failed (attempt ${attempt}, retrying in ${backoffMs}ms): ${describeFetchFailure(failure)}`,
+        );
+      },
+    });
   }
 }

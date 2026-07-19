@@ -3,7 +3,8 @@ import { check, type Update } from '@tauri-apps/plugin-updater';
 import { create } from 'zustand';
 
 import { Logger } from '../services/logger';
-import { reportError, resolveErrorMessage } from '../utils/logging';
+import { errorMessage } from '../utils/error';
+import { reportError } from '../utils/logging';
 import { getSetting } from './settingsStore';
 
 type UpdaterState = {
@@ -56,13 +57,13 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
         }
       }
     } catch (error) {
-      const message = resolveErrorMessage(error);
+      const message = errorMessage(error);
 
       Logger.updates.error(`Failed to check for updates: ${message}`);
       set({
         isChecking: false,
         lastChecked: new Date(),
-        error: resolveErrorMessage(error),
+        error: errorMessage(error),
       });
     }
   },
@@ -96,7 +97,7 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
         }
       });
     } catch (error) {
-      const message = resolveErrorMessage(error);
+      const message = errorMessage(error);
       Logger.updates.error(`Failed to download/install update: ${message}`);
       set({
         isDownloading: false,
@@ -114,7 +115,7 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
         userMessage: 'Failed to restart for update',
         error,
       });
-      set({ error: resolveErrorMessage(error) });
+      set({ error: errorMessage(error) });
     }
   },
 }));

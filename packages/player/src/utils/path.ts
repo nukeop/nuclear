@@ -1,7 +1,8 @@
 import { BaseDirectory, exists, mkdir } from '@tauri-apps/plugin-fs';
 
 import { Logger } from '../services/logger';
-import { reportError, resolveErrorMessage } from './logging';
+import { errorMessage } from './error';
+import { reportError } from './logging';
 
 export const ensureDir = async (
   dir: string,
@@ -23,9 +24,7 @@ export const ensureDir = async (
       }
     }
   } catch (error) {
-    Logger.fs.error(
-      `fs.exists failed for ${dir}: ${resolveErrorMessage(error)}`,
-    );
+    Logger.fs.error(`fs.exists failed for ${dir}: ${errorMessage(error)}`);
   }
   return dir;
 };

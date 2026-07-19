@@ -16,6 +16,7 @@ import { useAudioSeek } from './hooks/useAudioSeek';
 import { useHlsSource } from './hooks/useHlsSource';
 import { useMseSource } from './hooks/useMseSource';
 import { usePlaybackStatus } from './hooks/usePlaybackStatus';
+import { useStartPosition } from './hooks/useStartPosition';
 import { Destination } from './plugins/Destination';
 import { SoundProps } from './types';
 
@@ -34,6 +35,7 @@ export const Sound: React.FC<SoundProps> = ({
   onLoadStart,
   onCanPlay,
   onError,
+  onSourceInvalid,
   children,
 }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -64,9 +66,10 @@ export const Sound: React.FC<SoundProps> = ({
   }, [source, context, children]);
 
   useAudioSeek(audioRef, seek, isReady);
+  useStartPosition(audioRef, src, isReady);
   useAudioLoader(audioRef, src, isReady);
   useHlsSource(audioRef, src, isReady);
-  useMseSource(audioRef, src, isReady, onError);
+  useMseSource(audioRef, src, isReady, onError, onSourceInvalid);
   usePlaybackStatus(audioRef, status, src.url, context, isReady, onError);
 
   useEffect(() => {

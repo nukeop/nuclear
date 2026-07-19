@@ -94,7 +94,7 @@ async fn proxy_stream(
     let upstream_response = match upstream_request.send().await {
         Ok(response) => response,
         Err(err) => {
-            log::error!("[StreamServer] Request failed: {err}");
+            log::error!("[StreamServer] Request failed: {err:?}");
             return error_response(StatusCode::BAD_GATEWAY, format!("Failed to fetch: {err}"));
         }
     };
@@ -103,7 +103,7 @@ async fn proxy_stream(
     if !upstream_status.is_success() && upstream_status != StatusCode::PARTIAL_CONTENT {
         log::error!("[StreamServer] Streaming service returned: {upstream_status}");
         return error_response(
-            StatusCode::BAD_GATEWAY,
+            StatusCode::from_u16(upstream_status.as_u16()).unwrap_or(StatusCode::BAD_GATEWAY),
             format!("Streaming service returned error: {upstream_status}"),
         );
     }

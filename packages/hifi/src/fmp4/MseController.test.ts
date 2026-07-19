@@ -1,3 +1,4 @@
+import { SoundError } from '../SoundError';
 import { FakeStreamServer } from '../test/fakes/FakeStreamServer';
 import { DEFAULT_TRACK, MSE_URL } from '../test/fixtures/fmp4Stream';
 import { initMockLogger } from '../test/mocks/mockLogger';
@@ -50,11 +51,8 @@ describe('MseController', () => {
     const sourceBuffer = mediaSource.sourceBuffers[0];
     expect(sourceBuffer.appendBuffer).toHaveBeenCalled();
 
-    const calls = sourceBuffer.appendBuffer.mock.calls as unknown[][];
-    const firstAppendArg = calls[0][0] as ArrayBuffer;
-    expect(new Uint8Array(firstAppendArg).byteLength).toBe(
-      DEFAULT_TRACK.initSegmentEnd,
-    );
+    const [[firstAppend]] = sourceBuffer.appendBuffer.mock.calls;
+    expect(new Uint8Array(firstAppend).byteLength).toBe(120);
   });
 
   it('fetches first media segment after init segment is appended', async () => {
@@ -86,28 +84,22 @@ describe('MseController', () => {
 
     const controller = new MseController();
     const onError = vi.fn();
-    await controller.init(fixture.audio, MSE_URL, undefined, onError);
+    await controller.init(fixture.audio, MSE_URL, { onError });
 
     await flushMicrotasks();
 
-    expect(onError).toHaveBeenCalledWith(
-      new Error(
-        'Streaming is not available because this system lacks MediaSource Extensions. Updating your system web engine may fix this.',
-      ),
-    );
+    expect(onError).toHaveBeenCalledWith(new SoundError('mseUnavailable'));
   });
 
   it('reports an error through onError when the stream header cannot be downloaded', async () => {
-    server.failNextRequest();
+    server.failNextRequest(502);
 
     const controller = new MseController();
     const onError = vi.fn();
-    await controller.init(fixture.audio, MSE_URL, undefined, onError);
+    await controller.init(fixture.audio, MSE_URL, { onError });
 
     expect(onError).toHaveBeenCalledWith(
-      new Error(
-        'Could not load the audio stream: Streaming service returned error: 403 Forbidden',
-      ),
+      new SoundError('loadFailed', 'Streaming service returned error: 502'),
     );
   });
 
@@ -116,13 +108,9 @@ describe('MseController', () => {
 
     const controller = new MseController();
     const onError = vi.fn();
-    await controller.init(fixture.audio, MSE_URL, undefined, onError);
+    await controller.init(fixture.audio, MSE_URL, { onError });
 
-    expect(onError).toHaveBeenCalledWith(
-      new Error(
-        'The audio stream is not in a supported format. Try a different source for this track.',
-      ),
-    );
+    expect(onError).toHaveBeenCalledWith(new SoundError('unsupportedFormat'));
   });
 
   it('cleans up on destroy', async () => {
@@ -326,22 +314,14 @@ describe('MseController', () => {
     releaseHeldFetch();
     await flushMicrotasks();
 
-    const staleSegmentSize = DEFAULT_TRACK.segmentSize(1);
     const staleAppendCalls = sourceBuffer.appendBuffer.mock.calls.filter(
-      (call: unknown[]) => {
-        const [data] = call as [ArrayBuffer];
-        return data.byteLength === staleSegmentSize;
-      },
+      ([data]) => data.byteLength === 60000,
     );
 
     expect(staleAppendCalls.length).toBe(0);
 
-    const postSeekSegmentSize = DEFAULT_TRACK.segmentSize(2);
     const postSeekAppendCalls = sourceBuffer.appendBuffer.mock.calls.filter(
-      (call: unknown[]) => {
-        const [data] = call as [ArrayBuffer];
-        return data.byteLength === postSeekSegmentSize;
-      },
+      ([data]) => data.byteLength === 45000,
     );
 
     expect(postSeekAppendCalls.length).toBe(1);
@@ -350,12 +330,7 @@ describe('MseController', () => {
   it('reports an error through onError instead of rejecting when the init segment append fails', async () => {
     const controller = new MseController();
     const onError = vi.fn();
-    const initPromise = controller.init(
-      fixture.audio,
-      MSE_URL,
-      undefined,
-      onError,
-    );
+    const initPromise = controller.init(fixture.audio, MSE_URL, { onError });
 
     await vi.waitFor(() => expect(fixture.latestMediaSource).not.toBeNull());
 
@@ -371,83 +346,108 @@ describe('MseController', () => {
     fixture.latestMediaSource!.open();
     await initPromise;
 
-    expect(onError).toHaveBeenCalledWith(
-      new Error(
-        'The audio engine rejected the stream data. The codec may be unsupported. Try a different source for this track.',
-      ),
-    );
+    expect(onError).toHaveBeenCalledWith(new SoundError('appendRejected'));
   });
 
   describe('segment fetch resilience', () => {
-    const SEGMENT_FETCH_TIMEOUT_MS = 10000;
-    const FIRST_RETRY_BACKOFF_MS = 1000;
-    const SECOND_RETRY_BACKOFF_MS = 2000;
-
     afterEach(() => {
       vi.useRealTimers();
     });
 
-    it('aborts a segment fetch that hangs past the timeout so a later poll can retry it', async () => {
+    it('retries fetching the segment when the server does not respond within the timeout', async () => {
       const controller = new MseController();
-      await fixture.initControllerAtLowBuffer(controller);
       vi.useFakeTimers();
+      const mediaSource = await fixture.initControllerAtLowBuffer(controller);
 
       server.hangNextRequest();
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(SEGMENT_FETCH_TIMEOUT_MS);
-      await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
-
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(0);
+      await vi.advanceTimersByTimeAsync(60_000);
 
       expect(server.requestCountForSegment(1)).toBe(2);
+
+      const sourceBuffer = mediaSource.sourceBuffers[0];
+      const [appendAfterRetry] = sourceBuffer.appendBuffer.mock.calls[2];
+      expect(appendAfterRetry.byteLength).toBe(60000);
     });
 
-    it('waits for the backoff delay before refetching a segment after a failed fetch', async () => {
+    it('reports the source as invalid and stops fetching after 6 consecutive failed segment fetches', async () => {
       const controller = new MseController();
-      await fixture.initControllerAtLowBuffer(controller);
+      const onSourceInvalid = vi.fn();
       vi.useFakeTimers();
+      await fixture.initControllerAtLowBuffer(controller, { onSourceInvalid });
 
-      server.failNextRequest();
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(0);
+      server.failAllRequests(502);
+      await vi.advanceTimersByTimeAsync(60_000);
 
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(0);
+      expect(onSourceInvalid).toHaveBeenCalledOnce();
+      expect(server.requestCountForSegment(1)).toBe(6);
+
+      await vi.advanceTimersByTimeAsync(60_000);
+
+      expect(server.requestCountForSegment(1)).toBe(6);
+    });
+
+    it('resets the failure count after a successful fetch', async () => {
+      const controller = new MseController();
+      const onSourceInvalid = vi.fn();
+      vi.useFakeTimers();
+      await fixture.initControllerAtLowBuffer(controller, { onSourceInvalid });
+
+      server.failAllRequests(502);
+      await vi.advanceTimersByTimeAsync(20_000);
+
+      server.succeedNextRequest();
+      await vi.advanceTimersByTimeAsync(20_000);
+
+      expect(onSourceInvalid).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('stream invalidation', () => {
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('reports the source as invalid instead of an error when the header fetch returns 403', async () => {
+      server.failNextRequest(403);
+
+      const controller = new MseController();
+      const onError = vi.fn();
+      const onSourceInvalid = vi.fn();
+      await controller.init(fixture.audio, MSE_URL, {
+        onError,
+        onSourceInvalid,
+      });
+
+      expect(onSourceInvalid).toHaveBeenCalledOnce();
+      expect(onError).not.toHaveBeenCalled();
+    });
+
+    it('reports the source as invalid when the header fetch returns 410', async () => {
+      server.failNextRequest(410);
+
+      const controller = new MseController();
+      const onSourceInvalid = vi.fn();
+      await controller.init(fixture.audio, MSE_URL, { onSourceInvalid });
+
+      expect(onSourceInvalid).toHaveBeenCalledOnce();
+    });
+
+    it('invalidates the stream immediately when a segment fetch returns 403, without retrying', async () => {
+      const controller = new MseController();
+      const onSourceInvalid = vi.fn();
+      vi.useFakeTimers();
+      await fixture.initControllerAtLowBuffer(controller, { onSourceInvalid });
+
+      server.failAllRequests(403);
+      await vi.advanceTimersByTimeAsync(1_000);
+
+      expect(onSourceInvalid).toHaveBeenCalledOnce();
       expect(server.requestCountForSegment(1)).toBe(1);
 
-      await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(0);
-      expect(server.requestCountForSegment(1)).toBe(2);
-    });
+      await vi.advanceTimersByTimeAsync(60_000);
 
-    it('doubles the backoff delay after consecutive fetch failures', async () => {
-      const controller = new MseController();
-      await fixture.initControllerAtLowBuffer(controller);
-      vi.useFakeTimers();
-
-      server.failNextRequest();
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(0);
-
-      await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
-      server.failNextRequest();
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(0);
-      expect(server.requestCountForSegment(1)).toBe(2);
-
-      await vi.advanceTimersByTimeAsync(FIRST_RETRY_BACKOFF_MS);
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(0);
-      expect(server.requestCountForSegment(1)).toBe(2);
-
-      await vi.advanceTimersByTimeAsync(
-        SECOND_RETRY_BACKOFF_MS - FIRST_RETRY_BACKOFF_MS,
-      );
-      controller.handleTimeUpdate(fixture.audio);
-      await vi.advanceTimersByTimeAsync(0);
-      expect(server.requestCountForSegment(1)).toBe(3);
+      expect(server.requestCountForSegment(1)).toBe(1);
+      expect(onSourceInvalid).toHaveBeenCalledOnce();
     });
   });
 });

@@ -1,6 +1,6 @@
 import { MSE_URL } from '../test/fixtures/fmp4Stream';
 import { MockMediaSource, MockTimeRanges } from './mse-test-mocks';
-import { MseController } from './MseController';
+import { MseController, MseInitOptions } from './MseController';
 
 export {
   MockMediaSource,
@@ -77,8 +77,9 @@ export class MseTestFixture {
 
   async initControllerAtLowBuffer(
     controller: MseController,
+    options: MseInitOptions = {},
   ): Promise<MockMediaSource> {
-    const mediaSource = await this.initController(controller);
+    const mediaSource = await this.initController(controller, options);
 
     const sourceBuffer = mediaSource.sourceBuffers[0];
     sourceBuffer.buffered = new MockTimeRanges();
@@ -88,8 +89,11 @@ export class MseTestFixture {
     return mediaSource;
   }
 
-  async initController(controller: MseController): Promise<MockMediaSource> {
-    const initPromise = controller.init(this.audio, MSE_URL);
+  async initController(
+    controller: MseController,
+    options: MseInitOptions = {},
+  ): Promise<MockMediaSource> {
+    const initPromise = controller.init(this.audio, MSE_URL, options);
 
     await vi.waitFor(() => expect(this.latestMediaSource).not.toBeNull());
     this.latestMediaSource!.open();

@@ -2,7 +2,7 @@ import { normalize } from '@tauri-apps/api/path';
 
 import { usePluginStore } from '../../stores/pluginStore';
 import { useStartupStore } from '../../stores/startupStore';
-import { resolveErrorMessage } from '../../utils/logging';
+import { errorMessage } from '../../utils/error';
 import { providersHost } from '../providersHost';
 import { createPluginAPI } from './createPluginAPI';
 import { checkAndUpdatePlugins } from './pluginAutoUpdate';
@@ -60,7 +60,7 @@ export const hydratePluginsFromRegistry = async (): Promise<void> => {
         await usePluginStore.getState().enablePlugin(entry.id);
       }
     } catch (error) {
-      const message = resolveErrorMessage(error);
+      const message = errorMessage(error);
       const current = await getRegistryEntry(entry.id);
       const merged = Array.from(
         new Set([...(current?.warnings ?? []), message]),

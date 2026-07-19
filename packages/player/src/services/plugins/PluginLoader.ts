@@ -12,6 +12,7 @@ import type {
 } from '@nuclearplayer/plugin-sdk';
 import * as nuclearUI from '@nuclearplayer/ui';
 
+import { errorMessage } from '../../utils/error';
 import { Logger } from '../logger';
 import { compilePlugin } from './pluginCompiler';
 import { safeParsePluginManifest } from './pluginManifest';
@@ -136,9 +137,7 @@ export class PluginLoader {
         require,
       );
     } catch (error) {
-      Logger.plugins.error(
-        `Plugin evaluation failed: ${error instanceof Error ? error.message : String(error)}`,
-      );
+      Logger.plugins.error(`Plugin evaluation failed: ${errorMessage(error)}`);
       throw error;
     }
 

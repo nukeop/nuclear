@@ -1,31 +1,38 @@
-const BACKOFF_BASE_MS = 1_000;
-const BACKOFF_MAX_MS = 30_000;
-
 export type FetchFailure = {
   attempt: number;
   backoffMs: number;
 };
 
 export class FetchBackoff {
-  private consecutiveFailures = 0;
+  private retries = 0;
   private nextAttemptAtMs = 0;
+
+  constructor(
+    private readonly baseDelayMs = 1_000,
+    private readonly maxDelayMs = 30_000,
+    private readonly maxRetries = 6,
+  ) {}
 
   get isWaiting(): boolean {
     return Date.now() < this.nextAttemptAtMs;
   }
 
+  get isExhausted(): boolean {
+    return this.retries >= this.maxRetries;
+  }
+
   registerFailure(): FetchFailure {
-    this.consecutiveFailures += 1;
+    this.retries += 1;
     const backoffMs = Math.min(
-      BACKOFF_BASE_MS * 2 ** (this.consecutiveFailures - 1),
-      BACKOFF_MAX_MS,
+      this.baseDelayMs * 2 ** (this.retries - 1),
+      this.maxDelayMs,
     );
     this.nextAttemptAtMs = Date.now() + backoffMs;
-    return { attempt: this.consecutiveFailures, backoffMs };
+    return { attempt: this.retries, backoffMs };
   }
 
   reset(): void {
-    this.consecutiveFailures = 0;
+    this.retries = 0;
     this.nextAttemptAtMs = 0;
   }
 }

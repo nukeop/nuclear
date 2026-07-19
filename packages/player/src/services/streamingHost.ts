@@ -5,7 +5,7 @@ import type {
 } from '@nuclearplayer/plugin-sdk';
 
 import { useSettingsStore } from '../stores/settingsStore';
-import { resolveErrorMessage } from '../utils/logging';
+import { errorMessage } from '../utils/error';
 import { Logger } from './logger';
 import { providersHost } from './providersHost';
 
@@ -77,9 +77,9 @@ export const createStreamingHost = (): StreamingHost => ({
       };
     } catch (error) {
       Logger.streaming.error(
-        `resolveCandidatesForTrack error: ${resolveErrorMessage(error)}`,
+        `resolveCandidatesForTrack error: ${errorMessage(error)}`,
       );
-      const message = error instanceof Error ? error.message : 'Unknown error';
+      const message = errorMessage(error);
       return {
         success: false,
         error: `Failed to resolve candidates: ${message}`,
@@ -126,9 +126,7 @@ export const createStreamingHost = (): StreamingHost => ({
         failed: false,
       };
     } catch (error) {
-      Logger.streaming.error(
-        `getStreamUrl failed: ${resolveErrorMessage(error)}`,
-      );
+      Logger.streaming.error(`getStreamUrl failed: ${errorMessage(error)}`);
       return {
         ...candidate,
         failed: true,

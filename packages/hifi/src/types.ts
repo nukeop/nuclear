@@ -5,6 +5,7 @@ export type AudioSource = {
   protocol: 'file' | 'http' | 'https' | 'hls' | 'mse';
   durationSeconds?: number;
   codec?: string;
+  startPositionSeconds?: number;
 };
 
 export type LogLevel = 'trace' | 'debug' | 'info' | 'warn' | 'error';
@@ -27,5 +28,6 @@ export type SoundProps = {
   onLoadStart?: () => void;
   onCanPlay?: () => void;
   onError?: (error: Error) => void;
+  onSourceInvalid?: () => void;
   children?: ReactNode;
 };

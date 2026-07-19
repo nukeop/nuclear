@@ -8,6 +8,7 @@ export type RecordedRequest = {
 
 type FakeResponse = {
   ok: boolean;
+  status: number;
   arrayBuffer?: () => Promise<ArrayBuffer>;
   text?: () => Promise<string>;
 };
@@ -39,7 +40,16 @@ function hangUntilAborted(signal: AbortSignal | null | undefined) {
 function respondWithBytes(bytes: Uint8Array): FakeResponse {
   return {
     ok: true,
+    status: 206,
     arrayBuffer: async () => bytes.buffer as ArrayBuffer,
+  };
+}
+
+function errorResponse(status: number): FakeResponse {
+  return {
+    ok: false,
+    status,
+    text: async () => `Streaming service returned error: ${status}`,
   };
 }
 
@@ -52,12 +62,14 @@ export class FakeStreamServer {
   ) => respondWithBytes(this.track.bytesForRange(startByte, endByte));
 
   private nextResponse: ResponseOverride = this.serveFromTrack;
+  private persistentResponse: ResponseOverride | null = null;
 
   constructor(private readonly track: Fmp4Track) {}
 
   setup(): void {
     this.requests = [];
     this.nextResponse = this.serveFromTrack;
+    this.persistentResponse = null;
     vi.stubGlobal('fetch', (url: string, options?: RequestInit) =>
       this.handleRequest(url, options),
     );
@@ -87,11 +99,17 @@ export class FakeStreamServer {
     this.requests = [];
   }
 
-  failNextRequest(): void {
-    this.nextResponse = async () => ({
-      ok: false,
-      text: async () => 'Streaming service returned error: 403 Forbidden',
-    });
+  failNextRequest(status: number): void {
+    this.nextResponse = async () => errorResponse(status);
+  }
+
+  failAllRequests(status: number): void {
+    this.persistentResponse = async () => errorResponse(status);
+  }
+
+  succeedNextRequest(): void {
+    this.nextResponse = (startByte, endByte, options) =>
+      this.serveFromTrack(startByte, endByte, options);
   }
 
   hangNextRequest(): void {
@@ -123,8 +141,16 @@ export class FakeStreamServer {
     const { startByte, endByte } = parseByteRange(options);
     this.requests.push({ url, startByte, endByte });
 
-    const respond = this.nextResponse;
-    this.nextResponse = this.serveFromTrack;
-    return respond(startByte, endByte, options);
+    if (this.nextResponse !== this.serveFromTrack) {
+      const respond = this.nextResponse;
+      this.nextResponse = this.serveFromTrack;
+      return respond(startByte, endByte, options);
+    }
+
+    if (this.persistentResponse) {
+      return this.persistentResponse(startByte, endByte, options);
+    }
+
+    return this.serveFromTrack(startByte, endByte, options);
   }
 }

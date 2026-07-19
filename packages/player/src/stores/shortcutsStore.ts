@@ -3,7 +3,7 @@ import { create } from 'zustand';
 
 import { Logger } from '../services/logger';
 import { COMMANDS } from '../shortcuts/commands';
-import { resolveErrorMessage } from '../utils/logging';
+import { errorMessage } from '../utils/error';
 
 const SHORTCUTS_FILE = 'shortcuts.json';
 const store = new LazyStore(SHORTCUTS_FILE);
@@ -24,9 +24,7 @@ const saveToDisk = async (): Promise<void> => {
     await store.set('shortcuts.overrides', state.overrides);
     await store.save();
   } catch (error) {
-    Logger.settings.error(
-      `Failed to save shortcuts: ${resolveErrorMessage(error)}`,
-    );
+    Logger.settings.error(`Failed to save shortcuts: ${errorMessage(error)}`);
   }
 };
 

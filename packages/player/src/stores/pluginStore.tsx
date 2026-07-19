@@ -18,6 +18,7 @@ import {
   setRegistryEntryEnabled,
   upsertRegistryEntry,
 } from '../services/plugins/pluginRegistry';
+import { errorMessage } from '../utils/error';
 import { reportError } from '../utils/logging';
 
 const allowedPermissions: string[] = [];
@@ -199,7 +200,7 @@ export const usePluginStore = create<PluginStore>((set, get) => ({
       Logger.plugins.info(`Plugin ${id} enabled`);
     } catch (error) {
       Logger.plugins.error(
-        `Failed to enable plugin ${id}: ${error instanceof Error ? error.message : String(error)}`,
+        `Failed to enable plugin ${id}: ${errorMessage(error)}`,
       );
       throw error;
     }
