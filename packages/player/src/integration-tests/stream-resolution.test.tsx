@@ -131,7 +131,72 @@ describe('Stream Resolution Integration', () => {
 
       const currentItem = StreamResolutionWrapper.getCurrentQueueItem();
       expect(currentItem?.status).toBe('error');
+      expect(currentItem?.error).toBe('streaming:errors.noProviderAvailable');
+    });
+
+    it('shows error state when the provider fails to find candidates', async () => {
+      setupMetadataProvider();
+
+      const streamingProvider = new StreamingProviderBuilder()
+        .withSearchForTrack(async () => {
+          throw new Error('Search failed');
+        })
+        .build();
+
+      providersHost.register(streamingProvider);
+
+      await AlbumWrapper.mountDirectly();
+      await AlbumWrapper.addTrackToQueueByTitle('Countdown');
+
+      await StreamResolutionWrapper.waitForError();
+
+      const currentItem = StreamResolutionWrapper.getCurrentQueueItem();
+      expect(currentItem?.status).toBe('error');
       expect(currentItem?.error).toBe('streaming:errors.noCandidatesFound');
+    });
+
+    it('shows error state when no provider is available to resolve a cached candidate', async () => {
+      setupMetadataProvider();
+
+      useQueueStore.setState({
+        items: [
+          {
+            id: 'restored-item-1',
+            status: 'idle',
+            addedAtIso: new Date().toISOString(),
+            track: {
+              title: 'Karma Police',
+              artists: [{ name: 'Radiohead', roles: ['primary'] }],
+              source: { provider: 'test', id: 'karma-police' },
+              streamCandidates: [
+                {
+                  id: 'cached-yt-id',
+                  title: 'Karma Police',
+                  failed: false,
+                  source: { provider: 'yt', id: 'cached-yt-id' },
+                  stream: {
+                    url: 'https://cached.example.com/karma.m4a?token=old',
+                    protocol: 'https',
+                    source: { provider: 'yt', id: 'cached-yt-id' },
+                  },
+                  lastResolvedAtIso: new Date().toISOString(),
+                },
+              ],
+            },
+          },
+        ],
+        currentIndex: 0,
+        isReady: true,
+        isLoading: false,
+      });
+
+      await AlbumWrapper.mountDirectly();
+
+      await StreamResolutionWrapper.waitForError();
+
+      const currentItem = StreamResolutionWrapper.getCurrentQueueItem();
+      expect(currentItem?.status).toBe('error');
+      expect(currentItem?.error).toBe('streaming:errors.noProviderAvailable');
     });
 
     it('shows error state when all candidates fail', async () => {

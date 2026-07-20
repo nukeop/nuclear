@@ -15,6 +15,9 @@ const getActiveStreamingProvider = (): StreamingProvider | undefined =>
     'streaming',
   );
 
+export const hasActiveStreamingProvider = (): boolean =>
+  Boolean(getActiveStreamingProvider());
+
 export const isStreamExpired = (candidate: StreamCandidate): boolean => {
   if (!candidate.lastResolvedAtIso) {
     return false;
@@ -25,6 +28,11 @@ export const isStreamExpired = (candidate: StreamCandidate): boolean => {
 
   return Date.now() - resolvedAt > expiryMs;
 };
+
+export const hasFreshStream = (candidate: StreamCandidate): boolean =>
+  Boolean(candidate.stream) &&
+  Boolean(candidate.lastResolvedAtIso) &&
+  !isStreamExpired(candidate);
 
 const sleep = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms));
@@ -98,11 +106,7 @@ export const createStreamingHost = (): StreamingHost => ({
       return candidate;
     }
 
-    if (
-      candidate.stream &&
-      candidate.lastResolvedAtIso &&
-      !isStreamExpired(candidate)
-    ) {
+    if (hasFreshStream(candidate)) {
       return candidate;
     }
 

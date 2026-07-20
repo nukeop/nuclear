@@ -4,9 +4,9 @@ import type { QueueItem, StreamCandidate } from '@nuclearplayer/model';
 
 import { useQueueStore } from '../../stores/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
-import { streamingHost } from '../streamingHost';
+import { hasActiveStreamingProvider, streamingHost } from '../streamingHost';
 import { AudioSourceFactory } from './audioSource';
-import { CandidateSource } from './candidateSource';
+import { candidatesForTrack } from './candidateSource';
 
 export type ResolveOptions = {
   autoPlay: boolean;
@@ -17,10 +17,7 @@ export class StreamResolution {
   private activeController: AbortController | null = null;
   private activeItemId: string | null = null;
 
-  constructor(
-    private readonly candidateSource = new CandidateSource(),
-    private readonly audioSourceFactory = new AudioSourceFactory(),
-  ) {}
+  constructor(private readonly audioSourceFactory = new AudioSourceFactory()) {}
 
   async resolve(item: QueueItem, options: ResolveOptions): Promise<void> {
     const signal = this.supersedeActiveResolution(item.id);
@@ -31,15 +28,17 @@ export class StreamResolution {
     }
     updateItemState(item.id, { status: 'loading', error: undefined });
 
-    const candidates = await this.candidateSource.forTrack(item.track);
+    if (!hasActiveStreamingProvider()) {
+      this.failItem(item.id, 'streaming:errors.noProviderAvailable');
+      return;
+    }
+
+    const candidates = await candidatesForTrack(item.track);
     if (signal.aborted) {
       return;
     }
     if (!candidates) {
-      updateItemState(item.id, {
-        status: 'error',
-        error: 'streaming:errors.noCandidatesFound',
-      });
+      this.failItem(item.id, 'streaming:errors.noCandidatesFound');
       return;
     }
 
@@ -75,19 +74,16 @@ export class StreamResolution {
 
     const candidate = candidates.find((current) => !current.failed);
     if (!candidate) {
-      useQueueStore.getState().updateItemState(item.id, {
-        status: 'error',
-        error: 'streaming:errors.allCandidatesFailed',
-      });
+      this.failItem(item.id, 'streaming:errors.allCandidatesFailed');
       return;
     }
 
     const resolved = await streamingHost.resolveStreamForCandidate(candidate);
+    if (signal.aborted) {
+      return;
+    }
     if (!resolved) {
-      useQueueStore.getState().updateItemState(item.id, {
-        status: 'error',
-        error: 'streaming:errors.allCandidatesFailed',
-      });
+      this.failItem(item.id, 'streaming:errors.noProviderAvailable');
       return;
     }
 
@@ -125,6 +121,13 @@ export class StreamResolution {
     if (options.autoPlay) {
       useSoundStore.getState().play();
     }
+  }
+
+  private failItem(itemId: string, errorKey: string): void {
+    useQueueStore.getState().updateItemState(itemId, {
+      status: 'error',
+      error: errorKey,
+    });
   }
 
   private supersedeActiveResolution(itemId: string): AbortSignal {

@@ -279,7 +279,11 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
   ),
 
   updateCandidate: (itemId: string, candidate: StreamCandidate) => {
-    const { track } = get().getItemById(itemId)!;
+    const item = get().getItemById(itemId);
+    if (!item) {
+      return;
+    }
+    const { track } = item;
     get().updateItemState(itemId, {
       track: {
         ...track,
@@ -294,7 +298,11 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
   },
 
   selectCandidate: (itemId: string, candidateId: string) => {
-    const { track } = get().getItemById(itemId)!;
+    const item = get().getItemById(itemId);
+    if (!item) {
+      return;
+    }
+    const { track } = item;
     const [selected, rest] = partition(
       track.streamCandidates ?? [],
       (candidate) => candidate.id === candidateId,

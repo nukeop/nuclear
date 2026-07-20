@@ -486,6 +486,7 @@
     "errors": {
       "noCandidatesFound": "Failed to find stream candidates",
       "allCandidatesFailed": "All stream candidates failed",
+      "noProviderAvailable": "No streaming provider is available. Install a streaming plugin to play music.",
       "streamRecoveryFailed": "The stream became unavailable and could not be restored",
       "hifi": {
         "loadFailed": "Could not load the audio stream: {{details}}",
