@@ -1,4 +1,4 @@
-export type FetchFailure = {
+export type BackoffStep = {
   attempt: number;
   backoffMs: number;
 };
@@ -21,7 +21,7 @@ export class FetchBackoff {
     return this.retries >= this.maxRetries;
   }
 
-  registerFailure(): FetchFailure {
+  registerFailure(): BackoffStep {
     this.retries += 1;
     const backoffMs = Math.min(
       this.baseDelayMs * 2 ** (this.retries - 1),
