@@ -9,74 +9,72 @@ export type RecordedRequest = {
 type FakeResponse = {
   ok: boolean;
   status: number;
-  arrayBuffer?: () => Promise<ArrayBuffer>;
-  text?: () => Promise<string>;
+  arrayBuffer: () => Promise<ArrayBuffer>;
+  text: () => Promise<string>;
 };
 
-type ResponseOverride = (
-  startByte: number,
-  endByte: number,
-  options?: RequestInit,
+type Responder = (
+  request: RecordedRequest,
+  options: RequestInit,
 ) => Promise<FakeResponse>;
 
-function parseByteRange(options?: RequestInit): {
-  startByte: number;
-  endByte: number;
-} {
-  const rangeHeader = (options!.headers as Record<string, string>).Range;
+const parseByteRange = (
+  options: RequestInit,
+): { startByte: number; endByte: number } => {
+  const rangeHeader = (options.headers as Record<string, string>).Range;
   const match = rangeHeader.match(/bytes=(\d+)-(\d+)/)!;
   return {
     startByte: parseInt(match[1], 10),
     endByte: parseInt(match[2], 10),
   };
-}
+};
 
-function hangUntilAborted(signal: AbortSignal | null | undefined) {
-  return new Promise<never>((_resolve, reject) => {
+const hangUntilAborted = (signal: RequestInit['signal']): Promise<never> =>
+  new Promise((_resolve, reject) => {
     signal?.addEventListener('abort', () => reject(signal.reason));
   });
-}
 
-function respondWithBytes(bytes: Uint8Array): FakeResponse {
-  return {
-    ok: true,
-    status: 206,
-    arrayBuffer: async () => bytes.buffer as ArrayBuffer,
-  };
-}
+const respondWithBytes = (bytes: Uint8Array): FakeResponse => ({
+  ok: true,
+  status: 206,
+  arrayBuffer: async () => bytes.buffer as ArrayBuffer,
+  text: async () => new TextDecoder().decode(bytes),
+});
 
-function errorResponse(status: number): FakeResponse {
+const errorResponse = (status: number): FakeResponse => {
+  const message = `Streaming service returned error: ${status}`;
   return {
     ok: false,
     status,
-    text: async () => `Streaming service returned error: ${status}`,
+    arrayBuffer: async () =>
+      new TextEncoder().encode(message).buffer as ArrayBuffer,
+    text: async () => message,
   };
-}
+};
 
 export class FakeStreamServer {
-  requests: RecordedRequest[] = [];
-
-  private readonly serveFromTrack: ResponseOverride = async (
-    startByte,
-    endByte,
-  ) => respondWithBytes(this.track.bytesForRange(startByte, endByte));
-
-  private nextResponse: ResponseOverride = this.serveFromTrack;
-  private persistentResponse: ResponseOverride | null = null;
-
   constructor(private readonly track: Fmp4Track) {}
 
+  private readonly serveFromTrack: Responder = async (request) =>
+    respondWithBytes(
+      this.track.bytesForRange(request.startByte, request.endByte),
+    );
+
+  private responder = vi.fn(this.serveFromTrack);
+
   setup(): void {
-    this.requests = [];
-    this.nextResponse = this.serveFromTrack;
-    this.persistentResponse = null;
-    vi.stubGlobal('fetch', (url: string, options?: RequestInit) =>
+    this.responder = vi.fn(this.serveFromTrack);
+    vi.stubGlobal('fetch', (url: string, options: RequestInit) =>
       this.handleRequest(url, options),
     );
   }
 
   teardown(): void {
     vi.unstubAllGlobals();
+  }
+
+  get requests(): RecordedRequest[] {
+    return this.responder.mock.calls.map(([request]) => request);
   }
 
   get headerRequests(): RecordedRequest[] {
@@ -96,30 +94,31 @@ export class FakeStreamServer {
   }
 
   clearRequestLog(): void {
-    this.requests = [];
+    this.responder.mockClear();
   }
 
   failNextRequest(status: number): void {
-    this.nextResponse = async () => errorResponse(status);
+    this.responder.mockImplementationOnce(async () => errorResponse(status));
   }
 
   failAllRequests(status: number): void {
-    this.persistentResponse = async () => errorResponse(status);
+    this.responder.mockImplementation(async () => errorResponse(status));
   }
 
   succeedNextRequest(): void {
-    this.nextResponse = (startByte, endByte, options) =>
-      this.serveFromTrack(startByte, endByte, options);
+    this.responder.mockImplementationOnce(this.serveFromTrack);
   }
 
   hangNextRequest(): void {
-    this.nextResponse = (_startByte, _endByte, options) =>
-      hangUntilAborted(options?.signal);
+    this.responder.mockImplementationOnce((_request, options) =>
+      hangUntilAborted(options.signal),
+    );
   }
 
   corruptNextResponse(): void {
-    this.nextResponse = async (startByte, endByte) =>
-      respondWithBytes(new Uint8Array(endByte - startByte + 1));
+    this.responder.mockImplementationOnce(async (request) =>
+      respondWithBytes(new Uint8Array(request.endByte - request.startByte + 1)),
+    );
   }
 
   holdNextRequest(): () => void {
@@ -127,30 +126,19 @@ export class FakeStreamServer {
     const gate = new Promise<void>((resolve) => {
       release = resolve;
     });
-    this.nextResponse = async (startByte, endByte) => {
+    this.responder.mockImplementationOnce(async (request, options) => {
       await gate;
-      return this.serveFromTrack(startByte, endByte);
-    };
+      return this.serveFromTrack(request, options);
+    });
     return release;
   }
 
   private async handleRequest(
     url: string,
-    options?: RequestInit,
+    options: RequestInit,
   ): Promise<FakeResponse> {
     const { startByte, endByte } = parseByteRange(options);
-    this.requests.push({ url, startByte, endByte });
-
-    if (this.nextResponse !== this.serveFromTrack) {
-      const respond = this.nextResponse;
-      this.nextResponse = this.serveFromTrack;
-      return respond(startByte, endByte, options);
-    }
-
-    if (this.persistentResponse) {
-      return this.persistentResponse(startByte, endByte, options);
-    }
-
-    return this.serveFromTrack(startByte, endByte, options);
+    const request: RecordedRequest = { url, startByte, endByte };
+    return this.responder(request, options);
   }
 }
