@@ -9,15 +9,11 @@ const canPlayNativeHls = (audio: HTMLAudioElement): boolean =>
 export const useHlsSource = (
   audioRef: RefObject<HTMLAudioElement | null>,
   src: AudioSource,
-  isReady: boolean,
 ) => {
   const hlsRef = useRef<Hls | null>(null);
   const prevUrl = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!isReady) {
-      return;
-    }
     const audio = audioRef.current;
     if (!audio) {
       return;
@@ -64,7 +60,7 @@ export const useHlsSource = (
       audio.src = src.url;
       audio.load();
     }
-  }, [src, isReady, audioRef]);
+  }, [src, audioRef]);
 
   useEffect(() => {
     return () => {

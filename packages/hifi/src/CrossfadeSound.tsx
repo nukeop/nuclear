@@ -2,6 +2,7 @@ import {
   Children,
   cloneElement,
   isValidElement,
+  ReactNode,
   useCallback,
   useEffect,
   useMemo,
@@ -18,6 +19,7 @@ const DEFAULT_CROSSFADE_MS = 0;
 export const CrossfadeSound: React.FC<
   SoundProps & {
     crossfadeMs?: number;
+    children?: ReactNode;
   }
 > = ({
   src,

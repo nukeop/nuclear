@@ -11,16 +11,11 @@ export const usePlaybackStatus = (
   audioRef: RefObject<HTMLAudioElement | null>,
   status: SoundStatus,
   srcUrl: string,
-  context: AudioContext | null,
-  isReady: boolean,
   onError?: (error: Error) => void,
 ) => {
   const activeSrcRef = useRef(srcUrl);
 
   useEffect(() => {
-    if (!isReady) {
-      return;
-    }
     const audio = audioRef.current;
     if (!audio) {
       return;
@@ -36,7 +31,6 @@ export const usePlaybackStatus = (
         return;
       }
       activeSrcRef.current = srcUrl;
-      context?.resume();
       audio.play().then(undefined, (err: DOMException) => {
         if (err.name === 'AbortError') {
           return;
@@ -64,5 +58,5 @@ export const usePlaybackStatus = (
         return;
       }
     }
-  }, [status, srcUrl, isReady, context, audioRef, onError]);
+  }, [status, srcUrl, audioRef, onError]);
 };

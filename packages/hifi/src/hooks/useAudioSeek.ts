@@ -3,14 +3,10 @@ import { RefObject, useEffect, useRef } from 'react';
 export const useAudioSeek = (
   audioRef: RefObject<HTMLAudioElement | null>,
   seek: number | undefined,
-  isReady: boolean,
 ) => {
   const lastSeekRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    if (!isReady) {
-      return;
-    }
     const audio = audioRef.current;
     if (!audio || seek == null) {
       return;
@@ -23,5 +19,5 @@ export const useAudioSeek = (
       audio.currentTime = seek;
     }
     lastSeekRef.current = seek;
-  }, [seek, isReady, audioRef]);
+  }, [seek, audioRef]);
 };

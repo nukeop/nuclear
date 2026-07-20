@@ -1,4 +1,4 @@
-import { ReactNode, ScriptHTMLAttributes } from 'react';
+import { ScriptHTMLAttributes } from 'react';
 
 export type AudioSource = {
   url: string;
@@ -20,7 +20,6 @@ export type SoundProps = {
   status: SoundStatus;
   seek?: number;
   volume?: number;
-  sampleRate?: number;
   preload?: HTMLAudioElement['preload'];
   crossOrigin?: ScriptHTMLAttributes<HTMLAudioElement>['crossOrigin'];
   onTimeUpdate?: (args: { position: number; duration: number }) => void;
@@ -29,5 +28,4 @@ export type SoundProps = {
   onCanPlay?: () => void;
   onError?: (error: Error) => void;
   onSourceInvalid?: () => void;
-  children?: ReactNode;
 };

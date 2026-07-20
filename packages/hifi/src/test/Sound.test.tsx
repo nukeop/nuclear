@@ -137,29 +137,13 @@ describe('Sound', () => {
     restore();
   });
 
-  it('passes the sampleRate prop through to the AudioContext constructor', () => {
+  it('applies the volume prop to the audio element', () => {
     const { restore } = setupAudioContextMock();
 
-    render(<Sound src={httpSource} status="paused" sampleRate={48000} />);
+    render(<Sound src={httpSource} status="paused" volume={50} />);
 
-    expect(window.AudioContext).toHaveBeenCalledWith(
-      expect.objectContaining({ sampleRate: 48000, latencyHint: 'playback' }),
-    );
-
-    restore();
-  });
-
-  it('constructs the AudioContext without a sampleRate when none is given', () => {
-    const { restore } = setupAudioContextMock();
-
-    render(<Sound src={httpSource} status="paused" />);
-
-    expect(window.AudioContext).toHaveBeenCalledWith(
-      expect.objectContaining({
-        sampleRate: undefined,
-        latencyHint: 'playback',
-      }),
-    );
+    const audio = document.querySelector('audio') as HTMLAudioElement;
+    expect(audio.volume).toBe(0.5);
 
     restore();
   });
