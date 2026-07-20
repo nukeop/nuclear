@@ -2,7 +2,7 @@ import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
 import { z } from 'zod';
 
-import { errorMessage } from '../../utils/error';
+import { errorMessage } from '../../utils/errorMessage';
 import { BridgeCommand, BridgeEvent } from '../tauri/bridge';
 import { dispatch } from './bridgeDispatcher';
 import { initBridgeNotifier } from './bridgeNotifier';

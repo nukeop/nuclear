@@ -1,7 +1,8 @@
 import { appDataDir, join, normalize } from '@tauri-apps/api/path';
 import { BaseDirectory, mkdir, remove } from '@tauri-apps/plugin-fs';
 
-import { reportError, resolveErrorMessage } from '../../utils/logging';
+import { errorMessage } from '../../utils/errorMessage';
+import { reportError } from '../../utils/logging';
 import { ensureDir } from '../../utils/path';
 import { Logger } from '../logger';
 import { copyDirRecursive } from '../tauri/commands';
@@ -45,7 +46,7 @@ export const installPluginToManagedDir = async (
     Logger.plugins.debug(`Removed existing installation at ${destination}`);
   } catch (error) {
     Logger.plugins.debug(
-      `fs.remove failed for ${destination}: ${resolveErrorMessage(error)}`,
+      `fs.remove failed for ${destination}: ${errorMessage(error)}`,
     );
   }
 

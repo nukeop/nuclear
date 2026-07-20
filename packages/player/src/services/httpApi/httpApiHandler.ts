@@ -10,7 +10,7 @@ import {
   useSettingsStore,
 } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
-import { errorMessage } from '../../utils/error';
+import { errorMessage } from '../../utils/errorMessage';
 import { Logger } from '../logger';
 
 const JAM_ENABLED_SETTING = 'core.integrations.jam.enabled';

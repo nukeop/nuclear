@@ -485,7 +485,15 @@
   "streaming": {
     "errors": {
       "noCandidatesFound": "Failed to find stream candidates",
-      "allCandidatesFailed": "All stream candidates failed"
+      "allCandidatesFailed": "All stream candidates failed",
+      "noProviderAvailable": "No streaming provider is available. Install a streaming plugin to play music.",
+      "streamRecoveryFailed": "The stream became unavailable and could not be restored",
+      "hifi": {
+        "loadFailed": "Could not load the audio stream: {{details}}",
+        "unsupportedFormat": "The audio stream is not in a supported format. Try a different source for this track.",
+        "mseUnavailable": "Streaming is not available because this system lacks MediaSource Extensions. Updating your system web engine may fix this.",
+        "appendRejected": "The audio engine rejected the stream data. The codec may be unsupported. Try a different source for this track."
+      }
     }
   },
   "playerBar": {

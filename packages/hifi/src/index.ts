@@ -7,3 +7,6 @@ export { Stereo } from './plugins/Stereo';
 export { BiQuadFilter } from './plugins/BiQuadFilter';
 export { Equalizer } from './plugins/Equalizer';
 export { type AudioSource, type SoundStatus } from './types';
+export { LoggerProvider } from './LoggerProvider';
+export { SoundError, type SoundErrorCode } from './SoundError';
+export { type HifiLogger } from './types';

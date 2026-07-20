@@ -8,6 +8,7 @@ import {
 } from '@nuclearplayer/themes';
 
 import { useThemeStore, type ActiveTheme } from '../stores/themeStore';
+import { errorMessage } from '../utils/errorMessage';
 
 export const loadAndApplyThemeFile = async (path: string): Promise<void> => {
   const contents = await readTextFile(path, { baseDir: BaseDirectory.AppData });
@@ -58,7 +59,7 @@ export const applyThemeFromSettingsIfAny = async (): Promise<void> => {
     await loadAndApplyThemeFile(path);
   } catch (error) {
     toast.error("Couldn't load theme", {
-      description: error instanceof Error ? error.message : String(error),
+      description: errorMessage(error),
     });
   }
 };

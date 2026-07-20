@@ -13,7 +13,7 @@ import {
 } from '../services/plugins/pluginDownloader';
 import { upsertRegistryEntry } from '../services/plugins/pluginRegistry';
 import { usePluginStore } from '../stores/pluginStore';
-import { resolveErrorMessage } from '../utils/logging';
+import { errorMessage } from '../utils/errorMessage';
 
 type InstallPluginParams = {
   plugin: MarketplacePlugin;
@@ -54,7 +54,7 @@ export const useInstallPlugin = () => {
       return { plugin, version: release.version };
     },
     onError: (error, { plugin }) => {
-      const message = resolveErrorMessage(error);
+      const message = errorMessage(error);
       toast.error(t('store.installError.title', { name: plugin.name }), {
         description: message,
       });

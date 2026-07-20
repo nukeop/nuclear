@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { createMockCandidate } from '../test/builders/StreamingProviderBuilder';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { createMockTrack } from '../test/utils/mockTrack';
 import { initializeQueueStore, useQueueStore } from './queueStore';
@@ -211,6 +212,62 @@ describe('useQueueStore', () => {
 
       const item = useQueueStore.getState().items[0];
       expect(item.status).toBe('loading');
+    });
+  });
+
+  describe('updateCandidate', () => {
+    it('does nothing when the item is no longer in the queue', () => {
+      useQueueStore.getState().addToQueue([createMockTrack('Track')]);
+      const stateBefore = useQueueStore.getState();
+
+      useQueueStore
+        .getState()
+        .updateCandidate('missing-id', createMockCandidate('c1', 'Stream 1'));
+
+      expect(useQueueStore.getState()).toEqual(stateBefore);
+    });
+  });
+
+  describe('removeCandidate', () => {
+    it('removes the matching candidate from the item', () => {
+      useQueueStore.getState().addToQueue([createMockTrack('Track')]);
+      const itemId = useQueueStore.getState().items[0].id;
+      useQueueStore.getState().updateItemState(itemId, {
+        track: {
+          ...useQueueStore.getState().items[0].track,
+          streamCandidates: [
+            createMockCandidate('c1', 'Stream 1'),
+            createMockCandidate('c2', 'Stream 2'),
+          ],
+        },
+      });
+
+      useQueueStore.getState().removeCandidate(itemId, 'c1');
+
+      const item = useQueueStore.getState().items[0];
+      expect(item.track.streamCandidates).toEqual([
+        createMockCandidate('c2', 'Stream 2'),
+      ]);
+    });
+
+    it('does nothing when the item is no longer in the queue', () => {
+      useQueueStore.getState().addToQueue([createMockTrack('Track')]);
+      const stateBefore = useQueueStore.getState();
+
+      useQueueStore.getState().removeCandidate('missing-id', 'c1');
+
+      expect(useQueueStore.getState()).toEqual(stateBefore);
+    });
+  });
+
+  describe('selectCandidate', () => {
+    it('does nothing when the item is no longer in the queue', () => {
+      useQueueStore.getState().addToQueue([createMockTrack('Track')]);
+      const stateBefore = useQueueStore.getState();
+
+      useQueueStore.getState().selectCandidate('missing-id', 'c1');
+
+      expect(useQueueStore.getState()).toEqual(stateBefore);
     });
   });
 

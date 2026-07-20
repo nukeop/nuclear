@@ -4,8 +4,8 @@ import type {
   StreamingProvider,
 } from '@nuclearplayer/plugin-sdk';
 
-import { useSettingsStore } from '../stores/settingsStore';
-import { resolveErrorMessage } from '../utils/logging';
+import { getSetting, useSettingsStore } from '../stores/settingsStore';
+import { errorMessage } from '../utils/errorMessage';
 import { Logger } from './logger';
 import { providersHost } from './providersHost';
 
@@ -15,18 +15,24 @@ const getActiveStreamingProvider = (): StreamingProvider | undefined =>
     'streaming',
   );
 
-const isStreamExpired = (candidate: StreamCandidate): boolean => {
-  if (!candidate.lastResolvedAtIso || !candidate.stream) {
-    return true;
+export const hasActiveStreamingProvider = (): boolean =>
+  Boolean(getActiveStreamingProvider());
+
+export const isStreamExpired = (candidate: StreamCandidate): boolean => {
+  if (!candidate.lastResolvedAtIso) {
+    return false;
   }
 
-  const expiryMs = useSettingsStore
-    .getState()
-    .getValue('playback.streamExpiryMs') as number;
+  const expiryMs = getSetting('playback.streamExpiryMs') as number;
   const resolvedAt = new Date(candidate.lastResolvedAtIso).getTime();
 
   return Date.now() - resolvedAt > expiryMs;
 };
+
+export const hasFreshStream = (candidate: StreamCandidate): boolean =>
+  Boolean(candidate.stream) &&
+  Boolean(candidate.lastResolvedAtIso) &&
+  !isStreamExpired(candidate);
 
 const sleep = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms));
@@ -77,9 +83,9 @@ export const createStreamingHost = (): StreamingHost => ({
       };
     } catch (error) {
       Logger.streaming.error(
-        `resolveCandidatesForTrack error: ${resolveErrorMessage(error)}`,
+        `resolveCandidatesForTrack error: ${errorMessage(error)}`,
       );
-      const message = error instanceof Error ? error.message : 'Unknown error';
+      const message = errorMessage(error);
       return {
         success: false,
         error: `Failed to resolve candidates: ${message}`,
@@ -100,7 +106,7 @@ export const createStreamingHost = (): StreamingHost => ({
       return candidate;
     }
 
-    if (candidate.stream && !isStreamExpired(candidate)) {
+    if (hasFreshStream(candidate)) {
       return candidate;
     }
 
@@ -126,9 +132,7 @@ export const createStreamingHost = (): StreamingHost => ({
         failed: false,
       };
     } catch (error) {
-      Logger.streaming.error(
-        `getStreamUrl failed: ${resolveErrorMessage(error)}`,
-      );
+      Logger.streaming.error(`getStreamUrl failed: ${errorMessage(error)}`);
       return {
         ...candidate,
         failed: true,
