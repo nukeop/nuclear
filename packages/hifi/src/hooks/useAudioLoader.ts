@@ -5,15 +5,10 @@ import { AudioSource } from '../types';
 export const useAudioLoader = (
   audioRef: RefObject<HTMLAudioElement | null>,
   src: AudioSource,
-  isReady: boolean,
 ) => {
   const prevUrl = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!isReady) {
-      return;
-    }
-
     if (src.protocol === 'hls' || src.protocol === 'mse') {
       return;
     }
@@ -28,5 +23,5 @@ export const useAudioLoader = (
       audio.load();
       prevUrl.current = src.url;
     }
-  }, [src, isReady, audioRef]);
+  }, [src, audioRef]);
 };

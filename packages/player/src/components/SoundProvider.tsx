@@ -1,10 +1,9 @@
 import type { FC, PropsWithChildren } from 'react';
 import { useCallback, useEffect, useRef } from 'react';
 
-import { LoggerProvider, Sound, SoundError, Volume } from '@nuclearplayer/hifi';
+import { LoggerProvider, Sound, SoundError } from '@nuclearplayer/hifi';
 import type { TFunction } from '@nuclearplayer/i18n';
 import { useTranslation } from '@nuclearplayer/i18n';
-import { usePlatform } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../hooks/useCoreSetting';
 import { eventBus } from '../services/eventBus';
@@ -12,11 +11,6 @@ import { Logger } from '../services/logger';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 import { errorMessage } from '../utils/errorMessage';
-
-// WebKitGTK's Web Audio GStreamer pipeline is hardcoded to 44100 Hz, which
-// causes silent audio over Bluetooth A2DP (PipeWire sinks expect 48000 Hz).
-// Forcing the AudioContext to 48000 Hz on Linux avoids the mismatch.
-const LINUX_SAMPLE_RATE_HZ = 48000;
 
 const describePlaybackError = (error: Error, t: TFunction): string => {
   if (error instanceof SoundError) {
@@ -34,8 +28,6 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   const [volume01] = useCoreSetting<number>('playback.volume');
   const [muted] = useCoreSetting<boolean>('playback.muted');
   const volumePercent = muted ? 0 : Math.round((volume01 ?? 1) * 100);
-  const platform = usePlatform();
-  const sampleRate = platform === 'linux' ? LINUX_SAMPLE_RATE_HZ : undefined;
 
   useEffect(() => {
     LoggerProvider.init(Logger.streaming);
@@ -115,7 +107,6 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
           status={status}
           seek={seek}
           volume={volumePercent}
-          sampleRate={sampleRate}
           preload={preload}
           crossOrigin={crossOrigin}
           onTimeUpdate={handleTimeUpdate}
@@ -123,9 +114,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
           onCanPlay={handleCanPlay}
           onError={handleError}
           onSourceInvalid={handleSourceInvalid}
-        >
-          <Volume value={volumePercent} />
-        </Sound>
+        />
       )}
       {children}
     </>

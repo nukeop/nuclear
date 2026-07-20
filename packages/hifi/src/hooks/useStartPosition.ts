@@ -5,13 +5,12 @@ import { AudioSource } from '../types';
 export const useStartPosition = (
   audioRef: RefObject<HTMLAudioElement | null>,
   src: AudioSource,
-  isReady: boolean,
 ) => {
   const { url, startPositionSeconds } = src;
 
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || !isReady || startPositionSeconds === undefined) {
+    if (!audio || startPositionSeconds === undefined) {
       return;
     }
 
@@ -25,5 +24,5 @@ export const useStartPosition = (
     return () => {
       audio.removeEventListener('loadedmetadata', applyStartPosition);
     };
-  }, [url, startPositionSeconds, isReady, audioRef]);
+  }, [url, startPositionSeconds, audioRef]);
 };
