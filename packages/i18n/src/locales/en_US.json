@@ -42,6 +42,10 @@
     "emptyDescription": "Tracks you play will appear here",
     "today": "Today",
     "yesterday": "Yesterday",
+    "tabs": {
+      "stats": "Stats",
+      "listeningHistory": "Listening history"
+    },
     "row": {
       "favorite": "Add to favorites",
       "unfavorite": "Remove from favorites",
