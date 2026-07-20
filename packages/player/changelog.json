@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-07-20T00:00",
+    "description": "Fix bluetooth issues on Linux.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-07-20T00:00",
     "description": "Tracks that failed to resolve their streams now retry with a fresh search when you come back to them. When no streaming provider is installed, the error message now prompts you to install one.",
     "type": "fix",
     "contributors": ["nukeop"],
