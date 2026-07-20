@@ -4,7 +4,7 @@ import type {
   StreamingProvider,
 } from '@nuclearplayer/plugin-sdk';
 
-import { useSettingsStore } from '../stores/settingsStore';
+import { getSetting, useSettingsStore } from '../stores/settingsStore';
 import { errorMessage } from '../utils/errorMessage';
 import { Logger } from './logger';
 import { providersHost } from './providersHost';
@@ -15,14 +15,12 @@ const getActiveStreamingProvider = (): StreamingProvider | undefined =>
     'streaming',
   );
 
-const isStreamExpired = (candidate: StreamCandidate): boolean => {
-  if (!candidate.lastResolvedAtIso || !candidate.stream) {
-    return true;
+export const isStreamExpired = (candidate: StreamCandidate): boolean => {
+  if (!candidate.lastResolvedAtIso) {
+    return false;
   }
 
-  const expiryMs = useSettingsStore
-    .getState()
-    .getValue('playback.streamExpiryMs') as number;
+  const expiryMs = getSetting('playback.streamExpiryMs') as number;
   const resolvedAt = new Date(candidate.lastResolvedAtIso).getTime();
 
   return Date.now() - resolvedAt > expiryMs;
@@ -100,7 +98,11 @@ export const createStreamingHost = (): StreamingHost => ({
       return candidate;
     }
 
-    if (candidate.stream && !isStreamExpired(candidate)) {
+    if (
+      candidate.stream &&
+      candidate.lastResolvedAtIso &&
+      !isStreamExpired(candidate)
+    ) {
       return candidate;
     }
 
