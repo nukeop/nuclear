@@ -1,10 +1,12 @@
+import { omit } from 'lodash-es';
+
 import type { QueueItem, StreamCandidate } from '@nuclearplayer/model';
 
+import { useQueueStore } from '../../stores/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
 import { streamingHost } from '../streamingHost';
 import { AudioSourceFactory } from './audioSource';
 import { CandidateSource } from './candidateSource';
-import { QueueItemUpdater } from './queueItemUpdater';
 
 export type ResolveOptions = {
   autoPlay: boolean;
@@ -18,27 +20,32 @@ export class StreamResolution {
   constructor(
     private readonly candidateSource = new CandidateSource(),
     private readonly audioSourceFactory = new AudioSourceFactory(),
-    private readonly queueItems = new QueueItemUpdater(),
   ) {}
 
   async resolve(item: QueueItem, options: ResolveOptions): Promise<void> {
     const signal = this.supersedeActiveResolution(item.id);
+    const { updateItemState } = useQueueStore.getState();
 
     if (options.autoPlay) {
       useSoundStore.getState().stop();
     }
-    this.queueItems.markLoading(item.id);
+    updateItemState(item.id, { status: 'loading', error: undefined });
 
     const candidates = await this.candidateSource.forTrack(item.track);
     if (signal.aborted) {
       return;
     }
     if (!candidates) {
-      this.queueItems.markError(item.id, 'streaming:errors.noCandidatesFound');
+      updateItemState(item.id, {
+        status: 'error',
+        error: 'streaming:errors.noCandidatesFound',
+      });
       return;
     }
 
-    this.queueItems.setCandidates(item, candidates);
+    updateItemState(item.id, {
+      track: { ...item.track, streamCandidates: candidates },
+    });
     await this.tryCandidatesInOrder(item, candidates, signal, options);
   }
 
@@ -46,7 +53,14 @@ export class StreamResolution {
     item: QueueItem,
     options: ResolveOptions,
   ): Promise<void> {
-    return this.resolve(this.queueItems.clearCachedStreams(item), options);
+    const track = {
+      ...item.track,
+      streamCandidates: item.track.streamCandidates?.map((candidate) =>
+        omit(candidate, ['stream', 'lastResolvedAtIso']),
+      ),
+    };
+    useQueueStore.getState().updateItemState(item.id, { track });
+    return this.resolve({ ...item, track }, options);
   }
 
   private async tryCandidatesInOrder(
@@ -61,23 +75,23 @@ export class StreamResolution {
 
     const candidate = candidates.find((current) => !current.failed);
     if (!candidate) {
-      this.queueItems.markError(
-        item.id,
-        'streaming:errors.allCandidatesFailed',
-      );
+      useQueueStore.getState().updateItemState(item.id, {
+        status: 'error',
+        error: 'streaming:errors.allCandidatesFailed',
+      });
       return;
     }
 
     const resolved = await streamingHost.resolveStreamForCandidate(candidate);
     if (!resolved) {
-      this.queueItems.markError(
-        item.id,
-        'streaming:errors.allCandidatesFailed',
-      );
+      useQueueStore.getState().updateItemState(item.id, {
+        status: 'error',
+        error: 'streaming:errors.allCandidatesFailed',
+      });
       return;
     }
 
-    this.queueItems.updateCandidate(item.id, resolved);
+    useQueueStore.getState().updateCandidate(item.id, resolved);
 
     if (resolved.failed) {
       const remaining = candidates.filter(
@@ -106,7 +120,7 @@ export class StreamResolution {
     }
 
     useSoundStore.getState().setSrc(audioSource);
-    this.queueItems.markSuccess(item.id);
+    useQueueStore.getState().updateItemState(item.id, { status: 'success' });
     this.activeItemId = null;
     if (options.autoPlay) {
       useSoundStore.getState().play();
@@ -117,7 +131,10 @@ export class StreamResolution {
     if (this.activeController) {
       this.activeController.abort();
       if (this.activeItemId) {
-        this.queueItems.clearStatus(this.activeItemId);
+        useQueueStore.getState().updateItemState(this.activeItemId, {
+          status: undefined,
+          error: undefined,
+        });
       }
     }
     this.activeController = new AbortController();

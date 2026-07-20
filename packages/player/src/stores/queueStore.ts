@@ -4,7 +4,12 @@ import partition from 'lodash-es/partition';
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 
-import type { Queue, QueueItem, Track } from '@nuclearplayer/model';
+import type {
+  Queue,
+  QueueItem,
+  StreamCandidate,
+  Track,
+} from '@nuclearplayer/model';
 import { stripResolutionState } from '@nuclearplayer/model';
 
 import { eventBus } from '../services/eventBus';
@@ -29,6 +34,7 @@ type QueueStore = Queue & {
   clearQueue: () => void;
   reorder: (fromIndex: number, toIndex: number) => void;
   updateItemState: (id: string, updates: Partial<QueueItem>) => void;
+  updateCandidate: (itemId: string, candidate: StreamCandidate) => void;
   selectCandidate: (itemId: string, candidateId: string) => void;
   goToNext: () => void;
   goToPrevious: () => void;
@@ -36,6 +42,7 @@ type QueueStore = Queue & {
   goToIndex: (index: number) => void;
   goToId: (id: string) => void;
   getCurrentItem: () => QueueItem | undefined;
+  getItemById: (id: string) => QueueItem | undefined;
 };
 
 const createQueueItem = (track: Track): QueueItem => ({
@@ -87,18 +94,6 @@ const getShuffledIndex = (length: number, currentIndex: number): number => {
   }
 
   return nextIndex;
-};
-
-const promoteCandidate = (track: Track, candidateId: string): Track => {
-  const [promoted, rest] = partition(
-    track.streamCandidates ?? [],
-    (candidate) => candidate.id === candidateId,
-  );
-  const retried = promoted.map((candidate) => ({
-    ...candidate,
-    failed: false,
-  }));
-  return { ...track, streamCandidates: [...retried, ...rest] };
 };
 
 const emitSkip = (): void => {
@@ -283,16 +278,35 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
     },
   ),
 
-  selectCandidate: withPersistence((itemId: string, candidateId: string) => {
-    set((state) => ({
-      items: state.items.map((item) => {
-        if (item.id !== itemId) {
-          return item;
-        }
-        return { ...item, track: promoteCandidate(item.track, candidateId) };
-      }),
+  updateCandidate: (itemId: string, candidate: StreamCandidate) => {
+    const { track } = get().getItemById(itemId)!;
+    get().updateItemState(itemId, {
+      track: {
+        ...track,
+        streamCandidates: track.streamCandidates?.map((current) => {
+          if (current.id === candidate.id) {
+            return candidate;
+          }
+          return current;
+        }),
+      },
+    });
+  },
+
+  selectCandidate: (itemId: string, candidateId: string) => {
+    const { track } = get().getItemById(itemId)!;
+    const [selected, rest] = partition(
+      track.streamCandidates ?? [],
+      (candidate) => candidate.id === candidateId,
+    );
+    const retried = selected.map((candidate) => ({
+      ...candidate,
+      failed: false,
     }));
-  }),
+    get().updateItemState(itemId, {
+      track: { ...track, streamCandidates: [...retried, ...rest] },
+    });
+  },
 
   goToNext: withPersistence(() => {
     const state = get();
@@ -353,6 +367,10 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
   getCurrentItem: () => {
     const { items, currentIndex } = get();
     return items[currentIndex];
+  },
+
+  getItemById: (id: string) => {
+    return get().items.find((item) => item.id === id);
   },
 }));
 
