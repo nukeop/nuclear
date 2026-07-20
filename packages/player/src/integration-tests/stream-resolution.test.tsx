@@ -12,6 +12,7 @@ import {
   createMockStream,
   StreamingProviderBuilder,
 } from '../test/builders/StreamingProviderBuilder';
+import { createMockTrack } from '../test/utils/mockTrack';
 import { AlbumWrapper } from '../views/Album/Album.test-wrapper';
 import { StreamResolutionWrapper } from './StreamResolution.test-wrapper';
 
@@ -161,26 +162,16 @@ describe('Stream Resolution Integration', () => {
       useQueueStore.setState({
         items: [
           {
-            id: 'restored-item-1',
+            id: 'cached-candidate-item',
             status: 'idle',
             addedAtIso: new Date().toISOString(),
             track: {
-              title: 'Karma Police',
-              artists: [{ name: 'Radiohead', roles: ['primary'] }],
-              source: { provider: 'test', id: 'karma-police' },
+              ...createMockTrack('Karma Police'),
               streamCandidates: [
-                {
-                  id: 'cached-yt-id',
-                  title: 'Karma Police',
-                  failed: false,
-                  source: { provider: 'yt', id: 'cached-yt-id' },
-                  stream: {
-                    url: 'https://cached.example.com/karma.m4a?token=old',
-                    protocol: 'https',
-                    source: { provider: 'yt', id: 'cached-yt-id' },
-                  },
+                createMockCandidate('cached-yt-id', 'Karma Police', {
+                  stream: createMockStream('cached-yt-id'),
                   lastResolvedAtIso: new Date().toISOString(),
-                },
+                }),
               ],
             },
           },
@@ -220,9 +211,7 @@ describe('Stream Resolution Integration', () => {
       await StreamResolutionWrapper.waitForError();
 
       const currentItem = StreamResolutionWrapper.getCurrentQueueItem();
-      expect(
-        currentItem?.track.streamCandidates?.every((c) => c.failed),
-      ).toBeTruthy();
+      expect(currentItem?.track.streamCandidates).toEqual([]);
       expect(currentItem?.status).toBe('error');
       expect(currentItem?.error).toBe('streaming:errors.allCandidatesFailed');
     });
@@ -259,8 +248,9 @@ describe('Stream Resolution Integration', () => {
 
       const currentItem = StreamResolutionWrapper.getCurrentQueueItem();
       expect(currentItem?.status).toBe('success');
-      expect(currentItem?.track.streamCandidates?.[0].failed).toBe(true);
-      expect(currentItem?.track.streamCandidates?.[1].failed).toBe(false);
+      expect(currentItem?.track.streamCandidates).toHaveLength(1);
+      expect(currentItem?.track.streamCandidates?.[0].id).toBe('yt-good');
+      expect(currentItem?.track.streamCandidates?.[0].failed).toBe(false);
 
       expect(callCount).toEqual(2);
     });
@@ -449,6 +439,87 @@ describe('Stream Resolution Integration', () => {
         url: 'http://127.0.0.1:9100/stream/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC1HaWFudCBTdGVwcy5tcDM',
         protocol: 'https',
       });
+    });
+  });
+
+  describe('when returning to a track that previously failed to resolve', () => {
+    it('clears status, error, and candidates once the user navigates away from the failure', async () => {
+      setupMetadataProvider();
+
+      const streamingProvider = new StreamingProviderBuilder()
+        .withSearchForTrack(async (artist, title) => [
+          createMockCandidate(`yt-${title}`, `${artist} - ${title}`),
+        ])
+        .withGetStreamUrl(async (candidateId) => {
+          if (candidateId === 'yt-Countdown') {
+            throw new Error('Stream unavailable');
+          }
+          return createMockStream(candidateId);
+        })
+        .build();
+
+      providersHost.register(streamingProvider);
+
+      await AlbumWrapper.mountDirectly();
+      await AlbumWrapper.addTrackToQueueByTitle('Countdown');
+      await AlbumWrapper.addTrackToQueueByTitle('Giant Steps');
+
+      await StreamResolutionWrapper.waitForError();
+
+      await StreamResolutionWrapper.selectQueueItem('Giant Steps');
+      await StreamResolutionWrapper.waitForPlayback();
+
+      const countdownItem = StreamResolutionWrapper.getQueueItems().find(
+        (item) => item.track.title === 'Countdown',
+      );
+      expect(countdownItem?.status).toBeUndefined();
+      expect(countdownItem?.error).toBeUndefined();
+      expect(countdownItem?.track.streamCandidates).toBeUndefined();
+    });
+
+    it('performs a fresh provider search and can succeed on the retry', async () => {
+      setupMetadataProvider();
+
+      const searchedTitles: string[] = [];
+      let countdownAttempts = 0;
+      const streamingProvider = new StreamingProviderBuilder()
+        .withSearchForTrack(async (artist, title) => {
+          searchedTitles.push(title);
+          return [createMockCandidate(`yt-${title}`, `${artist} - ${title}`)];
+        })
+        .withGetStreamUrl(async (candidateId) => {
+          if (candidateId === 'yt-Countdown') {
+            countdownAttempts++;
+            if (countdownAttempts === 1) {
+              throw new Error('Stream unavailable');
+            }
+          }
+          return createMockStream(candidateId);
+        })
+        .build();
+
+      providersHost.register(streamingProvider);
+
+      await AlbumWrapper.mountDirectly();
+      await AlbumWrapper.addTrackToQueueByTitle('Countdown');
+      await AlbumWrapper.addTrackToQueueByTitle('Giant Steps');
+
+      await StreamResolutionWrapper.waitForError();
+
+      await StreamResolutionWrapper.selectQueueItem('Giant Steps');
+      await StreamResolutionWrapper.waitForPlayback();
+
+      await StreamResolutionWrapper.selectQueueItem('Countdown');
+      await StreamResolutionWrapper.waitForPlayback();
+
+      const countdownSearches = searchedTitles.filter(
+        (title) => title === 'Countdown',
+      );
+      expect(countdownSearches).toHaveLength(2);
+
+      const currentItem = StreamResolutionWrapper.getCurrentQueueItem();
+      expect(currentItem?.track.title).toBe('Countdown');
+      expect(currentItem?.status).toBe('success');
     });
   });
 });

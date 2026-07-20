@@ -1,6 +1,7 @@
 import { omit } from 'lodash-es';
 
 import type { QueueItem, StreamCandidate } from '@nuclearplayer/model';
+import { stripResolutionState } from '@nuclearplayer/model';
 
 import { useQueueStore } from '../../stores/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
@@ -87,9 +88,8 @@ export class StreamResolution {
       return;
     }
 
-    useQueueStore.getState().updateCandidate(item.id, resolved);
-
     if (resolved.failed) {
+      useQueueStore.getState().removeCandidate(item.id, candidate.id);
       const remaining = candidates.filter(
         (current) => current.id !== candidate.id,
       );
@@ -97,6 +97,7 @@ export class StreamResolution {
       return;
     }
 
+    useQueueStore.getState().updateCandidate(item.id, resolved);
     await this.startPlayback(item, resolved, signal, options);
   }
 
@@ -134,10 +135,15 @@ export class StreamResolution {
     if (this.activeController) {
       this.activeController.abort();
       if (this.activeItemId) {
-        useQueueStore.getState().updateItemState(this.activeItemId, {
-          status: undefined,
-          error: undefined,
-        });
+        const { getItemById, updateItemState } = useQueueStore.getState();
+        const previousItem = getItemById(this.activeItemId);
+        if (previousItem) {
+          updateItemState(this.activeItemId, {
+            status: undefined,
+            error: undefined,
+            track: stripResolutionState(previousItem.track),
+          });
+        }
       }
     }
     this.activeController = new AbortController();

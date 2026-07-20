@@ -35,6 +35,7 @@ type QueueStore = Queue & {
   reorder: (fromIndex: number, toIndex: number) => void;
   updateItemState: (id: string, updates: Partial<QueueItem>) => void;
   updateCandidate: (itemId: string, candidate: StreamCandidate) => void;
+  removeCandidate: (itemId: string, candidateId: string) => void;
   selectCandidate: (itemId: string, candidateId: string) => void;
   goToNext: () => void;
   goToPrevious: () => void;
@@ -293,6 +294,22 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
           }
           return current;
         }),
+      },
+    });
+  },
+
+  removeCandidate: (itemId: string, candidateId: string) => {
+    const item = get().getItemById(itemId);
+    if (!item) {
+      return;
+    }
+    const { track } = item;
+    get().updateItemState(itemId, {
+      track: {
+        ...track,
+        streamCandidates: track.streamCandidates?.filter(
+          (current) => current.id !== candidateId,
+        ),
       },
     });
   },
