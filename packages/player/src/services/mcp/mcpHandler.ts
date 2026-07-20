@@ -5,7 +5,7 @@ import {
   setSetting,
   useSettingsStore,
 } from '../../stores/settingsStore';
-import { errorMessage } from '../../utils/error';
+import { errorMessage } from '../../utils/errorMessage';
 import { Logger } from '../logger';
 
 const MCP_ENABLED_SETTING = 'core.integrations.mcp.enabled';

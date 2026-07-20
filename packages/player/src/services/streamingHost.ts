@@ -5,7 +5,7 @@ import type {
 } from '@nuclearplayer/plugin-sdk';
 
 import { useSettingsStore } from '../stores/settingsStore';
-import { errorMessage } from '../utils/error';
+import { errorMessage } from '../utils/errorMessage';
 import { Logger } from './logger';
 import { providersHost } from './providersHost';
 

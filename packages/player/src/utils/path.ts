@@ -1,7 +1,7 @@
 import { BaseDirectory, exists, mkdir } from '@tauri-apps/plugin-fs';
 
 import { Logger } from '../services/logger';
-import { errorMessage } from './error';
+import { errorMessage } from './errorMessage';
 import { reportError } from './logging';
 
 export const ensureDir = async (

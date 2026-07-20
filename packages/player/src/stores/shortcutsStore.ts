@@ -3,7 +3,7 @@ import { create } from 'zustand';
 
 import { Logger } from '../services/logger';
 import { COMMANDS } from '../shortcuts/commands';
-import { errorMessage } from '../utils/error';
+import { errorMessage } from '../utils/errorMessage';
 
 const SHORTCUTS_FILE = 'shortcuts.json';
 const store = new LazyStore(SHORTCUTS_FILE);

@@ -13,7 +13,7 @@ import {
 } from '../services/plugins/pluginDownloader';
 import { upsertRegistryEntry } from '../services/plugins/pluginRegistry';
 import { usePluginStore } from '../stores/pluginStore';
-import { errorMessage } from '../utils/error';
+import { errorMessage } from '../utils/errorMessage';
 
 type InstallPluginParams = {
   plugin: MarketplacePlugin;

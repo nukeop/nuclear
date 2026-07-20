@@ -3,7 +3,7 @@ import gt from 'semver/functions/gt';
 import { pluginMarketplaceApi } from '../../apis/pluginMarketplaceApi';
 import { usePluginStore } from '../../stores/pluginStore';
 import { getSetting } from '../../stores/settingsStore';
-import { errorMessage } from '../../utils/error';
+import { errorMessage } from '../../utils/errorMessage';
 import { Logger } from '../logger';
 import { downloadAndExtractPlugin } from './pluginDownloader';
 import { listRegistryEntries } from './pluginRegistry';

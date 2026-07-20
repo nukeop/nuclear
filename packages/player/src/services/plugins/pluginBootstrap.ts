@@ -2,7 +2,7 @@ import { normalize } from '@tauri-apps/api/path';
 
 import { usePluginStore } from '../../stores/pluginStore';
 import { useStartupStore } from '../../stores/startupStore';
-import { errorMessage } from '../../utils/error';
+import { errorMessage } from '../../utils/errorMessage';
 import { providersHost } from '../providersHost';
 import { createPluginAPI } from './createPluginAPI';
 import { checkAndUpdatePlugins } from './pluginAutoUpdate';

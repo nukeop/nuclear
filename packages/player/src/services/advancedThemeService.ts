@@ -8,7 +8,7 @@ import {
 } from '@nuclearplayer/themes';
 
 import { useThemeStore, type ActiveTheme } from '../stores/themeStore';
-import { errorMessage } from '../utils/error';
+import { errorMessage } from '../utils/errorMessage';
 
 export const loadAndApplyThemeFile = async (path: string): Promise<void> => {
   const contents = await readTextFile(path, { baseDir: BaseDirectory.AppData });

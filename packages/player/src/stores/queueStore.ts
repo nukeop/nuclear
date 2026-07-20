@@ -9,7 +9,7 @@ import { stripResolutionState } from '@nuclearplayer/model';
 
 import { eventBus } from '../services/eventBus';
 import { Logger } from '../services/logger';
-import { errorMessage } from '../utils/error';
+import { errorMessage } from '../utils/errorMessage';
 import { secondsToMs } from '../utils/time';
 import { getSetting } from './settingsStore';
 import { useSoundStore } from './soundStore';

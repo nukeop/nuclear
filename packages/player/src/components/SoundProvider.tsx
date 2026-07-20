@@ -11,7 +11,7 @@ import { eventBus } from '../services/eventBus';
 import { Logger } from '../services/logger';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
-import { errorMessage } from '../utils/error';
+import { errorMessage } from '../utils/errorMessage';
 
 // WebKitGTK's Web Audio GStreamer pipeline is hardcoded to 44100 Hz, which
 // causes silent audio over Bluetooth A2DP (PipeWire sinks expect 48000 Hz).

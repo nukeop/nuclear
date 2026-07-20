@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 import { formatLogValue, Logger, LogScope } from '../services/logger';
-import { errorMessage } from './error';
+import { errorMessage } from './errorMessage';
 
 const TOAST_MAX_LENGTH = 100;
 

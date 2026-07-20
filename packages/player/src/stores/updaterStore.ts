@@ -3,7 +3,7 @@ import { check, type Update } from '@tauri-apps/plugin-updater';
 import { create } from 'zustand';
 
 import { Logger } from '../services/logger';
-import { errorMessage } from '../utils/error';
+import { errorMessage } from '../utils/errorMessage';
 import { reportError } from '../utils/logging';
 import { getSetting } from './settingsStore';
 

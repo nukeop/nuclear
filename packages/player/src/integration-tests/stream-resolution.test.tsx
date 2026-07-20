@@ -131,7 +131,7 @@ describe('Stream Resolution Integration', () => {
 
       const currentItem = StreamResolutionWrapper.getCurrentQueueItem();
       expect(currentItem?.status).toBe('error');
-      expect(currentItem?.error).toBe('Failed to find stream candidates');
+      expect(currentItem?.error).toBe('streaming:errors.noCandidatesFound');
     });
 
     it('shows error state when all candidates fail', async () => {
@@ -159,7 +159,7 @@ describe('Stream Resolution Integration', () => {
         currentItem?.track.streamCandidates?.every((c) => c.failed),
       ).toBeTruthy();
       expect(currentItem?.status).toBe('error');
-      expect(currentItem?.error).toBe('All stream candidates failed');
+      expect(currentItem?.error).toBe('streaming:errors.allCandidatesFailed');
     });
 
     it('falls back to next candidate when first one fails', async () => {

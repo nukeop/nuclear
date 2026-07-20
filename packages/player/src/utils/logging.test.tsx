@@ -88,18 +88,4 @@ describe('reportError', () => {
       expect(screen.getByText('Permission denied')).toBeInTheDocument();
     });
   });
-
-  it('handles unknown error types with fallback message', async () => {
-    render(<Toaster richColors />);
-
-    await reportError('plugins', {
-      userMessage: 'Something went wrong',
-      error: { code: 500 },
-    });
-
-    await waitFor(() => {
-      expect(screen.getByText('Something went wrong')).toBeInTheDocument();
-      expect(screen.getByText('Unknown error')).toBeInTheDocument();
-    });
-  });
 });

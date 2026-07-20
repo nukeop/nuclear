@@ -12,7 +12,7 @@ import type {
 } from '@nuclearplayer/plugin-sdk';
 import * as nuclearUI from '@nuclearplayer/ui';
 
-import { errorMessage } from '../../utils/error';
+import { errorMessage } from '../../utils/errorMessage';
 import { Logger } from '../logger';
 import { compilePlugin } from './pluginCompiler';
 import { safeParsePluginManifest } from './pluginManifest';

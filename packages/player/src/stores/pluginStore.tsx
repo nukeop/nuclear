@@ -18,7 +18,7 @@ import {
   setRegistryEntryEnabled,
   upsertRegistryEntry,
 } from '../services/plugins/pluginRegistry';
-import { errorMessage } from '../utils/error';
+import { errorMessage } from '../utils/errorMessage';
 import { reportError } from '../utils/logging';
 
 const allowedPermissions: string[] = [];

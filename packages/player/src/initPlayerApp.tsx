@@ -19,7 +19,6 @@ import { initMcpHandler } from './services/mcp';
 import { initMpdHandler } from './services/mpd';
 import { initPlaybackEventBridge } from './services/playbackEventBridge';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
-import { initStreamRecoveryHandler } from './services/streamRecoveryHandler';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
 import { initializeFavoritesStore } from './stores/favoritesStore';
 import { initializePlaylistStore } from './stores/playlistStore';
@@ -47,7 +46,6 @@ export const initPlayerApp = async (
     .then(() => initBridgeHandler())
     .then(() => initDiscordHandler())
     .then(() => initPlaybackEventBridge())
-    .then(() => initStreamRecoveryHandler())
     .then(() => initHistoryService())
     .then(() => applyLanguageFromSettings())
     .then(() => initLanguageWatcher())

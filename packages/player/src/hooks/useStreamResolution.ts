@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react';
 
 import type { QueueItem } from '@nuclearplayer/model';
 
-import { resolveStream } from '../services/streamResolution';
+import { streamResolution } from '../services/streamResolution';
 import { useQueueStore } from '../stores/queueStore';
+import { useStreamRecovery } from './useStreamRecovery';
 
 const buildResolutionKey = (item: QueueItem): string => {
   const headCandidate = item.track.streamCandidates?.[0];
@@ -13,6 +14,8 @@ const buildResolutionKey = (item: QueueItem): string => {
 export const useStreamResolution = (): void => {
   const resolutionKeyRef = useRef<string | null>(null);
   const isFirstResolutionRef = useRef(true);
+
+  useStreamRecovery();
 
   useEffect(() => {
     const onCurrentItemChanged = (currentItem: QueueItem | undefined): void => {
@@ -32,7 +35,7 @@ export const useStreamResolution = (): void => {
 
       const autoPlay = !isFirstResolutionRef.current;
       isFirstResolutionRef.current = false;
-      void resolveStream(currentItem, { autoPlay });
+      void streamResolution.resolve(currentItem, { autoPlay });
     };
 
     const unsubscribe = useQueueStore.subscribe((state) => {

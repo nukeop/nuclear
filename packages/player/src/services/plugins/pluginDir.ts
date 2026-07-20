@@ -1,7 +1,7 @@
 import { appDataDir, join, normalize } from '@tauri-apps/api/path';
 import { BaseDirectory, mkdir, remove } from '@tauri-apps/plugin-fs';
 
-import { errorMessage } from '../../utils/error';
+import { errorMessage } from '../../utils/errorMessage';
 import { reportError } from '../../utils/logging';
 import { ensureDir } from '../../utils/path';
 import { Logger } from '../logger';
