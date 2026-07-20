@@ -46,10 +46,35 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('history-view');
+    return component;
+  },
+
+  async mountOnListTab(): Promise<RenderResult> {
+    const component = await this.mount();
+    await this.tabs.listeningHistory.click();
     await waitFor(() => {
       expect(screen.queryByTestId('history-loading')).not.toBeInTheDocument();
     });
     return component;
+  },
+
+  tabs: {
+    stats: {
+      async click() {
+        await user.click(screen.getByRole('tab', { name: 'Stats' }));
+      },
+    },
+    listeningHistory: {
+      async click() {
+        await user.click(
+          screen.getByRole('tab', { name: 'Listening history' }),
+        );
+      },
+    },
+  },
+
+  get statsPlaceholder() {
+    return screen.getByTestId('history-stats');
   },
 
   get emptyState() {
