@@ -1,5 +1,6 @@
 pub mod fingerprint;
 pub mod reads;
+pub mod stats;
 pub mod types;
 pub mod writes;
 
