@@ -1,0 +1,523 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ListeningClock > (Snapshot) renders a full day of listening data 1`] = `
+<div>
+  <div
+    class="flex items-center gap-8"
+    data-testid="listening-clock"
+  >
+    <div
+      class="shrink-0"
+    >
+      <svg
+        class="aspect-square w-64"
+        viewBox="0 0 264 264"
+      >
+        <g
+          transform="translate(132 132)"
+        >
+          <g>
+            <path
+              class="fill-background-secondary/50"
+              d="M1.785,-101.984A102,102,0,0,1,24.671,-98.971L7.582,-35.193A36,36,0,0,0,1.785,-35.956Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M28.12,-98.047A102,102,0,0,1,49.446,-89.214L16.432,-32.031A36,36,0,0,0,11.03,-34.269Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M52.538,-87.429A102,102,0,0,1,70.852,-73.376L24.162,-26.687A36,36,0,0,0,19.524,-30.246Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M73.376,-70.852A102,102,0,0,1,87.429,-52.538L30.246,-19.524A36,36,0,0,0,26.687,-24.162Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M89.214,-49.446A102,102,0,0,1,98.047,-28.12L34.269,-11.03A36,36,0,0,0,32.031,-16.432Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M98.971,-24.671A102,102,0,0,1,101.984,-1.785L35.956,-1.785A36,36,0,0,0,35.193,-7.582Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M101.984,1.785A102,102,0,0,1,98.971,24.671L35.193,7.582A36,36,0,0,0,35.956,1.785Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M98.047,28.12A102,102,0,0,1,89.214,49.446L32.031,16.432A36,36,0,0,0,34.269,11.03Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M87.429,52.538A102,102,0,0,1,73.376,70.852L26.687,24.162A36,36,0,0,0,30.246,19.524Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M70.852,73.376A102,102,0,0,1,52.538,87.429L19.524,30.246A36,36,0,0,0,24.162,26.687Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M49.446,89.214A102,102,0,0,1,28.12,98.047L11.03,34.269A36,36,0,0,0,16.432,32.031Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M24.671,98.971A102,102,0,0,1,1.785,101.984L1.785,35.956A36,36,0,0,0,7.582,35.193Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-1.785,101.984A102,102,0,0,1,-24.671,98.971L-7.582,35.193A36,36,0,0,0,-1.785,35.956Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-28.12,98.047A102,102,0,0,1,-49.446,89.214L-16.432,32.031A36,36,0,0,0,-11.03,34.269Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-52.538,87.429A102,102,0,0,1,-70.852,73.376L-24.162,26.687A36,36,0,0,0,-19.524,30.246Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-73.376,70.852A102,102,0,0,1,-87.429,52.538L-30.246,19.524A36,36,0,0,0,-26.687,24.162Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-89.214,49.446A102,102,0,0,1,-98.047,28.12L-34.269,11.03A36,36,0,0,0,-32.031,16.432Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-98.971,24.671A102,102,0,0,1,-101.984,1.785L-35.956,1.785A36,36,0,0,0,-35.193,7.582Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-101.984,-1.785A102,102,0,0,1,-98.971,-24.671L-35.193,-7.582A36,36,0,0,0,-35.956,-1.785Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-98.047,-28.12A102,102,0,0,1,-89.214,-49.446L-32.031,-16.432A36,36,0,0,0,-34.269,-11.03Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-87.429,-52.538A102,102,0,0,1,-73.376,-70.852L-26.687,-24.162A36,36,0,0,0,-30.246,-19.524Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-70.852,-73.376A102,102,0,0,1,-52.538,-87.429L-19.524,-30.246A36,36,0,0,0,-24.162,-26.687Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-49.446,-89.214A102,102,0,0,1,-28.12,-98.047L-11.03,-34.269A36,36,0,0,0,-16.432,-32.031Z"
+              data-testid="listening-clock-slot"
+            />
+            <path
+              class="fill-background-secondary/50"
+              d="M-24.671,-98.971A102,102,0,0,1,-1.785,-101.984L-1.785,-35.956A36,36,0,0,0,-7.582,-35.193Z"
+              data-testid="listening-clock-slot"
+            />
+          </g>
+          <text
+            class="fill-foreground-secondary font-bold"
+            dominant-baseline="central"
+            font-size="16"
+            text-anchor="middle"
+            x="7.041719095097281e-15"
+            y="-115"
+          >
+            00
+          </text>
+          <text
+            class="fill-foreground-secondary font-bold"
+            dominant-baseline="central"
+            font-size="16"
+            text-anchor="middle"
+            x="115"
+            y="0"
+          >
+            06
+          </text>
+          <text
+            class="fill-foreground-secondary font-bold"
+            dominant-baseline="central"
+            font-size="16"
+            text-anchor="middle"
+            x="7.041719095097281e-15"
+            y="115"
+          >
+            12
+          </text>
+          <text
+            class="fill-foreground-secondary font-bold"
+            dominant-baseline="central"
+            font-size="16"
+            text-anchor="middle"
+            x="-115"
+            y="1.4083438190194563e-14"
+          >
+            18
+          </text>
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="0"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="1"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="2"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="7"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="8"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="9"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="10"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="11"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="12"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="13"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="14"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="15"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="16"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="17"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="18"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="19"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="20"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="21"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="22"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <path
+            animate="[object Object]"
+            class="fill-accent-cyan stroke-border stroke-(length:--border-width) transition-[fill] duration-150"
+            data-active="false"
+            data-hour="23"
+            data-testid="listening-clock-bar"
+            initial="[object Object]"
+            transition="[object Object]"
+          />
+          <g>
+            <path
+              d="M1.785,-101.984A102,102,0,0,1,24.671,-98.971L7.582,-35.193A36,36,0,0,0,1.785,-35.956Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M28.12,-98.047A102,102,0,0,1,49.446,-89.214L16.432,-32.031A36,36,0,0,0,11.03,-34.269Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M52.538,-87.429A102,102,0,0,1,70.852,-73.376L24.162,-26.687A36,36,0,0,0,19.524,-30.246Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M73.376,-70.852A102,102,0,0,1,87.429,-52.538L30.246,-19.524A36,36,0,0,0,26.687,-24.162Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M89.214,-49.446A102,102,0,0,1,98.047,-28.12L34.269,-11.03A36,36,0,0,0,32.031,-16.432Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M98.971,-24.671A102,102,0,0,1,101.984,-1.785L35.956,-1.785A36,36,0,0,0,35.193,-7.582Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M101.984,1.785A102,102,0,0,1,98.971,24.671L35.193,7.582A36,36,0,0,0,35.956,1.785Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M98.047,28.12A102,102,0,0,1,89.214,49.446L32.031,16.432A36,36,0,0,0,34.269,11.03Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M87.429,52.538A102,102,0,0,1,73.376,70.852L26.687,24.162A36,36,0,0,0,30.246,19.524Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M70.852,73.376A102,102,0,0,1,52.538,87.429L19.524,30.246A36,36,0,0,0,24.162,26.687Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M49.446,89.214A102,102,0,0,1,28.12,98.047L11.03,34.269A36,36,0,0,0,16.432,32.031Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M24.671,98.971A102,102,0,0,1,1.785,101.984L1.785,35.956A36,36,0,0,0,7.582,35.193Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-1.785,101.984A102,102,0,0,1,-24.671,98.971L-7.582,35.193A36,36,0,0,0,-1.785,35.956Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-28.12,98.047A102,102,0,0,1,-49.446,89.214L-16.432,32.031A36,36,0,0,0,-11.03,34.269Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-52.538,87.429A102,102,0,0,1,-70.852,73.376L-24.162,26.687A36,36,0,0,0,-19.524,30.246Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-73.376,70.852A102,102,0,0,1,-87.429,52.538L-30.246,19.524A36,36,0,0,0,-26.687,24.162Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-89.214,49.446A102,102,0,0,1,-98.047,28.12L-34.269,11.03A36,36,0,0,0,-32.031,16.432Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-98.971,24.671A102,102,0,0,1,-101.984,1.785L-35.956,1.785A36,36,0,0,0,-35.193,7.582Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-101.984,-1.785A102,102,0,0,1,-98.971,-24.671L-35.193,-7.582A36,36,0,0,0,-35.956,-1.785Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-98.047,-28.12A102,102,0,0,1,-89.214,-49.446L-32.031,-16.432A36,36,0,0,0,-34.269,-11.03Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-87.429,-52.538A102,102,0,0,1,-73.376,-70.852L-26.687,-24.162A36,36,0,0,0,-30.246,-19.524Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-70.852,-73.376A102,102,0,0,1,-52.538,-87.429L-19.524,-30.246A36,36,0,0,0,-24.162,-26.687Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-49.446,-89.214A102,102,0,0,1,-28.12,-98.047L-11.03,-34.269A36,36,0,0,0,-16.432,-32.031Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+            <path
+              d="M-24.671,-98.971A102,102,0,0,1,-1.785,-101.984L-1.785,-35.956A36,36,0,0,0,-7.582,-35.193Z"
+              data-testid="listening-clock-hit"
+              fill="transparent"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div
+      class="flex flex-col gap-5"
+      data-testid="listening-clock-stats"
+    >
+      <div
+        class="flex flex-col gap-1"
+      >
+        <span
+          class="text-foreground-secondary text-sm font-bold"
+        >
+          Busiest hour
+        </span>
+        <span
+          class="font-heading text-3xl leading-none font-extrabold"
+          data-testid="listening-clock-busiest-hour"
+        >
+          20:00
+        </span>
+      </div>
+      <div
+        class="flex flex-col gap-1"
+      >
+        <span
+          class="text-foreground-secondary text-sm font-bold"
+        >
+          Time during busiest hour
+        </span>
+        <span
+          class="font-heading text-3xl leading-none font-extrabold"
+          data-testid="listening-clock-busiest-value"
+        >
+          110m
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
