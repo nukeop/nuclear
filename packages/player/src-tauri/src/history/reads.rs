@@ -130,7 +130,7 @@ impl HistoryDb {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::history::test_helpers::test_pool;
+    use crate::history::fixtures;
     use crate::history::types::{HistoryEntry, PlayEvent, TrackSnapshot};
     use crate::history::HistoryDb;
 
@@ -140,45 +140,6 @@ mod tests {
             at,
             position_ms,
         }
-    }
-
-    fn snapshot(title: &str) -> TrackSnapshot {
-        TrackSnapshot {
-            title: title.into(),
-            artists: vec!["Test Artist".into()],
-            album_title: None,
-            duration_ms: None,
-            artwork_url: None,
-            provider: "test".into(),
-            provider_id: title.to_lowercase(),
-        }
-    }
-
-    async fn seed_started(db: &HistoryDb, play_id: &str, title: &str, at: i64) {
-        db.record_event(PlayEvent {
-            play_id: play_id.into(),
-            kind: PlayEventKind::Started,
-            at,
-            position_ms: 0,
-            seek_to_ms: None,
-            snapshot: Some(snapshot(title)),
-        })
-        .await
-        .unwrap();
-    }
-
-    async fn seed_finished_play(db: &HistoryDb, play_id: &str, title: &str, at: i64) {
-        seed_started(db, play_id, title, at).await;
-        db.record_event(PlayEvent {
-            play_id: play_id.into(),
-            kind: PlayEventKind::Finished,
-            at: at + 1000,
-            position_ms: 1000,
-            seek_to_ms: None,
-            snapshot: None,
-        })
-        .await
-        .unwrap();
     }
 
     fn play_ids(entries: &[HistoryEntry]) -> Vec<&str> {
@@ -297,7 +258,7 @@ mod tests {
 
     #[tokio::test]
     async fn entries_returns_track_metadata_with_each_play() {
-        let db = HistoryDb(test_pool().await);
+        let db = HistoryDb(fixtures::pool().await);
 
         db.record_event(PlayEvent {
             play_id: "play-1".into(),
@@ -352,10 +313,10 @@ mod tests {
 
     #[tokio::test]
     async fn entries_orders_newest_first() {
-        let db = HistoryDb(test_pool().await);
-        seed_finished_play(&db, "play-1", "First", 1000).await;
-        seed_finished_play(&db, "play-2", "Second", 5000).await;
-        seed_finished_play(&db, "play-3", "Third", 9000).await;
+        let db = HistoryDb(fixtures::pool().await);
+        fixtures::seed_finished_play(&db, "play-1", "First", 1000).await;
+        fixtures::seed_finished_play(&db, "play-2", "Second", 5000).await;
+        fixtures::seed_finished_play(&db, "play-3", "Third", 9000).await;
 
         let entries = db.entries(10, 0).await.unwrap();
 
@@ -364,10 +325,10 @@ mod tests {
 
     #[tokio::test]
     async fn entries_paginates_with_limit_and_offset() {
-        let db = HistoryDb(test_pool().await);
-        seed_finished_play(&db, "play-1", "First", 1000).await;
-        seed_finished_play(&db, "play-2", "Second", 5000).await;
-        seed_finished_play(&db, "play-3", "Third", 9000).await;
+        let db = HistoryDb(fixtures::pool().await);
+        fixtures::seed_finished_play(&db, "play-1", "First", 1000).await;
+        fixtures::seed_finished_play(&db, "play-2", "Second", 5000).await;
+        fixtures::seed_finished_play(&db, "play-3", "Third", 9000).await;
 
         let first_page = db.entries(2, 0).await.unwrap();
         let second_page = db.entries(2, 2).await.unwrap();
@@ -378,8 +339,8 @@ mod tests {
 
     #[tokio::test]
     async fn entries_includes_interrupted_plays() {
-        let db = HistoryDb(test_pool().await);
-        seed_started(&db, "play-1", "Interrupted", 1000).await;
+        let db = HistoryDb(fixtures::pool().await);
+        fixtures::seed_started(&db, "play-1", "Interrupted", 1000).await;
 
         let entries = db.entries(10, 0).await.unwrap();
 
@@ -390,19 +351,19 @@ mod tests {
 
     #[tokio::test]
     async fn count_plays_counts_plays() {
-        let db = HistoryDb(test_pool().await);
-        seed_finished_play(&db, "play-1", "First", 1000).await;
-        seed_finished_play(&db, "play-2", "Second", 5000).await;
+        let db = HistoryDb(fixtures::pool().await);
+        fixtures::seed_finished_play(&db, "play-1", "First", 1000).await;
+        fixtures::seed_finished_play(&db, "play-2", "Second", 5000).await;
 
         assert_eq!(db.count_plays().await.unwrap(), 2);
     }
 
     #[tokio::test]
     async fn delete_range_removes_plays_started_within_it_and_keeps_the_rest() {
-        let db = HistoryDb(test_pool().await);
-        seed_finished_play(&db, "play-1", "First", 1000).await;
-        seed_finished_play(&db, "play-2", "Second", 5000).await;
-        seed_finished_play(&db, "play-3", "Third", 9000).await;
+        let db = HistoryDb(fixtures::pool().await);
+        fixtures::seed_finished_play(&db, "play-1", "First", 1000).await;
+        fixtures::seed_finished_play(&db, "play-2", "Second", 5000).await;
+        fixtures::seed_finished_play(&db, "play-3", "Third", 9000).await;
 
         db.delete_range(1000, 5000).await.unwrap();
 
@@ -414,9 +375,9 @@ mod tests {
 
     #[tokio::test]
     async fn delete_range_drops_tracks_that_no_longer_have_any_plays() {
-        let db = HistoryDb(test_pool().await);
-        seed_finished_play(&db, "play-1", "Kept", 1000).await;
-        seed_finished_play(&db, "play-2", "Deleted", 5000).await;
+        let db = HistoryDb(fixtures::pool().await);
+        fixtures::seed_finished_play(&db, "play-1", "Kept", 1000).await;
+        fixtures::seed_finished_play(&db, "play-2", "Deleted", 5000).await;
 
         db.delete_range(5000, 6000).await.unwrap();
 

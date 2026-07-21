@@ -40,39 +40,21 @@ impl HistoryDb {
 mod tests {
     use chrono::{Local, TimeZone};
 
-    use crate::history::test_helpers::test_pool;
-    use crate::history::types::{PlayEvent, PlayEventKind, TrackSnapshot};
+    use crate::history::fixtures;
+    use crate::history::types::PlayEventKind;
     use crate::history::HistoryDb;
 
     async fn seed_play(db: &HistoryDb, play_id: &str, started_at: i64, ms_played: i64) {
-        db.record_event(PlayEvent {
-            play_id: play_id.into(),
-            kind: PlayEventKind::Started,
-            at: started_at,
-            position_ms: 0,
-            seek_to_ms: None,
-            snapshot: Some(TrackSnapshot {
-                title: "Creep".into(),
-                artists: vec!["Radiohead".into()],
-                album_title: None,
-                duration_ms: None,
-                artwork_url: None,
-                provider: "test".into(),
-                provider_id: "creep".into(),
-            }),
-        })
-        .await
-        .unwrap();
-        db.record_event(PlayEvent {
-            play_id: play_id.into(),
-            kind: PlayEventKind::Finished,
-            at: started_at + ms_played,
-            position_ms: ms_played,
-            seek_to_ms: None,
-            snapshot: None,
-        })
-        .await
-        .unwrap();
+        fixtures::seed_events(
+            db,
+            play_id,
+            "Creep",
+            &[
+                (PlayEventKind::Started, started_at),
+                (PlayEventKind::Finished, started_at + ms_played),
+            ],
+        )
+        .await;
     }
 
     fn local_time(hour: u32) -> i64 {
@@ -84,12 +66,55 @@ mod tests {
 
     #[tokio::test]
     async fn credits_listening_time_to_the_hour_a_play_started_in() {
-        let db = HistoryDb(test_pool().await);
+        let db = HistoryDb(fixtures::pool().await);
         seed_play(&db, "play-1", local_time(14), 90_000).await;
 
         let stats = db.hourly_listening_time(0, i64::MAX).await.unwrap();
 
         assert_eq!(stats[14], 90_000);
         assert_eq!(stats.iter().sum::<i64>(), 90_000);
+    }
+
+    #[tokio::test]
+    async fn excludes_paused_time_from_the_hourly_total() {
+        let db = HistoryDb(fixtures::pool().await);
+        let start = local_time(9);
+        fixtures::seed_events(
+            &db,
+            "play-1",
+            "Creep",
+            &[
+                (PlayEventKind::Started, start),
+                (PlayEventKind::Paused, start + 2_000),
+                (PlayEventKind::Resumed, start + 10_000),
+                (PlayEventKind::Finished, start + 13_000),
+            ],
+        )
+        .await;
+
+        let stats = db.hourly_listening_time(0, i64::MAX).await.unwrap();
+
+        assert_eq!(stats[9], 5_000);
+    }
+
+    #[tokio::test]
+    async fn seeking_while_playing_does_not_interrupt_listening_time() {
+        let db = HistoryDb(fixtures::pool().await);
+        let start = local_time(21);
+        fixtures::seed_events(
+            &db,
+            "play-1",
+            "Creep",
+            &[
+                (PlayEventKind::Started, start),
+                (PlayEventKind::Seeked, start + 3_000),
+                (PlayEventKind::Paused, start + 5_000),
+            ],
+        )
+        .await;
+
+        let stats = db.hourly_listening_time(0, i64::MAX).await.unwrap();
+
+        assert_eq!(stats[21], 5_000);
     }
 }

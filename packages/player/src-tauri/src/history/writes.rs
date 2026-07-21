@@ -107,7 +107,7 @@ impl HistoryDb {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::history::test_helpers::test_pool;
+    use crate::history::fixtures;
 
     fn snapshot() -> TrackSnapshot {
         TrackSnapshot {
@@ -144,7 +144,7 @@ mod tests {
     }
 
     async fn db() -> HistoryDb {
-        HistoryDb(test_pool().await)
+        HistoryDb(fixtures::pool().await)
     }
 
     #[tokio::test]
