@@ -117,4 +117,32 @@ mod tests {
 
         assert_eq!(stats[21], 5_000);
     }
+
+    #[tokio::test]
+    async fn accumulates_listening_time_from_multiple_plays_in_the_same_hour() {
+        let db = HistoryDb(fixtures::pool().await);
+        let start = local_time(15);
+        seed_play(&db, "play-1", start, 30_000).await;
+        seed_play(&db, "play-2", start + 60_000, 45_000).await;
+
+        let stats = db.hourly_listening_time(0, i64::MAX).await.unwrap();
+
+        assert_eq!(stats[15], 75_000);
+    }
+
+    #[tokio::test]
+    async fn excludes_plays_started_outside_the_requested_range() {
+        let db = HistoryDb(fixtures::pool().await);
+        let before = local_time(10);
+        let inside = local_time(14);
+        let after = local_time(22);
+        seed_play(&db, "play-before", before, 60_000).await;
+        seed_play(&db, "play-inside", inside, 90_000).await;
+        seed_play(&db, "play-after", after, 30_000).await;
+
+        let stats = db.hourly_listening_time(inside, after - 1).await.unwrap();
+
+        assert_eq!(stats[14], 90_000);
+        assert_eq!(stats.iter().sum::<i64>(), 90_000);
+    }
 }
