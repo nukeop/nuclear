@@ -32,13 +32,6 @@ describe('Listening history view', () => {
     vi.useRealTimers();
   });
 
-  it('shows the Stats tab by default', async () => {
-    Wrapper.mockHistoryEntries();
-    await Wrapper.mount();
-
-    expect(Wrapper.statsPlaceholder).toBeInTheDocument();
-  });
-
   it('shows the list of plays after switching to the Listening history tab', async () => {
     Wrapper.mockHistoryEntries(
       new HistoryEntryBuilder().withTitle('Paranoid Android').build(),

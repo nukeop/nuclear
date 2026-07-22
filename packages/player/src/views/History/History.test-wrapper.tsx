@@ -23,6 +23,7 @@ const FAVORITED_LABEL = 'Remove from favorites';
 export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
   init() {
     commandMocks.reset();
+    this.mockHourlyListeningTime(Array.from({ length: 24 }, () => 0));
     useQueueStore.setState({ items: [], currentIndex: 0 });
     useFavoritesStore.setState({
       tracks: [],
@@ -39,6 +40,12 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
         total: entries.length,
       }),
     );
+  },
+
+  mockHourlyListeningTime(values: number[]) {
+    commandMocks
+      .command('historyHourlyListeningTime')
+      .mockResolvedValue(ok({ values }));
   },
 
   async mount(): Promise<RenderResult> {
@@ -73,8 +80,23 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     },
   },
 
-  get statsPlaceholder() {
-    return screen.getByTestId('history-stats');
+  stats: {
+    clock: {
+      async find() {
+        return screen.findByTestId('listening-clock');
+      },
+    },
+    get busiestHour() {
+      return screen.getByTestId('listening-clock-busiest-hour').textContent;
+    },
+    get listeningTime() {
+      return screen.getByTestId('listening-clock-busiest-value').textContent;
+    },
+    emptyState: {
+      async find() {
+        return screen.findByTestId('history-stats-empty');
+      },
+    },
   },
 
   get emptyState() {
