@@ -1,4 +1,14 @@
+use serde::Serialize;
+use specta_typescript::Number;
+
 use crate::history::HistoryDb;
+
+#[derive(Serialize, specta::Type)]
+#[serde(rename_all = "camelCase")]
+pub struct HourlyListeningTime {
+    #[specta(type = Vec<Number<i64>>)]
+    pub values: Vec<i64>,
+}
 
 const HOURLY_SQL: &str = "\
     WITH ordered AS ( \
