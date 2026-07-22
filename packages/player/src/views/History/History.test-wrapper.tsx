@@ -97,6 +97,19 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
         return screen.findByTestId('history-stats-empty');
       },
     },
+    rangeSelect: {
+      get element() {
+        return screen.getByTestId('history-stats-range');
+      },
+      async select(label: string) {
+        await user.click(within(this.element).getByRole('button'));
+        await user.click(await screen.findByRole('option', { name: label }));
+      },
+    },
+    get requestedRange() {
+      return commandMocks.command('historyHourlyListeningTime').mock
+        .lastCall?.[0];
+    },
   },
 
   get emptyState() {
