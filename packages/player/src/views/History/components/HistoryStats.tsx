@@ -1,7 +1,8 @@
+import { ChartColumn } from 'lucide-react';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { ListeningClock, Select } from '@nuclearplayer/ui';
+import { EmptyState, ListeningClock, Select } from '@nuclearplayer/ui';
 
 import { useHistoryStats } from '../hooks/useHistoryStats';
 import { formatListeningDuration } from '../utils/format';
@@ -10,7 +11,8 @@ import { RANGE_PRESET_IDS } from '../utils/rangePresets';
 
 export const HistoryStats: FC = () => {
   const { t } = useTranslation('history');
-  const { presetId, setPresetId, hourlyValues } = useHistoryStats();
+  const { presetId, setPresetId, hourlyValues, hasListening } =
+    useHistoryStats();
 
   const rangeLabels: Record<RangePresetId, string> = {
     last7Days: t('stats.range.last7Days'),
@@ -37,24 +39,24 @@ export const HistoryStats: FC = () => {
           />
         </div>
       </div>
-      {hourlyValues && (
-        <ListeningClock
-          values={hourlyValues}
-          labels={{
-            busiestHour: t('stats.busiestHour'),
-            busiestHourValue: t('stats.listeningTime'),
-          }}
-          formatValue={formatListeningDuration}
-          emptyState={
-            <div
-              data-testid="history-stats-empty"
-              className="text-foreground-secondary"
-            >
-              {t('stats.empty')}
-            </div>
-          }
-        />
-      )}
+      {hourlyValues &&
+        (hasListening ? (
+          <ListeningClock
+            values={hourlyValues}
+            labels={{
+              busiestHour: t('stats.busiestHour'),
+              busiestHourValue: t('stats.listeningTime'),
+            }}
+            formatValue={formatListeningDuration}
+          />
+        ) : (
+          <EmptyState
+            data-testid="history-stats-empty"
+            icon={<ChartColumn size={48} />}
+            title={t('stats.empty')}
+            className="flex-1"
+          />
+        ))}
     </div>
   );
 };

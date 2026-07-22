@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { EmptyState, ListeningClock } from '@nuclearplayer/ui';
+import { ListeningClock } from '@nuclearplayer/ui';
 
 const meta = {
   title: 'Components/HistoryCharts/ListeningClock',
@@ -51,21 +51,6 @@ export const Variants: Story = {
         }}
         formatValue={(value) => `${value}m`}
         classes={{ bar: 'fill-accent-orange' }}
-      />
-      <ListeningClock
-        values={new Array(24).fill(0)}
-        labels={{
-          busiestHour: 'Busiest hour',
-          busiestHourValue: 'Time during busiest hour',
-        }}
-        formatValue={(value) => `${value}m`}
-        emptyState={
-          <EmptyState
-            size="sm"
-            title="Nothing played yet"
-            description="Your listening clock will fill in as you play music."
-          />
-        }
       />
     </div>
   ),

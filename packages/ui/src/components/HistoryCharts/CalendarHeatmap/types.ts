@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export type CalendarHeatmapDay = {
   date: string;
   value: number;
@@ -18,5 +16,4 @@ export type CalendarHeatmapProps = {
   formatValue: (value: number) => string;
   formatDate: (date: string) => string;
   className?: string;
-  emptyState?: ReactNode;
 };

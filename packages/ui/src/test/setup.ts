@@ -2,10 +2,12 @@ import '@testing-library/jest-dom';
 
 import { MotionGlobalConfig } from 'motion/react';
 
+import { setupMatchMediaMock } from './matchMediaMock';
 import { setupResizeObserverMock } from './resizeObserverMock';
 
 process.env.TZ = 'UTC';
 
+setupMatchMediaMock();
 setupResizeObserverMock();
 
 Element.prototype.hasPointerCapture = vi.fn().mockReturnValue(false);

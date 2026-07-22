@@ -12,6 +12,7 @@ export const useHistoryStats = () => {
     return { from: ms === null ? 0 : now - ms, to: now };
   }, [presetId]);
   const { data: hourlyValues } = useHourlyListeningTime(range);
+  const hasListening = Boolean(hourlyValues?.some((value) => value > 0));
 
-  return { presetId, setPresetId, hourlyValues };
+  return { presetId, setPresetId, hourlyValues, hasListening };
 };
