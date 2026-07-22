@@ -1,6 +1,6 @@
 import times from 'lodash-es/times';
 import { DateTime } from 'luxon';
-import { ComponentProps, FC, ReactNode, useState } from 'react';
+import { ComponentProps, FC, useState } from 'react';
 
 import { cn } from '../../../utils';
 import { ClockChart } from './ClockChart';
@@ -13,7 +13,6 @@ type ListeningClockProps = Omit<ComponentProps<'div'>, 'children'> & {
   labels: ListeningClockLabels;
   formatValue: (value: number) => string;
   classes?: ListeningClockClasses;
-  emptyState?: ReactNode;
 };
 
 type HoveredHour = {
@@ -29,14 +28,12 @@ export const ListeningClock: FC<ListeningClockProps> = ({
   labels,
   formatValue,
   classes,
-  emptyState,
   className,
   ...props
 }) => {
   const [hovered, setHovered] = useState<HoveredHour | null>(null);
 
   const hours = times(24, (hour) => values[hour] ?? 0);
-  const isEmpty = hours.every((value) => value === 0);
   const busiestValue = Math.max(...hours);
   const busiestHour = hours.indexOf(busiestValue);
 
@@ -46,32 +43,26 @@ export const ListeningClock: FC<ListeningClockProps> = ({
       className={cn('flex items-center gap-8', className)}
       {...props}
     >
-      {isEmpty ? (
-        emptyState
-      ) : (
-        <>
-          <div className="shrink-0" onMouseLeave={() => setHovered(null)}>
-            <ClockChart
-              hours={hours}
-              barClassName={classes?.bar}
-              activeHour={hovered?.hour ?? null}
-              onHourEnter={(hour, element) => setHovered({ hour, element })}
-            />
-            {hovered && (
-              <ClockTooltip
-                anchor={hovered.element}
-                value={formatValue(hours[hovered.hour])}
-                label={`${formatHour(hovered.hour)} – ${formatHour((hovered.hour + 1) % 24)}`}
-              />
-            )}
-          </div>
-          <ClockStats
-            labels={labels}
-            busiestHour={formatHour(busiestHour)}
-            busiestHourValue={formatValue(busiestValue)}
+      <div className="shrink-0" onMouseLeave={() => setHovered(null)}>
+        <ClockChart
+          hours={hours}
+          barClassName={classes?.bar}
+          activeHour={hovered?.hour ?? null}
+          onHourEnter={(hour, element) => setHovered({ hour, element })}
+        />
+        {hovered && (
+          <ClockTooltip
+            anchor={hovered.element}
+            value={formatValue(hours[hovered.hour])}
+            label={`${formatHour(hovered.hour)} – ${formatHour((hovered.hour + 1) % 24)}`}
           />
-        </>
-      )}
+        )}
+      </div>
+      <ClockStats
+        labels={labels}
+        busiestHour={formatHour(busiestHour)}
+        busiestHourValue={formatValue(busiestValue)}
+      />
     </div>
   );
 };

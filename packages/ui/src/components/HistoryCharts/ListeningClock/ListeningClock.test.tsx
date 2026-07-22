@@ -71,21 +71,4 @@ describe('ListeningClock', () => {
     expect(screen.getByText('12')).toBeInTheDocument();
     expect(screen.getByText('18')).toBeInTheDocument();
   });
-
-  it('renders only the empty state when there is no listening data', () => {
-    render(
-      <ListeningClock
-        values={new Array(24).fill(0)}
-        labels={labels}
-        formatValue={minutesLabel}
-        emptyState={<div>Nothing yet</div>}
-      />,
-    );
-
-    expect(screen.getByText('Nothing yet')).toBeInTheDocument();
-    expect(
-      screen.queryByTestId('listening-clock-stats'),
-    ).not.toBeInTheDocument();
-    expect(screen.queryAllByTestId('listening-clock-bar')).toHaveLength(0);
-  });
 });

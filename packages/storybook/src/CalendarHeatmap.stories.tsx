@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { CalendarHeatmap, EmptyState } from '@nuclearplayer/ui';
+import { CalendarHeatmap } from '@nuclearplayer/ui';
 
 const meta = {
   title: 'Components/HistoryCharts/CalendarHeatmap',
@@ -60,43 +60,5 @@ export const Default: Story = {
     },
     formatValue: (value) => `${Math.round(value / 60_000)}m`,
     formatDate: (date) => date,
-  },
-};
-
-export const Empty: Story = {
-  args: {
-    days: [
-      { date: '2026-05-01', value: 0 },
-      { date: '2026-06-15', value: 0 },
-      { date: '2026-07-22', value: 0 },
-    ],
-    labels: {
-      months: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
-      weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      legendLess: 'Less',
-      legendMore: 'More',
-    },
-    formatValue: (value) => `${Math.round(value / 60_000)}m`,
-    formatDate: (date) => date,
-    emptyState: (
-      <EmptyState
-        size="sm"
-        title="Nothing played yet"
-        description="Your listening calendar will fill in as you play music."
-      />
-    ),
   },
 };
