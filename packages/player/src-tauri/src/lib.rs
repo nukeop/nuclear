@@ -60,9 +60,10 @@ fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
             discord::discord_clear_activity,
             bridge::bridge_respond,
             bridge::bridge_notify,
-            history::history_record_event,
-            history::history_fetch,
-            history::history_delete_range
+            history::commands::history_record_event,
+            history::commands::history_fetch,
+            history::commands::history_delete_range,
+            history::commands::history_hourly_listening_time
         ],
     )
 }
