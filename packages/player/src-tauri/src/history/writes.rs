@@ -191,7 +191,9 @@ mod tests {
 
         let mut first = snapshot();
         first.artwork_url = None;
-        db.record_event(started("play-1", 1000, first)).await.unwrap();
+        db.record_event(started("play-1", 1000, first))
+            .await
+            .unwrap();
 
         let mut second = snapshot();
         second.album_title = Some("Greatest Hits".into());

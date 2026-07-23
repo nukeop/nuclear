@@ -108,9 +108,8 @@ pub struct StartedRow {
 
 impl StartedRow {
     pub fn into_entry(self, play: Play) -> Result<HistoryEntry, String> {
-        let artists: Vec<String> = serde_json::from_str(&self.artists).map_err(|err| {
-            format!("Failed to parse artists for play '{}': {err}", self.play_id)
-        })?;
+        let artists: Vec<String> = serde_json::from_str(&self.artists)
+            .map_err(|err| format!("Failed to parse artists for play '{}': {err}", self.play_id))?;
 
         Ok(HistoryEntry {
             play_id: self.play_id,
