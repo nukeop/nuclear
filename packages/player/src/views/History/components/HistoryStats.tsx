@@ -1,18 +1,34 @@
 import { ChartColumn } from 'lucide-react';
+import { DateTime, Info } from 'luxon';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { EmptyState, ListeningClock, Select } from '@nuclearplayer/ui';
+import {
+  CalendarHeatmap,
+  EmptyState,
+  ListeningClock,
+  Select,
+} from '@nuclearplayer/ui';
 
+import { useCoreSetting } from '../../../hooks/useCoreSetting';
+import { useDailyListeningTime } from '../hooks/useDailyListeningTime';
 import { useHistoryStats } from '../hooks/useHistoryStats';
 import { formatListeningDuration } from '../utils/format';
 import type { RangePresetId } from '../utils/rangePresets';
 import { RANGE_PRESET_IDS } from '../utils/rangePresets';
 
+const sundayFirstWeekdays = (weekdays: string[]) => [
+  weekdays[6],
+  ...weekdays.slice(0, 6),
+];
+
 export const HistoryStats: FC = () => {
   const { t } = useTranslation('history');
   const { presetId, setPresetId, hourlyValues, hasListening } =
     useHistoryStats();
+  const { data: dailyDays } = useDailyListeningTime();
+  const [isDark] = useCoreSetting<boolean>('theme.dark');
+  const colorScheme = isDark ? 'dark' : 'light';
 
   const rangeLabels: Record<RangePresetId, string> = {
     last7Days: t('stats.range.last7Days'),
@@ -57,6 +73,24 @@ export const HistoryStats: FC = () => {
             className="flex-1"
           />
         ))}
+      {dailyDays && (
+        <div className="border-border flex justify-center border-t-(length:--border-width) pt-6">
+          <CalendarHeatmap
+            days={dailyDays}
+            labels={{
+              months: Info.months('short'),
+              weekdays: sundayFirstWeekdays(Info.weekdays('short')),
+              legendLess: t('stats.legendLess'),
+              legendMore: t('stats.legendMore'),
+            }}
+            colorScheme={colorScheme}
+            formatValue={formatListeningDuration}
+            formatDate={(date) =>
+              DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL)
+            }
+          />
+        </div>
+      )}
     </div>
   );
 };
