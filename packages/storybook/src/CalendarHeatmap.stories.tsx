@@ -68,18 +68,12 @@ const sampleProps: CalendarHeatmapProps = {
 };
 
 export const Default: Story = {
-  render: () => (
-    <div className="flex flex-col gap-8">
-      <div className="bg-background rounded-md p-6">
-        <CalendarHeatmap {...sampleProps} colorScheme="light" />
-      </div>
-      <div
-        className="rounded-md p-6"
-        data-theme="dark"
-        style={{ backgroundColor: 'var(--background)' }}
-      >
-        <CalendarHeatmap {...sampleProps} colorScheme="dark" />
-      </div>
+  render: (_, context) => (
+    <div className="bg-background w-fit rounded-md p-6">
+      <CalendarHeatmap
+        {...sampleProps}
+        colorScheme={context.globals.theme === 'dark' ? 'dark' : 'light'}
+      />
     </div>
   ),
 };
