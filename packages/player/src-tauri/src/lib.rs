@@ -35,37 +35,36 @@ fn typescript_export_config() -> specta_typescript::Typescript {
 }
 
 fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
-    tauri_specta::Builder::<tauri::Wry>::new().commands(
-        tauri_specta::collect_commands![
-            commands::is_flatpak,
-            commands::copy_dir_recursive,
-            commands::extract_zip,
-            commands::download_file,
-            http::http_fetch,
-            ytdlp::ytdlp_search,
-            ytdlp::ytdlp_get_stream,
-            ytdlp::ytdlp_get_playlist,
-            logging::get_startup_logs,
-            mcp::mcp_start,
-            mcp::mcp_stop,
-            http_api::http_api_start,
-            http_api::http_api_stop,
-            mpd::mpd_start,
-            mpd::mpd_stop,
-            stream_server::stream_server_port,
-            ytdlp_setup::ytdlp_ensure_installed,
-            discord::discord_connect,
-            discord::discord_disconnect,
-            discord::discord_set_activity,
-            discord::discord_clear_activity,
-            bridge::bridge_respond,
-            bridge::bridge_notify,
-            history::commands::history_record_event,
-            history::commands::history_fetch,
-            history::commands::history_delete_range,
-            history::commands::history_hourly_listening_time
-        ],
-    )
+    tauri_specta::Builder::<tauri::Wry>::new().commands(tauri_specta::collect_commands![
+        commands::is_flatpak,
+        commands::copy_dir_recursive,
+        commands::extract_zip,
+        commands::download_file,
+        http::http_fetch,
+        ytdlp::ytdlp_search,
+        ytdlp::ytdlp_get_stream,
+        ytdlp::ytdlp_get_playlist,
+        logging::get_startup_logs,
+        mcp::mcp_start,
+        mcp::mcp_stop,
+        http_api::http_api_start,
+        http_api::http_api_stop,
+        mpd::mpd_start,
+        mpd::mpd_stop,
+        stream_server::stream_server_port,
+        ytdlp_setup::ytdlp_ensure_installed,
+        discord::discord_connect,
+        discord::discord_disconnect,
+        discord::discord_set_activity,
+        discord::discord_clear_activity,
+        bridge::bridge_respond,
+        bridge::bridge_notify,
+        history::commands::history_record_event,
+        history::commands::history_fetch,
+        history::commands::history_delete_range,
+        history::commands::history_hourly_listening_time,
+        history::commands::history_daily_listening_time
+    ])
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
