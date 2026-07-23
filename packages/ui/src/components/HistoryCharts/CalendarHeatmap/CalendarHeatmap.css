@@ -1,0 +1,24 @@
+@import 'react-activity-calendar/tooltips.css';
+
+/*Classes are needed here to work around how the lib styles the widget*/
+.react-activity-calendar__tooltip {
+    background-color: var(--background);
+    color: var(--foreground);
+    border: var(--border-width) solid var(--border);
+    border-radius: 0.375rem;
+    box-shadow: var(--shadow);
+    font-size: 0.75rem;
+}
+
+.react-activity-calendar__tooltip[data-color-scheme='dark'] {
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.react-activity-calendar__tooltip-arrow {
+    fill: var(--background);
+}
+
+.react-activity-calendar__tooltip[data-color-scheme='dark'] .react-activity-calendar__tooltip-arrow {
+    fill: var(--background);
+}

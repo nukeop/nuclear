@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { ActivityCalendar } from 'react-activity-calendar';
 
+import './CalendarHeatmap.css';
+
 import { cn } from '../../../utils';
 import { toActivities } from './activities';
 import type { CalendarHeatmapProps } from './types';
@@ -25,6 +27,8 @@ export const CalendarHeatmap: FC<CalendarHeatmapProps> = ({
   days,
   labels,
   colorScheme,
+  formatValue,
+  formatDate,
   className,
 }) => (
   <div
@@ -41,6 +45,13 @@ export const CalendarHeatmap: FC<CalendarHeatmapProps> = ({
       blockRadius={4}
       showTotalCount={false}
       showWeekdayLabels
+      tooltips={{
+        activity: {
+          text: (activity) =>
+            `${formatValue(activity.count)} · ${formatDate(activity.date)}`,
+          placement: 'top',
+        },
+      }}
       labels={{
         months: labels.months,
         weekdays: labels.weekdays,
