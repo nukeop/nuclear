@@ -24,6 +24,7 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
   init() {
     commandMocks.reset();
     this.mockHourlyListeningTime(Array.from({ length: 24 }, () => 0));
+    this.mockDailyListeningTime([]);
     useQueueStore.setState({ items: [], currentIndex: 0 });
     useFavoritesStore.setState({
       tracks: [],
@@ -46,6 +47,12 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     commandMocks
       .command('historyHourlyListeningTime')
       .mockResolvedValue(ok({ values }));
+  },
+
+  mockDailyListeningTime(days: { date: string; value: number }[]) {
+    commandMocks
+      .command('historyDailyListeningTime')
+      .mockResolvedValue(ok(days));
   },
 
   async mount(): Promise<RenderResult> {
@@ -109,6 +116,11 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     get requestedRange() {
       return commandMocks.command('historyHourlyListeningTime').mock
         .lastCall?.[0];
+    },
+    heatmap: {
+      async find() {
+        return screen.findByTestId('calendar-heatmap');
+      },
     },
   },
 
