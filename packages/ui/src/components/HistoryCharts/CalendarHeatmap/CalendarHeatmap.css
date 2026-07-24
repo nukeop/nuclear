@@ -22,3 +22,13 @@
 .react-activity-calendar__tooltip[data-color-scheme='dark'] .react-activity-calendar__tooltip-arrow {
     fill: var(--background);
 }
+
+.react-activity-calendar__scroll-container {
+    padding-right: 2em;
+}
+
+.react-activity-calendar rect {
+    stroke: none !important;
+    outline: var(--border-width) solid var(--border);
+    outline-offset: calc(-1 * var(--border-width));
+}
