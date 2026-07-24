@@ -1,12 +1,14 @@
 import { FC } from 'react';
-import { Bar, BarChart, ResponsiveContainer, XAxis } from 'recharts';
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
 
 import { cn } from '../../../utils';
+import { DayOfWeekTooltip } from './DayOfWeekTooltip';
 import type { DayOfWeekChartProps } from './types';
 
 export const DayOfWeekChart: FC<DayOfWeekChartProps> = ({
   values,
   labels,
+  formatValue,
   className,
 }) => {
   const data = labels.weekdays.map((weekday, index) => ({
@@ -23,6 +25,10 @@ export const DayOfWeekChart: FC<DayOfWeekChartProps> = ({
             tickLine={false}
             axisLine={false}
             tick={{ className: 'fill-foreground-secondary text-xs' }}
+          />
+          <Tooltip
+            cursor={false}
+            content={<DayOfWeekTooltip formatValue={formatValue} />}
           />
           <Bar dataKey="value" className="fill-primary" />
         </BarChart>
