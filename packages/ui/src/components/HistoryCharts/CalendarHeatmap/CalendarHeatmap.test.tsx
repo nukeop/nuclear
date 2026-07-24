@@ -18,7 +18,7 @@ const labels: CalendarHeatmapLabels = {
     'Nov',
     'Dec',
   ],
-  weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   legendLess: 'Less',
   legendMore: 'More',
 };

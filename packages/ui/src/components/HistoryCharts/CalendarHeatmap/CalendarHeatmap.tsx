@@ -30,34 +30,48 @@ export const CalendarHeatmap: FC<CalendarHeatmapProps> = ({
   formatValue,
   formatDate,
   className,
-}) => (
-  <div
-    data-testid="calendar-heatmap"
-    className={cn('w-fit text-xs', className)}
-    style={{ color: 'var(--foreground-secondary)' }}
-  >
-    <ActivityCalendar
-      data={toActivities(days)}
-      colorScheme={colorScheme}
-      theme={{ light: LIGHT_COLORS, dark: DARK_COLORS }}
-      blockSize={16}
-      showTotalCount={false}
-      showWeekdayLabels
-      tooltips={{
-        activity: {
-          text: (activity) =>
-            `${formatValue(activity.count)} · ${formatDate(activity.date)}`,
-          placement: 'top',
-        },
-      }}
-      labels={{
-        months: labels.months,
-        weekdays: labels.weekdays,
-        legend: {
-          less: labels.legendLess,
-          more: labels.legendMore,
-        },
-      }}
-    />
-  </div>
-);
+}) => {
+  const [monday, tuesday, wednesday, thursday, friday, saturday, sunday] =
+    labels.weekdays;
+
+  return (
+    <div
+      data-testid="calendar-heatmap"
+      className={cn('w-fit text-xs', className)}
+      style={{ color: 'var(--foreground-secondary)' }}
+    >
+      <ActivityCalendar
+        data={toActivities(days)}
+        colorScheme={colorScheme}
+        theme={{ light: LIGHT_COLORS, dark: DARK_COLORS }}
+        blockSize={16}
+        weekStart={1}
+        showTotalCount={false}
+        showWeekdayLabels
+        tooltips={{
+          activity: {
+            text: (activity) =>
+              `${formatValue(activity.count)} · ${formatDate(activity.date)}`,
+            placement: 'top',
+          },
+        }}
+        labels={{
+          months: labels.months,
+          weekdays: [
+            sunday,
+            monday,
+            tuesday,
+            wednesday,
+            thursday,
+            friday,
+            saturday,
+          ],
+          legend: {
+            less: labels.legendLess,
+            more: labels.legendMore,
+          },
+        }}
+      />
+    </div>
+  );
+};

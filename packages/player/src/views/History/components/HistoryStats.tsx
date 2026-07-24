@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import {
   CalendarHeatmap,
+  DayOfWeekChart,
   EmptyState,
   ListeningClock,
   ScrollableArea,
@@ -18,14 +19,9 @@ import { formatListeningDuration } from '../utils/format';
 import type { RangePresetId } from '../utils/rangePresets';
 import { RANGE_PRESET_IDS } from '../utils/rangePresets';
 
-const sundayFirstWeekdays = (weekdays: string[]) => [
-  weekdays[6],
-  ...weekdays.slice(0, 6),
-];
-
 export const HistoryStats: FC = () => {
   const { t, i18n } = useTranslation('history');
-  const { presetId, setPresetId, hourlyValues, hasListening } =
+  const { presetId, setPresetId, hourlyValues, dayOfWeekValues, hasListening } =
     useHistoryStats();
   const { data: dailyDays } = useDailyListeningTime();
   const [isDark] = useCoreSetting<boolean>('theme.dark');
@@ -59,14 +55,25 @@ export const HistoryStats: FC = () => {
       </div>
       {hourlyValues &&
         (hasListening ? (
-          <ListeningClock
-            values={hourlyValues}
-            labels={{
-              busiestHour: t('stats.busiestHour'),
-              busiestHourValue: t('stats.listeningTime'),
-            }}
-            formatValue={formatListeningDuration}
-          />
+          <div className="flex items-center gap-6">
+            <ListeningClock
+              values={hourlyValues}
+              labels={{
+                busiestHour: t('stats.busiestHour'),
+                busiestHourValue: t('stats.listeningTime'),
+              }}
+              formatValue={formatListeningDuration}
+            />
+            {dayOfWeekValues && (
+              <div className="h-48 min-w-0 flex-1">
+                <DayOfWeekChart
+                  values={dayOfWeekValues}
+                  labels={{ weekdays: Info.weekdays('short', { locale }) }}
+                  formatValue={formatListeningDuration}
+                />
+              </div>
+            )}
+          </div>
         ) : (
           <EmptyState
             data-testid="history-stats-empty"
@@ -82,7 +89,7 @@ export const HistoryStats: FC = () => {
             days={dailyDays}
             labels={{
               months: Info.months('short', { locale }),
-              weekdays: sundayFirstWeekdays(Info.weekdays('short', { locale })),
+              weekdays: Info.weekdays('short', { locale }),
               legendLess: t('stats.legendLess'),
               legendMore: t('stats.legendMore'),
             }}

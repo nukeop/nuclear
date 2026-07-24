@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 
 import { DayOfWeekChart } from './DayOfWeekChart';
 import type { DayOfWeekChartLabels } from './types';
@@ -8,7 +8,8 @@ const labels: DayOfWeekChartLabels = {
 };
 
 describe('DayOfWeekChart', () => {
-  it('(Snapshot) renders a week of listening data', () => {
+  it('(Snapshot) renders a week of listening data', async () => {
+    vi.useFakeTimers();
     const { container } = render(
       <DayOfWeekChart
         values={[
@@ -16,8 +17,14 @@ describe('DayOfWeekChart', () => {
         ]}
         labels={labels}
         formatValue={(value) => `${value / 60_000}m`}
+        data-test-resize-observer-inline-size={600}
+        data-test-resize-observer-block-size={320}
       />,
     );
+
+    await act(() => vi.advanceTimersByTimeAsync(5_000));
+    vi.useRealTimers();
+
     expect(container).toMatchSnapshot();
   });
 });

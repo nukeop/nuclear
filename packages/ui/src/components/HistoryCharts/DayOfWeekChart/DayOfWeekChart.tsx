@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
 
-import { cn } from '../../../utils';
 import { DayOfWeekTooltip } from './DayOfWeekTooltip';
 import type { DayOfWeekChartProps } from './types';
 
@@ -12,6 +11,7 @@ export const DayOfWeekChart: FC<DayOfWeekChartProps> = ({
   labels,
   formatValue,
   className,
+  ...props
 }) => {
   const data = labels.weekdays.map((weekday, index) => ({
     weekday,
@@ -19,28 +19,31 @@ export const DayOfWeekChart: FC<DayOfWeekChartProps> = ({
   }));
 
   return (
-    <div className={cn('h-full w-full', className)}>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data}>
-          <XAxis
-            dataKey="weekday"
-            tickLine={false}
-            axisLine={false}
-            tick={{ className: 'fill-foreground-secondary text-xs' }}
-          />
-          <Tooltip
-            cursor={false}
-            content={<DayOfWeekTooltip formatValue={formatValue} />}
-          />
-          <Bar
-            dataKey="value"
-            radius={barTopRadius}
-            fill="var(--color-primary)"
-            stroke="var(--color-border)"
-            className="stroke-(length:--border-width)"
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+      className={className}
+      {...props}
+    >
+      <BarChart data={data}>
+        <XAxis
+          dataKey="weekday"
+          tickLine={false}
+          axisLine={false}
+          tick={{ className: 'fill-foreground-secondary text-xs' }}
+        />
+        <Tooltip
+          cursor={false}
+          content={<DayOfWeekTooltip formatValue={formatValue} />}
+        />
+        <Bar
+          dataKey="value"
+          radius={barTopRadius}
+          fill="var(--color-primary)"
+          stroke="var(--color-border)"
+          className="stroke-(length:--border-width)"
+        />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };

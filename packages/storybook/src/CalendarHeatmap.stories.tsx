@@ -59,7 +59,7 @@ const sampleProps: CalendarHeatmapProps = {
       'Nov',
       'Dec',
     ],
-    weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     legendLess: 'Less',
     legendMore: 'More',
   },

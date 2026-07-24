@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 
 import type { RangePresetId } from '../utils/rangePresets';
 import { RANGE_LOOKBACK_MS } from '../utils/rangePresets';
+import { useDayOfWeekListeningTime } from './useDayOfWeekListeningTime';
 import { useHourlyListeningTime } from './useHourlyListeningTime';
 
 export const useHistoryStats = () => {
@@ -12,7 +13,8 @@ export const useHistoryStats = () => {
     return { from: ms === null ? 0 : now - ms, to: now };
   }, [presetId]);
   const { data: hourlyValues } = useHourlyListeningTime(range);
+  const { data: dayOfWeekValues } = useDayOfWeekListeningTime(range);
   const hasListening = Boolean(hourlyValues?.some((value) => value > 0));
 
-  return { presetId, setPresetId, hourlyValues, hasListening };
+  return { presetId, setPresetId, hourlyValues, dayOfWeekValues, hasListening };
 };
