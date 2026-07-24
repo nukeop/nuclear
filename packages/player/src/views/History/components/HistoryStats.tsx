@@ -7,6 +7,7 @@ import {
   CalendarHeatmap,
   EmptyState,
   ListeningClock,
+  ScrollableArea,
   Select,
 } from '@nuclearplayer/ui';
 
@@ -23,12 +24,13 @@ const sundayFirstWeekdays = (weekdays: string[]) => [
 ];
 
 export const HistoryStats: FC = () => {
-  const { t } = useTranslation('history');
+  const { t, i18n } = useTranslation('history');
   const { presetId, setPresetId, hourlyValues, hasListening } =
     useHistoryStats();
   const { data: dailyDays } = useDailyListeningTime();
   const [isDark] = useCoreSetting<boolean>('theme.dark');
   const colorScheme = isDark ? 'dark' : 'light';
+  const locale = i18n.language.replace('_', '-');
 
   const rangeLabels: Record<RangePresetId, string> = {
     last7Days: t('stats.range.last7Days'),
@@ -39,9 +41,9 @@ export const HistoryStats: FC = () => {
   };
 
   return (
-    <div
+    <ScrollableArea
       data-testid="history-stats"
-      className="flex flex-1 flex-col gap-6 overflow-y-auto p-4"
+      viewportClassName="flex flex-col gap-6 p-4"
     >
       <div className="flex justify-end">
         <div data-testid="history-stats-range" className="w-44">
@@ -74,12 +76,13 @@ export const HistoryStats: FC = () => {
           />
         ))}
       {dailyDays && (
-        <div className="border-border flex justify-center border-t-(length:--border-width) pt-6">
+        <div className="border-border min-w-fit border-t-(length:--border-width) px-2">
           <CalendarHeatmap
+            className="mx-auto"
             days={dailyDays}
             labels={{
-              months: Info.months('short'),
-              weekdays: sundayFirstWeekdays(Info.weekdays('short')),
+              months: Info.months('short', { locale }),
+              weekdays: sundayFirstWeekdays(Info.weekdays('short', { locale })),
               legendLess: t('stats.legendLess'),
               legendMore: t('stats.legendMore'),
             }}
@@ -91,6 +94,6 @@ export const HistoryStats: FC = () => {
           />
         </div>
       )}
-    </div>
+    </ScrollableArea>
   );
 };

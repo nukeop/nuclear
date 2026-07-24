@@ -40,9 +40,7 @@ export const CalendarHeatmap: FC<CalendarHeatmapProps> = ({
       data={toActivities(days)}
       colorScheme={colorScheme}
       theme={{ light: LIGHT_COLORS, dark: DARK_COLORS }}
-      blockSize={10}
-      blockMargin={3}
-      blockRadius={4}
+      blockSize={16}
       showTotalCount={false}
       showWeekdayLabels
       tooltips={{
