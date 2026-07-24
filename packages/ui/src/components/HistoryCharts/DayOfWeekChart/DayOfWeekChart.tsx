@@ -5,6 +5,8 @@ import { cn } from '../../../utils';
 import { DayOfWeekTooltip } from './DayOfWeekTooltip';
 import type { DayOfWeekChartProps } from './types';
 
+const barTopRadius: [number, number, number, number] = [4, 4, 0, 0];
+
 export const DayOfWeekChart: FC<DayOfWeekChartProps> = ({
   values,
   labels,
@@ -30,7 +32,13 @@ export const DayOfWeekChart: FC<DayOfWeekChartProps> = ({
             cursor={false}
             content={<DayOfWeekTooltip formatValue={formatValue} />}
           />
-          <Bar dataKey="value" className="fill-primary" />
+          <Bar
+            dataKey="value"
+            radius={barTopRadius}
+            fill="var(--color-primary)"
+            stroke="var(--color-border)"
+            className="stroke-(length:--border-width)"
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>
