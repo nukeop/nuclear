@@ -107,7 +107,7 @@ impl HistoryDb {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::history::test_helpers::test_pool;
+    use crate::history::fixtures;
 
     fn snapshot() -> TrackSnapshot {
         TrackSnapshot {
@@ -144,7 +144,7 @@ mod tests {
     }
 
     async fn db() -> HistoryDb {
-        HistoryDb(test_pool().await)
+        HistoryDb(fixtures::pool().await)
     }
 
     #[tokio::test]
@@ -191,7 +191,9 @@ mod tests {
 
         let mut first = snapshot();
         first.artwork_url = None;
-        db.record_event(started("play-1", 1000, first)).await.unwrap();
+        db.record_event(started("play-1", 1000, first))
+            .await
+            .unwrap();
 
         let mut second = snapshot();
         second.album_title = Some("Greatest Hits".into());

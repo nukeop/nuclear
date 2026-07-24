@@ -1,34 +1,36 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { ViewShell } from '@nuclearplayer/ui';
+import { Tabs, ViewShell } from '@nuclearplayer/ui';
 
-import { usePagination } from '../../hooks/usePagination';
-import { HistoryBody } from './components/HistoryBody';
-import { HistoryPaginationFooter } from './components/HistoryPaginationFooter';
-import { useListeningHistory } from './hooks/useListeningHistory';
-
-const PAGE_SIZES = [10, 25, 50];
+import { HistoryList } from './components/HistoryList';
+import { HistoryStats } from './components/HistoryStats';
 
 export const History: FC = () => {
   const { t } = useTranslation('history');
-  const pagination = usePagination({ sizes: PAGE_SIZES });
-  const { data, isPending } = useListeningHistory(pagination.request);
-  const total = data?.total ?? 0;
+  const [selectedTab, setSelectedTab] = useState(0);
 
   return (
     <ViewShell data-testid="history-view" title={t('title')}>
-      <HistoryBody isPending={isPending} entries={data?.items ?? []} />
-      {pagination.showControlsFor(total) && (
-        <HistoryPaginationFooter
-          currentPage={pagination.currentPage}
-          totalPages={pagination.totalPagesFor(total)}
-          pageSize={pagination.pageSize}
-          sizes={pagination.sizes}
-          onPageChange={pagination.setPage}
-          onPageSizeChange={pagination.setPageSize}
-        />
-      )}
+      <Tabs
+        selectedIndex={selectedTab}
+        onChange={setSelectedTab}
+        className="flex flex-1 flex-col overflow-hidden"
+        panelsClassName="flex-1 overflow-hidden"
+        panelClassName="flex flex-1 overflow-hidden"
+        items={[
+          {
+            id: 'stats',
+            label: t('tabs.stats'),
+            content: <HistoryStats />,
+          },
+          {
+            id: 'listening-history',
+            label: t('tabs.listeningHistory'),
+            content: <HistoryList />,
+          },
+        ]}
+      />
     </ViewShell>
   );
 };

@@ -32,9 +32,18 @@ describe('Listening history view', () => {
     vi.useRealTimers();
   });
 
+  it('shows the list of plays after switching to the Listening history tab', async () => {
+    Wrapper.mockHistoryEntries(
+      new HistoryEntryBuilder().withTitle('Paranoid Android').build(),
+    );
+    await Wrapper.mountOnListTab();
+
+    expect(Wrapper.row(0).title).toBe('Paranoid Android');
+  });
+
   it('shows an empty state when nothing has been played yet', async () => {
     Wrapper.mockHistoryEntries();
-    await Wrapper.mount();
+    await Wrapper.mountOnListTab();
 
     expect(Wrapper.emptyState).toHaveTextContent('Nothing played yet');
   });
@@ -48,7 +57,7 @@ describe('Listening history view', () => {
         .withStartedAt(Date.parse('2026-07-11T11:55:00Z'))
         .build(),
     );
-    await Wrapper.mount();
+    await Wrapper.mountOnListTab();
 
     const row = Wrapper.row(0);
     expect(row.title).toBe('Paranoid Android');
@@ -75,7 +84,7 @@ describe('Listening history view', () => {
         .withStartedAt(Date.parse('2026-07-08T15:00:00Z'))
         .build(),
     );
-    await Wrapper.mount();
+    await Wrapper.mountOnListTab();
 
     expect(Wrapper.dayGroups).toEqual([
       { marker: 'Today', rowTitles: ['Airbag'] },
@@ -87,7 +96,7 @@ describe('Listening history view', () => {
   describe('Pagination', () => {
     it('shows page numbers and highlights the current page', async () => {
       Wrapper.mockHistoryEntries(...numberedEntries(25));
-      await Wrapper.mount();
+      await Wrapper.mountOnListTab();
 
       expect(Wrapper.pagination.pages).toEqual(['1', '2', '3']);
       expect(Wrapper.pagination.currentPage).toBe('1');
@@ -95,7 +104,7 @@ describe('Listening history view', () => {
 
     it('moves between pages with next and previous', async () => {
       Wrapper.mockHistoryEntries(...numberedEntries(25));
-      await Wrapper.mount();
+      await Wrapper.mountOnListTab();
 
       await Wrapper.pagination.next.click();
       expect(Wrapper.row(0).title).toBe('Track 11');
@@ -108,7 +117,7 @@ describe('Listening history view', () => {
 
     it('changes how many plays are shown per page', async () => {
       Wrapper.mockHistoryEntries(...numberedEntries(25));
-      await Wrapper.mount();
+      await Wrapper.mountOnListTab();
 
       expect(Wrapper.rows).toHaveLength(10);
 
@@ -118,7 +127,7 @@ describe('Listening history view', () => {
 
     it('hides the pagination controls when all plays fit on one page', async () => {
       Wrapper.mockHistoryEntries(...numberedEntries(3));
-      await Wrapper.mount();
+      await Wrapper.mountOnListTab();
 
       expect(Wrapper.rows).toHaveLength(3);
       expect(Wrapper.pagination.isVisible).toBe(false);
@@ -126,7 +135,7 @@ describe('Listening history view', () => {
 
     it('keeps the page size control available when the chosen size fits all plays', async () => {
       Wrapper.mockHistoryEntries(...numberedEntries(15));
-      await Wrapper.mount();
+      await Wrapper.mountOnListTab();
 
       await Wrapper.pageSizeSelect.select('25');
       expect(Wrapper.rows).toHaveLength(15);
@@ -141,7 +150,7 @@ describe('Listening history view', () => {
       Wrapper.mockHistoryEntries(
         new HistoryEntryBuilder().withTitle('Paranoid Android').build(),
       );
-      await Wrapper.mount();
+      await Wrapper.mountOnListTab();
 
       const row = Wrapper.row(0);
       expect(row.favoriteButton.isFavorited).toBe(false);
@@ -158,7 +167,7 @@ describe('Listening history view', () => {
           .withArtists(['Radiohead'])
           .build(),
       );
-      await Wrapper.mount();
+      await Wrapper.mountOnListTab();
 
       await Wrapper.row(0).addToQueueButton.click();
 
@@ -171,7 +180,7 @@ describe('Listening history view', () => {
       Wrapper.mockHistoryEntries(
         new HistoryEntryBuilder().withTitle('Paranoid Android').build(),
       );
-      await Wrapper.mount();
+      await Wrapper.mountOnListTab();
 
       await Wrapper.row(0).playButton.click();
 

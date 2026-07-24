@@ -25,6 +25,7 @@
   "devDependencies": {
     "@storybook/addon-docs": "^10.0.0",
     "@storybook/addon-links": "^10.0.0",
+    "@storybook/addon-themes": "^10.4.6",
     "@storybook/react-vite": "^10.0.0",
     "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^18.3.23",

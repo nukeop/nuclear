@@ -31,6 +31,8 @@ export const commands = {
 	historyRecordEvent: (event: PlayEvent) => typedError<null, string>(__TAURI_INVOKE("history_record_event", { event })),
 	historyFetch: (page: PageRequest) => typedError<Page<HistoryEntry>, string>(__TAURI_INVOKE("history_fetch", { page })),
 	historyDeleteRange: (range: TimeRange) => typedError<null, string>(__TAURI_INVOKE("history_delete_range", { range })),
+	historyHourlyListeningTime: (range: TimeRange) => typedError<HourlyListeningTime, string>(__TAURI_INVOKE("history_hourly_listening_time", { range })),
+	historyDailyListeningTime: (range: TimeRange) => typedError<DailyListeningTime[], string>(__TAURI_INVOKE("history_daily_listening_time", { range })),
 };
 
 /* Types */
@@ -43,6 +45,11 @@ export type BridgeResponse = {
 } & BridgeResponseBody;
 
 export type BridgeResponseBody = { status: "success"; data: unknown } | { status: "error"; error: string };
+
+export type DailyListeningTime = {
+	date: string,
+	value: number,
+};
 
 export type HistoryEntry = {
 	playId: string,
@@ -57,6 +64,10 @@ export type HistoryEntry = {
 	msPlayed: number,
 	endReason: PlayEndReason | null,
 	endPositionMs: number | null,
+};
+
+export type HourlyListeningTime = {
+	values: number[],
 };
 
 export type HttpApiStartResult = {

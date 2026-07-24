@@ -23,6 +23,8 @@ const FAVORITED_LABEL = 'Remove from favorites';
 export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
   init() {
     commandMocks.reset();
+    this.mockHourlyListeningTime(Array.from({ length: 24 }, () => 0));
+    this.mockDailyListeningTime([]);
     useQueueStore.setState({ items: [], currentIndex: 0 });
     useFavoritesStore.setState({
       tracks: [],
@@ -41,15 +43,85 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     );
   },
 
+  mockHourlyListeningTime(values: number[]) {
+    commandMocks
+      .command('historyHourlyListeningTime')
+      .mockResolvedValue(ok({ values }));
+  },
+
+  mockDailyListeningTime(days: { date: string; value: number }[]) {
+    commandMocks
+      .command('historyDailyListeningTime')
+      .mockResolvedValue(ok(days));
+  },
+
   async mount(): Promise<RenderResult> {
     const history = createMemoryHistory({ initialEntries: ['/history'] });
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('history-view');
+    return component;
+  },
+
+  async mountOnListTab(): Promise<RenderResult> {
+    const component = await this.mount();
+    await this.tabs.listeningHistory.click();
     await waitFor(() => {
       expect(screen.queryByTestId('history-loading')).not.toBeInTheDocument();
     });
     return component;
+  },
+
+  tabs: {
+    stats: {
+      async click() {
+        await user.click(screen.getByRole('tab', { name: 'Stats' }));
+      },
+    },
+    listeningHistory: {
+      async click() {
+        await user.click(
+          screen.getByRole('tab', { name: 'Listening history' }),
+        );
+      },
+    },
+  },
+
+  stats: {
+    clock: {
+      async find() {
+        return screen.findByTestId('listening-clock');
+      },
+    },
+    get busiestHour() {
+      return screen.getByTestId('listening-clock-busiest-hour').textContent;
+    },
+    get listeningTime() {
+      return screen.getByTestId('listening-clock-busiest-value').textContent;
+    },
+    emptyState: {
+      async find() {
+        return screen.findByTestId('history-stats-empty');
+      },
+    },
+    rangeSelect: {
+      get element() {
+        return screen.getByTestId('history-stats-range');
+      },
+      async select(label: string) {
+        await user.click(within(this.element).getByRole('button'));
+        await user.click(await screen.findByRole('option', { name: label }));
+      },
+    },
+    get requestedRange() {
+      return commandMocks.command('historyHourlyListeningTime').mock
+        .lastCall?.[0];
+    },
+    heatmap: {
+      async find() {
+        return screen.findByTestId('calendar-heatmap');
+      },
+    },
   },
 
   get emptyState() {

@@ -3,17 +3,25 @@ import '@testing-library/jest-dom';
 import path from 'node:path';
 import { vi } from 'vitest';
 
-import { setupResizeObserverMock } from '@nuclearplayer/ui';
+import {
+  setupMatchMediaMock,
+  setupResizeObserverMock,
+} from '@nuclearplayer/ui';
 
 process.env.NODE_ENV = 'test';
 process.env.TZ = 'UTC';
 
+setupMatchMediaMock();
 setupResizeObserverMock();
 
 Element.prototype.hasPointerCapture = vi.fn().mockReturnValue(false);
 Element.prototype.setPointerCapture = vi.fn();
 Element.prototype.releasePointerCapture = vi.fn();
 Element.prototype.scrollIntoView = vi.fn();
+globalThis.CSS = { supports: () => true } as unknown as typeof CSS;
+(SVGElement.prototype as SVGGraphicsElement).getBBox = vi
+  .fn()
+  .mockReturnValue({ x: 0, y: 0, width: 0, height: 0 });
 
 // Silences react's pointless warning spam
 // give it a rest already
