@@ -17,7 +17,7 @@ import { useHasListeningHistory } from '../hooks/useHasListeningHistory';
 import { useHistoryStats } from '../hooks/useHistoryStats';
 import { formatListeningDuration } from '../utils/format';
 import type { RangePresetId } from '../utils/rangePresets';
-import { RANGE_LOOKBACK_MS, RANGE_PRESET_IDS } from '../utils/rangePresets';
+import { RANGE_LOOKBACK, RANGE_PRESET_IDS } from '../utils/rangePresets';
 import { HistoryStatsEmptyState } from './HistoryStatsEmptyState';
 
 const HistoryStatsBody: FC = () => {
@@ -35,7 +35,7 @@ const HistoryStatsBody: FC = () => {
   const colorScheme = isDark ? 'dark' : 'light';
   const locale = i18n.language.replace('_', '-');
 
-  const hasFixedRange = RANGE_LOOKBACK_MS[presetId] !== null;
+  const hasFixedRange = RANGE_LOOKBACK[presetId] !== null;
   const rangeDates = Interval.fromDateTimes(
     DateTime.fromMillis(range.from),
     DateTime.fromMillis(range.to),

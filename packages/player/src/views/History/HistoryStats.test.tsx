@@ -46,7 +46,7 @@ describe('History stats view', () => {
     expect(
       commandMocks.command('historyHourlyListeningTime'),
     ).toHaveBeenCalledWith({
-      from: Date.parse('2026-07-04T12:00:00Z'),
+      from: Date.parse('2026-07-05T00:00:00Z'),
       to: Date.parse('2026-07-11T12:00:00Z'),
     });
   });

@@ -1,3 +1,5 @@
+import type { DurationLike } from 'luxon';
+
 export const RANGE_PRESET_IDS = [
   'last7Days',
   'last30Days',
@@ -8,12 +10,10 @@ export const RANGE_PRESET_IDS = [
 
 export type RangePresetId = (typeof RANGE_PRESET_IDS)[number];
 
-const DAY_MS = 60 * 60 * 24 * 1000;
-
-export const RANGE_LOOKBACK_MS: Record<RangePresetId, number | null> = {
-  last7Days: 7 * DAY_MS,
-  last30Days: 30 * DAY_MS,
-  last90Days: 90 * DAY_MS,
-  last12Months: 365 * DAY_MS,
+export const RANGE_LOOKBACK: Record<RangePresetId, DurationLike | null> = {
+  last7Days: { days: 7 },
+  last30Days: { days: 30 },
+  last90Days: { days: 90 },
+  last12Months: { months: 12 },
   allTime: null,
 };
