@@ -1,5 +1,6 @@
 import times from 'lodash-es/times';
 
+import { HistoryEntryBuilder } from '../../test/builders/HistoryEntryBuilder';
 import { createHistoryWrapper } from './History.test-wrapper';
 
 const commandMocks = await vi.hoisted(async () => {
@@ -19,7 +20,7 @@ describe('History stats view', () => {
     vi.useFakeTimers({ toFake: ['Date'] });
     vi.setSystemTime(Date.parse('2026-07-11T12:00:00Z'));
     Wrapper.init();
-    Wrapper.mockHistoryEntries();
+    Wrapper.mockHistoryEntries(new HistoryEntryBuilder().build());
   });
 
   afterEach(() => {
@@ -50,12 +51,26 @@ describe('History stats view', () => {
     });
   });
 
-  it('shows an empty state when there is no listening data', async () => {
+  it('shows only the empty state when there is no listening history at all', async () => {
+    Wrapper.mockHistoryEntries();
+
     await Wrapper.mount();
 
     expect(await Wrapper.stats.emptyState.find()).toHaveTextContent(
       'No listening data yet',
     );
+  });
+
+  it('hides the range selector, clock, day-of-week chart, and calendar heatmap when there is no listening history at all', async () => {
+    Wrapper.mockHistoryEntries();
+
+    await Wrapper.mount();
+    await Wrapper.stats.emptyState.find();
+
+    expect(Wrapper.stats.rangeSelect.element).not.toBeInTheDocument();
+    expect(Wrapper.stats.clock.element).not.toBeInTheDocument();
+    expect(Wrapper.stats.dayOfWeekChart.element).not.toBeInTheDocument();
+    expect(Wrapper.stats.heatmap.element).not.toBeInTheDocument();
   });
 
   it('shows the calendar heatmap of daily listening', async () => {

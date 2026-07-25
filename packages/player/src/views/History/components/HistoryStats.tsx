@@ -1,4 +1,3 @@
-import { ChartColumn } from 'lucide-react';
 import { DateTime, Info, Interval } from 'luxon';
 import { FC } from 'react';
 
@@ -7,7 +6,6 @@ import {
   Box,
   CalendarHeatmap,
   DayOfWeekChart,
-  EmptyState,
   ListeningClock,
   ScrollableArea,
   Select,
@@ -15,12 +13,14 @@ import {
 
 import { useCoreSetting } from '../../../hooks/useCoreSetting';
 import { useDailyListeningTime } from '../hooks/useDailyListeningTime';
+import { useHasListeningHistory } from '../hooks/useHasListeningHistory';
 import { useHistoryStats } from '../hooks/useHistoryStats';
 import { formatListeningDuration } from '../utils/format';
 import type { RangePresetId } from '../utils/rangePresets';
 import { RANGE_LOOKBACK_MS, RANGE_PRESET_IDS } from '../utils/rangePresets';
+import { HistoryStatsEmptyState } from './HistoryStatsEmptyState';
 
-export const HistoryStats: FC = () => {
+const HistoryStatsBody: FC = () => {
   const { t, i18n } = useTranslation('history');
   const {
     presetId,
@@ -50,10 +50,7 @@ export const HistoryStats: FC = () => {
   };
 
   return (
-    <ScrollableArea
-      data-testid="history-stats"
-      viewportClassName="flex flex-col gap-6 p-4"
-    >
+    <>
       <div className="flex items-center justify-end gap-3">
         {hasFixedRange && (
           <span
@@ -76,7 +73,7 @@ export const HistoryStats: FC = () => {
       </div>
       {hourlyValues &&
         (hasListening ? (
-          <div className="flex items-stretch gap-6">
+          <div className="flex items-stretch gap-4">
             <Box variant="tertiary" className="w-auto flex-col gap-3">
               <h3 className="font-heading text-[21px]">
                 {t('stats.hourOfDay')}
@@ -106,12 +103,7 @@ export const HistoryStats: FC = () => {
             )}
           </div>
         ) : (
-          <EmptyState
-            data-testid="history-stats-empty"
-            icon={<ChartColumn size={48} />}
-            title={t('stats.empty')}
-            className="flex-1"
-          />
+          <HistoryStatsEmptyState />
         ))}
       {dailyDays && (
         <Box variant="tertiary" className="min-w-fit flex-col gap-3">
@@ -133,6 +125,24 @@ export const HistoryStats: FC = () => {
           />
         </Box>
       )}
+    </>
+  );
+};
+
+export const HistoryStats: FC = () => {
+  const { data: hasListeningHistory, isPending } = useHasListeningHistory();
+
+  return (
+    <ScrollableArea
+      data-testid="history-stats"
+      viewportClassName="flex flex-col gap-4 p-4"
+    >
+      {!isPending &&
+        (hasListeningHistory ? (
+          <HistoryStatsBody />
+        ) : (
+          <HistoryStatsEmptyState />
+        ))}
     </ScrollableArea>
   );
 };

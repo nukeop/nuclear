@@ -92,6 +92,9 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
       async find() {
         return screen.findByTestId('listening-clock');
       },
+      get element() {
+        return screen.queryByTestId('listening-clock');
+      },
     },
     get busiestHour() {
       return screen.getByTestId('listening-clock-busiest-hour').textContent;
@@ -106,16 +109,26 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     },
     rangeSelect: {
       get element() {
-        return screen.getByTestId('history-stats-range');
+        return screen.queryByTestId('history-stats-range');
       },
       async select(label: string) {
-        await user.click(within(this.element).getByRole('button'));
+        await user.click(
+          within(screen.getByTestId('history-stats-range')).getByRole('button'),
+        );
         await user.click(await screen.findByRole('option', { name: label }));
+      },
+    },
+    dayOfWeekChart: {
+      get element() {
+        return screen.queryByTestId('day-of-week-chart');
       },
     },
     heatmap: {
       async find() {
         return screen.findByTestId('calendar-heatmap');
+      },
+      get element() {
+        return screen.queryByTestId('calendar-heatmap');
       },
     },
   },
