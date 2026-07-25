@@ -16,5 +16,12 @@ export const useHistoryStats = () => {
   const { data: dayOfWeekValues } = useDayOfWeekListeningTime(range);
   const hasListening = Boolean(hourlyValues?.some((value) => value > 0));
 
-  return { presetId, setPresetId, hourlyValues, dayOfWeekValues, hasListening };
+  return {
+    presetId,
+    setPresetId,
+    range,
+    hourlyValues,
+    dayOfWeekValues,
+    hasListening,
+  };
 };

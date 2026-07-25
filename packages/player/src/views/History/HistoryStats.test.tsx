@@ -42,7 +42,9 @@ describe('History stats view', () => {
 
     await Wrapper.stats.rangeSelect.select('Last 7 days');
 
-    expect(Wrapper.stats.requestedRange).toEqual({
+    expect(
+      commandMocks.command('historyHourlyListeningTime'),
+    ).toHaveBeenCalledWith({
       from: Date.parse('2026-07-04T12:00:00Z'),
       to: Date.parse('2026-07-11T12:00:00Z'),
     });

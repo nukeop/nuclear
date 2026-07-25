@@ -1,9 +1,10 @@
 import { ChartColumn } from 'lucide-react';
-import { DateTime, Info } from 'luxon';
+import { DateTime, Info, Interval } from 'luxon';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import {
+  Box,
   CalendarHeatmap,
   DayOfWeekChart,
   EmptyState,
@@ -17,16 +18,28 @@ import { useDailyListeningTime } from '../hooks/useDailyListeningTime';
 import { useHistoryStats } from '../hooks/useHistoryStats';
 import { formatListeningDuration } from '../utils/format';
 import type { RangePresetId } from '../utils/rangePresets';
-import { RANGE_PRESET_IDS } from '../utils/rangePresets';
+import { RANGE_LOOKBACK_MS, RANGE_PRESET_IDS } from '../utils/rangePresets';
 
 export const HistoryStats: FC = () => {
   const { t, i18n } = useTranslation('history');
-  const { presetId, setPresetId, hourlyValues, dayOfWeekValues, hasListening } =
-    useHistoryStats();
+  const {
+    presetId,
+    setPresetId,
+    range,
+    hourlyValues,
+    dayOfWeekValues,
+    hasListening,
+  } = useHistoryStats();
   const { data: dailyDays } = useDailyListeningTime();
   const [isDark] = useCoreSetting<boolean>('theme.dark');
   const colorScheme = isDark ? 'dark' : 'light';
   const locale = i18n.language.replace('_', '-');
+
+  const hasFixedRange = RANGE_LOOKBACK_MS[presetId] !== null;
+  const rangeDates = Interval.fromDateTimes(
+    DateTime.fromMillis(range.from),
+    DateTime.fromMillis(range.to),
+  ).toLocaleString(DateTime.DATE_MED, { locale });
 
   const rangeLabels: Record<RangePresetId, string> = {
     last7Days: t('stats.range.last7Days'),
@@ -41,7 +54,15 @@ export const HistoryStats: FC = () => {
       data-testid="history-stats"
       viewportClassName="flex flex-col gap-6 p-4"
     >
-      <div className="flex justify-end">
+      <div className="flex items-center justify-end gap-3">
+        {hasFixedRange && (
+          <span
+            data-testid="history-stats-range-dates"
+            className="text-foreground-secondary text-sm"
+          >
+            {rangeDates}
+          </span>
+        )}
         <div data-testid="history-stats-range" className="w-44">
           <Select
             options={RANGE_PRESET_IDS.map((id) => ({
@@ -55,23 +76,33 @@ export const HistoryStats: FC = () => {
       </div>
       {hourlyValues &&
         (hasListening ? (
-          <div className="flex items-center gap-6">
-            <ListeningClock
-              values={hourlyValues}
-              labels={{
-                busiestHour: t('stats.busiestHour'),
-                busiestHourValue: t('stats.listeningTime'),
-              }}
-              formatValue={formatListeningDuration}
-            />
+          <div className="flex items-stretch gap-6">
+            <Box variant="tertiary" className="w-auto flex-col gap-3">
+              <h3 className="font-heading text-[21px]">
+                {t('stats.hourOfDay')}
+              </h3>
+              <ListeningClock
+                values={hourlyValues}
+                labels={{
+                  busiestHour: t('stats.busiestHour'),
+                  busiestHourValue: t('stats.listeningTime'),
+                }}
+                formatValue={formatListeningDuration}
+              />
+            </Box>
             {dayOfWeekValues && (
-              <div className="h-48 min-w-0 flex-1">
-                <DayOfWeekChart
-                  values={dayOfWeekValues}
-                  labels={{ weekdays: Info.weekdays('short', { locale }) }}
-                  formatValue={formatListeningDuration}
-                />
-              </div>
+              <Box variant="tertiary" className="min-w-0 flex-1 flex-col gap-3">
+                <h3 className="font-heading text-[21px]">
+                  {t('stats.dayOfWeek')}
+                </h3>
+                <div className="min-h-0 flex-1">
+                  <DayOfWeekChart
+                    values={dayOfWeekValues}
+                    labels={{ weekdays: Info.weekdays('short', { locale }) }}
+                    formatValue={formatListeningDuration}
+                  />
+                </div>
+              </Box>
             )}
           </div>
         ) : (
@@ -83,7 +114,8 @@ export const HistoryStats: FC = () => {
           />
         ))}
       {dailyDays && (
-        <div className="border-border min-w-fit border-t-(length:--border-width) px-2">
+        <Box variant="tertiary" className="min-w-fit flex-col gap-3">
+          <h3 className="font-heading text-[21px]">{t('stats.calendar')}</h3>
           <CalendarHeatmap
             className="mx-auto"
             days={dailyDays}
@@ -99,7 +131,7 @@ export const HistoryStats: FC = () => {
               DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL)
             }
           />
-        </div>
+        </Box>
       )}
     </ScrollableArea>
   );

@@ -113,10 +113,6 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
         await user.click(await screen.findByRole('option', { name: label }));
       },
     },
-    get requestedRange() {
-      return commandMocks.command('historyHourlyListeningTime').mock
-        .lastCall?.[0];
-    },
     heatmap: {
       async find() {
         return screen.findByTestId('calendar-heatmap');

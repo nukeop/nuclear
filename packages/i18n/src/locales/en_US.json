@@ -54,6 +54,9 @@
     "stats": {
       "busiestHour": "Busiest hour",
       "listeningTime": "Listening time",
+      "hourOfDay": "Time of day",
+      "dayOfWeek": "Day of week",
+      "calendar": "Listening calendar",
       "empty": "No listening data yet",
       "legendLess": "Less",
       "legendMore": "More",
