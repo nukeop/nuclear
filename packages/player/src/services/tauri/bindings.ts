@@ -33,6 +33,9 @@ export const commands = {
 	historyDeleteRange: (range: TimeRange) => typedError<null, string>(__TAURI_INVOKE("history_delete_range", { range })),
 	historyHourlyListeningTime: (range: TimeRange) => typedError<HourlyListeningTime, string>(__TAURI_INVOKE("history_hourly_listening_time", { range })),
 	historyDailyListeningTime: (range: TimeRange) => typedError<DailyListeningTime[], string>(__TAURI_INVOKE("history_daily_listening_time", { range })),
+	historyFirstPlayAt: () => typedError<{
+	at: number,
+} | null, string>(__TAURI_INVOKE("history_first_play_at")),
 };
 
 /* Types */
@@ -49,6 +52,10 @@ export type BridgeResponseBody = { status: "success"; data: unknown } | { status
 export type DailyListeningTime = {
 	date: string,
 	value: number,
+};
+
+export type FirstPlay = {
+	at: number,
 };
 
 export type HistoryEntry = {

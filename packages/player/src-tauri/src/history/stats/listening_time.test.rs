@@ -1,6 +1,6 @@
 use chrono::{Local, TimeZone};
 
-use super::DailyListeningTime;
+use super::{DailyListeningTime, FirstPlay};
 use crate::history::fixtures;
 use crate::history::types::PlayEventKind;
 use crate::history::HistoryDb;
@@ -126,9 +126,19 @@ async fn credits_listening_time_to_the_local_date_a_play_started_on() {
     let db = HistoryDb(fixtures::pool().await);
     seed_play(&db, "play-1", local_date(15), 90_000).await;
 
-    let stats = db.daily_listening_time(0, i64::MAX).await.unwrap();
+    let stats = db
+        .daily_listening_time(local_date(14), local_date(16))
+        .await
+        .unwrap();
 
-    assert_eq!(stats, vec![daily("2026-07-15", 90_000)]);
+    assert_eq!(
+        stats,
+        vec![
+            daily("2026-07-14", 0),
+            daily("2026-07-15", 90_000),
+            daily("2026-07-16", 0)
+        ]
+    );
 }
 
 #[tokio::test]
@@ -138,9 +148,15 @@ async fn accumulates_listening_time_from_multiple_plays_on_the_same_date() {
     seed_play(&db, "play-1", start, 30_000).await;
     seed_play(&db, "play-2", start + 60_000, 45_000).await;
 
-    let stats = db.daily_listening_time(0, i64::MAX).await.unwrap();
+    let stats = db
+        .daily_listening_time(local_date(15), local_date(16))
+        .await
+        .unwrap();
 
-    assert_eq!(stats, vec![daily("2026-07-15", 75_000)]);
+    assert_eq!(
+        stats,
+        vec![daily("2026-07-15", 75_000), daily("2026-07-16", 0)]
+    );
 }
 
 #[tokio::test]
@@ -149,11 +165,18 @@ async fn returns_dates_in_ascending_order() {
     seed_play(&db, "play-later", local_date(16), 30_000).await;
     seed_play(&db, "play-earlier", local_date(14), 60_000).await;
 
-    let stats = db.daily_listening_time(0, i64::MAX).await.unwrap();
+    let stats = db
+        .daily_listening_time(local_date(14), local_date(16))
+        .await
+        .unwrap();
 
     assert_eq!(
         stats,
-        vec![daily("2026-07-14", 60_000), daily("2026-07-16", 30_000)]
+        vec![
+            daily("2026-07-14", 60_000),
+            daily("2026-07-15", 0),
+            daily("2026-07-16", 30_000)
+        ]
     );
 }
 
@@ -174,9 +197,15 @@ async fn excludes_paused_time_from_the_daily_total() {
     )
     .await;
 
-    let stats = db.daily_listening_time(0, i64::MAX).await.unwrap();
+    let stats = db
+        .daily_listening_time(local_date(15), local_date(16))
+        .await
+        .unwrap();
 
-    assert_eq!(stats, vec![daily("2026-07-15", 5_000)]);
+    assert_eq!(
+        stats,
+        vec![daily("2026-07-15", 5_000), daily("2026-07-16", 0)]
+    );
 }
 
 #[tokio::test]
@@ -191,5 +220,37 @@ async fn excludes_days_outside_the_requested_range() {
         .await
         .unwrap();
 
-    assert_eq!(stats, vec![daily("2026-07-15", 90_000)]);
+    assert_eq!(
+        stats,
+        vec![
+            daily("2026-07-14", 0),
+            daily("2026-07-15", 90_000),
+            daily("2026-07-16", 0)
+        ]
+    );
+}
+
+#[tokio::test]
+async fn first_play_at_returns_the_earliest_plays_timestamp() {
+    let db = HistoryDb(fixtures::pool().await);
+    seed_play(&db, "play-later", local_date(16), 30_000).await;
+    seed_play(&db, "play-earlier", local_date(14), 60_000).await;
+
+    let first_play_at = db.first_play_at().await.unwrap();
+
+    assert_eq!(
+        first_play_at,
+        Some(FirstPlay {
+            at: local_date(14)
+        })
+    );
+}
+
+#[tokio::test]
+async fn first_play_at_returns_none_when_there_is_no_history() {
+    let db = HistoryDb(fixtures::pool().await);
+
+    let first_play_at = db.first_play_at().await.unwrap();
+
+    assert_eq!(first_play_at, None);
 }

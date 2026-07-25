@@ -1,6 +1,6 @@
 use crate::pagination::{Page, PageRequest};
 
-use super::stats::listening_time::{DailyListeningTime, HourlyListeningTime};
+use super::stats::listening_time::{DailyListeningTime, FirstPlay, HourlyListeningTime};
 use super::types::{HistoryEntry, PlayEvent, TimeRange};
 use super::HistoryDb;
 
@@ -41,6 +41,14 @@ pub async fn history_daily_listening_time(
     range: TimeRange,
 ) -> Result<Vec<DailyListeningTime>, String> {
     state.daily_listening_time(range.from, range.to).await
+}
+
+#[tauri::command]
+#[specta::specta]
+pub async fn history_first_play_at(
+    state: tauri::State<'_, HistoryDb>,
+) -> Result<Option<FirstPlay>, String> {
+    state.first_play_at().await
 }
 
 #[tauri::command]
