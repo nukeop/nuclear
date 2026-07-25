@@ -12,15 +12,19 @@ import {
 } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../../../hooks/useCoreSetting';
-import { useDailyListeningTime } from '../hooks/useDailyListeningTime';
-import { useHasListeningHistory } from '../hooks/useHasListeningHistory';
+import { useDailyListeningTime } from '../hooks/queries/useDailyListeningTime';
+import { useFirstPlayAt } from '../hooks/queries/useFirstPlayAt';
 import { useHistoryStats } from '../hooks/useHistoryStats';
 import { formatListeningDuration } from '../utils/format';
 import type { RangePresetId } from '../utils/rangePresets';
-import { RANGE_LOOKBACK, RANGE_PRESET_IDS } from '../utils/rangePresets';
+import { RANGE_PRESET_IDS } from '../utils/rangePresets';
 import { HistoryStatsEmptyState } from './HistoryStatsEmptyState';
 
-const HistoryStatsBody: FC = () => {
+type HistoryStatsBodyProps = {
+  firstPlayAt: number;
+};
+
+const HistoryStatsBody: FC<HistoryStatsBodyProps> = ({ firstPlayAt }) => {
   const { t, i18n } = useTranslation('history');
   const {
     presetId,
@@ -29,13 +33,12 @@ const HistoryStatsBody: FC = () => {
     hourlyValues,
     dayOfWeekValues,
     hasListening,
-  } = useHistoryStats();
+  } = useHistoryStats(firstPlayAt);
   const { data: dailyDays } = useDailyListeningTime();
   const [isDark] = useCoreSetting<boolean>('theme.dark');
   const colorScheme = isDark ? 'dark' : 'light';
   const locale = i18n.language.replace('_', '-');
 
-  const hasFixedRange = RANGE_LOOKBACK[presetId] !== null;
   const rangeDates = Interval.fromDateTimes(
     DateTime.fromMillis(range.from),
     DateTime.fromMillis(range.to),
@@ -52,14 +55,12 @@ const HistoryStatsBody: FC = () => {
   return (
     <>
       <div className="flex items-center justify-end gap-3">
-        {hasFixedRange && (
-          <span
-            data-testid="history-stats-range-dates"
-            className="text-foreground-secondary text-sm"
-          >
-            {rangeDates}
-          </span>
-        )}
+        <span
+          data-testid="history-stats-range-dates"
+          className="text-foreground-secondary text-sm"
+        >
+          {rangeDates}
+        </span>
         <div data-testid="history-stats-range" className="w-44">
           <Select
             options={RANGE_PRESET_IDS.map((id) => ({
@@ -130,7 +131,7 @@ const HistoryStatsBody: FC = () => {
 };
 
 export const HistoryStats: FC = () => {
-  const { data: hasListeningHistory, isPending } = useHasListeningHistory();
+  const { data: firstPlayAt, isPending } = useFirstPlayAt();
 
   return (
     <ScrollableArea
@@ -138,8 +139,8 @@ export const HistoryStats: FC = () => {
       viewportClassName="flex flex-col gap-4 p-4"
     >
       {!isPending &&
-        (hasListeningHistory ? (
-          <HistoryStatsBody />
+        (firstPlayAt ? (
+          <HistoryStatsBody firstPlayAt={firstPlayAt.at} />
         ) : (
           <HistoryStatsEmptyState />
         ))}

@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 
-import type { DailyListeningTime } from '../../../services/tauri/bindings';
-import { commands } from '../../../services/tauri/bindings';
-import { unwrapResult } from '../../../services/tauri/results';
+import type { DailyListeningTime } from '../../../../services/tauri/bindings';
+import { commands } from '../../../../services/tauri/bindings';
+import { unwrapResult } from '../../../../services/tauri/results';
 
 const isoDate = (millis: number) =>
   DateTime.fromMillis(millis).toFormat('yyyy-MM-dd');

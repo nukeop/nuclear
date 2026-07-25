@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { usePagination } from '../../../hooks/usePagination';
-import { useListeningHistory } from '../hooks/useListeningHistory';
+import { useListeningHistory } from '../hooks/queries/useListeningHistory';
 import { HistoryBody } from './HistoryBody';
 import { HistoryPaginationFooter } from './HistoryPaginationFooter';
 

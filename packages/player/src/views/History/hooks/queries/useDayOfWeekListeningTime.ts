@@ -5,9 +5,9 @@ import { DateTime } from 'luxon';
 
 import type { DayOfWeekValues } from '@nuclearplayer/ui';
 
-import type { TimeRange } from '../../../services/tauri/bindings';
-import { commands } from '../../../services/tauri/bindings';
-import { unwrapResult } from '../../../services/tauri/results';
+import type { TimeRange } from '../../../../services/tauri/bindings';
+import { commands } from '../../../../services/tauri/bindings';
+import { unwrapResult } from '../../../../services/tauri/results';
 
 export const useDayOfWeekListeningTime = (timeRange: TimeRange) =>
   useQuery<DayOfWeekValues>({

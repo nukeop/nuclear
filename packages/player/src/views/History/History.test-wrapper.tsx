@@ -23,6 +23,7 @@ const FAVORITED_LABEL = 'Remove from favorites';
 export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
   init() {
     commandMocks.reset();
+    this.mockFirstPlayAt(Date.parse('2026-06-01T00:00:00Z'));
     this.mockHourlyListeningTime(Array.from({ length: 24 }, () => 0));
     this.mockDailyListeningTime([]);
     useQueueStore.setState({ items: [], currentIndex: 0 });
@@ -41,6 +42,14 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
         total: entries.length,
       }),
     );
+  },
+
+  mockFirstPlayAt(at: number) {
+    commandMocks.command('historyFirstPlayAt').mockResolvedValue(ok({ at }));
+  },
+
+  mockNoListeningHistory() {
+    commandMocks.command('historyFirstPlayAt').mockResolvedValue(ok(null));
   },
 
   mockHourlyListeningTime(values: number[]) {

@@ -1,6 +1,5 @@
 import times from 'lodash-es/times';
 
-import { HistoryEntryBuilder } from '../../test/builders/HistoryEntryBuilder';
 import { createHistoryWrapper } from './History.test-wrapper';
 
 const commandMocks = await vi.hoisted(async () => {
@@ -20,7 +19,6 @@ describe('History stats view', () => {
     vi.useFakeTimers({ toFake: ['Date'] });
     vi.setSystemTime(Date.parse('2026-07-11T12:00:00Z'));
     Wrapper.init();
-    Wrapper.mockHistoryEntries(new HistoryEntryBuilder().build());
   });
 
   afterEach(() => {
@@ -51,8 +49,22 @@ describe('History stats view', () => {
     });
   });
 
+  it('requests the range starting at the first play timestamp when All time is picked from the dropdown', async () => {
+    Wrapper.mockFirstPlayAt(Date.parse('2024-03-02T08:30:00Z'));
+    await Wrapper.mount();
+
+    await Wrapper.stats.rangeSelect.select('All time');
+
+    expect(
+      commandMocks.command('historyHourlyListeningTime'),
+    ).toHaveBeenCalledWith({
+      from: Date.parse('2024-03-02T08:30:00Z'),
+      to: Date.parse('2026-07-11T12:00:00Z'),
+    });
+  });
+
   it('shows only the empty state when there is no listening history at all', async () => {
-    Wrapper.mockHistoryEntries();
+    Wrapper.mockNoListeningHistory();
 
     await Wrapper.mount();
 
@@ -62,7 +74,7 @@ describe('History stats view', () => {
   });
 
   it('hides the range selector, clock, day-of-week chart, and calendar heatmap when there is no listening history at all', async () => {
-    Wrapper.mockHistoryEntries();
+    Wrapper.mockNoListeningHistory();
 
     await Wrapper.mount();
     await Wrapper.stats.emptyState.find();
