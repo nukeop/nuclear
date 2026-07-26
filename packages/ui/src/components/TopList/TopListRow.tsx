@@ -28,11 +28,7 @@ export const TopListRow: FC<TopListRowProps> = ({
           className="h-full w-full object-cover"
         />
       ) : (
-        <CassetteTape
-          size={20}
-          absoluteStrokeWidth
-          className="text-foreground/20"
-        />
+        <CassetteTape size={20} className="text-foreground opacity-20" />
       )}
     </div>
     <div className="min-w-0">
@@ -44,7 +40,7 @@ export const TopListRow: FC<TopListRowProps> = ({
       )}
     </div>
     <div
-      className="bg-accent-cyan/30 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+      className="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
       style={{ width: `${fillRatio * 100}%` }}
     >
       {formatValue(entry.value)}
