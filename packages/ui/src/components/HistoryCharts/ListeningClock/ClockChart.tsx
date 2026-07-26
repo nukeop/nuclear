@@ -1,8 +1,8 @@
-import { scaleSqrt } from 'd3-scale';
+import { scaleLinear } from 'd3-scale';
 import { FC } from 'react';
 
 import { ClockWedge } from './ClockWedge';
-import { wedgePath } from './geometry';
+import { INNER_RADIUS, OUTER_RADIUS, wedgePath } from './geometry';
 import { HourHitAreas } from './HourHitAreas';
 import { HourLabels } from './HourLabels';
 import { HourSlots } from './HourSlots';
@@ -20,9 +20,9 @@ export const ClockChart: FC<ClockChartProps> = ({
   activeHour,
   onHourEnter,
 }) => {
-  const barRadius = scaleSqrt()
+  const barRadius = scaleLinear()
     .domain([0, Math.max(...hours)])
-    .range([36, 102]);
+    .range([INNER_RADIUS, OUTER_RADIUS]);
 
   return (
     <svg className="aspect-square w-64" viewBox="0 0 264 264">
