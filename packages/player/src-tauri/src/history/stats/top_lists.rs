@@ -12,6 +12,16 @@ pub struct TopArtist {
     pub ms_played: i64,
 }
 
+#[derive(Debug, PartialEq, Serialize, specta::Type, sqlx::FromRow)]
+#[serde(rename_all = "camelCase")]
+pub struct TopAlbum {
+    pub title: String,
+    pub artist: String,
+    pub artwork_url: Option<String>,
+    #[specta(type = Number<i64>)]
+    pub ms_played: i64,
+}
+
 impl HistoryDb {
     pub async fn top_artists(
         &self,
