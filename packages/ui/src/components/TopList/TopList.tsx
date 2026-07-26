@@ -14,7 +14,7 @@ export const TopList: FC<TopListProps> = ({
 
   return (
     <div className={cn('flex flex-col gap-3', className)}>
-      <h3>{title}</h3>
+      <h3 className="font-heading text-xl">{title}</h3>
       <div>
         {entries.map((entry, index) => (
           <TopListRow
