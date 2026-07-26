@@ -31,23 +31,11 @@ impl HistoryDb {
     ) -> Result<Vec<TopArtist>, String> {
         sqlx::query_as::<_, TopArtist>(
             "\
-            WITH ordered AS ( \
-                SELECT kind, at, \
-                    LAG(kind) OVER w AS prev_kind, \
-                    LAG(at) OVER w AS prev_at, \
-                    FIRST_VALUE(at) OVER w AS play_started_at, \
-                    FIRST_VALUE(track_id) OVER w AS play_track_id \
-                FROM play_events \
-                WHERE kind <> 'seeked' \
-                WINDOW w AS (PARTITION BY play_id ORDER BY at, id) \
-            ), \
-            track_totals AS ( \
-                SELECT play_track_id AS track_id, SUM(at - prev_at) AS ms_played \
-                FROM ordered \
-                WHERE kind IN ('paused', 'finished', 'skipped', 'stopped') \
-                    AND prev_kind IN ('started', 'resumed') \
-                    AND play_started_at >= ? AND play_started_at <= ? \
-                GROUP BY play_track_id \
+            WITH track_totals AS ( \
+                SELECT track_id, SUM(ms_played) AS ms_played \
+                FROM play_listening_time \
+                WHERE started_at >= ? AND started_at <= ? \
+                GROUP BY track_id \
             ), \
             credits AS ( \
                 SELECT artist.value AS name, tracks.artwork_url, track_totals.ms_played \

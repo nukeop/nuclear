@@ -29,22 +29,11 @@ impl HistoryDb {
     pub async fn hourly_listening_time(&self, from: i64, to: i64) -> Result<Vec<i64>, String> {
         let rows: Vec<(i64, i64)> = sqlx::query_as(
             "\
-            WITH ordered AS ( \
-                SELECT kind, at, \
-                    LAG(kind) OVER w AS prev_kind, \
-                    LAG(at) OVER w AS prev_at, \
-                    FIRST_VALUE(at) OVER w AS play_started_at \
-                FROM play_events \
-                WHERE kind <> 'seeked' \
-                WINDOW w AS (PARTITION BY play_id ORDER BY at, id) \
-            ) \
             SELECT \
-                CAST(strftime('%H', play_started_at / 1000, 'unixepoch', 'localtime') AS INTEGER) AS hour, \
-                SUM(at - prev_at) AS ms_played \
-            FROM ordered \
-            WHERE kind IN ('paused', 'finished', 'skipped', 'stopped') \
-                AND prev_kind IN ('started', 'resumed') \
-                AND play_started_at >= ? AND play_started_at <= ? \
+                CAST(strftime('%H', started_at / 1000, 'unixepoch', 'localtime') AS INTEGER) AS hour, \
+                SUM(ms_played) AS ms_played \
+            FROM play_listening_time \
+            WHERE started_at >= ? AND started_at <= ? \
             GROUP BY hour",
         )
         .bind(from)
@@ -68,28 +57,17 @@ impl HistoryDb {
         let rows: Vec<(String, i64)> = sqlx::query_as(
             "\
             WITH RECURSIVE dates(day) AS ( \
-                SELECT date(? / 1000, 'unixepoch', 'localtime') \
+                SELECT date(?1 / 1000, 'unixepoch', 'localtime') \
                 UNION ALL \
                 SELECT date(day, '+1 day') FROM dates \
-                WHERE day < date(? / 1000, 'unixepoch', 'localtime') \
-            ), \
-            ordered AS ( \
-                SELECT kind, at, \
-                    LAG(kind) OVER w AS prev_kind, \
-                    LAG(at) OVER w AS prev_at, \
-                    FIRST_VALUE(at) OVER w AS play_started_at \
-                FROM play_events \
-                WHERE kind <> 'seeked' \
-                WINDOW w AS (PARTITION BY play_id ORDER BY at, id) \
+                WHERE day < date(?2 / 1000, 'unixepoch', 'localtime') \
             ), \
             daily_totals AS ( \
                 SELECT \
-                    date(play_started_at / 1000, 'unixepoch', 'localtime') AS day, \
-                    SUM(at - prev_at) AS ms_played \
-                FROM ordered \
-                WHERE kind IN ('paused', 'finished', 'skipped', 'stopped') \
-                    AND prev_kind IN ('started', 'resumed') \
-                    AND play_started_at >= ? AND play_started_at <= ? \
+                    date(started_at / 1000, 'unixepoch', 'localtime') AS day, \
+                    SUM(ms_played) AS ms_played \
+                FROM play_listening_time \
+                WHERE started_at >= ?1 AND started_at <= ?2 \
                 GROUP BY day \
             ) \
             SELECT dates.day, COALESCE(daily_totals.ms_played, 0) \
@@ -97,8 +75,6 @@ impl HistoryDb {
             LEFT JOIN daily_totals ON daily_totals.day = dates.day \
             ORDER BY dates.day",
         )
-        .bind(from)
-        .bind(to)
         .bind(from)
         .bind(to)
         .fetch_all(self.pool())
