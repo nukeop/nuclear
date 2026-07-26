@@ -92,14 +92,14 @@ pub async fn seed_events_for(
     db: &HistoryDb,
     play_id: &str,
     snapshot: &TrackSnapshot,
-    events: &[(PlayEventKind, i64)],
+    events: &[(PlayEventKind, i64, i64)],
 ) {
-    for (index, (kind, at)) in events.iter().enumerate() {
+    for (index, (kind, at, position_ms)) in events.iter().enumerate() {
         db.record_event(PlayEvent {
             play_id: play_id.into(),
             kind: *kind,
             at: *at,
-            position_ms: 0,
+            position_ms: *position_ms,
             seek_to_ms: None,
             snapshot: (index == 0).then(|| snapshot.clone()),
         })
@@ -114,7 +114,9 @@ pub async fn seed_events(
     title: &str,
     events: &[(PlayEventKind, i64)],
 ) {
-    seed_events_for(db, play_id, &track_snapshot(title), events).await;
+    let positioned: Vec<(PlayEventKind, i64, i64)> =
+        events.iter().map(|(kind, at)| (*kind, *at, 0)).collect();
+    seed_events_for(db, play_id, &track_snapshot(title), &positioned).await;
 }
 
 pub async fn seed_started(db: &HistoryDb, play_id: &str, title: &str, at: i64) {
@@ -133,8 +135,8 @@ pub async fn seed_play(
         play_id,
         track,
         &[
-            (PlayEventKind::Started, started_at),
-            (PlayEventKind::Finished, started_at + ms_played),
+            (PlayEventKind::Started, started_at, 0),
+            (PlayEventKind::Finished, started_at + ms_played, ms_played),
         ],
     )
     .await;

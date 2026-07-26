@@ -64,8 +64,9 @@ pub struct TimeRange {
     pub to: i64,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Serialize, specta::Type)]
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, sqlx::Type, specta::Type)]
 #[serde(rename_all = "camelCase")]
+#[sqlx(rename_all = "lowercase")]
 pub enum PlayEndReason {
     Finished,
     Skipped,
@@ -73,29 +74,7 @@ pub enum PlayEndReason {
 }
 
 #[derive(sqlx::FromRow)]
-pub struct PlayEventLogRow {
-    pub play_id: String,
-    #[sqlx(flatten)]
-    pub event: PlayEventRow,
-}
-
-#[derive(sqlx::FromRow)]
-pub struct PlayEventRow {
-    pub kind: PlayEventKind,
-    pub at: i64,
-    pub position_ms: i64,
-}
-
-#[derive(Debug, PartialEq)]
-pub struct Play {
-    pub started_at: i64,
-    pub ms_played: i64,
-    pub end_reason: Option<PlayEndReason>,
-    pub end_position_ms: Option<i64>,
-}
-
-#[derive(sqlx::FromRow)]
-pub struct StartedRow {
+pub struct HistoryEntryRow {
     pub play_id: String,
     pub provider: Option<String>,
     pub provider_id: Option<String>,
@@ -104,10 +83,14 @@ pub struct StartedRow {
     pub album_title: Option<String>,
     pub duration_ms: Option<i64>,
     pub artwork_url: Option<String>,
+    pub started_at: i64,
+    pub ms_played: i64,
+    pub end_reason: Option<PlayEndReason>,
+    pub end_position_ms: Option<i64>,
 }
 
-impl StartedRow {
-    pub fn into_entry(self, play: Play) -> Result<HistoryEntry, String> {
+impl HistoryEntryRow {
+    pub fn into_entry(self) -> Result<HistoryEntry, String> {
         let artists: Vec<String> = serde_json::from_str(&self.artists)
             .map_err(|err| format!("Failed to parse artists for play '{}': {err}", self.play_id))?;
 
@@ -120,10 +103,10 @@ impl StartedRow {
             artwork_url: self.artwork_url,
             provider: self.provider,
             provider_id: self.provider_id,
-            started_at: play.started_at,
-            ms_played: play.ms_played,
-            end_reason: play.end_reason,
-            end_position_ms: play.end_position_ms,
+            started_at: self.started_at,
+            ms_played: self.ms_played,
+            end_reason: self.end_reason,
+            end_position_ms: self.end_position_ms,
         })
     }
 }

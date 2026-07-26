@@ -1,67 +1,17 @@
-use std::collections::HashMap;
-
-use crate::history::types::{
-    HistoryEntry, Play, PlayEndReason, PlayEventKind, PlayEventLogRow, PlayEventRow, StartedRow,
-};
+use crate::history::types::{HistoryEntry, HistoryEntryRow};
 use crate::history::HistoryDb;
-
-impl PlayEndReason {
-    fn from_terminal_kind(kind: PlayEventKind) -> Option<PlayEndReason> {
-        match kind {
-            PlayEventKind::Finished => Some(Self::Finished),
-            PlayEventKind::Skipped => Some(Self::Skipped),
-            PlayEventKind::Stopped => Some(Self::Stopped),
-            PlayEventKind::Started
-            | PlayEventKind::Paused
-            | PlayEventKind::Resumed
-            | PlayEventKind::Seeked => None,
-        }
-    }
-}
-
-impl Play {
-    pub fn from_events(events: &[PlayEventRow]) -> Option<Play> {
-        let first = events.first()?;
-        let last = events.last()?;
-
-        let mut ms_played = 0;
-        let mut audible_since: Option<i64> = None;
-
-        for event in events {
-            match event.kind {
-                PlayEventKind::Started | PlayEventKind::Resumed => {
-                    audible_since.get_or_insert(event.at);
-                }
-                PlayEventKind::Seeked => {}
-                PlayEventKind::Paused
-                | PlayEventKind::Finished
-                | PlayEventKind::Skipped
-                | PlayEventKind::Stopped => {
-                    if let Some(since) = audible_since.take() {
-                        ms_played += event.at - since;
-                    }
-                }
-            }
-        }
-
-        let end_reason = PlayEndReason::from_terminal_kind(last.kind);
-        let end_position_ms = end_reason.map(|_| last.position_ms);
-
-        Some(Play {
-            started_at: first.at,
-            ms_played,
-            end_reason,
-            end_position_ms,
-        })
-    }
-}
 
 impl HistoryDb {
     pub async fn entries(&self, limit: i64, offset: i64) -> Result<Vec<HistoryEntry>, String> {
-        let starts = sqlx::query_as::<_, StartedRow>(
+        sqlx::query_as::<_, HistoryEntryRow>(
             "SELECT e.play_id, e.provider, e.provider_id, \
-             t.title, t.artists, t.album_title, t.duration_ms, t.artwork_url \
-             FROM play_events e JOIN tracks t ON t.id = e.track_id \
+             t.title, t.artists, t.album_title, t.duration_ms, t.artwork_url, \
+             e.at AS started_at, \
+             COALESCE(p.ms_played, 0) AS ms_played, \
+             p.end_reason, p.end_position_ms \
+             FROM play_events e \
+             JOIN tracks t ON t.id = e.track_id \
+             LEFT JOIN play_listening_time p ON p.play_id = e.play_id \
              WHERE e.kind = 'started' \
              ORDER BY e.at DESC LIMIT ? OFFSET ?",
         )
@@ -69,24 +19,10 @@ impl HistoryDb {
         .bind(offset)
         .fetch_all(self.pool())
         .await
-        .map_err(|err| format!("Failed to fetch recent plays: {err}"))?;
-
-        if starts.is_empty() {
-            return Ok(Vec::new());
-        }
-
-        let play_ids: Vec<&str> = starts.iter().map(|row| row.play_id.as_str()).collect();
-        let mut events_by_play = self.events_by_play(&play_ids).await?;
-
-        starts
-            .into_iter()
-            .map(|start| {
-                let events = events_by_play.remove(&start.play_id).unwrap_or_default();
-                let play = Play::from_events(&events)
-                    .ok_or_else(|| format!("Play '{}' has no events", start.play_id))?;
-                start.into_entry(play)
-            })
-            .collect()
+        .map_err(|err| format!("Failed to fetch recent plays: {err}"))?
+        .into_iter()
+        .map(HistoryEntryRow::into_entry)
+        .collect()
     }
 
     pub async fn count_plays(&self) -> Result<i64, String> {
@@ -95,161 +31,18 @@ impl HistoryDb {
             .await
             .map_err(|err| format!("Failed to count plays: {err}"))
     }
-
-    async fn events_by_play(
-        &self,
-        play_ids: &[&str],
-    ) -> Result<HashMap<String, Vec<PlayEventRow>>, String> {
-        let placeholders = vec!["?"; play_ids.len()].join(", ");
-        let sql = format!(
-            "SELECT play_id, kind, at, position_ms FROM play_events \
-             WHERE play_id IN ({placeholders}) ORDER BY at, id",
-        );
-        let query = play_ids
-            .iter()
-            .fold(sqlx::query_as::<_, PlayEventLogRow>(&sql), |query, id| {
-                query.bind(*id)
-            });
-        let rows = query
-            .fetch_all(self.pool())
-            .await
-            .map_err(|err| format!("Failed to fetch play events: {err}"))?;
-
-        let mut grouped: HashMap<String, Vec<PlayEventRow>> = HashMap::new();
-        for row in rows {
-            grouped.entry(row.play_id).or_default().push(row.event);
-        }
-        Ok(grouped)
-    }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use crate::history::fixtures;
-    use crate::history::types::{HistoryEntry, PlayEvent, TrackSnapshot};
+    use crate::history::types::{
+        HistoryEntry, PlayEndReason, PlayEvent, PlayEventKind, TrackSnapshot,
+    };
     use crate::history::HistoryDb;
-
-    fn event(kind: PlayEventKind, at: i64, position_ms: i64) -> PlayEventRow {
-        PlayEventRow {
-            kind,
-            at,
-            position_ms,
-        }
-    }
 
     fn play_ids(entries: &[HistoryEntry]) -> Vec<&str> {
         entries.iter().map(|entry| entry.play_id.as_str()).collect()
-    }
-
-    #[test]
-    fn finished_play_sums_playing_time_and_excludes_pauses() {
-        let play = Play::from_events(&[
-            event(PlayEventKind::Started, 1000, 0),
-            event(PlayEventKind::Paused, 3000, 2000),
-            event(PlayEventKind::Resumed, 5000, 2000),
-            event(PlayEventKind::Finished, 8000, 5000),
-        ])
-        .unwrap();
-
-        assert_eq!(
-            play,
-            Play {
-                started_at: 1000,
-                ms_played: 5000,
-                end_reason: Some(PlayEndReason::Finished),
-                end_position_ms: Some(5000),
-            }
-        );
-    }
-
-    #[test]
-    fn seeking_while_playing_still_counts_as_listening_time() {
-        let play = Play::from_events(&[
-            event(PlayEventKind::Started, 1000, 0),
-            event(PlayEventKind::Seeked, 3000, 2000),
-            event(PlayEventKind::Paused, 5000, 62_000),
-        ])
-        .unwrap();
-
-        assert_eq!(play.ms_played, 4000);
-    }
-
-    #[test]
-    fn seeking_while_paused_does_not_count_as_listening_time() {
-        let play = Play::from_events(&[
-            event(PlayEventKind::Started, 1000, 0),
-            event(PlayEventKind::Paused, 2000, 1000),
-            event(PlayEventKind::Seeked, 3000, 1000),
-            event(PlayEventKind::Resumed, 4000, 60_000),
-            event(PlayEventKind::Finished, 5000, 61_000),
-        ])
-        .unwrap();
-
-        assert_eq!(play.ms_played, 2000);
-    }
-
-    #[test]
-    fn interrupted_play_has_no_end_reason_and_counts_time_up_to_its_last_event() {
-        let play = Play::from_events(&[
-            event(PlayEventKind::Started, 1000, 0),
-            event(PlayEventKind::Paused, 3000, 2000),
-            event(PlayEventKind::Resumed, 5000, 2000),
-        ])
-        .unwrap();
-
-        assert_eq!(
-            play,
-            Play {
-                started_at: 1000,
-                ms_played: 2000,
-                end_reason: None,
-                end_position_ms: None,
-            }
-        );
-    }
-
-    #[test]
-    fn skipped_play_records_the_position_at_the_moment_of_skipping() {
-        let play = Play::from_events(&[
-            event(PlayEventKind::Started, 1000, 0),
-            event(PlayEventKind::Skipped, 4000, 3000),
-        ])
-        .unwrap();
-
-        assert_eq!(
-            play,
-            Play {
-                started_at: 1000,
-                ms_played: 3000,
-                end_reason: Some(PlayEndReason::Skipped),
-                end_position_ms: Some(3000),
-            }
-        );
-    }
-
-    #[test]
-    fn stopped_play_records_the_position_at_the_moment_of_stopping() {
-        let play = Play::from_events(&[
-            event(PlayEventKind::Started, 1000, 0),
-            event(PlayEventKind::Stopped, 2500, 1500),
-        ])
-        .unwrap();
-
-        assert_eq!(
-            play,
-            Play {
-                started_at: 1000,
-                ms_played: 1500,
-                end_reason: Some(PlayEndReason::Stopped),
-                end_position_ms: Some(1500),
-            }
-        );
-    }
-
-    #[test]
-    fn no_events_produce_no_play() {
-        assert_eq!(Play::from_events(&[]), None);
     }
 
     #[tokio::test]
@@ -343,6 +136,66 @@ mod tests {
         assert_eq!(play_ids(&entries), ["play-1"]);
         assert_eq!(entries[0].end_reason, None);
         assert_eq!(entries[0].end_position_ms, None);
+    }
+
+    #[tokio::test]
+    async fn seeking_while_paused_does_not_count_as_listening_time() {
+        let db = HistoryDb(fixtures::pool().await);
+        fixtures::seed_events_for(
+            &db,
+            "play-1",
+            &fixtures::track_snapshot("Creep"),
+            &[
+                (PlayEventKind::Started, 1000, 0),
+                (PlayEventKind::Paused, 2000, 1000),
+                (PlayEventKind::Seeked, 3000, 1000),
+                (PlayEventKind::Resumed, 4000, 60_000),
+                (PlayEventKind::Finished, 5000, 61_000),
+            ],
+        )
+        .await;
+
+        let entries = db.entries(10, 0).await.unwrap();
+
+        assert_eq!(entries[0].ms_played, 2000);
+    }
+
+    #[tokio::test]
+    async fn entries_record_the_position_a_play_was_abandoned_at() {
+        let db = HistoryDb(fixtures::pool().await);
+        fixtures::seed_events_for(
+            &db,
+            "play-1",
+            &fixtures::track_snapshot("Skipped"),
+            &[
+                (PlayEventKind::Started, 1000, 0),
+                (PlayEventKind::Skipped, 4000, 3000),
+            ],
+        )
+        .await;
+        fixtures::seed_events_for(
+            &db,
+            "play-2",
+            &fixtures::track_snapshot("Stopped"),
+            &[
+                (PlayEventKind::Started, 5000, 0),
+                (PlayEventKind::Stopped, 6500, 1500),
+            ],
+        )
+        .await;
+
+        let entries = db.entries(10, 0).await.unwrap();
+
+        assert_eq!(
+            entries
+                .iter()
+                .map(|entry| (entry.end_reason, entry.end_position_ms))
+                .collect::<Vec<_>>(),
+            [
+                (Some(PlayEndReason::Stopped), Some(1500)),
+                (Some(PlayEndReason::Skipped), Some(3000)),
+            ]
+        );
     }
 
     #[tokio::test]
