@@ -77,6 +77,54 @@ impl HistoryDb {
         .await
         .map_err(|err| format!("Failed to aggregate top artists: {err}"))
     }
+
+    pub async fn top_albums(
+        &self,
+        from: i64,
+        to: i64,
+        limit: i64,
+    ) -> Result<Vec<TopAlbum>, String> {
+        sqlx::query_as::<_, TopAlbum>(
+            "\
+            WITH track_totals AS ( \
+                SELECT track_id, SUM(ms_played) AS ms_played \
+                FROM play_listening_time \
+                WHERE started_at >= ? AND started_at <= ? \
+                GROUP BY track_id \
+            ), \
+            releases AS ( \
+                SELECT tracks.album_title AS title, \
+                    json_extract(tracks.artists, '$[0]') AS artist, \
+                    tracks.artwork_url, \
+                    track_totals.ms_played \
+                FROM track_totals \
+                JOIN tracks ON tracks.id = track_totals.track_id \
+                WHERE tracks.album_title IS NOT NULL \
+            ), \
+            artwork AS ( \
+                SELECT title, artist, artwork_url, MAX(ms_played) \
+                FROM releases \
+                WHERE artwork_url IS NOT NULL \
+                GROUP BY title, artist \
+            ) \
+            SELECT releases.title AS title, \
+                releases.artist AS artist, \
+                artwork.artwork_url AS artwork_url, \
+                SUM(releases.ms_played) AS ms_played \
+            FROM releases \
+            LEFT JOIN artwork \
+                ON artwork.title = releases.title AND artwork.artist = releases.artist \
+            GROUP BY releases.title, releases.artist \
+            ORDER BY ms_played DESC, title \
+            LIMIT ?",
+        )
+        .bind(from)
+        .bind(to)
+        .bind(limit)
+        .fetch_all(self.pool())
+        .await
+        .map_err(|err| format!("Failed to aggregate top albums: {err}"))
+    }
 }
 
 #[cfg(test)]
