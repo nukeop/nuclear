@@ -44,10 +44,6 @@ impl Play {
             }
         }
 
-        if let Some(since) = audible_since {
-            ms_played += last.at - since;
-        }
-
         let end_reason = PlayEndReason::from_terminal_kind(last.kind);
         let end_position_ms = end_reason.map(|_| last.position_ms);
 
