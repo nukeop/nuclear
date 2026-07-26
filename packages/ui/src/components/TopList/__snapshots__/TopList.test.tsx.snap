@@ -64,13 +64,13 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
             aria-hidden="true"
             class="lucide lucide-cassette-tape text-foreground opacity-20"
             fill="none"
-            height="20"
+            height="32"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
+            stroke-width="1.5"
             viewBox="0 0 24 24"
-            width="20"
+            width="32"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
@@ -183,13 +183,13 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
             aria-hidden="true"
             class="lucide lucide-cassette-tape text-foreground opacity-20"
             fill="none"
-            height="20"
+            height="32"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
+            stroke-width="1.5"
             viewBox="0 0 24 24"
-            width="20"
+            width="32"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect

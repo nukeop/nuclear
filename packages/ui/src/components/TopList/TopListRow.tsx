@@ -28,7 +28,11 @@ export const TopListRow: FC<TopListRowProps> = ({
           className="h-full w-full object-cover"
         />
       ) : (
-        <CassetteTape size={20} className="text-foreground opacity-20" />
+        <CassetteTape
+          size={32}
+          absoluteStrokeWidth
+          className="text-foreground opacity-20"
+        />
       )}
     </div>
     <div className="min-w-0">

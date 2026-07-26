@@ -1,35 +1,18 @@
-use chrono::{Local, TimeZone};
-
 use super::{DailyListeningTime, FirstPlay};
 use crate::history::fixtures;
+use crate::history::fixtures::{local_date, local_time};
 use crate::history::types::PlayEventKind;
 use crate::history::HistoryDb;
 
 async fn seed_play(db: &HistoryDb, play_id: &str, started_at: i64, ms_played: i64) {
-    fixtures::seed_events(
+    fixtures::seed_play(
         db,
         play_id,
-        "Creep",
-        &[
-            (PlayEventKind::Started, started_at),
-            (PlayEventKind::Finished, started_at + ms_played),
-        ],
+        &fixtures::track_snapshot("Creep"),
+        started_at,
+        ms_played,
     )
     .await;
-}
-
-fn local_time(hour: u32) -> i64 {
-    Local
-        .with_ymd_and_hms(2026, 7, 15, hour, 0, 0)
-        .unwrap()
-        .timestamp_millis()
-}
-
-fn local_date(day: u32) -> i64 {
-    Local
-        .with_ymd_and_hms(2026, 7, day, 12, 0, 0)
-        .unwrap()
-        .timestamp_millis()
 }
 
 fn daily(date: &str, value: i64) -> DailyListeningTime {
@@ -238,12 +221,7 @@ async fn first_play_at_returns_the_earliest_plays_timestamp() {
 
     let first_play_at = db.first_play_at().await.unwrap();
 
-    assert_eq!(
-        first_play_at,
-        Some(FirstPlay {
-            at: local_date(14)
-        })
-    );
+    assert_eq!(first_play_at, Some(FirstPlay { at: local_date(14) }));
 }
 
 #[tokio::test]

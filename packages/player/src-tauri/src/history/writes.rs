@@ -110,15 +110,13 @@ mod tests {
     use crate::history::fixtures;
 
     fn snapshot() -> TrackSnapshot {
-        TrackSnapshot {
-            title: "Creep".into(),
-            artists: vec!["Radiohead".into()],
-            album_title: Some("Pablo Honey".into()),
-            duration_ms: Some(240_000),
-            artwork_url: Some("https://example.com/art.jpg".into()),
-            provider: "youtube".into(),
-            provider_id: "abc123".into(),
-        }
+        fixtures::TrackSnapshotBuilder::new("Creep")
+            .artists(&["Radiohead"])
+            .album("Pablo Honey")
+            .duration(240_000)
+            .artwork("https://example.com/art.jpg")
+            .provider("youtube", "abc123")
+            .build()
     }
 
     fn started(play_id: &str, at: i64, snapshot: TrackSnapshot) -> PlayEvent {
