@@ -36,6 +36,9 @@ export const commands = {
 	historyFirstPlayAt: () => typedError<{
 	at: number,
 } | null, string>(__TAURI_INVOKE("history_first_play_at")),
+	historyTopArtists: (range: TimeRange, limit: number) => typedError<TopArtist[], string>(__TAURI_INVOKE("history_top_artists", { range, limit })),
+	historyTopAlbums: (range: TimeRange, limit: number) => typedError<TopAlbum[], string>(__TAURI_INVOKE("history_top_albums", { range, limit })),
+	historyTopTracks: (range: TimeRange, limit: number) => typedError<TopTrack[], string>(__TAURI_INVOKE("history_top_tracks", { range, limit })),
 };
 
 /* Types */
@@ -127,6 +130,29 @@ export type StartupLogEntry = {
 export type TimeRange = {
 	from: number,
 	to: number,
+};
+
+export type TopAlbum = {
+	title: string,
+	artist: string,
+	artworkUrl: string | null,
+	msPlayed: number,
+	plays: number,
+};
+
+export type TopArtist = {
+	name: string,
+	artworkUrl: string | null,
+	msPlayed: number,
+	plays: number,
+};
+
+export type TopTrack = {
+	title: string,
+	artists: string[],
+	artworkUrl: string | null,
+	msPlayed: number,
+	plays: number,
 };
 
 export type TrackPresence = {

@@ -57,9 +57,9 @@ pub async fn history_first_play_at(
 pub async fn history_top_artists(
     state: tauri::State<'_, HistoryDb>,
     range: TimeRange,
-    limit: i64,
+    limit: u32,
 ) -> Result<Vec<TopArtist>, String> {
-    state.top_artists(range.from, range.to, limit).await
+    state.top_artists(range.from, range.to, limit.into()).await
 }
 
 #[tauri::command]
@@ -67,9 +67,9 @@ pub async fn history_top_artists(
 pub async fn history_top_albums(
     state: tauri::State<'_, HistoryDb>,
     range: TimeRange,
-    limit: i64,
+    limit: u32,
 ) -> Result<Vec<TopAlbum>, String> {
-    state.top_albums(range.from, range.to, limit).await
+    state.top_albums(range.from, range.to, limit.into()).await
 }
 
 #[tauri::command]
@@ -77,9 +77,9 @@ pub async fn history_top_albums(
 pub async fn history_top_tracks(
     state: tauri::State<'_, HistoryDb>,
     range: TimeRange,
-    limit: i64,
+    limit: u32,
 ) -> Result<Vec<TopTrack>, String> {
-    state.top_tracks(range.from, range.to, limit).await
+    state.top_tracks(range.from, range.to, limit.into()).await
 }
 
 #[tauri::command]
