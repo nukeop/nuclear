@@ -1,4 +1,4 @@
-use super::TopAlbum;
+use super::{TopAlbum, TopArtist, TopTrack};
 use crate::history::fixtures;
 use crate::history::fixtures::{local_date, seed_play, TrackSnapshotBuilder};
 use crate::history::HistoryDb;
@@ -23,7 +23,7 @@ async fn sums_listening_time_across_every_track_by_an_artist() {
 }
 
 #[tokio::test]
-async fn credits_a_collaboration_to_every_artist_on_it() {
+async fn credits_a_track_with_multiple_artists_to_every_artist_on_it() {
     let db = HistoryDb(fixtures::pool().await);
     let duet = TrackSnapshotBuilder::new("Fright Night")
         .artists(&["Ariel Pink", "Devin Lynn"])
@@ -32,13 +32,27 @@ async fn credits_a_collaboration_to_every_artist_on_it() {
 
     let artists = db.top_artists(0, i64::MAX, 10).await.unwrap();
 
-    assert_eq!(artists.len(), 2);
-    assert_eq!(artists[0].ms_played, 120_000);
-    assert_eq!(artists[1].ms_played, 120_000);
+    assert_eq!(
+        artists,
+        vec![
+            TopArtist {
+                name: "Ariel Pink".to_string(),
+                artwork_url: None,
+                ms_played: 120_000,
+                plays: 1,
+            },
+            TopArtist {
+                name: "Devin Lynn".to_string(),
+                artwork_url: None,
+                ms_played: 120_000,
+                plays: 1,
+            },
+        ]
+    );
 }
 
 #[tokio::test]
-async fn orders_artists_by_listening_time_and_honours_the_limit() {
+async fn orders_artists_by_listening_time_and_respects_the_limit() {
     let db = HistoryDb(fixtures::pool().await);
     let maus = TrackSnapshotBuilder::new("Believer")
         .artists(&["John Maus"])
@@ -132,6 +146,7 @@ async fn sums_listening_time_across_every_track_on_an_album() {
             artist: "Iggy Pop".to_string(),
             artwork_url: None,
             ms_played: 150_000,
+            plays: 2,
         }]
     );
 }
@@ -160,12 +175,14 @@ async fn keeps_albums_with_the_same_title_by_different_artists_apart() {
                 artist: "Iggy Pop".to_string(),
                 artwork_url: None,
                 ms_played: 90_000,
+                plays: 1,
             },
             TopAlbum {
                 title: "Lust for Life".to_string(),
                 artist: "Girls".to_string(),
                 artwork_url: None,
                 ms_played: 60_000,
+                plays: 1,
             },
         ]
     );
@@ -193,6 +210,7 @@ async fn skips_tracks_that_belong_to_no_album() {
             artist: "Iggy Pop".to_string(),
             artwork_url: None,
             ms_played: 60_000,
+            plays: 1,
         }]
     );
 }
@@ -226,12 +244,14 @@ async fn orders_albums_by_listening_time_and_respects_the_limit() {
                 artist: "Iggy Pop".to_string(),
                 artwork_url: None,
                 ms_played: 90_000,
+                plays: 1,
             },
             TopAlbum {
                 title: "Fun House".to_string(),
                 artist: "The Stooges".to_string(),
                 artwork_url: None,
                 ms_played: 60_000,
+                plays: 1,
             },
         ]
     );
@@ -262,6 +282,7 @@ async fn takes_artwork_from_the_albums_most_played_track() {
             artist: "Iggy Pop".to_string(),
             artwork_url: Some("closer.jpg".to_string()),
             ms_played: 120_000,
+            plays: 2,
         }]
     );
 }
@@ -288,6 +309,96 @@ async fn counts_only_album_plays_that_started_inside_the_range() {
             artist: "Iggy Pop".to_string(),
             artwork_url: None,
             ms_played: 90_000,
+            plays: 1,
+        }]
+    );
+}
+
+#[tokio::test]
+async fn sums_listening_time_across_repeated_plays_of_a_track() {
+    let db = HistoryDb(fixtures::pool().await);
+    let duet = TrackSnapshotBuilder::new("Fright Night")
+        .artists(&["Ariel Pink", "Devin Lynn"])
+        .artwork("fright-night.jpg")
+        .build();
+    seed_play(&db, "play-1", &duet, local_date(1), 90_000).await;
+    seed_play(&db, "play-2", &duet, local_date(2), 60_000).await;
+
+    let tracks = db.top_tracks(0, i64::MAX, 10).await.unwrap();
+
+    assert_eq!(
+        tracks,
+        vec![TopTrack {
+            title: "Fright Night".to_string(),
+            artists: vec!["Ariel Pink".to_string(), "Devin Lynn".to_string()],
+            artwork_url: Some("fright-night.jpg".to_string()),
+            ms_played: 150_000,
+            plays: 2,
+        }]
+    );
+}
+
+#[tokio::test]
+async fn orders_tracks_by_listening_time_and_respects_the_limit() {
+    let db = HistoryDb(fixtures::pool().await);
+    let believer = TrackSnapshotBuilder::new("Believer")
+        .artists(&["John Maus"])
+        .build();
+    let round = TrackSnapshotBuilder::new("Round and Round")
+        .artists(&["Ariel Pink"])
+        .build();
+    let seer = TrackSnapshotBuilder::new("The Seer")
+        .artists(&["Swans"])
+        .build();
+    seed_play(&db, "play-1", &believer, local_date(1), 30_000).await;
+    seed_play(&db, "play-2", &round, local_date(2), 90_000).await;
+    seed_play(&db, "play-3", &seer, local_date(3), 60_000).await;
+
+    let tracks = db.top_tracks(0, i64::MAX, 2).await.unwrap();
+
+    assert_eq!(
+        tracks,
+        vec![
+            TopTrack {
+                title: "Round and Round".to_string(),
+                artists: vec!["Ariel Pink".to_string()],
+                artwork_url: None,
+                ms_played: 90_000,
+                plays: 1,
+            },
+            TopTrack {
+                title: "The Seer".to_string(),
+                artists: vec!["Swans".to_string()],
+                artwork_url: None,
+                ms_played: 60_000,
+                plays: 1,
+            },
+        ]
+    );
+}
+
+#[tokio::test]
+async fn counts_only_track_plays_that_started_inside_the_range() {
+    let db = HistoryDb(fixtures::pool().await);
+    let believer = TrackSnapshotBuilder::new("Believer")
+        .artists(&["John Maus"])
+        .build();
+    seed_play(&db, "play-1", &believer, local_date(1), 30_000).await;
+    seed_play(&db, "play-2", &believer, local_date(20), 90_000).await;
+
+    let tracks = db
+        .top_tracks(local_date(15), local_date(25), 10)
+        .await
+        .unwrap();
+
+    assert_eq!(
+        tracks,
+        vec![TopTrack {
+            title: "Believer".to_string(),
+            artists: vec!["John Maus".to_string()],
+            artwork_url: None,
+            ms_played: 90_000,
+            plays: 1,
         }]
     );
 }
