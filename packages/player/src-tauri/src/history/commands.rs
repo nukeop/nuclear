@@ -1,6 +1,7 @@
 use crate::pagination::{Page, PageRequest};
 
 use super::stats::listening_time::{DailyListeningTime, FirstPlay, HourlyListeningTime};
+use super::stats::top_lists::{TopAlbum, TopArtist, TopTrack};
 use super::types::{HistoryEntry, PlayEvent, TimeRange};
 use super::HistoryDb;
 
@@ -49,6 +50,36 @@ pub async fn history_first_play_at(
     state: tauri::State<'_, HistoryDb>,
 ) -> Result<Option<FirstPlay>, String> {
     state.first_play_at().await
+}
+
+#[tauri::command]
+#[specta::specta]
+pub async fn history_top_artists(
+    state: tauri::State<'_, HistoryDb>,
+    range: TimeRange,
+    limit: i64,
+) -> Result<Vec<TopArtist>, String> {
+    state.top_artists(range.from, range.to, limit).await
+}
+
+#[tauri::command]
+#[specta::specta]
+pub async fn history_top_albums(
+    state: tauri::State<'_, HistoryDb>,
+    range: TimeRange,
+    limit: i64,
+) -> Result<Vec<TopAlbum>, String> {
+    state.top_albums(range.from, range.to, limit).await
+}
+
+#[tauri::command]
+#[specta::specta]
+pub async fn history_top_tracks(
+    state: tauri::State<'_, HistoryDb>,
+    range: TimeRange,
+    limit: i64,
+) -> Result<Vec<TopTrack>, String> {
+    state.top_tracks(range.from, range.to, limit).await
 }
 
 #[tauri::command]

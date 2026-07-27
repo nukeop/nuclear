@@ -64,7 +64,10 @@ fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
         history::commands::history_delete_range,
         history::commands::history_hourly_listening_time,
         history::commands::history_daily_listening_time,
-        history::commands::history_first_play_at
+        history::commands::history_first_play_at,
+        history::commands::history_top_artists,
+        history::commands::history_top_albums,
+        history::commands::history_top_tracks
     ])
 }
 
