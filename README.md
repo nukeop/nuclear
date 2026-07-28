@@ -1,3 +1,5 @@
+[![MCP Toplist](https://mcptoplist.com/badge/glama%2Fnukeop%2Fnuclear.svg)](https://mcptoplist.com/server/glama%2Fnukeop%2Fnuclear)
+
 <p align="center">
   <picture>
     <source alt="Nuclear Music Player"  srcset="packages/docs/.gitbook/assets/readme-banner.png">
