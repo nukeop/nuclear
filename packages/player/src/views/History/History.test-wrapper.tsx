@@ -10,7 +10,12 @@ import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
-import type { HistoryEntry } from '../../services/tauri/bindings';
+import type {
+  HistoryEntry,
+  TopAlbum,
+  TopArtist,
+  TopTrack,
+} from '../../services/tauri/bindings';
 import { useFavoritesStore } from '../../stores/favoritesStore';
 import { useQueueStore } from '../../stores/queueStore';
 import type { TauriCommandMocks } from '../../test/utils/commandMocks';
@@ -20,12 +25,33 @@ const user = userEvent.setup();
 
 const FAVORITED_LABEL = 'Remove from favorites';
 
+const topList = (testId: string) => ({
+  async find() {
+    return screen.findByTestId(testId);
+  },
+  get element() {
+    return screen.queryByTestId(testId);
+  },
+  get rows() {
+    return within(screen.getByTestId(testId))
+      .getAllByTestId('top-list-row')
+      .map((row) => ({
+        label: within(row).getByTestId('top-list-label').textContent,
+        sublabel: within(row).queryByTestId('top-list-sublabel')?.textContent,
+        value: within(row).getByTestId('top-list-value').textContent,
+      }));
+  },
+});
+
 export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
   init() {
     commandMocks.reset();
     this.mockFirstPlayAt(Date.parse('2026-06-01T00:00:00Z'));
     this.mockHourlyListeningTime(Array.from({ length: 24 }, () => 0));
     this.mockDailyListeningTime([]);
+    this.mockTopArtists();
+    this.mockTopAlbums();
+    this.mockTopTracks();
     useQueueStore.setState({ items: [], currentIndex: 0 });
     useFavoritesStore.setState({
       tracks: [],
@@ -62,6 +88,18 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     commandMocks
       .command('historyDailyListeningTime')
       .mockResolvedValue(ok(days));
+  },
+
+  mockTopArtists(...artists: TopArtist[]) {
+    commandMocks.command('historyTopArtists').mockResolvedValue(ok(artists));
+  },
+
+  mockTopAlbums(...albums: TopAlbum[]) {
+    commandMocks.command('historyTopAlbums').mockResolvedValue(ok(albums));
+  },
+
+  mockTopTracks(...tracks: TopTrack[]) {
+    commandMocks.command('historyTopTracks').mockResolvedValue(ok(tracks));
   },
 
   async mount(): Promise<RenderResult> {
@@ -140,6 +178,9 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
         return screen.queryByTestId('calendar-heatmap');
       },
     },
+    topArtists: topList('history-top-artists'),
+    topAlbums: topList('history-top-albums'),
+    topTracks: topList('history-top-tracks'),
   },
 
   get emptyState() {

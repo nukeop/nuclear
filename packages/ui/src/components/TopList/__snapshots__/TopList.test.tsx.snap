@@ -13,6 +13,7 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
     <div>
       <div
         class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
       >
         <span
           class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
@@ -33,17 +34,20 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
         >
           <div
             class="truncate font-medium"
+            data-testid="top-list-label"
           >
             Before Today
           </div>
           <div
             class="text-foreground-secondary truncate text-sm"
+            data-testid="top-list-sublabel"
           >
             Ariel Pink
           </div>
         </div>
         <div
           class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
           style="width: 100%;"
         >
           90m
@@ -51,6 +55,7 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
       </div>
       <div
         class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
       >
         <span
           class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
@@ -103,17 +108,20 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
         >
           <div
             class="truncate font-medium"
+            data-testid="top-list-label"
           >
             Hot Rats
           </div>
           <div
             class="text-foreground-secondary truncate text-sm"
+            data-testid="top-list-sublabel"
           >
             Frank Zappa
           </div>
         </div>
         <div
           class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
           style="width: 50%;"
         >
           45m
@@ -137,6 +145,7 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
     <div>
       <div
         class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
       >
         <span
           class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
@@ -157,12 +166,14 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
         >
           <div
             class="truncate font-medium"
+            data-testid="top-list-label"
           >
             John Maus
           </div>
         </div>
         <div
           class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
           style="width: 100%;"
         >
           120m
@@ -170,6 +181,7 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
       </div>
       <div
         class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
       >
         <span
           class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
@@ -222,12 +234,14 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
         >
           <div
             class="truncate font-medium"
+            data-testid="top-list-label"
           >
             Ariel Pink
           </div>
         </div>
         <div
           class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
           style="width: 50%;"
         >
           60m
@@ -235,6 +249,7 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
       </div>
       <div
         class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
       >
         <span
           class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
@@ -255,12 +270,14 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
         >
           <div
             class="truncate font-medium"
+            data-testid="top-list-label"
           >
             Swans
           </div>
         </div>
         <div
           class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
           style="width: 25%;"
         >
           30m

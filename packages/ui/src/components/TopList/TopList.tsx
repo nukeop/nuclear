@@ -9,11 +9,12 @@ export const TopList: FC<TopListProps> = ({
   entries,
   formatValue,
   className,
+  ...props
 }) => {
   const maxValue = Math.max(...entries.map((entry) => entry.value));
 
   return (
-    <div className={cn('flex flex-col gap-3', className)}>
+    <div className={cn('flex flex-col gap-3', className)} {...props}>
       <h3 className="font-heading text-xl">{title}</h3>
       <div>
         {entries.map((entry, index) => (

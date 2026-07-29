@@ -16,7 +16,10 @@ export const TopListRow: FC<TopListRowProps> = ({
   fillRatio,
   formatValue,
 }) => (
-  <div className="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0">
+  <div
+    data-testid="top-list-row"
+    className="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+  >
     <span className="text-foreground-secondary w-5 text-right text-sm tabular-nums">
       {rank}
     </span>
@@ -36,14 +39,20 @@ export const TopListRow: FC<TopListRowProps> = ({
       )}
     </div>
     <div className="min-w-0">
-      <div className="truncate font-medium">{entry.label}</div>
+      <div data-testid="top-list-label" className="truncate font-medium">
+        {entry.label}
+      </div>
       {entry.sublabel && (
-        <div className="text-foreground-secondary truncate text-sm">
+        <div
+          data-testid="top-list-sublabel"
+          className="text-foreground-secondary truncate text-sm"
+        >
           {entry.sublabel}
         </div>
       )}
     </div>
     <div
+      data-testid="top-list-value"
       className="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
       style={{ width: `${fillRatio * 100}%` }}
     >
