@@ -19,6 +19,7 @@ import { formatListeningDuration } from '../utils/format';
 import type { RangePresetId } from '../utils/rangePresets';
 import { RANGE_PRESET_IDS } from '../utils/rangePresets';
 import { HistoryStatsEmptyState } from './HistoryStatsEmptyState';
+import { HistoryTopLists } from './HistoryTopLists';
 
 type HistoryStatsBodyProps = {
   firstPlayAt: number;
@@ -72,9 +73,10 @@ const HistoryStatsBody: FC<HistoryStatsBodyProps> = ({ firstPlayAt }) => {
           />
         </div>
       </div>
+      <HistoryTopLists range={range} />
       {hourlyValues &&
         (hasListening ? (
-          <div className="flex items-stretch gap-4">
+          <div className="flex flex-col items-stretch gap-4 @3xl:flex-row">
             <Box variant="tertiary" className="w-auto flex-col gap-3">
               <h3 className="font-heading text-[21px]">
                 {t('stats.hourOfDay')}
@@ -136,7 +138,7 @@ export const HistoryStats: FC = () => {
   return (
     <ScrollableArea
       data-testid="history-stats"
-      viewportClassName="flex flex-col gap-4 p-4"
+      viewportClassName="@container flex flex-col gap-4 p-4"
     >
       {!isPending &&
         (firstPlayAt ? (
