@@ -20,6 +20,7 @@ import { initMpdHandler } from './services/mpd';
 import { initPlaybackEventBridge } from './services/playbackEventBridge';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
+import { initializeAudioOutputStore } from './stores/audioOutputStore';
 import { initializeFavoritesStore } from './stores/favoritesStore';
 import { initializePlaylistStore } from './stores/playlistStore';
 import { initializeQueueStore } from './stores/queueStore';
@@ -38,6 +39,7 @@ export const initPlayerApp = async (
     .then(() => initializeQueueStore())
     .then(() => initializeFavoritesStore())
     .then(() => initializePlaylistStore())
+    .then(() => initializeAudioOutputStore())
     .then(() => registerBuiltInCoreSettings())
     .then(() => initDiscoveryService())
     .then(() => initMcpHandler())

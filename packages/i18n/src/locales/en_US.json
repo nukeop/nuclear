@@ -562,6 +562,12 @@
       "chore": "Chore",
       "plugin": "Plugin",
       "docs": "Docs"
+    },
+    "audioOutput": {
+      "title": "Audio Output",
+      "deviceLabel": "Device",
+      "deviceDescription": "Select the audio output device for playback",
+      "deviceDefault": "System default"
     }
   }
 }

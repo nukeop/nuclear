@@ -14,6 +14,7 @@ export const Sound: React.FC<SoundProps> = ({
   status,
   seek,
   volume,
+  sinkId,
   preload = 'auto',
   crossOrigin = '',
   onTimeUpdate,
@@ -31,6 +32,16 @@ export const Sound: React.FC<SoundProps> = ({
   useHlsSource(audioRef, src);
   useMseSource(audioRef, src, onError, onSourceInvalid);
   usePlaybackStatus(audioRef, status, src.url, onError);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || !sinkId || !('setSinkId' in audio)) {
+      return;
+    }
+    (audio as HTMLAudioElement & { setSinkId(id: string): Promise<void> })
+      .setSinkId(sinkId)
+      .catch(() => {});
+  }, [sinkId]);
 
   useEffect(() => {
     const audio = audioRef.current;

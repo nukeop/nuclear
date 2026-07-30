@@ -8,6 +8,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import { useCoreSetting } from '../hooks/useCoreSetting';
 import { eventBus } from '../services/eventBus';
 import { Logger } from '../services/logger';
+import { useAudioOutputStore } from '../stores/audioOutputStore';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 import { errorMessage } from '../utils/errorMessage';
@@ -28,6 +29,8 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   const [volume01] = useCoreSetting<number>('playback.volume');
   const [muted] = useCoreSetting<boolean>('playback.muted');
   const volumePercent = muted ? 0 : Math.round((volume01 ?? 1) * 100);
+  const selectedSinkId = useAudioOutputStore((s) => s.selectedSinkId);
+  const isAudioOutputSupported = useAudioOutputStore((s) => s.isSupported);
 
   useEffect(() => {
     LoggerProvider.init(Logger.streaming);
@@ -107,6 +110,9 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
           status={status}
           seek={seek}
           volume={volumePercent}
+          sinkId={
+            isAudioOutputSupported ? (selectedSinkId ?? undefined) : undefined
+          }
           preload={preload}
           crossOrigin={crossOrigin}
           onTimeUpdate={handleTimeUpdate}

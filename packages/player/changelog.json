@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-07-30T00:00",
+    "description": "Add audio output device selector. You can now choose your playback device (speakers, Bluetooth headphones, etc.) from Settings -> Audio Output. Devices are detected automatically when connected or disconnected.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-07-20T00:00",
     "description": "Fix bluetooth issues on Linux.",
     "type": "fix",
