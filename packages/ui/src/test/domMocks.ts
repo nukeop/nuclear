@@ -4,9 +4,6 @@ type ResizeObserverLike = new (callback: ResizeObserverCallback) => {
   disconnect(): void;
 };
 
-const INLINE_ATTR = 'data-test-resize-observer-inline-size';
-const BLOCK_ATTR = 'data-test-resize-observer-block-size';
-
 const parseSize = (value: string | null): number | null => {
   if (value === null) {
     return null;
@@ -40,9 +37,20 @@ const buildEntry = (target: Element, inlineSize: number, blockSize: number) => {
   } as ResizeObserverEntry;
 };
 
-export const setupResizeObserverMock = () => {
-  const g = globalThis as { ResizeObserver?: ResizeObserverLike };
+const setupMatchMediaMock = () => {
+  window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  }));
+};
 
+const setupResizeObserverMock = () => {
   class ResizeObserverMock {
     private callback: ResizeObserverCallback;
     constructor(callback: ResizeObserverCallback) {
@@ -50,8 +58,12 @@ export const setupResizeObserverMock = () => {
     }
     observe(target: Element, options?: ResizeObserverOptions): void {
       void options;
-      const inlineAttr = parseSize(target.getAttribute(INLINE_ATTR));
-      const blockAttr = parseSize(target.getAttribute(BLOCK_ATTR));
+      const inlineAttr = parseSize(
+        target.getAttribute('data-test-resize-observer-inline-size'),
+      );
+      const blockAttr = parseSize(
+        target.getAttribute('data-test-resize-observer-block-size'),
+      );
       if (inlineAttr === null && blockAttr === null) {
         return;
       }
@@ -61,9 +73,25 @@ export const setupResizeObserverMock = () => {
       this.callback([entry], this);
     }
     unobserve(target: Element): void {
-      void target; // avoid unused param lint
+      void target;
     }
     disconnect(): void {}
   }
-  g.ResizeObserver = ResizeObserverMock;
+
+  (globalThis as { ResizeObserver?: ResizeObserverLike }).ResizeObserver =
+    ResizeObserverMock;
+};
+
+export const setupDomMocks = () => {
+  setupMatchMediaMock();
+  setupResizeObserverMock();
+
+  Element.prototype.hasPointerCapture = vi.fn().mockReturnValue(false);
+  Element.prototype.setPointerCapture = vi.fn();
+  Element.prototype.releasePointerCapture = vi.fn();
+  Element.prototype.scrollIntoView = vi.fn();
+  globalThis.CSS = { supports: () => true } as unknown as typeof CSS;
+  (SVGElement.prototype as SVGGraphicsElement).getBBox = vi
+    .fn()
+    .mockReturnValue({ x: 0, y: 0, width: 0, height: 0 });
 };

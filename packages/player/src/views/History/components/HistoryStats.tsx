@@ -78,9 +78,7 @@ const HistoryStatsBody: FC<HistoryStatsBodyProps> = ({ firstPlayAt }) => {
         (hasListening ? (
           <div className="flex flex-col items-stretch gap-4 @3xl:flex-row">
             <Box variant="tertiary" className="w-auto flex-col gap-3">
-              <h3 className="font-heading text-[21px]">
-                {t('stats.hourOfDay')}
-              </h3>
+              <h3 className="font-heading text-xl">{t('stats.hourOfDay')}</h3>
               <ListeningClock
                 values={hourlyValues}
                 labels={{
@@ -92,9 +90,7 @@ const HistoryStatsBody: FC<HistoryStatsBodyProps> = ({ firstPlayAt }) => {
             </Box>
             {dayOfWeekValues && (
               <Box variant="tertiary" className="min-w-0 flex-1 flex-col gap-3">
-                <h3 className="font-heading text-[21px]">
-                  {t('stats.dayOfWeek')}
-                </h3>
+                <h3 className="font-heading text-xl">{t('stats.dayOfWeek')}</h3>
                 <div className="min-h-0 flex-1">
                   <DayOfWeekChart
                     values={dayOfWeekValues}
@@ -110,7 +106,7 @@ const HistoryStatsBody: FC<HistoryStatsBodyProps> = ({ firstPlayAt }) => {
         ))}
       {dailyDays && (
         <Box variant="tertiary" className="min-w-fit flex-col gap-3">
-          <h3 className="font-heading text-[21px]">{t('stats.calendar')}</h3>
+          <h3 className="font-heading text-xl">{t('stats.calendar')}</h3>
           <CalendarHeatmap
             className="mx-auto"
             days={dailyDays}
