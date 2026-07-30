@@ -15,13 +15,19 @@ export const StatsTopList: FC<StatsTopListProps> = ({
   testId,
   title,
   entries,
-}) => (
-  <Box variant="tertiary" className="min-w-0 flex-col">
-    <TopList
-      data-testid={testId}
-      title={title}
-      entries={entries}
-      formatValue={formatListeningDuration}
-    />
-  </Box>
-);
+}) => {
+  if (!entries.length) {
+    return null;
+  }
+
+  return (
+    <Box variant="tertiary" className="min-w-0 flex-col">
+      <TopList
+        data-testid={testId}
+        title={title}
+        entries={entries}
+        formatValue={formatListeningDuration}
+      />
+    </Box>
+  );
+};

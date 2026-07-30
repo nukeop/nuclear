@@ -16,6 +16,7 @@
 * [Favorites](core-concepts/favorites.md)
 * [Playlists](core-concepts/playlists.md)
 * [Listening history](core-concepts/listening-history.md)
+* [Listening stats](core-concepts/listening-stats.md)
 
 ## Theming
 

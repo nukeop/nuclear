@@ -27,13 +27,13 @@ describe('History stats view', () => {
 
   it('shows the listening clock with busiest hour stats by default', async () => {
     Wrapper.mockHourlyListeningTime(
-      fakeHourlyValues({ 9: 1_800_000, 20: 6_600_000 }),
+      fakeHourlyValues({ 9: 1_800_000, 20: 7_180_000 }),
     );
     await Wrapper.mount();
 
     expect(await Wrapper.stats.clock.find()).toBeInTheDocument();
     expect(Wrapper.stats.busiestHour).toBe('20:00');
-    expect(Wrapper.stats.listeningTime).toBe('1h 50m');
+    expect(Wrapper.stats.listeningTime).toBe('2h 0m');
   });
 
   it('requests the selected time range when picked from the dropdown', async () => {
@@ -175,6 +175,28 @@ describe('History stats view', () => {
       },
       { label: 'Believer', sublabel: 'John Maus', value: '30m' },
     ]);
+  });
+
+  it('hides the top albums list when there are no top albums, while still showing top artists and top tracks', async () => {
+    Wrapper.mockTopArtists({
+      name: 'John Maus',
+      artworkUrl: null,
+      msPlayed: 6_600_000,
+      plays: 31,
+    });
+    Wrapper.mockTopTracks({
+      title: 'Fright Night',
+      artists: ['Ariel Pink'],
+      artworkUrl: null,
+      msPlayed: 6_600_000,
+      plays: 27,
+    });
+
+    await Wrapper.mount();
+
+    expect(await Wrapper.stats.topArtists.find()).toBeInTheDocument();
+    expect(await Wrapper.stats.topTracks.find()).toBeInTheDocument();
+    expect(Wrapper.stats.topAlbums.element).not.toBeInTheDocument();
   });
 
   it('requests the top lists for the selected time range', async () => {

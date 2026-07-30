@@ -1,12 +1,14 @@
 import { Duration } from 'luxon';
 
 export const formatListeningDuration = (ms: number): string => {
-  const { hours, minutes } = Duration.fromMillis(ms)
-    .shiftTo('hours', 'minutes')
+  const { hours, minutes = 0 } = Duration.fromMillis(ms)
+    .shiftTo('minutes')
+    .mapUnits(Math.round)
+    .rescale()
     .toObject();
-  const wholeMinutes = Math.round(minutes ?? 0);
+
   if (!hours) {
-    return `${wholeMinutes}m`;
+    return `${minutes}m`;
   }
-  return `${hours}h ${wholeMinutes}m`;
+  return `${hours}h ${minutes}m`;
 };
