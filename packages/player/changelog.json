@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-07-30T00:00",
+    "description": "History stats tab shows a selection of charts showcasing your listening habits.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "History",
+        "color": "yellow"
+      }
+    ]
+  },
+  {
     "date": "2026-07-20T00:00",
     "description": "Fix bluetooth issues on Linux.",
     "type": "fix",

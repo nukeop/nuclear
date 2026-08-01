@@ -39,6 +39,8 @@ To solve this, Nuclear also records when:
 
 This lets the history reflect your preferences much more accurately. This makes it possible to identify which parts of a track you like the most, the tracks you skip the most frequently, or the ones that you spend the most time listening to.
 
+The **Stats** tab uses this data to show you charts and top lists based on your listening time. See [Listening stats](listening-stats.md) for details.
+
 ## Database
 
 The listening history is an unencrypted database stored in the appdata folder. See this article to learn where to find it on your platform: [Platform specific paths](../misc/platform-specific.md#paths).

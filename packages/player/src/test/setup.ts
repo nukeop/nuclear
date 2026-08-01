@@ -1,19 +1,16 @@
 import '@testing-library/jest-dom';
 
 import path from 'node:path';
+import { Settings } from 'luxon';
 import { vi } from 'vitest';
 
-import { setupResizeObserverMock } from '@nuclearplayer/ui';
+import { setupDomMocks } from '@nuclearplayer/ui';
 
 process.env.NODE_ENV = 'test';
 process.env.TZ = 'UTC';
+Settings.defaultLocale = 'en-US';
 
-setupResizeObserverMock();
-
-Element.prototype.hasPointerCapture = vi.fn().mockReturnValue(false);
-Element.prototype.setPointerCapture = vi.fn();
-Element.prototype.releasePointerCapture = vi.fn();
-Element.prototype.scrollIntoView = vi.fn();
+setupDomMocks();
 
 // Silences react's pointless warning spam
 // give it a rest already

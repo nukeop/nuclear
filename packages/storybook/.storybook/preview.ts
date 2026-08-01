@@ -1,3 +1,4 @@
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react-vite';
 
 import '@fontsource/dm-sans/400.css';
@@ -7,6 +8,16 @@ import '@fontsource/space-mono/400.css';
 import '@nuclearplayer/tailwind-config';
 
 const preview: Preview = {
+  decorators: [
+    withThemeByDataAttribute({
+      themes: {
+        light: '',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+      attributeName: 'data-theme',
+    }),
+  ],
   parameters: {
     controls: {
       matchers: {

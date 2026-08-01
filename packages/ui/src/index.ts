@@ -8,7 +8,7 @@ export * from './components';
 export * from './hooks';
 export * from './utils';
 
-export { setupResizeObserverMock } from './test/resizeObserverMock';
+export { setupDomMocks } from './test/domMocks';
 export { createFramerMotionMock } from './test/mockFramerMotion';
 export { DialogWrapper } from './test/DialogWrapper';
 export { createSelectWrapper } from './test/SelectWrapper';

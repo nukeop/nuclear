@@ -1,0 +1,289 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-3"
+  >
+    <h3
+      class="font-heading text-xl"
+    >
+      Top albums
+    </h3>
+    <div>
+      <div
+        class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
+      >
+        <span
+          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+        >
+          1
+        </span>
+        <div
+          class="flex h-10 w-10 items-center justify-center overflow-hidden"
+        >
+          <img
+            alt="Before Today"
+            class="h-full w-full object-cover"
+            src="https://example.com/before-today.jpg"
+          />
+        </div>
+        <div
+          class="min-w-0"
+        >
+          <div
+            class="truncate font-medium"
+            data-testid="top-list-label"
+          >
+            Before Today
+          </div>
+          <div
+            class="text-foreground-secondary truncate text-sm"
+            data-testid="top-list-sublabel"
+          >
+            Ariel Pink
+          </div>
+        </div>
+        <div
+          class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
+          style="width: 100%;"
+        >
+          90m
+        </div>
+      </div>
+      <div
+        class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
+      >
+        <span
+          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+        >
+          2
+        </span>
+        <div
+          class="flex h-10 w-10 items-center justify-center overflow-hidden"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-cassette-tape text-foreground opacity-20"
+            fill="none"
+            height="32"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            width="32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              height="16"
+              rx="2"
+              width="20"
+              x="2"
+              y="4"
+            />
+            <circle
+              cx="8"
+              cy="10"
+              r="2"
+            />
+            <path
+              d="M8 12h8"
+            />
+            <circle
+              cx="16"
+              cy="10"
+              r="2"
+            />
+            <path
+              d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+            />
+          </svg>
+        </div>
+        <div
+          class="min-w-0"
+        >
+          <div
+            class="truncate font-medium"
+            data-testid="top-list-label"
+          >
+            Hot Rats
+          </div>
+          <div
+            class="text-foreground-secondary truncate text-sm"
+            data-testid="top-list-sublabel"
+          >
+            Frank Zappa
+          </div>
+        </div>
+        <div
+          class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
+          style="width: 50%;"
+        >
+          45m
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TopList > (Snapshot) renders a list of artists 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-3"
+  >
+    <h3
+      class="font-heading text-xl"
+    >
+      Top artists
+    </h3>
+    <div>
+      <div
+        class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
+      >
+        <span
+          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+        >
+          1
+        </span>
+        <div
+          class="flex h-10 w-10 items-center justify-center overflow-hidden"
+        >
+          <img
+            alt="John Maus"
+            class="h-full w-full object-cover"
+            src="https://example.com/maus.jpg"
+          />
+        </div>
+        <div
+          class="min-w-0"
+        >
+          <div
+            class="truncate font-medium"
+            data-testid="top-list-label"
+          >
+            John Maus
+          </div>
+        </div>
+        <div
+          class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
+          style="width: 100%;"
+        >
+          120m
+        </div>
+      </div>
+      <div
+        class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
+      >
+        <span
+          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+        >
+          2
+        </span>
+        <div
+          class="flex h-10 w-10 items-center justify-center overflow-hidden"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-cassette-tape text-foreground opacity-20"
+            fill="none"
+            height="32"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            width="32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              height="16"
+              rx="2"
+              width="20"
+              x="2"
+              y="4"
+            />
+            <circle
+              cx="8"
+              cy="10"
+              r="2"
+            />
+            <path
+              d="M8 12h8"
+            />
+            <circle
+              cx="16"
+              cy="10"
+              r="2"
+            />
+            <path
+              d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+            />
+          </svg>
+        </div>
+        <div
+          class="min-w-0"
+        >
+          <div
+            class="truncate font-medium"
+            data-testid="top-list-label"
+          >
+            Ariel Pink
+          </div>
+        </div>
+        <div
+          class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
+          style="width: 50%;"
+        >
+          60m
+        </div>
+      </div>
+      <div
+        class="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
+        data-testid="top-list-row"
+      >
+        <span
+          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+        >
+          3
+        </span>
+        <div
+          class="flex h-10 w-10 items-center justify-center overflow-hidden"
+        >
+          <img
+            alt="Swans"
+            class="h-full w-full object-cover"
+            src="https://example.com/swans.jpg"
+          />
+        </div>
+        <div
+          class="min-w-0"
+        >
+          <div
+            class="truncate font-medium"
+            data-testid="top-list-label"
+          >
+            Swans
+          </div>
+        </div>
+        <div
+          class="bg-primary/50 min-w-fit px-2 py-1 whitespace-nowrap tabular-nums"
+          data-testid="top-list-value"
+          style="width: 25%;"
+        >
+          30m
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

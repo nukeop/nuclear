@@ -107,18 +107,16 @@ impl HistoryDb {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::history::test_helpers::test_pool;
+    use crate::history::fixtures;
 
     fn snapshot() -> TrackSnapshot {
-        TrackSnapshot {
-            title: "Creep".into(),
-            artists: vec!["Radiohead".into()],
-            album_title: Some("Pablo Honey".into()),
-            duration_ms: Some(240_000),
-            artwork_url: Some("https://example.com/art.jpg".into()),
-            provider: "youtube".into(),
-            provider_id: "abc123".into(),
-        }
+        fixtures::TrackSnapshotBuilder::new("Creep")
+            .artists(&["Radiohead"])
+            .album("Pablo Honey")
+            .duration(240_000)
+            .artwork("https://example.com/art.jpg")
+            .provider("youtube", "abc123")
+            .build()
     }
 
     fn started(play_id: &str, at: i64, snapshot: TrackSnapshot) -> PlayEvent {
@@ -144,7 +142,7 @@ mod tests {
     }
 
     async fn db() -> HistoryDb {
-        HistoryDb(test_pool().await)
+        HistoryDb(fixtures::pool().await)
     }
 
     #[tokio::test]
@@ -191,7 +189,9 @@ mod tests {
 
         let mut first = snapshot();
         first.artwork_url = None;
-        db.record_event(started("play-1", 1000, first)).await.unwrap();
+        db.record_event(started("play-1", 1000, first))
+            .await
+            .unwrap();
 
         let mut second = snapshot();
         second.album_title = Some("Greatest Hits".into());

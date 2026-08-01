@@ -42,10 +42,35 @@
     "emptyDescription": "Tracks you play will appear here",
     "today": "Today",
     "yesterday": "Yesterday",
+    "tabs": {
+      "stats": "Stats",
+      "listeningHistory": "Listening history"
+    },
     "row": {
       "favorite": "Add to favorites",
       "unfavorite": "Remove from favorites",
       "addToQueue": "Add to queue"
+    },
+    "stats": {
+      "busiestHour": "Busiest hour",
+      "listeningTime": "Listening time",
+      "hourOfDay": "Time of day",
+      "dayOfWeek": "Day of week",
+      "calendar": "Listening calendar",
+      "topArtists": "Top artists",
+      "topAlbums": "Top albums",
+      "topTracks": "Top tracks",
+      "empty": "No listening data yet",
+      "emptyDescription": "Tracks you listen to will show up in your stats",
+      "legendLess": "Less",
+      "legendMore": "More",
+      "range": {
+        "last7Days": "Last 7 days",
+        "last30Days": "Last 30 days",
+        "last90Days": "Last 90 days",
+        "last12Months": "Last 12 months",
+        "allTime": "All time"
+      }
     }
   },
   "sources": {

@@ -1,0 +1,545 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
+<div>
+  <div
+    class="w-fit text-xs"
+    data-testid="calendar-heatmap"
+    style="color: var(--foreground-secondary);"
+  >
+    <article
+      class="react-activity-calendar"
+      style="width: max-content; max-width: 100%; display: flex; flex-direction: column; gap: 8px; font-size: 14px;"
+    >
+      <div
+        class="react-activity-calendar__scroll-container"
+        style="max-width: 100%; overflow-x: auto; overflow-y: hidden; padding-top: 2px;"
+      >
+        <svg
+          class="react-activity-calendar__calendar"
+          height="158"
+          style="display: block; overflow: visible; margin-left: 8px;"
+          viewBox="0 0 116 158"
+          width="116"
+        >
+          <g
+            class="react-activity-calendar__legend-weekday"
+          >
+            <text
+              dominant-baseline="central"
+              fill="currentColor"
+              text-anchor="end"
+              x="-8"
+              y="50"
+            >
+              Tue
+            </text>
+            <text
+              dominant-baseline="central"
+              fill="currentColor"
+              text-anchor="end"
+              x="-8"
+              y="90"
+            >
+              Thu
+            </text>
+            <text
+              dominant-baseline="central"
+              fill="currentColor"
+              text-anchor="end"
+              x="-8"
+              y="130"
+            >
+              Sat
+            </text>
+          </g>
+          <g
+            class="react-activity-calendar__legend-month"
+          />
+          <g
+            transform="translate(0, 0)"
+          >
+            <rect
+              data-date="2026-03-01"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="142"
+            />
+          </g>
+          <g
+            transform="translate(20, 0)"
+          >
+            <rect
+              data-date="2026-03-02"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="22"
+            />
+            <rect
+              data-date="2026-03-03"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="42"
+            />
+            <rect
+              data-date="2026-03-04"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="62"
+            />
+            <rect
+              data-date="2026-03-05"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="82"
+            />
+            <rect
+              data-date="2026-03-06"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="102"
+            />
+            <rect
+              data-date="2026-03-07"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="122"
+            />
+            <rect
+              data-date="2026-03-08"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="142"
+            />
+          </g>
+          <g
+            transform="translate(40, 0)"
+          >
+            <rect
+              data-date="2026-03-09"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="22"
+            />
+            <rect
+              data-date="2026-03-10"
+              data-level="4"
+              fill="color-mix(in oklab, var(--accent-green) 70%, black)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="42"
+            />
+            <rect
+              data-date="2026-03-11"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="62"
+            />
+            <rect
+              data-date="2026-03-12"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="82"
+            />
+            <rect
+              data-date="2026-03-13"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="102"
+            />
+            <rect
+              data-date="2026-03-14"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="122"
+            />
+            <rect
+              data-date="2026-03-15"
+              data-level="1"
+              fill="color-mix(in oklab, var(--accent-green) 25%, var(--background-secondary))"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="142"
+            />
+          </g>
+          <g
+            transform="translate(60, 0)"
+          >
+            <rect
+              data-date="2026-03-16"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="22"
+            />
+            <rect
+              data-date="2026-03-17"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="42"
+            />
+            <rect
+              data-date="2026-03-18"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="62"
+            />
+            <rect
+              data-date="2026-03-19"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="82"
+            />
+            <rect
+              data-date="2026-03-20"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="102"
+            />
+            <rect
+              data-date="2026-03-21"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="122"
+            />
+            <rect
+              data-date="2026-03-22"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="142"
+            />
+          </g>
+          <g
+            transform="translate(80, 0)"
+          >
+            <rect
+              data-date="2026-03-23"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="22"
+            />
+            <rect
+              data-date="2026-03-24"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="42"
+            />
+            <rect
+              data-date="2026-03-25"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="62"
+            />
+            <rect
+              data-date="2026-03-26"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="82"
+            />
+            <rect
+              data-date="2026-03-27"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="102"
+            />
+            <rect
+              data-date="2026-03-28"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="122"
+            />
+            <rect
+              data-date="2026-03-29"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="142"
+            />
+          </g>
+          <g
+            transform="translate(100, 0)"
+          >
+            <rect
+              data-date="2026-03-30"
+              data-level="0"
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="22"
+            />
+            <rect
+              data-date="2026-03-31"
+              data-level="2"
+              fill="color-mix(in oklab, var(--accent-green) 55%, var(--background-secondary))"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+              x="0"
+              y="42"
+            />
+          </g>
+        </svg>
+      </div>
+      <footer
+        class="react-activity-calendar__footer"
+        style="display: flex; flex-wrap: wrap; gap: 4px 16px; white-space: nowrap; margin-left: 8px;"
+      >
+        <div
+          class="react-activity-calendar__legend-colors"
+          style="margin-left: auto; display: flex; align-items: center; gap: 3px;"
+        >
+          <span
+            style="margin-right: 0.4em;"
+          >
+            Less
+          </span>
+          <svg
+            height="16"
+            width="16"
+          >
+            <rect
+              fill="var(--background-secondary)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+            />
+          </svg>
+          <svg
+            height="16"
+            width="16"
+          >
+            <rect
+              fill="color-mix(in oklab, var(--accent-green) 25%, var(--background-secondary))"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+            />
+          </svg>
+          <svg
+            height="16"
+            width="16"
+          >
+            <rect
+              fill="color-mix(in oklab, var(--accent-green) 55%, var(--background-secondary))"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+            />
+          </svg>
+          <svg
+            height="16"
+            width="16"
+          >
+            <rect
+              fill="var(--accent-green)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+            />
+          </svg>
+          <svg
+            height="16"
+            width="16"
+          >
+            <rect
+              fill="color-mix(in oklab, var(--accent-green) 70%, black)"
+              height="16"
+              rx="2"
+              ry="2"
+              style="stroke: rgba(0, 0, 0, 0.08);"
+              width="16"
+            />
+          </svg>
+          <span
+            style="margin-left: 0.4em;"
+          >
+            More
+          </span>
+        </div>
+      </footer>
+    </article>
+  </div>
+</div>
+`;

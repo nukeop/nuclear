@@ -31,6 +31,14 @@ export const commands = {
 	historyRecordEvent: (event: PlayEvent) => typedError<null, string>(__TAURI_INVOKE("history_record_event", { event })),
 	historyFetch: (page: PageRequest) => typedError<Page<HistoryEntry>, string>(__TAURI_INVOKE("history_fetch", { page })),
 	historyDeleteRange: (range: TimeRange) => typedError<null, string>(__TAURI_INVOKE("history_delete_range", { range })),
+	historyHourlyListeningTime: (range: TimeRange) => typedError<HourlyListeningTime, string>(__TAURI_INVOKE("history_hourly_listening_time", { range })),
+	historyDailyListeningTime: (range: TimeRange) => typedError<DailyListeningTime[], string>(__TAURI_INVOKE("history_daily_listening_time", { range })),
+	historyFirstPlayAt: () => typedError<{
+	at: number,
+} | null, string>(__TAURI_INVOKE("history_first_play_at")),
+	historyTopArtists: (range: TimeRange, limit: number) => typedError<TopArtist[], string>(__TAURI_INVOKE("history_top_artists", { range, limit })),
+	historyTopAlbums: (range: TimeRange, limit: number) => typedError<TopAlbum[], string>(__TAURI_INVOKE("history_top_albums", { range, limit })),
+	historyTopTracks: (range: TimeRange, limit: number) => typedError<TopTrack[], string>(__TAURI_INVOKE("history_top_tracks", { range, limit })),
 };
 
 /* Types */
@@ -43,6 +51,15 @@ export type BridgeResponse = {
 } & BridgeResponseBody;
 
 export type BridgeResponseBody = { status: "success"; data: unknown } | { status: "error"; error: string };
+
+export type DailyListeningTime = {
+	date: string,
+	value: number,
+};
+
+export type FirstPlay = {
+	at: number,
+};
 
 export type HistoryEntry = {
 	playId: string,
@@ -57,6 +74,10 @@ export type HistoryEntry = {
 	msPlayed: number,
 	endReason: PlayEndReason | null,
 	endPositionMs: number | null,
+};
+
+export type HourlyListeningTime = {
+	values: number[],
 };
 
 export type HttpApiStartResult = {
@@ -109,6 +130,29 @@ export type StartupLogEntry = {
 export type TimeRange = {
 	from: number,
 	to: number,
+};
+
+export type TopAlbum = {
+	title: string,
+	artist: string,
+	artworkUrl: string | null,
+	msPlayed: number,
+	plays: number,
+};
+
+export type TopArtist = {
+	name: string,
+	artworkUrl: string | null,
+	msPlayed: number,
+	plays: number,
+};
+
+export type TopTrack = {
+	title: string,
+	artists: string[],
+	artworkUrl: string | null,
+	msPlayed: number,
+	plays: number,
 };
 
 export type TrackPresence = {

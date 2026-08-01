@@ -10,7 +10,12 @@ import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
-import type { HistoryEntry } from '../../services/tauri/bindings';
+import type {
+  HistoryEntry,
+  TopAlbum,
+  TopArtist,
+  TopTrack,
+} from '../../services/tauri/bindings';
 import { useFavoritesStore } from '../../stores/favoritesStore';
 import { useQueueStore } from '../../stores/queueStore';
 import type { TauriCommandMocks } from '../../test/utils/commandMocks';
@@ -20,9 +25,33 @@ const user = userEvent.setup();
 
 const FAVORITED_LABEL = 'Remove from favorites';
 
+const topList = (testId: string) => ({
+  async find() {
+    return screen.findByTestId(testId);
+  },
+  get element() {
+    return screen.queryByTestId(testId);
+  },
+  get rows() {
+    return within(screen.getByTestId(testId))
+      .getAllByTestId('top-list-row')
+      .map((row) => ({
+        label: within(row).getByTestId('top-list-label').textContent,
+        sublabel: within(row).queryByTestId('top-list-sublabel')?.textContent,
+        value: within(row).getByTestId('top-list-value').textContent,
+      }));
+  },
+});
+
 export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
   init() {
     commandMocks.reset();
+    this.mockFirstPlayAt(Date.parse('2026-06-01T00:00:00Z'));
+    this.mockHourlyListeningTime(Array.from({ length: 24 }, () => 0));
+    this.mockDailyListeningTime([]);
+    this.mockTopArtists();
+    this.mockTopAlbums();
+    this.mockTopTracks();
     useQueueStore.setState({ items: [], currentIndex: 0 });
     useFavoritesStore.setState({
       tracks: [],
@@ -41,15 +70,117 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     );
   },
 
+  mockFirstPlayAt(at: number) {
+    commandMocks.command('historyFirstPlayAt').mockResolvedValue(ok({ at }));
+  },
+
+  mockNoListeningHistory() {
+    commandMocks.command('historyFirstPlayAt').mockResolvedValue(ok(null));
+  },
+
+  mockHourlyListeningTime(values: number[]) {
+    commandMocks
+      .command('historyHourlyListeningTime')
+      .mockResolvedValue(ok({ values }));
+  },
+
+  mockDailyListeningTime(days: { date: string; value: number }[]) {
+    commandMocks
+      .command('historyDailyListeningTime')
+      .mockResolvedValue(ok(days));
+  },
+
+  mockTopArtists(...artists: TopArtist[]) {
+    commandMocks.command('historyTopArtists').mockResolvedValue(ok(artists));
+  },
+
+  mockTopAlbums(...albums: TopAlbum[]) {
+    commandMocks.command('historyTopAlbums').mockResolvedValue(ok(albums));
+  },
+
+  mockTopTracks(...tracks: TopTrack[]) {
+    commandMocks.command('historyTopTracks').mockResolvedValue(ok(tracks));
+  },
+
   async mount(): Promise<RenderResult> {
     const history = createMemoryHistory({ initialEntries: ['/history'] });
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('history-view');
+    return component;
+  },
+
+  async mountOnListTab(): Promise<RenderResult> {
+    const component = await this.mount();
+    await this.tabs.listeningHistory.click();
     await waitFor(() => {
       expect(screen.queryByTestId('history-loading')).not.toBeInTheDocument();
     });
     return component;
+  },
+
+  tabs: {
+    stats: {
+      async click() {
+        await user.click(screen.getByRole('tab', { name: 'Stats' }));
+      },
+    },
+    listeningHistory: {
+      async click() {
+        await user.click(
+          screen.getByRole('tab', { name: 'Listening history' }),
+        );
+      },
+    },
+  },
+
+  stats: {
+    clock: {
+      async find() {
+        return screen.findByTestId('listening-clock');
+      },
+      get element() {
+        return screen.queryByTestId('listening-clock');
+      },
+    },
+    get busiestHour() {
+      return screen.getByTestId('listening-clock-busiest-hour').textContent;
+    },
+    get listeningTime() {
+      return screen.getByTestId('listening-clock-busiest-value').textContent;
+    },
+    emptyState: {
+      async find() {
+        return screen.findByTestId('history-stats-empty');
+      },
+    },
+    rangeSelect: {
+      get element() {
+        return screen.queryByTestId('history-stats-range');
+      },
+      async select(label: string) {
+        await user.click(
+          within(screen.getByTestId('history-stats-range')).getByRole('button'),
+        );
+        await user.click(await screen.findByRole('option', { name: label }));
+      },
+    },
+    dayOfWeekChart: {
+      get element() {
+        return screen.queryByTestId('day-of-week-chart');
+      },
+    },
+    heatmap: {
+      async find() {
+        return screen.findByTestId('calendar-heatmap');
+      },
+      get element() {
+        return screen.queryByTestId('calendar-heatmap');
+      },
+    },
+    topArtists: topList('history-top-artists'),
+    topAlbums: topList('history-top-albums'),
+    topTracks: topList('history-top-tracks'),
   },
 
   get emptyState() {
