@@ -1,5 +1,4 @@
 import times from 'lodash-es/times';
-import { DateTime } from 'luxon';
 import { ComponentProps, FC, useState } from 'react';
 
 import { cn } from '../../../utils';
@@ -12,6 +11,7 @@ type ListeningClockProps = Omit<ComponentProps<'div'>, 'children'> & {
   values: number[];
   labels: ListeningClockLabels;
   formatValue: (value: number) => string;
+  formatHour: (hour: number) => string;
   classes?: ListeningClockClasses;
 };
 
@@ -20,13 +20,11 @@ type HoveredHour = {
   element: SVGPathElement;
 };
 
-const formatHour = (hour: number) =>
-  DateTime.fromObject({ hour }).toFormat('HH:mm');
-
 export const ListeningClock: FC<ListeningClockProps> = ({
   values,
   labels,
   formatValue,
+  formatHour,
   classes,
   className,
   ...props

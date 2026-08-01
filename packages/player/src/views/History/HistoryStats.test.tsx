@@ -32,8 +32,8 @@ describe('History stats view', () => {
     await Wrapper.mount();
 
     expect(await Wrapper.stats.clock.find()).toBeInTheDocument();
-    expect(Wrapper.stats.busiestHour).toBe('20:00');
-    expect(Wrapper.stats.listeningTime).toBe('2h 0m');
+    expect(Wrapper.stats.busiestHour).toBe('8:00 PM');
+    expect(Wrapper.stats.listeningTime).toBe('2h');
   });
 
   it('requests the selected time range when picked from the dropdown', async () => {
@@ -114,7 +114,7 @@ describe('History stats view', () => {
 
     expect(await Wrapper.stats.topArtists.find()).toBeInTheDocument();
     expect(Wrapper.stats.topArtists.rows).toEqual([
-      { label: 'John Maus', value: '1h 50m' },
+      { label: 'John Maus', value: '1h, 50m' },
       { label: 'Ariel Pink', value: '30m' },
     ]);
   });
@@ -141,7 +141,7 @@ describe('History stats view', () => {
 
     expect(await Wrapper.stats.topAlbums.find()).toBeInTheDocument();
     expect(Wrapper.stats.topAlbums.rows).toEqual([
-      { label: 'The Idiot', sublabel: 'Iggy Pop', value: '1h 50m' },
+      { label: 'The Idiot', sublabel: 'Iggy Pop', value: '1h, 50m' },
       { label: 'Fun House', sublabel: 'The Stooges', value: '30m' },
     ]);
   });
@@ -171,7 +171,7 @@ describe('History stats view', () => {
       {
         label: 'Fright Night',
         sublabel: 'Ariel Pink, Devin Lynn',
-        value: '1h 50m',
+        value: '1h, 50m',
       },
       { label: 'Believer', sublabel: 'John Maus', value: '30m' },
     ]);

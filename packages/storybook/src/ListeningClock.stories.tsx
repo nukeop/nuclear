@@ -23,6 +23,7 @@ export const Default: Story = {
       busiestHourValue: 'Time during busiest hour',
     },
     formatValue: (value) => `${value}m`,
+    formatHour: (hour) => `${hour}:00`,
   },
 };
 
@@ -39,6 +40,7 @@ export const Variants: Story = {
           busiestHourValue: 'Time during busiest hour',
         }}
         formatValue={(value) => `${value}m`}
+        formatHour={(hour) => `${hour}:00`}
       />
       <ListeningClock
         values={[
@@ -50,6 +52,7 @@ export const Variants: Story = {
           busiestHourValue: 'Time during busiest hour',
         }}
         formatValue={(value) => `${value}m`}
+        formatHour={(hour) => `${hour}:00`}
         classes={{ bar: 'fill-accent-orange' }}
       />
     </div>

@@ -13,6 +13,7 @@ const labels = {
 };
 
 const minutesLabel = (value: number) => `${value}m`;
+const hourLabel = (hour: number) => `${hour}:00`;
 
 describe('ListeningClock', () => {
   it('(Snapshot) renders a full day of listening data', () => {
@@ -21,6 +22,7 @@ describe('ListeningClock', () => {
         values={fakeMinutesByHour}
         labels={labels}
         formatValue={minutesLabel}
+        formatHour={hourLabel}
       />,
     );
     expect(container).toMatchSnapshot();
@@ -32,6 +34,7 @@ describe('ListeningClock', () => {
         values={fakeMinutesByHour}
         labels={labels}
         formatValue={minutesLabel}
+        formatHour={hourLabel}
       />,
     );
 
@@ -51,6 +54,7 @@ describe('ListeningClock', () => {
         values={[10, 20]}
         labels={labels}
         formatValue={minutesLabel}
+        formatHour={hourLabel}
       />,
     );
 
@@ -63,6 +67,7 @@ describe('ListeningClock', () => {
         values={fakeMinutesByHour}
         labels={labels}
         formatValue={minutesLabel}
+        formatHour={hourLabel}
       />,
     );
 

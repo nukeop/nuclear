@@ -1,12 +1,14 @@
 import '@testing-library/jest-dom';
 
 import path from 'node:path';
+import { Settings } from 'luxon';
 import { vi } from 'vitest';
 
 import { setupDomMocks } from '@nuclearplayer/ui';
 
 process.env.NODE_ENV = 'test';
 process.env.TZ = 'UTC';
+Settings.defaultLocale = 'en-US';
 
 setupDomMocks();
 

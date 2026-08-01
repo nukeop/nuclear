@@ -22,14 +22,17 @@ export const useDayOfWeekListeningTime = (timeRange: TimeRange) =>
         (day) => DateTime.fromISO(day.date).weekday,
       );
 
+      const averageFor = (weekday: number) =>
+        meanBy(byWeekday[weekday] ?? [{ value: 0 }], 'value');
+
       return [
-        meanBy(byWeekday[1], 'value'),
-        meanBy(byWeekday[2], 'value'),
-        meanBy(byWeekday[3], 'value'),
-        meanBy(byWeekday[4], 'value'),
-        meanBy(byWeekday[5], 'value'),
-        meanBy(byWeekday[6], 'value'),
-        meanBy(byWeekday[7], 'value'),
+        averageFor(1),
+        averageFor(2),
+        averageFor(3),
+        averageFor(4),
+        averageFor(5),
+        averageFor(6),
+        averageFor(7),
       ];
     },
   });
