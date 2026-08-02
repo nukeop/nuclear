@@ -1,40 +1,31 @@
 import { useNavigate } from '@tanstack/react-router';
 import isEmpty from 'lodash-es/isEmpty';
-import { ListMusic, Plus } from 'lucide-react';
+import { ListMusic } from 'lucide-react';
 import { type FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import {
-  Button,
-  EmptyState,
-  ScrollableArea,
-  ViewShell,
-} from '@nuclearplayer/ui';
+import { EmptyState, ScrollableArea, ViewShell } from '@nuclearplayer/ui';
 
 import { usePlaylistStore } from '../../stores/playlistStore';
 import { CreatePlaylistDialog } from './components/CreatePlaylistDialog';
-import { ImportPlaylistMenu } from './components/ImportPlaylistMenu';
 import { PlaylistCardGrid } from './components/PlaylistCardGrid';
-import {
-  PlaylistsProvider,
-  useCreatePlaylistContext,
-} from './PlaylistsContext';
+import { PlaylistsToolbar } from './components/PlaylistsToolbar';
+import { usePlaylistFilter } from './hooks/usePlaylistFilter';
+import { PlaylistsProvider } from './PlaylistsContext';
 
 const PlaylistsContent: FC = () => {
   const { t } = useTranslation('playlists');
   const navigate = useNavigate();
   const index = usePlaylistStore((state) => state.index);
-  const { openCreateDialog } = useCreatePlaylistContext();
+  const { filter, setFilter, filteredIndex } = usePlaylistFilter(index);
 
   return (
     <ViewShell data-testid="playlists-view" title={t('title')}>
-      <div className="mb-4 flex items-center gap-2">
-        <Button onClick={openCreateDialog} data-testid="create-playlist-button">
-          <Plus size={16} />
-          {t('create')}
-        </Button>
-        <ImportPlaylistMenu />
-      </div>
+      <PlaylistsToolbar
+        filter={filter}
+        onFilterChange={setFilter}
+        isFilterVisible={!isEmpty(index)}
+      />
 
       {isEmpty(index) ? (
         <EmptyState
@@ -46,7 +37,7 @@ const PlaylistsContent: FC = () => {
       ) : (
         <ScrollableArea className="flex-1 overflow-hidden">
           <PlaylistCardGrid
-            index={index}
+            index={filteredIndex}
             onCardClick={(id) =>
               navigate({
                 to: '/playlists/$playlistId',
