@@ -131,6 +131,8 @@
     "trackCount_other": "{{count}} tracks",
     "addToPlaylist": "Add to playlist",
     "filterPlaylists": "Filter playlists...",
+    "filterNoResults": "No playlists match your filter",
+    "filterNoResultsDescription": "Change or remove the search query",
     "createNew": "Create new playlist",
     "saveQueueAsPlaylist": "Save queue as playlist",
     "name": "Name",

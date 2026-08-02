@@ -1,6 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import isEmpty from 'lodash-es/isEmpty';
-import { ListMusic } from 'lucide-react';
+import { ListMusic, SearchX } from 'lucide-react';
 import { type FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
@@ -17,24 +17,39 @@ const PlaylistsContent: FC = () => {
   const { t } = useTranslation('playlists');
   const navigate = useNavigate();
   const index = usePlaylistStore((state) => state.index);
-  const { filter, setFilter, filteredIndex } = usePlaylistFilter(index);
+  const { filter, setFilter, filteredIndex, hasFilter } =
+    usePlaylistFilter(index);
+  const hasPlaylists = !isEmpty(index);
+  const hasResults = !isEmpty(filteredIndex);
 
   return (
     <ViewShell data-testid="playlists-view" title={t('title')}>
       <PlaylistsToolbar
         filter={filter}
         onFilterChange={setFilter}
-        isFilterVisible={!isEmpty(index)}
+        isFilterVisible={hasPlaylists}
       />
 
-      {isEmpty(index) ? (
+      {!hasPlaylists && (
         <EmptyState
           icon={<ListMusic size={48} />}
           title={t('empty')}
           description={t('emptyDescription')}
           className="flex-1"
         />
-      ) : (
+      )}
+
+      {hasPlaylists && hasFilter && !hasResults && (
+        <EmptyState
+          icon={<SearchX size={48} />}
+          title={t('filterNoResults')}
+          description={t('filterNoResultsDescription')}
+          className="flex-1"
+          data-testid="filter-empty-state"
+        />
+      )}
+
+      {hasPlaylists && hasResults && (
         <ScrollableArea className="flex-1 overflow-hidden">
           <PlaylistCardGrid
             index={filteredIndex}
