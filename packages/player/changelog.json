@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-08-03T00:00",
+    "description": "Playlists can now be filtered.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-07-30T00:00",
     "description": "History stats tab shows a selection of charts showcasing your listening habits.",
     "type": "feature",
