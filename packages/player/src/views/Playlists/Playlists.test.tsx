@@ -138,6 +138,60 @@ describe('Playlists view', () => {
     expect(PlaylistsWrapper.detailView).toBeInTheDocument();
   });
 
+  it('hides the filter input when there are no playlists', async () => {
+    await PlaylistsWrapper.mount();
+
+    expect(PlaylistsWrapper.filter.input).not.toBeInTheDocument();
+  });
+
+  describe('filtering', () => {
+    beforeEach(() => {
+      PlaylistsWrapper.seedPlaylists(
+        new PlaylistBuilder().withName('Rock Classics').withTrackCount(10),
+        new PlaylistBuilder().withName('Chill Vibes').withTrackCount(8),
+        new PlaylistBuilder().withName('Jazz Standards').withTrackCount(5),
+      );
+    });
+
+    it('filters playlist cards by name as the user types', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.filter.type('rock');
+
+      expect(PlaylistsWrapper.cards).toHaveLength(1);
+      expect(PlaylistsWrapper.card(0).name).toBe('Rock Classics');
+    });
+
+    it('ignores case when filtering', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.filter.type('CHILL');
+
+      expect(PlaylistsWrapper.cards).toHaveLength(1);
+      expect(PlaylistsWrapper.card(0).name).toBe('Chill Vibes');
+    });
+
+    it('shows no results when the filter matches nothing', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.filter.type('xyzzy');
+
+      expect(PlaylistsWrapper.cards).toHaveLength(0);
+      expect(PlaylistsWrapper.filterEmptyState).toHaveTextContent(
+        'No playlists match your filter',
+      );
+      expect(PlaylistsWrapper.filterEmptyState).toHaveTextContent(
+        'Change or remove the search query',
+      );
+      expect(PlaylistsWrapper.emptyState).not.toBeInTheDocument();
+    });
+
+    it('restores all cards when the filter is cleared', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.filter.type('rock');
+      await PlaylistsWrapper.filter.clear();
+
+      expect(PlaylistsWrapper.cards).toHaveLength(3);
+    });
+  });
+
   describe('import from JSON', () => {
     it('imports a playlist from a JSON file and shows it in the list', async () => {
       const exportedPlaylist = new PlaylistBuilder()
