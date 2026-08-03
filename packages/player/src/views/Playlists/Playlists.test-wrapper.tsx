@@ -34,6 +34,20 @@ export const PlaylistsWrapper = {
   get emptyState() {
     return screen.queryByTestId('empty-state');
   },
+  get filterEmptyState() {
+    return screen.queryByTestId('filter-empty-state');
+  },
+  filter: {
+    get input() {
+      return screen.queryByTestId('filter-playlists-input');
+    },
+    async type(text: string) {
+      await user.type(screen.getByTestId('filter-playlists-input'), text);
+    },
+    async clear() {
+      await user.clear(screen.getByTestId('filter-playlists-input'));
+    },
+  },
   get cards() {
     return screen.queryAllByTestId('card');
   },
