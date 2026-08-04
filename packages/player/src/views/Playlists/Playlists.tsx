@@ -18,11 +18,12 @@ const PlaylistsContent: FC = () => {
   const { t } = useTranslation('playlists');
   const navigate = useNavigate();
   const index = usePlaylistStore((state) => state.index);
-  const { filter, setFilter, filteredIndex, hasFilter } =
+  const { filter, setFilter, filteredPlaylists, hasFilter } =
     usePlaylistFilter(index);
-  const { sortBy, setSortBy } = usePlaylistSort();
+  const { sortBy, setSortBy, sortedPlaylists } =
+    usePlaylistSort(filteredPlaylists);
   const hasPlaylists = !isEmpty(index);
-  const hasResults = !isEmpty(filteredIndex);
+  const hasResults = !isEmpty(filteredPlaylists);
 
   return (
     <ViewShell data-testid="playlists-view" title={t('title')}>
@@ -56,7 +57,7 @@ const PlaylistsContent: FC = () => {
       {hasPlaylists && hasResults && (
         <ScrollableArea className="flex-1 overflow-hidden">
           <PlaylistCardGrid
-            index={filteredIndex}
+            playlists={sortedPlaylists}
             onCardClick={(id) =>
               navigate({
                 to: '/playlists/$playlistId',
