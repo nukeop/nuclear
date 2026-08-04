@@ -11,6 +11,7 @@ import { CreatePlaylistDialog } from './components/CreatePlaylistDialog';
 import { PlaylistCardGrid } from './components/PlaylistCardGrid';
 import { PlaylistsToolbar } from './components/PlaylistsToolbar';
 import { usePlaylistFilter } from './hooks/usePlaylistFilter';
+import { usePlaylistSort } from './hooks/usePlaylistSort';
 import { PlaylistsProvider } from './PlaylistsContext';
 
 const PlaylistsContent: FC = () => {
@@ -19,6 +20,7 @@ const PlaylistsContent: FC = () => {
   const index = usePlaylistStore((state) => state.index);
   const { filter, setFilter, filteredIndex, hasFilter } =
     usePlaylistFilter(index);
+  const { sortBy, setSortBy } = usePlaylistSort();
   const hasPlaylists = !isEmpty(index);
   const hasResults = !isEmpty(filteredIndex);
 
@@ -27,7 +29,9 @@ const PlaylistsContent: FC = () => {
       <PlaylistsToolbar
         filter={filter}
         onFilterChange={setFilter}
-        isFilterVisible={hasPlaylists}
+        hasPlaylists={hasPlaylists}
+        sortBy={sortBy}
+        onSortByChange={setSortBy}
       />
 
       {!hasPlaylists && (
