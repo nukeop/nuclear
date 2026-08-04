@@ -20,8 +20,13 @@ const PlaylistsContent: FC = () => {
   const index = usePlaylistStore((state) => state.index);
   const { filter, setFilter, filteredPlaylists, hasFilter } =
     usePlaylistFilter(index);
-  const { sortBy, setSortBy, sortedPlaylists } =
-    usePlaylistSort(filteredPlaylists);
+  const {
+    sortBy,
+    setSortBy,
+    sortDirection,
+    toggleSortDirection,
+    sortedPlaylists,
+  } = usePlaylistSort(filteredPlaylists);
   const hasPlaylists = !isEmpty(index);
   const hasResults = !isEmpty(filteredPlaylists);
 
@@ -33,6 +38,8 @@ const PlaylistsContent: FC = () => {
         hasPlaylists={hasPlaylists}
         sortBy={sortBy}
         onSortByChange={setSortBy}
+        sortDirection={sortDirection}
+        onToggleSortDirection={toggleSortDirection}
       />
 
       {!hasPlaylists && (
