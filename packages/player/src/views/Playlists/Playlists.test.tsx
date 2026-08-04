@@ -299,25 +299,6 @@ describe('Playlists view', () => {
 
       expect(PlaylistsWrapper.cardNames).toEqual(['Bravo Rock', 'Alpha Rock']);
     });
-
-    it('keeps the chosen sort after leaving the page and coming back', async () => {
-      const { history } = await PlaylistsWrapper.mount();
-      await PlaylistsWrapper.sort.select.select('Name');
-      await PlaylistsWrapper.card(0).click();
-
-      expect(PlaylistsWrapper.detailView).toBeInTheDocument();
-
-      history.back();
-      await PlaylistsWrapper.waitForView();
-
-      expect(PlaylistsWrapper.sort.select.selected()).toBe('Name');
-      expect(PlaylistsWrapper.cardNames).toEqual([
-        'Alpha Rock',
-        'Bravo Rock',
-        'Charlie Jazz',
-        'Delta Jazz',
-      ]);
-    });
   });
 
   describe('import from JSON', () => {

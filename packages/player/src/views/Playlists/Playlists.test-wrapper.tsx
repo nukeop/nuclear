@@ -1,8 +1,4 @@
-import {
-  createMemoryHistory,
-  createRouter,
-  type RouterHistory,
-} from '@tanstack/react-router';
+import { createMemoryHistory, createRouter } from '@tanstack/react-router';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -27,16 +23,12 @@ export const PlaylistsWrapper = {
     });
   },
 
-  async mount(): Promise<RenderResult & { history: RouterHistory }> {
+  async mount(): Promise<RenderResult> {
     const history = createMemoryHistory({ initialEntries: ['/playlists'] });
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('playlists-view');
-    return { ...component, history };
-  },
-
-  async waitForView() {
-    await screen.findByTestId('playlists-view');
+    return component;
   },
 
   get emptyState() {

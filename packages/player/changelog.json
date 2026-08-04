@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-08-05T00:00",
+    "description": "Playlists can now be sorted.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-08-03T00:00",
     "description": "Playlists can now be filtered.",
     "type": "feature",
