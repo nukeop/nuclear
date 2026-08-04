@@ -65,6 +65,25 @@ export class PlaylistBuilder {
     return this;
   }
 
+  withCreatedAt(createdAtIso: string): this {
+    this.playlist.createdAtIso = createdAtIso;
+    return this;
+  }
+
+  withLastModified(lastModifiedIso: string): this {
+    this.playlist.lastModifiedIso = lastModifiedIso;
+    return this;
+  }
+
+  withTrackDurations(durationsMs: number[]): this {
+    this.playlist.items = durationsMs.map((durationMs) => ({
+      id: uuidv4(),
+      track: { ...defaultTrack(), durationMs },
+      addedAtIso: now(),
+    }));
+    return this;
+  }
+
   withTrackNames(names: string[]): this {
     this.playlist.items = names.map((title) => ({
       id: uuidv4(),

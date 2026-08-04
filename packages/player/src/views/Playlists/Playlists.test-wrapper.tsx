@@ -1,9 +1,13 @@
-import { createMemoryHistory, createRouter } from '@tanstack/react-router';
+import {
+  createMemoryHistory,
+  createRouter,
+  type RouterHistory,
+} from '@tanstack/react-router';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import type { PlaylistProvider } from '@nuclearplayer/plugin-sdk';
-import { DialogWrapper } from '@nuclearplayer/ui';
+import { createSelectWrapper, DialogWrapper } from '@nuclearplayer/ui';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
@@ -14,7 +18,7 @@ import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 const user = userEvent.setup();
 
 export const PlaylistsWrapper = {
-  seedPlaylists(...builders: PlaylistBuilder[]) {
+  createPlaylists(...builders: PlaylistBuilder[]) {
     const playlists = builders.map((b) => b.build());
     usePlaylistStore.setState({
       index: builders.map((b) => b.buildIndexEntry()),
@@ -23,12 +27,16 @@ export const PlaylistsWrapper = {
     });
   },
 
-  async mount(): Promise<RenderResult> {
+  async mount(): Promise<RenderResult & { history: RouterHistory }> {
     const history = createMemoryHistory({ initialEntries: ['/playlists'] });
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('playlists-view');
-    return component;
+    return { ...component, history };
+  },
+
+  async waitForView() {
+    await screen.findByTestId('playlists-view');
   },
 
   get emptyState() {
@@ -50,6 +58,22 @@ export const PlaylistsWrapper = {
   },
   get cards() {
     return screen.queryAllByTestId('card');
+  },
+  get cardNames() {
+    return screen
+      .getAllByTestId('card')
+      .map((card) => within(card).getByTestId('card-title').textContent);
+  },
+  sort: {
+    select: createSelectWrapper(() => screen.getByTestId('sort-playlists')),
+    direction: {
+      get element() {
+        return screen.getByTestId('sort-direction-button');
+      },
+      async toggle() {
+        await user.click(this.element);
+      },
+    },
   },
   card(index: number) {
     return {

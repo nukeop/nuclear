@@ -29,7 +29,7 @@ describe('ConnectedTrackContextMenu', () => {
       const addTracks = vi.fn();
       usePlaylistStore.setState({ addTracks });
 
-      Wrapper.seedPlaylists(
+      Wrapper.createPlaylists(
         new PlaylistBuilder().withId('p1').withName('Rock Classics'),
         new PlaylistBuilder().withName('Chill Vibes'),
       );
@@ -53,7 +53,7 @@ describe('ConnectedTrackContextMenu', () => {
     });
 
     it('shows filter and caps at 5 items when many playlists exist', async () => {
-      Wrapper.seedPlaylists(
+      Wrapper.createPlaylists(
         new PlaylistBuilder().withName('Playlist 1'),
         new PlaylistBuilder().withName('Playlist 2'),
         new PlaylistBuilder().withName('Playlist 3'),
@@ -72,7 +72,7 @@ describe('ConnectedTrackContextMenu', () => {
     });
 
     it('filters playlists by name', async () => {
-      Wrapper.seedPlaylists(
+      Wrapper.createPlaylists(
         new PlaylistBuilder().withName('Rock Classics'),
         new PlaylistBuilder().withName('Jazz Standards'),
         new PlaylistBuilder().withName('Rock Ballads'),
