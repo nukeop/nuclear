@@ -11,23 +11,35 @@ import { CreatePlaylistDialog } from './components/CreatePlaylistDialog';
 import { PlaylistCardGrid } from './components/PlaylistCardGrid';
 import { PlaylistsToolbar } from './components/PlaylistsToolbar';
 import { usePlaylistFilter } from './hooks/usePlaylistFilter';
+import { usePlaylistSort } from './hooks/usePlaylistSort';
 import { PlaylistsProvider } from './PlaylistsContext';
 
 const PlaylistsContent: FC = () => {
   const { t } = useTranslation('playlists');
   const navigate = useNavigate();
   const index = usePlaylistStore((state) => state.index);
-  const { filter, setFilter, filteredIndex, hasFilter } =
+  const { filter, setFilter, filteredPlaylists, hasFilter } =
     usePlaylistFilter(index);
+  const {
+    sortBy,
+    setSortBy,
+    sortDirection,
+    toggleSortDirection,
+    sortedPlaylists,
+  } = usePlaylistSort(filteredPlaylists);
   const hasPlaylists = !isEmpty(index);
-  const hasResults = !isEmpty(filteredIndex);
+  const hasResults = !isEmpty(filteredPlaylists);
 
   return (
     <ViewShell data-testid="playlists-view" title={t('title')}>
       <PlaylistsToolbar
         filter={filter}
         onFilterChange={setFilter}
-        isFilterVisible={hasPlaylists}
+        hasPlaylists={hasPlaylists}
+        sortBy={sortBy}
+        onSortByChange={setSortBy}
+        sortDirection={sortDirection}
+        onToggleSortDirection={toggleSortDirection}
       />
 
       {!hasPlaylists && (
@@ -52,7 +64,7 @@ const PlaylistsContent: FC = () => {
       {hasPlaylists && hasResults && (
         <ScrollableArea className="flex-1 overflow-hidden">
           <PlaylistCardGrid
-            index={filteredIndex}
+            playlists={sortedPlaylists}
             onCardClick={(id) =>
               navigate({
                 to: '/playlists/$playlistId',

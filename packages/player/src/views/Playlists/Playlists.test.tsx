@@ -48,7 +48,7 @@ describe('Playlists view', () => {
   });
 
   it('renders playlist cards when playlists exist', async () => {
-    PlaylistsWrapper.seedPlaylists(
+    PlaylistsWrapper.createPlaylists(
       new PlaylistBuilder().withName('Rock Classics').withTrackCount(10),
       new PlaylistBuilder().withName('Chill Vibes').withTrackCount(8),
     );
@@ -77,7 +77,7 @@ describe('Playlists view', () => {
   });
 
   it('shows mosaic artwork on playlist card when 4+ tracks have art', async () => {
-    PlaylistsWrapper.seedPlaylists(
+    PlaylistsWrapper.createPlaylists(
       new PlaylistBuilder()
         .withName('With Art')
         .withTrackArtworks([
@@ -100,7 +100,7 @@ describe('Playlists view', () => {
   });
 
   it('shows single artwork on playlist card when fewer than 4 tracks have art', async () => {
-    PlaylistsWrapper.seedPlaylists(
+    PlaylistsWrapper.createPlaylists(
       new PlaylistBuilder()
         .withName('Single Art')
         .withTrackArtworks(['https://example.com/a.jpg'])
@@ -113,7 +113,7 @@ describe('Playlists view', () => {
   });
 
   it('shows no artwork on playlist card when tracks have no art', async () => {
-    PlaylistsWrapper.seedPlaylists(
+    PlaylistsWrapper.createPlaylists(
       new PlaylistBuilder()
         .withName('No Art')
         .withTrackNames(['Track A', 'Track B']),
@@ -125,7 +125,7 @@ describe('Playlists view', () => {
   });
 
   it('navigates to playlist detail when clicking a card', async () => {
-    PlaylistsWrapper.seedPlaylists(
+    PlaylistsWrapper.createPlaylists(
       new PlaylistBuilder()
         .withId('nav-test')
         .withName('Navigate Me')
@@ -146,7 +146,7 @@ describe('Playlists view', () => {
 
   describe('filtering', () => {
     beforeEach(() => {
-      PlaylistsWrapper.seedPlaylists(
+      PlaylistsWrapper.createPlaylists(
         new PlaylistBuilder().withName('Rock Classics').withTrackCount(10),
         new PlaylistBuilder().withName('Chill Vibes').withTrackCount(8),
         new PlaylistBuilder().withName('Jazz Standards').withTrackCount(5),
@@ -189,6 +189,115 @@ describe('Playlists view', () => {
       await PlaylistsWrapper.filter.clear();
 
       expect(PlaylistsWrapper.cards).toHaveLength(3);
+    });
+  });
+
+  describe('sorting', () => {
+    beforeEach(() => {
+      PlaylistsWrapper.createPlaylists(
+        new PlaylistBuilder()
+          .withName('Delta Jazz')
+          .withCreatedAt('2024-01-04T00:00:00.000Z')
+          .withLastModified('2024-03-01T00:00:00.000Z')
+          .withTrackDurations([300000, 300000]),
+        new PlaylistBuilder()
+          .withName('Alpha Rock')
+          .withCreatedAt('2024-01-02T00:00:00.000Z')
+          .withLastModified('2024-03-04T00:00:00.000Z')
+          .withTrackDurations(Array(8).fill(25000)),
+        new PlaylistBuilder()
+          .withName('Charlie Jazz')
+          .withCreatedAt('2024-01-01T00:00:00.000Z')
+          .withLastModified('2024-03-02T00:00:00.000Z')
+          .withTrackDurations(Array(5).fill(180000)),
+        new PlaylistBuilder()
+          .withName('Bravo Rock')
+          .withCreatedAt('2024-01-03T00:00:00.000Z')
+          .withLastModified('2024-03-03T00:00:00.000Z')
+          .withTrackDurations([400000]),
+      );
+    });
+
+    it('shows the oldest playlists first by default', async () => {
+      await PlaylistsWrapper.mount();
+
+      expect(PlaylistsWrapper.sort.select.selected()).toBe('Date added');
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Charlie Jazz',
+        'Alpha Rock',
+        'Bravo Rock',
+        'Delta Jazz',
+      ]);
+    });
+
+    it('sorts by name', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Name');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Alpha Rock',
+        'Bravo Rock',
+        'Charlie Jazz',
+        'Delta Jazz',
+      ]);
+    });
+
+    it('reverses the order when the direction is flipped', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Name');
+      await PlaylistsWrapper.sort.direction.toggle();
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Charlie Jazz',
+        'Bravo Rock',
+        'Alpha Rock',
+      ]);
+    });
+
+    it('sorts by date modified', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Date modified');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Charlie Jazz',
+        'Bravo Rock',
+        'Alpha Rock',
+      ]);
+    });
+
+    it('sorts by number of tracks', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Tracks');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Bravo Rock',
+        'Delta Jazz',
+        'Charlie Jazz',
+        'Alpha Rock',
+      ]);
+    });
+
+    it('sorts by total length', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Length');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Alpha Rock',
+        'Bravo Rock',
+        'Delta Jazz',
+        'Charlie Jazz',
+      ]);
+    });
+
+    it('sorts the playlists left over after filtering', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Name');
+      await PlaylistsWrapper.sort.direction.toggle();
+      await PlaylistsWrapper.filter.type('rock');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Bravo Rock', 'Alpha Rock']);
     });
   });
 

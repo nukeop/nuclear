@@ -7,27 +7,30 @@ import { Card, CardGrid } from '@nuclearplayer/ui';
 import { PlaylistArtwork } from './PlaylistArtwork';
 
 type PlaylistCardGridProps = {
-  index: PlaylistIndexEntry[];
+  playlists: PlaylistIndexEntry[];
   onCardClick: (id: string) => void;
 };
 
 export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
-  index,
+  playlists,
   onCardClick,
 }) => {
   const { t } = useTranslation('playlists');
 
   return (
     <CardGrid>
-      {index.map((entry) => (
+      {playlists.map((playlist) => (
         <Card
-          key={entry.id}
+          key={playlist.id}
           image={
-            <PlaylistArtwork name={entry.name} thumbnails={entry.thumbnails} />
+            <PlaylistArtwork
+              name={playlist.name}
+              thumbnails={playlist.thumbnails}
+            />
           }
-          title={entry.name}
-          subtitle={t('trackCount', { count: entry.itemCount })}
-          onClick={() => onCardClick(entry.id)}
+          title={playlist.name}
+          subtitle={t('trackCount', { count: playlist.itemCount })}
+          onClick={() => onCardClick(playlist.id)}
         />
       ))}
     </CardGrid>

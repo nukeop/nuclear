@@ -28,7 +28,7 @@ const defaultTrack: Track = {
 };
 
 export const ConnectedTrackContextMenuWrapper = {
-  seedPlaylists(...builders: PlaylistBuilder[]) {
+  createPlaylists(...builders: PlaylistBuilder[]) {
     const playlists = builders.map((b) => b.build());
     usePlaylistStore.setState({
       index: builders.map((builder) => builder.buildIndexEntry()),

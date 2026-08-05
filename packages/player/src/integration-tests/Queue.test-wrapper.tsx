@@ -29,7 +29,7 @@ export const QueueWrapper = {
     });
   },
 
-  seedPlaylists(...builders: PlaylistBuilder[]) {
+  createPlaylists(...builders: PlaylistBuilder[]) {
     const playlists = builders.map((builder) => builder.build());
     usePlaylistStore.setState({
       index: builders.map((builder) => builder.buildIndexEntry()),

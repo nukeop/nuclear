@@ -2,21 +2,23 @@ import { useMemo, useState } from 'react';
 
 import type { PlaylistIndexEntry } from '@nuclearplayer/model';
 
-export const usePlaylistFilter = (index: PlaylistIndexEntry[]) => {
+export const usePlaylistFilter = (playlists: PlaylistIndexEntry[]) => {
   const [filter, setFilter] = useState('');
   const query = filter.trim().toLowerCase();
 
-  const filteredIndex = useMemo(() => {
+  const filteredPlaylists = useMemo(() => {
     if (query.length === 0) {
-      return index;
+      return playlists;
     }
-    return index.filter((entry) => entry.name.toLowerCase().includes(query));
-  }, [index, query]);
+    return playlists.filter((playlist) =>
+      playlist.name.toLowerCase().includes(query),
+    );
+  }, [playlists, query]);
 
   return {
     filter,
     setFilter,
-    filteredIndex,
+    filteredPlaylists,
     hasFilter: query.length > 0,
   };
 };
