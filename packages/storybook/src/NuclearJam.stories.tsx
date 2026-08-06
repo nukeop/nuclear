@@ -119,6 +119,10 @@ const connectionStatusLabels: ConnectionStatusLabels = {
   failed: 'Disconnected',
 };
 
+const searchBarLabels = {
+  placeholder: 'Search for music',
+};
+
 const queueProps = {
   items: mockQueueItems,
   currentItemId: '1',
@@ -135,7 +139,13 @@ export const FullPage = {
       <NuclearJam.Header
         connectionStatus="connected"
         connectionStatusLabels={connectionStatusLabels}
-      />
+      >
+        <NuclearJam.SearchBar
+          value=""
+          onChange={fn()}
+          labels={searchBarLabels}
+        />
+      </NuclearJam.Header>
       <NuclearJam.NowPlaying
         title="Everything In Its Right Place"
         artist="Radiohead"
@@ -167,6 +177,7 @@ export const Interactive = {
     const [repeatMode, setRepeatMode] = useState<'off' | 'all' | 'one'>('off');
     const [isDiscoveryActive, setIsDiscoveryActive] = useState(false);
     const [progress, setProgress] = useState(35);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const cycleRepeat = () => {
       const modes: Array<'off' | 'all' | 'one'> = ['off', 'all', 'one'];
@@ -183,7 +194,13 @@ export const Interactive = {
         <NuclearJam.Header
           connectionStatus="connected"
           connectionStatusLabels={connectionStatusLabels}
-        />
+        >
+          <NuclearJam.SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            labels={searchBarLabels}
+          />
+        </NuclearJam.Header>
         <NuclearJam.NowPlaying
           title="Everything In Its Right Place"
           artist="Radiohead"

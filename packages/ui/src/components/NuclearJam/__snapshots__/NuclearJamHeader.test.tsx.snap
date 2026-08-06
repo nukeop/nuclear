@@ -3,10 +3,10 @@
 exports[`NuclearJamHeader > (Snapshot) renders the connected header 1`] = `
 <div>
   <div
-    class="border-border flex shrink-0 items-center justify-between border-b-(length:--border-width) px-4 py-3"
+    class="border-border flex shrink-0 items-center justify-between gap-3 border-b-(length:--border-width)"
   >
     <span
-      class="flex flex-row gap-2"
+      class="my-3 ml-4 flex shrink-0 flex-row gap-2"
     >
       <span
         class="ml-0.5 dark:hidden"
@@ -85,7 +85,7 @@ exports[`NuclearJamHeader > (Snapshot) renders the connected header 1`] = `
       </h1>
     </span>
     <span
-      class="border-border bg-foreground inline-flex items-center gap-1.5 rounded-full border-(length:--border-width) px-2.5 py-0.5"
+      class="border-border bg-foreground my-3 mr-4 inline-flex shrink-0 items-center gap-1.5 rounded-full border-(length:--border-width) px-2.5 py-0.5"
       data-testid="connection-status-badge"
     >
       <span

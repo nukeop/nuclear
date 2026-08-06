@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { cn } from '../../utils';
 import { PulsingText } from '../PulsingText';
@@ -15,6 +15,7 @@ export type ConnectionStatusLabels = Record<ConnectionStatus, string>;
 export type NuclearJamHeaderProps = {
   connectionStatus: ConnectionStatus;
   connectionStatusLabels: ConnectionStatusLabels;
+  children?: ReactNode;
   className?: string;
 };
 
@@ -28,15 +29,16 @@ const CONNECTION_DOT_COLOR: Record<ConnectionStatus, string> = {
 export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
   connectionStatus,
   connectionStatusLabels,
+  children,
   className,
 }) => (
   <div
     className={cn(
-      'border-border flex shrink-0 items-center justify-between border-b-(length:--border-width) px-4 py-3',
+      'border-border flex shrink-0 items-center justify-between gap-3 border-b-(length:--border-width)',
       className,
     )}
   >
-    <span className="flex flex-row gap-2">
+    <span className="my-3 ml-4 flex shrink-0 flex-row gap-2">
       <TopBarLogo />
       <h1 className="text-foreground inline text-base font-black tracking-tight uppercase">
         Nuclear{' '}
@@ -46,8 +48,13 @@ export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
         />
       </h1>
     </span>
+    {children && (
+      <span className="flex min-w-0 flex-1 items-stretch self-stretch">
+        {children}
+      </span>
+    )}
     <span
-      className="border-border bg-foreground inline-flex items-center gap-1.5 rounded-full border-(length:--border-width) px-2.5 py-0.5"
+      className="border-border bg-foreground my-3 mr-4 inline-flex shrink-0 items-center gap-1.5 rounded-full border-(length:--border-width) px-2.5 py-0.5"
       data-testid="connection-status-badge"
     >
       <span

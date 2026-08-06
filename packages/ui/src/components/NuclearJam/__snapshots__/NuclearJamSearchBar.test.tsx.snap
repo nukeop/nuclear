@@ -1,0 +1,113 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamSearchBar > (Snapshot) renders empty 1`] = `
+<div>
+  <div
+    class="border-border flex min-w-0 flex-1 items-center gap-2 self-stretch border-x-(length:--border-width) px-3"
+    data-testid="jam-search-bar"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-search text-foreground-secondary size-5 shrink-0"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m21 21-4.34-4.34"
+      />
+      <circle
+        cx="11"
+        cy="11"
+        r="8"
+      />
+    </svg>
+    <input
+      autocomplete="off"
+      autocorrect="off"
+      class="text-foreground placeholder:text-foreground-secondary min-w-0 flex-1 bg-transparent font-semibold outline-none [&::-webkit-search-cancel-button]:appearance-none"
+      data-testid="jam-search-input"
+      enterkeyhint="search"
+      placeholder="Search for music"
+      spellcheck="false"
+      type="search"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`NuclearJamSearchBar > (Snapshot) renders with a value 1`] = `
+<div>
+  <div
+    class="border-border flex min-w-0 flex-1 items-center gap-2 self-stretch border-x-(length:--border-width) px-3"
+    data-testid="jam-search-bar"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-search text-foreground-secondary size-5 shrink-0"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m21 21-4.34-4.34"
+      />
+      <circle
+        cx="11"
+        cy="11"
+        r="8"
+      />
+    </svg>
+    <input
+      autocomplete="off"
+      autocorrect="off"
+      class="text-foreground placeholder:text-foreground-secondary min-w-0 flex-1 bg-transparent font-semibold outline-none [&::-webkit-search-cancel-button]:appearance-none"
+      data-testid="jam-search-input"
+      enterkeyhint="search"
+      placeholder="Search for music"
+      spellcheck="false"
+      type="search"
+      value="Radiohead"
+    />
+    <button
+      class="text-foreground-secondary hover:text-foreground shrink-0 transition-colors"
+      data-testid="jam-search-clear"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-x size-5"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 6 6 18"
+        />
+        <path
+          d="m6 6 12 12"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
