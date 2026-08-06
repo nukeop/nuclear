@@ -15,6 +15,10 @@ async fn bridge_action(
         .map_err(BridgeErrorResponse)
 }
 
+pub async fn play(State(state): State<AppState>) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Playback.play", json!({})).await
+}
+
 pub async fn toggle_playback(
     State(state): State<AppState>,
 ) -> Result<StatusCode, BridgeErrorResponse> {
@@ -50,4 +54,11 @@ pub async fn set_repeat(
     Json(body): Json<Value>,
 ) -> Result<StatusCode, BridgeErrorResponse> {
     bridge_action(&state.bridge, "Playback.setRepeatMode", body).await
+}
+
+pub async fn add_to_queue(
+    State(state): State<AppState>,
+    Json(body): Json<Value>,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Queue.addToQueue", body).await
 }
