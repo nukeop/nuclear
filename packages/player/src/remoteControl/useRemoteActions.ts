@@ -1,15 +1,6 @@
-import type { RepeatMode } from '@nuclearplayer/model';
+import type { RepeatMode, SearchParams } from '@nuclearplayer/model';
 
 import { useRemoteStore } from './remoteStore';
-
-type RemoteActions = {
-  onPlayPause: () => void;
-  onNext: () => void;
-  onPrevious: () => void;
-  onSeek: (percent: number) => void;
-  onShuffleToggle: () => void;
-  onRepeatToggle: () => void;
-};
 
 const nextRepeatMode: Record<RepeatMode, RepeatMode> = {
   off: 'all',
@@ -29,7 +20,7 @@ const postAction = async (path: string, body?: unknown) => {
   }
 };
 
-export const useRemoteActions = (): RemoteActions => {
+export const useRemoteActions = () => {
   const getState = () => useRemoteStore.getState();
 
   return {
@@ -48,5 +39,11 @@ export const useRemoteActions = (): RemoteActions => {
       const repeat = getState().settings.repeat;
       postAction('/api/playback/repeat', { mode: nextRepeatMode[repeat] });
     },
+    onSearchTracks: (query: string) =>
+      postAction('/api/search', {
+        query,
+        types: ['tracks'],
+        limit: 10,
+      } satisfies SearchParams),
   };
 };
