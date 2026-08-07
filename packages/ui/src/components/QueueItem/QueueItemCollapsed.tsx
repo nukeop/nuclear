@@ -1,4 +1,4 @@
-import { Music } from 'lucide-react';
+import { CassetteTape } from 'lucide-react';
 import { FC } from 'react';
 
 import { pickArtwork } from '@nuclearplayer/model';
@@ -43,7 +43,7 @@ export const QueueItemCollapsed: FC<QueueItemProps> = ({
             className={cn('h-full w-full object-cover', classes?.thumbnail)}
           />
         ) : (
-          <Music size={16} className="text-foreground opacity-20" />
+          <CassetteTape size={20} className="text-foreground opacity-20" />
         )}
 
         {status === 'loading' && (

@@ -1,4 +1,4 @@
-import { Music2, Plus } from 'lucide-react';
+import { CassetteTape } from 'lucide-react';
 import { FC } from 'react';
 
 import { pickArtwork, Track } from '@nuclearplayer/model';
@@ -30,7 +30,7 @@ export const NuclearJamSearchResultTrack: FC<
       type="button"
       onClick={handleClick}
       className={cn(
-        'border-border active:bg-primary flex w-full items-center gap-3 border-b-(length:--border-width) px-4 py-2 text-left transition-colors',
+        'border-border active:bg-primary flex w-full cursor-pointer items-center gap-3 border-b-(length:--border-width) px-4 py-2 text-left',
         className,
       )}
       data-testid="jam-search-result-track"
@@ -43,7 +43,11 @@ export const NuclearJamSearchResultTrack: FC<
             className="size-full object-cover"
           />
         ) : (
-          <Music2 size={20} className="text-foreground opacity-20" />
+          <CassetteTape
+            size={40}
+            absoluteStrokeWidth
+            className="text-foreground opacity-20"
+          />
         )}
       </div>
 
@@ -63,10 +67,6 @@ export const NuclearJamSearchResultTrack: FC<
           {duration}
         </div>
       )}
-
-      <div className="border-border bg-background-secondary flex size-8 shrink-0 items-center justify-center rounded-md border-(length:--border-width)">
-        <Plus size={16} className="text-foreground" />
-      </div>
     </button>
   );
 };

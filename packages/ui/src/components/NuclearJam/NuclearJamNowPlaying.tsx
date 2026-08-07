@@ -1,4 +1,4 @@
-import { Music2 } from 'lucide-react';
+import { CassetteTape } from 'lucide-react';
 import { FC } from 'react';
 
 import { cn } from '../../utils';
@@ -35,7 +35,11 @@ export const NuclearJamNowPlaying: FC<NuclearJamNowPlayingProps> = ({
           className="size-full object-cover select-none"
         />
       ) : (
-        <Music2 size={64} className="text-foreground opacity-20" />
+        <CassetteTape
+          size={128}
+          strokeWidth={1}
+          className="text-foreground opacity-20"
+        />
       )}
       {isLoading && (
         <div className="bg-stripes-diagonal absolute inset-x-0 bottom-0 h-1.5" />

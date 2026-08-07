@@ -1,4 +1,4 @@
-import { Music2 } from 'lucide-react';
+import { CassetteTape } from 'lucide-react';
 import { forwardRef } from 'react';
 
 import { pickArtwork, QueueItem } from '@nuclearplayer/model';
@@ -37,7 +37,11 @@ export const NuclearJamQueueItem = forwardRef<
             className="size-full object-cover"
           />
         ) : (
-          <Music2 size={20} className="text-foreground opacity-20" />
+          <CassetteTape
+            size={40}
+            absoluteStrokeWidth
+            className="text-foreground opacity-20"
+          />
         )}
       </div>
 

@@ -85,24 +85,39 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-music2 lucide-music-2 text-foreground opacity-20"
+              class="lucide lucide-cassette-tape text-foreground opacity-20"
               fill="none"
-              height="20"
+              height="40"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
-              stroke-width="2"
+              stroke-width="1.2"
               viewBox="0 0 24 24"
-              width="20"
+              width="40"
               xmlns="http://www.w3.org/2000/svg"
             >
+              <rect
+                height="16"
+                rx="2"
+                width="20"
+                x="2"
+                y="4"
+              />
               <circle
                 cx="8"
-                cy="18"
-                r="4"
+                cy="10"
+                r="2"
               />
               <path
-                d="M12 18V2l7 4"
+                d="M8 12h8"
+              />
+              <circle
+                cx="16"
+                cy="10"
+                r="2"
+              />
+              <path
+                d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
               />
             </svg>
           </div>
@@ -131,24 +146,39 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-music2 lucide-music-2 text-foreground opacity-20"
+              class="lucide lucide-cassette-tape text-foreground opacity-20"
               fill="none"
-              height="20"
+              height="40"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
-              stroke-width="2"
+              stroke-width="1.2"
               viewBox="0 0 24 24"
-              width="20"
+              width="40"
               xmlns="http://www.w3.org/2000/svg"
             >
+              <rect
+                height="16"
+                rx="2"
+                width="20"
+                x="2"
+                y="4"
+              />
               <circle
                 cx="8"
-                cy="18"
-                r="4"
+                cy="10"
+                r="2"
               />
               <path
-                d="M12 18V2l7 4"
+                d="M8 12h8"
+              />
+              <circle
+                cx="16"
+                cy="10"
+                r="2"
+              />
+              <path
+                d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
               />
             </svg>
           </div>
@@ -177,24 +207,39 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-music2 lucide-music-2 text-foreground opacity-20"
+              class="lucide lucide-cassette-tape text-foreground opacity-20"
               fill="none"
-              height="20"
+              height="40"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
-              stroke-width="2"
+              stroke-width="1.2"
               viewBox="0 0 24 24"
-              width="20"
+              width="40"
               xmlns="http://www.w3.org/2000/svg"
             >
+              <rect
+                height="16"
+                rx="2"
+                width="20"
+                x="2"
+                y="4"
+              />
               <circle
                 cx="8"
-                cy="18"
-                r="4"
+                cy="10"
+                r="2"
               />
               <path
-                d="M12 18V2l7 4"
+                d="M8 12h8"
+              />
+              <circle
+                cx="16"
+                cy="10"
+                r="2"
+              />
+              <path
+                d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
               />
             </svg>
           </div>
