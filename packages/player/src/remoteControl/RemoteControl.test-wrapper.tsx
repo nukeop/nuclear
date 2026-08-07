@@ -1,7 +1,7 @@
 import { act, render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import type { Queue } from '@nuclearplayer/model';
+import type { Queue, Track } from '@nuclearplayer/model';
 
 import {
   REMOTE_EMPTY_QUEUE,
@@ -148,6 +148,46 @@ export const RemoteControlWrapper = {
     },
     get emptyState() {
       return screen.queryByTestId('jam-queue-empty');
+    },
+  },
+
+  search: {
+    mockResults(tracks: Track[]) {
+      FetchMock.get('/api/search', { tracks });
+    },
+    mockError() {
+      FetchMock.getError('/api/search', 500);
+    },
+    get drawer() {
+      return screen.queryByTestId('jam-search-drawer');
+    },
+    get emptyState() {
+      return screen.queryByTestId('jam-search-empty');
+    },
+    get errorState() {
+      return screen.queryByTestId('jam-search-error');
+    },
+    get results() {
+      return screen.queryAllByTestId('jam-search-result-track');
+    },
+    input: {
+      get element() {
+        return screen.getByTestId('jam-search-input');
+      },
+      async type(text: string) {
+        await user.type(this.element, text);
+      },
+    },
+    clearButton: {
+      get element() {
+        return screen.getByTestId('jam-search-clear');
+      },
+      async click() {
+        await user.click(this.element);
+      },
+    },
+    async addTrack(title: string) {
+      await user.click(await screen.findByText(title));
     },
   },
 
