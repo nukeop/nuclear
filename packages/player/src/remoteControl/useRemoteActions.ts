@@ -2,6 +2,7 @@ import type {
   RepeatMode,
   SearchParams,
   SearchResults,
+  Track,
 } from '@nuclearplayer/model';
 
 import { useRemoteStore } from './remoteStore';
@@ -64,5 +65,12 @@ export const useRemoteActions = () => {
         types: ['tracks'],
         limit: 10,
       } satisfies SearchParams),
+    onAddToQueue: async (track: Track) => {
+      const wasEmpty = (getState().queue?.items.length ?? 0) === 0;
+      await postAction('/api/queue/add', { tracks: [track] });
+      if (wasEmpty) {
+        await postAction('/api/playback/play');
+      }
+    },
   };
 };
