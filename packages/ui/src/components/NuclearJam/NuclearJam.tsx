@@ -31,6 +31,10 @@ import {
   NuclearJamSearchBarLabels,
   NuclearJamSearchBarProps,
 } from './NuclearJamSearchBar';
+import {
+  NuclearJamSearchResultTrack,
+  NuclearJamSearchResultTrackProps,
+} from './NuclearJamSearchResultTrack';
 
 type NuclearJamComponent = FC<NuclearJamProps> & {
   Connecting: typeof NuclearJamConnecting;
@@ -40,6 +44,7 @@ type NuclearJamComponent = FC<NuclearJamProps> & {
   Controls: typeof NuclearJamControls;
   Queue: typeof NuclearJamQueue;
   SearchBar: typeof NuclearJamSearchBar;
+  SearchResultTrack: typeof NuclearJamSearchResultTrack;
 };
 
 export const NuclearJam = NuclearJamRoot as NuclearJamComponent;
@@ -50,6 +55,7 @@ NuclearJam.NowPlaying = NuclearJamNowPlaying;
 NuclearJam.Controls = NuclearJamControls;
 NuclearJam.Queue = NuclearJamQueue;
 NuclearJam.SearchBar = NuclearJamSearchBar;
+NuclearJam.SearchResultTrack = NuclearJamSearchResultTrack;
 
 export type {
   NuclearJamProps,
@@ -63,6 +69,7 @@ export type {
   NuclearJamQueueProps,
   NuclearJamSearchBarLabels,
   NuclearJamSearchBarProps,
+  NuclearJamSearchResultTrackProps,
   ConnectionStatus,
   ConnectionStatusLabels,
 };

@@ -1,0 +1,134 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamSearchResultTrack > (Snapshot) renders a full track 1`] = `
+<div>
+  <button
+    class="border-border active:bg-primary flex w-full items-center gap-3 border-b-(length:--border-width) px-4 py-2 text-left transition-colors"
+    data-testid="jam-search-result-track"
+    type="button"
+  >
+    <div
+      class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+    >
+      <img
+        alt="Windowlicker"
+        class="size-full object-cover"
+        src="https://example.com/cover.jpg"
+      />
+    </div>
+    <div
+      class="min-w-0 flex-1"
+    >
+      <div
+        class="text-foreground truncate text-sm font-bold"
+      >
+        Windowlicker
+      </div>
+      <div
+        class="text-foreground-secondary truncate text-xs"
+      >
+        Aphex Twin
+      </div>
+    </div>
+    <div
+      class="text-foreground-secondary shrink-0 text-xs tabular-nums"
+    >
+      6:06
+    </div>
+    <div
+      class="border-border bg-background-secondary flex size-8 shrink-0 items-center justify-center rounded-md border-(length:--border-width)"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-plus text-foreground"
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5 12h14"
+        />
+        <path
+          d="M12 5v14"
+        />
+      </svg>
+    </div>
+  </button>
+</div>
+`;
+
+exports[`NuclearJamSearchResultTrack > (Snapshot) renders a minimal track 1`] = `
+<div>
+  <button
+    class="border-border active:bg-primary flex w-full items-center gap-3 border-b-(length:--border-width) px-4 py-2 text-left transition-colors"
+    data-testid="jam-search-result-track"
+    type="button"
+  >
+    <div
+      class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-music2 lucide-music-2 text-foreground opacity-20"
+        fill="none"
+        height="20"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="8"
+          cy="18"
+          r="4"
+        />
+        <path
+          d="M12 18V2l7 4"
+        />
+      </svg>
+    </div>
+    <div
+      class="min-w-0 flex-1"
+    >
+      <div
+        class="text-foreground truncate text-sm font-bold"
+      >
+        Untitled
+      </div>
+    </div>
+    <div
+      class="border-border bg-background-secondary flex size-8 shrink-0 items-center justify-center rounded-md border-(length:--border-width)"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-plus text-foreground"
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5 12h14"
+        />
+        <path
+          d="M12 5v14"
+        />
+      </svg>
+    </div>
+  </button>
+</div>
+`;
