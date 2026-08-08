@@ -1,3 +1,4 @@
+import { QueryClient } from '@tanstack/react-query';
 import { act, render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -11,7 +12,7 @@ import {
 } from '../test/fixtures/remoteControl';
 import { MockEventSource } from '../test/mocks/eventSource';
 import { FetchMock } from '../test/mocks/fetch';
-import RemoteControl from './RemoteControl';
+import RemoteApp from './RemoteApp';
 import type { PlaybackState, SettingsState } from './remoteStore';
 import { useRemoteStore } from './remoteStore';
 
@@ -28,7 +29,7 @@ export const RemoteControlWrapper = {
   },
 
   async mount(): Promise<RenderResult> {
-    const result = render(<RemoteControl />);
+    const result = render(<RemoteApp queryClientProp={new QueryClient()} />);
     await screen.findByTestId('jam-connecting');
     return result;
   },
