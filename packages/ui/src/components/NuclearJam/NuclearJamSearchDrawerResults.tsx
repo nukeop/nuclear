@@ -9,7 +9,9 @@ export type NuclearJamSearchDrawerResultsProps = {
 export const NuclearJamSearchDrawerResults: FC<
   NuclearJamSearchDrawerResultsProps
 > = ({ children }) => (
-  <ScrollableArea className="min-h-0 flex-1" data-testid="jam-search-results">
-    {children}
-  </ScrollableArea>
+  <div className="relative h-128 min-h-0" data-testid="jam-search-results">
+    <ScrollableArea viewportClassName="max-h-full h-full">
+      {children}
+    </ScrollableArea>
+  </div>
 );

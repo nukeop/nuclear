@@ -35,6 +35,11 @@ const results: Track[] = [
   track('Music Is Math', 'Boards of Canada', 322000),
   track('Amo Bishop Roden', 'Boards of Canada', 337000),
   track('Olson', 'Boards of Canada', 91000),
+  track('In a Beautiful Place Out in the Country', 'Boards of Canada', 302000),
+  track('Turquoise Hexagon Sun', 'Boards of Canada', 311000),
+  track('Peacock Tail', 'Boards of Canada', 322000),
+  track('Sixtyten', 'Boards of Canada', 326000),
+  track('Aquarius', 'Boards of Canada', 358000),
 ];
 
 const queueItems: QueueItem[] = [
