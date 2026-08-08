@@ -33,65 +33,65 @@
     "favoriteTracks": "Избранные треки",
     "favoriteArtists": "Избранные артисты",
     "playlists": "Плейлисты",
-    "history": "История",
-    "sources": "Источники"
+    "history": "History",
+    "sources": "Sources"
   },
   "history": {
-    "title": "История",
-    "empty": "Пока ничего не воспроизводилось",
-    "emptyDescription": "Треки, которые вы прослушаете, появятся здесь",
-    "today": "Сегодня",
-    "yesterday": "Вчера",
+    "title": "History",
+    "empty": "Nothing played yet",
+    "emptyDescription": "Tracks you play will appear here",
+    "today": "Today",
+    "yesterday": "Yesterday",
     "tabs": {
-      "stats": "Статистика",
-      "listeningHistory": "История прослушивания"
+      "stats": "Stats",
+      "listeningHistory": "Listening history"
     },
     "row": {
-      "favorite": "Добавить в избранное",
-      "unfavorite": "Убрать из избранного",
-      "addToQueue": "Добавить в очередь"
+      "favorite": "Add to favorites",
+      "unfavorite": "Remove from favorites",
+      "addToQueue": "Add to queue"
     },
     "stats": {
-      "busiestHour": "Самый активный час",
-      "listeningTime": "Время прослушивания",
-      "hourOfDay": "Время суток",
-      "dayOfWeek": "День недели",
-      "calendar": "Календарь прослушивания",
-      "topArtists": "Топ исполнителей",
-      "topAlbums": "Топ альбомов",
-      "topTracks": "Топ треков",
-      "empty": "Пока нет данных о прослушивании",
-      "emptyDescription": "Треки, которые вы слушаете, будут отображаться в статистике",
-      "legendLess": "Меньше",
-      "legendMore": "Больше",
+      "busiestHour": "Busiest hour",
+      "listeningTime": "Listening time",
+      "hourOfDay": "Time of day",
+      "dayOfWeek": "Day of week",
+      "calendar": "Listening calendar",
+      "topArtists": "Top artists",
+      "topAlbums": "Top albums",
+      "topTracks": "Top tracks",
+      "empty": "No listening data yet",
+      "emptyDescription": "Tracks you listen to will show up in your stats",
+      "legendLess": "Less",
+      "legendMore": "More",
       "range": {
-        "last7Days": "Последние 7 дней",
-        "last30Days": "Последние 30 дней",
-        "last90Days": "Последние 90 дней",
-        "last12Months": "Последние 12 месяцев",
-        "allTime": "За всё время"
+        "last7Days": "Last 7 days",
+        "last30Days": "Last 30 days",
+        "last90Days": "Last 90 days",
+        "last12Months": "Last 12 months",
+        "allTime": "All time"
       }
     }
   },
   "sources": {
-    "title": "Источники",
-    "streaming": "Стриминг",
-    "streamingDescription": "Источники стриминга предоставляют аудио. Когда вы включаете трек, источник стриминга находит и передаёт аудиопоток.",
-    "metadata": "Метаданные",
-    "metadataDescription": "Источники метаданных предоставляют информацию об исполнителях, альбомах и треках. Результаты поиска, страницы исполнителей и сведения об альбомах берутся из активного источника метаданных.",
-    "dashboard": "Панель",
-    "dashboardDescription": "Источники панели предоставляют персонализированный контент, например топ треков, новые релизы и рекомендации на главном экране.",
-    "playlists": "Плейлисты",
-    "playlistsDescription": "Источники плейлистов позволяют импортировать плейлисты из внешних сервисов по URL.",
-    "discovery": "Открытие",
-    "discoveryDescription": "Источники открытия рекомендуют новые треки на основе того, что вы слушаете. Включите функцию открытия музыки с помощью значка магнитолы в нижней панели.",
-    "lyrics": "Тексты песен",
-    "lockedReason": "Источник метаданных <metadata>{{metadataName}}</metadata> требует источник стриминга <streaming>{{streamingName}}</streaming>.",
-    "missingStreamingProvider": "Требуемый источник стриминга \"{{providerId}}\" недоступен",
-    "noProviders": "Провайдеры не установлены"
+    "title": "Sources",
+    "streaming": "Streaming",
+    "streamingDescription": "Streaming sources provide audio. When you play a track, the streaming source finds and delivers the audio stream.",
+    "metadata": "Metadata",
+    "metadataDescription": "Metadata sources provide information about artists, albums, and tracks. Search results, artist pages, and album details come from the active metadata source.",
+    "dashboard": "Dashboard",
+    "dashboardDescription": "Dashboard sources provide personalized content like top tracks, new releases, and recommendations on the home screen.",
+    "playlists": "Playlists",
+    "playlistsDescription": "Playlist sources let you import playlists from external services by URL.",
+    "discovery": "Discovery",
+    "discoveryDescription": "Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.",
+    "lyrics": "Lyrics",
+    "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
+    "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available",
+    "noProviders": "No providers installed"
   },
   "discovery": {
-    "recommendationError": "Не удалось получить рекомендации"
+    "recommendationError": "Failed to get recommendations"
   },
   "favorites": {
     "albums": {
@@ -132,14 +132,14 @@
     "addToPlaylist": "Добавить в плейлист",
     "filterPlaylists": "Отфильтровать плейлисты...",
     "sortBy": {
-      "name": "Название",
-      "dateAdded": "Дата добавления",
-      "dateModified": "Дата изменения",
-      "trackCount": "Треки",
-      "duration": "Длительность"
+      "name": "Name",
+      "dateAdded": "Date added",
+      "dateModified": "Date modified",
+      "trackCount": "Tracks",
+      "duration": "Length"
     },
-    "filterNoResults": "Нет плейлистов, соответствующих фильтру",
-    "filterNoResultsDescription": "Измените или очистите поисковый запрос",
+    "filterNoResults": "No playlists match your filter",
+    "filterNoResultsDescription": "Change or remove the search query",
     "createNew": "Создать новый плейлист",
     "saveQueueAsPlaylist": "Сохранить очередь как плейлист",
     "name": "Название",
@@ -164,8 +164,8 @@
     "noResults": "Ничего не найдено",
     "searching": "Поиск...",
     "failedToLoad": "Не удалось загрузить результаты.",
-    "clearRecentSearches": "Очистить недавние запросы",
-    "recentSearches": "Недавние запросы",
+    "clearRecentSearches": "Clear recent searches",
+    "recentSearches": "Recent searches",
     "results": {
       "tracks": "Треки",
       "albums": "Альбомы",
@@ -179,9 +179,9 @@
       "artists": "Артисты",
       "playlists": "Плейлисты"
     },
-    "empty-state": "Плагин метаданных не установлен",
-    "empty-state-description": "Установите плагин метаданных для поиска музыки.",
-    "empty-state-action": "Просмотреть плагины"
+    "empty-state": "No metadata plugin installed",
+    "empty-state-description": "Install a metadata plugin to search for music.",
+    "empty-state-action": "Browse plugins"
   },
   "artist": {
     "title": "Артист",
@@ -220,33 +220,33 @@
     "title": "Темы",
     "basic": "Базовые темы",
     "advanced": "Продвинутые темы",
-    "marketplace": "Темы из магазина",
+    "marketplace": "Store themes",
     "default": "По умолчанию",
-    "selectPlaceholder": "Выберите тему",
+    "selectPlaceholder": "Select a theme",
     "description": "Темы из директории данных приложения",
     "tabs": {
-      "myThemes": "Мои темы",
-      "store": "Магазин"
+      "myThemes": "My themes",
+      "store": "Store"
     },
     "store": {
-      "searchPlaceholder": "Поиск тем...",
-      "install": "Установить",
-      "installing": "Установка",
-      "installed": "Установлено",
-      "by": "от",
-      "installError": "Не удалось установить {{name}}",
-      "loadError": "Не удалось загрузить магазин тем.",
-      "apply": "Применить",
-      "active": "Активна",
-      "uninstall": "Удалить",
-      "uninstallError": "Не удалось удалить {{name}}"
+      "searchPlaceholder": "Search themes...",
+      "install": "Install",
+      "installing": "Installing",
+      "installed": "Installed",
+      "by": "by",
+      "installError": "Failed to install {{name}}",
+      "loadError": "Failed to load the theme store.",
+      "apply": "Apply",
+      "active": "Active",
+      "uninstall": "Uninstall",
+      "uninstallError": "Failed to uninstall {{name}}"
     }
   },
   "dashboard": {
     "title": "Панель",
     "empty-state": "Нет доступных данных в панели управления",
     "empty-state-description": "Включите плагин, который предоставляет содержимое панели.",
-    "empty-state-action": "Просмотреть плагины",
+    "empty-state-action": "Browse plugins",
     "top-tracks": "Лучшие Треки",
     "top-artists": "Лучшие Исполнители",
     "top-albums": "Лучшие Альбомы",
@@ -266,11 +266,11 @@
       "store": "Магазин"
     },
     "installed": {
-      "empty-state": "Плагины не установлены",
-      "empty-state-description": "Просмотрите магазин плагинов, чтобы найти плагины стриминга, метаданных и другие.",
-      "empty-state-action": "Перейти в магазин",
-      "update-available": "Доступно обновление",
-      "by": "от"
+      "empty-state": "No plugins installed",
+      "empty-state-description": "Browse the plugin store to find streaming, metadata, and other plugins.",
+      "empty-state-action": "Go to store",
+      "update-available": "Update available",
+      "by": "by"
     },
     "store": {
       "searchPlaceholder": "Поиск плагинов...",
@@ -284,9 +284,9 @@
         "metadata": "Метаданные",
         "lyrics": "Текст",
         "scrobbling": "Скробблинг",
-        "dashboard": "Панель",
-        "playlists": "Плейлисты",
-        "discovery": "Открытие",
+        "dashboard": "Dashboard",
+        "playlists": "Playlists",
+        "discovery": "Discovery",
         "other": "Прочие"
       },
       "error": {
@@ -306,9 +306,9 @@
   },
   "updater": {
     "updateAvailable": "Доступно обновление",
-    "clickToUpdate": "Нажмите, чтобы обновить",
-    "downloading": "Загрузка... {{progress}}%",
-    "clickToRestart": "Нажмите, чтобы перезапустить"
+    "clickToUpdate": "Click to update",
+    "downloading": "Downloading... {{progress}}%",
+    "clickToRestart": "Click to restart"
   },
   "flatpak": {
     "sandboxWarning": "Вы используете Nuclear в среде Flatpak. Некоторые функции могут работать неправильно. Если вы столкнулись с проблемами, попробуйте .deb или AppImage.",
@@ -326,8 +326,8 @@
     "plugins": {
       "title": "Плагины",
       "auto-update": {
-        "title": "Автообновление плагинов",
-        "description": "Автоматически скачивать и устанавливать новые версии плагинов из магазина при запуске"
+        "title": "Auto-update plugins",
+        "description": "Automatically download and install new versions of store plugins on startup"
       }
     },
     "themes": {
@@ -364,16 +364,16 @@
     "appearance": {
       "title": "Оформление",
       "framelessWindow": {
-        "title": "Окно без рамки",
-        "description": "Скрыть системную строку заголовка. Перетаскивайте верхнюю панель, чтобы перемещать окно."
+        "title": "Frameless window",
+        "description": "Hide the native title bar. Drag the top bar to move the window."
       },
       "customTitleBar": {
-        "title": "Настраиваемая строка заголовка",
-        "description": "Заменить системную строку заголовка на стилизованную, соответствующую приложению."
+        "title": "Custom title bar",
+        "description": "Replace the native title bar with a styled one that matches the app."
       },
       "titleBarStyle": {
-        "title": "Стиль строки заголовка",
-        "description": "Выберите визуальный стиль элементов управления в строке заголовка."
+        "title": "Title bar style",
+        "description": "Choose the visual style for the custom title bar controls."
       }
     },
     "playback": {
@@ -395,17 +395,17 @@
         "description": "Количество раз, чтобы повторить попытку разрешить URL трансляции перед переходом к следующему кандидату"
       },
       "discoveryVariety": {
-        "title": "Разнообразие открытий",
-        "description": "Насколько сильно рекомендации отличаются от того, что вы слушаете сейчас. Чем меньше значение, тем ближе.",
-        "startLabel": "Спокойнее",
-        "endLabel": "Смелее"
+        "title": "Discovery variety",
+        "description": "How far recommendations deviate from your current listening. Lower is closer.",
+        "startLabel": "Less crazy",
+        "endLabel": "More crazy"
       }
     },
     "history": {
-      "title": "История",
+      "title": "History",
       "enabled": {
-        "title": "Записывать историю прослушивания",
-        "description": "Хранить локальную запись прослушиваемой музыки."
+        "title": "Record listening history",
+        "description": "Keep a local record of the music you play."
       }
     },
     "layout": {
@@ -427,15 +427,15 @@
       "jam": {
         "enabled": {
           "title": "Nuclear Jam",
-          "description": "Запускает локальный веб-сервер, позволяющий управлять Nuclear с других устройств в вашей сети."
+          "description": "Start a local web server that lets you control Nuclear from other devices on your network."
         },
         "remoteUrl": {
-          "title": "URL удалённого доступа",
-          "description": "Откройте этот URL на другом устройстве, чтобы управлять Nuclear."
+          "title": "Remote URL",
+          "description": "Open this URL on another device to control Nuclear."
         },
         "apiUrl": {
-          "title": "URL API",
-          "description": "Базовый URL HTTP API для программного доступа."
+          "title": "API URL",
+          "description": "HTTP API base URL for programmatic access."
         }
       },
       "mcp": {
@@ -450,18 +450,18 @@
       },
       "mpd": {
         "enabled": {
-          "title": "Включить сервер MPD",
-          "description": "Запускает локальный сервер, совместимый с MPD, чтобы клиенты MPD могли управлять Nuclear."
+          "title": "Enable MPD Server",
+          "description": "Start a local MPD-compatible server so MPD clients can control Nuclear."
         },
         "serverUrl": {
-          "title": "URL сервера MPD",
-          "description": "Укажите этот адрес в вашем клиенте MPD, чтобы подключиться к Nuclear."
+          "title": "MPD Server URL",
+          "description": "Point your MPD client to this address to connect to Nuclear."
         }
       },
       "discord": {
         "enabled": {
           "title": "Discord Rich Presence",
-          "description": "Показывать, что вы слушаете, в вашем профиле Discord."
+          "description": "Show what you're listening to on your Discord profile."
         }
       }
     }
@@ -481,8 +481,8 @@
       "playback": "Ошибка воспроизведения"
     },
     "candidates": {
-      "empty": "Нет кандидатов трансляции",
-      "failed": "не удалось"
+      "empty": "No stream candidates",
+      "failed": "failed"
     }
   },
   "track": {
@@ -496,49 +496,49 @@
   },
   "trackTable": {
     "headers": {
-      "artist": "Исполнитель",
-      "title": "Название",
-      "album": "Альбом",
-      "duration": "Длительность"
+      "artist": "Artist",
+      "title": "Title",
+      "album": "Album",
+      "duration": "Duration"
     },
-    "favorite": "Добавить в избранное",
-    "unfavorite": "Убрать из избранного",
-    "playAll": "Воспроизвести всё",
-    "addAllToQueue": "Добавить всё в очередь",
-    "addToQueue": "Добавить в очередь",
-    "trackOptions": "Параметры трека",
-    "remove": "Убрать из списка",
-    "filterPlaceholder": "Фильтр треков"
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites",
+    "playAll": "Play all",
+    "addAllToQueue": "Add all to queue",
+    "addToQueue": "Add to queue",
+    "trackOptions": "Track options",
+    "remove": "Remove from list",
+    "filterPlaceholder": "Filter tracks"
   },
   "pagination": {
-    "navigation": "Навигация по страницам",
-    "previous": "Предыдущая страница",
-    "next": "Следующая страница",
-    "page": "Страница {{pageNumber}}"
+    "navigation": "Pagination",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {{pageNumber}}"
   },
   "streaming": {
     "errors": {
       "noCandidatesFound": "Не удалось найти кандидатов трансляции",
       "allCandidatesFailed": "Все кандидаты не удались",
-      "noProviderAvailable": "Нет доступного источника стриминга. Установите плагин стриминга для воспроизведения музыки.",
-      "streamRecoveryFailed": "Трансляция стала недоступна, и восстановить её не удалось",
+      "noProviderAvailable": "No streaming provider is available. Install a streaming plugin to play music.",
+      "streamRecoveryFailed": "The stream became unavailable and could not be restored",
       "hifi": {
-        "loadFailed": "Не удалось загрузить аудиопоток: {{details}}",
-        "unsupportedFormat": "Аудиопоток имеет неподдерживаемый формат. Попробуйте другой источник для этого трека.",
-        "mseUnavailable": "Стриминг недоступен, поскольку в системе отсутствует MediaSource Extensions. Обновление системного веб-движка может решить эту проблему.",
-        "appendRejected": "Аудиодвижок отклонил данные потока. Возможно, кодек не поддерживается. Попробуйте другой источник для этого трека."
+        "loadFailed": "Could not load the audio stream: {{details}}",
+        "unsupportedFormat": "The audio stream is not in a supported format. Try a different source for this track.",
+        "mseUnavailable": "Streaming is not available because this system lacks MediaSource Extensions. Updating your system web engine may fix this.",
+        "appendRejected": "The audio engine rejected the stream data. The codec may be unsupported. Try a different source for this track."
       }
     }
   },
   "playerBar": {
     "noTrackPlaying": "Трек не воспроизводится",
-    "shuffleOn": "Перемешивание: вкл",
-    "shuffleOff": "Перемешивание: выкл",
-    "repeatOff": "Повтор: выкл",
-    "repeatAll": "Повтор: все",
-    "repeatOne": "Повтор: один",
-    "discoveryOn": "Открытие: вкл",
-    "discoveryOff": "Открытие: выкл"
+    "shuffleOn": "Shuffle: on",
+    "shuffleOff": "Shuffle: off",
+    "repeatOff": "Repeat: off",
+    "repeatAll": "Repeat: all",
+    "repeatOne": "Repeat: one",
+    "discoveryOn": "Discovery: on",
+    "discoveryOff": "Discovery: off"
   },
   "logs": {
     "title": "Логи",
@@ -557,41 +557,41 @@
   },
   "remote": {
     "connecting": {
-      "title": "Подключение к Nuclear...",
-      "subtitle": "Убедитесь, что Nuclear запущен и функция Nuclear Jam включена"
+      "title": "Connecting to Nuclear...",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled"
     },
     "error": {
-      "title": "Не удалось подключиться к Nuclear",
-      "subtitle": "Убедитесь, что Nuclear запущен и функция Nuclear Jam включена в настройках"
+      "title": "Could not connect to Nuclear",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled in Settings"
     },
     "connection": {
-      "connecting": "Подключение",
-      "connected": "Подключено",
-      "reconnecting": "Переподключение",
-      "failed": "Отключено"
+      "connecting": "Connecting",
+      "connected": "Connected",
+      "reconnecting": "Reconnecting",
+      "failed": "Disconnected"
     },
     "queue": {
-      "upNext": "Далее",
-      "emptyTitle": "Очередь пуста",
-      "emptySubtitle": "Добавьте треки в Nuclear, чтобы увидеть их здесь"
+      "upNext": "Up next",
+      "emptyTitle": "Queue is empty",
+      "emptySubtitle": "Add tracks in Nuclear to see them here"
     },
     "search": {
-      "placeholder": "Поиск музыки",
-      "emptyTitle": "Ничего не найдено",
-      "emptyDescription": "По вашему запросу ничего не найдено",
-      "errorTitle": "Ошибка поиска",
-      "errorDescription": "Проверьте подключение к Nuclear и повторите попытку"
+      "placeholder": "Search for music",
+      "emptyTitle": "No results",
+      "emptyDescription": "Nothing found for your search terms",
+      "errorTitle": "Search failed",
+      "errorDescription": "Check the connection to Nuclear and try again"
     },
     "qrCode": {
-      "tooltip": "Пульт управления Nuclear Jam",
-      "instructions": "Отсканируйте QR-код или скопируйте адрес ниже, чтобы подключиться к Nuclear Jam"
+      "tooltip": "Nuclear Jam remote control",
+      "instructions": "Scan the QR code or copy the address below to connect to Nuclear Jam"
     }
   },
   "titleBar": {
-    "title": "Nuclear — музыкальный плеер",
-    "minimize": "Свернуть",
-    "maximize": "Развернуть",
-    "close": "Закрыть"
+    "title": "Nuclear Music Player",
+    "minimize": "Minimize",
+    "maximize": "Maximize",
+    "close": "Close"
   },
   "changelog": {
     "title": "Что нового?",
