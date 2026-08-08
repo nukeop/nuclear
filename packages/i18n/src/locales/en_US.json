@@ -138,7 +138,6 @@
       "trackCount": "Tracks",
       "duration": "Length"
     },
-
     "filterNoResults": "No playlists match your filter",
     "filterNoResultsDescription": "Change or remove the search query",
     "createNew": "Create new playlist",
@@ -577,7 +576,11 @@
       "emptySubtitle": "Add tracks in Nuclear to see them here"
     },
     "search": {
-      "placeholder": "Search for music"
+      "placeholder": "Search for music",
+      "emptyTitle": "No results",
+      "emptyDescription": "Nothing found for your search terms",
+      "errorTitle": "Search failed",
+      "errorDescription": "Check the connection to Nuclear and try again"
     },
     "qrCode": {
       "tooltip": "Nuclear Jam remote control",

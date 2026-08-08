@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import { NuclearJam } from '@nuclearplayer/ui';
 
+import { SearchDrawerContent } from './SearchDrawerContent';
 import { useRemoteActions } from './useRemoteActions';
 import { useRemoteSearch } from './useRemoteSearch';
 import { useRemoteState } from './useRemoteState';
@@ -90,7 +91,14 @@ const RemoteControl: FC = () => {
         <NuclearJam.SearchDrawer
           open={search.query.length > 0}
           onBackdropClick={() => search.setQuery('')}
-        />
+        >
+          <SearchDrawerContent
+            isError={search.isError}
+            isSuccess={search.isSuccess}
+            tracks={search.tracks}
+            onAdd={actions.onAddToQueue}
+          />
+        </NuclearJam.SearchDrawer>
       </NuclearJam.Content>
     </NuclearJam>
   );
