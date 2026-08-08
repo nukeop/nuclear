@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
+import type { Track } from '@nuclearplayer/model';
 import { NuclearJam } from '@nuclearplayer/ui';
 
 import { SearchDrawerContent } from './SearchDrawerContent';
@@ -96,7 +97,10 @@ const RemoteControl: FC = () => {
             isError={search.isError}
             isSuccess={search.isSuccess}
             tracks={search.tracks}
-            onAdd={actions.onAddToQueue}
+            onAdd={(track: Track) => {
+              actions.onAddToQueue(track);
+              search.setQuery('');
+            }}
           />
         </NuclearJam.SearchDrawer>
       </NuclearJam.Content>

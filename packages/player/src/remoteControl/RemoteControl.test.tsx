@@ -253,6 +253,23 @@ describe('RemoteControl', () => {
     });
   });
 
+  it('clicking a result closes the drawer', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+    RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
+
+    await RemoteControlWrapper.search.input.type('idioteque');
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.results).toHaveLength(2);
+    });
+
+    await RemoteControlWrapper.search.addTrack('Idioteque');
+
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.drawer).not.toBeInTheDocument();
+    });
+  });
+
   it('clicking a result adds the track to the queue', async () => {
     await RemoteControlWrapper.mount();
     await RemoteControlWrapper.simulateConnection();
