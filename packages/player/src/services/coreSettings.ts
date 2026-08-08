@@ -8,8 +8,11 @@ const LANGUAGE_OPTIONS = [
   { value: 'es_ES', label: 'Español' },
   { value: 'fr_FR', label: 'Français' },
   { value: 'it_IT', label: 'Italiano' },
+  { value: 'ja_JP', label: '日本語' },
+  { value: 'pl_PL', label: 'Polski' },
   { value: 'pt_BR', label: 'Português (Brasil)' },
   { value: 'ru_RU', label: 'Русский' },
+  { value: 'zh_CN', label: '简体中文' },
 ];
 
 export const CORE_SETTINGS: SettingDefinition[] = [
