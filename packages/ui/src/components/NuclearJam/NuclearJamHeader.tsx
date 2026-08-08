@@ -34,7 +34,7 @@ export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
 }) => (
   <div
     className={cn(
-      'border-border flex shrink-0 items-center justify-between gap-3 border-b-(length:--border-width)',
+      'border-border flex shrink-0 flex-wrap items-center justify-between gap-x-3 border-b-(length:--border-width)',
       className,
     )}
   >
@@ -49,7 +49,7 @@ export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
       </h1>
     </span>
     {children && (
-      <span className="flex min-w-0 flex-1 items-stretch self-stretch">
+      <span className="order-last flex w-full min-w-0 items-stretch self-stretch sm:order-0 sm:w-auto sm:flex-1">
         {children}
       </span>
     )}

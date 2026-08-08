@@ -31,7 +31,7 @@ export const NuclearJamSearchBar: FC<NuclearJamSearchBarProps> = ({
   return (
     <div
       className={cn(
-        'border-border flex min-w-0 flex-1 items-center gap-2 self-stretch border-x-(length:--border-width) px-3',
+        'border-border flex min-w-0 flex-1 items-center gap-2 self-stretch border-t-(length:--border-width) px-3 py-3 sm:border-x-(length:--border-width) sm:border-t-0 sm:py-0',
         className,
       )}
       data-testid="jam-search-bar"
