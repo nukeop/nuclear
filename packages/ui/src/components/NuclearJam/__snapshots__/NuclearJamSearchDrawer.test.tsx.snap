@@ -13,7 +13,7 @@ exports[`NuclearJamSearchDrawer > (Snapshot) renders the empty state 1`] = `
       data-testid="jam-search-backdrop"
     />
     <div
-      class="bg-background border-border absolute inset-x-0 top-0 flex max-h-3/4 min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
     >
       <div
         class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
@@ -82,7 +82,7 @@ exports[`NuclearJamSearchDrawer > (Snapshot) renders the error state 1`] = `
       data-testid="jam-search-backdrop"
     />
     <div
-      class="bg-background border-border absolute inset-x-0 top-0 flex max-h-3/4 min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
     >
       <div
         class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
@@ -146,17 +146,17 @@ exports[`NuclearJamSearchDrawer > (Snapshot) renders the sheet and backdrop with
       data-testid="jam-search-backdrop"
     />
     <div
-      class="bg-background border-border absolute inset-x-0 top-0 flex max-h-3/4 min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
     >
       <div
-        class="relative h-128 min-h-0"
+        class="relative min-h-0"
         data-testid="jam-search-results"
       >
         <div
           class="relative h-full w-full"
         >
           <div
-            class="scrollbar-hide flex w-full flex-col overflow-auto max-h-full h-full"
+            class="scrollbar-hide flex h-full w-full flex-col overflow-auto max-h-[60dvh]"
             style="scrollbar-width: none;"
           >
             <div>
