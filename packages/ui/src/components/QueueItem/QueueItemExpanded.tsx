@@ -1,4 +1,4 @@
-import { AlertCircle, Music, X } from 'lucide-react';
+import { AlertCircle, CassetteTape, X } from 'lucide-react';
 import { FC } from 'react';
 
 import { pickArtwork } from '@nuclearplayer/model';
@@ -55,8 +55,8 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
             className="h-full w-full object-cover"
           />
         ) : (
-          <Music
-            size={32}
+          <CassetteTape
+            size={48}
             absoluteStrokeWidth
             className="text-foreground opacity-20"
           />

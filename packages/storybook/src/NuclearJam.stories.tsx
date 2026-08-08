@@ -27,7 +27,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Everything In Its Right Place',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 251000,
       source: { provider: 'mock', id: '1' },
     },
     status: 'success',
@@ -38,7 +37,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Kid A',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 277000,
       source: { provider: 'mock', id: '2' },
     },
     status: 'idle',
@@ -49,7 +47,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'The National Anthem',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 350000,
       source: { provider: 'mock', id: '3' },
     },
     status: 'idle',
@@ -60,7 +57,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'How to Disappear Completely',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 342000,
       source: { provider: 'mock', id: '4' },
     },
     status: 'idle',
@@ -71,7 +67,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Treefingers',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 223000,
       source: { provider: 'mock', id: '5' },
     },
     status: 'idle',
@@ -82,7 +77,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Optimistic',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 307000,
       source: { provider: 'mock', id: '6' },
     },
     status: 'idle',
@@ -93,7 +87,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'In Limbo',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 193000,
       source: { provider: 'mock', id: '7' },
     },
     status: 'idle',
@@ -104,7 +97,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Idioteque',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 309000,
       source: { provider: 'mock', id: '8' },
     },
     status: 'idle',
@@ -119,9 +111,14 @@ const connectionStatusLabels: ConnectionStatusLabels = {
   failed: 'Disconnected',
 };
 
+const searchBarLabels = {
+  placeholder: 'Search for music',
+};
+
 const queueProps = {
   items: mockQueueItems,
   currentItemId: '1',
+  onRemove: fn(),
   labels: {
     upNext: 'Up next',
     title: 'Queue is empty',
@@ -135,7 +132,13 @@ export const FullPage = {
       <NuclearJam.Header
         connectionStatus="connected"
         connectionStatusLabels={connectionStatusLabels}
-      />
+      >
+        <NuclearJam.SearchBar
+          value=""
+          onChange={fn()}
+          labels={searchBarLabels}
+        />
+      </NuclearJam.Header>
       <NuclearJam.NowPlaying
         title="Everything In Its Right Place"
         artist="Radiohead"
@@ -167,6 +170,7 @@ export const Interactive = {
     const [repeatMode, setRepeatMode] = useState<'off' | 'all' | 'one'>('off');
     const [isDiscoveryActive, setIsDiscoveryActive] = useState(false);
     const [progress, setProgress] = useState(35);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const cycleRepeat = () => {
       const modes: Array<'off' | 'all' | 'one'> = ['off', 'all', 'one'];
@@ -183,7 +187,13 @@ export const Interactive = {
         <NuclearJam.Header
           connectionStatus="connected"
           connectionStatusLabels={connectionStatusLabels}
-        />
+        >
+          <NuclearJam.SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            labels={searchBarLabels}
+          />
+        </NuclearJam.Header>
         <NuclearJam.NowPlaying
           title="Everything In Its Right Place"
           artist="Radiohead"

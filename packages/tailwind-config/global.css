@@ -3,6 +3,8 @@
 @import './utilities.css';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant short (@media (height <= 740px));
+@custom-variant tall (@media (height > 740px));
 
 @source '../player';
 @source '../ui';

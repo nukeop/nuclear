@@ -1,13 +1,13 @@
 import React from 'react';
 
-import RemoteControl from './RemoteControl';
+import RemoteApp from './RemoteApp';
 
 export const initRemoteApp = (
   root: ReturnType<typeof import('react-dom/client').createRoot>,
 ) => {
   root.render(
     <React.StrictMode>
-      <RemoteControl />
+      <RemoteApp />
     </React.StrictMode>,
   );
 };

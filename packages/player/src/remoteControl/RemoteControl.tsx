@@ -1,15 +1,19 @@
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
+import type { Track } from '@nuclearplayer/model';
 import { NuclearJam } from '@nuclearplayer/ui';
 
+import { SearchDrawerContent } from './SearchDrawerContent';
 import { useRemoteActions } from './useRemoteActions';
+import { useRemoteSearch } from './useRemoteSearch';
 import { useRemoteState } from './useRemoteState';
 
 const RemoteControl: FC = () => {
   const { t } = useTranslation('remote');
   const state = useRemoteState();
   const actions = useRemoteActions();
+  const search = useRemoteSearch();
 
   if (state.connectionStatus === 'failed') {
     return (
@@ -47,37 +51,60 @@ const RemoteControl: FC = () => {
           reconnecting: t('connection.reconnecting'),
           failed: t('connection.failed'),
         }}
-      />
-      {state.hasQueue && state.currentTrack && (
-        <NuclearJam.NowPlaying
-          title={state.currentTrack.title}
-          artist={state.currentTrack.artist}
-          coverUrl={state.currentTrack.coverUrl}
-          isLoading={state.isLoading}
+      >
+        <NuclearJam.SearchBar
+          value={search.query}
+          onChange={search.setQuery}
+          labels={{ placeholder: t('search.placeholder') }}
         />
-      )}
-      {state.hasQueue && (
-        <NuclearJam.Controls
-          isPlaying={state.isPlaying}
-          isLoading={state.isLoading}
-          shuffleActive={state.settings.shuffle}
-          repeatMode={state.settings.repeat}
-          isDiscoveryActive={state.settings.discovery}
-          progress={state.progress}
-          elapsedSeconds={state.elapsedSeconds}
-          remainingSeconds={state.remainingSeconds}
-          {...actions}
+      </NuclearJam.Header>
+      <NuclearJam.Content>
+        {state.hasQueue && state.currentTrack && (
+          <NuclearJam.NowPlaying
+            title={state.currentTrack.title}
+            artist={state.currentTrack.artist}
+            coverUrl={state.currentTrack.coverUrl}
+            isLoading={state.isLoading}
+          />
+        )}
+        {state.hasQueue && (
+          <NuclearJam.Controls
+            isPlaying={state.isPlaying}
+            isLoading={state.isLoading}
+            shuffleActive={state.settings.shuffle}
+            repeatMode={state.settings.repeat}
+            isDiscoveryActive={state.settings.discovery}
+            progress={state.progress}
+            elapsedSeconds={state.elapsedSeconds}
+            remainingSeconds={state.remainingSeconds}
+            {...actions}
+          />
+        )}
+        <NuclearJam.Queue
+          items={state.queue.items}
+          currentItemId={state.queue.currentItemId}
+          onRemove={actions.onRemoveFromQueue}
+          labels={{
+            upNext: t('queue.upNext'),
+            title: t('queue.emptyTitle'),
+            subtitle: t('queue.emptySubtitle'),
+          }}
         />
-      )}
-      <NuclearJam.Queue
-        items={state.queue.items}
-        currentItemId={state.queue.currentItemId}
-        labels={{
-          upNext: t('queue.upNext'),
-          title: t('queue.emptyTitle'),
-          subtitle: t('queue.emptySubtitle'),
-        }}
-      />
+        <NuclearJam.SearchDrawer
+          open={search.query.length > 0}
+          onBackdropClick={() => search.setQuery('')}
+        >
+          <SearchDrawerContent
+            isError={search.isError}
+            isSuccess={search.isSuccess}
+            tracks={search.tracks}
+            onAdd={(track: Track) => {
+              actions.onAddToQueue(track);
+              search.setQuery('');
+            }}
+          />
+        </NuclearJam.SearchDrawer>
+      </NuclearJam.Content>
     </NuclearJam>
   );
 };

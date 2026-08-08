@@ -1,0 +1,101 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamSearchResultTrack > (Snapshot) renders a full track 1`] = `
+<div>
+  <button
+    class="border-border active:bg-primary flex w-full cursor-pointer items-center gap-3 border-b-(length:--border-width) px-4 py-2 text-left"
+    data-testid="jam-search-result-track"
+    type="button"
+  >
+    <div
+      class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+    >
+      <img
+        alt="Windowlicker"
+        class="size-full object-cover"
+        src="https://example.com/cover.jpg"
+      />
+    </div>
+    <div
+      class="min-w-0 flex-1"
+    >
+      <div
+        class="text-foreground truncate text-sm font-bold"
+      >
+        Windowlicker
+      </div>
+      <div
+        class="text-foreground-secondary truncate text-xs"
+      >
+        Aphex Twin
+      </div>
+    </div>
+    <div
+      class="text-foreground-secondary shrink-0 text-xs tabular-nums"
+    >
+      6:06
+    </div>
+  </button>
+</div>
+`;
+
+exports[`NuclearJamSearchResultTrack > (Snapshot) renders a minimal track 1`] = `
+<div>
+  <button
+    class="border-border active:bg-primary flex w-full cursor-pointer items-center gap-3 border-b-(length:--border-width) px-4 py-2 text-left"
+    data-testid="jam-search-result-track"
+    type="button"
+  >
+    <div
+      class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-cassette-tape text-foreground opacity-20"
+        fill="none"
+        height="40"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.2"
+        viewBox="0 0 24 24"
+        width="40"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          height="16"
+          rx="2"
+          width="20"
+          x="2"
+          y="4"
+        />
+        <circle
+          cx="8"
+          cy="10"
+          r="2"
+        />
+        <path
+          d="M8 12h8"
+        />
+        <circle
+          cx="16"
+          cy="10"
+          r="2"
+        />
+        <path
+          d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+        />
+      </svg>
+    </div>
+    <div
+      class="min-w-0 flex-1"
+    >
+      <div
+        class="text-foreground truncate text-sm font-bold"
+      >
+        Untitled
+      </div>
+    </div>
+  </button>
+</div>
+`;

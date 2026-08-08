@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
 import type { QueueItem } from '@nuclearplayer/model';
 import { NuclearJam } from '@nuclearplayer/ui';
@@ -23,7 +24,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Everything In Its Right Place',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 251000,
       source: { provider: 'mock', id: '1' },
     },
     status: 'success',
@@ -34,7 +34,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Kid A',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 277000,
       source: { provider: 'mock', id: '2' },
     },
     status: 'idle',
@@ -45,7 +44,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'The National Anthem',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 350000,
       source: { provider: 'mock', id: '3' },
     },
     status: 'idle',
@@ -56,7 +54,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'How to Disappear Completely',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 342000,
       source: { provider: 'mock', id: '4' },
     },
     status: 'idle',
@@ -67,7 +64,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Treefingers',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 223000,
       source: { provider: 'mock', id: '5' },
     },
     status: 'idle',
@@ -78,7 +74,6 @@ const mockQueueItems: QueueItem[] = [
     track: {
       title: 'Optimistic',
       artists: [{ name: 'Radiohead', roles: ['main'] }],
-      durationMs: 307000,
       source: { provider: 'mock', id: '6' },
     },
     status: 'idle',
@@ -93,6 +88,7 @@ export const Default = {
         items={mockQueueItems}
         currentItemId="3"
         labels={queueLabels}
+        onRemove={fn()}
       />
     </div>
   ),
@@ -101,7 +97,7 @@ export const Default = {
 export const Empty = {
   render: () => (
     <div className="bg-background h-80">
-      <NuclearJam.Queue items={[]} labels={queueLabels} />
+      <NuclearJam.Queue items={[]} labels={queueLabels} onRemove={fn()} />
     </div>
   ),
 };

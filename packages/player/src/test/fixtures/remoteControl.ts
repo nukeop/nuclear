@@ -1,10 +1,10 @@
-import type { Queue } from '@nuclearplayer/model';
+import type { Queue, Track } from '@nuclearplayer/model';
 
 import type {
   PlaybackState,
   SettingsState,
 } from '../../remoteControl/remoteStore';
-import { createQueueItem } from './queue';
+import { createQueueItem, createTrack } from './queue';
 
 export const REMOTE_QUEUE: Queue = {
   currentIndex: 0,
@@ -18,6 +18,11 @@ export const REMOTE_EMPTY_QUEUE: Queue = {
   currentIndex: 0,
   items: [],
 };
+
+export const REMOTE_SEARCH_TRACKS: Track[] = [
+  createTrack('Idioteque'),
+  createTrack('Morning Bell'),
+];
 
 export const REMOTE_PLAYBACK: PlaybackState = {
   status: 'playing',

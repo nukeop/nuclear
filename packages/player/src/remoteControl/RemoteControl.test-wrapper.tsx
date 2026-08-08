@@ -1,7 +1,14 @@
-import { act, render, RenderResult, screen } from '@testing-library/react';
+import { QueryClient } from '@tanstack/react-query';
+import {
+  act,
+  render,
+  RenderResult,
+  screen,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import type { Queue } from '@nuclearplayer/model';
+import type { Queue, Track } from '@nuclearplayer/model';
 
 import {
   REMOTE_EMPTY_QUEUE,
@@ -11,7 +18,7 @@ import {
 } from '../test/fixtures/remoteControl';
 import { MockEventSource } from '../test/mocks/eventSource';
 import { FetchMock } from '../test/mocks/fetch';
-import RemoteControl from './RemoteControl';
+import RemoteApp from './RemoteApp';
 import type { PlaybackState, SettingsState } from './remoteStore';
 import { useRemoteStore } from './remoteStore';
 
@@ -28,7 +35,7 @@ export const RemoteControlWrapper = {
   },
 
   async mount(): Promise<RenderResult> {
-    const result = render(<RemoteControl />);
+    const result = render(<RemoteApp queryClientProp={new QueryClient()} />);
     await screen.findByTestId('jam-connecting');
     return result;
   },
@@ -148,6 +155,54 @@ export const RemoteControlWrapper = {
     },
     get emptyState() {
       return screen.queryByTestId('jam-queue-empty');
+    },
+    async removeTrack(title: string) {
+      const item = screen
+        .getAllByTestId('jam-queue-item')
+        .find((element) => element.textContent?.includes(title))!;
+      await user.click(
+        within(item).getByTestId('jam-queue-item-remove-button'),
+      );
+    },
+  },
+
+  search: {
+    mockResults(tracks: Track[]) {
+      FetchMock.get('/api/search', { tracks });
+    },
+    mockError() {
+      FetchMock.getError('/api/search', 500);
+    },
+    get drawer() {
+      return screen.queryByTestId('jam-search-drawer');
+    },
+    get emptyState() {
+      return screen.queryByTestId('jam-search-empty');
+    },
+    get errorState() {
+      return screen.queryByTestId('jam-search-error');
+    },
+    get results() {
+      return screen.queryAllByTestId('jam-search-result-track');
+    },
+    input: {
+      get element() {
+        return screen.getByTestId('jam-search-input');
+      },
+      async type(text: string) {
+        await user.type(this.element, text);
+      },
+    },
+    clearButton: {
+      get element() {
+        return screen.getByTestId('jam-search-clear');
+      },
+      async click() {
+        await user.click(this.element);
+      },
+    },
+    async addTrack(title: string) {
+      await user.click(await screen.findByText(title));
     },
   },
 

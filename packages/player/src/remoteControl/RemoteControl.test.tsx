@@ -1,5 +1,9 @@
 import { waitFor } from '@testing-library/react';
 
+import {
+  REMOTE_QUEUE,
+  REMOTE_SEARCH_TRACKS,
+} from '../test/fixtures/remoteControl';
 import { RemoteControlWrapper } from './RemoteControl.test-wrapper';
 
 vi.mock('@nuclearplayer/themes', () => ({
@@ -176,6 +180,161 @@ describe('RemoteControl', () => {
       expect(
         RemoteControlWrapper.controls.playPauseButton.element,
       ).toHaveAttribute('data-testid', 'jam-play-button');
+    });
+  });
+
+  it('removing a queue item sends its id to /api/queue/remove', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+
+    await RemoteControlWrapper.queue.removeTrack('Kid A');
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith('/api/queue/remove', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: [REMOTE_QUEUE.items[1].id] }),
+      });
+    });
+  });
+
+  it('typing a query searches for tracks and shows results in the drawer', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+    RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
+
+    await RemoteControlWrapper.search.input.type('idioteque');
+
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.results).toHaveLength(2);
+    });
+    expect(global.fetch).toHaveBeenCalledWith(
+      '/api/search',
+      expect.objectContaining({
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: 'idioteque',
+          types: ['tracks'],
+          limit: 10,
+        }),
+      }),
+    );
+    expect(RemoteControlWrapper.search.results[0]).toHaveTextContent(
+      'Idioteque',
+    );
+    expect(RemoteControlWrapper.search.results[1]).toHaveTextContent(
+      'Morning Bell',
+    );
+  });
+
+  it('shows empty state when the search returns no results', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+    RemoteControlWrapper.search.mockResults([]);
+
+    await RemoteControlWrapper.search.input.type('zzzzz');
+
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.emptyState).toBeInTheDocument();
+    });
+    expect(RemoteControlWrapper.search.emptyState).toHaveTextContent(
+      'No results',
+    );
+  });
+
+  it('shows error state when the search fails', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+    RemoteControlWrapper.search.mockError();
+
+    await RemoteControlWrapper.search.input.type('idioteque');
+
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.errorState).toBeInTheDocument();
+    });
+    expect(RemoteControlWrapper.search.errorState).toHaveTextContent(
+      'Search failed',
+    );
+  });
+
+  it('clearing the query closes the drawer', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+    RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
+
+    await RemoteControlWrapper.search.input.type('idioteque');
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.drawer).toBeInTheDocument();
+    });
+
+    await RemoteControlWrapper.search.clearButton.click();
+
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.drawer).not.toBeInTheDocument();
+    });
+  });
+
+  it('clicking a result closes the drawer', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+    RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
+
+    await RemoteControlWrapper.search.input.type('idioteque');
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.results).toHaveLength(2);
+    });
+
+    await RemoteControlWrapper.search.addTrack('Idioteque');
+
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.drawer).not.toBeInTheDocument();
+    });
+  });
+
+  it('clicking a result adds the track to the queue', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+    RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
+
+    await RemoteControlWrapper.search.input.type('idioteque');
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.results).toHaveLength(2);
+    });
+
+    await RemoteControlWrapper.search.addTrack('Idioteque');
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith('/api/queue/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tracks: [REMOTE_SEARCH_TRACKS[0]] }),
+      });
+    });
+    expect(global.fetch).not.toHaveBeenCalledWith(
+      '/api/playback/play',
+      expect.anything(),
+    );
+  });
+
+  it('clicking a result starts playback when the queue was empty', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection({ emptyQueue: true });
+    RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
+
+    await RemoteControlWrapper.search.input.type('idioteque');
+    await waitFor(() => {
+      expect(RemoteControlWrapper.search.results).toHaveLength(2);
+    });
+
+    await RemoteControlWrapper.search.addTrack('Idioteque');
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith('/api/playback/play', {
+        method: 'POST',
+        headers: undefined,
+        body: undefined,
+      });
     });
   });
 });

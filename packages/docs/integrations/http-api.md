@@ -26,12 +26,16 @@ All action endpoints return `200 OK` with no body on success.
 
 | Method | Path | Body | Effect |
 |--------|------|------|--------|
+| POST | `/api/playback/play` | none | Start playback |
 | POST | `/api/playback/toggle` | none | Toggle play/pause |
 | POST | `/api/playback/next` | none | Skip to next track |
 | POST | `/api/playback/previous` | none | Go to previous track |
 | POST | `/api/playback/seek` | `{ "seconds": number }` | Seek to position |
 | POST | `/api/playback/shuffle` | `{ "enabled": boolean }` | Set shuffle on or off |
 | POST | `/api/playback/repeat` | `{ "mode": "off" \| "all" \| "one" }` | Set repeat mode |
+| POST | `/api/queue/add` | `{ "tracks": Track[] }` | Append tracks to the queue |
+| POST | `/api/queue/remove` | `{ "ids": string[] }` | Remove items from the queue by ID |
+| POST | `/api/search` | `{ "query": string, "types"?: SearchCategory[], "limit"?: number }` | Search for music. Returns `{ "tracks"?: Track[], "artists"?: ArtistRef[], "albums"?: AlbumRef[], "playlists"?: PlaylistRef[] }` |
 | POST | `/api/settings/{id}` | JSON value | Set a single setting by its fully-qualified ID |
 
 ### Events (SSE)

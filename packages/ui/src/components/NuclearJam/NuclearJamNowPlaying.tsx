@@ -1,4 +1,4 @@
-import { Music2 } from 'lucide-react';
+import { CassetteTape } from 'lucide-react';
 import { FC } from 'react';
 
 import { cn } from '../../utils';
@@ -20,12 +20,14 @@ export const NuclearJamNowPlaying: FC<NuclearJamNowPlayingProps> = ({
 }) => (
   <div
     className={cn(
-      'flex shrink-0 flex-col items-center gap-4 px-6 py-6',
+      'flex shrink-0 items-center gap-4 px-6 py-6',
+      'tall:flex-col',
+      'short:flex-row short:gap-3 short:px-4 short:py-3',
       className,
     )}
   >
     <div
-      className="border-border bg-background-secondary shadow-shadow relative flex size-52 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+      className="border-border bg-background-secondary shadow-shadow short:size-24 short:rounded-sm short:shadow-none relative flex size-52 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
       data-testid="now-playing-cover"
     >
       {coverUrl ? (
@@ -35,22 +37,26 @@ export const NuclearJamNowPlaying: FC<NuclearJamNowPlayingProps> = ({
           className="size-full object-cover select-none"
         />
       ) : (
-        <Music2 size={64} className="text-foreground opacity-20" />
+        <CassetteTape
+          size={128}
+          strokeWidth={1}
+          className="short:size-10 text-foreground opacity-20"
+        />
       )}
       {isLoading && (
         <div className="bg-stripes-diagonal absolute inset-x-0 bottom-0 h-1.5" />
       )}
     </div>
-    <div className="w-full text-center">
+    <div className="short:min-w-0 short:flex-1 short:text-left w-full text-center">
       <div
-        className="text-foreground truncate text-xl font-black"
+        className="text-foreground short:text-base truncate text-xl font-black"
         data-testid="now-playing-title"
       >
         {title}
       </div>
       {artist && (
         <div
-          className="text-foreground-secondary mt-1 truncate text-sm"
+          className="text-foreground-secondary short:mt-0 short:text-xs mt-1 truncate text-sm"
           data-testid="now-playing-artist"
         >
           {artist}

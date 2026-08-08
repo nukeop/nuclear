@@ -1,0 +1,174 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamSearchDrawer > (Snapshot) renders nothing when closed 1`] = `<div />`;
+
+exports[`NuclearJamSearchDrawer > (Snapshot) renders the empty state 1`] = `
+<div>
+  <div
+    class="absolute inset-0 z-10 overflow-hidden"
+    data-testid="jam-search-drawer"
+  >
+    <div
+      class="absolute inset-0 bg-black/50 transition duration-200 data-closed:opacity-0"
+      data-testid="jam-search-backdrop"
+    />
+    <div
+      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+    >
+      <div
+        class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+        data-testid="jam-search-empty"
+      >
+        <div
+          class="text-foreground"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-search-x"
+            fill="none"
+            height="48"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m13.5 8.5-5 5"
+            />
+            <path
+              d="m8.5 8.5 5 5"
+            />
+            <circle
+              cx="11"
+              cy="11"
+              r="8"
+            />
+            <path
+              d="m21 21-4.3-4.3"
+            />
+          </svg>
+        </div>
+        <div
+          class="flex flex-col gap-1"
+        >
+          <h3
+            class="text-foreground text-lg font-bold"
+          >
+            No results
+          </h3>
+          <p
+            class="text-foreground text-sm opacity-60"
+          >
+            Try a different search
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamSearchDrawer > (Snapshot) renders the error state 1`] = `
+<div>
+  <div
+    class="absolute inset-0 z-10 overflow-hidden"
+    data-testid="jam-search-drawer"
+  >
+    <div
+      class="absolute inset-0 bg-black/50 transition duration-200 data-closed:opacity-0"
+      data-testid="jam-search-backdrop"
+    />
+    <div
+      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+    >
+      <div
+        class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+        data-testid="jam-search-error"
+      >
+        <div
+          class="text-foreground"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-triangle-alert"
+            fill="none"
+            height="48"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+            />
+            <path
+              d="M12 9v4"
+            />
+            <path
+              d="M12 17h.01"
+            />
+          </svg>
+        </div>
+        <div
+          class="flex flex-col gap-1"
+        >
+          <h3
+            class="text-foreground text-lg font-bold"
+          >
+            Search failed
+          </h3>
+          <p
+            class="text-foreground text-sm opacity-60"
+          >
+            Check the player and try again
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamSearchDrawer > (Snapshot) renders the sheet and backdrop with results 1`] = `
+<div>
+  <div
+    class="absolute inset-0 z-10 overflow-hidden"
+    data-testid="jam-search-drawer"
+  >
+    <div
+      class="absolute inset-0 bg-black/50 transition duration-200 data-closed:opacity-0"
+      data-testid="jam-search-backdrop"
+    />
+    <div
+      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+    >
+      <div
+        class="relative min-h-0"
+        data-testid="jam-search-results"
+      >
+        <div
+          class="relative h-full w-full"
+        >
+          <div
+            class="scrollbar-hide flex h-full w-full flex-col overflow-auto max-h-[60dvh]"
+            style="scrollbar-width: none;"
+          >
+            <div>
+              First result
+            </div>
+            <div>
+              Second result
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

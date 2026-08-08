@@ -1,6 +1,7 @@
 mod actions;
 mod frontend;
 mod routes;
+mod search;
 
 use std::sync::Arc;
 
