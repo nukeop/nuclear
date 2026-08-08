@@ -83,6 +83,7 @@ const RemoteControl: FC = () => {
         <NuclearJam.Queue
           items={state.queue.items}
           currentItemId={state.queue.currentItemId}
+          onRemove={actions.onRemoveFromQueue}
           labels={{
             upNext: t('queue.upNext'),
             title: t('queue.emptyTitle'),

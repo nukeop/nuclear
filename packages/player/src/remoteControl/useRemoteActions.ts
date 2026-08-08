@@ -72,5 +72,7 @@ export const useRemoteActions = () => {
         await postAction('/api/playback/play');
       }
     },
+    onRemoveFromQueue: (itemId: string) =>
+      postAction('/api/queue/remove', { ids: [itemId] }),
   };
 };

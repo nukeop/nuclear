@@ -1,6 +1,9 @@
 import { waitFor } from '@testing-library/react';
 
-import { REMOTE_SEARCH_TRACKS } from '../test/fixtures/remoteControl';
+import {
+  REMOTE_QUEUE,
+  REMOTE_SEARCH_TRACKS,
+} from '../test/fixtures/remoteControl';
 import { RemoteControlWrapper } from './RemoteControl.test-wrapper';
 
 vi.mock('@nuclearplayer/themes', () => ({
@@ -180,6 +183,21 @@ describe('RemoteControl', () => {
     });
   });
 
+  it('removing a queue item sends its id to /api/queue/remove', async () => {
+    await RemoteControlWrapper.mount();
+    await RemoteControlWrapper.simulateConnection();
+
+    await RemoteControlWrapper.queue.removeTrack('Kid A');
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith('/api/queue/remove', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: [REMOTE_QUEUE.items[1].id] }),
+      });
+    });
+  });
+
   it('typing a query searches for tracks and shows results in the drawer', async () => {
     await RemoteControlWrapper.mount();
     await RemoteControlWrapper.simulateConnection();
@@ -195,7 +213,11 @@ describe('RemoteControl', () => {
       expect.objectContaining({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: 'idioteque', types: ['tracks'] }),
+        body: JSON.stringify({
+          query: 'idioteque',
+          types: ['tracks'],
+          limit: 10,
+        }),
       }),
     );
     expect(RemoteControlWrapper.search.results[0]).toHaveTextContent(
@@ -286,7 +308,7 @@ describe('RemoteControl', () => {
       expect(global.fetch).toHaveBeenCalledWith('/api/queue/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tracks: REMOTE_SEARCH_TRACKS }),
+        body: JSON.stringify({ tracks: [REMOTE_SEARCH_TRACKS[0]] }),
       });
     });
     expect(global.fetch).not.toHaveBeenCalledWith(

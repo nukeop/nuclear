@@ -4,27 +4,20 @@ import { forwardRef } from 'react';
 import { pickArtwork, QueueItem } from '@nuclearplayer/model';
 
 import { cn } from '../../utils';
-import { formatTimeMillis } from '../../utils/time';
 import { Button } from '../Button';
-
-export type NuclearJamQueueItemLabels = {
-  removeButton?: string;
-};
 
 type NuclearJamQueueItemProps = {
   item: QueueItem;
   isCurrent: boolean;
   onRemove?: () => void;
-  labels?: NuclearJamQueueItemLabels;
 };
 
 export const NuclearJamQueueItem = forwardRef<
   HTMLDivElement,
   NuclearJamQueueItemProps
->(({ item, isCurrent, onRemove, labels }, ref) => {
+>(({ item, isCurrent, onRemove }, ref) => {
   const thumbnail = pickArtwork(item.track.artwork, 'thumbnail', 48);
   const primaryArtist = item.track.artists[0]?.name;
-  const duration = formatTimeMillis(item.track.durationMs);
 
   return (
     <div
@@ -63,19 +56,18 @@ export const NuclearJamQueueItem = forwardRef<
         )}
       </div>
 
-      {duration && (
-        <div className="text-foreground-secondary shrink-0 text-xs tabular-nums">
-          {duration}
-        </div>
-      )}
-
       {onRemove && (
         <Button
           data-testid="jam-queue-item-remove-button"
           size="icon-sm"
           variant="noShadow"
-          onClick={onRemove}
-          aria-label={labels?.removeButton}
+          onClick={(event) => {
+            event.stopPropagation();
+            event.preventDefault();
+            onRemove();
+          }}
+          onPointerDown={(event) => event.stopPropagation()}
+          className="shrink-0"
         >
           <X size={16} />
         </Button>

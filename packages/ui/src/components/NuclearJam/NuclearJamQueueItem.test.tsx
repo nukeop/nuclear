@@ -51,7 +51,6 @@ describe('NuclearJamQueueItem', () => {
         item={makeItem()}
         isCurrent={false}
         onRemove={vi.fn()}
-        labels={{ removeButton: 'Remove from queue' }}
       />,
     );
     expect(container).toMatchSnapshot();

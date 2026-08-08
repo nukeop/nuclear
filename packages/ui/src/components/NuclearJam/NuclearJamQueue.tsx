@@ -14,7 +14,6 @@ import { NuclearJamQueueItem } from './NuclearJamQueueItem';
 
 export type NuclearJamQueueLabels = NuclearJamEmptyQueueLabels & {
   upNext: string;
-  removeButton?: string;
 };
 
 export type NuclearJamQueueProps = {
@@ -87,7 +86,6 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
               item={item}
               isCurrent={isCurrent}
               onRemove={onRemove ? () => onRemove(item.id) : undefined}
-              labels={{ removeButton: labels.removeButton }}
             />
           );
         })}

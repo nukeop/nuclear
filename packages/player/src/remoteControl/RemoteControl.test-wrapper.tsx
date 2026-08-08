@@ -1,5 +1,11 @@
 import { QueryClient } from '@tanstack/react-query';
-import { act, render, RenderResult, screen } from '@testing-library/react';
+import {
+  act,
+  render,
+  RenderResult,
+  screen,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import type { Queue, Track } from '@nuclearplayer/model';
@@ -149,6 +155,14 @@ export const RemoteControlWrapper = {
     },
     get emptyState() {
       return screen.queryByTestId('jam-queue-empty');
+    },
+    async removeTrack(title: string) {
+      const item = screen
+        .getAllByTestId('jam-queue-item')
+        .find((element) => element.textContent?.includes(title))!;
+      await user.click(
+        within(item).getByTestId('jam-queue-item-remove-button'),
+      );
     },
   },
 

@@ -149,14 +149,23 @@ exports[`NuclearJamSearchDrawer > (Snapshot) renders the sheet and backdrop with
       class="bg-background border-border absolute inset-x-0 top-0 flex max-h-3/4 min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
     >
       <div
-        class="min-h-0 flex-1 overflow-y-auto"
+        class="relative h-128 min-h-0"
         data-testid="jam-search-results"
       >
-        <div>
-          First result
-        </div>
-        <div>
-          Second result
+        <div
+          class="relative h-full w-full"
+        >
+          <div
+            class="scrollbar-hide flex w-full flex-col overflow-auto max-h-full h-full"
+            style="scrollbar-width: none;"
+          >
+            <div>
+              First result
+            </div>
+            <div>
+              Second result
+            </div>
+          </div>
         </div>
       </div>
     </div>
