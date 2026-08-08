@@ -32,7 +32,7 @@
     "favoriteAlbums": "Álbumes favoritos",
     "favoriteTracks": "Canciones favoritas",
     "favoriteArtists": "Artistas favoritos",
-    "playlists": "Navegación en la lista de reproducción",
+    "playlists": "Listas de reproducción",
     "history": "Historial",
     "sources": "Fuentes"
   },
@@ -199,8 +199,8 @@
     "playlists": "Listas de reproducción",
     "errors": {
       "failedToLoadDetails": "Error al cargar los detalles del artista.",
-      "failedToLoadAlbums": "Error al cargar los albums.",
-      "failedToLoadPopularTracks": "Error al cargar los tracks populares.",
+      "failedToLoadAlbums": "Error al cargar los álbumes.",
+      "failedToLoadPopularTracks": "Error al cargar las canciones populares.",
       "failedToLoadSimilarArtists": "Error al cargar artistas similares.",
       "failedToLoadSocialStats": "No se pudieron cargar las estadísticas del artista.",
       "failedToLoadPlaylists": "Error al cargar la lista de reproducción."
@@ -212,7 +212,7 @@
     "year": "Año",
     "tracks": "Canciones",
     "errors": {
-      "failedToLoadDetails": "Error al cargar los detalles del artista.",
+      "failedToLoadDetails": "Error al cargar los detalles del álbum.",
       "failedToLoadTracks": "Error al cargar las canciones."
     }
   },
