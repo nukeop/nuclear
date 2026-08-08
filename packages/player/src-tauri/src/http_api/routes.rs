@@ -157,6 +157,7 @@ pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Rout
         .route("/api/playback/shuffle", post(actions::set_shuffle))
         .route("/api/playback/repeat", post(actions::set_repeat))
         .route("/api/queue/add", post(actions::add_to_queue))
+        .route("/api/queue/remove", post(actions::remove_from_queue))
         .route("/api/search", post(search::search))
         .fallback(super::frontend::serve_frontend)
         .with_state(state)

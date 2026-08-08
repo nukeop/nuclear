@@ -62,3 +62,10 @@ pub async fn add_to_queue(
 ) -> Result<StatusCode, BridgeErrorResponse> {
     bridge_action(&state.bridge, "Queue.addToQueue", body).await
 }
+
+pub async fn remove_from_queue(
+    State(state): State<AppState>,
+    Json(body): Json<Value>,
+) -> Result<StatusCode, BridgeErrorResponse> {
+    bridge_action(&state.bridge, "Queue.removeByIds", body).await
+}
