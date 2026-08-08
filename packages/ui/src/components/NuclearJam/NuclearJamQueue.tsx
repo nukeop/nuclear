@@ -14,12 +14,14 @@ import { NuclearJamQueueItem } from './NuclearJamQueueItem';
 
 export type NuclearJamQueueLabels = NuclearJamEmptyQueueLabels & {
   upNext: string;
+  removeButton?: string;
 };
 
 export type NuclearJamQueueProps = {
   items: QueueItem[];
   currentItemId?: string;
   labels: NuclearJamQueueLabels;
+  onRemove?: (itemId: string) => void;
   className?: string;
 };
 
@@ -27,6 +29,7 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
   items,
   currentItemId,
   labels,
+  onRemove,
   className,
 }) => {
   const currentRef = useRef<HTMLDivElement>(null);
@@ -83,6 +86,8 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
               ref={isCurrent ? currentRef : undefined}
               item={item}
               isCurrent={isCurrent}
+              onRemove={onRemove ? () => onRemove(item.id) : undefined}
+              labels={{ removeButton: labels.removeButton }}
             />
           );
         })}

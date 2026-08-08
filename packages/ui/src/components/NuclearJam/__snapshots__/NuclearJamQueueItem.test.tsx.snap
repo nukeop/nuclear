@@ -109,3 +109,70 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a non-current item without art
   </div>
 </div>
 `;
+
+exports[`NuclearJamQueueItem > (Snapshot) renders a remove button 1`] = `
+<div>
+  <div
+    class="border-border flex items-center gap-3 border-b-(length:--border-width) px-4 py-2"
+    data-is-current="false"
+    data-testid="jam-queue-item"
+  >
+    <div
+      class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+    >
+      <img
+        alt="Idioteque"
+        class="size-full object-cover"
+        src="https://example.com/kid-a.jpg"
+      />
+    </div>
+    <div
+      class="min-w-0 flex-1"
+    >
+      <div
+        class="text-foreground truncate text-sm font-bold"
+      >
+        Idioteque
+      </div>
+      <div
+        class="text-foreground-secondary truncate text-xs"
+      >
+        Radiohead
+      </div>
+    </div>
+    <div
+      class="text-foreground-secondary shrink-0 text-xs tabular-nums"
+    >
+      4:11
+    </div>
+    <button
+      aria-label="Remove from queue"
+      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border border-(length:--border-width) size-8 justify-center"
+      data-headlessui-state=""
+      data-testid="jam-queue-item-remove-button"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-x"
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 6 6 18"
+        />
+        <path
+          d="m6 6 12 12"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;

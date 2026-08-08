@@ -1,20 +1,27 @@
-import { CassetteTape } from 'lucide-react';
+import { CassetteTape, X } from 'lucide-react';
 import { forwardRef } from 'react';
 
 import { pickArtwork, QueueItem } from '@nuclearplayer/model';
 
 import { cn } from '../../utils';
 import { formatTimeMillis } from '../../utils/time';
+import { Button } from '../Button';
+
+export type NuclearJamQueueItemLabels = {
+  removeButton?: string;
+};
 
 type NuclearJamQueueItemProps = {
   item: QueueItem;
   isCurrent: boolean;
+  onRemove?: () => void;
+  labels?: NuclearJamQueueItemLabels;
 };
 
 export const NuclearJamQueueItem = forwardRef<
   HTMLDivElement,
   NuclearJamQueueItemProps
->(({ item, isCurrent }, ref) => {
+>(({ item, isCurrent, onRemove, labels }, ref) => {
   const thumbnail = pickArtwork(item.track.artwork, 'thumbnail', 48);
   const primaryArtist = item.track.artists[0]?.name;
   const duration = formatTimeMillis(item.track.durationMs);
@@ -60,6 +67,18 @@ export const NuclearJamQueueItem = forwardRef<
         <div className="text-foreground-secondary shrink-0 text-xs tabular-nums">
           {duration}
         </div>
+      )}
+
+      {onRemove && (
+        <Button
+          data-testid="jam-queue-item-remove-button"
+          size="icon-sm"
+          variant="noShadow"
+          onClick={onRemove}
+          aria-label={labels?.removeButton}
+        >
+          <X size={16} />
+        </Button>
       )}
     </div>
   );

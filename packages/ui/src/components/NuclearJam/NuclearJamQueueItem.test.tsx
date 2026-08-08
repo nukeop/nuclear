@@ -44,4 +44,16 @@ describe('NuclearJamQueueItem', () => {
     );
     expect(container).toMatchSnapshot();
   });
+
+  it('(Snapshot) renders a remove button', () => {
+    const { container } = render(
+      <NuclearJamQueueItem
+        item={makeItem()}
+        isCurrent={false}
+        onRemove={vi.fn()}
+        labels={{ removeButton: 'Remove from queue' }}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });
