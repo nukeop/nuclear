@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-08-10T00:00",
+    "description": "Nuclear starts maximized by default",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-08-08T00:00",
     "description": "Nuclear Jam remote control now supports searching for music, adding tracks to the queue, and removing tracks from the queue.",
     "type": "feature",
