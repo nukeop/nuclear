@@ -14,8 +14,9 @@
     "windows": [
       {
         "title": "Nuclear Music Player",
-        "width": 800,
-        "height": 600,
+        "width": 1280,
+        "height": 720,
+        "maximized": true,
         "resizable": true,
         "fullscreen": false,
         "visible": false
