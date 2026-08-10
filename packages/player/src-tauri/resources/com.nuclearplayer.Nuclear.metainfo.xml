@@ -84,6 +84,13 @@
   </requires>
 
   <releases>
+    <release version="1.46.2" date="2026-08-10">
+      <description>
+        <ul>
+          <li>Nuclear starts maximized by default</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.46.1" date="2026-08-09">
       <description>
         <p>Release 1.46.1.</p>
