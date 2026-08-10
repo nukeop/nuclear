@@ -13,6 +13,7 @@
     "test": "turbo test",
     "test:coverage": "turbo test:coverage",
     "tauri": "pnpm --filter player tauri",
+    "release:prepare": "node packages/tools/src/prepare-release.mjs",
     "storybook": "pnpm --filter @nuclearplayer/storybook dev",
     "prepare": "husky",
     "clean": "turbo clean && rm -rf node_modules/.cache",

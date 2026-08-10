@@ -346,15 +346,14 @@ When building a user-facing feature, fix, or improvement, add an entry to the to
 Releases are triggered by git tags. The workflow builds for macOS (arm64/x64), Linux, and Windows. Release notes are auto-generated from `packages/player/changelog.json`.
 
 ```bash
-# 1. Update version in packages/player/package.json
-# 2. Update version in packages/player/src-tauri/tauri.conf.json
-# 3. Commit the version bump
-git add packages/player/package.json packages/player/src-tauri/tauri.conf.json && git commit -m "player@X.Y.Z"
+# 1. Bump versions, update the appstream metainfo, commit, and tag
+pnpm release:prepare X.Y.Z
 
-# 4. Tag and push
-git tag player@X.Y.Z
+# 2. Push the tag
 git push origin player@X.Y.Z
 ```
+
+`release:prepare` does everything that's needed for a release. Do not bump versions or edit any files by hand when preparing a release.
 
 The `release-player.yml` workflow creates a GitHub release with platform binaries.
 
