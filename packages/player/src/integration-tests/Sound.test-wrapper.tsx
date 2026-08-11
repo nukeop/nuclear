@@ -32,6 +32,10 @@ export const SoundWrapper = {
       isReady: true,
       isLoading: false,
     });
+    await this.playCurrentItem();
+  },
+
+  async playCurrentItem() {
     useSoundStore.getState().setSrc(defaultSrc);
     useSoundStore.getState().play();
     await waitFor(() => {

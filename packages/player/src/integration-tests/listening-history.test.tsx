@@ -2,6 +2,9 @@ import { act, waitFor } from '@testing-library/react';
 
 import { initHistoryService } from '../services/history';
 import { initPlaybackEventBridge } from '../services/playbackEventBridge';
+import { providersHost } from '../services/providersHost';
+import { MetadataProviderBuilder } from '../test/builders/MetadataProviderBuilder';
+import { AlbumWrapper } from '../views/Album/Album.test-wrapper';
 import { createListeningHistoryWrapper } from './ListeningHistory.test-wrapper';
 import { PlayerBarWrapper } from './PlayerBar.test-wrapper';
 import { QueueWrapper } from './Queue.test-wrapper';
@@ -236,6 +239,30 @@ describe('Listening history', () => {
     await act(() => Promise.resolve());
 
     expect(Wrapper.events).toHaveLength(1);
+  });
+
+  it('records the album of a track played from the album view', async () => {
+    providersHost.register(
+      MetadataProviderBuilder.albumDetailsProvider().build(),
+    );
+
+    await AlbumWrapper.mountDirectly();
+    await AlbumWrapper.addTrackToQueueViaContextMenu('Countdown');
+    await SoundWrapper.playCurrentItem();
+    SoundWrapper.fireCanPlay();
+
+    await waitFor(() => {
+      expect(Wrapper.events).toHaveLength(1);
+    });
+    expect(Wrapper.events[0].snapshot).toEqual({
+      title: 'Countdown',
+      artists: ['John Coltrane'],
+      albumTitle: 'Giant Steps',
+      durationMs: null,
+      artworkUrl: 'https://img/giant-steps-cover.jpg',
+      provider: 'test-metadata-provider',
+      providerId: 'track-1',
+    });
   });
 
   it('records nothing when the user has turned listening history off', async () => {

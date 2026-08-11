@@ -1,19 +1,23 @@
 import { FC, useMemo } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { ArtworkSet, Track, TrackRef } from '@nuclearplayer/model';
+import { Album, Track, TrackRef } from '@nuclearplayer/model';
 import { Loader } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../../components/ConnectedTrackTable';
 import { useAlbumDetails } from '../hooks/useAlbumDetails';
 
-const mapTrackRefs = (refs: TrackRef[], albumArtwork?: ArtworkSet): Track[] => {
-  return refs.map((ref) => ({
+const mapTrackRefs = (refs: TrackRef[], album: Album): Track[] =>
+  refs.map((ref) => ({
     ...ref,
-    artwork: ref.artwork ?? albumArtwork,
-    artists: ref.artists.map((a) => ({ name: a.name, roles: [] })),
+    album: {
+      title: album.title,
+      artwork: album.artwork,
+      source: album.source,
+    },
+    artwork: ref.artwork ?? album.artwork,
+    artists: ref.artists.map((artist) => ({ name: artist.name, roles: [] })),
   }));
-};
 
 type AlbumTrackListProps = {
   providerId: string;
@@ -32,8 +36,8 @@ export const AlbumTrackList: FC<AlbumTrackListProps> = ({
   } = useAlbumDetails(providerId, albumId);
 
   const tracks = useMemo(
-    () => (album?.tracks ? mapTrackRefs(album.tracks, album.artwork) : []),
-    [album?.tracks, album?.artwork],
+    () => (album?.tracks ? mapTrackRefs(album.tracks, album) : []),
+    [album],
   );
 
   if (isLoading) {
