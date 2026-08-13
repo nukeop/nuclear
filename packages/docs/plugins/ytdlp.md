@@ -97,6 +97,7 @@ Returned by `search()`. Represents a YouTube video matching the query.
 | `title` | `string` | Video title |
 | `duration` | `number \| null` | Duration in seconds, or `null` if unknown |
 | `thumbnail` | `string \| null` | Thumbnail URL, or `null` if unavailable |
+| `channel` | `string \| null` | Uploading channel name, or `null` if unknown |
 
 ### `YtdlpStreamInfo`
 
@@ -107,6 +108,36 @@ Returned by `getStream()`. Contains the resolved audio stream URL.
 | `stream_url` | `string` | Direct audio stream URL |
 | `duration` | `number \| null` | Duration in seconds |
 | `title` | `string \| null` | Video title |
+| `container` | `string \| null` | Container format, e.g. `'webm'` |
+| `codec` | `string \| null` | Audio codec, e.g. `'opus'` |
+
+### `YtdlpPlaylistInfo`
+
+Returned by `getPlaylist()`.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Playlist ID |
+| `title` | `string` | Playlist title |
+| `entries` | `YtdlpPlaylistEntry[]` | The playlist's videos, in order |
+
+### `YtdlpPlaylistEntry`
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Video ID |
+| `title` | `string` | Video title |
+| `duration` | `number \| null` | Duration in seconds |
+| `thumbnails` | `YtdlpThumbnail[]` | Available thumbnails, may be empty |
+| `channel` | `string \| null` | Uploading channel name |
+
+### `YtdlpThumbnail`
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `url` | `string` | Thumbnail URL |
+| `width` | `number \| null` | Width in pixels |
+| `height` | `number \| null` | Height in pixels |
 
 {% hint style="info" %}
 These types mirror the Rust types in `packages/player/src-tauri/src/ytdlp.rs`.
@@ -125,6 +156,9 @@ api.Ytdlp.search(query: string, maxResults?: number): Promise<YtdlpSearchResult[
 
 // Resolve a video ID to a playable stream URL
 api.Ytdlp.getStream(videoId: string): Promise<YtdlpStreamInfo>
+
+// Read a playlist's entries from its URL
+api.Ytdlp.getPlaylist(url: string): Promise<YtdlpPlaylistInfo>
 ```
 
 ---

@@ -118,7 +118,15 @@ type NumberSettingDefinition = {
   default?: number;
   hidden?: boolean;
   widget?:
-    | { type: 'slider'; min?: number; max?: number; step?: number; unit?: string }
+    | {
+        type: 'slider';
+        min?: number;
+        max?: number;
+        step?: number;
+        unit?: string;
+        startLabel?: string;
+        endLabel?: string;
+      }
     | { type: 'number-input'; min?: number; max?: number; step?: number; unit?: string };
   min?: number;
   max?: number;
@@ -137,7 +145,8 @@ type StringSettingDefinition = {
   widget?:
     | { type: 'text'; placeholder?: string }
     | { type: 'password'; placeholder?: string }
-    | { type: 'textarea'; placeholder?: string; rows?: number };
+    | { type: 'textarea'; placeholder?: string; rows?: number }
+    | { type: 'info' };
   format?: 'text' | 'url' | 'path' | 'token' | 'language';
   pattern?: string; // regex
   minLength?: number;

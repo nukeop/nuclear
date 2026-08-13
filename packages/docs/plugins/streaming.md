@@ -63,7 +63,7 @@ See `Stream` in `@nuclearplayer/model` for the full type definition.
 
 ### Stream expiry
 
-Audio URLs from services like YouTube typically expire after a period (often as short as a few hours). Nuclear automatically re-resolves expired streams when needed. The expiry window is configurable via the `playback.streamExpiryMs` setting.
+Audio URLs from services like YouTube typically expire after a period (often as short as a few hours). Nuclear automatically re-resolves expired streams when needed. The expiry window is configurable via the `core.playback.streamExpiryMs` setting.
 
 ---
 
@@ -81,10 +81,23 @@ Once we have a candidate, Nuclear calls `resolveStreamForCandidate(candidate)` t
 
 ## Reference
 
+### Consumer API
+
 | Method | Description |
 |--------|-------------|
 | `resolveCandidatesForTrack(track)` | Search for stream candidates matching a track. Returns `StreamResolutionResult`. |
 | `resolveStreamForCandidate(candidate)` | Resolve the audio URL for a candidate. Returns updated `StreamCandidate` or `undefined`. The candidate is not mutated, a fresh copy is returned. |
+
+### Provider methods
+
+A plugin that supplies streams registers a `StreamingProvider`. These are the methods Nuclear calls on it:
+
+| Method | Required | Description |
+|--------|----------|-------------|
+| `searchForTrack(artist, title, album?)` | Yes | Find stream candidates from artist/title. Returns `StreamCandidate[]`. Will be deprecated, should not be used. |
+| `searchForTrackV2(track)` | No | Find candidates from a full `Track`, giving access to duration, artwork, and source metadata. Prefer over `searchForTrack`` when implemented`. |
+| `getStreamUrl(candidateId)` | Yes | Resolve a `Stream` from a stream candidate ID. Will be deprecated, should not be used. |
+| `getStreamUrlV2(candidate)` | No | Resolve a `Stream` from the full `StreamCandidate`. Prefer over `getStreamUrl`. |
 
 ### Resolution behavior
 
@@ -105,5 +118,9 @@ These core settings affect stream resolution:
 
 | Setting | Description | Default |
 |---------|-------------|---------|
-| `playback.streamExpiryMs` | How long before a resolved stream is considered expired | 1 hour |
-| `playback.streamResolutionRetries` | How many times to retry before marking as failed | 3 |
+| `core.playback.streamExpiryMs` | How long before a resolved stream is considered expired | 1 hour |
+| `core.playback.streamResolutionRetries` | How many times to retry before marking as failed | 3 |
+
+{% hint style="info" %}
+These are fully-qualified IDs. Pass them to `api.Settings.getGlobal` exactly as written, with the `core.` prefix.
+{% endhint %}

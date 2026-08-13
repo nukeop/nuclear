@@ -139,8 +139,8 @@ Plugins can request recommendations from the active discovery provider via `api.
 ```typescript
 export default {
   async onEnable(api: NuclearPluginAPI) {
-    const queue = await api.Queue.getTracks();
-    const lastTen = queue.slice(-10);
+    const queue = await api.Queue.getQueue();
+    const lastTen = queue.items.slice(-10).map((item) => item.track);
 
     const recommendations = await api.Discovery.getRecommendations(
       lastTen,

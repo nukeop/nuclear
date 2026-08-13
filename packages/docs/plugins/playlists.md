@@ -260,6 +260,7 @@ type PlaylistIndexEntry = {
   artwork?: ArtworkSet;
   itemCount: number;
   totalDurationMs: number;
+  thumbnails: string[];
 };
 ```
 

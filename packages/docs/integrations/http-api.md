@@ -75,4 +75,4 @@ Failed requests return a JSON body with an `error` field:
 { "error": "Playback.toggle failed: no track in queue" }
 ```
 
-The status code is `500` for bridge errors (the command reached Nuclear but failed) and standard HTTP codes for anything else (404 for unknown routes, etc.).
+The status code is `500` for bridge errors (the command reached Nuclear but failed) and standard HTTP codes for anything else.

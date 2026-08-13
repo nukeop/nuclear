@@ -16,7 +16,7 @@ Plugins can either add a new dashboard provider, or consume dashboard data from 
 
 ### Minimal example
 
-You register dashboard providers with `api.Providers.register()` just like any other provider. It needs an `id`, `kind: 'dashboard'`, a `name`, a `metadataProviderId`, and a list of `capabilities` declaring which content it can supply:
+You register dashboard providers with `api.Providers.register()` just like any other provider. It needs an `id`, `kind: 'dashboard'`, a `name`, and a list of `capabilities` declaring which content it can supply. `metadataProviderId` is optional but recommended:
 
 ```typescript
 import type { DashboardProvider, NuclearPlugin, NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
@@ -75,9 +75,9 @@ Note that `fetchTopTracks` returns full `Track[]` objects, not `TrackRef[]`. The
 
 ## The `metadataProviderId` field
 
-Every dashboard provider must specify a `metadataProviderId`. This tells Nuclear which metadata provider can look up the entities your dashboard returns.
+`metadataProviderId` is optional. It tells Nuclear which metadata provider can look up the entities your dashboard returns.
 
-When a user clicks an artist or album on the dashboard, Nuclear navigates to a detail page. It needs to know which metadata provider can fetch that entity's full details, that's what `metadataProviderId` is for. If you set it to a provider that doesn't exist or can't resolve your IDs, artist and album links from the dashboard will fail.
+When a user clicks an artist or album on the dashboard, Nuclear navigates to a detail page. It needs to know which metadata provider can fetch that entity's full details, that's what `metadataProviderId` is for. If you omit it, clicking an artist or album sends the user to the search view instead of the detail page. If you set it to a provider that doesn't exist or can't resolve your IDs, artist and album links from the dashboard will fail.
 
 Typically, your plugin registers both a metadata provider and a dashboard provider, and they share the same underlying API. Point `metadataProviderId` at your metadata provider's `id`.
 
@@ -90,7 +90,7 @@ When multiple dashboard providers are registered, Nuclear will render results fr
 ```typescript
 type AttributedResult<T> = {
   providerId: string;
-  metadataProviderId: string;
+  metadataProviderId?: string;
   providerName: string;
   items: T[];
 };

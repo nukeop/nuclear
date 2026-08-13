@@ -156,6 +156,12 @@ api.Playback.toggle(): Promise<void>
 // Seeking
 api.Playback.seekTo(seconds: number): Promise<void>
 
+// Volume
+api.Playback.getVolume(): Promise<number>
+api.Playback.setVolume(volume: number): Promise<void>
+api.Playback.isMuted(): Promise<boolean>
+api.Playback.setMuted(muted: boolean): Promise<void>
+
 // Shuffle
 api.Playback.isShuffleEnabled(): Promise<boolean>
 api.Playback.setShuffleEnabled(enabled: boolean): Promise<void>
