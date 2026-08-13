@@ -70,7 +70,7 @@ describe('Discovery', () => {
       });
 
       await SoundWrapper.mount();
-      await SoundWrapper.seedAndPlay(lastTrack ? 2 : 0);
+      await SoundWrapper.initAndPlay(lastTrack ? 2 : 0);
       SoundWrapper.fireCanPlay();
 
       await waitFor(() => {
@@ -92,7 +92,7 @@ describe('Discovery', () => {
       providersHost.clear();
 
       await SoundWrapper.mount();
-      await SoundWrapper.seedAndPlay(2);
+      await SoundWrapper.initAndPlay(2);
       SoundWrapper.fireCanPlay();
 
       expect(
@@ -107,7 +107,7 @@ describe('Discovery', () => {
       );
 
       await SoundWrapper.mount();
-      await SoundWrapper.seedAndPlay(2);
+      await SoundWrapper.initAndPlay(2);
       SoundWrapper.fireCanPlay();
 
       await waitFor(() => {

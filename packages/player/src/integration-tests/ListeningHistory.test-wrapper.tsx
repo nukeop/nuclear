@@ -17,10 +17,11 @@ export const createListeningHistoryWrapper = (
     commandMocks.reset();
     commandMocks.command('historyRecordEvent').mockResolvedValue(ok(null));
     useHistoryStore.setState({ currentPlayId: null });
-    QueueWrapper.seedQueue([]);
+    QueueWrapper.initQueue([]);
     providersHost.clear();
     registerBuiltInCoreSettings();
     await setSetting('core.history.enabled', true);
+    await setSetting('core.playback.repeat', 'off');
 
     let uuidSequence = 0;
     vi.spyOn(globalThis.crypto, 'randomUUID').mockImplementation(
@@ -36,7 +37,7 @@ export const createListeningHistoryWrapper = (
 
   async startPlayback(durationSeconds?: number) {
     await QueueWrapper.mount();
-    await SoundWrapper.seedAndPlay();
+    await SoundWrapper.initAndPlay();
     SoundWrapper.fireCanPlay(durationSeconds);
 
     await waitFor(() => {
@@ -46,7 +47,7 @@ export const createListeningHistoryWrapper = (
 
   async mountWithoutWaitingForEvents() {
     await QueueWrapper.mount();
-    await SoundWrapper.seedAndPlay();
+    SoundWrapper.initQueue();
   },
 
   historyToggle: {

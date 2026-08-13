@@ -10,6 +10,7 @@ import {
 import { AudioSource } from '@nuclearplayer/hifi';
 
 import App from '../App';
+import { playbackManager } from '../services/playback';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 import { createQueueItem } from '../test/fixtures/queue';
@@ -21,7 +22,7 @@ export const SoundWrapper = {
     return render(<App />);
   },
 
-  async seedAndPlay(startIndex = 0) {
+  initQueue(startIndex = 0) {
     useQueueStore.setState({
       items: [
         createQueueItem('Track 1'),
@@ -32,12 +33,21 @@ export const SoundWrapper = {
       isReady: true,
       isLoading: false,
     });
+  },
+
+  async initAndPlay(startIndex = 0) {
+    this.initQueue(startIndex);
     await this.playCurrentItem();
   },
 
   async playCurrentItem() {
-    useSoundStore.getState().setSrc(defaultSrc);
-    useSoundStore.getState().play();
+    const currentItem = useQueueStore.getState().getCurrentItem();
+    if (!currentItem) {
+      throw new Error('playCurrentItem called with an empty queue');
+    }
+    act(() => {
+      playbackManager.startTrack(currentItem, defaultSrc, { autoPlay: true });
+    });
     await waitFor(() => {
       expect(this.getAudios().length).toBeGreaterThan(0);
     });

@@ -20,7 +20,7 @@ import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
 const user = userEvent.setup();
 
 export const QueueWrapper = {
-  seedQueue(items: QueueItem[]) {
+  initQueue(items: QueueItem[]) {
     useQueueStore.setState({
       items,
       currentIndex: 0,

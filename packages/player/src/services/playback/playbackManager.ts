@@ -18,7 +18,7 @@ export type StartTrackOptions = {
 export class PlaybackManager {
   private session: PlaybackSession | null = null;
 
-  play(): void {
+  play = (): void => {
     const { status } = useSoundStore.getState();
     if (status === 'playing') {
       return;
@@ -35,25 +35,25 @@ export class PlaybackManager {
 
     useSoundStore.getState().play();
     this.beginSession(item);
-  }
+  };
 
-  pause(): void {
+  pause = (): void => {
     useSoundStore.getState().pause();
-  }
+  };
 
-  toggle(): void {
+  toggle = (): void => {
     if (useSoundStore.getState().status === 'playing') {
       this.pause();
       return;
     }
     this.play();
-  }
+  };
 
-  startTrack(
+  startTrack = (
     item: QueueItem,
     source: AudioSource,
     options: StartTrackOptions,
-  ): void {
+  ): void => {
     useSoundStore.getState().setSrc(source);
 
     if (!options.autoPlay) {
@@ -70,9 +70,9 @@ export class PlaybackManager {
     }
 
     this.beginSession(item);
-  }
+  };
 
-  finishTrack(): void {
+  finishTrack = (): void => {
     const item = useQueueStore.getState().getCurrentItem();
     if (!item) {
       return;
@@ -88,7 +88,7 @@ export class PlaybackManager {
     }
 
     useQueueStore.getState().goToNext();
-  }
+  };
 
   private beginSession(item: QueueItem): void {
     this.session = { itemId: item.id, started: true };

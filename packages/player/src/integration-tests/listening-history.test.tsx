@@ -287,7 +287,7 @@ describe('Listening history', () => {
     await Wrapper.mountWithoutWaitingForEvents();
     await Wrapper.historyToggle.toggle();
 
-    SoundWrapper.fireCanPlay();
+    await SoundWrapper.playCurrentItem();
     SoundWrapper.fireEnded();
     await act(() => Promise.resolve());
 
