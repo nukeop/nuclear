@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import App from '../App';
 import { registerBuiltInCoreSettings } from '../services/coreSettings';
+import { playbackManager } from '../services/playback';
 import { useQueueStore } from '../stores/queueStore';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
 import {
@@ -33,6 +34,19 @@ describe('Global keyboard shortcuts', () => {
   });
 
   it('toggles playback when pressing Space', async () => {
+    const currentItem = {
+      id: '1',
+      track: createMockTrack('Track 1'),
+      status: 'idle',
+      addedAtIso: '',
+    } as const;
+    useQueueStore.setState({ items: [currentItem], currentIndex: 0 });
+    playbackManager.startTrack(
+      currentItem,
+      { url: '/track.mp3', protocol: 'http' },
+      { autoPlay: false },
+    );
+
     await user.keyboard(' ');
 
     expect(useSoundStore.getState().status).toBe('playing');

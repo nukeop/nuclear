@@ -127,6 +127,14 @@ describe('PlaylistDetail view', () => {
   });
 
   it('adds all tracks to queue and plays', async () => {
+    providersHost.register(
+      new StreamingProviderBuilder()
+        .withSearchForTrack(async (artist: string, title: string) => [
+          createMockCandidate(`candidate-${title}`, `${artist} - ${title}`),
+        ])
+        .build(),
+    );
+
     await PlaylistDetailWrapper.mount('test-playlist');
 
     await PlaylistDetailWrapper.playButton.click();
@@ -135,7 +143,9 @@ describe('PlaylistDetail view', () => {
     expect(queueItems).toHaveLength(2);
     expect(queueItems[0]?.title).toBe('Giant Steps');
     expect(queueItems[1]?.title).toBe('So What');
-    expect(PlayerBarWrapper.isPlaying).toBe(true);
+    await waitFor(() => {
+      expect(PlayerBarWrapper.isPlaying).toBe(true);
+    });
   });
 
   it('asks the streaming provider for fresh streams even when the playlist contains previously resolved candidates', async () => {
