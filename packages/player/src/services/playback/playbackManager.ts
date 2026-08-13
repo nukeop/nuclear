@@ -2,6 +2,7 @@ import type { AudioSource } from '@nuclearplayer/hifi';
 import type { QueueItem } from '@nuclearplayer/model';
 
 import { useQueueStore } from '../../stores/queueStore';
+import { getSetting } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
 import { eventBus } from '../eventBus';
 
@@ -71,7 +72,23 @@ export class PlaybackManager {
     this.beginSession(item);
   }
 
-  finishTrack(): void {}
+  finishTrack(): void {
+    const item = useQueueStore.getState().getCurrentItem();
+    if (!item) {
+      return;
+    }
+
+    eventBus.emit('trackFinished', item.track);
+
+    const repeatMode = (getSetting('core.playback.repeat') as string) ?? 'off';
+    if (repeatMode === 'one') {
+      useSoundStore.getState().seekTo(0);
+      this.beginSession(item);
+      return;
+    }
+
+    useQueueStore.getState().goToNext();
+  }
 
   private beginSession(item: QueueItem): void {
     this.session = { itemId: item.id, started: true };
