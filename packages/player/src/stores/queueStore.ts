@@ -39,7 +39,6 @@ type QueueStore = Queue & {
   selectCandidate: (itemId: string, candidateId: string) => void;
   goToNext: () => void;
   goToPrevious: () => void;
-  advanceOnTrackEnd: () => void;
   goToIndex: (index: number) => void;
   goToId: (id: string) => void;
   getCurrentItem: () => QueueItem | undefined;
@@ -355,24 +354,9 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
     }
   }),
 
-  advanceOnTrackEnd: () => {
-    const repeatMode = (getSetting('core.playback.repeat') as string) ?? 'off';
-
-    if (repeatMode === 'one') {
-      useSoundStore.getState().seekTo(0);
-      const currentTrack = get().getCurrentItem()?.track;
-      if (currentTrack) {
-        eventBus.emit('trackStarted', currentTrack);
-      }
-      return;
-    }
-
-    get().goToNext();
-  },
-
   goToIndex: withPersistence((index: number) => {
-    const { items } = get();
-    if (index >= 0 && index < items.length) {
+    const { items, currentIndex } = get();
+    if (index >= 0 && index < items.length && index !== currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
       set({ currentIndex: index });
@@ -380,9 +364,9 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
   }),
 
   goToId: withPersistence((id: string) => {
-    const { items } = get();
+    const { items, currentIndex } = get();
     const index = items.findIndex((item) => item.id === id);
-    if (index !== -1) {
+    if (index !== -1 && index !== currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
       set({ currentIndex: index });

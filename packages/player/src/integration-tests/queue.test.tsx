@@ -127,7 +127,7 @@ describe('Queue panel actions', () => {
   });
 
   it('shows clear button when queue has items', async () => {
-    QueueWrapper.seedQueue([
+    QueueWrapper.initQueue([
       createQueueItem('First Song'),
       createQueueItem('Second Song'),
     ]);
@@ -138,7 +138,7 @@ describe('Queue panel actions', () => {
   });
 
   it('shows more button when queue has items', async () => {
-    QueueWrapper.seedQueue([createQueueItem('First Song')]);
+    QueueWrapper.initQueue([createQueueItem('First Song')]);
 
     await QueueWrapper.mount();
 
@@ -146,7 +146,7 @@ describe('Queue panel actions', () => {
   });
 
   it('clears queue when clear button is clicked', async () => {
-    QueueWrapper.seedQueue([
+    QueueWrapper.initQueue([
       createQueueItem('First Song'),
       createQueueItem('Second Song'),
       createQueueItem('Third Song'),
@@ -160,7 +160,7 @@ describe('Queue panel actions', () => {
   });
 
   it('opens more menu and shows save as playlist option', async () => {
-    QueueWrapper.seedQueue([createQueueItem('First Song')]);
+    QueueWrapper.initQueue([createQueueItem('First Song')]);
 
     await QueueWrapper.mount();
     await QueueWrapper.moreButton.click();
@@ -169,7 +169,7 @@ describe('Queue panel actions', () => {
   });
 
   it('opens save dialog when save as playlist is clicked', async () => {
-    QueueWrapper.seedQueue([createQueueItem('First Song')]);
+    QueueWrapper.initQueue([createQueueItem('First Song')]);
 
     await QueueWrapper.mount();
     await QueueWrapper.moreButton.click();
@@ -179,7 +179,7 @@ describe('Queue panel actions', () => {
   });
 
   it('saves queue as playlist with given name', async () => {
-    QueueWrapper.seedQueue([
+    QueueWrapper.initQueue([
       createQueueItem('First Song'),
       createQueueItem('Second Song'),
       createQueueItem('Third Song'),

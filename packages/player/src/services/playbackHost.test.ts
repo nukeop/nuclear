@@ -1,5 +1,8 @@
+import { useQueueStore } from '../stores/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
+import { createQueueItem } from '../test/fixtures/queue';
+import { playbackManager } from './playback';
 import { playbackHost } from './playbackHost';
 
 describe('playbackHost', () => {
@@ -14,6 +17,14 @@ describe('playbackHost', () => {
       crossOrigin: '',
     });
     useSettingsStore.setState({ values: {} });
+
+    const currentItem = createQueueItem('Track 1');
+    useQueueStore.setState({ items: [currentItem], currentIndex: 0 });
+    playbackManager.startTrack(
+      currentItem,
+      { url: '/track.mp3', protocol: 'http' },
+      { autoPlay: false },
+    );
   });
 
   it('gets initial playback state', async () => {

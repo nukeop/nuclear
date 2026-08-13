@@ -241,6 +241,24 @@ describe('Listening history', () => {
     expect(Wrapper.events).toHaveLength(1);
   });
 
+  it('does not start a play for the next track before its source is loaded', async () => {
+    await Wrapper.startPlayback();
+
+    vi.setSystemTime(Date.parse('2026-07-11T12:03:00Z'));
+    SoundWrapper.fireEnded();
+    await waitFor(() => {
+      expect(Wrapper.events).toHaveLength(2);
+    });
+
+    SoundWrapper.fireCanPlay();
+    await act(() => Promise.resolve());
+
+    expect(Wrapper.events.map((event) => event.kind)).toEqual([
+      'started',
+      'finished',
+    ]);
+  });
+
   it('records the album of a track played from the album view', async () => {
     providersHost.register(
       MetadataProviderBuilder.albumDetailsProvider().build(),
@@ -269,7 +287,7 @@ describe('Listening history', () => {
     await Wrapper.mountWithoutWaitingForEvents();
     await Wrapper.historyToggle.toggle();
 
-    SoundWrapper.fireCanPlay();
+    await SoundWrapper.playCurrentItem();
     SoundWrapper.fireEnded();
     await act(() => Promise.resolve());
 

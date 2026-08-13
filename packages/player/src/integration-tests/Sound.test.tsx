@@ -94,7 +94,7 @@ describe('Repeat mode behavior when a track ends', () => {
 
   it('advances to next track when repeat is off', async () => {
     await SoundWrapper.mount();
-    await SoundWrapper.seedAndPlay();
+    await SoundWrapper.initAndPlay();
     expect(SoundWrapper.nowPlayingTitle).toBe('Track 1');
 
     SoundWrapper.fireEnded();
@@ -110,7 +110,7 @@ describe('Repeat mode behavior when a track ends', () => {
     useSettingsStore.setState({
       values: { 'core.playback.repeat': 'one' },
     });
-    await SoundWrapper.seedAndPlay();
+    await SoundWrapper.initAndPlay();
 
     SoundWrapper.fireEnded();
 
@@ -125,7 +125,7 @@ describe('Repeat mode behavior when a track ends', () => {
     useSettingsStore.setState({
       values: { 'core.playback.repeat': 'all' },
     });
-    await SoundWrapper.seedAndPlay(2);
+    await SoundWrapper.initAndPlay(2);
     expect(SoundWrapper.nowPlayingTitle).toBe('Track 3');
 
     SoundWrapper.fireEnded();
@@ -138,7 +138,7 @@ describe('Repeat mode behavior when a track ends', () => {
 
   it('stays on last track when repeat is off and last track ends', async () => {
     await SoundWrapper.mount();
-    await SoundWrapper.seedAndPlay(2);
+    await SoundWrapper.initAndPlay(2);
     expect(SoundWrapper.nowPlayingTitle).toBe('Track 3');
 
     SoundWrapper.fireEnded();

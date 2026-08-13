@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { playbackManager } from '../services/playback';
 import { useQueueStore } from '../stores/queueStore';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
 import { getSetting, setSetting } from '../stores/settingsStore';
@@ -8,7 +9,7 @@ import { useShortcut } from './useShortcut';
 
 export const GlobalShortcuts: FC = () => {
   useShortcut('playback.toggle', () => {
-    useSoundStore.getState().toggle();
+    playbackManager.toggle();
   });
 
   useShortcut('playback.next', () => {

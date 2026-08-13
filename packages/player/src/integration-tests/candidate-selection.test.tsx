@@ -66,7 +66,7 @@ describe('Queue candidate selection', () => {
 
   describe('popover contents', () => {
     it('opens a popover with the track header and all candidates on right-click', async () => {
-      QueueWrapper.seedQueue([
+      QueueWrapper.initQueue([
         itemWithCandidates('Karma Police', [
           createMockCandidate('yt-a', 'Karma Police (Official Video)'),
           createMockCandidate('yt-b', 'Karma Police (Remaster)'),
@@ -87,7 +87,7 @@ describe('Queue candidate selection', () => {
     });
 
     it('shows the first non-failed candidate as selected', async () => {
-      QueueWrapper.seedQueue([
+      QueueWrapper.initQueue([
         itemWithCandidates('Song One', [createMockCandidate('yt-a', 'A')]),
         itemWithCandidates('Song Two', [
           createMockCandidate('yt-bad', 'Broken Version', { failed: true }),
@@ -104,7 +104,7 @@ describe('Queue candidate selection', () => {
     });
 
     it('shows an empty state for items without candidates', async () => {
-      QueueWrapper.seedQueue([
+      QueueWrapper.initQueue([
         itemWithCandidates('Song One', [createMockCandidate('yt-a', 'A')]),
         createQueueItem('Song Two'),
       ]);
@@ -120,7 +120,7 @@ describe('Queue candidate selection', () => {
 
   describe('selecting a candidate', () => {
     it('moves the clicked candidate to the front of the list and marks it selected', async () => {
-      QueueWrapper.seedQueue([
+      QueueWrapper.initQueue([
         itemWithCandidates('Song One', [createMockCandidate('yt-a', 'A')]),
         itemWithCandidates('Song Two', [
           createMockCandidate('yt-1', 'First Version'),
@@ -144,7 +144,7 @@ describe('Queue candidate selection', () => {
     });
 
     it('restarts playback from the new source when switching on the current item', async () => {
-      QueueWrapper.seedQueue([
+      QueueWrapper.initQueue([
         itemWithCandidates('Karma Police', [
           createMockCandidate('yt-a', 'Version A'),
           createMockCandidate('yt-b', 'Version B'),
@@ -171,7 +171,7 @@ describe('Queue candidate selection', () => {
     });
 
     it('does not interrupt playback when switching on another item', async () => {
-      QueueWrapper.seedQueue([
+      QueueWrapper.initQueue([
         itemWithCandidates('Karma Police', [
           createMockCandidate('yt-a', 'Version A'),
         ]),
@@ -196,7 +196,7 @@ describe('Queue candidate selection', () => {
     });
 
     it('retries a failed candidate when it is explicitly selected', async () => {
-      QueueWrapper.seedQueue([
+      QueueWrapper.initQueue([
         itemWithCandidates('Karma Police', [
           createMockCandidate('yt-bad', 'Broken Version', { failed: true }),
           createMockCandidate('yt-a', 'Working Version'),

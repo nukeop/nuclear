@@ -6,7 +6,7 @@ import type { Track } from '@nuclearplayer/model';
 import { Button, cn, Popover } from '@nuclearplayer/ui';
 
 import { useQueueActions } from '../../../hooks/useQueueActions';
-import { useSoundStore } from '../../../stores/soundStore';
+import { playbackManager } from '../../../services/playback';
 
 type PlaylistActionsProps = {
   tracks: Track[];
@@ -25,7 +25,7 @@ export const PlaylistActions: FC<PlaylistActionsProps> = ({
   const handlePlayAll = () => {
     clearQueue();
     addToQueue(tracks);
-    useSoundStore.getState().play();
+    playbackManager.play();
   };
 
   const handleAddToQueue = () => {

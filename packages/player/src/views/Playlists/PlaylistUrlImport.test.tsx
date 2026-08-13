@@ -3,10 +3,16 @@ import userEvent from '@testing-library/user-event';
 
 import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper';
 import { QueueWrapper } from '../../integration-tests/Queue.test-wrapper';
+import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
 import { useQueueStore } from '../../stores/queueStore';
+import { useStartupStore } from '../../stores/startupStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
+import {
+  createMockCandidate,
+  StreamingProviderBuilder,
+} from '../../test/builders/StreamingProviderBuilder';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { PlaylistsWrapper } from './Playlists.test-wrapper';
 
@@ -22,6 +28,10 @@ vi.mock('sonner', () => ({
 vi.mock('@tauri-apps/plugin-fs', async () => ({
   readTextFile: vi.fn(),
   writeTextFile: vi.fn(),
+}));
+
+vi.mock('@tauri-apps/api/core', () => ({
+  invoke: vi.fn().mockResolvedValue(9100),
 }));
 
 const IMPORT_URL = 'https://music.example.com/playlist/summer-hits-2025';
@@ -56,6 +66,7 @@ describe('import from URL', () => {
       loaded: true,
     });
     useQueueStore.setState({ items: [], currentIndex: 0 });
+    useStartupStore.setState({ isStartingUp: false });
     PlaylistsWrapper.clearProviders();
     toastError.mockClear();
     toastSuccess.mockClear();
@@ -101,6 +112,13 @@ describe('import from URL', () => {
 
   it('plays all tracks when clicking the play button', async () => {
     PlaylistsWrapper.registerPlaylistProvider(exampleProvider());
+    providersHost.register(
+      new StreamingProviderBuilder()
+        .withSearchForTrack(async (artist: string, title: string) => [
+          createMockCandidate(`candidate-${title}`, `${artist} - ${title}`),
+        ])
+        .build(),
+    );
 
     await PlaylistsWrapper.mount();
     await importPlaylistFromUrl();
@@ -111,7 +129,9 @@ describe('import from URL', () => {
     expect(queueItems).toHaveLength(2);
     expect(queueItems[0]?.title).toBe('Midnight Drive');
     expect(queueItems[1]?.title).toBe('Coastal Breeze');
-    expect(PlayerBarWrapper.isPlaying).toBe(true);
+    await vi.waitFor(() => {
+      expect(PlayerBarWrapper.isPlaying).toBe(true);
+    });
   });
 
   it('saves the playlist locally as an editable copy', async () => {
