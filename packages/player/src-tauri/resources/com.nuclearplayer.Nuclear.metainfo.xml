@@ -84,6 +84,15 @@
   </requires>
 
   <releases>
+    <release version="1.46.3" date="2026-08-13">
+      <description>
+        <ul>
+          <li>Fixed playback stopping after double clicking a track in the queue.</li>
+          <li>Fixed duplicate entries appearing in the listening history.</li>
+          <li>Fixed the previous track briefly playing when starting a new track before its stream is ready.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.46.2" date="2026-08-10">
       <description>
         <ul>
