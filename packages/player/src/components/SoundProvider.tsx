@@ -1,5 +1,5 @@
 import type { FC, PropsWithChildren } from 'react';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { LoggerProvider, Sound, SoundError } from '@nuclearplayer/hifi';
 import type { TFunction } from '@nuclearplayer/i18n';
@@ -39,15 +39,6 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   }, [crossfadeMs]);
 
-  const startedItemId = useRef<string | null>(null);
-
-  useEffect(() => {
-    const isResumingMidTrack = src?.startPositionSeconds !== undefined;
-    if (!isResumingMidTrack) {
-      startedItemId.current = null;
-    }
-  }, [src]);
-
   const handleTimeUpdate = useCallback(
     ({ position, duration }: { position: number; duration: number }) => {
       useSoundStore.getState().updatePlayback(position, duration);
@@ -70,10 +61,6 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
       useQueueStore
         .getState()
         .updateItemState(currentItem.id, { status: 'success' });
-      if (startedItemId.current !== currentItem.id) {
-        startedItemId.current = currentItem.id;
-        eventBus.emit('trackStarted', currentItem.track);
-      }
     }
   }, []);
 
