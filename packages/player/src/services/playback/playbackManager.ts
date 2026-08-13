@@ -52,7 +52,24 @@ export class PlaybackManager {
     item: QueueItem,
     source: AudioSource,
     options: StartTrackOptions,
-  ): void {}
+  ): void {
+    useSoundStore.getState().setSrc(source);
+
+    if (!options.autoPlay) {
+      this.session = { itemId: item.id, started: false };
+      return;
+    }
+
+    useSoundStore.getState().play();
+
+    const isResumingMidTrack = source.startPositionSeconds !== undefined;
+    if (isResumingMidTrack) {
+      this.session = { itemId: item.id, started: true };
+      return;
+    }
+
+    this.beginSession(item);
+  }
 
   finishTrack(): void {}
 
