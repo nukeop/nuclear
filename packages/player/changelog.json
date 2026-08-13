@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-08-13T00:00",
+    "description": "Fixed duplicate entries appearing in the listening history.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-08-13T00:00",
+    "description": "Fixed the previous track briefly playing when starting a new track before its stream is ready.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-08-10T00:00",
     "description": "Nuclear starts maximized by default",
     "type": "improvement",

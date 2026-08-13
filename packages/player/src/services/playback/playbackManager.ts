@@ -6,17 +6,12 @@ import { getSetting } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
 import { eventBus } from '../eventBus';
 
-type PlaybackSession = {
-  itemId: string;
-  started: boolean;
-};
-
 export type StartTrackOptions = {
   autoPlay: boolean;
 };
 
 export class PlaybackManager {
-  private session: PlaybackSession | null = null;
+  private mountedItemId: string | null = null;
   private playRequested = false;
 
   play = (): void => {
@@ -33,13 +28,13 @@ export class PlaybackManager {
     if (!item) {
       return;
     }
-    if (this.session?.itemId !== item.id) {
+    if (this.mountedItemId !== item.id) {
       this.playRequested = true;
       return;
     }
 
     useSoundStore.getState().play();
-    this.beginSession(item);
+    eventBus.emit('trackStarted', item.track);
   };
 
   pause = (): void => {
@@ -61,12 +56,12 @@ export class PlaybackManager {
     options: StartTrackOptions,
   ): void => {
     useSoundStore.getState().setSrc(source);
+    this.mountedItemId = item.id;
 
     const shouldPlay = options.autoPlay || this.playRequested;
     this.playRequested = false;
 
     if (!shouldPlay) {
-      this.session = { itemId: item.id, started: false };
       return;
     }
 
@@ -74,11 +69,10 @@ export class PlaybackManager {
 
     const isResumingMidTrack = source.startPositionSeconds !== undefined;
     if (isResumingMidTrack) {
-      this.session = { itemId: item.id, started: true };
       return;
     }
 
-    this.beginSession(item);
+    eventBus.emit('trackStarted', item.track);
   };
 
   finishTrack = (): void => {
@@ -92,17 +86,12 @@ export class PlaybackManager {
     const repeatMode = (getSetting('core.playback.repeat') as string) ?? 'off';
     if (repeatMode === 'one') {
       useSoundStore.getState().seekTo(0);
-      this.beginSession(item);
+      eventBus.emit('trackStarted', item.track);
       return;
     }
 
     useQueueStore.getState().goToNext();
   };
-
-  private beginSession(item: QueueItem): void {
-    this.session = { itemId: item.id, started: true };
-    eventBus.emit('trackStarted', item.track);
-  }
 }
 
 export const playbackManager = new PlaybackManager();
