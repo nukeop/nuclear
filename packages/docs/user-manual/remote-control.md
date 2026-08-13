@@ -36,14 +36,28 @@ Scan the QR with your phone's camera, or just type the Remote URL into a browser
 
 ## What the remote does
 
-The remote is a single screen with three sections:
-
-- **Now playing** at the top, with cover art, track title, and artist
-- **Controls** in the middle: previous, play/pause, next, plus a seek bar, shuffle, and repeat
-- **Queue** at the bottom, with the currently playing track highlighted
+The remote UI is a single screen with four sections: a search bar in the header, now playing, controls, and the queue.
 
 <figure><img src="../.gitbook/assets/jam-remote.png" alt="Nuclear Jam remote control UI on a phone showing now playing, controls, and queue" width="300"><figcaption><p>Nuclear Jam on a phone</p></figcaption></figure>
 
-Anything you do on the remote happens in Nuclear immediately, and conversely, anything that happens in Nuclear (a track ends, the queue changes, you skip from the desktop) shows up on the remote. Multiple devices can connect at the same time and they all stay in sync.
+- **Now playing** at the top, with cover art, track title, and artist.
+- **Controls** in the middle: previous, play/pause, next, plus a seek bar, shuffle, repeat, and discovery toggle.
+- **Queue** at the bottom, with the currently playing track highlighted. Each item has an X button to remove it from the queue.
 
 A badge in the header shows the connection status: **Connecting**, **Connected**, **Reconnecting**, or **Disconnected**.
+
+Anything you do on the remote happens in Nuclear immediately, and vice versa: skipping a track on the desktop updates every connected remote. Multiple devices can connect at the same time and they all stay in sync.
+
+### Searching for music
+
+Use the search bar at the top to enter your query. A drawer will slide down with matching tracks.
+
+<figure><img src="../.gitbook/assets/jam-search.png" alt="Search drawer showing results with an add button on each track" width="300"><figcaption><p>Searching for tracks from the remote</p></figcaption></figure>
+
+Click (or tap) a track to add it to the queue. The drawer will close after adding. If the queue was empty, playback starts automatically.
+
+### Removing tracks from the queue
+
+Each queue item shows an X button on the right side. Tap it to remove that track from the queue.
+
+<figure><img src="../.gitbook/assets/jam-queue-remove.png" alt="Queue showing the X button on each item" width="300"><figcaption><p>Removing a track from the queue</p></figcaption></figure>
