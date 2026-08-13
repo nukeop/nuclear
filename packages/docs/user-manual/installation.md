@@ -63,6 +63,14 @@ flatpak install flathub com.nuclearplayer.Nuclear
 
 Note that the Flatpak sandbox may prevent some features from working. If you run into issues, try the `.deb`, `.rpm`, or AppImage instead.
 
+### Snap
+
+Nuclear is published to the [Snap Store](https://snapcraft.io) on the stable channel. If your distribution supports Snap:
+
+```bash
+sudo snap install nuclear
+```
+
 ### Arch Linux
 
 Nuclear is available in the AUR:
