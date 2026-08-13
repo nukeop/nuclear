@@ -1,6 +1,10 @@
 import type { AudioSource } from '@nuclearplayer/hifi';
 import type { QueueItem } from '@nuclearplayer/model';
 
+import { useQueueStore } from '../../stores/queueStore';
+import { useSoundStore } from '../../stores/soundStore';
+import { eventBus } from '../eventBus';
+
 type PlaybackSession = {
   itemId: string;
   started: boolean;
@@ -13,11 +17,36 @@ export type StartTrackOptions = {
 export class PlaybackManager {
   private session: PlaybackSession | null = null;
 
-  play(): void {}
+  play(): void {
+    const { status } = useSoundStore.getState();
+    if (status === 'playing') {
+      return;
+    }
+    if (status === 'paused') {
+      useSoundStore.getState().play();
+      return;
+    }
 
-  pause(): void {}
+    const item = useQueueStore.getState().getCurrentItem();
+    if (!item || this.session?.itemId !== item.id) {
+      return;
+    }
 
-  toggle(): void {}
+    useSoundStore.getState().play();
+    this.beginSession(item);
+  }
+
+  pause(): void {
+    useSoundStore.getState().pause();
+  }
+
+  toggle(): void {
+    if (useSoundStore.getState().status === 'playing') {
+      this.pause();
+      return;
+    }
+    this.play();
+  }
 
   startTrack(
     item: QueueItem,
@@ -26,6 +55,11 @@ export class PlaybackManager {
   ): void {}
 
   finishTrack(): void {}
+
+  private beginSession(item: QueueItem): void {
+    this.session = { itemId: item.id, started: true };
+    eventBus.emit('trackStarted', item.track);
+  }
 }
 
 export const playbackManager = new PlaybackManager();
