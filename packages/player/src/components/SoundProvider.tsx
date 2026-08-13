@@ -8,6 +8,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import { useCoreSetting } from '../hooks/useCoreSetting';
 import { eventBus } from '../services/eventBus';
 import { Logger } from '../services/logger';
+import { playbackManager } from '../services/playback';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 import { errorMessage } from '../utils/errorMessage';
@@ -47,12 +48,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 
   const handleEnd = useCallback(() => {
-    const currentTrack = useQueueStore.getState().getCurrentItem()?.track;
-    if (currentTrack) {
-      eventBus.emit('trackFinished', currentTrack);
-    }
-
-    useQueueStore.getState().advanceOnTrackEnd();
+    playbackManager.finishTrack();
   }, []);
 
   const handleCanPlay = useCallback(() => {

@@ -7,6 +7,7 @@ import { PlayerBar } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../../hooks/useCoreSetting';
 import { useProviders } from '../../hooks/useProviders';
+import { playbackManager } from '../../services/playback';
 import { useQueueStore } from '../../stores/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
 
@@ -26,12 +27,7 @@ export const ConnectedControls: FC = () => {
       goToPrevious: state.goToPrevious,
     })),
   );
-  const { status, toggle } = useSoundStore(
-    useShallow((state) => ({
-      status: state.status,
-      toggle: state.toggle,
-    })),
-  );
+  const status = useSoundStore((state) => state.status);
 
   const handleToggleShuffle = () => {
     setShuffleEnabled(!shuffleEnabled);
@@ -53,7 +49,7 @@ export const ConnectedControls: FC = () => {
       isPlaying={status === 'playing'}
       isShuffleActive={Boolean(shuffleEnabled)}
       repeatMode={repeatMode ?? 'off'}
-      onPlayPause={toggle}
+      onPlayPause={playbackManager.toggle}
       onNext={goToNext}
       onPrevious={goToPrevious}
       onShuffleToggle={handleToggleShuffle}

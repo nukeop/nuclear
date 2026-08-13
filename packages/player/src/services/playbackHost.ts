@@ -7,6 +7,7 @@ import type {
 
 import { getSetting, setSetting } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
+import { playbackManager } from './playback';
 
 const toPlaybackState = (): PlaybackState => {
   const { status, seek, duration } = useSoundStore.getState();
@@ -16,13 +17,13 @@ const toPlaybackState = (): PlaybackState => {
 export const createPlaybackHost = (): PlaybackHost => ({
   getState: async () => toPlaybackState(),
 
-  play: async () => useSoundStore.getState().play(),
+  play: async () => playbackManager.play(),
 
-  pause: async () => useSoundStore.getState().pause(),
+  pause: async () => playbackManager.pause(),
 
   stop: async () => useSoundStore.getState().stop(),
 
-  toggle: async () => useSoundStore.getState().toggle(),
+  toggle: async () => playbackManager.toggle(),
 
   seekTo: async (seconds) => useSoundStore.getState().seekTo(seconds),
 

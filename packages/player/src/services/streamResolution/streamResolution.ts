@@ -5,6 +5,7 @@ import { stripResolutionState } from '@nuclearplayer/model';
 
 import { useQueueStore } from '../../stores/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
+import { playbackManager } from '../playback';
 import { hasActiveStreamingProvider, streamingHost } from '../streamingHost';
 import { AudioSourceFactory } from './audioSource';
 import { candidatesForTrack } from './candidateSource';
@@ -116,12 +117,11 @@ export class StreamResolution {
       audioSource.startPositionSeconds = options.startPositionSeconds;
     }
 
-    useSoundStore.getState().setSrc(audioSource);
     useQueueStore.getState().updateItemState(item.id, { status: 'success' });
     this.activeItemId = null;
-    if (options.autoPlay) {
-      useSoundStore.getState().play();
-    }
+    playbackManager.startTrack(item, audioSource, {
+      autoPlay: options.autoPlay,
+    });
   }
 
   private failItem(itemId: string, errorKey: string): void {
