@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-08-13T00:00",
+    "description": "Fixed playback stopping after double clicking a track in the queue.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Queue",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-08-13T00:00",
     "description": "Fixed duplicate entries appearing in the listening history.",
     "type": "fix",
     "contributors": ["nukeop"],

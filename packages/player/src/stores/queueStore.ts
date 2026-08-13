@@ -355,8 +355,8 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
   }),
 
   goToIndex: withPersistence((index: number) => {
-    const { items } = get();
-    if (index >= 0 && index < items.length) {
+    const { items, currentIndex } = get();
+    if (index >= 0 && index < items.length && index !== currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
       set({ currentIndex: index });
@@ -364,9 +364,9 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
   }),
 
   goToId: withPersistence((id: string) => {
-    const { items } = get();
+    const { items, currentIndex } = get();
     const index = items.findIndex((item) => item.id === id);
-    if (index !== -1) {
+    if (index !== -1 && index !== currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
       set({ currentIndex: index });

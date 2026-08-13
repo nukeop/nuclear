@@ -5,6 +5,7 @@ import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { createMockTrack } from '../test/utils/mockTrack';
 import { initializeQueueStore, useQueueStore } from './queueStore';
 import { useSettingsStore } from './settingsStore';
+import { useSoundStore } from './soundStore';
 
 describe('useQueueStore', () => {
   beforeEach(() => {
@@ -318,6 +319,19 @@ describe('useQueueStore', () => {
       const items = useQueueStore.getState().items;
       useQueueStore.getState().goToId(items[2].id);
       expect(useQueueStore.getState().currentIndex).toBe(2);
+    });
+
+    it('goToIndex to the current index does not stop playback', () => {
+      useSoundStore.setState({ status: 'playing' });
+      useQueueStore.getState().goToIndex(0);
+      expect(useSoundStore.getState().status).toBe('playing');
+    });
+
+    it('goToId with the current item id does not stop playback', () => {
+      useSoundStore.setState({ status: 'playing' });
+      const items = useQueueStore.getState().items;
+      useQueueStore.getState().goToId(items[0].id);
+      expect(useSoundStore.getState().status).toBe('playing');
     });
 
     it('getCurrentItem returns the current queue item', () => {
