@@ -26,11 +26,11 @@ export class YtdlpAPI {
     return this.host.search(query, maxResults);
   }
 
-  async getStream(videoId: string): Promise<YtdlpStreamInfo> {
+  async getStream(url: string): Promise<YtdlpStreamInfo> {
     if (!this.host) {
       throw new Error('YtdlpAPI: No host configured');
     }
-    return this.host.getStream(videoId);
+    return this.host.getStream(url);
   }
 
   async getPlaylist(url: string): Promise<YtdlpPlaylistInfo> {
