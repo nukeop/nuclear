@@ -1,4 +1,4 @@
-import { Music } from 'lucide-react';
+import { CassetteTape } from 'lucide-react';
 import { FC } from 'react';
 
 import type { StreamCandidate } from '@nuclearplayer/model';
@@ -19,7 +19,11 @@ export const StreamThumbnail: FC<StreamThumbnailProps> = ({ candidate }) => (
       />
     ) : (
       <div className="bg-background flex h-36 w-full items-center justify-center">
-        <Music size={48} className="text-foreground/20" />
+        <CassetteTape
+          size={96}
+          absoluteStrokeWidth
+          className="text-foreground opacity-20"
+        />
       </div>
     )}
     <Badge variant="pill" color="secondary" className="absolute top-2 left-2">

@@ -13,6 +13,10 @@ export type YtdlpStreamInfo = {
   title: string | null;
   container: string | null;
   codec: string | null;
+  album: string | null;
+  artists: string[];
+  album_artists: string[];
+  upload_date: string | null;
 };
 
 export type YtdlpThumbnail = {
@@ -37,6 +41,6 @@ export type YtdlpPlaylistInfo = {
 
 export type YtdlpHost = {
   search: (query: string, maxResults?: number) => Promise<YtdlpSearchResult[]>;
-  getStream: (videoId: string) => Promise<YtdlpStreamInfo>;
+  getStream: (url: string) => Promise<YtdlpStreamInfo>;
   getPlaylist: (url: string) => Promise<YtdlpPlaylistInfo>;
 };

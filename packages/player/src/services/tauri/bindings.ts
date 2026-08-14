@@ -11,7 +11,7 @@ export const commands = {
 	downloadFile: (url: string, destPath: string) => typedError<null, string>(__TAURI_INVOKE("download_file", { url, destPath })),
 	httpFetch: (request: HttpRequest) => typedError<HttpResponse, string>(__TAURI_INVOKE("http_fetch", { request })),
 	ytdlpSearch: (query: string, maxResults: number | null) => typedError<YtdlpSearchResult[], string>(__TAURI_INVOKE("ytdlp_search", { query, maxResults })),
-	ytdlpGetStream: (videoId: string) => typedError<YtdlpStreamInfo, string>(__TAURI_INVOKE("ytdlp_get_stream", { videoId })),
+	ytdlpGetStream: (url: string | null, videoId: string | null) => typedError<YtdlpStreamInfo, string>(__TAURI_INVOKE("ytdlp_get_stream", { url, videoId })),
 	ytdlpGetPlaylist: (url: string) => typedError<YtdlpPlaylistInfo, string>(__TAURI_INVOKE("ytdlp_get_playlist", { url })),
 	getStartupLogs: () => __TAURI_INVOKE<StartupLogEntry[]>("get_startup_logs"),
 	mcpStart: () => typedError<number, string>(__TAURI_INVOKE("mcp_start")),
@@ -202,6 +202,10 @@ export type YtdlpStreamInfo = {
 	title: string | null,
 	container: string | null,
 	codec: string | null,
+	album: string | null,
+	artists: string[],
+	album_artists: string[],
+	upload_date: string | null,
 };
 
 export type YtdlpThumbnail = {

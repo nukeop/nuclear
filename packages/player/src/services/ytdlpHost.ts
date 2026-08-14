@@ -18,8 +18,8 @@ export const ytdlpHost: YtdlpHost = {
     });
   },
 
-  getStream: async (videoId: string): Promise<YtdlpStreamInfo> => {
-    return invoke<YtdlpStreamInfo>('ytdlp_get_stream', { videoId });
+  getStream: async (url: string): Promise<YtdlpStreamInfo> => {
+    return invoke<YtdlpStreamInfo>('ytdlp_get_stream', { url });
   },
 
   getPlaylist: async (url: string): Promise<YtdlpPlaylistInfo> => {

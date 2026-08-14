@@ -34,6 +34,10 @@ pub struct YtdlpStreamInfo {
     pub title: Option<String>,
     pub container: Option<String>,
     pub codec: Option<String>,
+    pub album: Option<String>,
+    pub artists: Vec<String>,
+    pub album_artists: Vec<String>,
+    pub upload_date: Option<String>,
 }
 
 #[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
@@ -81,6 +85,13 @@ struct YtdlpJson {
     playlist_title: Option<String>,
     playlist_id: Option<String>,
     channel: Option<String>,
+    album: Option<String>,
+    artist: Option<String>,
+    artists: Option<Vec<String>>,
+    album_artist: Option<String>,
+    album_artists: Option<Vec<String>>,
+    creators: Option<Vec<String>>,
+    upload_date: Option<String>,
 }
 
 fn run_ytdlp(args: &[&str]) -> Result<String, String> {
@@ -115,6 +126,21 @@ fn parse_ndjson_entries(stdout: &str) -> Vec<YtdlpJson> {
         .filter(|line| !line.trim().is_empty())
         .filter_map(|line| serde_json::from_str::<YtdlpJson>(line).ok())
         .collect()
+}
+
+fn normalize_artists(info: &YtdlpJson) -> Vec<String> {
+    info.artists
+        .clone()
+        .or_else(|| info.creators.clone())
+        .or_else(|| info.artist.as_ref().map(|a| vec![a.clone()]))
+        .unwrap_or_default()
+}
+
+fn normalize_album_artists(info: &YtdlpJson) -> Vec<String> {
+    info.album_artists
+        .clone()
+        .or_else(|| info.album_artist.as_ref().map(|a| vec![a.clone()]))
+        .unwrap_or_default()
 }
 
 #[command]
@@ -159,23 +185,35 @@ pub async fn ytdlp_search(
 
 #[command]
 #[specta::specta]
-pub async fn ytdlp_get_stream(video_id: String) -> Result<YtdlpStreamInfo, String> {
-    debug!("[yt-dlp] Getting stream for: {}", video_id);
+// TODO: Remove video_id parameter after plugins have auto-updated to use url
+pub async fn ytdlp_get_stream(
+    url: Option<String>,
+    video_id: Option<String>,
+) -> Result<YtdlpStreamInfo, String> {
+    let resolved_url = match (url, video_id) {
+        (Some(url), _) => url,
+        (None, Some(id)) => format!("https://www.youtube.com/watch?v={}", id),
+        (None, None) => return Err("Either url or video_id must be provided".to_string()),
+    };
 
-    let url = format!("https://www.youtube.com/watch?v={}", video_id);
+    debug!("[yt-dlp] Getting stream for: {}", resolved_url);
+
     let stdout = run_ytdlp(&[
         "-f",
         "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
         "--dump-json",
         "--no-playlist",
         "--no-warnings",
-        &url,
+        &resolved_url,
     ])?;
 
     let info: YtdlpJson = serde_json::from_str(&stdout).map_err(|error| {
         error!("[yt-dlp] Failed to parse output: {}", error);
         format!("Failed to parse yt-dlp output: {}", error)
     })?;
+
+    let artists = normalize_artists(&info);
+    let album_artists = normalize_album_artists(&info);
 
     let stream_url = info.url.ok_or_else(|| {
         error!("[yt-dlp] No URL in output");
@@ -194,6 +232,10 @@ pub async fn ytdlp_get_stream(video_id: String) -> Result<YtdlpStreamInfo, Strin
         title: info.title,
         container: info.ext,
         codec: info.acodec,
+        album: info.album,
+        artists,
+        album_artists,
+        upload_date: info.upload_date,
     })
 }
 
@@ -248,6 +290,29 @@ pub async fn ytdlp_get_playlist(url: String) -> Result<YtdlpPlaylistInfo, String
 mod tests {
     use super::*;
 
+    fn empty_json() -> YtdlpJson {
+        YtdlpJson {
+            id: None,
+            title: None,
+            duration: None,
+            url: None,
+            thumbnail: None,
+            thumbnails: None,
+            ext: None,
+            acodec: None,
+            playlist_title: None,
+            playlist_id: None,
+            channel: None,
+            album: None,
+            artist: None,
+            artists: None,
+            album_artist: None,
+            album_artists: None,
+            creators: None,
+            upload_date: None,
+        }
+    }
+
     mod parse_ndjson {
         use super::*;
 
@@ -287,6 +352,77 @@ not json
         fn returns_empty_vec_for_empty_input() {
             assert!(parse_ndjson_entries("").is_empty());
             assert!(parse_ndjson_entries("\n\n").is_empty());
+        }
+    }
+
+    mod normalize_artists_tests {
+        use super::*;
+
+        #[test]
+        fn prefers_artists_over_creators() {
+            let json = YtdlpJson {
+                artists: Some(vec!["Rick Astley".into()]),
+                creators: Some(vec!["Someone Else".into()]),
+                ..empty_json()
+            };
+            assert_eq!(normalize_artists(&json), vec!["Rick Astley"]);
+        }
+
+        #[test]
+        fn falls_back_to_creators() {
+            let json = YtdlpJson {
+                creators: Some(vec!["Performer 1".into(), "Performer 2".into()]),
+                ..empty_json()
+            };
+            assert_eq!(
+                normalize_artists(&json),
+                vec!["Performer 1", "Performer 2"]
+            );
+        }
+
+        #[test]
+        fn falls_back_to_artist_string() {
+            let json = YtdlpJson {
+                artist: Some("Solo Artist".into()),
+                ..empty_json()
+            };
+            assert_eq!(normalize_artists(&json), vec!["Solo Artist"]);
+        }
+
+        #[test]
+        fn returns_empty_when_all_null() {
+            assert!(normalize_artists(&empty_json()).is_empty());
+        }
+    }
+
+    mod normalize_album_artists_tests {
+        use super::*;
+
+        #[test]
+        fn prefers_album_artists_over_album_artist() {
+            let json = YtdlpJson {
+                album_artists: Some(vec!["Group A".into(), "Group B".into()]),
+                album_artist: Some("Ignored".into()),
+                ..empty_json()
+            };
+            assert_eq!(
+                normalize_album_artists(&json),
+                vec!["Group A", "Group B"]
+            );
+        }
+
+        #[test]
+        fn wraps_album_artist_string_in_vec() {
+            let json = YtdlpJson {
+                album_artist: Some("The Band".into()),
+                ..empty_json()
+            };
+            assert_eq!(normalize_album_artists(&json), vec!["The Band"]);
+        }
+
+        #[test]
+        fn returns_empty_when_all_null() {
+            assert!(normalize_album_artists(&empty_json()).is_empty());
         }
     }
 }
