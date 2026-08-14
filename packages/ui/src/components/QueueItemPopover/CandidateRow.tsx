@@ -1,4 +1,4 @@
-import { Music } from 'lucide-react';
+import { CassetteTape } from 'lucide-react';
 import { FC } from 'react';
 
 import type { StreamCandidate } from '@nuclearplayer/model';
@@ -43,7 +43,11 @@ export const CandidateRow: FC<CandidateRowProps> = ({
       />
     ) : (
       <div className="bg-background flex h-12 w-16 shrink-0 items-center justify-center">
-        <Music size={16} className="text-foreground/30" />
+        <CassetteTape
+          size={48}
+          absoluteStrokeWidth
+          className="text-foreground opacity-20"
+        />
       </div>
     )}
     <div className="min-w-0 flex-1 py-2 pr-2">
