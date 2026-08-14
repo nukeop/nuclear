@@ -185,8 +185,18 @@ pub async fn ytdlp_search(
 
 #[command]
 #[specta::specta]
-pub async fn ytdlp_get_stream(url: String) -> Result<YtdlpStreamInfo, String> {
-    debug!("[yt-dlp] Getting stream for: {}", url);
+// TODO: Remove video_id parameter after plugins have auto-updated to use url
+pub async fn ytdlp_get_stream(
+    url: Option<String>,
+    video_id: Option<String>,
+) -> Result<YtdlpStreamInfo, String> {
+    let resolved_url = match (url, video_id) {
+        (Some(url), _) => url,
+        (None, Some(id)) => format!("https://www.youtube.com/watch?v={}", id),
+        (None, None) => return Err("Either url or video_id must be provided".to_string()),
+    };
+
+    debug!("[yt-dlp] Getting stream for: {}", resolved_url);
 
     let stdout = run_ytdlp(&[
         "-f",
@@ -194,7 +204,7 @@ pub async fn ytdlp_get_stream(url: String) -> Result<YtdlpStreamInfo, String> {
         "--dump-json",
         "--no-playlist",
         "--no-warnings",
-        &url,
+        &resolved_url,
     ])?;
 
     let info: YtdlpJson = serde_json::from_str(&stdout).map_err(|error| {
