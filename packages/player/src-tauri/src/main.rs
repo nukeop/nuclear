@@ -1,7 +1,13 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+#[cfg(target_os = "linux")]
+mod appimage_wayland;
+
 fn main() {
+    #[cfg(target_os = "linux")]
+    appimage_wayland::preload_host_wayland_client();
+
     let _ = fix_path_env::fix_all_vars();
 
     #[cfg(target_os = "macos")]

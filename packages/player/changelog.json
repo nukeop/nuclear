@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-08-16T00:00",
+    "description": "Fixed various Appimage issues caused by Wayland.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Linux",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-08-13T00:00",
     "description": "Fixed playback stopping after double clicking a track in the queue.",
     "type": "fix",
