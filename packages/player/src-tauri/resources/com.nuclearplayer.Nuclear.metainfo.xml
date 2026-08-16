@@ -84,6 +84,13 @@
   </requires>
 
   <releases>
+    <release version="1.47.1" date="2026-08-16">
+      <description>
+        <ul>
+          <li>Fixed various Appimage issues caused by Wayland.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.47.0" date="2026-08-15">
       <description>
         <p>Release 1.47.0.</p>
