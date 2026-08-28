@@ -296,6 +296,41 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
 </DocumentFragment>
 `;
 
+exports[`PlayerBar > (Snapshot) clickable title and artist 1`] = `
+<DocumentFragment>
+  <div
+    class="flex min-w-0 items-center gap-3"
+  >
+    <div
+      class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
+    >
+      <img
+        alt=""
+        class="size-full object-cover select-none"
+        data-testid="player-now-playing-thumbnail"
+        src="https://picsum.photos/48"
+      />
+    </div>
+    <div
+      class="min-w-0 flex-1"
+    >
+      <div
+        class="text-foreground truncate text-sm font-bold cursor-pointer hover:underline"
+        data-testid="now-playing-title"
+      >
+        Reckoner
+      </div>
+      <div
+        class="text-foreground-secondary truncate text-xs cursor-pointer hover:underline"
+        data-testid="player-now-playing-artist"
+      >
+        Radiohead
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`PlayerBar > (Snapshot) default render 1`] = `
 <DocumentFragment>
   <footer

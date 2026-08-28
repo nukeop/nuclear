@@ -60,6 +60,64 @@ describe('ConnectedNowPlaying', () => {
     expect(Wrapper.nowPlaying.placeholder).toBeInTheDocument();
     expect(Wrapper.nowPlaying.thumbnail).not.toBeInTheDocument();
   });
+
+  it('navigates to the artist page when the artist name is clicked', async () => {
+    const item = new Wrapper.QueueItemBuilder()
+      .withArtist('Radiohead')
+      .withArtistSource('test-provider', 'artist-123')
+      .build();
+    Wrapper.seedQueueItem(item);
+    const { router } = await Wrapper.mount();
+
+    await Wrapper.nowPlaying.clickArtist();
+
+    expect(router.state.location.pathname).toBe(
+      '/artist/test-provider/artist-123',
+    );
+  });
+
+  it('navigates to the album page when the title is clicked', async () => {
+    const item = new Wrapper.QueueItemBuilder()
+      .withAlbum('OK Computer', 'test-provider', 'album-456')
+      .build();
+    Wrapper.seedQueueItem(item);
+    const { router } = await Wrapper.mount();
+
+    await Wrapper.nowPlaying.clickTitle();
+
+    expect(router.state.location.pathname).toBe(
+      '/album/test-provider/album-456',
+    );
+  });
+
+  it('does not make the artist clickable when the artist has no source', async () => {
+    const item = new Wrapper.QueueItemBuilder()
+      .withArtist('Radiohead')
+      .withoutArtistSource()
+      .build();
+    Wrapper.seedQueueItem(item);
+    const { router } = await Wrapper.mount();
+
+    expect(Wrapper.nowPlaying.artist('Radiohead')).toBeInTheDocument();
+
+    await Wrapper.nowPlaying.clickArtist();
+
+    expect(router.state.location.pathname).toBe('/dashboard');
+  });
+
+  it('does not make the title clickable when the track has no album', async () => {
+    const item = new Wrapper.QueueItemBuilder()
+      .withTitle('Paranoid Android')
+      .build();
+    Wrapper.seedQueueItem(item);
+    const { router } = await Wrapper.mount();
+
+    expect(Wrapper.nowPlaying.title('Paranoid Android')).toBeInTheDocument();
+
+    await Wrapper.nowPlaying.clickTitle();
+
+    expect(router.state.location.pathname).toBe('/dashboard');
+  });
 });
 
 describe('ConnectedControls', () => {

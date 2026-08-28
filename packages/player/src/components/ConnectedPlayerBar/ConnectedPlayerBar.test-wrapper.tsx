@@ -1,5 +1,6 @@
+import { QueryClient } from '@tanstack/react-query';
+import { createMemoryHistory, createRouter } from '@tanstack/react-router';
 import {
-  act,
   fireEvent,
   render,
   RenderResult,
@@ -10,9 +11,10 @@ import userEvent from '@testing-library/user-event';
 
 import type { QueueItem, Track } from '@nuclearplayer/model';
 
+import App from '../../App';
+import { routeTree } from '../../routeTree.gen';
 import { useQueueStore } from '../../stores/queueStore';
 import { useSettingsStore } from '../../stores/settingsStore';
-import { ConnectedPlayerBar } from './ConnectedPlayerBar';
 
 const user = userEvent.setup();
 
@@ -62,6 +64,26 @@ class QueueItemBuilder {
     return this;
   }
 
+  withArtistSource(provider: string, id: string) {
+    const [artist] = this.item.track.artists;
+    this.item.track.artists = [{ ...artist, source: { provider, id } }];
+    return this;
+  }
+
+  withoutArtistSource() {
+    const [artist] = this.item.track.artists;
+    this.item.track.artists = [{ name: artist.name, roles: artist.roles }];
+    return this;
+  }
+
+  withAlbum(title: string, provider: string, id: string) {
+    this.item.track.album = {
+      title,
+      source: { provider, id },
+    };
+    return this;
+  }
+
   withArtwork(url: string) {
     this.item.track.artwork = {
       items: [{ url }],
@@ -79,13 +101,25 @@ class QueueItemBuilder {
   }
 }
 
+type MountResult = RenderResult & {
+  router: ReturnType<typeof createRouter<typeof routeTree>>;
+};
+
 export const ConnectedPlayerBarWrapper = {
   QueueItemBuilder,
 
-  async mount(): Promise<RenderResult> {
-    const result = render(<ConnectedPlayerBar />);
-    await act(() => Promise.resolve());
-    return result;
+  // Explicit return type is required here to avoid the "The inferred type of 'ConnectedPlayerBarWrapper' cannot be named without a reference to" error
+  async mount(): Promise<MountResult> {
+    const history = createMemoryHistory({ initialEntries: ['/dashboard'] });
+    const router = createRouter({ routeTree, history });
+    const queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+    const component = render(
+      <App routerProp={router} queryClientProp={queryClient} />,
+    );
+    await screen.findByTestId('dashboard-view');
+    return { ...component, router };
   },
 
   seedQueueItem(item: QueueItem) {
@@ -121,16 +155,24 @@ export const ConnectedPlayerBarWrapper = {
 
   nowPlaying: {
     title(text: string) {
-      return screen.getByText(text);
+      return within(screen.getByTestId('now-playing-title')).getByText(text);
     },
     artist(text: string) {
-      return screen.queryByText(text);
+      return within(screen.getByTestId('player-now-playing-artist')).getByText(
+        text,
+      );
     },
     get thumbnail() {
       return screen.queryByTestId('player-now-playing-thumbnail');
     },
     get placeholder() {
       return screen.queryByTestId('player-now-playing-placeholder');
+    },
+    async clickTitle() {
+      await user.click(screen.getByTestId('now-playing-title'));
+    },
+    async clickArtist() {
+      await user.click(screen.getByTestId('player-now-playing-artist'));
     },
   },
 

@@ -14,6 +14,8 @@ describe('PlayerBar', () => {
             title="Song Title"
             artist="Artist Name"
             coverUrl="https://picsum.photos/48"
+            onTitleClick={() => {}}
+            onArtistClick={() => {}}
           />
         }
         center={<PlayerBar.Controls />}

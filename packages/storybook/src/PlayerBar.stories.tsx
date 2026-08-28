@@ -41,6 +41,8 @@ export const Default: Story = {
             title="Song Title"
             artist="Artist Name"
             coverUrl={cover}
+            onTitleClick={noop}
+            onArtistClick={noop}
           />
         }
         center={
