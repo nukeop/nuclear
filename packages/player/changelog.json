@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-08-29T00:00",
+    "description": "Clickable artist/track title in the player bar",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-08-16T00:00",
     "description": "Fixed various Appimage issues caused by Wayland.",
     "type": "fix",
