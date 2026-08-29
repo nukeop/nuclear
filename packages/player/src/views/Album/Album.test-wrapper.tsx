@@ -7,6 +7,10 @@ import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
 import { SearchWrapper } from '../Search/Search.test-wrapper';
 
+type MountResult = RenderResult & {
+  router: ReturnType<typeof createRouter<typeof routeTree>>;
+};
+
 const user = userEvent.setup();
 
 export const AlbumWrapper = {
@@ -32,7 +36,7 @@ export const AlbumWrapper = {
   },
   async mountDirectly(
     url: string = '/album/test-metadata-provider/album-1',
-  ): Promise<RenderResult> {
+  ): Promise<MountResult> {
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },
     });
@@ -43,7 +47,7 @@ export const AlbumWrapper = {
     );
     await screen.findByTestId('album-view');
 
-    return component;
+    return { ...component, router };
   },
   getHeader: (name: string) => screen.getByRole('heading', { name }),
   getTracksTable: () => screen.queryByRole('table'),

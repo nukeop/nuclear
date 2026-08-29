@@ -16,7 +16,7 @@ const mapTrackRefs = (refs: TrackRef[], album: Album): Track[] =>
       source: album.source,
     },
     artwork: ref.artwork ?? album.artwork,
-    artists: ref.artists.map((artist) => ({ name: artist.name, roles: [] })),
+    artists: ref.artists.map((artist) => ({ ...artist, roles: [] })),
   }));
 
 type AlbumTrackListProps = {

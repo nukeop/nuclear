@@ -80,6 +80,20 @@ describe('Queue', () => {
         },
       ]
     `);
+
+    expect(useQueueStore.getState().items[0].track.artists)
+      .toMatchInlineSnapshot(`
+      [
+        {
+          "name": "John Coltrane",
+          "roles": [],
+          "source": {
+            "id": "artist-1",
+            "provider": "test-metadata-provider",
+          },
+        },
+      ]
+    `);
   });
 
   it('should select track on double click', async () => {

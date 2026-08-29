@@ -7,7 +7,7 @@ import { metadataHost } from '../../../services/metadataHost';
 const mapTrackRefs = (refs: TrackRef[]): Track[] => {
   return refs.map((ref) => ({
     ...ref,
-    artists: ref.artists.map((a) => ({ name: a.name, roles: [] })),
+    artists: ref.artists.map((artist) => ({ ...artist, roles: [] })),
   }));
 };
 
