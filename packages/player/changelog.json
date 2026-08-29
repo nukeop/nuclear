@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-08-29T00:00",
+    "description": "Fixed pressing Enter in the search box searching for a hovered recent search instead of the typed text.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "date": "2026-08-29T00:00",
     "description": "Clickable artist/track title in the player bar",
     "type": "feature",
     "contributors": ["nukeop"],

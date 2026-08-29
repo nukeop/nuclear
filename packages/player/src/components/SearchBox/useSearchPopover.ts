@@ -63,6 +63,7 @@ export const useSearchPopover = ({ isOpen, onSelect }: SearchPopoverParams) => {
     recentSearches,
     highlightedIndex,
     highlightIndex: setHighlightedIndex,
+    clearHighlight: () => setHighlightedIndex(NO_HIGHLIGHT),
     select: onSelect,
     clearHistory,
     handleKeyDown,

@@ -25,6 +25,11 @@ export const useSearchBox = () => {
     onSelect: goToSearch,
   });
 
+  const updateQuery = (value: string) => {
+    popover.clearHighlight();
+    setQuery(value);
+  };
+
   const submit = () => {
     const trimmed = query.trim();
     if (trimmed.length > 0) {
@@ -34,7 +39,7 @@ export const useSearchBox = () => {
   };
 
   const clear = () => {
-    setQuery('');
+    updateQuery('');
     inputRef.current?.focus();
     closePopover();
   };
@@ -51,7 +56,7 @@ export const useSearchBox = () => {
 
     if (event.key === 'Escape') {
       if (query.length > 0) {
-        setQuery('');
+        updateQuery('');
         return;
       }
 
@@ -61,7 +66,7 @@ export const useSearchBox = () => {
 
   return {
     query,
-    setQuery,
+    setQuery: updateQuery,
     inputRef: inputRef as RefObject<HTMLInputElement>,
     isPopoverOpen,
     openPopover,

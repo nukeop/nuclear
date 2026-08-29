@@ -201,6 +201,23 @@ describe('Search box', () => {
     expect(SearchWrapper.searchBox.highlightedRecentSearches).toEqual(['one']);
   });
 
+  it('searches the typed text when pressing Enter after hovering over a recent search', async () => {
+    await SearchWrapper.mount();
+
+    await SearchWrapper.search('one');
+    await SearchWrapper.search('two');
+
+    await SearchWrapper.searchBox.focus();
+    await SearchWrapper.searchBox.hoverRecentSearch('one');
+    await SearchWrapper.searchBox.replaceText('radiohead');
+
+    expect(SearchWrapper.searchBox.highlightedRecentSearches).toEqual([]);
+
+    await user.keyboard('{Enter}');
+
+    expect(await SearchWrapper.findSearchQuery('radiohead')).toBeVisible();
+  });
+
   it('reflects the query from the URL', async () => {
     await SearchWrapper.mount();
 
