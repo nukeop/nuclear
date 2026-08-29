@@ -90,7 +90,7 @@ describe('ConnectedNowPlaying', () => {
     );
   });
 
-  it('does not make the artist clickable when the artist has no source', async () => {
+  it('navigates to search when clicking an artist without a source', async () => {
     const item = new Wrapper.QueueItemBuilder()
       .withArtist('Radiohead')
       .withoutArtistSource()
@@ -98,11 +98,10 @@ describe('ConnectedNowPlaying', () => {
     Wrapper.seedQueueItem(item);
     const { router } = await Wrapper.mount();
 
-    expect(Wrapper.nowPlaying.artist('Radiohead')).toBeInTheDocument();
-
     await Wrapper.nowPlaying.clickArtist();
 
-    expect(router.state.location.pathname).toBe('/dashboard');
+    expect(router.state.location.pathname).toBe('/search');
+    expect(router.state.location.search).toEqual({ q: 'Radiohead' });
   });
 
   it('does not make the title clickable when the track has no album', async () => {

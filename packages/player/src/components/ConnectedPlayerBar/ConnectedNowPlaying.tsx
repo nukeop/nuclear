@@ -41,15 +41,20 @@ export const ConnectedNowPlaying: FC = () => {
       artist={artist}
       coverUrl={artwork?.url}
       onArtistClick={
-        artistSource
-          ? () =>
-              navigate({
-                to: '/artist/$providerId/$artistId',
-                params: {
-                  providerId: artistSource.provider,
-                  artistId: artistSource.id,
-                },
-              })
+        artist
+          ? () => {
+              if (artistSource) {
+                navigate({
+                  to: '/artist/$providerId/$artistId',
+                  params: {
+                    providerId: artistSource.provider,
+                    artistId: artistSource.id,
+                  },
+                });
+              } else {
+                navigate({ to: '/search', search: { q: artist } });
+              }
+            }
           : undefined
       }
       onTitleClick={
