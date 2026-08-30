@@ -36,7 +36,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   return (
     <div
       className={cn(
-        'border-border bg-primary shadow-shadow relative flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row',
+        'border-border bg-card shadow-shadow relative flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row',
         className,
       )}
     >
@@ -110,7 +110,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
             </h1>
             {playlist.description && (
               <p
-                className="text-text-secondary text-lg"
+                className="text-card-foreground/60 text-lg"
                 data-testid="playlist-detail-description"
               >
                 {playlist.description}

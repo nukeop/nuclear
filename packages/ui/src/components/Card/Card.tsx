@@ -29,7 +29,7 @@ export const Card: FC<CardProps> = ({
     data-testid="card"
     size="flexible"
     className={cn(
-      'flex w-42 flex-col items-stretch gap-2 p-2 text-left',
+      'bg-card flex w-42 flex-col items-stretch gap-2 p-2 text-left',
       className,
     )}
     onClick={onClick}
@@ -37,7 +37,7 @@ export const Card: FC<CardProps> = ({
     <Box
       variant="primary"
       shadow="none"
-      className="relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+      className="bg-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
     >
       {image ?? (
         <ImageReveal
@@ -62,13 +62,13 @@ export const Card: FC<CardProps> = ({
         {title && (
           <div
             data-testid="card-title"
-            className="text-foreground truncate text-sm font-bold"
+            className="text-card-foreground truncate text-sm font-bold"
           >
             {title}
           </div>
         )}
         {subtitle && (
-          <div className="text-foreground truncate text-xs opacity-60">
+          <div className="text-card-foreground truncate text-xs opacity-60">
             {subtitle}
           </div>
         )}
