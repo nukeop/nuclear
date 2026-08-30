@@ -3,7 +3,7 @@
 @import './utilities.css';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-@custom-variant short (@media (height <= 740px));
+@custom-variant short (@media (height <=740px));
 @custom-variant tall (@media (height > 740px));
 
 @source '../player';
@@ -139,6 +139,7 @@
   --shadow-blur: 0px;
 
   /* Typography */
+  --font-size-base: 16px;
   --font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   --default-font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   --font-family-heading: 'Bricolage Grotesque', var(--default-font-family);
@@ -156,6 +157,10 @@
 }
 
 @layer base {
+  html {
+    font-size: var(--font-size-base);
+  }
+
   body {
     @apply text-foreground bg-background cursor-default font-normal select-none;
   }
