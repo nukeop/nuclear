@@ -25,9 +25,7 @@ export const InfoField: FC<Props> = ({ label, description, value }) => (
       />
     </div>
     {description && (
-      <p className="text-foreground-secondary text-sm select-none">
-        {description}
-      </p>
+      <p className="text-foreground/60 text-sm select-none">{description}</p>
     )}
   </div>
 );

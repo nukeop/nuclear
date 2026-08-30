@@ -5,7 +5,7 @@ const Welcome = () => (
     <h1 className="text-foreground mb-6 text-4xl font-bold">
       Welcome to Nuclear Storybook! 🎵
     </h1>
-    <p className="text-foreground-secondary mb-6 text-lg">
+    <p className="text-foreground/60 mb-6 text-lg">
       This is the component development environment for the Nuclear music
       player. Here you can develop and test UI components in isolation.
     </p>

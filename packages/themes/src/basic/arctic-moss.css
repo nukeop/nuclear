@@ -1,15 +1,19 @@
 :root[data-theme-id='nuclear:arctic-moss'] {
   --background: oklch(0.97 0.008 200);
+  --card: oklch(0.7 0.12 175);
+  --popover: oklch(0.7 0.12 175);
   --primary: oklch(0.7 0.12 175);
-  --foreground-secondary: oklch(0.42 0.1 175);
+  --muted-foreground: oklch(0.42 0.1 175);
 }
 
 :root[data-theme-id='nuclear:arctic-moss'][data-theme='dark'] {
   --background: oklch(0.2 0.02 175);
-  --background-secondary: oklch(0.25 0.025 175);
-  --background-input: oklch(0.13 0.012 175);
+  --muted: oklch(0.25 0.025 175);
+  --input: oklch(0.13 0.012 175);
+  --card: oklch(0.58 0.09 175);
+  --popover: oklch(0.58 0.09 175);
   --primary: oklch(0.58 0.09 175);
   --foreground: oklch(0.9 0.006 175);
-  --foreground-secondary: oklch(0.78 0.1 175);
+  --muted-foreground: oklch(0.78 0.1 175);
   --border: oklch(0.48 0.035 175);
 }

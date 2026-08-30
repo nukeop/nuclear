@@ -59,7 +59,7 @@ export const PlayerControls: Story = {
             <div className="text-foreground text-sm font-medium">
               Song Title
             </div>
-            <div className="text-foreground-secondary text-xs">Artist Name</div>
+            <div className="text-muted-foreground text-xs">Artist Name</div>
           </div>
           <div className="bg-muted mt-2 h-1 rounded-full">
             <div className="bg-primary h-1 w-1/3 rounded-full"></div>
@@ -85,11 +85,11 @@ export const StatusBar: Story = {
       <div className="flex w-full items-center justify-between text-sm">
         <div className="flex items-center gap-4">
           <span className="text-foreground">♪ 1,247 tracks</span>
-          <span className="text-foreground-secondary">•</span>
-          <span className="text-foreground-secondary">3.2 GB</span>
+          <span className="text-muted-foreground">•</span>
+          <span className="text-muted-foreground">3.2 GB</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-foreground-secondary">Scanning library...</span>
+          <span className="text-muted-foreground">Scanning library...</span>
           <div className="bg-muted h-1 w-32 rounded-full">
             <div className="bg-accent-green h-1 w-2/3 rounded-full"></div>
           </div>
