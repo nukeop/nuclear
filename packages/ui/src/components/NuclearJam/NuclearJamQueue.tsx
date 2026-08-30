@@ -60,7 +60,7 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
   return (
     <div className={cn('flex min-h-0 flex-1 flex-col', className)}>
       <div
-        className="bg-foreground dark:bg-foreground-secondary border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
+        className="bg-foreground border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
         data-testid="jam-queue-header"
       >
         <span className="font-heading dark:text-background font-extrabold tracking-tight text-white uppercase">

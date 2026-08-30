@@ -24,7 +24,7 @@ export const StatChip: FC<StatChipProps> = ({
   >
     {icon && <span className="shrink-0">{icon}</span>}
     <span className="font-heading text-lg font-extrabold">{value}</span>
-    <span className="text-foreground-secondary text-xs font-bold tracking-wide uppercase">
+    <span className="text-foreground/60 text-xs font-bold tracking-wide uppercase">
       {label}
     </span>
   </div>

@@ -26,6 +26,6 @@ export const NuclearJamConnecting: FC<NuclearJamConnectingProps> = ({
   >
     <Loader size="xl" />
     <h1 className="text-foreground text-3xl">{labels.title}</h1>
-    <h2 className="text-foreground-secondary text-xl">{labels.subtitle}</h2>
+    <h2 className="text-foreground/60 text-xl">{labels.subtitle}</h2>
   </div>
 );

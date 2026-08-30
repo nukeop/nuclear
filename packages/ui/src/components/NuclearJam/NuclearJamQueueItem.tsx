@@ -50,7 +50,7 @@ export const NuclearJamQueueItem = forwardRef<
           {item.track.title}
         </div>
         {primaryArtist && (
-          <div className="text-foreground-secondary truncate text-xs">
+          <div className="text-foreground/60 truncate text-xs">
             {primaryArtist}
           </div>
         )}

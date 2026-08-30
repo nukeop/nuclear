@@ -8,7 +8,7 @@ export const HourSlots: FC = () => (
       <path
         key={hour}
         data-testid="listening-clock-slot"
-        className="fill-muted stroke-foreground-secondary/50 stroke-1"
+        className="fill-muted stroke-muted-foreground/50 stroke-1"
         d={wedgePath({ hour, radius: OUTER_RADIUS }) ?? undefined}
       />
     ))}

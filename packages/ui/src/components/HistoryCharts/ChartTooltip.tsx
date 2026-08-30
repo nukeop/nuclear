@@ -19,7 +19,7 @@ export const ChartTooltip = forwardRef<HTMLDivElement, ChartTooltipProps>(
       <span className="font-heading text-sm leading-none font-extrabold">
         {value}
       </span>
-      <span className="text-foreground-secondary font-mono text-[10px]">
+      <span className="text-muted-foreground font-mono text-[10px]">
         {label}
       </span>
     </div>

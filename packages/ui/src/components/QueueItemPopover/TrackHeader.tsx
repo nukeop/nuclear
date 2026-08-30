@@ -23,7 +23,7 @@ export const TrackHeader: FC<TrackHeaderProps> = ({ track }) => {
       {primaryArtist && (
         <div
           data-testid="track-header-artist"
-          className="text-foreground-secondary truncate text-xs"
+          className="text-popover-foreground/60 truncate text-xs"
         >
           {primaryArtist}
         </div>

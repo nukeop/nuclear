@@ -56,7 +56,7 @@ export const NuclearJamNowPlaying: FC<NuclearJamNowPlayingProps> = ({
       </div>
       {artist && (
         <div
-          className="text-foreground-secondary short:mt-0 short:text-xs mt-1 truncate text-sm"
+          className="text-foreground/60 short:mt-0 short:text-xs mt-1 truncate text-sm"
           data-testid="now-playing-artist"
         >
           {artist}

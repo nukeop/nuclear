@@ -38,7 +38,7 @@ export const CalendarHeatmap: FC<CalendarHeatmapProps> = ({
     <div
       data-testid="calendar-heatmap"
       className={cn('w-fit text-xs', className)}
-      style={{ color: 'var(--foreground-secondary)' }}
+      style={{ color: 'var(--muted-foreground)' }}
     >
       <ActivityCalendar
         data={toActivities(days)}

@@ -10,7 +10,7 @@ import {
 import { cn } from '../../utils';
 
 const inputVariants = cva(
-  'border-border text-foreground placeholder:text-foreground-secondary focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+  'border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
   {
     variants: {
       variant: {
@@ -151,7 +151,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       {description && (
         <p
           id={descriptionId}
-          className="text-foreground-secondary text-sm select-none"
+          className="text-foreground/60 text-sm select-none"
         >
           {description}
         </p>

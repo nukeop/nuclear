@@ -58,7 +58,7 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
         <div className="flex items-center gap-2">
           <h3 className="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none">
             <span data-testid="plugin-store-item-name">{name}</span>
-            <p className="text-foreground-secondary text-sm font-normal select-none">
+            <p className="text-muted-foreground text-sm font-normal select-none">
               <span className="mr-1 opacity-60">{by}</span>
               <span data-testid="plugin-store-item-author">{author}</span>
             </p>
@@ -80,7 +80,7 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
         </div>
         <p
           data-testid="plugin-store-item-description"
-          className="text-foreground-secondary line-clamp-2 text-sm"
+          className="text-muted-foreground line-clamp-2 text-sm"
         >
           {description}
         </p>

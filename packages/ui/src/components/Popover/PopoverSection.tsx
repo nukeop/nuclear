@@ -13,7 +13,7 @@ export const PopoverSection: FC<PopoverSectionProps> = ({
   ...props
 }) => (
   <div className={cn('flex flex-col', className)} {...props}>
-    <div className="text-foreground-secondary px-3 pt-2.5 pb-1 text-xs font-bold tracking-wide uppercase">
+    <div className="text-popover-foreground/60 px-3 pt-2.5 pb-1 text-xs font-bold tracking-wide uppercase">
       {label}
     </div>
     {children}

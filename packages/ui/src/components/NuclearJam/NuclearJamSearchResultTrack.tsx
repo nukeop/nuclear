@@ -56,14 +56,14 @@ export const NuclearJamSearchResultTrack: FC<
           {track.title}
         </div>
         {primaryArtist && (
-          <div className="text-foreground-secondary truncate text-xs">
+          <div className="text-foreground/60 truncate text-xs">
             {primaryArtist}
           </div>
         )}
       </div>
 
       {duration && (
-        <div className="text-foreground-secondary shrink-0 text-xs tabular-nums">
+        <div className="text-foreground/60 shrink-0 text-xs tabular-nums">
           {duration}
         </div>
       )}

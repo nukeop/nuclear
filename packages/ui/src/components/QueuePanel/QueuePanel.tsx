@@ -72,7 +72,7 @@ export const QueuePanel: FC<QueuePanelProps> = ({
           classes?.empty,
         )}
       >
-        <Music size={64} className="text-foreground-secondary opacity-50" />
+        <Music size={64} className="text-muted-foreground opacity-50" />
         {(labels?.emptyTitle || labels?.emptySubtitle) && (
           <div>
             {labels?.emptyTitle && (
@@ -81,7 +81,7 @@ export const QueuePanel: FC<QueuePanelProps> = ({
               </div>
             )}
             {labels?.emptySubtitle && (
-              <div className="text-foreground-secondary mt-2 text-sm">
+              <div className="text-muted-foreground mt-2 text-sm">
                 {labels.emptySubtitle}
               </div>
             )}

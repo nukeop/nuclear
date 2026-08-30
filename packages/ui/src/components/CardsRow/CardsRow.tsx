@@ -108,7 +108,7 @@ export const CardsRow: FC<CardsRowProps> = ({
         {isEmpty(filteredItems) ? (
           <div
             data-testid="cards-row-nothing-found"
-            className="text-foreground-secondary py-8 text-sm"
+            className="text-foreground/60 py-8 text-sm"
           >
             {labels.nothingFound}
           </div>

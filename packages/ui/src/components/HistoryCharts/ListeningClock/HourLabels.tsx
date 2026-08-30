@@ -17,7 +17,7 @@ export const HourLabels: FC = () => (
       return (
         <text
           key={hour}
-          className="fill-foreground-secondary font-bold"
+          className="fill-muted-foreground font-bold"
           x={x}
           y={y}
           fontSize={16}

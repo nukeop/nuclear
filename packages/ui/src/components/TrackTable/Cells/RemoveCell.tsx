@@ -29,7 +29,7 @@ export const RemoveCell = <T extends Track>({
         }}
         aria-label={labels.remove}
       >
-        <Trash2 size={16} className="text-foreground-secondary" />
+        <Trash2 size={16} className="text-muted-foreground" />
       </Button>
     </td>
   );

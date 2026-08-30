@@ -33,7 +33,7 @@ export const PlayerBarNowPlaying: FC<PlayerBarNowPlayingProps> = ({
         />
       ) : (
         <div
-          className="text-foreground-secondary flex size-full items-center justify-center"
+          className="text-muted-foreground flex size-full items-center justify-center"
           data-testid="player-now-playing-placeholder"
         >
           <Music2 size={20} />
@@ -51,7 +51,7 @@ export const PlayerBarNowPlaying: FC<PlayerBarNowPlayingProps> = ({
         {title}
       </div>
       <div
-        className={cn('text-foreground-secondary truncate text-xs', {
+        className={cn('text-muted-foreground truncate text-xs', {
           'cursor-pointer hover:underline': onArtistClick,
         })}
         data-testid="player-now-playing-artist"

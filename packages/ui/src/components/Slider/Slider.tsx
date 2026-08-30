@@ -140,7 +140,7 @@ export const SliderHeader: FC<{ label?: string; showValue?: boolean }> = ({
         {label}
       </label>
       {showValue && (
-        <span className="text-foreground-secondary">
+        <span className="text-foreground/60">
           {value}
           {unit ? ` ${unit}` : ''}
         </span>
@@ -214,7 +214,7 @@ export const SliderFooter: FC<{
 }> = ({ startLabel, endLabel }) => {
   const { min, max, unit } = useSliderContext();
   return (
-    <div className="text-foreground-secondary flex w-full justify-between text-xs">
+    <div className="text-foreground/60 flex w-full justify-between text-xs">
       <span>{startLabel ?? `${min}${unit ? ` ${unit}` : ''}`}</span>
       <span>{endLabel ?? `${max}${unit ? ` ${unit}` : ''}`}</span>
     </div>
@@ -251,7 +251,7 @@ const SliderImpl: FC<PropsWithChildren<SliderProps>> = ({
             <SliderHeader label={label} showValue={showValue} />
           )}
           {description && (
-            <p className="text-foreground-secondary text-xs">{description}</p>
+            <p className="text-foreground/60 text-xs">{description}</p>
           )}
           <SliderSurface>
             <SliderTrack />

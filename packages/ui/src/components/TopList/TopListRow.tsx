@@ -20,7 +20,7 @@ export const TopListRow: FC<TopListRowProps> = ({
     data-testid="top-list-row"
     className="border-border grid grid-cols-[auto_auto_1fr_1fr] items-center gap-3 border-b-(length:--border-width) py-1.5 last:border-b-0"
   >
-    <span className="text-foreground-secondary w-5 text-right text-sm tabular-nums">
+    <span className="text-muted-foreground w-5 text-right text-sm tabular-nums">
       {rank}
     </span>
     <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
@@ -45,7 +45,7 @@ export const TopListRow: FC<TopListRowProps> = ({
       {entry.sublabel && (
         <div
           data-testid="top-list-sublabel"
-          className="text-foreground-secondary truncate text-sm"
+          className="text-muted-foreground truncate text-sm"
         >
           {entry.sublabel}
         </div>

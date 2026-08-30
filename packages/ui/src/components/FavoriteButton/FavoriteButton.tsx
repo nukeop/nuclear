@@ -64,7 +64,7 @@ export const FavoriteButton: FC<FavoriteButtonProps> = ({
           'transition-colors',
           isFavorite
             ? 'fill-accent-red text-accent-red'
-            : 'text-foreground-secondary hover:text-foreground',
+            : 'text-muted-foreground hover:text-foreground',
         )}
       />
     </Button>

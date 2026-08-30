@@ -31,9 +31,7 @@ export const TrackContextMenuHeader: FC<TrackContextMenuHeaderProps> = ({
           {title}
         </div>
         {subtitle && (
-          <div className="text-foreground-secondary truncate text-xs">
-            {subtitle}
-          </div>
+          <div className="text-foreground/60 truncate text-xs">{subtitle}</div>
         )}
       </div>
     </div>
