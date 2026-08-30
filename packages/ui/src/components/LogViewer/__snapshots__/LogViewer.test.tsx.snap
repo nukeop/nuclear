@@ -18,7 +18,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         >
           <input
             aria-label="Search logs"
-            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
             data-headlessui-state=""
             id="input-:r2:"
             placeholder="Search logs..."
@@ -217,7 +217,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
   </div>
   <div
     aria-label="Log entries"
-    class="border-border bg-background-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
+    class="border-border bg-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
     role="log"
   >
     <div
@@ -248,7 +248,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         >
           <input
             aria-label="Search logs"
-            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
             data-headlessui-state=""
             id="input-:r0:"
             placeholder="Search logs..."
@@ -511,7 +511,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
   </div>
   <div
     aria-label="Log entries"
-    class="border-border bg-background-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
+    class="border-border bg-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
     role="log"
   >
     <div

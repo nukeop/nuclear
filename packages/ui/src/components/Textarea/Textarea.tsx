@@ -8,7 +8,7 @@ const textareaVariants = cva(
   {
     variants: {
       tone: {
-        primary: 'bg-background-input',
+        primary: 'bg-input',
         secondary: 'bg-background',
       },
     },
