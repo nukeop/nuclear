@@ -63,14 +63,20 @@ describe('Themes view', async () => {
     PluginFsMock.setReadDir([
       { name: 'another.json', isDirectory: false },
       { name: 'my.json', isDirectory: false },
+      { name: 'outdated.json', isDirectory: false },
       { name: 'ignore.txt', isDirectory: false },
       { name: 'nested', isDirectory: true },
     ]);
     PluginFsMock.setReadTextFileByMap({
-      '/my.json': JSON.stringify({ version: 1, name: 'My Theme', vars: {} }),
+      '/my.json': JSON.stringify({ version: 2, name: 'My Theme', vars: {} }),
       '/another.json': JSON.stringify({
-        version: 1,
+        version: 2,
         name: 'Another',
+        vars: {},
+      }),
+      '/outdated.json': JSON.stringify({
+        version: 1,
+        name: 'Outdated v1',
         vars: {},
       }),
     });
@@ -81,6 +87,7 @@ describe('Themes view', async () => {
     const options = await ThemesWrapper.advancedThemeSelect.availableOptions();
     expect(options).toContain('Another');
     expect(options).toContain('My Theme');
+    expect(options).not.toContain('Outdated v1');
 
     expect(fs.mkdir).toHaveBeenCalledWith('themes', {
       baseDir: '/home/user/.local/share/com.nuclearplayer',
@@ -108,12 +115,12 @@ describe('Themes view', async () => {
       ]);
       PluginFsMock.setReadTextFileByMap({
         'themes/my.json': JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { p: '#111' },
         }),
         'themes/other.json': JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'Other',
           vars: { p: '#222' },
         }),
@@ -236,7 +243,7 @@ describe('Themes view', async () => {
     it('loads and applies selected advanced theme file', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { primary: '#123' },
         }),
@@ -262,7 +269,7 @@ describe('Themes view', async () => {
     it('resets to default when the Default basic theme is clicked', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { primary: '#123' },
         }),
@@ -281,7 +288,7 @@ describe('Themes view', async () => {
     it('unhighlights basic themes when an advanced theme is selected', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { primary: '#123' },
         }),
@@ -338,7 +345,7 @@ describe('Themes view', async () => {
     it('deselects the marketplace theme when an advanced theme is selected', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { primary: '#123' },
         }),
@@ -603,7 +610,7 @@ describe('Themes view', async () => {
 
     it('restores and applies an advanced theme on startup', async () => {
       const advancedThemeFile = {
-        version: 1,
+        version: 2,
         name: 'Custom',
         vars: { background: 'oklch(0.2 0.05 280)' },
       };

@@ -30,12 +30,12 @@ export const THEME_REGISTRY_THEMES = [
 ];
 
 export const THEME_REGISTRY_RESPONSE = {
-  version: 1,
+  version: 2,
   themes: THEME_REGISTRY_THEMES,
 };
 
 export const SAKURA_THEME_FILE = {
-  version: 1,
+  version: 2,
   name: 'Sakura',
   author: 'nukeop',
   description: 'Cherry blossom',
