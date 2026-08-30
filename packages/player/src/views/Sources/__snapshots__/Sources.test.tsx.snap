@@ -7,7 +7,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
   >
     <div>
       <header
-        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
+        class="bg-muted border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
         data-tauri-drag-region="true"
       >
         <div
@@ -220,11 +220,11 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
       </header>
     </div>
     <div
-      class="bg-background-secondary relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
+      class="bg-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+        class="bg-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -277,7 +277,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-muted border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -317,7 +317,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-muted border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -361,7 +361,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-muted border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -408,7 +408,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-muted border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -450,7 +450,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-muted border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -499,7 +499,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-muted border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -598,7 +598,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             </div>
             <div>
               <div
-                class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) cursor-pointer hover:bg-background-secondary border-transparent"
+                class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) cursor-pointer hover:bg-muted border-transparent"
                 data-testid="sidebar-navigation-item"
                 role="button"
               >
@@ -642,7 +642,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
         />
       </div>
       <main
-        class="bg-background-secondary overflow-auto"
+        class="bg-muted overflow-auto"
         data-testid="player-workspace-main"
       >
         <div
@@ -1110,7 +1110,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
       </main>
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
+        class="bg-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -1227,7 +1227,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           </span>
         </div>
         <div
-          class="border-border bg-background-secondary absolute inset-0 border-t-(length:--border-width)"
+          class="border-border bg-muted absolute inset-0 border-t-(length:--border-width)"
         >
           <div
             class="bg-primary h-full transition-none"
@@ -1237,7 +1237,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
       </div>
     </div>
     <footer
-      class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+      class="bg-muted border-border flex h-16 items-center border-t-(length:--border-width) px-4"
     >
       <div
         class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -1249,7 +1249,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             class="flex min-w-0 items-center gap-3"
           >
             <div
-              class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
+              class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
             >
               <div
                 class="text-foreground-secondary flex size-full items-center justify-center"
@@ -1502,7 +1502,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                     class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                   >
                     <div
-                      class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
+                      class="border-border bg-input relative h-3 w-full rounded-md border-(length:--border-width)"
                     >
                       <div
                         class="bg-primary absolute top-0 left-0 h-full rounded-l"

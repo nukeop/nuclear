@@ -10,7 +10,7 @@ export const PopoverFooter: FC<PopoverFooterProps> = ({
 }) => (
   <div
     className={cn(
-      'border-border bg-background-secondary/40 flex flex-col border-t',
+      'border-border bg-muted/40 flex flex-col border-t',
       className,
     )}
     {...props}

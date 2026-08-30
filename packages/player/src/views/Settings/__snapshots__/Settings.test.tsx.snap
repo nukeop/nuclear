@@ -780,7 +780,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   class="flex items-center gap-2"
                                 >
                                   <div
-                                    class="border-border bg-background-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
+                                    class="border-border bg-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
                                     data-testid="info-field-value"
                                   />
                                   <button
@@ -834,7 +834,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   class="flex items-center gap-2"
                                 >
                                   <div
-                                    class="border-border bg-background-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
+                                    class="border-border bg-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
                                     data-testid="info-field-value"
                                   />
                                   <button
@@ -920,7 +920,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   class="flex items-center gap-2"
                                 >
                                   <div
-                                    class="border-border bg-background-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
+                                    class="border-border bg-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
                                     data-testid="info-field-value"
                                   >
                                     http://127.0.0.1:8800/mcp
@@ -1008,7 +1008,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   class="flex items-center gap-2"
                                 >
                                   <div
-                                    class="border-border bg-background-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
+                                    class="border-border bg-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
                                     data-testid="info-field-value"
                                   >
                                     mpd://127.0.0.1:6600
@@ -1135,7 +1135,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                                     >
                                       <div
-                                        class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
+                                        class="border-border bg-input relative h-3 w-full rounded-md border-(length:--border-width)"
                                       >
                                         <div
                                           class="bg-primary absolute top-0 left-0 h-full rounded-l"
@@ -1185,7 +1185,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   Skip duration
                                 </label>
                                 <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
                                   id="input-:r11:"
                                   inputmode="numeric"
@@ -1210,7 +1210,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   Crossfade
                                 </label>
                                 <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
                                   id="input-:r13:"
                                   inputmode="numeric"
@@ -1235,7 +1235,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   Stream expiry time
                                 </label>
                                 <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
                                   id="input-:r15:"
                                   inputmode="numeric"
@@ -1260,7 +1260,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   Stream resolution retries
                                 </label>
                                 <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
                                   id="input-:r17:"
                                   inputmode="numeric"

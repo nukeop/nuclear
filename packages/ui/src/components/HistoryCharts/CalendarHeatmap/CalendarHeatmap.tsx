@@ -8,18 +8,18 @@ import { toActivities } from './activities';
 import type { CalendarHeatmapProps } from './types';
 
 const LIGHT_COLORS = [
-  'var(--background-secondary)',
-  'color-mix(in oklab, var(--accent-green) 25%, var(--background-secondary))',
-  'color-mix(in oklab, var(--accent-green) 55%, var(--background-secondary))',
+  'var(--muted)',
+  'color-mix(in oklab, var(--accent-green) 25%, var(--muted))',
+  'color-mix(in oklab, var(--accent-green) 55%, var(--muted))',
   'var(--accent-green)',
   'color-mix(in oklab, var(--accent-green) 70%, black)',
 ];
 
 const DARK_COLORS = [
-  'var(--background-secondary)',
-  'color-mix(in oklab, var(--accent-green) 25%, var(--background-secondary))',
-  'color-mix(in oklab, var(--accent-green) 55%, var(--background-secondary))',
-  'color-mix(in oklab, var(--accent-green) 80%, var(--background-secondary))',
+  'var(--muted)',
+  'color-mix(in oklab, var(--accent-green) 25%, var(--muted))',
+  'color-mix(in oklab, var(--accent-green) 55%, var(--muted))',
+  'color-mix(in oklab, var(--accent-green) 80%, var(--muted))',
   'var(--accent-green)',
 ];
 

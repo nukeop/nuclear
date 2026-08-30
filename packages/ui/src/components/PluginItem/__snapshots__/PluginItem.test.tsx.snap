@@ -7,7 +7,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
   >
     <div
       aria-busy="false"
-      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow opacity-30 relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
+      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-muted shadow-shadow opacity-30 relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
       data-testid="plugin-item"
     >
       <div
@@ -17,7 +17,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
           class="flex w-full flex-wrap items-start gap-4"
         >
           <div
-            class="border-border text-foreground flex rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-0"
+            class="border-border text-foreground flex rounded-md border-(length:--border-width) bg-muted shadow-shadow h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-0"
           >
             <svg
               aria-hidden="true"
@@ -105,7 +105,7 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
   >
     <div
       aria-busy="false"
-      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
+      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-muted shadow-shadow relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
       data-testid="plugin-item"
     >
       <div
@@ -189,7 +189,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
           class="flex w-full flex-wrap items-start gap-4"
         >
           <div
-            class="border-border text-foreground flex rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-0"
+            class="border-border text-foreground flex rounded-md border-(length:--border-width) bg-muted shadow-shadow h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-0"
           >
             <svg
               aria-hidden="true"
@@ -269,7 +269,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
         </div>
       </div>
       <div
-        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-none flex-row items-center justify-start gap-1 px-2 py-1 text-xs"
+        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-muted shadow-none flex-row items-center justify-start gap-1 px-2 py-1 text-xs"
       >
         <svg
           aria-hidden="true"

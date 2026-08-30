@@ -72,7 +72,7 @@ exports[`Popover > (Snapshot) renders menu with a section and a footer 1`] = `
               Recent
             </div>
             <button
-              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-background-secondary hover:border-border"
+              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-muted hover:border-border"
             >
               <span
                 class="w-4 shrink-0"
@@ -82,7 +82,7 @@ exports[`Popover > (Snapshot) renders menu with a section and a footer 1`] = `
               </span>
             </button>
             <button
-              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-background-secondary hover:border-border"
+              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-muted hover:border-border"
             >
               <span
                 class="w-4 shrink-0"
@@ -93,10 +93,10 @@ exports[`Popover > (Snapshot) renders menu with a section and a footer 1`] = `
             </button>
           </div>
           <div
-            class="border-border bg-background-secondary/40 flex flex-col border-t"
+            class="border-border bg-muted/40 flex flex-col border-t"
           >
             <button
-              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 text-accent-red justify-center text-center hover:bg-background-secondary hover:border-border"
+              class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 text-accent-red justify-center text-center hover:bg-muted hover:border-border"
             >
               <span
                 class="w-4 shrink-0"
@@ -184,7 +184,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
           class="flex min-w-48 flex-col overflow-hidden"
         >
           <button
-            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-background-secondary hover:border-border"
+            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-muted hover:border-border"
           >
             <span
               class="w-4 shrink-0"
@@ -194,7 +194,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
             </span>
           </button>
           <button
-            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-background-secondary hover:border-border"
+            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 hover:bg-muted hover:border-border"
           >
             <span
               class="w-4 shrink-0"
@@ -204,7 +204,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
             </span>
           </button>
           <button
-            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 text-accent-red hover:bg-background-secondary hover:border-border"
+            class="flex w-full cursor-pointer items-center gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b first:border-t-0 last:border-b-0 text-accent-red hover:bg-muted hover:border-border"
           >
             <span
               class="w-4 shrink-0"

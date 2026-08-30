@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { cn, Popover } from '@nuclearplayer/ui';
 
-const highlightClasses = 'bg-background-secondary border-border';
+const highlightClasses = 'bg-muted border-border';
 
 type SearchBoxPopoverProps = {
   isOpen: boolean;

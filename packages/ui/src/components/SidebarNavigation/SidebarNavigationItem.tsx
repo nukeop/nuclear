@@ -46,7 +46,7 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
               {
                 'cursor-pointer': onClick,
                 'bg-primary border-border font-bold': active,
-                'hover:bg-background-secondary border-transparent': !active,
+                'hover:bg-muted border-transparent': !active,
               },
             )}
           >

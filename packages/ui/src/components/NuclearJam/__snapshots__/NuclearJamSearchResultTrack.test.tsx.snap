@@ -8,7 +8,7 @@ exports[`NuclearJamSearchResultTrack > (Snapshot) renders a full track 1`] = `
     type="button"
   >
     <div
-      class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+      class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
     >
       <img
         alt="Windowlicker"
@@ -47,7 +47,7 @@ exports[`NuclearJamSearchResultTrack > (Snapshot) renders a minimal track 1`] = 
     type="button"
   >
     <div
-      class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+      class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
     >
       <svg
         aria-hidden="true"

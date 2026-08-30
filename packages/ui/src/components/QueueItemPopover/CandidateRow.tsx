@@ -31,7 +31,7 @@ export const CandidateRow: FC<CandidateRowProps> = ({
     className={cn(
       'hover:bg-background flex w-full shrink-0 cursor-pointer items-center gap-2 overflow-hidden text-left',
       {
-        'bg-background-secondary': isSelected,
+        'bg-muted': isSelected,
       },
     )}
   >

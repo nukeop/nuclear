@@ -71,7 +71,7 @@ const badgeVariants = cva(
       {
         variant: 'pill',
         color: 'inverted',
-        className: 'bg-foreground text-background-secondary',
+        className: 'bg-foreground text-muted',
       },
       {
         variant: 'pill',

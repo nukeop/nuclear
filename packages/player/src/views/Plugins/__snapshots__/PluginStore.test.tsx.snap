@@ -530,7 +530,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                 class="flex w-full flex-col gap-2"
                               >
                                 <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
+                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
                                   id="input-:rk:"
                                   placeholder="Search plugins..."
@@ -629,7 +629,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                   class="flex flex-col gap-3 px-2 py-2"
                                 >
                                   <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-muted shadow-shadow flex-row items-center justify-between gap-4"
                                     data-testid="plugin-store-item"
                                   >
                                     <div
@@ -714,7 +714,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                     </div>
                                   </div>
                                   <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-muted shadow-shadow flex-row items-center justify-between gap-4"
                                     data-testid="plugin-store-item"
                                   >
                                     <div
@@ -799,7 +799,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                     </div>
                                   </div>
                                   <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-muted shadow-shadow flex-row items-center justify-between gap-4"
                                     data-testid="plugin-store-item"
                                   >
                                     <div

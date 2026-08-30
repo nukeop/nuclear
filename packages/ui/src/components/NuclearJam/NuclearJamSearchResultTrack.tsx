@@ -35,7 +35,7 @@ export const NuclearJamSearchResultTrack: FC<
       )}
       data-testid="jam-search-result-track"
     >
-      <div className="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)">
+      <div className="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)">
         {thumbnail?.url ? (
           <img
             src={thumbnail.url}

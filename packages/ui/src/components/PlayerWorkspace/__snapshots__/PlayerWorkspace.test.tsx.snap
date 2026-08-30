@@ -3,11 +3,11 @@
 exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
 <DocumentFragment>
   <div
-    class="bg-background-secondary relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
+    class="bg-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
   >
     <div
       animate="[object Object]"
-      class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+      class="bg-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span
@@ -50,12 +50,12 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
       />
     </div>
     <main
-      class="bg-background-secondary overflow-auto"
+      class="bg-muted overflow-auto"
       data-testid="player-workspace-main"
     />
     <div
       animate="[object Object]"
-      class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width)"
+      class="bg-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width)"
       transition="[object Object]"
     >
       <span
@@ -104,11 +104,11 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
 exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
 <DocumentFragment>
   <div
-    class="bg-background-secondary relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
+    class="bg-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
   >
     <div
       animate="[object Object]"
-      class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+      class="bg-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span
@@ -154,12 +154,12 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
       />
     </div>
     <main
-      class="bg-background-secondary overflow-auto"
+      class="bg-muted overflow-auto"
       data-testid="player-workspace-main"
     />
     <div
       animate="[object Object]"
-      class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
+      class="bg-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span

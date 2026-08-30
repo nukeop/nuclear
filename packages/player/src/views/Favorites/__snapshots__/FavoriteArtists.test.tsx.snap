@@ -2,7 +2,7 @@
 
 exports[`FavoriteArtists view > (Snapshot) renders empty state 1`] = `
 <main
-  class="bg-background-secondary overflow-auto"
+  class="bg-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div
@@ -87,7 +87,7 @@ exports[`FavoriteArtists view > (Snapshot) renders empty state 1`] = `
 
 exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
 <main
-  class="bg-background-secondary overflow-auto"
+  class="bg-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div

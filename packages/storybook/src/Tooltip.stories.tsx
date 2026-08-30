@@ -45,7 +45,7 @@ export const AllSides: Story = {
 
 export const SidebarIcons: Story = {
   render: () => (
-    <div className="bg-background-secondary flex flex-col items-center gap-2 rounded-md p-2">
+    <div className="bg-muted flex flex-col items-center gap-2 rounded-md p-2">
       <Tooltip content="Settings" side="right">
         <Button variant="text" size="icon">
           <SettingsIcon />

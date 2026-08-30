@@ -62,7 +62,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-01"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -78,7 +78,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-02"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -90,7 +90,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-03"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -102,7 +102,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-04"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -114,7 +114,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-05"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -126,7 +126,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-06"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -138,7 +138,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-07"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -150,7 +150,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-08"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -166,7 +166,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-09"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -190,7 +190,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-11"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -202,7 +202,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-12"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -214,7 +214,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-13"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -226,7 +226,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-14"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -238,7 +238,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-15"
               data-level="1"
-              fill="color-mix(in oklab, var(--accent-green) 25%, var(--background-secondary))"
+              fill="color-mix(in oklab, var(--accent-green) 25%, var(--muted))"
               height="16"
               rx="2"
               ry="2"
@@ -254,7 +254,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-16"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -266,7 +266,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-17"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -278,7 +278,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-18"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -290,7 +290,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-19"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -302,7 +302,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-20"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -314,7 +314,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-21"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -326,7 +326,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-22"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -342,7 +342,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-23"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -354,7 +354,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-24"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -366,7 +366,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-25"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -378,7 +378,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-26"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -390,7 +390,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-27"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -402,7 +402,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-28"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -414,7 +414,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-29"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -430,7 +430,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-30"
               data-level="0"
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -442,7 +442,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             <rect
               data-date="2026-03-31"
               data-level="2"
-              fill="color-mix(in oklab, var(--accent-green) 55%, var(--background-secondary))"
+              fill="color-mix(in oklab, var(--accent-green) 55%, var(--muted))"
               height="16"
               rx="2"
               ry="2"
@@ -472,7 +472,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             width="16"
           >
             <rect
-              fill="var(--background-secondary)"
+              fill="var(--muted)"
               height="16"
               rx="2"
               ry="2"
@@ -485,7 +485,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             width="16"
           >
             <rect
-              fill="color-mix(in oklab, var(--accent-green) 25%, var(--background-secondary))"
+              fill="color-mix(in oklab, var(--accent-green) 25%, var(--muted))"
               height="16"
               rx="2"
               ry="2"
@@ -498,7 +498,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
             width="16"
           >
             <rect
-              fill="color-mix(in oklab, var(--accent-green) 55%, var(--background-secondary))"
+              fill="color-mix(in oklab, var(--accent-green) 55%, var(--muted))"
               height="16"
               rx="2"
               ry="2"

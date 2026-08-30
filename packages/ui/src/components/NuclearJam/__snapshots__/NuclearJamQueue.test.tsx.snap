@@ -81,7 +81,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
           data-testid="jam-queue-item"
         >
           <div
-            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
           >
             <svg
               aria-hidden="true"
@@ -142,7 +142,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
           data-testid="jam-queue-item"
         >
           <div
-            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
           >
             <svg
               aria-hidden="true"
@@ -203,7 +203,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
           data-testid="jam-queue-item"
         >
           <div
-            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
           >
             <svg
               aria-hidden="true"

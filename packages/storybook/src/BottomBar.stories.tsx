@@ -61,7 +61,7 @@ export const PlayerControls: Story = {
             </div>
             <div className="text-foreground-secondary text-xs">Artist Name</div>
           </div>
-          <div className="bg-background-secondary mt-2 h-1 rounded-full">
+          <div className="bg-muted mt-2 h-1 rounded-full">
             <div className="bg-primary h-1 w-1/3 rounded-full"></div>
           </div>
         </div>
@@ -70,7 +70,7 @@ export const PlayerControls: Story = {
           <Button size="icon" variant="text">
             <Volume2 size={16} />
           </Button>
-          <div className="bg-background-secondary h-1 w-20 rounded-full">
+          <div className="bg-muted h-1 w-20 rounded-full">
             <div className="bg-primary h-1 w-3/4 rounded-full"></div>
           </div>
         </div>
@@ -90,7 +90,7 @@ export const StatusBar: Story = {
         </div>
         <div className="flex items-center gap-4">
           <span className="text-foreground-secondary">Scanning library...</span>
-          <div className="bg-background-secondary h-1 w-32 rounded-full">
+          <div className="bg-muted h-1 w-32 rounded-full">
             <div className="bg-accent-green h-1 w-2/3 rounded-full"></div>
           </div>
         </div>

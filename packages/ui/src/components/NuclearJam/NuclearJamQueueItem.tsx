@@ -29,7 +29,7 @@ export const NuclearJamQueueItem = forwardRef<
       data-testid="jam-queue-item"
       data-is-current={isCurrent}
     >
-      <div className="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)">
+      <div className="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)">
         {thumbnail?.url ? (
           <img
             src={thumbnail.url}

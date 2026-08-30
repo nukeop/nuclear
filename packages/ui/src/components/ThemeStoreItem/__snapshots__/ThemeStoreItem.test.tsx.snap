@@ -7,7 +7,7 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
     data-testid="theme-store-item"
   >
     <div
-      class="border-border text-foreground flex w-full rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow relative h-auto overflow-hidden p-2"
+      class="border-border text-foreground flex w-full rounded-md border-(length:--border-width) bg-muted shadow-shadow relative h-auto overflow-hidden p-2"
     >
       <div
         class="absolute inset-0 flex"
@@ -30,7 +30,7 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
         />
       </div>
       <div
-        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-none relative flex-1 flex-row items-center justify-between gap-4"
+        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-muted shadow-none relative flex-1 flex-row items-center justify-between gap-4"
       >
         <div
           class="flex min-w-0 flex-1 flex-col gap-1"
@@ -183,7 +183,7 @@ exports[`ThemeStoreItem > (Snapshot) renders with all props 1`] = `
     data-testid="theme-store-item"
   >
     <div
-      class="border-border text-foreground flex w-full rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow relative h-auto overflow-hidden p-2"
+      class="border-border text-foreground flex w-full rounded-md border-(length:--border-width) bg-muted shadow-shadow relative h-auto overflow-hidden p-2"
     >
       <div
         class="absolute inset-0 flex"
@@ -206,7 +206,7 @@ exports[`ThemeStoreItem > (Snapshot) renders with all props 1`] = `
         />
       </div>
       <div
-        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-none relative flex-1 flex-row items-center justify-between gap-4"
+        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-muted shadow-none relative flex-1 flex-row items-center justify-between gap-4"
       >
         <div
           class="flex min-w-0 flex-1 flex-col gap-1"

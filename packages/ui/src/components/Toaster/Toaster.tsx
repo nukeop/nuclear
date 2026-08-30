@@ -36,7 +36,7 @@ const ToasterImpl: FC<ToasterProps> = ({
           actionButton:
             'font-normal border-(length:--border-width) text-smh-6 px-2 bg-primary text-foreground border-border rounded-md shrink-0',
           cancelButton:
-            'font-normal border-(length:--border-width) text-sm h-6 px-2 bg-background-secondary text-foreground border-border rounded-md shrink-0',
+            'font-normal border-(length:--border-width) text-sm h-6 px-2 bg-muted text-foreground border-border rounded-md shrink-0',
           loading:
             '[&[data-sonner-toast]_[data-icon]]:flex [&[data-sonner-toast]_[data-icon]]:size-4 [&[data-sonner-toast]_[data-icon]]:relative [&[data-sonner-toast]_[data-icon]]:justify-start [&[data-sonner-toast]_[data-icon]]:items-center [&[data-sonner-toast]_[data-icon]]:flex-shrink-0',
           success:

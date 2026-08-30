@@ -63,6 +63,9 @@ export const AllVariants: Story = {
           <Badge variant="pill" color="yellow">
             Warning
           </Badge>
+          <Badge variant="pill" color="inverted">
+            Inverted
+          </Badge>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="pill" color="green" animated>

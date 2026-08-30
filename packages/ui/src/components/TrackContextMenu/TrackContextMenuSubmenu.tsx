@@ -23,7 +23,7 @@ export const TrackContextMenuSubmenuTrigger: FC<
   <DropdownMenu.SubTrigger
     className={cn(
       'flex w-full cursor-pointer items-center justify-between gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b',
-      'data-[highlighted]:bg-background-secondary data-[highlighted]:border-border',
+      'data-[highlighted]:bg-muted data-[highlighted]:border-border',
     )}
     data-testid="submenu-trigger"
   >

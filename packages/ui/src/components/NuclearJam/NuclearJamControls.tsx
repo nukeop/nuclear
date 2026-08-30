@@ -116,7 +116,7 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
         <div
           ref={containerRef}
           className={cn(
-            'border-border bg-background-secondary relative h-5 w-full overflow-hidden rounded-md border-(length:--border-width)',
+            'border-border bg-muted relative h-5 w-full overflow-hidden rounded-md border-(length:--border-width)',
             {
               'cursor-pointer': isInteractive,
               'pointer-events-none': isLoading,

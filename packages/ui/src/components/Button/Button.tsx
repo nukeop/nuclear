@@ -14,7 +14,7 @@ const buttonVariants = cva(
         secondary:
           'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none',
         tertiary:
-          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-(length:--border-width) hover:shadow-none',
+          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-muted text-foreground border-(length:--border-width) hover:shadow-none',
         noShadow:
           'text-foreground bg-primary border-border border-(length:--border-width)',
         text: 'text-foreground bg-transparent',

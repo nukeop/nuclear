@@ -51,7 +51,7 @@ export const PlayerBarSeekBar: FC<PlayerSeekBarProps> = ({
         </div>
         <div
           className={cn(
-            'border-border bg-background-secondary absolute inset-0 border-t-(length:--border-width)',
+            'border-border bg-muted absolute inset-0 border-t-(length:--border-width)',
             {
               'overflow-hidden': isLoading,
             },

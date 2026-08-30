@@ -27,7 +27,7 @@ export const NuclearJamNowPlaying: FC<NuclearJamNowPlayingProps> = ({
     )}
   >
     <div
-      className="border-border bg-background-secondary shadow-shadow short:size-24 short:rounded-sm short:shadow-none relative flex size-52 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+      className="border-border bg-muted shadow-shadow short:size-24 short:rounded-sm short:shadow-none relative flex size-52 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
       data-testid="now-playing-cover"
     >
       {coverUrl ? (

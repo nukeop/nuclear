@@ -2,7 +2,7 @@
 
 exports[`FavoriteTracks view > (Snapshot) renders empty state 1`] = `
 <main
-  class="bg-background-secondary overflow-auto"
+  class="bg-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div
@@ -92,7 +92,7 @@ exports[`FavoriteTracks view > (Snapshot) renders empty state 1`] = `
 
 exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
 <main
-  class="bg-background-secondary overflow-auto"
+  class="bg-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div
@@ -193,7 +193,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
                       class="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2"
                     >
                       <input
-                        class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-background-input h-9 text-sm rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                        class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-black focus-visible:outline-none bg-input h-9 text-sm rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                         data-headlessui-state=""
                         id="input-:r7:"
                         placeholder="Filter tracks"
@@ -334,7 +334,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
                         aria-describedby=""
                         aria-disabled="true"
                         aria-roledescription="sortable"
-                        class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
+                        class="border-border bg-muted group border-b-(length:--border-width) select-none"
                         data-testid="track-row"
                         role="button"
                         style="height: 42px;"
@@ -479,7 +479,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
                         aria-describedby=""
                         aria-disabled="true"
                         aria-roledescription="sortable"
-                        class="border-border bg-background-secondary group border-b-(length:--border-width) select-none"
+                        class="border-border bg-muted group border-b-(length:--border-width) select-none"
                         data-testid="track-row"
                         role="button"
                         style="height: 42px;"

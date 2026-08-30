@@ -23,7 +23,7 @@ export const BasicThemes = () => {
               variant="text"
               size="flexible"
               className={cn(
-                'bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none',
+                'bg-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none',
                 {
                   'bg-primary': isActive,
                 },

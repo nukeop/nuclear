@@ -12,7 +12,7 @@ export const TimelineNode: FC<TimelineNodeProps> = ({ isLatest }) =>
     </div>
   ) : (
     <div className="bg-foreground border-foreground size-5 shrink-0 rounded-full border-(length:--border-width)">
-      <div className="bg-background-secondary border-background-secondary size-full rounded-full border-(length:--border-width)">
+      <div className="bg-muted border-muted size-full rounded-full border-(length:--border-width)">
         <div className="bg-foreground size-full rounded-full" />
       </div>
     </div>

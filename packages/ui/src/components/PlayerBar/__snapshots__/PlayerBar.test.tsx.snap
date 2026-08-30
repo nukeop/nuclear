@@ -3,7 +3,7 @@
 exports[`PlayerBar > (Snapshot) active states render 1`] = `
 <DocumentFragment>
   <footer
-    class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+    class="bg-muted border-border flex h-16 items-center border-t-(length:--border-width) px-4"
   >
     <div
       class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -15,7 +15,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
           class="flex min-w-0 items-center gap-3"
         >
           <div
-            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
           >
             <img
               alt=""
@@ -260,7 +260,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
                   class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                 >
                   <div
-                    class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
+                    class="border-border bg-input relative h-3 w-full rounded-md border-(length:--border-width)"
                   >
                     <div
                       class="bg-primary absolute top-0 left-0 h-full rounded-l"
@@ -299,7 +299,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
 exports[`PlayerBar > (Snapshot) default render 1`] = `
 <DocumentFragment>
   <footer
-    class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+    class="bg-muted border-border flex h-16 items-center border-t-(length:--border-width) px-4"
   >
     <div
       class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -311,7 +311,7 @@ exports[`PlayerBar > (Snapshot) default render 1`] = `
           class="flex min-w-0 items-center gap-3"
         >
           <div
-            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
           >
             <img
               alt=""
@@ -545,7 +545,7 @@ exports[`PlayerBar > (Snapshot) default render 1`] = `
                   class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                 >
                   <div
-                    class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
+                    class="border-border bg-input relative h-3 w-full rounded-md border-(length:--border-width)"
                   >
                     <div
                       class="bg-primary absolute top-0 left-0 h-full rounded-l"
@@ -587,7 +587,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
     style="width: 420px;"
   >
     <footer
-      class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+      class="bg-muted border-border flex h-16 items-center border-t-(length:--border-width) px-4"
     >
       <div
         class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -599,7 +599,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
             class="flex min-w-0 items-center gap-3"
           >
             <div
-              class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
+              class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
             >
               <img
                 alt=""
@@ -833,7 +833,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
                     class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                   >
                     <div
-                      class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
+                      class="border-border bg-input relative h-3 w-full rounded-md border-(length:--border-width)"
                     >
                       <div
                         class="bg-primary absolute top-0 left-0 h-full rounded-l"
@@ -873,7 +873,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
 exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
 <DocumentFragment>
   <footer
-    class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+    class="bg-muted border-border flex h-16 items-center border-t-(length:--border-width) px-4"
   >
     <div
       class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -885,7 +885,7 @@ exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
           class="flex min-w-0 items-center gap-3"
         >
           <div
-            class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
           >
             <div
               class="text-foreground-secondary flex size-full items-center justify-center"
@@ -1140,7 +1140,7 @@ exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
                   class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                 >
                   <div
-                    class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
+                    class="border-border bg-input relative h-3 w-full rounded-md border-(length:--border-width)"
                   >
                     <div
                       class="bg-primary absolute top-0 left-0 h-full rounded-l"

@@ -23,7 +23,7 @@ export const PlayerBarNowPlaying: FC<PlayerBarNowPlayingProps> = ({
   onArtistClick,
 }) => (
   <div className={cn('flex min-w-0 items-center gap-3', className)}>
-    <div className="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)">
+    <div className="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)">
       {coverUrl ? (
         <img
           src={coverUrl}
