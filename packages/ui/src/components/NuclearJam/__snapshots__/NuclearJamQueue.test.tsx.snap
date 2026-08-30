@@ -8,7 +8,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the empty state when there are no 
   >
     <svg
       aria-hidden="true"
-      class="lucide lucide-music text-foreground-secondary opacity-50"
+      class="lucide lucide-music text-foreground/60 opacity-50"
       fill="none"
       height="48"
       stroke="currentColor"
@@ -39,7 +39,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the empty state when there are no 
       Queue is empty
     </div>
     <div
-      class="text-foreground-secondary text-sm"
+      class="text-foreground/60 text-sm"
     >
       Add tracks in Nuclear to see them here
     </div>
@@ -53,7 +53,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
     class="flex min-h-0 flex-1 flex-col"
   >
     <div
-      class="bg-foreground dark:bg-foreground-secondary border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
+      class="bg-foreground border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
       data-testid="jam-queue-header"
     >
       <span
@@ -130,7 +130,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
               Everything In Its Right Place
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs"
+              class="text-foreground/60 truncate text-xs"
             >
               Radiohead
             </div>
@@ -191,7 +191,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
               Kid A
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs"
+              class="text-foreground/60 truncate text-xs"
             >
               Radiohead
             </div>
@@ -252,7 +252,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
               The National Anthem
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs"
+              class="text-foreground/60 truncate text-xs"
             >
               Radiohead
             </div>

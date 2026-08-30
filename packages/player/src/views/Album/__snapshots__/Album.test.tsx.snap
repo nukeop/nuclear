@@ -119,7 +119,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-search text-foreground-secondary pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
+            class="lucide lucide-search text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -143,7 +143,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
             class="flex w-full flex-col gap-2"
           >
             <input
-              class="border-border text-foreground placeholder:text-foreground-secondary w-full transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
+              class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
               data-headlessui-state=""
               data-testid="search-box"
               id="input-:r0:"
@@ -186,7 +186,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
           <button
             aria-checked="false"
             aria-label="Toggle theme"
-            class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background focus:outline-none data-checked:bg-primary bg-input data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
+            class="border-border focus:ring-ring focus:ring-offset-muted relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-input data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
             data-headlessui-state=""
             id="headlessui-switch-:r2:"
             role="switch"
@@ -194,7 +194,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
             type="button"
           >
             <span
-              class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-muted ring-0 transition-transform [&>svg]:fill-muted translate-x-1 group-data-checked:translate-x-5"
+              class="border-border bg-muted [&>svg]:fill-muted pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) ring-0 transition-transform translate-x-1 group-data-checked:translate-x-5"
             >
               <svg
                 aria-hidden="true"
@@ -686,7 +686,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                 style="scrollbar-width: none;"
               >
                 <div
-                  class="border-border bg-primary shadow-shadow relative mx-6 mt-6 flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row"
+                  class="border-border bg-card shadow-shadow relative mx-6 mt-6 flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row"
                 >
                   <button
                     aria-label="Add to favorites"
@@ -697,7 +697,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class="lucide lucide-heart transition-colors text-foreground-secondary hover:text-foreground"
+                      class="lucide lucide-heart transition-colors text-muted-foreground hover:text-foreground"
                       fill="none"
                       height="24"
                       stroke="currentColor"
@@ -730,7 +730,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                         Prism
                       </h1>
                       <div
-                        class="text-text-secondary block text-lg"
+                        class="text-card-foreground/60 block text-lg"
                       >
                         by 
                         <span />
@@ -748,7 +748,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                           Folk, World, Country
                         </span>
                         <span
-                          class="text-foreground-secondary text-xs font-bold tracking-wide uppercase"
+                          class="text-foreground/60 text-xs font-bold tracking-wide uppercase"
                         >
                           Genre
                         </span>
@@ -762,7 +762,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                           2025
                         </span>
                         <span
-                          class="text-foreground-secondary text-xs font-bold tracking-wide uppercase"
+                          class="text-foreground/60 text-xs font-bold tracking-wide uppercase"
                         >
                           Year
                         </span>
@@ -776,7 +776,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                           2
                         </span>
                         <span
-                          class="text-foreground-secondary text-xs font-bold tracking-wide uppercase"
+                          class="text-foreground/60 text-xs font-bold tracking-wide uppercase"
                         >
                           Tracks
                         </span>
@@ -936,7 +936,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                                 >
                                   <svg
                                     aria-hidden="true"
-                                    class="lucide lucide-heart transition-colors text-foreground-secondary hover:text-foreground"
+                                    class="lucide lucide-heart transition-colors text-muted-foreground hover:text-foreground"
                                     fill="none"
                                     height="16"
                                     stroke="currentColor"
@@ -1070,7 +1070,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                                 >
                                   <svg
                                     aria-hidden="true"
-                                    class="lucide lucide-heart transition-colors text-foreground-secondary hover:text-foreground"
+                                    class="lucide lucide-heart transition-colors text-muted-foreground hover:text-foreground"
                                     fill="none"
                                     height="16"
                                     stroke="currentColor"
@@ -1246,7 +1246,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-music text-foreground-secondary opacity-50"
+              class="lucide lucide-music text-muted-foreground opacity-50"
               fill="none"
               height="64"
               stroke="currentColor"
@@ -1278,7 +1278,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                 Queue is empty
               </div>
               <div
-                class="text-foreground-secondary mt-2 text-sm"
+                class="text-muted-foreground mt-2 text-sm"
               >
                 Add tracks to start playing
               </div>
@@ -1338,7 +1338,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
               class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
             >
               <div
-                class="text-foreground-secondary flex size-full items-center justify-center"
+                class="text-muted-foreground flex size-full items-center justify-center"
                 data-testid="player-now-playing-placeholder"
               >
                 <svg
@@ -1375,7 +1375,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                 No track playing
               </div>
               <div
-                class="text-foreground-secondary truncate text-xs"
+                class="text-muted-foreground truncate text-xs"
                 data-testid="player-now-playing-artist"
               />
             </div>

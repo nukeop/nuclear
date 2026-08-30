@@ -89,7 +89,7 @@ exports[`HistoryRow > (Snapshot) renders with artwork and all actions 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="lucide lucide-heart transition-colors text-foreground-secondary hover:text-foreground"
+          class="lucide lucide-heart transition-colors text-muted-foreground hover:text-foreground"
           fill="none"
           height="16"
           stroke="currentColor"

@@ -5,7 +5,7 @@ exports[`CalendarHeatmap > (Snapshot) renders a month of listening data 1`] = `
   <div
     class="w-fit text-xs"
     data-testid="calendar-heatmap"
-    style="color: var(--foreground-secondary);"
+    style="color: var(--muted-foreground);"
   >
     <article
       class="react-activity-calendar"

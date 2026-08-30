@@ -40,7 +40,7 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
   </button>
   <span
     aria-hidden="true"
-    class="text-foreground-secondary inline-flex size-8 items-center justify-center select-none"
+    class="text-foreground/60 inline-flex size-8 items-center justify-center select-none"
     data-testid="pagination-item"
   >
     …
@@ -72,7 +72,7 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
   </button>
   <span
     aria-hidden="true"
-    class="text-foreground-secondary inline-flex size-8 items-center justify-center select-none"
+    class="text-foreground/60 inline-flex size-8 items-center justify-center select-none"
     data-testid="pagination-item"
   >
     …

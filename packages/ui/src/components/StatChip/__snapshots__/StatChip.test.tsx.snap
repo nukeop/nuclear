@@ -18,7 +18,7 @@ exports[`StatChip > (Snapshot) renders with icon 1`] = `
       42
     </span>
     <span
-      class="text-foreground-secondary text-xs font-bold tracking-wide uppercase"
+      class="text-foreground/60 text-xs font-bold tracking-wide uppercase"
     >
       Tracks
     </span>
@@ -37,7 +37,7 @@ exports[`StatChip > (Snapshot) renders with value and label 1`] = `
       1952
     </span>
     <span
-      class="text-foreground-secondary text-xs font-bold tracking-wide uppercase"
+      class="text-foreground/60 text-xs font-bold tracking-wide uppercase"
     >
       Year
     </span>

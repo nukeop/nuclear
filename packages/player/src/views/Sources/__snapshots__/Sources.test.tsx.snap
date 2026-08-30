@@ -121,7 +121,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-search text-foreground-secondary pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
+            class="lucide lucide-search text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -145,7 +145,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             class="flex w-full flex-col gap-2"
           >
             <input
-              class="border-border text-foreground placeholder:text-foreground-secondary w-full transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
+              class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
               data-headlessui-state=""
               data-testid="search-box"
               id="input-:r0:"
@@ -161,7 +161,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           <button
             aria-checked="false"
             aria-label="Toggle theme"
-            class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background focus:outline-none data-checked:bg-primary bg-input data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
+            class="border-border focus:ring-ring focus:ring-offset-muted relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-input data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
             data-headlessui-state=""
             id="headlessui-switch-:r2:"
             role="switch"
@@ -169,7 +169,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             type="button"
           >
             <span
-              class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-muted ring-0 transition-transform [&>svg]:fill-muted translate-x-1 group-data-checked:translate-x-5"
+              class="border-border bg-muted [&>svg]:fill-muted pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) ring-0 transition-transform translate-x-1 group-data-checked:translate-x-5"
             >
               <svg
                 aria-hidden="true"
@@ -714,7 +714,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Metadata
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-2 text-sm"
+                            class="text-foreground/60 mb-2 text-sm"
                           >
                             Metadata sources provide information about artists, albums, and tracks. Search results, artist pages, and album details come from the active metadata source.
                           </p>
@@ -724,7 +724,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             <button
                               aria-expanded="false"
                               aria-haspopup="listbox"
-                              class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                              class="border-border bg-primary text-foreground focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
                               data-headlessui-state=""
                               id="select-:r3:"
                               type="button"
@@ -785,7 +785,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Streaming
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-2 text-sm"
+                            class="text-foreground/60 mb-2 text-sm"
                           >
                             Streaming sources provide audio. When you play a track, the streaming source finds and delivers the audio stream.
                           </p>
@@ -795,7 +795,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             <button
                               aria-expanded="false"
                               aria-haspopup="listbox"
-                              class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                              class="border-border bg-primary text-foreground focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
                               data-disabled=""
                               data-headlessui-state="disabled"
                               disabled=""
@@ -831,7 +831,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             </button>
                           </div>
                           <p
-                            class="text-foreground-secondary mt-4 text-sm leading-relaxed"
+                            class="text-foreground/60 mt-4 text-sm leading-relaxed"
                             data-testid="locked-reason"
                           >
                             <span
@@ -940,12 +940,12 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Discovery
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-2 text-sm"
+                            class="text-foreground/60 mb-2 text-sm"
                           >
                             Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.
                           </p>
                           <p
-                            class="text-foreground-secondary text-sm italic"
+                            class="text-foreground/60 text-sm italic"
                             data-testid="no-providers-message"
                           >
                             No providers installed
@@ -981,7 +981,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Dashboard
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-3 text-sm"
+                            class="text-foreground/60 mb-3 text-sm"
                           >
                             Dashboard sources provide personalized content like top tracks, new releases, and recommendations on the home screen.
                           </p>
@@ -1055,7 +1055,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Playlists
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-3 text-sm"
+                            class="text-foreground/60 mb-3 text-sm"
                           >
                             Playlist sources let you import playlists from external services by URL.
                           </p>
@@ -1160,7 +1160,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-music text-foreground-secondary opacity-50"
+              class="lucide lucide-music text-muted-foreground opacity-50"
               fill="none"
               height="64"
               stroke="currentColor"
@@ -1192,7 +1192,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                 Queue is empty
               </div>
               <div
-                class="text-foreground-secondary mt-2 text-sm"
+                class="text-muted-foreground mt-2 text-sm"
               >
                 Add tracks to start playing
               </div>
@@ -1252,7 +1252,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
             >
               <div
-                class="text-foreground-secondary flex size-full items-center justify-center"
+                class="text-muted-foreground flex size-full items-center justify-center"
                 data-testid="player-now-playing-placeholder"
               >
                 <svg
@@ -1289,7 +1289,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                 No track playing
               </div>
               <div
-                class="text-foreground-secondary truncate text-xs"
+                class="text-muted-foreground truncate text-xs"
                 data-testid="player-now-playing-artist"
               />
             </div>

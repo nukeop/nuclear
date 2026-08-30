@@ -77,7 +77,7 @@ exports[`Dialog > (Snapshot) renders open dialog 1`] = `
           Confirm
         </h2>
         <p
-          class="text-foreground-secondary mt-2 text-sm"
+          class="text-foreground/60 mt-2 text-sm"
           data-headlessui-state="open"
           data-open=""
           id="headlessui-description-:r8:"

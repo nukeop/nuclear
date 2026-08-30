@@ -25,7 +25,7 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a current item with cover art 
         Idioteque
       </div>
       <div
-        class="text-foreground-secondary truncate text-xs"
+        class="text-foreground/60 truncate text-xs"
       >
         Radiohead
       </div>
@@ -91,7 +91,7 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a non-current item without art
         Idioteque
       </div>
       <div
-        class="text-foreground-secondary truncate text-xs"
+        class="text-foreground/60 truncate text-xs"
       >
         Radiohead
       </div>
@@ -125,7 +125,7 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a remove button 1`] = `
         Idioteque
       </div>
       <div
-        class="text-foreground-secondary truncate text-xs"
+        class="text-foreground/60 truncate text-xs"
       >
         Radiohead
       </div>

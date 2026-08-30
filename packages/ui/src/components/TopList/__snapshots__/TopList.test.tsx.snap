@@ -16,7 +16,7 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
         data-testid="top-list-row"
       >
         <span
-          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+          class="text-muted-foreground w-5 text-right text-sm tabular-nums"
         >
           1
         </span>
@@ -39,7 +39,7 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
             Before Today
           </div>
           <div
-            class="text-foreground-secondary truncate text-sm"
+            class="text-muted-foreground truncate text-sm"
             data-testid="top-list-sublabel"
           >
             Ariel Pink
@@ -58,7 +58,7 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
         data-testid="top-list-row"
       >
         <span
-          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+          class="text-muted-foreground w-5 text-right text-sm tabular-nums"
         >
           2
         </span>
@@ -113,7 +113,7 @@ exports[`TopList > (Snapshot) renders a list of albums with their artists 1`] = 
             Hot Rats
           </div>
           <div
-            class="text-foreground-secondary truncate text-sm"
+            class="text-muted-foreground truncate text-sm"
             data-testid="top-list-sublabel"
           >
             Frank Zappa
@@ -148,7 +148,7 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
         data-testid="top-list-row"
       >
         <span
-          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+          class="text-muted-foreground w-5 text-right text-sm tabular-nums"
         >
           1
         </span>
@@ -184,7 +184,7 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
         data-testid="top-list-row"
       >
         <span
-          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+          class="text-muted-foreground w-5 text-right text-sm tabular-nums"
         >
           2
         </span>
@@ -252,7 +252,7 @@ exports[`TopList > (Snapshot) renders a list of artists 1`] = `
         data-testid="top-list-row"
       >
         <span
-          class="text-foreground-secondary w-5 text-right text-sm tabular-nums"
+          class="text-muted-foreground w-5 text-right text-sm tabular-nums"
         >
           3
         </span>

@@ -34,7 +34,7 @@ exports[`PlayerBar > (Snapshot) active states render 1`] = `
               Crystalized
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs"
+              class="text-muted-foreground truncate text-xs"
               data-testid="player-now-playing-artist"
             >
               XX
@@ -330,7 +330,7 @@ exports[`PlayerBar > (Snapshot) default render 1`] = `
               Song Title
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs cursor-pointer hover:underline"
+              class="text-muted-foreground truncate text-xs cursor-pointer hover:underline"
               data-testid="player-now-playing-artist"
             >
               Artist Name
@@ -618,7 +618,7 @@ exports[`PlayerBar > (Snapshot) long metadata truncation 1`] = `
                 An Incredibly, Ridiculously Long Song Title That Should Truncate Nicely
               </div>
               <div
-                class="text-foreground-secondary truncate text-xs"
+                class="text-muted-foreground truncate text-xs"
                 data-testid="player-now-playing-artist"
               >
                 A Very Long Artist Name Featuring Another Long Artist With Even More Characters
@@ -888,7 +888,7 @@ exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
             class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
           >
             <div
-              class="text-foreground-secondary flex size-full items-center justify-center"
+              class="text-muted-foreground flex size-full items-center justify-center"
               data-testid="player-now-playing-placeholder"
             >
               <svg
@@ -925,7 +925,7 @@ exports[`PlayerBar > (Snapshot) no artwork fallback 1`] = `
               Untitled Track
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs"
+              class="text-muted-foreground truncate text-xs"
               data-testid="player-now-playing-artist"
             >
               Unknown Artist

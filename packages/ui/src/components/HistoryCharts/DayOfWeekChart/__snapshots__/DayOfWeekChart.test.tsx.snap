@@ -270,7 +270,7 @@ exports[`DayOfWeekChart > (Snapshot) renders a week of listening data 1`] = `
                 class="recharts-layer recharts-cartesian-axis-tick-label"
               >
                 <text
-                  class="recharts-text recharts-cartesian-axis-tick-value fill-foreground-secondary text-xs"
+                  class="recharts-text recharts-cartesian-axis-tick-value fill-muted-foreground text-xs"
                   fill="#666"
                   height="30"
                   orientation="bottom"
@@ -292,7 +292,7 @@ exports[`DayOfWeekChart > (Snapshot) renders a week of listening data 1`] = `
                 class="recharts-layer recharts-cartesian-axis-tick-label"
               >
                 <text
-                  class="recharts-text recharts-cartesian-axis-tick-value fill-foreground-secondary text-xs"
+                  class="recharts-text recharts-cartesian-axis-tick-value fill-muted-foreground text-xs"
                   fill="#666"
                   height="30"
                   orientation="bottom"
@@ -314,7 +314,7 @@ exports[`DayOfWeekChart > (Snapshot) renders a week of listening data 1`] = `
                 class="recharts-layer recharts-cartesian-axis-tick-label"
               >
                 <text
-                  class="recharts-text recharts-cartesian-axis-tick-value fill-foreground-secondary text-xs"
+                  class="recharts-text recharts-cartesian-axis-tick-value fill-muted-foreground text-xs"
                   fill="#666"
                   height="30"
                   orientation="bottom"
@@ -336,7 +336,7 @@ exports[`DayOfWeekChart > (Snapshot) renders a week of listening data 1`] = `
                 class="recharts-layer recharts-cartesian-axis-tick-label"
               >
                 <text
-                  class="recharts-text recharts-cartesian-axis-tick-value fill-foreground-secondary text-xs"
+                  class="recharts-text recharts-cartesian-axis-tick-value fill-muted-foreground text-xs"
                   fill="#666"
                   height="30"
                   orientation="bottom"
@@ -358,7 +358,7 @@ exports[`DayOfWeekChart > (Snapshot) renders a week of listening data 1`] = `
                 class="recharts-layer recharts-cartesian-axis-tick-label"
               >
                 <text
-                  class="recharts-text recharts-cartesian-axis-tick-value fill-foreground-secondary text-xs"
+                  class="recharts-text recharts-cartesian-axis-tick-value fill-muted-foreground text-xs"
                   fill="#666"
                   height="30"
                   orientation="bottom"
@@ -380,7 +380,7 @@ exports[`DayOfWeekChart > (Snapshot) renders a week of listening data 1`] = `
                 class="recharts-layer recharts-cartesian-axis-tick-label"
               >
                 <text
-                  class="recharts-text recharts-cartesian-axis-tick-value fill-foreground-secondary text-xs"
+                  class="recharts-text recharts-cartesian-axis-tick-value fill-muted-foreground text-xs"
                   fill="#666"
                   height="30"
                   orientation="bottom"
@@ -402,7 +402,7 @@ exports[`DayOfWeekChart > (Snapshot) renders a week of listening data 1`] = `
                 class="recharts-layer recharts-cartesian-axis-tick-label"
               >
                 <text
-                  class="recharts-text recharts-cartesian-axis-tick-value fill-foreground-secondary text-xs"
+                  class="recharts-text recharts-cartesian-axis-tick-value fill-muted-foreground text-xs"
                   fill="#666"
                   height="30"
                   orientation="bottom"

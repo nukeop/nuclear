@@ -47,7 +47,7 @@ exports[`Select > (Snapshot) renders basic with description 1`] = `
     </span>
   </button>
   <p
-    class="text-foreground-secondary text-sm select-none"
+    class="text-foreground/60 text-sm select-none"
     id="select-quality-description"
   >
     Choose your preferred playback quality.

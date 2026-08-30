@@ -25,13 +25,13 @@ exports[`NuclearJamSearchResultTrack > (Snapshot) renders a full track 1`] = `
         Windowlicker
       </div>
       <div
-        class="text-foreground-secondary truncate text-xs"
+        class="text-foreground/60 truncate text-xs"
       >
         Aphex Twin
       </div>
     </div>
     <div
-      class="text-foreground-secondary shrink-0 text-xs tabular-nums"
+      class="text-foreground/60 shrink-0 text-xs tabular-nums"
     >
       6:06
     </div>

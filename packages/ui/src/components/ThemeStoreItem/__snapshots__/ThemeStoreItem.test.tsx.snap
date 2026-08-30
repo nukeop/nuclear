@@ -56,13 +56,13 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
             </span>
           </div>
           <p
-            class="text-foreground-secondary line-clamp-2 text-sm"
+            class="text-muted-foreground line-clamp-2 text-sm"
             data-testid="theme-store-item-description"
           >
             Retro groove color scheme. Based on the classic Vim theme.
           </p>
           <p
-            class="text-foreground-secondary text-xs"
+            class="text-muted-foreground text-xs"
             data-testid="theme-store-item-author"
           >
             by nukeop
@@ -232,13 +232,13 @@ exports[`ThemeStoreItem > (Snapshot) renders with all props 1`] = `
             </span>
           </div>
           <p
-            class="text-foreground-secondary line-clamp-2 text-sm"
+            class="text-muted-foreground line-clamp-2 text-sm"
             data-testid="theme-store-item-description"
           >
             Retro groove color scheme. Based on the classic Vim theme.
           </p>
           <p
-            class="text-foreground-secondary text-xs"
+            class="text-muted-foreground text-xs"
             data-testid="theme-store-item-author"
           >
             by nukeop

@@ -530,7 +530,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                 class="flex w-full flex-col gap-2"
                               >
                                 <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:outline-none bg-input h-10 rounded-md border-(length:--border-width)"
+                                  class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none bg-input h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
                                   id="input-:rk:"
                                   placeholder="Search plugins..."
@@ -647,7 +647,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                             YouTube Music
                                           </span>
                                           <p
-                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                            class="text-muted-foreground text-sm font-normal select-none"
                                           >
                                             <span
                                               class="mr-1 opacity-60"
@@ -668,7 +668,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                         </span>
                                       </div>
                                       <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        class="text-muted-foreground line-clamp-2 text-sm"
                                         data-testid="plugin-store-item-description"
                                       >
                                         Stream music from YouTube
@@ -732,7 +732,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                             Last.fm Scrobbler
                                           </span>
                                           <p
-                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                            class="text-muted-foreground text-sm font-normal select-none"
                                           >
                                             <span
                                               class="mr-1 opacity-60"
@@ -753,7 +753,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                         </span>
                                       </div>
                                       <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        class="text-muted-foreground line-clamp-2 text-sm"
                                         data-testid="plugin-store-item-description"
                                       >
                                         Scrobble your listening history to Last.fm
@@ -817,7 +817,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                             MusicBrainz Metadata
                                           </span>
                                           <p
-                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                            class="text-muted-foreground text-sm font-normal select-none"
                                           >
                                             <span
                                               class="mr-1 opacity-60"
@@ -838,7 +838,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                         </span>
                                       </div>
                                       <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        class="text-muted-foreground line-clamp-2 text-sm"
                                         data-testid="plugin-store-item-description"
                                       >
                                         Fetch metadata from MusicBrainz database
