@@ -21,6 +21,7 @@
 ## Theming
 
 * [Themes](themes/themes.md)
+* [Surfaces](themes/surfaces.md)
 * [Basic themes](themes/themes-basic.md)
 * [Advanced themes](themes/themes-advanced.md)
 * [Theme store](themes/theme-store.md)

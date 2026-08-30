@@ -12,17 +12,26 @@
 
 @theme {
   --color-background: var(--background);
-  --color-background-secondary: var(--background-secondary);
-  --color-background-input: var(--background-input);
-
   --color-foreground: var(--foreground);
-  --color-foreground-secondary: var(--foreground-secondary);
-  --color-foreground-input: var(--foreground-input);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-input: var(--input);
+  --color-input-foreground: var(--input-foreground);
 
   --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-overlay: var(--overlay);
 
   --color-border: var(--border);
-  --color-border-input: var(--border-input);
   --color-ring: var(--ring);
 
   --color-accent-green: var(--accent-green);
@@ -32,6 +41,14 @@
   --color-accent-orange: var(--accent-orange);
   --color-accent-cyan: var(--accent-cyan);
   --color-accent-red: var(--accent-red);
+
+  --color-accent-green-foreground: var(--accent-green-foreground);
+  --color-accent-yellow-foreground: var(--accent-yellow-foreground);
+  --color-accent-purple-foreground: var(--accent-purple-foreground);
+  --color-accent-blue-foreground: var(--accent-blue-foreground);
+  --color-accent-orange-foreground: var(--accent-orange-foreground);
+  --color-accent-cyan-foreground: var(--accent-cyan-foreground);
+  --color-accent-red-foreground: var(--accent-red-foreground);
 
   --color-shadow: var(--shadow-color);
 
@@ -50,30 +67,31 @@
   --shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--border);
   --shadow-shadow: var(--shadow);
   --shadow-nav: 4px 4px 0px 0px var(--border);
-  --shadow-darkNav: 4px 4px 0px 0px var(--dark-border);
   --spacing-shadow-x: var(--shadow-x);
   --spacing-shadow-y: var(--shadow-y);
 }
 
 :root {
-  /* Core Backgrounds */
+  /* Surfaces and their foregrounds */
   --background: oklch(0.9163 0.0361 7.16);
-  --background-secondary: oklch(100% 0 0);
-  --background-input: oklch(100% 0 0);
-
-  /* Text Colors */
   --foreground: oklch(0% 0 0);
-  --foreground-secondary: oklch(0.42 0.1 5);
-  --foreground-input: oklch(0% 0 0);
 
-  /* Interactive Elements */
+  --muted: oklch(100% 0 0);
+  --muted-foreground: oklch(0.42 0.1 5);
+
+  --card: oklch(0.8 0.12 4.56);
+  --card-foreground: oklch(0% 0 0);
+
+  --popover: oklch(0.8 0.12 4.56);
+  --popover-foreground: oklch(0% 0 0);
+
+  --input: oklch(100% 0 0);
+  --input-foreground: oklch(0% 0 0);
+
   --primary: oklch(0.8 0.12 4.56);
+  --primary-foreground: oklch(0% 0 0);
 
-  /* Borders & Outlines */
-  --border: oklch(0% 0 0);
-  --ring: oklch(100% 0 0);
-
-  /* Accent Colors */
+  /* Accents and their foregrounds */
   --accent-green: oklch(0.88 0.13 145);
   --accent-yellow: oklch(0.8882 0.15 95);
   --accent-purple: oklch(0.82 0.1 300);
@@ -82,8 +100,37 @@
   --accent-cyan: oklch(0.88 0.09 200);
   --accent-red: oklch(0.7327 0.2428 18);
 
-  /* Borders */
+  --accent-green-foreground: oklch(0% 0 0);
+  --accent-yellow-foreground: oklch(0% 0 0);
+  --accent-purple-foreground: oklch(0% 0 0);
+  --accent-blue-foreground: oklch(0% 0 0);
+  --accent-orange-foreground: oklch(0% 0 0);
+  --accent-cyan-foreground: oklch(0% 0 0);
+  --accent-red-foreground: oklch(100% 0 0);
+
+  /* Borders, rings, overlays */
+  --border: oklch(0% 0 0);
   --border-width: 2px;
+  --ring: oklch(0% 0 0);
+  --overlay: oklch(0% 0 0 / 0.4);
+
+  /* Surface gradients */
+  --background-gradient: none;
+  --muted-gradient: none;
+  --card-gradient: none;
+  --popover-gradient: none;
+  --input-gradient: none;
+  --primary-gradient: none;
+  --accent-green-gradient: none;
+  --accent-yellow-gradient: none;
+  --accent-purple-gradient: none;
+  --accent-blue-gradient: none;
+  --accent-orange-gradient: none;
+  --accent-cyan-gradient: none;
+  --accent-red-gradient: none;
+
+  /* Wallpaper */
+  --wallpaper: none;
 
   /* Shadows */
   --shadow-color: oklch(0% 0 0);
@@ -128,16 +175,22 @@
 
 [data-theme='dark'] {
   --background: oklch(0.22 0.03 5);
-  --background-secondary: oklch(0.27 0.035 5);
-  --background-input: oklch(0.15 0.02 5);
-
   --foreground: oklch(0.9 0.008 5);
-  --foreground-secondary: oklch(0.78 0.1 5);
-  --foreground-input: oklch(0.93 0 0);
+
+  --muted: oklch(0.27 0.035 5);
+  --muted-foreground: oklch(0.78 0.1 5);
+
+  --card: oklch(0.5 0.1 5);
+  --card-foreground: oklch(0.95 0 0);
+
+  --popover: oklch(0.5 0.1 5);
+  --popover-foreground: oklch(0.95 0 0);
+
+  --input: oklch(0.15 0.02 5);
+  --input-foreground: oklch(0.93 0 0);
 
   --primary: oklch(0.5 0.1 5);
-
-  --border: oklch(0.48 0.04 5);
+  --primary-foreground: oklch(0.95 0 0);
 
   --accent-green: oklch(0.72 0.14 145);
   --accent-yellow: oklch(0.78 0.14 95);
@@ -147,7 +200,17 @@
   --accent-cyan: oklch(0.75 0.11 200);
   --accent-red: oklch(0.68 0.14 18);
 
+  --accent-green-foreground: oklch(0.15 0 0);
+  --accent-yellow-foreground: oklch(0.15 0 0);
+  --accent-purple-foreground: oklch(0.95 0 0);
+  --accent-blue-foreground: oklch(0.95 0 0);
+  --accent-orange-foreground: oklch(0.15 0 0);
+  --accent-cyan-foreground: oklch(0.15 0 0);
+  --accent-red-foreground: oklch(0.95 0 0);
+
+  --border: oklch(0.48 0.04 5);
   --border-width: 1px;
+  --ring: oklch(0.9 0.008 5);
 
   --shadow-x: 0px;
   --shadow-y: 0px;
