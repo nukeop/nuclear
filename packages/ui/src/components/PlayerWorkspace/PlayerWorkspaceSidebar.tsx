@@ -49,7 +49,7 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
     <motion.div
       ref={sidebarRef}
       className={cn(
-        'bg-muted border-border relative flex flex-col overflow-hidden',
+        'surface-muted border-border relative flex flex-col overflow-hidden',
         {
           'border-r-(length:--border-width)': side === 'left',
           'border-l-(length:--border-width)': side === 'right',

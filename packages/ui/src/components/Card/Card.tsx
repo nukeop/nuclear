@@ -29,7 +29,7 @@ export const Card: FC<CardProps> = ({
     data-testid="card"
     size="flexible"
     className={cn(
-      'bg-card flex w-42 flex-col items-stretch gap-2 p-2 text-left',
+      'surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left',
       className,
     )}
     onClick={onClick}
@@ -37,7 +37,7 @@ export const Card: FC<CardProps> = ({
     <Box
       variant="primary"
       shadow="none"
-      className="bg-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+      className="surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
     >
       {image ?? (
         <ImageReveal

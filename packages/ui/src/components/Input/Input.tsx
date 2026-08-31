@@ -21,8 +21,8 @@ const inputVariants = cva(
           'border-b-border !rounded-none rounded-none !border-r-0 !border-l-0 border-t-transparent px-6 outline-none focus-visible:ring-0 focus-visible:ring-offset-0',
       },
       tone: {
-        primary: 'bg-input',
-        secondary: 'bg-background',
+        primary: 'surface-input',
+        secondary: 'surface-background',
       },
       size: {
         sm: 'h-9 text-sm',

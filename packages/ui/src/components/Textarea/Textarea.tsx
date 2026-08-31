@@ -8,8 +8,8 @@ const textareaVariants = cva(
   {
     variants: {
       tone: {
-        primary: 'bg-input',
-        secondary: 'bg-background',
+        primary: 'surface-input',
+        secondary: 'surface-background',
       },
     },
     defaultVariants: {

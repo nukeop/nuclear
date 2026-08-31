@@ -8,9 +8,9 @@ const boxVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-primary',
-        secondary: 'bg-background',
-        tertiary: 'bg-muted',
+        primary: 'surface-primary',
+        secondary: 'surface-background',
+        tertiary: 'surface-muted',
         warning:
           'bg-accent-orange/30 ring-accent-orange ring ring-2 ring-inset',
       },
