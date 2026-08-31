@@ -1,0 +1,71 @@
+:root[data-theme-id='nuclear:nebula'] {
+  --background: oklch(0.94 0.025 290);
+  --background-gradient: linear-gradient(
+    180deg,
+    oklch(0.96 0.03 270),
+    oklch(0.92 0.045 310)
+  );
+  --muted: oklch(0.99 0.005 290);
+  --muted-gradient: linear-gradient(
+    180deg,
+    oklch(1 0 0),
+    oklch(0.96 0.015 290)
+  );
+  --muted-foreground: oklch(0.4 0.08 295);
+  --input: oklch(0.98 0.01 290);
+  --card: oklch(0.72 0.16 295);
+  --card-gradient: linear-gradient(
+    135deg,
+    oklch(0.76 0.14 275),
+    oklch(0.66 0.19 320)
+  );
+  --popover: oklch(0.72 0.16 295);
+  --popover-gradient: linear-gradient(
+    135deg,
+    oklch(0.76 0.14 275),
+    oklch(0.66 0.19 320)
+  );
+  --primary: oklch(0.72 0.16 295);
+  --primary-gradient: linear-gradient(
+    135deg,
+    oklch(0.76 0.14 275),
+    oklch(0.66 0.19 320)
+  );
+}
+
+:root[data-theme-id='nuclear:nebula'][data-theme='dark'] {
+  --background: oklch(0.19 0.04 290);
+  --background-gradient: linear-gradient(
+    180deg,
+    oklch(0.22 0.05 270),
+    oklch(0.15 0.055 310)
+  );
+  --muted: oklch(0.26 0.05 290);
+  --muted-gradient: linear-gradient(
+    180deg,
+    oklch(0.28 0.055 280),
+    oklch(0.23 0.05 300)
+  );
+  --muted-foreground: oklch(0.78 0.06 295);
+  --foreground: oklch(0.92 0.012 290);
+  --input: oklch(0.14 0.03 290);
+  --card: oklch(0.5 0.14 295);
+  --card-gradient: linear-gradient(
+    135deg,
+    oklch(0.53 0.13 275),
+    oklch(0.44 0.16 320)
+  );
+  --popover: oklch(0.5 0.14 295);
+  --popover-gradient: linear-gradient(
+    135deg,
+    oklch(0.53 0.13 275),
+    oklch(0.44 0.16 320)
+  );
+  --primary: oklch(0.5 0.14 295);
+  --primary-gradient: linear-gradient(
+    135deg,
+    oklch(0.53 0.13 275),
+    oklch(0.44 0.16 320)
+  );
+  --border: oklch(0.52 0.07 295);
+}
