@@ -54,14 +54,14 @@
   --background: oklch(0.19 0.04 290 / 0.35);
   --background-gradient: linear-gradient(
     180deg,
-    oklch(0.22 0.05 270 / 0.2),
-    oklch(0.15 0.055 310 / 0.35)
+    oklch(0.22 0.05 270),
+    oklch(0.15 0.055 310)
   );
-  --muted: oklch(0.26 0.05 290 / 0.4);
+  --muted: oklch(0.26 0.05 290);
   --muted-gradient: linear-gradient(
     180deg,
-    oklch(0.28 0.055 280 / 0.15),
-    oklch(0.23 0.05 300 / 0.25)
+    oklch(0.28 0.055 280),
+    oklch(0.23 0.05 300)
   );
   --muted-foreground: oklch(0.78 0.06 295);
   --foreground: oklch(0.92 0.012 290);
