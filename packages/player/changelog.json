@@ -1,5 +1,21 @@
 [
   {
+    "date": "2026-09-01T00:00",
+    "description": "Theming system v2: themes can now use gradients on surfaces, a wallpaper image behind the whole player, and translucent surfaces with backdrop blur. Includes the new built-in Nebula theme showing all of this off.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      },
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-08-29T00:00",
     "description": "Fixed pressing Enter in the search box searching for a hovered recent search instead of the typed text.",
     "type": "fix",
