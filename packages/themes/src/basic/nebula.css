@@ -1,15 +1,32 @@
 :root[data-theme-id='nuclear:nebula'] {
-  --background: oklch(0.94 0.025 290);
+  --wallpaper:
+    radial-gradient(
+      50% 65% at 75% 15%,
+      oklch(0.85 0.09 320 / 0.55),
+      transparent 70%
+    ),
+    radial-gradient(
+      45% 60% at 15% 75%,
+      oklch(0.87 0.08 260 / 0.5),
+      transparent 70%
+    ),
+    radial-gradient(
+      35% 45% at 45% 45%,
+      oklch(0.9 0.06 290 / 0.4),
+      transparent 70%
+    ),
+    linear-gradient(oklch(0.95 0.02 285), oklch(0.95 0.02 285));
+  --background: oklch(0.94 0.025 290 / 0.55);
   --background-gradient: linear-gradient(
     180deg,
-    oklch(0.96 0.03 270),
-    oklch(0.92 0.045 310)
+    oklch(0.96 0.03 270 / 0.5),
+    oklch(0.92 0.045 310 / 0.6)
   );
-  --muted: oklch(0.99 0.005 290);
+  --muted: oklch(0.99 0.005 290 / 0.7);
   --muted-gradient: linear-gradient(
     180deg,
-    oklch(1 0 0),
-    oklch(0.96 0.015 290)
+    oklch(1 0 0 / 0.55),
+    oklch(0.96 0.015 290 / 0.7)
   );
   --muted-foreground: oklch(0.4 0.08 295);
   --input: oklch(0.98 0.01 290);
@@ -34,17 +51,17 @@
 }
 
 :root[data-theme-id='nuclear:nebula'][data-theme='dark'] {
-  --background: oklch(0.19 0.04 290);
+  --background: oklch(0.19 0.04 290 / 0.35);
   --background-gradient: linear-gradient(
     180deg,
-    oklch(0.22 0.05 270),
-    oklch(0.15 0.055 310)
+    oklch(0.22 0.05 270 / 0.2),
+    oklch(0.15 0.055 310 / 0.35)
   );
-  --muted: oklch(0.26 0.05 290);
+  --muted: oklch(0.26 0.05 290 / 0.4);
   --muted-gradient: linear-gradient(
     180deg,
-    oklch(0.28 0.055 280),
-    oklch(0.23 0.05 300)
+    oklch(0.28 0.055 280 / 0.15),
+    oklch(0.23 0.05 300 / 0.25)
   );
   --muted-foreground: oklch(0.78 0.06 295);
   --foreground: oklch(0.92 0.012 290);

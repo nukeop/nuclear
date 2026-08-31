@@ -37,9 +37,9 @@ export const DialogRoot: FC<DialogRootProps> = ({
             <DialogOverlayBackdrop />
             <div className="fixed inset-0 flex items-center justify-center p-4">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 8 }}
+                initial={{ scale: 0.9, y: 10 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.95, y: 8 }}
                 transition={{
                   type: 'spring',
                   stiffness: 400,
@@ -49,7 +49,7 @@ export const DialogRoot: FC<DialogRootProps> = ({
               >
                 <DialogPanel
                   className={cn(
-                    'border-border surface-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6',
+                    'border-border surface-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6 backdrop-blur-xl',
                     className,
                   )}
                 >

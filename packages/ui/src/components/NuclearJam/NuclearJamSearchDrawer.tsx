@@ -29,7 +29,7 @@ export const NuclearJamSearchDrawer: FC<NuclearJamSearchDrawerProps> = ({
         />
       </TransitionChild>
       <TransitionChild>
-        <div className="surface-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full">
+        <div className="surface-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) backdrop-blur-xl transition duration-200 ease-out data-closed:-translate-y-full">
           {children}
         </div>
       </TransitionChild>

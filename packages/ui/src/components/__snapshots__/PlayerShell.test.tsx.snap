@@ -5,16 +5,21 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
   <div
     class="grid h-screen w-screen grid-rows-[auto_1fr_auto] overflow-hidden"
   >
+    <div
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 -z-10 bg-[image:var(--wallpaper)] bg-cover bg-center"
+      data-testid="wallpaper-layer"
+    />
     <header
-      class="bg-muted border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
+      class="surface-muted border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
       data-tauri-drag-region="true"
     />
     <div
-      class="bg-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
+      class="surface-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
     >
       <div
         animate="[object Object]"
-        class="bg-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+        class="surface-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -60,12 +65,12 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
         />
       </div>
       <main
-        class="bg-muted overflow-auto"
+        class="surface-muted overflow-auto"
         data-testid="player-workspace-main"
       />
       <div
         animate="[object Object]"
-        class="bg-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
+        class="surface-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -112,7 +117,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
       </div>
     </div>
     <footer
-      class="bg-muted border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+      class="surface-muted border-border flex h-16 items-center border-t-(length:--border-width) px-4"
     />
   </div>
 </DocumentFragment>
