@@ -24,7 +24,7 @@ export const NuclearJamEmptyQueue: FC<NuclearJamEmptyQueueProps> = ({
     )}
     data-testid="jam-queue-empty"
   >
-    <Music size={48} className="text-foreground/60 opacity-50" />
+    <Music size={48} className="text-foreground opacity-50" />
     {labels.title && (
       <div className="text-foreground text-base font-bold">{labels.title}</div>
     )}

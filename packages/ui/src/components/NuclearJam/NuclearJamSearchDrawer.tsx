@@ -23,7 +23,7 @@ export const NuclearJamSearchDrawer: FC<NuclearJamSearchDrawerProps> = ({
     >
       <TransitionChild>
         <div
-          className="absolute inset-0 bg-black/50 transition duration-200 data-closed:opacity-0"
+          className="bg-overlay absolute inset-0 transition duration-200 data-closed:opacity-0"
           onClick={onBackdropClick}
           data-testid="jam-search-backdrop"
         />

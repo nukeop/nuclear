@@ -55,7 +55,7 @@ const PopoverImpl: FC<PopoverProps> = ({
                 {backdrop && (
                   <PopoverBackdrop
                     transition
-                    className="fixed inset-0 bg-black/20 transition duration-150 ease-out data-closed:opacity-0"
+                    className="bg-overlay fixed inset-0 transition duration-150 ease-out data-closed:opacity-0"
                   />
                 )}
                 <PopoverPanel

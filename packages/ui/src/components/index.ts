@@ -54,6 +54,7 @@ export * from './TopBarNavigation';
 export * from './TopList';
 export * from './TrackContextMenu';
 export * from './ViewShell';
+export * from './Wallpaper';
 export * from '../providers/PlatformProvider';
 export * from '../utils/time';
 export * from './TrackTable';

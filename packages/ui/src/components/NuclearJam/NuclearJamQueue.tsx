@@ -63,16 +63,11 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
         className="bg-foreground border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
         data-testid="jam-queue-header"
       >
-        <span className="font-heading dark:text-background font-extrabold tracking-tight text-white uppercase">
+        <span className="font-heading text-background font-extrabold tracking-tight uppercase">
           {labels.upNext}
         </span>
 
-        <Badge
-          variant="pill"
-          color="yellow"
-          data-testid="jam-queue-count"
-          className="dark:bg-accent-green dark:border-background dark:text-white"
-        >
+        <Badge variant="pill" color="yellow" data-testid="jam-queue-count">
           {items.length}
         </Badge>
       </div>

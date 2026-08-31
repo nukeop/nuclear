@@ -76,37 +76,37 @@ const badgeVariants = cva(
       {
         variant: 'pill',
         color: 'green',
-        className: 'bg-accent-green text-foreground',
+        className: 'bg-accent-green text-accent-green-foreground',
       },
       {
         variant: 'pill',
         color: 'cyan',
-        className: 'bg-accent-cyan text-foreground',
+        className: 'bg-accent-cyan text-accent-cyan-foreground',
       },
       {
         variant: 'pill',
         color: 'orange',
-        className: 'bg-accent-orange text-foreground',
+        className: 'bg-accent-orange text-accent-orange-foreground',
       },
       {
         variant: 'pill',
         color: 'red',
-        className: 'bg-accent-red text-foreground',
+        className: 'bg-accent-red text-accent-red-foreground',
       },
       {
         variant: 'pill',
         color: 'yellow',
-        className: 'bg-accent-yellow text-foreground',
+        className: 'bg-accent-yellow text-accent-yellow-foreground',
       },
       {
         variant: 'pill',
         color: 'purple',
-        className: 'bg-accent-purple text-foreground',
+        className: 'bg-accent-purple text-accent-purple-foreground',
       },
       {
         variant: 'pill',
         color: 'blue',
-        className: 'bg-accent-blue text-foreground',
+        className: 'bg-accent-blue text-accent-blue-foreground',
       },
     ],
     defaultVariants: {

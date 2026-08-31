@@ -30,7 +30,7 @@ export const WindowsWindowControls: FC<WindowControlsProps> = ({
     <button
       onClick={onClose}
       title={labels.close}
-      className="text-foreground hover:bg-accent-red inline-flex h-full w-11 items-center justify-center border-none bg-transparent hover:text-white"
+      className="text-foreground hover:bg-accent-red hover:text-accent-red-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
     >
       <X size={14} strokeWidth={1.5} />
     </button>

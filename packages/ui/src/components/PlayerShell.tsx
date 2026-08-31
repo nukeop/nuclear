@@ -1,6 +1,7 @@
 import { ComponentProps, FC } from 'react';
 
 import { cn } from '../utils';
+import { WallpaperLayer } from './Wallpaper';
 
 type PlayerShellProps = ComponentProps<'div'>;
 
@@ -17,11 +18,7 @@ export const PlayerShell: FC<PlayerShellProps> = ({
       )}
       {...props}
     >
-      <div
-        data-testid="wallpaper-layer"
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 -z-10 bg-[image:var(--wallpaper)] bg-cover bg-center"
-      />
+      <WallpaperLayer />
       {children}
     </div>
   );

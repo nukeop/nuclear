@@ -18,7 +18,7 @@ const buttonVariants = cva(
         noShadow:
           'text-foreground bg-primary border-border border-(length:--border-width)',
         text: 'text-foreground bg-transparent',
-        ghost: 'border border-current bg-transparent hover:bg-black/10',
+        ghost: 'hover:bg-foreground/10 border border-current bg-transparent',
       },
       size: {
         default: 'h-10 px-4 py-2',
@@ -30,7 +30,7 @@ const buttonVariants = cva(
         flexible: 'h-auto',
       },
       intent: {
-        danger: 'bg-accent-red',
+        danger: 'bg-accent-red text-accent-red-foreground',
       },
     },
     defaultVariants: {

@@ -44,7 +44,7 @@ export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
         Nuclear{' '}
         <PulsingText
           text="Jam"
-          className="text-primary text-stroke-4 stroke-text-black dark:stroke-text-foreground"
+          className="text-primary text-stroke-4 stroke-text-foreground"
         />
       </h1>
     </span>
@@ -65,7 +65,7 @@ export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({
         )}
         data-testid="connection-status-dot"
       />
-      <span className="text-background dark:text-background text-xs font-semibold text-white">
+      <span className="text-background text-xs font-semibold">
         {connectionStatusLabels[connectionStatus]}
       </span>
     </span>

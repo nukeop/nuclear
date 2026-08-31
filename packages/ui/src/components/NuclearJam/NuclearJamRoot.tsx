@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 
 import { cn } from '../../utils';
+import { WallpaperLayer } from '../Wallpaper';
 
 export type NuclearJamProps = {
   children: ReactNode;
@@ -17,6 +18,7 @@ export const NuclearJamRoot: FC<NuclearJamProps> = ({
       className,
     )}
   >
+    <WallpaperLayer />
     {children}
   </div>
 );
