@@ -44,7 +44,7 @@ export const SearchBoxPopover: FC<SearchBoxPopoverProps> = ({
             damping: 17,
             mass: 0.8,
           }}
-          className="bg-background border-border absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-md border-(length:--border-width)"
+          className="surface-background border-border absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-md border-(length:--border-width)"
         >
           <Popover.Menu>
             <Popover.Section label={t('recentSearches')}>

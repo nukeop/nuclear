@@ -109,7 +109,7 @@ export const ArtistSocialHeader: FC<ArtistSocialHeaderProps> = ({
 
   return (
     <div
-      className="border-border bg-card shadow-shadow relative m-4 rounded-md border-(length:--border-width) p-6"
+      className="border-border surface-card shadow-shadow relative m-4 rounded-md border-(length:--border-width) p-6"
       data-testid="artist-social-header"
     >
       <ConnectedFavoriteButton

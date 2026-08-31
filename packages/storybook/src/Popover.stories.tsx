@@ -58,7 +58,7 @@ export const SectionedMenu: Story = {
   render: () => (
     <Popover
       className="relative"
-      panelClassName="bg-background px-0 py-0"
+      panelClassName="surface-background px-0 py-0"
       trigger={<Button>Recent</Button>}
       anchor="bottom"
     >
@@ -90,7 +90,7 @@ export const DropdownMenu: Story = {
   render: () => (
     <Popover
       className="relative"
-      panelClassName="bg-background px-0 py-0"
+      panelClassName="surface-background px-0 py-0"
       trigger={<Button>Actions</Button>}
       anchor="bottom"
     >

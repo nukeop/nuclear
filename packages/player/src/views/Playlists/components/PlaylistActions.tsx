@@ -44,7 +44,7 @@ export const PlaylistActions: FC<PlaylistActionsProps> = ({
       </Button>
       <Popover
         className="relative"
-        panelClassName="bg-background px-0 py-0"
+        panelClassName="surface-background px-0 py-0"
         trigger={
           <Button
             variant="secondary"

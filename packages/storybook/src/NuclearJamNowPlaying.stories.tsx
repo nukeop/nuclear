@@ -14,7 +14,7 @@ const cover = 'https://picsum.photos/208';
 
 export const WithCoverArt = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.NowPlaying
         title="Everything In Its Right Place"
         artist="Radiohead"
@@ -26,7 +26,7 @@ export const WithCoverArt = {
 
 export const Loading = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.NowPlaying
         title="Everything In Its Right Place"
         artist="Radiohead"
@@ -39,7 +39,7 @@ export const Loading = {
 
 export const NoCoverArt = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.NowPlaying title="No Cover Art" artist="Unknown Artist" />
     </div>
   ),

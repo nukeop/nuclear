@@ -34,7 +34,7 @@ export const Interactive: Story = {
     };
 
     return (
-      <div className="bg-background h-[600px] p-4">
+      <div className="surface-background h-[600px] p-4">
         <LogViewer
           logs={logs}
           scopes={scopes}
@@ -53,7 +53,7 @@ export const ManyLogs: Story = {
     const scopes = [...new Set(logs.map((log) => log.source.scope))];
 
     return (
-      <div className="bg-background h-[600px] p-4">
+      <div className="surface-background h-[600px] p-4">
         <LogViewer
           logs={logs}
           scopes={scopes}
@@ -68,7 +68,7 @@ export const ManyLogs: Story = {
 
 export const Empty: Story = {
   render: () => (
-    <div className="bg-background h-[400px] p-4">
+    <div className="surface-background h-[400px] p-4">
       <LogViewer
         logs={[]}
         scopes={[]}
@@ -85,7 +85,7 @@ export const LongMessages: Story = {
     const scopes = [...new Set(longMessageLogs.map((log) => log.source.scope))];
 
     return (
-      <div className="bg-background h-[600px] p-4">
+      <div className="surface-background h-[600px] p-4">
         <LogViewer
           logs={longMessageLogs}
           scopes={scopes}
@@ -105,7 +105,7 @@ export const ClickableChips: Story = {
     ];
 
     return (
-      <div className="bg-background h-[600px] p-4">
+      <div className="surface-background h-[600px] p-4">
         <LogViewer
           logs={clickableChipsLogs}
           scopes={scopes}

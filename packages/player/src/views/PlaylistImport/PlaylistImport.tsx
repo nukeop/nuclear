@@ -31,7 +31,7 @@ export const PlaylistImport: FC = () => {
 
   return (
     <ScrollableArea
-      className="bg-background"
+      className="surface-background"
       data-testid="playlist-import-view"
     >
       {playlist && (

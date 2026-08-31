@@ -83,7 +83,7 @@ const mockQueueItems: QueueItem[] = [
 
 export const Default = {
   render: () => (
-    <div className="bg-background h-80">
+    <div className="surface-background h-80">
       <NuclearJam.Queue
         items={mockQueueItems}
         currentItemId="3"
@@ -96,7 +96,7 @@ export const Default = {
 
 export const Empty = {
   render: () => (
-    <div className="bg-background h-80">
+    <div className="surface-background h-80">
       <NuclearJam.Queue items={[]} labels={queueLabels} onRemove={fn()} />
     </div>
   ),

@@ -36,7 +36,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
   return (
     <div
       className={cn(
-        'border-border bg-card shadow-shadow relative flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row',
+        'border-border surface-card shadow-shadow relative flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row',
         className,
       )}
     >

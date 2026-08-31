@@ -48,7 +48,7 @@ export const AlbumHeader: FC<AlbumHeaderProps> = ({ providerId, albumId }) => {
   const trackCount = album.tracks?.length ?? 0;
 
   return (
-    <div className="border-border bg-card shadow-shadow relative mx-6 mt-6 flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row">
+    <div className="border-border surface-card shadow-shadow relative mx-6 mt-6 flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row">
       <ConnectedFavoriteButton
         type="album"
         source={{ provider: providerId, id: albumId }}
