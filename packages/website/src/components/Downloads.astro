@@ -33,7 +33,7 @@ const platforms = [
   >
     {
       platforms.map((platform) => (
-        <span class="themed-border border-border/40 bg-background-secondary/40 text-foreground/40 inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-2 text-xs font-bold min-[400px]:gap-2 min-[400px]:px-4 min-[400px]:text-sm">
+        <span class="themed-border border-border/40 bg-muted/40 text-foreground/40 inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-2 text-xs font-bold min-[400px]:gap-2 min-[400px]:px-4 min-[400px]:text-sm">
           <Icon name={platform.icon} class="h-4 w-4" />
           {platform.name}
         </span>
@@ -54,7 +54,7 @@ const platforms = [
       platforms.map((platform) => (
         <a
           href={platform.url}
-          class="themed-border btn-interactive border-border bg-background-secondary shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold transition-all hover:shadow-none"
+          class="themed-border btn-interactive border-border bg-muted shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold transition-all hover:shadow-none"
         >
           <Icon name={platform.icon} class="h-4 w-4" />
           {platform.name}
@@ -78,7 +78,7 @@ const platforms = [
     </p>
     <div class="relative mt-1.5 mb-0.5">
       <code
-        class="bg-background-secondary block rounded px-2 py-1 pr-8 text-[11px] break-all"
+        class="bg-muted block rounded px-2 py-1 pr-8 text-[11px] break-all"
         >sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app</code
       >
       <CopyButton
@@ -99,7 +99,7 @@ const platforms = [
   </span>
   <a
     href="https://github.com/nukeop/nuclear"
-    class="themed-border btn-interactive border-border bg-background-secondary shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2.5 rounded-md px-6 py-3 font-bold transition-all hover:shadow-none"
+    class="themed-border btn-interactive border-border bg-muted shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2.5 rounded-md px-6 py-3 font-bold transition-all hover:shadow-none"
   >
     <Icon name="simple-icons:github" class="h-5 w-5" />
     Learn more

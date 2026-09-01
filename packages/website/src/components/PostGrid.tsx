@@ -14,7 +14,7 @@ export const PostGrid: FC<PostGridProps> = ({ posts, total }) => (
       <h2 className="font-heading text-2xl font-black tracking-widest uppercase">
         Recent posts
       </h2>
-      <span className="text-foreground-secondary font-mono text-xs">
+      <span className="text-foreground/60 font-mono text-xs">
         {`${posts.length} of ${total} posts`}
       </span>
     </div>

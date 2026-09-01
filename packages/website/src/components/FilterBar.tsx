@@ -13,12 +13,12 @@ type FilterBarProps = {
 const pillClasses = (active: boolean, color: string) =>
   clsx(
     'themed-border border-border font-heading cursor-pointer rounded-md px-3 py-1 text-xs font-bold tracking-wider uppercase transition-all',
-    active ? color : 'bg-background-secondary hover:brightness-95',
+    active ? color : 'bg-muted hover:brightness-95',
   );
 
 export const FilterBar: FC<FilterBarProps> = ({ selected, onSelect }) => (
   <div className="themed-border border-border bg-background shadow-shadow flex flex-1 flex-wrap items-center gap-2 rounded-md px-4 py-1">
-    <span className="font-heading text-foreground-secondary mr-2 text-xs font-bold tracking-widest uppercase">
+    <span className="font-heading text-foreground/60 mr-2 text-xs font-bold tracking-widest uppercase">
       Filter
     </span>
     <button

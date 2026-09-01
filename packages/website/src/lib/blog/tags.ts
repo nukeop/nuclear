@@ -4,7 +4,7 @@ const categoryColors = {
   craft: 'bg-accent-blue',
 } as const;
 
-const FALLBACK_CATEGORY_COLOR = 'bg-background-secondary';
+const FALLBACK_CATEGORY_COLOR = 'bg-muted';
 
 export type Category = keyof typeof categoryColors;
 

@@ -65,7 +65,7 @@ export const McpShowcase: FC = () => {
         manage queues and playlists.
       </p>
 
-      <div className="themed-border border-border bg-background-secondary shadow-shadow flex w-full flex-col overflow-hidden rounded-md font-mono">
+      <div className="themed-border border-border bg-muted shadow-shadow flex w-full flex-col overflow-hidden rounded-md font-mono">
         <div className="border-border bg-background flex overflow-x-auto border-b-2">
           {tabs.map((tab) => {
             const isActive = tab.id === activeId;
@@ -88,7 +88,7 @@ export const McpShowcase: FC = () => {
           })}
         </div>
 
-        <div className="bg-background-secondary relative block p-6">
+        <div className="bg-muted relative block p-6">
           <pre className="items-center gap-2 overflow-x-auto rounded bg-transparent px-2 py-1 text-sm leading-relaxed">
             <code className="text-foreground font-mono">
               {activeTab.content}
