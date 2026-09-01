@@ -39,7 +39,7 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
       role={onSelect ? 'button' : undefined}
     >
       {status === 'error' && (
-        <div className="bg-accent-red absolute top-0 right-0 bottom-0 left-0 w-2 border-0" />
+        <div className="surface-accent-red absolute top-0 right-0 bottom-0 left-0 w-2 border-0" />
       )}
       <div
         data-testid="queue-item-thumbnail"
@@ -83,7 +83,7 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
           <div
             data-testid="queue-item-error"
             className={cn(
-              'bg-accent-red text-foreground border-border mt-1 inline-flex max-w-full items-center gap-1 rounded-sm border px-1 py-0.5 text-xs',
+              'surface-accent-red text-foreground border-border mt-1 inline-flex max-w-full items-center gap-1 rounded-sm border px-1 py-0.5 text-xs',
               classes?.error,
             )}
           >

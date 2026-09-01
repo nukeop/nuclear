@@ -20,10 +20,10 @@ export type NuclearJamHeaderProps = {
 };
 
 const CONNECTION_DOT_COLOR: Record<ConnectionStatus, string> = {
-  connecting: 'bg-accent-yellow',
-  connected: 'bg-accent-green',
-  reconnecting: 'bg-accent-yellow',
-  failed: 'bg-accent-red',
+  connecting: 'surface-accent-yellow',
+  connected: 'surface-accent-green',
+  reconnecting: 'surface-accent-yellow',
+  failed: 'surface-accent-red',
 };
 
 export const NuclearJamHeader: FC<NuclearJamHeaderProps> = ({

@@ -25,7 +25,7 @@ export const BasicThemes = () => {
               className={cn(
                 'bg-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none',
                 {
-                  'bg-primary': isActive,
+                  'surface-primary': isActive,
                 },
               )}
               onClick={() => selectBasicTheme(theme.id)}

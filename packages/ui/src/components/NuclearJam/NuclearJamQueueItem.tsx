@@ -24,7 +24,7 @@ export const NuclearJamQueueItem = forwardRef<
       ref={ref}
       className={cn(
         'border-border flex items-center gap-3 border-b-(length:--border-width) px-4 py-2',
-        isCurrent && 'bg-primary',
+        isCurrent && 'surface-primary',
       )}
       data-testid="jam-queue-item"
       data-is-current={isCurrent}

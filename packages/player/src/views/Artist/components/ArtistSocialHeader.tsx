@@ -132,7 +132,7 @@ export const ArtistSocialHeader: FC<ArtistSocialHeaderProps> = ({
             {stats.name}
           </h2>
           {location && (
-            <span className="bg-accent-orange border-border inline-flex w-fit items-center gap-1 rounded-md border px-2 py-0.5 text-sm font-bold">
+            <span className="surface-accent-orange border-border inline-flex w-fit items-center gap-1 rounded-md border px-2 py-0.5 text-sm font-bold">
               <MapPin size={14} />
               {location}
             </span>

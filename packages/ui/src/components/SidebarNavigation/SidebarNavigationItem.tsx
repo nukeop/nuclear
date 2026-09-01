@@ -45,7 +45,7 @@ export const SidebarNavigationItem: FC<SidebarNavigationItemProps> = ({
               'flex w-full items-center overflow-hidden rounded-md border-(length:--border-width)',
               {
                 'cursor-pointer': onClick,
-                'bg-primary border-border font-bold': active,
+                'surface-primary border-border font-bold': active,
                 'border-transparent': !active,
               },
             )}

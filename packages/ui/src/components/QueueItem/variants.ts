@@ -11,7 +11,7 @@ export const queueItemVariants = cva(
         success: '',
       },
       isCurrent: {
-        true: 'bg-primary',
+        true: 'surface-primary',
         false: '',
       },
       isCollapsed: {

@@ -92,7 +92,7 @@ export const ArtistBioHeader: FC<ArtistBioHeaderProps> = ({
             </div>
           )}
           {artist.onTour && (
-            <span className="bg-accent-green border-border inline-flex w-fit rounded-md border px-2 py-0.5 text-sm font-bold">
+            <span className="surface-accent-green border-border inline-flex w-fit rounded-md border px-2 py-0.5 text-sm font-bold">
               {t('onTour')}
             </span>
           )}
