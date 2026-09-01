@@ -59,7 +59,7 @@ export const Tooltip: FC<TooltipProps> = ({
             role="tooltip"
             style={floatingStyles}
             className={cn(
-              'border-border surface-background text-foreground shadow-shadow pointer-events-none z-50 rounded-md border-(length:--border-width) px-2 py-1 text-sm whitespace-nowrap backdrop-blur-xl',
+              'border-border surface-popover text-popover-foreground shadow-shadow pointer-events-none z-50 rounded-md border-(length:--border-width) px-2 py-1 text-sm whitespace-nowrap backdrop-blur-xl',
               className,
             )}
           >

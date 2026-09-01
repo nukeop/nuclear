@@ -27,11 +27,13 @@ export const TrackContextMenuHeader: FC<TrackContextMenuHeaderProps> = ({
           'pl-3': !coverUrl,
         })}
       >
-        <div className="text-foreground truncate text-sm font-bold">
+        <div className="text-popover-foreground truncate text-sm font-bold">
           {title}
         </div>
         {subtitle && (
-          <div className="text-foreground/60 truncate text-xs">{subtitle}</div>
+          <div className="text-popover-foreground/60 truncate text-xs">
+            {subtitle}
+          </div>
         )}
       </div>
     </div>

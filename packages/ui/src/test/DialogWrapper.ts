@@ -12,6 +12,15 @@ export const DialogWrapper = {
     return this.queryPanel !== null;
   },
 
+  backdrop: {
+    get element() {
+      return screen.getByTestId('dialog-backdrop');
+    },
+    async click() {
+      await userEvent.click(this.element);
+    },
+  },
+
   cancelButton: {
     get element() {
       return within(screen.getByRole('dialog')).getByTestId('dialog-close');

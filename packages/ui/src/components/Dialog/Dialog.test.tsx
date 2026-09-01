@@ -84,6 +84,19 @@ describe('Dialog', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
+  it('closes when clicking outside the panel', async () => {
+    render(<StatefulDialog defaultOpen />);
+    await DialogWrapper.backdrop.click();
+    expect(DialogWrapper.isOpen()).toBe(false);
+  });
+
+  it('stays open when clicking inside the panel', async () => {
+    const user = userEvent.setup();
+    render(<StatefulDialog defaultOpen />);
+    await user.click(DialogWrapper.getByText('This action cannot be undone.'));
+    expect(DialogWrapper.isOpen()).toBe(true);
+  });
+
   it('closes when Escape is pressed', async () => {
     const user = userEvent.setup();
     render(<StatefulDialog defaultOpen />);
