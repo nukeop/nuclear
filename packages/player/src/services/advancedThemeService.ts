@@ -12,8 +12,10 @@ import { errorMessage } from '../utils/errorMessage';
 
 export const loadAndApplyThemeFile = async (path: string): Promise<void> => {
   const contents = await readTextFile(path, { baseDir: BaseDirectory.AppData });
-  const json = JSON.parse(contents);
-  const theme = parseAdvancedTheme(json);
+  const theme = parseAdvancedTheme(JSON.parse(contents));
+  if (!theme) {
+    return;
+  }
   setThemeId('');
   applyAdvancedTheme(theme);
 };

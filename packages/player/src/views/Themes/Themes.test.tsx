@@ -289,7 +289,7 @@ describe('Themes view', async () => {
 
       expect(document.getElementById('advanced-theme')!.textContent).toBe(
         [
-          ':root{--background: #111; --muted: #222; --input: #333; --foreground: #444; --muted-foreground: #555; --input-foreground: #666; --primary: #777; --border: #888;}',
+          ':root{--background: #111; --muted: #222; --input: #333; --foreground: #444; --muted-foreground: #555; --input-foreground: #666; --primary: #777; --border: #888; --border-input: #999;}',
           "[data-theme='dark']{--background: #aaa; --muted: #bbb; --muted-foreground: #ccc;}",
         ].join('\n'),
       );

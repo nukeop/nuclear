@@ -38,8 +38,10 @@ export const listAdvancedThemes = async (): Promise<AdvancedThemeFile[]> => {
     const path = await join(dir, name);
     try {
       const text = await readTextFile(path, { baseDir: BaseDirectory.AppData });
-      const json = JSON.parse(text);
-      const parsed = parseAdvancedTheme(json);
+      const parsed = parseAdvancedTheme(JSON.parse(text));
+      if (!parsed) {
+        continue;
+      }
       themes.push({ path, name: parsed.name });
     } catch (error) {
       await reportError('themes', {

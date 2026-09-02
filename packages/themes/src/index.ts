@@ -1,14 +1,11 @@
-import {
-  generateAdvancedThemeCSS,
-  generateAdvancedThemeCSSFromJSON,
-} from './advanced/generator';
+import { generateAdvancedThemeCSS } from './advanced/generator';
+import { parseAdvancedTheme } from './advanced/parse';
 import {
   AdvancedTheme,
   AdvancedThemeSchema,
   MarketplaceTheme,
   MarketplaceThemeRegistrySchema,
   MarketplaceThemeSchema,
-  parseAdvancedTheme,
 } from './advanced/schema';
 import { BUILTIN_BASIC_THEME_IDS, DEFAULT_THEME_ID } from './basic';
 
@@ -130,4 +127,4 @@ export {
   MarketplaceThemeRegistrySchema,
   MarketplaceThemeSchema,
 };
-export { parseAdvancedTheme, generateAdvancedThemeCSSFromJSON };
+export { parseAdvancedTheme };

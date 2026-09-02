@@ -24,8 +24,11 @@ export const AdvancedThemeSchema = z.object({
 
 export type AdvancedTheme = z.infer<typeof AdvancedThemeSchema>;
 
-export const parseAdvancedTheme = (input: unknown): AdvancedTheme =>
-  AdvancedThemeSchema.parse(input);
+export const V1AdvancedThemeSchema = AdvancedThemeSchema.extend({
+  version: z.literal(1),
+});
+
+export type V1AdvancedTheme = z.infer<typeof V1AdvancedThemeSchema>;
 
 export const MarketplaceThemeSchema = AdvancedThemeSchema.pick({
   name: true,
