@@ -213,16 +213,22 @@ export const ThemesWrapper = {
 
   setupStoreIndex() {
     FetchMock.init();
-    FetchMock.get(`${REGISTRY_BASE_URL}/themes.json`, THEME_REGISTRY_RESPONSE);
+    FetchMock.get(
+      `${REGISTRY_BASE_URL}/v2/themes.json`,
+      THEME_REGISTRY_RESPONSE,
+    );
   },
 
   setupThemeFile(id: string) {
-    FetchMock.get(`${REGISTRY_BASE_URL}/themes/${id}.json`, SAKURA_THEME_FILE);
+    FetchMock.get(
+      `${REGISTRY_BASE_URL}/v2/themes/${id}.json`,
+      SAKURA_THEME_FILE,
+    );
   },
 
   setupThemeFileError(id: string, status: number, statusText: string) {
     FetchMock.getError(
-      `${REGISTRY_BASE_URL}/themes/${id}.json`,
+      `${REGISTRY_BASE_URL}/v2/themes/${id}.json`,
       status,
       statusText,
     );
@@ -230,6 +236,10 @@ export const ThemesWrapper = {
 
   setupStoreIndexError(status: number, statusText: string) {
     FetchMock.init();
-    FetchMock.getError(`${REGISTRY_BASE_URL}/themes.json`, status, statusText);
+    FetchMock.getError(
+      `${REGISTRY_BASE_URL}/v2/themes.json`,
+      status,
+      statusText,
+    );
   },
 };

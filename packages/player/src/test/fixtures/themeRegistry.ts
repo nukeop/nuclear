@@ -11,7 +11,7 @@ export const THEME_REGISTRY_THEMES = [
       'oklch(0.95 0.02 350)',
       'oklch(0.6 0.15 330)',
     ],
-    path: 'themes/sakura.json',
+    path: 'v2/themes/sakura.json',
   },
   {
     id: 'nordic-frost',
@@ -25,7 +25,7 @@ export const THEME_REGISTRY_THEMES = [
       'oklch(0.9 0.02 230)',
       'oklch(0.5 0.12 230)',
     ],
-    path: 'themes/nordic-frost.json',
+    path: 'v2/themes/nordic-frost.json',
   },
 ];
 
