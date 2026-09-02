@@ -95,7 +95,7 @@ Custom fonts must be installed on the user's system.
 - `shadow-color`, `shadow-x`, `shadow-y`, `shadow-blur`
 
 ## Notes
-- `version` must be `2`. Themes with older versions are ignored!
+- `version` must be `2` for new themes. Version `1` themes load and are converted to v2 in memory: no changes are needed. Themes with any other version are ignored.
 - Variable names don't need the `--` prefix. Names must consist of lowercase letters, digits, and hyphens.
 - Values must not contain `{`, `}`, or `;`.
 - You can use hex colors (`#ff0000`), OKLCH (`oklch(70% 0.15 30)`), or any valid CSS color value.
