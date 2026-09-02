@@ -289,7 +289,7 @@ describe('Themes view', async () => {
 
       expect(document.getElementById('advanced-theme')!.textContent).toBe(
         [
-          ':root{--background: #111; --muted: #222; --input: #333; --foreground: #444; --muted-foreground: #555; --input-foreground: #666; --primary: #777; --border: #888; --border-input: #999;}',
+          ':root{--background: #111; --muted: #222; --input: #333; --foreground: #444; --primary-foreground: #444; --card-foreground: #444; --popover-foreground: #444; --accent-green-foreground: #444; --accent-yellow-foreground: #444; --accent-purple-foreground: #444; --accent-blue-foreground: #444; --accent-orange-foreground: #444; --accent-cyan-foreground: #444; --accent-red-foreground: #444; --muted-foreground: #555; --input-foreground: #666; --primary: #777; --card: #777; --popover: #777; --border: #888; --border-input: #999;}',
           "[data-theme='dark']{--background: #aaa; --muted: #bbb; --muted-foreground: #ccc;}",
         ].join('\n'),
       );
