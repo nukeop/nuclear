@@ -63,7 +63,6 @@ describe('Themes view', async () => {
     PluginFsMock.setReadDir([
       { name: 'another.json', isDirectory: false },
       { name: 'my.json', isDirectory: false },
-      { name: 'outdated.json', isDirectory: false },
       { name: 'ignore.txt', isDirectory: false },
       { name: 'nested', isDirectory: true },
     ]);
@@ -74,11 +73,6 @@ describe('Themes view', async () => {
         name: 'Another',
         vars: {},
       }),
-      '/outdated.json': JSON.stringify({
-        version: 1,
-        name: 'Outdated v1',
-        vars: {},
-      }),
     });
 
     await startAdvancedThemeWatcher();
@@ -87,7 +81,6 @@ describe('Themes view', async () => {
     const options = await ThemesWrapper.advancedThemeSelect.availableOptions();
     expect(options).toContain('Another');
     expect(options).toContain('My Theme');
-    expect(options).not.toContain('Outdated v1');
 
     expect(fs.mkdir).toHaveBeenCalledWith('themes', {
       baseDir: '/home/user/.local/share/com.nuclearplayer',
@@ -264,6 +257,69 @@ describe('Themes view', async () => {
           .getState()
           .isSelected({ type: 'advanced', path: '/themes/my.json' }),
       ).toBe(true);
+    });
+
+    it('loads a version 1 theme with its colors mapped to the version 2 tokens', async () => {
+      PluginFsMock.setReadTextFile(
+        JSON.stringify({
+          version: 1,
+          name: 'My Theme',
+          vars: {
+            background: '#111',
+            'background-secondary': '#222',
+            'background-input': '#333',
+            foreground: '#444',
+            'foreground-secondary': '#555',
+            'foreground-input': '#666',
+            primary: '#777',
+            border: '#888',
+            'border-input': '#999',
+          },
+          dark: {
+            background: '#aaa',
+            'background-secondary': '#bbb',
+            'foreground-secondary': '#ccc',
+          },
+        }),
+      );
+
+      await ThemesWrapper.mount({ advancedThemes });
+
+      await ThemesWrapper.advancedThemeSelect.select('My Theme');
+
+      expect(document.getElementById('advanced-theme')!.textContent).toBe(
+        [
+          ':root{--background: #111; --muted: #222; --input: #333; --foreground: #444; --muted-foreground: #555; --input-foreground: #666; --primary: #777; --border: #888;}',
+          "[data-theme='dark']{--background: #aaa; --muted: #bbb; --muted-foreground: #ccc;}",
+        ].join('\n'),
+      );
+    });
+
+    it('skips a theme with an unknown version and still lists the others', async () => {
+      PluginFsMock.setExists(true);
+      PluginFsMock.setReadDir([
+        { name: 'future.json', isDirectory: false },
+        { name: 'current.json', isDirectory: false },
+      ]);
+      PluginFsMock.setReadTextFileByMap({
+        '/future.json': JSON.stringify({
+          version: 3,
+          name: 'Future',
+          vars: { background: '#111' },
+        }),
+        '/current.json': JSON.stringify({
+          version: 2,
+          name: 'Current',
+          vars: { background: '#222' },
+        }),
+      });
+
+      await startAdvancedThemeWatcher();
+      await ThemesWrapper.mount();
+
+      expect(
+        await ThemesWrapper.advancedThemeSelect.availableOptions(),
+      ).toEqual(['Current']);
     });
 
     it('resets to default when the Default basic theme is clicked', async () => {
