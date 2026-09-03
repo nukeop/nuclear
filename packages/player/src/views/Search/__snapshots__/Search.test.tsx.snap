@@ -12,7 +12,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
     />
     <div>
       <header
-        class="surface-muted border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
+        class="surface-topbar border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
         data-tauri-drag-region="true"
       >
         <div
@@ -159,7 +159,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             />
           </div>
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent absolute top-1/2 right-1 size-6 -translate-y-1/2 justify-center p-0"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent absolute top-1/2 right-1 size-6 -translate-y-1/2 justify-center p-0"
             data-headlessui-state=""
             data-testid="search-box-clear"
             type="button"
@@ -255,7 +255,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
     >
       <div
         animate="[object Object]"
-        class="surface-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+        class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -768,7 +768,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
       </main>
       <div
         animate="[object Object]"
-        class="surface-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
+        class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
@@ -818,7 +818,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-music text-muted-foreground opacity-50"
+              class="lucide lucide-music opacity-50"
               fill="none"
               height="64"
               stroke="currentColor"
@@ -845,12 +845,12 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             </svg>
             <div>
               <div
-                class="text-foreground text-lg font-bold"
+                class="text-lg font-bold"
               >
                 Queue is empty
               </div>
               <div
-                class="text-muted-foreground mt-2 text-sm"
+                class="mt-2 text-sm opacity-70"
               >
                 Add tracks to start playing
               </div>
@@ -871,31 +871,31 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
         data-testid="player-seek-bar"
       >
         <div
-          class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
-        >
-          <span
-            class="text-foreground tabular-nums"
-          >
-            0:00
-          </span>
-          <span
-            class="text-foreground tabular-nums"
-          >
-            0:00
-          </span>
-        </div>
-        <div
-          class="border-border bg-muted absolute inset-0 border-t-(length:--border-width)"
+          class="border-border surface-seekbar-track absolute inset-0 border-t-(length:--border-width)"
         >
           <div
-            class="bg-primary h-full transition-none"
+            class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
+          >
+            <span
+              class="tabular-nums"
+            >
+              0:00
+            </span>
+            <span
+              class="tabular-nums"
+            >
+              0:00
+            </span>
+          </div>
+          <div
+            class="surface-seekbar h-full transition-none"
             style="width: 0%;"
           />
         </div>
       </div>
     </div>
     <footer
-      class="surface-muted border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+      class="surface-bottombar border-border flex h-16 items-center border-t-(length:--border-width) px-4"
     >
       <div
         class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -941,13 +941,13 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               class="min-w-0 flex-1"
             >
               <div
-                class="text-foreground truncate text-sm font-bold"
+                class="truncate text-sm font-bold"
                 data-testid="now-playing-title"
               >
                 No track playing
               </div>
               <div
-                class="text-muted-foreground truncate text-xs"
+                class="truncate text-xs opacity-70"
                 data-testid="player-now-playing-artist"
               />
             </div>
@@ -961,7 +961,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           >
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-shuffle-button"
                 type="button"
@@ -998,7 +998,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               </button>
             </div>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >
@@ -1048,7 +1048,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
               data-headlessui-state=""
               data-testid="player-next-button"
               type="button"
@@ -1076,7 +1076,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             </button>
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-repeat-button"
                 type="button"
@@ -1118,7 +1118,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             class="flex items-center gap-2"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >

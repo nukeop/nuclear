@@ -7,7 +7,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
   >
     <div
       animate="[object Object]"
-      class="surface-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+      class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span
@@ -55,7 +55,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
     />
     <div
       animate="[object Object]"
-      class="surface-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width)"
+      class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width)"
       transition="[object Object]"
     >
       <span
@@ -108,7 +108,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
   >
     <div
       animate="[object Object]"
-      class="surface-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+      class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span
@@ -159,7 +159,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
     />
     <div
       animate="[object Object]"
-      class="surface-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
+      class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span

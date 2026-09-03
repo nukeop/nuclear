@@ -4,8 +4,8 @@
   .bg-stripes-diagonal {
     background-image: repeating-linear-gradient(
       135deg,
-      var(--primary) 0 8px,
-      var(--background) 8px 16px
+      var(--seekbar, var(--primary)) 0 8px,
+      var(--seekbar-track, var(--muted)) 8px 16px
     );
     animation: seekbar-stripes 1s linear infinite;
     background-size: 22.6px 22.6px;

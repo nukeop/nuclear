@@ -7,7 +7,7 @@ exports[`QueuePanel > (Snapshot) renders collapsed empty state 1`] = `
 >
   <svg
     aria-hidden="true"
-    class="lucide lucide-music text-muted-foreground opacity-50"
+    class="lucide lucide-music opacity-50"
     fill="none"
     height="64"
     stroke="currentColor"
@@ -34,12 +34,12 @@ exports[`QueuePanel > (Snapshot) renders collapsed empty state 1`] = `
   </svg>
   <div>
     <div
-      class="text-foreground text-lg font-bold"
+      class="text-lg font-bold"
     >
       Your queue is empty
     </div>
     <div
-      class="text-muted-foreground mt-2 text-sm"
+      class="mt-2 text-sm opacity-70"
     >
       Add some tracks to get started
     </div>
@@ -541,7 +541,7 @@ exports[`QueuePanel > (Snapshot) renders empty state 1`] = `
 >
   <svg
     aria-hidden="true"
-    class="lucide lucide-music text-muted-foreground opacity-50"
+    class="lucide lucide-music opacity-50"
     fill="none"
     height="64"
     stroke="currentColor"
@@ -568,12 +568,12 @@ exports[`QueuePanel > (Snapshot) renders empty state 1`] = `
   </svg>
   <div>
     <div
-      class="text-foreground text-lg font-bold"
+      class="text-lg font-bold"
     >
       Your queue is empty
     </div>
     <div
-      class="text-muted-foreground mt-2 text-sm"
+      class="mt-2 text-sm opacity-70"
     >
       Add some tracks to get started
     </div>
@@ -588,7 +588,7 @@ exports[`QueuePanel > (Snapshot) renders empty state with labels 1`] = `
 >
   <svg
     aria-hidden="true"
-    class="lucide lucide-music text-muted-foreground opacity-50"
+    class="lucide lucide-music opacity-50"
     fill="none"
     height="64"
     stroke="currentColor"
@@ -615,12 +615,12 @@ exports[`QueuePanel > (Snapshot) renders empty state with labels 1`] = `
   </svg>
   <div>
     <div
-      class="text-foreground text-lg font-bold"
+      class="text-lg font-bold"
     >
       Nothing to play
     </div>
     <div
-      class="text-muted-foreground mt-2 text-sm"
+      class="mt-2 text-sm opacity-70"
     >
       Add some tracks
     </div>

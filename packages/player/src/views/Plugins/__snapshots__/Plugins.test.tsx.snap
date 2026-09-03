@@ -36,7 +36,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
       >
         <button
           aria-label="Close"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center absolute top-3 right-3"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center absolute top-3 right-3"
           data-headlessui-state=""
           data-testid="dialog-x-close"
           type="button"
@@ -69,7 +69,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
             class="flex flex-col gap-1"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-general"
               type="button"
@@ -109,7 +109,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
               General
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-shortcuts"
               type="button"
@@ -199,7 +199,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
               Plugins
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-themes"
               type="button"
@@ -250,7 +250,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
               Themes
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-logs"
               type="button"
@@ -286,7 +286,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
               Logs
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-whats-new"
               type="button"
@@ -335,7 +335,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
               >
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -357,7 +357,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -379,7 +379,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -401,7 +401,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -478,7 +478,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
                     <button
                       aria-controls="headlessui-tabs-panel-:ri:"
                       aria-selected="false"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
                       data-headlessui-state=""
                       id="headlessui-tabs-tab-:re:"
                       role="tab"

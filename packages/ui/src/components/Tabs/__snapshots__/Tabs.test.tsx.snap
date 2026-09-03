@@ -27,7 +27,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:r9:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:r3:"
         role="tab"
@@ -39,7 +39,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:rb:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:r5:"
         role="tab"
@@ -494,7 +494,7 @@ exports[`Tabs > (Snapshot) renders in composition mode 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:r11:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:rt:"
         role="tab"
@@ -557,7 +557,7 @@ exports[`Tabs > (Snapshot) switches tabs 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:rk:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:re:"
         role="tab"
@@ -569,7 +569,7 @@ exports[`Tabs > (Snapshot) switches tabs 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:rm:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:rg:"
         role="tab"

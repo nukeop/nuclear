@@ -17,7 +17,7 @@ const buttonVariants = cva(
           'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-muted text-muted-foreground border-(length:--border-width) hover:shadow-none',
         noShadow:
           'surface-primary border-border border-(length:--border-width)',
-        text: 'text-foreground bg-transparent',
+        text: 'bg-transparent',
         ghost: 'hover:bg-foreground/10 border border-current bg-transparent',
       },
       size: {

@@ -41,14 +41,6 @@ export const PlayerBarSeekBar: FC<PlayerSeekBarProps> = ({
         onClick={handleClick}
         aria-disabled={isLoading}
       >
-        <div className="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none">
-          <span className="tabular-nums">
-            {formatTimeSeconds(elapsedSeconds)}
-          </span>
-          <span className="tabular-nums">
-            {formatTimeSeconds(-Math.abs(remainingSeconds))}
-          </span>
-        </div>
         <div
           className={cn(
             'border-border surface-seekbar-track absolute inset-0 border-t-(length:--border-width)',
@@ -57,6 +49,14 @@ export const PlayerBarSeekBar: FC<PlayerSeekBarProps> = ({
             },
           )}
         >
+          <div className="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none">
+            <span className="tabular-nums">
+              {formatTimeSeconds(elapsedSeconds)}
+            </span>
+            <span className="tabular-nums">
+              {formatTimeSeconds(-Math.abs(remainingSeconds))}
+            </span>
+          </div>
           {isLoading && (
             <div className="bg-stripes-diagonal absolute inset-0 opacity-80" />
           )}

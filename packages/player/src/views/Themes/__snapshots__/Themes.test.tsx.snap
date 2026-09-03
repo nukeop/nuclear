@@ -36,7 +36,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
       >
         <button
           aria-label="Close"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center absolute top-3 right-3"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center absolute top-3 right-3"
           data-headlessui-state=""
           data-testid="dialog-x-close"
           type="button"
@@ -69,7 +69,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
             class="flex flex-col gap-1"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-general"
               type="button"
@@ -109,7 +109,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
               General
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-shortcuts"
               type="button"
@@ -164,7 +164,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
               Key Shortcuts
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-plugins"
               type="button"
@@ -250,7 +250,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
               Themes
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-logs"
               type="button"
@@ -286,7 +286,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
               Logs
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-whats-new"
               type="button"
@@ -335,7 +335,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
               >
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -357,7 +357,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -379,7 +379,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -401,7 +401,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -478,7 +478,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                     <button
                       aria-controls="headlessui-tabs-panel-:rp:"
                       aria-selected="false"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
                       data-headlessui-state=""
                       id="headlessui-tabs-tab-:re:"
                       role="tab"
@@ -532,7 +532,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                   >
                                     <button
                                       aria-pressed="true"
-                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-auto border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none surface-primary"
+                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-auto border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none surface-primary"
                                       data-headlessui-state=""
                                       type="button"
                                     >
@@ -568,7 +568,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                     </button>
                                     <button
                                       aria-pressed="false"
-                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
+                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"
                                     >
@@ -604,7 +604,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                     </button>
                                     <button
                                       aria-pressed="false"
-                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
+                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"
                                     >
@@ -640,7 +640,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                     </button>
                                     <button
                                       aria-pressed="false"
-                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
+                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"
                                     >
@@ -676,7 +676,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                     </button>
                                     <button
                                       aria-pressed="false"
-                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
+                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"
                                     >
@@ -712,7 +712,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                     </button>
                                     <button
                                       aria-pressed="false"
-                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
+                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
                                       data-headlessui-state=""
                                       type="button"
                                     >

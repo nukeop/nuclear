@@ -11,24 +11,24 @@ exports[`PlayerBarSeekBar > (Snapshot) default render 1`] = `
       data-testid="player-seek-bar"
     >
       <div
-        class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
-      >
-        <span
-          class="text-foreground tabular-nums"
-        >
-          1:37
-        </span>
-        <span
-          class="text-foreground tabular-nums"
-        >
-          -21:37
-        </span>
-      </div>
-      <div
-        class="border-border bg-muted absolute inset-0 border-t-(length:--border-width)"
+        class="border-border surface-seekbar-track absolute inset-0 border-t-(length:--border-width)"
       >
         <div
-          class="bg-primary h-full transition-none"
+          class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
+        >
+          <span
+            class="tabular-nums"
+          >
+            1:37
+          </span>
+          <span
+            class="tabular-nums"
+          >
+            -21:37
+          </span>
+        </div>
+        <div
+          class="surface-seekbar h-full transition-none"
           style="width: 25%;"
         />
       </div>
