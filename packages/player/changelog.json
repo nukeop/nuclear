@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-09-01T00:00",
-    "description": "Theming system v2: themes can now use gradients on surfaces, a wallpaper image behind the whole player, and translucent surfaces with backdrop blur. Includes the new built-in Nebula theme showing all of this off.",
+    "description": "Theming system v2: themes can now use gradients on surfaces, and a whole new group of variables to make Nuclear more customizable. See the docs and release notes for details.",
     "type": "feature",
     "contributors": ["nukeop"],
     "tags": [
