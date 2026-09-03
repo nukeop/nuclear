@@ -20,6 +20,30 @@
     color: var(--muted-foreground);
 }
 
+@utility surface-topbar {
+    background-color: var(--topbar, var(--muted));
+    background-image: var(--topbar-gradient, var(--muted-gradient, none));
+    color: var(--topbar-foreground, var(--muted-foreground));
+}
+
+@utility surface-bottombar {
+    background-color: var(--bottombar, var(--muted));
+    background-image: var(--bottombar-gradient, var(--muted-gradient, none));
+    color: var(--bottombar-foreground, var(--muted-foreground));
+}
+
+@utility surface-sidebar-left {
+    background-color: var(--sidebar-left, var(--muted));
+    background-image: var(--sidebar-left-gradient, var(--muted-gradient, none));
+    color: var(--sidebar-left-foreground, var(--muted-foreground));
+}
+
+@utility surface-sidebar-right {
+    background-color: var(--sidebar-right, var(--muted));
+    background-image: var(--sidebar-right-gradient, var(--muted-gradient, none));
+    color: var(--sidebar-right-foreground, var(--muted-foreground));
+}
+
 @utility surface-card {
     background-color: var(--card);
     background-image: var(--card-gradient, none);

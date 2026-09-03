@@ -46,6 +46,17 @@ There are several surface types, and each one has its ow foreground color used f
 - `input` / `input-foreground` - text fields and other form controls
 - `primary` / `primary-foreground` - buttons, highlights, active elements
 
+**Bars**
+
+The top bar, the bottom player bar, and the two sidebars use `muted` by default, but you can override their colors individually:
+
+- `topbar` / `topbar-foreground`
+- `bottombar` / `bottombar-foreground`
+- `sidebar-left` / `sidebar-left-foreground`
+- `sidebar-right` / `sidebar-right-foreground`
+
+These variables are optional. Each bar also accepts a `-gradient` variable, for example `sidebar-left-gradient`.
+
 **Accents**
 
 - `accent-green`
