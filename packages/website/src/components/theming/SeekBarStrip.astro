@@ -1,0 +1,29 @@
+---
+import { styleFromVars } from '../../lib/theming/styleFromVars';
+import type { ThemeVars } from '../../lib/theming/samples';
+
+type Props = {
+  vars?: ThemeVars;
+  progress?: number;
+  caption?: string;
+};
+
+const { vars = {}, progress = 42, caption } = Astro.props;
+---
+
+<div class="w-full">
+  <div
+    class="surface-seekbar-track themed-border border-border shadow-shadow not-prose relative h-5 w-full overflow-hidden rounded-md font-sans text-[10px] select-none"
+    style={styleFromVars(vars)}
+  >
+    <div class="surface-seekbar h-full" style={`width: ${progress}%`}></div>
+    <span class="absolute inset-y-0 left-2 flex items-center opacity-90">
+      2:06
+    </span>
+    <span class="absolute inset-y-0 right-2 flex items-center opacity-90">
+      4:58
+    </span>
+  </div>
+
+  {caption && <p class="mt-2 text-center text-xs opacity-70">{caption}</p>}
+</div>
