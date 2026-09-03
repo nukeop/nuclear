@@ -49,6 +49,19 @@
   background-position: center;
 }
 
+/* Classes required by medium-zoom*/
+.medium-zoom-overlay {
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.medium-zoom-image--opened {
+  z-index: 101;
+  border-radius: var(--radius-md);
+  border: var(--border-width) solid var(--border);
+  box-shadow: none;
+}
+
 @keyframes marquee-scroll {
   from {
     transform: translateX(0);

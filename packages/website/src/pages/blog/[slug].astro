@@ -5,6 +5,7 @@ import Button from '../../components/Button.astro';
 import PostBody from '../../components/PostBody.astro';
 import PostCover from '../../components/PostCover.astro';
 import PostHeader from '../../components/PostHeader.astro';
+import PostImage from '../../components/PostImage.astro';
 import PostToolbar from '../../components/PostToolbar.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -86,7 +87,7 @@ const breadcrumbSchema = {
         />
         {cover && <PostCover src={cover} alt={title} />}
         <PostBody>
-          <Content />
+          <Content components={{ img: PostImage }} />
         </PostBody>
       </article>
 
@@ -96,3 +97,13 @@ const breadcrumbSchema = {
     </div>
   </main>
 </BaseLayout>
+
+<script>
+  import mediumZoom from 'medium-zoom';
+
+  mediumZoom('[data-zoomable]', {
+    margin: 24,
+    background: 'var(--overlay)',
+  });
+</script>
+
