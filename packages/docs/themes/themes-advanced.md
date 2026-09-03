@@ -57,6 +57,15 @@ The top bar, the bottom player bar, and the two sidebars use `muted` by default,
 
 These variables are optional. Each bar also accepts a `-gradient` variable, for example `sidebar-left-gradient`.
 
+**Seek bar**
+
+Just like the bars, the seekbar can also be styled individually:
+
+- `seekbar` / `seekbar-foreground` - fill (default: `primary`)
+- `seekbar-track` / `seekbar-track-foreground` - track (the empty portion) (default: `muted`)
+
+Both accept `-gradient` variables, for example `seekbar-gradient`.
+
 **Accents**
 
 - `accent-green`

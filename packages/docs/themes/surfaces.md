@@ -24,3 +24,10 @@ Sidebars, top bar, and bottom bar can be overridden separately. These variables 
 | `bottombar` | `bottombar-foreground` |
 | `sidebar-left` | `sidebar-left-foreground` |
 | `sidebar-right` | `sidebar-right-foreground` |
+
+The seek bar has its own optional surfaces. If not set, it will use `primary` for the fill, and `muted` for the track.
+
+| Surface | Foreground |
+| --- | --- |
+| `seekbar` | `seekbar-foreground` |
+| `seekbar-track` | `seekbar-track-foreground` |

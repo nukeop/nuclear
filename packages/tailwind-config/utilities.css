@@ -44,6 +44,18 @@
     color: var(--sidebar-right-foreground, var(--muted-foreground));
 }
 
+@utility surface-seekbar-track {
+    background-color: var(--seekbar-track, var(--muted));
+    background-image: var(--seekbar-track-gradient, var(--muted-gradient, none));
+    color: var(--seekbar-track-foreground, var(--muted-foreground));
+}
+
+@utility surface-seekbar {
+    background-color: var(--seekbar, var(--primary));
+    background-image: var(--seekbar-gradient, var(--primary-gradient, none));
+    color: var(--seekbar-foreground, var(--primary-foreground));
+}
+
 @utility surface-card {
     background-color: var(--card);
     background-image: var(--card-gradient, none);

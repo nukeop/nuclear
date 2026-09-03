@@ -42,16 +42,16 @@ export const PlayerBarSeekBar: FC<PlayerSeekBarProps> = ({
         aria-disabled={isLoading}
       >
         <div className="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none">
-          <span className="text-foreground tabular-nums">
+          <span className="tabular-nums">
             {formatTimeSeconds(elapsedSeconds)}
           </span>
-          <span className="text-foreground tabular-nums">
+          <span className="tabular-nums">
             {formatTimeSeconds(-Math.abs(remainingSeconds))}
           </span>
         </div>
         <div
           className={cn(
-            'border-border bg-muted absolute inset-0 border-t-(length:--border-width)',
+            'border-border surface-seekbar-track absolute inset-0 border-t-(length:--border-width)',
             {
               'overflow-hidden': isLoading,
             },
@@ -62,7 +62,7 @@ export const PlayerBarSeekBar: FC<PlayerSeekBarProps> = ({
           )}
           {!isLoading && (
             <div
-              className={cn('bg-primary h-full', 'transition-none')}
+              className={cn('surface-seekbar h-full', 'transition-none')}
               style={{ width: `${clamped}%` }}
             />
           )}
