@@ -16,14 +16,14 @@ export const WindowsWindowControls: FC<WindowControlsProps> = ({
     <button
       onClick={onMinimize}
       title={labels.minimize}
-      className="text-foreground hover:bg-primary hover:text-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
+      className="text-foreground hover:bg-primary hover:text-primary-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
     >
       <Minus size={14} strokeWidth={1.5} />
     </button>
     <button
       onClick={onMaximize}
       title={labels.maximize}
-      className="text-foreground hover:bg-primary hover:text-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
+      className="text-foreground hover:bg-primary hover:text-primary-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
     >
       <Square size={14} strokeWidth={1.5} />
     </button>

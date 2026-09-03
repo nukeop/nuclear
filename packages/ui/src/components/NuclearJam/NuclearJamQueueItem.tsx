@@ -40,19 +40,15 @@ export const NuclearJamQueueItem = forwardRef<
           <CassetteTape
             size={40}
             absoluteStrokeWidth
-            className="text-foreground opacity-20"
+            className="text-muted-foreground opacity-20"
           />
         )}
       </div>
 
       <div className="min-w-0 flex-1">
-        <div className="text-foreground truncate text-sm font-bold">
-          {item.track.title}
-        </div>
+        <div className="truncate text-sm font-bold">{item.track.title}</div>
         {primaryArtist && (
-          <div className="text-foreground/60 truncate text-xs">
-            {primaryArtist}
-          </div>
+          <div className="truncate text-xs opacity-60">{primaryArtist}</div>
         )}
       </div>
 

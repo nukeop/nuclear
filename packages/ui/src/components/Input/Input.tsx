@@ -10,7 +10,7 @@ import {
 import { cn } from '../../utils';
 
 const inputVariants = cva(
-  'border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+  'border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
   {
     variants: {
       variant: {
@@ -21,8 +21,9 @@ const inputVariants = cva(
           'border-b-border !rounded-none rounded-none !border-r-0 !border-l-0 border-t-transparent px-6 outline-none focus-visible:ring-0 focus-visible:ring-offset-0',
       },
       tone: {
-        primary: 'surface-input',
-        secondary: 'surface-background',
+        primary: 'surface-input placeholder:text-input-foreground/60',
+        secondary:
+          'surface-background text-foreground placeholder:text-foreground/60',
       },
       size: {
         sm: 'h-9 text-sm',

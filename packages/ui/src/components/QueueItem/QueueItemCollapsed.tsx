@@ -43,7 +43,7 @@ export const QueueItemCollapsed: FC<QueueItemProps> = ({
             className={cn('h-full w-full object-cover', classes?.thumbnail)}
           />
         ) : (
-          <CassetteTape size={20} className="text-foreground opacity-20" />
+          <CassetteTape size={20} className="opacity-20" />
         )}
 
         {status === 'loading' && (

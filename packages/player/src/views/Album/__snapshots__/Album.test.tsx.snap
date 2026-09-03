@@ -730,9 +730,9 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                         Prism
                       </h1>
                       <div
-                        class="text-card-foreground/60 block text-lg"
+-foreground/60 block text-lg"
                       >
-                        by 
+                        by
                         <span />
                       </div>
                     </div>

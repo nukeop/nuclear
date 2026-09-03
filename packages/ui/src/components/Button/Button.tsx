@@ -10,13 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'text-foreground surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none',
+          'surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none',
         secondary:
           'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none',
         tertiary:
-          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-muted text-foreground border-(length:--border-width) hover:shadow-none',
+          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-muted text-muted-foreground border-(length:--border-width) hover:shadow-none',
         noShadow:
-          'text-foreground surface-primary border-border border-(length:--border-width)',
+          'surface-primary border-border border-(length:--border-width)',
         text: 'text-foreground bg-transparent',
         ghost: 'hover:bg-foreground/10 border border-current bg-transparent',
       },
@@ -30,7 +30,7 @@ const buttonVariants = cva(
         flexible: 'h-auto',
       },
       intent: {
-        danger: 'surface-accent-red text-accent-red-foreground',
+        danger: 'surface-accent-red',
       },
     },
     defaultVariants: {

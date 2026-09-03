@@ -26,10 +26,10 @@ const levelBadgeVariants = cva(
   {
     variants: {
       level: {
-        error: 'surface-accent-red text-accent-red-foreground',
-        warn: 'surface-accent-yellow text-accent-yellow-foreground',
-        info: 'surface-accent-cyan text-accent-cyan-foreground',
-        debug: 'surface-accent-purple text-accent-purple-foreground',
+        error: 'surface-accent-red',
+        warn: 'surface-accent-yellow',
+        info: 'surface-accent-cyan',
+        debug: 'surface-accent-purple',
         trace: 'bg-foreground/50 text-background',
       },
     },

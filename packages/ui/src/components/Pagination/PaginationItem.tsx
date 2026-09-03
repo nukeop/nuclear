@@ -9,7 +9,7 @@ const pageVariants = cva(
   {
     variants: {
       selected: {
-        true: 'surface-primary text-foreground border-border',
+        true: 'surface-primary border-border',
         false:
           'text-foreground hover:bg-foreground/10 border-transparent bg-transparent',
       },

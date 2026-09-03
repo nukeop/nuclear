@@ -23,12 +23,14 @@ const v1ToV2Tokens: Record<string, string[]> = {
   ],
 };
 
-const migrateTokenNames = (vars: ThemeVars): ThemeVars =>
-  Object.fromEntries(
-    Object.entries(vars).flatMap(([name, value]) =>
-      (v1ToV2Tokens[name] ?? [name]).map((v2Name) => [v2Name, value]),
-    ),
+const migrateTokenNames = (vars: ThemeVars): ThemeVars => {
+  const entries = Object.entries(vars);
+  const untouched = entries.filter(([name]) => !(name in v1ToV2Tokens));
+  const derived = entries.flatMap(([name, value]) =>
+    (v1ToV2Tokens[name] ?? []).map((v2Name) => [v2Name, value]),
   );
+  return Object.fromEntries([...untouched, ...derived]);
+};
 
 const migrateOptionalVars = (vars: ThemeVars | undefined) => {
   if (vars === undefined) {
