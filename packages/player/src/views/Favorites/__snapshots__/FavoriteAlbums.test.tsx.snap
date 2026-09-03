@@ -2,7 +2,7 @@
 
 exports[`FavoriteAlbums view > (Snapshot) renders empty state 1`] = `
 <main
-  class="bg-muted overflow-auto"
+  class="surface-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div
@@ -16,7 +16,7 @@ exports[`FavoriteAlbums view > (Snapshot) renders empty state 1`] = `
       transition="[object Object]"
     >
       <div
-        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
         data-testid="favorite-albums-view"
       >
         <h1
@@ -95,7 +95,7 @@ exports[`FavoriteAlbums view > (Snapshot) renders empty state 1`] = `
 
 exports[`FavoriteAlbums view > (Snapshot) renders with albums 1`] = `
 <main
-  class="bg-muted overflow-auto"
+  class="surface-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div
@@ -109,7 +109,7 @@ exports[`FavoriteAlbums view > (Snapshot) renders with albums 1`] = `
       transition="[object Object]"
     >
       <div
-        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
         data-testid="favorite-albums-view"
       >
         <h1
@@ -130,13 +130,13 @@ exports[`FavoriteAlbums view > (Snapshot) renders with albums 1`] = `
               role="grid"
             >
               <button
-                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto bg-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
                 data-headlessui-state=""
                 data-testid="card"
                 type="button"
               >
                 <div
-                  class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) shadow-none bg-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+                  class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
                 >
                   <div
                     class="overflow-hidden absolute inset-0"
@@ -196,13 +196,13 @@ exports[`FavoriteAlbums view > (Snapshot) renders with albums 1`] = `
                 </div>
               </button>
               <button
-                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto bg-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
                 data-headlessui-state=""
                 data-testid="card"
                 type="button"
               >
                 <div
-                  class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) shadow-none bg-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+                  class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
                 >
                   <div
                     class="overflow-hidden absolute inset-0"

@@ -19,7 +19,7 @@ exports[`Popover > (Snapshot) renders menu with a section and a footer 1`] = `
         id="headlessui-popover-button-:rl:"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
           data-headlessui-state="hover"
           data-hover=""
           type="button"
@@ -51,7 +51,7 @@ exports[`Popover > (Snapshot) renders menu with a section and a footer 1`] = `
       />
       <div
         animate="[object Object]"
-        class="text-popover-foreground bg-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none translate-y-0"
+        class="surface-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 backdrop-blur-xl select-none translate-y-0"
         data-anchor="bottom center"
         data-floating-ui-focusable=""
         data-headlessui-state="open"
@@ -139,7 +139,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
         id="headlessui-popover-button-:rf:"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
           data-headlessui-state="hover"
           data-hover=""
           type="button"
@@ -171,7 +171,7 @@ exports[`Popover > (Snapshot) renders menu with items 1`] = `
       />
       <div
         animate="[object Object]"
-        class="text-popover-foreground bg-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none translate-y-0"
+        class="surface-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 backdrop-blur-xl select-none translate-y-0"
         data-anchor="bottom center"
         data-floating-ui-focusable=""
         data-headlessui-state="open"
@@ -246,7 +246,7 @@ exports[`Popover > (Snapshot) renders with all props 1`] = `
         id="headlessui-popover-button-:r2:"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
           data-headlessui-state="hover"
           data-hover=""
           type="button"
@@ -278,7 +278,7 @@ exports[`Popover > (Snapshot) renders with all props 1`] = `
       />
       <div
         animate="[object Object]"
-        class="text-popover-foreground bg-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none translate-x-2 -translate-y-2"
+        class="surface-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 backdrop-blur-xl select-none translate-x-2 -translate-y-2"
         data-anchor="left center"
         data-floating-ui-focusable=""
         data-headlessui-state="open"
@@ -320,7 +320,7 @@ exports[`Popover > (Snapshot) renders with backdrop 1`] = `
         id="headlessui-popover-button-:r8:"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
           data-headlessui-state="hover"
           data-hover=""
           type="button"
@@ -337,7 +337,7 @@ exports[`Popover > (Snapshot) renders with backdrop 1`] = `
       />
       <div
         aria-hidden="true"
-        class="fixed inset-0 bg-black/20 transition duration-150 ease-out data-closed:opacity-0"
+        class="bg-overlay fixed inset-0 transition duration-150 ease-out data-closed:opacity-0"
         data-closed=""
         data-enter=""
         data-headlessui-state="open"
@@ -355,7 +355,7 @@ exports[`Popover > (Snapshot) renders with backdrop 1`] = `
       />
       <div
         animate="[object Object]"
-        class="text-popover-foreground bg-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none"
+        class="surface-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 backdrop-blur-xl select-none"
         data-headlessui-state="open"
         data-open=""
         exit="[object Object]"

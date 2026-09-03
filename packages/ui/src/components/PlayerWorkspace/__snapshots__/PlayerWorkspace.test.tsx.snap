@@ -3,18 +3,18 @@
 exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
 <DocumentFragment>
   <div
-    class="bg-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
+    class="surface-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
   >
     <div
       animate="[object Object]"
-      class="bg-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+      class="surface-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span
         class="mb-4 flex flex-row items-center justify-end"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
           data-headlessui-state=""
           data-testid="sidebar-toggle-left"
           type="button"
@@ -50,19 +50,19 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
       />
     </div>
     <main
-      class="bg-muted overflow-auto"
+      class="surface-muted overflow-auto"
       data-testid="player-workspace-main"
     />
     <div
       animate="[object Object]"
-      class="bg-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width)"
+      class="surface-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width)"
       transition="[object Object]"
     >
       <span
         class="mb-4 flex flex-row items-center justify-start"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1 mx-1 mt-2"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1 mx-1 mt-2"
           data-headlessui-state=""
           data-testid="sidebar-toggle-right"
           type="button"
@@ -104,18 +104,18 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
 exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
 <DocumentFragment>
   <div
-    class="bg-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
+    class="surface-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
   >
     <div
       animate="[object Object]"
-      class="bg-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+      class="surface-muted border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span
         class="mb-4 flex flex-row items-center justify-end"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
           data-headlessui-state=""
           data-testid="sidebar-toggle-left"
           type="button"
@@ -154,19 +154,19 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
       />
     </div>
     <main
-      class="bg-muted overflow-auto"
+      class="surface-muted overflow-auto"
       data-testid="player-workspace-main"
     />
     <div
       animate="[object Object]"
-      class="bg-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
+      class="surface-muted border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
       transition="[object Object]"
     >
       <span
         class="mb-4 flex flex-row items-center justify-start"
       >
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
           data-headlessui-state=""
           data-testid="sidebar-toggle-right"
           type="button"

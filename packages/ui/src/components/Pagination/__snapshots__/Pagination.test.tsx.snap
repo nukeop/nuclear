@@ -56,7 +56,7 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
   <button
     aria-current="page"
     aria-label="Page 12"
-    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors bg-primary text-foreground border-border"
+    class="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border-(length:--border-width) text-sm font-medium transition-colors surface-primary border-border"
     data-testid="pagination-item"
     type="button"
   >

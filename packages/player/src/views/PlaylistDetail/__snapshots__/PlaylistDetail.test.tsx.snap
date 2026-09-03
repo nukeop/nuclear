@@ -2,7 +2,7 @@
 
 exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`] = `
 <main
-  class="bg-muted overflow-auto"
+  class="surface-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div
@@ -16,7 +16,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
       transition="[object Object]"
     >
       <div
-        class="relative h-full w-full bg-background"
+        class="relative h-full w-full surface-background"
         data-testid="playlist-detail-view"
       >
         <div
@@ -24,7 +24,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
           style="scrollbar-width: none;"
         >
           <div
-            class="border-border bg-card shadow-shadow relative flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row mx-6 mt-6"
+            class="border-border surface-card shadow-shadow relative flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row mx-6 mt-6"
           >
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center absolute top-4 right-4 z-10"
@@ -209,7 +209,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                       class="border-border has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-muted inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-offset-2"
                     >
                       <input
-                        class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:outline-none bg-input h-9 text-sm rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                        class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:outline-none surface-input placeholder:text-input-foreground/60 h-9 text-sm rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                         data-headlessui-state=""
                         id="input-:r7:"
                         placeholder="Filter tracks"
@@ -217,7 +217,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                         value=""
                       />
                       <div
-                        class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
+                        class="surface-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
                       >
                         <svg
                           aria-hidden="true"
@@ -255,7 +255,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                   >
                     <thead>
                       <tr
-                        class="border-border bg-primary border-b-(length:--border-width)"
+                        class="border-border surface-primary border-b-(length:--border-width)"
                         role="row"
                       >
                         <th

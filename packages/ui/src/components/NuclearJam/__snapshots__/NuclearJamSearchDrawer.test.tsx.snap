@@ -9,11 +9,11 @@ exports[`NuclearJamSearchDrawer > (Snapshot) renders the empty state 1`] = `
     data-testid="jam-search-drawer"
   >
     <div
-      class="absolute inset-0 bg-black/50 transition duration-200 data-closed:opacity-0"
+      class="bg-overlay absolute inset-0 transition duration-200 data-closed:opacity-0"
       data-testid="jam-search-backdrop"
     />
     <div
-      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+      class="surface-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) backdrop-blur-xl transition duration-200 ease-out data-closed:-translate-y-full"
     >
       <div
         class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
@@ -78,11 +78,11 @@ exports[`NuclearJamSearchDrawer > (Snapshot) renders the error state 1`] = `
     data-testid="jam-search-drawer"
   >
     <div
-      class="absolute inset-0 bg-black/50 transition duration-200 data-closed:opacity-0"
+      class="bg-overlay absolute inset-0 transition duration-200 data-closed:opacity-0"
       data-testid="jam-search-backdrop"
     />
     <div
-      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+      class="surface-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) backdrop-blur-xl transition duration-200 ease-out data-closed:-translate-y-full"
     >
       <div
         class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
@@ -142,11 +142,11 @@ exports[`NuclearJamSearchDrawer > (Snapshot) renders the sheet and backdrop with
     data-testid="jam-search-drawer"
   >
     <div
-      class="absolute inset-0 bg-black/50 transition duration-200 data-closed:opacity-0"
+      class="bg-overlay absolute inset-0 transition duration-200 data-closed:opacity-0"
       data-testid="jam-search-backdrop"
     />
     <div
-      class="bg-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) transition duration-200 ease-out data-closed:-translate-y-full"
+      class="surface-background border-border absolute inset-x-0 top-0 flex min-h-40 flex-col border-b-(length:--border-width) backdrop-blur-xl transition duration-200 ease-out data-closed:-translate-y-full"
     >
       <div
         class="relative min-h-0"

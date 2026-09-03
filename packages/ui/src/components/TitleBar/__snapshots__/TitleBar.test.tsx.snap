@@ -2,7 +2,7 @@
 
 exports[`TitleBar > (Snapshot) renders Mac variant 1`] = `
 <div
-  class="border-border bg-background relative flex h-6 items-center border-b-2 select-none justify-start"
+  class="border-border surface-background relative flex h-6 items-center border-b-2 select-none justify-start"
   data-testid="title-bar"
 >
   <div
@@ -10,15 +10,15 @@ exports[`TitleBar > (Snapshot) renders Mac variant 1`] = `
     data-testid="mac-window-controls"
   >
     <button
-      class="bg-accent-red outline-foreground h-3 w-3 rounded-full opacity-80 outline-2 group-hover:opacity-100"
+      class="surface-accent-red outline-foreground h-3 w-3 rounded-full opacity-80 outline-2 group-hover:opacity-100"
       title="Close"
     />
     <button
-      class="bg-accent-yellow outline-foreground h-3 w-3 rounded-full opacity-80 outline-2 group-hover:opacity-100"
+      class="surface-accent-yellow outline-foreground h-3 w-3 rounded-full opacity-80 outline-2 group-hover:opacity-100"
       title="Minimize"
     />
     <button
-      class="bg-accent-green outline-foreground h-3 w-3 rounded-full opacity-80 outline-2 group-hover:opacity-100"
+      class="surface-accent-green outline-foreground h-3 w-3 rounded-full opacity-80 outline-2 group-hover:opacity-100"
       title="Maximize"
     />
   </div>
@@ -80,7 +80,7 @@ exports[`TitleBar > (Snapshot) renders Mac variant 1`] = `
 
 exports[`TitleBar > (Snapshot) renders Windows variant 1`] = `
 <div
-  class="border-border bg-background relative flex h-6 items-center border-b-2 select-none justify-end"
+  class="border-border surface-background relative flex h-6 items-center border-b-2 select-none justify-end"
   data-testid="title-bar"
 >
   <div
@@ -88,7 +88,7 @@ exports[`TitleBar > (Snapshot) renders Windows variant 1`] = `
     data-testid="windows-window-controls"
   >
     <button
-      class="text-foreground hover:bg-primary hover:text-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
+      class="text-foreground hover:bg-primary hover:text-primary-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
       title="Minimize"
     >
       <svg
@@ -110,7 +110,7 @@ exports[`TitleBar > (Snapshot) renders Windows variant 1`] = `
       </svg>
     </button>
     <button
-      class="text-foreground hover:bg-primary hover:text-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
+      class="text-foreground hover:bg-primary hover:text-primary-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
       title="Maximize"
     >
       <svg
@@ -136,7 +136,7 @@ exports[`TitleBar > (Snapshot) renders Windows variant 1`] = `
       </svg>
     </button>
     <button
-      class="text-foreground hover:bg-accent-red inline-flex h-full w-11 items-center justify-center border-none bg-transparent hover:text-white"
+      class="text-foreground hover:bg-accent-red hover:text-accent-red-foreground inline-flex h-full w-11 items-center justify-center border-none bg-transparent"
       title="Close"
     >
       <svg

@@ -18,7 +18,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         >
           <input
             aria-label="Search logs"
-            class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:outline-none bg-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:outline-none surface-input placeholder:text-input-foreground/60 h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
             data-headlessui-state=""
             id="input-:r2:"
             placeholder="Search logs..."
@@ -27,7 +27,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
             value=""
           />
           <div
-            class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
+            class="surface-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
           >
             <svg
               aria-hidden="true"
@@ -59,7 +59,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
       class="flex gap-2"
     >
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -95,7 +95,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         Clear
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -125,7 +125,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
         Export
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -217,7 +217,7 @@ exports[`LogViewer > (Snapshot) renders empty state 1`] = `
   </div>
   <div
     aria-label="Log entries"
-    class="border-border bg-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
+    class="border-border surface-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
     role="log"
   >
     <div
@@ -248,7 +248,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         >
           <input
             aria-label="Search logs"
-            class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:outline-none bg-input h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:outline-none surface-input placeholder:text-input-foreground/60 h-10 rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
             data-headlessui-state=""
             id="input-:r0:"
             placeholder="Search logs..."
@@ -257,7 +257,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             value=""
           />
           <div
-            class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
+            class="surface-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
           >
             <svg
               aria-hidden="true"
@@ -289,7 +289,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
       class="flex gap-2"
     >
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -325,7 +325,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         Clear
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -355,7 +355,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
         Export
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
         data-headlessui-state=""
         type="button"
       >
@@ -511,7 +511,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
   </div>
   <div
     aria-label="Log entries"
-    class="border-border bg-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
+    class="border-border surface-input flex-1 overflow-auto rounded-md border-(length:--border-width)"
     role="log"
   >
     <div
@@ -540,7 +540,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             10:00:00.000
           </span>
           <button
-            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase bg-accent-red text-foreground cursor-pointer hover:opacity-80"
+            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase surface-accent-red cursor-pointer hover:opacity-80"
             data-testid="log-level"
             type="button"
           >
@@ -564,7 +564,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -620,7 +620,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             10:00:01.000
           </span>
           <button
-            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase bg-accent-yellow text-foreground cursor-pointer hover:opacity-80"
+            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase surface-accent-yellow cursor-pointer hover:opacity-80"
             data-testid="log-level"
             type="button"
           >
@@ -644,7 +644,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -700,7 +700,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             10:00:02.000
           </span>
           <button
-            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase bg-accent-cyan text-foreground cursor-pointer hover:opacity-80"
+            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase surface-accent-cyan cursor-pointer hover:opacity-80"
             data-testid="log-level"
             type="button"
           >
@@ -724,7 +724,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -780,7 +780,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             10:00:03.000
           </span>
           <button
-            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase bg-accent-purple text-foreground cursor-pointer hover:opacity-80"
+            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase surface-accent-purple cursor-pointer hover:opacity-80"
             data-testid="log-level"
             type="button"
           >
@@ -804,7 +804,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -884,7 +884,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"
@@ -940,7 +940,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             10:00:05.000
           </span>
           <button
-            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase bg-accent-cyan text-foreground cursor-pointer hover:opacity-80"
+            class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase surface-accent-cyan cursor-pointer hover:opacity-80"
             data-testid="log-level"
             type="button"
           >
@@ -964,7 +964,7 @@ exports[`LogViewer > (Snapshot) renders with logs 1`] = `
             data-testid="log-action-panel"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
               data-testid="log-copy-button"
               type="button"

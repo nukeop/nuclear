@@ -2,7 +2,7 @@
 
 exports[`FavoriteTracks view > (Snapshot) renders empty state 1`] = `
 <main
-  class="bg-muted overflow-auto"
+  class="surface-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div
@@ -16,7 +16,7 @@ exports[`FavoriteTracks view > (Snapshot) renders empty state 1`] = `
       transition="[object Object]"
     >
       <div
-        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
         data-testid="favorite-tracks-view"
       >
         <h1
@@ -92,7 +92,7 @@ exports[`FavoriteTracks view > (Snapshot) renders empty state 1`] = `
 
 exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
 <main
-  class="bg-muted overflow-auto"
+  class="surface-muted overflow-auto"
   data-testid="player-workspace-main"
 >
   <div
@@ -106,7 +106,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
       transition="[object Object]"
     >
       <div
-        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
         data-testid="favorite-tracks-view"
       >
         <h1
@@ -130,7 +130,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
               >
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
                     data-headlessui-state=""
                     data-testid="play-all-button"
                     type="button"
@@ -193,7 +193,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
                       class="border-border has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-muted inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-offset-2"
                     >
                       <input
-                        class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:outline-none bg-input h-9 text-sm rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                        class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:outline-none surface-input placeholder:text-input-foreground/60 h-9 text-sm rounded-l border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                         data-headlessui-state=""
                         id="input-:r7:"
                         placeholder="Filter tracks"
@@ -201,7 +201,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
                         value=""
                       />
                       <div
-                        class="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
+                        class="surface-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm"
                       >
                         <svg
                           aria-hidden="true"
@@ -239,7 +239,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
                   >
                     <thead>
                       <tr
-                        class="border-border bg-primary border-b-(length:--border-width)"
+                        class="border-border surface-primary border-b-(length:--border-width)"
                         role="row"
                       >
                         <th

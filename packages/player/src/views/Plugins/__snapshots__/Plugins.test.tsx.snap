@@ -12,28 +12,24 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
 >
   <div
     animate="[object Object]"
+    class="bg-overlay fixed inset-0"
+    data-testid="dialog-backdrop"
     exit="[object Object]"
     initial="[object Object]"
     transition="[object Object]"
-  >
-    <div
-      aria-hidden="true"
-      class="fixed inset-0 bg-black/40"
-      data-headlessui-state="open"
-      data-open=""
-    />
-  </div>
+  />
   <div
     class="fixed inset-0 flex items-center justify-center p-4"
   >
     <div
       animate="[object Object]"
+      class="border-border surface-background shadow-shadow relative rounded-md border-(length:--border-width) backdrop-blur-xl flex h-[80vh] max-h-[900px] w-[80vw] max-w-6xl p-0"
       exit="[object Object]"
       initial="[object Object]"
       transition="[object Object]"
     >
       <div
-        class="border-border bg-background shadow-shadow relative rounded-md border-(length:--border-width) flex h-[80vh] max-h-[900px] w-[80vw] max-w-6xl p-0"
+        class="contents"
         data-headlessui-state="open"
         data-open=""
         id="headlessui-dialog-panel-:ra:"
@@ -168,7 +164,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
               Key Shortcuts
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state="hover"
               data-hover=""
               data-testid="settings-tab-plugins"
@@ -442,7 +438,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
           class="flex min-h-0 flex-1 flex-col overflow-hidden"
         >
           <div
-            class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+            class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
           >
             <h1
               class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
@@ -469,7 +465,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
                     <button
                       aria-controls="headlessui-tabs-panel-:rg:"
                       aria-selected="true"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
                       data-headlessui-state=""
                       data-selected=""
                       id="headlessui-tabs-tab-:rc:"
@@ -519,7 +515,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
                               class="flex items-center"
                             >
                               <button
-                                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
+                                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-9 px-3"
                                 data-headlessui-state=""
                                 type="button"
                               >
@@ -576,7 +572,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
                               </div>
                               <div>
                                 <button
-                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
                                   data-headlessui-state=""
                                   data-testid="installed-plugins-empty-state-action"
                                   type="button"

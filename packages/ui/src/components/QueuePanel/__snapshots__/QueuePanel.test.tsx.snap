@@ -86,10 +86,10 @@ exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
                   data-testid="queue-item"
                 >
                   <div
-                    class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all bg-primary"
+                    class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all surface-primary"
                   />
                   <div
-                    class="border-border text-foreground rounded-md border-(length:--border-width) shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all bg-primary h-9 w-9 justify-center p-0"
+                    class="border-border rounded-md border-(length:--border-width) shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all surface-primary h-9 w-9 justify-center p-0"
                     role="button"
                   >
                     <img
@@ -130,7 +130,7 @@ exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
                     class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all"
                   />
                   <div
-                    class="border-border text-foreground rounded-md border-(length:--border-width) bg-muted shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all h-9 w-9 justify-center p-0"
+                    class="border-border rounded-md border-(length:--border-width) surface-muted shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all h-9 w-9 justify-center p-0"
                     role="button"
                   >
                     <img
@@ -171,7 +171,7 @@ exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
                     class="pointer-events-none absolute -top-0.5 -left-0.5 h-10 w-10 rounded-md transition-all"
                   />
                   <div
-                    class="border-border text-foreground rounded-md border-(length:--border-width) bg-muted shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all opacity-70 h-9 w-9 justify-center p-0"
+                    class="border-border rounded-md border-(length:--border-width) surface-muted shadow-none group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all opacity-70 h-9 w-9 justify-center p-0"
                     role="button"
                   >
                     <img
@@ -246,7 +246,7 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
             >
               <div>
                 <div
-                  class="border-border text-foreground h-full rounded-md border-(length:--border-width) shadow-none group group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all bg-primary w-full p-0"
+                  class="border-border h-full rounded-md border-(length:--border-width) shadow-none group group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all surface-primary w-full p-0"
                   data-is-current="true"
                   data-testid="queue-item"
                   role="button"
@@ -265,13 +265,13 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
                     class="min-w-0 flex-1"
                   >
                     <div
-                      class="text-foreground truncate text-sm font-bold"
+                      class="truncate text-sm font-bold"
                       data-testid="queue-item-title"
                     >
                       Bohemian Rhapsody
                     </div>
                     <div
-                      class="text-foreground truncate text-xs"
+                      class="truncate text-xs"
                       data-testid="queue-item-artist"
                     >
                       Queen
@@ -281,14 +281,14 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
                     class="relative flex shrink-0 items-center justify-start"
                   >
                     <div
-                      class="text-foreground mr-4 text-sm tabular-nums"
+                      class="mr-4 text-sm tabular-nums"
                       data-testid="queue-item-duration"
                     >
                       5:54
                     </div>
                     <button
                       aria-label="Remove from queue"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border border-(length:--border-width) size-8 justify-center absolute right-4 opacity-0 group-hover:opacity-100"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border border-(length:--border-width) size-8 justify-center absolute right-4 opacity-0 group-hover:opacity-100"
                       data-headlessui-state=""
                       data-testid="queue-item-remove-button"
                       type="button"
@@ -340,7 +340,7 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
             >
               <div>
                 <div
-                  class="border-border text-foreground h-full rounded-md border-(length:--border-width) bg-muted shadow-none group group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all w-full p-0"
+                  class="border-border h-full rounded-md border-(length:--border-width) surface-muted shadow-none group group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all w-full p-0"
                   data-is-current="false"
                   data-testid="queue-item"
                   role="button"
@@ -359,13 +359,13 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
                     class="min-w-0 flex-1"
                   >
                     <div
-                      class="text-foreground truncate text-sm font-bold"
+                      class="truncate text-sm font-bold"
                       data-testid="queue-item-title"
                     >
                       Stairway to Heaven
                     </div>
                     <div
-                      class="text-foreground truncate text-xs"
+                      class="truncate text-xs"
                       data-testid="queue-item-artist"
                     >
                       Led Zeppelin
@@ -375,14 +375,14 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
                     class="relative flex shrink-0 items-center justify-start"
                   >
                     <div
-                      class="text-foreground mr-4 text-sm tabular-nums"
+                      class="mr-4 text-sm tabular-nums"
                       data-testid="queue-item-duration"
                     >
                       8:02
                     </div>
                     <button
                       aria-label="Remove from queue"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border border-(length:--border-width) size-8 justify-center absolute right-4 opacity-0 group-hover:opacity-100"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border border-(length:--border-width) size-8 justify-center absolute right-4 opacity-0 group-hover:opacity-100"
                       data-headlessui-state=""
                       data-testid="queue-item-remove-button"
                       type="button"
@@ -434,7 +434,7 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
             >
               <div>
                 <div
-                  class="border-border text-foreground h-full rounded-md border-(length:--border-width) bg-muted shadow-none group group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all opacity-70 w-full p-0"
+                  class="border-border h-full rounded-md border-(length:--border-width) surface-muted shadow-none group group relative flex items-center gap-2 overflow-hidden ring-offset-white transition-all opacity-70 w-full p-0"
                   data-is-current="false"
                   data-testid="queue-item"
                   role="button"
@@ -453,13 +453,13 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
                     class="min-w-0 flex-1"
                   >
                     <div
-                      class="text-foreground truncate text-sm font-bold"
+                      class="truncate text-sm font-bold"
                       data-testid="queue-item-title"
                     >
                       Hotel California
                     </div>
                     <div
-                      class="text-foreground truncate text-xs"
+                      class="truncate text-xs"
                       data-testid="queue-item-artist"
                     >
                       Eagles
@@ -469,14 +469,14 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
                     class="relative flex shrink-0 items-center justify-start"
                   >
                     <div
-                      class="text-foreground mr-4 text-sm tabular-nums"
+                      class="mr-4 text-sm tabular-nums"
                       data-testid="queue-item-duration"
                     >
                       6:31
                     </div>
                     <button
                       aria-label="Remove from queue"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border border-(length:--border-width) size-8 justify-center absolute right-4 opacity-0 group-hover:opacity-100"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border border-(length:--border-width) size-8 justify-center absolute right-4 opacity-0 group-hover:opacity-100"
                       data-headlessui-state=""
                       data-testid="queue-item-remove-button"
                       type="button"

@@ -2,14 +2,14 @@
 
 exports[`Textarea > (Snapshot) renders with placeholder 1`] = `
 <textarea
-  class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full resize-y rounded-md border-(length:--border-width) px-3 py-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none bg-input"
+  class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full resize-y rounded-md border-(length:--border-width) px-3 py-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none surface-input placeholder:text-input-foreground/60"
   placeholder="Add a description..."
 />
 `;
 
 exports[`Textarea > (Snapshot) renders with secondary tone 1`] = `
 <textarea
-  class="border-border text-foreground placeholder:text-input-foreground/60 focus-visible:ring-ring focus-visible:ring-offset-muted w-full resize-y rounded-md border-(length:--border-width) px-3 py-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none bg-background"
+  class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full resize-y rounded-md border-(length:--border-width) px-3 py-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none surface-background text-foreground placeholder:text-foreground/60"
   placeholder="Notes..."
 />
 `;

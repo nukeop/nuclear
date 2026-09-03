@@ -58,7 +58,7 @@ exports[`NuclearJamHeader > (Snapshot) renders the connected header 1`] = `
         Nuclear
          
         <span
-          class="text-primary text-stroke-4 stroke-text-black dark:stroke-text-foreground"
+          class="text-primary text-stroke-4 stroke-text-foreground"
         >
           <span
             animate="[object Object]"
@@ -89,11 +89,11 @@ exports[`NuclearJamHeader > (Snapshot) renders the connected header 1`] = `
       data-testid="connection-status-badge"
     >
       <span
-        class="size-2 rounded-full bg-accent-green"
+        class="size-2 rounded-full surface-accent-green"
         data-testid="connection-status-dot"
       />
       <span
-        class="text-background dark:text-background text-xs font-semibold text-white"
+        class="text-background text-xs font-semibold"
       >
         Connected
       </span>
