@@ -1,13 +1,4 @@
 ---
-import { styleFromVars } from '../../lib/theming/styleFromVars';
-import type { ThemeVars } from '../../lib/theming/samples';
-
-type Props = {
-  vars?: ThemeVars;
-};
-
-const { vars = {} } = Astro.props;
-
 const surfaces = [
   { name: 'background', className: 'surface-background' },
   { name: 'muted', className: 'surface-muted' },
@@ -31,10 +22,7 @@ const tile =
   'themed-border border-border shadow-shadow flex items-center justify-center rounded-md font-mono font-bold';
 ---
 
-<div
-  class="not-prose flex w-full flex-col gap-3 font-sans select-none"
-  style={styleFromVars(vars)}
->
+<div class="not-prose flex w-full flex-col gap-3 font-sans select-none">
   <div class="grid grid-cols-3 gap-3 max-sm:grid-cols-2">
     {
       surfaces.map((surface) => (

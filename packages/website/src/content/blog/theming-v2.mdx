@@ -99,14 +99,11 @@ The seek bar can now also be individually styled and more variables are offered 
 
 <SeekBarStrip caption="This is what a default seek bar looks like" />
 
-<SeekBarStrip vars={{
-  seekbar: 'oklch(0.68 0.15 55)',
-  'seekbar-gradient':
-    'linear-gradient(180deg, oklch(0.72 0.15 58), oklch(0.64 0.155 50))',
-  'seekbar-foreground': 'oklch(0.18 0.02 55)',
-  'seekbar-track': 'oklch(0.32 0.012 60)',
-  'seekbar-track-foreground': 'oklch(0.92 0.02 82)',
-}} progress={64} caption="Orange fill with a dark track" />
+<SeekBarStrip
+  style="--seekbar: oklch(0.68 0.15 55); --seekbar-gradient: linear-gradient(180deg, oklch(0.72 0.15 58), oklch(0.64 0.155 50)); --seekbar-foreground: oklch(0.18 0.02 55); --seekbar-track: oklch(0.32 0.012 60); --seekbar-track-foreground: oklch(0.92 0.02 82);"
+  progress={64}
+  caption="Orange fill with a dark track"
+/>
 
 ## Migrating existing styles
 
