@@ -1,5 +1,6 @@
 :root[data-theme-id='nuclear:nebula'] {
-  --wallpaper:
+  --background: oklch(0.95 0.02 285);
+  --background-gradient:
     radial-gradient(
       50% 65% at 75% 15%,
       oklch(0.85 0.09 320 / 0.55),
@@ -10,18 +11,7 @@
       oklch(0.87 0.08 260 / 0.5),
       transparent 70%
     ),
-    radial-gradient(
-      35% 45% at 45% 45%,
-      oklch(0.9 0.06 290 / 0.4),
-      transparent 70%
-    ),
-    linear-gradient(oklch(0.95 0.02 285), oklch(0.95 0.02 285));
-  --background: oklch(0.94 0.025 290 / 0.55);
-  --background-gradient: linear-gradient(
-    180deg,
-    oklch(0.96 0.03 270 / 0.5),
-    oklch(0.92 0.045 310 / 0.6)
-  );
+    linear-gradient(180deg, oklch(0.96 0.03 270), oklch(0.92 0.045 310));
   --muted: oklch(0.99 0.005 290 / 0.7);
   --muted-gradient: linear-gradient(
     180deg,
@@ -29,6 +19,44 @@
     oklch(0.96 0.015 290 / 0.7)
   );
   --muted-foreground: oklch(0.4 0.08 295);
+  --topbar: oklch(0.98 0.012 280 / 0.65);
+  --topbar-gradient: linear-gradient(
+    90deg,
+    oklch(1 0 0 / 0.5),
+    oklch(0.95 0.035 305 / 0.65)
+  );
+  --topbar-foreground: oklch(0.35 0.08 285);
+  --bottombar: oklch(0.34 0.12 295);
+  --bottombar-gradient: linear-gradient(
+    90deg,
+    oklch(0.38 0.12 275),
+    oklch(0.3 0.14 320)
+  );
+  --bottombar-foreground: oklch(0.95 0.02 295);
+  --sidebar-left: oklch(0.97 0.02 265 / 0.65);
+  --sidebar-left-gradient: linear-gradient(
+    180deg,
+    oklch(0.98 0.012 265 / 0.55),
+    oklch(0.93 0.04 260 / 0.7)
+  );
+  --sidebar-left-foreground: oklch(0.36 0.09 270);
+  --sidebar-right: oklch(0.97 0.02 320 / 0.65);
+  --sidebar-right-gradient: linear-gradient(
+    180deg,
+    oklch(0.98 0.012 320 / 0.55),
+    oklch(0.93 0.045 325 / 0.7)
+  );
+  --sidebar-right-foreground: oklch(0.38 0.1 320);
+  --seekbar: oklch(0.7 0.18 310);
+  --seekbar-gradient: linear-gradient(
+    90deg,
+    oklch(0.72 0.15 240),
+    oklch(0.7 0.18 300),
+    oklch(0.72 0.2 340)
+  );
+  --seekbar-foreground: oklch(0.15 0.04 300);
+  --seekbar-track: oklch(0.22 0.07 290);
+  --seekbar-track-foreground: oklch(0.96 0.01 290);
   --input: oklch(0.98 0.01 290);
   --card: oklch(0.72 0.16 295);
   --card-gradient: linear-gradient(
@@ -51,12 +79,19 @@
 }
 
 :root[data-theme-id='nuclear:nebula'][data-theme='dark'] {
-  --background: oklch(0.19 0.04 290 / 0.35);
-  --background-gradient: linear-gradient(
-    180deg,
-    oklch(0.22 0.05 270),
-    oklch(0.15 0.055 310)
-  );
+  --background: oklch(0.19 0.04 290);
+  --background-gradient:
+    radial-gradient(
+      50% 65% at 75% 15%,
+      oklch(0.35 0.12 320 / 0.5),
+      transparent 70%
+    ),
+    radial-gradient(
+      45% 60% at 15% 75%,
+      oklch(0.32 0.1 260 / 0.5),
+      transparent 70%
+    ),
+    linear-gradient(180deg, oklch(0.22 0.05 270), oklch(0.15 0.055 310));
   --muted: oklch(0.26 0.05 290);
   --muted-gradient: linear-gradient(
     180deg,
@@ -65,6 +100,44 @@
   );
   --muted-foreground: oklch(0.78 0.06 295);
   --foreground: oklch(0.92 0.012 290);
+  --topbar: oklch(0.2 0.045 275 / 0.75);
+  --topbar-gradient: linear-gradient(
+    90deg,
+    oklch(0.23 0.05 265 / 0.75),
+    oklch(0.18 0.05 305 / 0.75)
+  );
+  --topbar-foreground: oklch(0.9 0.03 290);
+  --bottombar: oklch(0.12 0.04 295);
+  --bottombar-gradient: linear-gradient(
+    90deg,
+    oklch(0.14 0.05 270),
+    oklch(0.1 0.05 320)
+  );
+  --bottombar-foreground: oklch(0.9 0.03 295);
+  --sidebar-left: oklch(0.22 0.05 265 / 0.8);
+  --sidebar-left-gradient: linear-gradient(
+    180deg,
+    oklch(0.25 0.055 260 / 0.8),
+    oklch(0.19 0.05 275 / 0.85)
+  );
+  --sidebar-left-foreground: oklch(0.86 0.06 265);
+  --sidebar-right: oklch(0.22 0.055 320 / 0.8);
+  --sidebar-right-gradient: linear-gradient(
+    180deg,
+    oklch(0.25 0.06 315 / 0.8),
+    oklch(0.19 0.055 330 / 0.85)
+  );
+  --sidebar-right-foreground: oklch(0.88 0.06 325);
+  --seekbar: oklch(0.72 0.18 310);
+  --seekbar-gradient: linear-gradient(
+    90deg,
+    oklch(0.74 0.15 240),
+    oklch(0.72 0.18 300),
+    oklch(0.74 0.2 340)
+  );
+  --seekbar-foreground: oklch(0.15 0.04 300);
+  --seekbar-track: oklch(0.1 0.04 290);
+  --seekbar-track-foreground: oklch(0.92 0.02 290);
   --input: oklch(0.14 0.03 290);
   --card: oklch(0.5 0.14 295);
   --card-gradient: linear-gradient(
