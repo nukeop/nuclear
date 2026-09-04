@@ -710,42 +710,6 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
                                         />
                                       </div>
                                     </button>
-                                    <button
-                                      aria-pressed="false"
-                                      class="cursor-pointer items-center whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-auto surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none"
-                                      data-headlessui-state=""
-                                      type="button"
-                                    >
-                                      <span
-                                        class="text-left text-base font-bold"
-                                      >
-                                        Nebula
-                                      </span>
-                                      <div
-                                        class="block"
-                                      >
-                                        <span
-                                          aria-hidden="true"
-                                          class="ring-border inline-block size-5 rounded-full ring-2"
-                                          style="background-color: oklch(0.72 0.16 295);"
-                                        />
-                                        <span
-                                          aria-hidden="true"
-                                          class="ring-border inline-block size-5 rounded-full ring-2"
-                                          style="background-color: oklch(0.94 0.025 290);"
-                                        />
-                                        <span
-                                          aria-hidden="true"
-                                          class="ring-border inline-block size-5 rounded-full ring-2"
-                                          style="background-color: oklch(0.5 0.14 295);"
-                                        />
-                                        <span
-                                          aria-hidden="true"
-                                          class="ring-border inline-block size-5 rounded-full ring-2"
-                                          style="background-color: oklch(0.19 0.04 290);"
-                                        />
-                                      </div>
-                                    </button>
                                   </div>
                                 </div>
                               </section>
