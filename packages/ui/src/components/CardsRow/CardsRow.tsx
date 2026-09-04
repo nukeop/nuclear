@@ -72,7 +72,7 @@ export const CardsRow: FC<CardsRowProps> = ({
               <button
                 data-testid="cards-row-clear-filter"
                 type="button"
-                className="text-foreground cursor-pointer"
+                className="cursor-pointer"
                 onClick={clearFilter}
               >
                 <Filter size={14} />
