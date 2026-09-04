@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 
 import { platforms, repositories } from '../data/platforms';
+import { CopyButton } from './CopyButton';
 ---
 
 <div class="flex justify-center gap-3">
@@ -21,13 +22,21 @@ import { platforms, repositories } from '../data/platforms';
 <div class="mt-2 flex flex-wrap justify-center gap-2">
   {
     repositories.map((repository) => (
-      <a
-        href={repository.url}
-        class="themed-border btn-interactive border-border bg-background shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-bold transition-all hover:shadow-none"
-      >
-        <Icon name={repository.icon} class="h-3.5 w-3.5" />
-        {repository.name}
-      </a>
+      <span class="themed-border border-border bg-background shadow-shadow inline-flex items-stretch overflow-hidden rounded-md text-xs font-bold">
+        <a
+          href={repository.url}
+          class="hover:bg-muted inline-flex items-center gap-1.5 px-3 py-1.5 transition-colors"
+        >
+          <Icon name={repository.icon} class="h-3.5 w-3.5" />
+          {repository.name}
+        </a>
+        <CopyButton
+          client:load
+          text={repository.command}
+          className="border-border hover:bg-muted rounded-none border-l-(length:--border-width) px-2"
+          title={`Copy: ${repository.command}`}
+        />
+      </span>
     ))
   }
 </div>

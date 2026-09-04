@@ -23,20 +23,30 @@ export const repositories = [
     name: 'Flathub',
     icon: 'simple-icons:flathub',
     url: 'https://flathub.org/apps/com.nuclearplayer.Nuclear',
+    command: 'flatpak install flathub com.nuclearplayer.Nuclear',
   },
   {
     name: 'Snapcraft',
     icon: 'simple-icons:snapcraft',
     url: 'https://snapcraft.io/nuclear',
+    command: 'sudo snap install nuclear',
   },
   {
     name: 'AUR',
     icon: 'simple-icons:archlinux',
     url: 'https://aur.archlinux.org/packages/nuclear-player-bin',
+    command: 'yay -S nuclear-player-bin',
   },
   {
     name: 'winget',
     icon: 'simple-icons:windows',
     url: 'https://winget.run/pkg/nukeop/nuclear',
+    command: 'winget install nukeop.nuclear',
+  },
+  {
+    name: 'Homebrew',
+    icon: 'simple-icons:homebrew',
+    url: 'https://github.com/NuclearPlayer/homebrew-tap',
+    command: 'brew install --cask nuclearplayer/tap/nuclear',
   },
 ];
