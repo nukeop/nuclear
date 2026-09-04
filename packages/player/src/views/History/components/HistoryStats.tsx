@@ -57,7 +57,7 @@ const HistoryStatsBody: FC<HistoryStatsBodyProps> = ({ firstPlayAt }) => {
       <div className="flex items-center justify-end gap-3">
         <span
           data-testid="history-stats-range-dates"
-          className="text-foreground-secondary text-sm"
+          className="text-foreground/60 text-sm"
         >
           {rangeDates}
         </span>

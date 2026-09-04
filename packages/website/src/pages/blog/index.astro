@@ -16,7 +16,7 @@ const description =
 
 <BaseLayout title={title} description={description}>
   <main
-    class="bg-background-secondary w-full bg-[radial-gradient(var(--background)_1px,transparent_1px)] bg-size-[20px_20px]"
+    class="bg-muted w-full bg-[radial-gradient(var(--background)_1px,transparent_1px)] bg-size-[20px_20px]"
   >
     <div class="mx-auto w-full max-w-6xl px-4 py-16 md:px-8">
       {posts.length === 0 && <BlogEmptyState />}
@@ -28,7 +28,7 @@ const description =
               <h1 class="font-heading text-4xl font-black tracking-widest uppercase md:text-5xl">
                 Blog
               </h1>
-              <p class="text-foreground-secondary mt-3 max-w-2xl font-bold">
+              <p class="text-foreground/60 mt-3 max-w-2xl font-bold">
                 {description}
               </p>
             </header>

@@ -12,7 +12,7 @@
   --page-bg: oklch(100% 0 0);
   --primary: oklch(0.8 0.12 4.56);
   --background: oklch(0.9163 0.0361 7.16);
-  --background-secondary: oklch(100% 0 0);
+  --muted: oklch(100% 0 0);
   --color-heading-accent: var(--primary);
   --color-heading-shadow: var(--foreground);
   --color-star: var(--foreground);
@@ -47,6 +47,19 @@
   background-image: url('/textures/paper.png');
   background-size: cover;
   background-position: center;
+}
+
+/* Classes required by medium-zoom*/
+.medium-zoom-overlay {
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.medium-zoom-image--opened {
+  z-index: 101;
+  border-radius: var(--radius-md);
+  border: var(--border-width) solid var(--border);
+  box-shadow: none;
 }
 
 @keyframes marquee-scroll {

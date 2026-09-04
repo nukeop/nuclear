@@ -23,7 +23,7 @@ export const SearchBox: FC = () => {
 
   return (
     <div className="relative w-full">
-      <Search className="text-foreground-secondary pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
+      <Search className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
       <Input
         ref={inputRef}
         data-testid="search-box"

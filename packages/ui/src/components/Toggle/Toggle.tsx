@@ -49,8 +49,8 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
       value={value}
       form={form}
       className={cn(
-        'border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none',
-        'data-checked:bg-primary bg-white',
+        'border-border focus:ring-ring focus:ring-offset-muted relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-offset-2 focus:outline-none',
+        'data-checked:surface-primary surface-input',
         'data-disabled:cursor-not-allowed data-disabled:opacity-50',
         'group',
         className,
@@ -60,7 +60,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
       {({ checked }) => (
         <span
           className={cn(
-            'border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black',
+            'border-border bg-muted [&>svg]:fill-muted pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) ring-0 transition-transform',
             // Positioning via data-attribute with group
             'translate-x-1 group-data-checked:translate-x-5',
           )}

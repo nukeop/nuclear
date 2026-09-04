@@ -67,9 +67,9 @@ describe('Themes view', async () => {
       { name: 'nested', isDirectory: true },
     ]);
     PluginFsMock.setReadTextFileByMap({
-      '/my.json': JSON.stringify({ version: 1, name: 'My Theme', vars: {} }),
+      '/my.json': JSON.stringify({ version: 2, name: 'My Theme', vars: {} }),
       '/another.json': JSON.stringify({
-        version: 1,
+        version: 2,
         name: 'Another',
         vars: {},
       }),
@@ -108,12 +108,12 @@ describe('Themes view', async () => {
       ]);
       PluginFsMock.setReadTextFileByMap({
         'themes/my.json': JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { p: '#111' },
         }),
         'themes/other.json': JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'Other',
           vars: { p: '#222' },
         }),
@@ -236,7 +236,7 @@ describe('Themes view', async () => {
     it('loads and applies selected advanced theme file', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { primary: '#123' },
         }),
@@ -259,10 +259,73 @@ describe('Themes view', async () => {
       ).toBe(true);
     });
 
-    it('resets to default when the Default basic theme is clicked', async () => {
+    it('loads a version 1 theme with its colors mapped to the version 2 tokens', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
           version: 1,
+          name: 'My Theme',
+          vars: {
+            background: '#111',
+            'background-secondary': '#222',
+            'background-input': '#333',
+            foreground: '#444',
+            'foreground-secondary': '#555',
+            'foreground-input': '#666',
+            primary: '#777',
+            border: '#888',
+            'border-input': '#999',
+          },
+          dark: {
+            background: '#aaa',
+            'background-secondary': '#bbb',
+            'foreground-secondary': '#ccc',
+          },
+        }),
+      );
+
+      await ThemesWrapper.mount({ advancedThemes });
+
+      await ThemesWrapper.advancedThemeSelect.select('My Theme');
+
+      expect(document.getElementById('advanced-theme')!.textContent).toBe(
+        [
+          ':root{--background: #111; --border: #888; --border-input: #999; --muted: #222; --input: #333; --foreground: #444; --primary-foreground: #444; --card-foreground: #444; --popover-foreground: #444; --accent-green-foreground: #444; --accent-yellow-foreground: #444; --accent-purple-foreground: #444; --accent-blue-foreground: #444; --accent-orange-foreground: #444; --accent-cyan-foreground: #444; --accent-red-foreground: #444; --muted-foreground: #555; --input-foreground: #666; --primary: #777; --card: #777; --popover: #777;}',
+          "[data-theme='dark']{--background: #aaa; --muted: #bbb; --muted-foreground: #ccc;}",
+        ].join('\n'),
+      );
+    });
+
+    it('skips a theme with an unknown version and still lists the others', async () => {
+      PluginFsMock.setExists(true);
+      PluginFsMock.setReadDir([
+        { name: 'future.json', isDirectory: false },
+        { name: 'current.json', isDirectory: false },
+      ]);
+      PluginFsMock.setReadTextFileByMap({
+        '/future.json': JSON.stringify({
+          version: 3,
+          name: 'Future',
+          vars: { background: '#111' },
+        }),
+        '/current.json': JSON.stringify({
+          version: 2,
+          name: 'Current',
+          vars: { background: '#222' },
+        }),
+      });
+
+      await startAdvancedThemeWatcher();
+      await ThemesWrapper.mount();
+
+      expect(
+        await ThemesWrapper.advancedThemeSelect.availableOptions(),
+      ).toEqual(['Current']);
+    });
+
+    it('resets to default when the Default basic theme is clicked', async () => {
+      PluginFsMock.setReadTextFile(
+        JSON.stringify({
+          version: 2,
           name: 'My Theme',
           vars: { primary: '#123' },
         }),
@@ -281,7 +344,7 @@ describe('Themes view', async () => {
     it('unhighlights basic themes when an advanced theme is selected', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { primary: '#123' },
         }),
@@ -338,7 +401,7 @@ describe('Themes view', async () => {
     it('deselects the marketplace theme when an advanced theme is selected', async () => {
       PluginFsMock.setReadTextFile(
         JSON.stringify({
-          version: 1,
+          version: 2,
           name: 'My Theme',
           vars: { primary: '#123' },
         }),
@@ -603,7 +666,7 @@ describe('Themes view', async () => {
 
     it('restores and applies an advanced theme on startup', async () => {
       const advancedThemeFile = {
-        version: 1,
+        version: 2,
         name: 'Custom',
         vars: { background: 'oklch(0.2 0.05 280)' },
       };

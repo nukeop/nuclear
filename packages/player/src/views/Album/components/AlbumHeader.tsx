@@ -48,7 +48,7 @@ export const AlbumHeader: FC<AlbumHeaderProps> = ({ providerId, albumId }) => {
   const trackCount = album.tracks?.length ?? 0;
 
   return (
-    <div className="border-border bg-primary shadow-shadow relative mx-6 mt-6 flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row">
+    <div className="border-border surface-card shadow-shadow relative mx-6 mt-6 flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row">
       <ConnectedFavoriteButton
         type="album"
         source={{ provider: providerId, id: albumId }}
@@ -69,7 +69,7 @@ export const AlbumHeader: FC<AlbumHeaderProps> = ({ providerId, albumId }) => {
           <h1 className="font-heading text-5xl font-extrabold tracking-tight">
             {album.title}
           </h1>
-          <div className="text-text-secondary block text-lg">
+          <div className="text-card-foreground/60 block text-lg">
             by{' '}
             {album.artists.map((artist, index) => (
               <span key={artist.name}>
@@ -78,7 +78,7 @@ export const AlbumHeader: FC<AlbumHeaderProps> = ({ providerId, albumId }) => {
                   <Link
                     to="/artist/$providerId/$artistId"
                     params={{ providerId, artistId: artist.source.id }}
-                    className="text-foreground hover:underline"
+                    className="text-card-foreground hover:underline"
                   >
                     {artist.name}
                   </Link>

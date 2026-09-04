@@ -1,0 +1,169 @@
+---
+title: 'Expanding themes in Nuclear'
+date: 2026-09-03
+description: 'Surfaces, gradients, wallpapers, and per-bar colors: theming v2 in Nuclear 1.48'
+cover: 'https://i.ibb.co/MDPxnrPY/s4.png'
+tags: ['themes', 'releases']
+author: 'nukeop'
+---
+
+import { Code } from 'astro-expressive-code/components';
+import SurfaceStack from '../../components/theming/SurfaceStack.astro';
+import SeekBarStrip from '../../components/theming/SeekBarStrip.astro';
+import PostImage from '../../components/PostImage.astro';
+import PostDownloads from '../../components/PostDownloads.astro';
+
+[Nuclear is a free, open source music player that finds music for you](https://nuclearplayer.com)
+
+Until now, Nuclear's themes supported only a couple of text colors. And because some of these colors were applied on different backgrounds, you were forced to choose something that will look good on all of them.
+
+Sometimes you're limited to a smaller number of colors, for example when creating a theme based on an existing palette. Then you have something like this:
+
+<PostImage src="https://i.ibb.co/R8Ym3kv/s1.png" width={480} />
+
+Because the cards are light, the standard background is dark, and the text is light, it's going to look like ass. Because in this palette there are only a few shades of beige, you're forced to pick one that'll never look good on both types of backgrounds.
+
+You can keep wrestling with it in many ways but fundamentally this is just too limited.
+
+## Surfaces
+
+Now with themes v2, all this is solved, and it comes with more goodies.
+
+Instead of a few colors, there are now surfaces. Each surface is a background color paired with a text color that goes on top. The text color always matches the background. And the background can now also be a gradient.
+
+This is the default set of surfaces:
+
+<SurfaceStack />
+
+This makes Nuclear look pretty much the same as before, except with some text tweaked to look better on its respective surface.
+
+| Surface      | Foreground           | Used for                                  |
+| ------------ | -------------------- | ----------------------------------------- |
+| `background` | `foreground`         | the window and most views                 |
+| `muted`      | `muted-foreground`   | panels, list rows, bars by default        |
+| `card`       | `card-foreground`    | cards and detail headers                  |
+| `popover`    | `popover-foreground` | dropdown menus and popovers               |
+| `input`      | `input-foreground`   | text fields and other controls             |
+| `primary`    | `primary-foreground` | buttons, highlights, active elements      |
+
+Nuclear also has seven accent colors with niche uses. They are treated as surfaces too, with their own text colors.
+
+## Gradients
+
+You can use a gradient on any surface, letting you style Nuclear like this:
+
+![](https://i.ibb.co/KxYLwYmt/s7.png)
+
+
+To do this, you use the new `*-gradient` variables.
+
+<Code
+  lang="json"
+  code={JSON.stringify(
+    {
+      version: 2,
+      name: 'Dusk',
+      vars: {
+        background: 'oklch(0.94 0.04 55)',
+        'background-gradient': 'linear-gradient(180deg, oklch(0.96 0.03 75), oklch(0.9 0.06 30))',
+        card: 'oklch(0.75 0.14 40)',
+        'card-gradient': 'linear-gradient(180deg, oklch(0.8 0.13 50), oklch(0.7 0.16 30))',
+        primary: 'oklch(0.68 0.17 35)',
+        'primary-gradient': 'linear-gradient(180deg, oklch(0.72 0.16 45), oklch(0.64 0.18 28))',
+    }
+    },
+    null,
+    2,
+  )}
+/>
+
+## Individual styling for bars
+
+Nuclear has two sidebars, a bottom bar with player controls, and a top bar with search. Formerly, they were styled with just two colors. Now you can style each one individually:
+
+![](https://i.ibb.co/1JjTyyD9/s3.png)
+
+<Code
+  lang="json"
+  title="bars.json"
+  code={JSON.stringify(
+    {
+      version: 2,
+      name: 'Bars',
+      vars: {
+        topbar: 'oklch(0.3 0.04 150)',
+        'topbar-foreground': 'oklch(0.95 0.01 90)',
+        bottombar: 'oklch(0.27 0.04 150)',
+        'bottombar-foreground': 'oklch(0.95 0.01 90)',
+        'sidebar-left': 'oklch(0.3 0.04 150)',
+        'sidebar-left-foreground': 'oklch(0.95 0.01 90)',
+        'sidebar-right': 'oklch(0.955 0.012 90)',
+        'sidebar-right-foreground': 'oklch(0.38 0.05 150)',
+      },
+    },
+    null,
+    2,
+  )}
+/>
+
+In addition to `*-foreground`, `*-gradient` is also available for each of those surfaces.
+
+## More detailed styling for seek bar
+
+The seek bar can now also be individually styled and more variables are offered to control it in more detail. Use:
+- `seekbar`, `seekbar-gradient`, for the fill
+- `seekbar-track` and `seekbar-track-gradient` for the track
+- `seekbar-track-foreground`, `seekbar-foreground` for the text displayed on each of these surfaces. 
+
+The fill defaults to `primary` and the track to `muted` if you don't set the above variables.
+
+Example effect:
+
+<SeekBarStrip caption="This is what a default seek bar looks like" />
+
+<SeekBarStrip
+  style="--seekbar: oklch(0.68 0.15 55); --seekbar-gradient: linear-gradient(180deg, oklch(0.72 0.15 58), oklch(0.64 0.155 50)); --seekbar-foreground: oklch(0.18 0.02 55); --seekbar-track: oklch(0.32 0.012 60); --seekbar-track-foreground: oklch(0.92 0.02 82);"
+  progress={64}
+  caption="Orange fill with a dark track"
+/>
+
+## Wallpaper
+
+You can use the new `wallpaper` variable to use an image as your background. Use it like this in your themes: `"wallpaper": "url('https://example.com/marble.jpg')"`
+
+Example:
+
+![](https://i.ibb.co/sdTX5q6v/s5.png)
+
+## Transparency
+
+To be able to see your wallpaper through any of the surfaces, use semi-transparent colors for them. The way you define transparency differs depending on the color format you prefer to use:
+- In OKLCH, add one more value after a slash: `"background": "oklch(0.9 0.0325 214 / 0.4)"`. The 0.4 here is the opacity
+- Or if you prefer RGBA values, you can use it like this: `background: rgba(255, 170, 187, 0.27)`. Here, the 0.27 is the opacity level.
+- You can also use the 8-digit hex format: `"background": "#FFAABB44"`. Here, the 44 represents opacity.
+
+Complementing the above, transparent surfaces that are displayed above other elements, like dialog windows or popovers, will now use a gaussian blur, which looks like this:
+
+![](https://i.ibb.co/gbFb5cNJ/s6.png)
+
+## Migrating existing styles
+
+You keep all your themes in Nuclear 1.48. Your custom themes are migrated in-memory and load as usual. The migration copies the old colors to their corresponding new surface and text colors.
+
+Themes in the theme store were migrated ahead of launch, and enriched with new colors, while preserving backwards compatibility with older versions of Nuclear - these can still load v1 themes from the store as before.
+
+Old themes keep the `"version": 1` in their JSON files. If you want to use any of the new features, you have to change this to `"version": 2`.
+
+## How to update
+
+Nuclear has an auto-update mechanism. Either let it auto-update by itself, or use the "Click to update" button which will appear when it detects a new update to install.
+
+Depending on your platform, you may want to use that platform's update mechanism. For example, if you installed it from Flathub, your system will notify you there's a pending update.
+
+## Read more
+
+- Read more about how themes work and how to create your own themes at [advanced themes documentation](https://docs.nuclearplayer.com/nuclear/theming/themes-advanced).
+- Would you like to contribute and add your theme to Nuclear, so other users can use it? Please see the [theme registry](https://github.com/NuclearPlayer/theme-registry?tab=readme-ov-file)!
+- If you make any cool themes, be sure to [join our Discord](https://discord.gg/JqPjKxE) and share them with us!
+
+<PostDownloads />

@@ -30,18 +30,17 @@ export const createFramerMotionMock = (mod: typeof import('motion/react')) => {
     );
 
   const cache = new Map<string, ReturnType<typeof make>>();
-  const motion = new Proxy(
-    {},
-    {
-      get: (_target, el: string) => {
-        const key = String(el);
-        if (!cache.has(key)) {
-          cache.set(key, make(el as unknown as ElementType));
-        }
-        return cache.get(key)!;
-      },
+  const motionFactory = (component: ElementType) => make(component);
+  const motion = new Proxy(motionFactory, {
+    get: (_target, el: string) => {
+      const key = String(el);
+      if (!cache.has(key)) {
+        cache.set(key, make(el as unknown as ElementType));
+      }
+      return cache.get(key)!;
     },
-  ) as typeof mod.motion;
+    apply: (_target, _thisArg, args: [ElementType]) => make(args[0]),
+  }) as typeof mod.motion;
 
   const AnimatePresence = ({ children }: { children?: ReactNode }) => (
     <>{children}</>

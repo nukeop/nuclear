@@ -38,7 +38,7 @@ export const FlatpakWarningBanner: FC = () => {
   return (
     <div
       data-testid="flatpak-warning-banner"
-      className="bg-accent-orange flex items-center justify-center gap-4 px-3 py-1 text-xs tracking-wide text-[color-mix(in_oklch,var(--accent-orange),black_50%)] uppercase"
+      className="surface-accent-orange flex items-center justify-center gap-4 px-3 py-1 text-xs tracking-wide text-[color-mix(in_oklch,var(--accent-orange),black_50%)] uppercase"
     >
       <span>{t('sandboxWarning')}</span>
       <Button

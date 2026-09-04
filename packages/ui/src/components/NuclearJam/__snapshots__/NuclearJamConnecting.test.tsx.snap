@@ -41,7 +41,7 @@ exports[`NuclearJamConnecting > (Snapshot) renders with labels 1`] = `
       Connecting to Nuclear...
     </h1>
     <h2
-      class="text-foreground-secondary text-xl"
+      class="text-foreground/60 text-xl"
     >
       Make sure Nuclear is running
     </h2>

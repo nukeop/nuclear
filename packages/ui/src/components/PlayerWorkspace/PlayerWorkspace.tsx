@@ -18,7 +18,7 @@ const PlayerWorkspaceMain: FC<MainProps> = ({ children, className = '' }) => {
   return (
     <main
       data-testid="player-workspace-main"
-      className={cn('bg-background-secondary overflow-auto', className)}
+      className={cn('surface-muted overflow-auto', className)}
     >
       {children}
     </main>
@@ -38,7 +38,7 @@ const PlayerWorkspaceImpl: FC<PlayerWorkspaceProps> = ({
   return (
     <div
       className={cn(
-        'bg-background-secondary relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]',
+        'surface-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]',
         className,
       )}
     >

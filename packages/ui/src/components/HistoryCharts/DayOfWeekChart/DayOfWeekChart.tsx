@@ -31,7 +31,7 @@ export const DayOfWeekChart: FC<DayOfWeekChartProps> = ({
           dataKey="weekday"
           tickLine={false}
           axisLine={false}
-          tick={{ className: 'fill-foreground-secondary text-xs' }}
+          tick={{ className: 'fill-muted-foreground text-xs' }}
         />
         <Tooltip
           cursor={false}

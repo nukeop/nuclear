@@ -148,7 +148,7 @@ export function TrackTable<T extends Track = Track>({
                     <tr
                       key={headerGroup.id}
                       role="row"
-                      className="border-border bg-primary border-b-(length:--border-width)"
+                      className="border-border surface-primary border-b-(length:--border-width)"
                     >
                       {headerGroup.headers.map((header) =>
                         flexRender(header.column.columnDef.header, {

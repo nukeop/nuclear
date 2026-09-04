@@ -4,12 +4,13 @@ import { ComponentProps, forwardRef } from 'react';
 import { cn } from '../../utils';
 
 const textareaVariants = cva(
-  'border-border text-foreground placeholder:text-foreground-secondary w-full resize-y rounded-md border-(length:--border-width) px-3 py-2 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none',
+  'border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full resize-y rounded-md border-(length:--border-width) px-3 py-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
   {
     variants: {
       tone: {
-        primary: 'bg-background-input',
-        secondary: 'bg-background',
+        primary: 'surface-input placeholder:text-input-foreground/60',
+        secondary:
+          'surface-background text-foreground placeholder:text-foreground/60',
       },
     },
     defaultVariants: {

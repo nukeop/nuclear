@@ -14,7 +14,7 @@ export const FeaturedPost: FC<FeaturedPostProps> = ({ post }) => {
   return (
     <a
       href={href}
-      className="themed-border border-border bg-background-secondary shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y grid grid-cols-1 overflow-hidden rounded-md text-left transition-all hover:shadow-none md:grid-cols-2"
+      className="themed-border border-border bg-muted shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y grid grid-cols-1 overflow-hidden rounded-md text-left transition-all hover:shadow-none md:grid-cols-2"
     >
       <div className="bg-background border-border aspect-video overflow-hidden border-b-2 md:aspect-auto md:border-r-2 md:border-b-0">
         {post.cover ? (

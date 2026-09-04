@@ -30,7 +30,7 @@ const sampleProps: DayOfWeekChartProps = {
 
 export const Default: Story = {
   render: () => (
-    <div className="bg-background h-80 w-[36rem] rounded-md p-6">
+    <div className="surface-background h-80 w-[36rem] rounded-md p-6">
       <DayOfWeekChart {...sampleProps} />
     </div>
   ),

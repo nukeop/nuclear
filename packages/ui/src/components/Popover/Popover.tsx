@@ -55,7 +55,7 @@ const PopoverImpl: FC<PopoverProps> = ({
                 {backdrop && (
                   <PopoverBackdrop
                     transition
-                    className="fixed inset-0 bg-black/20 transition duration-150 ease-out data-closed:opacity-0"
+                    className="bg-overlay fixed inset-0 transition duration-150 ease-out data-closed:opacity-0"
                   />
                 )}
                 <PopoverPanel
@@ -65,7 +65,7 @@ const PopoverImpl: FC<PopoverProps> = ({
                   animate={{ opacity: 1, y: 8, scale: 1 }}
                   exit={{ opacity: 0, y: 4, scale: 0.98 }}
                   className={cn(
-                    'text-foreground bg-primary border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 select-none',
+                    'surface-popover border-border rounded-md border-(length:--border-width) px-4 py-2 leading-5 backdrop-blur-xl select-none',
                     panelClassName,
                     {
                       ['translate-y-0']: anchor === 'bottom',

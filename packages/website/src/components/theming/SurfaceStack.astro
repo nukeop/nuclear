@@ -1,0 +1,44 @@
+---
+const surfaces = [
+  { name: 'background', className: 'surface-background' },
+  { name: 'muted', className: 'surface-muted' },
+  { name: 'card', className: 'surface-card' },
+  { name: 'popover', className: 'surface-popover' },
+  { name: 'input', className: 'surface-input' },
+  { name: 'primary', className: 'surface-primary' },
+];
+
+const accents = [
+  { name: 'green', className: 'surface-accent-green' },
+  { name: 'yellow', className: 'surface-accent-yellow' },
+  { name: 'purple', className: 'surface-accent-purple' },
+  { name: 'blue', className: 'surface-accent-blue' },
+  { name: 'orange', className: 'surface-accent-orange' },
+  { name: 'cyan', className: 'surface-accent-cyan' },
+  { name: 'red', className: 'surface-accent-red' },
+];
+
+const tile =
+  'themed-border border-border shadow-shadow flex items-center justify-center rounded-md font-mono font-bold';
+---
+
+<div class="not-prose flex w-full flex-col gap-3 font-sans select-none">
+  <div class="grid grid-cols-3 gap-3 max-sm:grid-cols-2">
+    {
+      surfaces.map((surface) => (
+        <div class:list={[surface.className, tile, 'h-20 text-sm']}>
+          {surface.name}
+        </div>
+      ))
+    }
+  </div>
+  <div class="grid grid-cols-7 gap-3 max-sm:grid-cols-4">
+    {
+      accents.map((accent) => (
+        <div class:list={[accent.className, tile, 'h-12 text-[10px]']}>
+          {accent.name}
+        </div>
+      ))
+    }
+  </div>
+</div>

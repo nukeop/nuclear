@@ -39,7 +39,7 @@ export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
         <Icon size={14} />
         {t(kind)}
       </h3>
-      <p className="text-foreground-secondary mb-2 text-sm">
+      <p className="text-foreground/60 mb-2 text-sm">
         {t(`${kind}Description`)}
       </p>
       {providers.length ? (
@@ -51,7 +51,7 @@ export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
         />
       ) : (
         <p
-          className="text-foreground-secondary text-sm italic"
+          className="text-foreground/60 text-sm italic"
           data-testid="no-providers-message"
         >
           {t('noProviders')}
@@ -59,7 +59,7 @@ export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
       )}
       {lockedReason && (
         <p
-          className="text-foreground-secondary mt-4 text-sm leading-relaxed"
+          className="text-foreground/60 mt-4 text-sm leading-relaxed"
           data-testid="locked-reason"
         >
           {lockedReason}
@@ -68,7 +68,7 @@ export const ProviderKindSection: FC<ProviderKindSectionProps> = ({
       {warnings?.map((warning) => (
         <p
           key={warning.providerName}
-          className="text-foreground-secondary mt-2 text-sm"
+          className="text-foreground/60 mt-2 text-sm"
           data-testid={`provider-warning-${warning.providerName}`}
         >
           {warning.message}

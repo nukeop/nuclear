@@ -32,7 +32,7 @@ export const Byline: FC<BylineProps> = ({
     ) : (
       <Avatar author={author} />
     )}
-    <div className="text-foreground-secondary flex flex-col text-sm font-bold">
+    <div className="text-foreground/60 flex flex-col text-sm font-bold">
       {linkAuthor ? (
         <a
           href={profileUrl(author)}

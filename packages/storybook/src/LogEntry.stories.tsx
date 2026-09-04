@@ -20,7 +20,7 @@ type Story = StoryObj<typeof LogEntry>;
 
 export const AllVariants: Story = {
   render: () => (
-    <div className="bg-background flex flex-col">
+    <div className="surface-background flex flex-col">
       {allVariantEntries.map((entry, index) => (
         <LogEntry
           key={entry.id}
@@ -36,7 +36,7 @@ export const AllVariants: Story = {
 
 export const LongSingleLineMessage: Story = {
   render: () => (
-    <div className="bg-background flex flex-col">
+    <div className="surface-background flex flex-col">
       <LogEntry
         entry={longSingleLineEntry}
         index={0}
@@ -49,7 +49,7 @@ export const LongSingleLineMessage: Story = {
 
 export const ChevronToggle: Story = {
   render: () => (
-    <div className="bg-background flex flex-col">
+    <div className="surface-background flex flex-col">
       <LogEntry
         entry={collapsibleEntry}
         index={0}
@@ -74,7 +74,7 @@ export const ChevronToggle: Story = {
 
 export const HoverActionPanel: Story = {
   render: () => (
-    <div className="bg-background flex flex-col">
+    <div className="surface-background flex flex-col">
       <p className="text-foreground/60 px-2 py-4 text-sm">
         Hover over a log entry to see the copy button
       </p>

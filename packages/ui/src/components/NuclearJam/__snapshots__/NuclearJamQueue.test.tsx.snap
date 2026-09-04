@@ -8,7 +8,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the empty state when there are no 
   >
     <svg
       aria-hidden="true"
-      class="lucide lucide-music text-foreground-secondary opacity-50"
+      class="lucide lucide-music text-foreground opacity-50"
       fill="none"
       height="48"
       stroke="currentColor"
@@ -39,7 +39,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the empty state when there are no 
       Queue is empty
     </div>
     <div
-      class="text-foreground-secondary text-sm"
+      class="text-foreground/60 text-sm"
     >
       Add tracks in Nuclear to see them here
     </div>
@@ -53,16 +53,16 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
     class="flex min-h-0 flex-1 flex-col"
   >
     <div
-      class="bg-foreground dark:bg-foreground-secondary border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
+      class="bg-foreground border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
       data-testid="jam-queue-header"
     >
       <span
-        class="font-heading dark:text-background font-extrabold tracking-tight text-white uppercase"
+        class="font-heading text-background font-extrabold tracking-tight uppercase"
       >
         Up next
       </span>
       <span
-        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-yellow text-foreground dark:bg-accent-green dark:border-background dark:text-white"
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-yellow"
         data-testid="jam-queue-count"
       >
         3
@@ -81,11 +81,11 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
           data-testid="jam-queue-item"
         >
           <div
-            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-cassette-tape text-foreground opacity-20"
+              class="lucide lucide-cassette-tape text-muted-foreground opacity-20"
               fill="none"
               height="40"
               stroke="currentColor"
@@ -125,28 +125,28 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
             class="min-w-0 flex-1"
           >
             <div
-              class="text-foreground truncate text-sm font-bold"
+              class="truncate text-sm font-bold"
             >
               Everything In Its Right Place
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs"
+              class="truncate text-xs opacity-60"
             >
               Radiohead
             </div>
           </div>
         </div>
         <div
-          class="border-border flex items-center gap-3 border-b-(length:--border-width) px-4 py-2 bg-primary"
+          class="border-border flex items-center gap-3 border-b-(length:--border-width) px-4 py-2 surface-primary"
           data-is-current="true"
           data-testid="jam-queue-item"
         >
           <div
-            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-cassette-tape text-foreground opacity-20"
+              class="lucide lucide-cassette-tape text-muted-foreground opacity-20"
               fill="none"
               height="40"
               stroke="currentColor"
@@ -186,12 +186,12 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
             class="min-w-0 flex-1"
           >
             <div
-              class="text-foreground truncate text-sm font-bold"
+              class="truncate text-sm font-bold"
             >
               Kid A
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs"
+              class="truncate text-xs opacity-60"
             >
               Radiohead
             </div>
@@ -203,11 +203,11 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
           data-testid="jam-queue-item"
         >
           <div
-            class="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+            class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-cassette-tape text-foreground opacity-20"
+              class="lucide lucide-cassette-tape text-muted-foreground opacity-20"
               fill="none"
               height="40"
               stroke="currentColor"
@@ -247,12 +247,12 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
             class="min-w-0 flex-1"
           >
             <div
-              class="text-foreground truncate text-sm font-bold"
+              class="truncate text-sm font-bold"
             >
               The National Anthem
             </div>
             <div
-              class="text-foreground-secondary truncate text-xs"
+              class="truncate text-xs opacity-60"
             >
               Radiohead
             </div>

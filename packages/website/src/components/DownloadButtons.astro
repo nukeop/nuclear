@@ -1,0 +1,48 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import { platforms, repositories } from '../data/platforms';
+import { CopyButton } from './CopyButton';
+---
+
+<div class="flex justify-center gap-3">
+  {
+    platforms.map((platform) => (
+      <a
+        href={platform.url}
+        class="themed-border btn-interactive border-border bg-muted shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold transition-all hover:shadow-none"
+      >
+        <Icon name={platform.icon} class="h-4 w-4" />
+        {platform.name}
+      </a>
+    ))
+  }
+</div>
+<p class="mt-4 text-xs font-medium">Or install from a package repository:</p>
+<div class="mt-2 flex flex-wrap justify-center gap-2">
+  {
+    repositories.map((repository) => (
+      <span class="themed-border border-border bg-background shadow-shadow inline-flex items-stretch overflow-hidden rounded-md text-xs font-bold">
+        <a
+          href={repository.url}
+          class="hover:bg-muted inline-flex items-center gap-1.5 px-3 py-1.5 transition-colors"
+        >
+          <Icon name={repository.icon} class="h-3.5 w-3.5" />
+          {repository.name}
+        </a>
+        <CopyButton
+          client:load
+          text={repository.command}
+          className="border-border hover:bg-muted rounded-none border-l-(length:--border-width) px-2"
+          title={`Copy: ${repository.command}`}
+        />
+      </span>
+    ))
+  }
+</div>
+<a
+  href="https://github.com/nukeop/nuclear/releases"
+  class="mt-4 block text-center text-sm font-medium underline underline-offset-2 hover:no-underline"
+>
+  All downloads
+</a>

@@ -9,7 +9,13 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://nuclearplayer.com',
   output: 'static',
-  integrations: [react(), expressiveCode(), mdx(), sitemap(), icon()],
+  integrations: [
+    react(),
+    expressiveCode(),
+    mdx({ gfm: true }),
+    sitemap(),
+    icon(),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

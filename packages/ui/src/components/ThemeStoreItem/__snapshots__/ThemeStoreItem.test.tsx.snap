@@ -7,7 +7,7 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
     data-testid="theme-store-item"
   >
     <div
-      class="border-border text-foreground flex w-full rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow relative h-auto overflow-hidden p-2"
+      class="border-border flex w-full rounded-md border-(length:--border-width) surface-muted shadow-shadow relative h-auto overflow-hidden p-2"
     >
       <div
         class="absolute inset-0 flex"
@@ -30,7 +30,7 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
         />
       </div>
       <div
-        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-none relative flex-1 flex-row items-center justify-between gap-4"
+        class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-none relative flex-1 flex-row items-center justify-between gap-4"
       >
         <div
           class="flex min-w-0 flex-1 flex-col gap-1"
@@ -45,24 +45,24 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
               Gruvbox
             </h3>
             <span
-              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-cyan"
             >
               retro
             </span>
             <span
-              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-cyan"
             >
               warm
             </span>
           </div>
           <p
-            class="text-foreground-secondary line-clamp-2 text-sm"
+            class="text-muted-foreground line-clamp-2 text-sm"
             data-testid="theme-store-item-description"
           >
             Retro groove color scheme. Based on the classic Vim theme.
           </p>
           <p
-            class="text-foreground-secondary text-xs"
+            class="text-muted-foreground text-xs"
             data-testid="theme-store-item-author"
           >
             by nukeop
@@ -72,7 +72,7 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
           class="shrink-0"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
             data-disabled=""
             data-headlessui-state="disabled"
             disabled=""
@@ -109,7 +109,7 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
     >
       <div>
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
           data-headlessui-state=""
           data-testid="theme-store-item-apply"
           type="button"
@@ -141,7 +141,7 @@ exports[`ThemeStoreItem > (Snapshot) renders installed state 1`] = `
       </div>
       <div>
         <button
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center bg-accent-red"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center surface-accent-red"
           data-headlessui-state=""
           data-testid="theme-store-item-uninstall"
           type="button"
@@ -183,7 +183,7 @@ exports[`ThemeStoreItem > (Snapshot) renders with all props 1`] = `
     data-testid="theme-store-item"
   >
     <div
-      class="border-border text-foreground flex w-full rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow relative h-auto overflow-hidden p-2"
+      class="border-border flex w-full rounded-md border-(length:--border-width) surface-muted shadow-shadow relative h-auto overflow-hidden p-2"
     >
       <div
         class="absolute inset-0 flex"
@@ -206,7 +206,7 @@ exports[`ThemeStoreItem > (Snapshot) renders with all props 1`] = `
         />
       </div>
       <div
-        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-none relative flex-1 flex-row items-center justify-between gap-4"
+        class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-none relative flex-1 flex-row items-center justify-between gap-4"
       >
         <div
           class="flex min-w-0 flex-1 flex-col gap-1"
@@ -221,24 +221,24 @@ exports[`ThemeStoreItem > (Snapshot) renders with all props 1`] = `
               Gruvbox
             </h3>
             <span
-              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-cyan"
             >
               retro
             </span>
             <span
-              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-cyan"
             >
               warm
             </span>
           </div>
           <p
-            class="text-foreground-secondary line-clamp-2 text-sm"
+            class="text-muted-foreground line-clamp-2 text-sm"
             data-testid="theme-store-item-description"
           >
             Retro groove color scheme. Based on the classic Vim theme.
           </p>
           <p
-            class="text-foreground-secondary text-xs"
+            class="text-muted-foreground text-xs"
             data-testid="theme-store-item-author"
           >
             by nukeop
@@ -248,7 +248,7 @@ exports[`ThemeStoreItem > (Snapshot) renders with all props 1`] = `
           class="shrink-0"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
             data-headlessui-state=""
             data-testid="theme-store-item-install"
             type="button"

@@ -5,9 +5,14 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
   <div
     class="grid h-screen w-screen grid-rows-[auto_1fr_auto] overflow-hidden"
   >
+    <div
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 -z-10 bg-(image:--wallpaper) bg-cover bg-center"
+      data-testid="wallpaper-layer"
+    />
     <div>
       <header
-        class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
+        class="surface-topbar border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
         data-tauri-drag-region="true"
       >
         <div
@@ -17,7 +22,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             class="flex items-center"
           >
             <span
-              class="ml-0.5 dark:hidden"
+              class="ml-0.5"
             >
               <svg
                 class="h-6 w-6"
@@ -34,29 +39,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                 <path
                   d="M 49.999997,5.5078125e-6 C 10.000227,5.5078125e-6 -2.8686701e-6,10.000046 -2.8686701e-6,50.000006 -2.8686701e-6,89.999966 10.000227,100.00001 49.999997,100.00001 c 39.99977,0 50,-10.000044 50,-50.000004 0,-39.99996 -10.00023,-50.0000004921875 -50,-50.0000004921875 z M 29.999997,23.599616 h 40 l -20,26.40039 h 40 l -20,26.40039 -20,-26.40039 -20,26.40039 L 9.9999971,50.000006 H 49.999997 Z"
                   id="path1"
-                  style="fill: #000000; stroke-width: 0.999999;"
-                />
-              </svg>
-            </span>
-            <span
-              class="ml-0.5 hidden dark:block!"
-            >
-              <svg
-                class="h-6 w-6"
-                height="100"
-                id="svg2"
-                viewBox="0 0 99.999998 100"
-                width="100"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:svg="http://www.w3.org/2000/svg"
-              >
-                <defs
-                  id="defs2"
-                />
-                <path
-                  d="M 50,0 C 10.00023,0 0,10.00004 0,50 0,89.99996 10.00023,100 50,100 89.99977,100 100,89.99996 100,50 100,10.00004 89.99977,0 50,0 Z M 30,23.59961 H 70 L 50,50 H 90 L 70,76.40039 50,50 30,76.40039 10,50 h 40 z"
-                  id="path1"
-                  style="fill: #ffffff; fill-opacity: 1; stroke-width: 0.999999;"
+                  style="fill: currentColor; stroke-width: 0.999999;"
                 />
               </svg>
             </span>
@@ -65,7 +48,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             class="flex flex-row items-center gap-2"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-disabled=""
               data-headlessui-state="disabled"
               disabled=""
@@ -90,7 +73,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-disabled=""
               data-headlessui-state="disabled"
               disabled=""
@@ -121,7 +104,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-search text-foreground-secondary pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
+            class="lucide lucide-search text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -145,7 +128,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             class="flex w-full flex-col gap-2"
           >
             <input
-              class="border-border text-foreground placeholder:text-foreground-secondary w-full transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background rounded-md border-(length:--border-width) h-8 px-8"
+              class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none surface-background text-foreground placeholder:text-foreground/60 rounded-md border-(length:--border-width) h-8 px-8"
               data-headlessui-state=""
               data-testid="search-box"
               id="input-:r0:"
@@ -161,7 +144,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           <button
             aria-checked="false"
             aria-label="Toggle theme"
-            class="border-border relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none data-checked:bg-primary bg-white data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
+            class="border-border focus:ring-ring focus:ring-offset-muted relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-(length:--border-width) transition-all focus:ring-2 focus:ring-offset-2 focus:outline-none data-checked:surface-primary surface-input data-disabled:cursor-not-allowed data-disabled:opacity-50 group justify-self-end"
             data-headlessui-state=""
             id="headlessui-switch-:r2:"
             role="switch"
@@ -169,7 +152,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             type="button"
           >
             <span
-              class="border-border pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) bg-white ring-0 transition-transform [&>svg]:fill-white dark:[&>svg]:fill-black translate-x-1 group-data-checked:translate-x-5"
+              class="border-border bg-muted [&>svg]:fill-muted pointer-events-none flex h-4 w-4 items-center justify-center rounded-full border-(length:--border-width) ring-0 transition-transform translate-x-1 group-data-checked:translate-x-5"
             >
               <svg
                 aria-hidden="true"
@@ -220,18 +203,18 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
       </header>
     </div>
     <div
-      class="bg-background-secondary relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
+      class="surface-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+        class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
           class="mb-4 flex flex-row items-center justify-end"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
             data-headlessui-state=""
             data-testid="sidebar-toggle-left"
             type="button"
@@ -277,7 +260,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -317,7 +300,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -361,7 +344,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -408,7 +391,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -450,7 +433,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -499,7 +482,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) hover:bg-background-secondary border-transparent"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) border-transparent"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -545,7 +528,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               >
                 <div>
                   <div
-                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) bg-primary border-border font-bold"
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) surface-primary border-border font-bold"
                     data-testid="sidebar-navigation-item"
                   >
                     <div
@@ -598,7 +581,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             </div>
             <div>
               <div
-                class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) cursor-pointer hover:bg-background-secondary border-transparent"
+                class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) cursor-pointer border-transparent"
                 data-testid="sidebar-navigation-item"
                 role="button"
               >
@@ -642,7 +625,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
         />
       </div>
       <main
-        class="bg-background-secondary overflow-auto"
+        class="surface-muted overflow-auto"
         data-testid="player-workspace-main"
       >
         <div
@@ -656,7 +639,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             transition="[object Object]"
           >
             <div
-              class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+              class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
               data-testid="sources-view"
             >
               <h1
@@ -714,7 +697,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Metadata
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-2 text-sm"
+                            class="text-foreground/60 mb-2 text-sm"
                           >
                             Metadata sources provide information about artists, albums, and tracks. Search results, artist pages, and album details come from the active metadata source.
                           </p>
@@ -724,7 +707,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             <button
                               aria-expanded="false"
                               aria-haspopup="listbox"
-                              class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                              class="border-border surface-primary focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
                               data-headlessui-state=""
                               id="select-:r3:"
                               type="button"
@@ -785,7 +768,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Streaming
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-2 text-sm"
+                            class="text-foreground/60 mb-2 text-sm"
                           >
                             Streaming sources provide audio. When you play a track, the streaming source finds and delivers the audio stream.
                           </p>
@@ -795,7 +778,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             <button
                               aria-expanded="false"
                               aria-haspopup="listbox"
-                              class="border-border bg-primary text-foreground relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                              class="border-border surface-primary focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
                               data-disabled=""
                               data-headlessui-state="disabled"
                               disabled=""
@@ -831,11 +814,11 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             </button>
                           </div>
                           <p
-                            class="text-foreground-secondary mt-4 text-sm leading-relaxed"
+                            class="text-foreground/60 mt-4 text-sm leading-relaxed"
                             data-testid="locked-reason"
                           >
                             <span
-                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-yellow text-foreground gap-1 mx-1 align-middle"
+                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-yellow gap-1 mx-1 align-middle"
                             >
                               <svg
                                 aria-hidden="true"
@@ -863,7 +846,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             </span>
                              metadata source requires 
                             <span
-                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground gap-1 mx-1 align-middle"
+                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-cyan gap-1 mx-1 align-middle"
                             >
                               <svg
                                 aria-hidden="true"
@@ -940,12 +923,12 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Discovery
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-2 text-sm"
+                            class="text-foreground/60 mb-2 text-sm"
                           >
                             Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.
                           </p>
                           <p
-                            class="text-foreground-secondary text-sm italic"
+                            class="text-foreground/60 text-sm italic"
                             data-testid="no-providers-message"
                           >
                             No providers installed
@@ -981,7 +964,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Dashboard
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-3 text-sm"
+                            class="text-foreground/60 mb-3 text-sm"
                           >
                             Dashboard sources provide personalized content like top tracks, new releases, and recommendations on the home screen.
                           </p>
@@ -989,7 +972,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             class="flex flex-wrap gap-2"
                           >
                             <span
-                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-purple text-foreground gap-1"
+                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-purple gap-1"
                               data-testid="provider-list-item"
                             >
                               <svg
@@ -1055,7 +1038,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             Playlists
                           </h3>
                           <p
-                            class="text-foreground-secondary mb-3 text-sm"
+                            class="text-foreground/60 mb-3 text-sm"
                           >
                             Playlist sources let you import playlists from external services by URL.
                           </p>
@@ -1063,7 +1046,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             class="flex flex-wrap gap-2"
                           >
                             <span
-                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-green text-foreground gap-1"
+                              class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-green gap-1"
                               data-testid="provider-list-item"
                             >
                               <svg
@@ -1110,14 +1093,14 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
       </main>
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
+        class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
           class="mb-4 flex flex-row items-center justify-start"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
             data-headlessui-state=""
             data-testid="sidebar-toggle-right"
             type="button"
@@ -1160,7 +1143,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="lucide lucide-music text-foreground-secondary opacity-50"
+              class="lucide lucide-music opacity-50"
               fill="none"
               height="64"
               stroke="currentColor"
@@ -1187,12 +1170,12 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             </svg>
             <div>
               <div
-                class="text-foreground text-lg font-bold"
+                class="text-lg font-bold"
               >
                 Queue is empty
               </div>
               <div
-                class="text-foreground-secondary mt-2 text-sm"
+                class="mt-2 text-sm opacity-70"
               >
                 Add tracks to start playing
               </div>
@@ -1213,31 +1196,31 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
         data-testid="player-seek-bar"
       >
         <div
-          class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
-        >
-          <span
-            class="text-foreground tabular-nums"
-          >
-            0:00
-          </span>
-          <span
-            class="text-foreground tabular-nums"
-          >
-            0:00
-          </span>
-        </div>
-        <div
-          class="border-border bg-background-secondary absolute inset-0 border-t-(length:--border-width)"
+          class="border-border surface-seekbar-track absolute inset-0 border-t-(length:--border-width)"
         >
           <div
-            class="bg-primary h-full transition-none"
+            class="absolute right-0 left-0 z-10 flex h-full flex-row items-center justify-between px-2 pt-0.5 text-xs leading-none"
+          >
+            <span
+              class="tabular-nums"
+            >
+              0:00
+            </span>
+            <span
+              class="tabular-nums"
+            >
+              0:00
+            </span>
+          </div>
+          <div
+            class="surface-seekbar h-full transition-none"
             style="width: 0%;"
           />
         </div>
       </div>
     </div>
     <footer
-      class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+      class="surface-bottombar border-border flex h-16 items-center border-t-(length:--border-width) px-4"
     >
       <div
         class="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4"
@@ -1249,10 +1232,10 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             class="flex min-w-0 items-center gap-3"
           >
             <div
-              class="border-border bg-background-secondary size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
+              class="border-border bg-muted size-12 shrink-0 overflow-hidden rounded-md border-(length:--border-width)"
             >
               <div
-                class="text-foreground-secondary flex size-full items-center justify-center"
+                class="text-muted-foreground flex size-full items-center justify-center"
                 data-testid="player-now-playing-placeholder"
               >
                 <svg
@@ -1283,13 +1266,13 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               class="min-w-0 flex-1"
             >
               <div
-                class="text-foreground truncate text-sm font-bold"
+                class="truncate text-sm font-bold"
                 data-testid="now-playing-title"
               >
                 No track playing
               </div>
               <div
-                class="text-foreground-secondary truncate text-xs"
+                class="truncate text-xs opacity-70"
                 data-testid="player-now-playing-artist"
               />
             </div>
@@ -1303,7 +1286,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           >
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-shuffle-button"
                 type="button"
@@ -1340,7 +1323,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               </button>
             </div>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >
@@ -1366,7 +1349,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
               data-headlessui-state=""
               data-testid="player-play-button"
               type="button"
@@ -1390,7 +1373,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
               data-headlessui-state=""
               data-testid="player-next-button"
               type="button"
@@ -1418,7 +1401,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             </button>
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-repeat-button"
                 type="button"
@@ -1460,7 +1443,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             class="flex items-center gap-2"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >
@@ -1502,14 +1485,14 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                     class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2"
                   >
                     <div
-                      class="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)"
+                      class="border-border surface-input relative h-3 w-full rounded-md border-(length:--border-width)"
                     >
                       <div
                         class="bg-primary absolute top-0 left-0 h-full rounded-l"
                         style="width: 100%;"
                       />
                       <div
-                        class="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width) bg-white"
+                        class="border-border bg-input absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width)"
                         style="left: 100%;"
                       />
                     </div>

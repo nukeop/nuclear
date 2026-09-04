@@ -16,7 +16,7 @@ const popoverItemVariants = cva(
         center: 'justify-center text-center',
       },
       highlight: {
-        hover: 'hover:bg-background-secondary hover:border-border',
+        hover: 'hover:bg-muted hover:border-border',
         controlled: '',
       },
     },

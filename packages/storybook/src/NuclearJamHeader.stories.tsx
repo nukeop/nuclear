@@ -19,7 +19,7 @@ export default meta;
 
 export const Connecting = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.Header
         connectionStatus="connecting"
         connectionStatusLabels={connectionStatusLabels}
@@ -30,7 +30,7 @@ export const Connecting = {
 
 export const Connected = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.Header
         connectionStatus="connected"
         connectionStatusLabels={connectionStatusLabels}
@@ -41,7 +41,7 @@ export const Connected = {
 
 export const Reconnecting = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.Header
         connectionStatus="reconnecting"
         connectionStatusLabels={connectionStatusLabels}
@@ -52,7 +52,7 @@ export const Reconnecting = {
 
 export const Failed = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.Header
         connectionStatus="failed"
         connectionStatusLabels={connectionStatusLabels}

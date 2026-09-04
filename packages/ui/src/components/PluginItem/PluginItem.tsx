@@ -89,7 +89,7 @@ export const PluginItem: FC<PluginItemProps> = ({
           <div className="min-w-0 flex-1">
             <h3 className="text-foreground inline-flex flex-row items-baseline gap-2 text-lg leading-tight font-bold select-none">
               <span data-testid="plugin-name">{name}</span>
-              <p className="text-foreground-secondary text-sm font-normal select-none">
+              <p className="text-muted-foreground text-sm font-normal select-none">
                 <span className="mr-1 opacity-60">{labels.by ?? 'by'}</span>
                 <span data-testid="plugin-author">{author}</span>
               </p>
@@ -110,7 +110,7 @@ export const PluginItem: FC<PluginItemProps> = ({
             )}
             <span
               data-testid="plugin-version"
-              className="text-foreground-secondary flex flex-row items-baseline gap-2 text-sm font-normal"
+              className="text-muted-foreground flex flex-row items-baseline gap-2 text-sm font-normal"
             >
               {loadTimeMs && (
                 <Badge color="purple" variant="pill">

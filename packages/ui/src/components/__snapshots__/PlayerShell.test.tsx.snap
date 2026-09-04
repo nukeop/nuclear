@@ -5,23 +5,28 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
   <div
     class="grid h-screen w-screen grid-rows-[auto_1fr_auto] overflow-hidden"
   >
+    <div
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 -z-10 bg-(image:--wallpaper) bg-cover bg-center"
+      data-testid="wallpaper-layer"
+    />
     <header
-      class="bg-background-secondary border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
+      class="surface-topbar border-border grid h-12 grid-cols-[1fr_4fr_1fr] items-center gap-2 border-b-(length:--border-width) px-3 select-none"
       data-tauri-drag-region="true"
     />
     <div
-      class="bg-background-secondary relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
+      class="surface-muted relative grid h-full min-h-0 grid-cols-[auto_1fr_auto]"
     >
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-r-(length:--border-width) p-2"
+        class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
           class="mb-4 flex flex-row items-center justify-end"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
             data-headlessui-state=""
             data-testid="sidebar-toggle-left"
             type="button"
@@ -60,19 +65,19 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
         />
       </div>
       <main
-        class="bg-background-secondary overflow-auto"
+        class="surface-muted overflow-auto"
         data-testid="player-workspace-main"
       />
       <div
         animate="[object Object]"
-        class="bg-background-secondary border-border relative flex flex-col overflow-hidden border-l-(length:--border-width) p-2"
+        class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width) p-2"
         transition="[object Object]"
       >
         <span
           class="mb-4 flex flex-row items-center justify-start"
         >
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
             data-headlessui-state=""
             data-testid="sidebar-toggle-right"
             type="button"
@@ -112,7 +117,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
       </div>
     </div>
     <footer
-      class="bg-background-secondary border-border flex h-16 items-center border-t-(length:--border-width) px-4"
+      class="surface-bottombar border-border flex h-16 items-center border-t-(length:--border-width) px-4"
     />
   </div>
 </DocumentFragment>

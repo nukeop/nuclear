@@ -126,13 +126,13 @@ const MockTrackList = () => (
             </Button>
             <div>
               <div className="text-foreground font-medium">{track.title}</div>
-              <div className="text-foreground-secondary text-sm">
+              <div className="text-muted-foreground text-sm">
                 {track.artist} • {track.album}
               </div>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-foreground-secondary text-sm">
+            <span className="text-muted-foreground text-sm">
               {track.duration}
             </span>
             <Button size="icon" variant="text">
@@ -151,9 +151,7 @@ const MockQueueSidebar = () => (
     <div className="space-y-3">
       <div className="text-sm">
         <div className="text-foreground font-medium">Now Playing</div>
-        <div className="text-foreground-secondary">
-          Bohemian Rhapsody - Queen
-        </div>
+        <div className="text-muted-foreground">Bohemian Rhapsody - Queen</div>
       </div>
       <div className="border-border border-t pt-3">
         <div className="text-foreground mb-2 text-sm font-medium">Up Next</div>
@@ -164,7 +162,7 @@ const MockQueueSidebar = () => (
         ].map((track, index) => (
           <div
             key={index}
-            className="text-foreground-secondary hover:text-foreground cursor-pointer py-1 text-sm"
+            className="text-muted-foreground hover:text-foreground cursor-pointer py-1 text-sm"
           >
             {track}
           </div>
@@ -250,9 +248,9 @@ export const BasicLayout = () => {
               <div className="text-foreground text-sm font-medium">
                 Bohemian Rhapsody
               </div>
-              <div className="text-foreground-secondary text-xs">Queen</div>
+              <div className="text-muted-foreground text-xs">Queen</div>
             </div>
-            <div className="bg-background-secondary mt-2 h-1 rounded-full">
+            <div className="bg-muted mt-2 h-1 rounded-full">
               <div className="bg-primary h-1 w-1/3 rounded-full"></div>
             </div>
           </div>
@@ -261,7 +259,7 @@ export const BasicLayout = () => {
             <Button size="icon" variant="text">
               <Volume2 size={16} />
             </Button>
-            <div className="bg-background-secondary h-1 w-20 rounded-full">
+            <div className="bg-muted h-1 w-20 rounded-full">
               <div className="bg-primary h-1 w-3/4 rounded-full"></div>
             </div>
           </div>
@@ -364,11 +362,11 @@ export const FullNavigationLayout = () => {
         <div className="flex w-full items-center justify-between text-sm">
           <div className="flex items-center gap-4">
             <span className="text-foreground">♪ 1,247 tracks</span>
-            <span className="text-foreground-secondary">•</span>
-            <span className="text-foreground-secondary">3.2 GB</span>
+            <span className="text-muted-foreground">•</span>
+            <span className="text-muted-foreground">3.2 GB</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-foreground-secondary">Ready</span>
+            <span className="text-muted-foreground">Ready</span>
           </div>
         </div>
       </BottomBar>

@@ -39,7 +39,7 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
       role={onSelect ? 'button' : undefined}
     >
       {status === 'error' && (
-        <div className="bg-accent-red absolute top-0 right-0 bottom-0 left-0 w-2 border-0" />
+        <div className="surface-accent-red absolute top-0 right-0 bottom-0 left-0 w-2 border-0" />
       )}
       <div
         data-testid="queue-item-thumbnail"
@@ -55,27 +55,20 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
             className="h-full w-full object-cover"
           />
         ) : (
-          <CassetteTape
-            size={48}
-            absoluteStrokeWidth
-            className="text-foreground opacity-20"
-          />
+          <CassetteTape size={48} absoluteStrokeWidth className="opacity-20" />
         )}
       </div>
 
       <div className={cn('min-w-0 flex-1', classes?.content)}>
         <div
           data-testid="queue-item-title"
-          className={cn(
-            'text-foreground truncate text-sm font-bold',
-            classes?.title,
-          )}
+          className={cn('truncate text-sm font-bold', classes?.title)}
         >
           {track.title}
         </div>
         <div
           data-testid="queue-item-artist"
-          className={cn('text-foreground truncate text-xs', classes?.artist)}
+          className={cn('truncate text-xs', classes?.artist)}
         >
           {primaryArtist}
         </div>
@@ -83,7 +76,7 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
           <div
             data-testid="queue-item-error"
             className={cn(
-              'bg-accent-red text-foreground border-border mt-1 inline-flex max-w-full items-center gap-1 rounded-sm border px-1 py-0.5 text-xs',
+              'surface-accent-red border-border mt-1 inline-flex max-w-full items-center gap-1 rounded-sm border px-1 py-0.5 text-xs',
               classes?.error,
             )}
           >
@@ -97,10 +90,7 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
         {duration && (
           <div
             data-testid="queue-item-duration"
-            className={cn(
-              'text-foreground mr-4 text-sm tabular-nums',
-              classes?.duration,
-            )}
+            className={cn('mr-4 text-sm tabular-nums', classes?.duration)}
           >
             {duration}
           </div>

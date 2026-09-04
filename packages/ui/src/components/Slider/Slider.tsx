@@ -140,7 +140,7 @@ export const SliderHeader: FC<{ label?: string; showValue?: boolean }> = ({
         {label}
       </label>
       {showValue && (
-        <span className="text-foreground-secondary">
+        <span className="text-foreground/60">
           {value}
           {unit ? ` ${unit}` : ''}
         </span>
@@ -153,13 +153,13 @@ export const SliderTrack: FC = () => {
   const { percentage } = useSliderContext();
   return (
     <div className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2">
-      <div className="border-border bg-background-input relative h-3 w-full rounded-md border-(length:--border-width)">
+      <div className="border-border surface-input relative h-3 w-full rounded-md border-(length:--border-width)">
         <div
           className="bg-primary absolute top-0 left-0 h-full rounded-l"
           style={{ width: `${percentage}%` }}
         />
         <div
-          className="border-border absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width) bg-white"
+          className="border-border bg-input absolute top-1/2 -ml-2 h-5 w-5 -translate-y-1/2 rounded-full border-(length:--border-width)"
           style={{ left: `${percentage}%` }}
         />
       </div>
@@ -214,7 +214,7 @@ export const SliderFooter: FC<{
 }> = ({ startLabel, endLabel }) => {
   const { min, max, unit } = useSliderContext();
   return (
-    <div className="text-foreground-secondary flex w-full justify-between text-xs">
+    <div className="text-foreground/60 flex w-full justify-between text-xs">
       <span>{startLabel ?? `${min}${unit ? ` ${unit}` : ''}`}</span>
       <span>{endLabel ?? `${max}${unit ? ` ${unit}` : ''}`}</span>
     </div>
@@ -251,7 +251,7 @@ const SliderImpl: FC<PropsWithChildren<SliderProps>> = ({
             <SliderHeader label={label} showValue={showValue} />
           )}
           {description && (
-            <p className="text-foreground-secondary text-xs">{description}</p>
+            <p className="text-foreground/60 text-xs">{description}</p>
           )}
           <SliderSurface>
             <SliderTrack />

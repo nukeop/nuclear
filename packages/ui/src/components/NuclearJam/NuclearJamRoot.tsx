@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 
 import { cn } from '../../utils';
+import { WallpaperLayer } from '../Wallpaper';
 
 export type NuclearJamProps = {
   children: ReactNode;
@@ -13,10 +14,11 @@ export const NuclearJamRoot: FC<NuclearJamProps> = ({
 }) => (
   <div
     className={cn(
-      'bg-background text-foreground flex h-dvh flex-col overflow-hidden',
+      'surface-background text-foreground flex h-dvh flex-col overflow-hidden',
       className,
     )}
   >
+    <WallpaperLayer />
     {children}
   </div>
 );

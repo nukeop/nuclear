@@ -72,7 +72,7 @@ export const CardsRow: FC<CardsRowProps> = ({
               <button
                 data-testid="cards-row-clear-filter"
                 type="button"
-                className="text-foreground cursor-pointer"
+                className="cursor-pointer"
                 onClick={clearFilter}
               >
                 <Filter size={14} />
@@ -108,7 +108,7 @@ export const CardsRow: FC<CardsRowProps> = ({
         {isEmpty(filteredItems) ? (
           <div
             data-testid="cards-row-nothing-found"
-            className="text-foreground-secondary py-8 text-sm"
+            className="text-foreground/60 py-8 text-sm"
           >
             {labels.nothingFound}
           </div>

@@ -23,7 +23,7 @@ describe('runtime API', () => {
   });
 
   it('injects and clears advanced theme style', () => {
-    applyAdvancedTheme({ version: 1, name: 'X', vars: { radius: '10px' } });
+    applyAdvancedTheme({ version: 2, name: 'X', vars: { radius: '10px' } });
     const style = document.getElementById('advanced-theme');
     expect(style).toBeTruthy();
     expect(style?.textContent).toMatchInlineSnapshot(`

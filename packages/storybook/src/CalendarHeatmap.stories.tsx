@@ -69,7 +69,7 @@ const sampleProps: CalendarHeatmapProps = {
 
 export const Default: Story = {
   render: (_, context) => (
-    <div className="bg-background w-fit rounded-md p-6">
+    <div className="surface-background w-fit rounded-md p-6">
       <CalendarHeatmap
         {...sampleProps}
         colorScheme={context.globals.theme === 'dark' ? 'dark' : 'light'}

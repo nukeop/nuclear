@@ -18,7 +18,7 @@ exports[`LogEntry > (Snapshot) renders core log entry 1`] = `
     12:30:45.123
   </span>
   <button
-    class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase bg-accent-cyan text-foreground cursor-pointer hover:opacity-80"
+    class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase surface-accent-cyan cursor-pointer hover:opacity-80"
     data-testid="log-level"
     type="button"
   >
@@ -42,7 +42,7 @@ exports[`LogEntry > (Snapshot) renders core log entry 1`] = `
     data-testid="log-action-panel"
   >
     <button
-      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
       data-headlessui-state=""
       data-testid="log-copy-button"
       type="button"
@@ -95,7 +95,7 @@ exports[`LogEntry > (Snapshot) renders plugin log entry 1`] = `
     12:30:45.123
   </span>
   <button
-    class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase bg-accent-cyan text-foreground cursor-pointer hover:opacity-80"
+    class="inline-flex w-14 items-center justify-center rounded px-1.5 py-0.5 text-xs font-bold uppercase surface-accent-cyan cursor-pointer hover:opacity-80"
     data-testid="log-level"
     type="button"
   >
@@ -119,7 +119,7 @@ exports[`LogEntry > (Snapshot) renders plugin log entry 1`] = `
     data-testid="log-action-panel"
   >
     <button
-      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
       data-headlessui-state=""
       data-testid="log-copy-button"
       type="button"

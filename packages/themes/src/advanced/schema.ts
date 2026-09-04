@@ -1,17 +1,18 @@
 import { z } from 'zod';
 
-export const ThemeVersion = z.literal(1);
-
 // Keys correspond to CSS custom properties in global.css without the leading --
 // Example: background, primary, radius, font-family, etc.
-export const ThemeVars = z
-  .record(z.string(), z.string())
-  .refine((obj) => Object.keys(obj).every((k) => !!k && !k.startsWith('--')), {
-    message: 'Keys must be CSS var names without leading --',
-  });
+export const ThemeVars = z.record(
+  z.string().regex(/^[a-z0-9][a-z0-9-]*$/, {
+    message: 'Keys must be lowercase CSS var names without the leading --',
+  }),
+  z.string().refine((value) => !/[{};]/.test(value), {
+    message: 'Values must not contain {, }, or ;',
+  }),
+);
 
 export const AdvancedThemeSchema = z.object({
-  version: ThemeVersion,
+  version: z.literal(2),
   name: z.string().min(1),
   author: z.string().min(1).optional(),
   description: z.string().optional(),
@@ -23,8 +24,11 @@ export const AdvancedThemeSchema = z.object({
 
 export type AdvancedTheme = z.infer<typeof AdvancedThemeSchema>;
 
-export const parseAdvancedTheme = (input: unknown): AdvancedTheme =>
-  AdvancedThemeSchema.parse(input);
+export const V1AdvancedThemeSchema = AdvancedThemeSchema.extend({
+  version: z.literal(1),
+});
+
+export type V1AdvancedTheme = z.infer<typeof V1AdvancedThemeSchema>;
 
 export const MarketplaceThemeSchema = AdvancedThemeSchema.pick({
   name: true,

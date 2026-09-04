@@ -1,14 +1,11 @@
-import {
-  generateAdvancedThemeCSS,
-  generateAdvancedThemeCSSFromJSON,
-} from './advanced/generator';
+import { generateAdvancedThemeCSS } from './advanced/generator';
+import { parseAdvancedTheme } from './advanced/parse';
 import {
   AdvancedTheme,
   AdvancedThemeSchema,
   MarketplaceTheme,
   MarketplaceThemeRegistrySchema,
   MarketplaceThemeSchema,
-  parseAdvancedTheme,
 } from './advanced/schema';
 import { BUILTIN_BASIC_THEME_IDS, DEFAULT_THEME_ID } from './basic';
 
@@ -28,10 +25,10 @@ const BUILT_INS: BasicThemeMeta[] = [
     id: DEFAULT_THEME_ID,
     name: 'Default',
     palette: [
-      'oklch(0.77 0.17 342)',
-      'oklch(0.95 0.02 342)',
-      'oklch(0.42 0.10 342)',
-      'oklch(0.15 0.02 342)',
+      'oklch(0.8 0.12 5)',
+      'oklch(0.92 0.036 7)',
+      'oklch(0.5 0.1 5)',
+      'oklch(0.22 0.03 5)',
     ],
   },
   {
@@ -119,4 +116,4 @@ export {
   MarketplaceThemeRegistrySchema,
   MarketplaceThemeSchema,
 };
-export { parseAdvancedTheme, generateAdvancedThemeCSSFromJSON };
+export { parseAdvancedTheme };

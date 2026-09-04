@@ -1,9 +1,123 @@
 @utility text-stroke-* {
-  -webkit-text-stroke-width: --value(integer)px;
-  -webkit-text-stroke-width: --value([length]);
-  paint-order: stroke fill;
+    -webkit-text-stroke-width: --value(integer)px;
+    -webkit-text-stroke-width: --value([length]);
+    paint-order: stroke fill;
 }
 
 @utility stroke-text-* {
-  -webkit-text-stroke-color: --value(--color-*, [color]);
+    -webkit-text-stroke-color: --value(--color-*, [color]);
+}
+
+@utility surface-background {
+    background-color: var(--background);
+    background-image: var(--background-gradient, none);
+    color: var(--foreground);
+}
+
+@utility surface-muted {
+    background-color: var(--muted);
+    background-image: var(--muted-gradient, none);
+    color: var(--muted-foreground);
+}
+
+@utility surface-topbar {
+    background-color: var(--topbar, var(--muted));
+    background-image: var(--topbar-gradient, var(--muted-gradient, none));
+    color: var(--topbar-foreground, var(--muted-foreground));
+}
+
+@utility surface-bottombar {
+    background-color: var(--bottombar, var(--muted));
+    background-image: var(--bottombar-gradient, var(--muted-gradient, none));
+    color: var(--bottombar-foreground, var(--muted-foreground));
+}
+
+@utility surface-sidebar-left {
+    background-color: var(--sidebar-left, var(--muted));
+    background-image: var(--sidebar-left-gradient, var(--muted-gradient, none));
+    color: var(--sidebar-left-foreground, var(--muted-foreground));
+}
+
+@utility surface-sidebar-right {
+    background-color: var(--sidebar-right, var(--muted));
+    background-image: var(--sidebar-right-gradient, var(--muted-gradient, none));
+    color: var(--sidebar-right-foreground, var(--muted-foreground));
+}
+
+@utility surface-seekbar-track {
+    background-color: var(--seekbar-track, var(--muted));
+    background-image: var(--seekbar-track-gradient, var(--muted-gradient, none));
+    color: var(--seekbar-track-foreground, var(--muted-foreground));
+}
+
+@utility surface-seekbar {
+    background-color: var(--seekbar, var(--primary));
+    background-image: var(--seekbar-gradient, var(--primary-gradient, none));
+    color: var(--seekbar-foreground, var(--primary-foreground));
+}
+
+@utility surface-card {
+    background-color: var(--card);
+    background-image: var(--card-gradient, none);
+    color: var(--card-foreground);
+}
+
+@utility surface-popover {
+    background-color: var(--popover);
+    background-image: var(--popover-gradient, none);
+    color: var(--popover-foreground);
+}
+
+@utility surface-input {
+    background-color: var(--input);
+    background-image: var(--input-gradient, none);
+    color: var(--input-foreground);
+}
+
+@utility surface-primary {
+    background-color: var(--primary);
+    background-image: var(--primary-gradient, none);
+    color: var(--primary-foreground);
+}
+
+@utility surface-accent-green {
+    background-color: var(--accent-green);
+    background-image: var(--accent-green-gradient, none);
+    color: var(--accent-green-foreground);
+}
+
+@utility surface-accent-yellow {
+    background-color: var(--accent-yellow);
+    background-image: var(--accent-yellow-gradient, none);
+    color: var(--accent-yellow-foreground);
+}
+
+@utility surface-accent-purple {
+    background-color: var(--accent-purple);
+    background-image: var(--accent-purple-gradient, none);
+    color: var(--accent-purple-foreground);
+}
+
+@utility surface-accent-blue {
+    background-color: var(--accent-blue);
+    background-image: var(--accent-blue-gradient, none);
+    color: var(--accent-blue-foreground);
+}
+
+@utility surface-accent-orange {
+    background-color: var(--accent-orange);
+    background-image: var(--accent-orange-gradient, none);
+    color: var(--accent-orange-foreground);
+}
+
+@utility surface-accent-cyan {
+    background-color: var(--accent-cyan);
+    background-image: var(--accent-cyan-gradient, none);
+    color: var(--accent-cyan-foreground);
+}
+
+@utility surface-accent-red {
+    background-color: var(--accent-red);
+    background-image: var(--accent-red-gradient, none);
+    color: var(--accent-red-foreground);
 }

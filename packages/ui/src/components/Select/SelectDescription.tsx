@@ -12,10 +12,7 @@ export const SelectDescription: FC<{ description?: string }> = ({
     return null;
   }
   return (
-    <p
-      id={descriptionId}
-      className="text-foreground-secondary text-sm select-none"
-    >
+    <p id={descriptionId} className="text-foreground/60 text-sm select-none">
       {description}
     </p>
   );

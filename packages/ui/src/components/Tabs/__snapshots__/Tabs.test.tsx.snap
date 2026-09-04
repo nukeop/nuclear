@@ -14,7 +14,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:r7:"
         aria-selected="true"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
         data-headlessui-state=""
         data-selected=""
         id="headlessui-tabs-tab-:r1:"
@@ -27,7 +27,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:r9:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:r3:"
         role="tab"
@@ -39,7 +39,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:rb:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:r5:"
         role="tab"
@@ -77,13 +77,13 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                 role="grid"
               >
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
                 >
                   <div
-                    class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+                    class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
                   >
                     <div
                       class="overflow-hidden absolute inset-0"
@@ -142,7 +142,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                     class="min-w-0"
                   >
                     <div
-                      class="text-foreground truncate text-sm font-bold"
+                      class="text-card-foreground truncate text-sm font-bold"
                       data-testid="card-title"
                     >
                       Frank Zappa
@@ -150,13 +150,13 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                   </div>
                 </button>
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
                 >
                   <div
-                    class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+                    class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
                   >
                     <div
                       class="overflow-hidden absolute inset-0"
@@ -215,7 +215,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                     class="min-w-0"
                   >
                     <div
-                      class="text-foreground truncate text-sm font-bold"
+                      class="text-card-foreground truncate text-sm font-bold"
                       data-testid="card-title"
                     >
                       Ozzy Osbourne
@@ -223,13 +223,13 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                   </div>
                 </button>
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
                 >
                   <div
-                    class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+                    class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
                   >
                     <div
                       class="overflow-hidden absolute inset-0"
@@ -288,7 +288,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                     class="min-w-0"
                   >
                     <div
-                      class="text-foreground truncate text-sm font-bold"
+                      class="text-card-foreground truncate text-sm font-bold"
                       data-testid="card-title"
                     >
                       David Bowie
@@ -296,13 +296,13 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                   </div>
                 </button>
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
                 >
                   <div
-                    class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+                    class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
                   >
                     <div
                       class="overflow-hidden absolute inset-0"
@@ -361,7 +361,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                     class="min-w-0"
                   >
                     <div
-                      class="text-foreground truncate text-sm font-bold"
+                      class="text-card-foreground truncate text-sm font-bold"
                       data-testid="card-title"
                     >
                       Kurt Cobain
@@ -369,13 +369,13 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                   </div>
                 </button>
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
                 >
                   <div
-                    class="border-border text-foreground flex h-full rounded-md border-(length:--border-width) bg-primary shadow-none relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+                    class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
                   >
                     <div
                       class="overflow-hidden absolute inset-0"
@@ -434,7 +434,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                     class="min-w-0"
                   >
                     <div
-                      class="text-foreground truncate text-sm font-bold"
+                      class="text-card-foreground truncate text-sm font-bold"
                       data-testid="card-title"
                     >
                       John Lennon
@@ -481,7 +481,7 @@ exports[`Tabs > (Snapshot) renders in composition mode 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:rv:"
         aria-selected="true"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
         data-headlessui-state=""
         data-selected=""
         id="headlessui-tabs-tab-:rr:"
@@ -494,7 +494,7 @@ exports[`Tabs > (Snapshot) renders in composition mode 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:r11:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:rt:"
         role="tab"
@@ -557,7 +557,7 @@ exports[`Tabs > (Snapshot) switches tabs 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:rk:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:re:"
         role="tab"
@@ -569,7 +569,7 @@ exports[`Tabs > (Snapshot) switches tabs 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:rm:"
         aria-selected="false"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
         data-headlessui-state=""
         id="headlessui-tabs-tab-:rg:"
         role="tab"
@@ -581,7 +581,7 @@ exports[`Tabs > (Snapshot) switches tabs 1`] = `
       <button
         aria-controls="headlessui-tabs-panel-:ro:"
         aria-selected="true"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
         data-headlessui-state="hover"
         data-hover=""
         data-selected=""
@@ -633,7 +633,7 @@ exports[`Tabs > (Snapshot) switches tabs 1`] = `
               class="text-foreground"
             >
               <div
-                class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-primary shadow-shadow"
+                class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-primary shadow-shadow"
               >
                 Section in a box.
               </div>

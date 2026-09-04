@@ -67,7 +67,7 @@ export const TitleBar: FC<TitleBarProps> = ({
       data-testid="title-bar"
       onMouseDown={handleMouseDown}
       className={cn(
-        'border-border bg-background relative flex h-6 items-center border-b-2 select-none',
+        'border-border surface-background relative flex h-6 items-center border-b-2 select-none',
         isMac ? 'justify-start' : 'justify-end',
         className,
       )}

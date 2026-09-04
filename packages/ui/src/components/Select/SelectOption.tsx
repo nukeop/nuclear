@@ -25,7 +25,7 @@ export const SelectOption: FC<SelectOptionProps> = ({
       {({ focus, selected }) => (
         <div
           className={cn(
-            'text-foreground cursor-pointer p-1',
+            'text-popover-foreground cursor-pointer p-1',
             focus && 'outline-border outline-2',
             classes?.root,
           )}

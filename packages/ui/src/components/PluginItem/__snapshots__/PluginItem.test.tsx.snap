@@ -7,7 +7,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
   >
     <div
       aria-busy="false"
-      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow opacity-30 relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
+      class="border-border h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-shadow opacity-30 relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
       data-testid="plugin-item"
     >
       <div
@@ -17,7 +17,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
           class="flex w-full flex-wrap items-start gap-4"
         >
           <div
-            class="border-border text-foreground flex rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-0"
+            class="border-border flex rounded-md border-(length:--border-width) surface-muted shadow-shadow h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-0"
           >
             <svg
               aria-hidden="true"
@@ -59,7 +59,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
                 Disabled Plugin
               </span>
               <p
-                class="text-foreground-secondary text-sm font-normal select-none"
+                class="text-muted-foreground text-sm font-normal select-none"
               >
                 <span
                   class="mr-1 opacity-60"
@@ -84,7 +84,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
             class="flex h-full shrink-0 flex-col items-end justify-between sm:w-auto sm:items-end"
           >
             <span
-              class="text-foreground-secondary flex flex-row items-baseline gap-2 text-sm font-normal"
+              class="text-muted-foreground flex flex-row items-baseline gap-2 text-sm font-normal"
               data-testid="plugin-version"
             />
           </div>
@@ -105,7 +105,7 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
   >
     <div
       aria-busy="false"
-      class="border-border text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
+      class="border-border h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-shadow relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250"
       data-testid="plugin-item"
     >
       <div
@@ -126,7 +126,7 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
                 Accessory Plugin
               </span>
               <p
-                class="text-foreground-secondary text-sm font-normal select-none"
+                class="text-muted-foreground text-sm font-normal select-none"
               >
                 <span
                   class="mr-1 opacity-60"
@@ -158,7 +158,7 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
               </span>
             </div>
             <span
-              class="text-foreground-secondary flex flex-row items-baseline gap-2 text-sm font-normal"
+              class="text-muted-foreground flex flex-row items-baseline gap-2 text-sm font-normal"
               data-testid="plugin-version"
             />
           </div>
@@ -179,7 +179,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
   >
     <div
       aria-busy="false"
-      class="text-foreground h-full w-full rounded-md border-(length:--border-width) p-4 bg-accent-orange/30 shadow-shadow ring-accent-orange ring-2 select-none ring-inset relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250 border-accent-red"
+      class="h-full w-full rounded-md border-(length:--border-width) p-4 bg-accent-orange/30 text-foreground shadow-shadow ring-accent-orange ring-2 select-none ring-inset relative flex cursor-default flex-col gap-2 overflow-hidden transition-opacity duration-250 border-accent-red"
       data-testid="plugin-item"
     >
       <div
@@ -189,7 +189,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
           class="flex w-full flex-wrap items-start gap-4"
         >
           <div
-            class="border-border text-foreground flex rounded-md border-(length:--border-width) bg-background-secondary shadow-shadow h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-0"
+            class="border-border flex rounded-md border-(length:--border-width) surface-muted shadow-shadow h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-0"
           >
             <svg
               aria-hidden="true"
@@ -231,7 +231,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
                 YouTube Music
               </span>
               <p
-                class="text-foreground-secondary text-sm font-normal select-none"
+                class="text-muted-foreground text-sm font-normal select-none"
               >
                 <span
                   class="mr-1 opacity-60"
@@ -256,11 +256,11 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
             class="flex h-full shrink-0 flex-col items-end justify-between sm:w-auto sm:items-end"
           >
             <span
-              class="text-foreground-secondary flex flex-row items-baseline gap-2 text-sm font-normal"
+              class="text-muted-foreground flex flex-row items-baseline gap-2 text-sm font-normal"
               data-testid="plugin-version"
             >
               <span
-                class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-purple text-foreground"
+                class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-purple"
               >
                 200ms
               </span>
@@ -269,7 +269,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
         </div>
       </div>
       <div
-        class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-none flex-row items-center justify-start gap-1 px-2 py-1 text-xs"
+        class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-none flex-row items-center justify-start gap-1 px-2 py-1 text-xs"
       >
         <svg
           aria-hidden="true"
@@ -301,7 +301,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
       class="flex flex-col justify-between gap-2"
     >
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
         data-headlessui-state=""
         data-testid="plugin-action-view-details"
         type="button"

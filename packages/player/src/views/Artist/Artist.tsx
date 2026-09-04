@@ -27,7 +27,7 @@ export const Artist: FC<ArtistProps> = () => {
   const widgetGroups = groupWidgets(activeWidgets);
 
   return (
-    <ScrollableArea className="bg-background">
+    <ScrollableArea className="surface-background">
       {widgetGroups.map((group) => {
         if (group.entries.length === 1) {
           const SingleWidget = group.entries[0].component;

@@ -1,15 +1,19 @@
 :root[data-theme-id='nuclear:ember'] {
   --background: oklch(0.97 0.02 70);
+  --card: oklch(0.76 0.14 30);
+  --popover: oklch(0.76 0.14 30);
   --primary: oklch(0.76 0.14 30);
-  --foreground-secondary: oklch(0.42 0.1 30);
+  --muted-foreground: oklch(0.42 0.1 30);
 }
 
 :root[data-theme-id='nuclear:ember'][data-theme='dark'] {
   --background: oklch(0.22 0.03 20);
-  --background-secondary: oklch(0.27 0.035 20);
-  --background-input: oklch(0.14 0.02 20);
+  --muted: oklch(0.27 0.035 20);
+  --input: oklch(0.14 0.02 20);
+  --card: oklch(0.64 0.1 30);
+  --popover: oklch(0.64 0.1 30);
   --primary: oklch(0.64 0.1 30);
   --foreground: oklch(0.9 0.008 30);
-  --foreground-secondary: oklch(0.78 0.1 30);
+  --muted-foreground: oklch(0.78 0.1 30);
   --border: oklch(0.48 0.04 20);
 }

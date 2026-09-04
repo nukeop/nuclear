@@ -31,7 +31,7 @@ export const InHeader = {
     const [value, setValue] = useState('');
 
     return (
-      <div className="bg-background">
+      <div className="surface-background">
         <NuclearJam.Header
           connectionStatus="connected"
           connectionStatusLabels={connectionStatusLabels}
@@ -52,7 +52,7 @@ export const InHeaderWithValue = {
     const [value, setValue] = useState('King Gizzard');
 
     return (
-      <div className="bg-background">
+      <div className="surface-background">
         <NuclearJam.Header
           connectionStatus="connected"
           connectionStatusLabels={connectionStatusLabels}

@@ -9,7 +9,7 @@ const pageVariants = cva(
   {
     variants: {
       selected: {
-        true: 'bg-primary text-foreground border-border',
+        true: 'surface-primary border-border',
         false:
           'text-foreground hover:bg-foreground/10 border-transparent bg-transparent',
       },
@@ -38,7 +38,7 @@ export const PaginationItem: FC<PaginationItemProps> = ({
       <span
         aria-hidden="true"
         data-testid="pagination-item"
-        className="text-foreground-secondary inline-flex size-8 items-center justify-center select-none"
+        className="text-foreground/60 inline-flex size-8 items-center justify-center select-none"
       >
         …
       </span>

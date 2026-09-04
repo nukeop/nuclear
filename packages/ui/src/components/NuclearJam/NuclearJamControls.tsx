@@ -116,7 +116,7 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
         <div
           ref={containerRef}
           className={cn(
-            'border-border bg-background-secondary relative h-5 w-full overflow-hidden rounded-md border-(length:--border-width)',
+            'border-border surface-seekbar-track relative h-5 w-full overflow-hidden rounded-md border-(length:--border-width)',
             {
               'cursor-pointer': isInteractive,
               'pointer-events-none': isLoading,
@@ -125,10 +125,10 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
           onClick={handleClick}
         >
           <div className="absolute right-0 left-0 z-10 flex h-full items-center justify-between px-2 text-xs">
-            <span className="text-foreground tabular-nums">
+            <span className="tabular-nums">
               {formatTimeSeconds(elapsedSeconds)}
             </span>
-            <span className="text-foreground tabular-nums">
+            <span className="tabular-nums">
               {formatTimeSeconds(-Math.abs(remainingSeconds))}
             </span>
           </div>
@@ -136,7 +136,7 @@ export const NuclearJamControls: FC<NuclearJamControlsProps> = ({
             <div className="bg-stripes-diagonal absolute inset-0 opacity-80" />
           ) : (
             <div
-              className="bg-primary h-full transition-none"
+              className="surface-seekbar h-full transition-none"
               style={{ width: `${clamped}%` }}
             />
           )}

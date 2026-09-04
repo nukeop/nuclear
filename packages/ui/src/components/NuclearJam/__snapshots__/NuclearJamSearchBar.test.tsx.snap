@@ -8,7 +8,7 @@ exports[`NuclearJamSearchBar > (Snapshot) renders empty 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="lucide lucide-search text-foreground-secondary size-5 shrink-0"
+      class="lucide lucide-search text-foreground/60 size-5 shrink-0"
       fill="none"
       height="24"
       stroke="currentColor"
@@ -31,7 +31,7 @@ exports[`NuclearJamSearchBar > (Snapshot) renders empty 1`] = `
     <input
       autocomplete="off"
       autocorrect="off"
-      class="text-foreground placeholder:text-foreground-secondary min-w-0 flex-1 bg-transparent font-semibold outline-none [&::-webkit-search-cancel-button]:appearance-none"
+      class="text-foreground placeholder:text-input-foreground/60 min-w-0 flex-1 bg-transparent font-semibold outline-none [&::-webkit-search-cancel-button]:appearance-none"
       data-testid="jam-search-input"
       enterkeyhint="search"
       placeholder="Search for music"
@@ -51,7 +51,7 @@ exports[`NuclearJamSearchBar > (Snapshot) renders with a value 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="lucide lucide-search text-foreground-secondary size-5 shrink-0"
+      class="lucide lucide-search text-foreground/60 size-5 shrink-0"
       fill="none"
       height="24"
       stroke="currentColor"
@@ -74,7 +74,7 @@ exports[`NuclearJamSearchBar > (Snapshot) renders with a value 1`] = `
     <input
       autocomplete="off"
       autocorrect="off"
-      class="text-foreground placeholder:text-foreground-secondary min-w-0 flex-1 bg-transparent font-semibold outline-none [&::-webkit-search-cancel-button]:appearance-none"
+      class="text-foreground placeholder:text-input-foreground/60 min-w-0 flex-1 bg-transparent font-semibold outline-none [&::-webkit-search-cancel-button]:appearance-none"
       data-testid="jam-search-input"
       enterkeyhint="search"
       placeholder="Search for music"
@@ -83,7 +83,7 @@ exports[`NuclearJamSearchBar > (Snapshot) renders with a value 1`] = `
       value="Radiohead"
     />
     <button
-      class="text-foreground-secondary hover:text-foreground shrink-0 transition-colors"
+      class="text-foreground/60 hover:text-foreground shrink-0 transition-colors"
       data-testid="jam-search-clear"
       type="button"
     >

@@ -37,7 +37,7 @@ export default meta;
 
 export const ResultList = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.SearchResultTrack
         track={track('Alberto Balsalm', 'Aphex Twin', 305000)}
         onAdd={fn()}

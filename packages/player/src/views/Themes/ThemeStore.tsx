@@ -28,7 +28,7 @@ export const ThemeStore: FC = () => {
     return (
       <p
         data-testid="theme-store-error"
-        className="text-foreground-secondary p-4 text-sm"
+        className="text-foreground/60 p-4 text-sm"
       >
         {t('store.loadError')}
       </p>

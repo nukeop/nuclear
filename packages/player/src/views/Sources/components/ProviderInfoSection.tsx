@@ -28,7 +28,7 @@ export const ProviderInfoSection: FC<ProviderInfoSectionProps> = ({
         <Icon size={14} />
         {t(kind)}
       </h3>
-      <p className="text-foreground-secondary mb-3 text-sm">
+      <p className="text-foreground/60 mb-3 text-sm">
         {t(`${kind}Description`)}
       </p>
       {providers.length ? (
@@ -46,7 +46,7 @@ export const ProviderInfoSection: FC<ProviderInfoSectionProps> = ({
         </div>
       ) : (
         <p
-          className="text-foreground-secondary text-sm italic"
+          className="text-foreground/60 text-sm italic"
           data-testid="no-providers-message"
         >
           {t('noProviders')}

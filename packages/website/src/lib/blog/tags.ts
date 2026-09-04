@@ -1,10 +1,10 @@
 const categoryColors = {
   releases: 'bg-primary',
   features: 'bg-accent-green',
-  craft: 'bg-accent-blue',
+  themes: 'bg-accent-blue',
 } as const;
 
-const FALLBACK_CATEGORY_COLOR = 'bg-background-secondary';
+const FALLBACK_CATEGORY_COLOR = 'bg-muted';
 
 export type Category = keyof typeof categoryColors;
 

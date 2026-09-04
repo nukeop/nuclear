@@ -35,7 +35,7 @@ export const NuclearJamSearchResultTrack: FC<
       )}
       data-testid="jam-search-result-track"
     >
-      <div className="border-border bg-background-secondary flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)">
+      <div className="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)">
         {thumbnail?.url ? (
           <img
             src={thumbnail.url}
@@ -56,14 +56,14 @@ export const NuclearJamSearchResultTrack: FC<
           {track.title}
         </div>
         {primaryArtist && (
-          <div className="text-foreground-secondary truncate text-xs">
+          <div className="text-foreground/60 truncate text-xs">
             {primaryArtist}
           </div>
         )}
       </div>
 
       {duration && (
-        <div className="text-foreground-secondary shrink-0 text-xs tabular-nums">
+        <div className="text-foreground/60 shrink-0 text-xs tabular-nums">
           {duration}
         </div>
       )}

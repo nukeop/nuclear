@@ -38,8 +38,10 @@ const listMarketplaceThemes = async (): Promise<AdvancedThemeFile[]> => {
     const path = await join(dir, filename);
     try {
       const text = await readTextFile(path, { baseDir: BaseDirectory.AppData });
-      const json = JSON.parse(text);
-      const parsed = parseAdvancedTheme(json);
+      const parsed = parseAdvancedTheme(JSON.parse(text));
+      if (!parsed) {
+        continue;
+      }
       themes.push({ id, path, name: parsed.name });
     } catch (error) {
       await reportError('themes', {

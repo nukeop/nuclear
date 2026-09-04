@@ -1,5 +1,21 @@
 [
   {
+    "date": "2026-09-01T00:00",
+    "description": "Theming system v2: themes can now use gradients on surfaces, and a whole new group of variables to make Nuclear more customizable. See the docs and release notes for details.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      },
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-08-29T00:00",
     "description": "Fixed pressing Enter in the search box searching for a hovered recent search instead of the typed text.",
     "type": "fix",

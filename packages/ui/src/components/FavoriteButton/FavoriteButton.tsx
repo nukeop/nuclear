@@ -61,10 +61,10 @@ export const FavoriteButton: FC<FavoriteButtonProps> = ({
       <Heart
         size={iconSizes[resolvedSize]}
         className={cn(
-          'transition-colors',
+          'transition-opacity',
           isFavorite
             ? 'fill-accent-red text-accent-red'
-            : 'text-foreground-secondary hover:text-foreground',
+            : 'opacity-60 hover:opacity-100',
         )}
       />
     </Button>

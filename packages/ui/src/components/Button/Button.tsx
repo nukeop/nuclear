@@ -10,15 +10,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none',
+          'surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none',
         secondary:
           'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none',
         tertiary:
-          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background-secondary text-foreground border-(length:--border-width) hover:shadow-none',
+          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-muted text-muted-foreground border-(length:--border-width) hover:shadow-none',
         noShadow:
-          'text-foreground bg-primary border-border border-(length:--border-width)',
-        text: 'text-foreground bg-transparent',
-        ghost: 'border border-current bg-transparent hover:bg-black/10',
+          'surface-primary border-border border-(length:--border-width)',
+        text: 'bg-transparent',
+        ghost: 'hover:bg-foreground/10 border border-current bg-transparent',
       },
       size: {
         default: 'h-10 px-4 py-2',
@@ -30,7 +30,7 @@ const buttonVariants = cva(
         flexible: 'h-auto',
       },
       intent: {
-        danger: 'bg-accent-red',
+        danger: 'surface-accent-red',
       },
     },
     defaultVariants: {

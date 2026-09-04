@@ -31,37 +31,37 @@ const badgeVariants = cva(
       {
         variant: 'dot',
         color: 'green',
-        className: 'bg-accent-green',
+        className: 'surface-accent-green',
       },
       {
         variant: 'dot',
         color: 'cyan',
-        className: 'bg-accent-cyan',
+        className: 'surface-accent-cyan',
       },
       {
         variant: 'dot',
         color: 'orange',
-        className: 'bg-accent-orange',
+        className: 'surface-accent-orange',
       },
       {
         variant: 'dot',
         color: 'red',
-        className: 'bg-accent-red',
+        className: 'surface-accent-red',
       },
       {
         variant: 'dot',
         color: 'yellow',
-        className: 'bg-accent-yellow',
+        className: 'surface-accent-yellow',
       },
       {
         variant: 'dot',
         color: 'purple',
-        className: 'bg-accent-purple',
+        className: 'surface-accent-purple',
       },
       {
         variant: 'dot',
         color: 'blue',
-        className: 'bg-accent-blue',
+        className: 'surface-accent-blue',
       },
       {
         variant: 'pill',
@@ -71,42 +71,42 @@ const badgeVariants = cva(
       {
         variant: 'pill',
         color: 'inverted',
-        className: 'bg-foreground text-background-secondary',
+        className: 'bg-foreground text-muted',
       },
       {
         variant: 'pill',
         color: 'green',
-        className: 'bg-accent-green text-foreground',
+        className: 'surface-accent-green',
       },
       {
         variant: 'pill',
         color: 'cyan',
-        className: 'bg-accent-cyan text-foreground',
+        className: 'surface-accent-cyan',
       },
       {
         variant: 'pill',
         color: 'orange',
-        className: 'bg-accent-orange text-foreground',
+        className: 'surface-accent-orange',
       },
       {
         variant: 'pill',
         color: 'red',
-        className: 'bg-accent-red text-foreground',
+        className: 'surface-accent-red',
       },
       {
         variant: 'pill',
         color: 'yellow',
-        className: 'bg-accent-yellow text-foreground',
+        className: 'surface-accent-yellow',
       },
       {
         variant: 'pill',
         color: 'purple',
-        className: 'bg-accent-purple text-foreground',
+        className: 'surface-accent-purple',
       },
       {
         variant: 'pill',
         color: 'blue',
-        className: 'bg-accent-blue text-foreground',
+        className: 'surface-accent-blue',
       },
     ],
     defaultVariants: {

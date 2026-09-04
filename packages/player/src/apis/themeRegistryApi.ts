@@ -12,7 +12,7 @@ class ThemeRegistryApi extends ApiClient {
 
   async getThemes() {
     const registry = await this.fetch(
-      '/themes.json',
+      '/v2/themes.json',
       MarketplaceThemeRegistrySchema,
     );
     return registry.themes;

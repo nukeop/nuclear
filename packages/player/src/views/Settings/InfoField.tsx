@@ -14,7 +14,7 @@ export const InfoField: FC<Props> = ({ label, description, value }) => (
     <div className="flex items-center gap-2">
       <div
         data-testid="info-field-value"
-        className="border-border bg-background-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
+        className="border-border surface-input flex-1 rounded-md border-(length:--border-width) px-3 py-2 font-mono text-sm"
       >
         {value}
       </div>
@@ -25,9 +25,7 @@ export const InfoField: FC<Props> = ({ label, description, value }) => (
       />
     </div>
     {description && (
-      <p className="text-foreground-secondary text-sm select-none">
-        {description}
-      </p>
+      <p className="text-foreground/60 text-sm select-none">{description}</p>
     )}
   </div>
 );

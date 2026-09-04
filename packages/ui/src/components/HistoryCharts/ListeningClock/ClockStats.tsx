@@ -15,7 +15,7 @@ export const ClockStats: FC<ClockStatsProps> = ({
 }) => (
   <div data-testid="listening-clock-stats" className="flex flex-col gap-5">
     <div className="flex flex-col gap-1">
-      <span className="text-foreground-secondary text-sm font-bold">
+      <span className="text-muted-foreground text-sm font-bold">
         {labels.busiestHour}
       </span>
       <span
@@ -26,7 +26,7 @@ export const ClockStats: FC<ClockStatsProps> = ({
       </span>
     </div>
     <div className="flex flex-col gap-1">
-      <span className="text-foreground-secondary text-sm font-bold">
+      <span className="text-muted-foreground text-sm font-bold">
         {labels.busiestHourValue}
       </span>
       <span

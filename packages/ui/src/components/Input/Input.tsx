@@ -10,7 +10,7 @@ import {
 import { cn } from '../../utils';
 
 const inputVariants = cva(
-  'border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none',
+  'border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
   {
     variants: {
       variant: {
@@ -21,8 +21,9 @@ const inputVariants = cva(
           'border-b-border !rounded-none rounded-none !border-r-0 !border-l-0 border-t-transparent px-6 outline-none focus-visible:ring-0 focus-visible:ring-offset-0',
       },
       tone: {
-        primary: 'bg-background-input',
-        secondary: 'bg-background',
+        primary: 'surface-input placeholder:text-input-foreground/60',
+        secondary:
+          'surface-background text-foreground placeholder:text-foreground/60',
       },
       size: {
         sm: 'h-9 text-sm',
@@ -102,7 +103,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         </label>
       )}
       {endAddon ? (
-        <div className="border-border inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-black has-[:focus-visible]:ring-offset-2">
+        <div className="border-border has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-muted inline-flex w-full items-stretch overflow-hidden rounded-md border-(length:--border-width) has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-offset-2">
           <HeadlessInput
             as="input"
             id={inputId}
@@ -126,7 +127,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
             )}
             {...rest}
           />
-          <div className="bg-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm">
+          <div className="surface-primary border-border flex items-center gap-2 border-l-(length:--border-width) px-3 text-sm">
             {endAddon}
           </div>
         </div>
@@ -151,7 +152,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       {description && (
         <p
           id={descriptionId}
-          className="text-foreground-secondary text-sm select-none"
+          className="text-foreground/60 text-sm select-none"
         >
           {description}
         </p>

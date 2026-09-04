@@ -36,7 +36,7 @@ export const NuclearJamSearchBar: FC<NuclearJamSearchBarProps> = ({
       )}
       data-testid="jam-search-bar"
     >
-      <Search className="text-foreground-secondary size-5 shrink-0" />
+      <Search className="text-foreground/60 size-5 shrink-0" />
       <input
         type="search"
         value={value}
@@ -46,14 +46,14 @@ export const NuclearJamSearchBar: FC<NuclearJamSearchBarProps> = ({
         autoComplete="off"
         autoCorrect="off"
         spellCheck={false}
-        className="text-foreground placeholder:text-foreground-secondary min-w-0 flex-1 bg-transparent font-semibold outline-none [&::-webkit-search-cancel-button]:appearance-none"
+        className="text-foreground placeholder:text-input-foreground/60 min-w-0 flex-1 bg-transparent font-semibold outline-none [&::-webkit-search-cancel-button]:appearance-none"
         data-testid="jam-search-input"
       />
       {value.length > 0 && (
         <button
           type="button"
           onClick={handleClear}
-          className="text-foreground-secondary hover:text-foreground shrink-0 transition-colors"
+          className="text-foreground/60 hover:text-foreground shrink-0 transition-colors"
           data-testid="jam-search-clear"
         >
           <X className="size-5" />

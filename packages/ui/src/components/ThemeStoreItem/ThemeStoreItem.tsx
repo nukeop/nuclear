@@ -99,13 +99,13 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
             </div>
             <p
               data-testid="theme-store-item-description"
-              className="text-foreground-secondary line-clamp-2 text-sm"
+              className="text-muted-foreground line-clamp-2 text-sm"
             >
               {description}
             </p>
             <p
               data-testid="theme-store-item-author"
-              className="text-foreground-secondary text-xs"
+              className="text-muted-foreground text-xs"
             >
               {by} {author}
             </p>

@@ -5,7 +5,7 @@ import { generateAdvancedThemeCSS } from '../../advanced/generator';
 describe('generateAdvancedThemeCSS', () => {
   it('produces CSS for light and dark vars', () => {
     const css = generateAdvancedThemeCSS({
-      version: 1,
+      version: 2,
       name: 'Test',
       vars: {
         background: 'oklch(98% 0 0)',
@@ -23,7 +23,7 @@ describe('generateAdvancedThemeCSS', () => {
 
   it('handles partial themes and trims whitespace', () => {
     const css = generateAdvancedThemeCSS({
-      version: 1,
+      version: 2,
       name: 'Partial',
       vars: { radius: ' 10px  ' },
     });

@@ -109,7 +109,7 @@ export const ArtistSocialHeader: FC<ArtistSocialHeaderProps> = ({
 
   return (
     <div
-      className="border-border bg-primary shadow-shadow relative m-4 rounded-md border-(length:--border-width) p-6"
+      className="border-border surface-card shadow-shadow relative m-4 rounded-md border-(length:--border-width) p-6"
       data-testid="artist-social-header"
     >
       <ConnectedFavoriteButton
@@ -132,7 +132,7 @@ export const ArtistSocialHeader: FC<ArtistSocialHeaderProps> = ({
             {stats.name}
           </h2>
           {location && (
-            <span className="bg-accent-orange border-border inline-flex w-fit items-center gap-1 rounded-md border px-2 py-0.5 text-sm font-bold">
+            <span className="surface-accent-orange border-border inline-flex w-fit items-center gap-1 rounded-md border px-2 py-0.5 text-sm font-bold">
               <MapPin size={14} />
               {location}
             </span>

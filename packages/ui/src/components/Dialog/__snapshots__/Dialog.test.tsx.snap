@@ -14,35 +14,31 @@ exports[`Dialog > (Snapshot) renders open dialog 1`] = `
 >
   <div
     animate="[object Object]"
+    class="bg-overlay fixed inset-0"
+    data-testid="dialog-backdrop"
     exit="[object Object]"
     initial="[object Object]"
     transition="[object Object]"
-  >
-    <div
-      aria-hidden="true"
-      class="fixed inset-0 bg-black/40"
-      data-headlessui-state="open"
-      data-open=""
-    />
-  </div>
+  />
   <div
     class="fixed inset-0 flex items-center justify-center p-4"
   >
     <div
       animate="[object Object]"
+      class="border-border surface-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6 backdrop-blur-xl"
       exit="[object Object]"
       initial="[object Object]"
       transition="[object Object]"
     >
       <div
-        class="border-border bg-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6"
+        class="contents"
         data-headlessui-state="open"
         data-open=""
         id="headlessui-dialog-panel-:r6:"
       >
         <button
           aria-label="Close"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center absolute top-3 right-3"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center absolute top-3 right-3"
           data-headlessui-state=""
           data-testid="dialog-x-close"
           type="button"
@@ -77,7 +73,7 @@ exports[`Dialog > (Snapshot) renders open dialog 1`] = `
           Confirm
         </h2>
         <p
-          class="text-foreground-secondary mt-2 text-sm"
+          class="text-foreground/60 mt-2 text-sm"
           data-headlessui-state="open"
           data-open=""
           id="headlessui-description-:r8:"

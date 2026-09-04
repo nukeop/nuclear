@@ -3,7 +3,7 @@
 exports[`HistoryRow > (Snapshot) renders a placeholder when artwork is missing 1`] = `
 <div>
   <div
-    class="border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0"
+    class="border-border bg-muted group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0"
     data-testid="history-row"
   >
     <div
@@ -74,7 +74,7 @@ exports[`HistoryRow > (Snapshot) renders a placeholder when artwork is missing 1
 exports[`HistoryRow > (Snapshot) renders with artwork and all actions 1`] = `
 <div>
   <div
-    class="border-border bg-background-secondary group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0"
+    class="border-border bg-muted group grid grid-cols-[auto_auto_1fr_1fr_auto] items-center border-b-(length:--border-width) select-none last:border-b-0"
     data-testid="history-row"
   >
     <div
@@ -82,14 +82,14 @@ exports[`HistoryRow > (Snapshot) renders with artwork and all actions 1`] = `
     >
       <button
         aria-label="Add to favorites"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
         data-headlessui-state=""
         data-testid="history-row-favorite"
         type="button"
       >
         <svg
           aria-hidden="true"
-          class="lucide lucide-heart transition-colors text-foreground-secondary hover:text-foreground"
+          class="lucide lucide-heart transition-opacity opacity-60 hover:opacity-100"
           fill="none"
           height="16"
           stroke="currentColor"
@@ -136,7 +136,7 @@ exports[`HistoryRow > (Snapshot) renders with artwork and all actions 1`] = `
         </button>
         <button
           aria-label="Add to queue"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
           data-headlessui-state=""
           data-testid="history-row-add-to-queue"
           type="button"

@@ -25,7 +25,7 @@ export const ViewShell: FC<ViewShellProps> = ({
 }) => (
   <div
     className={cn(
-      'bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6',
+      'surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6',
       classes?.root,
     )}
     data-testid={dataTestId}

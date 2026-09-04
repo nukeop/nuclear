@@ -46,13 +46,12 @@ export const DialogRoot: FC<DialogRootProps> = ({
                   damping: 17,
                   mass: 0.8,
                 }}
+                className={cn(
+                  'border-border surface-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6 backdrop-blur-xl',
+                  className,
+                )}
               >
-                <DialogPanel
-                  className={cn(
-                    'border-border bg-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6',
-                    className,
-                  )}
-                >
+                <DialogPanel className="contents">
                   {showCloseButton && <DialogXClose />}
                   {children}
                 </DialogPanel>

@@ -29,7 +29,7 @@ const defaultProps: ComponentProps<typeof NuclearJam.Controls> = {
 
 export const Playing = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.Controls {...defaultProps} isPlaying />
     </div>
   ),
@@ -37,7 +37,7 @@ export const Playing = {
 
 export const TogglesActive = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.Controls
         {...defaultProps}
         shuffleActive
@@ -50,7 +50,7 @@ export const TogglesActive = {
 
 export const Loading = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.Controls
         {...defaultProps}
         isLoading
@@ -64,7 +64,7 @@ export const Loading = {
 
 export const RepeatOne = {
   render: () => (
-    <div className="bg-background">
+    <div className="surface-background">
       <NuclearJam.Controls
         {...defaultProps}
         isPlaying

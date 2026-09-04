@@ -2,7 +2,7 @@
 
 Theme engine utilities for Nuclear. Tailwind v4 consumes CSS custom properties from `@nuclearplayer/tailwind-config/global.css`. All runtime theming is done by swapping CSS variables; no tokens are duplicated in TS.
 
-- Basic themes are CSS files that override four variables via `data-theme-id` on `:root`.
+- Basic themes are CSS files that override surface variables via `data-theme-id` on `:root`.
 - Advanced themes are JSON files parsed at runtime and injected as a single `<style id="advanced-theme">`.
 - Dark mode is controlled exclusively by `[data-theme='dark']`.
 
@@ -15,18 +15,20 @@ Theme engine utilities for Nuclear. Tailwind v4 consumes CSS custom properties f
 
 Built-in basic theme IDs are namespaced with `nuclear:` to avoid collisions.
 
-## Advanced theme JSON (v1)
+## Advanced theme JSON (v2)
 
 ```json
 {
-  "version": 1,
+  "version": 2,
   "name": "My Theme",
   "vars": { "background": "oklch(...)" },
   "dark": { "background": "oklch(...)" }
 }
 ```
 
-Keys correspond to CSS var names without the leading `--`.
+Keys correspond to CSS var names without the leading `--`. Keys must match `^[a-z0-9][a-z0-9-]*$`; values must not contain `{`, `}`, or `;`. Themes with `version` other than `2` are ignored.
+
+See [packages/docs/themes/themes-advanced.md](packages/docs/themes/themes-advanced.md) to learn how themes work.
 
 ## Testing
 

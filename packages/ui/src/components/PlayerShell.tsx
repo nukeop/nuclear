@@ -1,6 +1,7 @@
 import { ComponentProps, FC } from 'react';
 
 import { cn } from '../utils';
+import { WallpaperLayer } from './Wallpaper';
 
 type PlayerShellProps = ComponentProps<'div'>;
 
@@ -17,6 +18,7 @@ export const PlayerShell: FC<PlayerShellProps> = ({
       )}
       {...props}
     >
+      <WallpaperLayer />
       {children}
     </div>
   );

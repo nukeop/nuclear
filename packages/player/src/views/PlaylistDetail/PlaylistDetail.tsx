@@ -23,7 +23,7 @@ export const PlaylistDetail: FC = () => {
 
   return (
     <ScrollableArea
-      className="bg-background"
+      className="surface-background"
       data-testid="playlist-detail-view"
     >
       {playlist && (

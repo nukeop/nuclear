@@ -12,35 +12,31 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
 >
   <div
     animate="[object Object]"
+    class="bg-overlay fixed inset-0"
+    data-testid="dialog-backdrop"
     exit="[object Object]"
     initial="[object Object]"
     transition="[object Object]"
-  >
-    <div
-      aria-hidden="true"
-      class="fixed inset-0 bg-black/40"
-      data-headlessui-state="open"
-      data-open=""
-    />
-  </div>
+  />
   <div
     class="fixed inset-0 flex items-center justify-center p-4"
   >
     <div
       animate="[object Object]"
+      class="border-border surface-background shadow-shadow relative rounded-md border-(length:--border-width) backdrop-blur-xl flex h-[80vh] max-h-[900px] w-[80vw] max-w-6xl p-0"
       exit="[object Object]"
       initial="[object Object]"
       transition="[object Object]"
     >
       <div
-        class="border-border bg-background shadow-shadow relative rounded-md border-(length:--border-width) flex h-[80vh] max-h-[900px] w-[80vw] max-w-6xl p-0"
+        class="contents"
         data-headlessui-state="open"
         data-open=""
         id="headlessui-dialog-panel-:ra:"
       >
         <button
           aria-label="Close"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center absolute top-3 right-3"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center absolute top-3 right-3"
           data-headlessui-state=""
           data-testid="dialog-x-close"
           type="button"
@@ -73,7 +69,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
             class="flex flex-col gap-1"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-general"
               type="button"
@@ -113,7 +109,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               General
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-shortcuts"
               type="button"
@@ -168,7 +164,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Key Shortcuts
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-plugins"
               type="button"
@@ -202,7 +198,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Plugins
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-themes"
               type="button"
@@ -253,7 +249,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Themes
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-logs"
               type="button"
@@ -289,7 +285,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Logs
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-tab-whats-new"
               type="button"
@@ -338,7 +334,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               >
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -360,7 +356,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -382,7 +378,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -404,7 +400,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -441,7 +437,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
           class="flex min-h-0 flex-1 flex-col overflow-hidden"
         >
           <div
-            class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+            class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
           >
             <h1
               class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
@@ -468,7 +464,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                     <button
                       aria-controls="headlessui-tabs-panel-:rg:"
                       aria-selected="false"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-transparent h-10 px-4 py-2"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
                       data-headlessui-state=""
                       id="headlessui-tabs-tab-:rc:"
                       role="tab"
@@ -480,7 +476,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                     <button
                       aria-controls="headlessui-tabs-panel-:ri:"
                       aria-selected="true"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2"
                       data-headlessui-state="hover"
                       data-hover=""
                       data-selected=""
@@ -530,7 +526,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                 class="flex w-full flex-col gap-2"
                               >
                                 <input
-                                  class="border-border text-foreground placeholder:text-foreground-secondary w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none bg-background-input h-10 rounded-md border-(length:--border-width)"
+                                  class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted w-full px-3 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none surface-input placeholder:text-input-foreground/60 h-10 rounded-md border-(length:--border-width)"
                                   data-headlessui-state=""
                                   id="input-:rk:"
                                   placeholder="Search plugins..."
@@ -629,7 +625,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                   class="flex flex-col gap-3 px-2 py-2"
                                 >
                                   <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-shadow flex-row items-center justify-between gap-4"
                                     data-testid="plugin-store-item"
                                   >
                                     <div
@@ -647,7 +643,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                             YouTube Music
                                           </span>
                                           <p
-                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                            class="text-muted-foreground text-sm font-normal select-none"
                                           >
                                             <span
                                               class="mr-1 opacity-60"
@@ -662,13 +658,13 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                           </p>
                                         </h3>
                                         <span
-                                          class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-cyan"
                                         >
                                           streaming
                                         </span>
                                       </div>
                                       <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        class="text-muted-foreground line-clamp-2 text-sm"
                                         data-testid="plugin-store-item-description"
                                       >
                                         Stream music from YouTube
@@ -678,7 +674,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       class="shrink-0"
                                     >
                                       <button
-                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
+                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
                                         data-headlessui-state=""
                                         type="button"
                                       >
@@ -714,7 +710,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                     </div>
                                   </div>
                                   <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-shadow flex-row items-center justify-between gap-4"
                                     data-testid="plugin-store-item"
                                   >
                                     <div
@@ -732,7 +728,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                             Last.fm Scrobbler
                                           </span>
                                           <p
-                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                            class="text-muted-foreground text-sm font-normal select-none"
                                           >
                                             <span
                                               class="mr-1 opacity-60"
@@ -747,13 +743,13 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                           </p>
                                         </h3>
                                         <span
-                                          class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-cyan"
                                         >
                                           scrobbling
                                         </span>
                                       </div>
                                       <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        class="text-muted-foreground line-clamp-2 text-sm"
                                         data-testid="plugin-store-item-description"
                                       >
                                         Scrobble your listening history to Last.fm
@@ -763,7 +759,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       class="shrink-0"
                                     >
                                       <button
-                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
+                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
                                         data-headlessui-state=""
                                         type="button"
                                       >
@@ -799,7 +795,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                     </div>
                                   </div>
                                   <div
-                                    class="border-border text-foreground flex h-full w-full rounded-md border-(length:--border-width) p-4 bg-background-secondary shadow-shadow flex-row items-center justify-between gap-4"
+                                    class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-shadow flex-row items-center justify-between gap-4"
                                     data-testid="plugin-store-item"
                                   >
                                     <div
@@ -817,7 +813,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                             MusicBrainz Metadata
                                           </span>
                                           <p
-                                            class="text-foreground-secondary text-sm font-normal select-none"
+                                            class="text-muted-foreground text-sm font-normal select-none"
                                           >
                                             <span
                                               class="mr-1 opacity-60"
@@ -832,13 +828,13 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                           </p>
                                         </h3>
                                         <span
-                                          class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold bg-accent-cyan text-foreground"
+                                          class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-cyan"
                                         >
                                           metadata
                                         </span>
                                       </div>
                                       <p
-                                        class="text-foreground-secondary line-clamp-2 text-sm"
+                                        class="text-muted-foreground line-clamp-2 text-sm"
                                         data-testid="plugin-store-item-description"
                                       >
                                         Fetch metadata from MusicBrainz database
@@ -848,7 +844,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                                       class="shrink-0"
                                     >
                                       <button
-                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
+                                        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 w-28"
                                         data-headlessui-state=""
                                         type="button"
                                       >

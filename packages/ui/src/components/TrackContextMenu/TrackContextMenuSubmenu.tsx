@@ -23,7 +23,7 @@ export const TrackContextMenuSubmenuTrigger: FC<
   <DropdownMenu.SubTrigger
     className={cn(
       'flex w-full cursor-pointer items-center justify-between gap-3 border-t border-transparent px-3 py-2 text-left text-sm outline-none not-last:border-b',
-      'data-[highlighted]:bg-background-secondary data-[highlighted]:border-border',
+      'data-[highlighted]:bg-muted data-[highlighted]:border-border',
     )}
     data-testid="submenu-trigger"
   >
@@ -44,7 +44,7 @@ export const TrackContextMenuSubmenuContent: FC<
 > = ({ children }) => (
   <DropdownMenu.Portal>
     <DropdownMenu.SubContent
-      className="bg-background border-border data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 z-50 w-48 overflow-hidden rounded-sm border-(length:--border-width) shadow-lg outline-none"
+      className="surface-background border-border data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 z-50 w-48 overflow-hidden rounded-sm border-(length:--border-width) shadow-lg backdrop-blur-xl outline-none"
       sideOffset={4}
       data-testid="submenu-content"
     >

@@ -17,7 +17,7 @@ export const ImportPlaylistMenu: FC = () => {
     <>
       <Popover
         className="relative"
-        panelClassName="bg-background px-0 py-0"
+        panelClassName="surface-background px-0 py-0"
         trigger={
           <Button size="icon" data-testid="import-playlist-button">
             <Import size={16} />

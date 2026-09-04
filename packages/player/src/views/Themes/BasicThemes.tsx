@@ -23,14 +23,14 @@ export const BasicThemes = () => {
               variant="text"
               size="flexible"
               className={cn(
-                'bg-background-secondary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none',
+                'surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none',
                 {
-                  'bg-primary': isActive,
+                  'surface-primary': isActive,
                 },
               )}
               onClick={() => selectBasicTheme(theme.id)}
             >
-              <span className="text-foreground text-left text-base font-bold">
+              <span className="text-left text-base font-bold">
                 {theme.name}
               </span>
               <div className="block">

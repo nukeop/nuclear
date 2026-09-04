@@ -14,7 +14,7 @@ export const BlogCard: FC<BlogCardProps> = ({ post }) => {
   return (
     <a
       href={href}
-      className="themed-border border-border bg-background-secondary shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col overflow-hidden rounded-md text-left transition-all hover:shadow-none"
+      className="themed-border border-border bg-muted shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col overflow-hidden rounded-md text-left transition-all hover:shadow-none"
     >
       <div className="bg-background border-border aspect-video overflow-hidden border-b-2">
         {post.cover ? (

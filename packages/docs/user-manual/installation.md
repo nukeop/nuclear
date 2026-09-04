@@ -17,6 +17,12 @@ Download the latest release from [GitHub Releases](https://github.com/nukeop/nuc
 
 Run the installer and follow the prompts. Nuclear will be available from the Start menu after installation.
 
+### winget
+
+```powershell
+winget install nukeop.nuclear
+```
+
 {% endtab %}
 
 {% tab title="macOS" %}
@@ -27,6 +33,14 @@ Run the installer and follow the prompts. Nuclear will be available from the Sta
 | `Nuclear_x.y.z_x64.dmg` | Disk image for Intel Macs. |
 
 Open the `.dmg` and drag Nuclear to your Applications folder.
+
+### Homebrew
+
+Nuclear has its own tap. The cask removes the quarantine attribute after installing. The Gatekeeper step below is not needed.
+
+```bash
+brew install --cask nuclearplayer/tap/nuclear
+```
 
 ### Gatekeeper warning
 
