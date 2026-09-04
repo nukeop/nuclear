@@ -43,17 +43,23 @@ modules:
     sources:
       - type: dir
         path: ..
+      - type: archive
+        url: https://registry.npmjs.org/@pnpm/exe.linux-x64/-/exe.linux-x64-12.0.0.tgz
+        sha256: d0c64efab39d560ef3ae4dc8be5dd08951e5409ed2d53cb6b8317b7713c26333
+        dest: pnpm-exe
+        only-arches: [x86_64]
+      - type: archive
+        url: https://registry.npmjs.org/@pnpm/exe.linux-arm64/-/exe.linux-arm64-12.0.0.tgz
+        sha256: e227252e352b8023fd1151fbe36eeb934a26eef2e0c327b8d1a1aad7b4bfbd90
+        dest: pnpm-exe
+        only-arches: [aarch64]
       - pnpm-sources.json
       - cargo-sources.json
     build-options:
-      build-args:
-        - --share=network
       env:
         XDG_CACHE_HOME: /run/build/nuclear-music-player/cache
-        npm_config_cache: /run/build/nuclear-music-player/npm-cache
     build-commands:
-      - mkdir -p /run/build/nuclear-music-player/.npm-global
-      - npm install -g pnpm@12.0.0
+      - install -Dm755 pnpm-exe/pnpm /run/build/nuclear-music-player/.npm-global/bin/pnpm
 
       - pnpm install --offline --frozen-lockfile --trust-lockfile
       - pnpm --filter @nuclearplayer/player build:frontend

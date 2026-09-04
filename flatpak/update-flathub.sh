@@ -6,7 +6,7 @@ REPO_ROOT="$(cd "${FLATPAK_DIR}/.." && pwd)"
 
 FLATHUB_REPO="flathub/com.nuclearplayer.Nuclear"
 MANIFEST="com.nuclearplayer.Nuclear.yml"
-PNPM_REGISTRY="https://registry.npmjs.org/pnpm/-"
+PNPM_EXE_REGISTRY="https://registry.npmjs.org/@pnpm"
 
 VERSION="$1"
 TAG="player@${VERSION}"
@@ -18,12 +18,18 @@ COMMIT="$(git -C "${REPO_ROOT}" rev-list -n1 "${TAG}")"
 echo "Resolved ${TAG} to commit ${COMMIT}"
 
 PNPM_VERSION="$(node -p "require('${REPO_ROOT}/package.json').packageManager.split('@')[1]")"
-PNPM_TARBALL="pnpm-${PNPM_VERSION}.tgz"
-PNPM_URL="${PNPM_REGISTRY}/${PNPM_TARBALL}"
 echo "pnpm version: ${PNPM_VERSION}"
 
-PNPM_SHA256="$(curl -fsSL "${PNPM_URL}" | sha256sum | cut -d' ' -f1)"
-echo "pnpm tarball sha256: ${PNPM_SHA256}"
+pnpm_exe_sha256() {
+  local arch="$1"
+  curl -fsSL "${PNPM_EXE_REGISTRY}/exe.linux-${arch}/-/exe.linux-${arch}-${PNPM_VERSION}.tgz" \
+    | sha256sum | cut -d' ' -f1
+}
+
+PNPM_SHA256_X64="$(pnpm_exe_sha256 x64)"
+PNPM_SHA256_ARM64="$(pnpm_exe_sha256 arm64)"
+echo "pnpm exe sha256 x64: ${PNPM_SHA256_X64}"
+echo "pnpm exe sha256 arm64: ${PNPM_SHA256_ARM64}"
 
 WORKDIR="$(mktemp -d)"
 trap 'rm -rf "${WORKDIR}"' EXIT
@@ -33,8 +39,8 @@ git -C "${WORKDIR}" checkout -b "${BRANCH}"
 
 "${FLATPAK_DIR}/generate-sources.sh" "${WORKDIR}"
 
-export TAG COMMIT PNPM_VERSION PNPM_SHA256
-envsubst '$TAG $COMMIT $PNPM_VERSION $PNPM_SHA256' \
+export TAG COMMIT PNPM_VERSION PNPM_SHA256_X64 PNPM_SHA256_ARM64
+envsubst '$TAG $COMMIT $PNPM_VERSION $PNPM_SHA256_X64 $PNPM_SHA256_ARM64' \
   < "${FLATPAK_DIR}/${MANIFEST}.template" \
   > "${WORKDIR}/${MANIFEST}"
 

@@ -34,15 +34,20 @@ modules:
         url: https://github.com/nukeop/nuclear.git
         tag: ${TAG}
         commit: ${COMMIT}
-      - type: file
-        url: https://registry.npmjs.org/pnpm/-/pnpm-${PNPM_VERSION}.tgz
-        sha256: ${PNPM_SHA256}
-        dest-filename: pnpm-${PNPM_VERSION}.tgz
+      - type: archive
+        url: https://registry.npmjs.org/@pnpm/exe.linux-x64/-/exe.linux-x64-${PNPM_VERSION}.tgz
+        sha256: ${PNPM_SHA256_X64}
+        dest: pnpm-exe
+        only-arches: [x86_64]
+      - type: archive
+        url: https://registry.npmjs.org/@pnpm/exe.linux-arm64/-/exe.linux-arm64-${PNPM_VERSION}.tgz
+        sha256: ${PNPM_SHA256_ARM64}
+        dest: pnpm-exe
+        only-arches: [aarch64]
       - pnpm-sources.json
       - cargo-sources.json
     build-commands:
-      - mkdir -p /run/build/nuclear-music-player/.npm-global
-      - npm install -g pnpm-${PNPM_VERSION}.tgz
+      - install -Dm755 pnpm-exe/pnpm /run/build/nuclear-music-player/.npm-global/bin/pnpm
 
       - pnpm install --offline --frozen-lockfile --trust-lockfile
       - pnpm --filter @nuclearplayer/player build:frontend
