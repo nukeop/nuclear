@@ -84,6 +84,15 @@
   </requires>
 
   <releases>
+    <release version="1.48.0" date="2026-09-04">
+      <description>
+        <ul>
+          <li>Theming system v2: themes can now use gradients on surfaces, and a whole new group of variables to make Nuclear more customizable. See the docs and release notes for details.</li>
+          <li>Fixed pressing Enter in the search box searching for a hovered recent search instead of the typed text.</li>
+          <li>Clickable artist/track title in the player bar</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.47.1" date="2026-08-16">
       <description>
         <ul>
