@@ -37,7 +37,7 @@ Both `vars` and `dark` are optional. You only need to include the properties you
 
 **Surfaces and their text colors**
 
-There are several surface types, and each one has its ow foreground color used for rendering text that's on top of it.
+There are several surface types, and each one has its own foreground color used for rendering text that's on top of it.
 
 - `background` / `foreground` - the main window, and the basic background of most views
 - `muted` / `muted-foreground` - sidebars, top and bottom bars, panels, list rows
@@ -76,7 +76,7 @@ Both accept `-gradient` variables, for example `seekbar-gradient`.
 - `accent-cyan`
 - `accent-red`
 
-All accents have corresponding foreground colors too. For example, `--accent-green-foreground`.
+All accents have corresponding foreground colors too. For example, `accent-green-foreground`.
 
 **Borders, rings, overlays**
 
@@ -88,7 +88,7 @@ All accents have corresponding foreground colors too. For example, `--accent-gre
 
 In addition to using solid colors for surfaces, you can also use gradients.
 
-Every surface has an optional `-gradient` variable that overrides solid colors. Examples: `background-gradient`, `muted-gradient`, `card-gradient`.
+Every surface has an optional `-gradient` variable that is drawn on top of the solid color. Examples: `background-gradient`, `muted-gradient`, `card-gradient`. Keep the solid color in addition to the gradient. Some elements use it directly, and it will be used when the gradient can't be shown.
 
 ### Wallpaper
 
@@ -121,6 +121,7 @@ Custom fonts must be installed on the user's system.
 - You can use hex colors (`#ff0000`), OKLCH (`oklch(70% 0.15 30)`), or any valid CSS color value.
 - To use transparency, use this format:
   - For RGBA: `rgba(255, 0, 0, 0.5)`. 0.5 is 50% opacity here.
+  - For 8-digit hex: `#ff000080`. The last two digits are the opacity, `80` is 50%.
   - For OKLCH: `oklch(0.5 0.1 30 / 0.5)`. The `/ 0.5` at the end is 50% opacity.
 
 ## Color spaces
@@ -132,7 +133,7 @@ To convert between them, you can use this utility: [https://oklch.com](https://o
 You can read more about OKLCH here: [Why OKLCH is better than RGB](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl)
 
 ## Template
-A complete template with Nuclear's default values. Copy this and change what you want.
+A complete template with Nuclear's default values. Copy this and change what you want. The optional variables (gradients, bars, seek bar, wallpaper) have no default value and are listed separately below the template.
 
 ```json
 {
@@ -239,3 +240,50 @@ A complete template with Nuclear's default values. Copy this and change what you
   }
 }
 ```
+
+## Optional variables
+
+These variables can be omitted, or mixed and matched however you want. Add the ones you want to either `vars` or `dark`.
+
+```json
+{
+  "version": 2,
+  "name": "Optional variables example",
+  "vars": {
+    "background-gradient": "linear-gradient(180deg, oklch(0.96 0.03 75), oklch(0.9 0.06 30))",
+    "muted-gradient": "linear-gradient(180deg, oklch(1 0 0), oklch(0.96 0.015 290))",
+    "card-gradient": "linear-gradient(180deg, oklch(0.8 0.13 50), oklch(0.7 0.16 30))",
+    "popover-gradient": "linear-gradient(180deg, oklch(0.985 0.015 70), oklch(0.95 0.03 50))",
+    "input-gradient": "linear-gradient(180deg, oklch(1 0 0), oklch(0.98 0.01 70))",
+    "primary-gradient": "linear-gradient(180deg, oklch(0.72 0.16 45), oklch(0.64 0.18 28))",
+
+    "topbar": "oklch(0.3 0.04 150)",
+    "topbar-gradient": "linear-gradient(180deg, oklch(0.33 0.04 150), oklch(0.28 0.04 150))",
+    "topbar-foreground": "oklch(0.95 0.01 90)",
+
+    "bottombar": "oklch(0.27 0.04 150)",
+    "bottombar-gradient": "linear-gradient(180deg, oklch(0.3 0.04 150), oklch(0.25 0.04 150))",
+    "bottombar-foreground": "oklch(0.95 0.01 90)",
+
+    "sidebar-left": "oklch(0.3 0.04 150)",
+    "sidebar-left-gradient": "linear-gradient(180deg, oklch(0.32 0.04 150), oklch(0.27 0.04 150))",
+    "sidebar-left-foreground": "oklch(0.95 0.01 90)",
+
+    "sidebar-right": "oklch(0.955 0.012 90)",
+    "sidebar-right-gradient": "linear-gradient(180deg, oklch(0.97 0.01 90), oklch(0.94 0.014 90))",
+    "sidebar-right-foreground": "oklch(0.38 0.05 150)",
+
+    "seekbar": "oklch(0.8 0.17 130)",
+    "seekbar-gradient": "linear-gradient(180deg, oklch(0.83 0.17 130), oklch(0.77 0.17 130))",
+    "seekbar-foreground": "oklch(0.2 0.04 130)",
+
+    "seekbar-track": "oklch(0.24 0.04 150)",
+    "seekbar-track-gradient": "linear-gradient(180deg, oklch(0.22 0.04 150), oklch(0.26 0.04 150))",
+    "seekbar-track-foreground": "oklch(0.92 0.01 90)",
+
+    "wallpaper": "url('https://example.com/my-wallpaper.png')"
+  }
+}
+```
+
+The accent surfaces accept `-gradient` variables as well, for example `accent-green-gradient`.

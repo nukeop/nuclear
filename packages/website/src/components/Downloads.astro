@@ -2,28 +2,11 @@
 import { Icon } from 'astro-icon/components';
 
 import { stars } from '../data/github';
-import { releaseUrl, version } from '../data/version';
+import { platforms } from '../data/platforms';
 import Badge from './Badge.astro';
 import Box from './Box.astro';
 import { CopyButton } from './CopyButton';
-
-const platforms = [
-  {
-    name: 'macOS',
-    icon: 'simple-icons:apple',
-    url: releaseUrl(`Nuclear_${version}_aarch64.dmg`),
-  },
-  {
-    name: 'Windows',
-    icon: 'simple-icons:windows',
-    url: releaseUrl(`Nuclear_${version}_x64-setup.exe`),
-  },
-  {
-    name: 'Linux',
-    icon: 'simple-icons:linux',
-    url: releaseUrl(`Nuclear_${version}_amd64.AppImage`),
-  },
-];
+import DownloadButtons from './DownloadButtons.astro';
 ---
 
 <Box class="z-10 px-6 py-5 md:hidden">
@@ -49,25 +32,9 @@ const platforms = [
   class="bg-primary z-10 hidden px-8 py-6 md:block"
 >
   <Badge slot="badge">Downloads</Badge>
-  <div class="mt-2 flex justify-center gap-3">
-    {
-      platforms.map((platform) => (
-        <a
-          href={platform.url}
-          class="themed-border btn-interactive border-border bg-muted shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold transition-all hover:shadow-none"
-        >
-          <Icon name={platform.icon} class="h-4 w-4" />
-          {platform.name}
-        </a>
-      ))
-    }
+  <div class="mt-2">
+    <DownloadButtons />
   </div>
-  <a
-    href="https://github.com/nukeop/nuclear/releases"
-    class="mt-4 block text-center text-sm font-medium underline underline-offset-2 hover:no-underline"
-  >
-    All downloads
-  </a>
   <div
     class="text-foreground/60 mx-auto mt-4 max-w-md text-center text-xs leading-relaxed"
   >

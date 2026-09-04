@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import { platforms } from '../data/platforms';
+---
+
+<div class="flex justify-center gap-3">
+  {
+    platforms.map((platform) => (
+      <a
+        href={platform.url}
+        class="themed-border btn-interactive border-border bg-muted shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold transition-all hover:shadow-none"
+      >
+        <Icon name={platform.icon} class="h-4 w-4" />
+        {platform.name}
+      </a>
+    ))
+  }
+</div>
+<a
+  href="https://github.com/nukeop/nuclear/releases"
+  class="mt-4 block text-center text-sm font-medium underline underline-offset-2 hover:no-underline"
+>
+  All downloads
+</a>

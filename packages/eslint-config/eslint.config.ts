@@ -63,6 +63,7 @@ const config: TSESLint.FlatConfig.ConfigArray = tseslint.config([
       'css/no-invalid-at-rules': 0,
       'css/no-invalid-properties': 0,
       'css/no-important': 0,
+      'css/use-baseline': 0,
     },
   },
   { ...prettierPlugin, ignores: ['**/*.md', '**/utilities.css'] },

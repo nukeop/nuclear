@@ -1,7 +1,7 @@
 ---
 title: 'Expanding themes in Nuclear'
 date: 2026-09-03
-description: 'In Nuclear 1.48, you get way more control over themes.'
+description: 'Surfaces, gradients, wallpapers, and per-bar colors: theming v2 in Nuclear 1.48'
 cover: 'https://i.ibb.co/MDPxnrPY/s4.png'
 tags: ['themes', 'releases']
 author: 'nukeop'
@@ -12,6 +12,9 @@ import { Code } from 'astro-expressive-code/components';
 import SurfaceStack from '../../components/theming/SurfaceStack.astro';
 import SeekBarStrip from '../../components/theming/SeekBarStrip.astro';
 import PostImage from '../../components/PostImage.astro';
+import PostDownloads from '../../components/PostDownloads.astro';
+
+[Nuclear is a free, open source music player that finds music for you](https://nuclearplayer.com)
 
 Until now, Nuclear's themes supported only a couple of text colors. And because some of these colors were applied on different backgrounds, you were forced to choose something that will look good on all of them.
 
@@ -137,7 +140,7 @@ Example:
 
 To be able to see your wallpaper through any of the surfaces, use semi-transparent colors for them. The way you define transparency differs depending on the color format you prefer to use:
 - In OKLCH, add one more value after a slash: `"background": "oklch(0.9 0.0325 214 / 0.4)"`. The 0.4 here is the opacity
-- Or if you prefer RGBA values, you can use it like this: `rgba(255, 170, 187, 0.27)`. Here, the 0.27 is the opacity level.
+- Or if you prefer RGBA values, you can use it like this: `background: rgba(255, 170, 187, 0.27)`. Here, the 0.27 is the opacity level.
 - You can also use the 8-digit hex format: `"background": "#FFAABB44"`. Here, the 44 represents opacity.
 
 Complementing the above, transparent surfaces that are displayed above other elements, like dialog windows or popovers, will now use a gaussian blur, which looks like this:
@@ -152,9 +155,16 @@ Themes in the theme store were migrated ahead of launch, and enriched with new c
 
 Old themes keep the `"version": 1` in their JSON files. If you want to use any of the new features, you have to change this to `"version": 2`.
 
+## How to update
+
+Nuclear has an auto-update mechanism. Either let it auto-update by itself, or use the "Click to update" button which will appear when it detects a new update to install.
+
+Depending on your platform, you may want to use that platform's update mechanism. For example, if you installed it from Flathub, your system will notify you there's a pending update.
+
 ## Read more
 
 - Read more about how themes work and how to create your own themes at [advanced themes documentation](https://docs.nuclearplayer.com/nuclear/theming/themes-advanced).
 - Would you like to contribute and add your theme to Nuclear, so other users can use it? Please see the [theme registry](https://github.com/NuclearPlayer/theme-registry?tab=readme-ov-file)!
-- To download Nuclear, head [here](https://github.com/nukeop/nuclear/releases), and pick a file for your platform.
-- And here's [Nuclear's official website](https://nuclearplayer.com)
+- If you make any cool themes, be sure to [join our Discord](https://discord.gg/JqPjKxE) and share them with us!
+
+<PostDownloads />

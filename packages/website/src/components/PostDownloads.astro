@@ -1,0 +1,15 @@
+---
+import Badge from './Badge.astro';
+import Box from './Box.astro';
+import DownloadButtons from './DownloadButtons.astro';
+---
+
+<Box class="not-prose bg-primary my-8 px-8 py-6">
+  <Badge slot="badge">Get Nuclear</Badge>
+  <div class="mt-2 hidden md:block">
+    <DownloadButtons />
+  </div>
+  <p class="mt-2 text-sm md:hidden">
+    Downloads are only available on a desktop device.
+  </p>
+</Box>
