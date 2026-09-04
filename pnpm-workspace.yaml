@@ -1,5 +1,6 @@
 packages:
   - "packages/*"
+pmOnFail: ignore
 allowBuilds:
   esbuild: true
   sharp: true

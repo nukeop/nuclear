@@ -149,7 +149,7 @@ jobs:
             -o /tmp/flatpak-cargo-generator.py
 
       - name: Generate pnpm-sources.json
-        run: flatpak-node-generator pnpm -o flatpak/pnpm-sources.json pnpm-lock.yaml
+        run: flatpak-node-generator pnpm --pnpm-store-version v11 -o flatpak/pnpm-sources.json pnpm-lock.yaml
 
       - name: Generate cargo-sources.json
         run: python3 /tmp/flatpak-cargo-generator.py packages/player/src-tauri/Cargo.lock -o flatpak/cargo-sources.json

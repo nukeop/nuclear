@@ -46,6 +46,7 @@ fi
 
 echo "Generating pnpm-sources.json..."
 flatpak-node-generator pnpm \
+  --pnpm-store-version v11 \
   -o "$OUTPUT_DIR/pnpm-sources.json" \
   "$REPO_ROOT/pnpm-lock.yaml"
 
