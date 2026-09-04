@@ -29,7 +29,8 @@ jobs:
         uses: withastro/action@v5
         with:
           path: packages/website
-          package-manager: pnpm@10.16.1
+          package-manager: pnpm@12.0.0
+          node-version: "24"
 
   deploy:
     needs: build
