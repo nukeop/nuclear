@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-import { platforms } from '../data/platforms';
+import { platforms, repositories } from '../data/platforms';
 ---
 
 <div class="flex justify-center gap-3">
@@ -13,6 +13,20 @@ import { platforms } from '../data/platforms';
       >
         <Icon name={platform.icon} class="h-4 w-4" />
         {platform.name}
+      </a>
+    ))
+  }
+</div>
+<p class="mt-4 text-xs font-medium">Or install from a package repository:</p>
+<div class="mt-2 flex flex-wrap justify-center gap-2">
+  {
+    repositories.map((repository) => (
+      <a
+        href={repository.url}
+        class="themed-border btn-interactive border-border bg-background shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-bold transition-all hover:shadow-none"
+      >
+        <Icon name={repository.icon} class="h-3.5 w-3.5" />
+        {repository.name}
       </a>
     ))
   }

@@ -170,3 +170,50 @@ jobs:
           gh release upload "player@${{ steps.version.outputs.version }}" \
             nuclear-music-player.flatpak \
             --clobber
+
+  homebrew:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract version from tag
+        id: version
+        shell: bash
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/player@}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Download macOS disk images
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release download "player@${{ steps.version.outputs.version }}" \
+            --repo "${{ github.repository }}" \
+            --pattern "Nuclear_*_aarch64.dmg" \
+            --pattern "Nuclear_*_x64.dmg"
+
+      - name: Compute checksums
+        id: checksums
+        run: |
+          echo "arm=$(sha256sum Nuclear_*_aarch64.dmg | cut -d' ' -f1)" >> $GITHUB_OUTPUT
+          echo "intel=$(sha256sum Nuclear_*_x64.dmg | cut -d' ' -f1)" >> $GITHUB_OUTPUT
+
+      - name: Checkout tap
+        uses: actions/checkout@v6
+        with:
+          repository: NuclearPlayer/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: homebrew-tap
+
+      - name: Update cask
+        working-directory: homebrew-tap
+        run: |
+          sed -i \
+            -e 's/^  version ".*"$/  version "${{ steps.version.outputs.version }}"/' \
+            -e 's/^  sha256 arm:   ".*",$/  sha256 arm:   "${{ steps.checksums.outputs.arm }}",/' \
+            -e 's/^         intel: ".*"$/         intel: "${{ steps.checksums.outputs.intel }}"/' \
+            Casks/nuclear.rb
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Casks/nuclear.rb
+          git commit -m "nuclear ${{ steps.version.outputs.version }}"
+          git push

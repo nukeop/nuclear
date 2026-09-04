@@ -17,3 +17,26 @@ export const platforms = [
     url: releaseUrl(`Nuclear_${version}_amd64.AppImage`),
   },
 ];
+
+export const repositories = [
+  {
+    name: 'Flathub',
+    icon: 'simple-icons:flathub',
+    url: 'https://flathub.org/apps/com.nuclearplayer.Nuclear',
+  },
+  {
+    name: 'Snapcraft',
+    icon: 'simple-icons:snapcraft',
+    url: 'https://snapcraft.io/nuclear',
+  },
+  {
+    name: 'AUR',
+    icon: 'simple-icons:archlinux',
+    url: 'https://aur.archlinux.org/packages/nuclear-player-bin',
+  },
+  {
+    name: 'winget',
+    icon: 'simple-icons:windows',
+    url: 'https://winget.run/pkg/nukeop/nuclear',
+  },
+];
