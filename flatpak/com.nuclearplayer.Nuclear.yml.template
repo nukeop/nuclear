@@ -44,7 +44,7 @@ modules:
       - mkdir -p /run/build/nuclear-music-player/.npm-global
       - npm install -g pnpm-${PNPM_VERSION}.tgz
 
-      - pnpm install --offline --frozen-lockfile --config.trust-lockfile=true
+      - pnpm install --offline --frozen-lockfile --trust-lockfile
       - pnpm --filter @nuclearplayer/player build:frontend
       - pnpm --filter @nuclearplayer/player tauri build --no-bundle
         -c '{"build":{"beforeBuildCommand":""}}'
