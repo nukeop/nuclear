@@ -13,7 +13,6 @@ import './basic/aurora.css';
 import './basic/ember.css';
 import './basic/lagoon.css';
 import './basic/arctic-moss.css';
-import './basic/nebula.css';
 
 export type BasicThemeMeta = {
   id: string;
@@ -70,16 +69,6 @@ const BUILT_INS: BasicThemeMeta[] = [
       'oklch(0.97 0.008 200)',
       'oklch(0.58 0.09 175)',
       'oklch(0.20 0.02 175)',
-    ],
-  },
-  {
-    id: 'nuclear:nebula',
-    name: 'Nebula',
-    palette: [
-      'oklch(0.72 0.16 295)',
-      'oklch(0.94 0.025 290)',
-      'oklch(0.50 0.14 295)',
-      'oklch(0.19 0.04 290)',
     ],
   },
 ];
