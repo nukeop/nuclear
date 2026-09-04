@@ -3,7 +3,6 @@ import { render } from 'astro:content';
 
 import Button from '../../components/Button.astro';
 import PostBody from '../../components/PostBody.astro';
-import PostCover from '../../components/PostCover.astro';
 import PostHeader from '../../components/PostHeader.astro';
 import PostImage from '../../components/PostImage.astro';
 import PostToolbar from '../../components/PostToolbar.astro';
@@ -85,7 +84,6 @@ const breadcrumbSchema = {
           readTime={readTime}
           tags={tags}
         />
-        {cover && <PostCover src={cover} alt={title} />}
         <PostBody>
           <Content components={{ img: PostImage }} />
         </PostBody>

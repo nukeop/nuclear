@@ -1,0 +1,20 @@
+---
+type Props = {
+  src: string;
+  alt?: string;
+  width?: number;
+};
+
+const { src, alt = '', width } = Astro.props;
+
+const maxWidth = width === undefined ? undefined : `max-width: ${width}px`;
+---
+
+<img
+  src={src}
+  alt={alt}
+  loading="lazy"
+  data-zoomable
+  class="themed-border border-border shadow-shadow mx-auto my-8 block w-full cursor-zoom-in rounded-md"
+  style={maxWidth}
+/>

@@ -2,6 +2,7 @@
 title: 'Expanding themes in Nuclear'
 date: 2026-09-03
 description: 'In Nuclear 1.48, you get way more control over themes.'
+cover: 'https://i.ibb.co/MDPxnrPY/s4.png'
 tags: ['themes', 'releases']
 author: 'nukeop'
 draft: true
@@ -10,12 +11,13 @@ draft: true
 import { Code } from 'astro-expressive-code/components';
 import SurfaceStack from '../../components/theming/SurfaceStack.astro';
 import SeekBarStrip from '../../components/theming/SeekBarStrip.astro';
+import PostImage from '../../components/PostImage.astro';
 
 Nuclear's themes currently support only a couple of text colors. And because some of these colors are applied on different backgrounds, you are forced to choose something that will look good on all of them.
 
 Sometimes you're limited to a smaller number of colors, for example when creating a theme based on an existing palette. Then you have something like this:
 
-![](https://i.ibb.co/R8Ym3kv/s1.png)
+<PostImage src="https://i.ibb.co/R8Ym3kv/s1.png" width={480} />
 
 Because the cards are light, the standard background is dark, and the text is light, it's going to look like ass. Because in this palette there are only a few shades of beige, you're forced to pick one that'll never look good on both types of backgrounds.
 
