@@ -122,7 +122,7 @@ codex mcp add nuclear --url http://127.0.0.1:8800/mcp
 }
 ```
 
-The MCP is designed to be discoverable, but there's a skill you can load to get your AI up to speed: [Nuclear MCP Skill](./packages/docs/public/skills/nuclear-mcp.zip)
+The MCP is designed to be discoverable, but there's a skill you can load to get your AI up to speed: [Nuclear MCP Skill](./packages/docs/.gitbook/assets/nuclear-mcp.zip)
 
 ## Development
 
