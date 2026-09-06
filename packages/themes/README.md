@@ -28,7 +28,7 @@ Built-in basic theme IDs are namespaced with `nuclear:` to avoid collisions.
 
 Keys correspond to CSS var names without the leading `--`. Keys must match `^[a-z0-9][a-z0-9-]*$`; values must not contain `{`, `}`, or `;`. Themes with `version` other than `2` are ignored.
 
-See [packages/docs/themes/themes-advanced.md](packages/docs/themes/themes-advanced.md) to learn how themes work.
+See [packages/docs/themes/themes-advanced.md](../docs/themes/themes-advanced.md) to learn how themes work.
 
 ## Testing
 
