@@ -23,7 +23,7 @@ exports[`Plugins view > (Snapshot) renders the plugins view 1`] = `
   >
     <div
       animate="[object Object]"
-      class="border-border surface-background shadow-shadow relative rounded-md border-(length:--border-width) backdrop-blur-xl flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-none p-0"
+      class="border-border surface-background shadow-shadow rounded-md border-(length:--border-width) backdrop-blur-xl narrow:inset-0 narrow:rounded-none narrow:border-0 fixed inset-8 flex w-auto max-w-none p-0"
       exit="[object Object]"
       initial="[object Object]"
       transition="[object Object]"

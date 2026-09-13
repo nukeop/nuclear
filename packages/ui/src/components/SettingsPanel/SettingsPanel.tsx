@@ -34,7 +34,7 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({
     <DialogRoot
       isOpen={isOpen}
       onClose={onClose}
-      className="flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-none p-0"
+      className="narrow:inset-0 narrow:rounded-none narrow:border-0 fixed inset-8 flex w-auto max-w-none p-0"
     >
       <SettingsPanelNav
         tabs={tabs}

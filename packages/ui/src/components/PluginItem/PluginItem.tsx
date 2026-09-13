@@ -7,8 +7,6 @@ import {
 } from 'lucide-react';
 import { FC, ReactNode } from 'react';
 
-import '../../styles.css';
-
 import { cn } from '../../utils';
 import { Badge } from '../Badge';
 import { Box } from '../Box';

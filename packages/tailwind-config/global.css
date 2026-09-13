@@ -5,6 +5,7 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant short (@media (height <=740px));
 @custom-variant tall (@media (height > 740px));
+@custom-variant narrow (@media (width < 1080px));
 
 @source '../player';
 @source '../ui';

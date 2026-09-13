@@ -56,6 +56,22 @@
     color: var(--seekbar-foreground, var(--primary-foreground));
 }
 
+@utility bg-stripes-diagonal {
+    background-image: repeating-linear-gradient(
+        135deg,
+        var(--seekbar, var(--primary)) 0 8px,
+        var(--seekbar-track, var(--muted)) 8px 16px
+    );
+    background-size: 22.6px 22.6px;
+    animation: seekbar-stripes 1s linear infinite;
+}
+
+@keyframes seekbar-stripes {
+    to {
+        background-position: 22.6px 0;
+    }
+}
+
 @utility surface-card {
     background-color: var(--card);
     background-image: var(--card-gradient, none);

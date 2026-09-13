@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import '../../styles.css';
-
 import { cn } from '../../utils';
 import { formatTimeSeconds } from '../../utils/time';
 import { useSeekBar } from './useSeekBar';
