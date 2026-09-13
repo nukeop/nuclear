@@ -23,7 +23,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
   >
     <div
       animate="[object Object]"
-      class="border-border surface-background shadow-shadow relative rounded-md border-(length:--border-width) backdrop-blur-xl flex h-[80vh] max-h-[900px] w-[80vw] max-w-6xl p-0"
+      class="border-border surface-background shadow-shadow relative rounded-md border-(length:--border-width) backdrop-blur-xl flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-none p-0"
       exit="[object Object]"
       initial="[object Object]"
       transition="[object Object]"
