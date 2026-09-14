@@ -63,6 +63,7 @@ export const useSettingsNavigation = (): SettingsNavigation => {
   const settingsGroups = useSettingsGroups();
 
   const activeTab = APP_TABS.find((tab) => tab.id === activeItemId);
+  const highlightedItemId = activeItemId ?? settingsGroups[0]?.name ?? null;
 
   return {
     sections: [
@@ -73,7 +74,7 @@ export const useSettingsNavigation = (): SettingsNavigation => {
           id: group.name,
           label: t(`${group.name}.title`, group.name),
         })),
-        activeItemId,
+        activeItemId: highlightedItemId,
         onSelect: selectItem,
       },
       {
@@ -84,7 +85,7 @@ export const useSettingsNavigation = (): SettingsNavigation => {
           label: t(tab.labelKey),
           icon: tab.icon,
         })),
-        activeItemId,
+        activeItemId: highlightedItemId,
         onSelect: selectItem,
       },
     ],

@@ -1,5 +1,3 @@
-import { useMemo, useRef } from 'react';
-
 import { useTranslation } from '@nuclearplayer/i18n';
 import { ScrollableArea, ViewShell } from '@nuclearplayer/ui';
 
@@ -10,12 +8,7 @@ import { useSettingsScrollSpy } from './useSettingsScrollSpy';
 export const Settings = () => {
   const { t } = useTranslation('preferences');
   const groups = useSettingsGroups();
-  const categories = useMemo(() => groups.map((group) => group.name), [groups]);
-  const viewportRef = useRef<HTMLDivElement | null>(null);
-  const { registerSection } = useSettingsScrollSpy({
-    categories,
-    viewportRef,
-  });
+  const { viewportRef, registerSection } = useSettingsScrollSpy();
 
   return (
     <ViewShell title={t('general.title')}>
@@ -28,8 +21,8 @@ export const Settings = () => {
             {groups.map((group) => (
               <div
                 key={group.name}
-                data-testid={`settings-section-${group.name}`}
                 ref={registerSection(group.name)}
+                data-testid={`settings-section-${group.name}`}
               >
                 <SettingsSection
                   title={t(`${group.name}.title`, group.name)}

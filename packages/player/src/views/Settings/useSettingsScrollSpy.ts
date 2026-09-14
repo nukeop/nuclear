@@ -1,104 +1,69 @@
-import { RefObject, useCallback, useEffect, useRef } from 'react';
+import findLast from 'lodash-es/findLast';
+import { useEffect, useMemo, useRef } from 'react';
 
 import { useSettingsModalStore } from '../../stores/settingsModalStore';
+import { useSettingsGroups } from './useSettingsGroups';
 
-type UseSettingsScrollSpyOptions = {
-  categories: string[];
-  viewportRef: RefObject<HTMLDivElement | null>;
-};
+type SectionElements = Record<string, HTMLDivElement>;
 
-const findCategoryInView = (
-  categories: string[],
-  sectionRefs: Map<string, HTMLDivElement>,
+const sectionAtTopOfViewport = (
+  sectionNames: string[],
+  sections: SectionElements,
   scrollTop: number,
-): string | undefined => {
-  const scrolledPast = categories.filter((category) => {
-    const node = sectionRefs.get(category);
-    return node !== undefined && node.offsetTop <= scrollTop;
-  });
-
-  return scrolledPast.at(-1) ?? categories[0];
+): string => {
+  const lastSectionStartingAboveScrollPosition = findLast(
+    sectionNames,
+    (name) => sections[name].offsetTop <= scrollTop,
+  );
+  return lastSectionStartingAboveScrollPosition ?? sectionNames[0];
 };
 
-export const useSettingsScrollSpy = ({
-  categories,
-  viewportRef,
-}: UseSettingsScrollSpyOptions) => {
-  const sectionRefs = useRef(new Map<string, HTMLDivElement>());
-  const lastScrolledToRef = useRef<string | null>(null);
-  const isScrollingProgrammaticallyRef = useRef(false);
-  const settleTimerRef = useRef<number | undefined>(undefined);
+// Scrolls to the selected section when clicked, and updates the selected section when scrolling
+export const useSettingsScrollSpy = () => {
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const sectionsRef = useRef<SectionElements>({});
+  const groups = useSettingsGroups();
   const activeItemId = useSettingsModalStore((state) => state.activeItemId);
   const selectItem = useSettingsModalStore((state) => state.selectItem);
 
-  const registerSection = useCallback(
-    (category: string) => (node: HTMLDivElement | null) => {
-      if (node) {
-        sectionRefs.current.set(category, node);
-      } else {
-        sectionRefs.current.delete(category);
-      }
-    },
-    [],
+  const sectionNames = useMemo(
+    () => groups.map((group) => group.name),
+    [groups],
   );
 
-  const armSettleTimer = useCallback(() => {
-    window.clearTimeout(settleTimerRef.current);
-    settleTimerRef.current = window.setTimeout(() => {
-      isScrollingProgrammaticallyRef.current = false;
-    }, 150);
-  }, []);
+  const registerSection = (name: string) => (element: HTMLDivElement) => {
+    sectionsRef.current[name] = element;
+  };
 
   useEffect(() => {
-    const isCategorySelected =
-      activeItemId !== null && categories.includes(activeItemId);
-    if (!isCategorySelected && categories.length > 0) {
-      selectItem(categories[0]);
-    }
-  }, [activeItemId, categories, selectItem]);
-
-  useEffect(() => {
-    const viewport = viewportRef.current;
-    if (!viewport) {
-      return;
-    }
-
+    const viewport = viewportRef.current!;
     const handleScroll = () => {
-      if (isScrollingProgrammaticallyRef.current) {
-        armSettleTimer();
-        return;
-      }
-      const category = findCategoryInView(
-        categories,
-        sectionRefs.current,
-        viewport.scrollTop,
+      selectItem(
+        sectionAtTopOfViewport(
+          sectionNames,
+          sectionsRef.current,
+          viewport.scrollTop,
+        ),
       );
-      if (category) {
-        lastScrolledToRef.current = category;
-        selectItem(category);
-      }
     };
 
     viewport.addEventListener('scroll', handleScroll);
-    return () => {
-      viewport.removeEventListener('scroll', handleScroll);
-      window.clearTimeout(settleTimerRef.current);
-    };
-  }, [categories, viewportRef, selectItem, armSettleTimer]);
+    return () => viewport.removeEventListener('scroll', handleScroll);
+  }, [sectionNames, selectItem]);
 
   useEffect(() => {
-    if (!activeItemId || lastScrolledToRef.current === activeItemId) {
+    if (activeItemId === null) {
       return;
     }
-    const target = sectionRefs.current.get(activeItemId);
-    if (!target) {
-      return;
+    const topSection = sectionAtTopOfViewport(
+      sectionNames,
+      sectionsRef.current,
+      viewportRef.current!.scrollTop,
+    );
+    if (topSection !== activeItemId) {
+      sectionsRef.current[activeItemId].scrollIntoView();
     }
-    lastScrolledToRef.current = activeItemId;
-    isScrollingProgrammaticallyRef.current = true;
-    armSettleTimer();
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [activeItemId, armSettleTimer]);
+  }, [sectionNames, activeItemId]);
 
-  return { registerSection };
+  return { viewportRef, registerSection };
 };
