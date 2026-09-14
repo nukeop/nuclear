@@ -15,7 +15,9 @@ export const KeyboardShortcutsWrapper = {
     await user.click(
       await component.findByRole('button', { name: 'Preferences' }),
     );
-    await user.click(await screen.findByTestId('settings-tab-shortcuts'));
+    await user.click(
+      await screen.findByTestId('settings-navigation-item-shortcuts'),
+    );
     await screen.findByRole('heading', {
       name: 'Key Shortcuts',
       level: 1,
