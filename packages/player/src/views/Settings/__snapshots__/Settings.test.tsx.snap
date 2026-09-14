@@ -75,7 +75,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Settings
             </div>
             <button
-              aria-pressed="true"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-appearance"
@@ -84,7 +83,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Appearance
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-general"
@@ -93,7 +91,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               General
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-history"
@@ -102,7 +99,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               History
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-integrations"
@@ -111,7 +107,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Integrations
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-playback"
@@ -120,7 +115,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Playback
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-plugins"
@@ -129,7 +123,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Plugins
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-updates"
@@ -148,7 +141,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               App
             </div>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-shortcuts"
@@ -204,7 +196,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Key Shortcuts
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-app-plugins"
@@ -239,7 +230,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Plugins
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-themes"
@@ -291,7 +281,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Themes
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-logs"
@@ -328,7 +317,6 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Logs
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-whats-new"
