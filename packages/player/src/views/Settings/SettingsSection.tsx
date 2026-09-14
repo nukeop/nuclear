@@ -14,7 +14,7 @@ export const SettingsSection: FC<SettingsSectionProps> = ({
   title,
   settings,
 }) => (
-  <SectionShell title={title}>
+  <SectionShell title={title} className="mb-0">
     <div className="flex flex-col gap-6">
       {settings.map((definition) => (
         <SettingFieldWithHost key={definition.id} definition={definition} />
