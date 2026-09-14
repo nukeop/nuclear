@@ -85,7 +85,6 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               App
             </div>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-shortcuts"
@@ -141,7 +140,6 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Key Shortcuts
             </button>
             <button
-              aria-pressed="true"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-app-plugins"
@@ -176,7 +174,6 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Plugins
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-themes"
@@ -228,7 +225,6 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Themes
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-logs"
@@ -265,7 +261,6 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Logs
             </button>
             <button
-              aria-pressed="false"
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-whats-new"
