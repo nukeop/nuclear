@@ -12,13 +12,13 @@ const buttonVariants = cva(
         default:
           'surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none',
         secondary:
-          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none',
+          'surface-background border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none',
         tertiary:
-          'border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-muted text-muted-foreground border-(length:--border-width) hover:shadow-none',
+          'surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none',
         noShadow:
           'surface-primary border-border border-(length:--border-width)',
-        text: 'bg-transparent',
-        ghost: 'hover:bg-foreground/10 border border-current bg-transparent',
+        text: '',
+        ghost: 'hover:bg-foreground/10 border border-current',
       },
       size: {
         default: 'h-10 px-4 py-2',

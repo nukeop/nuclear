@@ -36,7 +36,7 @@ export const NuclearJamSearchBar: FC<NuclearJamSearchBarProps> = ({
       )}
       data-testid="jam-search-bar"
     >
-      <Search className="text-foreground/60 size-5 shrink-0" />
+      <Search className="size-5 shrink-0 opacity-60" />
       <input
         type="search"
         value={value}
@@ -53,7 +53,7 @@ export const NuclearJamSearchBar: FC<NuclearJamSearchBarProps> = ({
         <button
           type="button"
           onClick={handleClear}
-          className="text-foreground/60 hover:text-foreground shrink-0 transition-colors"
+          className="shrink-0 opacity-60 transition-opacity hover:opacity-100"
           data-testid="jam-search-clear"
         >
           <X className="size-5" />

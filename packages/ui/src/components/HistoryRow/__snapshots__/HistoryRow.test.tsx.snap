@@ -82,7 +82,7 @@ exports[`HistoryRow > (Snapshot) renders with artwork and all actions 1`] = `
     >
       <button
         aria-label="Add to favorites"
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
         data-headlessui-state=""
         data-testid="history-row-favorite"
         type="button"
@@ -136,7 +136,7 @@ exports[`HistoryRow > (Snapshot) renders with artwork and all actions 1`] = `
         </button>
         <button
           aria-label="Add to queue"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
           data-headlessui-state=""
           data-testid="history-row-add-to-queue"
           type="button"

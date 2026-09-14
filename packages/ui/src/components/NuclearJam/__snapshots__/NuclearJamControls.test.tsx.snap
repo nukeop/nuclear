@@ -9,7 +9,7 @@ exports[`NuclearJamControls > (Snapshot) renders the controls 1`] = `
       class="flex items-center justify-center gap-1"
     >
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
         data-headlessui-state=""
         data-testid="jam-shuffle-button"
         type="button"
@@ -45,7 +45,7 @@ exports[`NuclearJamControls > (Snapshot) renders the controls 1`] = `
         </svg>
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
         data-headlessui-state=""
         data-testid="jam-previous-button"
         type="button"
@@ -96,7 +96,7 @@ exports[`NuclearJamControls > (Snapshot) renders the controls 1`] = `
         </svg>
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
         data-headlessui-state=""
         data-testid="jam-next-button"
         type="button"
@@ -123,7 +123,7 @@ exports[`NuclearJamControls > (Snapshot) renders the controls 1`] = `
         </svg>
       </button>
       <button
-        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
         data-headlessui-state=""
         data-testid="jam-repeat-button"
         type="button"

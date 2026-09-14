@@ -36,7 +36,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
       >
         <button
           aria-label="Close"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center absolute top-3 right-3"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center absolute top-3 right-3"
           data-headlessui-state=""
           data-testid="dialog-x-close"
           type="button"
@@ -63,55 +63,31 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
           </svg>
         </button>
         <nav
-          class="border-border flex w-56 shrink-0 flex-col border-r-(length:--border-width) p-4"
+          class="border-border flex w-56 shrink-0 flex-col gap-4 border-r-(length:--border-width) p-4"
         >
           <div
             class="flex flex-col gap-1"
+            data-testid="settings-navigation-section-general"
           >
-            <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
-              data-headlessui-state=""
-              data-testid="settings-tab-general"
-              type="button"
+            <div
+              class="font-heading text-foreground px-2 pt-3 pb-1 text-sm font-extrabold tracking-tight uppercase"
             >
-              <span>
-                <svg
-                  aria-hidden="true"
-                  class="lucide lucide-settings2 lucide-settings-2"
-                  fill="none"
-                  height="24"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14 17H5"
-                  />
-                  <path
-                    d="M19 7h-9"
-                  />
-                  <circle
-                    cx="17"
-                    cy="17"
-                    r="3"
-                  />
-                  <circle
-                    cx="7"
-                    cy="7"
-                    r="3"
-                  />
-                </svg>
-              </span>
-              General
-            </button>
+              Settings
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-1"
+            data-testid="settings-navigation-section-app"
+          >
+            <div
+              class="font-heading text-foreground px-2 pt-3 pb-1 text-sm font-extrabold tracking-tight uppercase"
+            >
+              App
+            </div>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
-              data-testid="settings-tab-shortcuts"
+              data-testid="settings-navigation-item-shortcuts"
               type="button"
             >
               <span>
@@ -166,7 +142,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
-              data-testid="settings-tab-plugins"
+              data-testid="settings-navigation-item-app-plugins"
               type="button"
             >
               <span>
@@ -198,9 +174,9 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Plugins
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
-              data-testid="settings-tab-themes"
+              data-testid="settings-navigation-item-themes"
               type="button"
             >
               <span>
@@ -249,9 +225,9 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Themes
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
-              data-testid="settings-tab-logs"
+              data-testid="settings-navigation-item-logs"
               type="button"
             >
               <span>
@@ -285,9 +261,9 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Logs
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
-              data-testid="settings-tab-whats-new"
+              data-testid="settings-navigation-item-whats-new"
               type="button"
             >
               <span>
@@ -334,7 +310,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               >
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -356,7 +332,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -378,7 +354,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -400,7 +376,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -464,7 +440,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                     <button
                       aria-controls="headlessui-tabs-panel-:rg:"
                       aria-selected="false"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2"
                       data-headlessui-state=""
                       id="headlessui-tabs-tab-:rc:"
                       role="tab"

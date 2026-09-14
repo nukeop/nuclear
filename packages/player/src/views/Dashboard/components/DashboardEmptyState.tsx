@@ -19,7 +19,7 @@ export const DashboardEmptyState: FC = () => {
       action={
         <Button
           data-testid="dashboard-empty-state-action"
-          onClick={() => useSettingsModalStore.getState().open('plugins')}
+          onClick={() => useSettingsModalStore.getState().open('app-plugins')}
         >
           {t('empty-state-action')}
         </Button>

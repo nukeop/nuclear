@@ -1,60 +1,37 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  BlocksIcon,
-  PaletteIcon,
-  ScrollTextIcon,
-  Settings2Icon,
-} from 'lucide-react';
+import { BlocksIcon, PaletteIcon, ScrollTextIcon } from 'lucide-react';
 import { useState } from 'react';
 
-import { Button, SettingsPanel, SettingsTab } from '@nuclearplayer/ui';
+import {
+  Button,
+  SettingsNavigationSection,
+  SettingsPanel,
+} from '@nuclearplayer/ui';
 
-const SAMPLE_TABS: SettingsTab[] = [
-  {
-    id: 'general',
-    label: 'General',
-    icon: <Settings2Icon size={16} />,
-    content: () => (
-      <div className="p-6">
-        <h1 className="font-heading mb-4 text-3xl font-bold">General</h1>
-        <p>General settings content goes here.</p>
-      </div>
-    ),
-  },
-  {
-    id: 'plugins',
-    label: 'Plugins',
-    icon: <BlocksIcon size={16} />,
-    content: () => (
-      <div className="p-6">
-        <h1 className="font-heading mb-4 text-3xl font-bold">Plugins</h1>
-        <p>Plugin management content.</p>
-      </div>
-    ),
-  },
-  {
-    id: 'themes',
-    label: 'Themes',
-    icon: <PaletteIcon size={16} />,
-    content: () => (
-      <div className="p-6">
-        <h1 className="font-heading mb-4 text-3xl font-bold">Themes</h1>
-        <p>Theme selection content.</p>
-      </div>
-    ),
-  },
-  {
-    id: 'logs',
-    label: 'Logs',
-    icon: <ScrollTextIcon size={16} />,
-    content: () => (
-      <div className="p-6">
-        <h1 className="font-heading mb-4 text-3xl font-bold">Logs</h1>
-        <p>Log viewer content.</p>
-      </div>
-    ),
-  },
+const GENERAL_ITEMS = [
+  { id: 'general', label: 'General' },
+  { id: 'appearance', label: 'Appearance' },
 ];
+
+const APP_ITEMS = [
+  { id: 'plugins', label: 'Plugins', icon: <BlocksIcon size={16} /> },
+  { id: 'themes', label: 'Themes', icon: <PaletteIcon size={16} /> },
+  { id: 'logs', label: 'Logs', icon: <ScrollTextIcon size={16} /> },
+];
+
+const SAMPLE_CONTENT: Record<string, { title: string; body: string }> = {
+  general: {
+    title: 'General',
+    body: 'General settings content goes here.',
+  },
+  appearance: {
+    title: 'Appearance',
+    body: 'Appearance settings content goes here.',
+  },
+  plugins: { title: 'Plugins', body: 'Plugin management content.' },
+  themes: { title: 'Themes', body: 'Theme selection content.' },
+  logs: { title: 'Logs', body: 'Log viewer content.' },
+};
 
 const meta: Meta<typeof SettingsPanel> = {
   title: 'Components/SettingsPanel',
@@ -70,7 +47,39 @@ type Story = StoryObj<Meta<typeof SettingsPanel>>;
 
 const SettingsPanelDemo = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [activeTab, setActiveTab] = useState('general');
+  const [activeGeneralItem, setActiveGeneralItem] = useState<string | null>(
+    'general',
+  );
+  const [activeAppItem, setActiveAppItem] = useState<string | null>(null);
+  const content =
+    SAMPLE_CONTENT[activeAppItem ?? activeGeneralItem ?? 'general'];
+
+  const selectGeneralItem = (id: string) => {
+    setActiveGeneralItem(id);
+    setActiveAppItem(null);
+  };
+
+  const selectAppItem = (id: string) => {
+    setActiveAppItem(id);
+    setActiveGeneralItem(null);
+  };
+
+  const sections: SettingsNavigationSection[] = [
+    {
+      id: 'general',
+      label: 'Settings',
+      items: GENERAL_ITEMS,
+      activeItemId: activeGeneralItem,
+      onSelect: selectGeneralItem,
+    },
+    {
+      id: 'app',
+      label: 'App',
+      items: APP_ITEMS,
+      activeItemId: activeAppItem,
+      onSelect: selectAppItem,
+    },
+  ];
 
   return (
     <div className="flex h-screen items-center justify-center">
@@ -78,10 +87,15 @@ const SettingsPanelDemo = () => {
       <SettingsPanel
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        tabs={SAMPLE_TABS}
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-      />
+        sections={sections}
+      >
+        <div className="p-6">
+          <h1 className="font-heading mb-4 text-3xl font-bold">
+            {content.title}
+          </h1>
+          <p>{content.body}</p>
+        </div>
+      </SettingsPanel>
     </div>
   );
 };

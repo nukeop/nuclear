@@ -13,11 +13,6 @@ export const SettingsWrapper = {
     await userEvent.click(
       await component.findByRole('button', { name: 'Preferences' }),
     );
-    await userEvent.click(
-      await component.findByRole('button', {
-        name: 'General',
-      }),
-    );
     await screen.findByRole('heading', { name: 'General', level: 1 });
 
     return component;

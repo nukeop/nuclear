@@ -1,29 +1,21 @@
 import { create } from 'zustand';
 
-export type SettingsTab =
-  | 'general'
-  | 'shortcuts'
-  | 'plugins'
-  | 'themes'
-  | 'logs'
-  | 'whats-new';
-
 type SettingsModalState = {
   isOpen: boolean;
-  activeTab: SettingsTab;
-  open: (tab?: SettingsTab) => void;
+  activeItemId: string | null;
+  open: (itemId?: string) => void;
   close: () => void;
-  setActiveTab: (tab: SettingsTab) => void;
+  selectItem: (itemId: string) => void;
 };
 
 export const useSettingsModalStore = create<SettingsModalState>((set) => ({
   isOpen: false,
-  activeTab: 'general',
-  open: (tab) =>
+  activeItemId: null,
+  open: (itemId) =>
     set((state) => ({
       isOpen: true,
-      ...(tab ? { activeTab: tab } : { activeTab: state.activeTab }),
+      activeItemId: itemId ?? state.activeItemId,
     })),
   close: () => set({ isOpen: false }),
-  setActiveTab: (tab) => set({ activeTab: tab }),
+  selectItem: (itemId) => set({ activeItemId: itemId }),
 }));

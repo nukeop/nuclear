@@ -1,50 +1,37 @@
 import { render } from '@testing-library/react';
-import {
-  BlocksIcon,
-  PaletteIcon,
-  ScrollTextIcon,
-  Settings2Icon,
-} from 'lucide-react';
+import { BlocksIcon, PaletteIcon } from 'lucide-react';
 
-import { SettingsPanel, SettingsTab } from './SettingsPanel';
+import { SettingsNavigationSection, SettingsPanel } from './SettingsPanel';
 
-const TABS: SettingsTab[] = [
+const sections: SettingsNavigationSection[] = [
   {
     id: 'general',
-    label: 'General',
-    icon: <Settings2Icon />,
-    content: () => <div>General content</div>,
+    label: 'Settings',
+    items: [
+      { id: 'general', label: 'General' },
+      { id: 'plugins', label: 'Plugins' },
+    ],
+    activeItemId: 'general',
+    onSelect: () => {},
   },
   {
-    id: 'plugins',
-    label: 'Plugins',
-    icon: <BlocksIcon />,
-    content: () => <div>Plugins content</div>,
-  },
-  {
-    id: 'themes',
-    label: 'Themes',
-    icon: <PaletteIcon />,
-    content: () => <div>Themes content</div>,
-  },
-  {
-    id: 'logs',
-    label: 'Logs',
-    icon: <ScrollTextIcon />,
-    content: () => <div>Logs content</div>,
+    id: 'app',
+    label: 'App',
+    items: [
+      { id: 'plugins', label: 'Plugins', icon: <BlocksIcon /> },
+      { id: 'themes', label: 'Themes', icon: <PaletteIcon /> },
+    ],
+    activeItemId: null,
+    onSelect: () => {},
   },
 ];
 
 describe('SettingsPanel', () => {
   it('(Snapshot) renders when open', () => {
     const { asFragment } = render(
-      <SettingsPanel
-        isOpen
-        onClose={() => {}}
-        tabs={TABS}
-        activeTab="general"
-        onTabChange={() => {}}
-      />,
+      <SettingsPanel isOpen onClose={() => {}} sections={sections}>
+        <div>General content</div>
+      </SettingsPanel>,
     );
     expect(asFragment()).toMatchSnapshot();
   });

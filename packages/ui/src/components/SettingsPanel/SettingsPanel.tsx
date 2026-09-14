@@ -2,49 +2,43 @@ import { FC, ReactNode } from 'react';
 
 import { DialogRoot } from '../Dialog/DialogRoot';
 import { SettingsPanelContent } from './SettingsPanelContent';
-import { SettingsPanelNav } from './SettingsPanelNav';
+import { SettingsPanelNavigation } from './SettingsPanelNavigation';
 
-export type SettingsTab = {
+export type SettingsNavigationItem = {
   id: string;
   label: string;
-  icon: ReactNode;
-  content: () => ReactNode;
+  icon?: ReactNode;
+};
+
+export type SettingsNavigationSection = {
+  id: string;
+  label: string;
+  items: SettingsNavigationItem[];
+  activeItemId: string | null;
+  onSelect: (itemId: string) => void;
 };
 
 type SettingsPanelProps = {
   isOpen: boolean;
   onClose: () => void;
-  tabs: SettingsTab[];
-  activeTab: string;
-  onTabChange: (tabId: string) => void;
-  navFooter?: ReactNode;
+  sections: SettingsNavigationSection[];
+  navigationFooter?: ReactNode;
+  children: ReactNode;
 };
 
 export const SettingsPanel: FC<SettingsPanelProps> = ({
   isOpen,
   onClose,
-  tabs,
-  activeTab,
-  onTabChange,
-  navFooter,
-}) => {
-  const activeTabContent = tabs.find((tab) => tab.id === activeTab)?.content;
-
-  return (
-    <DialogRoot
-      isOpen={isOpen}
-      onClose={onClose}
-      className="narrow:inset-0 narrow:rounded-none narrow:border-0 fixed inset-8 flex w-auto max-w-none p-0"
-    >
-      <SettingsPanelNav
-        tabs={tabs}
-        activeTab={activeTab}
-        onTabChange={onTabChange}
-        footer={navFooter}
-      />
-      <SettingsPanelContent>
-        {activeTabContent && activeTabContent()}
-      </SettingsPanelContent>
-    </DialogRoot>
-  );
-};
+  sections,
+  navigationFooter,
+  children,
+}) => (
+  <DialogRoot
+    isOpen={isOpen}
+    onClose={onClose}
+    className="narrow:inset-0 narrow:rounded-none narrow:border-0 fixed inset-8 flex w-auto max-w-none p-0"
+  >
+    <SettingsPanelNavigation sections={sections} footer={navigationFooter} />
+    <SettingsPanelContent>{children}</SettingsPanelContent>
+  </DialogRoot>
+);

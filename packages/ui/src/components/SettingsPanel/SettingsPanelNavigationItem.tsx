@@ -2,29 +2,25 @@ import { FC, ReactNode } from 'react';
 
 import { Button } from '../Button';
 
-type SettingsPanelNavItemProps = {
+type SettingsPanelNavigationItemProps = {
   id: string;
   label: string;
-  icon: ReactNode;
+  icon?: ReactNode;
   isActive: boolean;
   onClick: () => void;
 };
 
-export const SettingsPanelNavItem: FC<SettingsPanelNavItemProps> = ({
-  id,
-  label,
-  icon,
-  isActive,
-  onClick,
-}) => (
+export const SettingsPanelNavigationItem: FC<
+  SettingsPanelNavigationItemProps
+> = ({ id, label, icon, isActive, onClick }) => (
   <Button
-    data-testid={`settings-tab-${id}`}
+    data-testid={`settings-navigation-item-${id}`}
     onClick={onClick}
     variant={isActive ? 'default' : 'text'}
     size="default"
     className="justify-start gap-2"
   >
-    <span>{icon}</span>
+    {icon && <span>{icon}</span>}
     {label}
   </Button>
 );

@@ -42,7 +42,7 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
     >
       {!playlist.isReadOnly && !isEditing && (
         <Button
-          variant="secondary"
+          variant="tertiary"
           size="icon-sm"
           className="absolute top-4 right-4 z-10"
           onClick={startEditing}
@@ -85,14 +85,14 @@ export const PlaylistDetailHeader: FC<PlaylistDetailHeaderProps> = ({
             />
             <div className="flex gap-2">
               <Button
-                variant="secondary"
+                variant="tertiary"
                 onClick={save}
                 data-testid="save-edit-button"
               >
                 {t('common:actions.save')}
               </Button>
               <Button
-                variant="secondary"
+                variant="tertiary"
                 onClick={cancel}
                 data-testid="cancel-edit-button"
               >
