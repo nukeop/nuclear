@@ -1286,7 +1286,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           >
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-shuffle-button"
                 type="button"
@@ -1323,7 +1323,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               </button>
             </div>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >
@@ -1373,7 +1373,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               data-testid="player-next-button"
               type="button"
@@ -1401,7 +1401,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             </button>
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-repeat-button"
                 type="button"
@@ -1443,7 +1443,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
             class="flex items-center gap-2"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >

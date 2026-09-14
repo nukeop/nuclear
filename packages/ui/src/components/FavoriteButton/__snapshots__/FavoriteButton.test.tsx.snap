@@ -4,7 +4,7 @@ exports[`FavoriteButton > (Snapshot) renders favorited state 1`] = `
 <div>
   <button
     aria-label="Remove from favorites"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
     data-headlessui-state=""
     type="button"
   >
@@ -33,7 +33,7 @@ exports[`FavoriteButton > (Snapshot) renders unfavorited state 1`] = `
 <div>
   <button
     aria-label="Add to favorites"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
     data-headlessui-state=""
     type="button"
   >

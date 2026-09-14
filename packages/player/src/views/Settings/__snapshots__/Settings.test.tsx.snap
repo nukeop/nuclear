@@ -36,7 +36,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
       >
         <button
           aria-label="Close"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center absolute top-3 right-3"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center absolute top-3 right-3"
           data-headlessui-state=""
           data-testid="dialog-x-close"
           type="button"
@@ -83,7 +83,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Appearance
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-general"
               type="button"
@@ -91,7 +91,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               General
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-history"
               type="button"
@@ -99,7 +99,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               History
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-integrations"
               type="button"
@@ -107,7 +107,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Integrations
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-playback"
               type="button"
@@ -115,7 +115,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Playback
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-plugins"
               type="button"
@@ -123,7 +123,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Plugins
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-updates"
               type="button"
@@ -141,7 +141,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               App
             </div>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-shortcuts"
               type="button"
@@ -196,7 +196,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Key Shortcuts
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-app-plugins"
               type="button"
@@ -230,7 +230,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Plugins
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-themes"
               type="button"
@@ -281,7 +281,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Themes
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-logs"
               type="button"
@@ -317,7 +317,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               Logs
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-whats-new"
               type="button"
@@ -366,7 +366,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
               >
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -388,7 +388,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -410,7 +410,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -432,7 +432,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -495,13 +495,13 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                       style="scrollbar-width: none;"
                     >
                       <div
-                        class="px-2"
+                        class="px-2 pb-10"
                       >
                         <div
                           data-testid="settings-section-appearance"
                         >
                           <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                            class="flex w-full flex-col items-start justify-start mb-0"
                           >
                             <h2
                               class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
@@ -634,11 +634,14 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                             </div>
                           </section>
                         </div>
+                        <hr
+                          class="border-foreground/10 my-10"
+                        />
                         <div
                           data-testid="settings-section-general"
                         >
                           <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                            class="flex w-full flex-col items-start justify-start mb-0"
                           >
                             <h2
                               class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
@@ -707,11 +710,14 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                             </div>
                           </section>
                         </div>
+                        <hr
+                          class="border-foreground/10 my-10"
+                        />
                         <div
                           data-testid="settings-section-history"
                         >
                           <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                            class="flex w-full flex-col items-start justify-start mb-0"
                           >
                             <h2
                               class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
@@ -761,11 +767,14 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                             </div>
                           </section>
                         </div>
+                        <hr
+                          class="border-foreground/10 my-10"
+                        />
                         <div
                           data-testid="settings-section-integrations"
                         >
                           <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                            class="flex w-full flex-col items-start justify-start mb-0"
                           >
                             <h2
                               class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
@@ -826,7 +835,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       data-testid="info-field-value"
                                     />
                                     <button
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current bg-transparent size-8 justify-center"
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current size-8 justify-center"
                                       data-headlessui-state=""
                                       data-testid="info-field-copy-button"
                                       type="button"
@@ -880,7 +889,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       data-testid="info-field-value"
                                     />
                                     <button
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current bg-transparent size-8 justify-center"
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current size-8 justify-center"
                                       data-headlessui-state=""
                                       data-testid="info-field-copy-button"
                                       type="button"
@@ -968,7 +977,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       http://127.0.0.1:8800/mcp
                                     </div>
                                     <button
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current bg-transparent size-8 justify-center"
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current size-8 justify-center"
                                       data-headlessui-state=""
                                       data-testid="info-field-copy-button"
                                       type="button"
@@ -1056,7 +1065,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                       mpd://127.0.0.1:6600
                                     </div>
                                     <button
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current bg-transparent size-8 justify-center"
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current size-8 justify-center"
                                       data-headlessui-state=""
                                       data-testid="info-field-copy-button"
                                       type="button"
@@ -1130,11 +1139,14 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                             </div>
                           </section>
                         </div>
+                        <hr
+                          class="border-foreground/10 my-10"
+                        />
                         <div
                           data-testid="settings-section-playback"
                         >
                           <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                            class="flex w-full flex-col items-start justify-start mb-0"
                           >
                             <h2
                               class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
@@ -1324,11 +1336,14 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                             </div>
                           </section>
                         </div>
+                        <hr
+                          class="border-foreground/10 my-10"
+                        />
                         <div
                           data-testid="settings-section-plugins"
                         >
                           <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                            class="flex w-full flex-col items-start justify-start mb-0"
                           >
                             <h2
                               class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"
@@ -1378,11 +1393,14 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                             </div>
                           </section>
                         </div>
+                        <hr
+                          class="border-foreground/10 my-10"
+                        />
                         <div
                           data-testid="settings-section-updates"
                         >
                           <section
-                            class="mb-6 flex w-full flex-col items-start justify-start"
+                            class="flex w-full flex-col items-start justify-start mb-0"
                           >
                             <h2
                               class="mb-3 flex w-full flex-0 flex-row text-left text-2xl font-bold"

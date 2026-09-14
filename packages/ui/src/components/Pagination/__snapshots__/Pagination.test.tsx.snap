@@ -8,7 +8,7 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
 >
   <button
     aria-label="Previous page"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-background border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
     data-headlessui-state=""
     type="button"
   >
@@ -87,7 +87,7 @@ exports[`Pagination > (Snapshot) renders a middle page with ellipses on both sid
   </button>
   <button
     aria-label="Next page"
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-8 justify-center"
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-background border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
     data-headlessui-state=""
     type="button"
   >

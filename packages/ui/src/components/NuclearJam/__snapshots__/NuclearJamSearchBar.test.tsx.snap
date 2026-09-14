@@ -8,7 +8,7 @@ exports[`NuclearJamSearchBar > (Snapshot) renders empty 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="lucide lucide-search text-foreground/60 size-5 shrink-0"
+      class="lucide lucide-search size-5 shrink-0 opacity-60"
       fill="none"
       height="24"
       stroke="currentColor"
@@ -51,7 +51,7 @@ exports[`NuclearJamSearchBar > (Snapshot) renders with a value 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="lucide lucide-search text-foreground/60 size-5 shrink-0"
+      class="lucide lucide-search size-5 shrink-0 opacity-60"
       fill="none"
       height="24"
       stroke="currentColor"
@@ -83,7 +83,7 @@ exports[`NuclearJamSearchBar > (Snapshot) renders with a value 1`] = `
       value="Radiohead"
     />
     <button
-      class="text-foreground/60 hover:text-foreground shrink-0 transition-colors"
+      class="shrink-0 opacity-60 transition-opacity hover:opacity-100"
       data-testid="jam-search-clear"
       type="button"
     >

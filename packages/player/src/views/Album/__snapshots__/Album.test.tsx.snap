@@ -136,7 +136,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
             />
           </div>
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent absolute top-1/2 right-1 size-6 -translate-y-1/2 justify-center p-0"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 absolute top-1/2 right-1 size-6 -translate-y-1/2 justify-center p-0"
             data-headlessui-state=""
             data-testid="search-box-clear"
             type="button"
@@ -804,7 +804,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                       </div>
                       <div>
                         <button
-                          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y bg-background text-foreground border-(length:--border-width) hover:shadow-none size-10 justify-center"
+                          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center"
                           data-headlessui-state=""
                           data-testid="add-all-to-queue-button"
                           type="button"
@@ -913,7 +913,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                               >
                                 <button
                                   aria-label="Add to favorites"
-                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                                   data-headlessui-state=""
                                   type="button"
                                 >
@@ -961,7 +961,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                                   >
                                     <button
                                       aria-label="Add to queue"
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
                                       data-headlessui-state=""
                                       data-testid="add-to-queue-button"
                                       type="button"
@@ -991,7 +991,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                                       aria-expanded="false"
                                       aria-haspopup="menu"
                                       aria-label="Track options"
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
                                       data-headlessui-state=""
                                       data-state="closed"
                                       data-testid="track-context-menu-button"
@@ -1047,7 +1047,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                               >
                                 <button
                                   aria-label="Add to favorites"
-                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                                  class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                                   data-headlessui-state=""
                                   type="button"
                                 >
@@ -1095,7 +1095,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                                   >
                                     <button
                                       aria-label="Add to queue"
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
                                       data-headlessui-state=""
                                       data-testid="add-to-queue-button"
                                       type="button"
@@ -1125,7 +1125,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                                       aria-expanded="false"
                                       aria-haspopup="menu"
                                       aria-label="Track options"
-                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
+                                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center opacity-0 transition-none group-hover:opacity-100"
                                       data-headlessui-state=""
                                       data-state="closed"
                                       data-testid="track-context-menu-button"
@@ -1372,7 +1372,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
           >
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-shuffle-button"
                 type="button"
@@ -1409,7 +1409,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
               </button>
             </div>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >
@@ -1459,7 +1459,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               data-testid="player-next-button"
               type="button"
@@ -1487,7 +1487,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
             </button>
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-repeat-button"
                 type="button"
@@ -1529,7 +1529,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
             class="flex items-center gap-2"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >

@@ -36,7 +36,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
       >
         <button
           aria-label="Close"
-          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center absolute top-3 right-3"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center absolute top-3 right-3"
           data-headlessui-state=""
           data-testid="dialog-x-close"
           type="button"
@@ -85,7 +85,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               App
             </div>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-shortcuts"
               type="button"
@@ -174,7 +174,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Plugins
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-themes"
               type="button"
@@ -225,7 +225,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Themes
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-logs"
               type="button"
@@ -261,7 +261,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               Logs
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2 justify-start gap-2"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2 justify-start gap-2"
               data-headlessui-state=""
               data-testid="settings-navigation-item-whats-new"
               type="button"
@@ -310,7 +310,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
               >
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -332,7 +332,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -354,7 +354,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -376,7 +376,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                 </div>
                 <div>
                   <button
-                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-8 justify-center"
+                    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
                     data-headlessui-state=""
                     type="button"
                   >
@@ -440,7 +440,7 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
                     <button
                       aria-controls="headlessui-tabs-panel-:rg:"
                       aria-selected="false"
-                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent h-10 px-4 py-2"
+                      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 h-10 px-4 py-2"
                       data-headlessui-state=""
                       id="headlessui-tabs-tab-:rc:"
                       role="tab"

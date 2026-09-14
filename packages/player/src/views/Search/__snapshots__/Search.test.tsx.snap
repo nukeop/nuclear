@@ -137,7 +137,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             />
           </div>
           <button
-            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent absolute top-1/2 right-1 size-6 -translate-y-1/2 justify-center p-0"
+            class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 absolute top-1/2 right-1 size-6 -translate-y-1/2 justify-center p-0"
             data-headlessui-state=""
             data-testid="search-box-clear"
             type="button"
@@ -939,7 +939,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
           >
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-shuffle-button"
                 type="button"
@@ -976,7 +976,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               </button>
             </div>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >
@@ -1026,7 +1026,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
               </svg>
             </button>
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               data-testid="player-next-button"
               type="button"
@@ -1054,7 +1054,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             </button>
             <div>
               <button
-                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+                class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
                 data-headlessui-state=""
                 data-testid="player-repeat-button"
                 type="button"
@@ -1096,7 +1096,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             class="flex items-center gap-2"
           >
             <button
-              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 bg-transparent size-10 justify-center"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
               type="button"
             >
