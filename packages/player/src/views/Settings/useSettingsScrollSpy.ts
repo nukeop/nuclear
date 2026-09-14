@@ -6,16 +6,23 @@ import { useSettingsGroups } from './useSettingsGroups';
 
 type SectionElements = Record<string, HTMLDivElement>;
 
-const sectionAtTopOfViewport = (
+const highlightedSection = (
   sectionNames: string[],
   sections: SectionElements,
-  scrollTop: number,
+  viewport: HTMLDivElement,
 ): string => {
-  const lastSectionStartingAboveScrollPosition = findLast(
+  const isScrolledToBottom =
+    viewport.scrollTop + viewport.clientHeight >= viewport.scrollHeight;
+  if (isScrolledToBottom) {
+    return sectionNames[sectionNames.length - 1];
+  }
+
+  const viewportMiddle = viewport.scrollTop + viewport.clientHeight / 2;
+  const lastSectionStartingAboveMiddle = findLast(
     sectionNames,
-    (name) => sections[name].offsetTop <= scrollTop,
+    (name) => sections[name].offsetTop <= viewportMiddle,
   );
-  return lastSectionStartingAboveScrollPosition ?? sectionNames[0];
+  return lastSectionStartingAboveMiddle ?? sectionNames[0];
 };
 
 // Scrolls to the selected section when clicked, and updates the selected section when scrolling
@@ -39,11 +46,7 @@ export const useSettingsScrollSpy = () => {
     const viewport = viewportRef.current!;
     const handleScroll = () => {
       selectItem(
-        sectionAtTopOfViewport(
-          sectionNames,
-          sectionsRef.current,
-          viewport.scrollTop,
-        ),
+        highlightedSection(sectionNames, sectionsRef.current, viewport),
       );
     };
 
@@ -55,12 +58,12 @@ export const useSettingsScrollSpy = () => {
     if (activeItemId === null) {
       return;
     }
-    const topSection = sectionAtTopOfViewport(
+    const currentSection = highlightedSection(
       sectionNames,
       sectionsRef.current,
-      viewportRef.current!.scrollTop,
+      viewportRef.current!,
     );
-    if (topSection !== activeItemId) {
+    if (currentSection !== activeItemId) {
       sectionsRef.current[activeItemId].scrollIntoView();
     }
   }, [sectionNames, activeItemId]);
