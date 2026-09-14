@@ -5,11 +5,12 @@ type ThemeVars = Record<string, string>;
 const v1ToV2Tokens: Record<string, string[]> = {
   'background-secondary': ['muted'],
   'background-input': ['input'],
-  'foreground-secondary': ['muted-foreground'],
+  'foreground-secondary': [],
   'foreground-input': ['input-foreground'],
   primary: ['primary', 'card', 'popover'],
   foreground: [
     'foreground',
+    'muted-foreground',
     'primary-foreground',
     'card-foreground',
     'popover-foreground',

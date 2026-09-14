@@ -35,7 +35,7 @@ export const PlaylistActions: FC<PlaylistActionsProps> = ({
   return (
     <div className={cn('flex items-center gap-2', className)}>
       <Button
-        variant="secondary"
+        variant="tertiary"
         onClick={handlePlayAll}
         data-testid="play-all-button"
       >
@@ -47,7 +47,7 @@ export const PlaylistActions: FC<PlaylistActionsProps> = ({
         panelClassName="surface-background px-0 py-0"
         trigger={
           <Button
-            variant="secondary"
+            variant="tertiary"
             size="icon"
             data-testid="playlist-actions-button"
           >

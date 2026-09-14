@@ -144,7 +144,7 @@ A complete template with Nuclear's default values. Copy this and change what you
     "foreground": "oklch(0% 0 0)",
 
     "muted": "oklch(100% 0 0)",
-    "muted-foreground": "oklch(0.42 0.1 5)",
+    "muted-foreground": "oklch(0% 0 0)",
 
     "card": "oklch(0.8 0.12 4.56)",
     "card-foreground": "oklch(0% 0 0)",
@@ -201,7 +201,7 @@ A complete template with Nuclear's default values. Copy this and change what you
     "foreground": "oklch(0.9 0.008 5)",
 
     "muted": "oklch(0.27 0.035 5)",
-    "muted-foreground": "oklch(0.78 0.1 5)",
+    "muted-foreground": "oklch(0.9 0.008 5)",
 
     "card": "oklch(0.5 0.1 5)",
     "card-foreground": "oklch(0.95 0 0)",
@@ -231,7 +231,7 @@ A complete template with Nuclear's default values. Copy this and change what you
     "accent-cyan-foreground": "oklch(0.15 0 0)",
     "accent-red-foreground": "oklch(0.95 0 0)",
 
-    "border": "oklch(0.48 0.04 5)",
+    "border": "oklch(0.68 0.11 5)",
     "border-width": "1px",
     "ring": "oklch(0.9 0.008 5)",
 

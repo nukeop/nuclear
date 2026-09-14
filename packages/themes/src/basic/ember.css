@@ -3,7 +3,6 @@
   --card: oklch(0.76 0.14 30);
   --popover: oklch(0.76 0.14 30);
   --primary: oklch(0.76 0.14 30);
-  --muted-foreground: oklch(0.42 0.1 30);
 }
 
 :root[data-theme-id='nuclear:ember'][data-theme='dark'] {
@@ -14,6 +13,6 @@
   --popover: oklch(0.64 0.1 30);
   --primary: oklch(0.64 0.1 30);
   --foreground: oklch(0.9 0.008 30);
-  --muted-foreground: oklch(0.78 0.1 30);
-  --border: oklch(0.48 0.04 20);
+  --muted-foreground: oklch(0.9 0.008 30);
+  --border: oklch(0.68 0.11 20);
 }

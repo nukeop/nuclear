@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { listBasicThemes } from '@nuclearplayer/themes';
-import { Button, cn, SectionShell } from '@nuclearplayer/ui';
+import { Button, SectionShell } from '@nuclearplayer/ui';
 
 import { useThemeStore } from '../../stores/themeStore';
 
@@ -20,14 +20,9 @@ export const BasicThemes = () => {
             <Button
               key={theme.id}
               aria-pressed={isActive}
-              variant="text"
+              variant={isActive ? 'default' : 'tertiary'}
               size="flexible"
-              className={cn(
-                'surface-muted border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y flex flex-col justify-between gap-2 rounded-md border-(length:--border-width) px-4 py-2 transition hover:shadow-none',
-                {
-                  'surface-primary': isActive,
-                },
-              )}
+              className="flex flex-col justify-between gap-2 px-4 py-2"
               onClick={() => selectBasicTheme(theme.id)}
             >
               <span className="text-left text-base font-bold">

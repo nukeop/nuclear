@@ -39,7 +39,7 @@ export function Toolbar({
       {features.addAllToQueue && (
         <Tooltip content={labels.addAllToQueue} side="bottom">
           <Button
-            variant="secondary"
+            variant="tertiary"
             size="icon"
             onClick={actions.onAddAllToQueue}
             data-testid="add-all-to-queue-button"
