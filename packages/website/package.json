@@ -39,7 +39,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.0",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2"
   }
