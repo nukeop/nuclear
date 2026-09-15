@@ -1,3 +1,12 @@
 import { FC } from 'react';
+import { Composition } from 'remotion';
 
-export const RemotionRoot: FC = () => null;
+import { scenarios } from './scenarios';
+
+export const RemotionRoot: FC = () => (
+  <>
+    {scenarios.map((scenario) => (
+      <Composition key={scenario.id} {...scenario} />
+    ))}
+  </>
+);
