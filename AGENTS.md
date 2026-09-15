@@ -18,6 +18,7 @@ Nuclear is a free, open-source music player without ads or tracking. Search for 
 - `@nuclearplayer/eslint-config` - Shared linting rules
 - `@nuclearplayer/i18n` - Internationalization
 - `@nuclearplayer/storybook` - Component demos
+- `@nuclearplayer/videos` - Remotion videos rendered from UI components
 - `@nuclearplayer/tools` - Build and maintenance utilities
 - `@nuclearplayer/docs` - Documentation
 - `@nuclearplayer/website` - Project website (Astro)
@@ -29,6 +30,8 @@ Nuclear is a free, open-source music player without ads or tracking. Search for 
 pnpm dev                    # Run player in dev mode
 pnpm dev:remote             # Same, but binds Vite to 0.0.0.0 so the remote control UI is reachable from other devices
 pnpm storybook              # Run Storybook
+pnpm --filter @nuclearplayer/videos dev      # Run the Remotion Studio
+pnpm --filter @nuclearplayer/videos render   # Render a video to packages/videos/out
 
 # Build
 pnpm build                  # Build all packages
