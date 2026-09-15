@@ -30,7 +30,7 @@ zip = "2.1"
 reqwest = { version = "0.13", features = ["json", "cookies", "stream"] }
 futures = "0.3"
 tokio = { version = "1", features = ["full"] }
-base64 = "0.22"
+base64 = "0.23"
 http = "1.0"
 percent-encoding = "2.3"
 tempfile = "3.10"
@@ -47,7 +47,7 @@ uuid = { version = "1.20.0", features = ["v4"] }
 discord-rich-presence = "1.1.0"
 libc = "0.2.183"
 tauri-plugin-os = "2"
-sqlx = { version = "0.8", features = ["runtime-tokio", "sqlite", "migrate"] }
+sqlx = { version = "0.9", features = ["runtime-tokio", "sqlite", "migrate"] }
 specta = { version = "=2.0.0-rc.25", features = ["derive"] }
 specta-typescript = "0.0.12"
 tauri-specta = { version = "=2.0.0-rc.25", features = ["derive", "typescript"] }
