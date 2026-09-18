@@ -3,11 +3,12 @@ import { FC, useMemo } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { DashboardProvider } from '@nuclearplayer/plugin-sdk';
-import { Loader, ViewShell } from '@nuclearplayer/ui';
+import { ViewShell } from '@nuclearplayer/ui';
 
 import { useProviders } from '../../hooks/useProviders';
 import { useStartupStore } from '../../stores/startupStore';
 import { DashboardEmptyState } from './components/DashboardEmptyState';
+import { DashboardStartupSkeleton } from './components/DashboardStartupSkeleton';
 import { DASHBOARD_WIDGETS, DashboardWidgetEntry } from './dashboardWidgets';
 
 const DashboardContent: FC<{
@@ -15,11 +16,7 @@ const DashboardContent: FC<{
   activeWidgets: DashboardWidgetEntry[];
 }> = ({ isStartingUp, activeWidgets }) => {
   if (isStartingUp) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <Loader data-testid="dashboard-loader" size="xl" />
-      </div>
-    );
+    return <DashboardStartupSkeleton />;
   }
 
   if (isEmpty(activeWidgets)) {

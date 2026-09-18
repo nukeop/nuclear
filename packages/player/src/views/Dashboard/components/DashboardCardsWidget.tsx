@@ -2,12 +2,7 @@ import isEmpty from 'lodash-es/isEmpty';
 import { useMemo } from 'react';
 
 import type { AttributedResult } from '@nuclearplayer/plugin-sdk';
-import {
-  CardsRow,
-  CardsRowItem,
-  CardsRowLabels,
-  Loader,
-} from '@nuclearplayer/ui';
+import { CardsRow, CardsRowItem, CardsRowLabels } from '@nuclearplayer/ui';
 
 type DashboardCardsWidgetProps<T> = {
   results: AttributedResult<T>[] | undefined;
@@ -27,14 +22,7 @@ export const DashboardCardsWidget = <T,>({
   'data-testid': testId,
 }: DashboardCardsWidgetProps<T>) => {
   if (isLoading) {
-    return (
-      <div
-        data-testid={testId}
-        className="flex items-center justify-center p-4"
-      >
-        <Loader data-testid={testId ? `${testId}-loader` : undefined} />
-      </div>
-    );
+    return <CardsRow.Skeleton title={title} data-testid={testId} />;
   }
 
   if (isEmpty(results)) {
