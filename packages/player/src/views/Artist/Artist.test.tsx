@@ -52,7 +52,7 @@ describe('Artist view', () => {
       expect(await ArtistWrapper.bioHeader.findLoader()).toBeInTheDocument();
       expect(await ArtistWrapper.albums.findSkeleton()).toBeInTheDocument();
       expect(
-        await ArtistWrapper.popularTracks.findLoader(),
+        await ArtistWrapper.popularTracks.findSkeleton(),
       ).toBeInTheDocument();
       expect(
         await ArtistWrapper.similarArtists.findLoader(),
@@ -126,7 +126,7 @@ describe('Artist view', () => {
 
       expect(await ArtistWrapper.socialHeader.findLoader()).toBeInTheDocument();
       expect(
-        await ArtistWrapper.popularTracks.findLoader(),
+        await ArtistWrapper.popularTracks.findSkeleton(),
       ).toBeInTheDocument();
       expect(await ArtistWrapper.playlists.findSkeleton()).toBeInTheDocument();
       expect(

@@ -53,11 +53,11 @@ export const ArtistWrapper = {
     get table() {
       return screen.queryByRole('table');
     },
-    get loader() {
-      return screen.queryByTestId('popular-tracks-loader');
+    get skeleton() {
+      return screen.queryByTestId('popular-tracks-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('popular-tracks-loader');
+    async findSkeleton() {
+      return screen.findByTestId('popular-tracks-skeleton');
     },
   },
 

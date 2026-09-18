@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { Album, Track, TrackRef } from '@nuclearplayer/model';
-import { Loader } from '@nuclearplayer/ui';
+import { TrackTable } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../../components/ConnectedTrackTable';
 import { useAlbumDetails } from '../hooks/useAlbumDetails';
@@ -42,9 +42,10 @@ export const AlbumTrackList: FC<AlbumTrackListProps> = ({
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center p-8">
-        <Loader data-testid="album-tracks-loader" />
-      </div>
+      <TrackTable.Skeleton
+        display={{ displayThumbnail: false }}
+        data-testid="album-tracks-skeleton"
+      />
     );
   }
 

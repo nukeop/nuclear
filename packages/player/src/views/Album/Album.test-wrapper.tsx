@@ -59,9 +59,9 @@ export const AlbumWrapper = {
     },
   },
 
-  tracksLoader: {
+  tracksSkeleton: {
     async find() {
-      return screen.findByTestId('album-tracks-loader');
+      return screen.findByTestId('album-tracks-skeleton');
     },
   },
 
