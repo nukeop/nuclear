@@ -7,6 +7,7 @@ build
 .astro
 /packages/website/.astro
 storybook-static
+packages/videos/out
 coverage
 test-results
 .DS_Store

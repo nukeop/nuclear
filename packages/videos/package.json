@@ -1,0 +1,37 @@
+{
+  "name": "@nuclearplayer/videos",
+  "version": "0.0.10",
+  "description": "Remotion videos",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf out .turbo node_modules/.cache"
+  },
+  "dependencies": {
+    "@fontsource/bricolage-grotesque": "^5.3.0",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/space-mono": "^5.3.0",
+    "@nuclearplayer/tailwind-config": "workspace:*",
+    "@nuclearplayer/themes": "workspace:*",
+    "@nuclearplayer/ui": "workspace:*",
+    "@remotion/cli": "^4.0.522",
+    "@remotion/tailwind-v4": "^4.0.522",
+    "lucide-react": "^1.43.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.522"
+  },
+  "devDependencies": {
+    "@nuclearplayer/eslint-config": "workspace:*",
+    "@svgr/webpack": "^8.1.0",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}

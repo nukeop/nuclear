@@ -80,6 +80,10 @@
     "@nuclearplayer/website#dev": {
       "cache": false,
       "persistent": true
+    },
+    "@nuclearplayer/videos#dev": {
+      "cache": false,
+      "persistent": true
     }
   }
 }
