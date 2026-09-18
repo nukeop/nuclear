@@ -155,7 +155,7 @@ describe('Album view', () => {
 
     await AlbumWrapper.mountNoWait();
 
-    expect(await AlbumWrapper.headerLoader.find()).toBeInTheDocument();
+    expect(await AlbumWrapper.headerSkeleton.find()).toBeInTheDocument();
     expect(await AlbumWrapper.tracksSkeleton.find()).toBeInTheDocument();
   });
 

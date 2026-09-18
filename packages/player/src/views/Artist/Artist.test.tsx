@@ -49,13 +49,13 @@ describe('Artist view', () => {
 
       await ArtistWrapper.mountNoWait();
 
-      expect(await ArtistWrapper.bioHeader.findLoader()).toBeInTheDocument();
+      expect(await ArtistWrapper.bioHeader.findSkeleton()).toBeInTheDocument();
       expect(await ArtistWrapper.albums.findSkeleton()).toBeInTheDocument();
       expect(
         await ArtistWrapper.popularTracks.findSkeleton(),
       ).toBeInTheDocument();
       expect(
-        await ArtistWrapper.similarArtists.findLoader(),
+        await ArtistWrapper.similarArtists.findSkeleton(),
       ).toBeInTheDocument();
     });
 
@@ -91,7 +91,7 @@ describe('Artist view', () => {
 
       expect(ArtistWrapper.socialHeader.element).not.toBeInTheDocument();
       expect(ArtistWrapper.albums.skeleton).not.toBeInTheDocument();
-      expect(ArtistWrapper.similarArtists.loader).not.toBeInTheDocument();
+      expect(ArtistWrapper.similarArtists.skeleton).not.toBeInTheDocument();
       expect(ArtistWrapper.albums.cards).toHaveLength(0);
     });
   });
@@ -124,20 +124,22 @@ describe('Artist view', () => {
 
       await ArtistWrapper.mountNoWait();
 
-      expect(await ArtistWrapper.socialHeader.findLoader()).toBeInTheDocument();
+      expect(
+        await ArtistWrapper.socialHeader.findSkeleton(),
+      ).toBeInTheDocument();
       expect(
         await ArtistWrapper.popularTracks.findSkeleton(),
       ).toBeInTheDocument();
       expect(await ArtistWrapper.playlists.findSkeleton()).toBeInTheDocument();
       expect(
-        await ArtistWrapper.similarArtists.findLoader(),
+        await ArtistWrapper.similarArtists.findSkeleton(),
       ).toBeInTheDocument();
     });
 
     it('does not render bio header or albums grid', async () => {
       await ArtistWrapper.mount('Deadmau5');
 
-      expect(ArtistWrapper.bioHeader.loader).not.toBeInTheDocument();
+      expect(ArtistWrapper.bioHeader.skeleton).not.toBeInTheDocument();
       expect(ArtistWrapper.albums.skeleton).not.toBeInTheDocument();
     });
   });

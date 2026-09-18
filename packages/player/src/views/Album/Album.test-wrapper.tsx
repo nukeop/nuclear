@@ -53,9 +53,9 @@ export const AlbumWrapper = {
   getTracksTable: () => screen.queryByRole('table'),
   getTracks: () => screen.queryAllByTestId('track-row'),
 
-  headerLoader: {
+  headerSkeleton: {
     async find() {
-      return screen.findByTestId('album-header-loader');
+      return screen.findByTestId('album-header-skeleton');
     },
   },
 

@@ -26,11 +26,11 @@ export const ArtistWrapper = {
   getHeader: (name: string) => screen.getByRole('heading', { name }),
 
   bioHeader: {
-    get loader() {
-      return screen.queryByTestId('artist-header-loader');
+    get skeleton() {
+      return screen.queryByTestId('artist-header-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('artist-header-loader');
+    async findSkeleton() {
+      return screen.findByTestId('artist-header-skeleton');
     },
   },
 
@@ -38,11 +38,11 @@ export const ArtistWrapper = {
     get element() {
       return screen.queryByTestId('artist-social-header');
     },
-    get loader() {
-      return screen.queryByTestId('artist-social-header-loader');
+    get skeleton() {
+      return screen.queryByTestId('artist-social-header-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('artist-social-header-loader');
+    async findSkeleton() {
+      return screen.findByTestId('artist-social-header-skeleton');
     },
   },
 
@@ -68,11 +68,11 @@ export const ArtistWrapper = {
     get items() {
       return screen.queryAllByRole('listitem');
     },
-    get loader() {
-      return screen.queryByTestId('similar-artists-loader');
+    get skeleton() {
+      return screen.queryByTestId('similar-artists-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('similar-artists-loader');
+    async findSkeleton() {
+      return screen.findByTestId('similar-artists-skeleton');
     },
     inspectItem(listItem: HTMLElement) {
       const utils = within(listItem);

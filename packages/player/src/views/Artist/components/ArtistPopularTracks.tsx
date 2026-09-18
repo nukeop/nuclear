@@ -24,10 +24,13 @@ export const ArtistPopularTracks: FC<ArtistPopularTracksProps> = ({
 
   if (isLoading) {
     return (
-      <TrackTable.Skeleton
-        display={{ displayDuration: false }}
-        data-testid="popular-tracks-skeleton"
-      />
+      <div className="flex flex-col">
+        <h2 className="mb-2 text-lg font-semibold">{t('popularTracks')}</h2>
+        <TrackTable.Skeleton
+          display={{ displayDuration: false }}
+          data-testid="popular-tracks-skeleton"
+        />
+      </div>
     );
   }
 
