@@ -34,20 +34,26 @@ const slideVariants = {
 const AnimatedOutlet = forwardRef<HTMLDivElement>((_, ref) => {
   const router = useRouter();
   const isPresent = useIsPresent();
-  const frozenState = useRef(router.__store.state);
+  const frozenState = useRef(router.state);
   const frozenRouter = useRef(router);
 
   if (isPresent) {
-    frozenState.current = router.__store.state;
+    frozenState.current = router.state;
     frozenRouter.current = router;
   } else if (frozenRouter.current === router) {
     const snapshot = frozenState.current;
-    const storeProxy = Object.create(router.__store) as typeof router.__store;
-    Object.defineProperty(storeProxy, 'state', { get: () => snapshot });
+    const storeProxy = Object.create(
+      router.stores.__store,
+    ) as typeof router.stores.__store;
     Object.defineProperty(storeProxy, 'get', { value: () => snapshot });
 
     const routerProxy = Object.create(router) as typeof router;
-    Object.defineProperty(routerProxy, '__store', { value: storeProxy });
+    Object.defineProperty(routerProxy, 'stores', {
+      value: {
+        ...router.stores,
+        __store: storeProxy,
+      },
+    });
     frozenRouter.current = routerProxy;
   }
 
