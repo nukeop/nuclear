@@ -1,0 +1,903 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TrackTableSkeleton > (Snapshot) Defaults 1`] = `
+<DocumentFragment>
+  <table
+    class="border-border relative w-full table-fixed border-(length:--border-width)"
+    data-testid="track-table-skeleton"
+    role="table"
+  >
+    <thead>
+      <tr
+        class="border-border surface-primary border-b-(length:--border-width)"
+      >
+        <th
+          class="w-10 text-center"
+          role="columnheader"
+        >
+          <div
+            class="flex h-6 items-center justify-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) size-4"
+              data-testid="skeleton"
+            />
+          </div>
+        </th>
+        <th
+          class="px-2 text-left"
+          role="columnheader"
+        >
+          <div
+            class="flex h-6 items-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-16"
+              data-testid="skeleton"
+            />
+          </div>
+        </th>
+        <th
+          class="px-2 text-left"
+          role="columnheader"
+        >
+          <div
+            class="flex h-6 items-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-16"
+              data-testid="skeleton"
+            />
+          </div>
+        </th>
+        <th
+          class="px-2 text-left"
+          role="columnheader"
+        >
+          <div
+            class="flex h-6 items-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-16"
+              data-testid="skeleton"
+            />
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;
+
+exports[`TrackTableSkeleton > (Snapshot) WithPositionAndWithoutDuration 1`] = `
+<DocumentFragment>
+  <table
+    class="border-border relative w-full table-fixed border-(length:--border-width)"
+    data-testid="track-table-skeleton"
+    role="table"
+  >
+    <thead>
+      <tr
+        class="border-border surface-primary border-b-(length:--border-width)"
+      >
+        <th
+          class="w-10 text-center"
+          role="columnheader"
+        >
+          <div
+            class="flex h-6 items-center justify-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) size-4"
+              data-testid="skeleton"
+            />
+          </div>
+        </th>
+        <th
+          class="w-10 text-center"
+          role="columnheader"
+        >
+          <div
+            class="flex h-6 items-center justify-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) size-4"
+              data-testid="skeleton"
+            />
+          </div>
+        </th>
+        <th
+          class="px-2 text-left"
+          role="columnheader"
+        >
+          <div
+            class="flex h-6 items-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-16"
+              data-testid="skeleton"
+            />
+          </div>
+        </th>
+        <th
+          class="px-2 text-left"
+          role="columnheader"
+        >
+          <div
+            class="flex h-6 items-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-16"
+              data-testid="skeleton"
+            />
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-2/3"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-5/6"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+      <tr
+        class="border-border bg-muted border-b-(length:--border-width)"
+        data-testid="track-row-skeleton"
+        style="height: 42px;"
+      >
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-4"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="w-10 text-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) mx-auto size-8"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+        <td
+          class="px-2"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;

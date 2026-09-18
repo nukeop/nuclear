@@ -34,14 +34,10 @@ export const ArtistAlbumsGrid: FC<ArtistAlbumsGridProps> = ({
 
   if (isLoading) {
     return (
-      <CardGrid
+      <CardGrid.Skeleton
         data-testid={dataTestId ?? 'artist-albums-skeleton'}
         className="mx-4"
-      >
-        {Array.from({ length: 8 }, (_, index) => (
-          <Card.Skeleton key={index} />
-        ))}
-      </CardGrid>
+      />
     );
   }
 

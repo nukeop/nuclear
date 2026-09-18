@@ -20,6 +20,7 @@ import { useReorder } from './hooks/useReorder';
 import { useSorting } from './hooks/useSorting';
 import { useVirtualRows } from './hooks/useVirtualRows';
 import { ReorderLayer } from './ReorderLayer';
+import { TrackTableSkeleton } from './Skeleton/TrackTableSkeleton';
 import { SortableRow } from './SortableRow';
 import { Toolbar } from './Toolbar';
 import { TrackTableProvider } from './TrackTableContext';
@@ -29,7 +30,7 @@ import { VirtualizedBody } from './VirtualizedBody';
 
 const defaultGetItemId = <T extends Track>(track: T) => track.source.id;
 
-export function TrackTable<T extends Track = Track>({
+function TrackTableBase<T extends Track = Track>({
   tracks,
   getItemId = defaultGetItemId,
   labels,
@@ -185,3 +186,7 @@ export function TrackTable<T extends Track = Track>({
     </TrackTableProvider>
   );
 }
+
+export const TrackTable = Object.assign(TrackTableBase, {
+  Skeleton: TrackTableSkeleton,
+});

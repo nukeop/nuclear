@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-09-18T00:00",
+    "description": "Loading spinners are replaced with skeletons.",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-09-01T00:00",
     "description": "Theming system v2: themes can now use gradients on surfaces, and a whole new group of variables to make Nuclear more customizable. See the docs and release notes for details.",
     "type": "feature",

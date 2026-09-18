@@ -19,6 +19,8 @@ export type TrackTableLabels = {
   filterPlaceholder: string;
 };
 
+export type TrackTableSkeletonColumnKind = 'icon' | 'thumbnail' | 'text';
+
 export type TrackTableClasses = {
   root?: string;
 };
