@@ -7,6 +7,7 @@ import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { Card } from '../Card';
 import { Input } from '../Input';
+import { CardsRowSkeleton } from './CardsRowSkeleton';
 import { useCardsRow } from './useCardsRow';
 
 export type CardsRowItem = {
@@ -31,7 +32,7 @@ export type CardsRowProps = {
   'data-testid'?: string;
 };
 
-export const CardsRow: FC<CardsRowProps> = ({
+const CardsRowBase: FC<CardsRowProps> = ({
   title,
   badge,
   items,
@@ -51,7 +52,7 @@ export const CardsRow: FC<CardsRowProps> = ({
 
   return (
     <div data-testid={testId} className={cn('flex flex-col gap-3', className)}>
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex min-h-10 items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <h2 className="text-foreground text-lg font-bold">{title}</h2>
           {badge && (
@@ -128,3 +129,7 @@ export const CardsRow: FC<CardsRowProps> = ({
     </div>
   );
 };
+
+export const CardsRow = Object.assign(CardsRowBase, {
+  Skeleton: CardsRowSkeleton,
+});

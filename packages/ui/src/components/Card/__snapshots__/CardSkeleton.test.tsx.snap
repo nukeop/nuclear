@@ -1,0 +1,39 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card.Skeleton > (Snapshot) renders correctly 1`] = `
+<div>
+  <div
+    class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2"
+    data-testid="card-skeleton"
+  >
+    <div
+      class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+    >
+      <div
+        class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+        data-testid="skeleton"
+      />
+    </div>
+    <div
+      class="flex min-w-0 flex-col"
+    >
+      <div
+        class="flex h-5 items-center"
+      >
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex h-4 items-center"
+      >
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+          data-testid="skeleton"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
