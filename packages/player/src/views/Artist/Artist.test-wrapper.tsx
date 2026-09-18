@@ -87,20 +87,20 @@ export const ArtistWrapper = {
     get cards() {
       return screen.queryAllByTestId('card');
     },
-    get loader() {
-      return screen.queryByTestId('artist-albums-loader');
+    get skeleton() {
+      return screen.queryByTestId('artist-albums-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('artist-albums-loader');
+    async findSkeleton() {
+      return screen.findByTestId('artist-albums-skeleton');
     },
   },
 
   playlists: {
-    get loader() {
-      return screen.queryByTestId('artist-playlists-loader');
+    get skeleton() {
+      return screen.queryByTestId('artist-playlists-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('artist-playlists-loader');
+    async findSkeleton() {
+      return screen.findByTestId('artist-playlists-skeleton');
     },
   },
 
