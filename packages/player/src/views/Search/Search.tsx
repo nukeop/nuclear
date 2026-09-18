@@ -12,7 +12,6 @@ import {
   Button,
   Card,
   CardGrid,
-  Loader,
   Tabs,
   TabsItem,
   ViewShell,
@@ -22,6 +21,7 @@ import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
 import { useActiveProvider } from '../../hooks/useActiveProvider';
 import { metadataHost } from '../../services/metadataHost';
 import { SearchEmptyState } from './SearchEmptyState';
+import { SearchSkeleton } from './SearchSkeleton';
 
 const SearchContent: FC<{
   provider: MetadataProvider | undefined;
@@ -38,11 +38,7 @@ const SearchContent: FC<{
   }
 
   if (isLoading) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <Loader size="xl" />
-      </div>
-    );
+    return <SearchSkeleton />;
   }
 
   if (isError) {
