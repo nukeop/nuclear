@@ -12,7 +12,7 @@ export const SettingsPanelNavigation: FC<SettingsPanelNavigationProps> = ({
   sections,
   footer,
 }) => (
-  <nav className="border-border flex w-56 shrink-0 flex-col gap-4 border-r-(length:--border-width) p-4">
+  <nav className="border-border flex w-56 shrink-0 flex-col gap-4 overflow-y-auto border-r-(length:--border-width) p-4">
     {sections.map((section) => (
       <SettingsPanelNavigationSection key={section.id} section={section} />
     ))}
