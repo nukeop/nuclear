@@ -42,6 +42,6 @@
     "@types/react-dom": "^18.3.7",
     "sharp": "^0.35.0",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.9.2"
+    "typescript": "^7.0.0"
   }
 }

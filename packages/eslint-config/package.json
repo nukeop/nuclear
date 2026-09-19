@@ -18,7 +18,7 @@
   },
   "peerDependencies": {
     "prettier": "^3",
-    "typescript": "^5"
+    "typescript": "^5 || ^7.0.0"
   },
   "devDependencies": {
     "@eslint/css": "^1.0.0",
