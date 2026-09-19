@@ -10,19 +10,16 @@ pub struct DiscordState {
     pub client: Mutex<Option<DiscordIpcClient>>,
 }
 
-fn try_reconnect(client_guard: &mut Option<DiscordIpcClient>) -> bool {
+fn try_reconnect(
+    client_guard: &mut Option<DiscordIpcClient>,
+) -> Option<&mut DiscordIpcClient> {
     if let Some(mut old) = client_guard.take() {
         let _ = old.close();
     }
 
     let mut client = DiscordIpcClient::new(DISCORD_APP_ID);
-    match client.connect() {
-        Ok(()) => {
-            *client_guard = Some(client);
-            true
-        }
-        Err(_) => false,
-    }
+    client.connect().ok()?;
+    Some(client_guard.insert(client))
 }
 
 fn with_reconnect<F>(
@@ -32,17 +29,14 @@ fn with_reconnect<F>(
 where
     F: Fn(&mut DiscordIpcClient) -> Result<(), Box<dyn std::error::Error>>,
 {
-    let client = client_guard.as_mut().ok_or("Discord not connected")?;
-    if operation(client).is_ok() {
-        return Ok(false);
+    if let Some(client) = client_guard.as_mut() {
+        if operation(client).is_ok() {
+            return Ok(false);
+        }
+        log::debug!("Discord IPC call failed, attempting reconnect");
     }
 
-    log::debug!("Discord IPC call failed, attempting reconnect");
-    if !try_reconnect(client_guard) {
-        return Err("Discord reconnection failed".into());
-    }
-
-    let client = client_guard.as_mut().ok_or("Discord not connected")?;
+    let client = try_reconnect(client_guard).ok_or("Discord not available")?;
     operation(client).map_err(|err| err.to_string())?;
     Ok(true)
 }

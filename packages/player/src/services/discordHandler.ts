@@ -21,10 +21,31 @@ type TrackPresence = {
   endTimestamp?: number;
 };
 
+let discordAvailable = true;
+
+const onDiscordUnavailable = (err: unknown) => {
+  if (!discordAvailable) {
+    return;
+  }
+  discordAvailable = false;
+  Logger.discord.warn(
+    `Discord unavailable, will keep retrying in the background: ${errorMessage(err)}`,
+  );
+};
+
+const onDiscordAvailable = () => {
+  if (discordAvailable) {
+    return;
+  }
+  discordAvailable = true;
+  Logger.discord.info('Discord presence restored');
+};
+
 const connect = () => invoke('discord_connect');
 const disconnect = () => invoke('discord_disconnect');
 const setActivity = async (track: TrackPresence) => {
   const reconnected = await invoke<boolean>('discord_set_activity', { track });
+  onDiscordAvailable();
   if (reconnected) {
     toast.info('Reconnected to Discord');
   }
@@ -69,9 +90,7 @@ const updatePresence = () => {
   }
 
   const presence = buildPresence(currentItem.track, status, seek, duration);
-  setActivity(presence).catch((err) =>
-    Logger.discord.warn(`Failed to set activity: ${errorMessage(err)}`),
-  );
+  setActivity(presence).catch((err) => onDiscordUnavailable(err));
 };
 
 const watchPlayback = () => {
@@ -114,11 +133,7 @@ const watchSettings = () => {
     if (enabled) {
       connect()
         .then(() => updatePresence())
-        .catch((err) =>
-          Logger.discord.error(
-            `Failed to connect to Discord: ${errorMessage(err)}`,
-          ),
-        );
+        .catch((err) => onDiscordUnavailable(err));
     } else {
       disconnect().catch((err) =>
         Logger.discord.error(
@@ -140,10 +155,6 @@ export const initDiscordHandler = () => {
   startHeartbeat();
 
   if (getSetting(DISCORD_ENABLED_SETTING)) {
-    connect().catch((err) =>
-      Logger.discord.error(
-        `Failed to connect to Discord: ${errorMessage(err)}`,
-      ),
-    );
+    connect().catch((err) => onDiscordUnavailable(err));
   }
 };

@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-09-19T00:00",
+    "description": "Stops log spam if Discord Rich Presence is unavailable. Reconnects correctly if it becomes available after Nuclear is launched.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Integrations",
+        "color": "cyan"
+      }
+    ]
+  },
+  {
     "date": "2026-09-18T00:00",
     "description": "Loading spinners are replaced with skeletons.",
     "type": "improvement",
