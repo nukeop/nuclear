@@ -1,8 +1,7 @@
 import range from 'lodash-es/range';
 
 export type PageItem =
-  | { kind: 'page'; page: number }
-  | { kind: 'ellipsis'; side: 'start' | 'end' };
+  { kind: 'page'; page: number } | { kind: 'ellipsis'; side: 'start' | 'end' };
 
 export const pageItemKey = (item: PageItem): string => {
   if (item.kind === 'page') {

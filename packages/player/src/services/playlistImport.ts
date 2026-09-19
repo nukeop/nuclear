@@ -8,10 +8,7 @@ import {
 } from '@nuclearplayer/model';
 
 export type PlaylistFormat =
-  | 'nuclear'
-  | 'nuclear-legacy'
-  | 'nuclear-legacy-config'
-  | 'unknown';
+  'nuclear' | 'nuclear-legacy' | 'nuclear-legacy-config' | 'unknown';
 
 export const detectPlaylistFormat = (json: unknown): PlaylistFormat => {
   if (playlistExportSchema.safeParse(json).success) {

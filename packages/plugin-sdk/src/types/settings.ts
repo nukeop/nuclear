@@ -1,8 +1,7 @@
 import type { FC } from 'react';
 
 export type SettingSource =
-  | { type: 'core' }
-  | { type: 'plugin'; pluginId: string; pluginName?: string };
+  { type: 'core' } | { type: 'plugin'; pluginId: string; pluginName?: string };
 
 export type SettingCategory = string;
 

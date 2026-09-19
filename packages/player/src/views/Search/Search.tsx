@@ -114,8 +114,7 @@ export const Search: FC = () => {
   const { q } = useSearch({ from: '/search' });
 
   const provider = useActiveProvider('metadata') as
-    | MetadataProvider
-    | undefined;
+    MetadataProvider | undefined;
 
   const {
     data: results,

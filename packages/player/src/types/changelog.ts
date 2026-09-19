@@ -4,12 +4,7 @@ export type ChangelogTag = {
 };
 
 export type ChangelogEntryType =
-  | 'feature'
-  | 'fix'
-  | 'improvement'
-  | 'chore'
-  | 'plugin'
-  | 'docs';
+  'feature' | 'fix' | 'improvement' | 'chore' | 'plugin' | 'docs';
 
 export type ChangelogEntry = {
   date: string;

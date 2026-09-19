@@ -1,8 +1,5 @@
 export type SoundErrorCode =
-  | 'loadFailed'
-  | 'unsupportedFormat'
-  | 'mseUnavailable'
-  | 'appendRejected';
+  'loadFailed' | 'unsupportedFormat' | 'mseUnavailable' | 'appendRejected';
 
 export class SoundError extends Error {
   constructor(

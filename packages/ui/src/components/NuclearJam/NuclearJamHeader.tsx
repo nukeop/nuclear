@@ -5,10 +5,7 @@ import { PulsingText } from '../PulsingText';
 import { TopBarLogo } from '../TopBarLogo';
 
 export type ConnectionStatus =
-  | 'connecting'
-  | 'connected'
-  | 'reconnecting'
-  | 'failed';
+  'connecting' | 'connected' | 'reconnecting' | 'failed';
 
 export type ConnectionStatusLabels = Record<ConnectionStatus, string>;
 

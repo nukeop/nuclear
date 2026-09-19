@@ -87,9 +87,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
   const state = error ? 'error' : 'normal';
   const inputType: 'text' | 'number' | 'password' = (variant ?? 'text') as
-    | 'text'
-    | 'number'
-    | 'password';
+    'text' | 'number' | 'password';
 
   return (
     <div className="flex w-full flex-col gap-2">

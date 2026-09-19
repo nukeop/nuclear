@@ -10,11 +10,12 @@ import { reportError } from '../utils/logging';
 import { providersHost } from './providersHost';
 
 type FetchMethod = keyof {
-  [K in keyof DashboardProvider as DashboardProvider[K] extends
-    | (() => Promise<unknown>)
-    | undefined
-    ? K
-    : never]: DashboardProvider[K];
+  [
+    K in keyof DashboardProvider as DashboardProvider[K] extends
+      (() => Promise<unknown>) | undefined
+      ? K
+      : never
+  ]: DashboardProvider[K];
 };
 
 const CAPABILITY_TO_METHOD: Record<DashboardCapability, FetchMethod> = {
@@ -68,8 +69,7 @@ const createAttributedFetcher =
         providers.map(async (provider): Promise<AttributedResult<T> | null> => {
           try {
             const fetchFn = provider[method] as
-              | (() => Promise<T[]>)
-              | undefined;
+              (() => Promise<T[]>) | undefined;
             if (!fetchFn) {
               throw new MissingCapabilityError(capability, provider.name);
             }

@@ -3,11 +3,7 @@ import { useMemo, useState } from 'react';
 import type { PlaylistIndexEntry } from '@nuclearplayer/model';
 
 export type PlaylistSortBy =
-  | 'name'
-  | 'dateAdded'
-  | 'dateModified'
-  | 'trackCount'
-  | 'duration';
+  'name' | 'dateAdded' | 'dateModified' | 'trackCount' | 'duration';
 
 export type SortDirection = 'asc' | 'desc';
 
