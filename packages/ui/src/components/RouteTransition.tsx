@@ -31,7 +31,40 @@ const slideVariants = {
   },
 };
 
-const AnimatedOutlet = forwardRef<HTMLDivElement>((_, ref) => {
+const createFrozenStore = <TValue,>(value: TValue) => ({
+  get: () => value,
+  subscribe: () => ({ unsubscribe: () => {} }),
+});
+
+type RouterInstance = ReturnType<typeof useRouter>;
+
+const createFrozenRouter = (
+  router: RouterInstance,
+  snapshot: RouterInstance['state'],
+): RouterInstance => {
+  const byRoute = new Map<string, ReturnType<typeof createFrozenStore>>(
+    snapshot.matches.map((match) => [match.routeId, createFrozenStore(match)]),
+  );
+
+  const stores = Object.create(router.stores) as typeof router.stores;
+  Object.defineProperties(stores, {
+    ids: {
+      value: createFrozenStore(snapshot.matches.map((match) => match.routeId)),
+    },
+    getMatchStore: {
+      value: (routeId: string) =>
+        byRoute.get(routeId) ?? createFrozenStore(undefined),
+    },
+    location: { value: createFrozenStore(snapshot.location) },
+    __store: { value: createFrozenStore(snapshot) },
+  });
+
+  const frozenRouter = Object.create(router) as RouterInstance;
+  Object.defineProperty(frozenRouter, 'stores', { value: stores });
+  return frozenRouter;
+};
+
+const AnimatedOutlet = forwardRef<HTMLDivElement>((_props, ref) => {
   const router = useRouter();
   const isPresent = useIsPresent();
   const frozenState = useRef(router.state);
@@ -41,20 +74,7 @@ const AnimatedOutlet = forwardRef<HTMLDivElement>((_, ref) => {
     frozenState.current = router.state;
     frozenRouter.current = router;
   } else if (frozenRouter.current === router) {
-    const snapshot = frozenState.current;
-    const storeProxy = Object.create(
-      router.stores.__store,
-    ) as typeof router.stores.__store;
-    Object.defineProperty(storeProxy, 'get', { value: () => snapshot });
-
-    const routerProxy = Object.create(router) as typeof router;
-    Object.defineProperty(routerProxy, 'stores', {
-      value: {
-        ...router.stores,
-        __store: storeProxy,
-      },
-    });
-    frozenRouter.current = routerProxy;
+    frozenRouter.current = createFrozenRouter(router, frozenState.current);
   }
 
   return (
