@@ -15,6 +15,9 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout code
@@ -81,6 +84,4 @@ jobs:
       - name: Publish to npm
         run: |
           cd packages/plugin-sdk
-          pnpm publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          pnpm publish --access public --no-git-checks --provenance
