@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Skeleton > (Snapshot) renders correctly 1`] = `
+<div>
+  <div
+    class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-4 w-24"
+    data-testid="skeleton"
+  />
+</div>
+`;

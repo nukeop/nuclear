@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJam.SearchResultTrack.Skeleton > (Snapshot) renders correctly 1`] = `
+<div>
+  <div
+    class="border-border flex w-full items-center gap-3 border-b-(length:--border-width) px-4 py-2"
+    data-testid="jam-search-result-track-skeleton"
+  >
+    <div
+      class="bg-muted border-border animate-pulse border-(length:--border-width) size-12 shrink-0 rounded-md"
+      data-testid="skeleton"
+    />
+    <div
+      class="flex min-w-0 flex-1 flex-col"
+    >
+      <div
+        class="flex h-5 items-center"
+      >
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex h-4 items-center"
+      >
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+          data-testid="skeleton"
+        />
+      </div>
+    </div>
+    <div
+      class="flex h-4 shrink-0 items-center"
+    >
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-8"
+        data-testid="skeleton"
+      />
+    </div>
+  </div>
+</div>
+`;

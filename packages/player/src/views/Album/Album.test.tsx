@@ -155,8 +155,8 @@ describe('Album view', () => {
 
     await AlbumWrapper.mountNoWait();
 
-    expect(await AlbumWrapper.headerLoader.find()).toBeInTheDocument();
-    expect(await AlbumWrapper.tracksLoader.find()).toBeInTheDocument();
+    expect(await AlbumWrapper.headerSkeleton.find()).toBeInTheDocument();
+    expect(await AlbumWrapper.tracksSkeleton.find()).toBeInTheDocument();
   });
 
   it('adds album to favorites when clicking the heart button', async () => {

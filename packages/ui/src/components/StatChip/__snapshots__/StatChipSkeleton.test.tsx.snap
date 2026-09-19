@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StatChip.Skeleton > (Snapshot) renders correctly 1`] = `
+<div>
+  <div
+    class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-(length:--border-width) px-2 py-1"
+    data-testid="stat-chip-skeleton"
+  >
+    <div
+      class="flex h-7 items-center"
+    >
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-4 w-10"
+        data-testid="skeleton"
+      />
+    </div>
+    <div
+      class="flex h-4 items-center"
+    >
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-16"
+        data-testid="skeleton"
+      />
+    </div>
+  </div>
+</div>
+`;

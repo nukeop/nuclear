@@ -10,12 +10,11 @@ import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { pickArtwork } from '@nuclearplayer/model';
-import { Loader, StatChip } from '@nuclearplayer/ui';
+import { StatChip } from '@nuclearplayer/ui';
 
 import { ConnectedFavoriteButton } from '../../../components/ConnectedFavoriteButton';
 import { useArtistSocialStats } from '../hooks/useArtistSocialStats';
-
-const AVATAR_SIZE_PX = 300;
+import { ArtistSocialHeaderSkeleton } from './ArtistSocialHeaderSkeleton';
 
 const compactFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
@@ -47,14 +46,7 @@ export const ArtistSocialHeader: FC<ArtistSocialHeaderProps> = ({
   } = useArtistSocialStats(providerId, artistId);
 
   if (isLoading) {
-    return (
-      <div
-        className="m-4 flex items-center justify-center"
-        data-testid="artist-social-header"
-      >
-        <Loader data-testid="artist-social-header-loader" />
-      </div>
-    );
+    return <ArtistSocialHeaderSkeleton />;
   }
 
   if (isError) {
@@ -74,7 +66,7 @@ export const ArtistSocialHeader: FC<ArtistSocialHeaderProps> = ({
     return null;
   }
 
-  const avatar = pickArtwork(stats.artwork, 'avatar', AVATAR_SIZE_PX);
+  const avatar = pickArtwork(stats.artwork, 'avatar', 300);
 
   const location = [stats.city, stats.country].filter(Boolean).join(', ');
 

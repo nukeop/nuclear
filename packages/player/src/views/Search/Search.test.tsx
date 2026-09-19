@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
 import { providersHost } from '../../services/providersHost';
+import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
 import { SearchWrapper } from './Search.test-wrapper';
 
 const user = userEvent.setup();
@@ -34,6 +35,21 @@ describe('Search view', () => {
   it('shows empty state when no metadata provider is available', async () => {
     await SearchWrapper.mount('test');
     expect(SearchWrapper.emptyState).toBeInTheDocument();
+  });
+
+  it('shows a skeleton while search results are loading', async () => {
+    const delay = () => new Promise<never>(() => {});
+    providersHost.register(
+      MetadataProviderBuilder.bioStyleProvider()
+        .withId('search-never-resolves')
+        .withSearch(delay)
+        .build(),
+    );
+
+    await SearchWrapper.mount('test');
+
+    expect(await SearchWrapper.findSkeleton()).toBeInTheDocument();
+    expect(SearchWrapper.emptyState).not.toBeInTheDocument();
   });
 
   it('opens the plugin store when clicking the search empty state action', async () => {

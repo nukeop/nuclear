@@ -3,10 +3,11 @@ import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { pickArtwork } from '@nuclearplayer/model';
-import { Loader, StatChip } from '@nuclearplayer/ui';
+import { StatChip } from '@nuclearplayer/ui';
 
 import { ConnectedFavoriteButton } from '../../../components/ConnectedFavoriteButton';
 import { useAlbumDetails } from '../hooks/useAlbumDetails';
+import { AlbumHeaderSkeleton } from './AlbumHeaderSkeleton';
 
 type AlbumHeaderProps = {
   providerId: string;
@@ -22,11 +23,7 @@ export const AlbumHeader: FC<AlbumHeaderProps> = ({ providerId, albumId }) => {
   } = useAlbumDetails(providerId, albumId);
 
   if (isLoading) {
-    return (
-      <div className="flex h-100 w-full items-center justify-center">
-        <Loader size="xl" data-testid="album-header-loader" />
-      </div>
-    );
+    return <AlbumHeaderSkeleton />;
   }
 
   if (isError) {

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { pickArtwork } from '@nuclearplayer/model';
-import { Card, CardGrid, Loader } from '@nuclearplayer/ui';
+import { Card, CardGrid } from '@nuclearplayer/ui';
 
 import { useNavigateToPlaylist } from '../../../hooks/useNavigateToPlaylist';
 import { useArtistPlaylists } from '../hooks/useArtistPlaylists';
@@ -28,12 +28,10 @@ export const ArtistPlaylistsGrid: FC<ArtistPlaylistsGridProps> = ({
 
   if (isLoading) {
     return (
-      <div
-        className="flex items-center justify-center p-8"
-        data-testid={dataTestId}
-      >
-        <Loader data-testid="artist-playlists-loader" />
-      </div>
+      <CardGrid.Skeleton
+        data-testid={dataTestId ?? 'artist-playlists-skeleton'}
+        className="px-4"
+      />
     );
   }
 

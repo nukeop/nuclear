@@ -1,6 +1,7 @@
 import { ComponentProps, FC, ReactNode } from 'react';
 
 import { cn } from '../../utils';
+import { StatChipSkeleton } from './StatChipSkeleton';
 
 type StatChipProps = ComponentProps<'div'> & {
   value: ReactNode;
@@ -8,7 +9,7 @@ type StatChipProps = ComponentProps<'div'> & {
   icon?: ReactNode;
 };
 
-export const StatChip: FC<StatChipProps> = ({
+const StatChipBase: FC<StatChipProps> = ({
   value,
   label,
   icon,
@@ -29,3 +30,7 @@ export const StatChip: FC<StatChipProps> = ({
     </span>
   </div>
 );
+
+export const StatChip = Object.assign(StatChipBase, {
+  Skeleton: StatChipSkeleton,
+});

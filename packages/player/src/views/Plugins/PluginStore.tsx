@@ -4,7 +4,6 @@ import { FC, useMemo, useState } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import {
   Button,
-  CenteredLoader,
   EmptyState,
   FilterChips,
   Input,
@@ -16,6 +15,7 @@ import { MarketplacePlugin } from '../../apis/pluginMarketplaceApi';
 import { useInstallPlugin } from '../../hooks/useInstallPlugin';
 import { useMarketplacePlugins } from '../../hooks/useMarketplacePlugins';
 import { usePluginStore } from '../../stores/pluginStore';
+import { PluginStoreSkeletonList } from './PluginStoreSkeletonList';
 
 const CATEGORY_ALL = 'all';
 
@@ -80,10 +80,6 @@ export const PluginStore: FC = () => {
   const isPluginInstalling = (plugin: MarketplacePlugin) =>
     isPending && variables?.plugin.id === plugin.id;
 
-  if (isLoading) {
-    return <CenteredLoader />;
-  }
-
   if (error) {
     return (
       <EmptyState
@@ -114,7 +110,8 @@ export const PluginStore: FC = () => {
         />
       </div>
 
-      {filteredPlugins.length === 0 ? (
+      {isLoading && <PluginStoreSkeletonList />}
+      {!isLoading && filteredPlugins.length === 0 && (
         <EmptyState
           icon={<Package size={48} />}
           title={t('store.noResults.title')}
@@ -125,7 +122,8 @@ export const PluginStore: FC = () => {
           }
           size="sm"
         />
-      ) : (
+      )}
+      {!isLoading && filteredPlugins.length > 0 && (
         <ScrollableArea className="flex-1 overflow-hidden">
           <div className="flex flex-col gap-3 px-2 py-2">
             {filteredPlugins.map((plugin) => (

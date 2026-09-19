@@ -157,6 +157,14 @@ export const SearchWrapper = {
     return screen.queryByTestId('search-empty-state');
   },
 
+  get skeleton() {
+    return screen.queryByTestId('search-skeleton');
+  },
+
+  async findSkeleton() {
+    return screen.findByTestId('search-skeleton');
+  },
+
   emptyStateAction: {
     get element() {
       return screen.queryByTestId('search-empty-state-action');

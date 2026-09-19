@@ -124,14 +124,14 @@ describe('Dashboard view', () => {
     expect(router.state.location.search).toEqual({ q: 'Radiohead' });
   });
 
-  it('shows a loader during startup instead of the empty state', async () => {
+  it('shows a skeleton during startup instead of the empty state', async () => {
     act(() => {
       useStartupStore.getState().startStartup();
     });
 
     await DashboardWrapper.mount();
 
-    expect(DashboardWrapper.loader).toBeInTheDocument();
+    expect(DashboardWrapper.skeleton).toBeInTheDocument();
     expect(DashboardWrapper.emptyState).not.toBeInTheDocument();
   });
 

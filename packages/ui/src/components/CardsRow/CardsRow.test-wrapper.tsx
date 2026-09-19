@@ -38,6 +38,12 @@ type MountOptions = {
   labels?: CardsRowLabels;
 };
 
+type MountSkeletonOptions = {
+  title?: string;
+  badge?: string;
+  count?: number;
+};
+
 export const CardsRowWrapper = {
   mount(options: MountOptions = {}): RenderResult {
     const {
@@ -50,6 +56,26 @@ export const CardsRowWrapper = {
     return render(
       <CardsRow title={title} badge={badge} items={items} labels={labels} />,
     );
+  },
+
+  mountSkeleton(options: MountSkeletonOptions = {}): RenderResult {
+    const { title, badge, count } = options;
+
+    return render(
+      <CardsRow.Skeleton title={title} badge={badge} count={count} />,
+    );
+  },
+
+  get skeletonContainer() {
+    return screen.getByTestId('cards-row-skeleton');
+  },
+
+  get skeletonCards() {
+    return within(this.skeletonContainer).queryAllByTestId('card-skeleton');
+  },
+
+  get skeletonTitle() {
+    return within(this.skeletonContainer).getByRole('heading');
   },
 
   get container() {

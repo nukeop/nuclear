@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PluginStoreItem.Skeleton > (Snapshot) renders correctly 1`] = `
+<div>
+  <div
+    class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-shadow flex-row items-center justify-between gap-4"
+    data-testid="plugin-store-item-skeleton"
+  >
+    <div
+      class="flex min-w-0 flex-1 flex-col gap-1"
+    >
+      <div
+        class="flex h-5 items-center gap-2"
+      >
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-4 w-32"
+          data-testid="skeleton"
+        />
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-20"
+          data-testid="skeleton"
+        />
+        <div
+          class="bg-muted border-border animate-pulse border-(length:--border-width) h-5 w-10 rounded-full"
+          data-testid="skeleton"
+        />
+        <div
+          class="bg-muted border-border animate-pulse border-(length:--border-width) h-5 w-16 rounded-full"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex h-5 items-center"
+      >
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-full"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex h-5 items-center"
+      >
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-2/3"
+          data-testid="skeleton"
+        />
+      </div>
+    </div>
+    <div
+      class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-10 w-28 shrink-0"
+      data-testid="skeleton"
+    />
+  </div>
+</div>
+`;

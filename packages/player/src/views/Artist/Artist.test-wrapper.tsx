@@ -26,11 +26,11 @@ export const ArtistWrapper = {
   getHeader: (name: string) => screen.getByRole('heading', { name }),
 
   bioHeader: {
-    get loader() {
-      return screen.queryByTestId('artist-header-loader');
+    get skeleton() {
+      return screen.queryByTestId('artist-header-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('artist-header-loader');
+    async findSkeleton() {
+      return screen.findByTestId('artist-header-skeleton');
     },
   },
 
@@ -38,11 +38,11 @@ export const ArtistWrapper = {
     get element() {
       return screen.queryByTestId('artist-social-header');
     },
-    get loader() {
-      return screen.queryByTestId('artist-social-header-loader');
+    get skeleton() {
+      return screen.queryByTestId('artist-social-header-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('artist-social-header-loader');
+    async findSkeleton() {
+      return screen.findByTestId('artist-social-header-skeleton');
     },
   },
 
@@ -53,11 +53,11 @@ export const ArtistWrapper = {
     get table() {
       return screen.queryByRole('table');
     },
-    get loader() {
-      return screen.queryByTestId('popular-tracks-loader');
+    get skeleton() {
+      return screen.queryByTestId('popular-tracks-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('popular-tracks-loader');
+    async findSkeleton() {
+      return screen.findByTestId('popular-tracks-skeleton');
     },
   },
 
@@ -68,11 +68,11 @@ export const ArtistWrapper = {
     get items() {
       return screen.queryAllByRole('listitem');
     },
-    get loader() {
-      return screen.queryByTestId('similar-artists-loader');
+    get skeleton() {
+      return screen.queryByTestId('similar-artists-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('similar-artists-loader');
+    async findSkeleton() {
+      return screen.findByTestId('similar-artists-skeleton');
     },
     inspectItem(listItem: HTMLElement) {
       const utils = within(listItem);
@@ -87,20 +87,20 @@ export const ArtistWrapper = {
     get cards() {
       return screen.queryAllByTestId('card');
     },
-    get loader() {
-      return screen.queryByTestId('artist-albums-loader');
+    get skeleton() {
+      return screen.queryByTestId('artist-albums-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('artist-albums-loader');
+    async findSkeleton() {
+      return screen.findByTestId('artist-albums-skeleton');
     },
   },
 
   playlists: {
-    get loader() {
-      return screen.queryByTestId('artist-playlists-loader');
+    get skeleton() {
+      return screen.queryByTestId('artist-playlists-skeleton');
     },
-    async findLoader() {
-      return screen.findByTestId('artist-playlists-loader');
+    async findSkeleton() {
+      return screen.findByTestId('artist-playlists-skeleton');
     },
   },
 

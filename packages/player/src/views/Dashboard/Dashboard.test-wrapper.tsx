@@ -81,8 +81,8 @@ export const DashboardWrapper = {
     return { ...component, router };
   },
 
-  get loader() {
-    return screen.queryByTestId('dashboard-loader');
+  get skeleton() {
+    return screen.queryByTestId('dashboard-skeleton');
   },
 
   get emptyState() {

@@ -1,0 +1,386 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CardsRow.Skeleton > (Snapshot) renders correctly with title and badge 1`] = `
+<div
+  class="flex flex-col gap-3"
+  data-testid="cards-row-skeleton"
+>
+  <div
+    class="flex min-h-10 items-center justify-between gap-4"
+  >
+    <div
+      class="flex items-center gap-2"
+    >
+      <h2
+        class="text-foreground text-lg font-bold"
+      >
+        Top Albums
+      </h2>
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold surface-accent-purple"
+        data-testid="cards-row-badge"
+      >
+        Acme Music
+      </span>
+    </div>
+  </div>
+  <div
+    class="flex gap-2 overflow-hidden pb-2"
+  >
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardsRow.Skeleton > (Snapshot) renders correctly without a title 1`] = `
+<div
+  class="flex flex-col gap-3"
+  data-testid="cards-row-skeleton"
+>
+  <div
+    class="flex min-h-10 items-center justify-between gap-4"
+  >
+    <div
+      class="flex items-center gap-2"
+    >
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-5 w-32"
+        data-testid="cards-row-skeleton-title"
+      />
+    </div>
+  </div>
+  <div
+    class="flex gap-2 overflow-hidden pb-2"
+  >
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="surface-card border-border shadow-shadow flex w-42 flex-col items-stretch gap-2 rounded-md border-(length:--border-width) p-2 shrink-0"
+      data-testid="card-skeleton"
+    >
+      <div
+        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card aspect-square w-full overflow-hidden p-0"
+      >
+        <div
+          class="bg-muted border-border animate-pulse h-full w-full rounded-none border-0"
+          data-testid="skeleton"
+        />
+      </div>
+      <div
+        class="flex min-w-0 flex-col"
+      >
+        <div
+          class="flex h-5 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3.5 w-3/4"
+            data-testid="skeleton"
+          />
+        </div>
+        <div
+          class="flex h-4 items-center"
+        >
+          <div
+            class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-1/2"
+            data-testid="skeleton"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

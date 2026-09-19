@@ -6,7 +6,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
   data-testid="cards-row"
 >
   <div
-    class="flex items-center justify-between gap-4"
+    class="flex min-h-10 items-center justify-between gap-4"
   >
     <div
       class="flex items-center gap-2"

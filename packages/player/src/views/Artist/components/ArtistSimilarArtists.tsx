@@ -4,9 +4,9 @@ import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { pickArtwork } from '@nuclearplayer/model';
-import { Loader } from '@nuclearplayer/ui';
 
 import { useArtistRelatedArtists } from '../hooks/useArtistRelatedArtists';
+import { ArtistSimilarArtistsSkeleton } from './ArtistSimilarArtistsSkeleton';
 
 type ArtistSimilarArtistsProps = {
   providerId: string;
@@ -25,11 +25,7 @@ export const ArtistSimilarArtists: FC<ArtistSimilarArtistsProps> = ({
   } = useArtistRelatedArtists(providerId, artistId);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center p-4">
-        <Loader data-testid="similar-artists-loader" />
-      </div>
-    );
+    return <ArtistSimilarArtistsSkeleton />;
   }
 
   if (isError) {
@@ -45,26 +41,25 @@ export const ArtistSimilarArtists: FC<ArtistSimilarArtistsProps> = ({
       <div className="flex flex-col">
         <h2 className="mb-2 text-lg font-semibold">{t('similar')}</h2>
         <ul className="divide-border surface-card border-border divide-y-(length:--border-width) border border-(length:--border-width)">
-          {artists!.slice(0, 5).map((a) => {
-            const thumb = pickArtwork(a.artwork, 'thumbnail', 64);
-            const avatar = thumb ?? pickArtwork(a.artwork, 'avatar', 64);
+          {artists!.slice(0, 5).map((artist) => {
+            const thumb = pickArtwork(artist.artwork, 'thumbnail', 64);
+            const avatar = thumb ?? pickArtwork(artist.artwork, 'avatar', 64);
             return (
-              <li key={a.source.id}>
+              <li key={artist.source.id}>
                 <Link
                   to="/artist/$providerId/$artistId"
-                  params={{ providerId, artistId: a.source.id }}
+                  params={{ providerId, artistId: artist.source.id }}
                   className="flex items-center gap-3"
                 >
-                  {avatar ? (
+                  {avatar && (
                     <img
                       src={avatar.url}
-                      alt={a.name}
+                      alt={artist.name}
                       className="h-10 w-10 object-cover"
                     />
-                  ) : (
-                    <div className="h-10 w-10" />
                   )}
-                  <span className="truncate">{a.name}</span>
+                  {!avatar && <div className="h-10 w-10" />}
+                  <span className="truncate">{artist.name}</span>
                 </Link>
               </li>
             );

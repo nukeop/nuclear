@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import { pickArtwork } from '@nuclearplayer/model';
 import { MetadataProvider } from '@nuclearplayer/plugin-sdk';
-import { Card, CardGrid, Loader } from '@nuclearplayer/ui';
+import { Card, CardGrid } from '@nuclearplayer/ui';
 
 import { useActiveProvider } from '../../../hooks/useActiveProvider';
 import { useArtistAlbums } from '../hooks/useArtistAlbums';
@@ -34,12 +34,10 @@ export const ArtistAlbumsGrid: FC<ArtistAlbumsGridProps> = ({
 
   if (isLoading) {
     return (
-      <div
-        className="flex items-center justify-center p-8"
-        data-testid={dataTestId}
-      >
-        <Loader data-testid="artist-albums-loader" />
-      </div>
+      <CardGrid.Skeleton
+        data-testid={dataTestId ?? 'artist-albums-skeleton'}
+        className="mx-4"
+      />
     );
   }
 

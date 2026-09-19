@@ -39,6 +39,7 @@ export * from './SectionShell';
 export * from './SettingsPanel';
 export * from './Select';
 export * from './SidebarNavigation';
+export * from './Skeleton';
 export * from './Slider';
 export * from './StatChip';
 export * from './Tabs';

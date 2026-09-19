@@ -5,6 +5,7 @@ import { cn } from '../../utils';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { ImageReveal } from '../ImageReveal';
+import { CardSkeleton } from './CardSkeleton';
 
 type CardProps = {
   src?: string;
@@ -16,7 +17,7 @@ type CardProps = {
   imageReveal?: boolean;
 };
 
-export const Card: FC<CardProps> = ({
+const CardBase: FC<CardProps> = ({
   src,
   image,
   title,
@@ -76,3 +77,5 @@ export const Card: FC<CardProps> = ({
     )}
   </Button>
 );
+
+export const Card = Object.assign(CardBase, { Skeleton: CardSkeleton });

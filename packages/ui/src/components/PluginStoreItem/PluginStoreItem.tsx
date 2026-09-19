@@ -6,6 +6,7 @@ import { Badge } from '../Badge';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Loader } from '../Loader';
+import { PluginStoreItemSkeleton } from './PluginStoreItemSkeleton';
 
 type PluginStoreItemProps = Omit<ComponentProps<'div'>, 'children'> & {
   name: string;
@@ -26,7 +27,7 @@ type PluginStoreItemProps = Omit<ComponentProps<'div'>, 'children'> & {
   };
 };
 
-export const PluginStoreItem: FC<PluginStoreItemProps> = ({
+const PluginStoreItemBase: FC<PluginStoreItemProps> = ({
   name,
   description,
   author,
@@ -107,3 +108,7 @@ export const PluginStoreItem: FC<PluginStoreItemProps> = ({
     </Box>
   );
 };
+
+export const PluginStoreItem = Object.assign(PluginStoreItemBase, {
+  Skeleton: PluginStoreItemSkeleton,
+});

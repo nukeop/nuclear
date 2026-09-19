@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { Loader } from '@nuclearplayer/ui';
+import { TrackTable } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../../components/ConnectedTrackTable';
 import { useArtistTopTracks } from '../hooks/useArtistTopTracks';
@@ -24,8 +24,12 @@ export const ArtistPopularTracks: FC<ArtistPopularTracksProps> = ({
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center p-4">
-        <Loader data-testid="popular-tracks-loader" />
+      <div className="flex flex-col">
+        <h2 className="mb-2 text-lg font-semibold">{t('popularTracks')}</h2>
+        <TrackTable.Skeleton
+          display={{ displayDuration: false }}
+          data-testid="popular-tracks-skeleton"
+        />
       </div>
     );
   }
