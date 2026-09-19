@@ -219,6 +219,8 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -287,6 +289,8 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -355,6 +359,8 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -627,6 +633,8 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -695,6 +703,8 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -763,6 +773,8 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -831,6 +843,8 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -899,6 +913,8 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -1188,6 +1204,8 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -1256,6 +1274,8 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -1324,6 +1344,8 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -1392,6 +1414,8 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -1460,6 +1484,8 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -1735,6 +1761,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -1803,6 +1831,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -1871,6 +1901,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -1939,6 +1971,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2007,6 +2041,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2075,6 +2111,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2143,6 +2181,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2211,6 +2251,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2279,6 +2321,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2347,6 +2391,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2415,6 +2461,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2483,6 +2531,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2551,6 +2601,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2619,6 +2671,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2687,6 +2741,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2755,6 +2811,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2823,6 +2881,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2891,6 +2951,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -2959,6 +3021,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -3027,6 +3091,8 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   >
                     <img
                       class="w-10 min-w-10"
+                      decoding="async"
+                      loading="lazy"
                       src="https://i.imgur.com/4euOws2.jpg"
                     />
                   </div>
@@ -3363,6 +3429,8 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -3431,6 +3499,8 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>
@@ -3499,6 +3569,8 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 >
                   <img
                     class="w-10 min-w-10"
+                    decoding="async"
+                    loading="lazy"
                     src="https://i.imgur.com/4euOws2.jpg"
                   />
                 </div>

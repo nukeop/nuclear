@@ -1,6 +1,7 @@
 packages:
   - "packages/*"
 pmOnFail: ignore
+minimumReleaseAge: 10080
 allowBuilds:
   esbuild: true
   sharp: true
