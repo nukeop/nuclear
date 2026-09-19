@@ -29,12 +29,12 @@
     "@storybook/react-vite": "^10.0.0",
     "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^18.3.23",
-    "@vitejs/plugin-react": "^5.0.1",
+    "@vitejs/plugin-react": "^6.0.0",
     "eslint-plugin-storybook": "10.6.0",
     "sonner": "^2.0.7",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2",
-    "vite": "^7.1.3",
-    "vite-plugin-svgr": "^4.3.0"
+    "vite": "^8.0.0",
+    "vite-plugin-svgr": "^5.0.0"
   }
 }
