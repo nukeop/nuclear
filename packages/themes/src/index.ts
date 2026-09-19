@@ -78,34 +78,49 @@ export function listBasicThemes(): BasicThemeMeta[] {
   return BUILT_INS.filter((t) => allowed.has(t.id));
 }
 
+const withTransitionsSuspended = (changeTheme: () => void): void => {
+  document.documentElement.setAttribute('data-transitions', 'suspended');
+  changeTheme();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.removeAttribute('data-transitions');
+    });
+  });
+};
+
 export function setThemeId(id: string): void {
-  const root = document.documentElement;
-  root.setAttribute('data-theme-id', id);
+  withTransitionsSuspended(() => {
+    document.documentElement.setAttribute('data-theme-id', id);
+  });
 }
 
 export function setBasicTheme(id: string): void {
   setThemeId(id);
 }
 
-const ADV_STYLE_ID = 'advanced-theme';
-
 export function applyAdvancedTheme(theme: AdvancedTheme): void {
   const parsed = AdvancedThemeSchema.parse(theme);
   const css = generateAdvancedThemeCSS(parsed);
-  let style = document.getElementById(ADV_STYLE_ID) as HTMLStyleElement | null;
-  if (!style) {
-    style = document.createElement('style');
-    style.id = ADV_STYLE_ID;
-    document.head.appendChild(style);
-  }
-  style.textContent = css;
+  withTransitionsSuspended(() => {
+    let style = document.getElementById(
+      'advanced-theme',
+    ) as HTMLStyleElement | null;
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'advanced-theme';
+      document.head.appendChild(style);
+    }
+    style.textContent = css;
+  });
 }
 
 export function clearAdvancedTheme(): void {
-  const style = document.getElementById(ADV_STYLE_ID);
-  if (style?.parentNode) {
-    style.parentNode.removeChild(style);
-  }
+  withTransitionsSuspended(() => {
+    const style = document.getElementById('advanced-theme');
+    if (style?.parentNode) {
+      style.parentNode.removeChild(style);
+    }
+  });
 }
 
 export type { AdvancedTheme, MarketplaceTheme };

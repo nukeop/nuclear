@@ -180,6 +180,11 @@
   }
 }
 
+[data-transitions='suspended'],
+[data-transitions='suspended'] * {
+  transition: none !important;
+}
+
 [data-theme='dark'] {
   --background: oklch(0.22 0.03 5);
   --foreground: oklch(0.9 0.008 5);
