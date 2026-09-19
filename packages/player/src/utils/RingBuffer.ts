@@ -2,10 +2,16 @@ export class RingBuffer<T> {
   private buffer: T[] = [];
   private head = 0;
   private count = 0;
+  private bufferVersion = 0;
 
   constructor(private readonly capacity: number) {}
 
+  get version(): number {
+    return this.bufferVersion;
+  }
+
   push(item: T): void {
+    this.bufferVersion++;
     if (this.count < this.capacity) {
       this.buffer.push(item);
       this.count++;
@@ -16,6 +22,7 @@ export class RingBuffer<T> {
   }
 
   clear(): void {
+    this.bufferVersion++;
     this.buffer = [];
     this.head = 0;
     this.count = 0;
@@ -32,12 +39,12 @@ export class RingBuffer<T> {
   }
 
   prepend(items: T[]): void {
+    this.bufferVersion++;
     const current = this.toArray();
-    this.clear();
     const combined = [...items, ...current];
     const toKeep = combined.slice(-this.capacity);
-    for (const item of toKeep) {
-      this.push(item);
-    }
+    this.buffer = [...toKeep];
+    this.count = toKeep.length;
+    this.head = 0;
   }
 }

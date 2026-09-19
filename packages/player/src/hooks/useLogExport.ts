@@ -3,7 +3,7 @@ import { appLogDir } from '@tauri-apps/api/path';
 import { save } from '@tauri-apps/plugin-dialog';
 import { writeTextFile } from '@tauri-apps/plugin-fs';
 import { revealItemInDir } from '@tauri-apps/plugin-opener';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { toast } from 'sonner';
 
 import { useTranslation } from '@nuclearplayer/i18n';
@@ -44,6 +44,8 @@ export const generateExportContent = async (
 
 export const useLogExport = (logs: LogEntryData[]) => {
   const { t } = useTranslation('logs');
+  const logsRef = useRef(logs);
+  logsRef.current = logs;
 
   const exportLogs = useCallback(async () => {
     const filePath = await save({
@@ -55,10 +57,10 @@ export const useLogExport = (logs: LogEntryData[]) => {
       return;
     }
 
-    const content = await generateExportContent(logs);
+    const content = await generateExportContent(logsRef.current);
     await writeTextFile(filePath, content);
     toast.success(t('exportSuccess'));
-  }, [logs, t]);
+  }, [t]);
 
   const openLogFolder = useCallback(async () => {
     const logDir = await appLogDir();

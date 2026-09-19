@@ -1,6 +1,6 @@
 import { invoke } from '@tauri-apps/api/core';
 import { attachLogger } from '@tauri-apps/plugin-log';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import { RingBuffer } from '../utils/RingBuffer';
@@ -109,11 +109,15 @@ export const resetLogStreamForTesting = () => {
 };
 
 export const useLogStream = () => {
-  const [logs, setLogs] = useState<LogEntry[]>([]);
+  const [logs, setLogs] = useState<LogEntry[]>(() => logBuffer.toArray());
+  const lastFlushedVersionRef = useRef(logBuffer.version);
 
   useEffect(() => {
     const flushInterval = setInterval(() => {
-      setLogs(logBuffer.toArray());
+      if (lastFlushedVersionRef.current !== logBuffer.version) {
+        lastFlushedVersionRef.current = logBuffer.version;
+        setLogs(logBuffer.toArray());
+      }
     }, FLUSH_INTERVAL_MS);
 
     return () => {
@@ -126,12 +130,12 @@ export const useLogStream = () => {
   }, []);
 
   const scopes = useMemo(
-    () => [...new Set(logs.map((l) => l.source.scope).filter(Boolean))],
+    () => [...new Set(logs.map((log) => log.source.scope).filter(Boolean))],
     [logs],
   );
 
   const targets = useMemo(
-    () => [...new Set(logs.map((l) => l.target).filter(Boolean))],
+    () => [...new Set(logs.map((log) => log.target).filter(Boolean))],
     [logs],
   );
 
