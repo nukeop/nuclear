@@ -49,6 +49,16 @@ import {
   NuclearJamSearchResultTrack,
   NuclearJamSearchResultTrackProps,
 } from './NuclearJamSearchResultTrack';
+import { NuclearJamSearchResultTrackSkeleton } from './NuclearJamSearchResultTrackSkeleton';
+
+type NuclearJamSearchResultTrackComponent =
+  typeof NuclearJamSearchResultTrack & {
+    Skeleton: typeof NuclearJamSearchResultTrackSkeleton;
+  };
+
+const SearchResultTrack =
+  NuclearJamSearchResultTrack as NuclearJamSearchResultTrackComponent;
+SearchResultTrack.Skeleton = NuclearJamSearchResultTrackSkeleton;
 
 type NuclearJamSearchDrawerComponent = typeof NuclearJamSearchDrawer & {
   Empty: typeof NuclearJamSearchDrawerEmpty;
@@ -71,7 +81,7 @@ type NuclearJamComponent = FC<NuclearJamProps> & {
   Queue: typeof NuclearJamQueue;
   SearchBar: typeof NuclearJamSearchBar;
   SearchDrawer: NuclearJamSearchDrawerComponent;
-  SearchResultTrack: typeof NuclearJamSearchResultTrack;
+  SearchResultTrack: NuclearJamSearchResultTrackComponent;
 };
 
 export const NuclearJam = NuclearJamRoot as NuclearJamComponent;
@@ -84,7 +94,7 @@ NuclearJam.Controls = NuclearJamControls;
 NuclearJam.Queue = NuclearJamQueue;
 NuclearJam.SearchBar = NuclearJamSearchBar;
 NuclearJam.SearchDrawer = SearchDrawer;
-NuclearJam.SearchResultTrack = NuclearJamSearchResultTrack;
+NuclearJam.SearchResultTrack = SearchResultTrack;
 
 export type {
   NuclearJamProps,

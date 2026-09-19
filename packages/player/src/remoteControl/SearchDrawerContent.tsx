@@ -2,7 +2,9 @@ import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { Track } from '@nuclearplayer/model';
-import { CenteredLoader, NuclearJam } from '@nuclearplayer/ui';
+import { NuclearJam } from '@nuclearplayer/ui';
+
+import { SearchDrawerSkeleton } from './SearchDrawerSkeleton';
 
 type SearchDrawerContentProps = {
   isError: boolean;
@@ -30,7 +32,7 @@ export const SearchDrawerContent: FC<SearchDrawerContentProps> = ({
     );
   }
   if (!isSuccess) {
-    return <CenteredLoader />;
+    return <SearchDrawerSkeleton />;
   }
   if (tracks.length === 0) {
     return (
