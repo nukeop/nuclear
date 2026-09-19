@@ -84,6 +84,13 @@
   </requires>
 
   <releases>
+    <release version="1.48.5" date="2026-09-19">
+      <description>
+        <ul>
+          <li>Loading spinners are replaced with skeletons.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.48.4" date="2026-09-14">
       <description>
         <p>Release 1.48.4.</p>
