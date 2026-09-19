@@ -59,6 +59,9 @@ jobs:
       - name: Build package for npm
         run: pnpm --filter @nuclearplayer/plugin-sdk build:npm
 
+      - name: Run tests
+        run: pnpm --filter @nuclearplayer/plugin-sdk test
+
       - name: Prepare package.json for publishing
         run: |
           cd packages/plugin-sdk
@@ -74,9 +77,6 @@ jobs:
             
             require('fs').writeFileSync('./package.json', JSON.stringify(pkg, null, 2));
           "
-
-      - name: Run tests
-        run: pnpm --filter @nuclearplayer/plugin-sdk test
 
       - name: Publish to npm
         run: |
