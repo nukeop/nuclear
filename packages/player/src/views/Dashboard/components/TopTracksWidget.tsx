@@ -16,7 +16,10 @@ export const TopTracksWidget: FC = () => {
   );
 
   return (
-    <div data-testid="dashboard-top-tracks" className="flex flex-col">
+    <div
+      data-testid="dashboard-top-tracks"
+      className="flex h-[32rem] shrink-0 flex-col"
+    >
       <h2 className="mb-2 text-lg font-semibold">{t('top-tracks')}</h2>
       {isLoading && (
         <TrackTable.Skeleton
@@ -25,11 +28,13 @@ export const TopTracksWidget: FC = () => {
         />
       )}
       {!isLoading && (
-        <ConnectedTrackTable
-          tracks={tracks}
-          features={{ filterable: true, playAll: true, addAllToQueue: true }}
-          display={{ displayDuration: false }}
-        />
+        <div className="min-h-0 flex-1">
+          <ConnectedTrackTable
+            tracks={tracks}
+            features={{ filterable: true, playAll: true, addAllToQueue: true }}
+            display={{ displayDuration: false }}
+          />
+        </div>
       )}
     </div>
   );

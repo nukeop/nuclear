@@ -80,7 +80,7 @@ const AnimatedOutlet = forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     <motion.div
       ref={ref}
-      className="absolute inset-0 h-full w-full"
+      className="absolute inset-0 h-full w-full will-change-[transform,filter]"
       variants={slideVariants}
       initial="enter"
       animate="center"
