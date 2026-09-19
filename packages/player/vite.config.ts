@@ -41,6 +41,9 @@ export default defineConfig(() => ({
     watch: {
       ignored: ['**/src-tauri/**'],
     },
+    warmup: {
+      clientFiles: ['./src/main.tsx', './src/initPlayerApp.tsx'],
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:4120',
