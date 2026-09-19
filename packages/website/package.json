@@ -14,6 +14,7 @@
     "clean": "rm -rf dist .turbo node_modules/.cache .astro"
   },
   "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.1",
     "@astrojs/mdx": "^8.0.0",
     "@astrojs/react": "^6.0.0",
     "@astrojs/rss": "^4.0.18",
