@@ -21,10 +21,10 @@
     "typescript": "^5"
   },
   "devDependencies": {
-    "@eslint/css": "^1.0.0",
+    "@eslint/css": "^2.0.0",
     "@eslint/js": "^10.0.0",
-    "@eslint/json": "^1.0.0",
-    "@eslint/markdown": "^7.1.0",
+    "@eslint/json": "^2.0.0",
+    "@eslint/markdown": "^8.0.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.5.1",
     "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.1.8",
