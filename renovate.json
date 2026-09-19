@@ -29,7 +29,12 @@
     },
     {
       "description": "Group ESLint packages",
-      "matchPackageNames": ["/^eslint/", "/^@eslint\\//", "/^@typescript-eslint\\//"],
+      "matchPackageNames": [
+        "/^eslint/",
+        "/^@eslint\\//",
+        "/^@typescript-eslint\\//",
+        "typescript-eslint"
+      ],
       "groupName": "eslint"
     },
     {
@@ -46,6 +51,55 @@
       "description": "Group Vite packages",
       "matchPackageNames": ["vite", "@vitejs/{/,}**", "/^vite-plugin-/"],
       "groupName": "vite"
+    },
+    {
+      "description": "Group Storybook packages",
+      "matchPackageNames": ["storybook", "@storybook/{/,}**"],
+      "groupName": "storybook"
+    },
+    {
+      "description": "Group Astro packages",
+      "matchPackageNames": ["astro", "@astrojs/{/,}**", "/^astro-/"],
+      "groupName": "astro"
+    },
+    {
+      "description": "Group Remotion packages",
+      "matchPackageNames": ["remotion", "@remotion/{/,}**"],
+      "groupName": "remotion"
+    },
+    {
+      "description": "Group dnd-kit packages",
+      "matchPackageNames": ["@dnd-kit/{/,}**"],
+      "groupName": "dnd-kit"
+    },
+    {
+      "description": "Group i18next packages",
+      "matchPackageNames": ["i18next", "react-i18next"],
+      "groupName": "i18next"
+    },
+    {
+      "description": "Group D3 packages",
+      "matchPackageNames": ["/^d3-/"],
+      "groupName": "d3"
+    },
+    {
+      "description": "Group Fontsource packages",
+      "matchPackageNames": ["@fontsource/{/,}**", "@fontsource-variable/{/,}**"],
+      "groupName": "fontsource"
+    },
+    {
+      "description": "Group Prettier packages",
+      "matchPackageNames": [
+        "prettier",
+        "/^prettier-plugin-/",
+        "@ianvs/prettier-plugin-sort-imports"
+      ],
+      "groupName": "prettier"
+    },
+    {
+      "description": "Group TypeScript type definitions",
+      "matchPackageNames": ["@types/{/,}**"],
+      "groupName": "typescript-types"
     },
     {
       "description": "Group GitHub Actions updates",
