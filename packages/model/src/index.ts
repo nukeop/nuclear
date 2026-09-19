@@ -46,6 +46,7 @@ export type AlbumRef = {
 export type TrackRef = {
   title: string;
   artists: ArtistRef[];
+  durationMs?: number;
   artwork?: ArtworkSet;
   source: ProviderRef;
 };
