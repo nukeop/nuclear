@@ -3,6 +3,32 @@
   --card: oklch(0.74 0.15 305);
   --popover: oklch(0.74 0.15 305);
   --primary: oklch(0.74 0.15 305);
+
+  --background-gradient: linear-gradient(
+    180deg,
+    oklch(0.99 0.01 340),
+    oklch(0.97 0.01 340)
+  );
+  --muted-gradient: linear-gradient(
+    180deg,
+    oklch(1 0 0),
+    oklch(0.98 0.006 340)
+  );
+  --card-gradient: linear-gradient(
+    180deg,
+    oklch(0.77 0.15 305),
+    oklch(0.71 0.15 305)
+  );
+  --popover-gradient: linear-gradient(
+    180deg,
+    oklch(0.77 0.15 305),
+    oklch(0.71 0.15 305)
+  );
+  --primary-gradient: linear-gradient(
+    180deg,
+    oklch(0.77 0.15 305),
+    oklch(0.71 0.15 305)
+  );
 }
 
 :root[data-theme-id='nuclear:aurora'][data-theme='dark'] {
@@ -15,4 +41,30 @@
   --foreground: oklch(0.9 0.008 305);
   --muted-foreground: oklch(0.9 0.008 305);
   --border: oklch(0.68 0.11 305);
+
+  --background-gradient: linear-gradient(
+    180deg,
+    oklch(0.24 0.03 305),
+    oklch(0.2 0.03 305)
+  );
+  --muted-gradient: linear-gradient(
+    180deg,
+    oklch(0.29 0.035 305),
+    oklch(0.25 0.035 305)
+  );
+  --card-gradient: linear-gradient(
+    180deg,
+    oklch(0.65 0.11 305),
+    oklch(0.59 0.11 305)
+  );
+  --popover-gradient: linear-gradient(
+    180deg,
+    oklch(0.65 0.11 305),
+    oklch(0.59 0.11 305)
+  );
+  --primary-gradient: linear-gradient(
+    180deg,
+    oklch(0.65 0.11 305),
+    oklch(0.59 0.11 305)
+  );
 }

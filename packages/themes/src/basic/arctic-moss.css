@@ -3,6 +3,32 @@
   --card: oklch(0.7 0.12 175);
   --popover: oklch(0.7 0.12 175);
   --primary: oklch(0.7 0.12 175);
+
+  --background-gradient: linear-gradient(
+    180deg,
+    oklch(0.98 0.008 200),
+    oklch(0.96 0.008 200)
+  );
+  --muted-gradient: linear-gradient(
+    180deg,
+    oklch(1 0 0),
+    oklch(0.98 0.006 200)
+  );
+  --card-gradient: linear-gradient(
+    180deg,
+    oklch(0.73 0.12 175),
+    oklch(0.67 0.12 175)
+  );
+  --popover-gradient: linear-gradient(
+    180deg,
+    oklch(0.73 0.12 175),
+    oklch(0.67 0.12 175)
+  );
+  --primary-gradient: linear-gradient(
+    180deg,
+    oklch(0.73 0.12 175),
+    oklch(0.67 0.12 175)
+  );
 }
 
 :root[data-theme-id='nuclear:arctic-moss'][data-theme='dark'] {
@@ -15,4 +41,30 @@
   --foreground: oklch(0.9 0.006 175);
   --muted-foreground: oklch(0.9 0.006 175);
   --border: oklch(0.68 0.11 175);
+
+  --background-gradient: linear-gradient(
+    180deg,
+    oklch(0.22 0.02 175),
+    oklch(0.18 0.02 175)
+  );
+  --muted-gradient: linear-gradient(
+    180deg,
+    oklch(0.27 0.025 175),
+    oklch(0.23 0.025 175)
+  );
+  --card-gradient: linear-gradient(
+    180deg,
+    oklch(0.61 0.09 175),
+    oklch(0.55 0.09 175)
+  );
+  --popover-gradient: linear-gradient(
+    180deg,
+    oklch(0.61 0.09 175),
+    oklch(0.55 0.09 175)
+  );
+  --primary-gradient: linear-gradient(
+    180deg,
+    oklch(0.61 0.09 175),
+    oklch(0.55 0.09 175)
+  );
 }
