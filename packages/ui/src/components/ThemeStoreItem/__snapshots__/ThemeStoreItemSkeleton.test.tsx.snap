@@ -1,0 +1,67 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ThemeStoreItem.Skeleton > (Snapshot) renders correctly 1`] = `
+<div>
+  <div
+    class="flex flex-row gap-2"
+    data-testid="theme-store-item-skeleton"
+  >
+    <div
+      class="border-border flex w-full rounded-md border-(length:--border-width) surface-muted shadow-shadow relative h-auto overflow-hidden p-2"
+    >
+      <div
+        class="bg-muted border-border animate-pulse absolute inset-0 rounded-none border-0"
+        data-testid="skeleton"
+      />
+      <div
+        class="border-border flex h-full w-full rounded-md border-(length:--border-width) p-4 surface-muted shadow-none relative flex-1 flex-row items-center justify-between gap-4"
+      >
+        <div
+          class="flex min-w-0 flex-1 flex-col gap-1"
+        >
+          <div
+            class="flex h-6 items-center gap-2"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-4 w-32"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse border-(length:--border-width) h-5 w-14 rounded-full"
+              data-testid="skeleton"
+            />
+          </div>
+          <div
+            class="flex h-5 items-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-full"
+              data-testid="skeleton"
+            />
+          </div>
+          <div
+            class="flex h-5 items-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-2/3"
+              data-testid="skeleton"
+            />
+          </div>
+          <div
+            class="flex h-4 items-center"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-2.5 w-24"
+              data-testid="skeleton"
+            />
+          </div>
+        </div>
+        <div
+          class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-10 w-28 shrink-0"
+          data-testid="skeleton"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

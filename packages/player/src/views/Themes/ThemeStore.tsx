@@ -1,13 +1,14 @@
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { CenteredLoader, Input, ThemeStoreItem } from '@nuclearplayer/ui';
+import { Input, ThemeStoreItem } from '@nuclearplayer/ui';
 
 import { useFilteredMarketplaceThemes } from '../../hooks/useFilteredMarketplaceThemes';
 import { useInstallTheme } from '../../hooks/useInstallTheme';
 import { useUninstallTheme } from '../../hooks/useUninstallTheme';
 import { loadAndApplyMarketplaceTheme } from '../../services/advancedThemeService';
 import { useThemeStore } from '../../stores/themeStore';
+import { ThemeStoreSkeletonList } from './ThemeStoreSkeletonList';
 
 export const ThemeStore: FC = () => {
   const { t } = useTranslation('themes');
@@ -19,10 +20,6 @@ export const ThemeStore: FC = () => {
 
   const isInstalled = (themeId: string) =>
     marketplaceThemes.some((theme) => theme.id === themeId);
-
-  if (isLoading) {
-    return <CenteredLoader />;
-  }
 
   if (isError) {
     return (
@@ -42,6 +39,7 @@ export const ThemeStore: FC = () => {
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
+      {isLoading && <ThemeStoreSkeletonList />}
       {themes?.map((theme) => (
         <ThemeStoreItem
           key={theme.id}

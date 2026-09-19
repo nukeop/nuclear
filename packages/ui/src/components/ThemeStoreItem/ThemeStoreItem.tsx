@@ -7,6 +7,7 @@ import { Box } from '../Box';
 import { Button } from '../Button';
 import { Loader } from '../Loader';
 import { Tooltip } from '../Tooltip';
+import { ThemeStoreItemSkeleton } from './ThemeStoreItemSkeleton';
 
 type ThemeStoreItemProps = {
   name: string;
@@ -34,7 +35,7 @@ type ThemeStoreItemProps = {
   className?: string;
 };
 
-export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
+const ThemeStoreItemBase: FC<ThemeStoreItemProps> = ({
   name,
   description,
   author,
@@ -161,3 +162,7 @@ export const ThemeStoreItem: FC<ThemeStoreItemProps> = ({
     </div>
   );
 };
+
+export const ThemeStoreItem = Object.assign(ThemeStoreItemBase, {
+  Skeleton: ThemeStoreItemSkeleton,
+});
