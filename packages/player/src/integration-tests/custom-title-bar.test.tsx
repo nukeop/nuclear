@@ -12,6 +12,8 @@ const mockWindow = vi.hoisted(() => ({
   setDecorations: vi.fn(),
   setMinimizable: vi.fn(),
   isMaximized: vi.fn().mockResolvedValue(false),
+  show: vi.fn().mockResolvedValue(undefined),
+  setFocus: vi.fn(),
 }));
 
 vi.mock('@tauri-apps/api/window', () => ({
