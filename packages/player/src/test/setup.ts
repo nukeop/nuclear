@@ -62,6 +62,8 @@ vi.mock('@tauri-apps/api/window', () => ({
     close: vi.fn(),
     startDragging: vi.fn(),
     isMaximized: vi.fn().mockResolvedValue(false),
+    show: vi.fn().mockResolvedValue(undefined),
+    setFocus: vi.fn(),
   }),
 }));
 

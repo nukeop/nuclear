@@ -1,4 +1,5 @@
 import { createRootRoute } from '@tanstack/react-router';
+import { getCurrentWindow } from '@tauri-apps/api/window';
 import {
   CableIcon,
   DiscIcon,
@@ -9,6 +10,7 @@ import {
   SettingsIcon,
   UserIcon,
 } from 'lucide-react';
+import { useEffect } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import {
@@ -50,6 +52,10 @@ const RootComponent = () => {
   } = useLayoutStore();
   const openSettings = useSettingsModalStore((state) => state.open);
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
+  useEffect(() => {
+    const window = getCurrentWindow();
+    window.show().then(() => window.setFocus());
+  }, []);
   return (
     <PlayerShell onContextMenu={(e) => e.preventDefault()}>
       <GlobalShortcuts />

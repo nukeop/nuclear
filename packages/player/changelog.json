@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-09-19T00:00",
+    "description": "Prevents flash of unstyled/unthemed content on startup.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "date": "2026-09-19T00:00",
     "description": "Stops log spam if Discord Rich Presence is unavailable. Reconnects correctly if it becomes available after Nuclear is launched.",
     "type": "fix",
     "contributors": ["nukeop"],
