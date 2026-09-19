@@ -78,7 +78,7 @@
     "vitest": "^4.0.0"
   },
   "peerDependencies": {
-    "motion": "^12.23.12",
+    "motion": "^12.23.12 || ^13.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sonner": "^2.0.7"
