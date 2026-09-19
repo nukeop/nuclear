@@ -2,6 +2,8 @@ packages:
   - "packages/*"
 pmOnFail: ignore
 minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - nwsapi@2.2.28
 allowBuilds:
   esbuild: true
   sharp: true

@@ -656,7 +656,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
         >
           <div
             animate="center"
-            class="absolute inset-0 h-full w-full"
+            class="absolute inset-0 h-full w-full will-change-[transform,filter]"
             exit="exit"
             initial="enter"
             transition="[object Object]"
@@ -1176,6 +1176,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
       aria-label="Notifications alt+T"
       aria-live="polite"
       aria-relevant="additions text"
+      data-react-aria-top-layer="true"
       tabindex="-1"
     />
   </div>

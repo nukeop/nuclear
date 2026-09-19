@@ -10,7 +10,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
   >
     <div
       animate="center"
-      class="absolute inset-0 h-full w-full"
+      class="absolute inset-0 h-full w-full will-change-[transform,filter]"
       exit="exit"
       initial="enter"
       transition="[object Object]"
@@ -440,6 +440,8 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           >
                             <img
                               class="w-10 min-w-10"
+                              decoding="async"
+                              loading="lazy"
                             />
                           </div>
                         </td>
@@ -634,6 +636,8 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           >
                             <img
                               class="w-10 min-w-10"
+                              decoding="async"
+                              loading="lazy"
                             />
                           </div>
                         </td>

@@ -10,7 +10,7 @@ exports[`FavoriteAlbums view > (Snapshot) renders empty state 1`] = `
   >
     <div
       animate="center"
-      class="absolute inset-0 h-full w-full"
+      class="absolute inset-0 h-full w-full will-change-[transform,filter]"
       exit="exit"
       initial="enter"
       transition="[object Object]"
@@ -103,7 +103,7 @@ exports[`FavoriteAlbums view > (Snapshot) renders with albums 1`] = `
   >
     <div
       animate="center"
-      class="absolute inset-0 h-full w-full"
+      class="absolute inset-0 h-full w-full will-change-[transform,filter]"
       exit="exit"
       initial="enter"
       transition="[object Object]"
