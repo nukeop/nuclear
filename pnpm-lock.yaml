@@ -362,7 +362,7 @@ importers:
         version: 4.3.3(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))
       '@tanstack/router-vite-plugin':
         specifier: ^1.167.37
-        version: 1.167.37(@rspack/core@1.7.11(@swc/helpers@0.5.23))(@tanstack/react-router@1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(esbuild@0.28.2)(rollup@4.63.1)(supports-color@8.1.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))
+        version: 1.167.37(@rspack/core@1.7.11(@swc/helpers@0.5.23))(@tanstack/react-router@1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(esbuild@0.28.2)(rolldown@1.2.8)(rollup@4.63.1)(supports-color@8.1.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))
       '@tauri-apps/cli':
         specifier: ^2.8.1
         version: 2.11.4
@@ -12727,7 +12727,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/router-plugin@1.168.37(@rspack/core@1.7.11(@swc/helpers@0.5.23))(@tanstack/react-router@1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(esbuild@0.28.2)(rollup@4.63.1)(supports-color@8.1.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))':
+  '@tanstack/router-plugin@1.168.37(@rspack/core@1.7.11(@swc/helpers@0.5.23))(@tanstack/react-router@1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(esbuild@0.28.2)(rolldown@1.2.8)(rollup@4.63.1)(supports-color@8.1.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/template': 7.29.7
@@ -12736,7 +12736,7 @@ snapshots:
       '@tanstack/router-generator': 1.167.35(supports-color@8.1.1)
       '@tanstack/router-utils': 1.162.3(supports-color@8.1.1)
       chokidar: 5.0.0
-      unplugin: 3.3.0(@rspack/core@1.7.11(@swc/helpers@0.5.23))(esbuild@0.28.2)(rollup@4.63.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))
+      unplugin: 3.3.0(@rspack/core@1.7.11(@swc/helpers@0.5.23))(esbuild@0.28.2)(rolldown@1.2.8)(rollup@4.63.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))
       zod: 4.6.2
     optionalDependencies:
       '@tanstack/react-router': 1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -12765,9 +12765,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/router-vite-plugin@1.167.37(@rspack/core@1.7.11(@swc/helpers@0.5.23))(@tanstack/react-router@1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(esbuild@0.28.2)(rollup@4.63.1)(supports-color@8.1.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))':
+  '@tanstack/router-vite-plugin@1.167.37(@rspack/core@1.7.11(@swc/helpers@0.5.23))(@tanstack/react-router@1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(esbuild@0.28.2)(rolldown@1.2.8)(rollup@4.63.1)(supports-color@8.1.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))':
     dependencies:
-      '@tanstack/router-plugin': 1.168.37(@rspack/core@1.7.11(@swc/helpers@0.5.23))(@tanstack/react-router@1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(esbuild@0.28.2)(rollup@4.63.1)(supports-color@8.1.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))
+      '@tanstack/router-plugin': 1.168.37(@rspack/core@1.7.11(@swc/helpers@0.5.23))(@tanstack/react-router@1.170.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(esbuild@0.28.2)(rolldown@1.2.8)(rollup@4.63.1)(supports-color@8.1.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28))
     transitivePeerDependencies:
       - '@farmfe/core'
       - '@rsbuild/core'
@@ -17747,7 +17747,7 @@ snapshots:
       picomatch: 4.0.7
       webpack-virtual-modules: 0.6.2
 
-  unplugin@3.3.0(@rspack/core@1.7.11(@swc/helpers@0.5.23))(esbuild@0.28.2)(rollup@4.63.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)):
+  unplugin@3.3.0(@rspack/core@1.7.11(@swc/helpers@0.5.23))(esbuild@0.28.2)(rolldown@1.2.8)(rollup@4.63.1)(vite@7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1))(webpack@5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       picomatch: 4.0.7
@@ -17755,6 +17755,7 @@ snapshots:
     optionalDependencies:
       '@rspack/core': 1.7.11(@swc/helpers@0.5.23)
       esbuild: 0.28.2
+      rolldown: 1.2.8
       rollup: 4.63.1
       vite: 7.3.6(@types/node@25.9.6)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.51.2)(yaml@2.9.1)
       webpack: 5.105.0(csso@5.0.5)(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)
