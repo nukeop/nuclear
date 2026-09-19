@@ -30,9 +30,3 @@ export const Loader: FC<LoaderProps> = ({
     data-testid={dataTestId}
   />
 );
-
-export const CenteredLoader: FC<LoaderProps> = (props) => (
-  <div className="flex flex-1 items-center justify-center">
-    <Loader {...props} />
-  </div>
-);
