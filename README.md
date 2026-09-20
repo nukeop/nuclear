@@ -67,7 +67,7 @@ Grab the latest release for your platform from the [Releases page](https://githu
 - Browse album pages with track listings
 - Queue management with shuffle, repeat, and drag-and-drop reordering
 - Favorites (albums, artists, and tracks)
-- Playlists (create, import, export, import from varous services)
+- Playlists (create, import, export, import from various services)
 - Powerful plugin system with a built-in plugin store
 - Themes (built-in and custom CSS themes)
 - MCP server lets your AI agent drive the player
