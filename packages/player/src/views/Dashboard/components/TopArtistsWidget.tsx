@@ -18,7 +18,7 @@ export const TopArtistsWidget: FC = () => {
     (artist: ArtistRef, result: AttributedResult<ArtistRef>): CardsRowItem => ({
       id: `${result.providerId}-${artist.source.id}`,
       title: artist.name,
-      imageUrl: pickArtwork(artist.artwork, 'cover', 300)?.url,
+      imageUrl: pickArtwork(artist.artwork, 'thumbnail', 300)?.url,
       onClick: () =>
         navigateToEntity(
           { name: artist.name, sourceId: artist.source.id },

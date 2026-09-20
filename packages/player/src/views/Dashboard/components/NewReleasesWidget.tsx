@@ -19,7 +19,7 @@ export const NewReleasesWidget: FC = () => {
       id: `${result.providerId}-${album.source.id}`,
       title: album.title,
       subtitle: album.artists?.map((artist) => artist.name).join(', '),
-      imageUrl: pickArtwork(album.artwork, 'cover', 300)?.url,
+      imageUrl: pickArtwork(album.artwork, 'thumbnail', 300)?.url,
       onClick: () =>
         navigateToEntity(
           {

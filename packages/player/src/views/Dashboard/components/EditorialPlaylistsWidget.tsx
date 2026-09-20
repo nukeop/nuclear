@@ -21,7 +21,7 @@ export const EditorialPlaylistsWidget: FC = () => {
     ): CardsRowItem => ({
       id: `${result.providerId}-${playlist.source.id}`,
       title: playlist.name,
-      imageUrl: pickArtwork(playlist.artwork, 'cover', 300)?.url,
+      imageUrl: pickArtwork(playlist.artwork, 'thumbnail', 300)?.url,
       onClick: playlist.source.url
         ? () => navigateToPlaylist(playlist.source.url!)
         : undefined,
