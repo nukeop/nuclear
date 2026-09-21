@@ -188,11 +188,75 @@ describe('Stream verification', () => {
   });
 
   describe('verifying', () => {
-    it.todo('lets the user verify the track');
-    it.todo('lets the user unverify the track');
-    it.todo('shows an error when verification fails');
-    it.todo(
-      'disables the button while the playing candidate has no resolved stream',
-    );
+    it('lets the user verify the track', async () => {
+      FetchMock.getError('/mappings/top', 404);
+      FetchMock.get('/mappings', {});
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+      await StreamResolutionWrapper.waitForPlayback();
+
+      await QueueWrapper.streamVerification.verifyButton.click();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Verified by you'),
+      ).toBeInTheDocument();
+      expect(
+        await QueueWrapper.streamVerification.unverifyButton.find(),
+      ).toBeInTheDocument();
+    });
+
+    it('lets the user unverify the track', async () => {
+      FetchMock.get('/mappings/top', {
+        stream_id: 'yt-a',
+        score: 10,
+        self_verified: true,
+      });
+      FetchMock.get('/mappings', {});
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+      await StreamResolutionWrapper.waitForPlayback();
+
+      await QueueWrapper.streamVerification.unverifyButton.click();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Unverified'),
+      ).toBeInTheDocument();
+      expect(
+        await QueueWrapper.streamVerification.verifyButton.find(),
+      ).toBeInTheDocument();
+    });
+
+    it('shows an error when verification fails', async () => {
+      FetchMock.getError('/mappings/top', 404);
+      FetchMock.getError('/mappings', 500);
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+      await StreamResolutionWrapper.waitForPlayback();
+
+      await QueueWrapper.streamVerification.verifyButton.click();
+
+      expect(
+        await QueueWrapper.toast.find('Failed to verify stream'),
+      ).toBeInTheDocument();
+      expect(
+        await QueueWrapper.streamVerification.status.find('Unverified'),
+      ).toBeInTheDocument();
+    });
+
+    it('disables the button while the playing candidate has no resolved stream', async () => {
+      FetchMock.getError('/mappings/top', 404);
+      providersHost.clear();
+      providersHost.register(
+        new StreamingProviderBuilder()
+          .withGetStreamUrl(() => new Promise(() => {}))
+          .build(),
+      );
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      expect(
+        await QueueWrapper.streamVerification.verifyButton.find(),
+      ).toBeDisabled();
+    });
   });
 });
