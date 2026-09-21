@@ -102,16 +102,89 @@ describe('Stream verification', () => {
   });
 
   describe('shows status', () => {
-    it.todo('shows Unverified when the track has no top stream');
-    it.todo(
-      'shows Unverified when the top stream is not the playing candidate',
-    );
-    it.todo('shows Weakly verified when there are few votes');
-    it.todo('shows Verified when there are many votes');
-    it.todo('shows Verified by you if the user has verified it');
-    it.todo('shows Checking while the status is loading');
-    it.todo('renders nothing when the preference is off');
-    it.todo("renders nothing when nothing's playing");
+    it('shows Unverified when the track has no top stream', async () => {
+      FetchMock.getError('/mappings/top', 404);
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Unverified'),
+      ).toBeInTheDocument();
+    });
+
+    it('shows Unverified when the top stream is not the playing candidate', async () => {
+      FetchMock.get('/mappings/top', { stream_id: 'yt-other', score: 10 });
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Unverified'),
+      ).toBeInTheDocument();
+    });
+
+    it('shows Weakly verified when there are few votes', async () => {
+      FetchMock.get('/mappings/top', { stream_id: 'yt-a', score: 2 });
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Weakly verified'),
+      ).toBeInTheDocument();
+    });
+
+    it('shows Verified when there are many votes', async () => {
+      FetchMock.get('/mappings/top', { stream_id: 'yt-a', score: 10 });
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Verified'),
+      ).toBeInTheDocument();
+    });
+
+    it('shows Verified by you if the user has verified it', async () => {
+      FetchMock.get('/mappings/top', {
+        stream_id: 'yt-a',
+        score: 10,
+        self_verified: true,
+      });
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Verified by you'),
+      ).toBeInTheDocument();
+    });
+
+    it('shows a loader while the status is loading', async () => {
+      FetchMock.get('/mappings/top', {
+        stream_id: 'yt-a',
+        score: 10,
+      }).mockImplementation(() => new Promise(() => {}));
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      expect(
+        await QueueWrapper.streamVerification.loader.find(),
+      ).toBeInTheDocument();
+    });
+
+    it('renders nothing when the preference is off', async () => {
+      useSettingsStore
+        .getState()
+        .setValue('playback.streamVerification', false);
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+      await StreamResolutionWrapper.waitForPlayback();
+
+      expect(QueueWrapper.streamVerification.query).not.toBeInTheDocument();
+    });
+
+    it("renders nothing when nothing's playing", async () => {
+      await QueueWrapper.mount();
+
+      expect(QueueWrapper.streamVerification.query).not.toBeInTheDocument();
+    });
   });
 
   describe('verifying', () => {
