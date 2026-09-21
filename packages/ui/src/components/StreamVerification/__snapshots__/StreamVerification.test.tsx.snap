@@ -1,0 +1,123 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StreamVerification > (Snapshot) renders loading status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  data-testid="stream-verification"
+>
+  <span
+    class="flex items-center gap-2"
+    data-testid="stream-verification-loader"
+  >
+    <div
+      class="bg-muted border-border animate-pulse border-(length:--border-width) size-2.5 rounded-full"
+      data-testid="skeleton"
+    />
+    <div
+      class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-20"
+      data-testid="skeleton"
+    />
+  </span>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    data-disabled=""
+    data-headlessui-state="disabled"
+    disabled=""
+    type="button"
+  >
+    Verify
+  </button>
+</div>
+`;
+
+exports[`StreamVerification > (Snapshot) renders unverified status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  data-testid="stream-verification"
+>
+  <span
+    class="text-muted-foreground flex items-center gap-2 text-xs"
+  >
+    <span
+      class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full"
+    />
+    Unverified
+  </span>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    data-headlessui-state=""
+    type="button"
+  >
+    Verify
+  </button>
+</div>
+`;
+
+exports[`StreamVerification > (Snapshot) renders verified status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  data-testid="stream-verification"
+>
+  <span
+    class="text-muted-foreground flex items-center gap-2 text-xs"
+  >
+    <span
+      class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-green"
+    />
+    Verified
+  </span>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    data-headlessui-state=""
+    type="button"
+  >
+    Verify
+  </button>
+</div>
+`;
+
+exports[`StreamVerification > (Snapshot) renders verifiedByUser status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  data-testid="stream-verification"
+>
+  <span
+    class="text-muted-foreground flex items-center gap-2 text-xs"
+  >
+    <span
+      class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-blue"
+    />
+    Verified by you
+  </span>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    data-headlessui-state=""
+    type="button"
+  >
+    Unverify
+  </button>
+</div>
+`;
+
+exports[`StreamVerification > (Snapshot) renders weaklyVerified status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  data-testid="stream-verification"
+>
+  <span
+    class="text-muted-foreground flex items-center gap-2 text-xs"
+  >
+    <span
+      class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-yellow"
+    />
+    Weakly verified
+  </span>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    data-headlessui-state=""
+    type="button"
+  >
+    Verify
+  </button>
+</div>
+`;

@@ -86,6 +86,21 @@ describe('QueuePanel', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('(Snapshot) renders with footer', () => {
+    const { container } = render(
+      <QueuePanel
+        items={mockItems}
+        currentItemId="1"
+        onReorder={vi.fn()}
+        onSelectItem={vi.fn()}
+        onRemoveItem={vi.fn()}
+        labels={mockLabels}
+        footer={<div data-testid="queue-footer">Footer content</div>}
+      />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   it('(Snapshot) renders collapsed state', () => {
     const { container } = render(
       <QueuePanel

@@ -1,6 +1,6 @@
 import { DragEndEvent } from '@dnd-kit/core';
 import { Music } from 'lucide-react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import type { QueueItem as QueueItemType } from '@nuclearplayer/model';
 
@@ -30,6 +30,7 @@ export type QueuePanelProps = {
     list?: string;
     empty?: string;
   };
+  footer?: ReactNode;
 };
 
 export const QueuePanel: FC<QueuePanelProps> = ({
@@ -43,6 +44,7 @@ export const QueuePanel: FC<QueuePanelProps> = ({
   onSelectCandidate,
   labels,
   classes,
+  footer,
 }) => {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -130,6 +132,7 @@ export const QueuePanel: FC<QueuePanelProps> = ({
           </div>
         </QueueReorderLayer>
       </ScrollableArea>
+      {footer}
     </div>
   );
 };
