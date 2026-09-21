@@ -16,6 +16,7 @@ import { routeTree } from '../routeTree.gen';
 import { usePlaylistStore } from '../stores/playlistStore';
 import { useQueueStore } from '../stores/queueStore';
 import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
+import { createStreamVerificationWrapper } from './StreamVerification.test-wrapper';
 
 const user = userEvent.setup();
 
@@ -52,6 +53,16 @@ export const QueueWrapper = {
 
   get emptyState() {
     return screen.queryByTestId('queue-empty-state');
+  },
+
+  get streamVerification() {
+    return createStreamVerificationWrapper(screen.getByTestId('sidebar-right'));
+  },
+
+  toast: {
+    async find(text: string) {
+      return screen.findByText(text);
+    },
   },
 
   getItems() {

@@ -48,6 +48,7 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
   return (
     <motion.div
       ref={sidebarRef}
+      data-testid={`sidebar-${side}`}
       className={cn(
         'border-border relative flex flex-col overflow-hidden',
         {

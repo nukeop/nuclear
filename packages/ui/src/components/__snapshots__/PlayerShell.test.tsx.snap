@@ -20,6 +20,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
       <div
         animate="[object Object]"
         class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
+        data-testid="sidebar-left"
         transition="[object Object]"
       >
         <span
@@ -71,6 +72,7 @@ exports[`PlayerShell > matches snapshot with complete layout 1`] = `
       <div
         animate="[object Object]"
         class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width) p-2"
+        data-testid="sidebar-right"
         transition="[object Object]"
       >
         <span

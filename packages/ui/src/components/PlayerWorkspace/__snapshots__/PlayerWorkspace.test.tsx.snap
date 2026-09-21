@@ -8,6 +8,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
     <div
       animate="[object Object]"
       class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
+      data-testid="sidebar-left"
       transition="[object Object]"
     >
       <span
@@ -56,6 +57,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars collapsed 1`] = `
     <div
       animate="[object Object]"
       class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width)"
+      data-testid="sidebar-right"
       transition="[object Object]"
     >
       <span
@@ -109,6 +111,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
     <div
       animate="[object Object]"
       class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
+      data-testid="sidebar-left"
       transition="[object Object]"
     >
       <span
@@ -160,6 +163,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
     <div
       animate="[object Object]"
       class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width) p-2"
+      data-testid="sidebar-right"
       transition="[object Object]"
     >
       <span
