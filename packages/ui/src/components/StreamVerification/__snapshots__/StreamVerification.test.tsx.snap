@@ -2,7 +2,7 @@
 
 exports[`StreamVerification > (Snapshot) renders loading status 1`] = `
 <div
-  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
   data-testid="stream-verification"
 >
   <span
@@ -18,25 +18,20 @@ exports[`StreamVerification > (Snapshot) renders loading status 1`] = `
       data-testid="skeleton"
     />
   </span>
-  <button
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
-    data-disabled=""
-    data-headlessui-state="disabled"
-    disabled=""
-    type="button"
-  >
-    Verify
-  </button>
+  <div
+    class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-16"
+    data-testid="skeleton"
+  />
 </div>
 `;
 
 exports[`StreamVerification > (Snapshot) renders unverified status 1`] = `
 <div
-  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
   data-testid="stream-verification"
 >
   <span
-    class="text-muted-foreground flex items-center gap-2 text-xs"
+    class="text-muted-foreground flex items-center gap-2 text-sm"
   >
     <span
       class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full"
@@ -44,7 +39,7 @@ exports[`StreamVerification > (Snapshot) renders unverified status 1`] = `
     Unverified
   </span>
   <button
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
     data-headlessui-state=""
     type="button"
   >
@@ -55,11 +50,11 @@ exports[`StreamVerification > (Snapshot) renders unverified status 1`] = `
 
 exports[`StreamVerification > (Snapshot) renders verified status 1`] = `
 <div
-  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
   data-testid="stream-verification"
 >
   <span
-    class="text-muted-foreground flex items-center gap-2 text-xs"
+    class="text-muted-foreground flex items-center gap-2 text-sm"
   >
     <span
       class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-green"
@@ -67,7 +62,7 @@ exports[`StreamVerification > (Snapshot) renders verified status 1`] = `
     Verified
   </span>
   <button
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
     data-headlessui-state=""
     type="button"
   >
@@ -78,11 +73,11 @@ exports[`StreamVerification > (Snapshot) renders verified status 1`] = `
 
 exports[`StreamVerification > (Snapshot) renders verifiedByUser status 1`] = `
 <div
-  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
   data-testid="stream-verification"
 >
   <span
-    class="text-muted-foreground flex items-center gap-2 text-xs"
+    class="text-muted-foreground flex items-center gap-2 text-sm"
   >
     <span
       class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-blue"
@@ -90,7 +85,7 @@ exports[`StreamVerification > (Snapshot) renders verifiedByUser status 1`] = `
     Verified by you
   </span>
   <button
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
     data-headlessui-state=""
     type="button"
   >
@@ -101,11 +96,11 @@ exports[`StreamVerification > (Snapshot) renders verifiedByUser status 1`] = `
 
 exports[`StreamVerification > (Snapshot) renders weaklyVerified status 1`] = `
 <div
-  class="border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2"
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
   data-testid="stream-verification"
 >
   <span
-    class="text-muted-foreground flex items-center gap-2 text-xs"
+    class="text-muted-foreground flex items-center gap-2 text-sm"
   >
     <span
       class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-yellow"
@@ -113,7 +108,7 @@ exports[`StreamVerification > (Snapshot) renders weaklyVerified status 1`] = `
     Weakly verified
   </span>
   <button
-    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 hover:bg-foreground/10 border border-current h-8 px-2 text-sm"
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
     data-headlessui-state=""
     type="button"
   >

@@ -403,6 +403,10 @@
         "description": "How far recommendations deviate from your current listening. Lower is closer.",
         "startLabel": "Less crazy",
         "endLabel": "More crazy"
+      },
+      "streamVerification": {
+        "title": "Stream verification",
+        "description": "Play the stream the community verified as correct and let you verify streams for others"
       }
     },
     "history": {
@@ -487,6 +491,15 @@
     "candidates": {
       "empty": "No stream candidates",
       "failed": "failed"
+    },
+    "streamVerification": {
+      "unverified": "Unverified",
+      "weaklyVerified": "Weakly verified",
+      "verified": "Verified",
+      "verifiedByUser": "Verified by you",
+      "verify": "Verify",
+      "unverify": "Unverify",
+      "failed": "Failed to verify stream"
     }
   },
   "track": {

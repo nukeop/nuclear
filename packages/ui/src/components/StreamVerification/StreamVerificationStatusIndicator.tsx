@@ -35,7 +35,7 @@ export const StreamVerificationStatusIndicator: FC<
   const indicator = indicatorByStatus[status];
 
   return (
-    <span className="text-muted-foreground flex items-center gap-2 text-xs">
+    <span className="text-muted-foreground flex items-center gap-2 text-sm">
       <Badge variant="dot" color={indicator.color} />
       {labels[indicator.labelKey]}
     </span>

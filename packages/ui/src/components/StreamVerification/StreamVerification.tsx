@@ -29,7 +29,7 @@ export const StreamVerification: FC<StreamVerificationProps> = ({
   <div
     data-testid="stream-verification"
     className={cn(
-      'border-border flex items-center justify-between border-t-(length:--border-width) px-3 py-2',
+      'border-border flex items-center justify-between border-t-(length:--border-width) p-2',
       className,
     )}
   >

@@ -115,7 +115,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
       transition="[object Object]"
     >
       <span
-        class="mb-4 flex flex-row items-center justify-end"
+        class="mb-4 flex flex-row items-center justify-end px-2 pt-2"
       >
         <button
           class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
@@ -150,7 +150,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
         </button>
       </span>
       <div
-        class="flex flex-1 flex-col overflow-hidden"
+        class="flex flex-1 flex-col overflow-hidden px-2 pb-2"
       />
       <div
         class="absolute top-0 bottom-0 w-1 cursor-col-resize transition-colors right-0"
@@ -162,12 +162,12 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
     />
     <div
       animate="[object Object]"
-      class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width) p-2"
+      class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width)"
       data-testid="sidebar-right"
       transition="[object Object]"
     >
       <span
-        class="mb-4 flex flex-row items-center justify-start"
+        class="mb-4 flex flex-row items-center justify-start px-2 pt-2"
       >
         <button
           class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
@@ -202,7 +202,7 @@ exports[`PlayerWorkspace > (Snapshot) both sidebars expanded 1`] = `
         </button>
       </span>
       <div
-        class="flex flex-1 flex-col overflow-hidden"
+        class="flex flex-1 flex-col overflow-hidden px-2 pb-2"
       />
       <div
         class="absolute top-0 bottom-0 w-1 cursor-col-resize transition-colors left-0"

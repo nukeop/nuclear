@@ -3,12 +3,15 @@ import { FC } from 'react';
 import type { StreamVerificationStatus } from '@nuclearplayer/model';
 
 import { Button } from '../Button';
+import { Skeleton } from '../Skeleton';
 import type { StreamVerificationLabels } from './types';
 
 type Action = 'verify' | 'unverify';
 
-const actionByStatus: Record<StreamVerificationStatus, Action> = {
-  loading: 'verify',
+const actionByStatus: Record<
+  Exclude<StreamVerificationStatus, 'loading'>,
+  Action
+> = {
   unverified: 'verify',
   weaklyVerified: 'verify',
   verified: 'verify',
@@ -30,6 +33,10 @@ export const StreamVerificationButton: FC<StreamVerificationButtonProps> = ({
   onUnverify,
   labels,
 }) => {
+  if (status === 'loading') {
+    return <Skeleton className="h-8 w-16" />;
+  }
+
   const action = actionByStatus[status];
   const handlerByAction: Record<Action, () => void> = {
     verify: onVerify,
@@ -37,12 +44,7 @@ export const StreamVerificationButton: FC<StreamVerificationButtonProps> = ({
   };
 
   return (
-    <Button
-      size="xs"
-      variant="ghost"
-      disabled={isDisabled || status === 'loading'}
-      onClick={handlerByAction[action]}
-    >
+    <Button size="xs" disabled={isDisabled} onClick={handlerByAction[action]}>
       {labels[action]}
     </Button>
   );
