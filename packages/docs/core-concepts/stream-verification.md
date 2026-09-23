@@ -23,8 +23,8 @@ The bar at the bottom of the queue panel shows the verification status of the st
 The status is one of these:
 
 - **Unverified**: nobody verified the playing stream, or a different stream is verified for this track. It has 0 votes.
-- **Weakly verified**: a few users verified this stream. It has 1-3 votes.
-- **Verified**: many users verified this stream. More than 3 votes.
+- **Weakly verified**: a few users verified this stream. It has 1 or 2 votes.
+- **Verified**: many users verified this stream. It has 3 or more votes.
 - **Verified by you**: you verified this stream.
 
 While Nuclear looks up the status, the button shows a placeholder.
@@ -57,9 +57,13 @@ See [The queue](the-queue.md#stream-candidates) for more about stream candidates
 
 ## Privacy
 
+While stream verification is on, Nuclear contacts the verification service for every track you play. Turn it off if you don't want that. See [Turn it off](#turn-it-off).
+
 Verification doesn't need an account. The first time Nuclear connects to the verification service, it creates a random ID and saves it in your settings. This ID is the only thing that connects your verifications to each other.
 
-Each request sends only the track's artist and title, which streaming provider you use, the stream's ID, and your random ID.
+For every track you play, Nuclear sends only the track's artist and title, which streaming provider you use, and your random ID. When you click **Verify** or **Unverify**, Nuclear also sends the stream's ID.
+
+Like any server you connect to, the verification service can see your IP address.
 
 ## Turn it off
 
