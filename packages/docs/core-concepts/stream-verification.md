@@ -1,18 +1,18 @@
 ---
-description: Correct streams picked by Nuclear, and help other users fetch the right streams
+description: Correct the streams that Nuclear picks and help other users get the right ones
 ---
 
 # Stream verification
 
-When you play a track, the streaming provider searches for matching audio and picks the top result. That stream isn't always right: sometimes it's a live version, a cover, a remix, or a different track with a similar name. Stream verification lets you mark which stream is the correct one for a track, and share it with all Nuclear users.
+When you play a track, the streaming provider searches for matching audio and picks the top result. That stream isn't always right: sometimes it's a live version, a cover, a remix, or a different track with a similar name. Stream verification lets you mark the correct stream for a track and share it with other Nuclear users.
 
 ## How Nuclear uses verifications
 
-When a track starts playing, Nuclear asks the stream verification service what's the top stream (according to user votes) for that track. If one exists, Nuclear selects it. If not, it takes its best guess.
+Each verification is one vote for a stream. Before Nuclear plays a track, it asks the verification service which stream has the most votes for that track. If one exists, Nuclear plays that stream.
 
 If nobody verified a stream for the track, or the service can't be reached, Nuclear plays the search results in their usual order.
 
-Verifications are kept separately for each streaming provider. A stream verified for one provider has no effect when you use a different one.
+The verification service keeps verifications separately for each streaming provider. A stream verified for one provider has no effect when you use a different one.
 
 ## The verification bar
 
@@ -27,37 +27,39 @@ The status is one of these:
 - **Verified**: many users verified this stream. It has 3 or more votes.
 - **Verified by you**: you verified this stream.
 
-While Nuclear looks up the status, the button shows a placeholder.
+While Nuclear looks up the status, the status and the button show placeholders.
 
-Click the question mark next to the status to see a short explanation of stream verification in the app.
+To see a short explanation of stream verification, click the question mark next to the status.
 
 ## Verify a stream
 
-If the playing stream is the right one, click **Verify**. The status changes to **Verified by you**, and your verification counts toward what other listeners get. If it's not the right one, click the track in the queue with the right mouse button, select the one that's correct, then verify it. Your preference will be saved and you will always hear that stream when you play that track.
+If the playing stream is the right one, click **Verify**. The status changes to **Verified by you**, and your vote helps other users get the same stream. Nuclear always plays the stream you verified when you play that track.
+
+If the wrong stream is playing, see [Correct the wrong stream](#correct-the-wrong-stream).
 
 To undo your verification, click **Unverify**.
 
 You have one verification per track. If you verify a different stream for the same track later, your verification moves to the new stream.
 
 {% hint style="info" %}
-The **Verify** button is disabled until the stream has loaded.
+The **Verify** button is disabled until the stream loads.
 {% endhint %}
 
 ## Correct the wrong stream
 
 If the wrong stream is playing:
 
-1. Right-click the track in the queue to open its stream candidates.
+1. To open the stream candidates, right-click the track in the queue.
 2. Click the correct candidate. Nuclear switches to it.
 3. Click **Verify** in the verification bar.
 
 <figure><img src="../.gitbook/assets/stream-verification-correct.png" alt="The stream candidates popover open next to the queue, with a live version playing instead of the official audio, and the verification bar showing Unverified" width="660"><figcaption><p>Switching to a different candidate before verifying it</p></figcaption></figure>
 
-See [The queue](the-queue.md#stream-candidates) for more about stream candidates.
+For more information about stream candidates, see [Stream candidates](the-queue.md#stream-candidates).
 
 ## Privacy
 
-While stream verification is on, Nuclear contacts the verification service for every track you play. Turn it off if you don't want that. See [Turn it off](#turn-it-off).
+While stream verification is on, Nuclear contacts the verification service for every track you play. If you don't want that, [turn off stream verification](#turn-off-stream-verification).
 
 Verification doesn't need an account. The first time Nuclear connects to the verification service, it creates a random ID and saves it in your settings. This ID is the only thing that connects your verifications to each other.
 
@@ -65,7 +67,7 @@ For every track you play, Nuclear sends only the track's artist and title, which
 
 Like any server you connect to, the verification service can see your IP address.
 
-## Turn it off
+## Turn off stream verification
 
 Open **Settings**, go to **Playback**, and turn off **Stream verification**. With it off, Nuclear doesn't contact the verification service at all, plays search results in their usual order, and hides the verification bar.
 
