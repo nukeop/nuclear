@@ -7,6 +7,10 @@ import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { useStartupStore } from '../stores/startupStore';
 import {
+  initializeStreamVerificationStore,
+  useStreamVerificationStore,
+} from '../stores/streamVerificationStore';
+import {
   createMockStream,
   StreamingProviderBuilder,
 } from '../test/builders/StreamingProviderBuilder';
@@ -15,6 +19,7 @@ import {
   TRACK_WITH_CANDIDATES,
 } from '../test/fixtures/streamVerification';
 import { FetchMock } from '../test/mocks/fetch';
+import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { QueueWrapper } from './Queue.test-wrapper';
 import { StreamResolutionWrapper } from './StreamResolution.test-wrapper';
 
@@ -43,6 +48,8 @@ describe('Stream verification', () => {
       crossOrigin: '',
     });
 
+    resetInMemoryTauriStore();
+    useStreamVerificationStore.setState({ verifications: {} });
     streamVerificationApi.clearCache();
 
     useSettingsStore.getState().setValue('playback.streamExpiryMs', 3600000);
@@ -50,6 +57,9 @@ describe('Stream verification', () => {
     useSettingsStore
       .getState()
       .setValue('core.playback.streamVerification', true);
+    useSettingsStore
+      .getState()
+      .setValue('core.playback.streamVerificationService', true);
     useSettingsStore
       .getState()
       .setValue(
@@ -86,6 +96,7 @@ describe('Stream verification', () => {
       expect(QueueWrapper.candidatePopover.candidateTitles).toEqual([
         'Version B',
         'Version A',
+        'Version C',
       ]);
       expect(QueueWrapper.candidatePopover.selectedCandidate).toBe('Version B');
     });
@@ -107,6 +118,7 @@ describe('Stream verification', () => {
         'Karma Police',
         'Version A',
         'Version B',
+        'Version C',
       ]);
     });
 
@@ -139,6 +151,96 @@ describe('Stream verification', () => {
         'https://example.com/yt-a.mp3',
       );
       expect(fetchSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('local verifications', () => {
+    it('plays the locally verified stream first', async () => {
+      FetchMock.get('/mappings/top', { stream_id: 'yt-b', score: 10 });
+      await useStreamVerificationStore
+        .getState()
+        .saveVerification(TRACK_WITH_CANDIDATES.track, 'yt-c');
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      expect(StreamResolutionWrapper.playingStreamUrl).toBe(
+        'https://example.com/yt-c.mp3',
+      );
+    });
+
+    it('plays the locally verified stream without asking the stream verification service when online verification is off', async () => {
+      useSettingsStore
+        .getState()
+        .setValue('core.playback.streamVerificationService', false);
+      const fetchSpy = FetchMock.get('/mappings/top', {
+        stream_id: 'yt-b',
+        score: 10,
+      });
+      await useStreamVerificationStore
+        .getState()
+        .saveVerification(TRACK_WITH_CANDIDATES.track, 'yt-c');
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      expect(StreamResolutionWrapper.playingStreamUrl).toBe(
+        'https://example.com/yt-c.mp3',
+      );
+      expect(fetchSpy).not.toHaveBeenCalled();
+    });
+
+    it('plays the locally verified stream without asking the stream verification service', async () => {
+      const fetchSpy = FetchMock.get('/mappings/top', {
+        stream_id: 'yt-b',
+        score: 10,
+      });
+      await useStreamVerificationStore
+        .getState()
+        .saveVerification(TRACK_WITH_CANDIDATES.track, 'yt-c');
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      expect(fetchSpy).not.toHaveBeenCalled();
+    });
+
+    it('ignores local verifications when stream verification is off', async () => {
+      useSettingsStore
+        .getState()
+        .setValue('core.playback.streamVerification', false);
+      FetchMock.get('/mappings/top', { stream_id: 'yt-b', score: 10 });
+      await useStreamVerificationStore
+        .getState()
+        .saveVerification(TRACK_WITH_CANDIDATES.track, 'yt-c');
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      expect(StreamResolutionWrapper.playingStreamUrl).toBe(
+        'https://example.com/yt-a.mp3',
+      );
+    });
+
+    it('keeps local verifications after a restart', async () => {
+      FetchMock.get('/mappings/top', { stream_id: 'yt-b', score: 10 });
+      await useStreamVerificationStore
+        .getState()
+        .saveVerification(TRACK_WITH_CANDIDATES.track, 'yt-c');
+      useStreamVerificationStore.setState({ verifications: {}, loaded: false });
+      await initializeStreamVerificationStore();
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      expect(StreamResolutionWrapper.playingStreamUrl).toBe(
+        'https://example.com/yt-c.mp3',
+      );
     });
   });
 

@@ -406,7 +406,11 @@
       },
       "streamVerification": {
         "title": "Stream verification",
-        "description": "Play the stream the community verified as correct and let you verify streams for others"
+        "description": "Nuclear plays the streams that you verified and shows the verification bar. When this setting is off, Nuclear ignores all verifications."
+      },
+      "streamVerificationService": {
+        "title": "Online verification",
+        "description": "Nuclear sends your verifications to the verification service and gets the streams that other users verified. This setting has no effect when stream verification is off."
       }
     },
     "history": {
