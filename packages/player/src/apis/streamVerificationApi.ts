@@ -1,3 +1,4 @@
+import { Duration } from 'luxon';
 import { v4 as uuid } from 'uuid';
 import { z } from 'zod';
 
@@ -21,100 +22,93 @@ const TopStreamSchema = z
 
 export type TopStream = z.infer<typeof TopStreamSchema>;
 
-type TrackKey = {
+type MappingRequest = {
   artist: string;
   title: string;
   source: string;
   author_id: string;
+  stream_id?: string;
 };
-
-type StreamMapping = TrackKey & {
-  stream_id: string;
-};
-
-type SuccessCacheEntry = {
-  type: 'success';
-  value: TopStream;
-  timestamp: number;
-};
-
-type ErrorCacheEntry = {
-  type: 'error';
-  status: number;
-  timestamp: number;
-};
-
-export type StreamCacheEntry = SuccessCacheEntry | ErrorCacheEntry;
-
-export const isSuccessCacheEntry = (
-  entry: StreamCacheEntry,
-): entry is SuccessCacheEntry => entry.type === 'success';
-
-const CACHE_TTL_MS = 5 * 60 * 1000;
 
 class StreamVerificationApi {
-  private topStreamCache = new Map<string, StreamCacheEntry>();
+  private topStreamCache = new Map<
+    string,
+    { topStream?: TopStream; timestamp: number }
+  >();
 
-  async getTopStream(track: Track): Promise<StreamCacheEntry> {
-    const key = this.keyFor(track);
-    const cacheKey = this.cacheKey(key);
+  constructor(
+    private readonly baseUrl: string,
+    private readonly cacheTtlMs: number,
+  ) {}
+
+  async getTopStream(track: Track): Promise<TopStream | undefined> {
+    const cacheKey = this.verificationKey(track);
     const cached = this.topStreamCache.get(cacheKey);
 
-    if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
-      return cached;
+    if (cached && Date.now() - cached.timestamp < this.cacheTtlMs) {
+      return cached.topStream;
     }
 
-    const response = await this.request('POST', '/mappings/top', key);
-    if (response.ok) {
-      return this.cache(cacheKey, {
-        type: 'success',
-        value: TopStreamSchema.parse(await response.json()),
-        timestamp: Date.now(),
-      });
+    const response = await this.request(
+      'POST',
+      '/mappings/top',
+      this.keyFor(track),
+    );
+    if (!response.ok) {
+      return this.cache(cacheKey, undefined);
     }
 
-    return this.cache(cacheKey, {
-      type: 'error',
-      status: response.status,
-      timestamp: Date.now(),
-    });
+    return this.cache(cacheKey, TopStreamSchema.parse(await response.json()));
   }
 
   async postStreamMapping(track: Track): Promise<void> {
-    const mapping = this.mappingFor(track);
-    const response = await this.request('PUT', '/mappings', mapping);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-
-    this.topStreamCache.delete(this.cacheKey(mapping));
+    await this.writeMapping('PUT', track);
   }
 
   async deleteStreamMapping(track: Track): Promise<void> {
-    const mapping = this.mappingFor(track);
-    const response = await this.request('DELETE', '/mappings', mapping);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-
-    this.topStreamCache.delete(this.cacheKey(mapping));
+    await this.writeMapping('DELETE', track);
   }
 
   clearCache(): void {
     this.topStreamCache.clear();
   }
 
-  private cache(cacheKey: string, entry: StreamCacheEntry): StreamCacheEntry {
-    this.topStreamCache.set(cacheKey, entry);
-    return entry;
+  verificationKey(track: Track): string {
+    const { artist, title, source } = this.identify(track);
+    return `${artist}:${title}:${source}`;
+  }
+
+  private cache(
+    cacheKey: string,
+    topStream: TopStream | undefined,
+  ): TopStream | undefined {
+    this.topStreamCache.set(cacheKey, { topStream, timestamp: Date.now() });
+    return topStream;
+  }
+
+  private async writeMapping(method: string, track: Track): Promise<void> {
+    const headCandidate = track.streamCandidates?.[0];
+    if (!headCandidate) {
+      throw new Error('Track has no stream candidate');
+    }
+
+    const response = await this.request(method, '/mappings', {
+      ...this.keyFor(track),
+      stream_id: headCandidate.id,
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    this.topStreamCache.delete(this.verificationKey(track));
   }
 
   private async request(
     method: string,
     path: string,
-    body: TrackKey,
+    body: MappingRequest,
   ): Promise<Response> {
-    const url = `https://nuclear-tritone.fly.dev${path}`;
+    const url = `${this.baseUrl}${path}`;
     Logger.http.debug(`${method} ${url}`);
 
     const response = await fetch(url, {
@@ -132,7 +126,7 @@ class StreamVerificationApi {
     return response;
   }
 
-  private keyFor(track: Track): TrackKey {
+  private identify(track: Track) {
     const source = providersHost.getActive('streaming');
     if (!source) {
       throw new Error('No streaming provider is active');
@@ -142,17 +136,11 @@ class StreamVerificationApi {
       artist: track.artists[0]?.name ?? '',
       title: track.title,
       source,
-      author_id: this.authorId(),
     };
   }
 
-  private mappingFor(track: Track): StreamMapping {
-    const headCandidate = track.streamCandidates?.[0];
-    if (!headCandidate) {
-      throw new Error('Track has no stream candidate');
-    }
-
-    return { ...this.keyFor(track), stream_id: headCandidate.id };
+  private keyFor(track: Track): MappingRequest {
+    return { ...this.identify(track), author_id: this.authorId() };
   }
 
   private authorId(): string {
@@ -167,10 +155,9 @@ class StreamVerificationApi {
       .setValue('core.streamVerification.authorId', generated);
     return generated;
   }
-
-  private cacheKey(key: TrackKey): string {
-    return `${key.artist}:${key.title}:${key.source}`;
-  }
 }
 
-export const streamVerificationApi = new StreamVerificationApi();
+export const streamVerificationApi = new StreamVerificationApi(
+  'https://nuclear-tritone.fly.dev',
+  Duration.fromObject({ minutes: 5 }).toMillis(),
+);

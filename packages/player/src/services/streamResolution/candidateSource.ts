@@ -2,10 +2,7 @@ import { without } from 'lodash-es';
 
 import type { StreamCandidate, Track } from '@nuclearplayer/model';
 
-import {
-  isSuccessCacheEntry,
-  streamVerificationApi,
-} from '../../apis/streamVerificationApi';
+import { streamVerificationApi } from '../../apis/streamVerificationApi';
 import { getSetting } from '../../stores/settingsStore';
 import { Logger } from '../logger';
 import { providersHost } from '../providersHost';
@@ -47,16 +44,18 @@ export const candidatesForTrack = async (
   return [verified, ...without(result.candidates, verified)];
 };
 
-const getVerifiedStreamId = async (track: Track): Promise<string | false> => {
+const getVerifiedStreamId = async (
+  track: Track,
+): Promise<string | undefined> => {
   if (!getSetting('core.playback.streamVerification')) {
-    return false;
+    return undefined;
   }
 
   try {
     const topStream = await streamVerificationApi.getTopStream(track);
-    return isSuccessCacheEntry(topStream) && topStream.value.streamId;
+    return topStream?.streamId;
   } catch (error) {
     Logger.http.error(`Failed to get top stream: ${String(error)}`);
-    return false;
+    return undefined;
   }
 };
