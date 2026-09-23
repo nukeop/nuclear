@@ -196,6 +196,15 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     widget: { type: 'toggle' },
   },
   {
+    id: 'playback.streamVerificationService',
+    title: 'preferences.playback.streamVerificationService.title',
+    description: 'preferences.playback.streamVerificationService.description',
+    category: 'playback',
+    kind: 'boolean',
+    default: true,
+    widget: { type: 'toggle' },
+  },
+  {
     id: 'streamVerification.authorId',
     title: 'preferences.playback.streamVerificationAuthorId.title',
     description: 'preferences.playback.streamVerificationAuthorId.description',
