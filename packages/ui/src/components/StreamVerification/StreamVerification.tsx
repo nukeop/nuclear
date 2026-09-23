@@ -4,6 +4,7 @@ import type { StreamVerificationStatus } from '@nuclearplayer/model';
 
 import { cn } from '../../utils';
 import { StreamVerificationButton } from './StreamVerificationButton';
+import { StreamVerificationHelp } from './StreamVerificationHelp';
 import { StreamVerificationStatusIndicator } from './StreamVerificationStatusIndicator';
 import type { StreamVerificationLabels } from './types';
 
@@ -13,6 +14,7 @@ type StreamVerificationProps = {
   isDisabled?: boolean;
   onVerify: () => void;
   onUnverify: () => void;
+  onLearnMore: () => void;
   labels: StreamVerificationLabels;
   className?: string;
 };
@@ -23,6 +25,7 @@ export const StreamVerification: FC<StreamVerificationProps> = ({
   isDisabled = false,
   onVerify,
   onUnverify,
+  onLearnMore,
   labels,
   className,
 }) => (
@@ -33,7 +36,10 @@ export const StreamVerification: FC<StreamVerificationProps> = ({
       className,
     )}
   >
-    <StreamVerificationStatusIndicator status={status} labels={labels} />
+    <div className="flex items-center gap-1">
+      <StreamVerificationStatusIndicator status={status} labels={labels} />
+      <StreamVerificationHelp labels={labels} onLearnMore={onLearnMore} />
+    </div>
     <StreamVerificationButton
       status={status}
       isDisabled={isBusy || isDisabled}

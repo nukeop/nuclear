@@ -5,4 +5,7 @@ export type StreamVerificationLabels = {
   verifiedByUser: string;
   verify: string;
   unverify: string;
+  help: string;
+  explanation: string;
+  learnMore: string;
 };

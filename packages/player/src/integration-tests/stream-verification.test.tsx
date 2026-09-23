@@ -1,3 +1,5 @@
+import { openUrl } from '@tauri-apps/plugin-opener';
+
 import { streamVerificationApi } from '../apis/streamVerificationApi';
 import { providersHost } from '../services/providersHost';
 import { useQueueStore } from '../stores/queueStore';
@@ -18,6 +20,10 @@ import { StreamResolutionWrapper } from './StreamResolution.test-wrapper';
 
 vi.mock('@tauri-apps/api/core', () => ({
   invoke: vi.fn().mockResolvedValue(9100),
+}));
+
+vi.mock('@tauri-apps/plugin-opener', () => ({
+  openUrl: vi.fn(),
 }));
 
 describe('Stream verification', () => {
@@ -297,6 +303,35 @@ describe('Stream verification', () => {
       expect(
         await QueueWrapper.streamVerification.verifyButton.find(),
       ).toBeDisabled();
+    });
+  });
+
+  describe('explaining', () => {
+    it('explains how stream verification works', async () => {
+      FetchMock.getError('/mappings/top', 404);
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      await QueueWrapper.streamVerification.helpButton.click();
+
+      expect(
+        await QueueWrapper.streamVerification.explanation.find(),
+      ).toHaveTextContent(
+        'Nuclear may sometimes pick the wrong version of a song. You can correct this. Right-click the queue item to see the list of available streams, and pick the right one. When you hear the right one, press Verify to save your correction. Other users will get that version first too. Nuclear asks the verification service about every track you play. When you verify, it sends the artist, the title, the stream you picked, and a random ID as your user identifier.',
+      );
+    });
+
+    it('opens the documentation from the explanation', async () => {
+      FetchMock.getError('/mappings/top', 404);
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      await QueueWrapper.streamVerification.helpButton.click();
+      await QueueWrapper.streamVerification.explanation.learnMore();
+
+      expect(openUrl).toHaveBeenCalledWith(
+        'https://docs.nuclearplayer.com/nuclear/core-concepts/stream-verification',
+      );
     });
   });
 });

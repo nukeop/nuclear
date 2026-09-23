@@ -1,4 +1,4 @@
-import { within } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const user = userEvent.setup();
@@ -34,4 +34,16 @@ export const createStreamVerificationWrapper = (container: HTMLElement) => ({
 
   verifyButton: labelledButton(container, 'Verify'),
   unverifyButton: labelledButton(container, 'Unverify'),
+  helpButton: labelledButton(container, 'How stream verification works'),
+
+  explanation: {
+    async find() {
+      return screen.findByTestId('stream-verification-explanation');
+    },
+    async learnMore() {
+      await user.click(
+        await screen.findByRole('button', { name: 'Learn more' }),
+      );
+    },
+  },
 });

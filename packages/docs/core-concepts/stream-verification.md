@@ -18,7 +18,7 @@ Verifications are kept separately for each streaming provider. A stream verified
 
 The bar at the bottom of the queue panel shows the verification status of the stream that's playing now.
 
-<figure><img src="../.gitbook/assets/stream-verification-bar.png" alt="The stream verification bar with the status Unverified and a Verify button" width="274"><figcaption><p>The verification bar under the queue</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/stream-verification-bar.png" alt="The stream verification bar with the status Unverified and a Verify button" width="329"><figcaption><p>The verification bar under the queue</p></figcaption></figure>
 
 The status is one of these:
 
@@ -28,6 +28,8 @@ The status is one of these:
 - **Verified by you**: you verified this stream.
 
 While Nuclear looks up the status, the button shows a placeholder.
+
+Click the question mark next to the status to see a short explanation of stream verification in the app.
 
 ## Verify a stream
 
@@ -49,7 +51,7 @@ If the wrong stream is playing:
 2. Click the correct candidate. Nuclear switches to it.
 3. Click **Verify** in the verification bar.
 
-<figure><img src="../.gitbook/assets/stream-verification-correct.png" alt="The stream candidates popover open next to the queue, with a live version playing instead of the official audio, and the verification bar showing Unverified" width="614"><figcaption><p>Switching to a different candidate before verifying it</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/stream-verification-correct.png" alt="The stream candidates popover open next to the queue, with a live version playing instead of the official audio, and the verification bar showing Unverified" width="660"><figcaption><p>Switching to a different candidate before verifying it</p></figcaption></figure>
 
 See [The queue](the-queue.md#stream-candidates) for more about stream candidates.
 

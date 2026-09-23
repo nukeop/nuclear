@@ -14,6 +14,10 @@ const labels: StreamVerificationLabels = {
   verifiedByUser: 'Verified by you',
   verify: 'Verify',
   unverify: 'Unverify',
+  help: 'How stream verification works',
+  explanation:
+    'Nuclear sometimes picks the wrong version of a song. When you hear the right one, press Verify, and other listeners will get that version first.',
+  learnMore: 'Learn more',
 };
 
 const meta = {
@@ -43,6 +47,7 @@ export const AllStatuses: Story = {
           labels={labels}
           onVerify={fn()}
           onUnverify={fn()}
+          onLearnMore={fn()}
         />
       ))}
       <StreamVerification
@@ -51,6 +56,7 @@ export const AllStatuses: Story = {
         labels={labels}
         onVerify={fn()}
         onUnverify={fn()}
+        onLearnMore={fn()}
       />
     </div>
   ),

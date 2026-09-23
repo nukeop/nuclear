@@ -1,3 +1,4 @@
+import { openUrl } from '@tauri-apps/plugin-opener';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
@@ -16,6 +17,11 @@ export const ConnectedStreamVerification: FC = () => {
   return (
     <StreamVerification
       {...verification}
+      onLearnMore={() =>
+        openUrl(
+          'https://docs.nuclearplayer.com/nuclear/core-concepts/stream-verification',
+        )
+      }
       labels={{
         unverified: t('streamVerification.unverified'),
         weaklyVerified: t('streamVerification.weaklyVerified'),
@@ -23,6 +29,9 @@ export const ConnectedStreamVerification: FC = () => {
         verifiedByUser: t('streamVerification.verifiedByUser'),
         verify: t('streamVerification.verify'),
         unverify: t('streamVerification.unverify'),
+        help: t('streamVerification.help'),
+        explanation: t('streamVerification.explanation'),
+        learnMore: t('streamVerification.learnMore'),
       }}
     />
   );
