@@ -13,6 +13,7 @@
 * [How Nuclear works](core-concepts/how-nuclear-works.md)
 * [Plugins and providers](core-concepts/plugins-and-providers.md)
 * [The queue](core-concepts/the-queue.md)
+* [Stream verification](core-concepts/stream-verification.md)
 * [Favorites](core-concepts/favorites.md)
 * [Playlists](core-concepts/playlists.md)
 * [Listening history](core-concepts/listening-history.md)
