@@ -2,11 +2,9 @@ import { without } from 'lodash-es';
 
 import type { StreamCandidate, Track } from '@nuclearplayer/model';
 
-import { streamVerificationApi } from '../../apis/streamVerificationApi';
-import { getSetting } from '../../stores/settingsStore';
-import { Logger } from '../logger';
 import { providersHost } from '../providersHost';
 import { isStreamExpired, streamingHost } from '../streamingHost';
+import { streamVerification } from '../streamVerification';
 
 export const candidatesForTrack = async (
   track: Track,
@@ -16,46 +14,30 @@ export const candidatesForTrack = async (
     return cached;
   }
 
-  const [result, verifiedStreamId] = await Promise.all([
+  const [result, verifiedStream] = await Promise.all([
     streamingHost.resolveCandidatesForTrack(track),
-    getVerifiedStreamId(track),
+    streamVerification.getVerifiedStream(track),
   ]);
 
   if (!result.success) {
     return undefined;
   }
 
-  if (!verifiedStreamId) {
+  if (!verifiedStream) {
     return result.candidates;
   }
 
   const verified = result.candidates.find(
-    (candidate) => candidate.id === verifiedStreamId,
+    (candidate) => candidate.id === verifiedStream.streamId,
   ) ?? {
-    id: verifiedStreamId,
+    id: verifiedStream.streamId,
     title: track.title,
     failed: false,
     source: {
       provider: providersHost.getActive('streaming')!,
-      id: verifiedStreamId,
+      id: verifiedStream.streamId,
     },
   };
 
   return [verified, ...without(result.candidates, verified)];
-};
-
-const getVerifiedStreamId = async (
-  track: Track,
-): Promise<string | undefined> => {
-  if (!getSetting('core.playback.streamVerification')) {
-    return undefined;
-  }
-
-  try {
-    const topStream = await streamVerificationApi.getTopStream(track);
-    return topStream?.streamId;
-  } catch (error) {
-    Logger.http.error(`Failed to get top stream: ${String(error)}`);
-    return undefined;
-  }
 };

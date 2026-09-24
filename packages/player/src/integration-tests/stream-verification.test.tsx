@@ -152,6 +152,28 @@ describe('Stream verification', () => {
       );
       expect(fetchSpy).not.toHaveBeenCalled();
     });
+
+    it("doesn't send requests when online verification is off", async () => {
+      useSettingsStore
+        .getState()
+        .setValue('core.playback.streamVerificationService', false);
+      const fetchSpy = FetchMock.get('/mappings/top', {
+        stream_id: 'yt-b',
+        score: 10,
+      });
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      await StreamResolutionWrapper.waitForPlayback();
+
+      expect(StreamResolutionWrapper.playingStreamUrl).toBe(
+        'https://example.com/yt-a.mp3',
+      );
+      expect(
+        await QueueWrapper.streamVerification.status.find('Unverified'),
+      ).toBeInTheDocument();
+      expect(fetchSpy).not.toHaveBeenCalled();
+    });
   });
 
   describe('local verifications', () => {
@@ -303,6 +325,21 @@ describe('Stream verification', () => {
       ).toBeInTheDocument();
     });
 
+    it('shows Verified by you for a local verification when online verification is off', async () => {
+      useSettingsStore
+        .getState()
+        .setValue('core.playback.streamVerificationService', false);
+      await useStreamVerificationStore
+        .getState()
+        .saveVerification(TRACK_WITH_CANDIDATES.track, 'yt-c');
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Verified by you'),
+      ).toBeInTheDocument();
+    });
+
     it('shows a loader while the status is loading', async () => {
       FetchMock.get('/mappings/top', {
         stream_id: 'yt-a',
@@ -335,7 +372,7 @@ describe('Stream verification', () => {
   });
 
   describe('verifying', () => {
-    it('lets the user verify the track', async () => {
+    it('lets you verify the track', async () => {
       FetchMock.getError('/mappings/top', 404);
       FetchMock.get('/mappings', {});
       QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
@@ -352,7 +389,7 @@ describe('Stream verification', () => {
       ).toBeInTheDocument();
     });
 
-    it('lets the user unverify the track', async () => {
+    it('lets you unverify the track', async () => {
       FetchMock.get('/mappings/top', {
         stream_id: 'yt-a',
         score: 10,
@@ -373,7 +410,50 @@ describe('Stream verification', () => {
       ).toBeInTheDocument();
     });
 
-    it('shows an error when verification fails', async () => {
+    it('lets you verify the track when online verification is off', async () => {
+      useSettingsStore
+        .getState()
+        .setValue('core.playback.streamVerificationService', false);
+      const fetchSpy = FetchMock.get('/mappings', {});
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+      await StreamResolutionWrapper.waitForPlayback();
+
+      await QueueWrapper.streamVerification.verifyButton.click();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Verified by you'),
+      ).toBeInTheDocument();
+      expect(
+        await QueueWrapper.streamVerification.unverifyButton.find(),
+      ).toBeInTheDocument();
+      expect(fetchSpy).not.toHaveBeenCalled();
+    });
+
+    it('lets you unverify a local verification when online verification is off', async () => {
+      useSettingsStore
+        .getState()
+        .setValue('core.playback.streamVerificationService', false);
+      const fetchSpy = FetchMock.get('/mappings', {});
+      await useStreamVerificationStore
+        .getState()
+        .saveVerification(TRACK_WITH_CANDIDATES.track, 'yt-c');
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+      await StreamResolutionWrapper.waitForPlayback();
+
+      await QueueWrapper.streamVerification.unverifyButton.click();
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Unverified'),
+      ).toBeInTheDocument();
+      expect(
+        await QueueWrapper.streamVerification.verifyButton.find(),
+      ).toBeInTheDocument();
+      expect(fetchSpy).not.toHaveBeenCalled();
+    });
+
+    it('saves the verification locally when the stream verification service is unavailable', async () => {
       FetchMock.getError('/mappings/top', 404);
       FetchMock.getError('/mappings', 500);
       QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
@@ -383,10 +463,12 @@ describe('Stream verification', () => {
       await QueueWrapper.streamVerification.verifyButton.click();
 
       expect(
-        await QueueWrapper.toast.find('Failed to verify stream'),
+        await QueueWrapper.toast.find(
+          "Stream was verified locally, but Nuclear couldn't reach the verification service.",
+        ),
       ).toBeInTheDocument();
       expect(
-        await QueueWrapper.streamVerification.status.find('Unverified'),
+        await QueueWrapper.streamVerification.status.find('Verified by you'),
       ).toBeInTheDocument();
     });
 
