@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-09-22T00:00",
-    "description": "Stream verification is back.",
+    "description": "Stream verification is back. Now with offline verification",
     "type": "feature",
     "contributors": ["nukeop"],
     "tags": [

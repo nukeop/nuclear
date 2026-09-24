@@ -4,15 +4,18 @@ description: Correct the streams that Nuclear picks and help other users get the
 
 # Stream verification
 
-When you play a track, the streaming provider searches for matching audio and picks the top result. That stream isn't always right: sometimes it's a live version, a cover, a remix, or a different track with a similar name. Stream verification lets you mark the correct stream for a track and share it with other Nuclear users.
+When you play a track, the streaming provider searches for matching audio and picks the top result. That stream isn't always right: sometimes it's a live version, a cover, a remix, or a different track with a similar name. Stream verification lets you mark the correct stream for a track. Nuclear saves your verification on your computer, and it can share your verification with other Nuclear users.
 
 ## How Nuclear uses verifications
 
-Each verification is one vote for a stream. Before Nuclear plays a track, it asks the verification service which stream has the most votes for that track. If one exists, Nuclear plays that stream.
+Before Nuclear plays a track, it looks for a verified stream in this order:
 
-If nobody verified a stream for the track, or the service can't be reached, Nuclear plays the search results in their usual order.
+1. Your own locally verified stream. 
+2. Your own verified stream saved by the verification service.
+3. Community-verified stream.
+4. First stream as returned by your streaming source.
 
-The verification service keeps verifications separately for each streaming provider. A stream verified for one provider has no effect when you use a different one.
+Nuclear keeps verifications separately for each streaming provider. A stream verified for one provider has no effect when you use a different one.
 
 ## The verification bar
 
@@ -27,17 +30,21 @@ The status is one of these:
 - **Verified**: many users verified this stream. It has 3 or more votes.
 - **Verified by you**: you verified this stream.
 
+When **Online verification** is off, Nuclear doesn't get votes, so the status is either **Unverified** or **Verified by you**.
+
 While Nuclear looks up the status, the status and the button show placeholders.
 
 To see a short explanation of stream verification, click the question mark next to the status.
 
 ## Verify a stream
 
-If the playing stream is the right one, click **Verify**. The status changes to **Verified by you**, and your vote helps other users get the same stream. Nuclear always plays the stream you verified when you play that track.
+If the playing stream is the right one, click **Verify**. The status changes to **Verified by you**. Nuclear saves your verification on your device and always plays that stream when you play the track. If **Online verification** is on, Nuclear also sends your vote to the verification service, and your vote helps other users get the same stream.
+
+If Nuclear can't reach the verification service, it still saves your verification on your device and shows a warning.
 
 If the wrong stream is playing, see [Correct the wrong stream](#correct-the-wrong-stream).
 
-To undo your verification, click **Unverify**.
+To undo your verification, click **Unverify**. Nuclear removes your verification from your device. If **Online verification** is on, Nuclear also removes your vote from the verification service. If Nuclear can't reach the service, the service keeps your vote, so Nuclear continues to play that stream and the status shows **Verified by you** again.
 
 You have one verification per track. If you verify a different stream for the same track later, your verification moves to the new stream.
 
@@ -59,16 +66,19 @@ For more information about stream candidates, see [Stream candidates](the-queue.
 
 ## Privacy
 
-While stream verification is on, Nuclear contacts the verification service for every track you play. If you don't want that, [turn off stream verification](#turn-off-stream-verification).
+While **Online verification** is on, Nuclear contacts the verification service for every track you play, except the tracks that you verified. If you don't want that, [turn off Online verification](#turn-off-stream-verification). Your verifications then stay on your device, and Nuclear sends nothing.
 
 Verification doesn't need an account. The first time Nuclear connects to the verification service, it creates a random ID and saves it in your settings. This ID is the only thing that connects your verifications to each other.
 
-For every track you play, Nuclear sends only the track's artist and title, which streaming provider you use, and your random ID. When you click **Verify** or **Unverify**, Nuclear also sends the stream's ID.
+For each track that Nuclear asks about, it sends only the track's artist and title, which streaming provider you use, and your random ID. When you click **Verify** or **Unverify**, Nuclear also sends the stream's ID.
 
 Like any server you connect to, the verification service can see your IP address.
 
 ## Turn off stream verification
 
-Open **Settings**, go to **Playback**, and turn off **Stream verification**. With it off, Nuclear doesn't contact the verification service at all, plays search results in their usual order, and hides the verification bar.
+Open **Settings** and go to **Playback**. Two settings control stream verification:
+
+- **Stream verification** turns off the whole feature. With it off, Nuclear ignores all verifications, doesn't contact the verification service, plays search results in their usual order, and hides the verification bar. Nuclear keeps the verifications on your device, and uses them again when you turn the setting back on.
+- **Online verification** turns off only the connection to the verification service. With it off, Nuclear uses only the verifications on your device, and doesn't send or get votes. The verification bar stays visible, and **Verify** saves your verification on your device. This setting has no effect when **Stream verification** is off.
 
 <figure><img src="../.gitbook/assets/stream-verification-setting.png" alt="The Stream verification toggle in Settings" width="602"><figcaption><p>The Stream verification setting</p></figcaption></figure>
