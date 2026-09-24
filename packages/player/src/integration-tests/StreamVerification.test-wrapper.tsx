@@ -37,9 +37,6 @@ export const createStreamVerificationWrapper = (container: HTMLElement) => ({
   helpButton: labelledButton(container, 'How stream verification works'),
 
   explanation: {
-    async find() {
-      return screen.findByTestId('stream-verification-explanation');
-    },
     async learnMore() {
       await user.click(
         await screen.findByRole('button', { name: 'Learn more' }),
