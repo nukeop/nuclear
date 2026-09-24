@@ -2,90 +2,85 @@ import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import type { StreamVerificationStatus, Track } from '@nuclearplayer/model';
+import type { StreamVerificationStatus } from '@nuclearplayer/model';
 
-import type { TopStream } from '../apis/streamVerificationApi';
-import { streamVerificationApi } from '../apis/streamVerificationApi';
+import type { VerifiedStream } from '../services/streamVerification';
+import { streamVerification } from '../services/streamVerification';
 import { useCoreSetting } from './useCoreSetting';
 import { useCurrentQueueItem } from './useCurrentQueueItem';
-
-const WEAK_VERIFICATION_THRESHOLD = 3;
-
-const getStatus = (
-  topStream: TopStream | undefined,
-  headCandidateId: string,
-): StreamVerificationStatus => {
-  if (topStream?.streamId !== headCandidateId) {
-    return 'unverified';
-  }
-  if (topStream.selfVerified) {
-    return 'verifiedByUser';
-  }
-  if (topStream.score < WEAK_VERIFICATION_THRESHOLD) {
-    return 'weaklyVerified';
-  }
-  return 'verified';
-};
 
 export const useStreamVerification = () => {
   const { t } = useTranslation('queue');
   const [isEnabled] = useCoreSetting<boolean>('playback.streamVerification');
+  const [isServiceEnabled] = useCoreSetting<boolean>(
+    'playback.streamVerificationService',
+  );
   const currentItem = useCurrentQueueItem();
   const headCandidate = currentItem?.track.streamCandidates?.[0];
-  const [status, setStatus] = useState<StreamVerificationStatus>('loading');
+  const hasCandidates = Boolean(headCandidate);
+  const [verifiedStream, setVerifiedStream] = useState<VerifiedStream>();
+  const [isLoading, setIsLoading] = useState(true);
   const [isBusy, setIsBusy] = useState(false);
 
   useEffect(() => {
-    setStatus('loading');
-    if (!currentItem || !headCandidate || !isEnabled) {
+    setIsLoading(true);
+    if (!currentItem || !hasCandidates || !isEnabled) {
       return;
     }
 
     let isCurrent = true;
-    streamVerificationApi
-      .getTopStream(currentItem.track)
-      .then((topStream) => getStatus(topStream, headCandidate.id))
-      .catch(() => 'unverified' as const)
-      .then((nextStatus) => {
-        if (isCurrent) {
-          setStatus(nextStatus);
-        }
-      });
+    streamVerification.getVerifiedStream(currentItem.track).then((next) => {
+      if (isCurrent) {
+        setVerifiedStream(next);
+        setIsLoading(false);
+      }
+    });
 
     return () => {
       isCurrent = false;
     };
-  }, [currentItem?.id, headCandidate?.id, isEnabled]);
+  }, [currentItem?.id, hasCandidates, isEnabled, isServiceEnabled]);
 
-  const submit = (
-    write: (track: Track) => Promise<void>,
-    statusAfter: StreamVerificationStatus,
-  ) => {
-    if (!currentItem) {
+  const getStatus = (): StreamVerificationStatus => {
+    if (isLoading) {
+      return 'loading';
+    }
+    if (!headCandidate || verifiedStream?.streamId !== headCandidate.id) {
+      return 'unverified';
+    }
+    return verifiedStream.status;
+  };
+
+  const submit = async (action: 'verify' | 'unverify') => {
+    if (!currentItem || !headCandidate) {
       return;
     }
 
     setIsBusy(true);
-    write(currentItem.track)
-      .then(() => setStatus(statusAfter))
-      .catch(() => toast.error(t('streamVerification.failed')))
-      .finally(() => setIsBusy(false));
+    try {
+      const result = await streamVerification[action](
+        currentItem.track,
+        headCandidate.id,
+      );
+      if (result === 'failed') {
+        toast.warning(t('streamVerification.notShared'));
+      }
+      setVerifiedStream(
+        await streamVerification.getVerifiedStream(currentItem.track),
+      );
+    } catch {
+      toast.error(t('streamVerification.failed'));
+    } finally {
+      setIsBusy(false);
+    }
   };
 
   return {
     isVisible: Boolean(isEnabled && currentItem),
-    status,
+    status: getStatus(),
     isBusy,
     isDisabled: !headCandidate?.stream,
-    onVerify: () =>
-      submit(
-        (track) => streamVerificationApi.postStreamMapping(track),
-        'verifiedByUser',
-      ),
-    onUnverify: () =>
-      submit(
-        (track) => streamVerificationApi.deleteStreamMapping(track),
-        'unverified',
-      ),
+    onVerify: () => submit('verify'),
+    onUnverify: () => submit('unverify'),
   };
 };
