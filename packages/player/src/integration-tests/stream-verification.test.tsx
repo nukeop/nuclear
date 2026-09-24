@@ -395,10 +395,12 @@ describe('Stream verification', () => {
         score: 10,
         self_verified: true,
       });
-      FetchMock.get('/mappings', {});
       QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
       await QueueWrapper.mount();
       await StreamResolutionWrapper.waitForPlayback();
+      FetchMock.reset();
+      FetchMock.getError('/mappings/top', 404);
+      FetchMock.get('/mappings', {});
 
       await QueueWrapper.streamVerification.unverifyButton.click();
 

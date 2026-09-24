@@ -504,6 +504,7 @@
       "verify": "Verify",
       "unverify": "Unverify",
       "failed": "Failed to verify stream",
+      "notShared": "Stream was verified locally, but Nuclear couldn't reach the verification service.",
       "help": "How stream verification works",
       "explanation": "Nuclear may sometimes pick the wrong version of a song. You can correct this. Right-click the queue item to see the list of available streams, and pick the right one. When you hear the right one, press Verify to save your correction. Other users will get that version first too.\n\nNuclear asks the verification service about every track you play. When you verify, it sends the artist, the title, the stream you picked, and a random ID as your user identifier.",
       "learnMore": "Learn more"
