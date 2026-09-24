@@ -61,12 +61,12 @@ class StreamVerificationApi {
     return this.cache(cacheKey, TopStreamSchema.parse(await response.json()));
   }
 
-  async postStreamMapping(track: Track): Promise<void> {
-    await this.writeMapping('PUT', track);
+  async postStreamMapping(track: Track, streamId: string): Promise<void> {
+    await this.writeMapping('PUT', track, streamId);
   }
 
-  async deleteStreamMapping(track: Track): Promise<void> {
-    await this.writeMapping('DELETE', track);
+  async deleteStreamMapping(track: Track, streamId: string): Promise<void> {
+    await this.writeMapping('DELETE', track, streamId);
   }
 
   clearCache(): void {
@@ -86,15 +86,14 @@ class StreamVerificationApi {
     return topStream;
   }
 
-  private async writeMapping(method: string, track: Track): Promise<void> {
-    const headCandidate = track.streamCandidates?.[0];
-    if (!headCandidate) {
-      throw new Error('Track has no stream candidate');
-    }
-
+  private async writeMapping(
+    method: string,
+    track: Track,
+    streamId: string,
+  ): Promise<void> {
     const response = await this.request(method, '/mappings', {
       ...this.keyFor(track),
-      stream_id: headCandidate.id,
+      stream_id: streamId,
     });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
