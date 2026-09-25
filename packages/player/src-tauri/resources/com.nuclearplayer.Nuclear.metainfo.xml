@@ -84,6 +84,14 @@
   </requires>
 
   <releases>
+    <release version="1.49.0" date="2026-09-25">
+      <description>
+        <ul>
+          <li>Stream verification is back. Now with offline verification</li>
+          <li>Fix lag when switching themes.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.48.6" date="2026-09-19">
       <description>
         <p>Release 1.48.6.</p>
