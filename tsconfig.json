@@ -22,7 +22,6 @@
     "declarationMap": true,
     "sourceMap": true,
     "types": ["vitest/globals"],
-    "baseUrl": ".",
     "paths": {
       "@nuclearplayer/ui": [
         "./packages/ui/src"
