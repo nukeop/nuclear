@@ -4,14 +4,13 @@ import Features from '../components/Features.astro';
 import Hero from '../components/Hero.astro';
 import { McpShowcase } from '../components/McpShowcase';
 import Testimonials from '../components/Testimonials.astro';
+import { siteDescription } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Nuclear - Free Open-Source Music Player';
-const description =
-  'Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.';
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={siteDescription}>
   <main
     class="bg-muted relative flex w-full flex-col items-center overflow-x-clip"
   >
