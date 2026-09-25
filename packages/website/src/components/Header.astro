@@ -3,27 +3,34 @@ import { Icon } from 'astro-icon/components';
 
 import { stars } from '../data/github';
 import Button from './Button.astro';
+
+const isBlogActive = Astro.url.pathname.startsWith('/blog');
 ---
 
 <header
-  class="border-b border-border px-4 md:px-8 h-16 flex items-center justify-between"
+  class="border-b border-border px-4 md:px-8 h-16 flex items-center justify-between gap-3"
 >
-  <a href="/">
+  <a href="/" class="shrink-0">
     <img
       src="/images/logo-full-outlined.svg"
       alt="Nuclear"
-      class="h-8 dark-mode-hidden"
+      class="h-6 sm:h-8 dark-mode-hidden"
     />
     <img
       src="/images/logo-full-light-outlined.svg"
       alt="Nuclear"
-      class="h-8 hidden dark-mode-block"
+      class="h-6 sm:h-8 hidden dark-mode-block"
     />
   </a>
 
-  <nav></nav>
-
-  <div class="flex items-center gap-3">
+  <nav class="flex items-center gap-2 md:gap-3 shrink-0">
+    <a
+      href="/blog"
+      aria-current={isBlogActive && 'page'}
+      class="mr-2 md:mr-5 font-heading text-sm md:text-base font-black tracking-widest uppercase decoration-3 underline-offset-6 hover:underline aria-[current=page]:underline"
+    >
+      Blog
+    </a>
     <Button
       href="https://discord.gg/JqPjKxE"
       variant="discord"
@@ -42,5 +49,5 @@ import Button from './Button.astro';
       <Icon name="simple-icons:github" class="w-5 h-5" />
       <span class="hidden md:inline">{stars ? `${stars} stars` : 'Star on GitHub'}</span>
     </Button>
-  </div>
+  </nav>
 </header>
