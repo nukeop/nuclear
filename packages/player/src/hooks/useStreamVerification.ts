@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { StreamVerificationStatus } from '@nuclearplayer/model';
 
+import { Logger } from '../services/logger';
 import type { VerifiedStream } from '../services/streamVerification';
 import { streamVerification } from '../services/streamVerification';
 import { useCoreSetting } from './useCoreSetting';
@@ -68,7 +69,10 @@ export const useStreamVerification = () => {
       setVerifiedStream(
         await streamVerification.getVerifiedStream(currentItem.track),
       );
-    } catch {
+    } catch (error) {
+      Logger.streaming.error(
+        `Failed to ${action} the stream: ${String(error)}`,
+      );
       toast.error(t('streamVerification.failed'));
     } finally {
       setIsBusy(false);

@@ -54,8 +54,13 @@ class StreamVerificationApi {
       '/mappings/top',
       this.keyFor(track),
     );
-    if (!response.ok) {
+    if (response.status === 404) {
       return this.cache(cacheKey, undefined);
+    }
+    if (!response.ok) {
+      throw new Error(
+        `Stream verification API HTTP error ${response.status}: ${response.statusText}`,
+      );
     }
 
     return this.cache(cacheKey, TopStreamSchema.parse(await response.json()));
@@ -96,7 +101,9 @@ class StreamVerificationApi {
       stream_id: streamId,
     });
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      throw new Error(
+        `Stream verification API HTTP error ${response.status}: ${response.statusText}`,
+      );
     }
 
     this.topStreamCache.delete(this.verificationKey(track));
@@ -143,7 +150,9 @@ class StreamVerificationApi {
   }
 
   private authorId(): string {
-    const stored = getSetting('core.streamVerification.authorId') as string;
+    const stored = getSetting(
+      'core.playback.streamVerificationAuthorId',
+    ) as string;
     if (stored) {
       return stored;
     }
@@ -151,7 +160,7 @@ class StreamVerificationApi {
     const generated = uuid();
     useSettingsStore
       .getState()
-      .setValue('core.streamVerification.authorId', generated);
+      .setValue('core.playback.streamVerificationAuthorId', generated);
     return generated;
   }
 }

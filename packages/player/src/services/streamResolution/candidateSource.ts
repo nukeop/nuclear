@@ -1,4 +1,4 @@
-import { without } from 'lodash-es';
+import without from 'lodash-es/without';
 
 import type { StreamCandidate, Track } from '@nuclearplayer/model';
 

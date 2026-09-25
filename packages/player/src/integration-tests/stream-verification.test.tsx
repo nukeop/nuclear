@@ -1,4 +1,5 @@
 import { openUrl } from '@tauri-apps/plugin-opener';
+import { act } from '@testing-library/react';
 
 import { streamVerificationApi } from '../apis/streamVerificationApi';
 import { providersHost } from '../services/providersHost';
@@ -63,7 +64,7 @@ describe('Stream verification', () => {
     useSettingsStore
       .getState()
       .setValue(
-        'core.streamVerification.authorId',
+        'core.playback.streamVerificationAuthorId',
         '2f1e4b9c-6b1d-4c0e-9a8e-1f2d3c4b5a69',
       );
     useStartupStore.setState({ isStartingUp: false });
@@ -174,6 +175,30 @@ describe('Stream verification', () => {
       ).toBeInTheDocument();
       expect(fetchSpy).not.toHaveBeenCalled();
     });
+
+    it('asks the stream verification service again after it fails', async () => {
+      FetchMock.getError('/mappings/top', 500);
+      QueueWrapper.initQueue([TRACK_WITH_CANDIDATES]);
+      await QueueWrapper.mount();
+      await StreamResolutionWrapper.waitForPlayback();
+      FetchMock.reset();
+      FetchMock.get('/mappings/top', { stream_id: 'yt-a', score: 10 });
+
+      await act(() =>
+        useSettingsStore
+          .getState()
+          .setValue('core.playback.streamVerificationService', false),
+      );
+      await act(() =>
+        useSettingsStore
+          .getState()
+          .setValue('core.playback.streamVerificationService', true),
+      );
+
+      expect(
+        await QueueWrapper.streamVerification.status.find('Verified'),
+      ).toBeInTheDocument();
+    });
   });
 
   describe('local verifications', () => {
@@ -214,7 +239,7 @@ describe('Stream verification', () => {
       expect(fetchSpy).not.toHaveBeenCalled();
     });
 
-    it('plays the locally verified stream without asking the stream verification service', async () => {
+    it('plays the locally verified stream without asking the stream verification service when online verification is on', async () => {
       const fetchSpy = FetchMock.get('/mappings/top', {
         stream_id: 'yt-b',
         score: 10,

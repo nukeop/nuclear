@@ -205,7 +205,7 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     widget: { type: 'toggle' },
   },
   {
-    id: 'streamVerification.authorId',
+    id: 'playback.streamVerificationAuthorId',
     title: 'preferences.playback.streamVerificationAuthorId.title',
     description: 'preferences.playback.streamVerificationAuthorId.description',
     category: 'playback',
