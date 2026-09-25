@@ -3,7 +3,7 @@
   "version": "0.0.10",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@12.4.1",
+  "packageManager": "pnpm@12.0.0",
   "scripts": {
     "dev": "turbo dev --filter=@nuclearplayer/player",
     "dev:remote": "VITE_HOST=0.0.0.0 turbo dev --filter=@nuclearplayer/player",

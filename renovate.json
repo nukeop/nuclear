@@ -122,6 +122,11 @@
       "description": "Don't auto-merge major updates",
       "matchUpdateTypes": ["major"],
       "automerge": false
+    },
+    {
+      "description": "pnpm after 12.0.0 doesn't link node_modules/.bin/tauri in the offline Flathub build",
+      "matchPackageNames": ["pnpm"],
+      "enabled": false
     }
   ]
 }
