@@ -48,6 +48,7 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
   return (
     <motion.div
       ref={sidebarRef}
+      data-testid={`sidebar-${side}`}
       className={cn(
         'border-border relative flex flex-col overflow-hidden',
         {
@@ -55,7 +56,6 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
             side === 'left',
           'surface-sidebar-right border-l-(length:--border-width)':
             side === 'right',
-          'p-2': !isCollapsed,
         },
         className,
       )}
@@ -75,6 +75,7 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
         className={cn('mb-4 flex flex-row items-center', {
           'justify-end': side === 'left',
           'justify-start': side === 'right',
+          'px-2 pt-2': !isCollapsed,
         })}
       >
         <Button
@@ -95,12 +96,15 @@ export const PlayerWorkspaceSidebar: FC<PlayerWorkspaceSidebarProps> = ({
           </span>
         )}
       </span>
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div
+        className={cn('flex flex-1 flex-col overflow-hidden', {
+          'px-2 pb-2': !isCollapsed,
+        })}
+      >
         {children}
-        {!isCollapsed && footer && (
-          <div className="mt-auto flex justify-center">{footer}</div>
-        )}
       </div>
+
+      {!isCollapsed && footer}
 
       {persistentFooter && (
         <div className="mt-auto flex flex-col items-center gap-2 py-2">

@@ -1,5 +1,21 @@
 [
   {
+    "date": "2026-09-22T00:00",
+    "description": "Stream verification is back. Now with offline verification",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
+      },
+      {
+        "label": "Queue",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-09-20T00:00",
     "description": "Fix lag when switching themes.",
     "type": "fix",

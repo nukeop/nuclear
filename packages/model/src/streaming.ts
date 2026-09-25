@@ -35,6 +35,9 @@ export type StreamCandidate = {
   source: ProviderRef;
 };
 
+export type StreamVerificationStatus =
+  'loading' | 'unverified' | 'weaklyVerified' | 'verified' | 'verifiedByUser';
+
 export const stripResolutionState = (track: Track): Track => {
   const next = { ...track };
   delete next.streamCandidates;

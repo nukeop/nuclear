@@ -22,6 +22,12 @@ export const StreamResolutionWrapper = {
     return useSoundStore.getState();
   },
 
+  get playingStreamUrl() {
+    const proxiedUrl = useSoundStore.getState().src!.url;
+    const encoded = proxiedUrl.slice(proxiedUrl.lastIndexOf('/') + 1);
+    return atob(encoded.replace(/-/g, '+').replace(/_/g, '/'));
+  },
+
   getCurrentQueueItem() {
     return useQueueStore.getState().getCurrentItem();
   },

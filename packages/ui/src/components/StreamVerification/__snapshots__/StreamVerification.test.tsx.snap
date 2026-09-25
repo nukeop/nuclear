@@ -1,0 +1,516 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StreamVerification > (Snapshot) renders loading status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
+  data-testid="stream-verification"
+>
+  <div
+    class="flex items-center gap-1"
+  >
+    <span
+      class="flex items-center gap-2"
+      data-testid="stream-verification-loader"
+    >
+      <div
+        class="bg-muted border-border animate-pulse border-(length:--border-width) size-2.5 rounded-full"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-20"
+        data-testid="skeleton"
+      />
+    </span>
+    <div
+      class="relative"
+      data-headlessui-state=""
+    >
+      <div
+        aria-expanded="false"
+        class="cursor-pointer"
+        data-headlessui-state=""
+        id="headlessui-popover-button-:r2:"
+      >
+        <button
+          aria-label="How stream verification works"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
+          data-headlessui-state=""
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-question-mark"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <path
+              d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
+            />
+            <path
+              d="M12 17h.01"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-16"
+    data-testid="skeleton"
+  />
+</div>
+`;
+
+exports[`StreamVerification > (Snapshot) renders the explanation 1`] = `
+<body>
+  <div>
+    <div
+      class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
+      data-testid="stream-verification"
+    >
+      <div
+        class="flex items-center gap-1"
+      >
+        <span
+          class="text-muted-foreground flex items-center gap-2 text-sm"
+        >
+          <span
+            class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full"
+          />
+          Unverified
+        </span>
+        <div
+          class="relative"
+          data-headlessui-state="open"
+          data-open=""
+        >
+          <div
+            aria-controls="headlessui-popover-panel-:ro:"
+            aria-expanded="true"
+            class="cursor-pointer"
+            data-active=""
+            data-headlessui-state="open active hover"
+            data-hover=""
+            data-open=""
+            id="headlessui-popover-button-:rm:"
+          >
+            <button
+              aria-label="How stream verification works"
+              class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
+              data-headlessui-state="hover"
+              data-hover=""
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-circle-question-mark"
+                fill="none"
+                height="16"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                />
+                <path
+                  d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
+                />
+                <path
+                  d="M12 17h.01"
+                />
+              </svg>
+            </button>
+          </div>
+          <button
+            aria-hidden="true"
+            data-headlessui-focus-guard="true"
+            id="headlessui-focus-sentinel-:rn:"
+            style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+            type="button"
+          />
+        </div>
+      </div>
+      <button
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
+        data-headlessui-state=""
+        type="button"
+      >
+        Verify
+      </button>
+    </div>
+  </div>
+  <div
+    id="headlessui-portal-root"
+  >
+    <div
+      data-headlessui-portal=""
+    >
+      <button
+        aria-hidden="true"
+        data-headlessui-focus-guard="true"
+        id="headlessui-focus-sentinel-before-:ro:"
+        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+        type="button"
+      />
+      <div
+        animate="[object Object]"
+        class="surface-popover border-border rounded-md border-(length:--border-width) leading-5 backdrop-blur-xl flex w-72 flex-col items-start gap-2 p-4 select-text"
+        data-anchor="top end"
+        data-floating-ui-focusable=""
+        data-headlessui-state="open"
+        data-open=""
+        exit="[object Object]"
+        initial="[object Object]"
+        style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
+      >
+        <p
+          class="text-sm whitespace-pre-line"
+          data-testid="stream-verification-explanation"
+        >
+          Explanation of stream verification
+        </p>
+        <button
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm gap-1"
+          data-headlessui-state=""
+          type="button"
+        >
+          Learn more
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-external-link"
+            fill="none"
+            height="14"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="14"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 3h6v6"
+            />
+            <path
+              d="M10 14 21 3"
+            />
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        aria-hidden="true"
+        data-headlessui-focus-guard="true"
+        id="headlessui-focus-sentinel-after-:ro:"
+        style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+        type="button"
+      />
+    </div>
+  </div>
+</body>
+`;
+
+exports[`StreamVerification > (Snapshot) renders unverified status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
+  data-testid="stream-verification"
+>
+  <div
+    class="flex items-center gap-1"
+  >
+    <span
+      class="text-muted-foreground flex items-center gap-2 text-sm"
+    >
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full"
+      />
+      Unverified
+    </span>
+    <div
+      class="relative"
+      data-headlessui-state=""
+    >
+      <div
+        aria-expanded="false"
+        class="cursor-pointer"
+        data-headlessui-state=""
+        id="headlessui-popover-button-:r6:"
+      >
+        <button
+          aria-label="How stream verification works"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
+          data-headlessui-state=""
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-question-mark"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <path
+              d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
+            />
+            <path
+              d="M12 17h.01"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
+    data-headlessui-state=""
+    type="button"
+  >
+    Verify
+  </button>
+</div>
+`;
+
+exports[`StreamVerification > (Snapshot) renders verified status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
+  data-testid="stream-verification"
+>
+  <div
+    class="flex items-center gap-1"
+  >
+    <span
+      class="text-muted-foreground flex items-center gap-2 text-sm"
+    >
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-green"
+      />
+      Verified
+    </span>
+    <div
+      class="relative"
+      data-headlessui-state=""
+    >
+      <div
+        aria-expanded="false"
+        class="cursor-pointer"
+        data-headlessui-state=""
+        id="headlessui-popover-button-:re:"
+      >
+        <button
+          aria-label="How stream verification works"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
+          data-headlessui-state=""
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-question-mark"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <path
+              d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
+            />
+            <path
+              d="M12 17h.01"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
+    data-headlessui-state=""
+    type="button"
+  >
+    Verify
+  </button>
+</div>
+`;
+
+exports[`StreamVerification > (Snapshot) renders verifiedByUser status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
+  data-testid="stream-verification"
+>
+  <div
+    class="flex items-center gap-1"
+  >
+    <span
+      class="text-muted-foreground flex items-center gap-2 text-sm"
+    >
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-blue"
+      />
+      Verified by you
+    </span>
+    <div
+      class="relative"
+      data-headlessui-state=""
+    >
+      <div
+        aria-expanded="false"
+        class="cursor-pointer"
+        data-headlessui-state=""
+        id="headlessui-popover-button-:ri:"
+      >
+        <button
+          aria-label="How stream verification works"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
+          data-headlessui-state=""
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-question-mark"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <path
+              d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
+            />
+            <path
+              d="M12 17h.01"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
+    data-headlessui-state=""
+    type="button"
+  >
+    Unverify
+  </button>
+</div>
+`;
+
+exports[`StreamVerification > (Snapshot) renders weaklyVerified status 1`] = `
+<div
+  class="border-border flex items-center justify-between border-t-(length:--border-width) p-2"
+  data-testid="stream-verification"
+>
+  <div
+    class="flex items-center gap-1"
+  >
+    <span
+      class="text-muted-foreground flex items-center gap-2 text-sm"
+    >
+      <span
+        class="border-border inline-flex items-center justify-center border-(length:--border-width) whitespace-nowrap size-2.5 rounded-full surface-accent-yellow"
+      />
+      Weakly verified
+    </span>
+    <div
+      class="relative"
+      data-headlessui-state=""
+    >
+      <div
+        aria-expanded="false"
+        class="cursor-pointer"
+        data-headlessui-state=""
+        id="headlessui-popover-button-:ra:"
+      >
+        <button
+          aria-label="How stream verification works"
+          class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center"
+          data-headlessui-state=""
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-question-mark"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <path
+              d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
+            />
+            <path
+              d="M12 17h.01"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <button
+    class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-8 px-2 text-sm"
+    data-headlessui-state=""
+    type="button"
+  >
+    Verify
+  </button>
+</div>
+`;

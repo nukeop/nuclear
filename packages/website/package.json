@@ -23,6 +23,7 @@
     "@fontsource-variable/dm-sans": "^5.2.8",
     "@fontsource/space-mono": "^5.2.9",
     "@iconify-json/simple-icons": "^1.2.67",
+    "@nuclearplayer/ui": "workspace:*",
     "astro": "^7.0.0",
     "astro-expressive-code": "^0.44.0",
     "astro-icon": "^1.1.5",

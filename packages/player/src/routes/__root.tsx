@@ -28,6 +28,7 @@ import {
   QueueHeaderActions,
 } from '../components/ConnectedQueuePanel';
 import { ConnectedSettingsModal } from '../components/ConnectedSettingsModal';
+import { ConnectedStreamVerification } from '../components/ConnectedStreamVerification';
 import { ConnectedTitleBar } from '../components/ConnectedTitleBar';
 import { ConnectedTopBar } from '../components/ConnectedTopBar';
 import { DevTools } from '../components/DevTools';
@@ -129,6 +130,7 @@ const RootComponent = () => {
             onWidthChange={setRightSidebarWidth}
             onToggle={toggleRightSidebar}
             headerActions={<QueueHeaderActions />}
+            footer={<ConnectedStreamVerification />}
           >
             <ConnectedQueuePanel isCollapsed={rightSidebar.isCollapsed} />
           </PlayerWorkspace.RightSidebar>

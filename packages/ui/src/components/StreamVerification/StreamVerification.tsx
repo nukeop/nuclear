@@ -1,0 +1,51 @@
+import { FC } from 'react';
+
+import type { StreamVerificationStatus } from '@nuclearplayer/model';
+
+import { cn } from '../../utils';
+import { StreamVerificationButton } from './StreamVerificationButton';
+import { StreamVerificationHelp } from './StreamVerificationHelp';
+import { StreamVerificationStatusIndicator } from './StreamVerificationStatusIndicator';
+import type { StreamVerificationLabels } from './types';
+
+type StreamVerificationProps = {
+  status: StreamVerificationStatus;
+  isBusy?: boolean;
+  isDisabled?: boolean;
+  onVerify: () => void;
+  onUnverify: () => void;
+  onLearnMore: () => void;
+  labels: StreamVerificationLabels;
+  className?: string;
+};
+
+export const StreamVerification: FC<StreamVerificationProps> = ({
+  status,
+  isBusy = false,
+  isDisabled = false,
+  onVerify,
+  onUnverify,
+  onLearnMore,
+  labels,
+  className,
+}) => (
+  <div
+    data-testid="stream-verification"
+    className={cn(
+      'border-border flex items-center justify-between border-t-(length:--border-width) p-2',
+      className,
+    )}
+  >
+    <div className="flex items-center gap-1">
+      <StreamVerificationStatusIndicator status={status} labels={labels} />
+      <StreamVerificationHelp labels={labels} onLearnMore={onLearnMore} />
+    </div>
+    <StreamVerificationButton
+      status={status}
+      isDisabled={isBusy || isDisabled}
+      onVerify={onVerify}
+      onUnverify={onUnverify}
+      labels={labels}
+    />
+  </div>
+);

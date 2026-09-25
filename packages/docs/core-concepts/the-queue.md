@@ -31,6 +31,8 @@ Right-click a track in the queue to see its stream candidates. The popover shows
 
 If the wrong version is playing, click a different candidate to switch to it. Your choice stays selected for that queue entry until its stream links expire and Nuclear fetches a fresh list. Candidates that couldn't be played are marked as failed.
 
+To help other users get the correct stream, verify it. See [Stream verification](stream-verification.md).
+
 {% hint style="info" %}
 Candidates are fetched when a track starts playing, so tracks you haven't played yet show "No stream candidates".
 {% endhint %}

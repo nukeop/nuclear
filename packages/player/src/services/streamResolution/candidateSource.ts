@@ -1,6 +1,10 @@
+import { without } from 'lodash-es';
+
 import type { StreamCandidate, Track } from '@nuclearplayer/model';
 
+import { providersHost } from '../providersHost';
 import { isStreamExpired, streamingHost } from '../streamingHost';
+import { streamVerification } from '../streamVerification';
 
 export const candidatesForTrack = async (
   track: Track,
@@ -10,9 +14,30 @@ export const candidatesForTrack = async (
     return cached;
   }
 
-  const result = await streamingHost.resolveCandidatesForTrack(track);
-  if (result.success) {
+  const [result, verifiedStream] = await Promise.all([
+    streamingHost.resolveCandidatesForTrack(track),
+    streamVerification.getVerifiedStream(track),
+  ]);
+
+  if (!result.success) {
+    return undefined;
+  }
+
+  if (!verifiedStream) {
     return result.candidates;
   }
-  return undefined;
+
+  const verified = result.candidates.find(
+    (candidate) => candidate.id === verifiedStream.streamId,
+  ) ?? {
+    id: verifiedStream.streamId,
+    title: track.title,
+    failed: false,
+    source: {
+      provider: providersHost.getActive('streaming')!,
+      id: verifiedStream.streamId,
+    },
+  };
+
+  return [verified, ...without(result.candidates, verified)];
 };
