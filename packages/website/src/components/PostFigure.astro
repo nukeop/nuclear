@@ -1,0 +1,14 @@
+---
+type Props = {
+  caption: string;
+};
+
+const { caption } = Astro.props;
+---
+
+<figure class="my-8 flex flex-col items-center gap-3 *:my-0">
+  <slot />
+  <figcaption class="text-muted-foreground/50 text-center text-sm">
+    {caption}
+  </figcaption>
+</figure>

@@ -208,10 +208,11 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
       <div
         animate="[object Object]"
         class="border-border relative flex flex-col overflow-hidden surface-sidebar-left border-r-(length:--border-width) p-2"
+        data-testid="sidebar-left"
         transition="[object Object]"
       >
         <span
-          class="mb-4 flex flex-row items-center justify-end"
+          class="mb-4 flex flex-row items-center justify-end px-2 pt-2"
         >
           <button
             class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 right-1"
@@ -246,7 +247,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           </button>
         </span>
         <div
-          class="flex flex-1 flex-col overflow-hidden"
+          class="flex flex-1 flex-col overflow-hidden px-2 pb-2"
         >
           <div
             class="flex flex-1 flex-col"
@@ -1093,11 +1094,12 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
       </main>
       <div
         animate="[object Object]"
-        class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width) p-2"
+        class="border-border relative flex flex-col overflow-hidden surface-sidebar-right border-l-(length:--border-width)"
+        data-testid="sidebar-right"
         transition="[object Object]"
       >
         <span
-          class="mb-4 flex flex-row items-center justify-start"
+          class="mb-4 flex flex-row items-center justify-start px-2 pt-2"
         >
           <button
             class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center top-2 px-2 left-1"
@@ -1135,7 +1137,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
           />
         </span>
         <div
-          class="flex flex-1 flex-col overflow-hidden"
+          class="flex flex-1 flex-col overflow-hidden px-2 pb-2"
         >
           <div
             class="flex h-full flex-col items-center justify-center gap-4 p-8 text-center transition-opacity duration-150 opacity-100"
