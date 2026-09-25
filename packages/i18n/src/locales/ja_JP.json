@@ -403,6 +403,14 @@
         "description": "おすすめが現在の再生傾向からどれだけ逸脱するか。低いほど近くなります。",
         "startLabel": "控えめ",
         "endLabel": "大胆"
+      },
+      "streamVerification": {
+        "title": "Stream verification",
+        "description": "Nuclear plays the streams that you verified and shows the verification bar. When this setting is off, Nuclear ignores all verifications."
+      },
+      "streamVerificationService": {
+        "title": "Online verification",
+        "description": "Nuclear sends your verifications to the verification service and gets the streams that other users verified. This setting has no effect when stream verification is off."
       }
     },
     "history": {
@@ -487,6 +495,19 @@
     "candidates": {
       "empty": "ストリーム候補がありません",
       "failed": "失敗"
+    },
+    "streamVerification": {
+      "unverified": "Unverified",
+      "weaklyVerified": "Weakly verified",
+      "verified": "Verified",
+      "verifiedByUser": "Verified by you",
+      "verify": "Verify",
+      "unverify": "Unverify",
+      "failed": "Failed to verify stream",
+      "notShared": "Stream was verified locally, but Nuclear couldn't reach the verification service.",
+      "help": "How stream verification works",
+      "explanation": "Nuclear may sometimes play the wrong version of a song. To fix it, right-click the queue item and pick the right stream, then click Verify. Nuclear saves your verification on your computer and always plays that stream for the track.\n\nIf Online verification is on, Nuclear also shares your verification with other users, so they get that stream first. For each track you didn't verify, Nuclear asks the verification service for the stream with the most votes. It sends the artist, the title, and a random ID.",
+      "learnMore": "Learn more"
     }
   },
   "track": {
