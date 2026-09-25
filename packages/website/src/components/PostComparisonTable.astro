@@ -1,0 +1,57 @@
+---
+import Box from './Box.astro';
+import PostComparisonCell, {
+  type ComparisonValue,
+} from './PostComparisonCell.astro';
+
+type ComparisonRow = {
+  feature: string;
+  values: ComparisonValue[];
+};
+
+type Props = {
+  columns: string[];
+  rows: ComparisonRow[];
+};
+
+const { columns, rows } = Astro.props;
+---
+
+<Box class="not-prose my-8 text-left">
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse text-sm md:text-base">
+      <thead class="bg-primary">
+        <tr>
+          <th scope="col"><span class="sr-only">Feature</span></th>
+          {
+            columns.map((column) => (
+              <th
+                scope="col"
+                class="font-heading px-4 py-3 text-center font-black tracking-widest uppercase"
+              >
+                {column}
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((row) => (
+            <tr>
+              <th
+                scope="row"
+                class="border-border border-t-2 px-4 py-3 text-left font-bold"
+              >
+                {row.feature}
+              </th>
+              {row.values.map((value) => (
+                <PostComparisonCell value={value} />
+              ))}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Box>

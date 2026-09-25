@@ -1,0 +1,34 @@
+---
+import { Info, TriangleAlert } from 'lucide-react';
+
+type Props = {
+  variant?: 'note' | 'warning';
+};
+
+const { variant = 'note' } = Astro.props;
+
+const variants = {
+  note: {
+    Icon: Info,
+    classes: 'bg-accent-blue text-accent-blue-foreground',
+  },
+  warning: {
+    Icon: TriangleAlert,
+    classes: 'bg-accent-yellow text-accent-yellow-foreground',
+  },
+};
+
+const { Icon, classes } = variants[variant];
+---
+
+<aside
+  class:list={[
+    'themed-border border-border shadow-shadow my-8 flex items-start gap-3 rounded-md px-5 py-4 font-bold',
+    classes,
+  ]}
+>
+  <Icon className="mt-1 size-5 shrink-0" aria-hidden="true" />
+  <div class="[&_a]:text-inherit [&_a]:underline *:my-0">
+    <slot />
+  </div>
+</aside>

@@ -1,0 +1,55 @@
+---
+import { Check, X, type LucideIcon } from 'lucide-react';
+
+export type ComparisonValue = boolean | string;
+
+type Mark = {
+  Icon: LucideIcon;
+  label: string;
+  classes: string;
+};
+
+type Props = {
+  value: ComparisonValue;
+};
+
+const { value } = Astro.props;
+
+const marks = new Map<ComparisonValue, Mark>([
+  [
+    true,
+    {
+      Icon: Check,
+      label: 'Yes',
+      classes: 'bg-accent-green text-accent-green-foreground',
+    },
+  ],
+  [
+    false,
+    {
+      Icon: X,
+      label: 'No',
+      classes: 'bg-accent-red text-accent-red-foreground',
+    },
+  ],
+]);
+
+const mark = marks.get(value);
+---
+
+<td class="border-border border-t-2 px-4 py-3 text-center">
+  {typeof value === 'string' && <span class="font-bold">{value}</span>}
+  {
+    mark && (
+      <span
+        class:list={[
+          'themed-border border-border inline-flex size-7 items-center justify-center rounded-md',
+          mark.classes,
+        ]}
+      >
+        <mark.Icon className="size-4" strokeWidth={3} aria-hidden="true" />
+        <span class="sr-only">{mark.label}</span>
+      </span>
+    )
+  }
+</td>
