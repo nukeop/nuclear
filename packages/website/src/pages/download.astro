@@ -5,6 +5,7 @@ import DownloadSection from '../components/download/DownloadSection.astro';
 import FeaturedPlatform from '../components/download/FeaturedPlatform.astro';
 import PlatformCard from '../components/download/PlatformCard.astro';
 import ReleaseInfo from '../components/download/ReleaseInfo.astro';
+import TextLink from '../components/TextLink.astro';
 import { macQuarantineCommand, platforms } from '../data/platforms';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -71,12 +72,12 @@ const breadcrumbSchema = {
       </div>
       <p class="text-foreground/60 mt-8 text-center text-sm font-bold">
         Looking for a .deb, an .rpm, an MSI, or a package manager?{' '}
-        <a
+        <TextLink
           href="#all-downloads"
-          class="text-foreground underline underline-offset-2 hover:no-underline"
+          class="text-foreground"
         >
           See all downloads
-        </a>
+        </TextLink>
         .
       </p>
 
@@ -113,31 +114,28 @@ const breadcrumbSchema = {
             <p>
               Nuclear is a desktop app, so there's no Android or iOS version.
               You can still control Nuclear from your phone with the{' '}
-              <a
+              <TextLink
                 href={`${DOCS_URL}/user-manual/remote-control`}
-                class="underline underline-offset-2 hover:no-underline"
               >
                 remote control
-              </a>
+              </TextLink>
               .
             </p>
           </DownloadNote>
           <DownloadNote title="Older versions">
             <p>
               Every release, including older versions, is on the{' '}
-              <a
+              <TextLink
                 href="https://github.com/nukeop/nuclear/releases"
-                class="underline underline-offset-2 hover:no-underline"
               >
                 GitHub releases page
-              </a>
+              </TextLink>
               . The{' '}
-              <a
+              <TextLink
                 href={`${DOCS_URL}/user-manual/installation`}
-                class="underline underline-offset-2 hover:no-underline"
               >
                 installation guide
-              </a>{' '}
+              </TextLink>{' '}
               has more detail for each platform.
             </p>
           </DownloadNote>

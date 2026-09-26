@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'>;
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<a
+  class:list={['underline underline-offset-2 hover:no-underline', className]}
+  {...rest}><slot /></a
+>

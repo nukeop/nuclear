@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 
 import { packageManagers, platforms } from '../data/platforms';
 import { CopyButton } from './CopyButton';
+import TextLink from './TextLink.astro';
 ---
 
 <div class="flex justify-center gap-3">
@@ -40,9 +41,9 @@ import { CopyButton } from './CopyButton';
     ))
   }
 </div>
-<a
+<TextLink
   href="/download/"
-  class="mt-4 block text-center text-sm font-medium underline underline-offset-2 hover:no-underline"
+  class="mt-4 block text-center text-sm font-medium"
 >
   All downloads
-</a>
+</TextLink>

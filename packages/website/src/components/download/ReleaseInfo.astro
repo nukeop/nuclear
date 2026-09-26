@@ -2,6 +2,7 @@
 import { releaseDate } from '../../data/github';
 import { releaseNotesUrl, version } from '../../data/version';
 import { formatDate } from '../../lib/blog/format';
+import TextLink from '../TextLink.astro';
 ---
 
 <p
@@ -17,10 +18,9 @@ import { formatDate } from '../../lib/blog/format';
     )
   }
   <span aria-hidden="true">·</span>
-  <a
+  <TextLink
     href={releaseNotesUrl}
-    class="underline underline-offset-2 hover:no-underline"
   >
     Release notes
-  </a>
+  </TextLink>
 </p>
