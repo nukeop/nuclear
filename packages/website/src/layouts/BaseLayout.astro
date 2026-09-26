@@ -2,6 +2,7 @@
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { siteDescription } from '../data/site';
+import { version } from '../data/version';
 
 import '../styles/global.css';
 
@@ -74,6 +75,7 @@ const jsonLd = {
       url: siteUrl,
       applicationCategory: 'MultimediaApplication',
       operatingSystem: 'Windows, macOS, Linux',
+      softwareVersion: version,
       offers: {
         '@type': 'Offer',
         price: '0',

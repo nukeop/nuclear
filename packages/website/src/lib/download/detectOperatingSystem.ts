@@ -9,7 +9,7 @@ const DESKTOP_PATTERNS: [RegExp, OperatingSystem][] = [
   [/Linux|X11/, 'linux'],
 ];
 
-const isMobile = (userAgent: string, maxTouchPoints: number) =>
+export const isMobileDevice = (userAgent: string, maxTouchPoints: number) =>
   MOBILE_PATTERN.test(userAgent) ||
   (MAC_PATTERN.test(userAgent) && maxTouchPoints > 1);
 
@@ -17,7 +17,7 @@ export const detectOperatingSystem = (
   userAgent: string,
   maxTouchPoints: number,
 ): OperatingSystem | undefined => {
-  if (isMobile(userAgent, maxTouchPoints)) {
+  if (isMobileDevice(userAgent, maxTouchPoints)) {
     return undefined;
   }
   return DESKTOP_PATTERNS.find(([pattern]) => pattern.test(userAgent))?.[1];

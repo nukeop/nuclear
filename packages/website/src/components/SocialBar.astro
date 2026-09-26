@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import { socials } from '../data/socials';
+import Button from './Button.astro';
+
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    'border-border/30 flex-wrap items-center justify-center gap-2 border-t px-4 py-2',
+    className,
+  ]}
+>
+  {
+    socials.map((social) => (
+      <Button
+        href={social.url}
+        variant={social.variant}
+        size="xs"
+        class="gap-1.5 font-bold"
+      >
+        <Icon name={social.icon} class="h-4 w-4" />
+        {social.name}
+      </Button>
+    ))
+  }
+</div>

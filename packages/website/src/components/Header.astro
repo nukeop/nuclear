@@ -1,49 +1,31 @@
 ---
-import { Icon } from 'astro-icon/components';
-
-import { stars } from '../data/github';
-import Button from './Button.astro';
 import NavLink from './NavLink.astro';
+import SocialBar from './SocialBar.astro';
+import SocialButtons from './SocialButtons.astro';
 ---
 
-<header
-  class="border-b border-border px-4 md:px-8 h-16 flex items-center justify-between gap-3"
->
-  <a href="/" class="shrink-0">
-    <img
-      src="/images/logo-full-outlined.svg"
-      alt="Nuclear"
-      class="h-6 sm:h-8 dark-mode-hidden"
-    />
-    <img
-      src="/images/logo-full-light-outlined.svg"
-      alt="Nuclear"
-      class="h-6 sm:h-8 hidden dark-mode-block"
-    />
-  </a>
+<header class="border-border border-b">
+  <div class="flex h-16 items-center justify-between gap-3 px-4 md:px-8">
+    <a href="/" class="shrink-0 overflow-hidden max-[340px]:w-6">
+      <img
+        src="/images/logo-full-outlined.svg"
+        alt="Nuclear"
+        class="dark-mode-hidden h-6 max-w-none sm:h-8"
+      />
+      <img
+        src="/images/logo-full-light-outlined.svg"
+        alt="Nuclear"
+        class="dark-mode-block hidden h-6 max-w-none sm:h-8"
+      />
+    </a>
 
-  <nav class="flex items-center gap-2 md:gap-3 shrink-0">
-    <div class="mr-2 flex items-center gap-4 md:mr-5 md:gap-6">
-      <NavLink href="/download/">Download</NavLink>
-      <NavLink href="/blog/">Blog</NavLink>
-    </div>
-    <Button
-      href="https://discord.gg/JqPjKxE"
-      variant="discord"
-      size="sm"
-      class="gap-2 font-bold text-white bg-(--color-discord) prefers-dark:text-foreground prefers-dark:bg-background prefers-dark:border-(--color-discord)"
-    >
-      <Icon name="simple-icons:discord" class="w-5 h-5" />
-      <span class="hidden md:inline">Join our Discord</span>
-    </Button>
-    <Button
-      href="https://github.com/nukeop/nuclear"
-      variant="secondary"
-      size="sm"
-      class="gap-2 font-bold"
-    >
-      <Icon name="simple-icons:github" class="w-5 h-5" />
-      <span class="hidden md:inline">{stars ? `${stars} stars` : 'Star on GitHub'}</span>
-    </Button>
-  </nav>
+    <nav class="flex shrink-0 items-center">
+      <div class="flex items-center gap-4 sm:mr-4 md:mr-6 md:gap-6">
+        <NavLink href="/download/">Download</NavLink>
+        <NavLink href="/blog/">Blog</NavLink>
+      </div>
+      <SocialButtons class="hidden sm:flex" />
+    </nav>
+  </div>
+  <SocialBar class="flex sm:hidden" />
 </header>

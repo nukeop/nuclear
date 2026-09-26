@@ -8,51 +8,83 @@ import ReleaseInfo from '../components/download/ReleaseInfo.astro';
 import { macQuarantineCommand, platforms } from '../data/platforms';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = 'Download Nuclear for Windows, macOS, and Linux';
+const title = 'Download Nuclear Music Player for Windows, macOS, Linux';
 const description =
-  'Download Nuclear, the free and open-source music player without ads or tracking. Installers for Windows, macOS (Apple Silicon and Intel), and Linux, plus Flathub, Snap, AUR, winget, and Homebrew.';
+  'Download Nuclear, the free and open-source music player, for Windows, macOS, and Linux. Installers, AppImage, Flathub, Snap, AUR, winget, and Homebrew.';
 
 const DOCS_URL = 'https://docs.nuclearplayer.com/nuclear';
+
+const breadcrumbSchema = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site?.href },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Download',
+      item: new URL('/download/', Astro.site).href,
+    },
+  ],
+};
 ---
 
-<BaseLayout title={title} description={description}>
-  <main
-    class="bg-muted w-full bg-[radial-gradient(var(--background)_1px,transparent_1px)] bg-size-[20px_20px]"
-  >
+<BaseLayout
+  title={title}
+  description={description}
+  extraSchema={[breadcrumbSchema]}
+>
+  <main class="bg-muted w-full bg-[radial-gradient(var(--background)_1px,transparent_1px)] bg-size-[20px_20px]">
     <div class="mx-auto w-full max-w-5xl px-4 py-16 md:px-8">
       <header class="mb-12 text-center">
-        <h1
-          class="font-heading text-4xl font-black tracking-widest uppercase md:text-5xl"
-        >
+        <h1 class="font-heading text-4xl font-black tracking-widest uppercase md:text-5xl">
           Download Nuclear
         </h1>
         <p class="text-foreground/60 mt-3 mb-4 font-bold">
-          Nuclear is free and open source, and runs on Windows, macOS, and Linux.
+          Nuclear is a free and open-source music player for Windows, macOS, and
+          Linux.
         </p>
         <ReleaseInfo />
       </header>
 
-      <div class="relative">
+      <div id="mobile-notice" hidden class="mb-12">
+        <DownloadNote title="You're on a phone">
+          <p>
+            Nuclear is a desktop app. Open this page on your computer to
+            download it.
+          </p>
+        </DownloadNote>
+      </div>
+
+      <div class="relative mt-28 md:mt-0">
         <img
           src="/images/nuki-box.png"
           alt=""
-          class="pointer-events-none absolute left-4 bottom-full -mb-0.5 hidden w-36 select-none md:block"
+          width="512"
+          height="512"
+          class="pointer-events-none absolute bottom-full left-4 -mb-0.5 h-auto w-24 select-none md:w-36"
         />
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {platforms.map((platform) => <FeaturedPlatform platform={platform} />)}
+          {platforms.map((platform) => (
+            <FeaturedPlatform platform={platform} />
+          ))}
         </div>
       </div>
       <p class="text-foreground/60 mt-8 text-center text-sm font-bold">
-        Looking for a .deb, an .rpm, an MSI, or a package manager? <a
+        Looking for a .deb, an .rpm, an MSI, or a package manager?{' '}
+        <a
           href="#all-downloads"
           class="text-foreground underline underline-offset-2 hover:no-underline"
-          >See all downloads</a
-        >.
+        >
+          See all downloads
+        </a>
+        .
       </p>
 
       <DownloadSection id="all-downloads" title="All downloads">
         <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-3">
-          {platforms.map((platform) => <PlatformCard platform={platform} />)}
+          {platforms.map((platform) => (
+            <PlatformCard platform={platform} />
+          ))}
         </div>
       </DownloadSection>
 
@@ -80,24 +112,33 @@ const DOCS_URL = 'https://docs.nuclearplayer.com/nuclear';
           <DownloadNote title="On your phone?">
             <p>
               Nuclear is a desktop app, so there's no Android or iOS version.
-              You can still control Nuclear from your phone with the <a
+              You can still control Nuclear from your phone with the{' '}
+              <a
                 href={`${DOCS_URL}/user-manual/remote-control`}
                 class="underline underline-offset-2 hover:no-underline"
-                >remote control</a
-              >.
+              >
+                remote control
+              </a>
+              .
             </p>
           </DownloadNote>
           <DownloadNote title="Older versions">
             <p>
-              Every release, including older versions, is on the <a
+              Every release, including older versions, is on the{' '}
+              <a
                 href="https://github.com/nukeop/nuclear/releases"
                 class="underline underline-offset-2 hover:no-underline"
-                >GitHub releases page</a
-              >. The <a
+              >
+                GitHub releases page
+              </a>
+              . The{' '}
+              <a
                 href={`${DOCS_URL}/user-manual/installation`}
                 class="underline underline-offset-2 hover:no-underline"
-                >installation guide</a
-              > has more detail for each platform.
+              >
+                installation guide
+              </a>{' '}
+              has more detail for each platform.
             </p>
           </DownloadNote>
         </div>
@@ -107,12 +148,18 @@ const DOCS_URL = 'https://docs.nuclearplayer.com/nuclear';
 </BaseLayout>
 
 <script>
-  import { detectOperatingSystem } from '../lib/download/detectOperatingSystem';
+  import {
+    detectOperatingSystem,
+    isMobileDevice,
+  } from '../lib/download/detectOperatingSystem';
 
-  const operatingSystem = detectOperatingSystem(
-    navigator.userAgent,
-    navigator.maxTouchPoints,
-  );
+  const { userAgent, maxTouchPoints } = navigator;
+
+  if (isMobileDevice(userAgent, maxTouchPoints)) {
+    document.getElementById('mobile-notice')?.removeAttribute('hidden');
+  }
+
+  const operatingSystem = detectOperatingSystem(userAgent, maxTouchPoints);
 
   if (operatingSystem) {
     document

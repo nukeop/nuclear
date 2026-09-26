@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import { socials } from '../data/socials';
+import Button from './Button.astro';
+
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['items-center gap-2 md:gap-3', className]}>
+  {
+    socials.map((social) => (
+      <Button
+        href={social.url}
+        variant={social.variant}
+        size="sm"
+        class="gap-2 font-bold"
+      >
+        <Icon name={social.icon} class="h-5 w-5" />
+        <span class="sr-only lg:not-sr-only">{social.label}</span>
+      </Button>
+    ))
+  }
+</div>

@@ -2,7 +2,7 @@
 type Props = {
   href: string;
   variant?: 'default' | 'secondary' | 'text' | 'discord';
-  size?: 'default' | 'lg' | 'sm';
+  size?: 'default' | 'lg' | 'sm' | 'xs';
   class?: string;
 };
 
@@ -21,13 +21,14 @@ const variantClasses = {
   secondary: 'text-foreground bg-muted',
   text: 'text-foreground bg-transparent border-transparent shadow-none! hover:translate-x-0! hover:translate-y-0! px-0!',
   discord:
-    'text-foreground bg-(--color-discord) prefers-dark:text-foreground prefers-dark:bg-background prefers-dark:border-(--color-discord)',
+    'text-white bg-(--color-discord) prefers-dark:text-foreground prefers-dark:bg-background prefers-dark:border-(--color-discord)',
 };
 
 const sizeClasses = {
   default: 'h-10 px-4 py-2',
   sm: 'h-9 px-3',
   lg: 'h-11 px-8',
+  xs: 'h-8 px-2.5 text-xs',
 };
 ---
 
