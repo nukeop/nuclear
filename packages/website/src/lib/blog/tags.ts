@@ -2,6 +2,7 @@ const categoryColors = {
   releases: 'bg-primary',
   features: 'bg-accent-green',
   themes: 'bg-accent-blue',
+  comparisons: 'bg-accent-yellow',
 } as const;
 
 const FALLBACK_CATEGORY_COLOR = 'bg-muted';

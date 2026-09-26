@@ -13,6 +13,13 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     author: z.string(),
     cover: z.string().optional(),
+    coverCredit: z
+      .object({
+        name: z.string(),
+        url: z.string().url(),
+      })
+      .optional(),
+    showCoverInPost: z.boolean().default(true),
     draft: z.boolean().default(false),
   }),
 });

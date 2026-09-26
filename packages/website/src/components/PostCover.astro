@@ -1,0 +1,32 @@
+---
+import type { BlogPost } from '../lib/blog/queries';
+import Box from './Box.astro';
+
+type Props = {
+  src: string;
+  credit?: BlogPost['data']['coverCredit'];
+};
+
+const { src, credit } = Astro.props;
+---
+
+<figure class="mb-10">
+  <Box>
+    <img src={src} alt="" class="block aspect-5/2 w-full object-cover" />
+  </Box>
+  {
+    credit && (
+      <figcaption class="text-foreground/50 mt-2 text-right text-xs">
+        Photo by{' '}
+        <a
+          href={credit.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground underline"
+        >
+          {credit.name}
+        </a>
+      </figcaption>
+    )
+  }
+</figure>

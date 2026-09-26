@@ -1,0 +1,68 @@
+---
+title: 'Nuclear vs Spotify: why Nuclear could be better for you'
+date: 2026-09-26
+description: "Nuclear is a free, open-source music player without ads or tracking. Here's how it compares to Spotify."
+cover: 'https://i.ibb.co/Y4B4Bvt7/walkman.jpg'
+coverCredit:
+  name: 'Florian Schmetz'
+  url: 'https://unsplash.com/photos/a-cassette-player-with-headphones-attached-to-it-Rks6FTfX5OU'
+tags: ['comparisons']
+author: 'nukeop'
+---
+
+import PostComparisonTable from '../../components/PostComparisonTable.astro';
+import PostDownloads from '../../components/PostDownloads.astro';
+
+[Nuclear is a free, open source music player that finds music for you](https://nuclearplayer.com)
+
+I started developing Nuclear in 2016 because I was turned off by Spotify's disregard for user privacy, and its control over what music I could listen to, or was nudged to listen to.
+
+The whole service felt like it was designed to force me to listen to what Spotify wanted me to hear, not to let me discover music how I like it. It put a minimum number of tracks on playlists, automatically refilled my queue with algorithmic recommendations, and showed ads in search results, even on a paid plan.
+
+If music is an important part of your life, you will probably agree with me on these points. Here's why Nuclear could be a better choice for you, and how it compares to Spotify.
+
+<PostComparisonTable
+  columns={['Nuclear', 'Spotify']}
+  rows={[
+    { feature: 'Price', values: ['Free', 'Free with ads, or paid'] },
+    { feature: 'Open source', values: [true, false] },
+    { feature: 'Plugins', values: [true, false] },
+    { feature: 'Works without an account', values: [true, false] },
+    { feature: 'Custom themes', values: [true, false] },
+    { feature: 'Mobile app', values: [false, true] },
+    { feature: 'Local files and downloads', values: [false, true] },
+  ]}
+/>
+
+## No account needed
+
+Download Nuclear and start listening right away. Your data stays on your computer. Nuclear won't interrupt you with ads, and won't try to shape your listening habits.
+
+## Where the music comes from
+
+Spotify spends millions of dollars on building its own catalogue of music. For open source projects, that's not an option. That's why everything in Nuclear comes from plugins, so you can connect any source of music, in any combination.
+
+Nuclear doesn't host any music. Plugins search different sources and find a stream for each track, based on its artist, title, and other metadata.
+
+This can be a downside: sometimes Nuclear may play the wrong version of a track. That's why it has [stream verification](/blog/stream-verification/): when you hear the right version, you can verify it, and other users get the right stream too.
+
+## Unified playlists
+
+Nuclear has its own format for playlists. Plugins allow you to import playlists from any service, and use them all together. If you're trying to move from Spotify, you can bring your playlists with you. And on the other hand, you can export your playlists from Nuclear and move them somewhere else if you wish.
+
+## Things Spotify won't ever do
+
+- You can customize Nuclear with [themes](/blog/theming-v2/): an advanced system lets you pick colors, gradients, wallpapers, and other styles.
+- Terminal MPD clients like ncmpcpp can connect to Nuclear.
+- You can automate Nuclear via a built-in [HTTP API](https://docs.nuclearplayer.com/nuclear/integrations/http-api).
+- You can even connect AI agents like Claude Code, Opencode, or Codex, using the built-in [MCP server](https://docs.nuclearplayer.com/nuclear/integrations/mcp-server), and let them be your DJ, or manage your playlists for you.
+- The code is open source under AGPL-3.0, so nobody can take it away from you.
+
+## What Spotify does better
+
+- Nuclear is desktop only. If you need a mobile app, Spotify will be a better choice, although you can still control Nuclear from your phone with the [remote control](https://docs.nuclearplayer.com/nuclear/user-manual/remote-control).
+- Nuclear focuses on streaming only, and can't play local files or download music.
+
+## Try it
+
+<PostDownloads />
