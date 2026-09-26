@@ -406,11 +406,11 @@
       },
       "streamVerification": {
         "title": "ストリームの検証",
-        "description": "Nuclear plays the streams that you verified and shows the verification bar. When this setting is off, Nuclear ignores all verifications."
+        "description": "Nuclearは、検証済みのストリームを再生し、検証バーを表示します。この設定がオフの場合、Nuclearはすべての検証を無視します。"
       },
       "streamVerificationService": {
-        "title": "Online verification",
-        "description": "Nuclear sends your verifications to the verification service and gets the streams that other users verified. This setting has no effect when stream verification is off."
+        "title": "オンライン検証",
+        "description": "Nuclearは、あなたの検証データを検証サービスに送信し、他のユーザーが検証したストリームを取得します。ストリームの検証機能が無効になっている場合、この設定は適用されません。"
       }
     },
     "history": {
@@ -497,17 +497,17 @@
       "failed": "失敗"
     },
     "streamVerification": {
-      "unverified": "Unverified",
-      "weaklyVerified": "Weakly verified",
-      "verified": "Verified",
-      "verifiedByUser": "Verified by you",
-      "verify": "Verify",
-      "unverify": "Unverify",
-      "failed": "Failed to verify stream",
-      "notShared": "Stream was verified locally, but Nuclear couldn't reach the verification service.",
-      "help": "How stream verification works",
-      "explanation": "Nuclear may sometimes play the wrong version of a song. To fix it, right-click the queue item and pick the right stream, then click Verify. Nuclear saves your verification on your computer and always plays that stream for the track.\n\nIf Online verification is on, Nuclear also shares your verification with other users, so they get that stream first. For each track you didn't verify, Nuclear asks the verification service for the stream with the most votes. It sends the artist, the title, and a random ID.",
-      "learnMore": "Learn more"
+      "unverified": "未検証",
+      "weaklyVerified": "検証が不十分",
+      "verified": "検証済み",
+      "verifiedByUser": "本人による検証済み",
+      "verify": "検証",
+      "unverify": "検証解除",
+      "failed": "ストリームの検証に失敗しました",
+      "notShared": "ストリームはローカルで検証されましたが、Nuclear は検証サービスに接続できませんでした。",
+      "help": "ストリーム検証の仕組み",
+      "explanation": "Nuclear は、時に楽曲の誤ったバージョンを再生することがあります。これを修正するには、キュー内の項目を右クリックして正しいストリームを選択し、「検証」をクリックしてください。Nuclear は検証結果をコンピュータに保存し、そのトラックについては常にそのストリームを再生するようになります。\n\n「オンライン検証」が有効になっている場合、検証結果は他のユーザーとも共有され、彼らもそのストリームを優先的に利用できるようになります。未検証のトラックについては、Nuclear は検証サービスに対して、最も多くの票を集めたストリームを問い合わせます。その際、アーティスト名、曲名、およびランダムな ID が送信されます。",
+      "learnMore": "詳細はこちら"
     }
   },
   "track": {
