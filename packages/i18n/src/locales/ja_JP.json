@@ -405,7 +405,7 @@
         "endLabel": "大胆"
       },
       "streamVerification": {
-        "title": "Stream verification",
+        "title": "ストリームの検証",
         "description": "Nuclear plays the streams that you verified and shows the verification bar. When this setting is off, Nuclear ignores all verifications."
       },
       "streamVerificationService": {
