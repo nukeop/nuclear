@@ -5,6 +5,8 @@ use std::path::{Path, PathBuf};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use tauri::{command, AppHandle, Manager};
 
+use crate::profile::DefaultIdentifier;
+
 const RELEASE_BASE_URL: &str =
     "https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download";
 const UPDATE_CHECK_INTERVAL_SECS: u64 = 3600;
@@ -76,11 +78,12 @@ fn binary_name() -> &'static str {
 }
 
 fn ytdlp_dir(app_handle: &AppHandle) -> Result<PathBuf, String> {
+    let DefaultIdentifier(default_identifier) = app_handle.state::<DefaultIdentifier>().inner();
     app_handle
         .path()
-        .app_data_dir()
-        .map(|dir| dir.join("ytdlp"))
-        .map_err(|error| format!("Failed to resolve app data directory: {}", error))
+        .data_dir()
+        .map(|dir| dir.join(default_identifier).join("ytdlp"))
+        .map_err(|error| format!("Failed to resolve data directory: {}", error))
 }
 
 async fn download_zip(url: &str, dest: &Path) -> Result<(), String> {

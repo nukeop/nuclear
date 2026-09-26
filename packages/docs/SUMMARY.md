@@ -67,3 +67,4 @@
 * [Host pattern](development/host-pattern.md)
 * [Logging](development/logging.md)
 * [MCP Architecture](development/mcp-architecture.md)
+* [Profiles](development/profiles.md)

@@ -10,6 +10,7 @@ pub mod mcp;
 pub mod mpd;
 pub mod net;
 pub mod pagination;
+pub mod profile;
 mod setup;
 pub mod stream_server;
 pub mod ytdlp;
@@ -75,6 +76,17 @@ fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
 pub fn run() {
     let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
 
+    let profile = profile::parse_profile(std::env::args()).unwrap_or_else(|message| {
+        eprintln!("{message}");
+        std::process::exit(1);
+    });
+
+    let mut context: tauri::Context<tauri::Wry> = tauri::generate_context!();
+    let default_identifier = context.config().identifier.clone();
+    if let Some(name) = &profile {
+        context.config_mut().identifier = profile::profile_identifier(&default_identifier, name);
+    }
+
     let specta_builder = specta_builder();
 
     #[cfg(debug_assertions)]
@@ -113,7 +125,11 @@ pub fn run() {
 
     builder
         .invoke_handler(specta_builder.invoke_handler())
-        .setup(|app| {
+        .manage(profile::DefaultIdentifier(default_identifier))
+        .setup(move |app| {
+            if let Some(name) = &profile {
+                log::info!("Using profile {name}");
+            }
             logging::mark_startup_complete();
             bridge::init_bridge(app.handle().clone());
             mcp::init_mcp(app.handle().clone());
@@ -128,6 +144,6 @@ pub fn run() {
 
             Ok(())
         })
-        .run(tauri::generate_context!())
+        .run(context)
         .expect("error while running tauri application");
 }
