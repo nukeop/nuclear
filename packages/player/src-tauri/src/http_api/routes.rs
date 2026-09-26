@@ -58,6 +58,15 @@ async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, Brid
         .map_err(BridgeErrorResponse)
 }
 
+async fn get_volume(State(state): State<AppState>) -> Result<Json<Value>, BridgeErrorResponse> {
+    state
+        .bridge
+        .call("Playback.getVolume", json!({}))
+        .await
+        .map(|volume| Json(json!({ "volume": volume })))
+        .map_err(BridgeErrorResponse)
+}
+
 async fn get_settings(State(state): State<AppState>) -> Result<Json<Value>, BridgeErrorResponse> {
     let bridge = &state.bridge;
     let (shuffle, repeat, discovery, language, dark, theme_id) = tokio::try_join!(
@@ -150,14 +159,33 @@ pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Rout
         .route("/api/settings/{id}", get(get_setting).post(set_setting))
         .route("/api/events", get(get_events))
         .route("/api/playback/play", post(actions::play))
+        .route("/api/playback/pause", post(actions::pause))
         .route("/api/playback/toggle", post(actions::toggle_playback))
         .route("/api/playback/next", post(actions::next_track))
         .route("/api/playback/previous", post(actions::previous_track))
         .route("/api/playback/seek", post(actions::seek))
         .route("/api/playback/shuffle", post(actions::set_shuffle))
         .route("/api/playback/repeat", post(actions::set_repeat))
+        .route(
+            "/api/playback/volume",
+            get(get_volume).post(actions::set_volume),
+        )
         .route("/api/queue/add", post(actions::add_to_queue))
         .route("/api/queue/remove", post(actions::remove_from_queue))
+        .route("/api/queue/go-to", post(actions::go_to_index))
+        .route("/api/queue/clear", post(actions::clear_queue))
+        .route(
+            "/api/favorites/tracks/add",
+            post(actions::add_favorite_track),
+        )
+        .route(
+            "/api/favorites/tracks/remove",
+            post(actions::remove_favorite_track),
+        )
+        .route(
+            "/api/playlists/from-queue",
+            post(actions::save_queue_as_playlist),
+        )
         .route("/api/search", post(search::search))
         .fallback(super::frontend::serve_frontend)
         .with_state(state)

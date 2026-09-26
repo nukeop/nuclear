@@ -17,6 +17,7 @@ Enable Nuclear Jam in Settings, then Integrations. The **API URL** field shows t
 | GET | `/api/health` | `{ "status": "ok" }` |
 | GET | `/api/queue` | `{ "items": QueueItem[], "currentIndex": number }` |
 | GET | `/api/playback` | `{ "status": string, "seek": number, "duration": number }` |
+| GET | `/api/playback/volume` | `{ "volume": number }`, from 0 (silent) to 1 (full) |
 | GET | `/api/settings` | `{ "shuffle": boolean, "repeat": string, "discovery": boolean, "language": string, "dark": boolean, "themeId": string }` |
 | GET | `/api/settings/{id}` | The value of a single setting by its fully-qualified ID (e.g. `core.playback.shuffle`) |
 
@@ -27,14 +28,21 @@ All action endpoints return `200 OK` with no body on success.
 | Method | Path | Body | Effect |
 |--------|------|------|--------|
 | POST | `/api/playback/play` | none | Start playback |
+| POST | `/api/playback/pause` | none | Pause playback |
 | POST | `/api/playback/toggle` | none | Toggle play/pause |
 | POST | `/api/playback/next` | none | Skip to next track |
 | POST | `/api/playback/previous` | none | Go to previous track |
 | POST | `/api/playback/seek` | `{ "seconds": number }` | Seek to position |
 | POST | `/api/playback/shuffle` | `{ "enabled": boolean }` | Set shuffle on or off |
 | POST | `/api/playback/repeat` | `{ "mode": "off" \| "all" \| "one" }` | Set repeat mode |
+| POST | `/api/playback/volume` | `{ "volume": number }` | Set the volume, from 0 (silent) to 1 (full) |
 | POST | `/api/queue/add` | `{ "tracks": Track[] }` | Append tracks to the queue |
 | POST | `/api/queue/remove` | `{ "ids": string[] }` | Remove items from the queue by ID |
+| POST | `/api/queue/go-to` | `{ "index": number }` | Jump to the queue item at this index |
+| POST | `/api/queue/clear` | none | Remove all items from the queue |
+| POST | `/api/favorites/tracks/add` | `{ "track": Track }` | Add a track to favorites |
+| POST | `/api/favorites/tracks/remove` | `{ "source": ProviderRef }` | Remove a track from favorites by its source |
+| POST | `/api/playlists/from-queue` | `{ "name": string }` | Save the queue as a new playlist. Returns `{ "id": string }` |
 | POST | `/api/search` | `{ "query": string, "types"?: SearchCategory[], "limit"?: number }` | Search for music. Returns `{ "tracks"?: Track[], "artists"?: ArtistRef[], "albums"?: AlbumRef[], "playlists"?: PlaylistRef[] }` |
 | POST | `/api/settings/{id}` | JSON value | Set a single setting by its fully-qualified ID |
 
