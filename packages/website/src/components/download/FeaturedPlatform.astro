@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Download } from 'lucide-react';
+
+import type { DownloadFile, Platform } from '../../data/platforms';
+import DetectedSticker from './DetectedSticker.astro';
+
+type Props = {
+  platform: Platform;
+};
+
+const { platform } = Astro.props;
+const featuredFiles = platform.files.filter((file) => file.featured);
+
+const buttonLabel = (file: DownloadFile) => {
+  if (featuredFiles.length > 1) {
+    return file.label;
+  }
+  return 'Download';
+};
+---
+
+<div
+  data-platform={platform.id}
+  class="group themed-border border-border bg-background shadow-shadow data-detected:bg-primary relative flex flex-wrap items-center gap-4 rounded-md px-5 py-4 md:flex-col md:flex-nowrap md:gap-2 md:px-6 md:py-8"
+>
+  <DetectedSticker />
+  <Icon
+    name={platform.icon}
+    class="h-8 w-8 shrink-0 md:mb-2 md:h-10 md:w-10"
+  />
+  <div class="flex flex-col md:items-center md:text-center">
+    <h2
+      class="font-heading text-xl font-black tracking-widest uppercase md:text-2xl"
+    >
+      {platform.name}
+    </h2>
+    <p class="text-foreground/60 text-sm font-bold">{platform.summary}</p>
+  </div>
+  <div class="flex basis-full gap-2 pl-12 md:mt-3 md:basis-auto md:pl-0">
+    {
+      featuredFiles.map((file) => (
+        <a
+          href={file.url}
+          class="themed-border btn-interactive border-border bg-muted shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-bold whitespace-nowrap transition-all hover:shadow-none md:px-4"
+        >
+          <Download className="h-4 w-4" />
+          {buttonLabel(file)}
+        </a>
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,26 @@
+---
+import { releaseDate } from '../../data/github';
+import { releaseNotesUrl, version } from '../../data/version';
+import { formatDate } from '../../lib/blog/format';
+---
+
+<p
+  class="text-foreground/60 flex flex-wrap items-center justify-center gap-x-2 text-sm font-bold"
+>
+  <span>Version {version}</span>
+  {
+    releaseDate && (
+      <>
+        <span aria-hidden="true">·</span>
+        <time datetime={releaseDate}>Released {formatDate(releaseDate)}</time>
+      </>
+    )
+  }
+  <span aria-hidden="true">·</span>
+  <a
+    href={releaseNotesUrl}
+    class="underline underline-offset-2 hover:no-underline"
+  >
+    Release notes
+  </a>
+</p>

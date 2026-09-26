@@ -80,7 +80,7 @@ const jsonLd = {
         priceCurrency: 'USD',
       },
       license: 'https://www.gnu.org/licenses/agpl-3.0.html',
-      downloadUrl: 'https://github.com/nukeop/nuclear/releases',
+      downloadUrl: new URL('/download/', Astro.site).toString(),
       image: socialBannerUrl.toString(),
       screenshot: socialBannerUrl.toString(),
       author: { '@id': organizationId },

@@ -1,0 +1,22 @@
+---
+import { Download } from 'lucide-react';
+
+import type { DownloadFile } from '../../data/platforms';
+
+type Props = {
+  file: DownloadFile;
+};
+
+const { file } = Astro.props;
+---
+
+<a
+  href={file.url}
+  class="hover:bg-muted flex items-center justify-between gap-3 px-4 py-3 text-sm font-bold transition-colors"
+>
+  <span>{file.label}</span>
+  <span class="text-foreground/60 inline-flex items-center gap-3">
+    <code class="text-xs">{file.format}</code>
+    <Download className="h-4 w-4" />
+  </span>
+</a>

@@ -1,0 +1,17 @@
+---
+type Props = {
+  id: string;
+  title: string;
+};
+
+const { id, title } = Astro.props;
+---
+
+<section id={id} class="mt-20 scroll-mt-8">
+  <h2
+    class="font-heading mb-8 text-center text-2xl font-black tracking-widest uppercase md:text-3xl"
+  >
+    {title}
+  </h2>
+  <slot />
+</section>

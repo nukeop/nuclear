@@ -2,10 +2,10 @@
 import { Icon } from 'astro-icon/components';
 
 import { stars } from '../data/github';
-import { platforms } from '../data/platforms';
+import { macQuarantineCommand, platforms } from '../data/platforms';
 import Badge from './Badge.astro';
 import Box from './Box.astro';
-import { CopyButton } from './CopyButton';
+import CommandLine from './CommandLine.astro';
 import DownloadButtons from './DownloadButtons.astro';
 ---
 
@@ -43,17 +43,7 @@ import DownloadButtons from './DownloadButtons.astro';
       from opening. Try right-clicking the app and selecting Open. If that doesn't
       work, run this in Terminal:
     </p>
-    <div class="relative mt-1.5 mb-0.5">
-      <code
-        class="bg-muted block rounded px-2 py-1 pr-8 text-[11px] break-all"
-        >sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app</code
-      >
-      <CopyButton
-        client:load
-        text="sudo xattr -r -d com.apple.quarantine /Applications/Nuclear.app"
-        className="absolute top-1/2 right-1 -translate-y-1/2"
-      />
-    </div>
+    <CommandLine command={macQuarantineCommand} class="mt-1.5 mb-0.5" />
   </div>
 </Box>
 

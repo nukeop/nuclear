@@ -3,8 +3,7 @@ import { Icon } from 'astro-icon/components';
 
 import { stars } from '../data/github';
 import Button from './Button.astro';
-
-const isBlogActive = Astro.url.pathname.startsWith('/blog');
+import NavLink from './NavLink.astro';
 ---
 
 <header
@@ -24,13 +23,10 @@ const isBlogActive = Astro.url.pathname.startsWith('/blog');
   </a>
 
   <nav class="flex items-center gap-2 md:gap-3 shrink-0">
-    <a
-      href="/blog/"
-      aria-current={isBlogActive && 'page'}
-      class="mr-2 md:mr-5 font-heading text-sm md:text-base font-black tracking-widest uppercase decoration-3 underline-offset-6 hover:underline aria-[current=page]:underline"
-    >
-      Blog
-    </a>
+    <div class="mr-2 flex items-center gap-4 md:mr-5 md:gap-6">
+      <NavLink href="/download/">Download</NavLink>
+      <NavLink href="/blog/">Blog</NavLink>
+    </div>
     <Button
       href="https://discord.gg/JqPjKxE"
       variant="discord"

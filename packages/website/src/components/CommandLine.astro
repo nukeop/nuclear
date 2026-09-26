@@ -1,0 +1,23 @@
+---
+import { CopyButton } from './CopyButton';
+
+type Props = {
+  command: string;
+  class?: string;
+};
+
+const { command, class: className } = Astro.props;
+---
+
+<div class:list={['relative', className]}>
+  <code
+    class="bg-muted block rounded px-2 py-1 pr-8 text-[11px] wrap-break-word"
+    >{command}</code
+  >
+  <CopyButton
+    client:load
+    text={command}
+    title={`Copy: ${command}`}
+    className="absolute top-1/2 right-1 -translate-y-1/2"
+  />
+</div>

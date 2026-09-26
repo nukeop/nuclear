@@ -1,0 +1,16 @@
+---
+import Box from '../Box.astro';
+
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<Box class="px-5 py-4 text-left">
+  <h3 class="font-heading mb-2 font-black tracking-wide uppercase">{title}</h3>
+  <div class="text-foreground/80 flex flex-col gap-2 text-sm leading-relaxed">
+    <slot />
+  </div>
+</Box>

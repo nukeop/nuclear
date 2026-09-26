@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import type { Platform } from '../../data/platforms';
+import Box from '../Box.astro';
+import DetectedSticker from './DetectedSticker.astro';
+import DownloadFileLink from './DownloadFileLink.astro';
+import PackageManagerCommand from './PackageManagerCommand.astro';
+
+type Props = {
+  platform: Platform;
+};
+
+const { platform } = Astro.props;
+---
+
+<Box as="article" data-platform={platform.id} class="group text-left">
+  <DetectedSticker slot="badge" />
+  <h3
+    class="font-heading border-border flex items-center gap-2 border-b-(length:--border-width) px-4 py-3 text-lg font-black tracking-widest uppercase"
+  >
+    <Icon name={platform.icon} class="h-5 w-5" />
+    {platform.name}
+  </h3>
+  <ul class="divide-border/30 divide-y">
+    {
+      platform.files.map((file) => (
+        <li>
+          <DownloadFileLink file={file} />
+        </li>
+      ))
+    }
+  </ul>
+  <div
+    class="bg-muted/40 border-border flex flex-col gap-3 border-t-(length:--border-width) px-4 py-4"
+  >
+    <p class="text-foreground/60 text-xs font-bold tracking-widest uppercase">
+      Package managers
+    </p>
+    {
+      platform.packageManagers.map((packageManager) => (
+        <PackageManagerCommand packageManager={packageManager} />
+      ))
+    }
+  </div>
+</Box>

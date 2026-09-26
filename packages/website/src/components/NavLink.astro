@@ -1,0 +1,16 @@
+---
+type Props = {
+  href: string;
+};
+
+const { href } = Astro.props;
+const isActive = Astro.url.pathname.startsWith(href.replace(/\/$/, ''));
+---
+
+<a
+  href={href}
+  aria-current={isActive && 'page'}
+  class="font-heading text-sm font-black tracking-widest uppercase decoration-3 underline-offset-6 hover:underline aria-[current=page]:underline md:text-base"
+>
+  <slot />
+</a>

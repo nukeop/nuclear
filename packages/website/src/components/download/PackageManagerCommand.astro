@@ -1,0 +1,23 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import type { PackageManager } from '../../data/platforms';
+import CommandLine from '../CommandLine.astro';
+
+type Props = {
+  packageManager: PackageManager;
+};
+
+const { packageManager } = Astro.props;
+---
+
+<div>
+  <a
+    href={packageManager.url}
+    class="inline-flex items-center gap-1.5 text-xs font-bold hover:underline"
+  >
+    <Icon name={packageManager.icon} class="h-3.5 w-3.5" />
+    {packageManager.name}
+  </a>
+  <CommandLine command={packageManager.command} class="mt-1.5" />
+</div>
