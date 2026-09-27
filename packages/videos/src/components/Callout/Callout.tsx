@@ -23,7 +23,7 @@ export const Callout: FC<CalloutProps> = ({ text, x, y, className }) => (
         variant="pill"
         color="green"
         className={cn(
-          'shadow-shadow -rotate-2 px-4 py-2 font-mono text-xl font-bold',
+          'shadow-shadow -rotate-2 px-4 py-2 text-xl font-bold',
           className,
         )}
       >

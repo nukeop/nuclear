@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { AbsoluteFill } from 'remotion';
 
 import { TopBarLogo } from '@nuclearplayer/ui';
@@ -9,9 +9,14 @@ import { useExitOpacity } from '../Enter/useEntrance';
 type TitleCardProps = {
   title: string;
   subtitle?: string;
+  logo?: ReactNode;
 };
 
-export const TitleCard: FC<TitleCardProps> = ({ title, subtitle }) => {
+export const TitleCard: FC<TitleCardProps> = ({
+  title,
+  subtitle,
+  logo = <TopBarLogo className="size-24" />,
+}) => {
   const exitOpacity = useExitOpacity();
 
   return (
@@ -20,7 +25,7 @@ export const TitleCard: FC<TitleCardProps> = ({ title, subtitle }) => {
       style={{ opacity: exitOpacity }}
     >
       <Enter className="flex flex-col items-center gap-8 text-center">
-        <TopBarLogo className="text-primary size-24" />
+        {logo}
         <h1 className="font-heading text-7xl leading-none">{title}</h1>
         {subtitle && <p className="text-3xl opacity-80">{subtitle}</p>}
       </Enter>

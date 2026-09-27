@@ -3,6 +3,8 @@ const config = {
   pollMs: 2000,
   rateLimitDelayMs: 5000,
   maxRetries: 8,
+  timeoutMs: 5 * 60 * 1000,
+  requestTimeoutMs: 90 * 1000,
 };
 
 type Prediction = {
@@ -27,6 +29,7 @@ const request = async <Value>(
     method: body === undefined ? 'GET' : 'POST',
     headers: headers(),
     body: body === undefined ? undefined : JSON.stringify(body),
+    signal: AbortSignal.timeout(config.requestTimeoutMs),
   });
   if (response.status === 429 && attempt < config.maxRetries) {
     await Bun.sleep(config.rateLimitDelayMs * (attempt + 1));
@@ -53,7 +56,11 @@ export const run = async (model: string, input: Record<string, unknown>) => {
     `${config.apiUrl}/models/${model}/predictions`,
     { input },
   );
+  const deadline = Date.now() + config.timeoutMs;
   while (!['succeeded', 'failed', 'canceled'].includes(prediction.status)) {
+    if (Date.now() > deadline) {
+      throw new Error(`${model}: no result after ${config.timeoutMs} ms`);
+    }
     await Bun.sleep(config.pollMs);
     prediction = await request<Prediction>(prediction.urls.get);
   }
@@ -64,7 +71,10 @@ export const run = async (model: string, input: Record<string, unknown>) => {
 };
 
 export const download = async (url: string, path: string) => {
-  await Bun.write(path, await fetch(url));
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(config.requestTimeoutMs),
+  });
+  await Bun.write(path, await response.arrayBuffer());
   return path;
 };
 

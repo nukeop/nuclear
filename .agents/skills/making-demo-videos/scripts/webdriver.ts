@@ -28,6 +28,16 @@ const locateInPage = (selector: string, text: string | null) => {
       .trim()
       .toLowerCase()
       .includes(text.toLowerCase());
+  const isOnTop = (element: Element, rect: DOMRect) => {
+    const topElement = document.elementFromPoint(
+      rect.x + rect.width / 2,
+      rect.y + rect.height / 2,
+    );
+    return (
+      topElement !== null &&
+      (element.contains(topElement) || topElement.contains(element))
+    );
+  };
   const describe = (element: Element) => {
     const rect = element.getBoundingClientRect();
     return {
@@ -35,11 +45,7 @@ const locateInPage = (selector: string, text: string | null) => {
       y: rect.y,
       width: rect.width,
       height: rect.height,
-      visible:
-        rect.width > 0 &&
-        rect.height > 0 &&
-        rect.bottom > 0 &&
-        rect.top < window.innerHeight,
+      visible: isOnTop(element, rect),
       text: (element.textContent ?? '').trim().slice(0, 60),
     };
   };

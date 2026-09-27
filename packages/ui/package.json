@@ -10,7 +10,8 @@
     ".": {
       "import": "./src/index.ts",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./assets/*": "./src/assets/*"
   },
   "files": [
     "src"

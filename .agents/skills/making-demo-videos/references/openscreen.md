@@ -1,6 +1,6 @@
 # OpenScreen
 
-OpenScreen records the screen and the system audio. It exports the recording with a background, rounded corners, a smooth cursor, and zooms. Its command line interface is the app binary:
+OpenScreen records the screen and the audio. It exports the recording with a background, rounded corners, a smooth cursor, and zooms. Its command line interface is the app binary:
 
 ```sh
 OPENSCREEN=/Applications/Openscreen.app/Contents/MacOS/Openscreen
@@ -8,17 +8,34 @@ OPENSCREEN=/Applications/Openscreen.app/Contents/MacOS/Openscreen
 
 All commands accept `--json` and write NDJSON events to stdout.
 
+## Audio
+
+Nuclear plays audio from a WebKit process. A window recording does not include audio from other processes. For this reason, the audio must go through BlackHole:
+
+1. Make sure that BlackHole 2ch is the macOS output device and the macOS input device.
+2. Record with `--mic` and `--system-audio`.
+
+The recording contains all sounds that play on the computer, also notification sounds.
+
 ## Record
 
-```sh
-$OPENSCREEN record --window "Nuclear Music Player" --system-audio --project take.openscreen --json
+Use `scripts/openscreen.ts`. It starts the recording, gives the start time, and stops the recording when the take ends or when an error occurs:
+
+```ts
+import { Recording } from './scripts/openscreen.ts';
+
+const recording = new Recording({
+  windowTitle: 'Nuclear Music Player',
+  project: 'take.openscreen',
+});
+const { result: events, done } = await recording.capture((startedAt) =>
+  runScenario(startedAt),
+);
 ```
 
-1. Start the command. Read its stdout in the background for the full take.
-2. Wait for the event `{"event":"log","message":"Recording started"}`. Then start the scenario.
-3. Keep the cursor moving until the end of the take. OpenScreen writes a frame only when the screen changes, and the video ends at the last frame.
-4. Write `stop` and a newline to the stdin of the command to stop the recording.
-5. Read the `done` event. It contains `screenVideoPath` and `cursorDataPath`.
+- The scenario starts when OpenScreen writes the event `Recording started`. Measure the time of each event from `startedAt`.
+- Keep the cursor in motion until the end of the take. OpenScreen writes a frame only when the screen changes, and the video ends at the last frame.
+- The `done` event contains `screenVideoPath` and `cursorDataPath`.
 
 The recording goes into the OpenScreen recordings directory, with a cursor file named `<video>.cursor.json` next to it. The cursor file contains each click with its time and position. `$OPENSCREEN sources --json` lists the windows that OpenScreen can record.
 
@@ -37,7 +54,7 @@ The project file is JSON with `version`, `media`, and `editor`. Change the field
 
 The export lays out each recording as 16:9. Record a 16:9 window and set `aspectRatio` to `"16:9"`. Then the export has the size of the recording, 2880×1620.
 
-`padding` makes the recording smaller by `1 − 0.4 × padding / 100`. Use a small value. At `0`, the export shows the recording at its original size.
+Each point of `padding` makes the recording 0.4% smaller. For example, `padding: 8` makes it 3.2% smaller. At `0`, the export shows the recording at its original size.
 
 ## Add zooms
 
@@ -60,4 +77,4 @@ The focus stays at one point during the zoom.
 $OPENSCREEN export take.openscreen -o screen.mp4 --json
 ```
 
-The export is H.264 at 60 fps. Give the export file directly to Remotion.
+The export is H.264 at 60 fps. The audio in the export is approximately 7 dB quieter than in the recording. Give the export file directly to Remotion.

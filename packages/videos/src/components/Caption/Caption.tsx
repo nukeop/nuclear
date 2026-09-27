@@ -15,7 +15,7 @@ export const Caption: FC<CaptionProps> = ({ text, className }) => (
     <Enter>
       <p
         className={cn(
-          'border-border bg-card text-card-foreground shadow-shadow max-w-4xl rounded-md border-(length:--border-width) px-6 py-3 text-center font-mono text-xl leading-snug',
+          'border-border bg-card text-card-foreground shadow-shadow max-w-4xl rounded-md border-(length:--border-width) px-6 py-3 text-center text-xl leading-snug',
           className,
         )}
       >

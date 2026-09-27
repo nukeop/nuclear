@@ -13,7 +13,8 @@ A demo video shows one or more features of Nuclear. You drive the app in a demo 
 - Accessibility and Screen Recording permissions for the app that runs you.
 - OpenScreen in `/Applications/Openscreen.app`.
 - Bun and ffmpeg.
-- A Replicate API token in `REPLICATE_API_TOKEN`.
+- A Replicate API token in `REPLICATE_API_TOKEN` and an OpenRouter API key in `OPENROUTER_API_KEY`.
+- BlackHole 2ch as the macOS output device and input device during each take. See [openscreen.md](references/openscreen.md).
 - Nuclear running with the demo profile. The user starts it with `pnpm dev -- -- -- --profile demo` in the repository root.
 
 ## Procedure
@@ -24,7 +25,7 @@ A demo video shows one or more features of Nuclear. You drive the app in a demo 
 4. Write the scenario script. Run it without recording until it runs correctly. See [recording.md](references/recording.md).
 5. Record the take with OpenScreen while the scenario runs. See [openscreen.md](references/openscreen.md).
 6. Add zooms, the background, and the frame to the OpenScreen project. Export it. See [openscreen.md](references/openscreen.md).
-7. Compose the video in Remotion. Examine stills, then render. See [remotion.md](references/remotion.md).
+7. Compose the video in Remotion and render it. Give the render to the user for review. See [remotion.md](references/remotion.md).
 8. Remove the WebDriver plugin.
 
 ## Screen control
@@ -49,7 +50,9 @@ The user decides about all media quality: voices, music, images, the loudness an
 | `scripts/screen-control.ts start\|stop` | Signals the user before and after screen control. |
 | `scripts/webdriver-plugin.ts add\|remove` | Adds or removes the local WebDriver plugin. |
 | `scripts/webdriver.ts` | Finds elements by CSS selector or by text, with screen coordinates. |
-| `scripts/input.ts` | Moves the cursor with easing, clicks, and types with real macOS events. |
+| `scripts/input.ts` | Moves the cursor with easing, clicks, scrolls, and types with real macOS events. |
+| `scripts/openscreen.ts` | Records a take with OpenScreen and gives the start time. |
 | `scripts/replicate.ts` | Runs Replicate models and downloads the output. |
+| `scripts/gemini-tts.ts` | Generates voice lines with Gemini TTS on OpenRouter. |
 
 Run the scripts with `bun`.

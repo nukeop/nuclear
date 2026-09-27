@@ -8,6 +8,7 @@ build
 /packages/website/.astro
 storybook-static
 packages/videos/out
+packages/videos/public
 coverage
 test-results
 .DS_Store

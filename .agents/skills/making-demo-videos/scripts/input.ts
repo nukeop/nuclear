@@ -4,9 +4,13 @@ const config = {
   coreGraphicsPath:
     '/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics',
   eventTap: 0,
-  mouseEvent: { moved: 5, leftDown: 1, leftUp: 2 },
+  mouseEvent: { moved: 5, leftDown: 1, leftUp: 2, rightDown: 3, rightUp: 4 },
+  mouseButton: { left: 0, right: 1 },
+  scrollUnitPixel: 0,
+  scrollStepPixels: 12,
   keyCode: { any: 0, return: 36, escape: 53 },
   glideStepsPerSecond: 60,
+  clickSettleMs: 350,
   clickHoldMs: 50,
   typingDelayMs: 60,
   focusDelayMs: 600,
@@ -15,6 +19,17 @@ const config = {
 const { symbols: coreGraphics } = dlopen(config.coreGraphicsPath, {
   CGEventCreateMouseEvent: {
     args: [FFIType.ptr, FFIType.u32, FFIType.f64, FFIType.f64, FFIType.u32],
+    returns: FFIType.ptr,
+  },
+  CGEventCreateScrollWheelEvent2: {
+    args: [
+      FFIType.ptr,
+      FFIType.u32,
+      FFIType.u32,
+      FFIType.i32,
+      FFIType.i32,
+      FFIType.i32,
+    ],
     returns: FFIType.ptr,
   },
   CGEventCreateKeyboardEvent: {
@@ -36,9 +51,25 @@ const postAndRelease = (event: Pointer | null) => {
   coreGraphics.CFRelease(event);
 };
 
-const postMouse = (type: number, point: Point) =>
+const postMouse = (
+  type: number,
+  point: Point,
+  button = config.mouseButton.left,
+) =>
   postAndRelease(
-    coreGraphics.CGEventCreateMouseEvent(null, type, point.x, point.y, 0),
+    coreGraphics.CGEventCreateMouseEvent(null, type, point.x, point.y, button),
+  );
+
+const postScroll = (pixels: number) =>
+  postAndRelease(
+    coreGraphics.CGEventCreateScrollWheelEvent2(
+      null,
+      config.scrollUnitPixel,
+      1,
+      pixels,
+      0,
+      0,
+    ),
   );
 
 const easeInOut = (progress: number) => 0.5 - Math.cos(Math.PI * progress) / 2;
@@ -71,9 +102,31 @@ export class Mouse {
 
   async click(target: Point, seconds = 0.6) {
     await this.glide(target, seconds);
+    await Bun.sleep(config.clickSettleMs);
     postMouse(config.mouseEvent.leftDown, target);
     await Bun.sleep(config.clickHoldMs);
     postMouse(config.mouseEvent.leftUp, target);
+  }
+
+  async rightClick(target: Point, seconds = 0.6) {
+    await this.glide(target, seconds);
+    await Bun.sleep(config.clickSettleMs);
+    postMouse(config.mouseEvent.rightDown, target, config.mouseButton.right);
+    await Bun.sleep(config.clickHoldMs);
+    postMouse(config.mouseEvent.rightUp, target, config.mouseButton.right);
+  }
+
+  async scroll(target: Point, pixels: number, seconds = 0.8) {
+    await this.glide(target, seconds / 2);
+    const steps = Math.max(
+      1,
+      Math.round(Math.abs(pixels) / config.scrollStepPixels),
+    );
+    const stepPixels = Math.round(pixels / steps);
+    for (let step = 0; step < steps; step++) {
+      postScroll(-stepPixels);
+      await Bun.sleep((seconds * 500) / steps);
+    }
   }
 }
 
