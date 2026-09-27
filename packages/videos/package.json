@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "remotion studio",
     "render": "remotion render",
-    "test": "vitest --run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noEmit",
@@ -33,7 +32,6 @@
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3",
-    "vitest": "^5.0.0"
+    "typescript": "^5.9.3"
   }
 }
