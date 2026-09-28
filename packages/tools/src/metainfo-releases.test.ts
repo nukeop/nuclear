@@ -1,32 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-  buildReleaseElement,
-  getChangelogForRelease,
-  prependRelease,
-} from './metainfo-releases.mjs';
-
-describe('getChangelogForRelease', () => {
-  it('includes entries after the previous tag date up to the release date', () => {
-    const changelog = [
-      { date: '2026-03-21T00:00', description: 'in window: release day' },
-      { date: '2026-03-19T00:00', description: 'in window: between tags' },
-      { date: '2026-03-18T00:00', description: 'out: previous release day' },
-      { date: '2026-03-10T00:00', description: 'out: older release' },
-    ];
-
-    const entries = getChangelogForRelease(
-      { version: '1.24.0', date: '2026-03-21' },
-      { version: '1.23.3', date: '2026-03-18' },
-      changelog,
-    );
-
-    expect(entries.map((entry) => entry.description)).toEqual([
-      'in window: release day',
-      'in window: between tags',
-    ]);
-  });
-});
+import { buildReleaseElement, prependRelease } from './metainfo-releases.mjs';
 
 describe('buildReleaseElement', () => {
   it('renders entries as list items with XML escaping', () => {

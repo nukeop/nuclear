@@ -16,23 +16,27 @@ env:
   DO_NOT_TRACK: 1
 
 jobs:
-  release:
+  build:
     strategy:
       fail-fast: false
       matrix:
         include:
           - platform: "macos-latest"
             args: "--target aarch64-apple-darwin"
-            arch: "arm64"
+            artifact: "macos-aarch64"
+            bundle-dir: "packages/player/src-tauri/target/aarch64-apple-darwin/release/bundle"
           - platform: "macos-latest"
             args: "--target x86_64-apple-darwin"
-            arch: "x64"
+            artifact: "macos-x64"
+            bundle-dir: "packages/player/src-tauri/target/x86_64-apple-darwin/release/bundle"
           - platform: "ubuntu-22.04"
             args: ""
-            arch: "x64"
+            artifact: "linux-x64"
+            bundle-dir: "packages/player/src-tauri/target/release/bundle"
           - platform: "windows-latest"
             args: ""
-            arch: "x64"
+            artifact: "windows-x64"
+            bundle-dir: "packages/player/src-tauri/target/release/bundle"
 
     runs-on: ${{ matrix.platform }}
 
@@ -44,11 +48,8 @@ jobs:
           fetch-depth: 0
 
       - name: Extract version from tag
-        id: version
         shell: bash
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/player@}
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+        run: echo "VERSION=${GITHUB_REF_NAME#player@}" >> "$GITHUB_ENV"
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -96,33 +97,30 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate release notes
-        id: release_notes
-        shell: bash
-        run: |
-          NOTES=$(node packages/tools/src/generate-release-notes.mjs "${{ steps.version.outputs.version }}")
-          DELIMITER=$(openssl rand -hex 16)
-          echo "notes<<$DELIMITER" >> $GITHUB_OUTPUT
-          echo "$NOTES" >> $GITHUB_OUTPUT
-          echo "$DELIMITER" >> $GITHUB_OUTPUT
-
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
           TAURI_BUNDLER_DMG_IGNORE_CI: false
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: "Nuclear Player v${{ steps.version.outputs.version }}"
-          releaseBody: "${{ steps.release_notes.outputs.notes }}"
-          releaseDraft: false
-          prerelease: false
           args: ${{ matrix.args }}
 
+      - name: Upload bundles
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.artifact }}
+          if-no-files-found: error
+          path: |
+            ${{ matrix.bundle-dir }}/dmg/Nuclear_${{ env.VERSION }}_*.dmg
+            ${{ matrix.bundle-dir }}/macos/Nuclear.app.tar.gz*
+            ${{ matrix.bundle-dir }}/appimage/Nuclear_${{ env.VERSION }}_*.AppImage*
+            ${{ matrix.bundle-dir }}/deb/Nuclear_${{ env.VERSION }}_*.deb*
+            ${{ matrix.bundle-dir }}/rpm/Nuclear-${{ env.VERSION }}-*.rpm*
+            ${{ matrix.bundle-dir }}/msi/Nuclear_${{ env.VERSION }}_*.msi*
+            ${{ matrix.bundle-dir }}/nsis/Nuclear_${{ env.VERSION }}_*-setup.exe*
+
   flatpak:
-    needs: release
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-50
@@ -133,11 +131,8 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Extract version from tag
-        id: version
         shell: bash
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/player@}
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+        run: echo "VERSION=${GITHUB_REF_NAME#player@}" >> "$GITHUB_ENV"
 
       - name: Install flatpak-node-generator
         run: pip install --force-reinstall --no-cache-dir git+https://github.com/flatpak/flatpak-builder-tools.git#subdirectory=node
@@ -157,22 +152,86 @@ jobs:
       - name: Build Flatpak bundle
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          bundle: nuclear-music-player.flatpak
+          bundle: Nuclear_${{ env.VERSION }}_x86_64.flatpak
           manifest-path: flatpak/com.nuclearplayer.Nuclear.yml
           cache-key: flatpak-builder-${{ github.sha }}
 
-      - name: Upload Flatpak to GitHub Release
-        shell: bash
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Flatpak bundle
+        uses: actions/upload-artifact@v7
+        with:
+          name: flatpak
+          if-no-files-found: error
+          path: Nuclear_${{ env.VERSION }}_x86_64.flatpak
+
+  snap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Generate snapcraft.yaml from template
         run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          gh release upload "player@${{ steps.version.outputs.version }}" \
-            nuclear-music-player.flatpak \
-            --clobber
+          SNAP_VERSION="${GITHUB_REF_NAME#player@}" envsubst '$SNAP_VERSION' < snap/snapcraft.yaml > snap/snapcraft.resolved.yaml
+          mv snap/snapcraft.resolved.yaml snap/snapcraft.yaml
+
+      - name: Build snap
+        uses: snapcore/action-build@v1
+        id: snapcraft
+
+      - name: Upload snap
+        uses: actions/upload-artifact@v7
+        with:
+          name: snap
+          if-no-files-found: error
+          path: ${{ steps.snapcraft.outputs.snap }}
+
+  publish:
+    needs: [build, flatpak, snap]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          fetch-tags: true
+          fetch-depth: 0
+
+      - name: Extract version from tag
+        run: echo "VERSION=${GITHUB_REF_NAME#player@}" >> "$GITHUB_ENV"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: artifacts
+
+      - name: Generate release notes
+        run: node packages/tools/src/generate-release-notes.mjs "$VERSION" > release-notes.md
+
+      - name: Collect release assets
+        run: >-
+          node packages/tools/src/collect-release-assets.mjs
+          --version "$VERSION"
+          --notes release-notes.md
+          --artifacts artifacts
+          --out release-assets
+          --repository "$GITHUB_REPOSITORY"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME" release-assets/*
+          --title "Nuclear Player v$VERSION"
+          --notes-file release-notes.md
+          --verify-tag
 
   homebrew:
-    needs: release
+    needs: publish
     runs-on: ubuntu-latest
     steps:
       - name: Extract version from tag

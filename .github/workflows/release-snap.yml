@@ -11,7 +11,7 @@ on:
         required: true
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   snap:
@@ -21,9 +21,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
       - name: Extract version
         id: version
         shell: bash
@@ -36,29 +33,18 @@ jobs:
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Generate snapcraft.yaml from template
+      - name: Download snap from GitHub Release
         env:
-          SNAP_VERSION: ${{ steps.version.outputs.version }}
-        run: |
-          envsubst '$SNAP_VERSION' < snap/snapcraft.yaml > snap/snapcraft.resolved.yaml
-          mv snap/snapcraft.resolved.yaml snap/snapcraft.yaml
-
-      - name: Build snap
-        uses: snapcore/action-build@v1
-        id: snapcraft
-
-      - name: Upload snap to GitHub Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release upload "player@${{ steps.version.outputs.version }}" \
-            ${{ steps.snapcraft.outputs.snap }} \
-            --clobber
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          gh release download "player@${{ steps.version.outputs.version }}"
+          --repo "${{ github.repository }}"
+          --pattern "nuclear_${{ steps.version.outputs.version }}_amd64.snap"
 
       - name: Publish to Snap Store
         uses: snapcore/action-publish@v1
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
         with:
-          snap: ${{ steps.snapcraft.outputs.snap }}
+          snap: nuclear_${{ steps.version.outputs.version }}_amd64.snap
           release: stable

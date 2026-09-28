@@ -37,14 +37,6 @@ function describeRelease(tag, entries) {
   return [{ name: 'ul', children: items }];
 }
 
-export function getChangelogForRelease(tag, previousTag, changelog) {
-  const releasedAfter = previousTag?.date ?? '';
-  return changelog.filter((entry) => {
-    const entryDate = entry.date.split('T')[0];
-    return entryDate > releasedAfter && entryDate <= tag.date;
-  });
-}
-
 export function buildReleaseElement(tag, entries) {
   const release = {
     name: 'release',

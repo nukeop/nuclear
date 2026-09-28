@@ -1,14 +1,9 @@
 #!/usr/bin/env node
-import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 
-import {
-  buildReleaseElement,
-  getChangelogForRelease,
-  prependRelease,
-} from './metainfo-releases.mjs';
+import { buildReleaseElement, prependRelease } from './metainfo-releases.mjs';
+import { findReleaseEntries, git, rootDir } from './release-entries.mjs';
 
 const version = process.argv[2];
 if (!version) {
@@ -16,27 +11,8 @@ if (!version) {
   process.exit(1);
 }
 
-const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
-const git = (...args) =>
-  execFileSync('git', args, { cwd: rootDir, encoding: 'utf-8' }).trim();
-
 const newRelease = { version, date: new Date().toLocaleDateString('sv') };
-
-const [previousTagDate] = git(
-  'tag',
-  '-l',
-  'player@*',
-  '--sort=-creatordate',
-  '--format=%(creatordate:short)',
-).split('\n');
-const changelog = JSON.parse(
-  readFileSync(resolve(rootDir, 'packages/player/changelog.json'), 'utf-8'),
-);
-const entries = getChangelogForRelease(
-  newRelease,
-  { date: previousTagDate },
-  changelog,
-);
+const entries = findReleaseEntries(version);
 
 const versionFiles = [
   'packages/player/package.json',
