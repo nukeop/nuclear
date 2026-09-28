@@ -1,23 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 
-import dashboardAqua from '../../../docs/.gitbook/assets/dashboard-aqua.png';
-import dashboardGreen from '../../../docs/.gitbook/assets/dashboard-green.png';
-import dashboardMint from '../../../docs/.gitbook/assets/dashboard-mint.png';
-import dashboardOrange from '../../../docs/.gitbook/assets/dashboard-orange.png';
-import dashboardRed from '../../../docs/.gitbook/assets/dashboard-red.png';
-import dashboardViolet from '../../../docs/.gitbook/assets/dashboard-violet.png';
+import dashboardArcticMossDark from '../../../docs/.gitbook/assets/dashboard-arctic-moss-dark.png';
+import dashboardAuroraLight from '../../../docs/.gitbook/assets/dashboard-aurora-light.png';
+import dashboardDefaultDark from '../../../docs/.gitbook/assets/dashboard-default-dark.png';
+import dashboardEmberLight from '../../../docs/.gitbook/assets/dashboard-ember-light.png';
+import dashboardLagoonDark from '../../../docs/.gitbook/assets/dashboard-lagoon-dark.png';
+import dashboardLagoonLight from '../../../docs/.gitbook/assets/dashboard-lagoon-light.png';
 
 const topRow = [
-  { src: dashboardViolet, name: 'Aurora' },
-  { src: dashboardAqua, name: 'Lagoon' },
-  { src: dashboardMint, name: 'Arctic Moss' },
+  { src: dashboardAuroraLight, name: 'Aurora (light)' },
+  { src: dashboardEmberLight, name: 'Ember (light)' },
+  { src: dashboardLagoonLight, name: 'Lagoon (light)' },
 ];
 
 const bottomRow = [
-  { src: dashboardOrange, name: 'Canyon' },
-  { src: dashboardRed, name: 'Molten Core' },
-  { src: dashboardGreen, name: 'Midnight Terminal' },
+  { src: dashboardDefaultDark, name: 'Default (dark)' },
+  { src: dashboardLagoonDark, name: 'Lagoon (dark)' },
+  { src: dashboardArcticMossDark, name: 'Arctic Moss (dark)' },
 ];
 
 const allThemes = [...topRow, ...bottomRow];

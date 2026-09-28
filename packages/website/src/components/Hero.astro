@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 
 import dashboardMain from '../../../docs/.gitbook/assets/dashboard-main.png';
+import jamRemote from '../../../docs/.gitbook/assets/jam-remote.png';
+import Badge from './Badge.astro';
 import Box from './Box.astro';
 import Downloads from './Downloads.astro';
 import { Typewriter } from './Typewriter';
@@ -39,6 +41,22 @@ import { Typewriter } from './Typewriter';
           />
         </div>
       </Box>
+      <div
+        class="absolute -bottom-6 left-2 z-20 w-[20%] -rotate-6 md:-bottom-10 md:-left-6"
+      >
+        <Box>
+          <Badge slot="badge" size="sm" class="z-10">Remote</Badge>
+          <div class="leading-0">
+            <Image
+              src={jamRemote}
+              alt="Nuclear Jam remote control on a phone"
+              widths={[240, 390, 780]}
+              sizes="(max-width: 768px) 20vw, 240px"
+              class="block w-full"
+            />
+          </div>
+        </Box>
+      </div>
       <img
         src="images/nuki-hello.png"
         alt="Nuclear mascot Nuki waving"
