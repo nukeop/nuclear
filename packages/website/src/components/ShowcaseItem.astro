@@ -1,0 +1,27 @@
+---
+type Props = {
+  heading: string;
+  description: string;
+  tilt?: 'left' | 'right';
+  class?: string;
+};
+
+const { heading, description, tilt, class: className } = Astro.props;
+
+const tiltClasses = {
+  left: '-rotate-1',
+  right: 'rotate-1',
+};
+---
+
+<article class:list={['flex flex-col gap-4', className]}>
+  <div class="flex flex-col gap-1">
+    <h3 class="font-heading text-xl leading-tight font-black tracking-wider uppercase">
+      {heading}
+    </h3>
+    <p class="max-w-[44ch] text-sm leading-relaxed opacity-75">{description}</p>
+  </div>
+  <div class:list={[tilt && tiltClasses[tilt]]}>
+    <slot />
+  </div>
+</article>
