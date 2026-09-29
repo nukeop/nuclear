@@ -16,11 +16,47 @@
           }
         ],
         "accessory": {
-          "type": 2,
-          "style": 5,
-          "label": "Download",
-          "url": "https://nuclearplayer.com/download/"
+          "type": 11,
+          "media": {
+            "url": "https://nuclearplayer.com/icon.png"
+          }
         }
+      },
+      {
+        "type": 12,
+        "items": [
+          {
+            "media": {
+              "url": "https://nuclearplayer.com/images/social-banner.png"
+            },
+            "description": "Nuclear music player"
+          }
+        ]
+      },
+      {
+        "type": 12,
+        "items": [
+          {
+            "media": {
+              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/artist.png"
+            }
+          },
+          {
+            "media": {
+              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/album.png"
+            }
+          },
+          {
+            "media": {
+              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/plugin-store.png"
+            }
+          },
+          {
+            "media": {
+              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/dashboard-nebula.png"
+            }
+          }
+        ]
       },
       {
         "type": 14,
@@ -30,6 +66,12 @@
       {
         "type": 1,
         "components": [
+          {
+            "type": 2,
+            "style": 5,
+            "label": "Download",
+            "url": "https://nuclearplayer.com/download/"
+          },
           {
             "type": 2,
             "style": 5,
