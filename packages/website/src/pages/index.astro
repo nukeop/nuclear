@@ -11,7 +11,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = 'Nuclear - Free Open-Source Music Player';
 ---
 
-<BaseLayout title={title} description={siteDescription}>
+<BaseLayout
+  title={title}
+  description={siteDescription}
+  discordEmbed="/discord-embed.json"
+>
   <main
     class="bg-muted relative flex w-full flex-col items-center overflow-x-clip"
   >

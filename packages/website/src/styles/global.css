@@ -8,6 +8,20 @@
 @source '../layouts';
 @source '../pages';
 
+@theme {
+  --animate-blink: blink 0.8s step-end infinite;
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
 :root {
   --page-bg: oklch(100% 0 0);
   --primary: oklch(0.8 0.12 4.56);

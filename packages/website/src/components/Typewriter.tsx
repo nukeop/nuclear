@@ -54,9 +54,6 @@ export const Typewriter = () => {
   }, []);
 
   return (
-    <>
-      {text}
-      <span style={{ animation: 'blink 0.8s step-end infinite' }}>|</span>
-    </>
+    <span className="after:animate-blink after:content-['|'/'']">{text}</span>
   );
 };
