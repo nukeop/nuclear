@@ -1,15 +1,16 @@
+export const initialTagline = "that's free and open-source";
+
 export const taglines = [
   'for power users',
   'for you',
   'without ads or tracking',
-  'for Linux',
-  'for Mac',
-  'for Windows',
-  "that's free and open source",
-  'for AI agents',
-  'with a built-in MCP',
-  'for music discovery',
-  'with themes',
+  'with no premium tier',
+  'for Windows, Mac, and Linux',
   'with a ton of plugins',
+  'you can reskin',
+  'your AI agent can control',
+  'you can control from a phone',
+  'that speaks MPD',
+  'you can script',
   'with a built-in log viewer',
 ];
