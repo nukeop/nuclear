@@ -3,24 +3,43 @@ import { Image } from 'astro:assets';
 
 import dashboardArcticMossDark from '../../../docs/.gitbook/assets/dashboard-arctic-moss-dark.png';
 import dashboardAuroraLight from '../../../docs/.gitbook/assets/dashboard-aurora-light.png';
+import dashboardChesterfield from '../../../docs/.gitbook/assets/dashboard-chesterfield.png';
 import dashboardDefaultDark from '../../../docs/.gitbook/assets/dashboard-default-dark.png';
 import dashboardEmberLight from '../../../docs/.gitbook/assets/dashboard-ember-light.png';
 import dashboardLagoonDark from '../../../docs/.gitbook/assets/dashboard-lagoon-dark.png';
 import dashboardLagoonLight from '../../../docs/.gitbook/assets/dashboard-lagoon-light.png';
+import dashboardNebula from '../../../docs/.gitbook/assets/dashboard-nebula.png';
+import dashboardRiso from '../../../docs/.gitbook/assets/dashboard-riso.png';
+import dashboardSeigaiha from '../../../docs/.gitbook/assets/dashboard-seigaiha.png';
+import settingsNebula from '../../../docs/.gitbook/assets/settings-nebula.png';
 
 const topRow = [
-  { src: dashboardAuroraLight, name: 'Aurora (light)' },
-  { src: dashboardEmberLight, name: 'Ember (light)' },
-  { src: dashboardLagoonLight, name: 'Lagoon (light)' },
+  dashboardAuroraLight,
+  dashboardEmberLight,
+  dashboardLagoonLight,
 ];
 
 const bottomRow = [
-  { src: dashboardDefaultDark, name: 'Default (dark)' },
-  { src: dashboardLagoonDark, name: 'Lagoon (dark)' },
-  { src: dashboardArcticMossDark, name: 'Arctic Moss (dark)' },
+  dashboardDefaultDark,
+  dashboardLagoonDark,
+  dashboardArcticMossDark,
 ];
 
-const allThemes = [...topRow, ...bottomRow];
+const customThemes = [
+  dashboardRiso,
+  dashboardNebula,
+  settingsNebula,
+  dashboardSeigaiha,
+  dashboardChesterfield,
+];
+
+const desktopRows = [[...topRow, ...bottomRow], customThemes];
+
+const mobileRows = [
+  { themes: topRow, reverse: false },
+  { themes: bottomRow, reverse: true },
+  { themes: customThemes, reverse: false },
+];
 ---
 
 <div class="w-full">
@@ -30,65 +49,46 @@ const allThemes = [...topRow, ...bottomRow];
     Built-in themes
   </h3>
 
-  <div class="themes-cascade desktop">
+  <div class="flex flex-col gap-12">
     {
-      allThemes.map((theme, index) => (
-        <div
-          class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
-          style={`--index: ${index};`}
-        >
-          <Image
-            src={theme.src}
-            alt={`Nuclear dashboard with ${theme.name} theme`}
-            widths={[720, 1080, 1440]}
-            sizes="(max-width: 1024px) 30vw, 320px"
-            quality={90}
-            class="block w-full"
-          />
+      desktopRows.map((themes) => (
+        <div class="themes-cascade desktop">
+          {themes.map((screenshot) => (
+            <div class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md">
+              <Image
+                src={screenshot}
+                alt=""
+                widths={[720, 1080, 1440]}
+                sizes="(max-width: 1024px) 30vw, 320px"
+                quality={90}
+                class="block w-full"
+              />
+            </div>
+          ))}
         </div>
       ))
     }
   </div>
 
   <div class="mobile-rows">
-    <div class="themes-cascade mobile-row">
-      {
-        topRow.map((theme, index) => (
-          <div
-            class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
-            style={`--index: ${index};`}
-          >
-            <Image
-              src={theme.src}
-              alt={`Nuclear dashboard with ${theme.name} theme`}
-              widths={[720, 1080, 1440]}
-              sizes="45vw"
-              quality={90}
-              class="block w-full"
-            />
-          </div>
-        ))
-      }
-    </div>
-    <div class="themes-cascade mobile-row reverse">
-      {
-        bottomRow.map((theme, index) => (
-          <div
-            class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md"
-            style={`--index: ${index};`}
-          >
-            <Image
-              src={theme.src}
-              alt={`Nuclear dashboard with ${theme.name} theme`}
-              widths={[720, 1080, 1440]}
-              sizes="45vw"
-              quality={90}
-              class="block w-full"
-            />
-          </div>
-        ))
-      }
-    </div>
+    {
+      mobileRows.map((row) => (
+        <div class:list={['themes-cascade mobile-row', row.reverse && 'reverse']}>
+          {row.themes.map((screenshot) => (
+            <div class="theme-card themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md">
+              <Image
+                src={screenshot}
+                alt=""
+                widths={[720, 1080, 1440]}
+                sizes="45vw"
+                quality={90}
+                class="block w-full"
+              />
+            </div>
+          ))}
+        </div>
+      ))
+    }
   </div>
 </div>
 
