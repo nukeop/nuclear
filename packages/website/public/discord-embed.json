@@ -27,34 +27,9 @@
         "items": [
           {
             "media": {
-              "url": "https://nuclearplayer.com/images/social-banner.png"
+              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/readme-banner.png"
             },
             "description": "Nuclear music player"
-          }
-        ]
-      },
-      {
-        "type": 12,
-        "items": [
-          {
-            "media": {
-              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/artist.png"
-            }
-          },
-          {
-            "media": {
-              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/album.png"
-            }
-          },
-          {
-            "media": {
-              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/plugin-store.png"
-            }
-          },
-          {
-            "media": {
-              "url": "https://raw.githubusercontent.com/nukeop/nuclear/master/packages/docs/.gitbook/assets/dashboard-nebula.png"
-            }
           }
         ]
       },
