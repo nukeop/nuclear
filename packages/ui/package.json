@@ -16,6 +16,10 @@
   "files": [
     "src"
   ],
+  "sideEffects": [
+    "*.css",
+    "./src/index.ts"
+  ],
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc && vite build",

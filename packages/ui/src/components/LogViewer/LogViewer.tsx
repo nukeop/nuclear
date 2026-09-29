@@ -42,15 +42,16 @@ const LogViewerImpl: FC<LogViewerProps> = ({
   <LogViewerRoot
     logs={logs}
     scopes={scopes}
-    onClear={onClear}
-    onExport={onExport}
-    onOpenLogFolder={onOpenLogFolder}
     labels={labels}
     className={className}
   >
     <div className="flex flex-wrap items-center gap-4">
       <LogSearchInput />
-      <LogToolbar />
+      <LogToolbar
+        onClear={onClear}
+        onExport={onExport}
+        onOpenLogFolder={onOpenLogFolder}
+      />
     </div>
 
     <div className="flex flex-wrap items-center gap-4">

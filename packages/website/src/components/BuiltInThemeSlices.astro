@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+
+import dashboardArcticMossLight from '../../../docs/.gitbook/assets/dashboard-arctic-moss-light.png';
+import dashboardAuroraDark from '../../../docs/.gitbook/assets/dashboard-aurora-dark.png';
+import dashboardDefaultLight from '../../../docs/.gitbook/assets/dashboard-default-light.png';
+import dashboardEmberLight from '../../../docs/.gitbook/assets/dashboard-ember-light.png';
+import dashboardLagoonDark from '../../../docs/.gitbook/assets/dashboard-lagoon-dark.png';
+import Box from './Box.astro';
+
+const slantPercent = 6;
+const seamPercent = 0.3;
+const overhangPercent = 50;
+
+const screenshots = [
+  dashboardDefaultLight,
+  dashboardAuroraDark,
+  dashboardEmberLight,
+  dashboardLagoonDark,
+  dashboardArcticMossLight,
+];
+
+const bandWidth = 100 / screenshots.length;
+
+const innerBoundaries = Array.from(
+  { length: screenshots.length - 1 },
+  (_, index) => (index + 1) * bandWidth,
+);
+
+const boundaries = [
+  -overhangPercent,
+  ...innerBoundaries,
+  100 + overhangPercent,
+];
+
+const slices = screenshots.map((screenshot, index) => {
+  const left = boundaries[index] + seamPercent / 2;
+  const right = boundaries[index + 1] - seamPercent / 2;
+
+  return {
+    screenshot,
+    clipPath: `polygon(${left + slantPercent}% 0, ${right + slantPercent}% 0, ${right - slantPercent}% 100%, ${left - slantPercent}% 100%)`,
+  };
+});
+---
+
+<Box class="mx-auto w-full max-w-5xl">
+  <div class="bg-border relative aspect-video">
+    {
+      slices.map((slice) => (
+        <Image
+          src={slice.screenshot}
+          alt=""
+          widths={[720, 1080, 1440]}
+          sizes="(max-width: 1024px) 100vw, 1024px"
+          quality={90}
+          class="absolute inset-0 size-full"
+          style={{ clipPath: slice.clipPath }}
+        />
+      ))
+    }
+  </div>
+</Box>

@@ -1,0 +1,26 @@
+---
+import TerminalSnippet from '../TerminalSnippet.astro';
+
+const session = [
+  {
+    command: 'mpc status',
+    output: [
+      'Neon Cascade - Phosphor Gate',
+      '[playing] #1/12   1:34/4:07 (38%)',
+      'volume: 80%   repeat: off   random: off',
+    ],
+  },
+  {
+    command: 'mpc playlist',
+    output: [
+      'Neon Cascade - Phosphor Gate',
+      'Neon Cascade - Dissolve the Grid',
+      'Moth & Signal - Wing Beat',
+      'Moth & Signal - Antenna',
+      'Yuki Tanaka - Paper Lanterns',
+    ],
+  },
+];
+---
+
+<TerminalSnippet commands={session} />

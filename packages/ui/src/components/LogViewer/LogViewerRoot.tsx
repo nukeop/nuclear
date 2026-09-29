@@ -12,9 +12,6 @@ import {
 export type LogViewerRootProps = PropsWithChildren<{
   logs: LogEntryData[];
   scopes: string[];
-  onClear: () => void;
-  onExport: () => void | Promise<void>;
-  onOpenLogFolder: () => void;
   labels?: Partial<LogViewerLabels>;
   className?: string;
 }>;
@@ -23,9 +20,6 @@ export const LogViewerRoot: FC<LogViewerRootProps> = ({
   children,
   logs,
   scopes,
-  onClear,
-  onExport,
-  onOpenLogFolder,
   labels: labelOverrides,
   className,
 }) => {
@@ -79,9 +73,6 @@ export const LogViewerRoot: FC<LogViewerRootProps> = ({
       setSelectedLevels,
       selectedScopes,
       setSelectedScopes,
-      onClear,
-      onExport,
-      onOpenLogFolder,
       labels,
     }),
     [
@@ -92,9 +83,6 @@ export const LogViewerRoot: FC<LogViewerRootProps> = ({
       searchResult,
       selectedLevels,
       selectedScopes,
-      onClear,
-      onExport,
-      onOpenLogFolder,
       labels,
     ],
   );

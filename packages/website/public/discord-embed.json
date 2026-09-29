@@ -1,0 +1,61 @@
+{
+  "component": {
+    "type": 17,
+    "accent_color": 16751796,
+    "components": [
+      {
+        "type": 9,
+        "components": [
+          {
+            "type": 10,
+            "content": "## [Nuclear](https://nuclearplayer.com)\nWindows · macOS · Linux · AGPL-3.0"
+          },
+          {
+            "type": 10,
+            "content": "Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening."
+          }
+        ],
+        "accessory": {
+          "type": 2,
+          "style": 5,
+          "label": "Download",
+          "url": "https://nuclearplayer.com/download/"
+        }
+      },
+      {
+        "type": 14,
+        "divider": true,
+        "spacing": 1
+      },
+      {
+        "type": 1,
+        "components": [
+          {
+            "type": 2,
+            "style": 5,
+            "label": "Docs",
+            "url": "https://docs.nuclearplayer.com"
+          },
+          {
+            "type": 2,
+            "style": 5,
+            "label": "GitHub",
+            "url": "https://github.com/nukeop/nuclear"
+          },
+          {
+            "type": 2,
+            "style": 5,
+            "label": "Discord",
+            "url": "https://discord.gg/JqPjKxE"
+          },
+          {
+            "type": 2,
+            "style": 5,
+            "label": "Sponsor",
+            "url": "https://github.com/sponsors/nukeop"
+          }
+        ]
+      }
+    ]
+  }
+}

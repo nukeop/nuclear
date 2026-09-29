@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 
 import dashboardMain from '../../../docs/.gitbook/assets/dashboard-main.png';
+import jamRemote from '../../../docs/.gitbook/assets/jam-remote.png';
 import Box from './Box.astro';
 import Downloads from './Downloads.astro';
 import { Typewriter } from './Typewriter';
@@ -9,19 +10,18 @@ import { Typewriter } from './Typewriter';
 
 <section class="relative z-20 mx-auto w-full max-w-7xl px-4 py-8 md:px-8">
   <div class="mb-10 text-center">
-    <span
-      class="font-heading text-foreground/50 mb-3 inline-block text-xs font-bold tracking-[0.3em] uppercase"
-      >Est. 2016</span
-    >
-    <h1
-      class="font-heading text-3xl leading-tight font-black uppercase md:text-4xl lg:text-5xl xl:text-6xl"
-    >
+    <span class="font-heading text-foreground/50 mb-3 inline-block text-xs font-bold tracking-[0.3em] uppercase">
+      Est. 2016
+    </span>
+    <h1 class="font-heading text-3xl leading-tight font-black uppercase md:text-4xl lg:text-5xl xl:text-6xl">
       Nuclear is a{' '}
       <span
         class="font-heading"
         style="color: var(--color-heading-accent); text-shadow: 2px 2px 0px var(--color-heading-shadow);"
-        >music player</span
-      ><br />
+      >
+        music player
+      </span>
+      <br />
       <Typewriter client:load />
     </h1>
   </div>
@@ -39,6 +39,19 @@ import { Typewriter } from './Typewriter';
           />
         </div>
       </Box>
+      <div class="absolute -bottom-6 left-2 z-20 w-[20%] -rotate-6 md:-bottom-10 md:-left-6">
+        <Box>
+          <div class="leading-0">
+            <Image
+              src={jamRemote}
+              alt="Nuclear Jam remote control on a phone"
+              widths={[240, 390, 780]}
+              sizes="(max-width: 768px) 20vw, 240px"
+              class="block w-full"
+            />
+          </div>
+        </Box>
+      </div>
       <img
         src="images/nuki-hello.png"
         alt="Nuclear mascot Nuki waving"
@@ -51,15 +64,3 @@ import { Typewriter } from './Typewriter';
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-  }
-</style>

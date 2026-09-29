@@ -1,0 +1,25 @@
+---
+type TerminalCommand = {
+  command: string;
+  output: string[];
+};
+
+type Props = {
+  commands: TerminalCommand[];
+};
+
+const { commands } = Astro.props;
+---
+
+<div class="bg-foreground text-background flex grow flex-col gap-3 overflow-x-auto rounded-md p-5 font-mono text-xs leading-relaxed whitespace-pre">
+  {commands.map(({ command, output }) => (
+    <div>
+      <div>
+        <span class="text-accent-green">$</span> {command}
+      </div>
+      {output.map((line) => (
+        <div>{line}</div>
+      ))}
+    </div>
+  ))}
+</div>

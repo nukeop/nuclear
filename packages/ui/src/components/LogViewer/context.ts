@@ -48,10 +48,6 @@ export type LogViewerContextValue = {
   selectedScopes: string[];
   setSelectedScopes: (scopes: string[]) => void;
 
-  onClear: () => void;
-  onExport: () => void | Promise<void>;
-  onOpenLogFolder: () => void;
-
   labels: LogViewerLabels;
 };
 

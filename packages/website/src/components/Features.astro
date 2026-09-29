@@ -1,16 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 
+import album from '../../../docs/.gitbook/assets/album.png';
+import artist from '../../../docs/.gitbook/assets/artist.png';
+import favoriteArtists from '../../../docs/.gitbook/assets/favorite-artists.png';
 import installedPlugins from '../../../docs/.gitbook/assets/installed-plugins.png';
-import logViewer from '../../../docs/.gitbook/assets/log-viewer.png';
 import playlistDetailView from '../../../docs/.gitbook/assets/playlist-detail-view.png';
 import playlists from '../../../docs/.gitbook/assets/playlists.png';
 import pluginStore from '../../../docs/.gitbook/assets/plugin-store.png';
-import preferences from '../../../docs/.gitbook/assets/preferences.png';
-import searchAlbums from '../../../docs/.gitbook/assets/search-albums.png';
 import searchArtists from '../../../docs/.gitbook/assets/search-artists.png';
-import searchTracks from '../../../docs/.gitbook/assets/search-tracks.png';
-import whatsNew from '../../../docs/.gitbook/assets/whats-new.png';
+import Box from './Box.astro';
 import ThemeShowcase from './ThemeShowcase.astro';
 
 type ScreenshotEntry = {
@@ -21,6 +20,7 @@ type ScreenshotEntry = {
 type Nuki = {
   src: string;
   alt: string;
+  placement: string;
 };
 
 type FeatureBlock = {
@@ -33,34 +33,36 @@ type FeatureBlock = {
 
 const featureBlocks: FeatureBlock[] = [
   {
-    heading: 'Search',
+    heading: 'Discovery',
     description:
-      'Look up artists, albums, and tracks across multiple sources. More sources can be added with plugins.',
+      'Search for and browse artists, albums, and tracks across multiple sources. Plugins can add more sources.',
     images: [
       { src: searchArtists, alt: 'Search artists in Nuclear' },
-      { src: searchAlbums, alt: 'Search albums in Nuclear' },
-      { src: searchTracks, alt: 'Search tracks in Nuclear' },
+      { src: artist, alt: 'Artist page in Nuclear' },
+      { src: album, alt: 'Album page in Nuclear' },
     ],
     layout: 'text-left',
   },
   {
-    heading: 'Playlists',
+    heading: 'Your library',
     description:
-      'Put together playlists from any source. Reorder, rename, and come back to them later. Import from any service, or from JSON files.',
+      'Put together playlists from any source, or import them from other services and JSON files. Keep your favorite artists, albums, and tracks in one place.',
     images: [
       { src: playlists, alt: 'Playlists view in Nuclear' },
       { src: playlistDetailView, alt: 'Playlist detail view in Nuclear' },
+      { src: favoriteArtists, alt: 'Favorite artists in Nuclear' },
     ],
     layout: 'text-right',
     nuki: {
       src: '/images/nuki-studying.png',
       alt: 'Nuki studying at a desk',
+      placement: 'right-0 bottom-0',
     },
   },
   {
     heading: 'Plugins',
     description:
-      'Nuclear can be extended with a powerful plugin API. Auto-update is built in.',
+      'Nuclear can be extended with a powerful plugin API, and has a plugin store. Auto-update is built in.',
     images: [
       { src: pluginStore, alt: 'Plugin store in Nuclear' },
       { src: installedPlugins, alt: 'Installed plugins in Nuclear' },
@@ -69,85 +71,68 @@ const featureBlocks: FeatureBlock[] = [
     nuki: {
       src: '/images/nuki-ready-to-work.png',
       alt: 'Nuki holding a wrench and toolbox',
+      placement: 'left-[8%] bottom-0',
     },
-  },
-  {
-    heading: 'Settings for everything',
-    description:
-      'Preferences for everything. Power users can use the built-in log viewer for easy debugging and support.',
-    images: [
-      { src: preferences, alt: 'Preferences in Nuclear' },
-      { src: logViewer, alt: 'Log viewer in Nuclear' },
-      { src: whatsNew, alt: "What's new in Nuclear" },
-    ],
-    layout: 'text-right',
   },
 ];
 ---
 
 <div class="flex w-full flex-col gap-16 md:gap-24">
-  {
-    featureBlocks.map((block, blockIndex) => {
-      const isReversed = block.layout === 'text-right';
+  {featureBlocks.map((block, blockIndex) => {
+    const isReversed = block.layout === 'text-right';
 
-      return (
-        <>
-          <div
-            class:list={[
-              'grid items-center gap-8 md:grid-cols-2 md:gap-12',
-              isReversed && 'md:*:first:order-2',
-            ]}
-          >
-            <div class="flex flex-col gap-4">
-              <h3 class="font-heading text-[clamp(1.75rem,3vw,2.5rem)] leading-tight font-black tracking-wider uppercase">
-                {block.heading}
-              </h3>
-              <p class="max-w-[38ch] text-base leading-relaxed opacity-75">
-                {block.description}
-              </p>
-            </div>
+    return (
+      <>
+        <div
+          class:list={[
+            'grid items-center gap-8 md:gap-12',
+            isReversed
+              ? 'md:grid-cols-[3fr_2fr] md:*:first:order-2'
+              : 'md:grid-cols-[2fr_3fr]',
+          ]}
+        >
+          <div class="flex flex-col gap-4">
+            <h3 class="font-heading text-[clamp(1.75rem,3vw,2.5rem)] leading-tight font-black tracking-wider uppercase">
+              {block.heading}
+            </h3>
+            <p class="max-w-[38ch] text-base leading-relaxed opacity-75">
+              {block.description}
+            </p>
+          </div>
 
-            <div class="relative flex min-h-50 items-center justify-center perspective-distant">
-              {block.nuki && (
-                <img
-                  src={block.nuki.src}
-                  alt={block.nuki.alt}
-                  class:list={[
-                    'pointer-events-none absolute -bottom-4 z-10 w-40 select-none md:w-36 xl:w-50',
-                    isReversed
-                      ? 'right-4 rotate-6 md:-right-8'
-                      : 'left-4 -rotate-6 md:-left-8',
-                  ]}
-                />
-              )}
-              {block.images.map((image, imageIndex) => (
-                <div
-                  class:list={[
-                    'themed-border border-border shadow-shadow bg-primary block w-[75vw] shrink-0 overflow-hidden rounded-md transition duration-200 last:mr-0 hover:brightness-90',
-                    'mr-[-60vw] md:-mr-50 md:w-[320px] xl:-mr-70 xl:w-105',
-                    isReversed
-                      ? 'md:transform-[rotateY(28deg)]'
-                      : 'md:transform-[rotateY(-28deg)]',
-                  ]}
-                  style={{ zIndex: imageIndex + 1 }}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    inferSize
-                    widths={[720, 1080, 1440]}
-                    sizes="(max-width: 768px) 75vw, (max-width: 1024px) 40vw, 420px"
-                    quality={90}
-                    class="block w-full"
-                  />
-                </div>
+          <div class="relative">
+            {block.nuki && (
+              <img
+                src={block.nuki.src}
+                alt={block.nuki.alt}
+                class:list={[
+                  'pointer-events-none absolute z-10 w-24 select-none md:w-36 xl:w-44',
+                  block.nuki.placement,
+                ]}
+              />
+            )}
+            <div class="flex flex-col perspective-distant *:w-[72%] *:odd:-rotate-1 *:odd:rotate-y-12 *:not-first:-mt-10 *:even:rotate-1 *:even:-rotate-y-12 *:even:self-end md:*:w-[55%] md:*:not-first:-mt-20">
+              {block.images.map((image) => (
+                <Box>
+                  <div class="leading-0">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      inferSize
+                      widths={[720, 1080, 1440]}
+                      sizes="(max-width: 768px) 90vw, 420px"
+                      quality={90}
+                      class="block w-full"
+                    />
+                  </div>
+                </Box>
               ))}
             </div>
           </div>
+        </div>
 
-          {blockIndex === 1 && <ThemeShowcase />}
-        </>
-      );
-    })
-  }
+        {blockIndex === 1 && <ThemeShowcase />}
+      </>
+    );
+  })}
 </div>

@@ -1,0 +1,74 @@
+---
+import { DiscordPresenceWidget } from './showcase/DiscordPresenceWidget';
+import { ListeningStatsWidget } from './showcase/ListeningStatsWidget';
+import { LogViewerWidget } from './showcase/LogViewerWidget';
+import MpdTerminalWidget from './showcase/MpdTerminalWidget.astro';
+import { NuclearJamWidget } from './showcase/NuclearJamWidget';
+import { SourcePickerWidget } from './showcase/SourcePickerWidget';
+import ShowcaseItem from './ShowcaseItem.astro';
+---
+
+<section class="flex w-full flex-col items-center">
+  <h2 class="font-heading mb-12 text-center text-2xl font-black tracking-widest uppercase md:text-3xl">
+    Also included
+  </h2>
+  <div class="flex w-full flex-col gap-16 md:gap-20">
+    <div class="flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-12">
+      <ShowcaseItem
+        class="min-w-0 flex-1"
+        tilt="left"
+        heading="Listening stats"
+        description="Nuclear keeps a local history of played tracks. See charts and statistics powered by what you listen to."
+      >
+        <ListeningStatsWidget client:visible />
+      </ShowcaseItem>
+
+      <ShowcaseItem
+        class="w-full max-w-80 self-center lg:mt-20 lg:self-auto"
+        tilt="right"
+        heading="Choose your source"
+        description="Music can be streamed from many different sources. See what Nuclear found and switch to a different one."
+      >
+        <SourcePickerWidget client:visible />
+      </ShowcaseItem>
+    </div>
+
+    <div class="flex flex-col gap-16 lg:flex-row-reverse lg:items-start lg:gap-12">
+      <ShowcaseItem
+        class="min-w-0 flex-1"
+        heading="Log viewer"
+        description="Read logs using the built-in log viewer. Nuclear is the only music player with this function."
+      >
+        <LogViewerWidget client:visible={{ rootMargin: '400px' }} />
+      </ShowcaseItem>
+
+      <ShowcaseItem
+        class="w-full max-w-96 self-center lg:mt-12 lg:self-auto"
+        tilt="left"
+        heading="Nuclear Jam"
+        description="Scan the QR code in Nuclear to control playback from any phone or tablet on your network."
+      >
+        <NuclearJamWidget />
+      </ShowcaseItem>
+    </div>
+
+    <div class="flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-12">
+      <ShowcaseItem
+        class="w-full max-w-xl"
+        heading="MPD server"
+        description="Control Nuclear from ncmpcpp, mpc, or any other MPD client."
+      >
+        <MpdTerminalWidget />
+      </ShowcaseItem>
+
+      <ShowcaseItem
+        class="w-full max-w-85 self-center lg:mt-16 lg:ml-auto lg:self-auto"
+        tilt="right"
+        heading="Discord presence"
+        description="Show what you're listening to on your Discord profile."
+      >
+        <DiscordPresenceWidget />
+      </ShowcaseItem>
+    </div>
+  </div>
+</section>

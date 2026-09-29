@@ -3,6 +3,7 @@ import FAQ from '../components/FAQ.astro';
 import Features from '../components/Features.astro';
 import Hero from '../components/Hero.astro';
 import { McpShowcase } from '../components/McpShowcase';
+import MoreFeatures from '../components/MoreFeatures.astro';
 import Testimonials from '../components/Testimonials.astro';
 import { siteDescription } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -10,7 +11,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = 'Nuclear - Free Open-Source Music Player';
 ---
 
-<BaseLayout title={title} description={siteDescription}>
+<BaseLayout
+  title={title}
+  description={siteDescription}
+  discordEmbed="/discord-embed.json"
+>
   <main
     class="bg-muted relative flex w-full flex-col items-center overflow-x-clip"
   >
@@ -32,6 +37,7 @@ const title = 'Nuclear - Free Open-Source Music Player';
       class="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-16 px-4 py-16 md:px-8"
     >
       <Features />
+      <MoreFeatures />
     </section>
     <McpShowcase client:load />
     <Testimonials />

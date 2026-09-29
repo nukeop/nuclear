@@ -4,8 +4,18 @@ import { FC, useState } from 'react';
 import { Button } from '../Button';
 import { useLogViewerContext } from './context';
 
-export const LogToolbar: FC = () => {
-  const { onClear, onExport, onOpenLogFolder, labels } = useLogViewerContext();
+export type LogToolbarProps = {
+  onClear: () => void;
+  onExport: () => void | Promise<void>;
+  onOpenLogFolder: () => void;
+};
+
+export const LogToolbar: FC<LogToolbarProps> = ({
+  onClear,
+  onExport,
+  onOpenLogFolder,
+}) => {
+  const { labels } = useLogViewerContext();
   const [isExporting, setIsExporting] = useState(false);
 
   const handleExport = async () => {

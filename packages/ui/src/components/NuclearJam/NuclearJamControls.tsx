@@ -25,13 +25,13 @@ export type NuclearJamControlsProps = {
   progress: number;
   elapsedSeconds: number;
   remainingSeconds: number;
-  onPlayPause: () => void;
-  onNext: () => void;
-  onPrevious: () => void;
-  onShuffleToggle: () => void;
-  onRepeatToggle: () => void;
+  onPlayPause?: () => void;
+  onNext?: () => void;
+  onPrevious?: () => void;
+  onShuffleToggle?: () => void;
+  onRepeatToggle?: () => void;
   onDiscoveryToggle?: () => void;
-  onSeek: (percent: number) => void;
+  onSeek?: (percent: number) => void;
   className?: string;
 };
 

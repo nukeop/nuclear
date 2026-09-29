@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+
+import dashboardChesterfield from '../../../docs/.gitbook/assets/dashboard-chesterfield.png';
+import dashboardNebula from '../../../docs/.gitbook/assets/dashboard-nebula.png';
+import dashboardRiso from '../../../docs/.gitbook/assets/dashboard-riso.png';
+import dashboardSeigaiha from '../../../docs/.gitbook/assets/dashboard-seigaiha.png';
+import settingsNebula from '../../../docs/.gitbook/assets/settings-nebula.png';
+
+const tiles = [
+  {
+    screenshot: dashboardNebula,
+    span: 'col-span-2 md:col-span-1 md:row-span-2',
+    sizes: '(max-width: 768px) 100vw, 600px',
+  },
+  {
+    screenshot: settingsNebula,
+    span: '',
+    sizes: '(max-width: 768px) 50vw, 300px',
+  },
+  {
+    screenshot: dashboardRiso,
+    span: '',
+    sizes: '(max-width: 768px) 50vw, 300px',
+  },
+  {
+    screenshot: dashboardSeigaiha,
+    span: '',
+    sizes: '(max-width: 768px) 50vw, 300px',
+  },
+  {
+    screenshot: dashboardChesterfield,
+    span: '',
+    sizes: '(max-width: 768px) 50vw, 300px',
+  },
+];
+---
+
+<div class="mx-auto grid w-full max-w-5xl grid-cols-2 items-start gap-(--gap) [--gap:1rem] md:grid-cols-[calc(50%-var(--gap)/9)_1fr_1fr] md:[--gap:1.5rem]">
+  {tiles.map((tile) => (
+    <div
+      class:list={[
+        'themed-border border-border shadow-shadow bg-primary overflow-hidden rounded-md',
+        tile.span,
+      ]}
+    >
+      <Image
+        src={tile.screenshot}
+        alt=""
+        widths={[480, 720, 1080, 1440]}
+        sizes={tile.sizes}
+        quality={90}
+        class="block w-full"
+      />
+    </div>
+  ))}
+</div>

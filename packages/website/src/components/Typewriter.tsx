@@ -1,25 +1,24 @@
 import { useEffect, useState } from 'react';
 
-import { taglines } from '../data/taglines';
+import { initialTagline, taglines } from '../data/taglines';
 
 const TYPE_SPEED = 70;
 const DELETE_SPEED = 40;
 const PAUSE_AFTER_TYPE = 2000;
 const PAUSE_AFTER_DELETE = 400;
-const INITIAL_TEXT = "that's free and open-source";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const Typewriter = () => {
-  const [text, setText] = useState(INITIAL_TEXT);
+  const [text, setText] = useState(initialTagline);
 
   useEffect(() => {
     let cancelled = false;
 
     const loop = async () => {
       await sleep(PAUSE_AFTER_TYPE);
-      for (let i = INITIAL_TEXT.length; i >= 0 && !cancelled; i--) {
-        setText(INITIAL_TEXT.slice(0, i));
+      for (let i = initialTagline.length; i >= 0 && !cancelled; i--) {
+        setText(initialTagline.slice(0, i));
         await sleep(DELETE_SPEED);
       }
       await sleep(PAUSE_AFTER_DELETE);
@@ -55,9 +54,6 @@ export const Typewriter = () => {
   }, []);
 
   return (
-    <>
-      {text}
-      <span style={{ animation: 'blink 0.8s step-end infinite' }}>|</span>
-    </>
+    <span className="after:animate-blink after:content-['|'/'']">{text}</span>
   );
 };
