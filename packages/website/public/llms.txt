@@ -1,10 +1,55 @@
 # Nuclear
 
-> Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening. Cross-platform (Windows, macOS, Linux), privacy-respecting, and AGPL licensed.
+> Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening. It runs on Windows, macOS, and Linux, and it is licensed under AGPL-3.0.
 
-## Links
+Nuclear is a plugin-driven desktop music player. Plugins supply metadata, streaming, and other functionalities. Nuclear has no ads, no trackers, no telemetry, no premium tier, and no in-app purchases. The project started in 2016 and is developed on GitHub.
 
-- [Home](https://nuclearplayer.com): Website
-- [GitHub Repository](https://github.com/nukeop/nuclear): Source code
+Features:
+
+- Search and browse artists, albums, and tracks across multiple sources. Plugins can add more sources.
+- Build playlists from any source, or import them from other services and JSON files. Save favorite artists, albums, and tracks.
+- Extend Nuclear with the plugin API. Install plugins from the built-in plugin store. Plugins update automatically.
+- Pick a built-in theme, or write a custom JSON theme with wallpapers, gradients, and fonts. Install community themes from the theme store.
+- See which stream Nuclear found for a track and switch to a different one. Stream verification lets users correct streams for everyone.
+- Keep a local listening history and see listening stats.
+- Control playback from any phone or tablet on the same network with Nuclear Jam, by scanning a QR code.
+- Let AI agents control playback, search for music, and manage the queue and playlists through the built-in MCP server.
+- Control Nuclear through the HTTP API, or from MPD clients such as ncmpcpp and mpc.
+- Show the current track on Discord with Rich Presence.
+- Read the app logs in the built-in log viewer.
+
+Installation:
+
+- Windows: download the .exe installer or the .msi package, or run `winget install nukeop.nuclear`.
+- macOS: download the .dmg for Apple Silicon or Intel, or run `brew install --cask nuclearplayer/tap/nuclear`.
+- Linux: download the AppImage, .deb, .rpm, or Flatpak bundle. You can also install from Flathub with `flatpak install flathub com.nuclearplayer.Nuclear`, from Snapcraft with `sudo snap install nuclear`, or from the AUR with `yay -S nuclear-player-bin`.
+- Nuclear has no Android or iOS app.
+
+## Website
+
+- [Download](https://nuclearplayer.com/download/): Installers and package manager commands for every platform
+- [Blog](https://nuclearplayer.com/blog/): Project news and articles about features
+- [RSS feed](https://nuclearplayer.com/rss.xml): All blog posts
+
+## Blog posts
+
+- [Nuclear vs Spotify: why Nuclear could be better for you](https://nuclearplayer.com/blog/nuclear-vs-spotify/): How Nuclear compares to Spotify
+- [Crowdsourcing the right versions of streams](https://nuclearplayer.com/blog/stream-verification/): How stream verification works
+- [Expanding themes in Nuclear](https://nuclearplayer.com/blog/theming-v2/): Surfaces, gradients, wallpapers, and per-bar colors in theming v2
+
+## Documentation
+
+- [Documentation index](https://docs.nuclearplayer.com/llms.txt): All documentation pages as markdown
+- [Getting started](https://docs.nuclearplayer.com/nuclear/user-manual/getting-started.md): Install Nuclear and play your first song
+- [How Nuclear works](https://docs.nuclearplayer.com/nuclear/core-concepts/how-nuclear-works.md): How Nuclear is structured and why it works differently from other music players
+- [Plugins and providers](https://docs.nuclearplayer.com/nuclear/core-concepts/plugins-and-providers.md): What plugins are and what providers they offer
+- [MCP server](https://docs.nuclearplayer.com/nuclear/integrations/mcp-server.md): Let AI agents control Nuclear
+
+## Source and community
+
+- [GitHub repository](https://github.com/nukeop/nuclear): Source code and issues
+- [Latest release](https://github.com/nukeop/nuclear/releases/latest): Release notes and download files
+- [Discussions](https://github.com/nukeop/nuclear/discussions): Questions and ideas
 - [Discord](https://discord.gg/JqPjKxE): Community chat
-- [Documentation](https://docs.nuclearplayer.com): Docs
+- [Mastodon](https://fosstodon.org/@nuclearplayer): Project news
+- [Sponsor](https://github.com/sponsors/nukeop): Support development
