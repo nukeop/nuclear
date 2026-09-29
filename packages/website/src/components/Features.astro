@@ -9,6 +9,7 @@ import playlistDetailView from '../../../docs/.gitbook/assets/playlist-detail-vi
 import playlists from '../../../docs/.gitbook/assets/playlists.png';
 import pluginStore from '../../../docs/.gitbook/assets/plugin-store.png';
 import searchArtists from '../../../docs/.gitbook/assets/search-artists.png';
+import Box from './Box.astro';
 import ThemeShowcase from './ThemeShowcase.astro';
 
 type ScreenshotEntry = {
@@ -19,6 +20,7 @@ type ScreenshotEntry = {
 type Nuki = {
   src: string;
   alt: string;
+  placement: string;
 };
 
 type FeatureBlock = {
@@ -54,12 +56,13 @@ const featureBlocks: FeatureBlock[] = [
     nuki: {
       src: '/images/nuki-studying.png',
       alt: 'Nuki studying at a desk',
+      placement: 'right-0 bottom-0',
     },
   },
   {
     heading: 'Plugins',
     description:
-      'Nuclear can be extended with a powerful plugin API. Auto-update is built in.',
+      'Nuclear can be extended with a powerful plugin API, and has a plugin store. Auto-update is built in.',
     images: [
       { src: pluginStore, alt: 'Plugin store in Nuclear' },
       { src: installedPlugins, alt: 'Installed plugins in Nuclear' },
@@ -68,6 +71,7 @@ const featureBlocks: FeatureBlock[] = [
     nuki: {
       src: '/images/nuki-ready-to-work.png',
       alt: 'Nuki holding a wrench and toolbox',
+      placement: 'left-[8%] bottom-0',
     },
   },
 ];
@@ -81,8 +85,10 @@ const featureBlocks: FeatureBlock[] = [
       <>
         <div
           class:list={[
-            'grid items-center gap-8 md:grid-cols-2 md:gap-12',
-            isReversed && 'md:*:first:order-2',
+            'grid items-center gap-8 md:gap-12',
+            isReversed
+              ? 'md:grid-cols-[3fr_2fr] md:*:first:order-2'
+              : 'md:grid-cols-[2fr_3fr]',
           ]}
         >
           <div class="flex flex-col gap-4">
@@ -94,41 +100,34 @@ const featureBlocks: FeatureBlock[] = [
             </p>
           </div>
 
-          <div class="relative flex min-h-50 items-center justify-center perspective-distant">
+          <div class="relative">
             {block.nuki && (
               <img
                 src={block.nuki.src}
                 alt={block.nuki.alt}
                 class:list={[
-                  'pointer-events-none absolute -bottom-4 z-10 w-40 select-none md:w-36 xl:w-50',
-                  isReversed
-                    ? 'right-4 rotate-6 md:-right-8'
-                    : 'left-4 -rotate-6 md:-left-8',
+                  'pointer-events-none absolute z-10 w-24 select-none md:w-36 xl:w-44',
+                  block.nuki.placement,
                 ]}
               />
             )}
-            {block.images.map((image, imageIndex) => (
-              <div
-                class:list={[
-                  'themed-border border-border shadow-shadow bg-primary block w-[75vw] shrink-0 overflow-hidden rounded-md transition duration-200 last:mr-0 hover:brightness-90',
-                  'mr-[-60vw] md:-mr-50 md:w-[320px] xl:-mr-70 xl:w-105',
-                  isReversed
-                    ? 'md:transform-[rotateY(28deg)]'
-                    : 'md:transform-[rotateY(-28deg)]',
-                ]}
-                style={{ zIndex: imageIndex + 1 }}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  inferSize
-                  widths={[720, 1080, 1440]}
-                  sizes="(max-width: 768px) 75vw, (max-width: 1024px) 40vw, 420px"
-                  quality={90}
-                  class="block w-full"
-                />
-              </div>
-            ))}
+            <div class="flex flex-col perspective-distant *:w-[72%] *:odd:-rotate-1 *:odd:rotate-y-12 *:not-first:-mt-10 *:even:rotate-1 *:even:-rotate-y-12 *:even:self-end md:*:w-[55%] md:*:not-first:-mt-20">
+              {block.images.map((image) => (
+                <Box>
+                  <div class="leading-0">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      inferSize
+                      widths={[720, 1080, 1440]}
+                      sizes="(max-width: 768px) 90vw, 420px"
+                      quality={90}
+                      class="block w-full"
+                    />
+                  </div>
+                </Box>
+              ))}
+            </div>
           </div>
         </div>
 
