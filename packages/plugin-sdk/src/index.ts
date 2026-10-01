@@ -5,6 +5,7 @@ export { EventsAPI } from './api/events';
 export { FavoritesAPI } from './api/favorites';
 export { HttpAPI } from './api/http';
 export { LoggerAPI } from './api/logger';
+export { LyricsAPI } from './api/lyrics';
 export { PlaybackAPI } from './api/playback';
 export { PlaylistsAPI } from './api/playlists';
 export { ShellAPI } from './api/shell';
