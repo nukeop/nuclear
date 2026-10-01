@@ -40,7 +40,7 @@
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.0",
     "@types/culori": "^4.0.0",
-    "@types/react": "^18.3.23",
+    "@types/react": "^19.0.0",
     "@vitejs/plugin-react": "^6.0.0",
     "@vitest/coverage-v8": "^5.0.0",
     "jsdom": "^26.1.0",

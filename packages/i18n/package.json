@@ -28,7 +28,7 @@
     "react-i18next": "^16.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.23",
+    "@types/react": "^19.0.0",
     "@vitejs/plugin-react": "^6.0.0",
     "@vitest/coverage-v8": "^5.0.0",
     "typescript": "^5.9.2",
