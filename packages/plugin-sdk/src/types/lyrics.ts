@@ -28,3 +28,17 @@ export type LyricsProvider = ProviderDescriptor<'lyrics'> & {
     options: LyricsRequestOptions,
   ) => Promise<Lyrics>;
 };
+
+export type AttributedLyrics = {
+  providerId: string;
+  providerName: string;
+  candidate: LyricsCandidate;
+  lyrics: Lyrics;
+};
+
+export type LyricsHost = {
+  getLyricsForTrack: (
+    track: Track,
+    providerId?: string,
+  ) => Promise<AttributedLyrics[]>;
+};
