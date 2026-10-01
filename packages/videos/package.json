@@ -29,8 +29,8 @@
   "devDependencies": {
     "@nuclearplayer/eslint-config": "workspace:*",
     "@svgr/webpack": "^8.1.0",
-    "@types/react": "^18.3.31",
-    "@types/react-dom": "^18.3.7",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   }
