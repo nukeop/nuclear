@@ -34,6 +34,7 @@ export * from './types/favorites';
 export * from './types/playback';
 export * from './types/playlists';
 export * from './types/dashboard';
+export * from './types/lyrics';
 export * from './types/discovery';
 export * from './types/events';
 export * from './types/shell';
