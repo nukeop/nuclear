@@ -1,0 +1,95 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PlainLyrics > (Snapshot) renders ruby, background vocals, and annotations 1`] = `
+<div>
+  <div
+    class="font-heading flex flex-col gap-6 text-3xl leading-tight font-bold tracking-tight font-stretch-semi-condensed"
+  >
+    <div>
+      <div
+        class="py-1"
+      >
+        <p>
+          <ruby>
+            夜
+            <rt
+              class="font-sans font-normal"
+            >
+              よる
+            </rt>
+          </ruby>
+          に
+          <ruby>
+            駆
+            <rt
+              class="font-sans font-normal"
+            >
+              か
+            </rt>
+          </ruby>
+          ける
+          <span
+            class="text-foreground/60 font-semibold italic"
+          >
+             (
+            Lorem ipsum
+            )
+          </span>
+        </p>
+        <p
+          class="text-foreground/60 font-sans text-base font-normal tracking-normal"
+          lang="ja-Latn"
+        >
+          Yoru ni kakeru
+        </p>
+        <p
+          class="text-foreground/60 font-sans text-base font-normal tracking-normal"
+          lang="en"
+        >
+          Racing into the night
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PlainLyrics > (Snapshot) renders sections with and without labels 1`] = `
+<div>
+  <div
+    class="font-heading flex flex-col gap-6 text-3xl leading-tight font-bold tracking-tight font-stretch-semi-condensed"
+  >
+    <div>
+      <div
+        class="text-foreground/60 py-1 text-xs font-bold tracking-widest uppercase"
+      >
+        Verse 1
+      </div>
+      <div
+        class="py-1"
+      >
+        <p>
+          Lorem ipsum dolor sit amet
+        </p>
+      </div>
+      <div
+        class="py-1"
+      >
+        <p>
+          Consectetur 
+          adipiscing
+        </p>
+      </div>
+    </div>
+    <div>
+      <div
+        class="py-1"
+      >
+        <p>
+          Sed do eiusmod tempor
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
