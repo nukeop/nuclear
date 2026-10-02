@@ -20,6 +20,7 @@ Enable Nuclear Jam in Settings, then Integrations. The **API URL** field shows t
 | GET | `/api/playback/volume` | `{ "volume": number }`, from 0 (silent) to 1 (full) |
 | GET | `/api/settings` | `{ "shuffle": boolean, "repeat": string, "discovery": boolean, "language": string, "dark": boolean, "themeId": string }` |
 | GET | `/api/settings/{id}` | The value of a single setting by its fully-qualified ID (e.g. `core.playback.shuffle`) |
+| GET | `/api/lyrics/current` | `AttributedLyrics[]`, the lyrics of the current track from all lyrics providers, ranked by type: word-synced, line-synced, plain, instrumental |
 
 ### Actions
 
@@ -83,4 +84,4 @@ Failed requests return a JSON body with an `error` field:
 { "error": "Playback.toggle failed: no track in queue" }
 ```
 
-The status code is `500` for bridge errors (the command reached Nuclear but failed) and standard HTTP codes for anything else.
+The status code is `500` for bridge errors (the command reached Nuclear but failed) and standard HTTP codes for anything else. `GET /api/lyrics/current` returns `404` when no track is playing.
