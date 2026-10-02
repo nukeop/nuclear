@@ -23,6 +23,7 @@ export * from './LyricsTypeBadge';
 export * from './Mosaic';
 export * from './NuclearJam';
 export * from './Pagination';
+export * from './PlainLyrics';
 export * from './PlayerBar';
 export * from './PlayerShell';
 export * from './PlayerWorkspace';
