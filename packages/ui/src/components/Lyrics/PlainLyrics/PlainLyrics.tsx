@@ -5,7 +5,7 @@ import type {
   PlainLyrics as PlainLyricsModel,
 } from '@nuclearplayer/model';
 
-import { cn } from '../../utils';
+import { cn } from '../../../utils';
 import { PlainLyricsSection } from './PlainLyricsSection';
 
 type PlainLyricsProps = Omit<ComponentProps<'div'>, 'children'> & {
