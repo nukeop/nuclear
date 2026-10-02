@@ -1,6 +1,6 @@
 import { ComponentProps, FC } from 'react';
 
-import { cn } from '../../utils';
+import { cn } from '../../../utils';
 
 type LyricsSectionLabelProps = ComponentProps<'div'>;
 

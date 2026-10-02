@@ -4,7 +4,7 @@ import { ComponentProps, FC } from 'react';
 
 import type { LyricsType } from '@nuclearplayer/model';
 
-import { cn } from '../../utils';
+import { cn } from '../../../utils';
 
 const ICONS: Record<LyricsType, LucideIcon> = {
   wordSynced: WholeWord,
