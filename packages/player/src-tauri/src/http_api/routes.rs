@@ -14,7 +14,7 @@ use futures::Stream;
 use serde_json::{json, Value};
 use tokio::sync::broadcast;
 
-use super::{actions, search, RemoteEvent};
+use super::{actions, lyrics, search, RemoteEvent};
 use crate::bridge::{bridge::Bridge, types::BridgeError};
 
 #[derive(Clone)]
@@ -187,6 +187,7 @@ pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Rout
             post(actions::save_queue_as_playlist),
         )
         .route("/api/search", post(search::search))
+        .route("/api/lyrics/current", get(lyrics::get_current_lyrics))
         .fallback(super::frontend::serve_frontend)
         .with_state(state)
 }
