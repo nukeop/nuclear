@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { LyricsProviderBuilder } from '../test/builders/LyricsProviderBuilder';
 import {
@@ -10,8 +10,13 @@ import {
   WORD_SYNCED_LYRICS,
 } from '../test/fixtures/lyrics';
 import { createTrack } from '../test/fixtures/queue';
+import { reportError } from '../utils/logging';
 import { createLyricsHost } from './lyricsHost';
 import { providersHost } from './providersHost';
+
+vi.mock('../utils/logging', () => ({
+  reportError: vi.fn(),
+}));
 
 const track = createTrack('Test Song');
 
@@ -201,17 +206,266 @@ describe('lyricsHost', () => {
     ]);
   });
 
-  it.todo('keeps registration order for results of the same type');
-  it.todo('leaves out a provider that has no candidates for the track');
-  it.todo('reports and leaves out a provider that returns an error');
-  it.todo(
-    'reports and leaves out a provider that fails to load lyrics for its candidate',
-  );
-  it.todo('throws an error when no lyrics providers are registered');
+  it('keeps registration order for results of the same type', async () => {
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('first-provider')
+        .withName('First Provider')
+        .withCandidates(FIRST_CANDIDATE)
+        .withLyrics(PLAIN_LYRICS)
+        .build(),
+    );
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('second-provider')
+        .withName('Second Provider')
+        .withCandidates(SECOND_CANDIDATE)
+        .withLyrics(PLAIN_LYRICS)
+        .build(),
+    );
+
+    const results = await createLyricsHost().getLyricsForTrack(track);
+
+    const lyrics = {
+      type: 'plain',
+      metadata: {},
+      sections: [{ lines: [{ segments: [{ text: 'Plain line' }] }] }],
+    };
+    expect(results).toEqual([
+      {
+        providerId: 'first-provider',
+        providerName: 'First Provider',
+        candidate: {
+          id: 'candidate-1',
+          title: 'Test Song',
+          artist: 'Test Artist',
+        },
+        lyrics,
+      },
+      {
+        providerId: 'second-provider',
+        providerName: 'Second Provider',
+        candidate: {
+          id: 'candidate-2',
+          title: 'Test Song (Live)',
+          artist: 'Test Artist',
+        },
+        lyrics,
+      },
+    ]);
+  });
+
+  it('leaves out a provider that has no candidates for the track', async () => {
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('empty-provider')
+        .withName('Empty Provider')
+        .withCandidates()
+        .build(),
+    );
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('acme')
+        .withName('Acme Lyrics')
+        .withCandidates(FIRST_CANDIDATE)
+        .withLyrics(PLAIN_LYRICS)
+        .build(),
+    );
+
+    const results = await createLyricsHost().getLyricsForTrack(track);
+
+    expect(results).toEqual([
+      {
+        providerId: 'acme',
+        providerName: 'Acme Lyrics',
+        candidate: {
+          id: 'candidate-1',
+          title: 'Test Song',
+          artist: 'Test Artist',
+        },
+        lyrics: {
+          type: 'plain',
+          metadata: {},
+          sections: [{ lines: [{ segments: [{ text: 'Plain line' }] }] }],
+        },
+      },
+    ]);
+  });
+
+  it('reports and leaves out a provider that returns an error', async () => {
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('failing-provider')
+        .withName('Failing Provider')
+        .withGetCandidatesForTrack(async () => {
+          throw new Error('Candidate search failed');
+        })
+        .build(),
+    );
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('acme')
+        .withName('Acme Lyrics')
+        .withCandidates(FIRST_CANDIDATE)
+        .withLyrics(PLAIN_LYRICS)
+        .build(),
+    );
+
+    const results = await createLyricsHost().getLyricsForTrack(track);
+
+    expect(reportError).toHaveBeenCalledWith('lyrics', {
+      userMessage: 'A lyrics provider failed to load lyrics',
+      error: new Error('Candidate search failed'),
+    });
+    expect(results).toEqual([
+      {
+        providerId: 'acme',
+        providerName: 'Acme Lyrics',
+        candidate: {
+          id: 'candidate-1',
+          title: 'Test Song',
+          artist: 'Test Artist',
+        },
+        lyrics: {
+          type: 'plain',
+          metadata: {},
+          sections: [{ lines: [{ segments: [{ text: 'Plain line' }] }] }],
+        },
+      },
+    ]);
+  });
+  it('reports and leaves out a provider that fails to load lyrics for its candidate', async () => {
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('failing-provider')
+        .withName('Failing Provider')
+        .withCandidates(FIRST_CANDIDATE)
+        .withGetLyricsForCandidate(async () => {
+          throw new Error('Lyrics download failed');
+        })
+        .build(),
+    );
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('acme')
+        .withName('Acme Lyrics')
+        .withCandidates(FIRST_CANDIDATE)
+        .withLyrics(PLAIN_LYRICS)
+        .build(),
+    );
+
+    const results = await createLyricsHost().getLyricsForTrack(track);
+
+    expect(reportError).toHaveBeenCalledWith('lyrics', {
+      userMessage: 'A lyrics provider failed to load lyrics',
+      error: new Error('Lyrics download failed'),
+    });
+    expect(results).toEqual([
+      {
+        providerId: 'acme',
+        providerName: 'Acme Lyrics',
+        candidate: {
+          id: 'candidate-1',
+          title: 'Test Song',
+          artist: 'Test Artist',
+        },
+        lyrics: {
+          type: 'plain',
+          metadata: {},
+          sections: [{ lines: [{ segments: [{ text: 'Plain line' }] }] }],
+        },
+      },
+    ]);
+  });
+
+  it('throws an error when no lyrics providers are registered', async () => {
+    await expect(createLyricsHost().getLyricsForTrack(track)).rejects.toThrow(
+      new Error('No lyrics providers registered'),
+    );
+  });
 
   describe('with a provider id', () => {
-    it.todo('returns only the result of that provider');
-    it.todo('returns an empty list when the provider has no candidates');
-    it.todo('reports the error and throws it when the provider fails');
+    it('returns only the result of that provider', async () => {
+      providersHost.register(
+        new LyricsProviderBuilder()
+          .withId('acme')
+          .withName('Acme Lyrics')
+          .withCandidates(FIRST_CANDIDATE)
+          .withLyrics(PLAIN_LYRICS)
+          .build(),
+      );
+      providersHost.register(
+        new LyricsProviderBuilder()
+          .withId('other-provider')
+          .withName('Other Provider')
+          .withCandidates(SECOND_CANDIDATE)
+          .withLyrics(WORD_SYNCED_LYRICS)
+          .build(),
+      );
+
+      const results = await createLyricsHost().getLyricsForTrack(track, 'acme');
+
+      expect(results).toEqual([
+        {
+          providerId: 'acme',
+          providerName: 'Acme Lyrics',
+          candidate: {
+            id: 'candidate-1',
+            title: 'Test Song',
+            artist: 'Test Artist',
+          },
+          lyrics: {
+            type: 'plain',
+            metadata: {},
+            sections: [{ lines: [{ segments: [{ text: 'Plain line' }] }] }],
+          },
+        },
+      ]);
+    });
+
+    it('returns an empty list when the provider has no candidates', async () => {
+      providersHost.register(
+        new LyricsProviderBuilder()
+          .withId('empty-provider')
+          .withName('Empty Provider')
+          .withCandidates()
+          .build(),
+      );
+      providersHost.register(
+        new LyricsProviderBuilder()
+          .withId('acme')
+          .withName('Acme Lyrics')
+          .withCandidates(FIRST_CANDIDATE)
+          .withLyrics(PLAIN_LYRICS)
+          .build(),
+      );
+
+      const results = await createLyricsHost().getLyricsForTrack(
+        track,
+        'empty-provider',
+      );
+
+      expect(results).toEqual([]);
+    });
+
+    it('reports the error and throws it when the provider fails', async () => {
+      providersHost.register(
+        new LyricsProviderBuilder()
+          .withId('failing-provider')
+          .withName('Failing Provider')
+          .withGetCandidatesForTrack(async () => {
+            throw new Error('Candidate search failed');
+          })
+          .build(),
+      );
+
+      await expect(
+        createLyricsHost().getLyricsForTrack(track, 'failing-provider'),
+      ).rejects.toThrow(new Error('Candidate search failed'));
+      expect(reportError).toHaveBeenCalledWith('lyrics', {
+        userMessage: 'A lyrics provider failed to load lyrics',
+        error: new Error('Candidate search failed'),
+      });
+    });
   });
 });
