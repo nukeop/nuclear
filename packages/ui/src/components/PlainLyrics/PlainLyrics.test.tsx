@@ -80,6 +80,6 @@ describe('PlainLyrics', () => {
         ]}
       />,
     );
-    expect(screen.getByText('Chorus · Ipsum · Lorem')).toBeInTheDocument();
+    expect(screen.getByText('Chorus - Ipsum - Lorem')).toBeInTheDocument();
   });
 });

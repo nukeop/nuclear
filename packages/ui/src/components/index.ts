@@ -45,6 +45,7 @@ export * from './SidebarNavigation';
 export * from './Skeleton';
 export * from './Slider';
 export * from './StreamVerification';
+export * from './SyncedLyricsLine';
 export * from './StatChip';
 export * from './Tabs';
 export * from './Textarea';

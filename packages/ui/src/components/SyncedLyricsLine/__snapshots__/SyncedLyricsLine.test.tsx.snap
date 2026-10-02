@@ -1,0 +1,117 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SyncedLyricsLine > (Snapshot) renders a line halfway through 1`] = `
+<div>
+  <button
+    class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground"
+    type="button"
+  >
+    <span
+      class="block"
+    >
+      <span
+        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-linear"
+        style="background-size: 50%;"
+      >
+        Lorem ipsum dolor sit amet
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`SyncedLyricsLine > (Snapshot) renders a line that has already played 1`] = `
+<div>
+  <button
+    class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground/40"
+    type="button"
+  >
+    <span
+      class="block"
+    >
+      <span
+        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-linear"
+        style="background-size: 0%;"
+      >
+        Lorem ipsum dolor sit amet
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`SyncedLyricsLine > (Snapshot) renders a line that has not played yet 1`] = `
+<div>
+  <button
+    class="text-foreground/60 hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100"
+    type="button"
+  >
+    <span
+      class="block"
+    >
+      <span
+        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-linear"
+        style="background-size: 0%;"
+      >
+        Lorem ipsum dolor sit amet
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`SyncedLyricsLine > (Snapshot) renders ruby, background vocals, and annotations 1`] = `
+<div>
+  <button
+    class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground"
+    type="button"
+  >
+    <span
+      class="block"
+    >
+      <span
+        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-linear"
+        style="background-size: 50%;"
+      >
+        <ruby>
+          夜
+          <rt
+            class="font-sans font-normal"
+          >
+            よる
+          </rt>
+        </ruby>
+        に
+        <ruby>
+          駆
+          <rt
+            class="font-sans font-normal"
+          >
+            か
+          </rt>
+        </ruby>
+        ける
+      </span>
+      <span
+        class="font-semibold italic opacity-60"
+      >
+         (
+        Lorem ipsum
+        )
+      </span>
+    </span>
+    <span
+      class="block font-sans text-base font-normal tracking-normal opacity-60"
+      lang="ja-Latn"
+    >
+      Yoru ni kakeru
+    </span>
+    <span
+      class="block font-sans text-base font-normal tracking-normal opacity-60"
+      lang="en"
+    >
+      Racing into the night
+    </span>
+  </button>
+</div>
+`;
