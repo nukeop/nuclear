@@ -6,6 +6,7 @@ import {
   GaugeIcon,
   HistoryIcon,
   ListMusicIcon,
+  MicVocalIcon,
   MusicIcon,
   SettingsIcon,
   UserIcon,
@@ -105,6 +106,11 @@ const RootComponent = () => {
                   to="/history"
                   icon={<HistoryIcon />}
                   label={t('history')}
+                />
+                <SidebarNavigationItem
+                  to="/lyrics"
+                  icon={<MicVocalIcon />}
+                  label={t('lyrics')}
                 />
                 <SidebarNavigationItem
                   to="/sources"
