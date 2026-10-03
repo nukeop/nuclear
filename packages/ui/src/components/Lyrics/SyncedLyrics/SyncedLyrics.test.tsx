@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { createRef } from 'react';
 
 import { SyncedLyrics } from '.';
 
@@ -11,6 +12,7 @@ describe('SyncedLyrics', () => {
         positionMs={5000}
         onSeek={() => {}}
         labels={LABELS}
+        viewportRef={createRef()}
         lyrics={{
           type: 'lineSynced',
           metadata: {},
@@ -53,6 +55,7 @@ describe('SyncedLyrics', () => {
         positionMs={750}
         onSeek={() => {}}
         labels={LABELS}
+        viewportRef={createRef()}
         lyrics={{
           type: 'wordSynced',
           metadata: {},

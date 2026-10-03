@@ -1,25 +1,38 @@
 import isEmpty from 'lodash-es/isEmpty';
 import isNil from 'lodash-es/isNil';
 import map from 'lodash-es/map';
-import { FC } from 'react';
+import { FC, RefObject } from 'react';
 
+import type { QueueItem } from '@nuclearplayer/model';
+import type {
+  AttributedLyrics,
+  ProviderDescriptor,
+} from '@nuclearplayer/plugin-sdk';
 import { LyricsSkeleton, PlainLyrics } from '@nuclearplayer/ui';
 
-import { useCurrentQueueItem } from '../../../hooks/useCurrentQueueItem';
-import { useProviders } from '../../../hooks/useProviders';
-import { useLyrics } from '../hooks/useLyrics';
 import { ConnectedSyncedLyrics } from './ConnectedSyncedLyrics';
 import { InstrumentalEmptyState } from './InstrumentalEmptyState';
 import { NoLyricsEmptyState } from './NoLyricsEmptyState';
 import { NoLyricsPluginsEmptyState } from './NoLyricsPluginsEmptyState';
 import { NothingPlayingEmptyState } from './NothingPlayingEmptyState';
 
-export const LyricsContent: FC = () => {
-  const currentItem = useCurrentQueueItem();
-  const providers = useProviders('lyrics');
-  const { data: results = [], isLoading } = useLyrics(currentItem, providers);
-  const [topResult] = results;
+type LyricsContentProps = {
+  currentItem: QueueItem | undefined;
+  providers: ProviderDescriptor<'lyrics'>[];
+  isLoading: boolean;
+  topResult: AttributedLyrics | undefined;
+  offsetMs: number;
+  viewportRef: RefObject<HTMLDivElement>;
+};
 
+export const LyricsContent: FC<LyricsContentProps> = ({
+  currentItem,
+  providers,
+  isLoading,
+  topResult,
+  offsetMs,
+  viewportRef,
+}) => {
   if (isNil(currentItem)) {
     return <NothingPlayingEmptyState />;
   }
@@ -44,5 +57,11 @@ export const LyricsContent: FC = () => {
       />
     );
   }
-  return <ConnectedSyncedLyrics lyrics={topResult.lyrics} />;
+  return (
+    <ConnectedSyncedLyrics
+      lyrics={topResult.lyrics}
+      offsetMs={offsetMs}
+      viewportRef={viewportRef}
+    />
+  );
 };

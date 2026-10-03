@@ -26,7 +26,7 @@ export const CurrentLinePill: FC<CurrentLinePillProps> = ({
   );
 
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center font-sans tracking-normal font-stretch-normal">
+    <div className="pointer-events-none sticky bottom-4 flex shrink-0 justify-center font-sans tracking-normal font-stretch-normal">
       <Button
         size="sm"
         onClick={onClick}

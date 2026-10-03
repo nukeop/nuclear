@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
+import { ComponentProps, FC, useRef } from 'react';
 
 import type { LineSyncedLyrics, WordSyncedLyrics } from '@nuclearplayer/model';
-import { SyncedLyrics } from '@nuclearplayer/ui';
+import { ScrollableArea, SyncedLyrics } from '@nuclearplayer/ui';
 
 import { useSimulatedPlayback } from './hooks/useSimulatedPlayback';
 
@@ -179,19 +180,40 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+type ScrollingSyncedLyricsProps = ComponentProps<typeof SyncedLyrics> & {
+  durationMs: number;
+};
+
+const ScrollingSyncedLyrics: FC<ScrollingSyncedLyricsProps> = ({
+  durationMs,
+  ...props
+}) => {
+  const positionMs = useSimulatedPlayback(durationMs);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+
+  return (
+    <ScrollableArea
+      viewportRef={viewportRef}
+      viewportClassName="scroll-smooth mask-y-from-95%"
+    >
+      <SyncedLyrics
+        {...props}
+        positionMs={positionMs}
+        viewportRef={viewportRef}
+      />
+    </ScrollableArea>
+  );
+};
+
 export const LineSynced: Story = {
   args: {
     lyrics: LINE_SYNCED_LYRICS,
     positionMs: 0,
     onSeek: () => {},
     labels: LABELS,
+    viewportRef: { current: null },
   },
-  render: (args) => {
-    const positionMs = useSimulatedPlayback(39000);
-    return (
-      <SyncedLyrics {...args} positionMs={positionMs} className="h-full" />
-    );
-  },
+  render: (args) => <ScrollingSyncedLyrics {...args} durationMs={39000} />,
 };
 
 export const WordSynced: Story = {
@@ -200,11 +222,7 @@ export const WordSynced: Story = {
     positionMs: 0,
     onSeek: () => {},
     labels: LABELS,
+    viewportRef: { current: null },
   },
-  render: (args) => {
-    const positionMs = useSimulatedPlayback(16500);
-    return (
-      <SyncedLyrics {...args} positionMs={positionMs} className="h-full" />
-    );
-  },
+  render: (args) => <ScrollingSyncedLyrics {...args} durationMs={16500} />,
 };
