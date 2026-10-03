@@ -1,0 +1,1 @@
+export { LyricsSkeleton } from './LyricsSkeleton';
