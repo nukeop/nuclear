@@ -1,0 +1,1 @@
+export { Lyrics } from './Lyrics';

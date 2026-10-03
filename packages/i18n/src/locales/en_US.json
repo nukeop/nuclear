@@ -34,6 +34,7 @@
     "favoriteArtists": "Favorite artists",
     "playlists": "Playlists",
     "history": "History",
+    "lyrics": "Lyrics",
     "sources": "Sources"
   },
   "history": {
@@ -564,6 +565,10 @@
     "repeatOne": "Repeat: one",
     "discoveryOn": "Discovery: on",
     "discoveryOff": "Discovery: off"
+  },
+  "lyrics": {
+    "nothingPlaying": "Nothing is playing",
+    "nothingPlayingDescription": "Play a track to see its lyrics here."
   },
   "logs": {
     "title": "Logs",

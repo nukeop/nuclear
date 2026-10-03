@@ -8,6 +8,7 @@ type SelectOptionClasses = { root?: string; selectedCheckmark?: string };
 type SelectOptionProps = {
   id: string;
   label: string;
+  icon?: ReactNode;
   as?: React.ElementType;
   children?: ReactNode;
   classes?: SelectOptionClasses;
@@ -16,6 +17,7 @@ type SelectOptionProps = {
 export const SelectOption: FC<SelectOptionProps> = ({
   id,
   label,
+  icon,
   as = 'li',
   children,
   classes,
@@ -25,14 +27,19 @@ export const SelectOption: FC<SelectOptionProps> = ({
       {({ focus, selected }) => (
         <div
           className={cn(
-            'text-popover-foreground cursor-pointer p-1',
+            'cursor-pointer p-1',
             focus && 'outline-border outline-2',
             classes?.root,
           )}
           onMouseDown={(e) => e.preventDefault()}
         >
           <span className="relative inline-flex w-full flex-row items-center justify-between">
-            {children ?? label}
+            {children ?? (
+              <span className="flex items-center gap-2">
+                {icon}
+                {label}
+              </span>
+            )}
             {selected && (
               <span
                 className={cn('flex items-center', classes?.selectedCheckmark)}

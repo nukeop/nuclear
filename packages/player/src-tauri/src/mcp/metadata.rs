@@ -108,9 +108,16 @@ pub fn list_methods(domain: &str) -> Result<Value, String> {
                 "get"
             ]
         }),
+        "Lyrics" => json!({
+            "domain": "Lyrics",
+            "description": "Fetch lyrics for tracks from lyrics providers.",
+            "methods": [
+                "getLyricsForTrack"
+            ]
+        }),
         _ => {
             return Err(format!(
-                "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers."
+                "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics."
             ))
         }
     };
@@ -603,6 +610,17 @@ pub fn method_details(domain: &str, method: &str) -> Result<Value, String> {
             "returns": "AttributedResult<AlbumRef>[]"
         }),
 
+        ("Lyrics", "getLyricsForTrack") => json!({
+            "domain": "Lyrics",
+            "method": "getLyricsForTrack",
+            "description": "Fetch lyrics for a track. Without a provider ID, asks all lyrics providers and returns the results ranked by type: word-synced, line-synced, plain, instrumental. With a provider ID, asks only that provider.",
+            "params": [
+                { "name": "track", "type": "Track" },
+                { "name": "providerId", "type": "string?" }
+            ],
+            "returns": "AttributedLyrics[]"
+        }),
+
         ("Providers", "list") => json!({
             "domain": "Providers",
             "method": "list",
@@ -993,9 +1011,98 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
                 "error": { "type": "string", "optional": true }
             }
         }),
+        "AttributedLyrics" => json!({
+            "type": "AttributedLyrics",
+            "description": "Lyrics from a specific lyrics provider, with the candidate they belong to.",
+            "fields": {
+                "providerId": { "type": "string" },
+                "providerName": { "type": "string" },
+                "candidate": { "type": "LyricsCandidate" },
+                "lyrics": { "type": "Lyrics" }
+            }
+        }),
+        "LyricsCandidate" => json!({
+            "type": "LyricsCandidate",
+            "description": "A lyrics entry at a lyrics provider that matches a track or a query.",
+            "fields": {
+                "id": { "type": "string", "description": "Opaque ID, only meaningful to the provider that returned it" },
+                "title": { "type": "string" },
+                "artist": { "type": "string" },
+                "album": { "type": "string", "optional": true },
+                "durationMs": { "type": "number", "optional": true }
+            }
+        }),
+        "Lyrics" => json!({
+            "type": "Lyrics",
+            "description": "Lyrics of a track. The type field selects the shape: plain lyrics have no timing, lineSynced lines have startMs and endMs, wordSynced lines and segments have startMs and endMs, and instrumental has no sections.",
+            "fields": {
+                "type": { "type": "\"plain\" | \"lineSynced\" | \"wordSynced\" | \"instrumental\"" },
+                "metadata": { "type": "LyricsMetadata" },
+                "sections": { "type": "LyricsSection[]", "optional": true, "description": "Absent when type is instrumental" }
+            }
+        }),
+        "LyricsMetadata" => json!({
+            "type": "LyricsMetadata",
+            "description": "Information about the lyrics as a whole.",
+            "fields": {
+                "language": { "type": "string", "optional": true, "description": "BCP 47 language code" },
+                "credits": { "type": "ArtistCredit[]", "optional": true, "description": "Writers and other credited people, with roles such as lyricist or composer" },
+                "copyright": { "type": "string", "optional": true },
+                "sourceUrl": { "type": "string", "optional": true, "description": "Link to the lyrics page at the source" },
+                "vocalists": { "type": "LyricsVocalist[]", "optional": true }
+            }
+        }),
+        "LyricsVocalist" => json!({
+            "type": "LyricsVocalist",
+            "description": "A person or group who sings lines of the lyrics.",
+            "fields": {
+                "id": { "type": "string", "description": "Referenced by LyricsLine.vocalistIds" },
+                "name": { "type": "string", "optional": true },
+                "type": { "type": "\"person\" | \"group\"" }
+            }
+        }),
+        "LyricsSection" => json!({
+            "type": "LyricsSection",
+            "description": "A group of lines, such as a verse or a chorus.",
+            "fields": {
+                "label": { "type": "string", "optional": true, "description": "Section header as given by the provider, e.g. \"Verse 2\"" },
+                "lines": { "type": "LyricsLine[]" }
+            }
+        }),
+        "LyricsLine" => json!({
+            "type": "LyricsLine",
+            "description": "One line of lyrics.",
+            "fields": {
+                "segments": { "type": "LyricsSegment[]", "description": "The text of the line. In wordSynced lyrics, each segment is a timed word, syllable, or character" },
+                "background": { "type": "LyricsSegment[]", "optional": true, "description": "Background vocals" },
+                "vocalistIds": { "type": "string[]", "optional": true },
+                "annotations": { "type": "LineAnnotation[]", "optional": true },
+                "startMs": { "type": "number", "optional": true, "description": "Present in lineSynced and wordSynced lyrics" },
+                "endMs": { "type": "number", "optional": true, "description": "Present in lineSynced and wordSynced lyrics" }
+            }
+        }),
+        "LyricsSegment" => json!({
+            "type": "LyricsSegment",
+            "description": "A run of text in a line.",
+            "fields": {
+                "text": { "type": "string" },
+                "ruby": { "type": "string", "optional": true, "description": "Reading shown above the whole text, e.g. furigana" },
+                "startMs": { "type": "number", "optional": true, "description": "Present in wordSynced lyrics" },
+                "endMs": { "type": "number", "optional": true, "description": "Present in wordSynced lyrics" }
+            }
+        }),
+        "LineAnnotation" => json!({
+            "type": "LineAnnotation",
+            "description": "A translation or romanization of a whole line.",
+            "fields": {
+                "type": { "type": "\"translation\" | \"romanization\"" },
+                "language": { "type": "string", "description": "BCP 47 language code" },
+                "text": { "type": "string" }
+            }
+        }),
         _ => {
             return Err(format!(
-                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate."
+                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, LyricsCandidate, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation."
             ))
         }
     };

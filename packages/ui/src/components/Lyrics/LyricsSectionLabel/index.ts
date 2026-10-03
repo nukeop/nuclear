@@ -1,0 +1,1 @@
+export { LyricsSectionLabel } from './LyricsSectionLabel';

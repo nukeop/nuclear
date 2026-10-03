@@ -18,6 +18,9 @@ export const PluginsWrapper = {
 
     return component;
   },
+  get selectedTab() {
+    return screen.getByRole('tab', { selected: true }).textContent;
+  },
   async goToStoreTab(): Promise<void> {
     await userEvent.click(screen.getByRole('tab', { name: 'Store' }));
   },
