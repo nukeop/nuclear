@@ -9,6 +9,7 @@ export const LyricsSectionLabel: FC<LyricsSectionLabelProps> = ({
   ...props
 }) => (
   <div
+    data-testid="lyrics-section-label"
     className={cn(
       'text-foreground/60 py-1 text-xs font-bold tracking-widest uppercase',
       className,

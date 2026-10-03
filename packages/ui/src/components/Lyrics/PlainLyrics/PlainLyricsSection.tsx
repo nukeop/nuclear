@@ -37,7 +37,7 @@ export const PlainLyricsSection: FC<PlainLyricsSectionProps> = ({
   ]).join(' - ');
 
   return (
-    <div>
+    <div data-testid="lyrics-section">
       {header && <LyricsSectionLabel>{header}</LyricsSectionLabel>}
       {section.lines.map((line, index) => (
         <PlainLyricsLine key={index} line={line} />

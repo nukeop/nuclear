@@ -1,3 +1,4 @@
+import { QueryClient } from '@tanstack/react-query';
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -68,7 +69,12 @@ export const LyricsWrapper = {
   async mount(): Promise<RenderResult> {
     const history = createMemoryHistory({ initialEntries: ['/lyrics'] });
     const router = createRouter({ routeTree, history });
-    const component = render(<App routerProp={router} />);
+    const queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+    const component = render(
+      <App routerProp={router} queryClientProp={queryClient} />,
+    );
     await screen.findByTestId('lyrics-view');
     return component;
   },
