@@ -568,7 +568,10 @@
   },
   "lyrics": {
     "nothingPlaying": "Nothing is playing",
-    "nothingPlayingDescription": "Play a track to see its lyrics here."
+    "nothingPlayingDescription": "Play a track to see its lyrics here.",
+    "noPlugins": "No lyrics plugins installed",
+    "noPluginsDescription": "Install a lyrics plugin to see lyrics for your music.",
+    "browsePlugins": "Browse lyrics plugins"
   },
   "logs": {
     "title": "Logs",

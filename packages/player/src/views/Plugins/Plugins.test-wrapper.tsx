@@ -2,9 +2,11 @@ import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
+import { useSettingsModalStore } from '../../stores/settingsModalStore';
 
 export const PluginsWrapper = {
   async mount(): Promise<RenderResult> {
+    useSettingsModalStore.setState({ pluginsTab: 'installed' });
     const component = render(<App />);
     await userEvent.click(
       await component.findByRole('button', { name: 'Preferences' }),

@@ -76,6 +76,9 @@ describe('Lyrics view', () => {
       expect(LyricsWrapper.emptyState.title).toBe(
         'No lyrics plugins installed',
       );
+      expect(LyricsWrapper.emptyState.description).toBe(
+        'Install a lyrics plugin to see lyrics for your music.',
+      );
 
       await LyricsWrapper.emptyState.action.click();
 
