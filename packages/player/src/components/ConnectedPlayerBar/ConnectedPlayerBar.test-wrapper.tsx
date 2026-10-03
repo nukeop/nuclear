@@ -177,6 +177,14 @@ export const ConnectedPlayerBarWrapper = {
   },
 
   controls: {
+    nextButton: {
+      get element() {
+        return screen.getByTestId('player-next-button');
+      },
+      async click() {
+        await user.click(this.element);
+      },
+    },
     shuffleButton: {
       get element() {
         return screen.getByTestId('player-shuffle-button');
