@@ -42,6 +42,7 @@ export * from './Select';
 export * from './SidebarNavigation';
 export * from './Skeleton';
 export * from './Slider';
+export * from './Stepper';
 export * from './StreamVerification';
 export * from './StatChip';
 export * from './Tabs';
