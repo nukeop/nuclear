@@ -1,4 +1,5 @@
-import { CellContext } from '@tanstack/react-table';
+import type { CellContext } from '@tanstack/react-table';
+import type { LegacyFeatures } from '@tanstack/react-table/legacy';
 
 import { Track } from '@nuclearplayer/model';
 
@@ -13,7 +14,7 @@ type FavoriteCellMeta = {
 export const FavoriteCell = <T extends Track>({
   row,
   table,
-}: CellContext<T, unknown>) => {
+}: CellContext<LegacyFeatures, T, unknown>) => {
   const meta = table.options.meta as FavoriteCellMeta;
   const { labels } = useTrackTableContext<T>();
   const track = row.original;

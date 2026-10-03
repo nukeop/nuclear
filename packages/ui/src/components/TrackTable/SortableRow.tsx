@@ -1,13 +1,14 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { flexRender, Row } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
+import type { LegacyRow } from '@tanstack/react-table/legacy';
 
 import { Track } from '@nuclearplayer/model';
 
 import { cn } from '../../utils';
 
 type SortableRowProps<T extends Track = Track> = {
-  row: Row<T>;
+  row: LegacyRow<T>;
   itemId: string;
   isReorderable?: boolean;
   style?: React.CSSProperties;
@@ -61,7 +62,7 @@ export function SortableRow<T extends Track = Track>({
 }
 
 type CellProps<T extends Track> = {
-  cell: ReturnType<Row<T>['getVisibleCells']>[number];
+  cell: ReturnType<LegacyRow<T>['getVisibleCells']>[number];
 };
 
 const Cell = <T extends Track>({ cell }: CellProps<T>) => {
