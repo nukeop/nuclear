@@ -4,6 +4,8 @@ import { createQueueItem } from '../../test/fixtures/queue';
 import { PluginsWrapper } from '../Plugins/Plugins.test-wrapper';
 import { LyricsWrapper } from './Lyrics.test-wrapper';
 
+window.scrollTo = vi.fn();
+
 describe('Lyrics view', () => {
   beforeEach(() => {
     LyricsWrapper.reset();
