@@ -8,6 +8,7 @@ import { LyricsSkeleton, PlainLyrics } from '@nuclearplayer/ui';
 import { useCurrentQueueItem } from '../../../hooks/useCurrentQueueItem';
 import { useProviders } from '../../../hooks/useProviders';
 import { useLyrics } from '../hooks/useLyrics';
+import { ConnectedSyncedLyrics } from './ConnectedSyncedLyrics';
 import { InstrumentalEmptyState } from './InstrumentalEmptyState';
 import { NoLyricsEmptyState } from './NoLyricsEmptyState';
 import { NoLyricsPluginsEmptyState } from './NoLyricsPluginsEmptyState';
@@ -39,8 +40,9 @@ export const LyricsContent: FC = () => {
       <PlainLyrics
         data-testid="lyrics-content"
         sections={topResult.lyrics.sections}
+        vocalists={topResult.lyrics.metadata.vocalists}
       />
     );
   }
-  return null;
+  return <ConnectedSyncedLyrics lyrics={topResult.lyrics} />;
 };

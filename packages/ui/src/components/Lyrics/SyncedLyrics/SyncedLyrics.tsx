@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ComponentProps, FC } from 'react';
 
 import type { LineSyncedLyrics, WordSyncedLyrics } from '@nuclearplayer/model';
 
@@ -12,12 +12,11 @@ type SyncedLyricsLabels = {
   currentLine: string;
 };
 
-type SyncedLyricsProps = {
+type SyncedLyricsProps = Omit<ComponentProps<'div'>, 'children'> & {
   lyrics: LineSyncedLyrics | WordSyncedLyrics;
   positionMs: number;
   onSeek: (positionMs: number) => void;
   labels: SyncedLyricsLabels;
-  className?: string;
 };
 
 export const SyncedLyrics: FC<SyncedLyricsProps> = ({
@@ -26,6 +25,7 @@ export const SyncedLyrics: FC<SyncedLyricsProps> = ({
   onSeek,
   labels,
   className,
+  ...props
 }) => {
   const {
     viewportRef,
@@ -44,11 +44,13 @@ export const SyncedLyrics: FC<SyncedLyricsProps> = ({
         'font-heading relative min-h-0 text-3xl leading-tight font-bold tracking-tight font-stretch-semi-condensed',
         className,
       )}
+      {...props}
     >
       <ScrollableArea
         viewportRef={viewportRef}
-        viewportClassName="relative scroll-smooth mask-y-from-90% pt-8 pb-64"
+        viewportClassName="relative scroll-smooth mask-y-from-90%"
       >
+        <div className="h-2/10 shrink-0" />
         <SyncedLyricsLines
           lyrics={lyrics}
           positionMs={positionMs}
@@ -56,6 +58,7 @@ export const SyncedLyrics: FC<SyncedLyricsProps> = ({
           activeLineRef={activeLineRef}
           onLineClick={seekToLine}
         />
+        <div className="h-8/10 shrink-0" />
       </ScrollableArea>
       {!isFollowing && (
         <CurrentLinePill

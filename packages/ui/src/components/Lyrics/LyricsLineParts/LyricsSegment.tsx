@@ -10,9 +10,11 @@ export const LyricsSegment: FC<{ segment: LyricsSegmentModel }> = ({
   }
 
   return (
-    <ruby>
-      {segment.text}
-      <rt className="font-sans font-normal">{segment.ruby}</rt>
+    <ruby data-testid="lyrics-ruby">
+      <span data-testid="lyrics-ruby-text">{segment.text}</span>
+      <rt data-testid="lyrics-ruby-reading" className="font-sans font-normal">
+        {segment.ruby}
+      </rt>
     </ruby>
   );
 };

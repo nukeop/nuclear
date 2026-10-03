@@ -14,11 +14,17 @@ type HighlightedWordProps = {
 export const HighlightedWord: FC<HighlightedWordProps> = ({
   segment,
   positionMs,
-}) => (
-  <LyricsHighlighter
-    progress={getTimingState(segment, positionMs).progress}
-    className="duration-100"
-  >
-    <LyricsSegment segment={segment} />
-  </LyricsHighlighter>
-);
+}) => {
+  const { hasStarted, progress } = getTimingState(segment, positionMs);
+
+  return (
+    <LyricsHighlighter
+      data-testid="lyrics-word"
+      data-active={hasStarted}
+      progress={progress}
+      className="duration-100"
+    >
+      <LyricsSegment segment={segment} />
+    </LyricsHighlighter>
+  );
+};

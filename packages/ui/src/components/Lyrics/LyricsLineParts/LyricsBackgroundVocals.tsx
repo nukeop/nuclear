@@ -7,7 +7,10 @@ import { LyricsSegments } from './LyricsSegments';
 export const LyricsBackgroundVocals: FC<{ segments: LyricsSegment[] }> = ({
   segments,
 }) => (
-  <span className="font-semibold italic opacity-60">
+  <span
+    data-testid="lyrics-background-vocals"
+    className="font-semibold italic opacity-60"
+  >
     {' ('}
     <LyricsSegments segments={segments} />
     {')'}

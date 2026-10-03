@@ -8,6 +8,8 @@ export const LyricsAnnotations: FC<{ annotations: LineAnnotation[] }> = ({
   annotations.map((annotation, index) => (
     <span
       key={index}
+      data-testid="lyrics-annotation"
+      data-type={annotation.type}
       lang={annotation.language}
       className="block font-sans text-base font-normal tracking-normal opacity-60"
     >

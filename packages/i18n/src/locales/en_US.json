@@ -575,7 +575,11 @@
     "noLyrics": "No lyrics for this track",
     "noLyricsDescription": "{{providers, list}} returned no results.",
     "instrumental": "Instrumental",
-    "instrumentalDescription": "This track has no lyrics."
+    "instrumentalDescription": "This track has no lyrics.",
+    "currentLine": "Current line",
+    "showEarlier": "Show lyrics earlier",
+    "showLater": "Show lyrics later",
+    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} s"
   },
   "logs": {
     "title": "Logs",

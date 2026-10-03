@@ -1,17 +1,15 @@
-import { FC, ReactNode } from 'react';
+import { ComponentProps, FC } from 'react';
 
 import { cn } from '../../../utils';
 
-type LyricsHighlighterProps = {
+type LyricsHighlighterProps = ComponentProps<'span'> & {
   progress: number;
-  className?: string;
-  children: ReactNode;
 };
 
 export const LyricsHighlighter: FC<LyricsHighlighterProps> = ({
   progress,
   className,
-  children,
+  ...props
 }) => (
   <span
     className={cn(
@@ -19,7 +17,6 @@ export const LyricsHighlighter: FC<LyricsHighlighterProps> = ({
       className,
     )}
     style={{ backgroundSize: `${progress * 100}%` }}
-  >
-    {children}
-  </span>
+    {...props}
+  />
 );

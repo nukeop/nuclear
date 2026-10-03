@@ -27,6 +27,8 @@ export const SyncedLyricsLineShell = forwardRef<
     <button
       ref={ref}
       type="button"
+      data-testid="lyrics-line"
+      data-active={isActive}
       className={cn(
         'text-foreground/60 hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100',
         isPast && 'text-foreground/40',
