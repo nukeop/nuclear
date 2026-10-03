@@ -1,30 +1,27 @@
-import { HeaderContext } from '@tanstack/react-table';
+import type { HeaderContext } from '@tanstack/react-table';
+import type { LegacyFeatures } from '@tanstack/react-table/legacy';
 import { LucideProps, SortAsc, SortDesc } from 'lucide-react';
 import { FC, useCallback } from 'react';
 
-import { Artwork, Track } from '@nuclearplayer/model';
+import { Track } from '@nuclearplayer/model';
 
 import { cn } from '../../../utils';
-
-type HeaderValue = string | number | Artwork;
 
 export function IconHeader<T extends Track>({
   Icon,
   context,
 }: {
   Icon: FC<LucideProps>;
-  context: HeaderContext<T, HeaderValue>;
+  context: HeaderContext<LegacyFeatures, T>;
 }) {
-  const { getCanSort, getIsSorted, toggleSorting } = context.column;
-
-  const isSorted = getIsSorted();
-  const canSort = getCanSort();
+  const isSorted = context.column.getIsSorted();
+  const canSort = context.column.getCanSort();
 
   const onClick = useCallback(() => {
     if (canSort) {
-      toggleSorting();
+      context.column.toggleSorting();
     }
-  }, []);
+  }, [canSort, context.column]);
 
   return (
     <th
