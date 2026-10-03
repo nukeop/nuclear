@@ -571,7 +571,11 @@
     "nothingPlayingDescription": "Play a track to see its lyrics here.",
     "noPlugins": "No lyrics plugins installed",
     "noPluginsDescription": "Install a lyrics plugin to see lyrics for your music.",
-    "browsePlugins": "Browse lyrics plugins"
+    "browsePlugins": "Browse lyrics plugins",
+    "noLyrics": "No lyrics for this track",
+    "noLyricsDescription": "{{providers, list}} returned no results.",
+    "instrumental": "Instrumental",
+    "instrumentalDescription": "This track has no lyrics."
   },
   "logs": {
     "title": "Logs",

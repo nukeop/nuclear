@@ -118,6 +118,9 @@ describe('Lyrics view', () => {
 
       expect(await LyricsWrapper.emptyState.find()).toBeInTheDocument();
       expect(LyricsWrapper.emptyState.title).toBe('Instrumental');
+      expect(LyricsWrapper.emptyState.description).toBe(
+        'This track has no lyrics.',
+      );
     });
   });
 
