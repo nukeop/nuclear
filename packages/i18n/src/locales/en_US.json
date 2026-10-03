@@ -567,7 +567,8 @@
     "discoveryOff": "Discovery: off"
   },
   "lyrics": {
-    "nothingPlaying": "Nothing is playing"
+    "nothingPlaying": "Nothing is playing",
+    "nothingPlayingDescription": "Play a track to see its lyrics here."
   },
   "logs": {
     "title": "Logs",

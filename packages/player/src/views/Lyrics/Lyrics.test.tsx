@@ -49,6 +49,9 @@ describe('Lyrics view', () => {
 
       expect(await LyricsWrapper.emptyState.find()).toBeInTheDocument();
       expect(LyricsWrapper.emptyState.title).toBe('Nothing is playing');
+      expect(LyricsWrapper.emptyState.description).toBe(
+        'Play a track to see its lyrics here.',
+      );
     });
 
     it('shows a loading state while providers are fetching lyrics', async () => {

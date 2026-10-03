@@ -21,6 +21,7 @@ export const Lyrics: FC = () => {
           data-testid="lyrics-empty-state"
           icon={<MicVocalIcon size={48} />}
           title={t('nothingPlaying')}
+          description={t('nothingPlayingDescription')}
           className="flex-1"
         />
       )}
