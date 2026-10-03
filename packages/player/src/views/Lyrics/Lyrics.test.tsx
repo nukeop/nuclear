@@ -343,6 +343,350 @@ describe('Lyrics view', () => {
     });
   });
 
+  describe('furigana', () => {
+    beforeEach(() => {
+      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+    });
+
+    it('shows furigana in plain lyrics', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'plain',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    segments: [
+                      { text: '夜', ruby: 'よる' },
+                      { text: 'に' },
+                      { text: '駆', ruby: 'か' },
+                      { text: 'ける' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.furigana).toEqual([
+        { text: '夜', reading: 'よる' },
+        { text: '駆', reading: 'か' },
+      ]);
+    });
+
+    it('shows furigana in line synced lyrics', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'lineSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 0,
+                    endMs: 4000,
+                    segments: [
+                      { text: '夜', ruby: 'よる' },
+                      { text: 'に' },
+                      { text: '駆', ruby: 'か' },
+                      { text: 'ける' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.furigana).toEqual([
+        { text: '夜', reading: 'よる' },
+        { text: '駆', reading: 'か' },
+      ]);
+    });
+
+    it('shows furigana in word synced lyrics', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'wordSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 0,
+                    endMs: 4000,
+                    segments: [
+                      { text: '夜', ruby: 'よる', startMs: 0, endMs: 1000 },
+                      { text: 'に', startMs: 1000, endMs: 2000 },
+                      { text: '駆', ruby: 'か', startMs: 2000, endMs: 3000 },
+                      { text: 'ける', startMs: 3000, endMs: 4000 },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.furigana).toEqual([
+        { text: '夜', reading: 'よる' },
+        { text: '駆', reading: 'か' },
+      ]);
+    });
+  });
+
+  describe('annotations', () => {
+    beforeEach(() => {
+      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+    });
+
+    it('shows translations and romanizations in plain lyrics', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'plain',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    segments: [{ text: '夜に駆ける' }],
+                    annotations: [
+                      {
+                        type: 'romanization',
+                        language: 'ja-Latn',
+                        text: 'Yoru ni kakeru',
+                      },
+                      {
+                        type: 'translation',
+                        language: 'en',
+                        text: 'Racing into the night',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.annotations).toEqual([
+        {
+          type: 'romanization',
+          language: 'ja-Latn',
+          text: 'Yoru ni kakeru',
+        },
+        { type: 'translation', language: 'en', text: 'Racing into the night' },
+      ]);
+    });
+
+    it('shows translations and romanizations in synced lyrics', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'lineSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 0,
+                    endMs: 4000,
+                    segments: [{ text: '夜に駆ける' }],
+                    annotations: [
+                      {
+                        type: 'romanization',
+                        language: 'ja-Latn',
+                        text: 'Yoru ni kakeru',
+                      },
+                      {
+                        type: 'translation',
+                        language: 'en',
+                        text: 'Racing into the night',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.annotations).toEqual([
+        {
+          type: 'romanization',
+          language: 'ja-Latn',
+          text: 'Yoru ni kakeru',
+        },
+        { type: 'translation', language: 'en', text: 'Racing into the night' },
+      ]);
+    });
+  });
+
+  describe('background vocals', () => {
+    beforeEach(() => {
+      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+    });
+
+    it('shows background vocals in plain lyrics', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'plain',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    segments: [{ text: 'Lorem ipsum dolor' }],
+                    background: [{ text: 'Sit amet' }],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.backgroundVocals).toEqual(['(Sit amet)']);
+    });
+
+    it('shows background vocals in synced lyrics', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'lineSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 0,
+                    endMs: 4000,
+                    segments: [{ text: 'Lorem ipsum dolor' }],
+                    background: [{ text: 'Sit amet' }],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.backgroundVocals).toEqual(['(Sit amet)']);
+    });
+  });
+
+  describe('vocalists', () => {
+    it('shows who sings each section of plain lyrics', async () => {
+      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'plain',
+            metadata: {
+              vocalists: [
+                { id: 'lorem', name: 'Lorem', type: 'person' },
+                { id: 'ipsum', name: 'Ipsum', type: 'person' },
+              ],
+            },
+            sections: [
+              {
+                label: 'Verse 1',
+                lines: [
+                  {
+                    segments: [{ text: 'Dolor sit amet' }],
+                    vocalistIds: ['lorem'],
+                  },
+                ],
+              },
+              {
+                label: 'Chorus',
+                lines: [
+                  {
+                    segments: [{ text: 'Consectetur adipiscing' }],
+                    vocalistIds: ['lorem', 'ipsum'],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.sections).toEqual([
+        { label: 'Verse 1 - Lorem', lines: ['Dolor sit amet'] },
+        { label: 'Chorus - Lorem - Ipsum', lines: ['Consectetur adipiscing'] },
+      ]);
+    });
+  });
+
   describe('source picker', () => {
     beforeEach(() => {
       LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));

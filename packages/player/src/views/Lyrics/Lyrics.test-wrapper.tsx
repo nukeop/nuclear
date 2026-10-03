@@ -131,6 +131,27 @@ export const LyricsWrapper = {
     }));
   },
 
+  get furigana() {
+    return screen.getAllByTestId('lyrics-ruby').map((ruby) => ({
+      text: within(ruby).getByTestId('lyrics-ruby-text').textContent,
+      reading: within(ruby).getByTestId('lyrics-ruby-reading').textContent,
+    }));
+  },
+
+  get annotations() {
+    return screen.getAllByTestId('lyrics-annotation').map((annotation) => ({
+      type: annotation.dataset.type,
+      language: annotation.lang,
+      text: annotation.textContent,
+    }));
+  },
+
+  get backgroundVocals() {
+    return screen
+      .getAllByTestId('lyrics-background-vocals')
+      .map((vocals) => vocals.textContent?.trim());
+  },
+
   async clickLine(text: string) {
     await user.click(screen.getByRole('button', { name: text }));
   },
