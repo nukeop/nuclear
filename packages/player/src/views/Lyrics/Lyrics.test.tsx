@@ -1,8 +1,12 @@
-describe('Lyrics view', () => {
-  it.todo('opens from the Lyrics item in the sidebar');
+import { LyricsWrapper } from './Lyrics.test-wrapper';
 
+describe('Lyrics view', () => {
   describe('states', () => {
-    it.todo('shows an empty state when nothing is playing');
+    it('shows an empty state when nothing is playing', async () => {
+      await LyricsWrapper.mount();
+
+      expect(LyricsWrapper.emptyState.title).toBe('Nothing is playing');
+    });
     it.todo('shows a loading state while providers are fetching lyrics');
     it.todo(
       'shows "No lyrics plugins installed" with a button that opens the plugin store when no lyrics provider is registered',
