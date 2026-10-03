@@ -1,26 +1,35 @@
-import { ComponentProps, FC } from 'react';
+import { forwardRef } from 'react';
 
 import type {
   SyncedLyricsLine as SyncedLyricsLineModel,
   TimedLyricsSegment,
 } from '@nuclearplayer/model';
 
-import { SyncedLyricsLineShell } from './SyncedLyricsLineShell';
+import {
+  SyncedLyricsLineShell,
+  SyncedLyricsLineShellProps,
+} from './SyncedLyricsLineShell';
 import { WordSyncedText } from './WordSyncedText';
 
 type WordSyncedLyricsLineProps = Omit<
-  ComponentProps<typeof SyncedLyricsLineShell>,
+  SyncedLyricsLineShellProps,
   'children'
 > & {
   line: SyncedLyricsLineModel<TimedLyricsSegment>;
 };
 
-export const WordSyncedLyricsLine: FC<WordSyncedLyricsLineProps> = ({
-  line,
-  positionMs,
-  ...props
-}) => (
-  <SyncedLyricsLineShell line={line} positionMs={positionMs} {...props}>
-    <WordSyncedText line={line} positionMs={positionMs} />
-  </SyncedLyricsLineShell>
-);
+export const WordSyncedLyricsLine = forwardRef<
+  HTMLButtonElement,
+  WordSyncedLyricsLineProps
+>(function WordSyncedLyricsLine({ line, positionMs, ...props }, ref) {
+  return (
+    <SyncedLyricsLineShell
+      ref={ref}
+      line={line}
+      positionMs={positionMs}
+      {...props}
+    >
+      <WordSyncedText line={line} positionMs={positionMs} />
+    </SyncedLyricsLineShell>
+  );
+});
