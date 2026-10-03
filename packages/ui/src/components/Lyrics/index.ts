@@ -1,4 +1,5 @@
 export * from './LyricsSectionLabel';
+export * from './LyricsSkeleton';
 export * from './LyricsSourcePicker';
 export * from './LyricsTypeBadge';
 export * from './PlainLyrics';
