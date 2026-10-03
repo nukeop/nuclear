@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
-import { Select } from '@nuclearplayer/ui';
+import { LyricsTypeBadge, Select } from '@nuclearplayer/ui';
 
 const meta: Meta<typeof Select> = {
   title: 'Components/Select',
@@ -16,6 +16,28 @@ const OPTIONS = [
   { id: 'low', label: 'Low' },
   { id: 'medium', label: 'Medium' },
   { id: 'high', label: 'High' },
+];
+
+const ICON_OPTIONS = [
+  {
+    id: 'alpha',
+    label: 'Alpha Lyrics',
+    icon: (
+      <LyricsTypeBadge type="wordSynced" variant="icon" label="Word synced" />
+    ),
+  },
+  {
+    id: 'beta',
+    label: 'Beta Lyrics',
+    icon: (
+      <LyricsTypeBadge type="lineSynced" variant="icon" label="Line synced" />
+    ),
+  },
+  {
+    id: 'gamma',
+    label: 'Gamma Lyrics',
+    icon: <LyricsTypeBadge type="plain" variant="icon" label="Plain" />,
+  },
 ];
 
 export const Basic: Story = {
@@ -50,6 +72,42 @@ export const WithError: Story = {
     options: OPTIONS,
     error: 'Please make a selection',
   },
+};
+
+export const Variants: Story = {
+  render: () => (
+    <div className="flex w-64 flex-col gap-4">
+      <Select label="Primary" options={OPTIONS} defaultValue="medium" />
+      <Select
+        label="Muted"
+        options={OPTIONS}
+        defaultValue="medium"
+        variant="muted"
+      />
+      <Select
+        label="Muted, small"
+        options={OPTIONS}
+        defaultValue="medium"
+        variant="muted"
+        size="sm"
+      />
+    </div>
+  ),
+};
+
+export const WithIcons: Story = {
+  render: () => (
+    <div className="flex w-64 flex-col gap-4">
+      <Select label="Primary" options={ICON_OPTIONS} defaultValue="alpha" />
+      <Select
+        label="Muted, small"
+        options={ICON_OPTIONS}
+        defaultValue="alpha"
+        variant="muted"
+        size="sm"
+      />
+    </div>
+  ),
 };
 
 export const Disabled: Story = {

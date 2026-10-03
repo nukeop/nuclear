@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { SelectButton } from './SelectButton';
 import { SelectDescription } from './SelectDescription';
@@ -10,11 +10,16 @@ import { SelectOptions } from './SelectOptions';
 import { SelectRoot } from './SelectRoot';
 
 export const selectVariants = cva(
-  'border-border surface-primary focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) px-3 pr-8 text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+  'border-border focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) px-3 pr-8 text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
+      variant: {
+        primary: 'surface-primary',
+        muted: 'surface-muted shadow-shadow',
+      },
       size: {
         default: 'px-3 py-2 text-sm',
+        sm: 'h-8 pr-2 pl-1 text-sm font-bold',
       },
       state: {
         normal: '',
@@ -22,13 +27,14 @@ export const selectVariants = cva(
       },
     },
     defaultVariants: {
+      variant: 'primary',
       size: 'default',
       state: 'normal',
     },
   },
 );
 
-export type SelectOption = { id: string; label: string };
+export type SelectOption = { id: string; label: string; icon?: ReactNode };
 
 export type SelectProps = VariantProps<typeof selectVariants> & {
   id?: string;
@@ -64,6 +70,7 @@ const SelectImpl: FC<SelectProps> = ({
   value,
   defaultValue,
   onValueChange,
+  variant,
   size,
   className,
   disabled,
@@ -80,6 +87,7 @@ const SelectImpl: FC<SelectProps> = ({
         value={value}
         defaultValue={defaultValue}
         onValueChange={onValueChange}
+        variant={variant}
         size={size}
         className={className}
         disabled={disabled}
@@ -92,6 +100,7 @@ const SelectImpl: FC<SelectProps> = ({
               key={opt.id}
               id={opt.id}
               label={opt.label}
+              icon={opt.icon}
               as="li"
             />
           ))}
