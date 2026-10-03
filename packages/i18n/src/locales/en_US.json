@@ -566,6 +566,9 @@
     "discoveryOn": "Discovery: on",
     "discoveryOff": "Discovery: off"
   },
+  "lyrics": {
+    "nothingPlaying": "Nothing is playing"
+  },
   "logs": {
     "title": "Logs",
     "searchPlaceholder": "Search logs...",
