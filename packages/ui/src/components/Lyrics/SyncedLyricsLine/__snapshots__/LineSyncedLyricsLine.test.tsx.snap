@@ -10,8 +10,8 @@ exports[`LineSyncedLyricsLine > (Snapshot) renders a line halfway through 1`] = 
       class="block"
     >
       <span
-        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-linear"
-        style="background-size: 50%;"
+        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+        style="background-size: 100%;"
       >
         Lorem ipsum dolor sit amet
       </span>
@@ -29,7 +29,12 @@ exports[`LineSyncedLyricsLine > (Snapshot) renders a line that has already playe
     <span
       class="block"
     >
-      Lorem ipsum dolor sit amet
+      <span
+        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+        style="background-size: 0%;"
+      >
+        Lorem ipsum dolor sit amet
+      </span>
     </span>
   </button>
 </div>
@@ -44,7 +49,12 @@ exports[`LineSyncedLyricsLine > (Snapshot) renders a line that has not played ye
     <span
       class="block"
     >
-      Lorem ipsum dolor sit amet
+      <span
+        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+        style="background-size: 0%;"
+      >
+        Lorem ipsum dolor sit amet
+      </span>
     </span>
   </button>
 </div>
@@ -60,8 +70,8 @@ exports[`LineSyncedLyricsLine > (Snapshot) renders ruby, background vocals, and 
       class="block"
     >
       <span
-        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-linear"
-        style="background-size: 50%;"
+        class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+        style="background-size: 100%;"
       >
         <ruby>
           夜

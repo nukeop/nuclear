@@ -18,14 +18,10 @@ export const LineSyncedText: FC<LineSyncedTextProps> = ({
   line,
   positionMs,
 }) => {
-  const { isActive, progress } = getTimingState(line, positionMs);
-
-  if (!isActive) {
-    return <LyricsSegments segments={line.segments} />;
-  }
+  const { isActive } = getTimingState(line, positionMs);
 
   return (
-    <LyricsHighlighter progress={progress}>
+    <LyricsHighlighter progress={isActive ? 1 : 0} className="ease-out">
       <LyricsSegments segments={line.segments} />
     </LyricsHighlighter>
   );
