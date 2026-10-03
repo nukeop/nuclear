@@ -40,6 +40,11 @@ export const LyricsWrapper = {
         'heading',
       ).textContent;
     },
+    get description() {
+      return within(screen.getByTestId('lyrics-empty-state')).getByRole(
+        'paragraph',
+      ).textContent;
+    },
     action: {
       async click() {
         await user.click(screen.getByTestId('lyrics-empty-state-action'));
