@@ -1,4 +1,4 @@
-import { ComponentProps, FC } from 'react';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 import type {
   LyricsSegment,
@@ -9,22 +9,23 @@ import { cn } from '../../../utils';
 import { LyricsAnnotations, LyricsBackgroundVocals } from '../LyricsLineParts';
 import { getTimingState } from '../utils';
 
-type SyncedLyricsLineShellProps = ComponentProps<'button'> & {
+export type SyncedLyricsLineShellProps = ComponentPropsWithoutRef<'button'> & {
   line: SyncedLyricsLineModel<LyricsSegment>;
   positionMs: number;
 };
 
-export const SyncedLyricsLineShell: FC<SyncedLyricsLineShellProps> = ({
-  line,
-  positionMs,
-  className,
-  children,
-  ...props
-}) => {
+export const SyncedLyricsLineShell = forwardRef<
+  HTMLButtonElement,
+  SyncedLyricsLineShellProps
+>(function SyncedLyricsLineShell(
+  { line, positionMs, className, children, ...props },
+  ref,
+) {
   const { isPast, isActive } = getTimingState(line, positionMs);
 
   return (
     <button
+      ref={ref}
       type="button"
       className={cn(
         'text-foreground/60 hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100',
@@ -43,4 +44,4 @@ export const SyncedLyricsLineShell: FC<SyncedLyricsLineShellProps> = ({
       {line.annotations && <LyricsAnnotations annotations={line.annotations} />}
     </button>
   );
-};
+});
