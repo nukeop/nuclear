@@ -41,10 +41,39 @@ describe('Lyrics view', () => {
 
       expect(PluginsWrapper.selectedTab).toBe('Store');
     });
-    it.todo(
-      'shows "No lyrics for this track" and names the providers that came up empty',
-    );
-    it.todo('shows "Instrumental" for instrumental tracks');
+    it('shows "No lyrics for this track" and lists providers without results', async () => {
+      LyricsWrapper.setCurrentQueueItem(createQueueItem('Lorem Ipsum'));
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder().withId('lorem').withName('Lorem'),
+      );
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder().withId('ipsum').withName('Ipsum'),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(LyricsWrapper.emptyState.title).toBe('No lyrics for this track');
+      expect(LyricsWrapper.emptyState.description).toBe(
+        'Lorem and Ipsum returned no results.',
+      );
+    });
+
+    it('shows "Instrumental" for instrumental tracks', async () => {
+      LyricsWrapper.setCurrentQueueItem(createQueueItem('Lorem Ipsum'));
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({ type: 'instrumental', metadata: {} }),
+      );
+
+      await LyricsWrapper.mount();
+
+      expect(LyricsWrapper.emptyState.title).toBe('Instrumental');
+    });
   });
 
   describe('plain lyrics', () => {
