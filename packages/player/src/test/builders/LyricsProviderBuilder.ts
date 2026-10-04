@@ -12,7 +12,6 @@ export class LyricsProviderBuilder {
       id: 'test-lyrics-provider',
       kind: 'lyrics',
       name: 'Test Lyrics Provider',
-      lyricsTypes: [],
       getCandidatesForTrack: async () => [],
       getCandidatesForQuery: async () => [],
       getLyricsForCandidate: async () => {
