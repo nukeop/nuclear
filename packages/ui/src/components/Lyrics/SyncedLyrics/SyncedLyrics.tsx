@@ -41,7 +41,7 @@ export const SyncedLyrics: FC<SyncedLyricsProps> = ({
     <div
       onWheel={stopFollowing}
       className={cn(
-        'font-heading contents text-3xl leading-tight font-bold tracking-tight font-stretch-semi-condensed',
+        'font-heading contents leading-tight font-bold tracking-tight font-stretch-semi-condensed',
         className,
       )}
       {...props}

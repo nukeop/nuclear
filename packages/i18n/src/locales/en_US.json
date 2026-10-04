@@ -381,6 +381,12 @@
         "description": "Choose the visual style for the custom title bar controls."
       }
     },
+    "lyrics": {
+      "textSize": {
+        "title": "Lyrics text size",
+        "description": "The size of the text in the lyrics view."
+      }
+    },
     "playback": {
       "title": "Playback",
       "skipSeconds": {
@@ -579,6 +585,13 @@
     "currentLine": "Current line",
     "showEarlier": "Show lyrics earlier",
     "showLater": "Show lyrics later",
+    "smaller": "Smaller lyrics",
+    "larger": "Larger lyrics",
+    "types": {
+      "wordSynced": "Word synced",
+      "lineSynced": "Line synced",
+      "plain": "Plain"
+    },
     "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} s"
   },
   "logs": {

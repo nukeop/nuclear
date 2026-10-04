@@ -3,15 +3,13 @@ import { createMemoryHistory, createRouter } from '@tanstack/react-router';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import type { QueueItem } from '@nuclearplayer/model';
 import { createSelectWrapper } from '@nuclearplayer/ui';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
+import { registerBuiltInCoreSettings } from '../../services/coreSettings';
 import { providersHost } from '../../services/providersHost';
-import { useQueueStore } from '../../stores/queueStore';
 import { getSetting, useSettingsStore } from '../../stores/settingsStore';
-import { useSoundStore } from '../../stores/soundStore';
 import { LyricsProviderBuilder } from '../../test/builders/LyricsProviderBuilder';
 
 const user = userEvent.setup();
@@ -21,12 +19,11 @@ const TEXT_SIZE_SETTING = 'core.lyrics.textSize';
 export const LyricsWrapper = {
   reset() {
     providersHost.clear();
-    useQueueStore.setState({ items: [], currentIndex: 0 });
-    useSoundStore.setState({ seek: 0 });
     useSettingsStore.setState({ values: {} });
+    registerBuiltInCoreSettings();
   },
 
-  setTextSize(size: string) {
+  setTextSize(size: number) {
     useSettingsStore.setState((state) => ({
       values: { ...state.values, [TEXT_SIZE_SETTING]: size },
     }));
@@ -52,14 +49,6 @@ export const LyricsWrapper = {
     async click() {
       await user.click(this.element);
     },
-  },
-
-  setPlaybackPosition(seconds: number) {
-    useSoundStore.setState({ seek: seconds });
-  },
-
-  setQueue(...items: QueueItem[]) {
-    useQueueStore.setState({ items, currentIndex: 0 });
   },
 
   registerProvider(builder: LyricsProviderBuilder) {
@@ -154,10 +143,6 @@ export const LyricsWrapper = {
 
   async clickLine(text: string) {
     await user.click(screen.getByRole('button', { name: text }));
-  },
-
-  get playbackPosition() {
-    return useSoundStore.getState().seek;
   },
 
   offsetMinus: {

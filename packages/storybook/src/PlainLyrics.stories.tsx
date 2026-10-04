@@ -174,7 +174,7 @@ const meta = {
   component: PlainLyrics,
   tags: ['autodocs'],
   render: (args) => (
-    <div className="max-w-3xl p-10">
+    <div className="max-w-3xl p-10 text-3xl">
       <PlainLyrics {...args} />
     </div>
   ),

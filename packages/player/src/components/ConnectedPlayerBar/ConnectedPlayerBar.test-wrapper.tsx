@@ -15,6 +15,7 @@ import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
 import { useQueueStore } from '../../stores/queueStore';
 import { useSettingsStore } from '../../stores/settingsStore';
+import { useSoundStore } from '../../stores/soundStore';
 
 const user = userEvent.setup();
 
@@ -129,6 +130,14 @@ export const ConnectedPlayerBarWrapper = {
     });
   },
 
+  setPlaybackPosition(seconds: number) {
+    useSoundStore.setState({ seek: seconds, status: 'paused' });
+  },
+
+  get playbackPosition() {
+    return useSoundStore.getState().seek;
+  },
+
   seedVolume(volume01: number) {
     useSettingsStore.setState({
       values: { 'core.playback.volume': volume01 },
@@ -177,6 +186,14 @@ export const ConnectedPlayerBarWrapper = {
   },
 
   controls: {
+    playButton: {
+      get element() {
+        return screen.getByTestId('player-play-button');
+      },
+      async click() {
+        await user.click(this.element);
+      },
+    },
     nextButton: {
       get element() {
         return screen.getByTestId('player-next-button');

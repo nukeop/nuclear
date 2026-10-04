@@ -1,4 +1,7 @@
+import { act } from '@testing-library/react';
+
 import { ConnectedPlayerBarWrapper } from '../../components/ConnectedPlayerBar/ConnectedPlayerBar.test-wrapper';
+import { QueueWrapper } from '../../integration-tests/Queue.test-wrapper';
 import { LyricsProviderBuilder } from '../../test/builders/LyricsProviderBuilder';
 import { createQueueItem } from '../../test/fixtures/queue';
 import { PluginsWrapper } from '../Plugins/Plugins.test-wrapper';
@@ -9,13 +12,15 @@ window.scrollTo = vi.fn();
 describe('Lyrics view', () => {
   beforeEach(() => {
     LyricsWrapper.reset();
+    QueueWrapper.initQueue([]);
+    ConnectedPlayerBarWrapper.setPlaybackPosition(0);
   });
 
   it('loads the lyrics of the new track when the track changes', async () => {
-    LyricsWrapper.setQueue(
+    QueueWrapper.initQueue([
       createQueueItem('Lorem Ipsum'),
       createQueueItem('Consectetur'),
-    );
+    ]);
     LyricsWrapper.registerProvider(
       new LyricsProviderBuilder()
         .withGetCandidatesForTrack(async (track) => [
@@ -55,7 +60,7 @@ describe('Lyrics view', () => {
     });
 
     it('shows a loading state while providers are fetching lyrics', async () => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder().withGetCandidatesForTrack(
           () => new Promise(() => {}),
@@ -68,7 +73,7 @@ describe('Lyrics view', () => {
     });
 
     it('shows "No lyrics plugins installed" with a button that opens the plugin store when no lyrics provider is registered', async () => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
 
       await LyricsWrapper.mount();
 
@@ -85,7 +90,7 @@ describe('Lyrics view', () => {
       expect(PluginsWrapper.selectedTab).toBe('Store');
     });
     it('shows "No lyrics for this track" and lists providers without results', async () => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder().withId('alpha').withName('Alpha Lyrics'),
       );
@@ -103,7 +108,7 @@ describe('Lyrics view', () => {
     });
 
     it('shows "Instrumental" for instrumental tracks', async () => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder()
           .withCandidates({
@@ -126,7 +131,7 @@ describe('Lyrics view', () => {
 
   describe('plain lyrics', () => {
     beforeEach(() => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder()
           .withCandidates({
@@ -174,7 +179,7 @@ describe('Lyrics view', () => {
 
   describe('line synced lyrics', () => {
     beforeEach(() => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder()
           .withCandidates({
@@ -211,7 +216,7 @@ describe('Lyrics view', () => {
     });
 
     it('highlights the line at the current timestamp', async () => {
-      LyricsWrapper.setPlaybackPosition(5);
+      ConnectedPlayerBarWrapper.setPlaybackPosition(5);
 
       await LyricsWrapper.mount();
 
@@ -229,11 +234,11 @@ describe('Lyrics view', () => {
 
       await LyricsWrapper.clickLine('Consectetur adipiscing');
 
-      expect(LyricsWrapper.playbackPosition).toBe(8);
+      expect(ConnectedPlayerBarWrapper.playbackPosition).toBe(8);
     });
 
     it('changes the highlighted line when offset changes to earlier', async () => {
-      LyricsWrapper.setPlaybackPosition(3.95);
+      ConnectedPlayerBarWrapper.setPlaybackPosition(3.95);
       await LyricsWrapper.mount();
       expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
 
@@ -247,7 +252,7 @@ describe('Lyrics view', () => {
     });
 
     it('changes the highlighted line when offset changes to later', async () => {
-      LyricsWrapper.setPlaybackPosition(4.05);
+      ConnectedPlayerBarWrapper.setPlaybackPosition(4.05);
       await LyricsWrapper.mount();
       expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
 
@@ -263,7 +268,7 @@ describe('Lyrics view', () => {
 
   describe('word synced lyrics', () => {
     beforeEach(() => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder()
           .withCandidates({
@@ -302,7 +307,7 @@ describe('Lyrics view', () => {
     });
 
     it('highlights the words up to the current timestamp', async () => {
-      LyricsWrapper.setPlaybackPosition(0.75);
+      ConnectedPlayerBarWrapper.setPlaybackPosition(0.75);
 
       await LyricsWrapper.mount();
 
@@ -314,8 +319,41 @@ describe('Lyrics view', () => {
       ]);
     });
 
+    describe('while playing', () => {
+      beforeEach(() => {
+        vi.useFakeTimers({
+          toFake: [
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+            'performance',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        vi.useRealTimers();
+      });
+
+      it('keeps highlighting words between playback position updates', async () => {
+        ConnectedPlayerBarWrapper.setPlaybackPosition(0.95);
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await ConnectedPlayerBarWrapper.controls.playButton.click();
+
+        await act(async () => {
+          vi.advanceTimersByTime(100);
+        });
+
+        expect(LyricsWrapper.syncedWords).toEqual([
+          { text: 'Lorem ', isActive: true },
+          { text: 'ipsum ', isActive: true },
+          { text: 'dolor', isActive: true },
+        ]);
+      });
+    });
+
     it('changes the highlighted word when offset changes to earlier', async () => {
-      LyricsWrapper.setPlaybackPosition(0.95);
+      ConnectedPlayerBarWrapper.setPlaybackPosition(0.95);
       await LyricsWrapper.mount();
       expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
 
@@ -329,7 +367,7 @@ describe('Lyrics view', () => {
     });
 
     it('changes the highlighted word when offset changes to later', async () => {
-      LyricsWrapper.setPlaybackPosition(1.05);
+      ConnectedPlayerBarWrapper.setPlaybackPosition(1.05);
       await LyricsWrapper.mount();
       expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
 
@@ -345,7 +383,7 @@ describe('Lyrics view', () => {
 
   describe('furigana', () => {
     beforeEach(() => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
     });
 
     it('shows furigana in plain lyrics', async () => {
@@ -466,7 +504,7 @@ describe('Lyrics view', () => {
 
   describe('annotations', () => {
     beforeEach(() => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
     });
 
     it('shows translations and romanizations in plain lyrics', async () => {
@@ -570,7 +608,7 @@ describe('Lyrics view', () => {
 
   describe('background vocals', () => {
     beforeEach(() => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
     });
 
     it('shows background vocals in plain lyrics', async () => {
@@ -638,7 +676,7 @@ describe('Lyrics view', () => {
 
   describe('vocalists', () => {
     it('shows who sings each section of plain lyrics', async () => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder()
           .withCandidates({
@@ -689,7 +727,7 @@ describe('Lyrics view', () => {
 
   describe('source picker', () => {
     beforeEach(() => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder()
           .withId('alpha')
@@ -769,10 +807,10 @@ describe('Lyrics view', () => {
     });
 
     it('goes back to the top lyrics when the track changes', async () => {
-      LyricsWrapper.setQueue(
+      QueueWrapper.initQueue([
         createQueueItem('Lorem Ipsum'),
         createQueueItem('Consectetur'),
-      );
+      ]);
       await LyricsWrapper.mount();
       expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       await LyricsWrapper.sourcePicker.select('Alpha Lyrics');
@@ -786,7 +824,7 @@ describe('Lyrics view', () => {
 
   describe('text size', () => {
     beforeEach(() => {
-      LyricsWrapper.setQueue(createQueueItem('Lorem Ipsum'));
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder()
           .withCandidates({
@@ -813,7 +851,7 @@ describe('Lyrics view', () => {
 
       await LyricsWrapper.textSizeMinus.click();
 
-      expect(LyricsWrapper.textSize).toBe('small');
+      expect(LyricsWrapper.textSize).toBe(0);
     });
 
     it('makes text larger', async () => {
@@ -822,11 +860,11 @@ describe('Lyrics view', () => {
 
       await LyricsWrapper.textSizePlus.click();
 
-      expect(LyricsWrapper.textSize).toBe('large');
+      expect(LyricsWrapper.textSize).toBe(2);
     });
 
     it('disables "Smaller lyrics" at the smallest size', async () => {
-      LyricsWrapper.setTextSize('small');
+      LyricsWrapper.setTextSize(0);
 
       await LyricsWrapper.mount();
 
@@ -835,7 +873,7 @@ describe('Lyrics view', () => {
     });
 
     it('disables "Larger lyrics" at the largest size', async () => {
-      LyricsWrapper.setTextSize('large');
+      LyricsWrapper.setTextSize(2);
 
       await LyricsWrapper.mount();
 

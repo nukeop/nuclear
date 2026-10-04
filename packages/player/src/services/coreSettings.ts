@@ -352,6 +352,16 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     default: false,
     widget: { type: 'toggle' },
   },
+  {
+    id: 'lyrics.textSize',
+    title: 'preferences.lyrics.textSize.title',
+    description: 'preferences.lyrics.textSize.description',
+    category: 'appearance',
+    kind: 'number',
+    default: 1,
+    hidden: true,
+    widget: { type: 'slider', min: 0, max: 2, step: 1 },
+  },
 ];
 
 export const registerBuiltInCoreSettings = () => {

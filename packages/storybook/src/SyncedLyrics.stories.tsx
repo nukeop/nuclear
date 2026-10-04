@@ -194,6 +194,7 @@ const ScrollingSyncedLyrics: FC<ScrollingSyncedLyricsProps> = ({
   return (
     <ScrollableArea
       viewportRef={viewportRef}
+      className="text-3xl"
       viewportClassName="scroll-smooth mask-y-from-95%"
     >
       <SyncedLyrics

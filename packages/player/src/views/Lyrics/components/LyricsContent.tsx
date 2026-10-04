@@ -20,18 +20,20 @@ type LyricsContentProps = {
   currentItem: QueueItem | undefined;
   providers: ProviderDescriptor<'lyrics'>[];
   isLoading: boolean;
-  topResult: AttributedLyrics | undefined;
+  result: AttributedLyrics | undefined;
   offsetMs: number;
   viewportRef: RefObject<HTMLDivElement>;
+  textSizeClass: string;
 };
 
 export const LyricsContent: FC<LyricsContentProps> = ({
   currentItem,
   providers,
   isLoading,
-  topResult,
+  result,
   offsetMs,
   viewportRef,
+  textSizeClass,
 }) => {
   if (isNil(currentItem)) {
     return <NothingPlayingEmptyState />;
@@ -42,24 +44,26 @@ export const LyricsContent: FC<LyricsContentProps> = ({
   if (isLoading) {
     return <LyricsSkeleton data-testid="lyrics-loading" />;
   }
-  if (isNil(topResult)) {
+  if (isNil(result)) {
     return <NoLyricsEmptyState providerNames={map(providers, 'name')} />;
   }
-  if (topResult.lyrics.type === 'instrumental') {
+  if (result.lyrics.type === 'instrumental') {
     return <InstrumentalEmptyState />;
   }
-  if (topResult.lyrics.type === 'plain') {
+  if (result.lyrics.type === 'plain') {
     return (
       <PlainLyrics
         data-testid="lyrics-content"
-        sections={topResult.lyrics.sections}
-        vocalists={topResult.lyrics.metadata.vocalists}
+        className={textSizeClass}
+        sections={result.lyrics.sections}
+        vocalists={result.lyrics.metadata.vocalists}
       />
     );
   }
   return (
     <ConnectedSyncedLyrics
-      lyrics={topResult.lyrics}
+      className={textSizeClass}
+      lyrics={result.lyrics}
       offsetMs={offsetMs}
       viewportRef={viewportRef}
     />

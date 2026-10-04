@@ -21,7 +21,7 @@ export const PlainLyrics: FC<PlainLyricsProps> = ({
 }) => (
   <div
     className={cn(
-      'font-heading flex flex-col gap-6 text-3xl leading-tight font-bold tracking-tight font-stretch-semi-condensed',
+      'font-heading flex flex-col gap-6 leading-tight font-bold tracking-tight font-stretch-semi-condensed',
       className,
     )}
     {...props}
