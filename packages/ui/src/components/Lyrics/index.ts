@@ -1,3 +1,4 @@
+export * from './InstrumentalBreak';
 export * from './LyricsSectionLabel';
 export * from './LyricsSkeleton';
 export * from './LyricsSourcePicker';

@@ -25,3 +25,15 @@ export const getTimingState = (range: TimeRange, positionMs: number) => {
 
 export const flattenLines = <TLine>(sections: LyricsSection<TLine>[]) =>
   sections.flatMap((section) => section.lines);
+
+const minimumTimeToShowBreak = 5000;
+export const getBreakBefore = (lines: TimeRange[], index: number) => {
+  if (index === 0) {
+    return undefined;
+  }
+  const gap = { startMs: lines[index - 1].endMs, endMs: lines[index].startMs };
+  if (gap.endMs - gap.startMs < minimumTimeToShowBreak) {
+    return undefined;
+  }
+  return gap;
+};

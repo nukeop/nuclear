@@ -381,6 +381,53 @@ describe('Lyrics view', () => {
     });
   });
 
+  describe('instrumental breaks', () => {
+    beforeEach(() => {
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
+    });
+
+    it('shows an instrumental break between lines that are 5 seconds or more apart', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'lineSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 0,
+                    endMs: 4000,
+                    segments: [{ text: 'Lorem ipsum dolor' }],
+                  },
+                  {
+                    startMs: 10000,
+                    endMs: 14000,
+                    segments: [{ text: 'Sit amet' }],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+      ConnectedPlayerBarWrapper.setPlaybackPosition(6);
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.syncedRows).toEqual([
+        { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
+        { type: 'break', isActive: true },
+        { type: 'line', text: 'Sit amet', isActive: false },
+      ]);
+    });
+  });
+
   describe('furigana', () => {
     beforeEach(() => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);

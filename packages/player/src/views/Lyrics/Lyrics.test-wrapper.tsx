@@ -113,6 +113,16 @@ export const LyricsWrapper = {
     }));
   },
 
+  get syncedRows() {
+    return screen.getAllByTestId(/^lyrics-(line|break)$/).map((row) => {
+      const isActive = row.dataset.active === 'true';
+      if (row.dataset.testid === 'lyrics-break') {
+        return { type: 'break', isActive };
+      }
+      return { type: 'line', text: row.textContent, isActive };
+    });
+  },
+
   get syncedWords() {
     return screen.getAllByTestId('lyrics-word').map((word) => ({
       text: word.textContent,
