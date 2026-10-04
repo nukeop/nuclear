@@ -84,6 +84,13 @@
   </requires>
 
   <releases>
+    <release version="1.49.2" date="2026-10-04">
+      <description>
+        <ul>
+          <li>rmpc can now connect to Nuclear's MPD server</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.49.1" date="2026-09-25">
       <description>
         <p>Release 1.49.1.</p>
