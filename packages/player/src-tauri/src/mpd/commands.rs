@@ -4,7 +4,7 @@ use crate::bridge::bridge::Bridge;
 
 use super::protocol::{
     Command, MpdError, MpdResponse, PlaylistRange, ACK_ERROR_ARG, ACK_ERROR_SYSTEM,
-    ACK_ERROR_UNKNOWN,
+    ACK_ERROR_UNKNOWN, SUPPORTED_COMMANDS,
 };
 
 type Fields = Vec<(String, String)>;
@@ -376,6 +376,15 @@ async fn single(bridge: &Bridge, enabled: bool) -> CommandResult {
     Ok(MpdResponse { fields: Vec::new() })
 }
 
+fn commands() -> MpdResponse {
+    MpdResponse {
+        fields: SUPPORTED_COMMANDS
+            .iter()
+            .map(|name| field("command", name))
+            .collect(),
+    }
+}
+
 pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
     match command {
         Command::Ping | Command::Password | Command::Noop | Command::NoIdle => {
@@ -387,6 +396,7 @@ pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
             list_index: 0,
             message: "idle not allowed in command lists".to_string(),
         }),
+        Command::Commands => Ok(commands()),
         Command::Status => status(bridge).await,
         Command::CurrentSong => currentsong(bridge).await,
         Command::PlaylistInfo(range) => playlistinfo(bridge, range).await,
