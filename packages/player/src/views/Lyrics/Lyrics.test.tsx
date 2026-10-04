@@ -393,45 +393,76 @@ describe('Lyrics view', () => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
     });
 
-    it('shows an instrumental break between lines that are 5 seconds or more apart', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [{ text: 'Lorem ipsum dolor' }],
-                  },
-                  {
-                    startMs: 9000,
-                    endMs: 13000,
-                    segments: [{ text: 'Sit amet' }],
-                  },
-                ],
-              },
-            ],
-          }),
-      );
-      ConnectedPlayerBarWrapper.setPlaybackPosition(6);
+    describe('between lines 5 seconds apart', () => {
+      beforeEach(() => {
+        LyricsWrapper.registerProvider(
+          new LyricsProviderBuilder()
+            .withCandidates({
+              id: 'lorem-ipsum',
+              title: 'Lorem Ipsum',
+              artist: 'Dolor',
+            })
+            .withLyrics({
+              type: 'lineSynced',
+              metadata: {},
+              sections: [
+                {
+                  lines: [
+                    {
+                      startMs: 0,
+                      endMs: 4000,
+                      segments: [{ text: 'Lorem ipsum dolor' }],
+                    },
+                    {
+                      startMs: 9000,
+                      endMs: 13000,
+                      segments: [{ text: 'Sit amet' }],
+                    },
+                  ],
+                },
+              ],
+            }),
+        );
+      });
 
-      await LyricsWrapper.mount();
+      it('shows an instrumental break between lines that are 5 seconds or more apart', async () => {
+        ConnectedPlayerBarWrapper.setPlaybackPosition(6);
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
-      expect(LyricsWrapper.syncedRows).toEqual([
-        { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
-        { type: 'break', isActive: true },
-        { type: 'line', text: 'Sit amet', isActive: false },
-      ]);
+        await LyricsWrapper.mount();
+
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        expect(LyricsWrapper.syncedRows).toEqual([
+          { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
+          { type: 'break', isActive: true },
+          { type: 'line', text: 'Sit amet', isActive: false },
+        ]);
+      });
+
+      it("doesn't highlight the break before the previous line ends", async () => {
+        ConnectedPlayerBarWrapper.setPlaybackPosition(3.95);
+
+        await LyricsWrapper.mount();
+
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        expect(LyricsWrapper.syncedRows).toEqual([
+          { type: 'line', text: 'Lorem ipsum dolor', isActive: true },
+          { type: 'break', isActive: false },
+          { type: 'line', text: 'Sit amet', isActive: false },
+        ]);
+      });
+
+      it("doesn't highlight the break once the next line starts", async () => {
+        ConnectedPlayerBarWrapper.setPlaybackPosition(9.05);
+
+        await LyricsWrapper.mount();
+
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        expect(LyricsWrapper.syncedRows).toEqual([
+          { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
+          { type: 'break', isActive: false },
+          { type: 'line', text: 'Sit amet', isActive: true },
+        ]);
+      });
     });
 
     it("doesn't show an instrumental break between lines less than 5 seconds apart", async () => {
