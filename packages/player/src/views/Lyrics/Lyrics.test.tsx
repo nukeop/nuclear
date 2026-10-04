@@ -465,6 +465,75 @@ describe('Lyrics view', () => {
       });
     });
 
+    it('shows an instrumental break before the first line when it starts 5 seconds or more into the track', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'lineSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 5000,
+                    endMs: 9000,
+                    segments: [{ text: 'Lorem ipsum dolor' }],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+      ConnectedPlayerBarWrapper.setPlaybackPosition(3);
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.syncedRows).toEqual([
+        { type: 'break', isActive: true },
+        { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
+      ]);
+    });
+
+    it("doesn't show an instrumental break before the first line when it starts less than 5 seconds into the track", async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'lineSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 4900,
+                    endMs: 9000,
+                    segments: [{ text: 'Lorem ipsum dolor' }],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+      ConnectedPlayerBarWrapper.setPlaybackPosition(3);
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.syncedRows).toEqual([
+        { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
+      ]);
+    });
+
     it("doesn't show an instrumental break between lines less than 5 seconds apart", async () => {
       LyricsWrapper.registerProvider(
         new LyricsProviderBuilder()
@@ -617,6 +686,18 @@ describe('Lyrics view', () => {
 
       expect(LyricsWrapper.autoScrollToggle.isOn).toBe(true);
       expect(LyricsWrapper.autoScroll).toBe(true);
+    });
+
+    it('scrolls to the current line when auto-scroll is turned on', async () => {
+      LyricsWrapper.setAutoScroll(false);
+      ConnectedPlayerBarWrapper.setPlaybackPosition(5);
+      await LyricsWrapper.mount();
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      LyricsWrapper.layOutLyrics();
+
+      await LyricsWrapper.autoScrollToggle.click();
+
+      expect(LyricsWrapper.scrollPosition).toBe(100);
     });
 
     describe('current line button', () => {
