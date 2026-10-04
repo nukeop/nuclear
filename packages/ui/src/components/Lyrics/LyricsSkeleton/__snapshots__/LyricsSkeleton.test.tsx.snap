@@ -1,0 +1,59 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LyricsSkeleton > (Snapshot) renders placeholder sections and lines 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-8"
+    data-testid="lyrics-skeleton"
+  >
+    <div
+      class="flex flex-col gap-3"
+    >
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-20"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-3/4"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-1/2"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-2/3"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-5/6"
+        data-testid="skeleton"
+      />
+    </div>
+    <div
+      class="flex flex-col gap-3"
+    >
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-20"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-2/3"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-4/5"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-1/2"
+        data-testid="skeleton"
+      />
+      <div
+        class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-3/5"
+        data-testid="skeleton"
+      />
+    </div>
+  </div>
+</div>
+`;

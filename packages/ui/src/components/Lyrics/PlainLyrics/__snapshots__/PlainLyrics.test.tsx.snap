@@ -3,26 +3,43 @@
 exports[`PlainLyrics > (Snapshot) renders ruby, background vocals, and annotations 1`] = `
 <div>
   <div
-    class="font-heading flex flex-col gap-6 text-3xl leading-tight font-bold tracking-tight font-stretch-semi-condensed"
+    class="font-heading flex flex-col gap-6 leading-tight font-bold tracking-tight font-stretch-semi-condensed"
   >
-    <div>
+    <div
+      data-testid="lyrics-section"
+    >
       <div
         class="py-1"
+        data-testid="lyrics-line"
       >
         <p>
-          <ruby>
-            夜
+          <ruby
+            data-testid="lyrics-ruby"
+          >
+            <span
+              data-testid="lyrics-ruby-text"
+            >
+              夜
+            </span>
             <rt
               class="font-sans font-normal"
+              data-testid="lyrics-ruby-reading"
             >
               よる
             </rt>
           </ruby>
           に
-          <ruby>
-            駆
+          <ruby
+            data-testid="lyrics-ruby"
+          >
+            <span
+              data-testid="lyrics-ruby-text"
+            >
+              駆
+            </span>
             <rt
               class="font-sans font-normal"
+              data-testid="lyrics-ruby-reading"
             >
               か
             </rt>
@@ -30,6 +47,7 @@ exports[`PlainLyrics > (Snapshot) renders ruby, background vocals, and annotatio
           ける
           <span
             class="font-semibold italic opacity-60"
+            data-testid="lyrics-background-vocals"
           >
              (
             Lorem ipsum
@@ -38,12 +56,16 @@ exports[`PlainLyrics > (Snapshot) renders ruby, background vocals, and annotatio
         </p>
         <span
           class="block font-sans text-base font-normal tracking-normal opacity-60"
+          data-testid="lyrics-annotation"
+          data-type="romanization"
           lang="ja-Latn"
         >
           Yoru ni kakeru
         </span>
         <span
           class="block font-sans text-base font-normal tracking-normal opacity-60"
+          data-testid="lyrics-annotation"
+          data-type="translation"
           lang="en"
         >
           Racing into the night
@@ -57,16 +79,20 @@ exports[`PlainLyrics > (Snapshot) renders ruby, background vocals, and annotatio
 exports[`PlainLyrics > (Snapshot) renders sections with and without labels 1`] = `
 <div>
   <div
-    class="font-heading flex flex-col gap-6 text-3xl leading-tight font-bold tracking-tight font-stretch-semi-condensed"
+    class="font-heading flex flex-col gap-6 leading-tight font-bold tracking-tight font-stretch-semi-condensed"
   >
-    <div>
+    <div
+      data-testid="lyrics-section"
+    >
       <div
         class="text-foreground/60 py-1 text-xs font-bold tracking-widest uppercase"
+        data-testid="lyrics-section-label"
       >
         Verse 1
       </div>
       <div
         class="py-1"
+        data-testid="lyrics-line"
       >
         <p>
           Lorem ipsum dolor sit amet
@@ -74,6 +100,7 @@ exports[`PlainLyrics > (Snapshot) renders sections with and without labels 1`] =
       </div>
       <div
         class="py-1"
+        data-testid="lyrics-line"
       >
         <p>
           Consectetur 
@@ -81,9 +108,12 @@ exports[`PlainLyrics > (Snapshot) renders sections with and without labels 1`] =
         </p>
       </div>
     </div>
-    <div>
+    <div
+      data-testid="lyrics-section"
+    >
       <div
         class="py-1"
+        data-testid="lyrics-line"
       >
         <p>
           Sed do eiusmod tempor

@@ -8,15 +8,15 @@ exports[`InstrumentalBreak > (Snapshot) renders the dots filled up to the playba
     data-testid="lyrics-break"
   >
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 0;"
     />
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 0;"
     />
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 0;"
     />
   </div>
@@ -26,15 +26,15 @@ exports[`InstrumentalBreak > (Snapshot) renders the dots filled up to the playba
     data-testid="lyrics-break"
   >
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 1;"
     />
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 0.5;"
     />
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 0;"
     />
   </div>
@@ -44,15 +44,15 @@ exports[`InstrumentalBreak > (Snapshot) renders the dots filled up to the playba
     data-testid="lyrics-break"
   >
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 1;"
     />
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 1;"
     />
     <span
-      class="bg-foreground/20 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
+      class="bg-primary/30 before:bg-primary relative size-4 rounded-full before:absolute before:inset-0 before:scale-(--dot-fill) before:rounded-full"
       style="--dot-fill: 1;"
     />
   </div>

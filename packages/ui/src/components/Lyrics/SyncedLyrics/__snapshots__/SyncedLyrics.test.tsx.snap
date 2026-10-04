@@ -1,0 +1,130 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SyncedLyrics > (Snapshot) renders line synced lyrics 1`] = `
+<div>
+  <div
+    class="font-heading contents leading-tight font-bold tracking-tight font-stretch-semi-condensed"
+  >
+    <div
+      class="h-2/10 shrink-0"
+    />
+    <button
+      class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground/40"
+      data-active="false"
+      data-testid="lyrics-line"
+      type="button"
+    >
+      <span
+        class="block"
+      >
+        <span
+          class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+          style="background-size: 0%;"
+        >
+          Lorem ipsum dolor
+        </span>
+      </span>
+    </button>
+    <button
+      class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground"
+      data-active="true"
+      data-testid="lyrics-line"
+      type="button"
+    >
+      <span
+        class="block"
+      >
+        <span
+          class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+          style="background-size: 100%;"
+        >
+          Sit amet
+        </span>
+      </span>
+    </button>
+    <button
+      class="text-foreground/60 hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100"
+      data-active="false"
+      data-testid="lyrics-line"
+      type="button"
+    >
+      <span
+        class="block"
+      >
+        <span
+          class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+          style="background-size: 0%;"
+        >
+          Consectetur adipiscing
+        </span>
+      </span>
+    </button>
+    <div
+      class="h-8/10 shrink-0"
+    />
+  </div>
+</div>
+`;
+
+exports[`SyncedLyrics > (Snapshot) renders word synced lyrics 1`] = `
+<div>
+  <div
+    class="font-heading contents leading-tight font-bold tracking-tight font-stretch-semi-condensed"
+  >
+    <div
+      class="h-2/10 shrink-0"
+    />
+    <button
+      class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground"
+      data-active="true"
+      data-testid="lyrics-line"
+      type="button"
+    >
+      <span
+        class="block"
+      >
+        <span
+          class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+          data-active="true"
+          data-testid="lyrics-word"
+          style="--fill-width: calc((100% + 1px) * 1);"
+        >
+          Lorem 
+        </span>
+        <span
+          class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+          data-active="true"
+          data-testid="lyrics-word"
+          style="--fill-width: calc((100% + 1px) * 0.5);"
+        >
+          ipsum 
+        </span>
+        <span
+          class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+          data-active="false"
+          data-testid="lyrics-word"
+          style="--fill-width: calc((100% + 1px) * 0);"
+        >
+          dolor
+        </span>
+      </span>
+    </button>
+    <button
+      class="text-foreground/60 hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100"
+      data-active="false"
+      data-testid="lyrics-line"
+      type="button"
+    >
+      <span
+        class="block"
+      >
+        Sit 
+        amet
+      </span>
+    </button>
+    <div
+      class="h-8/10 shrink-0"
+    />
+  </div>
+</div>
+`;
