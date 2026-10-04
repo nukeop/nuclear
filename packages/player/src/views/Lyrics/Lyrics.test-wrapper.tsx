@@ -9,6 +9,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import type { Lyrics } from '@nuclearplayer/model';
 import { createSelectWrapper } from '@nuclearplayer/ui';
 
 import App from '../../App';
@@ -136,6 +137,20 @@ export const LyricsWrapper = {
     providersHost.register(builder.build());
   },
 
+  registerLyrics(lyrics: Lyrics, provider?: { id: string; name: string }) {
+    const builder = new LyricsProviderBuilder()
+      .withCandidates({
+        id: 'lorem-ipsum',
+        title: 'Lorem Ipsum',
+        artist: 'Dolor',
+      })
+      .withLyrics(lyrics);
+    if (provider) {
+      builder.withId(provider.id).withName(provider.name);
+    }
+    providersHost.register(builder.build());
+  },
+
   async mount(): Promise<RenderResult> {
     const history = createMemoryHistory({ initialEntries: ['/lyrics'] });
     const router = createRouter({ routeTree, history });
@@ -151,6 +166,11 @@ export const LyricsWrapper = {
 
   async findLyrics() {
     return screen.findByTestId('lyrics-content');
+  },
+
+  async mountLyrics() {
+    await this.mount();
+    await this.findLyrics();
   },
 
   sourcePicker: createSelectWrapper(() =>

@@ -2,6 +2,11 @@ import { act } from '@testing-library/react';
 
 import { ConnectedPlayerBarWrapper } from '../../components/ConnectedPlayerBar/ConnectedPlayerBar.test-wrapper';
 import { QueueWrapper } from '../../integration-tests/Queue.test-wrapper';
+import {
+  LineSyncedLyricsBuilder,
+  PlainLyricsBuilder,
+  WordSyncedLyricsBuilder,
+} from '../../test/builders/LyricsBuilders';
 import { LyricsProviderBuilder } from '../../test/builders/LyricsProviderBuilder';
 import { createQueueItem } from '../../test/fixtures/queue';
 import { PluginsWrapper } from '../Plugins/Plugins.test-wrapper';
@@ -37,8 +42,7 @@ describe('Lyrics view', () => {
           ],
         })),
     );
-    await LyricsWrapper.mount();
-    expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+    await LyricsWrapper.mountLyrics();
 
     await ConnectedPlayerBarWrapper.controls.nextButton.click();
 
@@ -109,15 +113,7 @@ describe('Lyrics view', () => {
 
     it('shows "Instrumental" for instrumental tracks', async () => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({ type: 'instrumental', metadata: {} }),
-      );
+      LyricsWrapper.registerLyrics({ type: 'instrumental', metadata: {} });
 
       await LyricsWrapper.mount();
 
@@ -132,37 +128,20 @@ describe('Lyrics view', () => {
   describe('plain lyrics', () => {
     beforeEach(() => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'plain',
-            metadata: {},
-            sections: [
-              {
-                label: 'Verse 1',
-                lines: [
-                  { segments: [{ text: 'Lorem ipsum dolor' }] },
-                  { segments: [{ text: 'Sit amet' }] },
-                ],
-              },
-              {
-                label: 'Chorus',
-                lines: [{ segments: [{ text: 'Consectetur adipiscing' }] }],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new PlainLyricsBuilder()
+          .withSection('Verse 1')
+          .withLine('Lorem ipsum dolor')
+          .withLine('Sit amet')
+          .withSection('Chorus')
+          .withLine('Consectetur adipiscing')
+          .build(),
       );
     });
 
     it('shows the loaded lyrics', async () => {
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.sections).toEqual([
         { label: 'Verse 1', lines: ['Lorem ipsum dolor', 'Sit amet'] },
         { label: 'Chorus', lines: ['Consectetur adipiscing'] },
@@ -170,16 +149,14 @@ describe('Lyrics view', () => {
     });
 
     it("doesn't show offset controls", async () => {
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.offsetControls).not.toBeInTheDocument();
     });
 
     it("doesn't show the auto-scroll toggle", async () => {
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.autoScrollToggle.exists).toBe(false);
     });
   });
@@ -187,47 +164,20 @@ describe('Lyrics view', () => {
   describe('line synced lyrics', () => {
     beforeEach(() => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [{ text: 'Lorem ipsum dolor' }],
-                  },
-                  {
-                    startMs: 4000,
-                    endMs: 8000,
-                    segments: [{ text: 'Sit amet' }],
-                  },
-                  {
-                    startMs: 8000,
-                    endMs: 12000,
-                    segments: [{ text: 'Consectetur adipiscing' }],
-                  },
-                ],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder()
+          .withLine(0, 4000, 'Lorem ipsum dolor')
+          .withLine(4000, 8000, 'Sit amet')
+          .withLine(8000, 12000, 'Consectetur adipiscing')
+          .build(),
       );
     });
 
     it('highlights the line at the current timestamp', async () => {
       ConnectedPlayerBarWrapper.setPlaybackPosition(5);
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.syncedLines).toEqual([
         { text: 'Lorem ipsum dolor', isActive: false },
         { text: 'Sit amet', isActive: true },
@@ -236,8 +186,7 @@ describe('Lyrics view', () => {
     });
 
     it('seeks to the start of a line when clicking it', async () => {
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.clickLine('Consectetur adipiscing');
 
@@ -246,8 +195,7 @@ describe('Lyrics view', () => {
 
     it('changes the highlighted line when offset changes to earlier', async () => {
       ConnectedPlayerBarWrapper.setPlaybackPosition(3.95);
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.offsetMinus.click();
 
@@ -260,8 +208,7 @@ describe('Lyrics view', () => {
 
     it('changes the highlighted line when offset changes to later', async () => {
       ConnectedPlayerBarWrapper.setPlaybackPosition(4.05);
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.offsetPlus.click();
 
@@ -276,49 +223,34 @@ describe('Lyrics view', () => {
   describe('word synced lyrics', () => {
     beforeEach(() => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'wordSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 2000,
-                    segments: [
-                      { text: 'Lorem ', startMs: 0, endMs: 500 },
-                      { text: 'ipsum ', startMs: 500, endMs: 1000 },
-                      { text: 'dolor', startMs: 1000, endMs: 2000 },
-                    ],
-                  },
-                  {
-                    startMs: 2000,
-                    endMs: 4000,
-                    segments: [
-                      { text: 'Sit ', startMs: 2000, endMs: 3000 },
-                      { text: 'amet', startMs: 3000, endMs: 4000 },
-                    ],
-                  },
-                ],
-              },
+      LyricsWrapper.registerLyrics(
+        new WordSyncedLyricsBuilder()
+          .withCustomLine({
+            startMs: 0,
+            endMs: 2000,
+            segments: [
+              { text: 'Lorem ', startMs: 0, endMs: 500 },
+              { text: 'ipsum ', startMs: 500, endMs: 1000 },
+              { text: 'dolor', startMs: 1000, endMs: 2000 },
             ],
-          }),
+          })
+          .withCustomLine({
+            startMs: 2000,
+            endMs: 4000,
+            segments: [
+              { text: 'Sit ', startMs: 2000, endMs: 3000 },
+              { text: 'amet', startMs: 3000, endMs: 4000 },
+            ],
+          })
+          .build(),
       );
     });
 
     it('highlights the words up to the current timestamp', async () => {
       ConnectedPlayerBarWrapper.setPlaybackPosition(0.75);
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.syncedWords).toEqual([
         { text: 'Lorem ', isActive: true },
         { text: 'ipsum ', isActive: true },
@@ -343,8 +275,7 @@ describe('Lyrics view', () => {
 
       it('keeps highlighting words between playback position updates', async () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(0.95);
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         await ConnectedPlayerBarWrapper.controls.playButton.click();
 
         await act(async () => {
@@ -361,8 +292,7 @@ describe('Lyrics view', () => {
 
     it('changes the highlighted word when offset changes to earlier', async () => {
       ConnectedPlayerBarWrapper.setPlaybackPosition(0.95);
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.offsetMinus.click();
 
@@ -375,8 +305,7 @@ describe('Lyrics view', () => {
 
     it('changes the highlighted word when offset changes to later', async () => {
       ConnectedPlayerBarWrapper.setPlaybackPosition(1.05);
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.offsetPlus.click();
 
@@ -395,42 +324,19 @@ describe('Lyrics view', () => {
 
     describe('between lines 5 seconds apart', () => {
       beforeEach(() => {
-        LyricsWrapper.registerProvider(
-          new LyricsProviderBuilder()
-            .withCandidates({
-              id: 'lorem-ipsum',
-              title: 'Lorem Ipsum',
-              artist: 'Dolor',
-            })
-            .withLyrics({
-              type: 'lineSynced',
-              metadata: {},
-              sections: [
-                {
-                  lines: [
-                    {
-                      startMs: 0,
-                      endMs: 4000,
-                      segments: [{ text: 'Lorem ipsum dolor' }],
-                    },
-                    {
-                      startMs: 9000,
-                      endMs: 13000,
-                      segments: [{ text: 'Sit amet' }],
-                    },
-                  ],
-                },
-              ],
-            }),
+        LyricsWrapper.registerLyrics(
+          new LineSyncedLyricsBuilder()
+            .withLine(0, 4000, 'Lorem ipsum dolor')
+            .withLine(9000, 13000, 'Sit amet')
+            .build(),
         );
       });
 
       it('shows an instrumental break between lines that are 5 seconds or more apart', async () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(6);
 
-        await LyricsWrapper.mount();
+        await LyricsWrapper.mountLyrics();
 
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
         expect(LyricsWrapper.syncedRows).toEqual([
           { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
           { type: 'break', isActive: true },
@@ -441,9 +347,8 @@ describe('Lyrics view', () => {
       it("doesn't highlight the break before the previous line ends", async () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(3.95);
 
-        await LyricsWrapper.mount();
+        await LyricsWrapper.mountLyrics();
 
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
         expect(LyricsWrapper.syncedRows).toEqual([
           { type: 'line', text: 'Lorem ipsum dolor', isActive: true },
           { type: 'break', isActive: false },
@@ -454,9 +359,8 @@ describe('Lyrics view', () => {
       it("doesn't highlight the break once the next line starts", async () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(9.05);
 
-        await LyricsWrapper.mount();
+        await LyricsWrapper.mountLyrics();
 
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
         expect(LyricsWrapper.syncedRows).toEqual([
           { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
           { type: 'break', isActive: false },
@@ -466,34 +370,15 @@ describe('Lyrics view', () => {
     });
 
     it('shows an instrumental break before the first line when it starts 5 seconds or more into the track', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 5000,
-                    endMs: 9000,
-                    segments: [{ text: 'Lorem ipsum dolor' }],
-                  },
-                ],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder()
+          .withLine(5000, 9000, 'Lorem ipsum dolor')
+          .build(),
       );
       ConnectedPlayerBarWrapper.setPlaybackPosition(3);
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.syncedRows).toEqual([
         { type: 'break', isActive: true },
         { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
@@ -501,73 +386,31 @@ describe('Lyrics view', () => {
     });
 
     it("doesn't show an instrumental break before the first line when it starts less than 5 seconds into the track", async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 4900,
-                    endMs: 9000,
-                    segments: [{ text: 'Lorem ipsum dolor' }],
-                  },
-                ],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder()
+          .withLine(4900, 9000, 'Lorem ipsum dolor')
+          .build(),
       );
       ConnectedPlayerBarWrapper.setPlaybackPosition(3);
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.syncedRows).toEqual([
         { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
       ]);
     });
 
     it("doesn't show an instrumental break between lines less than 5 seconds apart", async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [{ text: 'Lorem ipsum dolor' }],
-                  },
-                  {
-                    startMs: 8900,
-                    endMs: 12900,
-                    segments: [{ text: 'Sit amet' }],
-                  },
-                ],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder()
+          .withLine(0, 4000, 'Lorem ipsum dolor')
+          .withLine(8900, 12900, 'Sit amet')
+          .build(),
       );
       ConnectedPlayerBarWrapper.setPlaybackPosition(6);
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.syncedRows).toEqual([
         { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
         { type: 'line', text: 'Sit amet', isActive: false },
@@ -575,45 +418,30 @@ describe('Lyrics view', () => {
     });
 
     it('shows instrumental breaks in word synced lyrics', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'wordSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [
-                      { text: 'Lorem ', startMs: 0, endMs: 2000 },
-                      { text: 'ipsum', startMs: 2000, endMs: 4000 },
-                    ],
-                  },
-                  {
-                    startMs: 9000,
-                    endMs: 13000,
-                    segments: [
-                      { text: 'Sit ', startMs: 9000, endMs: 11000 },
-                      { text: 'amet', startMs: 11000, endMs: 13000 },
-                    ],
-                  },
-                ],
-              },
+      LyricsWrapper.registerLyrics(
+        new WordSyncedLyricsBuilder()
+          .withCustomLine({
+            startMs: 0,
+            endMs: 4000,
+            segments: [
+              { text: 'Lorem ', startMs: 0, endMs: 2000 },
+              { text: 'ipsum', startMs: 2000, endMs: 4000 },
             ],
-          }),
+          })
+          .withCustomLine({
+            startMs: 9000,
+            endMs: 13000,
+            segments: [
+              { text: 'Sit ', startMs: 9000, endMs: 11000 },
+              { text: 'amet', startMs: 11000, endMs: 13000 },
+            ],
+          })
+          .build(),
       );
       ConnectedPlayerBarWrapper.setPlaybackPosition(6);
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.syncedRows).toEqual([
         { type: 'line', text: 'Lorem ipsum', isActive: false },
         { type: 'break', isActive: true },
@@ -625,51 +453,23 @@ describe('Lyrics view', () => {
   describe('auto-scroll', () => {
     beforeEach(() => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [{ text: 'Lorem ipsum dolor' }],
-                  },
-                  {
-                    startMs: 4000,
-                    endMs: 8000,
-                    segments: [{ text: 'Sit amet' }],
-                  },
-                  {
-                    startMs: 8000,
-                    endMs: 12000,
-                    segments: [{ text: 'Consectetur adipiscing' }],
-                  },
-                ],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder()
+          .withLine(0, 4000, 'Lorem ipsum dolor')
+          .withLine(4000, 8000, 'Sit amet')
+          .withLine(8000, 12000, 'Consectetur adipiscing')
+          .build(),
       );
     });
 
     it('is on by default', async () => {
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.autoScrollToggle.isOn).toBe(true);
     });
 
     it('turns auto-scroll off', async () => {
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.autoScrollToggle.click();
 
@@ -679,8 +479,7 @@ describe('Lyrics view', () => {
 
     it('turns auto-scroll on', async () => {
       LyricsWrapper.setAutoScroll(false);
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.autoScrollToggle.click();
 
@@ -691,8 +490,7 @@ describe('Lyrics view', () => {
     it('scrolls to the current line when auto-scroll is turned on', async () => {
       LyricsWrapper.setAutoScroll(false);
       ConnectedPlayerBarWrapper.setPlaybackPosition(5);
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
       LyricsWrapper.layOutLyrics();
 
       await LyricsWrapper.autoScrollToggle.click();
@@ -702,8 +500,7 @@ describe('Lyrics view', () => {
 
     describe('current line button', () => {
       it('shows the current line button when the current line is out of view', async () => {
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
 
         LyricsWrapper.scrollTo(200);
@@ -712,8 +509,7 @@ describe('Lyrics view', () => {
       });
 
       it('hides the current line button after scrolling back to the current line', async () => {
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
         LyricsWrapper.scrollTo(200);
 
@@ -723,8 +519,7 @@ describe('Lyrics view', () => {
       });
 
       it('points up when the current line is above the view', async () => {
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
 
         LyricsWrapper.scrollTo(200);
@@ -735,8 +530,7 @@ describe('Lyrics view', () => {
       it('points down when the current line is below the view', async () => {
         LyricsWrapper.setAutoScroll(false);
         ConnectedPlayerBarWrapper.setPlaybackPosition(9);
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
 
         LyricsWrapper.scrollTo(0);
@@ -746,8 +540,7 @@ describe('Lyrics view', () => {
 
       it('brings you to the current line when auto-scroll is on', async () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(5);
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
         LyricsWrapper.scrollTo(250);
 
@@ -759,8 +552,7 @@ describe('Lyrics view', () => {
       it('brings you to the current line when auto-scroll is off', async () => {
         LyricsWrapper.setAutoScroll(false);
         ConnectedPlayerBarWrapper.setPlaybackPosition(5);
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
         LyricsWrapper.scrollTo(250);
 
@@ -787,8 +579,7 @@ describe('Lyrics view', () => {
 
       it('follows the active line', async () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(3.9);
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
         await ConnectedPlayerBarWrapper.controls.playButton.click();
 
@@ -801,8 +592,7 @@ describe('Lyrics view', () => {
 
       it('follows the active line after scrolling away', async () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(3.9);
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
         LyricsWrapper.scrollTo(200);
         await ConnectedPlayerBarWrapper.controls.playButton.click();
@@ -816,8 +606,7 @@ describe('Lyrics view', () => {
 
       it("doesn't follow the active line when auto-scroll is off", async () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(3.9);
-        await LyricsWrapper.mount();
-        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        await LyricsWrapper.mountLyrics();
         LyricsWrapper.layOutLyrics();
         await LyricsWrapper.autoScrollToggle.click();
         await ConnectedPlayerBarWrapper.controls.playButton.click();
@@ -837,36 +626,21 @@ describe('Lyrics view', () => {
     });
 
     it('shows furigana in plain lyrics', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'plain',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    segments: [
-                      { text: '夜', ruby: 'よる' },
-                      { text: 'に' },
-                      { text: '駆', ruby: 'か' },
-                      { text: 'ける' },
-                    ],
-                  },
-                ],
-              },
+      LyricsWrapper.registerLyrics(
+        new PlainLyricsBuilder()
+          .withCustomLine({
+            segments: [
+              { text: '夜', ruby: 'よる' },
+              { text: 'に' },
+              { text: '駆', ruby: 'か' },
+              { text: 'ける' },
             ],
-          }),
+          })
+          .build(),
       );
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.furigana).toEqual([
         { text: '夜', reading: 'よる' },
         { text: '駆', reading: 'か' },
@@ -874,38 +648,23 @@ describe('Lyrics view', () => {
     });
 
     it('shows furigana in line synced lyrics', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [
-                      { text: '夜', ruby: 'よる' },
-                      { text: 'に' },
-                      { text: '駆', ruby: 'か' },
-                      { text: 'ける' },
-                    ],
-                  },
-                ],
-              },
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder()
+          .withCustomLine({
+            startMs: 0,
+            endMs: 4000,
+            segments: [
+              { text: '夜', ruby: 'よる' },
+              { text: 'に' },
+              { text: '駆', ruby: 'か' },
+              { text: 'ける' },
             ],
-          }),
+          })
+          .build(),
       );
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.furigana).toEqual([
         { text: '夜', reading: 'よる' },
         { text: '駆', reading: 'か' },
@@ -913,38 +672,23 @@ describe('Lyrics view', () => {
     });
 
     it('shows furigana in word synced lyrics', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'wordSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [
-                      { text: '夜', ruby: 'よる', startMs: 0, endMs: 1000 },
-                      { text: 'に', startMs: 1000, endMs: 2000 },
-                      { text: '駆', ruby: 'か', startMs: 2000, endMs: 3000 },
-                      { text: 'ける', startMs: 3000, endMs: 4000 },
-                    ],
-                  },
-                ],
-              },
+      LyricsWrapper.registerLyrics(
+        new WordSyncedLyricsBuilder()
+          .withCustomLine({
+            startMs: 0,
+            endMs: 4000,
+            segments: [
+              { text: '夜', ruby: 'よる', startMs: 0, endMs: 1000 },
+              { text: 'に', startMs: 1000, endMs: 2000 },
+              { text: '駆', ruby: 'か', startMs: 2000, endMs: 3000 },
+              { text: 'ける', startMs: 3000, endMs: 4000 },
             ],
-          }),
+          })
+          .build(),
       );
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.furigana).toEqual([
         { text: '夜', reading: 'よる' },
         { text: '駆', reading: 'か' },
@@ -958,43 +702,28 @@ describe('Lyrics view', () => {
     });
 
     it('shows translations and romanizations in plain lyrics', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'plain',
-            metadata: {},
-            sections: [
+      LyricsWrapper.registerLyrics(
+        new PlainLyricsBuilder()
+          .withCustomLine({
+            segments: [{ text: '夜に駆ける' }],
+            annotations: [
               {
-                lines: [
-                  {
-                    segments: [{ text: '夜に駆ける' }],
-                    annotations: [
-                      {
-                        type: 'romanization',
-                        language: 'ja-Latn',
-                        text: 'Yoru ni kakeru',
-                      },
-                      {
-                        type: 'translation',
-                        language: 'en',
-                        text: 'Racing into the night',
-                      },
-                    ],
-                  },
-                ],
+                type: 'romanization',
+                language: 'ja-Latn',
+                text: 'Yoru ni kakeru',
+              },
+              {
+                type: 'translation',
+                language: 'en',
+                text: 'Racing into the night',
               },
             ],
-          }),
+          })
+          .build(),
       );
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.annotations).toEqual([
         {
           type: 'romanization',
@@ -1006,45 +735,30 @@ describe('Lyrics view', () => {
     });
 
     it('shows translations and romanizations in synced lyrics', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder()
+          .withCustomLine({
+            startMs: 0,
+            endMs: 4000,
+            segments: [{ text: '夜に駆ける' }],
+            annotations: [
               {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [{ text: '夜に駆ける' }],
-                    annotations: [
-                      {
-                        type: 'romanization',
-                        language: 'ja-Latn',
-                        text: 'Yoru ni kakeru',
-                      },
-                      {
-                        type: 'translation',
-                        language: 'en',
-                        text: 'Racing into the night',
-                      },
-                    ],
-                  },
-                ],
+                type: 'romanization',
+                language: 'ja-Latn',
+                text: 'Yoru ni kakeru',
+              },
+              {
+                type: 'translation',
+                language: 'en',
+                text: 'Racing into the night',
               },
             ],
-          }),
+          })
+          .build(),
       );
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.annotations).toEqual([
         {
           type: 'romanization',
@@ -1062,64 +776,34 @@ describe('Lyrics view', () => {
     });
 
     it('shows background vocals in plain lyrics', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
+      LyricsWrapper.registerLyrics(
+        new PlainLyricsBuilder()
+          .withCustomLine({
+            segments: [{ text: 'Lorem ipsum dolor' }],
+            background: [{ text: 'Sit amet' }],
           })
-          .withLyrics({
-            type: 'plain',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    segments: [{ text: 'Lorem ipsum dolor' }],
-                    background: [{ text: 'Sit amet' }],
-                  },
-                ],
-              },
-            ],
-          }),
+          .build(),
       );
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.backgroundVocals).toEqual(['(Sit amet)']);
     });
 
     it('shows background vocals in synced lyrics', async () => {
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder()
+          .withCustomLine({
+            startMs: 0,
+            endMs: 4000,
+            segments: [{ text: 'Lorem ipsum dolor' }],
+            background: [{ text: 'Sit amet' }],
           })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [{ text: 'Lorem ipsum dolor' }],
-                    background: [{ text: 'Sit amet' }],
-                  },
-                ],
-              },
-            ],
-          }),
+          .build(),
       );
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.backgroundVocals).toEqual(['(Sit amet)']);
     });
   });
@@ -1127,47 +811,27 @@ describe('Lyrics view', () => {
   describe('vocalists', () => {
     it('shows who sings each section of plain lyrics', async () => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
+      LyricsWrapper.registerLyrics(
+        new PlainLyricsBuilder()
+          .withVocalists(
+            { id: 'lorem', name: 'Lorem', type: 'person' },
+            { id: 'ipsum', name: 'Ipsum', type: 'person' },
+          )
+          .withSection('Verse 1')
+          .withCustomLine({
+            segments: [{ text: 'Dolor sit amet' }],
+            vocalistIds: ['lorem'],
           })
-          .withLyrics({
-            type: 'plain',
-            metadata: {
-              vocalists: [
-                { id: 'lorem', name: 'Lorem', type: 'person' },
-                { id: 'ipsum', name: 'Ipsum', type: 'person' },
-              ],
-            },
-            sections: [
-              {
-                label: 'Verse 1',
-                lines: [
-                  {
-                    segments: [{ text: 'Dolor sit amet' }],
-                    vocalistIds: ['lorem'],
-                  },
-                ],
-              },
-              {
-                label: 'Chorus',
-                lines: [
-                  {
-                    segments: [{ text: 'Consectetur adipiscing' }],
-                    vocalistIds: ['lorem', 'ipsum'],
-                  },
-                ],
-              },
-            ],
-          }),
+          .withSection('Chorus')
+          .withCustomLine({
+            segments: [{ text: 'Consectetur adipiscing' }],
+            vocalistIds: ['lorem', 'ipsum'],
+          })
+          .build(),
       );
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.sections).toEqual([
         { label: 'Verse 1 - Lorem', lines: ['Dolor sit amet'] },
         { label: 'Chorus - Lorem - Ipsum', lines: ['Consectetur adipiscing'] },
@@ -1178,57 +842,22 @@ describe('Lyrics view', () => {
   describe('source picker', () => {
     beforeEach(() => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withId('alpha')
-          .withName('Alpha Lyrics')
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'plain',
-            metadata: {},
-            sections: [
-              {
-                label: 'Verse 1',
-                lines: [{ segments: [{ text: 'Lorem ipsum dolor' }] }],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new PlainLyricsBuilder()
+          .withSection('Verse 1')
+          .withLine('Lorem ipsum dolor')
+          .build(),
+        { id: 'alpha', name: 'Alpha Lyrics' },
       );
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withId('beta')
-          .withName('Beta Lyrics')
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'lineSynced',
-            metadata: {},
-            sections: [
-              {
-                lines: [
-                  {
-                    startMs: 0,
-                    endMs: 4000,
-                    segments: [{ text: 'Sit amet' }],
-                  },
-                ],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new LineSyncedLyricsBuilder().withLine(0, 4000, 'Sit amet').build(),
+        { id: 'beta', name: 'Beta Lyrics' },
       );
     });
 
     it('shows the top lyrics by default', async () => {
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.sourcePicker.selected()).toBe('Beta Lyrics');
       expect(LyricsWrapper.syncedLines).toEqual([
         { text: 'Sit amet', isActive: true },
@@ -1236,9 +865,8 @@ describe('Lyrics view', () => {
     });
 
     it('lists lyrics from all providers', async () => {
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(await LyricsWrapper.sourcePicker.availableOptions()).toEqual([
         'Beta Lyrics',
         'Alpha Lyrics',
@@ -1246,8 +874,7 @@ describe('Lyrics view', () => {
     });
 
     it('shows lyrics from the picked provider', async () => {
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.sourcePicker.select('Alpha Lyrics');
 
@@ -1261,8 +888,7 @@ describe('Lyrics view', () => {
         createQueueItem('Lorem Ipsum'),
         createQueueItem('Consectetur'),
       ]);
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
       await LyricsWrapper.sourcePicker.select('Alpha Lyrics');
 
       await ConnectedPlayerBarWrapper.controls.nextButton.click();
@@ -1275,29 +901,16 @@ describe('Lyrics view', () => {
   describe('text size', () => {
     beforeEach(() => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
-      LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder()
-          .withCandidates({
-            id: 'lorem-ipsum',
-            title: 'Lorem Ipsum',
-            artist: 'Dolor',
-          })
-          .withLyrics({
-            type: 'plain',
-            metadata: {},
-            sections: [
-              {
-                label: 'Verse 1',
-                lines: [{ segments: [{ text: 'Lorem ipsum dolor' }] }],
-              },
-            ],
-          }),
+      LyricsWrapper.registerLyrics(
+        new PlainLyricsBuilder()
+          .withSection('Verse 1')
+          .withLine('Lorem ipsum dolor')
+          .build(),
       );
     });
 
     it('makes text smaller', async () => {
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.textSizeMinus.click();
 
@@ -1305,8 +918,7 @@ describe('Lyrics view', () => {
     });
 
     it('makes text larger', async () => {
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      await LyricsWrapper.mountLyrics();
 
       await LyricsWrapper.textSizePlus.click();
 
@@ -1316,18 +928,16 @@ describe('Lyrics view', () => {
     it('disables "Smaller lyrics" at the smallest size', async () => {
       LyricsWrapper.setTextSize(0);
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.textSizeMinus.element).toBeDisabled();
     });
 
     it('disables "Larger lyrics" at the largest size', async () => {
       LyricsWrapper.setTextSize(2);
 
-      await LyricsWrapper.mount();
+      await LyricsWrapper.mountLyrics();
 
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.textSizePlus.element).toBeDisabled();
     });
   });
