@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-04T00:00",
+    "description": "rmpc can now connect to Nuclear's MPD server",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Integrations",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-09-22T00:00",
     "description": "Stream verification is back. Now with offline verification",
     "type": "feature",

@@ -1,9 +1,42 @@
 pub const GREETING: &[u8] = b"OK MPD 0.25.0\n";
 
+pub const SUPPORTED_COMMANDS: &[&str] = &[
+    "binarylimit",
+    "clear",
+    "commands",
+    "currentsong",
+    "delete",
+    "deleteid",
+    "getvol",
+    "idle",
+    "move",
+    "next",
+    "noidle",
+    "outputs",
+    "password",
+    "pause",
+    "ping",
+    "play",
+    "playlistinfo",
+    "previous",
+    "random",
+    "repeat",
+    "seek",
+    "seekcur",
+    "seekid",
+    "setvol",
+    "shuffle",
+    "single",
+    "status",
+    "stop",
+    "tagtypes",
+];
+
 pub enum Command {
     Ping,
     Password,
     Noop,
+    Commands,
     Idle(Vec<String>),
     NoIdle,
     Status,
@@ -110,7 +143,8 @@ pub fn parse_command(line: &str) -> Command {
 
     match name {
         "ping" => Command::Ping,
-        "password" | "tagtypes" | "outputs" => Command::Noop,
+        "password" | "tagtypes" | "outputs" | "binarylimit" => Command::Noop,
+        "commands" => Command::Commands,
         "idle" => Command::Idle(args),
         "noidle" => Command::NoIdle,
         "status" => Command::Status,
@@ -231,3 +265,29 @@ pub fn format_error(error: &MpdError) -> Vec<u8> {
 
 pub const LIST_OK: &[u8] = b"list_OK\n";
 pub const OK: &[u8] = b"OK\n";
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn binarylimit_is_accepted_as_noop() {
+        assert!(matches!(parse_command("binarylimit 262144"), Command::Noop));
+    }
+
+    #[test]
+    fn commands_is_recognized() {
+        assert!(matches!(parse_command("commands"), Command::Commands));
+    }
+
+    #[test]
+    fn every_supported_command_is_parsed() {
+        let unparsed: Vec<&str> = SUPPORTED_COMMANDS
+            .iter()
+            .copied()
+            .filter(|name| matches!(parse_command(&format!("{name} 0 0")), Command::Unknown(_)))
+            .collect();
+
+        assert_eq!(unparsed, Vec::<&str>::new());
+    }
+}
