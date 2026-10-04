@@ -1,36 +1,41 @@
 import findLastIndex from 'lodash-es/findLastIndex';
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useCallback, useEffect, useRef } from 'react';
 
 import type { LineSyncedLyrics, WordSyncedLyrics } from '@nuclearplayer/model';
 
 import { flattenLines } from '../utils';
+import { useActiveLineDirection } from './useActiveLineDirection';
 
 const ANCHOR_RATIO = 0.3;
 
 type Options = {
   lyrics: LineSyncedLyrics | WordSyncedLyrics;
   positionMs: number;
-  onSeek: (positionMs: number) => void;
   viewportRef: RefObject<HTMLDivElement>;
+  autoScroll: boolean;
 };
 
 export const useSyncedLyrics = ({
   lyrics,
   positionMs,
-  onSeek,
   viewportRef,
+  autoScroll,
 }: Options) => {
   const activeLineRef = useRef<HTMLButtonElement>(null);
-  const [isFollowing, setIsFollowing] = useState(true);
   const activeLineIndex = findLastIndex(
     flattenLines(lyrics.sections),
     (line) => line.startMs <= positionMs,
   );
+  const activeLineDirection = useActiveLineDirection(
+    viewportRef,
+    activeLineRef,
+    activeLineIndex,
+  );
 
-  useEffect(() => {
+  const scrollToActiveLine = useCallback(() => {
     const viewport = viewportRef.current;
     const activeLine = activeLineRef.current;
-    if (!isFollowing || !viewport || !activeLine) {
+    if (!viewport || !activeLine) {
       return;
     }
     const lineTop =
@@ -38,17 +43,18 @@ export const useSyncedLyrics = ({
       viewport.getBoundingClientRect().top;
     viewport.scrollTop =
       viewport.scrollTop + lineTop - viewport.clientHeight * ANCHOR_RATIO;
-  }, [isFollowing, activeLineIndex, viewportRef]);
+  }, [viewportRef]);
+
+  useEffect(() => {
+    if (autoScroll) {
+      scrollToActiveLine();
+    }
+  }, [autoScroll, activeLineIndex, scrollToActiveLine]);
 
   return {
     activeLineRef,
     activeLineIndex,
-    isFollowing,
-    stopFollowing: () => setIsFollowing(false),
-    resumeFollowing: () => setIsFollowing(true),
-    seekToLine: (startMs: number) => {
-      onSeek(startMs);
-      setIsFollowing(true);
-    },
+    activeLineDirection,
+    scrollToActiveLine,
   };
 };

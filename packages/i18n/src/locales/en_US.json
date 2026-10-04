@@ -385,6 +385,10 @@
       "textSize": {
         "title": "Lyrics text size",
         "description": "The size of the text in the lyrics view."
+      },
+      "autoScroll": {
+        "title": "Lyrics auto-scroll",
+        "description": "Scroll synced lyrics along with the song."
       }
     },
     "playback": {
@@ -587,6 +591,7 @@
     "showLater": "Show lyrics later",
     "smaller": "Smaller lyrics",
     "larger": "Larger lyrics",
+    "autoScroll": "Auto-scroll",
     "types": {
       "wordSynced": "Word synced",
       "lineSynced": "Line synced",

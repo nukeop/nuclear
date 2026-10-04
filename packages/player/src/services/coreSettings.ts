@@ -362,6 +362,16 @@ export const CORE_SETTINGS: SettingDefinition[] = [
     hidden: true,
     widget: { type: 'slider', min: 0, max: 2, step: 1 },
   },
+  {
+    id: 'lyrics.autoScroll',
+    title: 'preferences.lyrics.autoScroll.title',
+    description: 'preferences.lyrics.autoScroll.description',
+    category: 'appearance',
+    kind: 'boolean',
+    default: true,
+    hidden: true,
+    widget: { type: 'toggle' },
+  },
 ];
 
 export const registerBuiltInCoreSettings = () => {

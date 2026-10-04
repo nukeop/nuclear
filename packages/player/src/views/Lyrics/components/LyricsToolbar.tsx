@@ -10,7 +10,12 @@ import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { AttributedLyrics } from '@nuclearplayer/plugin-sdk';
-import { LyricsSource, LyricsSourcePicker, Stepper } from '@nuclearplayer/ui';
+import {
+  LyricsSource,
+  LyricsSourcePicker,
+  Stepper,
+  Toggle,
+} from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../../../hooks/useCoreSetting';
 
@@ -44,6 +49,8 @@ export const LyricsToolbar: FC<LyricsToolbarProps> = ({
 }) => {
   const { t } = useTranslation('lyrics');
   const [textSize, setTextSize] = useCoreSetting<number>('lyrics.textSize');
+  const [autoScroll, setAutoScroll] =
+    useCoreSetting<boolean>('lyrics.autoScroll');
   const sources = results.flatMap(toLyricsSources);
   const selectedType = selectedResult?.lyrics.type;
   const isSynced =
@@ -78,6 +85,16 @@ export const LyricsToolbar: FC<LyricsToolbarProps> = ({
             increment: t('larger'),
           }}
         />
+      )}
+      {isSynced && (
+        <label className="flex items-center gap-2 px-2 text-sm font-bold">
+          {t('autoScroll')}
+          <Toggle
+            label={t('autoScroll')}
+            checked={Boolean(autoScroll)}
+            onChange={setAutoScroll}
+          />
+        </label>
       )}
       {isSynced && (
         <Stepper

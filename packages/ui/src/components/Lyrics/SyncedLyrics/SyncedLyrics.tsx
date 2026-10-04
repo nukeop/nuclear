@@ -17,6 +17,7 @@ type SyncedLyricsProps = Omit<ComponentProps<'div'>, 'children'> & {
   onSeek: (positionMs: number) => void;
   labels: SyncedLyricsLabels;
   viewportRef: RefObject<HTMLDivElement>;
+  autoScroll: boolean;
 };
 
 export const SyncedLyrics: FC<SyncedLyricsProps> = ({
@@ -25,21 +26,19 @@ export const SyncedLyrics: FC<SyncedLyricsProps> = ({
   onSeek,
   labels,
   viewportRef,
+  autoScroll,
   className,
   ...props
 }) => {
   const {
     activeLineRef,
     activeLineIndex,
-    isFollowing,
-    stopFollowing,
-    resumeFollowing,
-    seekToLine,
-  } = useSyncedLyrics({ lyrics, positionMs, onSeek, viewportRef });
+    activeLineDirection,
+    scrollToActiveLine,
+  } = useSyncedLyrics({ lyrics, positionMs, viewportRef, autoScroll });
 
   return (
     <div
-      onWheel={stopFollowing}
       className={cn(
         'font-heading contents leading-tight font-bold tracking-tight font-stretch-semi-condensed',
         className,
@@ -52,16 +51,14 @@ export const SyncedLyrics: FC<SyncedLyricsProps> = ({
         positionMs={positionMs}
         activeLineIndex={activeLineIndex}
         activeLineRef={activeLineRef}
-        onLineClick={seekToLine}
+        onLineClick={onSeek}
       />
       <div className="h-8/10 shrink-0" />
-      {!isFollowing && (
+      {activeLineDirection && (
         <CurrentLinePill
-          viewportRef={viewportRef}
-          activeLineRef={activeLineRef}
-          activeLineIndex={activeLineIndex}
+          direction={activeLineDirection}
           label={labels.currentLine}
-          onClick={resumeFollowing}
+          onClick={scrollToActiveLine}
         />
       )}
     </div>

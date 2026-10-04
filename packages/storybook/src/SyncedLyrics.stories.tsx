@@ -213,6 +213,7 @@ export const LineSynced: Story = {
     onSeek: () => {},
     labels: LABELS,
     viewportRef: { current: null },
+    autoScroll: true,
   },
   render: (args) => <ScrollingSyncedLyrics {...args} durationMs={39000} />,
 };
@@ -224,6 +225,7 @@ export const WordSynced: Story = {
     onSeek: () => {},
     labels: LABELS,
     viewportRef: { current: null },
+    autoScroll: true,
   },
   render: (args) => <ScrollingSyncedLyrics {...args} durationMs={16500} />,
 };

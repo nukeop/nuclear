@@ -4,6 +4,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import type { LineSyncedLyrics, WordSyncedLyrics } from '@nuclearplayer/model';
 import { SyncedLyrics } from '@nuclearplayer/ui';
 
+import { useCoreSetting } from '../../../hooks/useCoreSetting';
 import { useSoundStore } from '../../../stores/soundStore';
 import { usePlaybackPositionMs } from '../hooks/usePlaybackPositionMs';
 
@@ -23,6 +24,7 @@ export const ConnectedSyncedLyrics: FC<ConnectedSyncedLyricsProps> = ({
   const { t } = useTranslation('lyrics');
   const positionMs = usePlaybackPositionMs();
   const seekTo = useSoundStore((state) => state.seekTo);
+  const [autoScroll] = useCoreSetting<boolean>('lyrics.autoScroll');
 
   return (
     <SyncedLyrics
@@ -33,6 +35,7 @@ export const ConnectedSyncedLyrics: FC<ConnectedSyncedLyricsProps> = ({
       onSeek={(lineStartMs) => seekTo((lineStartMs + offsetMs) / 1000)}
       labels={{ currentLine: t('currentLine') }}
       viewportRef={viewportRef}
+      autoScroll={Boolean(autoScroll)}
     />
   );
 };

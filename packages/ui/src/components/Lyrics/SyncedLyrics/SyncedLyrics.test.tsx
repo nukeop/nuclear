@@ -13,6 +13,7 @@ describe('SyncedLyrics', () => {
         onSeek={() => {}}
         labels={LABELS}
         viewportRef={createRef()}
+        autoScroll
         lyrics={{
           type: 'lineSynced',
           metadata: {},
@@ -56,6 +57,7 @@ describe('SyncedLyrics', () => {
         onSeek={() => {}}
         labels={LABELS}
         viewportRef={createRef()}
+        autoScroll
         lyrics={{
           type: 'wordSynced',
           metadata: {},
