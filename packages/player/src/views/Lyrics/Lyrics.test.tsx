@@ -619,16 +619,74 @@ describe('Lyrics view', () => {
       expect(LyricsWrapper.autoScroll).toBe(true);
     });
 
-    it('scrolls to the active line when auto-scroll is turned on', async () => {
-      LyricsWrapper.setAutoScroll(false);
-      ConnectedPlayerBarWrapper.setPlaybackPosition(5);
-      await LyricsWrapper.mount();
-      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
-      LyricsWrapper.layOutRows();
+    describe('current line button', () => {
+      it('shows the current line button when the current line is out of view', async () => {
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutLyrics();
 
-      await LyricsWrapper.autoScrollToggle.click();
+        LyricsWrapper.scrollTo(200);
 
-      expect(LyricsWrapper.scrollPosition).toBe(100);
+        expect(LyricsWrapper.currentLineButton.exists).toBe(true);
+      });
+
+      it('hides the current line button after scrolling back to the current line', async () => {
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutLyrics();
+        LyricsWrapper.scrollTo(200);
+
+        LyricsWrapper.scrollTo(0);
+
+        expect(LyricsWrapper.currentLineButton.exists).toBe(false);
+      });
+
+      it('points up when the current line is above the view', async () => {
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutLyrics();
+
+        LyricsWrapper.scrollTo(200);
+
+        expect(LyricsWrapper.currentLineButton.direction).toBe('up');
+      });
+
+      it('points down when the current line is below the view', async () => {
+        LyricsWrapper.setAutoScroll(false);
+        ConnectedPlayerBarWrapper.setPlaybackPosition(9);
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutLyrics();
+
+        LyricsWrapper.scrollTo(0);
+
+        expect(LyricsWrapper.currentLineButton.direction).toBe('down');
+      });
+
+      it('brings you to the current line when auto-scroll is on', async () => {
+        ConnectedPlayerBarWrapper.setPlaybackPosition(5);
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutLyrics();
+        LyricsWrapper.scrollTo(250);
+
+        await LyricsWrapper.currentLineButton.click();
+
+        expect(LyricsWrapper.scrollPosition).toBe(100);
+      });
+
+      it('brings you to the current line when auto-scroll is off', async () => {
+        LyricsWrapper.setAutoScroll(false);
+        ConnectedPlayerBarWrapper.setPlaybackPosition(5);
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutLyrics();
+        LyricsWrapper.scrollTo(250);
+
+        await LyricsWrapper.currentLineButton.click();
+
+        expect(LyricsWrapper.scrollPosition).toBe(100);
+      });
     });
 
     describe('during playback', () => {
@@ -650,7 +708,22 @@ describe('Lyrics view', () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(3.9);
         await LyricsWrapper.mount();
         expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
-        LyricsWrapper.layOutRows();
+        LyricsWrapper.layOutLyrics();
+        await ConnectedPlayerBarWrapper.controls.playButton.click();
+
+        await act(async () => {
+          vi.advanceTimersByTime(200);
+        });
+
+        expect(LyricsWrapper.scrollPosition).toBe(100);
+      });
+
+      it('follows the active line after scrolling away', async () => {
+        ConnectedPlayerBarWrapper.setPlaybackPosition(3.9);
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutLyrics();
+        LyricsWrapper.scrollTo(200);
         await ConnectedPlayerBarWrapper.controls.playButton.click();
 
         await act(async () => {
@@ -664,7 +737,7 @@ describe('Lyrics view', () => {
         ConnectedPlayerBarWrapper.setPlaybackPosition(3.9);
         await LyricsWrapper.mount();
         expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
-        LyricsWrapper.layOutRows();
+        LyricsWrapper.layOutLyrics();
         await LyricsWrapper.autoScrollToggle.click();
         await ConnectedPlayerBarWrapper.controls.playButton.click();
 

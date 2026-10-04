@@ -1,6 +1,12 @@
 import { QueryClient } from '@tanstack/react-query';
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
-import { render, RenderResult, screen, within } from '@testing-library/react';
+import {
+  act,
+  render,
+  RenderResult,
+  screen,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { createSelectWrapper } from '@nuclearplayer/ui';
@@ -81,8 +87,11 @@ export const LyricsWrapper = {
     },
   },
 
-  layOutRows() {
+  layOutLyrics() {
     const viewport = getViewport();
+    vi.spyOn(viewport, 'getBoundingClientRect').mockReturnValue(
+      DOMRect.fromRect({ y: 0, height: ROW_HEIGHT_PX }),
+    );
     screen.getAllByTestId(/^lyrics-(line|break)$/).forEach((row, index) => {
       vi.spyOn(row, 'getBoundingClientRect').mockImplementation(() =>
         DOMRect.fromRect({
@@ -93,8 +102,34 @@ export const LyricsWrapper = {
     });
   },
 
+  scrollTo(position: number) {
+    const viewport = getViewport();
+    act(() => {
+      screen
+        .getAllByTestId('lyrics-line')[0]
+        .dispatchEvent(new WheelEvent('wheel', { bubbles: true }));
+      viewport.scrollTop = position;
+      viewport.dispatchEvent(new Event('scroll'));
+    });
+  },
+
   get scrollPosition() {
     return getViewport().scrollTop;
+  },
+
+  currentLineButton: {
+    get element() {
+      return screen.getByRole('button', { name: 'Current line' });
+    },
+    get exists() {
+      return screen.queryByRole('button', { name: 'Current line' }) !== null;
+    },
+    get direction() {
+      return this.element.dataset.direction;
+    },
+    async click() {
+      await user.click(this.element);
+    },
   },
 
   registerProvider(builder: LyricsProviderBuilder) {
