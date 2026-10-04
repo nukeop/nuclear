@@ -15,6 +15,11 @@ import { LyricsProviderBuilder } from '../../test/builders/LyricsProviderBuilder
 const user = userEvent.setup();
 
 const TEXT_SIZE_SETTING = 'core.lyrics.textSize';
+const AUTO_SCROLL_SETTING = 'core.lyrics.autoScroll';
+const ROW_HEIGHT_PX = 100;
+
+const getViewport = () =>
+  screen.getByTestId('lyrics-scroll-area').firstElementChild!;
 
 export const LyricsWrapper = {
   reset() {
@@ -49,6 +54,47 @@ export const LyricsWrapper = {
     async click() {
       await user.click(this.element);
     },
+  },
+
+  setAutoScroll(isOn: boolean) {
+    useSettingsStore.setState((state) => ({
+      values: { ...state.values, [AUTO_SCROLL_SETTING]: isOn },
+    }));
+  },
+
+  get autoScroll() {
+    return getSetting(AUTO_SCROLL_SETTING);
+  },
+
+  autoScrollToggle: {
+    get element() {
+      return screen.getByRole('switch', { name: 'Auto-scroll' });
+    },
+    get isOn() {
+      return this.element.getAttribute('aria-checked') === 'true';
+    },
+    get exists() {
+      return screen.queryByRole('switch', { name: 'Auto-scroll' }) !== null;
+    },
+    async click() {
+      await user.click(this.element);
+    },
+  },
+
+  layOutRows() {
+    const viewport = getViewport();
+    screen.getAllByTestId(/^lyrics-(line|break)$/).forEach((row, index) => {
+      vi.spyOn(row, 'getBoundingClientRect').mockImplementation(() =>
+        DOMRect.fromRect({
+          y: index * ROW_HEIGHT_PX - viewport.scrollTop,
+          height: ROW_HEIGHT_PX,
+        }),
+      );
+    });
+  },
+
+  get scrollPosition() {
+    return getViewport().scrollTop;
   },
 
   registerProvider(builder: LyricsProviderBuilder) {

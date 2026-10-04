@@ -38,6 +38,7 @@ export const LyricsForTrack: FC<LyricsForTrackProps> = ({ currentItem }) => {
         onShowLater={showLater}
       />
       <ScrollableArea
+        data-testid="lyrics-scroll-area"
         viewportRef={viewportRef}
         className="min-h-0 flex-1"
         viewportClassName="scroll-smooth mask-y-from-95% px-10 py-10"

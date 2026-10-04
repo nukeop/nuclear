@@ -175,6 +175,13 @@ describe('Lyrics view', () => {
       expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
       expect(LyricsWrapper.offsetControls).not.toBeInTheDocument();
     });
+
+    it("doesn't show the auto-scroll toggle", async () => {
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.autoScrollToggle.exists).toBe(false);
+    });
   });
 
   describe('line synced lyrics', () => {
@@ -406,8 +413,8 @@ describe('Lyrics view', () => {
                     segments: [{ text: 'Lorem ipsum dolor' }],
                   },
                   {
-                    startMs: 10000,
-                    endMs: 14000,
+                    startMs: 9000,
+                    endMs: 13000,
                     segments: [{ text: 'Sit amet' }],
                   },
                 ],
@@ -425,6 +432,217 @@ describe('Lyrics view', () => {
         { type: 'break', isActive: true },
         { type: 'line', text: 'Sit amet', isActive: false },
       ]);
+    });
+
+    it("doesn't show an instrumental break between lines less than 5 seconds apart", async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'lineSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 0,
+                    endMs: 4000,
+                    segments: [{ text: 'Lorem ipsum dolor' }],
+                  },
+                  {
+                    startMs: 8900,
+                    endMs: 12900,
+                    segments: [{ text: 'Sit amet' }],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+      ConnectedPlayerBarWrapper.setPlaybackPosition(6);
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.syncedRows).toEqual([
+        { type: 'line', text: 'Lorem ipsum dolor', isActive: false },
+        { type: 'line', text: 'Sit amet', isActive: false },
+      ]);
+    });
+
+    it('shows instrumental breaks in word synced lyrics', async () => {
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'wordSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 0,
+                    endMs: 4000,
+                    segments: [
+                      { text: 'Lorem ', startMs: 0, endMs: 2000 },
+                      { text: 'ipsum', startMs: 2000, endMs: 4000 },
+                    ],
+                  },
+                  {
+                    startMs: 9000,
+                    endMs: 13000,
+                    segments: [
+                      { text: 'Sit ', startMs: 9000, endMs: 11000 },
+                      { text: 'amet', startMs: 11000, endMs: 13000 },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+      ConnectedPlayerBarWrapper.setPlaybackPosition(6);
+
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.syncedRows).toEqual([
+        { type: 'line', text: 'Lorem ipsum', isActive: false },
+        { type: 'break', isActive: true },
+        { type: 'line', text: 'Sit amet', isActive: false },
+      ]);
+    });
+  });
+
+  describe('auto-scroll', () => {
+    beforeEach(() => {
+      QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
+      LyricsWrapper.registerProvider(
+        new LyricsProviderBuilder()
+          .withCandidates({
+            id: 'lorem-ipsum',
+            title: 'Lorem Ipsum',
+            artist: 'Dolor',
+          })
+          .withLyrics({
+            type: 'lineSynced',
+            metadata: {},
+            sections: [
+              {
+                lines: [
+                  {
+                    startMs: 0,
+                    endMs: 4000,
+                    segments: [{ text: 'Lorem ipsum dolor' }],
+                  },
+                  {
+                    startMs: 4000,
+                    endMs: 8000,
+                    segments: [{ text: 'Sit amet' }],
+                  },
+                  {
+                    startMs: 8000,
+                    endMs: 12000,
+                    segments: [{ text: 'Consectetur adipiscing' }],
+                  },
+                ],
+              },
+            ],
+          }),
+      );
+    });
+
+    it('is on by default', async () => {
+      await LyricsWrapper.mount();
+
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      expect(LyricsWrapper.autoScrollToggle.isOn).toBe(true);
+    });
+
+    it('turns auto-scroll off', async () => {
+      await LyricsWrapper.mount();
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+
+      await LyricsWrapper.autoScrollToggle.click();
+
+      expect(LyricsWrapper.autoScrollToggle.isOn).toBe(false);
+      expect(LyricsWrapper.autoScroll).toBe(false);
+    });
+
+    it('turns auto-scroll on', async () => {
+      LyricsWrapper.setAutoScroll(false);
+      await LyricsWrapper.mount();
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+
+      await LyricsWrapper.autoScrollToggle.click();
+
+      expect(LyricsWrapper.autoScrollToggle.isOn).toBe(true);
+      expect(LyricsWrapper.autoScroll).toBe(true);
+    });
+
+    it('scrolls to the active line when auto-scroll is turned on', async () => {
+      LyricsWrapper.setAutoScroll(false);
+      ConnectedPlayerBarWrapper.setPlaybackPosition(5);
+      await LyricsWrapper.mount();
+      expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+      LyricsWrapper.layOutRows();
+
+      await LyricsWrapper.autoScrollToggle.click();
+
+      expect(LyricsWrapper.scrollPosition).toBe(100);
+    });
+
+    describe('during playback', () => {
+      beforeEach(() => {
+        vi.useFakeTimers({
+          toFake: [
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+            'performance',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        vi.useRealTimers();
+      });
+
+      it('follows the active line', async () => {
+        ConnectedPlayerBarWrapper.setPlaybackPosition(3.9);
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutRows();
+        await ConnectedPlayerBarWrapper.controls.playButton.click();
+
+        await act(async () => {
+          vi.advanceTimersByTime(200);
+        });
+
+        expect(LyricsWrapper.scrollPosition).toBe(100);
+      });
+
+      it("doesn't follow the active line when auto-scroll is off", async () => {
+        ConnectedPlayerBarWrapper.setPlaybackPosition(3.9);
+        await LyricsWrapper.mount();
+        expect(await LyricsWrapper.findLyrics()).toBeInTheDocument();
+        LyricsWrapper.layOutRows();
+        await LyricsWrapper.autoScrollToggle.click();
+        await ConnectedPlayerBarWrapper.controls.playButton.click();
+
+        await act(async () => {
+          vi.advanceTimersByTime(200);
+        });
+
+        expect(LyricsWrapper.scrollPosition).toBe(0);
+      });
     });
   });
 
