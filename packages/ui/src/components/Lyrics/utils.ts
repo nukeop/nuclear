@@ -28,10 +28,10 @@ export const flattenLines = <TLine>(sections: LyricsSection<TLine>[]) =>
 
 const minimumTimeToShowBreak = 5000;
 export const getBreakBefore = (lines: TimeRange[], index: number) => {
-  if (index === 0) {
-    return undefined;
-  }
-  const gap = { startMs: lines[index - 1].endMs, endMs: lines[index].startMs };
+  const gap = {
+    startMs: lines[index - 1]?.endMs ?? 0,
+    endMs: lines[index].startMs,
+  };
   if (gap.endMs - gap.startMs < minimumTimeToShowBreak) {
     return undefined;
   }
