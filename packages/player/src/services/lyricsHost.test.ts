@@ -2,11 +2,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { LyricsProviderBuilder } from '../test/builders/LyricsProviderBuilder';
 import {
-  FIRST_CANDIDATE,
   INSTRUMENTAL_LYRICS,
   LINE_SYNCED_LYRICS,
   PLAIN_LYRICS,
-  SECOND_CANDIDATE,
   WORD_SYNCED_LYRICS,
 } from '../test/fixtures/lyrics';
 import { createTrack } from '../test/fixtures/queue';
@@ -25,61 +23,18 @@ describe('lyricsHost', () => {
     providersHost.clear();
   });
 
-  it('returns the lyrics of the first candidate with provider', async () => {
-    const lyricsByCandidateId = {
-      [FIRST_CANDIDATE.id]: LINE_SYNCED_LYRICS,
-      [SECOND_CANDIDATE.id]: PLAIN_LYRICS,
-    };
+  it('asks providers for lyrics for the given track', async () => {
     providersHost.register(
       new LyricsProviderBuilder()
         .withId('acme')
         .withName('Acme Lyrics')
-        .withCandidates(FIRST_CANDIDATE, SECOND_CANDIDATE)
-        .withGetLyricsForCandidate(
-          async (candidate) => lyricsByCandidateId[candidate.id],
-        )
-        .build(),
-    );
-
-    const results = await createLyricsHost().getLyricsForTrack(track);
-
-    expect(results).toEqual([
-      {
-        providerId: 'acme',
-        providerName: 'Acme Lyrics',
-        candidate: {
-          id: 'candidate-1',
-          title: 'Test Song',
-          artist: 'Test Artist',
-        },
-        lyrics: {
-          type: 'lineSynced',
+        .withGetLyrics(async (requestedTrack) => ({
+          type: 'plain',
           metadata: {},
           sections: [
-            {
-              lines: [
-                {
-                  startMs: 1000,
-                  endMs: 4000,
-                  segments: [{ text: 'Synced line' }],
-                },
-              ],
-            },
+            { lines: [{ segments: [{ text: requestedTrack.title }] }] },
           ],
-        },
-      },
-    ]);
-  });
-
-  it('asks providers for candidates for the given track', async () => {
-    providersHost.register(
-      new LyricsProviderBuilder()
-        .withId('acme')
-        .withName('Acme Lyrics')
-        .withGetCandidatesForTrack(async (requestedTrack) => [
-          { ...FIRST_CANDIDATE, title: requestedTrack.title },
-        ])
-        .withLyrics(PLAIN_LYRICS)
+        }))
         .build(),
     );
 
@@ -91,15 +46,10 @@ describe('lyricsHost', () => {
       {
         providerId: 'acme',
         providerName: 'Acme Lyrics',
-        candidate: {
-          id: 'candidate-1',
-          title: 'Requested Song',
-          artist: 'Test Artist',
-        },
         lyrics: {
           type: 'plain',
           metadata: {},
-          sections: [{ lines: [{ segments: [{ text: 'Plain line' }] }] }],
+          sections: [{ lines: [{ segments: [{ text: 'Requested Song' }] }] }],
         },
       },
     ]);
@@ -110,7 +60,6 @@ describe('lyricsHost', () => {
       new LyricsProviderBuilder()
         .withId('instrumental-provider')
         .withName('Instrumental Provider')
-        .withCandidates(FIRST_CANDIDATE)
         .withLyrics(INSTRUMENTAL_LYRICS)
         .build(),
     );
@@ -118,7 +67,6 @@ describe('lyricsHost', () => {
       new LyricsProviderBuilder()
         .withId('plain-provider')
         .withName('Plain Provider')
-        .withCandidates(FIRST_CANDIDATE)
         .withLyrics(PLAIN_LYRICS)
         .build(),
     );
@@ -126,7 +74,6 @@ describe('lyricsHost', () => {
       new LyricsProviderBuilder()
         .withId('word-synced-provider')
         .withName('Word Synced Provider')
-        .withCandidates(FIRST_CANDIDATE)
         .withLyrics(WORD_SYNCED_LYRICS)
         .build(),
     );
@@ -134,23 +81,16 @@ describe('lyricsHost', () => {
       new LyricsProviderBuilder()
         .withId('line-synced-provider')
         .withName('Line Synced Provider')
-        .withCandidates(FIRST_CANDIDATE)
         .withLyrics(LINE_SYNCED_LYRICS)
         .build(),
     );
 
     const results = await createLyricsHost().getLyricsForTrack(track);
 
-    const candidate = {
-      id: 'candidate-1',
-      title: 'Test Song',
-      artist: 'Test Artist',
-    };
     expect(results).toEqual([
       {
         providerId: 'word-synced-provider',
         providerName: 'Word Synced Provider',
-        candidate,
         lyrics: {
           type: 'wordSynced',
           metadata: {},
@@ -170,7 +110,6 @@ describe('lyricsHost', () => {
       {
         providerId: 'line-synced-provider',
         providerName: 'Line Synced Provider',
-        candidate,
         lyrics: {
           type: 'lineSynced',
           metadata: {},
@@ -190,7 +129,6 @@ describe('lyricsHost', () => {
       {
         providerId: 'plain-provider',
         providerName: 'Plain Provider',
-        candidate,
         lyrics: {
           type: 'plain',
           metadata: {},
@@ -200,7 +138,6 @@ describe('lyricsHost', () => {
       {
         providerId: 'instrumental-provider',
         providerName: 'Instrumental Provider',
-        candidate,
         lyrics: { type: 'instrumental', metadata: {} },
       },
     ]);
@@ -211,7 +148,6 @@ describe('lyricsHost', () => {
       new LyricsProviderBuilder()
         .withId('first-provider')
         .withName('First Provider')
-        .withCandidates(FIRST_CANDIDATE)
         .withLyrics(PLAIN_LYRICS)
         .build(),
     );
@@ -219,7 +155,6 @@ describe('lyricsHost', () => {
       new LyricsProviderBuilder()
         .withId('second-provider')
         .withName('Second Provider')
-        .withCandidates(SECOND_CANDIDATE)
         .withLyrics(PLAIN_LYRICS)
         .build(),
     );
@@ -235,39 +170,27 @@ describe('lyricsHost', () => {
       {
         providerId: 'first-provider',
         providerName: 'First Provider',
-        candidate: {
-          id: 'candidate-1',
-          title: 'Test Song',
-          artist: 'Test Artist',
-        },
         lyrics,
       },
       {
         providerId: 'second-provider',
         providerName: 'Second Provider',
-        candidate: {
-          id: 'candidate-2',
-          title: 'Test Song (Live)',
-          artist: 'Test Artist',
-        },
         lyrics,
       },
     ]);
   });
 
-  it('leaves out a provider that has no candidates for the track', async () => {
+  it('leaves out a provider that has no lyrics for the track', async () => {
     providersHost.register(
       new LyricsProviderBuilder()
         .withId('empty-provider')
         .withName('Empty Provider')
-        .withCandidates()
         .build(),
     );
     providersHost.register(
       new LyricsProviderBuilder()
         .withId('acme')
         .withName('Acme Lyrics')
-        .withCandidates(FIRST_CANDIDATE)
         .withLyrics(PLAIN_LYRICS)
         .build(),
     );
@@ -278,11 +201,6 @@ describe('lyricsHost', () => {
       {
         providerId: 'acme',
         providerName: 'Acme Lyrics',
-        candidate: {
-          id: 'candidate-1',
-          title: 'Test Song',
-          artist: 'Test Artist',
-        },
         lyrics: {
           type: 'plain',
           metadata: {},
@@ -297,8 +215,8 @@ describe('lyricsHost', () => {
       new LyricsProviderBuilder()
         .withId('failing-provider')
         .withName('Failing Provider')
-        .withGetCandidatesForTrack(async () => {
-          throw new Error('Candidate search failed');
+        .withGetLyrics(async () => {
+          throw new Error('Lyrics request failed');
         })
         .build(),
     );
@@ -306,7 +224,6 @@ describe('lyricsHost', () => {
       new LyricsProviderBuilder()
         .withId('acme')
         .withName('Acme Lyrics')
-        .withCandidates(FIRST_CANDIDATE)
         .withLyrics(PLAIN_LYRICS)
         .build(),
     );
@@ -315,60 +232,12 @@ describe('lyricsHost', () => {
 
     expect(reportError).toHaveBeenCalledWith('lyrics', {
       userMessage: 'A lyrics provider failed to load lyrics',
-      error: new Error('Candidate search failed'),
+      error: new Error('Lyrics request failed'),
     });
     expect(results).toEqual([
       {
         providerId: 'acme',
         providerName: 'Acme Lyrics',
-        candidate: {
-          id: 'candidate-1',
-          title: 'Test Song',
-          artist: 'Test Artist',
-        },
-        lyrics: {
-          type: 'plain',
-          metadata: {},
-          sections: [{ lines: [{ segments: [{ text: 'Plain line' }] }] }],
-        },
-      },
-    ]);
-  });
-  it('reports and leaves out a provider that fails to load lyrics for its candidate', async () => {
-    providersHost.register(
-      new LyricsProviderBuilder()
-        .withId('failing-provider')
-        .withName('Failing Provider')
-        .withCandidates(FIRST_CANDIDATE)
-        .withGetLyricsForCandidate(async () => {
-          throw new Error('Lyrics download failed');
-        })
-        .build(),
-    );
-    providersHost.register(
-      new LyricsProviderBuilder()
-        .withId('acme')
-        .withName('Acme Lyrics')
-        .withCandidates(FIRST_CANDIDATE)
-        .withLyrics(PLAIN_LYRICS)
-        .build(),
-    );
-
-    const results = await createLyricsHost().getLyricsForTrack(track);
-
-    expect(reportError).toHaveBeenCalledWith('lyrics', {
-      userMessage: 'A lyrics provider failed to load lyrics',
-      error: new Error('Lyrics download failed'),
-    });
-    expect(results).toEqual([
-      {
-        providerId: 'acme',
-        providerName: 'Acme Lyrics',
-        candidate: {
-          id: 'candidate-1',
-          title: 'Test Song',
-          artist: 'Test Artist',
-        },
         lyrics: {
           type: 'plain',
           metadata: {},
@@ -390,7 +259,6 @@ describe('lyricsHost', () => {
         new LyricsProviderBuilder()
           .withId('acme')
           .withName('Acme Lyrics')
-          .withCandidates(FIRST_CANDIDATE)
           .withLyrics(PLAIN_LYRICS)
           .build(),
       );
@@ -398,7 +266,6 @@ describe('lyricsHost', () => {
         new LyricsProviderBuilder()
           .withId('other-provider')
           .withName('Other Provider')
-          .withCandidates(SECOND_CANDIDATE)
           .withLyrics(WORD_SYNCED_LYRICS)
           .build(),
       );
@@ -409,11 +276,6 @@ describe('lyricsHost', () => {
         {
           providerId: 'acme',
           providerName: 'Acme Lyrics',
-          candidate: {
-            id: 'candidate-1',
-            title: 'Test Song',
-            artist: 'Test Artist',
-          },
           lyrics: {
             type: 'plain',
             metadata: {},
@@ -423,19 +285,17 @@ describe('lyricsHost', () => {
       ]);
     });
 
-    it('returns an empty list when the provider has no candidates', async () => {
+    it('returns an empty list when the provider has no lyrics for the track', async () => {
       providersHost.register(
         new LyricsProviderBuilder()
           .withId('empty-provider')
           .withName('Empty Provider')
-          .withCandidates()
           .build(),
       );
       providersHost.register(
         new LyricsProviderBuilder()
           .withId('acme')
           .withName('Acme Lyrics')
-          .withCandidates(FIRST_CANDIDATE)
           .withLyrics(PLAIN_LYRICS)
           .build(),
       );
@@ -453,18 +313,18 @@ describe('lyricsHost', () => {
         new LyricsProviderBuilder()
           .withId('failing-provider')
           .withName('Failing Provider')
-          .withGetCandidatesForTrack(async () => {
-            throw new Error('Candidate search failed');
+          .withGetLyrics(async () => {
+            throw new Error('Lyrics request failed');
           })
           .build(),
       );
 
       await expect(
         createLyricsHost().getLyricsForTrack(track, 'failing-provider'),
-      ).rejects.toThrow(new Error('Candidate search failed'));
+      ).rejects.toThrow(new Error('Lyrics request failed'));
       expect(reportError).toHaveBeenCalledWith('lyrics', {
         userMessage: 'A lyrics provider failed to load lyrics',
-        error: new Error('Candidate search failed'),
+        error: new Error('Lyrics request failed'),
       });
     });
   });

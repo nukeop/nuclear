@@ -1,19 +1,4 @@
-import type { ArtistCredit } from './index';
-
 export type LyricsType = 'plain' | 'lineSynced' | 'wordSynced';
-
-export type LyricsQuery = {
-  title: string;
-  artist?: string;
-};
-
-export type LyricsCandidate = {
-  id: string;
-  title: string;
-  artist: string;
-  album?: string;
-  durationMs?: number;
-};
 
 export type LyricsVocalist = {
   id: string;
@@ -22,10 +7,6 @@ export type LyricsVocalist = {
 };
 
 export type LyricsMetadata = {
-  language?: string;
-  credits?: ArtistCredit[];
-  copyright?: string;
-  sourceUrl?: string;
   vocalists?: LyricsVocalist[];
 };
 

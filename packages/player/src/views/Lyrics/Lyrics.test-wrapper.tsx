@@ -138,13 +138,7 @@ export const LyricsWrapper = {
   },
 
   registerLyrics(lyrics: Lyrics, provider?: { id: string; name: string }) {
-    const builder = new LyricsProviderBuilder()
-      .withCandidates({
-        id: 'lorem-ipsum',
-        title: 'Lorem Ipsum',
-        artist: 'Dolor',
-      })
-      .withLyrics(lyrics);
+    const builder = new LyricsProviderBuilder().withLyrics(lyrics);
     if (provider) {
       builder.withId(provider.id).withName(provider.name);
     }

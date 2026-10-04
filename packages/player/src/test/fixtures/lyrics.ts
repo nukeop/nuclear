@@ -1,22 +1,9 @@
 import type {
   InstrumentalLyrics,
   LineSyncedLyrics,
-  LyricsCandidate,
   PlainLyrics,
   WordSyncedLyrics,
 } from '@nuclearplayer/model';
-
-export const FIRST_CANDIDATE: LyricsCandidate = {
-  id: 'candidate-1',
-  title: 'Test Song',
-  artist: 'Test Artist',
-};
-
-export const SECOND_CANDIDATE: LyricsCandidate = {
-  id: 'candidate-2',
-  title: 'Test Song (Live)',
-  artist: 'Test Artist',
-};
 
 export const PLAIN_LYRICS: PlainLyrics = {
   type: 'plain',

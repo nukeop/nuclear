@@ -1013,23 +1013,11 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
         }),
         "AttributedLyrics" => json!({
             "type": "AttributedLyrics",
-            "description": "Lyrics from a specific lyrics provider, with the candidate they belong to.",
+            "description": "Lyrics from a specific lyrics provider.",
             "fields": {
                 "providerId": { "type": "string" },
                 "providerName": { "type": "string" },
-                "candidate": { "type": "LyricsCandidate" },
                 "lyrics": { "type": "Lyrics" }
-            }
-        }),
-        "LyricsCandidate" => json!({
-            "type": "LyricsCandidate",
-            "description": "A lyrics entry at a lyrics provider that matches a track or a query.",
-            "fields": {
-                "id": { "type": "string", "description": "Opaque ID, only meaningful to the provider that returned it" },
-                "title": { "type": "string" },
-                "artist": { "type": "string" },
-                "album": { "type": "string", "optional": true },
-                "durationMs": { "type": "number", "optional": true }
             }
         }),
         "Lyrics" => json!({
@@ -1045,10 +1033,6 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
             "type": "LyricsMetadata",
             "description": "Information about the lyrics as a whole.",
             "fields": {
-                "language": { "type": "string", "optional": true, "description": "BCP 47 language code" },
-                "credits": { "type": "ArtistCredit[]", "optional": true, "description": "Writers and other credited people, with roles such as lyricist or composer" },
-                "copyright": { "type": "string", "optional": true },
-                "sourceUrl": { "type": "string", "optional": true, "description": "Link to the lyrics page at the source" },
                 "vocalists": { "type": "LyricsVocalist[]", "optional": true }
             }
         }),
@@ -1102,7 +1086,7 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
         }),
         _ => {
             return Err(format!(
-                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, LyricsCandidate, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation."
+                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation."
             ))
         }
     };

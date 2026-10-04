@@ -1,4 +1,5 @@
 import isEmpty from 'lodash-es/isEmpty';
+import isNil from 'lodash-es/isNil';
 import sortBy from 'lodash-es/sortBy';
 
 import type { Lyrics, Track } from '@nuclearplayer/model';
@@ -28,16 +29,14 @@ const getLyricsFromProvider = async (
   provider: LyricsProvider,
   track: Track,
 ): Promise<AttributedLyrics[]> => {
-  const [candidate] = await provider.getCandidatesForTrack(track, {});
-  if (!candidate) {
+  const lyrics = await provider.getLyrics(track, {});
+  if (isNil(lyrics)) {
     return [];
   }
-  const lyrics = await provider.getLyricsForCandidate(candidate, {});
   return [
     {
       providerId: provider.id,
       providerName: provider.name,
-      candidate,
       lyrics,
     },
   ];

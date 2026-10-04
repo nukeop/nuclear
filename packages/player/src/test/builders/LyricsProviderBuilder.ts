@@ -1,8 +1,4 @@
-import type {
-  Lyrics,
-  LyricsCandidate,
-  LyricsProvider,
-} from '@nuclearplayer/plugin-sdk';
+import type { Lyrics, LyricsProvider } from '@nuclearplayer/plugin-sdk';
 
 export class LyricsProviderBuilder {
   private provider: LyricsProvider;
@@ -12,11 +8,7 @@ export class LyricsProviderBuilder {
       id: 'test-lyrics-provider',
       kind: 'lyrics',
       name: 'Test Lyrics Provider',
-      getCandidatesForTrack: async () => [],
-      getCandidatesForQuery: async () => [],
-      getLyricsForCandidate: async () => {
-        throw new Error('No lyrics configured in LyricsProviderBuilder');
-      },
+      getLyrics: async () => undefined,
     };
   }
 
@@ -30,27 +22,13 @@ export class LyricsProviderBuilder {
     return this;
   }
 
-  withCandidates(...candidates: LyricsCandidate[]): this {
-    this.provider.getCandidatesForTrack = async () => candidates;
-    return this;
-  }
-
-  withGetCandidatesForTrack(
-    getCandidatesForTrack: LyricsProvider['getCandidatesForTrack'],
-  ): this {
-    this.provider.getCandidatesForTrack = getCandidatesForTrack;
-    return this;
-  }
-
   withLyrics(lyrics: Lyrics): this {
-    this.provider.getLyricsForCandidate = async () => lyrics;
+    this.provider.getLyrics = async () => lyrics;
     return this;
   }
 
-  withGetLyricsForCandidate(
-    getLyricsForCandidate: LyricsProvider['getLyricsForCandidate'],
-  ): this {
-    this.provider.getLyricsForCandidate = getLyricsForCandidate;
+  withGetLyrics(getLyrics: LyricsProvider['getLyrics']): this {
+    this.provider.getLyrics = getLyrics;
     return this;
   }
 

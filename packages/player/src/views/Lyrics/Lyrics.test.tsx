@@ -25,20 +25,16 @@ describe('Lyrics view', () => {
       createQueueItem('Consectetur'),
     ]);
     LyricsWrapper.registerProvider(
-      new LyricsProviderBuilder()
-        .withGetCandidatesForTrack(async (track) => [
-          { id: track.title, title: track.title, artist: 'Dolor' },
-        ])
-        .withGetLyricsForCandidate(async (candidate) => ({
-          type: 'plain',
-          metadata: {},
-          sections: [
-            {
-              label: 'Verse 1',
-              lines: [{ segments: [{ text: `Lyrics of ${candidate.id}` }] }],
-            },
-          ],
-        })),
+      new LyricsProviderBuilder().withGetLyrics(async (track) => ({
+        type: 'plain',
+        metadata: {},
+        sections: [
+          {
+            label: 'Verse 1',
+            lines: [{ segments: [{ text: `Lyrics of ${track.title}` }] }],
+          },
+        ],
+      })),
     );
     await LyricsWrapper.mountLyrics();
 
@@ -64,9 +60,7 @@ describe('Lyrics view', () => {
     it('shows a loading state while providers are fetching lyrics', async () => {
       QueueWrapper.initQueue([createQueueItem('Lorem Ipsum')]);
       LyricsWrapper.registerProvider(
-        new LyricsProviderBuilder().withGetCandidatesForTrack(
-          () => new Promise(() => {}),
-        ),
+        new LyricsProviderBuilder().withGetLyrics(() => new Promise(() => {})),
       );
 
       await LyricsWrapper.mount();

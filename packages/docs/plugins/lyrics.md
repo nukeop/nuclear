@@ -18,10 +18,10 @@ Plugins can also read lyrics from the registered providers through `api.Lyrics`.
 
 ### Minimal example
 
-You register a lyrics provider with `api.Providers.register()`, like any other provider. The provider needs an `id`, `kind: 'lyrics'`, a `name`, and three methods. The example below sends requests to a made-up service at `lyrics.example.com`. The service has one endpoint that searches for songs and one endpoint that returns the timed lines of a song.
+You register a lyrics provider with `api.Providers.register()`, like any other provider. The provider needs an `id`, `kind: 'lyrics'`, a `name`, and one method, `getLyrics`. The example below sends requests to a made-up service at `lyrics.example.com`. The service has one endpoint that searches for songs and one endpoint that returns the timed lines of a song.
 
 ```typescript
-import type { LyricsCandidate, Track } from '@nuclearplayer/model';
+import type { Track } from '@nuclearplayer/model';
 import type {
   LyricsProvider,
   NuclearPlugin,
@@ -29,11 +29,9 @@ import type {
 } from '@nuclearplayer/plugin-sdk';
 
 type ExampleHit = {
-  songId: number;
+  trackId: number;
   title: string;
   artist: string;
-  album?: string;
-  lengthSeconds?: number;
 };
 
 type ExampleLine = {
@@ -44,20 +42,17 @@ type ExampleLine = {
 
 const API_URL = 'https://lyrics.example.com/api';
 
-const toCandidate = (hit: ExampleHit): LyricsCandidate => ({
-  id: String(hit.songId),
-  title: hit.title,
-  artist: hit.artist,
-  album: hit.album,
-  durationMs: hit.lengthSeconds && hit.lengthSeconds * 1000,
-});
-
 const createProvider = (api: NuclearPluginAPI): LyricsProvider => {
-  const search = async (title: string, artist = '') => {
-    const params = new URLSearchParams({ title, artist });
+  const findHit = async (track: Track) => {
+    const params = new URLSearchParams({
+      title: track.title,
+      artist: track.artists[0]?.name ?? '',
+    });
     const response = await api.Http.fetch(`${API_URL}/search?${params}`);
     const hits: ExampleHit[] = await response.json();
-    return hits.map(toCandidate);
+    return hits.find(
+      (hit) => hit.title.toLowerCase() === track.title.toLowerCase(),
+    );
   };
 
   return {
@@ -65,21 +60,18 @@ const createProvider = (api: NuclearPluginAPI): LyricsProvider => {
     kind: 'lyrics',
     name: 'Example Lyrics',
 
-    async getCandidatesForTrack(track: Track) {
-      return search(track.title, track.artists[0]?.name);
-    },
+    async getLyrics(track: Track) {
+      const hit = await findHit(track);
+      if (!hit) {
+        return undefined;
+      }
 
-    async getCandidatesForQuery(query) {
-      return search(query.title, query.artist);
-    },
-
-    async getLyricsForCandidate(candidate) {
-      const response = await api.Http.fetch(`${API_URL}/songs/${candidate.id}`);
+      const response = await api.Http.fetch(`${API_URL}/tracks/${hit.trackId}`);
       const lines: ExampleLine[] = await response.json();
 
       return {
         type: 'lineSynced',
-        metadata: { language: 'la' },
+        metadata: {},
         sections: [
           {
             lines: lines.map((line) => ({
@@ -106,12 +98,12 @@ const plugin: NuclearPlugin = {
 export default plugin;
 ```
 
-For a song with the lines "Lorem ipsum dolor sit amet" and "Consectetur adipiscing elit", `getLyricsForCandidate` returns this:
+For a song with the lines "Lorem ipsum dolor sit amet" and "Consectetur adipiscing elit", `getLyrics` returns this:
 
 ```typescript
 {
   type: 'lineSynced',
-  metadata: { language: 'la' },
+  metadata: {},
   sections: [
     {
       lines: [
@@ -127,49 +119,25 @@ For a song with the lines "Lorem ipsum dolor sit amet" and "Consectetur adipisci
 Always unregister your provider in `onDisable`. If you do not unregister it, the provider stays registered. Nuclear then continues to call it after the plugin is disabled.
 {% endhint %}
 
-### The provider methods
+### The `getLyrics` method
 
-All three methods are required, so lyrics providers have no capabilities.
+`getLyrics` is the only method of a lyrics provider. It is required, so lyrics providers have no capabilities.
 
 | Method | Receives | Returns |
 |--------|----------|---------|
-| `getCandidatesForTrack(track, options)` | The whole `Track` | `Promise<LyricsCandidate[]>` |
-| `getCandidatesForQuery(query, options)` | A `LyricsQuery` with a `title` and an optional `artist` | `Promise<LyricsCandidate[]>` |
-| `getLyricsForCandidate(candidate, options)` | One `LyricsCandidate` that this provider returned earlier | `Promise<Lyrics>` |
+| `getLyrics(track, options)` | The whole `Track` | `Promise<Lyrics \| undefined>` |
 
-`getCandidatesForTrack` finds candidates for the track that plays. It receives the whole `Track`, so you can use any of its fields to find accurate matches. Put the best candidate first in the array, because Nuclear uses only the first candidate. Return an empty array if your service has no match.
+`getLyrics` finds the lyrics for the track that plays. It receives the whole `Track`, so you can use any of its fields to find an accurate match, for example the duration. Your provider knows how its service matches songs, so it selects the best match. If your service needs more than one request, for example a search and then a download, do all of them inside `getLyrics`. The example above searches, selects the first hit with the same title as the track, and then gets the lines of that hit.
 
-`getCandidatesForQuery` finds candidates for text that a user types. A user does not type a duration, so `LyricsQuery` has only a title and an optional artist. Nuclear does not call this method yet. The contract includes it for a manual lyrics search in a later version of Nuclear. Implement the method now, so that your plugin works with that search without changes.
-
-`getLyricsForCandidate` gets the lyrics for one candidate. It receives the whole candidate and not only its `id`. Thus, the title, artist, album, and duration are available if your service needs them for the second request.
-
-### Why the contract has two steps
-
-Most lyrics services work in two steps. A search returns a list of hits, and a second request gets the lyrics for one hit. The contract has the same structure. In a manual search, Nuclear can show the list of candidates to the user. Then it gets lyrics only for the candidate that the user selects.
-
-### Candidates
-
-A `LyricsCandidate` describes one song that your service knows:
-
-```typescript
-type LyricsCandidate = {
-  id: string;
-  title: string;
-  artist: string;
-  album?: string;
-  durationMs?: number;
-};
-```
-
-The `id` is opaque to Nuclear. Nuclear passes the candidate only to the provider that created it. Thus, the `id` can contain any string that your service needs to find the lyrics again.
+Return `undefined` if your service has no match for the track. This is different from instrumental lyrics. `undefined` tells Nuclear that your provider does not know the track. `{ type: 'instrumental' }` tells Nuclear that your provider knows the track and that the track has no lyrics.
 
 ### The `options` argument
 
-Every method receives an `options` object as its last argument. The object is empty now, and reserved for future use. This way we can add new options while keeping backwards compatibility. Your provider can ignore this object for now.
+`getLyrics` receives an `options` object as its last argument. The object is empty now, and reserved for future use. This way we can add new options while keeping backwards compatibility. Your provider can ignore this object for now.
 
 ### Errors
 
-If a method throws, Nuclear logs the error and ignores your provider for that track. The results of the other providers still show. Throw an error when a request fails, for example because of a network failure. Return an empty array from `getCandidatesForTrack` when your service has no lyrics for the track.
+If `getLyrics` throws, Nuclear logs the error and ignores your provider for that track. The results of the other providers still show. Throw an error when a request fails, for example because of a network failure. Return `undefined` when your service has no lyrics for the track.
 
 ---
 
@@ -179,9 +147,9 @@ Lyrics work like the dashboard and unlike metadata and streaming. Metadata and s
 
 When a track plays, Nuclear does these steps:
 
-1. It calls `getCandidatesForTrack` on every lyrics provider in parallel.
-2. It takes the first candidate from each provider and calls `getLyricsForCandidate` with it.
-3. It ranks the results by type.
+1. It calls `getLyrics` on every lyrics provider in parallel.
+2. It ignores the providers that return `undefined` or throw an error.
+3. It ranks the remaining results by type.
 4. It shows the result with the highest rank.
 
 The ranking order is:
@@ -243,16 +211,12 @@ type InstrumentalLyrics = {
 };
 ```
 
-Return `instrumental` only when your service says that the track has no lyrics. If your service has no entry for the track, return no candidates instead.
+Return `instrumental` only when your service says that the track has no lyrics. If your service has no entry for the track, return `undefined` from `getLyrics` instead.
 
 ### Metadata
 
 ```typescript
 type LyricsMetadata = {
-  language?: string;
-  credits?: ArtistCredit[];
-  copyright?: string;
-  sourceUrl?: string;
   vocalists?: LyricsVocalist[];
 };
 
@@ -263,13 +227,7 @@ type LyricsVocalist = {
 };
 ```
 
-All fields are optional. Use an empty object if your service gives no metadata.
-
-`language` is a BCP 47 language code, for example `en`, `ja`, or `pt-BR`. The text direction comes from the language code, so the model has no separate right-to-left flag.
-
-`credits` uses `ArtistCredit`, the same type that `Track.artists` uses. Put roles such as `lyricist`, `composer`, or `producer` in `roles`.
-
-`copyright` is free text. `sourceUrl` links to the lyrics page on your service.
+Use an empty object if your service gives no metadata.
 
 `vocalists` lists the people and groups who sing. Lines refer to vocalists by their `id`, so the `id` only has to be unique inside one `Lyrics` object.
 
@@ -409,11 +367,7 @@ The lyrics view does not show all parts of the data model yet. It shows these pa
 * Background vocals in parentheses after their line.
 * In synced lyrics, instrumental breaks for gaps of 5 seconds or more between lines.
 
-It does not show these parts:
-
-* `credits`, `copyright`, and `sourceUrl`.
-* The `language` of the lyrics.
-* Section labels and vocalists in line-synced and word-synced lyrics. Synced lyrics show as one continuous list of lines.
+It does not show section labels and vocalists in line-synced and word-synced lyrics. Synced lyrics show as one continuous list of lines.
 
 Return these fields anyway if your service has them. Plugins and clients that read lyrics through `api.Lyrics`, the MCP server, or the HTTP API get the complete data.
 
@@ -442,7 +396,6 @@ const logLyricsSources = async (api: NuclearPluginAPI, track: Track) => {
 type AttributedLyrics = {
   providerId: string;
   providerName: string;
-  candidate: LyricsCandidate;
   lyrics: Lyrics;
 };
 ```
@@ -453,6 +406,6 @@ type AttributedLyrics = {
 api.Lyrics.getLyricsForTrack(track: Track, providerId?: string): Promise<AttributedLyrics[]>
 ```
 
-Without `providerId`, Nuclear queries all lyrics providers and returns their results in rank order, with the best result first. Providers that fail or have no candidates are not in the array. If no lyrics provider is registered, the promise rejects.
+Without `providerId`, Nuclear queries all lyrics providers and returns their results in rank order, with the best result first. Providers that fail or return no lyrics are not in the array. If no lyrics provider is registered, the promise rejects.
 
-With `providerId`, Nuclear queries only that provider. The array has one result, or no result if the provider has no candidates. The promise rejects if the provider does not exist or if it throws.
+With `providerId`, Nuclear queries only that provider. The array has one result, or no result if the provider returns no lyrics. The promise rejects if the provider does not exist or if it throws.
