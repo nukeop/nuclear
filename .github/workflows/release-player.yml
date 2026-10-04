@@ -156,13 +156,6 @@ jobs:
           manifest-path: flatpak/com.nuclearplayer.Nuclear.yml
           cache-key: flatpak-builder-${{ github.sha }}
 
-      - name: Upload Flatpak bundle
-        uses: actions/upload-artifact@v7
-        with:
-          name: flatpak
-          if-no-files-found: error
-          path: Nuclear_${{ env.VERSION }}_x86_64.flatpak
-
   snap:
     runs-on: ubuntu-latest
 

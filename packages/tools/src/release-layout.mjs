@@ -45,7 +45,7 @@ export const releaseLayout = (version) => [
     updaterPlatforms: ['windows-x86_64-nsis'],
   },
   {
-    artifact: 'flatpak',
+    artifact: `Nuclear_${version}_x86_64-x86_64.flatpak`,
     path: `Nuclear_${version}_x86_64.flatpak`,
   },
   {
