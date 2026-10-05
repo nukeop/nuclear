@@ -34,6 +34,7 @@
     "favoriteArtists": "お気に入りのアーティスト",
     "playlists": "プレイリスト",
     "history": "履歴",
+    "lyrics": "Lyrics",
     "sources": "ソース"
   },
   "history": {
@@ -86,6 +87,7 @@
     "discovery": "ディスカバリー",
     "discoveryDescription": "ディスカバリーソースは、あなたが聴いている音楽に基づいて新しいトラックを推薦します。下部バーのラジカセアイコンで音楽ディスカバリーを有効にできます。",
     "lyrics": "歌詞",
+    "lyricsDescription": "Lyrics sources provide lyrics for the current track. Nuclear gets lyrics from all lyrics sources at the same time and shows the best result. You can select the lyrics of a different source in the Lyrics view.",
     "lockedReason": "<metadata>{{metadataName}}</metadata> メタデータソースには <streaming>{{streamingName}}</streaming> ストリーミングソースが必要です。",
     "missingStreamingProvider": "必要なストリーミングプロバイダー \"{{providerId}}\" が利用できません",
     "noProviders": "プロバイダーがインストールされていません"
@@ -380,6 +382,16 @@
         "description": "カスタムタイトルバーのコントロールの見た目のスタイルを選択してください。"
       }
     },
+    "lyrics": {
+      "textSize": {
+        "title": "Lyrics text size",
+        "description": "The size of the text in the lyrics view."
+      },
+      "autoScroll": {
+        "title": "Lyrics auto-scroll",
+        "description": "Scroll synced lyrics along with the song."
+      }
+    },
     "playback": {
       "title": "再生",
       "skipSeconds": {
@@ -564,6 +576,30 @@
     "repeatOne": "リピート : 1曲",
     "discoveryOn": "ディスカバリー : オン",
     "discoveryOff": "ディスカバリー : オフ"
+  },
+  "lyrics": {
+    "nothingPlaying": "Nothing is playing",
+    "nothingPlayingDescription": "Play a track to see its lyrics here.",
+    "noPlugins": "No lyrics plugins installed",
+    "noPluginsDescription": "Install a lyrics plugin to see lyrics for your music.",
+    "browsePlugins": "Browse lyrics plugins",
+    "noLyrics": "No lyrics for this track",
+    "noLyricsDescription": "{{providers, list}} returned no results.",
+    "providerError": "A lyrics provider failed to load lyrics",
+    "instrumental": "Instrumental",
+    "instrumentalDescription": "This track has no lyrics.",
+    "currentLine": "Current line",
+    "showEarlier": "Show lyrics earlier",
+    "showLater": "Show lyrics later",
+    "smaller": "Smaller lyrics",
+    "larger": "Larger lyrics",
+    "autoScroll": "Auto-scroll",
+    "types": {
+      "wordSynced": "Word synced",
+      "lineSynced": "Line synced",
+      "plain": "Plain"
+    },
+    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} s"
   },
   "logs": {
     "title": "ログ",
