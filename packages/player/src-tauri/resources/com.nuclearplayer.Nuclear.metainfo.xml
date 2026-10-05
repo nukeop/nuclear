@@ -84,6 +84,13 @@
   </requires>
 
   <releases>
+    <release version="1.50.0" date="2026-10-05">
+      <description>
+        <ul>
+          <li>Nuclear can now display lyrics. Install a lyrics plugin to see plain, line-synced, or word-synced lyrics for the current track, with furigana, translations, and romanization. Lyrics are also available through the MCP server and the HTTP API.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.49.2" date="2026-10-04">
       <description>
         <ul>
