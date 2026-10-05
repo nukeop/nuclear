@@ -22,7 +22,7 @@ You can install more than one lyrics plugin. When a track starts, Nuclear asks e
 
 The other results stay available. You can switch to them with the source picker in the toolbar. See [Switch to a different source](#switch-to-a-different-source).
 
-All lyrics plugins are active at the same time. Thus you don't choose a lyrics plugin in the **Sources** view.
+The **Lyrics** section of the **Sources** view shows all the lyrics plugins that you installed. All lyrics plugins are active at the same time. Thus you don't choose a lyrics plugin in the **Sources** view.
 
 If a plugin fails to load lyrics, Nuclear shows an error notification. Then it uses the results of the other plugins.
 

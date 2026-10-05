@@ -1136,6 +1136,52 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             </span>
                           </div>
                         </div>
+                        <div
+                          class="mb-6 px-2"
+                          data-testid="sources-section-lyrics"
+                        >
+                          <h3
+                            class="text-foreground mb-1 flex items-center gap-2 text-sm font-semibold"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="lucide lucide-mic-vocal"
+                              fill="none"
+                              height="14"
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              viewBox="0 0 24 24"
+                              width="14"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12"
+                              />
+                              <path
+                                d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5"
+                              />
+                              <circle
+                                cx="16"
+                                cy="7"
+                                r="5"
+                              />
+                            </svg>
+                            Lyrics
+                          </h3>
+                          <p
+                            class="text-foreground/60 mb-3 text-sm"
+                          >
+                            Lyrics sources provide lyrics for the current track. Nuclear gets lyrics from all lyrics sources at the same time and shows the best result. You can select the lyrics of a different source in the Lyrics view.
+                          </p>
+                          <p
+                            class="text-foreground/60 text-sm italic"
+                            data-testid="no-providers-message"
+                          >
+                            No providers installed
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
