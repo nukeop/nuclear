@@ -21,6 +21,7 @@
     "@nuclearplayer/ui": "workspace:*",
     "@remotion/cli": "^4.0.526",
     "@remotion/tailwind-v4": "^4.0.526",
+    "class-variance-authority": "^0.7.1",
     "lucide-react": "^1.43.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

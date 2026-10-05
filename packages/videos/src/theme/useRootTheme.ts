@@ -1,12 +1,10 @@
 import { useLayoutEffect } from 'react';
 
-import { setThemeId } from '@nuclearplayer/themes';
+import { DEFAULT_THEME_ID, setThemeId } from '@nuclearplayer/themes';
 
-export type ThemeMode = 'light' | 'dark';
-
-export const useRootTheme = (themeId: string, mode: ThemeMode) => {
+export const useRootTheme = () => {
   useLayoutEffect(() => {
-    setThemeId(themeId);
-    document.documentElement.setAttribute('data-theme', mode);
-  }, [themeId, mode]);
+    setThemeId(DEFAULT_THEME_ID);
+    document.documentElement.setAttribute('data-theme', 'light');
+  }, []);
 };

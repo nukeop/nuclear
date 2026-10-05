@@ -1,41 +1,43 @@
 import { FC, ReactNode } from 'react';
-import { interpolate } from 'remotion';
+import { useCurrentFrame, useVideoConfig } from 'remotion';
 
-import { useEntranceProgress, useExitOpacity } from './useEntrance';
-
-export type EnterFrom = 'bottom' | 'right' | 'scale';
-
-const slide = (progress: number, distance: number) =>
-  interpolate(progress, [0, 1], [distance, 0]);
-
-const transforms: Record<EnterFrom, (progress: number) => string> = {
-  bottom: (progress) => `translateY(${slide(progress, 2.5)}rem)`,
-  right: (progress) => `translateX(${slide(progress, 4)}rem)`,
-  scale: (progress) => `scale(${progress})`,
-};
+import { useExitProgress } from '../motion';
+import { Entrance, entranceStyles } from './entrances';
 
 type EnterProps = {
-  from?: EnterFrom;
+  entrance?: Entrance;
+  delay?: number;
+  exit?: boolean;
   className?: string;
   children: ReactNode;
 };
 
+const exitAmount = (exit: boolean, exitProgress: number) => {
+  if (!exit) {
+    return 0;
+  }
+  return exitProgress;
+};
+
 export const Enter: FC<EnterProps> = ({
-  from = 'bottom',
+  entrance = 'drop',
+  delay = 0,
+  exit = true,
   className,
   children,
 }) => {
-  const progress = useEntranceProgress();
-  const exitOpacity = useExitOpacity();
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const exitProgress = useExitProgress();
+
+  const style = entranceStyles[entrance]({
+    frame: Math.max(0, frame - delay),
+    fps,
+    exit: exitAmount(exit, exitProgress),
+  });
 
   return (
-    <div
-      className={className}
-      style={{
-        opacity: Math.min(progress, exitOpacity),
-        transform: transforms[from](progress),
-      }}
-    >
+    <div className={className} style={style}>
       {children}
     </div>
   );
