@@ -20,7 +20,7 @@ const StepMarkerPlate: FC<StepMarkerPlateProps> = ({ steps }) => {
   const { stepIndex, changeProgress } = useStepProgress(steps);
 
   return (
-    <Enter entrance="drop" className="top-video-safe left-video-safe absolute">
+    <Enter entrance="drop" className="top-video-safe right-video-safe absolute">
       <div className="bg-video-paper text-video-ink border-video-ink shadow-video-plate flex overflow-hidden rounded-md border-(length:--video-border-width)">
         <NumberBlock
           stepCount={steps.length}

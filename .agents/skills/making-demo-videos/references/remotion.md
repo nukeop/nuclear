@@ -17,7 +17,7 @@ The Remotion package is `packages/videos`. Shared components are in `packages/vi
 | `TitleCard` | `titleLines`, `subtitle`, `backdrop` | Shows a panel with the Nuclear logo, the title, and the subtitle. The panel moves in from the left over `backdrop` and moves out at the end of its `Sequence`. Give one string for each line of the title. |
 | `EndCard` | `backdrop`, `url`, `tagline` | Shows a panel that moves in from the right over `backdrop`. The URL is typed into a search field. The defaults are `nuclearplayer.com` and the platform line. |
 | `Captions` | `lines` | Shows the subtitles at the bottom center. Each line is a voice line with a `text` field. The plate stays on the screen while one line follows another, and only the text changes. Long lines are divided into pages of two lines. |
-| `StepMarker` | `steps`, `endFrame` | Shows the number and the label of the current step in the top-left corner, with one progress bar for each step. Each step is `{ label, startFrame }`. The marker shows from the first step until `endFrame`. |
+| `StepMarker` | `steps`, `endFrame` | Shows the number and the label of the current step in the top-right corner, with one progress bar for each step. Each step is `{ label, startFrame }`. The marker shows from the first step until `endFrame`. |
 | `Enter` | `entrance`: `drop` or `wipe`, `delay`, `exit` | Moves its content in at the start of its `Sequence` and moves it out at the end. `drop` also lifts the hard shadow of the plate. `delay` is in frames. |
 | `NuclearLogo` | `className` | Shows the full Nuclear logo in the current text color. |
 | `VoiceOver` | `lines` | Plays each voice line `{ src, startFrame, durationInFrames }`. |
