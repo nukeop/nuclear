@@ -10,6 +10,8 @@ To see lyrics, install at least one lyrics plugin from the plugin store, then cl
 
 The Lyrics view shows the lyrics of the current track. When the next track starts, the view loads the lyrics for that track.
 
+<figure><img src="../.gitbook/assets/lyrics.png" alt="The Lyrics view with word-synced lyrics. The current line is highlighted, and a bar fills under the word that the singer sings now."><figcaption><p>The Lyrics view with word-synced lyrics</p></figcaption></figure>
+
 ## Lyrics come from plugins
 
 To see lyrics in Nuclear, you will need to install at least one lyrics plugin. You can install lyrics plugins from the plugin store, like any other plugin. For more information about plugins and the plugin store, see [Plugins and providers](plugins-and-providers.md).
@@ -46,9 +48,13 @@ Instrumental means that the track has no lyrics. Nuclear shows the **Instrumenta
 
 The toolbar shows only the controls that apply to the lyrics on the screen. While Nuclear loads lyrics, the toolbar is empty. The toolbar is also empty when the view shows a message instead of lyrics.
 
+<figure><img src="../.gitbook/assets/lyrics-toolbar-controls.png" alt="The right side of the toolbar for synced lyrics: the Smaller lyrics and Larger lyrics buttons, the Auto-scroll switch, and the offset control" width="347"><figcaption><p>The toolbar controls for synced lyrics</p></figcaption></figure>
+
 ### Switch to a different source
 
 The source picker is on the left side of the toolbar. It shows the name of the plugin that supplied the lyrics on the screen. An icon next to each plugin name shows the type of its lyrics: **Word synced**, **Line synced**, or **Plain**. To see the name of the type, move the pointer over the icon.
+
+<figure><img src="../.gitbook/assets/lyrics-source-picker.png" alt="The open source picker with two lyrics plugins. An icon next to each name shows the type of its lyrics." width="248"><figcaption><p>The source picker</p></figcaption></figure>
 
 The source picker lists only the plugins that returned lyrics with text for the current track. To see the lyrics from a different plugin:
 
@@ -96,6 +102,8 @@ When no one sings for 5 seconds or more, Nuclear shows an instrumental break bet
 
 If the singer starts 5 seconds or more after the start of the track, Nuclear also shows a break before the first line.
 
+<figure><img src="../.gitbook/assets/lyrics-instrumental-break.png" alt="An instrumental break between two lines of synced lyrics. The first of the three dots is full, and the second dot is half full." width="750"><figcaption><p>An instrumental break</p></figcaption></figure>
+
 ### Follow the current line
 
 When auto-scroll is on, the view scrolls to the current line each time a new line starts. The view also scrolls to the current line when you enable auto-scroll.
@@ -111,6 +119,8 @@ Some plugins supply more than the text of the lyrics. Nuclear shows these additi
 - Furigana are the small reading aids for Japanese characters. They appear above their characters. Other reading aids, such as pinyin for Chinese, appear in the same position.
 - Translations and romanizations appear below the line, in smaller text.
 - Background vocals appear in parentheses after the line, in italics.
+
+<figure><img src="../.gitbook/assets/lyrics-furigana-translation.png" alt="Japanese lyrics with furigana above the characters, and a romanization and an English translation below each line" width="320"><figcaption><p>Furigana, a romanization, and a translation</p></figcaption></figure>
 
 ## When the view shows a message
 
