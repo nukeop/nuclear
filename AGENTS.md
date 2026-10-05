@@ -74,7 +74,6 @@ pnpm test -u
 ### TypeScript
 
 - Use `type` not `interface` (except when merging is required)
-- No magic numbers - extract into named constants
 - Strict mode with `noUnusedLocals` and `noUnusedParameters`
 - Do not use one-letter variable names.
 AVOID: `(b) => b.buildIndexEntry()`

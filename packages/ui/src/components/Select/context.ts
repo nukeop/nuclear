@@ -13,6 +13,7 @@ type SelectContextValue = {
   };
   value: string;
   placeholder?: string;
+  variant?: VariantProps<typeof selectVariants>['variant'];
   size?: VariantProps<typeof selectVariants>['size'];
   disabled?: boolean;
   state: 'normal' | 'error';

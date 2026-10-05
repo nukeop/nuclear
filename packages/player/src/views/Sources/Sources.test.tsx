@@ -2,6 +2,7 @@ import { providersHost } from '../../services/providersHost';
 import { useProvidersStore } from '../../stores/providersStore';
 import { DashboardProviderBuilder } from '../../test/builders/DashboardProviderBuilder';
 import { DiscoveryProviderBuilder } from '../../test/builders/DiscoveryProviderBuilder';
+import { LyricsProviderBuilder } from '../../test/builders/LyricsProviderBuilder';
 import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
 import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';
 import { StreamingProviderBuilder } from '../../test/builders/StreamingProviderBuilder';
@@ -274,5 +275,33 @@ describe('Sources view', () => {
     expect(SourcesWrapper.section('discovery').providerSelect.selected()).toBe(
       'Epsilon Discovery',
     );
+  });
+
+  it('lists the installed lyrics providers', async () => {
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('alpha-lyrics')
+        .withName('Alpha Lyrics')
+        .build(),
+    );
+    providersHost.register(
+      new LyricsProviderBuilder()
+        .withId('beta-lyrics')
+        .withName('Beta Lyrics')
+        .build(),
+    );
+
+    await SourcesWrapper.mount();
+
+    expect(SourcesWrapper.section('lyrics').providerNames).toEqual([
+      'Alpha Lyrics',
+      'Beta Lyrics',
+    ]);
+  });
+
+  it('shows an empty state when no lyrics providers are installed', async () => {
+    await SourcesWrapper.mount();
+
+    expect(SourcesWrapper.section('lyrics').emptyState).toBeInTheDocument();
   });
 });

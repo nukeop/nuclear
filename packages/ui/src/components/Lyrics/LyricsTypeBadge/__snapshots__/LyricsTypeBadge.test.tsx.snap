@@ -1,0 +1,223 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LyricsTypeBadge > (Snapshot) renders the expanded variant for each lyrics type 1`] = `
+<div>
+  <span
+    class="border-border inline-flex flex-none items-center justify-center border-(length:--border-width) font-bold whitespace-nowrap h-6 gap-1 rounded-full pr-2 pl-1.5 text-xs bg-primary text-primary-foreground"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-whole-word size-3.5"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="7"
+        cy="12"
+        r="3"
+      />
+      <path
+        d="M10 9v6"
+      />
+      <circle
+        cx="17"
+        cy="12"
+        r="3"
+      />
+      <path
+        d="M14 7v8"
+      />
+      <path
+        d="M22 17v1c0 .5-.5 1-1 1H3c-.5 0-1-.5-1-1v-1"
+      />
+    </svg>
+    Word synced
+  </span>
+  <span
+    class="border-border inline-flex flex-none items-center justify-center border-(length:--border-width) font-bold whitespace-nowrap h-6 gap-1 rounded-full pr-2 pl-1.5 text-xs bg-background text-foreground"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-list size-3.5"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 12h.01"
+      />
+      <path
+        d="M3 18h.01"
+      />
+      <path
+        d="M3 6h.01"
+      />
+      <path
+        d="M8 12h13"
+      />
+      <path
+        d="M8 18h13"
+      />
+      <path
+        d="M8 6h13"
+      />
+    </svg>
+    Line synced
+  </span>
+  <span
+    class="border-border inline-flex flex-none items-center justify-center border-(length:--border-width) font-bold whitespace-nowrap h-6 gap-1 rounded-full pr-2 pl-1.5 text-xs bg-muted text-muted-foreground"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-align-left size-3.5"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M15 12H3"
+      />
+      <path
+        d="M17 18H3"
+      />
+      <path
+        d="M21 6H3"
+      />
+    </svg>
+    Plain
+  </span>
+</div>
+`;
+
+exports[`LyricsTypeBadge > (Snapshot) renders the icon variant for each lyrics type 1`] = `
+<div>
+  <span
+    aria-label="Word synced"
+    class="border-border inline-flex flex-none items-center justify-center border-(length:--border-width) font-bold whitespace-nowrap size-5.5 rounded-md bg-primary text-primary-foreground"
+    role="img"
+    title="Word synced"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-whole-word size-3.5"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="7"
+        cy="12"
+        r="3"
+      />
+      <path
+        d="M10 9v6"
+      />
+      <circle
+        cx="17"
+        cy="12"
+        r="3"
+      />
+      <path
+        d="M14 7v8"
+      />
+      <path
+        d="M22 17v1c0 .5-.5 1-1 1H3c-.5 0-1-.5-1-1v-1"
+      />
+    </svg>
+  </span>
+  <span
+    aria-label="Line synced"
+    class="border-border inline-flex flex-none items-center justify-center border-(length:--border-width) font-bold whitespace-nowrap size-5.5 rounded-md bg-background text-foreground"
+    role="img"
+    title="Line synced"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-list size-3.5"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 12h.01"
+      />
+      <path
+        d="M3 18h.01"
+      />
+      <path
+        d="M3 6h.01"
+      />
+      <path
+        d="M8 12h13"
+      />
+      <path
+        d="M8 18h13"
+      />
+      <path
+        d="M8 6h13"
+      />
+    </svg>
+  </span>
+  <span
+    aria-label="Plain"
+    class="border-border inline-flex flex-none items-center justify-center border-(length:--border-width) font-bold whitespace-nowrap size-5.5 rounded-md bg-muted text-muted-foreground"
+    role="img"
+    title="Plain"
+  >
+    <svg
+      aria-hidden="true"
+      class="lucide lucide-align-left size-3.5"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M15 12H3"
+      />
+      <path
+        d="M17 18H3"
+      />
+      <path
+        d="M21 6H3"
+      />
+    </svg>
+  </span>
+</div>
+`;

@@ -108,6 +108,22 @@ export type ArtistSocialStats = {
 };
 
 export { pickArtwork } from './artwork';
+export type {
+  InstrumentalLyrics,
+  LineAnnotation,
+  LineSyncedLyrics,
+  Lyrics,
+  LyricsLine,
+  LyricsMetadata,
+  LyricsSection,
+  LyricsSegment,
+  LyricsType,
+  LyricsVocalist,
+  PlainLyrics,
+  SyncedLyricsLine,
+  TimedLyricsSegment,
+  WordSyncedLyrics,
+} from './lyrics';
 export type { Playlist, PlaylistIndexEntry, PlaylistItem } from './playlists';
 export type { QueueItem, RepeatMode, Queue } from './queue';
 export type { SearchCategory, SearchParams, SearchResults } from './search';

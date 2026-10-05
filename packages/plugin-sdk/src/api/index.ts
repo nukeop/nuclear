@@ -4,6 +4,7 @@ import type { EventsHost } from '../types/events';
 import type { FavoritesHost } from '../types/favorites';
 import type { HttpHost } from '../types/http';
 import type { LoggerHost } from '../types/logger';
+import type { LyricsHost } from '../types/lyrics';
 import type { MetadataHost } from '../types/metadata';
 import type { PlaybackHost } from '../types/playback';
 import type { PlaylistsHost } from '../types/playlists';
@@ -19,6 +20,7 @@ import { EventsAPI } from './events';
 import { FavoritesAPI } from './favorites';
 import { HttpAPI } from './http';
 import { LoggerAPI } from './logger';
+import { LyricsAPI } from './lyrics';
 import { MetadataAPI } from './metadata';
 import { PlaybackAPI } from './playback';
 import { PlaylistsAPI } from './playlists';
@@ -45,6 +47,7 @@ export class NuclearAPI {
   readonly Playlists: PlaylistsAPI;
   readonly Events: EventsAPI;
   readonly Shell: ShellAPI;
+  readonly Lyrics: LyricsAPI;
 
   constructor(opts?: {
     settingsHost?: SettingsHost;
@@ -62,6 +65,7 @@ export class NuclearAPI {
     playlistsHost?: PlaylistsHost;
     eventsHost?: EventsHost;
     shellHost?: ShellHost;
+    lyricsHost?: LyricsHost;
     widgetRegistry?: WidgetRegistry;
     pluginId?: string;
   }) {
@@ -84,6 +88,7 @@ export class NuclearAPI {
     this.Playlists = new PlaylistsAPI(opts?.playlistsHost);
     this.Events = new EventsAPI(opts?.eventsHost);
     this.Shell = new ShellAPI(opts?.shellHost);
+    this.Lyrics = new LyricsAPI(opts?.lyricsHost);
   }
 }
 

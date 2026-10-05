@@ -9,6 +9,7 @@ import { useSelectContext } from './context';
 export const SelectButton: FC = () => {
   const {
     ids: { selectId, listboxId, labelId },
+    variant,
     size,
     state,
     describedBy,
@@ -34,10 +35,13 @@ export const SelectButton: FC = () => {
       aria-errormessage={hasError ? `${selectId}-error` : undefined}
       disabled={disabled}
       className={cn(
-        selectVariants({ size, state, className: buttonClassName }),
+        selectVariants({ variant, size, state, className: buttonClassName }),
       )}
     >
-      <span className="block truncate">{selected?.label ?? placeholder}</span>
+      <span className="flex min-w-0 items-center gap-2">
+        {selected?.icon}
+        <span className="truncate">{selected?.label ?? placeholder}</span>
+      </span>
       <span className="flex items-center">
         <ChevronDown
           size={16}

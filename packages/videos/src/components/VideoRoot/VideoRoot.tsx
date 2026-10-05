@@ -1,28 +1,23 @@
 import { FC, ReactNode } from 'react';
 import { AbsoluteFill, useVideoConfig } from 'remotion';
 
-import { DEFAULT_THEME_ID } from '@nuclearplayer/themes';
+import { useRootTheme } from '../../theme/useRootTheme';
 
-import { ThemeMode, useRootTheme } from '../../theme/useRootTheme';
+const DESIGN_SHORT_SIDE = 720;
 
 type VideoRootProps = {
-  themeId?: string;
-  mode: ThemeMode;
   children: ReactNode;
 };
 
-export const VideoRoot: FC<VideoRootProps> = ({
-  themeId = DEFAULT_THEME_ID,
-  mode,
-  children,
-}) => {
+export const VideoRoot: FC<VideoRootProps> = ({ children }) => {
   const { width, height } = useVideoConfig();
-  useRootTheme(themeId, mode);
+  useRootTheme();
 
-  const scale = Math.min(width, height) / 720;
+  const scale = Math.min(width, height) / DESIGN_SHORT_SIDE;
 
   return (
     <AbsoluteFill
+      className="video-root bg-background text-foreground"
       style={{ zoom: scale, width: width / scale, height: height / scale }}
     >
       {children}

@@ -3,6 +3,7 @@ import {
   GaugeIcon,
   HeadphonesIcon,
   ListMusicIcon,
+  MicVocalIcon,
   SearchIcon,
 } from 'lucide-react';
 import { FC } from 'react';
@@ -88,6 +89,11 @@ export const Sources: FC = () => {
             kind="playlists"
             Icon={ListMusicIcon}
             color="green"
+          />
+          <ProviderInfoSection
+            kind="lyrics"
+            Icon={MicVocalIcon}
+            color="yellow"
           />
         </ScrollableArea>
       </div>

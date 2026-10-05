@@ -1,16 +1,9 @@
-import { useCallback, useState } from 'react';
-
-const TABS = {
-  INSTALLED: 0,
-  STORE: 1,
-} as const;
+import { useSettingsModalStore } from '../../stores/settingsModalStore';
 
 export const usePluginsTabs = () => {
-  const [selectedTab, setSelectedTab] = useState<number>(TABS.INSTALLED);
+  const selectedTab = useSettingsModalStore((state) => state.pluginsTab);
+  const selectTab = useSettingsModalStore((state) => state.selectPluginsTab);
+  const goToStore = () => selectTab('store');
 
-  const goToStore = useCallback(() => {
-    setSelectedTab(TABS.STORE);
-  }, []);
-
-  return { selectedTab, setSelectedTab, goToStore };
+  return { selectedTab, selectTab, goToStore };
 };

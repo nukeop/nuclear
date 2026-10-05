@@ -1,11 +1,7 @@
-import { vi } from 'vitest';
-
 import { registerBuiltInCoreSettings } from '../services/coreSettings';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { ConnectedSettingsModalWrapper } from './ConnectedSettingsModal.test-wrapper';
-
-window.scrollTo = vi.fn();
 
 describe('ConnectedSettingsModal', () => {
   beforeEach(() => {

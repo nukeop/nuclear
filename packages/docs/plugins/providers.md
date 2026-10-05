@@ -23,7 +23,7 @@ Every provider extends the `ProviderDescriptor` base type, which requires an `id
 | `'dashboard'` | Dashboard content (top tracks, new releases, etc.) | [Dashboard](dashboard.md) |
 | `'playlists'` | Fetch playlists from URLs (Spotify, SoundCloud, etc.) | [Playlists](playlists.md) |
 | `'discovery'` | Track recommendations | [Discovery](discovery.md) |
-| `'lyrics'` | Song lyrics *(planned)* | N/A |
+| `'lyrics'` | Song lyrics | [Lyrics](lyrics.md) |
 
 ## Registration
 

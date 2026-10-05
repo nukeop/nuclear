@@ -1,3 +1,30 @@
+@import '@nuclearplayer/tailwind-config';
+
+@theme inline {
+  --color-video-ink: var(--video-ink);
+  --color-video-paper: var(--video-paper);
+  --color-video-accent: var(--video-accent);
+
+  --shadow-video-plate: calc(var(--video-plate-offset) * var(--video-lift, 1))
+    calc(var(--video-plate-offset) * var(--video-lift, 1)) 0 0 var(--video-ink);
+  --shadow-video-hero: var(--video-hero-offset) var(--video-hero-offset) 0 0
+    var(--video-ink);
+  --shadow-video-hero-left: calc(var(--video-hero-offset) * -1)
+    var(--video-hero-offset) 0 0 var(--video-ink);
+
+  --spacing-video-safe: var(--video-safe-inset);
+}
+
+.video-root {
+  --video-ink: oklch(0.15 0 0);
+  --video-paper: oklch(100% 0 0);
+  --video-accent: oklch(0.8882 0.15 95);
+  --video-border-width: 3px;
+  --video-plate-offset: 6px;
+  --video-hero-offset: 10px;
+  --video-safe-inset: 32px;
+}
+
 *,
 *::before,
 *::after {

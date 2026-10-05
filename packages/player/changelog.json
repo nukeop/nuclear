@@ -1,6 +1,22 @@
 [
   {
     "date": "2026-10-04T00:00",
+    "description": "Nuclear can now display lyrics. Install a lyrics plugin to see plain, line-synced, or word-synced lyrics for the current track, with furigana, translations, and romanization. Lyrics are also available through the MCP server and the HTTP API.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Lyrics",
+        "color": "yellow"
+      },
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-04T00:00",
     "description": "rmpc can now connect to Nuclear's MPD server",
     "type": "fix",
     "contributors": ["nukeop"],

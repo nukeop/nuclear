@@ -525,6 +525,51 @@ exports[`App > should render snapshot 1`] = `
                 </div>
               </a>
               <a
+                href="/lyrics"
+              >
+                <div>
+                  <div
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) border-transparent"
+                    data-testid="sidebar-navigation-item"
+                  >
+                    <div
+                      class="flex size-8 shrink-0 items-center justify-center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-mic-vocal"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12"
+                        />
+                        <path
+                          d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5"
+                        />
+                        <circle
+                          cx="16"
+                          cy="7"
+                          r="5"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
+                    >
+                      Lyrics
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <a
                 href="/sources"
               >
                 <div>

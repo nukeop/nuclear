@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LyricsSectionLabel > (Snapshot) renders the label 1`] = `
+<div>
+  <div
+    class="text-foreground/60 py-1 text-xs font-bold tracking-widest uppercase"
+    data-testid="lyrics-section-label"
+  >
+    Verse 1
+  </div>
+</div>
+`;

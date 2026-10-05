@@ -522,6 +522,51 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                 </div>
               </a>
               <a
+                href="/lyrics"
+              >
+                <div>
+                  <div
+                    class="flex w-full items-center overflow-hidden rounded-md border-(length:--border-width) border-transparent"
+                    data-testid="sidebar-navigation-item"
+                  >
+                    <div
+                      class="flex size-8 shrink-0 items-center justify-center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-mic-vocal"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12"
+                        />
+                        <path
+                          d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5"
+                        />
+                        <circle
+                          cx="16"
+                          cy="7"
+                          r="5"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="text-sm whitespace-nowrap transition-opacity duration-150 opacity-100"
+                    >
+                      Lyrics
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <a
                 aria-current="page"
                 class="active"
                 data-status="active"
@@ -708,15 +753,19 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             <button
                               aria-expanded="false"
                               aria-haspopup="listbox"
-                              class="border-border surface-primary focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                              class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary px-3 py-2 text-sm"
                               data-headlessui-state=""
                               id="select-:r3:"
                               type="button"
                             >
                               <span
-                                class="block truncate"
+                                class="flex min-w-0 items-center gap-2"
                               >
-                                Acme Metadata
+                                <span
+                                  class="truncate"
+                                >
+                                  Acme Metadata
+                                </span>
                               </span>
                               <span
                                 class="flex items-center"
@@ -779,7 +828,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                             <button
                               aria-expanded="false"
                               aria-haspopup="listbox"
-                              class="border-border surface-primary focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 px-3 py-2 text-sm"
+                              class="border-border focus-visible:ring-ring focus-visible:ring-offset-muted relative flex w-full items-center justify-between rounded-md border-(length:--border-width) text-left transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary px-3 py-2 text-sm"
                               data-disabled=""
                               data-headlessui-state="disabled"
                               disabled=""
@@ -787,9 +836,13 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                               type="button"
                             >
                               <span
-                                class="block truncate"
+                                class="flex min-w-0 items-center gap-2"
                               >
-                                Acme
+                                <span
+                                  class="truncate"
+                                >
+                                  Acme
+                                </span>
                               </span>
                               <span
                                 class="flex items-center"
@@ -1082,6 +1135,52 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                               Acme Playlists
                             </span>
                           </div>
+                        </div>
+                        <div
+                          class="mb-6 px-2"
+                          data-testid="sources-section-lyrics"
+                        >
+                          <h3
+                            class="text-foreground mb-1 flex items-center gap-2 text-sm font-semibold"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="lucide lucide-mic-vocal"
+                              fill="none"
+                              height="14"
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              viewBox="0 0 24 24"
+                              width="14"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12"
+                              />
+                              <path
+                                d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5"
+                              />
+                              <circle
+                                cx="16"
+                                cy="7"
+                                r="5"
+                              />
+                            </svg>
+                            Lyrics
+                          </h3>
+                          <p
+                            class="text-foreground/60 mb-3 text-sm"
+                          >
+                            Lyrics sources provide lyrics for the current track. Nuclear gets lyrics from all lyrics sources at the same time and shows the best result. You can select the lyrics of a different source in the Lyrics view.
+                          </p>
+                          <p
+                            class="text-foreground/60 text-sm italic"
+                            data-testid="no-providers-message"
+                          >
+                            No providers installed
+                          </p>
                         </div>
                       </div>
                     </div>

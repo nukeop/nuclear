@@ -2,9 +2,11 @@ import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../../App';
+import { useSettingsModalStore } from '../../stores/settingsModalStore';
 
 export const PluginsWrapper = {
   async mount(): Promise<RenderResult> {
+    useSettingsModalStore.setState({ pluginsTab: 'installed' });
     const component = render(<App />);
     await userEvent.click(
       await component.findByRole('button', { name: 'Preferences' }),
@@ -17,6 +19,9 @@ export const PluginsWrapper = {
     await screen.findByRole('heading', { name: 'Plugins' });
 
     return component;
+  },
+  get selectedTab() {
+    return screen.getByRole('tab', { selected: true }).textContent;
   },
   async goToStoreTab(): Promise<void> {
     await userEvent.click(screen.getByRole('tab', { name: 'Store' }));

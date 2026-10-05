@@ -18,6 +18,7 @@
 * [Playlists](core-concepts/playlists.md)
 * [Listening history](core-concepts/listening-history.md)
 * [Listening stats](core-concepts/listening-stats.md)
+* [Lyrics](core-concepts/lyrics.md)
 
 ## Theming
 
@@ -48,6 +49,7 @@
 * [Shell](plugins/shell.md)
 * [Streaming](plugins/streaming.md)
 * [Metadata](plugins/metadata.md)
+* [Lyrics](plugins/lyrics.md)
 * [Dashboard](plugins/dashboard.md)
 * [Discovery](plugins/discovery.md)
 * [Logger](plugins/logger.md)

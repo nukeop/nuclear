@@ -1,0 +1,179 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WordSyncedLyricsLine > (Snapshot) renders a line halfway through its second word 1`] = `
+<div>
+  <button
+    class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground"
+    data-active="true"
+    data-testid="lyrics-line"
+    type="button"
+  >
+    <span
+      class="block"
+    >
+      <span
+        class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+        data-active="true"
+        data-testid="lyrics-word"
+        style="--fill-width: calc((100% + 1px) * 1);"
+      >
+        Lorem 
+      </span>
+      <span
+        class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+        data-active="true"
+        data-testid="lyrics-word"
+        style="--fill-width: calc((100% + 1px) * 0.5);"
+      >
+        ipsum 
+      </span>
+      <span
+        class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+        data-active="false"
+        data-testid="lyrics-word"
+        style="--fill-width: calc((100% + 1px) * 0);"
+      >
+        dolor
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`WordSyncedLyricsLine > (Snapshot) renders a line that has already played 1`] = `
+<div>
+  <button
+    class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground/40"
+    data-active="false"
+    data-testid="lyrics-line"
+    type="button"
+  >
+    <span
+      class="block"
+    >
+      Lorem 
+      ipsum 
+      dolor
+    </span>
+  </button>
+</div>
+`;
+
+exports[`WordSyncedLyricsLine > (Snapshot) renders a line that has not played yet 1`] = `
+<div>
+  <button
+    class="text-foreground/60 hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100"
+    data-active="false"
+    data-testid="lyrics-line"
+    type="button"
+  >
+    <span
+      class="block"
+    >
+      Lorem 
+      ipsum 
+      dolor
+    </span>
+  </button>
+</div>
+`;
+
+exports[`WordSyncedLyricsLine > (Snapshot) renders ruby, background vocals, and annotations 1`] = `
+<div>
+  <button
+    class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground"
+    data-active="true"
+    data-testid="lyrics-line"
+    type="button"
+  >
+    <span
+      class="block"
+    >
+      <span
+        class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+        data-active="true"
+        data-testid="lyrics-word"
+        style="--fill-width: calc((100% + 1px) * 1);"
+      >
+        <ruby
+          data-testid="lyrics-ruby"
+        >
+          <span
+            data-testid="lyrics-ruby-text"
+          >
+            夜
+          </span>
+          <rt
+            class="font-sans font-normal"
+            data-testid="lyrics-ruby-reading"
+          >
+            よる
+          </rt>
+        </ruby>
+      </span>
+      <span
+        class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+        data-active="true"
+        data-testid="lyrics-word"
+        style="--fill-width: calc((100% + 1px) * 0.5);"
+      >
+        に
+      </span>
+      <span
+        class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+        data-active="false"
+        data-testid="lyrics-word"
+        style="--fill-width: calc((100% + 1px) * 0);"
+      >
+        <ruby
+          data-testid="lyrics-ruby"
+        >
+          <span
+            data-testid="lyrics-ruby-text"
+          >
+            駆
+          </span>
+          <rt
+            class="font-sans font-normal"
+            data-testid="lyrics-ruby-reading"
+          >
+            か
+          </rt>
+        </ruby>
+      </span>
+      <span
+        class="before:bg-primary relative isolate before:absolute before:bottom-0 before:-left-px before:-z-10 before:h-2/5 before:w-(--fill-width)"
+        data-active="false"
+        data-testid="lyrics-word"
+        style="--fill-width: calc((100% + 1px) * 0);"
+      >
+        ける
+      </span>
+      <span
+        class="font-semibold italic opacity-60"
+        data-testid="lyrics-background-vocals"
+      >
+         (
+        Lorem ipsum
+        )
+      </span>
+    </span>
+    <span
+      class="block font-sans text-base font-normal tracking-normal opacity-60"
+      data-testid="lyrics-annotation"
+      data-type="romanization"
+      lang="ja-Latn"
+    >
+      Yoru ni kakeru
+    </span>
+    <span
+      class="block font-sans text-base font-normal tracking-normal opacity-60"
+      data-testid="lyrics-annotation"
+      data-type="translation"
+      lang="en"
+    >
+      Racing into the night
+    </span>
+  </button>
+</div>
+`;

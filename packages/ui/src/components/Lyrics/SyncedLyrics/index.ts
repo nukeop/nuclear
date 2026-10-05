@@ -1,0 +1,1 @@
+export { SyncedLyrics } from './SyncedLyrics';

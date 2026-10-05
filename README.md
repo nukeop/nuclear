@@ -49,6 +49,8 @@ Nuclear comes with multiple built-in themes, with light and a dark modes:
 | Album page | Favorites |
 | ![Playlists](packages/docs/.gitbook/assets/playlists.png) | ![Playlist](packages/docs/.gitbook/assets/playlist-detail-view.png) |
 | Playlists | Playlist |
+| ![Synced lyrics](packages/docs/.gitbook/assets/lyrics.png) | ![Lyrics with furigana and translations](packages/docs/.gitbook/assets/lyrics-translations.png) |
+| Synced lyrics | Lyrics with furigana and translations |
 | ![Listening history](packages/docs/.gitbook/assets/history.png) | ![Listening stats](packages/docs/.gitbook/assets/history-stats.png) |
 | Listening history | Listening stats |
 | ![Stream sources](packages/docs/.gitbook/assets/stream-candidates.png) | ![Plugin store](packages/docs/.gitbook/assets/plugin-store.png) |
