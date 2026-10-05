@@ -406,6 +406,6 @@ type AttributedLyrics = {
 api.Lyrics.getLyricsForTrack(track: Track, providerId?: string): Promise<AttributedLyrics[]>
 ```
 
-Without `providerId`, Nuclear queries all lyrics providers and returns their results in rank order, with the best result first. Providers that fail or return no lyrics are not in the array. If no lyrics provider is registered, the promise rejects.
+Without `providerId`, Nuclear queries all lyrics providers and returns their results in rank order, with the best result first. Providers that fail or return no lyrics are not in the array. If no lyrics provider is registered, the array is empty.
 
 With `providerId`, Nuclear queries only that provider. The array has one result, or no result if the provider returns no lyrics. The promise rejects if the provider does not exist or if it throws.

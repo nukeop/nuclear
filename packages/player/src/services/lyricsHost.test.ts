@@ -247,10 +247,8 @@ describe('lyricsHost', () => {
     ]);
   });
 
-  it('throws an error when no lyrics providers are registered', async () => {
-    await expect(createLyricsHost().getLyricsForTrack(track)).rejects.toThrow(
-      new Error('No lyrics providers registered'),
-    );
+  it('returns no results when no lyrics providers are registered', async () => {
+    expect(await createLyricsHost().getLyricsForTrack(track)).toEqual([]);
   });
 
   describe('with a provider id', () => {

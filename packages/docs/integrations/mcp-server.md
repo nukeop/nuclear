@@ -120,7 +120,7 @@ Calls a Nuclear API method.
 
 An agent follows this sequence to find and call an API method:
 
-1. Read the `list_methods` tool description to see the seven available domains.
+1. Read the `list_methods` tool description to see the available domains.
 2. Call `list_methods` with a domain (e.g. `Queue`) to see that domain's methods.
 3. Call `method_details` (e.g. `Queue.addToQueue`) to get parameter names, types, and the return type.
 4. If a parameter or return type is a complex type like `Track`, call `describe_type` to see its fields.

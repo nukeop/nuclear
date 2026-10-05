@@ -1,4 +1,3 @@
-import isEmpty from 'lodash-es/isEmpty';
 import isNil from 'lodash-es/isNil';
 import sortBy from 'lodash-es/sortBy';
 
@@ -62,9 +61,6 @@ const getRankedLyricsFromAllProviders = async (
   track: Track,
 ): Promise<AttributedLyrics[]> => {
   const providers = providersHost.list('lyrics') as LyricsProvider[];
-  if (isEmpty(providers)) {
-    throw new Error('No lyrics providers registered');
-  }
   const results = await Promise.all(
     providers.map((provider) =>
       getLyricsFromProvider(provider, track).catch(async (error) => {
