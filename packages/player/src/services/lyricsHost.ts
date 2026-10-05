@@ -1,6 +1,7 @@
 import isNil from 'lodash-es/isNil';
 import sortBy from 'lodash-es/sortBy';
 
+import { i18n } from '@nuclearplayer/i18n';
 import type { Lyrics, Track } from '@nuclearplayer/model';
 import type {
   AttributedLyrics,
@@ -20,7 +21,7 @@ const LYRICS_TYPE_RANK: Record<Lyrics['type'], number> = {
 
 const reportProviderError = (error: unknown) =>
   reportError('lyrics', {
-    userMessage: 'A lyrics provider failed to load lyrics',
+    userMessage: i18n.t('lyrics:providerError'),
     error,
   });
 
