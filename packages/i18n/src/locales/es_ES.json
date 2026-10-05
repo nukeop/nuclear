@@ -34,6 +34,7 @@
     "favoriteArtists": "Artistas favoritos",
     "playlists": "Navegación en la lista de reproducción",
     "history": "History",
+    "lyrics": "Lyrics",
     "sources": "Sources"
   },
   "history": {
@@ -86,6 +87,7 @@
     "discovery": "Discovery",
     "discoveryDescription": "Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.",
     "lyrics": "Lyrics",
+    "lyricsDescription": "Lyrics sources provide lyrics for the current track. Nuclear gets lyrics from all lyrics sources at the same time and shows the best result. You can select the lyrics of a different source in the Lyrics view.",
     "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
     "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available",
     "noProviders": "No providers installed"
@@ -380,6 +382,16 @@
         "description": "Choose the visual style for the custom title bar controls."
       }
     },
+    "lyrics": {
+      "textSize": {
+        "title": "Lyrics text size",
+        "description": "The size of the text in the lyrics view."
+      },
+      "autoScroll": {
+        "title": "Lyrics auto-scroll",
+        "description": "Scroll synced lyrics along with the song."
+      }
+    },
     "playback": {
       "title": "Playback",
       "skipSeconds": {
@@ -564,6 +576,30 @@
     "repeatOne": "Repeat: one",
     "discoveryOn": "Discovery: on",
     "discoveryOff": "Discovery: off"
+  },
+  "lyrics": {
+    "nothingPlaying": "Nothing is playing",
+    "nothingPlayingDescription": "Play a track to see its lyrics here.",
+    "noPlugins": "No lyrics plugins installed",
+    "noPluginsDescription": "Install a lyrics plugin to see lyrics for your music.",
+    "browsePlugins": "Browse lyrics plugins",
+    "noLyrics": "No lyrics for this track",
+    "noLyricsDescription": "{{providers, list}} returned no results.",
+    "providerError": "A lyrics provider failed to load lyrics",
+    "instrumental": "Instrumental",
+    "instrumentalDescription": "This track has no lyrics.",
+    "currentLine": "Current line",
+    "showEarlier": "Show lyrics earlier",
+    "showLater": "Show lyrics later",
+    "smaller": "Smaller lyrics",
+    "larger": "Larger lyrics",
+    "autoScroll": "Auto-scroll",
+    "types": {
+      "wordSynced": "Word synced",
+      "lineSynced": "Line synced",
+      "plain": "Plain"
+    },
+    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} s"
   },
   "logs": {
     "title": "Logs",
