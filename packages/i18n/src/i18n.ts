@@ -26,7 +26,6 @@ export const resources = {
 } as const;
 
 i18n.use(initReactI18next).init({
-  showSupportNotice: false, // disables console.log advertisement spam
   resources,
   lng: 'en_US',
   fallbackLng: 'en_US',
