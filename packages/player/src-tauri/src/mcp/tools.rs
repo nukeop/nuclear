@@ -1,6 +1,6 @@
 use rmcp::{
-    handler::server::router::tool::ToolRouter, handler::server::wrapper::Parameters, model::*,
-    schemars, tool, tool_router, ErrorData as McpError,
+    handler::server::wrapper::Parameters, model::*, schemars, tool, tool_router,
+    ErrorData as McpError,
 };
 
 use crate::bridge::bridge::Bridge;
@@ -39,7 +39,7 @@ fn bridge_result_to_mcp(
     result: Result<serde_json::Value, BridgeError>,
 ) -> Result<CallToolResult, McpError> {
     match result {
-        Ok(data) => Ok(CallToolResult::success(vec![Content::text(
+        Ok(data) => Ok(CallToolResult::success(vec![ContentBlock::text(
             serde_json::to_string_pretty(&data).unwrap_or_default(),
         )])),
         Err(BridgeError::InfrastructureError(message)) => {
@@ -47,7 +47,7 @@ fn bridge_result_to_mcp(
             Err(McpError::internal_error(message, None))
         }
         Err(BridgeError::HandlerError(message)) => {
-            Ok(CallToolResult::error(vec![Content::text(message)]))
+            Ok(CallToolResult::error(vec![ContentBlock::text(message)]))
         }
     }
 }
@@ -56,26 +56,22 @@ fn metadata_result_to_mcp(
     result: Result<serde_json::Value, String>,
 ) -> Result<CallToolResult, McpError> {
     match result {
-        Ok(data) => Ok(CallToolResult::success(vec![Content::text(
+        Ok(data) => Ok(CallToolResult::success(vec![ContentBlock::text(
             serde_json::to_string_pretty(&data).unwrap_or_default(),
         )])),
-        Err(message) => Ok(CallToolResult::error(vec![Content::text(message)])),
+        Err(message) => Ok(CallToolResult::error(vec![ContentBlock::text(message)])),
     }
 }
 
 #[derive(Clone)]
 pub struct NuclearMcpServer {
     pub bridge: Bridge,
-    pub(crate) tool_router: ToolRouter<NuclearMcpServer>,
 }
 
-#[tool_router]
+#[tool_router(vis = "pub(crate)")]
 impl NuclearMcpServer {
     pub fn new(bridge: Bridge) -> Self {
-        Self {
-            bridge,
-            tool_router: Self::tool_router(),
-        }
+        Self { bridge }
     }
 
     #[tool(
@@ -100,7 +96,7 @@ impl NuclearMcpServer {
         let (domain, method) = match params.method.split_once('.') {
             Some(parts) => parts,
             None => {
-                return Ok(CallToolResult::error(vec![Content::text(format!(
+                return Ok(CallToolResult::error(vec![ContentBlock::text(format!(
                     "Invalid method format '{}': expected 'Domain.method', e.g. 'Queue.addToQueue'.",
                     params.method
                 ))]));
