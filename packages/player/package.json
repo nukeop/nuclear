@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tauri dev --no-dev-server-wait",
-    "build": "tsc && vite build && tauri build",
+    "build": "tauri build",
     "build:frontend": "tsc && vite build",
     "tauri": "tauri",
     "preview": "vite preview",

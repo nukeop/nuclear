@@ -7,6 +7,14 @@
       "outputs": [
         "dist/**",
         "build/**"
+      ]
+    },
+    "@nuclearplayer/player#build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**"
       ],
       "env": [
         "TAURI_SIGNING_PRIVATE_KEY",
