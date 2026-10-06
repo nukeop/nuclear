@@ -28,7 +28,7 @@
     "@storybook/addon-themes": "^10.4.6",
     "@storybook/react-vite": "^10.0.0",
     "@tailwindcss/vite": "^4.1.11",
-    "@types/react": "^18.3.23",
+    "@types/react": "^19.0.0",
     "@vitejs/plugin-react": "^6.0.0",
     "eslint-plugin-storybook": "10.6.0",
     "sonner": "^2.0.7",
