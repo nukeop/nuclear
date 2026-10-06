@@ -34,7 +34,7 @@
     "favoriteArtists": "お気に入りのアーティスト",
     "playlists": "プレイリスト",
     "history": "履歴",
-    "lyrics": "Lyrics",
+    "lyrics": "歌詞",
     "sources": "ソース"
   },
   "history": {
@@ -87,7 +87,7 @@
     "discovery": "ディスカバリー",
     "discoveryDescription": "ディスカバリーソースは、あなたが聴いている音楽に基づいて新しいトラックを推薦します。下部バーのラジカセアイコンで音楽ディスカバリーを有効にできます。",
     "lyrics": "歌詞",
-    "lyricsDescription": "Lyrics sources provide lyrics for the current track. Nuclear gets lyrics from all lyrics sources at the same time and shows the best result. You can select the lyrics of a different source in the Lyrics view.",
+    "lyricsDescription": "歌詞ソースは、現在再生中の曲の歌詞を提供します。Nuclearは、すべての歌詞ソースから同時に歌詞を取得し、最適な結果を表示します。「歌詞」ビューでは、別のソースの歌詞を選択することができます。",
     "lockedReason": "<metadata>{{metadataName}}</metadata> メタデータソースには <streaming>{{streamingName}}</streaming> ストリーミングソースが必要です。",
     "missingStreamingProvider": "必要なストリーミングプロバイダー \"{{providerId}}\" が利用できません",
     "noProviders": "プロバイダーがインストールされていません"
@@ -323,7 +323,7 @@
       "app": "App"
     },
     "general": {
-      "title": "一般",
+      "title": "全般",
       "language": {
         "title": "言語",
         "description": "優先する言語を選択してください"
@@ -384,12 +384,12 @@
     },
     "lyrics": {
       "textSize": {
-        "title": "Lyrics text size",
-        "description": "The size of the text in the lyrics view."
+        "title": "歌詞のテキストサイズ",
+        "description": "歌詞表示画面の文字サイズ。"
       },
       "autoScroll": {
-        "title": "Lyrics auto-scroll",
-        "description": "Scroll synced lyrics along with the song."
+        "title": "歌詞の自動スクロール",
+        "description": "曲に合わせて歌詞を同期スクロールします。"
       }
     },
     "playback": {
@@ -561,7 +561,7 @@
       "streamRecoveryFailed": "ストリームが利用できなくなり、復元できませんでした",
       "hifi": {
         "loadFailed": "音声ストリームを読み込めませんでした : {{details}}",
-        "unsupportedFormat": "音声ストリームがサポートされていない形式です。このトラックには別のソースをお試しください。",
+        "unsupportedFormat": "音声ストリームがサポートされていない形式です。このトラックには別のソースを試してください。",
         "mseUnavailable": "このシステムには MediaSource Extensions がないため、ストリーミングを利用できません。システムの Web エンジンを更新すると解決する場合があります。",
         "appendRejected": "音声エンジンがストリームデータを拒否しました。コーデックがサポートされていない可能性があります。このトラックには別のソースを試してください。"
       }
@@ -578,28 +578,28 @@
     "discoveryOff": "ディスカバリー : オフ"
   },
   "lyrics": {
-    "nothingPlaying": "Nothing is playing",
-    "nothingPlayingDescription": "Play a track to see its lyrics here.",
-    "noPlugins": "No lyrics plugins installed",
-    "noPluginsDescription": "Install a lyrics plugin to see lyrics for your music.",
-    "browsePlugins": "Browse lyrics plugins",
-    "noLyrics": "No lyrics for this track",
-    "noLyricsDescription": "{{providers, list}} returned no results.",
-    "providerError": "A lyrics provider failed to load lyrics",
-    "instrumental": "Instrumental",
-    "instrumentalDescription": "This track has no lyrics.",
-    "currentLine": "Current line",
-    "showEarlier": "Show lyrics earlier",
-    "showLater": "Show lyrics later",
-    "smaller": "Smaller lyrics",
-    "larger": "Larger lyrics",
-    "autoScroll": "Auto-scroll",
+    "nothingPlaying": "何も再生されていません",
+    "nothingPlayingDescription": "曲を再生すると、ここに歌詞が表示されます。",
+    "noPlugins": "歌詞プラグインがインストールされていません",
+    "noPluginsDescription": "歌詞を表示するには、歌詞プラグインをインストールしてください。",
+    "browsePlugins": "歌詞プラグインを参照",
+    "noLyrics": "このトラックの歌詞はありません",
+    "noLyricsDescription": "{{providers, list}} は結果を返しませんでした。",
+    "providerError": "歌詞プロバイダーが歌詞の読み込みに失敗しました",
+    "instrumental": "インストルメンタル",
+    "instrumentalDescription": "このトラックには歌詞がありません。",
+    "currentLine": "現在の行",
+    "showEarlier": "歌詞を早く表示",
+    "showLater": "歌詞を遅く表示",
+    "smaller": "歌詞を小さく",
+    "larger": "歌詞を大きく",
+    "autoScroll": "自動スクロール",
     "types": {
-      "wordSynced": "Word synced",
-      "lineSynced": "Line synced",
-      "plain": "Plain"
+      "wordSynced": "単語同期",
+      "lineSynced": "行同期",
+      "plain": "プレーン"
     },
-    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} s"
+    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} 秒"
   },
   "logs": {
     "title": "ログ",
@@ -656,7 +656,7 @@
   },
   "changelog": {
     "title": "新着情報",
-    "seeMore": "もっと見る（過去 {{count}} 件）",
+    "seeMore": "もっと見る (過去 {{count}} 件)",
     "types": {
       "feature": "新機能",
       "fix": "修正",
