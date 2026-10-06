@@ -32,7 +32,7 @@ exports[`TrackContextMenu > (Snapshot) renders header without cover image 1`] = 
   <div
     data-radix-popper-content-wrapper=""
     dir="ltr"
-    style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 4px); min-width: max-content; --radix-popper-available-width: 0px; --radix-popper-available-height: -4px; --radix-popper-anchor-width: 0px; --radix-popper-anchor-height: 0px; --radix-popper-transform-origin: 100% 0px;"
+    style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 4px); min-width: max-content; z-index: auto; --radix-popper-available-width: 0px; --radix-popper-available-height: -4px; --radix-popper-anchor-width: 0px; --radix-popper-anchor-height: 0px; --radix-popper-transform-origin: 100% 0px;"
   >
     <div
       aria-labelledby="radix-:r4:"
@@ -129,7 +129,7 @@ exports[`TrackContextMenu > (Snapshot) renders header without subtitle 1`] = `
   <div
     data-radix-popper-content-wrapper=""
     dir="ltr"
-    style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 4px); min-width: max-content; --radix-popper-available-width: 0px; --radix-popper-available-height: -4px; --radix-popper-anchor-width: 0px; --radix-popper-anchor-height: 0px; --radix-popper-transform-origin: 100% 0px;"
+    style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 4px); min-width: max-content; z-index: auto; --radix-popper-available-width: 0px; --radix-popper-available-height: -4px; --radix-popper-anchor-width: 0px; --radix-popper-anchor-height: 0px; --radix-popper-transform-origin: 100% 0px;"
   >
     <div
       aria-labelledby="radix-:r7:"
@@ -226,7 +226,7 @@ exports[`TrackContextMenu > (Snapshot) renders with header and actions 1`] = `
   <div
     data-radix-popper-content-wrapper=""
     dir="ltr"
-    style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 4px); min-width: max-content; --radix-popper-available-width: 0px; --radix-popper-available-height: -4px; --radix-popper-anchor-width: 0px; --radix-popper-anchor-height: 0px; --radix-popper-transform-origin: 100% 0px;"
+    style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 4px); min-width: max-content; z-index: auto; --radix-popper-available-width: 0px; --radix-popper-available-height: -4px; --radix-popper-anchor-width: 0px; --radix-popper-anchor-height: 0px; --radix-popper-transform-origin: 100% 0px;"
   >
     <div
       aria-labelledby="radix-:r0:"

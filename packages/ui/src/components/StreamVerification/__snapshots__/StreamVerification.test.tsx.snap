@@ -174,13 +174,13 @@ exports[`StreamVerification > (Snapshot) renders the explanation 1`] = `
       <div
         animate="[object Object]"
         class="surface-popover border-border rounded-md border-(length:--border-width) leading-5 backdrop-blur-xl flex w-72 flex-col items-start gap-2 p-4 select-text"
-        data-anchor="top end"
+        data-anchor="top start"
         data-floating-ui-focusable=""
         data-headlessui-state="open"
         data-open=""
         exit="[object Object]"
         initial="[object Object]"
-        style="overflow: auto; max-width: -16px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
+        style="overflow: auto; max-width: 0px; max-height: min(var(--anchor-max-height, 100vh), 0px);"
       >
         <p
           class="text-sm whitespace-pre-line"
