@@ -6,7 +6,7 @@ use std::sync::Arc;
 use rmcp::transport::streamable_http_server::{
     session::local::LocalSessionManager, StreamableHttpServerConfig, StreamableHttpService,
 };
-use rmcp::{model::*, tool_handler, ServerHandler};
+use rmcp::{tool_handler, ServerHandler};
 use tauri::{AppHandle, Manager};
 use tokio::sync::{oneshot, Mutex};
 use tokio_util::sync::CancellationToken;
@@ -15,18 +15,10 @@ use tools::NuclearMcpServer;
 const MCP_PORT_START: u16 = 8800;
 const MCP_PORT_END: u16 = 8809;
 
-#[tool_handler]
-impl ServerHandler for NuclearMcpServer {
-    fn get_info(&self) -> ServerInfo {
-        ServerInfo {
-            instructions: Some(
-                "Nuclear Music Player MCP server. Use list_methods to discover domains, method_details for parameter info, describe_type for data type shapes, and call to execute methods.".into(),
-            ),
-            capabilities: ServerCapabilities::builder().enable_tools().build(),
-            ..Default::default()
-        }
-    }
-}
+#[tool_handler(
+    instructions = "Nuclear Music Player MCP server. Use list_methods to discover domains, method_details for parameter info, describe_type for data type shapes, and call to execute methods."
+)]
+impl ServerHandler for NuclearMcpServer {}
 
 struct RunningServer {
     task: tauri::async_runtime::JoinHandle<()>,
@@ -54,10 +46,7 @@ async fn start_server(
     let service = StreamableHttpService::new(
         move || Ok(NuclearMcpServer::new(bridge.clone())),
         LocalSessionManager::default().into(),
-        StreamableHttpServerConfig {
-            cancellation_token: ct.child_token(),
-            ..Default::default()
-        },
+        StreamableHttpServerConfig::default().with_cancellation_token(ct.child_token()),
     );
 
     let router = axum::Router::new().nest_service("/mcp", service);
