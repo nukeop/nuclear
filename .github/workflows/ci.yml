@@ -61,6 +61,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    env:
+      CARGO_PROFILE_DEV_DEBUG: 0
 
     steps:
       - name: Checkout code
@@ -75,9 +77,10 @@ jobs:
           workspaces: packages/player/src-tauri -> target
 
       - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+        uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev
+          version: 1.0
 
       - name: Setup JS
         uses: ./.github/actions/setup-js
@@ -86,6 +89,6 @@ jobs:
         run: pnpm turbo build --filter='!@nuclearplayer/player'
 
       - name: Build player
-        run: pnpm --filter @nuclearplayer/player tauri build --no-bundle
+        run: pnpm --filter @nuclearplayer/player tauri build --debug --no-bundle
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
