@@ -1,4 +1,7 @@
-import { ColumnDef, createColumnHelper } from '@tanstack/react-table';
+import {
+  legacyCreateColumnHelper,
+  type LegacyColumnDef,
+} from '@tanstack/react-table/legacy';
 import { HashIcon, Heart, ImageIcon, Trash2 } from 'lucide-react';
 import { useMemo } from 'react';
 
@@ -17,15 +20,15 @@ import { TrackTableProps } from '../types';
 
 export function useColumns<T extends Track = Track>(
   props: Pick<TrackTableProps<T>, 'display' | 'labels' | 'actions'>,
-): ColumnDef<T>[] {
+): LegacyColumnDef<T>[] {
   const { display, labels, actions } = props;
-  const columnHelper = createColumnHelper<T>();
+  const columnHelper = legacyCreateColumnHelper<T>();
 
   const showFavorite =
     display?.displayFavorite && Boolean(actions?.onToggleFavorite);
   const showDelete = display?.displayDeleteButton && Boolean(actions?.onRemove);
 
-  const columns: ColumnDef<T>[] = useMemo(
+  const columns: LegacyColumnDef<T>[] = useMemo(
     () => [
       showFavorite &&
         columnHelper.display({
@@ -94,7 +97,7 @@ export function useColumns<T extends Track = Track>(
         }),
     ],
     [labels, display, showFavorite, showDelete],
-  ).filter(Boolean) as ColumnDef<T>[];
+  ).filter(Boolean) as LegacyColumnDef<T>[];
 
   return columns;
 }

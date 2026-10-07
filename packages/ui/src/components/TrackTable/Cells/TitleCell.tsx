@@ -1,4 +1,5 @@
-import { CellContext } from '@tanstack/react-table';
+import type { CellContext } from '@tanstack/react-table';
+import type { LegacyFeatures } from '@tanstack/react-table/legacy';
 import { EllipsisVertical, Plus } from 'lucide-react';
 import { FC, forwardRef } from 'react';
 
@@ -58,11 +59,10 @@ const ContextMenuButton = forwardRef<HTMLElement, ContextMenuButtonProps>(
   },
 );
 
-export const TitleCell = <T extends Track>({
-  getValue,
-  row,
-  table,
-}: CellContext<T, string | number | undefined>) => {
+export const TitleCell = <T extends Track>(
+  context: CellContext<LegacyFeatures, T, string | number | undefined>,
+) => {
+  const { row, table } = context;
   const meta = table.options.meta as TitleCellMeta | undefined;
   const { actions, labels } = useTrackTableContext<T>();
   const showControls = meta?.displayQueueControls;
@@ -82,7 +82,7 @@ export const TitleCell = <T extends Track>({
             actions.onPlayNow?.(track);
           }}
         >
-          {getValue()}
+          {context.getValue()}
         </button>
         {showControls && hasActions && (
           <div className="flex items-center gap-1">
