@@ -30,7 +30,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^18.3.23",
     "@vitejs/plugin-react": "^6.0.0",
-    "eslint-plugin-storybook": "10.6.0",
+    "eslint-plugin-storybook": "10.6.1",
     "sonner": "^2.0.7",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2",
