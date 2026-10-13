@@ -106,7 +106,7 @@ export const platforms: Platform[] = [
       {
         label: 'Flatpak bundle',
         format: '.flatpak',
-        url: releaseUrl('nuclear-music-player.flatpak'),
+        url: releaseUrl(`Nuclear_${version}_x86_64.flatpak`),
       },
     ],
     packageManagers: [
