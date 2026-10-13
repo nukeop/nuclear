@@ -84,6 +84,13 @@
   </requires>
 
   <releases>
+    <release version="1.51.0" date="2026-10-14">
+      <description>
+        <ul>
+          <li>Nuclear Jam shows lyrics now. Tap the microphone button to open the lyrics page</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.50.0" date="2026-10-05">
       <description>
         <ul>
