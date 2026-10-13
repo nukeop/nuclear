@@ -46,9 +46,7 @@ describe('RemoteControl', () => {
     await RemoteControlWrapper.mountConnected();
 
     expect(RemoteControlWrapper.header.statusText).toBe('Connected');
-    expect(RemoteControlWrapper.nowPlaying.title).toBe(
-      'Everything In Its Right Place',
-    );
+    expect(RemoteControlWrapper.nowPlaying.title).toBe('First Test Track');
     expect(RemoteControlWrapper.nowPlaying.artist).toBe('Test Artist');
     expect(
       RemoteControlWrapper.controls.playPauseButton.element,
@@ -146,8 +144,8 @@ describe('RemoteControl', () => {
         {
           id: 'sse-item-1',
           track: {
-            title: 'How to Disappear Completely',
-            artists: [{ name: 'Radiohead', roles: ['main'] }],
+            title: 'Third Test Track',
+            artists: [{ name: 'Test Artist', roles: ['main'] }],
             source: { provider: 'test', id: 'sse-track-1' },
           },
           status: 'success',
@@ -184,7 +182,7 @@ describe('RemoteControl', () => {
   it('removing a queue item sends its id to /api/queue/remove', async () => {
     await RemoteControlWrapper.mountConnected();
 
-    await RemoteControlWrapper.queue.removeTrack('Kid A');
+    await RemoteControlWrapper.queue.removeTrack('Second Test Track');
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith('/api/queue/remove', {
@@ -199,7 +197,7 @@ describe('RemoteControl', () => {
     await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
-    await RemoteControlWrapper.search.input.type('idioteque');
+    await RemoteControlWrapper.search.input.type('search result');
 
     await waitFor(() => {
       expect(RemoteControlWrapper.search.results).toHaveLength(2);
@@ -210,17 +208,17 @@ describe('RemoteControl', () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          query: 'idioteque',
+          query: 'search result',
           types: ['tracks'],
           limit: 10,
         }),
       }),
     );
     expect(RemoteControlWrapper.search.results[0]).toHaveTextContent(
-      'Idioteque',
+      'First Search Result',
     );
     expect(RemoteControlWrapper.search.results[1]).toHaveTextContent(
-      'Morning Bell',
+      'Second Search Result',
     );
   });
 
@@ -242,7 +240,7 @@ describe('RemoteControl', () => {
     await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockError();
 
-    await RemoteControlWrapper.search.input.type('idioteque');
+    await RemoteControlWrapper.search.input.type('search result');
 
     await waitFor(() => {
       expect(RemoteControlWrapper.search.errorState).toBeInTheDocument();
@@ -256,7 +254,7 @@ describe('RemoteControl', () => {
     await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
-    await RemoteControlWrapper.search.input.type('idioteque');
+    await RemoteControlWrapper.search.input.type('search result');
     await waitFor(() => {
       expect(RemoteControlWrapper.search.drawer).toBeInTheDocument();
     });
@@ -272,12 +270,12 @@ describe('RemoteControl', () => {
     await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
-    await RemoteControlWrapper.search.input.type('idioteque');
+    await RemoteControlWrapper.search.input.type('search result');
     await waitFor(() => {
       expect(RemoteControlWrapper.search.results).toHaveLength(2);
     });
 
-    await RemoteControlWrapper.search.addTrack('Idioteque');
+    await RemoteControlWrapper.search.addTrack('First Search Result');
 
     await waitFor(() => {
       expect(RemoteControlWrapper.search.drawer).not.toBeInTheDocument();
@@ -288,12 +286,12 @@ describe('RemoteControl', () => {
     await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
-    await RemoteControlWrapper.search.input.type('idioteque');
+    await RemoteControlWrapper.search.input.type('search result');
     await waitFor(() => {
       expect(RemoteControlWrapper.search.results).toHaveLength(2);
     });
 
-    await RemoteControlWrapper.search.addTrack('Idioteque');
+    await RemoteControlWrapper.search.addTrack('First Search Result');
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith('/api/queue/add', {
@@ -312,12 +310,12 @@ describe('RemoteControl', () => {
     await RemoteControlWrapper.mountConnected({ emptyQueue: true });
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
-    await RemoteControlWrapper.search.input.type('idioteque');
+    await RemoteControlWrapper.search.input.type('search result');
     await waitFor(() => {
       expect(RemoteControlWrapper.search.results).toHaveLength(2);
     });
 
-    await RemoteControlWrapper.search.addTrack('Idioteque');
+    await RemoteControlWrapper.search.addTrack('First Search Result');
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith('/api/playback/play', {
@@ -363,7 +361,7 @@ describe('RemoteControl', () => {
       await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
 
       expect(RemoteControlWrapper.lyricsPage.track).toEqual({
-        title: 'Everything In Its Right Place',
+        title: 'First Test Track',
         artist: 'Test Artist',
       });
     });
@@ -414,9 +412,9 @@ describe('RemoteControl', () => {
       await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
 
       expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
-        { text: 'First placeholder line', isActive: true },
-        { text: 'Second placeholder line', isActive: false },
-        { text: 'Third placeholder line', isActive: false },
+        { text: 'Neon rain on the overpass', isActive: true },
+        { text: 'Counting static in the glass', isActive: false },
+        { text: 'Every signal fades too fast', isActive: false },
       ]);
     });
 
@@ -432,9 +430,9 @@ describe('RemoteControl', () => {
       });
 
       expect(RemoteControlWrapper.lyrics.lines).toEqual([
-        { text: 'First placeholder line', isActive: false },
-        { text: 'Second placeholder line', isActive: true },
-        { text: 'Third placeholder line', isActive: false },
+        { text: 'Neon rain on the overpass', isActive: false },
+        { text: 'Counting static in the glass', isActive: true },
+        { text: 'Every signal fades too fast', isActive: false },
       ]);
 
       RemoteControlWrapper.sendPlaybackUpdate({
@@ -444,9 +442,9 @@ describe('RemoteControl', () => {
       });
 
       expect(RemoteControlWrapper.lyrics.lines).toEqual([
-        { text: 'First placeholder line', isActive: false },
-        { text: 'Second placeholder line', isActive: false },
-        { text: 'Third placeholder line', isActive: true },
+        { text: 'Neon rain on the overpass', isActive: false },
+        { text: 'Counting static in the glass', isActive: false },
+        { text: 'Every signal fades too fast', isActive: true },
       ]);
     });
 
@@ -476,17 +474,17 @@ describe('RemoteControl', () => {
           duration: 240,
         });
         expect(RemoteControlWrapper.lyrics.lines).toEqual([
-          { text: 'First placeholder line', isActive: true },
-          { text: 'Second placeholder line', isActive: false },
-          { text: 'Third placeholder line', isActive: false },
+          { text: 'Neon rain on the overpass', isActive: true },
+          { text: 'Counting static in the glass', isActive: false },
+          { text: 'Every signal fades too fast', isActive: false },
         ]);
 
         await RemoteControlWrapper.advanceTime(200);
 
         expect(RemoteControlWrapper.lyrics.lines).toEqual([
-          { text: 'First placeholder line', isActive: false },
-          { text: 'Second placeholder line', isActive: true },
-          { text: 'Third placeholder line', isActive: false },
+          { text: 'Neon rain on the overpass', isActive: false },
+          { text: 'Counting static in the glass', isActive: true },
+          { text: 'Every signal fades too fast', isActive: false },
         ]);
       });
     });
@@ -496,7 +494,7 @@ describe('RemoteControl', () => {
       await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
       await RemoteControlWrapper.lyrics.findLines();
 
-      await RemoteControlWrapper.lyrics.tapLine('Third placeholder line');
+      await RemoteControlWrapper.lyrics.tapLine('Every signal fades too fast');
 
       expect(global.fetch).toHaveBeenCalledWith('/api/playback/seek', {
         method: 'POST',
@@ -511,8 +509,8 @@ describe('RemoteControl', () => {
       await RemoteControlWrapper.openLyrics(REMOTE_PLAIN_LYRICS);
 
       expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
-        { text: 'First plain placeholder line', isActive: false },
-        { text: 'Second plain placeholder line', isActive: false },
+        { text: 'Paper boats in a parking lot', isActive: false },
+        { text: 'Sinking slow in the summer heat', isActive: false },
       ]);
     });
 
@@ -578,9 +576,9 @@ describe('RemoteControl', () => {
       await RemoteControlWrapper.mountConnected();
       await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
       expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
-        { text: 'First placeholder line', isActive: true },
-        { text: 'Second placeholder line', isActive: false },
-        { text: 'Third placeholder line', isActive: false },
+        { text: 'Neon rain on the overpass', isActive: true },
+        { text: 'Counting static in the glass', isActive: false },
+        { text: 'Every signal fades too fast', isActive: false },
       ]);
 
       RemoteControlWrapper.lyrics.mockCurrent(REMOTE_LYRICS_FOR_NEXT_TRACK);
@@ -595,8 +593,8 @@ describe('RemoteControl', () => {
       });
 
       expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
-        { text: 'Next track first placeholder line', isActive: true },
-        { text: 'Next track second placeholder line', isActive: false },
+        { text: 'Wake me when the tape runs out', isActive: true },
+        { text: 'Hum the chorus, skip the doubt', isActive: false },
       ]);
     });
 
@@ -611,8 +609,8 @@ describe('RemoteControl', () => {
         'Other Lyrics',
       );
       expect(RemoteControlWrapper.lyrics.lines).toEqual([
-        { text: 'First plain placeholder line', isActive: false },
-        { text: 'Second plain placeholder line', isActive: false },
+        { text: 'Paper boats in a parking lot', isActive: false },
+        { text: 'Sinking slow in the summer heat', isActive: false },
       ]);
     });
 
@@ -628,9 +626,9 @@ describe('RemoteControl', () => {
       });
 
       expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
-        { text: 'First placeholder line', isActive: true },
-        { text: 'Second placeholder line', isActive: false },
-        { text: 'Third placeholder line', isActive: false },
+        { text: 'Neon rain on the overpass', isActive: true },
+        { text: 'Counting static in the glass', isActive: false },
+        { text: 'Every signal fades too fast', isActive: false },
       ]);
       expect(RemoteControlWrapper.lyricsPage.sourcePicker.selected()).toBe(
         'Test Lyrics',
@@ -647,17 +645,17 @@ describe('RemoteControl', () => {
         duration: 240,
       });
       expect(RemoteControlWrapper.lyrics.lines).toEqual([
-        { text: 'First placeholder line', isActive: false },
-        { text: 'Second placeholder line', isActive: true },
-        { text: 'Third placeholder line', isActive: false },
+        { text: 'Neon rain on the overpass', isActive: false },
+        { text: 'Counting static in the glass', isActive: true },
+        { text: 'Every signal fades too fast', isActive: false },
       ]);
 
       await RemoteControlWrapper.lyricsPage.offset.later();
 
       expect(RemoteControlWrapper.lyrics.lines).toEqual([
-        { text: 'First placeholder line', isActive: true },
-        { text: 'Second placeholder line', isActive: false },
-        { text: 'Third placeholder line', isActive: false },
+        { text: 'Neon rain on the overpass', isActive: true },
+        { text: 'Counting static in the glass', isActive: false },
+        { text: 'Every signal fades too fast', isActive: false },
       ]);
     });
 
@@ -668,7 +666,7 @@ describe('RemoteControl', () => {
       await RemoteControlWrapper.lyricsPage.offset.later();
       await RemoteControlWrapper.lyricsPage.offset.later();
 
-      await RemoteControlWrapper.lyrics.tapLine('Third placeholder line');
+      await RemoteControlWrapper.lyrics.tapLine('Every signal fades too fast');
 
       expect(global.fetch).toHaveBeenCalledWith('/api/playback/seek', {
         method: 'POST',
