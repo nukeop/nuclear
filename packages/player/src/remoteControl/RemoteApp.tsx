@@ -1,17 +1,20 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider } from '@tanstack/react-router';
 import { FC } from 'react';
 
-import RemoteControl from './RemoteControl';
+import { createRemoteRouter, RemoteRouter } from './remoteRouter';
 
 const defaultQueryClient = new QueryClient();
+const defaultRouter = createRemoteRouter();
 
 type RemoteAppProps = {
   queryClientProp?: QueryClient;
+  routerProp?: RemoteRouter;
 };
 
-const RemoteApp: FC<RemoteAppProps> = ({ queryClientProp }) => (
+const RemoteApp: FC<RemoteAppProps> = ({ queryClientProp, routerProp }) => (
   <QueryClientProvider client={queryClientProp ?? defaultQueryClient}>
-    <RemoteControl />
+    <RouterProvider router={routerProp ?? defaultRouter} />
   </QueryClientProvider>
 );
 

@@ -1,14 +1,18 @@
 import { QueryClient } from '@tanstack/react-query';
+import { createMemoryHistory } from '@tanstack/react-router';
 import {
   act,
   render,
   RenderResult,
   screen,
+  waitFor,
   within,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import type { Queue, Track } from '@nuclearplayer/model';
+import type { AttributedLyrics } from '@nuclearplayer/plugin-sdk';
+import { createSelectWrapper } from '@nuclearplayer/ui';
 
 import {
   REMOTE_EMPTY_QUEUE,
@@ -19,12 +23,12 @@ import {
 import { MockEventSource } from '../test/mocks/eventSource';
 import { FetchMock } from '../test/mocks/fetch';
 import RemoteApp from './RemoteApp';
+import { createRemoteRouter } from './remoteRouter';
 import type { PlaybackState, SettingsState } from './remoteStore';
 import { useRemoteStore } from './remoteStore';
+import { MAX_RETRIES } from './useEventSource';
 
 const user = userEvent.setup();
-const MAX_RETRIES = 3;
-
 export const RemoteControlWrapper = {
   reset() {
     MockEventSource.lastInstance = null;
@@ -34,15 +38,26 @@ export const RemoteControlWrapper = {
     vi.stubGlobal('EventSource', MockEventSource);
   },
 
-  async mount(): Promise<RenderResult> {
-    const result = render(<RemoteApp queryClientProp={new QueryClient()} />);
+  async mount({ path = '/' }: { path?: string } = {}): Promise<RenderResult> {
+    const history = createMemoryHistory({ initialEntries: [path] });
+    const result = render(
+      <RemoteApp
+        queryClientProp={new QueryClient()}
+        routerProp={createRemoteRouter(history)}
+      />,
+    );
     await screen.findByTestId('jam-connecting');
     return result;
   },
 
-  async simulateConnection(options: { emptyQueue?: boolean } = {}) {
+  async simulateConnection(
+    options: { emptyQueue?: boolean; lyrics?: AttributedLyrics[] } = {},
+  ) {
     const queue = options.emptyQueue ? REMOTE_EMPTY_QUEUE : REMOTE_QUEUE;
     FetchMock.init();
+    if (options.lyrics) {
+      this.lyrics.mockCurrent(options.lyrics);
+    }
     FetchMock.get('/api/queue', queue);
     FetchMock.get('/api/playback', REMOTE_PLAYBACK);
     FetchMock.get('/api/settings', REMOTE_SETTINGS);
@@ -57,7 +72,27 @@ export const RemoteControlWrapper = {
       MockEventSource.lastInstance?.simulateOpen();
     });
 
-    await screen.findByTestId('connection-status-badge');
+    await waitFor(() => {
+      expect(useRemoteStore.getState().synced).toBe(true);
+    });
+  },
+
+  async mountConnected({
+    path,
+    ...connection
+  }: {
+    path?: string;
+    emptyQueue?: boolean;
+    lyrics?: AttributedLyrics[];
+  } = {}) {
+    await this.mount({ path });
+    await this.simulateConnection(connection);
+  },
+
+  async openLyrics(lyrics: AttributedLyrics[]) {
+    this.lyrics.mockCurrent(lyrics);
+    await this.nowPlaying.lyricsButton.click();
+    await screen.findByTestId('jam-lyrics-page');
   },
 
   simulateConnectionFailure() {
@@ -96,6 +131,63 @@ export const RemoteControlWrapper = {
     },
     get artist() {
       return screen.getByTestId('now-playing-artist').textContent;
+    },
+    lyricsButton: {
+      get element() {
+        return screen.getByTestId('jam-lyrics-button');
+      },
+      async click() {
+        await user.click(this.element);
+      },
+    },
+  },
+
+  get queuePage() {
+    return screen.getByTestId('jam-queue-page');
+  },
+
+  lyricsPage: {
+    get element() {
+      return screen.getByTestId('jam-lyrics-page');
+    },
+    get track() {
+      const topBar = screen.getByTestId('jam-lyrics-top-bar');
+      return {
+        title: within(topBar).getByTestId('jam-lyrics-top-bar-title')
+          .textContent,
+        artist: within(topBar).getByTestId('jam-lyrics-top-bar-artist')
+          .textContent,
+      };
+    },
+    offset: {
+      get value() {
+        return screen.getByTestId('jam-lyrics-offset').textContent;
+      },
+      async earlier() {
+        await user.click(
+          within(screen.getByTestId('jam-lyrics-offset')).getByRole('button', {
+            name: 'Show lyrics earlier',
+          }),
+        );
+      },
+      async later() {
+        await user.click(
+          within(screen.getByTestId('jam-lyrics-offset')).getByRole('button', {
+            name: 'Show lyrics later',
+          }),
+        );
+      },
+    },
+    sourcePicker: createSelectWrapper(() =>
+      screen.getByTestId('jam-lyrics-source-picker'),
+    ),
+    backButton: {
+      get element() {
+        return screen.getByTestId('jam-lyrics-back-button');
+      },
+      async click() {
+        await user.click(this.element);
+      },
     },
   },
 
@@ -144,11 +236,16 @@ export const RemoteControlWrapper = {
   },
 
   queue: {
-    get header() {
-      return screen.queryByTestId('jam-queue-header');
+    async findHeader() {
+      await screen.findByTestId('jam-queue-header');
+      return this.header;
     },
-    get count() {
-      return screen.queryByTestId('jam-queue-count')?.textContent;
+    get header() {
+      const header = screen.getByTestId('jam-queue-header');
+      return {
+        label: within(header).getByTestId('jam-queue-label').textContent,
+        count: within(header).getByTestId('jam-queue-count').textContent,
+      };
     },
     get items() {
       return screen.queryAllByTestId('jam-queue-item');
@@ -162,6 +259,54 @@ export const RemoteControlWrapper = {
         .find((element) => element.textContent?.includes(title))!;
       await user.click(
         within(item).getByTestId('jam-queue-item-remove-button'),
+      );
+    },
+  },
+
+  lyrics: {
+    mockCurrent(lyrics: AttributedLyrics[]) {
+      FetchMock.set('/api/lyrics/current', lyrics);
+    },
+    mockError() {
+      FetchMock.setError('/api/lyrics/current', 500);
+    },
+    get requests() {
+      return vi
+        .mocked(global.fetch)
+        .mock.calls.filter(([url]) => url === '/api/lyrics/current');
+    },
+    get lines() {
+      return within(screen.getByTestId('jam-lyrics'))
+        .getAllByTestId('lyrics-line')
+        .map((line) => ({
+          text: line.textContent,
+          isActive: line.dataset.active === 'true',
+        }));
+    },
+    async findLines() {
+      await within(await screen.findByTestId('jam-lyrics')).findAllByTestId(
+        'lyrics-line',
+      );
+      return this.lines;
+    },
+    emptyState: {
+      async find() {
+        return screen.findByTestId('jam-lyrics-empty');
+      },
+      get title() {
+        return within(screen.getByTestId('jam-lyrics-empty')).getByRole(
+          'heading',
+        ).textContent;
+      },
+      get subtitle() {
+        return within(screen.getByTestId('jam-lyrics-empty')).getByRole(
+          'paragraph',
+        ).textContent;
+      },
+    },
+    async tapLine(text: string) {
+      await user.click(
+        within(screen.getByTestId('jam-lyrics')).getByText(text),
       );
     },
   },
@@ -215,6 +360,12 @@ export const RemoteControlWrapper = {
   sendPlaybackUpdate(playback: PlaybackState) {
     act(() => {
       MockEventSource.lastInstance?.simulateEvent('playback', playback);
+    });
+  },
+
+  async advanceTime(ms: number) {
+    await act(async () => {
+      vi.advanceTimersByTime(ms);
     });
   },
 

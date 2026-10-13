@@ -22,8 +22,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '1',
     track: {
-      title: 'Everything In Its Right Place',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'First Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '1' },
     },
     status: 'success',
@@ -32,8 +32,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '2',
     track: {
-      title: 'Kid A',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Second Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '2' },
     },
     status: 'idle',
@@ -42,8 +42,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '3',
     track: {
-      title: 'The National Anthem',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Third Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '3' },
     },
     status: 'idle',
@@ -52,8 +52,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '4',
     track: {
-      title: 'How to Disappear Completely',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Fourth Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '4' },
     },
     status: 'idle',
@@ -62,8 +62,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '5',
     track: {
-      title: 'Treefingers',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Fifth Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '5' },
     },
     status: 'idle',
@@ -72,8 +72,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '6',
     track: {
-      title: 'Optimistic',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Sixth Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '6' },
     },
     status: 'idle',

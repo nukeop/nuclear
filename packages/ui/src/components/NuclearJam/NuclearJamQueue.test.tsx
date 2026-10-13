@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import type { QueueItem } from '@nuclearplayer/model';
 
@@ -16,18 +16,22 @@ const makeItem = (id: string, title: string): QueueItem => ({
   addedAtIso: '2024-01-01T00:00:00.000Z',
   track: {
     title,
-    artists: [{ name: 'Radiohead', roles: ['main'] }],
+    artists: [{ name: 'Test Artist', roles: ['main'] }],
     source: { provider: 'test', id },
   },
 });
 
 const items = [
-  makeItem('a', 'Everything In Its Right Place'),
-  makeItem('b', 'Kid A'),
-  makeItem('c', 'The National Anthem'),
+  makeItem('a', 'First Test Track'),
+  makeItem('b', 'Second Test Track'),
+  makeItem('c', 'Third Test Track'),
 ];
 
 describe('NuclearJamQueue', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('(Snapshot) renders the queue with items', () => {
     const { container } = render(
       <NuclearJamQueue items={items} currentItemId="b" labels={labels} />,
@@ -47,11 +51,15 @@ describe('NuclearJamQueue', () => {
     const { rerender } = render(
       <NuclearJamQueue items={items} currentItemId="a" labels={labels} />,
     );
+    scrollIntoView.mockClear();
 
     rerender(
       <NuclearJamQueue items={items} currentItemId="c" labels={labels} />,
     );
 
+    expect(scrollIntoView.mock.contexts).toEqual([
+      screen.getAllByTestId('jam-queue-item')[2],
+    ]);
     expect(scrollIntoView).toHaveBeenCalledWith({
       block: 'nearest',
       behavior: 'smooth',

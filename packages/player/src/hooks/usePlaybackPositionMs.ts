@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import { useSoundStore } from '../../../stores/soundStore';
-import { secondsToMs } from '../../../utils/time';
+import { secondsToMs } from '../utils/time';
 
-export const usePlaybackPositionMs = () => {
-  const seekSeconds = useSoundStore((state) => state.seek);
-  const isPlaying = useSoundStore((state) => state.status === 'playing');
+export const usePlaybackPositionMs = (
+  seekSeconds: number,
+  isAdvancing: boolean,
+) => {
   const [elapsed, setElapsed] = useState({ seekSeconds, ms: 0 });
 
   useEffect(() => {
-    if (!isPlaying) {
+    if (!isAdvancing) {
       return;
     }
     const startedAt = performance.now();
@@ -19,10 +19,10 @@ export const usePlaybackPositionMs = () => {
     };
     let frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [seekSeconds, isPlaying]);
+  }, [seekSeconds, isAdvancing]);
 
   const elapsedMs =
-    isPlaying && elapsed.seekSeconds === seekSeconds ? elapsed.ms : 0;
+    isAdvancing && elapsed.seekSeconds === seekSeconds ? elapsed.ms : 0;
 
   return secondsToMs(seekSeconds) + elapsedMs;
 };

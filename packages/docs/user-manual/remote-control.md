@@ -36,13 +36,13 @@ Scan the QR with your phone's camera, or just type the Remote URL into a browser
 
 ## What the remote does
 
-The remote UI is a single screen with four sections: a search bar in the header, now playing, controls, and the queue.
+The main screen of the remote has four sections: a search bar in the header, now playing, controls, and the queue. Lyrics have a page of their own.
 
 <figure><img src="../.gitbook/assets/jam-remote.png" alt="Nuclear Jam remote control UI on a phone showing now playing, controls, and queue" width="300"><figcaption><p>Nuclear Jam on a phone</p></figcaption></figure>
 
-- **Now playing** at the top, with cover art, track title, and artist.
+- **Now playing** at the top, with cover art, track title, and artist. The microphone button next to the title opens the lyrics page.
 - **Controls** in the middle: previous, play/pause, next, plus a seek bar, shuffle, repeat, and discovery toggle.
-- **Queue** at the bottom, with the currently playing track highlighted. Each item has an X button to remove it from the queue.
+- **Up next** at the bottom shows the queue, with the currently playing track highlighted. The number next to the heading is the number of tracks in the queue. Each item has an X button to remove it from the queue.
 
 A badge in the header shows the connection status: **Connecting**, **Connected**, **Reconnecting**, or **Disconnected**.
 
@@ -55,6 +55,22 @@ Use the search bar at the top to enter your query. A drawer will slide down with
 <figure><img src="../.gitbook/assets/jam-search.png" alt="Search drawer showing results with an add button on each track" width="300"><figcaption><p>Searching for tracks from the remote</p></figcaption></figure>
 
 Click (or tap) a track to add it to the queue. The drawer will close after adding. If the queue was empty, playback starts automatically.
+
+### Lyrics
+
+To open the lyrics page, tap the microphone button next to the title of the current track. The lyrics fill the screen. To go back to the main screen, tap the back arrow at the top of the page, or use the back button of your phone.
+
+<figure><img src="../.gitbook/assets/jam-lyrics.png" alt="The lyrics page on a phone, with word-synced lyrics and the current line highlighted" width="300"><figcaption><p>Lyrics on the remote</p></figcaption></figure>
+
+The remote gets the lyrics from the lyrics plugins in Nuclear, so you must install at least one lyrics plugin in Nuclear. The lyrics page works like the Lyrics view in Nuclear. It shows the same types of lyrics, and you can tap a line to jump to it, switch to a different source, and fix the timing of synced lyrics. For more information, see [Lyrics](../core-concepts/lyrics.md).
+
+The lyrics page is different from the Lyrics view in these ways:
+
+- The source and the timing that you choose apply only to the remote that you use. They don't change the lyrics in Nuclear or on other remotes.
+- The page always scrolls to the current line. It has no auto-scroll switch.
+- The page uses the text size that you set in the Lyrics view of Nuclear. It has no text size buttons.
+- If no lyrics plugin is installed in Nuclear, the page shows **No lyrics for this track**.
+- If the remote can't get the lyrics from Nuclear, the page shows **Could not load lyrics**. Check the connection to Nuclear and try again.
 
 ### Removing tracks from the queue
 

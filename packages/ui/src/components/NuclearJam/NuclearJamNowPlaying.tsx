@@ -1,13 +1,20 @@
-import { CassetteTape } from 'lucide-react';
+import { CassetteTape, MicVocal } from 'lucide-react';
 import { FC } from 'react';
 
 import { cn } from '../../utils';
+import { Button } from '../Button';
+
+export type NuclearJamNowPlayingLabels = {
+  lyrics: string;
+};
 
 export type NuclearJamNowPlayingProps = {
   title: string;
   artist?: string;
   coverUrl?: string;
   isLoading?: boolean;
+  onLyricsClick?: () => void;
+  labels: NuclearJamNowPlayingLabels;
   className?: string;
 };
 
@@ -16,6 +23,8 @@ export const NuclearJamNowPlaying: FC<NuclearJamNowPlayingProps> = ({
   artist,
   coverUrl,
   isLoading = false,
+  onLyricsClick,
+  labels,
   className,
 }) => (
   <div
@@ -47,20 +56,36 @@ export const NuclearJamNowPlaying: FC<NuclearJamNowPlayingProps> = ({
         <div className="bg-stripes-diagonal absolute inset-x-0 bottom-0 h-1.5" />
       )}
     </div>
-    <div className="short:min-w-0 short:flex-1 short:text-left w-full text-center">
-      <div
-        className="text-foreground short:text-base truncate text-xl font-black"
-        data-testid="now-playing-title"
-      >
-        {title}
-      </div>
-      {artist && (
+    <div className="short:flex-1 flex w-full min-w-0 items-center gap-3">
+      {onLyricsClick && (
+        <span aria-hidden className="short:hidden size-10 shrink-0" />
+      )}
+      <div className="short:text-left min-w-0 flex-1 text-center">
         <div
-          className="text-foreground/60 short:mt-0 short:text-xs mt-1 truncate text-sm"
-          data-testid="now-playing-artist"
+          className="text-foreground short:text-base truncate text-xl font-black"
+          data-testid="now-playing-title"
         >
-          {artist}
+          {title}
         </div>
+        {artist && (
+          <div
+            className="text-foreground/60 short:mt-0 short:text-xs mt-1 truncate text-sm"
+            data-testid="now-playing-artist"
+          >
+            {artist}
+          </div>
+        )}
+      </div>
+      {onLyricsClick && (
+        <Button
+          size="icon"
+          aria-label={labels.lyrics}
+          onClick={onLyricsClick}
+          data-testid="jam-lyrics-button"
+          className="shrink-0"
+        >
+          <MicVocal size={20} />
+        </Button>
       )}
     </div>
   </div>

@@ -3,18 +3,9 @@ import { useCallback, useEffect, useRef } from 'react';
 import type { Queue } from '@nuclearplayer/model';
 import type { ConnectionStatus } from '@nuclearplayer/ui';
 
+import { fetchJSON } from './remoteApi';
 import type { PlaybackState, SettingsState } from './remoteStore';
 import { useRemoteStore } from './remoteStore';
-
-const fetchJSON = async <T>(path: string): Promise<T> => {
-  const response = await fetch(path);
-
-  if (!response.ok) {
-    throw new Error(`${path} returned ${response.status}`);
-  }
-
-  return response.json() as Promise<T>;
-};
 
 export const useInitialSync = (connectionStatus: ConnectionStatus) => {
   const refetchAll = useCallback(async () => {

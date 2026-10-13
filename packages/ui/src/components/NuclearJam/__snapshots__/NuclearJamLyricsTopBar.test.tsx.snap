@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamLyricsTopBar > (Snapshot) renders the back button, title, and artist 1`] = `
+<div>
+  <div
+    class="border-border flex shrink-0 items-center gap-3 border-b-(length:--border-width) px-4 py-3"
+    data-testid="jam-lyrics-top-bar"
+  >
+    <button
+      aria-label="Back"
+      class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center shrink-0"
+      data-headlessui-state=""
+      data-testid="jam-lyrics-back-button"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-arrow-left"
+        fill="none"
+        height="20"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m12 19-7-7 7-7"
+        />
+        <path
+          d="M19 12H5"
+        />
+      </svg>
+    </button>
+    <div
+      class="min-w-0 flex-1"
+    >
+      <div
+        class="text-foreground truncate text-base font-black"
+        data-testid="jam-lyrics-top-bar-title"
+      >
+        Placeholder Song
+      </div>
+      <div
+        class="text-foreground/60 truncate text-xs"
+        data-testid="jam-lyrics-top-bar-artist"
+      >
+        Test Artist
+      </div>
+    </div>
+  </div>
+</div>
+`;

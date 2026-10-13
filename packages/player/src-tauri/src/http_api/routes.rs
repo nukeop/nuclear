@@ -69,18 +69,20 @@ async fn get_volume(State(state): State<AppState>) -> Result<Json<Value>, Bridge
 
 async fn get_settings(State(state): State<AppState>) -> Result<Json<Value>, BridgeErrorResponse> {
     let bridge = &state.bridge;
-    let (shuffle, repeat, discovery, language, dark, theme_id) = tokio::try_join!(
-        bridge.call("Settings.getGlobal", json!({"id": "core.playback.shuffle"})),
-        bridge.call("Settings.getGlobal", json!({"id": "core.playback.repeat"})),
-        bridge.call(
-            "Settings.getGlobal",
-            json!({"id": "core.playback.discovery"})
-        ),
-        bridge.call("Settings.getGlobal", json!({"id": "core.general.language"})),
-        bridge.call("Settings.getGlobal", json!({"id": "core.theme.dark"})),
-        bridge.call("Settings.getGlobal", json!({"id": "core.theme.active.id"})),
-    )
-    .map_err(BridgeErrorResponse)?;
+    let (shuffle, repeat, discovery, language, dark, theme_id, lyrics_text_size) =
+        tokio::try_join!(
+            bridge.call("Settings.getGlobal", json!({"id": "core.playback.shuffle"})),
+            bridge.call("Settings.getGlobal", json!({"id": "core.playback.repeat"})),
+            bridge.call(
+                "Settings.getGlobal",
+                json!({"id": "core.playback.discovery"})
+            ),
+            bridge.call("Settings.getGlobal", json!({"id": "core.general.language"})),
+            bridge.call("Settings.getGlobal", json!({"id": "core.theme.dark"})),
+            bridge.call("Settings.getGlobal", json!({"id": "core.theme.active.id"})),
+            bridge.call("Settings.getGlobal", json!({"id": "core.lyrics.textSize"})),
+        )
+        .map_err(BridgeErrorResponse)?;
 
     Ok(Json(json!({
         "shuffle": shuffle,
@@ -89,6 +91,7 @@ async fn get_settings(State(state): State<AppState>) -> Result<Json<Value>, Brid
         "language": language,
         "dark": dark,
         "themeId": theme_id,
+        "lyricsTextSize": lyrics_text_size,
     })))
 }
 

@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
 import { NuclearJam } from '@nuclearplayer/ui';
 
@@ -16,9 +17,24 @@ export const WithCoverArt = {
   render: () => (
     <div className="surface-background">
       <NuclearJam.NowPlaying
-        title="Everything In Its Right Place"
-        artist="Radiohead"
+        labels={{ lyrics: 'Show lyrics' }}
+        title="First Test Track"
+        artist="Test Artist"
         coverUrl={cover}
+      />
+    </div>
+  ),
+};
+
+export const WithLyricsButton = {
+  render: () => (
+    <div className="surface-background">
+      <NuclearJam.NowPlaying
+        labels={{ lyrics: 'Show lyrics' }}
+        title="First Test Track"
+        artist="Test Artist"
+        coverUrl={cover}
+        onLyricsClick={fn()}
       />
     </div>
   ),
@@ -28,8 +44,9 @@ export const Loading = {
   render: () => (
     <div className="surface-background">
       <NuclearJam.NowPlaying
-        title="Everything In Its Right Place"
-        artist="Radiohead"
+        labels={{ lyrics: 'Show lyrics' }}
+        title="First Test Track"
+        artist="Test Artist"
         coverUrl={cover}
         isLoading
       />
@@ -40,7 +57,11 @@ export const Loading = {
 export const NoCoverArt = {
   render: () => (
     <div className="surface-background">
-      <NuclearJam.NowPlaying title="No Cover Art" artist="Unknown Artist" />
+      <NuclearJam.NowPlaying
+        title="No Cover Art"
+        artist="Unknown Artist"
+        labels={{ lyrics: 'Show lyrics' }}
+      />
     </div>
   ),
 };

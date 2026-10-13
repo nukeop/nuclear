@@ -1,3 +1,5 @@
+import isEqual from 'lodash-es/isEqual';
+import remove from 'lodash-es/remove';
 import { type Mock } from 'vitest';
 
 type FetchResponse = {
@@ -52,6 +54,16 @@ export const FetchMock = {
       response: createResponse(body),
     });
     return global.fetch as Mock;
+  },
+
+  set: (pattern: string | RegExp, body: unknown) => {
+    remove(routes, (route) => isEqual(route.pattern, pattern));
+    return FetchMock.get(pattern, body);
+  },
+
+  setError: (pattern: string | RegExp, status: number) => {
+    remove(routes, (route) => isEqual(route.pattern, pattern));
+    return FetchMock.getError(pattern, status);
   },
 
   getError: (

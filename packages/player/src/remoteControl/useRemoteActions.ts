@@ -43,14 +43,18 @@ const postAction = async (path: string, body?: unknown) => {
 export const useRemoteActions = () => {
   const getState = () => useRemoteStore.getState();
 
+  const onSeekToSeconds = (seconds: number) =>
+    postAction('/api/playback/seek', { seconds });
+
   return {
     onPlayPause: () => postAction('/api/playback/toggle'),
     onNext: () => postAction('/api/playback/next'),
     onPrevious: () => postAction('/api/playback/previous'),
     onSeek: (percent: number) => {
       const duration = getState().playback?.duration ?? 0;
-      postAction('/api/playback/seek', { seconds: (percent / 100) * duration });
+      onSeekToSeconds((percent / 100) * duration);
     },
+    onSeekToSeconds,
     onShuffleToggle: () => {
       const shuffle = getState().settings.shuffle;
       postAction('/api/playback/shuffle', { enabled: !shuffle });

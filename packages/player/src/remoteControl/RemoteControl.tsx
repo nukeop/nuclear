@@ -1,9 +1,11 @@
+import { useNavigate } from '@tanstack/react-router';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { Track } from '@nuclearplayer/model';
 import { NuclearJam } from '@nuclearplayer/ui';
 
+import { lyricsRoute } from './remoteRoutes';
 import { SearchDrawerContent } from './SearchDrawerContent';
 import { useRemoteActions } from './useRemoteActions';
 import { useRemoteSearch } from './useRemoteSearch';
@@ -14,35 +16,10 @@ const RemoteControl: FC = () => {
   const state = useRemoteState();
   const actions = useRemoteActions();
   const search = useRemoteSearch();
-
-  if (state.connectionStatus === 'failed') {
-    return (
-      <NuclearJam>
-        <NuclearJam.Error
-          labels={{
-            title: t('error.title'),
-            subtitle: t('error.subtitle'),
-          }}
-        />
-      </NuclearJam>
-    );
-  }
-
-  if (!state.synced || state.connectionStatus === 'connecting') {
-    return (
-      <NuclearJam>
-        <NuclearJam.Connecting
-          labels={{
-            title: t('connecting.title'),
-            subtitle: t('connecting.subtitle'),
-          }}
-        />
-      </NuclearJam>
-    );
-  }
+  const navigate = useNavigate();
 
   return (
-    <NuclearJam>
+    <div className="flex min-h-0 flex-1 flex-col" data-testid="jam-queue-page">
       <NuclearJam.Header
         connectionStatus={state.connectionStatus}
         connectionStatusLabels={{
@@ -65,6 +42,10 @@ const RemoteControl: FC = () => {
             artist={state.currentTrack.artist}
             coverUrl={state.currentTrack.coverUrl}
             isLoading={state.isLoading}
+            onLyricsClick={() => {
+              void navigate({ to: lyricsRoute.to });
+            }}
+            labels={{ lyrics: t('lyrics.open') }}
           />
         )}
         {state.hasQueue && (
@@ -105,7 +86,7 @@ const RemoteControl: FC = () => {
           />
         </NuclearJam.SearchDrawer>
       </NuclearJam.Content>
-    </NuclearJam>
+    </div>
   );
 };
 

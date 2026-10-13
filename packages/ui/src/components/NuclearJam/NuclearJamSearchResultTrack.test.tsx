@@ -5,8 +5,8 @@ import type { Track } from '@nuclearplayer/model';
 import { NuclearJamSearchResultTrack } from './NuclearJamSearchResultTrack';
 
 const fullTrack: Track = {
-  title: 'Windowlicker',
-  artists: [{ name: 'Aphex Twin', roles: ['main'] }],
+  title: 'Placeholder Song',
+  artists: [{ name: 'Test Artist', roles: ['main'] }],
   durationMs: 366000,
   artwork: {
     items: [

@@ -1,5 +1,5 @@
 import isEmpty from 'lodash-es/isEmpty';
-import { FC, useCallback, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 import { QueueItem } from '@nuclearplayer/model';
 
@@ -32,21 +32,13 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
   className,
 }) => {
   const currentRef = useRef<HTMLDivElement>(null);
-  const prevCurrentId = useRef(currentItemId);
 
-  const scrollToCurrent = useCallback(() => {
+  useEffect(() => {
     currentRef.current?.scrollIntoView({
       block: 'nearest',
       behavior: 'smooth',
     });
-  }, []);
-
-  useEffect(() => {
-    if (currentItemId !== prevCurrentId.current) {
-      prevCurrentId.current = currentItemId;
-      scrollToCurrent();
-    }
-  }, [currentItemId, scrollToCurrent]);
+  }, [currentItemId]);
 
   if (isEmpty(items)) {
     return (
@@ -63,7 +55,10 @@ export const NuclearJamQueue: FC<NuclearJamQueueProps> = ({
         className="bg-foreground border-border flex shrink-0 items-center justify-start gap-2 border-y-(length:--border-width) px-4 py-2"
         data-testid="jam-queue-header"
       >
-        <span className="font-heading text-background font-extrabold tracking-tight uppercase">
+        <span
+          className="font-heading text-background font-extrabold tracking-tight uppercase"
+          data-testid="jam-queue-label"
+        >
           {labels.upNext}
         </span>
 

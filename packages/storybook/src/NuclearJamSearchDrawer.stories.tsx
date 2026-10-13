@@ -30,28 +30,32 @@ const track = (title: string, artist: string, durationMs: number): Track => ({
 });
 
 const results: Track[] = [
-  track('Roygbiv', 'Boards of Canada', 149000),
-  track('Dayvan Cowboy', 'Boards of Canada', 301000),
-  track('Music Is Math', 'Boards of Canada', 322000),
-  track('Amo Bishop Roden', 'Boards of Canada', 337000),
-  track('Olson', 'Boards of Canada', 91000),
-  track('In a Beautiful Place Out in the Country', 'Boards of Canada', 302000),
-  track('Turquoise Hexagon Sun', 'Boards of Canada', 311000),
-  track('Peacock Tail', 'Boards of Canada', 322000),
-  track('Sixtyten', 'Boards of Canada', 326000),
-  track('Aquarius', 'Boards of Canada', 358000),
+  track('First Search Result', 'Search Test Artist', 149000),
+  track('Second Search Result', 'Search Test Artist', 301000),
+  track('Third Search Result', 'Search Test Artist', 322000),
+  track('Fourth Search Result', 'Search Test Artist', 337000),
+  track('Fifth Search Result', 'Search Test Artist', 91000),
+  track(
+    'Sixth Search Result With a Longer Placeholder Title',
+    'Search Test Artist',
+    302000,
+  ),
+  track('Seventh Search Result', 'Search Test Artist', 311000),
+  track('Eighth Search Result', 'Search Test Artist', 322000),
+  track('Ninth Search Result', 'Search Test Artist', 326000),
+  track('Tenth Search Result', 'Search Test Artist', 358000),
 ];
 
 const queueItems: QueueItem[] = [
   {
     id: '1',
-    track: track('Everything In Its Right Place', 'Radiohead', 251000),
+    track: track('First Test Track', 'Test Artist', 251000),
     status: 'success',
     addedAtIso: '2026-05-25T12:00:00Z',
   },
   {
     id: '2',
-    track: track('Kid A', 'Radiohead', 277000),
+    track: track('Second Test Track', 'Test Artist', 277000),
     status: 'idle',
     addedAtIso: '2026-05-25T12:01:00Z',
   },
@@ -86,9 +90,10 @@ const JamFrame = ({
       </NuclearJam.Header>
       <NuclearJam.Content>
         <NuclearJam.NowPlaying
-          title="Everything In Its Right Place"
-          artist="Radiohead"
+          title="First Test Track"
+          artist="Test Artist"
           coverUrl="https://picsum.photos/208"
+          labels={{ lyrics: 'Show lyrics' }}
         />
         <NuclearJam.Queue
           items={queueItems}
@@ -142,7 +147,7 @@ export const OpenAndClose = {
 export const Empty = {
   render: () => (
     <JamFrame
-      initialQuery="boards of canada"
+      initialQuery="search result"
       drawer={
         <NuclearJam.SearchDrawer.Empty
           labels={{
@@ -158,7 +163,7 @@ export const Empty = {
 export const Error = {
   render: () => (
     <JamFrame
-      initialQuery="boards of canada"
+      initialQuery="search result"
       drawer={
         <NuclearJam.SearchDrawer.Error
           labels={{

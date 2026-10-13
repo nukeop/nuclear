@@ -5,8 +5,8 @@ import type { LineSyncedLyrics, WordSyncedLyrics } from '@nuclearplayer/model';
 import { SyncedLyrics } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../../../hooks/useCoreSetting';
+import { usePlaybackPositionMs } from '../../../hooks/usePlaybackPositionMs';
 import { useSoundStore } from '../../../stores/soundStore';
-import { usePlaybackPositionMs } from '../hooks/usePlaybackPositionMs';
 
 type ConnectedSyncedLyricsProps = {
   lyrics: LineSyncedLyrics | WordSyncedLyrics;
@@ -22,7 +22,9 @@ export const ConnectedSyncedLyrics: FC<ConnectedSyncedLyricsProps> = ({
   className,
 }) => {
   const { t } = useTranslation('lyrics');
-  const positionMs = usePlaybackPositionMs();
+  const seekSeconds = useSoundStore((state) => state.seek);
+  const isPlaying = useSoundStore((state) => state.status === 'playing');
+  const positionMs = usePlaybackPositionMs(seekSeconds, isPlaying);
   const seekTo = useSoundStore((state) => state.seekTo);
   const [autoScroll] = useCoreSetting<boolean>('lyrics.autoScroll');
 

@@ -39,17 +39,17 @@ export const ResultList = {
   render: () => (
     <div className="surface-background">
       <NuclearJam.SearchResultTrack
-        track={track('Alberto Balsalm', 'Aphex Twin', 305000)}
+        track={track('First Search Result', 'Test Artist', 305000)}
         onAdd={fn()}
       />
       <NuclearJam.SearchResultTrack
-        track={track('Xtal', 'Aphex Twin', 294000)}
+        track={track('Second Search Result', 'Test Artist', 294000)}
         onAdd={fn()}
       />
       <NuclearJam.SearchResultTrack
         track={track(
-          'Stone in Focus (with a very long title that should truncate)',
-          'Aphex Twin featuring a Very Long Artist Name That Truncates',
+          'Placeholder Song (with a very long title that should truncate)',
+          'Test Artist featuring a Very Long Artist Name That Truncates',
           599000,
         )}
         onAdd={fn()}

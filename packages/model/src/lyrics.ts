@@ -68,3 +68,8 @@ export type InstrumentalLyrics = {
 
 export type Lyrics =
   PlainLyrics | LineSyncedLyrics | WordSyncedLyrics | InstrumentalLyrics;
+
+export const isSyncedLyricsType = (
+  type: Lyrics['type'],
+): type is LineSyncedLyrics['type'] | WordSyncedLyrics['type'] =>
+  type === 'lineSynced' || type === 'wordSynced';

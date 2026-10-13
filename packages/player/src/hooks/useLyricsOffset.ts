@@ -7,7 +7,7 @@ export const useLyricsOffset = () => {
 
   return {
     offsetMs,
-    showEarlier: () => setOffsetMs(offsetMs - OFFSET_STEP_MS),
-    showLater: () => setOffsetMs(offsetMs + OFFSET_STEP_MS),
+    showEarlier: () => setOffsetMs((current) => current - OFFSET_STEP_MS),
+    showLater: () => setOffsetMs((current) => current + OFFSET_STEP_MS),
   };
 };
