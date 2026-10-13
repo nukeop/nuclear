@@ -60,6 +60,8 @@ Click (or tap) a track to add it to the queue. The drawer will close after addin
 
 To open the lyrics page, tap the microphone button next to the title of the current track. The lyrics fill the screen. To go back to the main screen, tap the back arrow at the top of the page, or use the back button of your phone.
 
+<figure><img src="../.gitbook/assets/jam-lyrics.png" alt="The lyrics page on a phone, with word-synced lyrics and the current line highlighted" width="300"><figcaption><p>Lyrics on the remote</p></figcaption></figure>
+
 The remote gets the lyrics from the lyrics plugins in Nuclear, so you must install at least one lyrics plugin in Nuclear. The lyrics page works like the Lyrics view in Nuclear. It shows the same types of lyrics, and you can tap a line to jump to it, switch to a different source, and fix the timing of synced lyrics. For more information, see [Lyrics](../core-concepts/lyrics.md).
 
 The lyrics page is different from the Lyrics view in these ways:
