@@ -9,15 +9,12 @@ import {
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
+import { isSyncedLyricsType } from '@nuclearplayer/model';
 import type { AttributedLyrics } from '@nuclearplayer/plugin-sdk';
-import {
-  LyricsSource,
-  LyricsSourcePicker,
-  Stepper,
-  Toggle,
-} from '@nuclearplayer/ui';
+import { LyricsSourcePicker, Stepper, Toggle } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../../../hooks/useCoreSetting';
+import { formatLyricsOffset, toLyricsSources } from '../../../utils/lyrics';
 
 type LyricsToolbarProps = {
   results: AttributedLyrics[];
@@ -26,17 +23,6 @@ type LyricsToolbarProps = {
   offsetMs: number;
   onShowEarlier: () => void;
   onShowLater: () => void;
-};
-
-const toLyricsSources = ({
-  providerId,
-  providerName,
-  lyrics,
-}: AttributedLyrics): LyricsSource[] => {
-  if (lyrics.type === 'instrumental') {
-    return [];
-  }
-  return [{ id: providerId, name: providerName, type: lyrics.type }];
 };
 
 export const LyricsToolbar: FC<LyricsToolbarProps> = ({
@@ -53,8 +39,7 @@ export const LyricsToolbar: FC<LyricsToolbarProps> = ({
     useCoreSetting<boolean>('lyrics.autoScroll');
   const sources = results.flatMap(toLyricsSources);
   const selectedType = selectedResult?.lyrics.type;
-  const isSynced =
-    selectedType === 'lineSynced' || selectedType === 'wordSynced';
+  const isSynced = !isNil(selectedType) && isSyncedLyricsType(selectedType);
 
   return (
     <div className="flex h-14 shrink-0 items-center gap-1.5 px-10">
@@ -99,7 +84,7 @@ export const LyricsToolbar: FC<LyricsToolbarProps> = ({
       {isSynced && (
         <Stepper
           data-testid="lyrics-offset-controls"
-          value={t('offsetValue', { offset: offsetMs / 1000 })}
+          value={formatLyricsOffset(t, offsetMs)}
           decrementIcon={<MinusIcon size={14} />}
           incrementIcon={<PlusIcon size={14} />}
           onDecrement={onShowEarlier}

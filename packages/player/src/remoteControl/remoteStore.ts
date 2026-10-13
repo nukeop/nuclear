@@ -17,6 +17,7 @@ export type SettingsState = {
   language: string;
   dark: boolean;
   themeId: string;
+  lyricsTextSize: number;
 };
 
 type RemoteStore = {
@@ -43,6 +44,7 @@ export const useRemoteStore = create<RemoteStore>((set) => ({
     language: 'en_US',
     dark: false,
     themeId: DEFAULT_THEME_ID,
+    lyricsTextSize: 1,
   },
   connectionStatus: 'connecting',
   synced: false,

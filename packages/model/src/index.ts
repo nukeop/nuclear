@@ -124,6 +124,7 @@ export type {
   TimedLyricsSegment,
   WordSyncedLyrics,
 } from './lyrics';
+export { isSyncedLyricsType } from './lyrics';
 export type { Playlist, PlaylistIndexEntry, PlaylistItem } from './playlists';
 export type { QueueItem, RepeatMode, Queue } from './queue';
 export type { SearchCategory, SearchParams, SearchResults } from './search';

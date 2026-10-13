@@ -58,6 +58,7 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
     >
       <span
         class="font-heading text-background font-extrabold tracking-tight uppercase"
+        data-testid="jam-queue-label"
       >
         Up next
       </span>
@@ -127,12 +128,12 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
             <div
               class="truncate text-sm font-bold"
             >
-              Everything In Its Right Place
+              First Test Track
             </div>
             <div
               class="truncate text-xs opacity-60"
             >
-              Radiohead
+              Test Artist
             </div>
           </div>
         </div>
@@ -188,12 +189,12 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
             <div
               class="truncate text-sm font-bold"
             >
-              Kid A
+              Second Test Track
             </div>
             <div
               class="truncate text-xs opacity-60"
             >
-              Radiohead
+              Test Artist
             </div>
           </div>
         </div>
@@ -249,12 +250,12 @@ exports[`NuclearJamQueue > (Snapshot) renders the queue with items 1`] = `
             <div
               class="truncate text-sm font-bold"
             >
-              The National Anthem
+              Third Test Track
             </div>
             <div
               class="truncate text-xs opacity-60"
             >
-              Radiohead
+              Test Artist
             </div>
           </div>
         </div>

@@ -1,5 +1,113 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`NuclearJamNowPlaying > (Snapshot) renders with a lyrics button 1`] = `
+<div>
+  <div
+    class="flex shrink-0 items-center gap-4 px-6 py-6 tall:flex-col short:flex-row short:gap-3 short:px-4 short:py-3"
+  >
+    <div
+      class="border-border bg-muted shadow-shadow short:size-24 short:rounded-sm short:shadow-none relative flex size-52 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+      data-testid="now-playing-cover"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-cassette-tape short:size-10 text-foreground opacity-20"
+        fill="none"
+        height="128"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1"
+        viewBox="0 0 24 24"
+        width="128"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          height="16"
+          rx="2"
+          width="20"
+          x="2"
+          y="4"
+        />
+        <circle
+          cx="8"
+          cy="10"
+          r="2"
+        />
+        <path
+          d="M8 12h8"
+        />
+        <circle
+          cx="16"
+          cy="10"
+          r="2"
+        />
+        <path
+          d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+        />
+      </svg>
+    </div>
+    <div
+      class="short:flex-1 flex w-full min-w-0 items-center gap-3"
+    >
+      <span
+        aria-hidden="true"
+        class="short:hidden size-10 shrink-0"
+      />
+      <div
+        class="short:text-left min-w-0 flex-1 text-center"
+      >
+        <div
+          class="text-foreground short:text-base truncate text-xl font-black"
+          data-testid="now-playing-title"
+        >
+          Placeholder Song
+        </div>
+        <div
+          class="text-foreground/60 short:mt-0 short:text-xs mt-1 truncate text-sm"
+          data-testid="now-playing-artist"
+        >
+          Test Artist
+        </div>
+      </div>
+      <button
+        aria-label="Show lyrics"
+        class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-10 justify-center shrink-0"
+        data-headlessui-state=""
+        data-testid="jam-lyrics-button"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-mic-vocal"
+          fill="none"
+          height="20"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12"
+          />
+          <path
+            d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5"
+          />
+          <circle
+            cx="16"
+            cy="7"
+            r="5"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`NuclearJamNowPlaying > (Snapshot) renders with cover art 1`] = `
 <div>
   <div
@@ -10,25 +118,29 @@ exports[`NuclearJamNowPlaying > (Snapshot) renders with cover art 1`] = `
       data-testid="now-playing-cover"
     >
       <img
-        alt="Weird Fishes"
+        alt="Placeholder Song"
         class="size-full object-cover select-none"
         src="https://example.com/cover.jpg"
       />
     </div>
     <div
-      class="short:min-w-0 short:flex-1 short:text-left w-full text-center"
+      class="short:flex-1 flex w-full min-w-0 items-center gap-3"
     >
       <div
-        class="text-foreground short:text-base truncate text-xl font-black"
-        data-testid="now-playing-title"
+        class="short:text-left min-w-0 flex-1 text-center"
       >
-        Weird Fishes
-      </div>
-      <div
-        class="text-foreground/60 short:mt-0 short:text-xs mt-1 truncate text-sm"
-        data-testid="now-playing-artist"
-      >
-        Radiohead
+        <div
+          class="text-foreground short:text-base truncate text-xl font-black"
+          data-testid="now-playing-title"
+        >
+          Placeholder Song
+        </div>
+        <div
+          class="text-foreground/60 short:mt-0 short:text-xs mt-1 truncate text-sm"
+          data-testid="now-playing-artist"
+        >
+          Test Artist
+        </div>
       </div>
     </div>
   </div>

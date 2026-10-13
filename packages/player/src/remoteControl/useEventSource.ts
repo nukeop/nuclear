@@ -5,7 +5,7 @@ import type { ConnectionStatus } from '@nuclearplayer/ui';
 export type EventSourceEvent = Event & { data: string };
 
 const RECONNECT_DELAY_MS = 3000;
-const MAX_RETRIES = 3;
+export const MAX_RETRIES = 3;
 
 export const useEventSource = (url: string) => {
   const source = useRef<EventSource | null>(null);
@@ -22,6 +22,9 @@ export const useEventSource = (url: string) => {
     let retries = 0;
 
     const connect = () => {
+      if (cancelled) {
+        return;
+      }
       const eventSource = new EventSource(url);
       source.current = eventSource;
 

@@ -5,6 +5,13 @@ import { fn } from 'storybook/test';
 import type { QueueItem } from '@nuclearplayer/model';
 import { ConnectionStatusLabels, NuclearJam } from '@nuclearplayer/ui';
 
+import {
+  formatOffset,
+  LYRICS_LABELS,
+  OFFSET_STEP_MS,
+  SYNCED_LYRICS,
+} from './fixtures/jamLyrics';
+
 const meta = {
   title: 'Remote/NuclearJam',
   component: NuclearJam,
@@ -25,8 +32,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '1',
     track: {
-      title: 'Everything In Its Right Place',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'First Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '1' },
     },
     status: 'success',
@@ -35,8 +42,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '2',
     track: {
-      title: 'Kid A',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Second Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '2' },
     },
     status: 'idle',
@@ -45,8 +52,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '3',
     track: {
-      title: 'The National Anthem',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Third Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '3' },
     },
     status: 'idle',
@@ -55,8 +62,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '4',
     track: {
-      title: 'How to Disappear Completely',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Fourth Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '4' },
     },
     status: 'idle',
@@ -65,8 +72,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '5',
     track: {
-      title: 'Treefingers',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Fifth Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '5' },
     },
     status: 'idle',
@@ -75,8 +82,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '6',
     track: {
-      title: 'Optimistic',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Sixth Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '6' },
     },
     status: 'idle',
@@ -85,8 +92,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '7',
     track: {
-      title: 'In Limbo',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Seventh Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '7' },
     },
     status: 'idle',
@@ -95,8 +102,8 @@ const mockQueueItems: QueueItem[] = [
   {
     id: '8',
     track: {
-      title: 'Idioteque',
-      artists: [{ name: 'Radiohead', roles: ['main'] }],
+      title: 'Eighth Test Track',
+      artists: [{ name: 'Test Artist', roles: ['main'] }],
       source: { provider: 'mock', id: '8' },
     },
     status: 'idle',
@@ -140,9 +147,11 @@ export const FullPage = {
         />
       </NuclearJam.Header>
       <NuclearJam.NowPlaying
-        title="Everything In Its Right Place"
-        artist="Radiohead"
+        labels={{ lyrics: 'Show lyrics' }}
+        title="First Test Track"
+        artist="Test Artist"
         coverUrl={cover}
+        onLyricsClick={fn()}
       />
       <NuclearJam.Controls
         isPlaying
@@ -195,9 +204,11 @@ export const Interactive = {
           />
         </NuclearJam.Header>
         <NuclearJam.NowPlaying
-          title="Everything In Its Right Place"
-          artist="Radiohead"
+          labels={{ lyrics: 'Show lyrics' }}
+          title="First Test Track"
+          artist="Test Artist"
           coverUrl={cover}
+          onLyricsClick={fn()}
         />
         <NuclearJam.Controls
           isPlaying={isPlaying}
@@ -216,6 +227,50 @@ export const Interactive = {
           onSeek={setProgress}
         />
         <NuclearJam.Queue {...queueProps} />
+      </NuclearJam>
+    );
+  },
+};
+
+export const LyricsPage = {
+  render: () => {
+    const [offsetMs, setOffsetMs] = useState(0);
+    const [positionMs, setPositionMs] = useState(6000);
+
+    return (
+      <NuclearJam>
+        <NuclearJam.LyricsTopBar
+          title="First Test Track"
+          artist="Test Artist"
+          onBack={fn()}
+          labels={{ back: 'Back' }}
+        />
+        <NuclearJam.LyricsToolbar
+          sources={[
+            { id: 'synced', name: 'Synced Lyrics', type: 'lineSynced' },
+          ]}
+          selectedSourceId="synced"
+          onSelectSource={fn()}
+          offsetValue={formatOffset(offsetMs)}
+          onShowEarlier={() => setOffsetMs(offsetMs - OFFSET_STEP_MS)}
+          onShowLater={() => setOffsetMs(offsetMs + OFFSET_STEP_MS)}
+          labels={{
+            types: {
+              wordSynced: 'Word synced',
+              lineSynced: 'Line synced',
+              plain: 'Plain',
+            },
+            showEarlier: 'Show lyrics earlier',
+            showLater: 'Show lyrics later',
+          }}
+        />
+        <NuclearJam.Lyrics
+          state={{ status: 'found', lyrics: SYNCED_LYRICS }}
+          positionMs={positionMs - offsetMs}
+          textSize={1}
+          onSeek={setPositionMs}
+          labels={LYRICS_LABELS}
+        />
       </NuclearJam>
     );
   },

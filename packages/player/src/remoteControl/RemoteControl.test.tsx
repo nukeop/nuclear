@@ -1,8 +1,13 @@
 import { waitFor } from '@testing-library/react';
 
 import {
+  REMOTE_INSTRUMENTAL_LYRICS,
+  REMOTE_LYRICS_FOR_NEXT_TRACK,
+  REMOTE_LYRICS_FROM_TWO_SOURCES,
+  REMOTE_PLAIN_LYRICS,
   REMOTE_QUEUE,
   REMOTE_SEARCH_TRACKS,
+  REMOTE_SYNCED_LYRICS,
 } from '../test/fixtures/remoteControl';
 import { RemoteControlWrapper } from './RemoteControl.test-wrapper';
 
@@ -38,8 +43,7 @@ describe('RemoteControl', () => {
   });
 
   it('shows connected UI after successful sync', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     expect(RemoteControlWrapper.header.statusText).toBe('Connected');
     expect(RemoteControlWrapper.nowPlaying.title).toBe(
@@ -49,13 +53,15 @@ describe('RemoteControl', () => {
     expect(
       RemoteControlWrapper.controls.playPauseButton.element,
     ).toBeInTheDocument();
-    expect(RemoteControlWrapper.queue.header).toBeInTheDocument();
+    expect(RemoteControlWrapper.queue.header).toEqual({
+      label: 'Up next',
+      count: '2',
+    });
     expect(RemoteControlWrapper.queue.items).toHaveLength(2);
   });
 
   it('shows reconnecting when the connection drops', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
     expect(RemoteControlWrapper.header.statusText).toBe('Connected');
 
     RemoteControlWrapper.simulateConnectionDrop();
@@ -64,15 +70,13 @@ describe('RemoteControl', () => {
   });
 
   it('shows empty queue state when synced with no tracks', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection({ emptyQueue: true });
+    await RemoteControlWrapper.mountConnected({ emptyQueue: true });
 
     expect(RemoteControlWrapper.queue.emptyState).toBeInTheDocument();
   });
 
   it('play/pause button sends POST to /api/playback/toggle', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     await RemoteControlWrapper.controls.playPauseButton.click();
 
@@ -84,8 +88,7 @@ describe('RemoteControl', () => {
   });
 
   it('next button sends POST to /api/playback/next', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     await RemoteControlWrapper.controls.nextButton.click();
 
@@ -97,8 +100,7 @@ describe('RemoteControl', () => {
   });
 
   it('previous button sends POST to /api/playback/previous', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     await RemoteControlWrapper.controls.previousButton.click();
 
@@ -110,8 +112,7 @@ describe('RemoteControl', () => {
   });
 
   it('shuffle toggle sends POST with inverted state', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     await RemoteControlWrapper.controls.shuffleButton.click();
 
@@ -123,8 +124,7 @@ describe('RemoteControl', () => {
   });
 
   it('repeat toggle cycles from off to all', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     await RemoteControlWrapper.controls.repeatButton.click();
 
@@ -136,8 +136,7 @@ describe('RemoteControl', () => {
   });
 
   it('updates queue items via SSE event', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     expect(RemoteControlWrapper.queue.items).toHaveLength(2);
 
@@ -163,8 +162,7 @@ describe('RemoteControl', () => {
   });
 
   it('updates play/pause button via SSE playback event', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     expect(
       RemoteControlWrapper.controls.playPauseButton.element,
@@ -184,8 +182,7 @@ describe('RemoteControl', () => {
   });
 
   it('removing a queue item sends its id to /api/queue/remove', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
 
     await RemoteControlWrapper.queue.removeTrack('Kid A');
 
@@ -199,8 +196,7 @@ describe('RemoteControl', () => {
   });
 
   it('typing a query searches for tracks and shows results in the drawer', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
     await RemoteControlWrapper.search.input.type('idioteque');
@@ -229,8 +225,7 @@ describe('RemoteControl', () => {
   });
 
   it('shows empty state when the search returns no results', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults([]);
 
     await RemoteControlWrapper.search.input.type('zzzzz');
@@ -244,8 +239,7 @@ describe('RemoteControl', () => {
   });
 
   it('shows error state when the search fails', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockError();
 
     await RemoteControlWrapper.search.input.type('idioteque');
@@ -259,8 +253,7 @@ describe('RemoteControl', () => {
   });
 
   it('clearing the query closes the drawer', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
     await RemoteControlWrapper.search.input.type('idioteque');
@@ -276,8 +269,7 @@ describe('RemoteControl', () => {
   });
 
   it('clicking a result closes the drawer', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
     await RemoteControlWrapper.search.input.type('idioteque');
@@ -293,8 +285,7 @@ describe('RemoteControl', () => {
   });
 
   it('clicking a result adds the track to the queue', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection();
+    await RemoteControlWrapper.mountConnected();
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
     await RemoteControlWrapper.search.input.type('idioteque');
@@ -318,8 +309,7 @@ describe('RemoteControl', () => {
   });
 
   it('clicking a result starts playback when the queue was empty', async () => {
-    await RemoteControlWrapper.mount();
-    await RemoteControlWrapper.simulateConnection({ emptyQueue: true });
+    await RemoteControlWrapper.mountConnected({ emptyQueue: true });
     RemoteControlWrapper.search.mockResults(REMOTE_SEARCH_TRACKS);
 
     await RemoteControlWrapper.search.input.type('idioteque');
@@ -335,6 +325,373 @@ describe('RemoteControl', () => {
         headers: undefined,
         body: undefined,
       });
+    });
+  });
+
+  describe('lyrics page', () => {
+    it('opens the lyrics page from the now playing card', async () => {
+      await RemoteControlWrapper.mountConnected();
+      RemoteControlWrapper.lyrics.mockCurrent(REMOTE_SYNCED_LYRICS);
+      expect(RemoteControlWrapper.queuePage).toBeInTheDocument();
+
+      await RemoteControlWrapper.nowPlaying.lyricsButton.click();
+
+      expect(RemoteControlWrapper.lyricsPage.element).toBeInTheDocument();
+    });
+
+    it('goes back to the queue from the lyrics page', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+
+      await RemoteControlWrapper.lyricsPage.backButton.click();
+
+      expect(RemoteControlWrapper.queuePage).toBeInTheDocument();
+    });
+
+    it('opens the lyrics page directly at /lyrics', async () => {
+      await RemoteControlWrapper.mountConnected({
+        path: '/lyrics',
+        lyrics: REMOTE_SYNCED_LYRICS,
+      });
+
+      expect(RemoteControlWrapper.lyricsPage.element).toBeInTheDocument();
+    });
+
+    it('shows the title and artist of the current track on the lyrics page', async () => {
+      await RemoteControlWrapper.mountConnected();
+
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+
+      expect(RemoteControlWrapper.lyricsPage.track).toEqual({
+        title: 'Everything In Its Right Place',
+        artist: 'Test Artist',
+      });
+    });
+
+    it('goes to the queue from a lyrics page that was opened directly', async () => {
+      await RemoteControlWrapper.mountConnected({
+        path: '/lyrics',
+        lyrics: REMOTE_SYNCED_LYRICS,
+      });
+
+      await RemoteControlWrapper.lyricsPage.backButton.click();
+
+      expect(RemoteControlWrapper.queuePage).toBeInTheDocument();
+    });
+  });
+
+  describe('lyrics', () => {
+    it('does not request lyrics until the lyrics page is opened', async () => {
+      await RemoteControlWrapper.mountConnected();
+
+      expect(RemoteControlWrapper.lyrics.requests).toEqual([]);
+
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+      await RemoteControlWrapper.lyrics.findLines();
+
+      expect(RemoteControlWrapper.lyrics.requests).toEqual([
+        ['/api/lyrics/current'],
+      ]);
+    });
+
+    it('does not request lyrics again when the lyrics page is reopened', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+      await RemoteControlWrapper.lyrics.findLines();
+
+      await RemoteControlWrapper.lyricsPage.backButton.click();
+      await RemoteControlWrapper.nowPlaying.lyricsButton.click();
+      await RemoteControlWrapper.lyrics.findLines();
+
+      expect(RemoteControlWrapper.lyrics.requests).toEqual([
+        ['/api/lyrics/current'],
+      ]);
+    });
+
+    it('shows synced lyrics for the current track when the lyrics page is opened', async () => {
+      await RemoteControlWrapper.mountConnected();
+
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+
+      expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
+        { text: 'First placeholder line', isActive: true },
+        { text: 'Second placeholder line', isActive: false },
+        { text: 'Third placeholder line', isActive: false },
+      ]);
+    });
+
+    it('moves the highlight when a playback update arrives', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+      await RemoteControlWrapper.lyrics.findLines();
+
+      RemoteControlWrapper.sendPlaybackUpdate({
+        status: 'paused',
+        seek: 55,
+        duration: 240,
+      });
+
+      expect(RemoteControlWrapper.lyrics.lines).toEqual([
+        { text: 'First placeholder line', isActive: false },
+        { text: 'Second placeholder line', isActive: true },
+        { text: 'Third placeholder line', isActive: false },
+      ]);
+
+      RemoteControlWrapper.sendPlaybackUpdate({
+        status: 'paused',
+        seek: 65,
+        duration: 240,
+      });
+
+      expect(RemoteControlWrapper.lyrics.lines).toEqual([
+        { text: 'First placeholder line', isActive: false },
+        { text: 'Second placeholder line', isActive: false },
+        { text: 'Third placeholder line', isActive: true },
+      ]);
+    });
+
+    describe('while playing', () => {
+      beforeEach(() => {
+        vi.useFakeTimers({
+          toFake: [
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+            'performance',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        vi.useRealTimers();
+      });
+
+      it('keeps moving the highlight between playback updates while playing', async () => {
+        await RemoteControlWrapper.mountConnected();
+        await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+        await RemoteControlWrapper.lyrics.findLines();
+
+        RemoteControlWrapper.sendPlaybackUpdate({
+          status: 'playing',
+          seek: 49.9,
+          duration: 240,
+        });
+        expect(RemoteControlWrapper.lyrics.lines).toEqual([
+          { text: 'First placeholder line', isActive: true },
+          { text: 'Second placeholder line', isActive: false },
+          { text: 'Third placeholder line', isActive: false },
+        ]);
+
+        await RemoteControlWrapper.advanceTime(200);
+
+        expect(RemoteControlWrapper.lyrics.lines).toEqual([
+          { text: 'First placeholder line', isActive: false },
+          { text: 'Second placeholder line', isActive: true },
+          { text: 'Third placeholder line', isActive: false },
+        ]);
+      });
+    });
+
+    it('seeks to the start of a line when the line is tapped', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+      await RemoteControlWrapper.lyrics.findLines();
+
+      await RemoteControlWrapper.lyrics.tapLine('Third placeholder line');
+
+      expect(global.fetch).toHaveBeenCalledWith('/api/playback/seek', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ seconds: 60 }),
+      });
+    });
+
+    it('shows plain lyrics as text', async () => {
+      await RemoteControlWrapper.mountConnected();
+
+      await RemoteControlWrapper.openLyrics(REMOTE_PLAIN_LYRICS);
+
+      expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
+        { text: 'First plain placeholder line', isActive: false },
+        { text: 'Second plain placeholder line', isActive: false },
+      ]);
+    });
+
+    it('shows the no lyrics state when no provider has lyrics for the track', async () => {
+      await RemoteControlWrapper.mountConnected();
+
+      await RemoteControlWrapper.openLyrics([]);
+      await RemoteControlWrapper.lyrics.emptyState.find();
+
+      expect(RemoteControlWrapper.lyrics.emptyState.title).toBe(
+        'No lyrics for this track',
+      );
+      expect(RemoteControlWrapper.lyrics.emptyState.subtitle).toBe(
+        'No lyrics provider returned results.',
+      );
+    });
+
+    it('shows the error state when the lyrics request fails', async () => {
+      await RemoteControlWrapper.mountConnected();
+      RemoteControlWrapper.lyrics.mockError();
+
+      await RemoteControlWrapper.nowPlaying.lyricsButton.click();
+      await RemoteControlWrapper.lyrics.emptyState.find();
+
+      expect(RemoteControlWrapper.lyrics.emptyState.title).toBe(
+        'Could not load lyrics',
+      );
+      expect(RemoteControlWrapper.lyrics.emptyState.subtitle).toBe(
+        'Check the connection to Nuclear and try again.',
+      );
+    });
+
+    it('shows the instrumental state for instrumental tracks', async () => {
+      await RemoteControlWrapper.mountConnected();
+
+      await RemoteControlWrapper.openLyrics(REMOTE_INSTRUMENTAL_LYRICS);
+      await RemoteControlWrapper.lyrics.emptyState.find();
+
+      expect(RemoteControlWrapper.lyrics.emptyState.title).toBe('Instrumental');
+      expect(RemoteControlWrapper.lyrics.emptyState.subtitle).toBe(
+        'This track has no lyrics.',
+      );
+    });
+
+    it('shows the nothing playing state without requesting lyrics when the queue is empty', async () => {
+      await RemoteControlWrapper.mountConnected({
+        path: '/lyrics',
+        emptyQueue: true,
+        lyrics: REMOTE_SYNCED_LYRICS,
+      });
+      await RemoteControlWrapper.lyrics.emptyState.find();
+
+      expect(RemoteControlWrapper.lyrics.emptyState.title).toBe(
+        'Nothing is playing',
+      );
+      expect(RemoteControlWrapper.lyrics.emptyState.subtitle).toBe(
+        'Play a track to see its lyrics here.',
+      );
+      expect(RemoteControlWrapper.lyrics.requests).toEqual([]);
+    });
+
+    it('shows the lyrics of the new track when the current track changes', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+      expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
+        { text: 'First placeholder line', isActive: true },
+        { text: 'Second placeholder line', isActive: false },
+        { text: 'Third placeholder line', isActive: false },
+      ]);
+
+      RemoteControlWrapper.lyrics.mockCurrent(REMOTE_LYRICS_FOR_NEXT_TRACK);
+      RemoteControlWrapper.sendQueueUpdate({
+        ...REMOTE_QUEUE,
+        currentIndex: 1,
+      });
+      RemoteControlWrapper.sendPlaybackUpdate({
+        status: 'paused',
+        seek: 10,
+        duration: 240,
+      });
+
+      expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
+        { text: 'Next track first placeholder line', isActive: true },
+        { text: 'Next track second placeholder line', isActive: false },
+      ]);
+    });
+
+    it('shows the lyrics of the source picked on the remote', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_LYRICS_FROM_TWO_SOURCES);
+      await RemoteControlWrapper.lyrics.findLines();
+
+      await RemoteControlWrapper.lyricsPage.sourcePicker.select('Other Lyrics');
+
+      expect(RemoteControlWrapper.lyricsPage.sourcePicker.selected()).toBe(
+        'Other Lyrics',
+      );
+      expect(RemoteControlWrapper.lyrics.lines).toEqual([
+        { text: 'First plain placeholder line', isActive: false },
+        { text: 'Second plain placeholder line', isActive: false },
+      ]);
+    });
+
+    it('goes back to the first source when the current track changes', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_LYRICS_FROM_TWO_SOURCES);
+      await RemoteControlWrapper.lyrics.findLines();
+      await RemoteControlWrapper.lyricsPage.sourcePicker.select('Other Lyrics');
+
+      RemoteControlWrapper.sendQueueUpdate({
+        ...REMOTE_QUEUE,
+        currentIndex: 1,
+      });
+
+      expect(await RemoteControlWrapper.lyrics.findLines()).toEqual([
+        { text: 'First placeholder line', isActive: true },
+        { text: 'Second placeholder line', isActive: false },
+        { text: 'Third placeholder line', isActive: false },
+      ]);
+      expect(RemoteControlWrapper.lyricsPage.sourcePicker.selected()).toBe(
+        'Test Lyrics',
+      );
+    });
+
+    it('moves the highlight to an earlier line when the offset moves the lyrics later', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+      await RemoteControlWrapper.lyrics.findLines();
+      RemoteControlWrapper.sendPlaybackUpdate({
+        status: 'paused',
+        seek: 50.05,
+        duration: 240,
+      });
+      expect(RemoteControlWrapper.lyrics.lines).toEqual([
+        { text: 'First placeholder line', isActive: false },
+        { text: 'Second placeholder line', isActive: true },
+        { text: 'Third placeholder line', isActive: false },
+      ]);
+
+      await RemoteControlWrapper.lyricsPage.offset.later();
+
+      expect(RemoteControlWrapper.lyrics.lines).toEqual([
+        { text: 'First placeholder line', isActive: true },
+        { text: 'Second placeholder line', isActive: false },
+        { text: 'Third placeholder line', isActive: false },
+      ]);
+    });
+
+    it('seeks with the offset applied when a line is tapped', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+      await RemoteControlWrapper.lyrics.findLines();
+      await RemoteControlWrapper.lyricsPage.offset.later();
+      await RemoteControlWrapper.lyricsPage.offset.later();
+
+      await RemoteControlWrapper.lyrics.tapLine('Third placeholder line');
+
+      expect(global.fetch).toHaveBeenCalledWith('/api/playback/seek', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ seconds: 60.2 }),
+      });
+    });
+
+    it('resets the offset when the current track changes', async () => {
+      await RemoteControlWrapper.mountConnected();
+      await RemoteControlWrapper.openLyrics(REMOTE_SYNCED_LYRICS);
+      await RemoteControlWrapper.lyrics.findLines();
+      await RemoteControlWrapper.lyricsPage.offset.earlier();
+      expect(RemoteControlWrapper.lyricsPage.offset.value).toBe('-0.1 s');
+
+      RemoteControlWrapper.lyrics.mockCurrent(REMOTE_LYRICS_FOR_NEXT_TRACK);
+      RemoteControlWrapper.sendQueueUpdate({
+        ...REMOTE_QUEUE,
+        currentIndex: 1,
+      });
+      await RemoteControlWrapper.lyrics.findLines();
+
+      expect(RemoteControlWrapper.lyricsPage.offset.value).toBe('0.0 s');
     });
   });
 });

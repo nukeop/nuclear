@@ -18,7 +18,24 @@ import {
   NuclearJamHeaderProps,
 } from './NuclearJamHeader';
 import {
+  NuclearJamLyrics,
+  NuclearJamLyricsLabels,
+  NuclearJamLyricsProps,
+  NuclearJamLyricsState,
+} from './NuclearJamLyrics';
+import {
+  NuclearJamLyricsToolbar,
+  NuclearJamLyricsToolbarLabels,
+  NuclearJamLyricsToolbarProps,
+} from './NuclearJamLyricsToolbar';
+import {
+  NuclearJamLyricsTopBar,
+  NuclearJamLyricsTopBarLabels,
+  NuclearJamLyricsTopBarProps,
+} from './NuclearJamLyricsTopBar';
+import {
   NuclearJamNowPlaying,
+  NuclearJamNowPlayingLabels,
   NuclearJamNowPlayingProps,
 } from './NuclearJamNowPlaying';
 import {
@@ -82,6 +99,9 @@ type NuclearJamComponent = FC<NuclearJamProps> & {
   SearchBar: typeof NuclearJamSearchBar;
   SearchDrawer: NuclearJamSearchDrawerComponent;
   SearchResultTrack: NuclearJamSearchResultTrackComponent;
+  Lyrics: typeof NuclearJamLyrics;
+  LyricsTopBar: typeof NuclearJamLyricsTopBar;
+  LyricsToolbar: typeof NuclearJamLyricsToolbar;
 };
 
 export const NuclearJam = NuclearJamRoot as NuclearJamComponent;
@@ -95,11 +115,15 @@ NuclearJam.Queue = NuclearJamQueue;
 NuclearJam.SearchBar = NuclearJamSearchBar;
 NuclearJam.SearchDrawer = SearchDrawer;
 NuclearJam.SearchResultTrack = SearchResultTrack;
+NuclearJam.Lyrics = NuclearJamLyrics;
+NuclearJam.LyricsTopBar = NuclearJamLyricsTopBar;
+NuclearJam.LyricsToolbar = NuclearJamLyricsToolbar;
 
 export type {
   NuclearJamProps,
   NuclearJamHeaderProps,
   NuclearJamContentProps,
+  NuclearJamNowPlayingLabels,
   NuclearJamNowPlayingProps,
   NuclearJamControlsProps,
   NuclearJamConnectingLabels,
@@ -113,6 +137,13 @@ export type {
   NuclearJamSearchDrawerEmptyLabels,
   NuclearJamSearchDrawerErrorLabels,
   NuclearJamSearchResultTrackProps,
+  NuclearJamLyricsLabels,
+  NuclearJamLyricsProps,
+  NuclearJamLyricsState,
+  NuclearJamLyricsTopBarLabels,
+  NuclearJamLyricsTopBarProps,
+  NuclearJamLyricsToolbarLabels,
+  NuclearJamLyricsToolbarProps,
   ConnectionStatus,
   ConnectionStatusLabels,
 };

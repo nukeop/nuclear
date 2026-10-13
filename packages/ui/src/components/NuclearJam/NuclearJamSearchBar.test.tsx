@@ -17,7 +17,7 @@ describe('NuclearJamSearchBar', () => {
   it('(Snapshot) renders with a value', () => {
     const { container } = render(
       <NuclearJamSearchBar
-        value="Radiohead"
+        value="Test Artist"
         onChange={() => {}}
         labels={labels}
       />,

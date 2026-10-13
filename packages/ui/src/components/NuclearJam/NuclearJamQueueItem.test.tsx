@@ -9,12 +9,12 @@ const makeItem = (overrides: Partial<QueueItem['track']> = {}): QueueItem => ({
   status: 'success',
   addedAtIso: '2024-01-01T00:00:00.000Z',
   track: {
-    title: 'Idioteque',
-    artists: [{ name: 'Radiohead', roles: ['main'] }],
+    title: 'Placeholder Song',
+    artists: [{ name: 'Test Artist', roles: ['main'] }],
     artwork: {
       items: [
         {
-          url: 'https://example.com/kid-a.jpg',
+          url: 'https://example.com/cover.jpg',
           purpose: 'thumbnail',
           width: 48,
           height: 48,

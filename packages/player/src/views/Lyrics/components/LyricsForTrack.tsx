@@ -7,9 +7,9 @@ import type { QueueItem } from '@nuclearplayer/model';
 import { cn, ScrollableArea } from '@nuclearplayer/ui';
 
 import { useCoreSetting } from '../../../hooks/useCoreSetting';
+import { useLyricsOffset } from '../../../hooks/useLyricsOffset';
 import { useProviders } from '../../../hooks/useProviders';
 import { useLyrics } from '../hooks/useLyrics';
-import { useLyricsOffset } from '../hooks/useLyricsOffset';
 import { LyricsContent } from './LyricsContent';
 import { LyricsToolbar } from './LyricsToolbar';
 

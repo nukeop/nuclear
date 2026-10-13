@@ -1,0 +1,556 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NuclearJamLyrics > (Snapshot) renders plain lyrics 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+    data-testid="jam-lyrics"
+  >
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto scroll-smooth mask-y-from-95% px-6 py-6"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="font-heading flex flex-col gap-6 font-bold tracking-tight font-stretch-semi-condensed text-2xl"
+        >
+          <div
+            data-testid="lyrics-section"
+          >
+            <div
+              class="py-1"
+              data-testid="lyrics-line"
+            >
+              <p>
+                Paper boats in a parking lot
+              </p>
+            </div>
+            <div
+              class="py-1"
+              data-testid="lyrics-line"
+            >
+              <p>
+                Sinking slow in the summer heat
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamLyrics > (Snapshot) renders synced lyrics 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+    data-testid="jam-lyrics"
+  >
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto scroll-smooth mask-y-from-95% px-6 py-6"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="font-heading contents font-bold tracking-tight font-stretch-semi-condensed text-2xl"
+        >
+          <div
+            class="h-2/10 shrink-0"
+          />
+          <button
+            class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground/40"
+            data-active="false"
+            data-testid="lyrics-line"
+            type="button"
+          >
+            <span
+              class="block"
+            >
+              <span
+                class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+                style="background-size: 0%;"
+              >
+                Neon rain on the overpass
+              </span>
+            </span>
+          </button>
+          <button
+            class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground"
+            data-active="true"
+            data-testid="lyrics-line"
+            type="button"
+          >
+            <span
+              class="block"
+            >
+              <span
+                class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+                style="background-size: 100%;"
+              >
+                Counting static in the glass
+              </span>
+            </span>
+          </button>
+          <button
+            class="text-foreground/60 hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100"
+            data-active="false"
+            data-testid="lyrics-line"
+            type="button"
+          >
+            <span
+              class="block"
+            >
+              <span
+                class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+                style="background-size: 0%;"
+              >
+                Every signal fades too fast
+              </span>
+            </span>
+          </button>
+          <div
+            class="h-8/10 shrink-0"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamLyrics > (Snapshot) renders synced lyrics with the largest text size 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+    data-testid="jam-lyrics"
+  >
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto scroll-smooth mask-y-from-95% px-6 py-6"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="font-heading contents font-bold tracking-tight font-stretch-semi-condensed text-3xl"
+        >
+          <div
+            class="h-2/10 shrink-0"
+          />
+          <button
+            class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground/40"
+            data-active="false"
+            data-testid="lyrics-line"
+            type="button"
+          >
+            <span
+              class="block"
+            >
+              <span
+                class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+                style="background-size: 0%;"
+              >
+                Neon rain on the overpass
+              </span>
+            </span>
+          </button>
+          <button
+            class="hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100 text-foreground"
+            data-active="true"
+            data-testid="lyrics-line"
+            type="button"
+          >
+            <span
+              class="block"
+            >
+              <span
+                class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+                style="background-size: 100%;"
+              >
+                Counting static in the glass
+              </span>
+            </span>
+          </button>
+          <button
+            class="text-foreground/60 hover:text-foreground block w-full cursor-pointer py-1 text-left transition-colors duration-100"
+            data-active="false"
+            data-testid="lyrics-line"
+            type="button"
+          >
+            <span
+              class="block"
+            >
+              <span
+                class="to-primary bg-linear-to-b from-transparent from-60% to-60% bg-no-repeat transition-all duration-300 ease-out"
+                style="background-size: 0%;"
+              >
+                Every signal fades too fast
+              </span>
+            </span>
+          </button>
+          <div
+            class="h-8/10 shrink-0"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamLyrics > (Snapshot) renders the error state 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+    data-testid="jam-lyrics"
+  >
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto scroll-smooth mask-y-from-95% px-6 py-6"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+          data-testid="jam-lyrics-empty"
+        >
+          <div
+            class="text-foreground"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-cloud-off"
+              fill="none"
+              height="48"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m2 2 20 20"
+              />
+              <path
+                d="M5.782 5.782A7 7 0 0 0 9 19h8.5a4.5 4.5 0 0 0 1.307-.193"
+              />
+              <path
+                d="M21.532 16.5A4.5 4.5 0 0 0 17.5 10h-1.79A7.008 7.008 0 0 0 10 5.07"
+              />
+            </svg>
+          </div>
+          <div
+            class="flex flex-col gap-1"
+          >
+            <h3
+              class="text-foreground text-lg font-bold"
+            >
+              Could not load lyrics
+            </h3>
+            <p
+              class="text-foreground text-sm opacity-60"
+            >
+              Check the connection to Nuclear and try again
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamLyrics > (Snapshot) renders the instrumental state 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+    data-testid="jam-lyrics"
+  >
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto scroll-smooth mask-y-from-95% px-6 py-6"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+          data-testid="jam-lyrics-empty"
+        >
+          <div
+            class="text-foreground"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-audio-lines"
+              fill="none"
+              height="48"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 10v3"
+              />
+              <path
+                d="M6 6v11"
+              />
+              <path
+                d="M10 3v18"
+              />
+              <path
+                d="M14 8v7"
+              />
+              <path
+                d="M18 5v13"
+              />
+              <path
+                d="M22 10v3"
+              />
+            </svg>
+          </div>
+          <div
+            class="flex flex-col gap-1"
+          >
+            <h3
+              class="text-foreground text-lg font-bold"
+            >
+              Instrumental
+            </h3>
+            <p
+              class="text-foreground text-sm opacity-60"
+            >
+              This track has no lyrics
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamLyrics > (Snapshot) renders the loading state 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+    data-testid="jam-lyrics"
+  >
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto scroll-smooth mask-y-from-95% px-6 py-6"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="flex flex-col gap-8"
+          data-testid="lyrics-skeleton"
+        >
+          <div
+            class="flex flex-col gap-3"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-20"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-3/4"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-1/2"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-2/3"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-5/6"
+              data-testid="skeleton"
+            />
+          </div>
+          <div
+            class="flex flex-col gap-3"
+          >
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-3 w-20"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-2/3"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-4/5"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-1/2"
+              data-testid="skeleton"
+            />
+            <div
+              class="bg-muted border-border animate-pulse rounded-md border-(length:--border-width) h-8 w-3/5"
+              data-testid="skeleton"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamLyrics > (Snapshot) renders the not found state 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+    data-testid="jam-lyrics"
+  >
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto scroll-smooth mask-y-from-95% px-6 py-6"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+          data-testid="jam-lyrics-empty"
+        >
+          <div
+            class="text-foreground"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-mic-off"
+              fill="none"
+              height="48"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 19v3"
+              />
+              <path
+                d="M15 9.34V5a3 3 0 0 0-5.68-1.33"
+              />
+              <path
+                d="M16.95 16.95A7 7 0 0 1 5 12v-2"
+              />
+              <path
+                d="M18.89 13.23A7 7 0 0 0 19 12v-2"
+              />
+              <path
+                d="m2 2 20 20"
+              />
+              <path
+                d="M9 9v3a3 3 0 0 0 5.12 2.12"
+              />
+            </svg>
+          </div>
+          <div
+            class="flex flex-col gap-1"
+          >
+            <h3
+              class="text-foreground text-lg font-bold"
+            >
+              No lyrics found
+            </h3>
+            <p
+              class="text-foreground text-sm opacity-60"
+            >
+              No lyrics provider has lyrics for this track
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NuclearJamLyrics > (Snapshot) renders the nothing playing state 1`] = `
+<div>
+  <div
+    class="flex min-h-0 flex-1 flex-col"
+    data-testid="jam-lyrics"
+  >
+    <div
+      class="relative h-full w-full min-h-0 flex-1"
+    >
+      <div
+        class="scrollbar-hide flex h-full w-full flex-col overflow-auto scroll-smooth mask-y-from-95% px-6 py-6"
+        style="scrollbar-width: none;"
+      >
+        <div
+          class="flex flex-col items-center justify-center text-center gap-4 p-8 flex-1"
+          data-testid="jam-lyrics-empty"
+        >
+          <div
+            class="text-foreground"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-mic-vocal"
+              fill="none"
+              height="48"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12"
+              />
+              <path
+                d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5"
+              />
+              <circle
+                cx="16"
+                cy="7"
+                r="5"
+              />
+            </svg>
+          </div>
+          <div
+            class="flex flex-col gap-1"
+          >
+            <h3
+              class="text-foreground text-lg font-bold"
+            >
+              Nothing playing
+            </h3>
+            <p
+              class="text-foreground text-sm opacity-60"
+            >
+              Play a track to see its lyrics
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

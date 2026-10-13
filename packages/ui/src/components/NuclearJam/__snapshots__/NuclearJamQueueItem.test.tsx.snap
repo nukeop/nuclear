@@ -11,9 +11,9 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a current item with cover art 
       class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
     >
       <img
-        alt="Idioteque"
+        alt="Placeholder Song"
         class="size-full object-cover"
-        src="https://example.com/kid-a.jpg"
+        src="https://example.com/cover.jpg"
       />
     </div>
     <div
@@ -22,12 +22,12 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a current item with cover art 
       <div
         class="truncate text-sm font-bold"
       >
-        Idioteque
+        Placeholder Song
       </div>
       <div
         class="truncate text-xs opacity-60"
       >
-        Radiohead
+        Test Artist
       </div>
     </div>
   </div>
@@ -88,12 +88,12 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a non-current item without art
       <div
         class="truncate text-sm font-bold"
       >
-        Idioteque
+        Placeholder Song
       </div>
       <div
         class="truncate text-xs opacity-60"
       >
-        Radiohead
+        Test Artist
       </div>
     </div>
   </div>
@@ -111,9 +111,9 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a remove button 1`] = `
       class="border-border bg-muted flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
     >
       <img
-        alt="Idioteque"
+        alt="Placeholder Song"
         class="size-full object-cover"
-        src="https://example.com/kid-a.jpg"
+        src="https://example.com/cover.jpg"
       />
     </div>
     <div
@@ -122,12 +122,12 @@ exports[`NuclearJamQueueItem > (Snapshot) renders a remove button 1`] = `
       <div
         class="truncate text-sm font-bold"
       >
-        Idioteque
+        Placeholder Song
       </div>
       <div
         class="truncate text-xs opacity-60"
       >
-        Radiohead
+        Test Artist
       </div>
     </div>
     <button

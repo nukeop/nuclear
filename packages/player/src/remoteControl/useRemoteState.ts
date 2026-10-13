@@ -1,16 +1,10 @@
-import { useEffect } from 'react';
-
-import { i18n } from '@nuclearplayer/i18n';
-import type { Queue } from '@nuclearplayer/model';
+import type { Queue, QueueItem } from '@nuclearplayer/model';
 import { pickArtwork } from '@nuclearplayer/model';
-import { setThemeId } from '@nuclearplayer/themes';
 import type { ConnectionStatus } from '@nuclearplayer/ui';
 
 import type { PlaybackState, SettingsState } from './remoteStore';
 import { useRemoteStore } from './remoteStore';
-import { useEventSource } from './useEventSource';
-import { useInitialSync } from './useInitialSync';
-import { useSSESync } from './useSSESync';
+import { useRemoteCurrentItem } from './useRemoteCurrentItem';
 
 type CurrentTrack = {
   title: string;
@@ -19,13 +13,8 @@ type CurrentTrack = {
 };
 
 const deriveCurrentTrack = (
-  queue: Queue | null,
+  item: QueueItem | undefined,
 ): { track: CurrentTrack; isLoading: boolean } | undefined => {
-  if (!queue || queue.items.length === 0) {
-    return undefined;
-  }
-
-  const item = queue.items[queue.currentIndex];
   if (!item) {
     return undefined;
   }
@@ -54,7 +43,6 @@ const derivePlayback = (playback: PlaybackState | null) => {
 
 type RemoteState = {
   connectionStatus: ConnectionStatus;
-  synced: boolean;
   currentTrack?: CurrentTrack;
   isLoading: boolean;
   isPlaying: boolean;
@@ -67,52 +55,24 @@ type RemoteState = {
 };
 
 export const useRemoteState = (): RemoteState => {
-  const [source, connectionStatus] = useEventSource('/api/events');
-
-  const setConnectionStatus = useRemoteStore(
-    (state) => state.setConnectionStatus,
-  );
-  useEffect(() => {
-    setConnectionStatus(connectionStatus);
-  }, [connectionStatus, setConnectionStatus]);
-
-  useInitialSync(connectionStatus);
-  useSSESync(source);
-
+  const connectionStatus = useRemoteStore((state) => state.connectionStatus);
   const queue = useRemoteStore((state) => state.queue);
   const playback = useRemoteStore((state) => state.playback);
   const settings = useRemoteStore((state) => state.settings);
-  const synced = useRemoteStore((state) => state.synced);
+  const currentItem = useRemoteCurrentItem();
 
-  useEffect(() => {
-    void i18n.changeLanguage(settings.language);
-  }, [settings.language]);
-
-  useEffect(() => {
-    if (settings.dark) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
-  }, [settings.dark]);
-
-  useEffect(() => {
-    setThemeId(settings.themeId);
-  }, [settings.themeId]);
-
-  const current = deriveCurrentTrack(queue);
+  const current = deriveCurrentTrack(currentItem);
   const playbackState = derivePlayback(playback);
 
   return {
     connectionStatus,
-    synced,
     currentTrack: current?.track,
     isLoading: current?.isLoading ?? false,
     ...playbackState,
     settings,
     queue: {
       items: queue?.items ?? [],
-      currentItemId: queue?.items[queue.currentIndex]?.id,
+      currentItemId: currentItem?.id,
     },
     hasQueue: queue !== null && queue.items.length > 0,
   };

@@ -59,6 +59,7 @@ const getSettingsSnapshot = () => {
     language: (getValue('core.general.language') as string) ?? 'en_US',
     dark: (getValue('core.theme.dark') as boolean) ?? false,
     themeId: (getValue('core.theme.active.id') as string) ?? DEFAULT_THEME_ID,
+    lyricsTextSize: (getValue('core.lyrics.textSize') as number) ?? 1,
   };
 };
 
