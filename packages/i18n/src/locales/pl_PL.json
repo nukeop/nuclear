@@ -585,6 +585,9 @@
     "browsePlugins": "Browse lyrics plugins",
     "noLyrics": "No lyrics for this track",
     "noLyricsDescription": "{{providers, list}} returned no results.",
+    "noLyricsFromAnyProvider": "No lyrics provider returned results.",
+    "loadError": "Could not load lyrics",
+    "loadErrorDescription": "Check the connection to Nuclear and try again.",
     "providerError": "A lyrics provider failed to load lyrics",
     "instrumental": "Instrumental",
     "instrumentalDescription": "This track has no lyrics.",
@@ -630,6 +633,10 @@
       "connected": "Connected",
       "reconnecting": "Reconnecting",
       "failed": "Disconnected"
+    },
+    "lyrics": {
+      "open": "Show lyrics",
+      "back": "Back"
     },
     "queue": {
       "upNext": "Up next",
