@@ -74,6 +74,7 @@ modules:
       - install -Dm644 packages/player/src-tauri/resources/com.nuclearplayer.Nuclear.metainfo.xml
         /app/share/metainfo/com.nuclearplayer.Nuclear.metainfo.xml
 
+      - install -Dm644 flatpak/icons/com.nuclearplayer.Nuclear.svg /app/share/icons/hicolor/scalable/apps/com.nuclearplayer.Nuclear.svg
       - install -Dm644 flatpak/icons/512x512.png /app/share/icons/hicolor/512x512/apps/com.nuclearplayer.Nuclear.png
       - install -Dm644 flatpak/icons/256x256.png /app/share/icons/hicolor/256x256/apps/com.nuclearplayer.Nuclear.png
       - install -Dm644 flatpak/icons/128x128.png /app/share/icons/hicolor/128x128/apps/com.nuclearplayer.Nuclear.png
