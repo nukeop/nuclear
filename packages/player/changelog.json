@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-15T00:00",
+    "description": "Listening history no longer records a track twice when the previous track ends on its own",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "History",
+        "color": "yellow"
+      }
+    ]
+  },
+  {
     "date": "2026-10-13T00:00",
     "description": "Nuclear Jam shows lyrics now. Tap the microphone button to open the lyrics page",
     "type": "feature",

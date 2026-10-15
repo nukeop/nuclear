@@ -14,6 +14,8 @@ import {
 } from '../test/builders/StreamingProviderBuilder';
 import { createMockTrack } from '../test/utils/mockTrack';
 import { AlbumWrapper } from '../views/Album/Album.test-wrapper';
+import { QueueWrapper } from './Queue.test-wrapper';
+import { SoundWrapper } from './Sound.test-wrapper';
 import { StreamResolutionWrapper } from './StreamResolution.test-wrapper';
 
 vi.mock('@tauri-apps/api/core', () => ({
@@ -439,6 +441,19 @@ describe('Stream Resolution Integration', () => {
         url: 'http://127.0.0.1:9100/stream/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC1HaWFudCBTdGVwcy5tcDM',
         protocol: 'https',
       });
+    });
+  });
+
+  describe('when a track ends while the next track is still resolving', () => {
+    it('keeps showing the next track as loading when the previous audio becomes playable again', async () => {
+      await StreamResolutionWrapper.streaming.register();
+      await StreamResolutionWrapper.startQueuePlayback(['Track 1', 'Track 2']);
+
+      SoundWrapper.fireEnded();
+      await StreamResolutionWrapper.streaming.waitForSearch('Track 2');
+      SoundWrapper.fireCanPlay();
+
+      expect(QueueWrapper.item('Track 2').loadingIndicator).toBeInTheDocument();
     });
   });
 
