@@ -585,9 +585,9 @@
     "browsePlugins": "歌詞プラグインを参照",
     "noLyrics": "このトラックの歌詞はありません",
     "noLyricsDescription": "{{providers, list}} は結果を返しませんでした。",
-    "noLyricsFromAnyProvider": "No lyrics provider returned results.",
-    "loadError": "Could not load lyrics",
-    "loadErrorDescription": "Check the connection to Nuclear and try again.",
+    "noLyricsFromAnyProvider": "歌詞プロバイダーから結果が返されませんでした。",
+    "loadError": "歌詞を読み込めませんでした",
+    "loadErrorDescription": "Nuclear への接続を確認し、再度試してください。",
     "providerError": "歌詞プロバイダーが歌詞の読み込みに失敗しました",
     "instrumental": "インストルメンタル",
     "instrumentalDescription": "このトラックには歌詞がありません。",
@@ -635,8 +635,8 @@
       "failed": "切断されました"
     },
     "lyrics": {
-      "open": "Show lyrics",
-      "back": "Back"
+      "open": "歌詞を表示",
+      "back": "戻る"
     },
     "queue": {
       "upNext": "次の再生",
