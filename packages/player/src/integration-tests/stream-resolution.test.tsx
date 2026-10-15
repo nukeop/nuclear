@@ -446,11 +446,11 @@ describe('Stream Resolution Integration', () => {
 
   describe('when a track ends while the next track is still resolving', () => {
     it('keeps showing the next track as loading when the previous audio becomes playable again', async () => {
-      StreamResolutionWrapper.streaming.register();
+      await StreamResolutionWrapper.streaming.register();
       await StreamResolutionWrapper.startQueuePlayback(['Track 1', 'Track 2']);
 
       SoundWrapper.fireEnded();
-      await StreamResolutionWrapper.streaming.waitForPendingSearch('Track 2');
+      await StreamResolutionWrapper.streaming.waitForSearch('Track 2');
       SoundWrapper.fireCanPlay();
 
       expect(QueueWrapper.item('Track 2').loadingIndicator).toBeInTheDocument();

@@ -9,6 +9,7 @@ import { createListeningHistoryWrapper } from './ListeningHistory.test-wrapper';
 import { PlayerBarWrapper } from './PlayerBar.test-wrapper';
 import { QueueWrapper } from './Queue.test-wrapper';
 import { SoundWrapper } from './Sound.test-wrapper';
+import { StreamResolutionWrapper } from './StreamResolution.test-wrapper';
 
 const commandMocks = await vi.hoisted(async () => {
   const { TauriCommandMocks } = await import('../test/utils/commandMocks');
@@ -264,16 +265,14 @@ describe('Listening history', () => {
   });
 
   it('records one play of the next track when the previous audio fires canplay while the next track is resolving', async () => {
-    Wrapper.streaming.register();
-    await Wrapper.startStreamedPlayback();
+    await StreamResolutionWrapper.streaming.register();
+    await StreamResolutionWrapper.startQueuePlayback(['Track 1', 'Track 2']);
 
-    vi.setSystemTime(Date.parse('2026-07-11T12:03:00Z'));
     SoundWrapper.fireEnded();
-    await Wrapper.streaming.waitForPendingSearch('Track 2');
+    await StreamResolutionWrapper.streaming.waitForSearch('Track 2');
 
     SoundWrapper.fireCanPlay();
-    await Wrapper.streaming.releaseSearch('Track 2');
-    await Wrapper.waitForPlaybackToSettle('Track 2');
+    await StreamResolutionWrapper.streaming.releaseSearch('Track 2');
 
     expect(Wrapper.timeline).toEqual([
       { playId: '1', kind: 'started', track: 'Track 1' },

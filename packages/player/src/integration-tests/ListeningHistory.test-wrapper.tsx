@@ -1,4 +1,4 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { registerBuiltInCoreSettings } from '../services/coreSettings';
@@ -9,7 +9,6 @@ import type { TauriCommandMocks } from '../test/utils/commandMocks';
 import { ok } from '../test/utils/commandMocks';
 import { QueueWrapper } from './Queue.test-wrapper';
 import { SoundWrapper } from './Sound.test-wrapper';
-import { StreamResolutionWrapper } from './StreamResolution.test-wrapper';
 
 export const createListeningHistoryWrapper = (
   commandMocks: TauriCommandMocks,
@@ -23,7 +22,6 @@ export const createListeningHistoryWrapper = (
     registerBuiltInCoreSettings();
     await setSetting('core.history.enabled', true);
     await setSetting('core.playback.repeat', 'off');
-    await setSetting('core.playback.streamVerification', false);
 
     let uuidSequence = 0;
     vi.spyOn(globalThis.crypto, 'randomUUID').mockImplementation(
@@ -61,29 +59,10 @@ export const createListeningHistoryWrapper = (
     });
   },
 
-  async startStreamedPlayback() {
-    await StreamResolutionWrapper.startQueuePlayback(['Track 1', 'Track 2']);
-
-    await waitFor(() => {
-      expect(this.events).toHaveLength(1);
-    });
-  },
-
-  async waitForPlaybackToSettle(title: string) {
-    await waitFor(() => {
-      expect(this.timeline).toContainEqual(
-        expect.objectContaining({ kind: 'started', track: title }),
-      );
-    });
-    await act(() => new Promise((resolve) => setTimeout(resolve, 0)));
-  },
-
   async mountWithoutWaitingForEvents() {
     await QueueWrapper.mount();
     SoundWrapper.initQueue();
   },
-
-  streaming: StreamResolutionWrapper.streaming,
 
   historyToggle: {
     async toggle() {

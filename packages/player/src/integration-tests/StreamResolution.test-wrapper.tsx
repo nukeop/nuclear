@@ -11,6 +11,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import { providersHost } from '../services/providersHost';
 import { useQueueStore } from '../stores/queueStore';
+import { setSetting } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { useStartupStore } from '../stores/startupStore';
 import {
@@ -23,29 +24,46 @@ import { PlayerBarWrapper } from './PlayerBar.test-wrapper';
 import { QueueWrapper } from './Queue.test-wrapper';
 import { SoundWrapper } from './Sound.test-wrapper';
 
-const searchGates = new Map<string, PromiseWithResolvers<void>>();
-const searchedTitles: string[] = [];
+class DeferredSearches {
+  private readonly deferredByTitle = new Map<
+    string,
+    PromiseWithResolvers<void>
+  >();
+  private readonly requested: string[] = [];
 
-const searchGateFor = (title: string) => {
-  const gate = searchGates.get(title) ?? Promise.withResolvers<void>();
-  searchGates.set(title, gate);
-  return gate;
-};
+  get requestedTitles(): readonly string[] {
+    return this.requested;
+  }
 
-const gatedSearch = async (title: string) => {
-  searchedTitles.push(title);
-  await searchGateFor(title).promise;
-  return [createMockCandidate(`${title} stream`, title)];
-};
+  async search(title: string) {
+    this.requested.push(title);
+    await this.deferredFor(title).promise;
+    return [createMockCandidate(`${title} stream`, title)];
+  }
+
+  release(title: string) {
+    this.deferredFor(title).resolve();
+  }
+
+  private deferredFor(title: string) {
+    const deferred =
+      this.deferredByTitle.get(title) ?? Promise.withResolvers<void>();
+    this.deferredByTitle.set(title, deferred);
+    return deferred;
+  }
+}
 
 export const StreamResolutionWrapper = {
   streaming: {
-    register() {
-      searchGates.clear();
-      searchedTitles.length = 0;
+    searches: new DeferredSearches(),
+
+    async register() {
+      await setSetting('core.playback.streamVerification', false);
+      const searches = new DeferredSearches();
+      this.searches = searches;
       providersHost.register(
         new StreamingProviderBuilder()
-          .withSearchForTrack((_artist, title) => gatedSearch(title))
+          .withSearchForTrack((_artist, title) => searches.search(title))
           .withGetStreamUrl(async (candidateId) =>
             createMockStream(candidateId),
           )
@@ -53,22 +71,23 @@ export const StreamResolutionWrapper = {
       );
     },
 
-    async waitForPendingSearch(title: string) {
+    async waitForSearch(title: string) {
       await waitFor(() => {
-        expect(searchedTitles).toContain(title);
+        expect(this.searches.requestedTitles).toContain(title);
       });
     },
 
     async releaseSearch(title: string) {
       await act(async () => {
-        searchGateFor(title).resolve();
+        this.searches.release(title);
+        await new Promise((resolve) => setTimeout(resolve, 0));
       });
     },
   },
 
   async startQueuePlayback(titles: string[]) {
     QueueWrapper.initQueue(titles.map((title) => createQueueItem(title)));
-    searchGateFor(titles[0]).resolve();
+    this.streaming.searches.release(titles[0]);
     useStartupStore.setState({ isStartingUp: false });
     await QueueWrapper.mount();
     await waitFor(() => {
