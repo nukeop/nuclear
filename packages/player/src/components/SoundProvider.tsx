@@ -4,7 +4,6 @@ import { useCallback, useEffect } from 'react';
 import { LoggerProvider, Sound, SoundError } from '@nuclearplayer/hifi';
 import type { TFunction } from '@nuclearplayer/i18n';
 import { useTranslation } from '@nuclearplayer/i18n';
-import type { QueueItem } from '@nuclearplayer/model';
 
 import { useCoreSetting } from '../hooks/useCoreSetting';
 import { eventBus } from '../services/eventBus';
@@ -19,14 +18,6 @@ const describePlaybackError = (error: Error, t: TFunction): string => {
     return t(`errors.hifi.${error.code}`, { details: error.details });
   }
   return errorMessage(error);
-};
-
-const getMountedCurrentItem = (): QueueItem | undefined => {
-  const currentItem = useQueueStore.getState().getCurrentItem();
-  if (currentItem?.id !== playbackManager.mountedItemId) {
-    return undefined;
-  }
-  return currentItem;
 };
 
 export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -61,12 +52,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   const handleCanPlay = useCallback(() => {
-    const mountedItem = getMountedCurrentItem();
-    if (mountedItem) {
-      useQueueStore
-        .getState()
-        .updateItemState(mountedItem.id, { status: 'success' });
-    }
+    playbackManager.sourceReady();
   }, []);
 
   const handleSourceInvalid = useCallback(() => {
@@ -80,13 +66,7 @@ export const SoundProvider: FC<PropsWithChildren> = ({ children }) => {
     (error: Error) => {
       const message = describePlaybackError(error, t);
       Logger.streaming.error(`Playback error: ${message}`);
-
-      const mountedItem = getMountedCurrentItem();
-      if (mountedItem) {
-        useQueueStore
-          .getState()
-          .updateItemState(mountedItem.id, { status: 'error', error: message });
-      }
+      playbackManager.sourceFailed(message);
     },
     [t],
   );

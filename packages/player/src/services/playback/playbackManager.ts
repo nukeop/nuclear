@@ -11,12 +11,8 @@ export type StartTrackOptions = {
 };
 
 export class PlaybackManager {
-  private sourceItemId: string | null = null;
+  private mountedItemId: string | null = null;
   private playRequested = false;
-
-  get mountedItemId(): string | null {
-    return this.sourceItemId;
-  }
 
   play = (): void => {
     const { status } = useSoundStore.getState();
@@ -60,7 +56,7 @@ export class PlaybackManager {
     options: StartTrackOptions,
   ): void => {
     useSoundStore.getState().setSrc(source);
-    this.sourceItemId = item.id;
+    this.mountedItemId = item.id;
 
     const shouldPlay = options.autoPlay || this.playRequested;
     this.playRequested = false;
@@ -96,6 +92,21 @@ export class PlaybackManager {
 
     useQueueStore.getState().goToNext();
   };
+
+  sourceReady = (): void => {
+    this.updateMountedItem({ status: 'success' });
+  };
+
+  sourceFailed = (message: string): void => {
+    this.updateMountedItem({ status: 'error', error: message });
+  };
+
+  private updateMountedItem(updates: Partial<QueueItem>): void {
+    if (!this.mountedItemId) {
+      return;
+    }
+    useQueueStore.getState().updateItemState(this.mountedItemId, updates);
+  }
 }
 
 export const playbackManager = new PlaybackManager();
