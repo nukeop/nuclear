@@ -181,6 +181,7 @@ exports[`QueuePanel > (Snapshot) renders collapsed state 1`] = `
                     />
                     <div
                       class="bg-stripes-diagonal absolute inset-x-0 bottom-0 h-1"
+                      data-testid="queue-item-loading"
                     />
                   </div>
                 </div>
@@ -505,6 +506,7 @@ exports[`QueuePanel > (Snapshot) renders default state 1`] = `
                   </div>
                   <div
                     class="bg-stripes-diagonal absolute inset-x-0 bottom-0 h-1"
+                    data-testid="queue-item-loading"
                   />
                 </div>
               </div>
