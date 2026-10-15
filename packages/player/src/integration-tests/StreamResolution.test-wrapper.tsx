@@ -1,4 +1,5 @@
 import {
+  act,
   render,
   RenderResult,
   screen,
@@ -8,10 +9,76 @@ import {
 import userEvent from '@testing-library/user-event';
 
 import App from '../App';
+import { providersHost } from '../services/providersHost';
 import { useQueueStore } from '../stores/queueStore';
 import { useSoundStore } from '../stores/soundStore';
+import { useStartupStore } from '../stores/startupStore';
+import {
+  createMockCandidate,
+  createMockStream,
+  StreamingProviderBuilder,
+} from '../test/builders/StreamingProviderBuilder';
+import { createQueueItem } from '../test/fixtures/queue';
+import { PlayerBarWrapper } from './PlayerBar.test-wrapper';
+import { QueueWrapper } from './Queue.test-wrapper';
+import { SoundWrapper } from './Sound.test-wrapper';
+
+const searchGates = new Map<string, PromiseWithResolvers<void>>();
+const searchedTitles: string[] = [];
+
+const searchGateFor = (title: string) => {
+  const gate = searchGates.get(title) ?? Promise.withResolvers<void>();
+  searchGates.set(title, gate);
+  return gate;
+};
+
+const gatedSearch = async (title: string) => {
+  searchedTitles.push(title);
+  await searchGateFor(title).promise;
+  return [createMockCandidate(`${title} stream`, title)];
+};
 
 export const StreamResolutionWrapper = {
+  streaming: {
+    register() {
+      searchGates.clear();
+      searchedTitles.length = 0;
+      providersHost.register(
+        new StreamingProviderBuilder()
+          .withSearchForTrack((_artist, title) => gatedSearch(title))
+          .withGetStreamUrl(async (candidateId) =>
+            createMockStream(candidateId),
+          )
+          .build(),
+      );
+    },
+
+    async waitForPendingSearch(title: string) {
+      await waitFor(() => {
+        expect(searchedTitles).toContain(title);
+      });
+    },
+
+    async releaseSearch(title: string) {
+      await act(async () => {
+        searchGateFor(title).resolve();
+      });
+    },
+  },
+
+  async startQueuePlayback(titles: string[]) {
+    QueueWrapper.initQueue(titles.map((title) => createQueueItem(title)));
+    searchGateFor(titles[0]).resolve();
+    useStartupStore.setState({ isStartingUp: false });
+    await QueueWrapper.mount();
+    await waitFor(() => {
+      expect(useSoundStore.getState().src).not.toBeNull();
+    });
+
+    await PlayerBarWrapper.playButton.click();
+    SoundWrapper.fireCanPlay();
+  },
+
   async mount(): Promise<RenderResult> {
     const component = render(<App />);
     await screen.findByTestId('app-layout');
