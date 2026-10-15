@@ -11,8 +11,12 @@ export type StartTrackOptions = {
 };
 
 export class PlaybackManager {
-  private mountedItemId: string | null = null;
+  private sourceItemId: string | null = null;
   private playRequested = false;
+
+  get mountedItemId(): string | null {
+    return this.sourceItemId;
+  }
 
   play = (): void => {
     const { status } = useSoundStore.getState();
@@ -56,7 +60,7 @@ export class PlaybackManager {
     options: StartTrackOptions,
   ): void => {
     useSoundStore.getState().setSrc(source);
-    this.mountedItemId = item.id;
+    this.sourceItemId = item.id;
 
     const shouldPlay = options.autoPlay || this.playRequested;
     this.playRequested = false;
