@@ -1,5 +1,4 @@
 use log::{debug, error};
-use std::path::Path;
 use std::process::{Command, Stdio};
 use tauri::{command, AppHandle};
 
@@ -72,8 +71,9 @@ struct YtdlpJson {
     upload_date: Option<String>,
 }
 
-fn run_ytdlp(program: &Path, args: &[&str]) -> Result<String, String> {
-    let mut cmd = Command::new(program);
+async fn run_ytdlp(app_handle: &AppHandle, args: &[&str]) -> Result<String, String> {
+    let program = ensure_binary(app_handle).await?;
+    let mut cmd = Command::new(&program);
     cmd.args(args).stdout(Stdio::piped()).stderr(Stdio::piped());
 
     #[cfg(target_os = "windows")]
@@ -131,16 +131,12 @@ pub async fn ytdlp_search(
     debug!("[yt-dlp] Searching: {} (limit: {})", query, limit);
 
     let search_url = format!("ytsearch{}:{}", limit, query);
-    let program = ensure_binary(&app_handle).await?;
-    let stdout = run_ytdlp(
-        &program,
-        &[
-            "--dump-json",
-            "--flat-playlist",
-            "--no-warnings",
-            &search_url,
-        ],
-    )?;
+    let stdout = run_ytdlp(&app_handle, &[
+        "--dump-json",
+        "--flat-playlist",
+        "--no-warnings",
+        &search_url,
+    ]).await?;
 
     let results: Vec<YtdlpSearchResult> = parse_ndjson_entries(&stdout)
         .into_iter()
@@ -181,18 +177,14 @@ pub async fn ytdlp_get_stream(
 
     debug!("[yt-dlp] Getting stream for: {}", resolved_url);
 
-    let program = ensure_binary(&app_handle).await?;
-    let stdout = run_ytdlp(
-        &program,
-        &[
-            "-f",
-            "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
-            "--dump-json",
-            "--no-playlist",
-            "--no-warnings",
-            &resolved_url,
-        ],
-    )?;
+    let stdout = run_ytdlp(&app_handle, &[
+        "-f",
+        "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
+        "--dump-json",
+        "--no-playlist",
+        "--no-warnings",
+        &resolved_url,
+    ]).await?;
 
     let info: YtdlpJson = serde_json::from_str(&stdout).map_err(|error| {
         error!("[yt-dlp] Failed to parse output: {}", error);
@@ -234,11 +226,7 @@ pub async fn ytdlp_get_playlist(
 ) -> Result<YtdlpPlaylistInfo, String> {
     debug!("[yt-dlp] Getting playlist: {}", url);
 
-    let program = ensure_binary(&app_handle).await?;
-    let stdout = run_ytdlp(
-        &program,
-        &["--dump-json", "--flat-playlist", "--no-warnings", &url],
-    )?;
+    let stdout = run_ytdlp(&app_handle, &["--dump-json", "--flat-playlist", "--no-warnings", &url]).await?;
     let entries_json = parse_ndjson_entries(&stdout);
 
     let playlist_title = entries_json
