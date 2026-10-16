@@ -1,37 +1,19 @@
-import type { EventCallback, UnlistenFn } from '@tauri-apps/api/event';
+import type { EventCallback } from '@tauri-apps/api/event';
 
-type Listener = EventCallback<unknown>;
+const listeners = new Map<string, EventCallback<unknown>>();
 
-export class TauriEventMocks {
-  private listeners = new Map<string, Set<Listener>>();
-
-  moduleFactory() {
-    return {
-      listen: async (name: string, listener: Listener): Promise<UnlistenFn> => {
-        this.listenersOf(name).add(listener);
-        return () => this.listenersOf(name).delete(listener);
-      },
-      emit: async (name: string, payload?: unknown): Promise<void> => {
-        this.emit(name, payload);
-      },
-    };
-  }
-
-  emit(name: string, payload: unknown): void {
-    this.listenersOf(name).forEach((listener) =>
-      listener({ event: name, id: 0, payload }),
-    );
-  }
-
-  private listenersOf(name: string): Set<Listener> {
-    const existing = this.listeners.get(name);
-    if (existing) {
-      return existing;
+export const listen = async (
+  name: string,
+  listener: EventCallback<unknown>,
+) => {
+  listeners.set(name, listener);
+  return () => {
+    if (listeners.get(name) === listener) {
+      listeners.delete(name);
     }
-    const created = new Set<Listener>();
-    this.listeners.set(name, created);
-    return created;
-  }
-}
+  };
+};
 
-export const tauriEventMocks = new TauriEventMocks();
+export const emit = (name: string, payload?: unknown) => {
+  listeners.get(name)?.({ event: name, id: 0, payload });
+};

@@ -11,14 +11,14 @@ import userEvent from '@testing-library/user-event';
 
 import App from '../App';
 import { routeTree } from '../routeTree.gen';
-import { tauriEventMocks } from '../test/utils/eventMocks';
+import { emit } from '../test/utils/eventMocks';
 
 type DownloadKind = 'install' | 'update';
 
 const user = userEvent.setup();
 
 const emitDownload = (payload: Record<string, unknown>) =>
-  act(() => tauriEventMocks.emit('ytdlp:download', payload));
+  act(() => emit('ytdlp:download', payload));
 
 const createToastWrapper = (toast: HTMLElement) => ({
   text(content: string) {
