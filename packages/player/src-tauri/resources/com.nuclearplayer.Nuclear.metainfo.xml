@@ -81,6 +81,14 @@
   </requires>
 
   <releases>
+    <release version="1.51.2" date="2026-10-16">
+      <description>
+        <ul>
+          <li>Fixed silent YouTube playback on Linux. The AppImage now bundles the GStreamer libav plugin, and the AUR, .deb, and .rpm packages require it.</li>
+          <li>Listening history no longer records a track twice when the previous track ends on its own</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.51.1" date="2026-10-14">
       <description>
         <p>Release 1.51.1.</p>
