@@ -1,15 +1,42 @@
 use log::{debug, error, info};
 use serde::{Deserialize, Serialize};
 use std::fs;
+use std::future::Future;
 use std::path::{Path, PathBuf};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
-use tauri::{command, AppHandle, Manager};
+use tauri::{command, AppHandle, Emitter, Manager};
+use tokio::sync::Mutex;
 
 use crate::profile::DefaultIdentifier;
 
 const RELEASE_BASE_URL: &str =
     "https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download";
 const UPDATE_CHECK_INTERVAL_SECS: u64 = 3600;
+const DOWNLOAD_EVENT: &str = "ytdlp:download";
+
+static DOWNLOAD_LOCK: Mutex<()> = Mutex::const_new(());
+
+#[derive(Serialize, Clone, Copy)]
+#[serde(rename_all = "camelCase")]
+enum DownloadKind {
+    Install,
+    Update,
+}
+
+#[derive(Serialize, Clone)]
+#[serde(rename_all = "camelCase", tag = "status")]
+enum DownloadStatus {
+    Progress { percent: Option<u8> },
+    Finished,
+    Failed { error: String },
+}
+
+#[derive(Serialize, Clone)]
+struct DownloadEvent {
+    kind: DownloadKind,
+    #[serde(flatten)]
+    status: DownloadStatus,
+}
 
 #[derive(Serialize, Deserialize)]
 struct UpdateCheck {
@@ -86,7 +113,15 @@ fn ytdlp_dir(app_handle: &AppHandle) -> Result<PathBuf, String> {
         .map_err(|error| format!("Failed to resolve data directory: {}", error))
 }
 
-async fn download_zip(url: &str, dest: &Path) -> Result<(), String> {
+fn percent(downloaded: u64, total: Option<u64>) -> Option<u8> {
+    total.map(|total| (downloaded.min(total) * 100 / total) as u8)
+}
+
+async fn download_zip(
+    url: &str,
+    dest: &Path,
+    on_progress: impl Fn(Option<u8>),
+) -> Result<(), String> {
     use futures::StreamExt;
     use tokio::io::AsyncWriteExt;
 
@@ -110,12 +145,24 @@ async fn download_zip(url: &str, dest: &Path) -> Result<(), String> {
         .await
         .map_err(|error| format!("Failed to create file: {}", error))?;
 
+    let total = response.content_length().filter(|length| *length > 0);
+    let mut downloaded = 0;
+    let mut last_percent = percent(downloaded, total);
+    on_progress(last_percent);
+
     let mut stream = response.bytes_stream();
     while let Some(chunk) = stream.next().await {
         let chunk = chunk.map_err(|error| format!("Download stream error: {}", error))?;
         file.write_all(&chunk)
             .await
             .map_err(|error| format!("Write error: {}", error))?;
+
+        downloaded += chunk.len() as u64;
+        let current_percent = percent(downloaded, total);
+        if current_percent != last_percent {
+            on_progress(current_percent);
+            last_percent = current_percent;
+        }
     }
 
     info!("[yt-dlp] Downloaded {} to {:?}", url, dest);
@@ -202,14 +249,46 @@ fn write_update_check(ytdlp_dir: &Path, check: &UpdateCheck) {
     }
 }
 
-async fn download_and_extract(ytdlp_dir: &Path, binary_path: &Path) -> Result<(), String> {
+fn emit_download_event(app_handle: &AppHandle, kind: DownloadKind, status: DownloadStatus) {
+    if let Err(err) = app_handle.emit(DOWNLOAD_EVENT, DownloadEvent { kind, status }) {
+        error!("[yt-dlp] Failed to emit download event: {}", err);
+    }
+}
+
+async fn download_with_events(
+    app_handle: &AppHandle,
+    kind: DownloadKind,
+    ytdlp_dir: &Path,
+    binary_path: &Path,
+) -> Result<(), String> {
+    let result = download_and_extract(ytdlp_dir, binary_path, |percent| {
+        emit_download_event(app_handle, kind, DownloadStatus::Progress { percent })
+    })
+    .await;
+
+    let status = match &result {
+        Ok(()) => DownloadStatus::Finished,
+        Err(error) => DownloadStatus::Failed {
+            error: error.clone(),
+        },
+    };
+    emit_download_event(app_handle, kind, status);
+
+    result
+}
+
+async fn download_and_extract(
+    ytdlp_dir: &Path,
+    binary_path: &Path,
+    on_progress: impl Fn(Option<u8>),
+) -> Result<(), String> {
     let download_url = format!("{}/{}", RELEASE_BASE_URL, release_filename());
     let zip_path = ytdlp_dir.join(".download.zip");
 
     fs::create_dir_all(ytdlp_dir)
         .map_err(|error| format!("Failed to create ytdlp dir: {}", error))?;
 
-    download_zip(&download_url, &zip_path)
+    download_zip(&download_url, &zip_path, on_progress)
         .await
         .inspect_err(|_| {
             fs::remove_file(&zip_path).ok();
@@ -268,7 +347,7 @@ async fn fetch_latest_release_tag() -> Result<String, String> {
     Ok(release.tag_name)
 }
 
-async fn check_for_update(ytdlp_dir: &Path, binary_path: &Path) {
+async fn check_for_update(app_handle: &AppHandle, ytdlp_dir: &Path, binary_path: &Path) {
     let existing = read_update_check(ytdlp_dir);
 
     if let Some(ref check) = existing {
@@ -305,7 +384,8 @@ async fn check_for_update(ytdlp_dir: &Path, binary_path: &Path) {
         latest_tag
     );
 
-    match download_and_extract(ytdlp_dir, binary_path).await {
+    let _guard = DOWNLOAD_LOCK.lock().await;
+    match download_with_events(app_handle, DownloadKind::Update, ytdlp_dir, binary_path).await {
         Ok(()) => {
             info!("[yt-dlp] Updated to {}", latest_tag);
             write_update_check(ytdlp_dir, &UpdateCheck::now(latest_tag));
@@ -319,29 +399,47 @@ async fn check_for_update(ytdlp_dir: &Path, binary_path: &Path) {
     }
 }
 
+async fn ensure_binary_with<Download, DownloadFuture>(
+    lock: &Mutex<()>,
+    binary_path: &Path,
+    download: Download,
+) -> Result<(), String>
+where
+    Download: FnOnce() -> DownloadFuture,
+    DownloadFuture: Future<Output = Result<(), String>>,
+{
+    let _guard = lock.lock().await;
+    if binary_path.exists() {
+        return Ok(());
+    }
+    download().await
+}
+
+pub async fn ensure_binary(app_handle: &AppHandle) -> Result<PathBuf, String> {
+    let ytdlp_dir = ytdlp_dir(app_handle)?;
+    let binary_path = ytdlp_dir.join(binary_name());
+
+    ensure_binary_with(&DOWNLOAD_LOCK, &binary_path, || async {
+        info!("[yt-dlp] Not found, downloading...");
+        download_with_events(app_handle, DownloadKind::Install, &ytdlp_dir, &binary_path).await?;
+        info!("[yt-dlp] Installed to {:?}", binary_path);
+        Ok(())
+    })
+    .await?;
+
+    Ok(binary_path)
+}
+
 #[command]
 #[specta::specta]
 pub async fn ytdlp_ensure_installed(app_handle: AppHandle) -> Result<bool, String> {
     let ytdlp_dir = ytdlp_dir(&app_handle)?;
-    let binary_path = ytdlp_dir.join(binary_name());
-
-    let already_installed = binary_path.exists();
-
-    if !already_installed {
-        info!("[yt-dlp] Not found, downloading...");
-        download_and_extract(&ytdlp_dir, &binary_path).await?;
-        info!("[yt-dlp] Installed to {:?}", binary_path);
-    }
-
-    let path_str = binary_path
-        .to_str()
-        .ok_or("Invalid path encoding")?
-        .to_string();
-    crate::ytdlp::set_ytdlp_path(path_str);
+    let already_installed = ytdlp_dir.join(binary_name()).exists();
+    let binary_path = ensure_binary(&app_handle).await?;
 
     if already_installed {
         debug!("[yt-dlp] Already installed at {:?}", binary_path);
-        check_for_update(&ytdlp_dir, &binary_path).await;
+        check_for_update(&app_handle, &ytdlp_dir, &binary_path).await;
     } else {
         let tag = fetch_latest_release_tag().await.unwrap_or_else(|err| {
             debug!(
@@ -354,4 +452,81 @@ pub async fn ytdlp_ensure_installed(app_handle: AppHandle) -> Result<bool, Strin
     }
 
     Ok(already_installed)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::atomic::{AtomicUsize, Ordering};
+
+    struct Fixture {
+        _dir: tempfile::TempDir,
+        binary_path: PathBuf,
+        lock: Mutex<()>,
+        downloads: AtomicUsize,
+    }
+
+    impl Fixture {
+        fn new() -> Self {
+            let dir = tempfile::tempdir().unwrap();
+            let binary_path = dir.path().join(binary_name());
+            Self {
+                _dir: dir,
+                binary_path,
+                lock: Mutex::new(()),
+                downloads: AtomicUsize::new(0),
+            }
+        }
+
+        fn install_binary(&self) {
+            fs::write(&self.binary_path, b"yt-dlp").unwrap();
+        }
+
+        async fn ensure(&self, outcome: Result<(), String>) -> Result<(), String> {
+            ensure_binary_with(&self.lock, &self.binary_path, || async {
+                self.downloads.fetch_add(1, Ordering::SeqCst);
+                tokio::task::yield_now().await;
+                if outcome.is_ok() {
+                    self.install_binary();
+                }
+                outcome
+            })
+            .await
+        }
+
+        fn downloads(&self) -> usize {
+            self.downloads.load(Ordering::SeqCst)
+        }
+    }
+
+    #[tokio::test]
+    async fn uses_existing_binary_without_downloading() {
+        let fixture = Fixture::new();
+        fixture.install_binary();
+
+        assert_eq!(fixture.ensure(Ok(())).await, Ok(()));
+        assert_eq!(fixture.downloads(), 0);
+    }
+
+    #[tokio::test]
+    async fn concurrent_callers_join_the_running_download() {
+        let fixture = Fixture::new();
+
+        let (first, second) = tokio::join!(fixture.ensure(Ok(())), fixture.ensure(Ok(())));
+
+        assert_eq!((first, second), (Ok(()), Ok(())));
+        assert_eq!(fixture.downloads(), 1);
+    }
+
+    #[tokio::test]
+    async fn retries_download_after_failure() {
+        let fixture = Fixture::new();
+
+        let failed = fixture.ensure(Err("HTTP error: 503".to_string())).await;
+        let retried = fixture.ensure(Ok(())).await;
+
+        assert_eq!(failed, Err("HTTP error: 503".to_string()));
+        assert_eq!(retried, Ok(()));
+        assert_eq!(fixture.downloads(), 2);
+    }
 }
