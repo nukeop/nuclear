@@ -8,6 +8,7 @@ import {
   within,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { toast } from 'sonner';
 
 import App from '../App';
 import { routeTree } from '../routeTree.gen';
@@ -18,19 +19,13 @@ type DownloadKind = 'install' | 'update';
 const user = userEvent.setup();
 
 const emitDownload = (payload: Record<string, unknown>) =>
-  act(async () => {
-    emit('ytdlp:download', payload);
-    await new Promise((resolve) => setTimeout(resolve));
-  });
+  act(() => emit('ytdlp:download', payload));
 
-const toastElement = () => screen.getByTestId('ytdlp-download-toast');
-
-const hasAttribute =
-  (attribute: string) => (_content: string, element: Element | null) =>
-    element !== null && element.hasAttribute(attribute);
+const toastElement = () => screen.findByTestId('ytdlp-download-toast');
 
 export const YtdlpDownloadWrapper = {
   async mount(): Promise<RenderResult> {
+    toast.dismiss();
     vi.mocked(invoke).mockResolvedValue(true);
     const history = createMemoryHistory({ initialEntries: ['/dashboard'] });
     const router = createRouter({ routeTree, history });
@@ -47,36 +42,37 @@ export const YtdlpDownloadWrapper = {
   },
 
   download: {
-    async progress(kind: DownloadKind, percent: number | null) {
-      await emitDownload({ kind, status: 'progress', percent });
+    progress(kind: DownloadKind, percent: number | null) {
+      emitDownload({ kind, status: 'progress', percent });
     },
-    async finished(kind: DownloadKind) {
-      await emitDownload({ kind, status: 'finished' });
+    finished(kind: DownloadKind) {
+      emitDownload({ kind, status: 'finished' });
     },
-    async failed(kind: DownloadKind, error: string) {
-      await emitDownload({ kind, status: 'failed', error });
+    failed(kind: DownloadKind, error: string) {
+      emitDownload({ kind, status: 'failed', error });
     },
   },
 
   toast: {
-    get title() {
-      return within(toastElement()).getByText(hasAttribute('data-title'))
-        .textContent;
+    async findText(text: string) {
+      return within(await toastElement()).findByText(text);
     },
-    get description() {
-      return (
-        within(toastElement()).queryByText(hasAttribute('data-description'))
-          ?.textContent ?? null
-      );
+    async queryText(text: string) {
+      return within(await toastElement()).queryByText(text);
     },
     retryButton: {
-      get element() {
-        return within(toastElement()).queryByRole('button', { name: 'Retry' });
+      async find() {
+        return within(await toastElement()).findByRole('button', {
+          name: 'Retry',
+        });
+      },
+      async query() {
+        return within(await toastElement()).queryByRole('button', {
+          name: 'Retry',
+        });
       },
       async click() {
-        await user.click(
-          within(toastElement()).getByRole('button', { name: 'Retry' }),
-        );
+        await user.click(await this.find());
       },
     },
   },
