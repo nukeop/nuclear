@@ -18,24 +18,16 @@ type DownloadKind = 'install' | 'update';
 const user = userEvent.setup();
 
 const emitDownload = (payload: Record<string, unknown>) =>
-  act(() => emit('ytdlp:download', payload));
+  act(async () => {
+    emit('ytdlp:download', payload);
+    await new Promise((resolve) => setTimeout(resolve));
+  });
 
-const createToastWrapper = (toast: HTMLElement) => ({
-  text(content: string) {
-    return within(toast).getByText(content);
-  },
-  queryText(content: string) {
-    return within(toast).queryByText(content);
-  },
-  retryButton: {
-    get element() {
-      return within(toast).queryByRole('button', { name: 'Retry' });
-    },
-    async click() {
-      await user.click(within(toast).getByRole('button', { name: 'Retry' }));
-    },
-  },
-});
+const toastElement = () => screen.getByTestId('ytdlp-download-toast');
+
+const hasAttribute =
+  (attribute: string) => (_content: string, element: Element | null) =>
+    element !== null && element.hasAttribute(attribute);
 
 export const YtdlpDownloadWrapper = {
   async mount(): Promise<RenderResult> {
@@ -55,22 +47,37 @@ export const YtdlpDownloadWrapper = {
   },
 
   download: {
-    progress(kind: DownloadKind, percent: number | null) {
-      emitDownload({ kind, status: 'progress', percent });
+    async progress(kind: DownloadKind, percent: number | null) {
+      await emitDownload({ kind, status: 'progress', percent });
     },
-    finished(kind: DownloadKind) {
-      emitDownload({ kind, status: 'finished' });
+    async finished(kind: DownloadKind) {
+      await emitDownload({ kind, status: 'finished' });
     },
-    failed(kind: DownloadKind, error: string) {
-      emitDownload({ kind, status: 'failed', error });
+    async failed(kind: DownloadKind, error: string) {
+      await emitDownload({ kind, status: 'failed', error });
     },
   },
 
   toast: {
-    async find() {
-      return createToastWrapper(
-        await screen.findByTestId('ytdlp-download-toast'),
+    get title() {
+      return within(toastElement()).getByText(hasAttribute('data-title'))
+        .textContent;
+    },
+    get description() {
+      return (
+        within(toastElement()).queryByText(hasAttribute('data-description'))
+          ?.textContent ?? null
       );
+    },
+    retryButton: {
+      get element() {
+        return within(toastElement()).queryByRole('button', { name: 'Retry' });
+      },
+      async click() {
+        await user.click(
+          within(toastElement()).getByRole('button', { name: 'Retry' }),
+        );
+      },
     },
   },
 };
