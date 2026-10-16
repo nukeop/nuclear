@@ -415,6 +415,17 @@ where
     download().await
 }
 
+async fn record_installed_tag(ytdlp_dir: &Path) {
+    let tag = fetch_latest_release_tag().await.unwrap_or_else(|err| {
+        debug!(
+            "[yt-dlp] Could not fetch release tag after install: {}",
+            err
+        );
+        "unknown".to_string()
+    });
+    write_update_check(ytdlp_dir, &UpdateCheck::now(tag));
+}
+
 pub async fn ensure_binary(app_handle: &AppHandle) -> Result<PathBuf, String> {
     let ytdlp_dir = ytdlp_dir(app_handle)?;
     let binary_path = ytdlp_dir.join(binary_name());
@@ -423,6 +434,7 @@ pub async fn ensure_binary(app_handle: &AppHandle) -> Result<PathBuf, String> {
         info!("[yt-dlp] Not found, downloading...");
         download_with_events(app_handle, DownloadKind::Install, &ytdlp_dir, &binary_path).await?;
         info!("[yt-dlp] Installed to {:?}", binary_path);
+        record_installed_tag(&ytdlp_dir).await;
         Ok(())
     })
     .await?;
@@ -440,15 +452,6 @@ pub async fn ytdlp_ensure_installed(app_handle: AppHandle) -> Result<bool, Strin
     if already_installed {
         debug!("[yt-dlp] Already installed at {:?}", binary_path);
         check_for_update(&app_handle, &ytdlp_dir, &binary_path).await;
-    } else {
-        let tag = fetch_latest_release_tag().await.unwrap_or_else(|err| {
-            debug!(
-                "[yt-dlp] Could not fetch release tag after install: {}",
-                err
-            );
-            "unknown".to_string()
-        });
-        write_update_check(&ytdlp_dir, &UpdateCheck::now(tag));
     }
 
     Ok(already_installed)
