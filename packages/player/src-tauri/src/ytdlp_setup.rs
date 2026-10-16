@@ -459,74 +459,74 @@ mod tests {
     use super::*;
     use std::sync::atomic::{AtomicUsize, Ordering};
 
-    struct Fixture {
-        _dir: tempfile::TempDir,
-        binary_path: PathBuf,
-        lock: Mutex<()>,
-        downloads: AtomicUsize,
-    }
-
-    impl Fixture {
-        fn new() -> Self {
-            let dir = tempfile::tempdir().unwrap();
-            let binary_path = dir.path().join(binary_name());
-            Self {
-                _dir: dir,
-                binary_path,
-                lock: Mutex::new(()),
-                downloads: AtomicUsize::new(0),
-            }
+    async fn fake_download(
+        binary_path: &Path,
+        downloads: &AtomicUsize,
+        outcome: Result<(), String>,
+    ) -> Result<(), String> {
+        downloads.fetch_add(1, Ordering::SeqCst);
+        tokio::task::yield_now().await;
+        if outcome.is_ok() {
+            fs::write(binary_path, b"yt-dlp").unwrap();
         }
-
-        fn install_binary(&self) {
-            fs::write(&self.binary_path, b"yt-dlp").unwrap();
-        }
-
-        async fn ensure(&self, outcome: Result<(), String>) -> Result<(), String> {
-            ensure_binary_with(&self.lock, &self.binary_path, || async {
-                self.downloads.fetch_add(1, Ordering::SeqCst);
-                tokio::task::yield_now().await;
-                if outcome.is_ok() {
-                    self.install_binary();
-                }
-                outcome
-            })
-            .await
-        }
-
-        fn downloads(&self) -> usize {
-            self.downloads.load(Ordering::SeqCst)
-        }
+        outcome
     }
 
     #[tokio::test]
     async fn uses_existing_binary_without_downloading() {
-        let fixture = Fixture::new();
-        fixture.install_binary();
+        let dir = tempfile::tempdir().unwrap();
+        let binary_path = dir.path().join(binary_name());
+        fs::write(&binary_path, b"yt-dlp").unwrap();
+        let lock = Mutex::new(());
+        let downloads = AtomicUsize::new(0);
 
-        assert_eq!(fixture.ensure(Ok(())).await, Ok(()));
-        assert_eq!(fixture.downloads(), 0);
+        let result = ensure_binary_with(&lock, &binary_path, || {
+            fake_download(&binary_path, &downloads, Ok(()))
+        })
+        .await;
+
+        assert_eq!(result, Ok(()));
+        assert_eq!(downloads.load(Ordering::SeqCst), 0);
     }
 
     #[tokio::test]
     async fn concurrent_callers_join_the_running_download() {
-        let fixture = Fixture::new();
+        let dir = tempfile::tempdir().unwrap();
+        let binary_path = dir.path().join(binary_name());
+        let lock = Mutex::new(());
+        let downloads = AtomicUsize::new(0);
 
-        let (first, second) = tokio::join!(fixture.ensure(Ok(())), fixture.ensure(Ok(())));
+        let (first, second) = tokio::join!(
+            ensure_binary_with(&lock, &binary_path, || {
+                fake_download(&binary_path, &downloads, Ok(()))
+            }),
+            ensure_binary_with(&lock, &binary_path, || {
+                fake_download(&binary_path, &downloads, Ok(()))
+            }),
+        );
 
         assert_eq!((first, second), (Ok(()), Ok(())));
-        assert_eq!(fixture.downloads(), 1);
+        assert_eq!(downloads.load(Ordering::SeqCst), 1);
     }
 
     #[tokio::test]
     async fn retries_download_after_failure() {
-        let fixture = Fixture::new();
+        let dir = tempfile::tempdir().unwrap();
+        let binary_path = dir.path().join(binary_name());
+        let lock = Mutex::new(());
+        let downloads = AtomicUsize::new(0);
 
-        let failed = fixture.ensure(Err("HTTP error: 503".to_string())).await;
-        let retried = fixture.ensure(Ok(())).await;
+        let failed = ensure_binary_with(&lock, &binary_path, || {
+            fake_download(&binary_path, &downloads, Err("HTTP error: 503".to_string()))
+        })
+        .await;
+        let retried = ensure_binary_with(&lock, &binary_path, || {
+            fake_download(&binary_path, &downloads, Ok(()))
+        })
+        .await;
 
         assert_eq!(failed, Err("HTTP error: 503".to_string()));
         assert_eq!(retried, Ok(()));
-        assert_eq!(fixture.downloads(), 2);
+        assert_eq!(downloads.load(Ordering::SeqCst), 2);
     }
 }
