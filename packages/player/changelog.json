@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-16T00:00",
+    "description": "Fixed silent YouTube playback on Linux. The AppImage now bundles the GStreamer libav plugin, and the AUR, .deb, and .rpm packages require it.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Linux",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-10-15T00:00",
     "description": "Listening history no longer records a track twice when the previous track ends on its own",
     "type": "fix",
