@@ -11,15 +11,16 @@ import userEvent from '@testing-library/user-event';
 import { toast } from 'sonner';
 
 import App from '../App';
+import { DownloadEvent, YTDLP_DOWNLOAD_EVENT } from '../hooks/useYtdlpDownload';
 import { routeTree } from '../routeTree.gen';
 import { emit } from '../test/utils/eventMocks';
 
-type DownloadKind = 'install' | 'update';
+type DownloadKind = DownloadEvent['kind'];
 
 const user = userEvent.setup();
 
-const emitDownload = (payload: Record<string, unknown>) =>
-  act(() => emit('ytdlp:download', payload));
+const emitDownload = (payload: DownloadEvent) =>
+  act(() => emit(YTDLP_DOWNLOAD_EVENT, payload));
 
 const toastElement = () => screen.findByTestId('ytdlp-download-toast');
 

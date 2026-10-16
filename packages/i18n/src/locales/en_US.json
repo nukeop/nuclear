@@ -557,13 +557,13 @@
     "ytdlp": {
       "install": {
         "progress": "Downloading yt-dlp… {{percent}}%",
-        "progress_unknown": "Downloading yt-dlp…",
+        "progressUnknown": "Downloading yt-dlp…",
         "finished": "yt-dlp downloaded",
         "failed": "Couldn't download yt-dlp"
       },
       "update": {
         "progress": "Updating yt-dlp… {{percent}}%",
-        "progress_unknown": "Updating yt-dlp…",
+        "progressUnknown": "Updating yt-dlp…",
         "finished": "yt-dlp updated",
         "failed": "Couldn't update yt-dlp"
       }

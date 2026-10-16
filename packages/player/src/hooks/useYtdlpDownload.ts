@@ -6,8 +6,12 @@ import { i18n } from '@nuclearplayer/i18n';
 
 import { Logger } from '../services/logger';
 import { commands } from '../services/tauri/bindings';
+import { unwrapResult } from '../services/tauri/results';
+import { errorMessage } from '../utils/errorMessage';
 
-type DownloadEvent = { kind: 'install' | 'update' } & (
+export const YTDLP_DOWNLOAD_EVENT = 'ytdlp:download';
+
+export type DownloadEvent = { kind: 'install' | 'update' } & (
   | { status: 'progress'; percent: number | null }
   | { status: 'finished' }
   | { status: 'failed'; error: string }
@@ -20,17 +24,11 @@ const TOAST_OPTIONS = {
   action: undefined,
 };
 
-const logSetupFailure = (error: unknown) =>
-  Logger.streaming.error(`yt-dlp setup failed: ${error}`);
-
 const ensureYtdlpInstalled = async () => {
   try {
-    const result = await commands.ytdlpEnsureInstalled();
-    if (result.status === 'error') {
-      logSetupFailure(result.error);
-    }
+    unwrapResult(await commands.ytdlpEnsureInstalled());
   } catch (error) {
-    logSetupFailure(error);
+    Logger.streaming.error(`yt-dlp setup failed: ${errorMessage(error)}`);
   }
 };
 
@@ -39,25 +37,27 @@ const progressMessage = (
   percent: number | null,
 ) => {
   if (percent === null) {
-    return i18n.t(`streaming:ytdlp.${kind}.progress_unknown`);
+    return i18n.t(`streaming:ytdlp.${kind}.progressUnknown`);
   }
   return i18n.t(`streaming:ytdlp.${kind}.progress`, { percent });
 };
 
-const showFailedToast = (kind: DownloadEvent['kind'], error: string) => {
-  const title = i18n.t(`streaming:ytdlp.${kind}.failed`);
+const retryAction = (kind: DownloadEvent['kind']) => {
   if (kind === 'update') {
-    return toast.error(title, { ...TOAST_OPTIONS, description: error });
+    return undefined;
   }
-  return toast.error(title, {
+  return {
+    label: i18n.t('common:actions.retry'),
+    onClick: () => void ensureYtdlpInstalled(),
+  };
+};
+
+const showFailedToast = (kind: DownloadEvent['kind'], error: string) =>
+  toast.error(i18n.t(`streaming:ytdlp.${kind}.failed`), {
     ...TOAST_OPTIONS,
     description: error,
-    action: {
-      label: i18n.t('common:actions.retry'),
-      onClick: () => void ensureYtdlpInstalled(),
-    },
+    action: retryAction(kind),
   });
-};
 
 const showDownloadToast = (event: DownloadEvent) => {
   switch (event.status) {
@@ -79,7 +79,7 @@ const showDownloadToast = (event: DownloadEvent) => {
 export const useYtdlpDownload = () => {
   useEffect(() => {
     const cleanup = new AbortController();
-    const unlistening = listen<DownloadEvent>('ytdlp:download', (event) =>
+    const unlistening = listen<DownloadEvent>(YTDLP_DOWNLOAD_EVENT, (event) =>
       showDownloadToast(event.payload),
     );
 
