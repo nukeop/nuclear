@@ -42,12 +42,13 @@
     ],
     "linux": {
       "deb": {
-        "depends": []
+        "depends": ["gstreamer1.0-libav"]
       },
       "appimage": {
         "bundleMediaFramework": true
       },
       "rpm": {
+        "depends": ["(gstreamer1-plugin-libav or gstreamer-plugins-libav)"],
         "epoch": 0,
         "files": {},
         "release": "1"

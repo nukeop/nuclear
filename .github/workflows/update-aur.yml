@@ -9,6 +9,10 @@ on:
       version:
         description: "Version to publish (e.g., 1.23.2)"
         required: true
+      pkgrel:
+        description: "AUR package release; bump it to republish the same version with packaging changes"
+        required: true
+        default: "1"
 
 jobs:
   update-bin:
@@ -36,8 +40,10 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             VERSION="${{ github.event.inputs.version }}"
+            PKGREL="${{ github.event.inputs.pkgrel }}"
           else
             TAG="${{ github.event.workflow_run.head_branch }}"
             VERSION="${TAG#player@}"
+            PKGREL=1
           fi
-          ./aur/update-aur.sh --version "${VERSION}"
+          ./aur/update-aur.sh --version "${VERSION}" --pkgrel "${PKGREL}"

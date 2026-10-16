@@ -6,26 +6,30 @@ TEMPLATE="${SCRIPT_DIR}/nuclear-player-bin/PKGBUILD.template"
 WORK_DIR="/tmp/nuclear-aur-bin"
 
 VERSION=""
+PKGREL=1
 DRY_RUN=false
+USAGE="Usage: $0 --version <version> [--pkgrel <pkgrel>] [--dry-run]"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --version) VERSION="$2"; shift 2 ;;
+        --pkgrel) PKGREL="$2"; shift 2 ;;
         --dry-run) DRY_RUN=true; shift ;;
-        *) echo "Usage: $0 --version <version> [--dry-run]"; exit 1 ;;
+        *) echo "${USAGE}"; exit 1 ;;
     esac
 done
 
-[[ -z "${VERSION}" ]] && { echo "Usage: $0 --version <version> [--dry-run]"; exit 1; }
+[[ -z "${VERSION}" ]] && { echo "${USAGE}"; exit 1; }
 
 DEB_URL="https://github.com/nukeop/nuclear/releases/download/player@${VERSION}/Nuclear_${VERSION}_amd64.deb"
 
 export PKGVER="${VERSION}"
+export PKGREL
 export SHA256SUM=$(curl -fSL "${DEB_URL}" | sha256sum | cut -d' ' -f1)
 
 rm -rf "${WORK_DIR}"
 mkdir -p "${WORK_DIR}"
-envsubst '$PKGVER $SHA256SUM' < "${TEMPLATE}" > "${WORK_DIR}/PKGBUILD"
+envsubst '$PKGVER $PKGREL $SHA256SUM' < "${TEMPLATE}" > "${WORK_DIR}/PKGBUILD"
 if [[ "$(id -u)" -eq 0 ]]; then
     useradd -m builduser 2>/dev/null || true
     chown -R builduser "${WORK_DIR}"
@@ -49,5 +53,5 @@ cd "${AUR_REPO}"
 git add PKGBUILD .SRCINFO
 git diff --cached --quiet && { echo "Already up to date."; exit 0; }
 git -c user.name="nukeop" -c user.email="noreply@nuclearplayer.com" \
-    commit -m "Update to ${VERSION}"
+    commit -m "Update to ${VERSION}-${PKGREL}"
 git push origin master
