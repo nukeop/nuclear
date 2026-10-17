@@ -84,6 +84,8 @@ vi.mock('@tauri-apps/plugin-store', async () => {
   return { LazyStore: mod.LazyStore };
 });
 
+vi.mock('@tauri-apps/api/event', () => import('./utils/eventMocks'));
+
 vi.mock('uuid', async () => {
   const { mockUuid } = await import('./utils/mockUuid');
   return { v4: mockUuid.v4 };

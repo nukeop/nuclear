@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-10-16T00:00",
+    "description": "The first YouTube track no longer fails while yt-dlp is still downloading. Playback waits for the download, and a toast shows its progress",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "YouTube",
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-16T00:00",
     "description": "Fixed silent YouTube playback on Linux. The AppImage now bundles the GStreamer libav plugin, and the AUR, .deb, and .rpm packages require it.",
     "type": "fix",
     "contributors": ["nukeop"],

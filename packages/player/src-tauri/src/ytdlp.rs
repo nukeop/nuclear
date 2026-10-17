@@ -1,31 +1,8 @@
 use log::{debug, error};
 use std::process::{Command, Stdio};
-use std::sync::RwLock;
-use tauri::command;
+use tauri::{command, AppHandle};
 
-static YTDLP_PATH: RwLock<Option<String>> = RwLock::new(None);
-
-pub fn set_ytdlp_path(path: String) {
-    if let Ok(mut guard) = YTDLP_PATH.write() {
-        debug!("[yt-dlp] Binary path set to: {}", path);
-        *guard = Some(path);
-    }
-}
-
-fn get_ytdlp_path() -> Result<String, String> {
-    match YTDLP_PATH.read() {
-        Ok(guard) => match guard.as_ref() {
-            Some(path) => Ok(path.clone()),
-            None => {
-                Err("yt-dlp is not installed. It will be downloaded automatically.".to_string())
-            }
-        },
-        Err(_) => {
-            debug!("[yt-dlp] RwLock poisoned, falling back to system PATH");
-            Ok("yt-dlp".to_string())
-        }
-    }
-}
+use crate::ytdlp_setup::ensure_binary;
 
 #[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
 pub struct YtdlpStreamInfo {
@@ -94,8 +71,8 @@ struct YtdlpJson {
     upload_date: Option<String>,
 }
 
-fn run_ytdlp(args: &[&str]) -> Result<String, String> {
-    let program = get_ytdlp_path()?;
+async fn run_ytdlp(app_handle: &AppHandle, args: &[&str]) -> Result<String, String> {
+    let program = ensure_binary(app_handle).await?;
     let mut cmd = Command::new(&program);
     cmd.args(args).stdout(Stdio::piped()).stderr(Stdio::piped());
 
@@ -146,6 +123,7 @@ fn normalize_album_artists(info: &YtdlpJson) -> Vec<String> {
 #[command]
 #[specta::specta]
 pub async fn ytdlp_search(
+    app_handle: AppHandle,
     query: String,
     max_results: Option<u32>,
 ) -> Result<Vec<YtdlpSearchResult>, String> {
@@ -153,12 +131,16 @@ pub async fn ytdlp_search(
     debug!("[yt-dlp] Searching: {} (limit: {})", query, limit);
 
     let search_url = format!("ytsearch{}:{}", limit, query);
-    let stdout = run_ytdlp(&[
-        "--dump-json",
-        "--flat-playlist",
-        "--no-warnings",
-        &search_url,
-    ])?;
+    let stdout = run_ytdlp(
+        &app_handle,
+        &[
+            "--dump-json",
+            "--flat-playlist",
+            "--no-warnings",
+            &search_url,
+        ],
+    )
+    .await?;
 
     let results: Vec<YtdlpSearchResult> = parse_ndjson_entries(&stdout)
         .into_iter()
@@ -187,6 +169,7 @@ pub async fn ytdlp_search(
 #[specta::specta]
 // TODO: Remove video_id parameter after plugins have auto-updated to use url
 pub async fn ytdlp_get_stream(
+    app_handle: AppHandle,
     url: Option<String>,
     video_id: Option<String>,
 ) -> Result<YtdlpStreamInfo, String> {
@@ -198,14 +181,18 @@ pub async fn ytdlp_get_stream(
 
     debug!("[yt-dlp] Getting stream for: {}", resolved_url);
 
-    let stdout = run_ytdlp(&[
-        "-f",
-        "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
-        "--dump-json",
-        "--no-playlist",
-        "--no-warnings",
-        &resolved_url,
-    ])?;
+    let stdout = run_ytdlp(
+        &app_handle,
+        &[
+            "-f",
+            "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
+            "--dump-json",
+            "--no-playlist",
+            "--no-warnings",
+            &resolved_url,
+        ],
+    )
+    .await?;
 
     let info: YtdlpJson = serde_json::from_str(&stdout).map_err(|error| {
         error!("[yt-dlp] Failed to parse output: {}", error);
@@ -241,10 +228,17 @@ pub async fn ytdlp_get_stream(
 
 #[command]
 #[specta::specta]
-pub async fn ytdlp_get_playlist(url: String) -> Result<YtdlpPlaylistInfo, String> {
+pub async fn ytdlp_get_playlist(
+    app_handle: AppHandle,
+    url: String,
+) -> Result<YtdlpPlaylistInfo, String> {
     debug!("[yt-dlp] Getting playlist: {}", url);
 
-    let stdout = run_ytdlp(&["--dump-json", "--flat-playlist", "--no-warnings", &url])?;
+    let stdout = run_ytdlp(
+        &app_handle,
+        &["--dump-json", "--flat-playlist", "--no-warnings", &url],
+    )
+    .await?;
     let entries_json = parse_ndjson_entries(&stdout);
 
     let playlist_title = entries_json

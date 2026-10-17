@@ -7,6 +7,7 @@ import { I18nextProvider } from 'react-i18next';
 import { i18n } from '@nuclearplayer/i18n';
 import { Platform, PlatformProvider } from '@nuclearplayer/ui';
 
+import { useYtdlpDownload } from './hooks/useYtdlpDownload';
 import { routeTree } from './routeTree.gen';
 
 const router = createRouter({ routeTree });
@@ -24,6 +25,8 @@ type AppProps = {
 };
 
 const App: FC<AppProps> = ({ routerProp, queryClientProp }) => {
+  useYtdlpDownload();
+
   return (
     <PlatformProvider platform={platform() as Platform}>
       <I18nextProvider i18n={i18n}>
