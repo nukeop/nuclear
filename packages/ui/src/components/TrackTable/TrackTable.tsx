@@ -1,12 +1,11 @@
 import type { DragEndEvent } from '@dnd-kit/core';
+import { flexRender } from '@tanstack/react-table';
+import type { LegacyColumnDef } from '@tanstack/react-table/legacy';
 import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
+  useLegacyTable,
+} from '@tanstack/react-table/legacy';
 import { useMemo, useRef } from 'react';
 
 import { Track } from '@nuclearplayer/model';
@@ -64,13 +63,13 @@ function TrackTableBase<T extends Track = Track>({
   const { globalFilter, setGlobalFilter, globalFilterFn, hasFilter } =
     useGlobalFilter<T>();
 
-  const columns: ColumnDef<T>[] = useColumns<T>({
+  const columns: LegacyColumnDef<T>[] = useColumns<T>({
     display: resolvedDisplay,
     labels,
     actions,
   });
 
-  const table = useReactTable({
+  const table = useLegacyTable({
     columns,
     data: tracks,
     state: { sorting, globalFilter },
@@ -78,7 +77,6 @@ function TrackTableBase<T extends Track = Track>({
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
     globalFilterFn,
-    getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     meta: {

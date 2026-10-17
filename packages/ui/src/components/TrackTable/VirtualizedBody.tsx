@@ -1,17 +1,20 @@
-import type { Row } from '@tanstack/react-table';
+import type { LegacyRow } from '@tanstack/react-table/legacy';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import { memo } from 'react';
 
 import { Track } from '@nuclearplayer/model';
 
 type Props<T extends Track> = {
-  rows: Row<T>[];
+  rows: LegacyRow<T>[];
   virtualItems: VirtualItem[];
   paddingTop: number;
   paddingBottom: number;
   colSpan: number;
   rowHeight: number;
-  renderRow: (args: { row: Row<T>; virtual: VirtualItem }) => React.ReactNode;
+  renderRow: (args: {
+    row: LegacyRow<T>;
+    virtual: VirtualItem;
+  }) => React.ReactNode;
 };
 
 function Component<T extends Track>(props: Props<T>) {
