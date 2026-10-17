@@ -554,6 +554,20 @@
     "page": "ページ {{pageNumber}}"
   },
   "streaming": {
+    "ytdlp": {
+      "install": {
+        "progress": "Downloading yt-dlp… {{percent}}%",
+        "progressUnknown": "Downloading yt-dlp…",
+        "finished": "yt-dlp downloaded",
+        "failed": "Couldn't download yt-dlp"
+      },
+      "update": {
+        "progress": "Updating yt-dlp… {{percent}}%",
+        "progressUnknown": "Updating yt-dlp…",
+        "finished": "yt-dlp updated",
+        "failed": "Couldn't update yt-dlp"
+      }
+    },
     "errors": {
       "noCandidatesFound": "ストリーム候補が見つかりませんでした",
       "allCandidatesFailed": "すべてのストリーム候補が失敗しました",
@@ -585,6 +599,9 @@
     "browsePlugins": "歌詞プラグインを参照",
     "noLyrics": "このトラックの歌詞はありません",
     "noLyricsDescription": "{{providers, list}} は結果を返しませんでした。",
+    "noLyricsFromAnyProvider": "歌詞プロバイダーから結果が返されませんでした。",
+    "loadError": "歌詞を読み込めませんでした",
+    "loadErrorDescription": "Nuclear への接続を確認し、再度試してください。",
     "providerError": "歌詞プロバイダーが歌詞の読み込みに失敗しました",
     "instrumental": "インストルメンタル",
     "instrumentalDescription": "このトラックには歌詞がありません。",
@@ -630,6 +647,10 @@
       "connected": "接続済み",
       "reconnecting": "再接続中",
       "failed": "切断されました"
+    },
+    "lyrics": {
+      "open": "歌詞を表示",
+      "back": "戻る"
     },
     "queue": {
       "upNext": "次の再生",
