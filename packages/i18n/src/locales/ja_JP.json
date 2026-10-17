@@ -554,6 +554,20 @@
     "page": "ページ {{pageNumber}}"
   },
   "streaming": {
+    "ytdlp": {
+      "install": {
+        "progress": "Downloading yt-dlp… {{percent}}%",
+        "progressUnknown": "Downloading yt-dlp…",
+        "finished": "yt-dlp downloaded",
+        "failed": "Couldn't download yt-dlp"
+      },
+      "update": {
+        "progress": "Updating yt-dlp… {{percent}}%",
+        "progressUnknown": "Updating yt-dlp…",
+        "finished": "yt-dlp updated",
+        "failed": "Couldn't update yt-dlp"
+      }
+    },
     "errors": {
       "noCandidatesFound": "ストリーム候補が見つかりませんでした",
       "allCandidatesFailed": "すべてのストリーム候補が失敗しました",
