@@ -21,7 +21,7 @@ const user = userEvent.setup();
 
 const emitDownload = (payload: DownloadEvent) =>
   act(() => {
-    void emit<DownloadEvent>(YTDLP_DOWNLOAD_EVENT, payload);
+    void emit(YTDLP_DOWNLOAD_EVENT, payload);
   });
 
 const toastElement = () => screen.findByTestId('ytdlp-download-toast');
