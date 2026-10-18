@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 import { Card, CardGrid } from '@nuclearplayer/ui';
 
@@ -46,4 +47,35 @@ export const Default: Story = {
       </CardGrid>
     </div>
   ),
+};
+
+const moveTitle = (titles: string[], title: string, targetTitle: string) => {
+  const reordered = titles.filter((current) => current !== title);
+  reordered.splice(titles.indexOf(targetTitle), 0, title);
+  return reordered;
+};
+
+const SortableGrid = () => {
+  const [titles, setTitles] = useState(items.map((item) => item.title));
+
+  return (
+    <div className="w-full">
+      <CardGrid.Sortable
+        itemIds={titles}
+        onMove={(title, targetTitle) =>
+          setTitles((current) => moveTitle(current, title, targetTitle))
+        }
+      >
+        {titles.map((title, index) => (
+          <CardGrid.SortableItem key={title} id={title}>
+            <Card src={`${cover}?i=${index}`} title={title} />
+          </CardGrid.SortableItem>
+        ))}
+      </CardGrid.Sortable>
+    </div>
+  );
+};
+
+export const Sortable: Story = {
+  render: () => <SortableGrid />,
 };
