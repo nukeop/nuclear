@@ -42,6 +42,13 @@ export const usePlaylistSort = (playlists: PlaylistIndexEntry[]) => {
   const [sortBy, setSortBy] = useState<PlaylistSortBy>('custom');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
+  const selectSortBy = (nextSortBy: PlaylistSortBy) => {
+    setSortBy(nextSortBy);
+    if (nextSortBy === 'custom') {
+      setSortDirection('asc');
+    }
+  };
+
   const toggleSortDirection = () => {
     setSortDirection((current) => {
       if (current === 'asc') {
@@ -63,7 +70,7 @@ export const usePlaylistSort = (playlists: PlaylistIndexEntry[]) => {
 
   return {
     sortBy,
-    setSortBy,
+    setSortBy: selectSortBy,
     sortDirection,
     toggleSortDirection,
     sortedPlaylists,

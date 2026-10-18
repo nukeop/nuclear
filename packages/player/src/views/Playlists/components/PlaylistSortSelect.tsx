@@ -44,6 +44,7 @@ export const PlaylistSortSelect: FC<PlaylistSortSelectProps> = ({
         variant="noShadow"
         size="flexible"
         onClick={onToggleSortDirection}
+        disabled={sortBy === 'custom'}
         data-testid="sort-direction-button"
         className="border-border justify-center rounded-none border-0 border-l-(length:--border-width) px-3"
       >

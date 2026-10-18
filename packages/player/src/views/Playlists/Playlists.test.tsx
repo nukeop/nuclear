@@ -262,6 +262,21 @@ describe('Playlists view', () => {
       expect(PlaylistsWrapper.draggableCardNames).toEqual([]);
     });
 
+    it('shows the saved order after switching to custom from a reversed sort', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Name');
+      await PlaylistsWrapper.sort.direction.toggle();
+
+      await PlaylistsWrapper.sort.select.select('Custom');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Alpha Rock',
+        'Charlie Jazz',
+        'Bravo Rock',
+      ]);
+    });
+
     it('does not let the user reverse the custom order', async () => {
       await PlaylistsWrapper.mount();
 

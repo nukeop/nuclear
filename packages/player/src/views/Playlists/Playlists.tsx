@@ -73,7 +73,7 @@ const PlaylistsContent: FC = () => {
               })
             }
             onMove={movePlaylist}
-            isReorderable={sortBy === 'custom'}
+            isReorderable={sortBy === 'custom' && !hasFilter}
           />
         </ScrollableArea>
       )}
