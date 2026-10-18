@@ -27,8 +27,8 @@ export const SortableCardGridItem: FC<SortableCardGridItemProps> = ({
       data-testid="sortable-card"
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={cn({
-        'cursor-grab': !attributes['aria-disabled'],
+      data-draggable={!attributes['aria-disabled']}
+      className={cn('data-[draggable=true]:cursor-grab', {
         'z-50': isDragging,
       })}
       {...attributes}

@@ -79,6 +79,12 @@ export const PlaylistsWrapper = {
       .getAllByTestId('card')
       .map((card) => within(card).getByTestId('card-title').textContent);
   },
+  get draggableCardNames() {
+    return screen
+      .getAllByTestId('sortable-card')
+      .filter((card) => card.dataset.draggable === 'true')
+      .map((card) => within(card).getByTestId('card-title').textContent);
+  },
   sort: {
     select: createSelectWrapper(() => screen.getByTestId('sort-playlists')),
     direction: {
@@ -107,7 +113,7 @@ export const PlaylistsWrapper = {
     };
   },
   async dragCard(name: string, targetName: string) {
-    const sortableCards = screen.getAllByTestId('sortable-playlist-card');
+    const sortableCards = screen.getAllByTestId('sortable-card');
     sortableCards.forEach(placeInRow);
     const names = PlaylistsWrapper.cardNames;
     const source = sortableCards[names.indexOf(name)];
@@ -121,7 +127,7 @@ export const PlaylistsWrapper = {
         coords: start,
       },
       { coords: { clientX: start.clientX + 10, clientY: start.clientY } },
-      { coords: centerOf(target) },
+      { target: within(target).getByTestId('card'), coords: centerOf(target) },
       { keys: '[/MouseLeft]' },
     ]);
     await new Promise((resolve) => setTimeout(resolve, 50));

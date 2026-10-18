@@ -1,3 +1,4 @@
+import { produce } from 'immer';
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 
@@ -21,6 +22,7 @@ type PlaylistStore = {
   loadPlaylist: (id: string) => Promise<Playlist | null>;
   createPlaylist: (name: string) => Promise<string>;
   deletePlaylist: (id: string) => Promise<void>;
+  movePlaylist: (playlistId: string, targetId: string) => Promise<void>;
   addTracks: (playlistId: string, tracks: Track[]) => Promise<PlaylistItem[]>;
   removeTracks: (playlistId: string, itemIds: string[]) => Promise<void>;
   importPlaylist: (playlist: Playlist) => Promise<string>;
@@ -235,6 +237,17 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
       playlists.delete(id);
       return { playlists, index };
     });
+  },
+
+  movePlaylist: async (playlistId: string, targetId: string) => {
+    const index = produce(get().index, (draft) => {
+      const fromIndex = draft.findIndex((entry) => entry.id === playlistId);
+      const toIndex = draft.findIndex((entry) => entry.id === targetId);
+      const [moved] = draft.splice(fromIndex, 1);
+      draft.splice(toIndex, 0, moved);
+    });
+    set({ index });
+    await playlistFileService.saveIndex(index);
   },
 }));
 

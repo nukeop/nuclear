@@ -45,6 +45,10 @@ export class PlaylistFileService {
     return index;
   }
 
+  async saveIndex(index: PlaylistIndexEntry[]): Promise<void> {
+    await this.#indexStore.save(index);
+  }
+
   async deletePlaylist(id: string): Promise<PlaylistIndexEntry[]> {
     await this.#fileStore.delete(id);
     const index = await this.#indexStore.load();
