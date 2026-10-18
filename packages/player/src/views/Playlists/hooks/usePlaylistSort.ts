@@ -3,14 +3,14 @@ import { useMemo, useState } from 'react';
 import type { PlaylistIndexEntry } from '@nuclearplayer/model';
 
 export type PlaylistSortBy =
-  'name' | 'dateAdded' | 'dateModified' | 'trackCount' | 'duration';
+  'custom' | 'name' | 'dateAdded' | 'dateModified' | 'trackCount' | 'duration';
 
 export type SortDirection = 'asc' | 'desc';
 
 const comparePlaylists = (
   left: PlaylistIndexEntry,
   right: PlaylistIndexEntry,
-  sortBy: PlaylistSortBy,
+  sortBy: Exclude<PlaylistSortBy, 'custom'>,
 ): number => {
   switch (sortBy) {
     case 'name':
@@ -26,8 +26,20 @@ const comparePlaylists = (
   }
 };
 
+const orderPlaylists = (
+  playlists: PlaylistIndexEntry[],
+  sortBy: PlaylistSortBy,
+): PlaylistIndexEntry[] => {
+  if (sortBy === 'custom') {
+    return playlists;
+  }
+  return [...playlists].sort((left, right) =>
+    comparePlaylists(left, right, sortBy),
+  );
+};
+
 export const usePlaylistSort = (playlists: PlaylistIndexEntry[]) => {
-  const [sortBy, setSortBy] = useState<PlaylistSortBy>('dateAdded');
+  const [sortBy, setSortBy] = useState<PlaylistSortBy>('custom');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
   const toggleSortDirection = () => {
@@ -40,12 +52,10 @@ export const usePlaylistSort = (playlists: PlaylistIndexEntry[]) => {
   };
 
   const sortedPlaylists = useMemo(() => {
-    const ascending = [...playlists].sort((left, right) =>
-      comparePlaylists(left, right, sortBy),
-    );
+    const ascending = orderPlaylists(playlists, sortBy);
 
     if (sortDirection === 'desc') {
-      return ascending.reverse();
+      return [...ascending].reverse();
     }
 
     return ascending;

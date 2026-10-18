@@ -22,6 +22,7 @@ export const PlaylistSortSelect: FC<PlaylistSortSelectProps> = ({
   const { t } = useTranslation('playlists');
 
   const options = [
+    { id: 'custom', label: t('sortBy.custom') },
     { id: 'name', label: t('sortBy.name') },
     { id: 'dateAdded', label: t('sortBy.dateAdded') },
     { id: 'dateModified', label: t('sortBy.dateModified') },
