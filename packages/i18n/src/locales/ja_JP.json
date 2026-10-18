@@ -556,16 +556,16 @@
   "streaming": {
     "ytdlp": {
       "install": {
-        "progress": "Downloading yt-dlp… {{percent}}%",
-        "progressUnknown": "Downloading yt-dlp…",
-        "finished": "yt-dlp downloaded",
-        "failed": "Couldn't download yt-dlp"
+        "progress": "yt-dlp のダウンロード中… {{percent}}%",
+        "progressUnknown": "yt-dlp のダウンロード中…",
+        "finished": "yt-dlp ダウンロード済み",
+        "failed": "yt-dlp をダウンロードできません"
       },
       "update": {
-        "progress": "Updating yt-dlp… {{percent}}%",
-        "progressUnknown": "Updating yt-dlp…",
-        "finished": "yt-dlp updated",
-        "failed": "Couldn't update yt-dlp"
+        "progress": "yt-dlp の更新中… {{percent}}%",
+        "progressUnknown": "yt-dlp の更新中…",
+        "finished": "yt-dlp 更新済み",
+        "failed": "yt-dlp を更新できません"
       }
     },
     "errors": {
