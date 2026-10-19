@@ -134,6 +134,7 @@
     "addToPlaylist": "プレイリストに追加",
     "filterPlaylists": "プレイリストを絞り込む...",
     "sortBy": {
+      "custom": "カスタム",
       "name": "名前",
       "dateAdded": "追加日",
       "dateModified": "更新日",
