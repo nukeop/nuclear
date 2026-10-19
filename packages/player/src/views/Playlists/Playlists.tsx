@@ -72,7 +72,7 @@ const PlaylistsContent: FC = () => {
                 params: { playlistId: id },
               })
             }
-            onMove={movePlaylist}
+            onReorder={movePlaylist}
             isReorderable={sortBy === 'custom' && !hasFilter}
           />
         </ScrollableArea>

@@ -19,7 +19,7 @@ describe('Card grid', () => {
 
   it('(Snapshot) Sortable', () => {
     const { container } = render(
-      <CardGrid.Sortable itemIds={['first', 'second']} onMove={() => {}}>
+      <CardGrid.Sortable itemIds={['first', 'second']} onReorder={() => {}}>
         <CardGrid.SortableItem id="first">
           <Card title="First album" subtitle="Test artist" />
         </CardGrid.SortableItem>
@@ -33,7 +33,7 @@ describe('Card grid', () => {
 
   it('(Snapshot) Sortable disabled', () => {
     const { container } = render(
-      <CardGrid.Sortable itemIds={['first']} onMove={() => {}} disabled>
+      <CardGrid.Sortable itemIds={['first']} onReorder={() => {}} disabled>
         <CardGrid.SortableItem id="first">
           <Card title="First album" subtitle="Test artist" />
         </CardGrid.SortableItem>

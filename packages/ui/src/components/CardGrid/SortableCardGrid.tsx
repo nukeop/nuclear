@@ -5,14 +5,18 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import { rectSortingStrategy, SortableContext } from '@dnd-kit/sortable';
+import {
+  hasSortableData,
+  rectSortingStrategy,
+  SortableContext,
+} from '@dnd-kit/sortable';
 import { FC, ReactNode } from 'react';
 
 import { CardGridBase } from './CardGridBase';
 
 type SortableCardGridProps = {
   itemIds: string[];
-  onMove: (itemId: string, targetId: string) => void;
+  onReorder: (fromIndex: number, toIndex: number) => void;
   disabled?: boolean;
   children?: ReactNode;
   className?: string;
@@ -20,7 +24,7 @@ type SortableCardGridProps = {
 
 export const SortableCardGrid: FC<SortableCardGridProps> = ({
   itemIds,
-  onMove,
+  onReorder,
   disabled = false,
   children,
   className,
@@ -30,8 +34,11 @@ export const SortableCardGrid: FC<SortableCardGridProps> = ({
   );
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
-    if (over && active.id !== over.id) {
-      onMove(String(active.id), String(over.id));
+    if (hasSortableData(active) && hasSortableData(over)) {
+      onReorder(
+        active.data.current.sortable.index,
+        over.data.current.sortable.index,
+      );
     }
   };
 

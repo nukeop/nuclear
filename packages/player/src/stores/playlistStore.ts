@@ -22,7 +22,7 @@ type PlaylistStore = {
   loadPlaylist: (id: string) => Promise<Playlist | null>;
   createPlaylist: (name: string) => Promise<string>;
   deletePlaylist: (id: string) => Promise<void>;
-  movePlaylist: (playlistId: string, targetId: string) => Promise<void>;
+  movePlaylist: (fromIndex: number, toIndex: number) => Promise<void>;
   addTracks: (playlistId: string, tracks: Track[]) => Promise<PlaylistItem[]>;
   removeTracks: (playlistId: string, itemIds: string[]) => Promise<void>;
   importPlaylist: (playlist: Playlist) => Promise<string>;
@@ -239,10 +239,8 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
     });
   },
 
-  movePlaylist: async (playlistId: string, targetId: string) => {
+  movePlaylist: async (fromIndex: number, toIndex: number) => {
     const index = produce(get().index, (draft) => {
-      const fromIndex = draft.findIndex((entry) => entry.id === playlistId);
-      const toIndex = draft.findIndex((entry) => entry.id === targetId);
       const [moved] = draft.splice(fromIndex, 1);
       draft.splice(toIndex, 0, moved);
     });

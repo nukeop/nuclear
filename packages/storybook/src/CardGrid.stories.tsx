@@ -49,9 +49,10 @@ export const Default: Story = {
   ),
 };
 
-const moveTitle = (titles: string[], title: string, targetTitle: string) => {
-  const reordered = titles.filter((current) => current !== title);
-  reordered.splice(titles.indexOf(targetTitle), 0, title);
+const moveTitle = (titles: string[], fromIndex: number, toIndex: number) => {
+  const reordered = [...titles];
+  const [moved] = reordered.splice(fromIndex, 1);
+  reordered.splice(toIndex, 0, moved);
   return reordered;
 };
 
@@ -62,8 +63,8 @@ const SortableGrid = () => {
     <div className="w-full">
       <CardGrid.Sortable
         itemIds={titles}
-        onMove={(title, targetTitle) =>
-          setTitles((current) => moveTitle(current, title, targetTitle))
+        onReorder={(fromIndex, toIndex) =>
+          setTitles((current) => moveTitle(current, fromIndex, toIndex))
         }
       >
         {titles.map((title, index) => (

@@ -9,14 +9,14 @@ import { PlaylistArtwork } from './PlaylistArtwork';
 type PlaylistCardGridProps = {
   playlists: PlaylistIndexEntry[];
   onCardClick: (id: string) => void;
-  onMove: (playlistId: string, targetId: string) => void;
+  onReorder: (fromIndex: number, toIndex: number) => void;
   isReorderable: boolean;
 };
 
 export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
   playlists,
   onCardClick,
-  onMove,
+  onReorder,
   isReorderable,
 }) => {
   const { t } = useTranslation('playlists');
@@ -24,7 +24,7 @@ export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
   return (
     <CardGrid.Sortable
       itemIds={playlists.map((playlist) => playlist.id)}
-      onMove={onMove}
+      onReorder={onReorder}
       disabled={!isReorderable}
     >
       {playlists.map((playlist) => (
