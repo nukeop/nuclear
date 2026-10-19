@@ -18,6 +18,7 @@ const PlaylistsContent: FC = () => {
   const { t } = useTranslation('playlists');
   const navigate = useNavigate();
   const index = usePlaylistStore((state) => state.index);
+  const movePlaylist = usePlaylistStore((state) => state.movePlaylist);
   const { filter, setFilter, filteredPlaylists, hasFilter } =
     usePlaylistFilter(index);
   const {
@@ -71,6 +72,8 @@ const PlaylistsContent: FC = () => {
                 params: { playlistId: id },
               })
             }
+            onReorder={movePlaylist}
+            isReorderable={sortBy === 'custom' && !hasFilter}
           />
         </ScrollableArea>
       )}

@@ -218,10 +218,87 @@ describe('Playlists view', () => {
       );
     });
 
-    it('shows the oldest playlists first by default', async () => {
+    it('shows playlists in their saved order by default', async () => {
       await PlaylistsWrapper.mount();
 
-      expect(PlaylistsWrapper.sort.select.selected()).toBe('Date added');
+      expect(PlaylistsWrapper.sort.select.selected()).toBe('Custom');
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Alpha Rock',
+        'Charlie Jazz',
+        'Bravo Rock',
+      ]);
+    });
+
+    it('lets the user drag every card in custom order', async () => {
+      await PlaylistsWrapper.mount();
+
+      expect(PlaylistsWrapper.draggableCardNames).toEqual([
+        'Delta Jazz',
+        'Alpha Rock',
+        'Charlie Jazz',
+        'Bravo Rock',
+      ]);
+    });
+
+    it('moves a playlist to where the user drags it', async () => {
+      await PlaylistsWrapper.mount();
+
+      await PlaylistsWrapper.dragCard('Bravo Rock', 'Alpha Rock');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Bravo Rock',
+        'Alpha Rock',
+        'Charlie Jazz',
+      ]);
+    });
+
+    it.each(['Name', 'Date added', 'Date modified', 'Tracks', 'Length'])(
+      'does not let the user drag cards while sorted by %s',
+      async (sortOption) => {
+        await PlaylistsWrapper.mount();
+
+        await PlaylistsWrapper.sort.select.select(sortOption);
+
+        expect(PlaylistsWrapper.draggableCardNames).toEqual([]);
+      },
+    );
+
+    it('does not let the user drag cards while filtering', async () => {
+      await PlaylistsWrapper.mount();
+
+      await PlaylistsWrapper.filter.type('Rock');
+
+      expect(PlaylistsWrapper.draggableCardNames).toEqual([]);
+    });
+
+    it('shows the saved order after switching to custom from a reversed sort', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Name');
+      await PlaylistsWrapper.sort.direction.toggle();
+
+      await PlaylistsWrapper.sort.select.select('Custom');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Alpha Rock',
+        'Charlie Jazz',
+        'Bravo Rock',
+      ]);
+    });
+
+    it('does not let the user reverse the custom order', async () => {
+      await PlaylistsWrapper.mount();
+
+      expect(PlaylistsWrapper.sort.direction.element).toBeDisabled();
+    });
+
+    it('sorts by date added', async () => {
+      await PlaylistsWrapper.mount();
+
+      await PlaylistsWrapper.sort.select.select('Date added');
+
       expect(PlaylistsWrapper.cardNames).toEqual([
         'Charlie Jazz',
         'Alpha Rock',

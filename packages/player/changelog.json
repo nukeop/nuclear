@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-19T00:00",
+    "description": "You can now reorder your playlists manually.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-10-16T00:00",
     "description": "The first YouTube track no longer fails while yt-dlp is still downloading. Playback waits for the download, and a toast shows its progress",
     "type": "fix",

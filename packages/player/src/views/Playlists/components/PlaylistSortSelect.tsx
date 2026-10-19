@@ -22,6 +22,7 @@ export const PlaylistSortSelect: FC<PlaylistSortSelectProps> = ({
   const { t } = useTranslation('playlists');
 
   const options = [
+    { id: 'custom', label: t('sortBy.custom') },
     { id: 'name', label: t('sortBy.name') },
     { id: 'dateAdded', label: t('sortBy.dateAdded') },
     { id: 'dateModified', label: t('sortBy.dateModified') },
@@ -43,6 +44,7 @@ export const PlaylistSortSelect: FC<PlaylistSortSelectProps> = ({
         variant="noShadow"
         size="flexible"
         onClick={onToggleSortDirection}
+        disabled={sortBy === 'custom'}
         data-testid="sort-direction-button"
         className="border-border justify-center rounded-none border-0 border-l-(length:--border-width) px-3"
       >

@@ -9,30 +9,39 @@ import { PlaylistArtwork } from './PlaylistArtwork';
 type PlaylistCardGridProps = {
   playlists: PlaylistIndexEntry[];
   onCardClick: (id: string) => void;
+  onReorder: (fromIndex: number, toIndex: number) => void;
+  isReorderable: boolean;
 };
 
 export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
   playlists,
   onCardClick,
+  onReorder,
+  isReorderable,
 }) => {
   const { t } = useTranslation('playlists');
 
   return (
-    <CardGrid>
+    <CardGrid.Sortable
+      itemIds={playlists.map((playlist) => playlist.id)}
+      onReorder={onReorder}
+      disabled={!isReorderable}
+    >
       {playlists.map((playlist) => (
-        <Card
-          key={playlist.id}
-          image={
-            <PlaylistArtwork
-              name={playlist.name}
-              thumbnails={playlist.thumbnails}
-            />
-          }
-          title={playlist.name}
-          subtitle={t('trackCount', { count: playlist.itemCount })}
-          onClick={() => onCardClick(playlist.id)}
-        />
+        <CardGrid.SortableItem key={playlist.id} id={playlist.id}>
+          <Card
+            image={
+              <PlaylistArtwork
+                name={playlist.name}
+                thumbnails={playlist.thumbnails}
+              />
+            }
+            title={playlist.name}
+            subtitle={t('trackCount', { count: playlist.itemCount })}
+            onClick={() => onCardClick(playlist.id)}
+          />
+        </CardGrid.SortableItem>
       ))}
-    </CardGrid>
+    </CardGrid.Sortable>
   );
 };

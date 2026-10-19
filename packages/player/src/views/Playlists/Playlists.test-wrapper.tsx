@@ -13,6 +13,29 @@ import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 
 const user = userEvent.setup();
 
+const cardWidth = 168;
+const cardHeight = 220;
+
+const placeInRow = (element: HTMLElement, position: number) => {
+  const left = position * cardWidth;
+  vi.spyOn(element, 'getBoundingClientRect').mockReturnValue({
+    x: left,
+    y: 0,
+    left,
+    top: 0,
+    right: left + cardWidth,
+    bottom: cardHeight,
+    width: cardWidth,
+    height: cardHeight,
+    toJSON: () => ({}),
+  });
+};
+
+const centerOf = (element: HTMLElement) => {
+  const { left, top, width, height } = element.getBoundingClientRect();
+  return { clientX: left + width / 2, clientY: top + height / 2 };
+};
+
 export const PlaylistsWrapper = {
   createPlaylists(...builders: PlaylistBuilder[]) {
     const playlists = builders.map((b) => b.build());
@@ -56,6 +79,12 @@ export const PlaylistsWrapper = {
       .getAllByTestId('card')
       .map((card) => within(card).getByTestId('card-title').textContent);
   },
+  get draggableCardNames() {
+    return screen
+      .getAllByTestId('sortable-card')
+      .filter((card) => within(card).queryByTestId('card-drag-handle'))
+      .map((card) => within(card).getByTestId('card-title').textContent);
+  },
   sort: {
     select: createSelectWrapper(() => screen.getByTestId('sort-playlists')),
     direction: {
@@ -82,6 +111,26 @@ export const PlaylistsWrapper = {
         await user.click(this.element);
       },
     };
+  },
+  async dragCard(name: string, targetName: string) {
+    const sortableCards = screen.getAllByTestId('sortable-card');
+    sortableCards.forEach(placeInRow);
+    const names = PlaylistsWrapper.cardNames;
+    const source = sortableCards[names.indexOf(name)];
+    const target = sortableCards[names.indexOf(targetName)];
+    const start = centerOf(source);
+
+    await user.pointer([
+      {
+        keys: '[MouseLeft>]',
+        target: within(source).getByTestId('card-drag-handle'),
+        coords: start,
+      },
+      { coords: { clientX: start.clientX + 10, clientY: start.clientY } },
+      { target: within(target).getByTestId('card'), coords: centerOf(target) },
+      { keys: '[/MouseLeft]' },
+    ]);
+    await new Promise((resolve) => setTimeout(resolve, 50));
   },
   get detailView() {
     return screen.queryByTestId('playlist-detail-view');
