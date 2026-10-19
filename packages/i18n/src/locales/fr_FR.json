@@ -134,6 +134,7 @@
     "addToPlaylist": "Add to playlist",
     "filterPlaylists": "Filter playlists...",
     "sortBy": {
+      "custom": "Custom",
       "name": "Name",
       "dateAdded": "Date added",
       "dateModified": "Date modified",
