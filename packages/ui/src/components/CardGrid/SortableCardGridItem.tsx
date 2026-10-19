@@ -3,6 +3,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { FC, ReactNode } from 'react';
 
 import { cn } from '../../utils';
+import { CardDragHandle } from './CardDragHandle';
 
 type SortableCardGridItemProps = {
   id: string;
@@ -17,24 +18,29 @@ export const SortableCardGridItem: FC<SortableCardGridItemProps> = ({
     attributes,
     listeners,
     setNodeRef,
+    setActivatorNodeRef,
     transform,
     transition,
     isDragging,
   } = useSortable({ id });
+  const isDraggable = !attributes['aria-disabled'];
 
   return (
     <div
       data-testid="sortable-card"
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      data-draggable={!attributes['aria-disabled']}
-      className={cn('data-[draggable=true]:cursor-grab', {
-        'z-50': isDragging,
-      })}
-      {...attributes}
-      {...listeners}
+      className={cn('relative w-fit', { 'z-50': isDragging })}
     >
-      {children}
+      <div className="peer">{children}</div>
+      {isDraggable && (
+        <CardDragHandle
+          ref={setActivatorNodeRef}
+          className="peer-hover:translate-x-shadow-x peer-hover:translate-y-[calc(-50%+var(--shadow-y))]"
+          {...attributes}
+          {...listeners}
+        />
+      )}
     </div>
   );
 };

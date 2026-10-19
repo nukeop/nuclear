@@ -82,7 +82,7 @@ export const PlaylistsWrapper = {
   get draggableCardNames() {
     return screen
       .getAllByTestId('sortable-card')
-      .filter((card) => card.dataset.draggable === 'true')
+      .filter((card) => within(card).queryByTestId('card-drag-handle'))
       .map((card) => within(card).getByTestId('card-title').textContent);
   },
   sort: {
@@ -123,7 +123,7 @@ export const PlaylistsWrapper = {
     await user.pointer([
       {
         keys: '[MouseLeft>]',
-        target: within(source).getByTestId('card'),
+        target: within(source).getByTestId('card-drag-handle'),
         coords: start,
       },
       { coords: { clientX: start.clientX + 10, clientY: start.clientY } },

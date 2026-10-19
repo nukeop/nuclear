@@ -230,6 +230,17 @@ describe('Playlists view', () => {
       ]);
     });
 
+    it('lets the user drag every card in custom order', async () => {
+      await PlaylistsWrapper.mount();
+
+      expect(PlaylistsWrapper.draggableCardNames).toEqual([
+        'Delta Jazz',
+        'Alpha Rock',
+        'Charlie Jazz',
+        'Bravo Rock',
+      ]);
+    });
+
     it('moves a playlist to where the user drags it', async () => {
       await PlaylistsWrapper.mount();
 

@@ -56,13 +56,14 @@ const moveTitle = (titles: string[], fromIndex: number, toIndex: number) => {
   return reordered;
 };
 
-const SortableGrid = () => {
+const SortableGrid = ({ disabled = false }: { disabled?: boolean }) => {
   const [titles, setTitles] = useState(items.map((item) => item.title));
 
   return (
     <div className="w-full">
       <CardGrid.Sortable
         itemIds={titles}
+        disabled={disabled}
         onReorder={(fromIndex, toIndex) =>
           setTitles((current) => moveTitle(current, fromIndex, toIndex))
         }
@@ -79,4 +80,8 @@ const SortableGrid = () => {
 
 export const Sortable: Story = {
   render: () => <SortableGrid />,
+};
+
+export const SortableDisabled: Story = {
+  render: () => <SortableGrid disabled />,
 };

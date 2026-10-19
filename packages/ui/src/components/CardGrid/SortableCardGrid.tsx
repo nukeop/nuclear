@@ -12,6 +12,7 @@ import {
 } from '@dnd-kit/sortable';
 import { FC, ReactNode } from 'react';
 
+import { cn } from '../../utils';
 import { CardGridBase } from './CardGridBase';
 
 type SortableCardGridProps = {
@@ -49,7 +50,9 @@ export const SortableCardGrid: FC<SortableCardGridProps> = ({
         strategy={rectSortingStrategy}
         disabled={disabled}
       >
-        <CardGridBase className={className}>{children}</CardGridBase>
+        <CardGridBase className={cn('gap-x-7 pl-3.5', className)}>
+          {children}
+        </CardGridBase>
       </SortableContext>
     </DndContext>
   );
