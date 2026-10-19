@@ -134,6 +134,7 @@
     "addToPlaylist": "Добавить в плейлист",
     "filterPlaylists": "Отфильтровать плейлисты...",
     "sortBy": {
+      "custom": "Custom",
       "name": "Name",
       "dateAdded": "Date added",
       "dateModified": "Date modified",
