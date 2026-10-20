@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-20T00:00",
+    "description": "YouTube videos whose IDs start with a dash play again instead of being skipped for the next search result",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-10-19T00:00",
     "description": "You can now reorder your playlists manually.",
     "type": "feature",
