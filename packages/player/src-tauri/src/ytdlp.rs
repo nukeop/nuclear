@@ -71,10 +71,23 @@ struct YtdlpJson {
     upload_date: Option<String>,
 }
 
-async fn run_ytdlp(app_handle: &AppHandle, args: &[&str]) -> Result<String, String> {
+fn build_args<'a>(options: &[&'a str], target: &'a str) -> Vec<&'a str> {
+    let mut args = options.to_vec();
+    args.push("--");
+    args.push(target);
+    args
+}
+
+async fn run_ytdlp(
+    app_handle: &AppHandle,
+    options: &[&str],
+    target: &str,
+) -> Result<String, String> {
     let program = ensure_binary(app_handle).await?;
     let mut cmd = Command::new(&program);
-    cmd.args(args).stdout(Stdio::piped()).stderr(Stdio::piped());
+    cmd.args(build_args(options, target))
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped());
 
     #[cfg(target_os = "windows")]
     {
@@ -133,12 +146,8 @@ pub async fn ytdlp_search(
     let search_url = format!("ytsearch{}:{}", limit, query);
     let stdout = run_ytdlp(
         &app_handle,
-        &[
-            "--dump-json",
-            "--flat-playlist",
-            "--no-warnings",
-            &search_url,
-        ],
+        &["--dump-json", "--flat-playlist", "--no-warnings"],
+        &search_url,
     )
     .await?;
 
@@ -189,8 +198,8 @@ pub async fn ytdlp_get_stream(
             "--dump-json",
             "--no-playlist",
             "--no-warnings",
-            &resolved_url,
         ],
+        &resolved_url,
     )
     .await?;
 
@@ -236,7 +245,8 @@ pub async fn ytdlp_get_playlist(
 
     let stdout = run_ytdlp(
         &app_handle,
-        &["--dump-json", "--flat-playlist", "--no-warnings", &url],
+        &["--dump-json", "--flat-playlist", "--no-warnings"],
+        &url,
     )
     .await?;
     let entries_json = parse_ndjson_entries(&stdout);
@@ -417,6 +427,18 @@ not json
         #[test]
         fn returns_empty_when_all_null() {
             assert!(normalize_album_artists(&empty_json()).is_empty());
+        }
+    }
+
+    mod build_args_tests {
+        use super::*;
+
+        #[test]
+        fn places_dash_prefixed_video_id_after_end_of_options_marker() {
+            assert_eq!(
+                build_args(&["--dump-json", "--no-warnings"], "-2-tGiD2MpU"),
+                vec!["--dump-json", "--no-warnings", "--", "-2-tGiD2MpU"]
+            );
         }
     }
 }
