@@ -303,7 +303,8 @@
         "empty": "No plugins available yet."
       },
       "installError": {
-        "title": "Failed to install {{name}}"
+        "title": "Failed to install {{name}}",
+        "unverifiedRelease": "The plugin registry has no verified release for this plugin."
       }
     }
   },
