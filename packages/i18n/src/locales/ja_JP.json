@@ -303,7 +303,8 @@
         "empty": "利用可能なプラグインはまだありません。"
       },
       "installError": {
-        "title": "{{name}} のインストールに失敗しました"
+        "title": "{{name}} のインストールに失敗しました",
+        "unverifiedRelease": "The plugin registry has no verified release for this plugin."
       }
     }
   },
