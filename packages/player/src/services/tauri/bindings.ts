@@ -9,6 +9,7 @@ export const commands = {
 	copyDirRecursive: (from: string, to: string) => typedError<null, string>(__TAURI_INVOKE("copy_dir_recursive", { from, to })),
 	extractZip: (zipPath: string, destPath: string) => typedError<null, string>(__TAURI_INVOKE("extract_zip", { zipPath, destPath })),
 	downloadFile: (url: string, destPath: string) => typedError<null, string>(__TAURI_INVOKE("download_file", { url, destPath })),
+	sha256File: (path: string) => typedError<string, string>(__TAURI_INVOKE("sha256_file", { path })),
 	httpFetch: (request: HttpRequest) => typedError<HttpResponse, string>(__TAURI_INVOKE("http_fetch", { request })),
 	ytdlpSearch: (query: string, maxResults: number | null) => typedError<YtdlpSearchResult[], string>(__TAURI_INVOKE("ytdlp_search", { query, maxResults })),
 	ytdlpGetStream: (url: string | null, videoId: string | null) => typedError<YtdlpStreamInfo, string>(__TAURI_INVOKE("ytdlp_get_stream", { url, videoId })),

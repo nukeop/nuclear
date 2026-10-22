@@ -1,26 +1,31 @@
+import '../../test/mocks/plugin-fs';
+
 import { mockIPC } from '@tauri-apps/api/mocks';
 import { screen } from '@testing-library/react';
+import omit from 'lodash-es/omit';
 
+import { usePluginStore } from '../../stores/pluginStore';
 import { FetchMock } from '../../test/mocks/fetch';
 import { PluginFsMock } from '../../test/mocks/plugin-fs';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { PluginsWrapper } from './Plugins.test-wrapper';
 import {
-  fakeGitHubRelease,
+  fakeInstallableYouTubePlugin,
   fakeMarketplacePlugins,
   fakeYouTubePluginManifest,
 } from './Plugins.test.data';
 
-const setupRegistryMock = () => {
+const setupRegistryMock = (plugins = fakeMarketplacePlugins) => {
   FetchMock.get('plugin-registry', {
     version: 1,
-    plugins: fakeMarketplacePlugins,
+    plugins,
   });
 };
 
 describe('Plugin Store', () => {
   beforeEach(() => {
     resetInMemoryTauriStore();
+    usePluginStore.setState({ plugins: {} });
     FetchMock.reset();
   });
 
@@ -110,15 +115,14 @@ describe('Plugin Store', () => {
   });
 
   it('installs a plugin from the store', async () => {
-    setupRegistryMock();
-    FetchMock.get(
-      '/repos/NuclearPlayer/nuclear-youtube-plugin/releases/latest',
-      fakeGitHubRelease('NuclearPlayer/nuclear-youtube-plugin'),
-    );
+    setupRegistryMock([fakeInstallableYouTubePlugin]);
 
     mockIPC((cmd) => {
       if (cmd === 'download_file') {
         return undefined;
+      }
+      if (cmd === 'sha256_file') {
+        return fakeInstallableYouTubePlugin.sha256;
       }
       if (cmd === 'extract_zip') {
         return undefined;
@@ -149,5 +153,56 @@ describe('Plugin Store', () => {
     const installedPlugins = PluginsWrapper.getPlugins();
     expect(installedPlugins).toHaveLength(1);
     expect(installedPlugins[0].name).toBe('YouTube Music');
+  });
+
+  it('does not install a plugin whose registry entry has no sha256', async () => {
+    setupRegistryMock([omit(fakeInstallableYouTubePlugin, 'sha256')]);
+
+    await PluginsWrapper.mount();
+    await PluginsWrapper.goToStoreTab();
+    await screen.findAllByTestId('plugin-store-item');
+
+    await PluginsWrapper.getStorePlugins()[0].install();
+
+    expect(
+      await screen.findByText(
+        'The plugin registry has no verified release for this plugin.',
+      ),
+    ).toBeVisible();
+
+    await PluginsWrapper.goToInstalledTab();
+    expect(PluginsWrapper.installedEmptyState).toBeInTheDocument();
+  });
+
+  it('does not install a plugin whose download hash does not match the registry', async () => {
+    setupRegistryMock([fakeInstallableYouTubePlugin]);
+
+    mockIPC((cmd) => {
+      if (cmd === 'download_file') {
+        return undefined;
+      }
+      if (cmd === 'sha256_file') {
+        return 'd121be3103007b41edf96f8262925f8c7d61894afe9a041843b631f69445bc57';
+      }
+    });
+
+    PluginFsMock.setExists(true);
+    PluginFsMock.setMkdir(undefined);
+    PluginFsMock.setRemove();
+
+    await PluginsWrapper.mount();
+    await PluginsWrapper.goToStoreTab();
+    await screen.findAllByTestId('plugin-store-item');
+
+    await PluginsWrapper.getStorePlugins()[0].install();
+
+    expect(
+      await screen.findByText(
+        'plugin.zip sha256 mismatch: expected ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad, got d121be3103007b41edf96f8262925f8c7d61894afe9a041843b631f69445bc57',
+      ),
+    ).toBeVisible();
+
+    await PluginsWrapper.goToInstalledTab();
+    expect(PluginsWrapper.installedEmptyState).toBeInTheDocument();
   });
 });

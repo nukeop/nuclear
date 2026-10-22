@@ -41,6 +41,7 @@ fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
         commands::copy_dir_recursive,
         commands::extract_zip,
         commands::download_file,
+        commands::sha256_file,
         http::http_fetch,
         ytdlp::ytdlp_search,
         ytdlp::ytdlp_get_stream,

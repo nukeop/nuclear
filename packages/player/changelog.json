@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-22T00:00",
+    "description": "Nuclear now verifies the plugins installed from the store to ensure they're safe to install.",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-10-20T00:00",
     "description": "YouTube videos whose IDs start with a dash play again instead of being skipped for the next search result",
     "type": "fix",
