@@ -303,7 +303,8 @@
         "empty": "Нет доступных плагинов."
       },
       "installError": {
-        "title": "Не удалось установить {{name}}"
+        "title": "Не удалось установить {{name}}",
+        "unverifiedRelease": "The plugin registry has no verified release for this plugin."
       }
     }
   },
