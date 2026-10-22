@@ -303,7 +303,8 @@
         "empty": "Nessuna estensione ancora disponibile."
       },
       "installError": {
-        "title": "Impossibile installare {{name}}"
+        "title": "Impossibile installare {{name}}",
+        "unverifiedRelease": "The plugin registry has no verified release for this plugin."
       }
     }
   },
