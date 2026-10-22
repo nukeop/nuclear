@@ -7,6 +7,7 @@ export class MarketplacePluginBuilder {
     description: 'A default plugin',
     author: 'tester',
     repo: 'tester/default-plugin',
+    sha256: 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',
     addedAt: '2026-01-01T00:00:00.000Z',
   };
 
@@ -43,6 +44,11 @@ export class MarketplacePluginBuilder {
 
   withDownloadUrl(downloadUrl: string): MarketplacePluginBuilder {
     this.plugin.downloadUrl = downloadUrl;
+    return this;
+  }
+
+  withoutSha256(): MarketplacePluginBuilder {
+    delete this.plugin.sha256;
     return this;
   }
 

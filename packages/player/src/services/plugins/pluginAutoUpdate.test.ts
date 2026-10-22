@@ -24,6 +24,8 @@ vi.mock('@tauri-apps/plugin-log', () => ({
 const DOWNLOAD_BASE =
   '/home/user/.local/share/com.nuclearplayer/plugins/.downloads';
 
+const REGISTRY_SHA256 = new MarketplacePluginBuilder().build().sha256;
+
 describe('checkAndUpdatePlugins', () => {
   beforeEach(() => {
     resetInMemoryTauriStore();
@@ -33,6 +35,9 @@ describe('checkAndUpdatePlugins', () => {
     mockIPC((cmd) => {
       if (cmd === 'copy_dir_recursive') {
         return true;
+      }
+      if (cmd === 'sha256_file') {
+        return REGISTRY_SHA256;
       }
     });
   });
@@ -183,6 +188,9 @@ describe('checkAndUpdatePlugins', () => {
       if (cmd === 'copy_dir_recursive') {
         return true;
       }
+      if (cmd === 'sha256_file') {
+        return REGISTRY_SHA256;
+      }
       if (
         cmd === 'download_file' &&
         (args as Record<string, string>).url?.includes('failing-plugin')
@@ -206,10 +214,11 @@ describe('checkAndUpdatePlugins', () => {
     );
   });
 
-  it('skips plugins missing version or downloadUrl in marketplace', async () => {
+  it('skips plugins missing version, downloadUrl or sha256 in marketplace', async () => {
     useSettingsStore.getState().setValue('core.plugins.autoUpdate', true);
     await seedPlugin({ id: 'no-version' });
     await seedPlugin({ id: 'no-url' });
+    await seedPlugin({ id: 'no-sha256' });
     await seedPlugin({ id: 'has-both' });
 
     FetchMock.get('plugin-registry', {
@@ -222,6 +231,12 @@ describe('checkAndUpdatePlugins', () => {
         new MarketplacePluginBuilder()
           .withId('no-url')
           .withVersion('2.0.0')
+          .build(),
+        new MarketplacePluginBuilder()
+          .withId('no-sha256')
+          .withVersion('2.0.0')
+          .withDownloadUrl('https://example.com/no-sha256.zip')
+          .withoutSha256()
           .build(),
         new MarketplacePluginBuilder()
           .withId('has-both')
@@ -241,6 +256,7 @@ describe('checkAndUpdatePlugins', () => {
     const plugins = usePluginStore.getState();
     expect(plugins.getPlugin('no-version')?.metadata.version).toBe('1.0.0');
     expect(plugins.getPlugin('no-url')?.metadata.version).toBe('1.0.0');
+    expect(plugins.getPlugin('no-sha256')?.metadata.version).toBe('1.0.0');
     expect(plugins.getPlugin('has-both')?.metadata.version).toBe('2.0.0');
   });
 

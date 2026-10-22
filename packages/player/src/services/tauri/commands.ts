@@ -24,3 +24,7 @@ export const downloadFile = async (
 ): Promise<void> => {
   await invoke('download_file', { url, destPath });
 };
+
+export const sha256File = async (path: string): Promise<string> => {
+  return invoke<string>('sha256_file', { path });
+};
