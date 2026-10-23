@@ -33,67 +33,67 @@
     "favoriteTracks": "Избранные треки",
     "favoriteArtists": "Избранные артисты",
     "playlists": "Плейлисты",
-    "history": "History",
-    "lyrics": "Lyrics",
-    "sources": "Sources"
+    "history": "История",
+    "lyrics": "Тексты песен",
+    "sources": "Источники"
   },
   "history": {
-    "title": "History",
-    "empty": "Nothing played yet",
-    "emptyDescription": "Tracks you play will appear here",
-    "today": "Today",
-    "yesterday": "Yesterday",
+    "title": "История",
+    "empty": "Пока ничего не прослушано",
+    "emptyDescription": "Прослушанные песни будут появляться здесь",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
     "tabs": {
-      "stats": "Stats",
-      "listeningHistory": "Listening history"
+      "stats": "Статистика",
+      "listeningHistory": "История прослушивания"
     },
     "row": {
-      "favorite": "Add to favorites",
-      "unfavorite": "Remove from favorites",
-      "addToQueue": "Add to queue"
+      "favorite": "Добавить в Избранное",
+      "unfavorite": "Удалить из Избранного",
+      "addToQueue": "Добавить в очередь"
     },
     "stats": {
-      "busiestHour": "Busiest hour",
-      "listeningTime": "Listening time",
-      "hourOfDay": "Time of day",
-      "dayOfWeek": "Day of week",
-      "calendar": "Listening calendar",
-      "topArtists": "Top artists",
-      "topAlbums": "Top albums",
-      "topTracks": "Top tracks",
-      "empty": "No listening data yet",
-      "emptyDescription": "Tracks you listen to will show up in your stats",
-      "legendLess": "Less",
+      "busiestHour": "Час наибольшей активности ",
+      "listeningTime": "Время прослушивания",
+      "hourOfDay": "По часам",
+      "dayOfWeek": "По дням недели",
+      "calendar": "Календарь прослушивания",
+      "topArtists": "Лучшие Исполнители",
+      "topAlbums": "Лучшие Альбомы",
+      "topTracks": "Лучшие Треки",
+      "empty": "Пока нет данных о прослушанных треках",
+      "emptyDescription": "Прослушанные треки будут появляться в вашей статистике",
+      "legendLess": "Меньше",
       "legendMore": "Больше",
       "range": {
-        "last7Days": "Last 7 days",
-        "last30Days": "Last 30 days",
-        "last90Days": "Last 90 days",
-        "last12Months": "Last 12 months",
-        "allTime": "All time"
+        "last7Days": "За 7 дней",
+        "last30Days": "За 30 дней",
+        "last90Days": "За 90 дней",
+        "last12Months": "За 12 месяцев",
+        "allTime": "За всё время"
       }
     }
   },
   "sources": {
-    "title": "Sources",
-    "streaming": "Streaming",
-    "streamingDescription": "Streaming sources provide audio. When you play a track, the streaming source finds and delivers the audio stream.",
-    "metadata": "Metadata",
-    "metadataDescription": "Metadata sources provide information about artists, albums, and tracks. Search results, artist pages, and album details come from the active metadata source.",
-    "dashboard": "Dashboard",
-    "dashboardDescription": "Dashboard sources provide personalized content like top tracks, new releases, and recommendations on the home screen.",
-    "playlists": "Playlists",
-    "playlistsDescription": "Playlist sources let you import playlists from external services by URL.",
-    "discovery": "Discovery",
-    "discoveryDescription": "Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.",
-    "lyrics": "Lyrics",
-    "lyricsDescription": "Lyrics sources provide lyrics for the current track. Nuclear gets lyrics from all lyrics sources at the same time and shows the best result. You can select the lyrics of a different source in the Lyrics view.",
+    "title": "Источники",
+    "streaming": "Трансляция",
+    "streamingDescription": "Источники трансляции проигрывают аудио. Когда вы включаете трек, источник трансляции находит и воспроизводить аудио.",
+    "metadata": "Метаданные",
+    "metadataDescription": "Источники метаданных предоставляют информацию об исполнителях, альбомах и треках. Результаты поиска, страницы исполнителей и детали альбома Nuclear получает из активного источника метаданных.",
+    "dashboard": "Панель",
+    "dashboardDescription": "Источники панели предоставляют персонализированный контент такой, как лучшее треки, новые релизы и рекомендации на домашнем экране.",
+    "playlists": "Плейлисты",
+    "playlistsDescription": "Источники плейлистов позволяют импортировать плейлисты из внешних сервисов по URL.",
+    "discovery": "Обнаружение",
+    "discoveryDescription": "Источники обнаружения рекомендуют новые треки на основе того, что вы слушаете. Включите обнаружение музыки, используя иконку бумбокса в нижней панели.",
+    "lyrics": "Текст песни",
+    "lyricsDescription": "Источники текстов песен обеспечивают играющий трек текстом. Nuclear получает тексты одновременно из всех источников и показывает лучший результат. Вы можете выбирать текст песни из разных источников при Просмотре текста.",
     "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
-    "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available",
-    "noProviders": "No providers installed"
+    "missingStreamingProvider": "Необходимый провайдер трансляции \"{{providerId}}\" не доступен",
+    "noProviders": "Нет установленных провайдеров"
   },
   "discovery": {
-    "recommendationError": "Failed to get recommendations"
+    "recommendationError": "Не удалось получить рекомендации"
   },
   "favorites": {
     "albums": {
