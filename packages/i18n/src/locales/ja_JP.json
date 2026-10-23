@@ -304,7 +304,7 @@
       },
       "installError": {
         "title": "{{name}} のインストールに失敗しました",
-        "unverifiedRelease": "The plugin registry has no verified release for this plugin."
+        "unverifiedRelease": "プラグインレジストリには、このプラグインの検証済みリリースは存在しません。"
       }
     }
   },
