@@ -134,15 +134,15 @@
     "addToPlaylist": "Добавить в плейлист",
     "filterPlaylists": "Отфильтровать плейлисты...",
     "sortBy": {
-      "custom": "Custom",
-      "name": "Name",
-      "dateAdded": "Date added",
-      "dateModified": "Date modified",
-      "trackCount": "Tracks",
-      "duration": "Length"
+      "custom": "По выбору",
+      "name": "Название",
+      "dateAdded": "Дата добавления",
+      "dateModified": "Дата изменения",
+      "trackCount": "Треки",
+      "duration": "Длительность"
     },
-    "filterNoResults": "No playlists match your filter",
-    "filterNoResultsDescription": "Change or remove the search query",
+    "filterNoResults": "Не найдено плейлистов по вашему фильтру",
+    "filterNoResultsDescription": "Измените или удалите поисковой запрос",
     "createNew": "Создать новый плейлист",
     "saveQueueAsPlaylist": "Сохранить очередь как плейлист",
     "name": "Название",
@@ -167,8 +167,8 @@
     "noResults": "Ничего не найдено",
     "searching": "Поиск...",
     "failedToLoad": "Не удалось загрузить результаты.",
-    "clearRecentSearches": "Clear recent searches",
-    "recentSearches": "Recent searches",
+    "clearRecentSearches": "Очистить историю поиска",
+    "recentSearches": "Недавно искали",
     "results": {
       "tracks": "Треки",
       "albums": "Альбомы",
@@ -182,9 +182,9 @@
       "artists": "Артисты",
       "playlists": "Плейлисты"
     },
-    "empty-state": "No metadata plugin installed",
-    "empty-state-description": "Install a metadata plugin to search for music.",
-    "empty-state-action": "Browse plugins"
+    "empty-state": "Плагин метаданных не установлен",
+    "empty-state-description": "Установите плагин метаданных для поиска музыки.",
+    "empty-state-action": "Просмотреть плагины"
   },
   "artist": {
     "title": "Артист",
@@ -223,33 +223,33 @@
     "title": "Темы",
     "basic": "Базовые темы",
     "advanced": "Продвинутые темы",
-    "marketplace": "Store themes",
+    "marketplace": "Темы из магазина",
     "default": "По умолчанию",
-    "selectPlaceholder": "Select a theme",
+    "selectPlaceholder": "Выберите тему",
     "description": "Темы из директории данных приложения",
     "tabs": {
-      "myThemes": "My themes",
-      "store": "Store"
+      "myThemes": "Мои темы",
+      "store": "Магазин"
     },
     "store": {
-      "searchPlaceholder": "Search themes...",
-      "install": "Install",
-      "installing": "Installing",
-      "installed": "Installed",
-      "by": "by",
-      "installError": "Failed to install {{name}}",
-      "loadError": "Failed to load the theme store.",
-      "apply": "Apply",
-      "active": "Active",
-      "uninstall": "Uninstall",
-      "uninstallError": "Failed to uninstall {{name}}"
+      "searchPlaceholder": "Поиск тем...",
+      "install": "Установить",
+      "installing": "Установка",
+      "installed": "Установлено",
+      "by": "от",
+      "installError": "Не удалось установить {{name}}",
+      "loadError": "Не удалось загрузить магазин тем.",
+      "apply": "Применить",
+      "active": "Активно",
+      "uninstall": "Удалить",
+      "uninstallError": "Не удалось удалить {{name}}"
     }
   },
   "dashboard": {
     "title": "Панель",
     "empty-state": "Нет доступных данных в панели управления",
     "empty-state-description": "Включите плагин, который предоставляет содержимое панели.",
-    "empty-state-action": "Browse plugins",
+    "empty-state-action": "Найти плагины",
     "top-tracks": "Лучшие Треки",
     "top-artists": "Лучшие Исполнители",
     "top-albums": "Лучшие Альбомы",
@@ -269,11 +269,11 @@
       "store": "Магазин"
     },
     "installed": {
-      "empty-state": "No plugins installed",
-      "empty-state-description": "Browse the plugin store to find streaming, metadata, and other plugins.",
-      "empty-state-action": "Go to store",
-      "update-available": "Update available",
-      "by": "by"
+      "empty-state": "Нет установленных плагинов",
+      "empty-state-description": "Просмотрите магазин плагинов, чтобы найти плагины трансляции, метаданных и других.",
+      "empty-state-action": "Перейти в магазин",
+      "update-available": "Доступно обновление",
+      "by": "от"
     },
     "store": {
       "searchPlaceholder": "Поиск плагинов...",
@@ -287,9 +287,9 @@
         "metadata": "Метаданные",
         "lyrics": "Текст",
         "scrobbling": "Скробблинг",
-        "dashboard": "Dashboard",
-        "playlists": "Playlists",
-        "discovery": "Discovery",
+        "dashboard": "Панель",
+        "playlists": "Плейлисты",
+        "discovery": "Обнаружение",
         "other": "Прочие"
       },
       "error": {
@@ -304,15 +304,15 @@
       },
       "installError": {
         "title": "Не удалось установить {{name}}",
-        "unverifiedRelease": "The plugin registry has no verified release for this plugin."
+        "unverifiedRelease": "В реестре плагинов нет проверенного релиза для этого плагина"
       }
     }
   },
   "updater": {
     "updateAvailable": "Доступно обновление",
-    "clickToUpdate": "Click to update",
-    "downloading": "Downloading... {{progress}}%",
-    "clickToRestart": "Click to restart"
+    "clickToUpdate": "Нажмите, чтобы обновить",
+    "downloading": "Загрузка... {{progress}}%",
+    "clickToRestart": "Нажми, чтобы перезапустить"
   },
   "flatpak": {
     "sandboxWarning": "Вы используете Nuclear в среде Flatpak. Некоторые функции могут работать неправильно. Если вы столкнулись с проблемами, попробуйте .deb или AppImage.",
@@ -321,8 +321,8 @@
   "preferences": {
     "title": "Настройки",
     "navigation": {
-      "general": "Settings",
-      "app": "App"
+      "general": "Настройки",
+      "app": "Приложение"
     },
     "general": {
       "title": "Общие",
@@ -334,8 +334,8 @@
     "plugins": {
       "title": "Плагины",
       "auto-update": {
-        "title": "Auto-update plugins",
-        "description": "Automatically download and install new versions of store plugins on startup"
+        "title": "Автообновление плагинов",
+        "description": "Автоматически загружает и устанавливает новые версии плагинов из магазина при запуске"
       }
     },
     "themes": {
@@ -372,25 +372,25 @@
     "appearance": {
       "title": "Оформление",
       "framelessWindow": {
-        "title": "Frameless window",
-        "description": "Hide the native title bar. Drag the top bar to move the window."
+        "title": "Окно без рамки",
+        "description": "Скрывает стандартную строку заголовка. Зажмите ЛКМ вверху панели для перемещения окна."
       },
       "customTitleBar": {
-        "title": "Custom title bar",
-        "description": "Replace the native title bar with a styled one that matches the app."
+        "title": "Пользовательская строка заголовка",
+        "description": "Заменяет стандартную строку заголовка стилизованной, которая соответствует приложению."
       },
       "titleBarStyle": {
-        "title": "Title bar style",
-        "description": "Choose the visual style for the custom title bar controls."
+        "title": "Стиль строки заголовка",
+        "description": "Выберите визуальный стиль для пользовательских элементов управления в строке заголовка."
       }
     },
     "lyrics": {
       "textSize": {
-        "title": "Lyrics text size",
-        "description": "The size of the text in the lyrics view."
+        "title": "Размер текста песен",
+        "description": "Размер текста при просмотре."
       },
       "autoScroll": {
-        "title": "Lyrics auto-scroll",
+        "title": "Автопрокрутка текста песни",
         "description": "Scroll synced lyrics along with the song."
       }
     },
