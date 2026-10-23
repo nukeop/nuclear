@@ -391,7 +391,7 @@
       },
       "autoScroll": {
         "title": "Автопрокрутка текста песни",
-        "description": "Scroll synced lyrics along with the song."
+        "description": "Текст прокручивается синхронно с песней."
       }
     },
     "playback": {
@@ -413,25 +413,25 @@
         "description": "Количество раз, чтобы повторить попытку разрешить URL трансляции перед переходом к следующему кандидату"
       },
       "discoveryVariety": {
-        "title": "Discovery variety",
-        "description": "How far recommendations deviate from your current listening. Lower is closer.",
-        "startLabel": "Less crazy",
-        "endLabel": "More crazy"
+        "title": "Разнообразие в рекомендациях",
+        "description": "Нас сколько сильно рекомендации отклоняются от вашего текущего прослушивания. Чем меньше значение, тем меньше отклонение.",
+        "startLabel": "Меньше сумасшедшего",
+        "endLabel": "Больше сумасшедшего"
       },
       "streamVerification": {
-        "title": "Stream verification",
-        "description": "Nuclear plays the streams that you verified and shows the verification bar. When this setting is off, Nuclear ignores all verifications."
+        "title": "Подтверждение трансляции",
+        "description": "Nuclear транслирует аудио, которые вы проверили, и показывает статус проверки. Когда эта настройка выключена, Nuclear игнорирует все проверки."
       },
       "streamVerificationService": {
-        "title": "Online verification",
-        "description": "Nuclear sends your verifications to the verification service and gets the streams that other users verified. This setting has no effect when stream verification is off."
+        "title": "Верификация онлайн",
+        "description": "Nuclear посылает ваши верификации в службу проверки и получает проверенные песен от других пользователей. Этот параметр не имеет эффекта, когда проверка потока выключена."
       }
     },
     "history": {
-      "title": "History",
+      "title": "История",
       "enabled": {
-        "title": "Record listening history",
-        "description": "Keep a local record of the music you play."
+        "title": "Сохранять историю прослушивания",
+        "description": "Хранение локального списка прослушанных треков."
       }
     },
     "layout": {
@@ -452,16 +452,16 @@
       "title": "Интеграции",
       "jam": {
         "enabled": {
-          "title": "Nuclear Jam",
-          "description": "Start a local web server that lets you control Nuclear from other devices on your network."
+          "title": "Nuclear Джем",
+          "description": "Запускает локальный веб-сервер, который позволит вам управлять Nuclear с других устройств в вашей сети."
         },
         "remoteUrl": {
-          "title": "Remote URL",
-          "description": "Open this URL on another device to control Nuclear."
+          "title": "Удаленный URL-адрес",
+          "description": "Откройте этот URL-адрес на другом устройстве для управления Nuclear."
         },
         "apiUrl": {
           "title": "API URL",
-          "description": "HTTP API base URL for programmatic access."
+          "description": "Базовый URL-адрес HTTP API для доступа к программному обеспечению."
         }
       },
       "mcp": {
@@ -476,18 +476,18 @@
       },
       "mpd": {
         "enabled": {
-          "title": "Enable MPD Server",
-          "description": "Start a local MPD-compatible server so MPD clients can control Nuclear."
+          "title": "Включить MPD сервер",
+          "description": "Запускает локальный MPD-совместимый сервер, чтобы MPD клиенты могли управлять Nuclear."
         },
         "serverUrl": {
-          "title": "MPD Server URL",
-          "description": "Point your MPD client to this address to connect to Nuclear."
+          "title": "URL-адрес сервера MPD",
+          "description": "Направьте Ваш ИИ инструмент на этот URL для подключения к Nuclear."
         }
       },
       "discord": {
         "enabled": {
           "title": "Discord Rich Presence",
-          "description": "Show what you're listening to on your Discord profile."
+          "description": "Показывает в профиле Discord, что вы слушаете. "
         }
       }
     }
@@ -508,18 +508,18 @@
     },
     "candidates": {
       "empty": "No stream candidates",
-      "failed": "failed"
+      "failed": "ошибка"
     },
     "streamVerification": {
-      "unverified": "Unverified",
-      "weaklyVerified": "Weakly verified",
-      "verified": "Verified",
-      "verifiedByUser": "Verified by you",
-      "verify": "Verify",
-      "unverify": "Unverify",
-      "failed": "Failed to verify stream",
-      "notShared": "Stream was verified locally, but Nuclear couldn't reach the verification service.",
-      "help": "How stream verification works",
+      "unverified": "Не подтверждено",
+      "weaklyVerified": "Слабо подтверждено",
+      "verified": "Подтверждено",
+      "verifiedByUser": "Подтверждено вами",
+      "verify": "Подтвердить",
+      "unverify": "Отклонить",
+      "failed": "Не удалось подтвердить трансляцию",
+      "notShared": "Трансляция была подтверждена локально, однако Nuclear не смог подключиться к службе верификации.",
+      "help": "Как работает верификация потока",
       "explanation": "Nuclear may sometimes play the wrong version of a song. To fix it, right-click the queue item and pick the right stream, then click Verify. Nuclear saves your verification on your computer and always plays that stream for the track.\n\nIf Online verification is on, Nuclear also shares your verification with other users, so they get that stream first. For each track you didn't verify, Nuclear asks the verification service for the stream with the most votes. It sends the artist, the title, and a random ID.",
       "learnMore": "Learn more"
     }
