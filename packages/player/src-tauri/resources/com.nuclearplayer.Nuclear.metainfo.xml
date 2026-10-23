@@ -81,6 +81,16 @@
   </requires>
 
   <releases>
+    <release version="1.52.0" date="2026-10-23">
+      <description>
+        <ul>
+          <li>Nuclear now verifies the plugins installed from the store to ensure they're safe to install.</li>
+          <li>YouTube videos whose IDs start with a dash play again instead of being skipped for the next search result</li>
+          <li>You can now reorder your playlists manually.</li>
+          <li>The first YouTube track no longer fails while yt-dlp is still downloading. Playback waits for the download, and a toast shows its progress</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.51.2" date="2026-10-16">
       <description>
         <ul>
