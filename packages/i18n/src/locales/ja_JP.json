@@ -134,6 +134,7 @@
     "addToPlaylist": "プレイリストに追加",
     "filterPlaylists": "プレイリストを絞り込む...",
     "sortBy": {
+      "custom": "カスタム",
       "name": "名前",
       "dateAdded": "追加日",
       "dateModified": "更新日",
@@ -302,7 +303,8 @@
         "empty": "利用可能なプラグインはまだありません。"
       },
       "installError": {
-        "title": "{{name}} のインストールに失敗しました"
+        "title": "{{name}} のインストールに失敗しました",
+        "unverifiedRelease": "プラグインレジストリには、このプラグインの検証済みリリースは存在しません。"
       }
     }
   },
@@ -554,6 +556,20 @@
     "page": "ページ {{pageNumber}}"
   },
   "streaming": {
+    "ytdlp": {
+      "install": {
+        "progress": "yt-dlp のダウンロード中… {{percent}}%",
+        "progressUnknown": "yt-dlp のダウンロード中…",
+        "finished": "yt-dlp ダウンロード済み",
+        "failed": "yt-dlp をダウンロードできません"
+      },
+      "update": {
+        "progress": "yt-dlp の更新中… {{percent}}%",
+        "progressUnknown": "yt-dlp の更新中…",
+        "finished": "yt-dlp 更新済み",
+        "failed": "yt-dlp を更新できません"
+      }
+    },
     "errors": {
       "noCandidatesFound": "ストリーム候補が見つかりませんでした",
       "allCandidatesFailed": "すべてのストリーム候補が失敗しました",
@@ -585,6 +601,9 @@
     "browsePlugins": "歌詞プラグインを参照",
     "noLyrics": "このトラックの歌詞はありません",
     "noLyricsDescription": "{{providers, list}} は結果を返しませんでした。",
+    "noLyricsFromAnyProvider": "歌詞プロバイダーから結果が返されませんでした。",
+    "loadError": "歌詞を読み込めませんでした",
+    "loadErrorDescription": "Nuclear への接続を確認し、再度試してください。",
     "providerError": "歌詞プロバイダーが歌詞の読み込みに失敗しました",
     "instrumental": "インストルメンタル",
     "instrumentalDescription": "このトラックには歌詞がありません。",
@@ -630,6 +649,10 @@
       "connected": "接続済み",
       "reconnecting": "再接続中",
       "failed": "切断されました"
+    },
+    "lyrics": {
+      "open": "歌詞を表示",
+      "back": "戻る"
     },
     "queue": {
       "upNext": "次の再生",

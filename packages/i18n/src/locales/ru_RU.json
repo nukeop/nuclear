@@ -33,67 +33,67 @@
     "favoriteTracks": "Избранные треки",
     "favoriteArtists": "Избранные артисты",
     "playlists": "Плейлисты",
-    "history": "History",
-    "lyrics": "Lyrics",
-    "sources": "Sources"
+    "history": "История",
+    "lyrics": "Тексты песен",
+    "sources": "Источники"
   },
   "history": {
-    "title": "History",
-    "empty": "Nothing played yet",
-    "emptyDescription": "Tracks you play will appear here",
-    "today": "Today",
-    "yesterday": "Yesterday",
+    "title": "История",
+    "empty": "Пока ничего не прослушано",
+    "emptyDescription": "Прослушанные песни будут появляться здесь",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
     "tabs": {
-      "stats": "Stats",
-      "listeningHistory": "Listening history"
+      "stats": "Статистика",
+      "listeningHistory": "История прослушивания"
     },
     "row": {
-      "favorite": "Add to favorites",
-      "unfavorite": "Remove from favorites",
-      "addToQueue": "Add to queue"
+      "favorite": "Добавить в Избранное",
+      "unfavorite": "Удалить из Избранного",
+      "addToQueue": "Добавить в очередь"
     },
     "stats": {
-      "busiestHour": "Busiest hour",
-      "listeningTime": "Listening time",
-      "hourOfDay": "Time of day",
-      "dayOfWeek": "Day of week",
-      "calendar": "Listening calendar",
-      "topArtists": "Top artists",
-      "topAlbums": "Top albums",
-      "topTracks": "Top tracks",
-      "empty": "No listening data yet",
-      "emptyDescription": "Tracks you listen to will show up in your stats",
-      "legendLess": "Less",
-      "legendMore": "More",
+      "busiestHour": "Час наибольшей активности ",
+      "listeningTime": "Время прослушивания",
+      "hourOfDay": "По часам",
+      "dayOfWeek": "По дням недели",
+      "calendar": "Календарь прослушивания",
+      "topArtists": "Лучшие Исполнители",
+      "topAlbums": "Лучшие Альбомы",
+      "topTracks": "Лучшие Треки",
+      "empty": "Пока нет данных о прослушанных треках",
+      "emptyDescription": "Прослушанные треки будут появляться в вашей статистике",
+      "legendLess": "Меньше",
+      "legendMore": "Больше",
       "range": {
-        "last7Days": "Last 7 days",
-        "last30Days": "Last 30 days",
-        "last90Days": "Last 90 days",
-        "last12Months": "Last 12 months",
-        "allTime": "All time"
+        "last7Days": "За 7 дней",
+        "last30Days": "За 30 дней",
+        "last90Days": "За 90 дней",
+        "last12Months": "За 12 месяцев",
+        "allTime": "За всё время"
       }
     }
   },
   "sources": {
-    "title": "Sources",
-    "streaming": "Streaming",
-    "streamingDescription": "Streaming sources provide audio. When you play a track, the streaming source finds and delivers the audio stream.",
-    "metadata": "Metadata",
-    "metadataDescription": "Metadata sources provide information about artists, albums, and tracks. Search results, artist pages, and album details come from the active metadata source.",
-    "dashboard": "Dashboard",
-    "dashboardDescription": "Dashboard sources provide personalized content like top tracks, new releases, and recommendations on the home screen.",
-    "playlists": "Playlists",
-    "playlistsDescription": "Playlist sources let you import playlists from external services by URL.",
-    "discovery": "Discovery",
-    "discoveryDescription": "Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.",
-    "lyrics": "Lyrics",
-    "lyricsDescription": "Lyrics sources provide lyrics for the current track. Nuclear gets lyrics from all lyrics sources at the same time and shows the best result. You can select the lyrics of a different source in the Lyrics view.",
+    "title": "Источники",
+    "streaming": "Трансляция",
+    "streamingDescription": "Источники трансляции проигрывают аудио. Когда вы включаете трек, источник трансляции находит и воспроизводить аудио.",
+    "metadata": "Метаданные",
+    "metadataDescription": "Источники метаданных предоставляют информацию об исполнителях, альбомах и треках. Результаты поиска, страницы исполнителей и детали альбома Nuclear получает из активного источника метаданных.",
+    "dashboard": "Панель",
+    "dashboardDescription": "Источники панели предоставляют персонализированный контент такой, как лучшее треки, новые релизы и рекомендации на домашнем экране.",
+    "playlists": "Плейлисты",
+    "playlistsDescription": "Источники плейлистов позволяют импортировать плейлисты из внешних сервисов по URL.",
+    "discovery": "Обнаружение",
+    "discoveryDescription": "Источники обнаружения рекомендуют новые треки на основе того, что вы слушаете. Включите обнаружение музыки, используя иконку бумбокса в нижней панели.",
+    "lyrics": "Текст песни",
+    "lyricsDescription": "Источники текстов песен обеспечивают играющий трек текстом. Nuclear получает тексты одновременно из всех источников и показывает лучший результат. Вы можете выбирать текст песни из разных источников при Просмотре текста.",
     "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
-    "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available",
-    "noProviders": "No providers installed"
+    "missingStreamingProvider": "Необходимый провайдер трансляции \"{{providerId}}\" не доступен",
+    "noProviders": "Нет установленных провайдеров"
   },
   "discovery": {
-    "recommendationError": "Failed to get recommendations"
+    "recommendationError": "Не удалось получить рекомендации"
   },
   "favorites": {
     "albums": {
@@ -134,14 +134,15 @@
     "addToPlaylist": "Добавить в плейлист",
     "filterPlaylists": "Отфильтровать плейлисты...",
     "sortBy": {
-      "name": "Name",
-      "dateAdded": "Date added",
-      "dateModified": "Date modified",
-      "trackCount": "Tracks",
-      "duration": "Length"
+      "custom": "По выбору",
+      "name": "Название",
+      "dateAdded": "Дата добавления",
+      "dateModified": "Дата изменения",
+      "trackCount": "Треки",
+      "duration": "Длительность"
     },
-    "filterNoResults": "No playlists match your filter",
-    "filterNoResultsDescription": "Change or remove the search query",
+    "filterNoResults": "Не найдено плейлистов по вашему фильтру",
+    "filterNoResultsDescription": "Измените или удалите поисковой запрос",
     "createNew": "Создать новый плейлист",
     "saveQueueAsPlaylist": "Сохранить очередь как плейлист",
     "name": "Название",
@@ -166,8 +167,8 @@
     "noResults": "Ничего не найдено",
     "searching": "Поиск...",
     "failedToLoad": "Не удалось загрузить результаты.",
-    "clearRecentSearches": "Clear recent searches",
-    "recentSearches": "Recent searches",
+    "clearRecentSearches": "Очистить историю поиска",
+    "recentSearches": "Недавно искали",
     "results": {
       "tracks": "Треки",
       "albums": "Альбомы",
@@ -181,9 +182,9 @@
       "artists": "Артисты",
       "playlists": "Плейлисты"
     },
-    "empty-state": "No metadata plugin installed",
-    "empty-state-description": "Install a metadata plugin to search for music.",
-    "empty-state-action": "Browse plugins"
+    "empty-state": "Плагин метаданных не установлен",
+    "empty-state-description": "Установите плагин метаданных для поиска музыки.",
+    "empty-state-action": "Просмотреть плагины"
   },
   "artist": {
     "title": "Артист",
@@ -222,33 +223,33 @@
     "title": "Темы",
     "basic": "Базовые темы",
     "advanced": "Продвинутые темы",
-    "marketplace": "Store themes",
+    "marketplace": "Темы из магазина",
     "default": "По умолчанию",
-    "selectPlaceholder": "Select a theme",
+    "selectPlaceholder": "Выберите тему",
     "description": "Темы из директории данных приложения",
     "tabs": {
-      "myThemes": "My themes",
-      "store": "Store"
+      "myThemes": "Мои темы",
+      "store": "Магазин"
     },
     "store": {
-      "searchPlaceholder": "Search themes...",
-      "install": "Install",
-      "installing": "Installing",
-      "installed": "Installed",
-      "by": "by",
-      "installError": "Failed to install {{name}}",
-      "loadError": "Failed to load the theme store.",
-      "apply": "Apply",
-      "active": "Active",
-      "uninstall": "Uninstall",
-      "uninstallError": "Failed to uninstall {{name}}"
+      "searchPlaceholder": "Поиск тем...",
+      "install": "Установить",
+      "installing": "Установка",
+      "installed": "Установлено",
+      "by": "от",
+      "installError": "Не удалось установить {{name}}",
+      "loadError": "Не удалось загрузить магазин тем.",
+      "apply": "Применить",
+      "active": "Активно",
+      "uninstall": "Удалить",
+      "uninstallError": "Не удалось удалить {{name}}"
     }
   },
   "dashboard": {
     "title": "Панель",
     "empty-state": "Нет доступных данных в панели управления",
     "empty-state-description": "Включите плагин, который предоставляет содержимое панели.",
-    "empty-state-action": "Browse plugins",
+    "empty-state-action": "Найти плагины",
     "top-tracks": "Лучшие Треки",
     "top-artists": "Лучшие Исполнители",
     "top-albums": "Лучшие Альбомы",
@@ -268,11 +269,11 @@
       "store": "Магазин"
     },
     "installed": {
-      "empty-state": "No plugins installed",
-      "empty-state-description": "Browse the plugin store to find streaming, metadata, and other plugins.",
-      "empty-state-action": "Go to store",
-      "update-available": "Update available",
-      "by": "by"
+      "empty-state": "Нет установленных плагинов",
+      "empty-state-description": "Просмотрите магазин плагинов, чтобы найти плагины трансляции, метаданных и других.",
+      "empty-state-action": "Перейти в магазин",
+      "update-available": "Доступно обновление",
+      "by": "от"
     },
     "store": {
       "searchPlaceholder": "Поиск плагинов...",
@@ -286,9 +287,9 @@
         "metadata": "Метаданные",
         "lyrics": "Текст",
         "scrobbling": "Скробблинг",
-        "dashboard": "Dashboard",
-        "playlists": "Playlists",
-        "discovery": "Discovery",
+        "dashboard": "Панель",
+        "playlists": "Плейлисты",
+        "discovery": "Обнаружение",
         "other": "Прочие"
       },
       "error": {
@@ -302,15 +303,16 @@
         "empty": "Нет доступных плагинов."
       },
       "installError": {
-        "title": "Не удалось установить {{name}}"
+        "title": "Не удалось установить {{name}}",
+        "unverifiedRelease": "В реестре плагинов нет проверенного релиза для этого плагина"
       }
     }
   },
   "updater": {
     "updateAvailable": "Доступно обновление",
-    "clickToUpdate": "Click to update",
-    "downloading": "Downloading... {{progress}}%",
-    "clickToRestart": "Click to restart"
+    "clickToUpdate": "Нажмите, чтобы обновить",
+    "downloading": "Загрузка... {{progress}}%",
+    "clickToRestart": "Нажми, чтобы перезапустить"
   },
   "flatpak": {
     "sandboxWarning": "Вы используете Nuclear в среде Flatpak. Некоторые функции могут работать неправильно. Если вы столкнулись с проблемами, попробуйте .deb или AppImage.",
@@ -319,8 +321,8 @@
   "preferences": {
     "title": "Настройки",
     "navigation": {
-      "general": "Settings",
-      "app": "App"
+      "general": "Настройки",
+      "app": "Приложение"
     },
     "general": {
       "title": "Общие",
@@ -332,8 +334,8 @@
     "plugins": {
       "title": "Плагины",
       "auto-update": {
-        "title": "Auto-update plugins",
-        "description": "Automatically download and install new versions of store plugins on startup"
+        "title": "Автообновление плагинов",
+        "description": "Автоматически загружает и устанавливает новые версии плагинов из магазина при запуске"
       }
     },
     "themes": {
@@ -370,26 +372,26 @@
     "appearance": {
       "title": "Оформление",
       "framelessWindow": {
-        "title": "Frameless window",
-        "description": "Hide the native title bar. Drag the top bar to move the window."
+        "title": "Окно без рамки",
+        "description": "Скрывает стандартную строку заголовка. Зажмите ЛКМ вверху панели для перемещения окна."
       },
       "customTitleBar": {
-        "title": "Custom title bar",
-        "description": "Replace the native title bar with a styled one that matches the app."
+        "title": "Пользовательская строка заголовка",
+        "description": "Заменяет стандартную строку заголовка стилизованной, которая соответствует приложению."
       },
       "titleBarStyle": {
-        "title": "Title bar style",
-        "description": "Choose the visual style for the custom title bar controls."
+        "title": "Стиль строки заголовка",
+        "description": "Выберите визуальный стиль для пользовательских элементов управления в строке заголовка."
       }
     },
     "lyrics": {
       "textSize": {
-        "title": "Lyrics text size",
-        "description": "The size of the text in the lyrics view."
+        "title": "Размер текста песен",
+        "description": "Размер текста при просмотре."
       },
       "autoScroll": {
-        "title": "Lyrics auto-scroll",
-        "description": "Scroll synced lyrics along with the song."
+        "title": "Автопрокрутка текста песни",
+        "description": "Текст прокручивается синхронно с песней."
       }
     },
     "playback": {
@@ -411,25 +413,25 @@
         "description": "Количество раз, чтобы повторить попытку разрешить URL трансляции перед переходом к следующему кандидату"
       },
       "discoveryVariety": {
-        "title": "Discovery variety",
-        "description": "How far recommendations deviate from your current listening. Lower is closer.",
-        "startLabel": "Less crazy",
-        "endLabel": "More crazy"
+        "title": "Разнообразие в рекомендациях",
+        "description": "Нас сколько сильно рекомендации отклоняются от вашего текущего прослушивания. Чем меньше значение, тем меньше отклонение.",
+        "startLabel": "Меньше сумасшедшего",
+        "endLabel": "Больше сумасшедшего"
       },
       "streamVerification": {
-        "title": "Stream verification",
-        "description": "Nuclear plays the streams that you verified and shows the verification bar. When this setting is off, Nuclear ignores all verifications."
+        "title": "Подтверждение трансляции",
+        "description": "Nuclear транслирует аудио, которые вы проверили, и показывает статус проверки. Когда эта настройка выключена, Nuclear игнорирует все проверки."
       },
       "streamVerificationService": {
-        "title": "Online verification",
-        "description": "Nuclear sends your verifications to the verification service and gets the streams that other users verified. This setting has no effect when stream verification is off."
+        "title": "Верификация онлайн",
+        "description": "Nuclear посылает ваши верификации в службу проверки и получает проверенные песен от других пользователей. Этот параметр не имеет эффекта, когда проверка потока выключена."
       }
     },
     "history": {
-      "title": "History",
+      "title": "История",
       "enabled": {
-        "title": "Record listening history",
-        "description": "Keep a local record of the music you play."
+        "title": "Сохранять историю прослушивания",
+        "description": "Хранение локального списка прослушанных треков."
       }
     },
     "layout": {
@@ -450,16 +452,16 @@
       "title": "Интеграции",
       "jam": {
         "enabled": {
-          "title": "Nuclear Jam",
-          "description": "Start a local web server that lets you control Nuclear from other devices on your network."
+          "title": "Nuclear Джем",
+          "description": "Запускает локальный веб-сервер, который позволит вам управлять Nuclear с других устройств в вашей сети."
         },
         "remoteUrl": {
-          "title": "Remote URL",
-          "description": "Open this URL on another device to control Nuclear."
+          "title": "Удаленный URL-адрес",
+          "description": "Откройте этот URL-адрес на другом устройстве для управления Nuclear."
         },
         "apiUrl": {
           "title": "API URL",
-          "description": "HTTP API base URL for programmatic access."
+          "description": "Базовый URL-адрес HTTP API для доступа к программному обеспечению."
         }
       },
       "mcp": {
@@ -474,18 +476,18 @@
       },
       "mpd": {
         "enabled": {
-          "title": "Enable MPD Server",
-          "description": "Start a local MPD-compatible server so MPD clients can control Nuclear."
+          "title": "Включить MPD сервер",
+          "description": "Запускает локальный MPD-совместимый сервер, чтобы MPD клиенты могли управлять Nuclear."
         },
         "serverUrl": {
-          "title": "MPD Server URL",
-          "description": "Point your MPD client to this address to connect to Nuclear."
+          "title": "URL-адрес сервера MPD",
+          "description": "Направьте Ваш ИИ инструмент на этот URL для подключения к Nuclear."
         }
       },
       "discord": {
         "enabled": {
           "title": "Discord Rich Presence",
-          "description": "Show what you're listening to on your Discord profile."
+          "description": "Показывает в профиле Discord, что вы слушаете. "
         }
       }
     }
@@ -506,18 +508,18 @@
     },
     "candidates": {
       "empty": "No stream candidates",
-      "failed": "failed"
+      "failed": "ошибка"
     },
     "streamVerification": {
-      "unverified": "Unverified",
-      "weaklyVerified": "Weakly verified",
-      "verified": "Verified",
-      "verifiedByUser": "Verified by you",
-      "verify": "Verify",
-      "unverify": "Unverify",
-      "failed": "Failed to verify stream",
-      "notShared": "Stream was verified locally, but Nuclear couldn't reach the verification service.",
-      "help": "How stream verification works",
+      "unverified": "Не подтверждено",
+      "weaklyVerified": "Слабо подтверждено",
+      "verified": "Подтверждено",
+      "verifiedByUser": "Подтверждено вами",
+      "verify": "Подтвердить",
+      "unverify": "Отклонить",
+      "failed": "Не удалось подтвердить трансляцию",
+      "notShared": "Трансляция была подтверждена локально, однако Nuclear не смог подключиться к службе верификации.",
+      "help": "Как работает верификация потока",
       "explanation": "Nuclear may sometimes play the wrong version of a song. To fix it, right-click the queue item and pick the right stream, then click Verify. Nuclear saves your verification on your computer and always plays that stream for the track.\n\nIf Online verification is on, Nuclear also shares your verification with other users, so they get that stream first. For each track you didn't verify, Nuclear asks the verification service for the stream with the most votes. It sends the artist, the title, and a random ID.",
       "learnMore": "Learn more"
     }
@@ -554,6 +556,20 @@
     "page": "Page {{pageNumber}}"
   },
   "streaming": {
+    "ytdlp": {
+      "install": {
+        "progress": "Downloading yt-dlp… {{percent}}%",
+        "progressUnknown": "Downloading yt-dlp…",
+        "finished": "yt-dlp downloaded",
+        "failed": "Couldn't download yt-dlp"
+      },
+      "update": {
+        "progress": "Updating yt-dlp… {{percent}}%",
+        "progressUnknown": "Updating yt-dlp…",
+        "finished": "yt-dlp updated",
+        "failed": "Couldn't update yt-dlp"
+      }
+    },
     "errors": {
       "noCandidatesFound": "Не удалось найти кандидатов трансляции",
       "allCandidatesFailed": "Все кандидаты не удались",
@@ -585,6 +601,9 @@
     "browsePlugins": "Browse lyrics plugins",
     "noLyrics": "No lyrics for this track",
     "noLyricsDescription": "{{providers, list}} returned no results.",
+    "noLyricsFromAnyProvider": "No lyrics provider returned results.",
+    "loadError": "Could not load lyrics",
+    "loadErrorDescription": "Check the connection to Nuclear and try again.",
     "providerError": "A lyrics provider failed to load lyrics",
     "instrumental": "Instrumental",
     "instrumentalDescription": "This track has no lyrics.",
@@ -630,6 +649,10 @@
       "connected": "Connected",
       "reconnecting": "Reconnecting",
       "failed": "Disconnected"
+    },
+    "lyrics": {
+      "open": "Show lyrics",
+      "back": "Back"
     },
     "queue": {
       "upNext": "Up next",
