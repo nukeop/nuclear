@@ -122,240 +122,252 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
     class="scrollbar-hide flex gap-2 overflow-x-auto overflow-y-visible [scroll-behavior:smooth] pb-2"
     style="scrollbar-width: none;"
   >
-    <button
-      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
-      data-headlessui-state=""
-      data-testid="card"
-      type="button"
+    <div
+      class="group relative w-42 flex-shrink-0"
     >
-      <div
-        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+      <button
+        class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
+        data-headlessui-state=""
+        data-testid="card"
+        type="button"
       >
         <div
-          class="overflow-hidden absolute inset-0"
+          class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
         >
-          <img
-            alt="Midnight Drive"
-            class="h-full w-full object-cover"
-            decoding="async"
-            loading="lazy"
-            src="https://picsum.photos/300?random=1"
-          />
           <div
-            class="pointer-events-none absolute inset-0 flex items-center justify-center"
+            class="overflow-hidden absolute inset-0"
           >
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-cassette-tape opacity-20"
-              fill="none"
-              height="96"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="0.5"
-              viewBox="0 0 24 24"
-              width="96"
-              xmlns="http://www.w3.org/2000/svg"
+            <img
+              alt="Midnight Drive"
+              class="h-full w-full object-cover"
+              decoding="async"
+              loading="lazy"
+              src="https://picsum.photos/300?random=1"
+            />
+            <div
+              class="pointer-events-none absolute inset-0 flex items-center justify-center"
             >
-              <rect
-                height="16"
-                rx="2"
-                width="20"
-                x="2"
-                y="4"
-              />
-              <circle
-                cx="8"
-                cy="10"
-                r="2"
-              />
-              <path
-                d="M8 12h8"
-              />
-              <circle
-                cx="16"
-                cy="10"
-                r="2"
-              />
-              <path
-                d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-cassette-tape opacity-20"
+                fill="none"
+                height="96"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="0.5"
+                viewBox="0 0 24 24"
+                width="96"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="16"
+                  rx="2"
+                  width="20"
+                  x="2"
+                  y="4"
+                />
+                <circle
+                  cx="8"
+                  cy="10"
+                  r="2"
+                />
+                <path
+                  d="M8 12h8"
+                />
+                <circle
+                  cx="16"
+                  cy="10"
+                  r="2"
+                />
+                <path
+                  d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+                />
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        class="min-w-0"
-      >
         <div
-          class="text-card-foreground truncate text-sm font-bold"
-          data-testid="card-title"
+          class="min-w-0"
         >
-          Midnight Drive
-        </div>
-        <div
-          class="text-card-foreground truncate text-xs opacity-60"
-        >
-          Neon City
-        </div>
-      </div>
-    </button>
-    <button
-      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
-      data-headlessui-state=""
-      data-testid="card"
-      type="button"
-    >
-      <div
-        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
-      >
-        <div
-          class="overflow-hidden absolute inset-0"
-        >
-          <img
-            alt="Northern Lights"
-            class="h-full w-full object-cover"
-            decoding="async"
-            loading="lazy"
-            src="https://picsum.photos/300?random=2"
-          />
           <div
-            class="pointer-events-none absolute inset-0 flex items-center justify-center"
+            class="text-card-foreground truncate text-sm font-bold"
+            data-testid="card-title"
           >
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-cassette-tape opacity-20"
-              fill="none"
-              height="96"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="0.5"
-              viewBox="0 0 24 24"
-              width="96"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                height="16"
-                rx="2"
-                width="20"
-                x="2"
-                y="4"
-              />
-              <circle
-                cx="8"
-                cy="10"
-                r="2"
-              />
-              <path
-                d="M8 12h8"
-              />
-              <circle
-                cx="16"
-                cy="10"
-                r="2"
-              />
-              <path
-                d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
-              />
-            </svg>
+            Midnight Drive
+          </div>
+          <div
+            class="text-card-foreground truncate text-xs opacity-60"
+          >
+            Neon City
           </div>
         </div>
-      </div>
-      <div
-        class="min-w-0"
-      >
-        <div
-          class="text-card-foreground truncate text-sm font-bold"
-          data-testid="card-title"
-        >
-          Northern Lights
-        </div>
-        <div
-          class="text-card-foreground truncate text-xs opacity-60"
-        >
-          Aurora
-        </div>
-      </div>
-    </button>
-    <button
-      class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left flex-shrink-0"
-      data-headlessui-state=""
-      data-testid="card"
-      type="button"
+      </button>
+    </div>
+    <div
+      class="group relative w-42 flex-shrink-0"
     >
-      <div
-        class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
+      <button
+        class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
+        data-headlessui-state=""
+        data-testid="card"
+        type="button"
       >
         <div
-          class="overflow-hidden absolute inset-0"
+          class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
         >
-          <img
-            alt="Echoes of Silence"
-            class="h-full w-full object-cover"
-            decoding="async"
-            loading="lazy"
-            src="https://picsum.photos/300?random=3"
-          />
           <div
-            class="pointer-events-none absolute inset-0 flex items-center justify-center"
+            class="overflow-hidden absolute inset-0"
           >
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-cassette-tape opacity-20"
-              fill="none"
-              height="96"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="0.5"
-              viewBox="0 0 24 24"
-              width="96"
-              xmlns="http://www.w3.org/2000/svg"
+            <img
+              alt="Northern Lights"
+              class="h-full w-full object-cover"
+              decoding="async"
+              loading="lazy"
+              src="https://picsum.photos/300?random=2"
+            />
+            <div
+              class="pointer-events-none absolute inset-0 flex items-center justify-center"
             >
-              <rect
-                height="16"
-                rx="2"
-                width="20"
-                x="2"
-                y="4"
-              />
-              <circle
-                cx="8"
-                cy="10"
-                r="2"
-              />
-              <path
-                d="M8 12h8"
-              />
-              <circle
-                cx="16"
-                cy="10"
-                r="2"
-              />
-              <path
-                d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-cassette-tape opacity-20"
+                fill="none"
+                height="96"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="0.5"
+                viewBox="0 0 24 24"
+                width="96"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="16"
+                  rx="2"
+                  width="20"
+                  x="2"
+                  y="4"
+                />
+                <circle
+                  cx="8"
+                  cy="10"
+                  r="2"
+                />
+                <path
+                  d="M8 12h8"
+                />
+                <circle
+                  cx="16"
+                  cy="10"
+                  r="2"
+                />
+                <path
+                  d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+                />
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        class="min-w-0"
+        <div
+          class="min-w-0"
+        >
+          <div
+            class="text-card-foreground truncate text-sm font-bold"
+            data-testid="card-title"
+          >
+            Northern Lights
+          </div>
+          <div
+            class="text-card-foreground truncate text-xs opacity-60"
+          >
+            Aurora
+          </div>
+        </div>
+      </button>
+    </div>
+    <div
+      class="group relative w-42 flex-shrink-0"
+    >
+      <button
+        class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
+        data-headlessui-state=""
+        data-testid="card"
+        type="button"
       >
         <div
-          class="text-card-foreground truncate text-sm font-bold"
-          data-testid="card-title"
+          class="border-border flex h-full rounded-md border-(length:--border-width) shadow-none surface-card relative aspect-square w-full items-center justify-center overflow-hidden p-0"
         >
-          Echoes of Silence
+          <div
+            class="overflow-hidden absolute inset-0"
+          >
+            <img
+              alt="Echoes of Silence"
+              class="h-full w-full object-cover"
+              decoding="async"
+              loading="lazy"
+              src="https://picsum.photos/300?random=3"
+            />
+            <div
+              class="pointer-events-none absolute inset-0 flex items-center justify-center"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-cassette-tape opacity-20"
+                fill="none"
+                height="96"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="0.5"
+                viewBox="0 0 24 24"
+                width="96"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="16"
+                  rx="2"
+                  width="20"
+                  x="2"
+                  y="4"
+                />
+                <circle
+                  cx="8"
+                  cy="10"
+                  r="2"
+                />
+                <path
+                  d="M8 12h8"
+                />
+                <circle
+                  cx="16"
+                  cy="10"
+                  r="2"
+                />
+                <path
+                  d="m6 20 .7-2.9A1.4 1.4 0 0 1 8.1 16h7.8a1.4 1.4 0 0 1 1.4 1l.7 3"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
         <div
-          class="text-card-foreground truncate text-xs opacity-60"
+          class="min-w-0"
         >
-          The Wanderers
+          <div
+            class="text-card-foreground truncate text-sm font-bold"
+            data-testid="card-title"
+          >
+            Echoes of Silence
+          </div>
+          <div
+            class="text-card-foreground truncate text-xs opacity-60"
+          >
+            The Wanderers
+          </div>
         </div>
-      </div>
-    </button>
+      </button>
+    </div>
   </div>
 </div>
 `;
