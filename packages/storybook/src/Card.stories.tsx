@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { PlusIcon, Trash2Icon } from 'lucide-react';
 
-import { Card } from '@nuclearplayer/ui';
+import { Card, Popover } from '@nuclearplayer/ui';
 
 const meta = {
   title: 'Components/Card',
@@ -27,6 +28,24 @@ export const Default: Story = {
     src: cover,
     title: 'Random Album',
     subtitle: 'Some Artist',
+  },
+};
+
+export const WithActions: Story = {
+  args: {
+    src: cover,
+    title: 'Random Album',
+    subtitle: 'Some Artist',
+    onPlay: () => {},
+    menuItems: (
+      <>
+        <Popover.Item icon={<PlusIcon size={16} />}>Add to queue</Popover.Item>
+        <Popover.Item intent="danger" icon={<Trash2Icon size={16} />}>
+          Delete
+        </Popover.Item>
+      </>
+    ),
+    labels: { play: 'Play', menu: 'More actions' },
   },
 };
 
