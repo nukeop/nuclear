@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-26T00:00",
+    "description": "Security updates for TLS certificate validation (distrusted eMudhra certificates), the auto-updater and the MCP server.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Security",
+        "color": "red"
+      }
+    ]
+  },
+  {
     "date": "2026-10-22T00:00",
     "description": "Nuclear now verifies the plugins installed from the store to ensure they're safe to install.",
     "type": "improvement",

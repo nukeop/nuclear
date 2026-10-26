@@ -200,7 +200,7 @@ fn extract_zip(zip_path: &Path, dest: &Path) -> Result<(), String> {
             #[cfg(unix)]
             if let Some(mode) = entry.unix_mode() {
                 use std::os::unix::fs::PermissionsExt;
-                fs::set_permissions(&out_path, fs::Permissions::from_mode(mode)).ok();
+                fs::set_permissions(&out_path, fs::Permissions::from_mode(mode & 0o777)).ok();
             }
         }
     }
