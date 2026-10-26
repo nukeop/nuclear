@@ -520,8 +520,8 @@
       "failed": "Не удалось подтвердить трансляцию",
       "notShared": "Трансляция была подтверждена локально, однако Nuclear не смог подключиться к службе верификации.",
       "help": "Как работает верификация потока",
-      "explanation": "Nuclear may sometimes play the wrong version of a song. To fix it, right-click the queue item and pick the right stream, then click Verify. Nuclear saves your verification on your computer and always plays that stream for the track.\n\nIf Online verification is on, Nuclear also shares your verification with other users, so they get that stream first. For each track you didn't verify, Nuclear asks the verification service for the stream with the most votes. It sends the artist, the title, and a random ID.",
-      "learnMore": "Learn more"
+      "explanation": "Nuclear может иногда воспроизводить неправильную трансляцию песни. Чтобы исправить, щелкните правой кнопкой мыши по песни в очереди и выберите нужную версию, затем нажмите \"Подтвердить\". Nuclear экономит вашу проверку на вашем компьютере и всегда будет проигрывать эту версию для трека.\n\nЕсли проверка онлайн включена, Nuclear также делится вашей верификацией с другими пользователями, так что сначала они получают эту трансляцию трека. Для каждого непроверенного трека, Nuclear просит службу проверки присласть трансляцию с наибольшим количеством голосов. Он посылает автора, название и случайный идентификатор.",
+      "learnMore": "Узнать больше"
     }
   },
   "track": {
@@ -535,68 +535,68 @@
   },
   "trackTable": {
     "headers": {
-      "artist": "Artist",
-      "title": "Title",
-      "album": "Album",
-      "duration": "Duration"
+      "artist": "Исполнитель",
+      "title": "Название",
+      "album": "Альбом",
+      "duration": "Длительность"
     },
-    "favorite": "Add to favorites",
-    "unfavorite": "Remove from favorites",
-    "playAll": "Play all",
-    "addAllToQueue": "Add all to queue",
-    "addToQueue": "Add to queue",
-    "trackOptions": "Track options",
-    "remove": "Remove from list",
-    "filterPlaceholder": "Filter tracks"
+    "favorite": "Добавить в Избранное",
+    "unfavorite": "Удалить из Избранного",
+    "playAll": "Воспроизвести все",
+    "addAllToQueue": "Добавить всё в очередь",
+    "addToQueue": "Добавить в очередь",
+    "trackOptions": "Параметры трека",
+    "remove": "Удалить из списка",
+    "filterPlaceholder": "Фильтр треков"
   },
   "pagination": {
     "navigation": "Pagination",
-    "previous": "Previous page",
-    "next": "Next page",
-    "page": "Page {{pageNumber}}"
+    "previous": "Предыдущая страница",
+    "next": "Следующая страница",
+    "page": "Страница {{pageNumber}}"
   },
   "streaming": {
     "ytdlp": {
       "install": {
-        "progress": "Downloading yt-dlp… {{percent}}%",
-        "progressUnknown": "Downloading yt-dlp…",
-        "finished": "yt-dlp downloaded",
-        "failed": "Couldn't download yt-dlp"
+        "progress": "Загрузка yt-dlp… {{percent}}%",
+        "progressUnknown": "Загрузка yt-dlp…",
+        "finished": "yt-dlp загружен",
+        "failed": "Не удалось загрузить yt-dlp"
       },
       "update": {
-        "progress": "Updating yt-dlp… {{percent}}%",
-        "progressUnknown": "Updating yt-dlp…",
-        "finished": "yt-dlp updated",
-        "failed": "Couldn't update yt-dlp"
+        "progress": "Обновление yt-dlp… {{percent}}%",
+        "progressUnknown": "Обновление yt-dlp…",
+        "finished": "yt-dlp обновлен",
+        "failed": "Не удалось обновить yt-dlp"
       }
     },
     "errors": {
       "noCandidatesFound": "Не удалось найти кандидатов трансляции",
       "allCandidatesFailed": "Все кандидаты не удались",
-      "noProviderAvailable": "No streaming provider is available. Install a streaming plugin to play music.",
-      "streamRecoveryFailed": "The stream became unavailable and could not be restored",
+      "noProviderAvailable": "Провайдер трансляции не доступен. Установите плагин для воспроизведения музыки.",
+      "streamRecoveryFailed": "Трансляция недоступна и не может быть восстановлена",
       "hifi": {
-        "loadFailed": "Could not load the audio stream: {{details}}",
-        "unsupportedFormat": "The audio stream is not in a supported format. Try a different source for this track.",
-        "mseUnavailable": "Streaming is not available because this system lacks MediaSource Extensions. Updating your system web engine may fix this.",
-        "appendRejected": "The audio engine rejected the stream data. The codec may be unsupported. Try a different source for this track."
+        "loadFailed": "Не удалось загрузить аудио трансляции: {{details}}",
+        "unsupportedFormat": "Аудио трансляции имеет неподдерживаемый формат. Попробуйте другой источник для этой дорожки.",
+        "mseUnavailable": "Трансляция недоступно, потому что в этой системе отсутствует MediaSource расширения. Обновление вашего веб-движка может исправить это.",
+        "appendRejected": "Аудио движок отклонил данные трансляции. Кодек может быть не поддерживается. Попробуйте другой источник для этой дорожки."
       }
     }
   },
   "playerBar": {
     "noTrackPlaying": "Трек не воспроизводится",
-    "shuffleOn": "Shuffle: on",
-    "shuffleOff": "Shuffle: off",
-    "repeatOff": "Repeat: off",
-    "repeatAll": "Repeat: all",
-    "repeatOne": "Repeat: one",
-    "discoveryOn": "Discovery: on",
-    "discoveryOff": "Discovery: off"
+    "shuffleOn": "Перемешивание: вкл.",
+    "shuffleOff": "Перемешивание: выкл.",
+    "repeatOff": "Повтор: выкл.",
+    "repeatAll": "Повтор: всё.",
+    "repeatOne": "Повтор: один раз",
+    "discoveryOn": "Обнаружение: вкл.",
+    "discoveryOff": "Обнаружение: выкл."
   },
   "lyrics": {
-    "nothingPlaying": "Nothing is playing",
-    "nothingPlayingDescription": "Play a track to see its lyrics here.",
-    "noPlugins": "No lyrics plugins installed",
+    "nothingPlaying": "Ничего не играет",
+    "nothingPlayingDescription": "Воспроизведите трек, чтобы увидеть его текст здесь.",
+    "noPlugins": "Плагины текстов песен не установлены",
     "noPluginsDescription": "Install a lyrics plugin to see lyrics for your music.",
     "browsePlugins": "Browse lyrics plugins",
     "noLyrics": "No lyrics for this track",
