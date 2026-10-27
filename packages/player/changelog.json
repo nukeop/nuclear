@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-10-27T00:00",
-    "description": "Nuclear now checks yt-dlp's signature before installing or updating it, and refuses any download that wasn't signed by the yt-dlp developers.",
+    "description": "Nuclear now verifies yt-dlp's signature before installation.",
     "type": "improvement",
     "contributors": ["nukeop"],
     "tags": [
