@@ -97,5 +97,9 @@ fn listed_hash(sums: &[u8], filename: &str) -> Result<String, VerifyError> {
 }
 
 #[cfg(test)]
+#[path = "ytdlp_verify.fixtures.rs"]
+mod fixtures;
+
+#[cfg(test)]
 #[path = "ytdlp_verify.test.rs"]
 mod tests;
