@@ -13,9 +13,6 @@ use crate::ytdlp_verify::{verify_hash, verify_sums, VerifyError, YTDLP_PUBLIC_KE
 
 const RELEASE_BASE_URL: &str =
     "https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download";
-const SUMS_FILENAME: &str = "SHA2-256SUMS";
-const SIGNATURE_FILENAME: &str = "SHA2-256SUMS.sig";
-const VERIFICATION_FAILED: &str = "yt-dlp download failed verification";
 const UPDATE_CHECK_INTERVAL_SECS: u64 = 3600;
 const DOWNLOAD_EVENT: &str = "ytdlp:download";
 
@@ -204,19 +201,18 @@ fn verification_failed(error: VerifyError) -> String {
         release_filename(),
         error
     );
-    VERIFICATION_FAILED.to_string()
+    "yt-dlp download failed verification".to_string()
 }
 
 async fn fetch_expected_hash(client: &reqwest::Client) -> Result<String, String> {
-    let sums = fetch_bytes(client, &release_url(SUMS_FILENAME)).await?;
-    let signature = fetch_bytes(client, &release_url(SIGNATURE_FILENAME)).await?;
+    let sums = fetch_bytes(client, &release_url("SHA2-256SUMS")).await?;
+    let signature = fetch_bytes(client, &release_url("SHA2-256SUMS.sig")).await?;
 
     let expected_hash = verify_sums(&sums, &signature, release_filename(), YTDLP_PUBLIC_KEY)
         .map_err(verification_failed)?;
 
     info!(
-        "[yt-dlp] Verified signature of {}, expecting {} to hash to {}",
-        SUMS_FILENAME,
+        "[yt-dlp] Verified signature of SHA2-256SUMS, expecting {} to hash to {}",
         release_filename(),
         expected_hash
     );
