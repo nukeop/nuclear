@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-27T00:00",
+    "description": "Nuclear now verifies yt-dlp's signature before installation.",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Security",
+        "color": "red"
+      }
+    ]
+  },
+  {
     "date": "2026-10-26T00:00",
     "description": "Security updates for TLS certificate validation (distrusted eMudhra certificates), the auto-updater and the MCP server.",
     "type": "fix",

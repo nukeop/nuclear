@@ -1,5 +1,6 @@
 use log::{debug, error, info};
 use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 use std::fs;
 use std::future::Future;
 use std::path::{Path, PathBuf};
@@ -8,6 +9,7 @@ use tauri::{command, AppHandle, Emitter, Manager};
 use tokio::sync::Mutex;
 
 use crate::profile::DefaultIdentifier;
+use crate::ytdlp_verify::{verify_hash, verify_sums, VerifyError, YTDLP_PUBLIC_KEY};
 
 const RELEASE_BASE_URL: &str =
     "https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download";
@@ -104,6 +106,10 @@ fn binary_name() -> &'static str {
     }
 }
 
+fn release_url(filename: &str) -> String {
+    format!("{}/{}", RELEASE_BASE_URL, filename)
+}
+
 fn ytdlp_dir(app_handle: &AppHandle) -> Result<PathBuf, String> {
     let DefaultIdentifier(default_identifier) = app_handle.state::<DefaultIdentifier>().inner();
     app_handle
@@ -117,19 +123,18 @@ fn percent(downloaded: u64, total: Option<u64>) -> Option<u8> {
     total.map(|total| (downloaded.min(total) * 100 / total) as u8)
 }
 
+fn hex(bytes: &[u8]) -> String {
+    bytes.iter().map(|byte| format!("{:02x}", byte)).collect()
+}
+
 async fn download_zip(
+    client: &reqwest::Client,
     url: &str,
     dest: &Path,
     on_progress: impl Fn(Option<u8>),
-) -> Result<(), String> {
+) -> Result<String, String> {
     use futures::StreamExt;
     use tokio::io::AsyncWriteExt;
-
-    let client = reqwest::Client::builder()
-        .timeout(Duration::from_secs(300))
-        .connect_timeout(Duration::from_secs(30))
-        .build()
-        .map_err(|error| format!("HTTP client error: {}", error))?;
 
     let response = client
         .get(url)
@@ -150,12 +155,14 @@ async fn download_zip(
     let mut last_percent = percent(downloaded, total);
     on_progress(last_percent);
 
+    let mut hasher = Sha256::new();
     let mut stream = response.bytes_stream();
     while let Some(chunk) = stream.next().await {
         let chunk = chunk.map_err(|error| format!("Download stream error: {}", error))?;
         file.write_all(&chunk)
             .await
             .map_err(|error| format!("Write error: {}", error))?;
+        hasher.update(&chunk);
 
         downloaded += chunk.len() as u64;
         let current_percent = percent(downloaded, total);
@@ -166,7 +173,50 @@ async fn download_zip(
     }
 
     info!("[yt-dlp] Downloaded {} to {:?}", url, dest);
-    Ok(())
+    Ok(hex(&hasher.finalize()))
+}
+
+async fn fetch_bytes(client: &reqwest::Client, url: &str) -> Result<Vec<u8>, String> {
+    let response = client
+        .get(url)
+        .send()
+        .await
+        .map_err(|error| format!("Download of {} failed: {}", url, error))?;
+
+    if !response.status().is_success() {
+        return Err(format!("HTTP error for {}: {}", url, response.status()));
+    }
+
+    let bytes = response
+        .bytes()
+        .await
+        .map_err(|error| format!("Download of {} failed: {}", url, error))?;
+
+    Ok(bytes.to_vec())
+}
+
+fn verification_failed(error: VerifyError) -> String {
+    error!(
+        "[yt-dlp] Verification of {} failed: {}",
+        release_filename(),
+        error
+    );
+    "yt-dlp download failed verification".to_string()
+}
+
+async fn fetch_expected_hash(client: &reqwest::Client) -> Result<String, String> {
+    let sums = fetch_bytes(client, &release_url("SHA2-256SUMS")).await?;
+    let signature = fetch_bytes(client, &release_url("SHA2-256SUMS.sig")).await?;
+
+    let expected_hash = verify_sums(&sums, &signature, release_filename(), YTDLP_PUBLIC_KEY)
+        .map_err(verification_failed)?;
+
+    info!(
+        "[yt-dlp] Verified signature of SHA2-256SUMS, expecting {} to hash to {}",
+        release_filename(),
+        expected_hash
+    );
+    Ok(expected_hash)
 }
 
 fn extract_zip(zip_path: &Path, dest: &Path) -> Result<(), String> {
@@ -282,17 +332,32 @@ async fn download_and_extract(
     binary_path: &Path,
     on_progress: impl Fn(Option<u8>),
 ) -> Result<(), String> {
-    let download_url = format!("{}/{}", RELEASE_BASE_URL, release_filename());
     let zip_path = ytdlp_dir.join(".download.zip");
 
     fs::create_dir_all(ytdlp_dir)
         .map_err(|error| format!("Failed to create ytdlp dir: {}", error))?;
 
-    download_zip(&download_url, &zip_path, on_progress)
-        .await
-        .inspect_err(|_| {
-            fs::remove_file(&zip_path).ok();
-        })?;
+    on_progress(None);
+
+    let client = reqwest::Client::builder()
+        .timeout(Duration::from_secs(300))
+        .connect_timeout(Duration::from_secs(30))
+        .build()
+        .map_err(|error| format!("HTTP client error: {}", error))?;
+
+    let expected_hash = fetch_expected_hash(&client).await?;
+
+    download_zip(
+        &client,
+        &release_url(release_filename()),
+        &zip_path,
+        on_progress,
+    )
+    .await
+    .and_then(|actual_hash| verify_hash(&expected_hash, &actual_hash).map_err(verification_failed))
+    .inspect_err(|_| {
+        fs::remove_file(&zip_path).ok();
+    })?;
 
     let extract_result = {
         let zip_path = zip_path.clone();

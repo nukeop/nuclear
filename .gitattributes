@@ -6,3 +6,4 @@
 *.gif binary
 *.webp binary
 *.svg text
+packages/player/src-tauri/fixtures/ytdlp_verify/real/** binary

@@ -15,6 +15,7 @@ mod setup;
 pub mod stream_server;
 pub mod ytdlp;
 pub mod ytdlp_setup;
+pub mod ytdlp_verify;
 
 // Maximizes the window when running as a non-steam app in steam
 #[cfg(target_os = "linux")]
