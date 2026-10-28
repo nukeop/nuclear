@@ -3,7 +3,11 @@ import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import type { PlaylistProvider } from '@nuclearplayer/plugin-sdk';
-import { createSelectWrapper, DialogWrapper } from '@nuclearplayer/ui';
+import {
+  createCardWrapper,
+  createSelectWrapper,
+  DialogWrapper,
+} from '@nuclearplayer/ui';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
@@ -111,41 +115,31 @@ export const PlaylistsWrapper = {
     },
   },
   card(index: number) {
-    const container = () => screen.getAllByTestId('card-container')[index];
+    const card = createCardWrapper(index);
 
     return {
-      get element() {
-        return screen.getAllByTestId('card')[index];
-      },
       get name() {
-        return within(this.element).getByTestId('card-title').textContent;
+        return card.title;
       },
       get images() {
-        return within(this.element).queryAllByRole('img');
+        return within(card.element).queryAllByRole('img');
       },
       get playButton() {
-        return within(container()).queryByTestId('card-play-button');
+        return card.playButton;
       },
-      async click() {
-        await user.click(this.element);
-      },
-      async play() {
-        await user.click(within(container()).getByTestId('card-play-button'));
-      },
+      click: () => card.click(),
+      play: () => card.play(),
       menu: {
-        async open() {
-          await user.click(within(container()).getByTestId('card-menu-button'));
-        },
         async addToQueue() {
-          await this.open();
+          await card.openMenu();
           await user.click(screen.getByTestId('add-to-queue-action'));
         },
         async exportJson() {
-          await this.open();
+          await card.openMenu();
           await user.click(screen.getByTestId('export-json-action'));
         },
         async delete() {
-          await this.open();
+          await card.openMenu();
           await user.click(screen.getByTestId('delete-playlist-action'));
         },
       },
