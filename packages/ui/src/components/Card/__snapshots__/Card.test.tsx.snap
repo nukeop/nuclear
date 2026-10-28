@@ -4,6 +4,7 @@ exports[`Card > (Snapshot) renders correctly 1`] = `
 <div>
   <div
     class="group relative w-42"
+    data-testid="card-container"
   >
     <button
       class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
@@ -91,6 +92,7 @@ exports[`Card > (Snapshot) renders with play and menu buttons 1`] = `
 <div>
   <div
     class="group relative w-42"
+    data-testid="card-container"
   >
     <button
       class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
@@ -177,7 +179,7 @@ exports[`Card > (Snapshot) renders with play and menu buttons 1`] = `
         class="relative aspect-square"
       >
         <div
-          class="border-border divide-border pointer-events-auto absolute right-0 bottom-0 flex divide-x-(length:--border-width) overflow-hidden rounded-tl-md rounded-br-md border-(length:--border-width)"
+          class="border-border divide-border pointer-events-auto absolute right-0 bottom-0 flex divide-x-(--border-width) overflow-hidden rounded-tl-md rounded-br-md border-(length:--border-width)"
         >
           <div
             class="relative"

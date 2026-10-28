@@ -10,6 +10,7 @@ import { routeTree } from '../../routeTree.gen';
 import { playlistFileService } from '../../services/playlistFileService';
 import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
+import { useStartupStore } from '../../stores/startupStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 
 const user = userEvent.setup();
@@ -59,6 +60,7 @@ export const PlaylistsWrapper = {
   },
 
   async mount(): Promise<RenderResult> {
+    useStartupStore.setState({ isStartingUp: false });
     const history = createMemoryHistory({ initialEntries: ['/playlists'] });
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);

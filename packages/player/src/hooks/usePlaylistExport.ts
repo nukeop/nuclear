@@ -10,13 +10,18 @@ import { usePlaylistStore } from '../stores/playlistStore';
 import { reportError } from '../utils/logging';
 
 export const usePlaylistExport = (playlistId: string) => {
-  const playlist = usePlaylistStore((state) => state.playlists.get(playlistId));
+  const loadPlaylist = usePlaylistStore((state) => state.loadPlaylist);
   const { t } = useTranslation('playlists');
 
   const exportAsJson = useCallback(async () => {
     try {
+      const playlist = await loadPlaylist(playlistId);
+      if (!playlist) {
+        return;
+      }
+
       const filePath = await save({
-        defaultPath: `${playlist?.name ?? 'playlist'}.json`,
+        defaultPath: `${playlist.name}.json`,
         filters: [{ name: 'JSON Files', extensions: ['json'] }],
       });
 
@@ -33,7 +38,7 @@ export const usePlaylistExport = (playlistId: string) => {
         error,
       });
     }
-  }, [playlist, t]);
+  }, [loadPlaylist, playlistId, t]);
 
   return { exportAsJson };
 };

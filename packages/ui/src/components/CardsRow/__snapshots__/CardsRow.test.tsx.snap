@@ -124,6 +124,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
   >
     <div
       class="group relative w-42 flex-shrink-0"
+      data-testid="card-container"
     >
       <button
         class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
@@ -206,6 +207,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
     </div>
     <div
       class="group relative w-42 flex-shrink-0"
+      data-testid="card-container"
     >
       <button
         class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
@@ -288,6 +290,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
     </div>
     <div
       class="group relative w-42 flex-shrink-0"
+      data-testid="card-container"
     >
       <button
         class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
