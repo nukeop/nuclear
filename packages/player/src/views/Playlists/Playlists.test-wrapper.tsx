@@ -7,6 +7,7 @@ import { createSelectWrapper, DialogWrapper } from '@nuclearplayer/ui';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
+import { playlistFileService } from '../../services/playlistFileService';
 import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
@@ -42,6 +43,17 @@ export const PlaylistsWrapper = {
     usePlaylistStore.setState({
       index: builders.map((b) => b.buildIndexEntry()),
       playlists: new Map(playlists.map((p) => [p.id, p])),
+      loaded: true,
+    });
+  },
+
+  async savePlaylists(...builders: PlaylistBuilder[]) {
+    for (const builder of builders) {
+      await playlistFileService.savePlaylist(builder.build());
+    }
+    usePlaylistStore.setState({
+      index: await playlistFileService.loadIndex(),
+      playlists: new Map(),
       loaded: true,
     });
   },
@@ -97,6 +109,8 @@ export const PlaylistsWrapper = {
     },
   },
   card(index: number) {
+    const container = () => screen.getAllByTestId('card-container')[index];
+
     return {
       get element() {
         return screen.getAllByTestId('card')[index];
@@ -107,10 +121,41 @@ export const PlaylistsWrapper = {
       get images() {
         return within(this.element).queryAllByRole('img');
       },
+      get playButton() {
+        return within(container()).queryByTestId('card-play-button');
+      },
       async click() {
         await user.click(this.element);
       },
+      async play() {
+        await user.click(within(container()).getByTestId('card-play-button'));
+      },
+      menu: {
+        async open() {
+          await user.click(within(container()).getByTestId('card-menu-button'));
+        },
+        async addToQueue() {
+          await this.open();
+          await user.click(screen.getByTestId('add-to-queue-action'));
+        },
+        async exportJson() {
+          await this.open();
+          await user.click(screen.getByTestId('export-json-action'));
+        },
+        async delete() {
+          await this.open();
+          await user.click(screen.getByTestId('delete-playlist-action'));
+        },
+      },
     };
+  },
+  deleteDialog: {
+    async confirm() {
+      await user.click(DialogWrapper.getByText('Delete'));
+    },
+    async cancel() {
+      await DialogWrapper.cancelButton.click();
+    },
   },
   async dragCard(name: string, targetName: string) {
     const sortableCards = screen.getAllByTestId('sortable-card');

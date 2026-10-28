@@ -33,7 +33,10 @@ const CardBase: FC<CardProps> = ({
   labels,
   imageReveal = true,
 }) => (
-  <div className={cn('group relative w-42', className)}>
+  <div
+    data-testid="card-container"
+    className={cn('group relative w-42', className)}
+  >
     <Button
       data-testid="card"
       size="flexible"
