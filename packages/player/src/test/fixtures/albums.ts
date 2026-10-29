@@ -1,4 +1,10 @@
-import type { Album, ArtworkSet, TrackRef } from '@nuclearplayer/model';
+import type {
+  Album,
+  AlbumRef,
+  ArtworkSet,
+  Track,
+  TrackRef,
+} from '@nuclearplayer/model';
 
 type AlbumFixtureOptions = {
   artistName: string;
@@ -51,3 +57,27 @@ export const GIANT_STEPS = createAlbumFixture({
     ],
   },
 });
+
+export const GIANT_STEPS_REF: AlbumRef = {
+  title: 'Giant Steps',
+  artwork: GIANT_STEPS.artwork,
+  source: GIANT_STEPS.source,
+};
+
+export const GIANT_STEPS_TRACKS: Track[] = [
+  'Countdown',
+  'Giant Steps',
+  'Spiral',
+].map((title, index) => ({
+  title,
+  artists: [
+    {
+      name: 'John Coltrane',
+      roles: [],
+      source: { provider: 'test-metadata-provider', id: 'artist-1' },
+    },
+  ],
+  album: GIANT_STEPS_REF,
+  artwork: GIANT_STEPS.artwork,
+  source: { provider: 'test-metadata-provider', id: `track-${index + 1}` },
+}));

@@ -1,5 +1,21 @@
 [
   {
+    "date": "2026-10-29T00:00",
+    "description": "Playlist, album, and artist cards can now be played or added to the queue directly.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      },
+      {
+        "label": "Favorites",
+        "color": "red"
+      }
+    ]
+  },
+  {
     "date": "2026-10-27T00:00",
     "description": "Nuclear now verifies yt-dlp's signature before installation.",
     "type": "improvement",

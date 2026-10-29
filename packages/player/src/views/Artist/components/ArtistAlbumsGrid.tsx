@@ -1,12 +1,9 @@
-import { useNavigate } from '@tanstack/react-router';
 import { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { pickArtwork } from '@nuclearplayer/model';
-import { MetadataProvider } from '@nuclearplayer/plugin-sdk';
-import { Card, CardGrid } from '@nuclearplayer/ui';
+import { CardGrid } from '@nuclearplayer/ui';
 
-import { useActiveProvider } from '../../../hooks/useActiveProvider';
+import { ConnectedAlbumCard } from '../../../components/ConnectedAlbumCard';
 import { useArtistAlbums } from '../hooks/useArtistAlbums';
 
 type ArtistAlbumsGridProps = {
@@ -20,16 +17,12 @@ export const ArtistAlbumsGrid: FC<ArtistAlbumsGridProps> = ({
   artistId,
   'data-testid': dataTestId,
 }) => {
-  const navigate = useNavigate();
   const { t } = useTranslation('artist');
   const {
     data: albums,
     isLoading,
     isError,
   } = useArtistAlbums(providerId, artistId);
-
-  const provider = useActiveProvider('metadata') as
-    MetadataProvider | undefined;
 
   if (isLoading) {
     return (
@@ -54,15 +47,7 @@ export const ArtistAlbumsGrid: FC<ArtistAlbumsGridProps> = ({
   return (
     <CardGrid data-testid={dataTestId} className="mx-4">
       {albums?.map((album) => (
-        <Card
-          key={album.source.id}
-          title={album.title}
-          subtitle={album.artists?.map((a) => a.name).join(', ')}
-          src={pickArtwork(album.artwork, 'cover', 300)?.url}
-          onClick={() =>
-            navigate({ to: `/album/${provider!.id}/${album.source.id}` })
-          }
-        />
+        <ConnectedAlbumCard key={album.source.id} album={album} />
       ))}
     </CardGrid>
   );

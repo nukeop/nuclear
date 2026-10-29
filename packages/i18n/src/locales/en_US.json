@@ -18,7 +18,8 @@
       "clear": "Clear",
       "search": "Search",
       "loading": "Loading...",
-      "retry": "Retry"
+      "retry": "Retry",
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "Network error. Please check your connection.",

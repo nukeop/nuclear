@@ -3,12 +3,18 @@ import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import type { PlaylistProvider } from '@nuclearplayer/plugin-sdk';
-import { createSelectWrapper, DialogWrapper } from '@nuclearplayer/ui';
+import {
+  createCardWrapper,
+  createSelectWrapper,
+  DialogWrapper,
+} from '@nuclearplayer/ui';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
+import { playlistFileService } from '../../services/playlistFileService';
 import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
+import { useStartupStore } from '../../stores/startupStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 
 const user = userEvent.setup();
@@ -46,7 +52,19 @@ export const PlaylistsWrapper = {
     });
   },
 
+  async savePlaylists(...builders: PlaylistBuilder[]) {
+    for (const builder of builders) {
+      await playlistFileService.savePlaylist(builder.build());
+    }
+    usePlaylistStore.setState({
+      index: await playlistFileService.loadIndex(),
+      playlists: new Map(),
+      loaded: true,
+    });
+  },
+
   async mount(): Promise<RenderResult> {
+    useStartupStore.setState({ isStartingUp: false });
     const history = createMemoryHistory({ initialEntries: ['/playlists'] });
     const router = createRouter({ routeTree, history });
     const component = render(<App routerProp={router} />);
@@ -97,20 +115,43 @@ export const PlaylistsWrapper = {
     },
   },
   card(index: number) {
+    const card = createCardWrapper(index);
+
     return {
-      get element() {
-        return screen.getAllByTestId('card')[index];
-      },
       get name() {
-        return within(this.element).getByTestId('card-title').textContent;
+        return card.title;
       },
       get images() {
-        return within(this.element).queryAllByRole('img');
+        return within(card.element).queryAllByRole('img');
       },
-      async click() {
-        await user.click(this.element);
+      get playButton() {
+        return card.playButton;
+      },
+      click: () => card.click(),
+      play: () => card.play(),
+      menu: {
+        async addToQueue() {
+          await card.openMenu();
+          await user.click(screen.getByTestId('add-to-queue-action'));
+        },
+        async exportJson() {
+          await card.openMenu();
+          await user.click(screen.getByTestId('export-json-action'));
+        },
+        async delete() {
+          await card.openMenu();
+          await user.click(screen.getByTestId('delete-playlist-action'));
+        },
       },
     };
+  },
+  deleteDialog: {
+    async confirm() {
+      await user.click(DialogWrapper.getByText('Delete'));
+    },
+    async cancel() {
+      await DialogWrapper.cancelButton.click();
+    },
   },
   async dragCard(name: string, targetName: string) {
     const sortableCards = screen.getAllByTestId('sortable-card');

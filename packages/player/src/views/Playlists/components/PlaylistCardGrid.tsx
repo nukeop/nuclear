@@ -1,10 +1,9 @@
 import { type FC } from 'react';
 
-import { useTranslation } from '@nuclearplayer/i18n';
 import type { PlaylistIndexEntry } from '@nuclearplayer/model';
-import { Card, CardGrid } from '@nuclearplayer/ui';
+import { CardGrid } from '@nuclearplayer/ui';
 
-import { PlaylistArtwork } from './PlaylistArtwork';
+import { PlaylistCard } from './PlaylistCard';
 
 type PlaylistCardGridProps = {
   playlists: PlaylistIndexEntry[];
@@ -19,8 +18,6 @@ export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
   onReorder,
   isReorderable,
 }) => {
-  const { t } = useTranslation('playlists');
-
   return (
     <CardGrid.Sortable
       itemIds={playlists.map((playlist) => playlist.id)}
@@ -29,15 +26,8 @@ export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
     >
       {playlists.map((playlist) => (
         <CardGrid.SortableItem key={playlist.id} id={playlist.id}>
-          <Card
-            image={
-              <PlaylistArtwork
-                name={playlist.name}
-                thumbnails={playlist.thumbnails}
-              />
-            }
-            title={playlist.name}
-            subtitle={t('trackCount', { count: playlist.itemCount })}
+          <PlaylistCard
+            playlist={playlist}
             onClick={() => onCardClick(playlist.id)}
           />
         </CardGrid.SortableItem>

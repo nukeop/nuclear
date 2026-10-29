@@ -2,10 +2,22 @@ import * as dialog from '@tauri-apps/plugin-dialog';
 import * as fs from '@tauri-apps/plugin-fs';
 import { type Mock } from 'vitest';
 
-import type { Playlist } from '@nuclearplayer/model';
+import {
+  PLAYLIST_EXPORT_VERSION,
+  stripResolutionState,
+  type Playlist,
+  type Track,
+} from '@nuclearplayer/model';
 
+import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper';
+import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
+import { useQueueStore } from '../../stores/queueStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
+import {
+  createMockCandidate,
+  StreamingProviderBuilder,
+} from '../../test/builders/StreamingProviderBuilder';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { PlaylistsWrapper } from './Playlists.test-wrapper';
 
@@ -26,6 +38,11 @@ vi.mock('sonner', () => ({
 vi.mock('@tauri-apps/plugin-fs', async () => ({
   readTextFile: vi.fn(),
   writeTextFile: vi.fn(),
+  remove: vi.fn(),
+}));
+
+vi.mock('@tauri-apps/api/core', () => ({
+  invoke: vi.fn().mockResolvedValue(9100),
 }));
 
 const mockPlaylistFile = (playlist: Playlist) =>
@@ -375,6 +392,117 @@ describe('Playlists view', () => {
       await PlaylistsWrapper.filter.type('rock');
 
       expect(PlaylistsWrapper.cardNames).toEqual(['Bravo Rock', 'Alpha Rock']);
+    });
+  });
+
+  describe('without opening a playlist', () => {
+    const existingTrack: Track = {
+      title: 'Existing Track',
+      artists: [],
+      source: { provider: 'test', id: 'existing' },
+    };
+
+    const roadTrip = new PlaylistBuilder()
+      .withName('Road Trip')
+      .withTrackCount(2);
+    const roadTripTracks = roadTrip.build().items.map((item) => item.track);
+
+    const queuedTracks = () =>
+      useQueueStore.getState().items.map((item) => item.track);
+
+    beforeEach(() => {
+      PlaylistsWrapper.clearProviders();
+      useQueueStore.setState({ items: [], currentIndex: 0 });
+      useQueueStore.getState().addToQueue([existingTrack]);
+    });
+
+    it('plays a playlist in place of the queue', async () => {
+      providersHost.register(
+        new StreamingProviderBuilder()
+          .withSearchForTrack(async (artist: string, title: string) => [
+            createMockCandidate(`candidate-${title}`, `${artist} - ${title}`),
+          ])
+          .build(),
+      );
+      await PlaylistsWrapper.savePlaylists(roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).play();
+
+      await vi.waitFor(() => {
+        expect(PlayerBarWrapper.isPlaying).toBe(true);
+      });
+      expect(queuedTracks().map(stripResolutionState)).toEqual(roadTripTracks);
+      expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+    });
+
+    it('has no play button for an empty playlist', async () => {
+      PlaylistsWrapper.createPlaylists(
+        new PlaylistBuilder().withName('Road Trip').withTrackCount(2),
+        new PlaylistBuilder().withName('Empty'),
+      );
+
+      await PlaylistsWrapper.mount();
+
+      expect(PlaylistsWrapper.card(0).playButton).toBeInTheDocument();
+      expect(PlaylistsWrapper.card(1).playButton).not.toBeInTheDocument();
+    });
+
+    it('adds a playlist to the queue', async () => {
+      await PlaylistsWrapper.savePlaylists(roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.addToQueue();
+
+      await vi.waitFor(() => {
+        expect(queuedTracks()).toEqual([existingTrack, ...roadTripTracks]);
+      });
+      expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+    });
+
+    it('exports a playlist as JSON', async () => {
+      (dialog.save as Mock).mockResolvedValue('/downloads/Road Trip.json');
+      await PlaylistsWrapper.savePlaylists(roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.exportJson();
+
+      await vi.waitFor(() => {
+        expect(toastSuccess).toHaveBeenCalledWith('Playlist exported');
+      });
+      const [path, json] = (fs.writeTextFile as Mock).mock.calls[0];
+      expect(path).toBe('/downloads/Road Trip.json');
+      expect(JSON.parse(json)).toEqual({
+        version: PLAYLIST_EXPORT_VERSION,
+        playlist: roadTrip.build(),
+      });
+      expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+    });
+
+    it('deletes a playlist after you confirm', async () => {
+      await PlaylistsWrapper.savePlaylists(
+        roadTrip,
+        new PlaylistBuilder().withName('Late Night'),
+      );
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.delete();
+      await PlaylistsWrapper.deleteDialog.confirm();
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Late Night']);
+    });
+
+    it('keeps a playlist when you cancel deleting it', async () => {
+      await PlaylistsWrapper.savePlaylists(
+        roadTrip,
+        new PlaylistBuilder().withName('Late Night'),
+      );
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.delete();
+      await PlaylistsWrapper.deleteDialog.cancel();
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip', 'Late Night']);
     });
   });
 
