@@ -18,7 +18,8 @@
       "clear": "Cancella",
       "search": "Cerca",
       "loading": "Caricamento...",
-      "retry": "Riprova"
+      "retry": "Riprova",
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "Errore di rete. Controlla la tua connessione.",
