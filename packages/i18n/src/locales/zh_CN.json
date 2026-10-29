@@ -18,7 +18,8 @@
       "clear": "清空",
       "search": "搜索",
       "loading": "载入中……",
-      "retry": "重试"
+      "retry": "重试",
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "网络错误。请检查您的连接。",
