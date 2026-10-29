@@ -18,10 +18,20 @@ export type PlaylistIndexEntry = Pick<
   Playlist,
   'id' | 'name' | 'createdAtIso' | 'lastModifiedIso' | 'isReadOnly' | 'artwork'
 > & {
+  kind: 'playlist';
   itemCount: number;
   totalDurationMs: number;
   thumbnails: string[];
 };
+
+export type PlaylistFolder = {
+  kind: 'folder';
+  id: string;
+  name: string;
+  playlists: PlaylistIndexEntry[];
+};
+
+export type PlaylistIndexNode = PlaylistIndexEntry | PlaylistFolder;
 
 export type PlaylistItem<T extends Track = Track> = {
   id: string;

@@ -1,6 +1,10 @@
 import { useMemo, useState } from 'react';
 
-import type { PlaylistIndexEntry } from '@nuclearplayer/model';
+import type {
+  PlaylistFolder,
+  PlaylistIndexEntry,
+  PlaylistIndexNode,
+} from '@nuclearplayer/model';
 
 export type PlaylistSortBy =
   'custom' | 'name' | 'dateAdded' | 'dateModified' | 'trackCount' | 'duration';
@@ -26,19 +30,24 @@ const comparePlaylists = (
   }
 };
 
-const orderPlaylists = (
-  playlists: PlaylistIndexEntry[],
-  sortBy: PlaylistSortBy,
-): PlaylistIndexEntry[] => {
-  if (sortBy === 'custom') {
-    return playlists;
+const sortInDirection = <Entry extends PlaylistIndexNode>(
+  entries: Entry[],
+  compare: (left: Entry, right: Entry) => number,
+  sortDirection: SortDirection,
+): Entry[] => {
+  const ascending = [...entries].sort(compare);
+
+  if (sortDirection === 'desc') {
+    return ascending.reverse();
   }
-  return [...playlists].sort((left, right) =>
-    comparePlaylists(left, right, sortBy),
-  );
+
+  return ascending;
 };
 
-export const usePlaylistSort = (playlists: PlaylistIndexEntry[]) => {
+const compareNames = (left: PlaylistFolder, right: PlaylistFolder) =>
+  left.name.localeCompare(right.name);
+
+export const usePlaylistSort = (entries: PlaylistIndexNode[]) => {
   const [sortBy, setSortBy] = useState<PlaylistSortBy>('custom');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
@@ -58,21 +67,29 @@ export const usePlaylistSort = (playlists: PlaylistIndexEntry[]) => {
     });
   };
 
-  const sortedPlaylists = useMemo(() => {
-    const ascending = orderPlaylists(playlists, sortBy);
-
-    if (sortDirection === 'desc') {
-      return [...ascending].reverse();
+  const sortedEntries = useMemo((): PlaylistIndexNode[] => {
+    if (sortBy === 'custom') {
+      return entries;
     }
 
-    return ascending;
-  }, [playlists, sortBy, sortDirection]);
+    const folders = entries.filter((entry) => entry.kind === 'folder');
+    const playlists = entries.filter((entry) => entry.kind === 'playlist');
+
+    return [
+      ...sortInDirection(folders, compareNames, sortDirection),
+      ...sortInDirection(
+        playlists,
+        (left, right) => comparePlaylists(left, right, sortBy),
+        sortDirection,
+      ),
+    ];
+  }, [entries, sortBy, sortDirection]);
 
   return {
     sortBy,
     setSortBy: selectSortBy,
     sortDirection,
     toggleSortDirection,
-    sortedPlaylists,
+    sortedEntries,
   };
 };

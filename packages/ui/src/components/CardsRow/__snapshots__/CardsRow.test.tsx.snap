@@ -199,6 +199,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
           </div>
           <div
             class="text-card-foreground truncate text-xs opacity-60"
+            data-testid="card-subtitle"
           >
             Neon City
           </div>
@@ -282,6 +283,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
           </div>
           <div
             class="text-card-foreground truncate text-xs opacity-60"
+            data-testid="card-subtitle"
           >
             Aurora
           </div>
@@ -365,6 +367,7 @@ exports[`CardsRow > (Snapshot) renders correctly with items 1`] = `
           </div>
           <div
             class="text-card-foreground truncate text-xs opacity-60"
+            data-testid="card-subtitle"
           >
             The Wanderers
           </div>

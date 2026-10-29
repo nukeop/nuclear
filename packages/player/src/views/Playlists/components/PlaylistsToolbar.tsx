@@ -1,4 +1,4 @@
-import { FilterIcon, Plus } from 'lucide-react';
+import { ArrowLeft, FilterIcon, Plus } from 'lucide-react';
 import { type FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
@@ -6,23 +6,28 @@ import { Button, Input } from '@nuclearplayer/ui';
 
 import type { PlaylistSortBy, SortDirection } from '../hooks/usePlaylistSort';
 import { useCreatePlaylistContext } from '../PlaylistsContext';
+import { CreateFolderButton } from './CreateFolderButton';
 import { ImportPlaylistMenu } from './ImportPlaylistMenu';
 import { PlaylistSortSelect } from './PlaylistSortSelect';
 
 type PlaylistsToolbarProps = {
   filter: string;
   onFilterChange: (value: string) => void;
-  hasPlaylists: boolean;
+  hasEntries: boolean;
   sortBy: PlaylistSortBy;
   onSortByChange: (sortBy: PlaylistSortBy) => void;
   sortDirection: SortDirection;
   onToggleSortDirection: () => void;
+  isInFolder: boolean;
+  onBack: () => void;
 };
 
 export const PlaylistsToolbar: FC<PlaylistsToolbarProps> = ({
+  isInFolder,
+  onBack,
   filter,
   onFilterChange,
-  hasPlaylists,
+  hasEntries,
   sortBy,
   onSortByChange,
   sortDirection,
@@ -33,12 +38,23 @@ export const PlaylistsToolbar: FC<PlaylistsToolbarProps> = ({
 
   return (
     <div className="mb-4 flex items-center gap-2">
+      {isInFolder && (
+        <Button onClick={onBack} data-testid="playlists-back-button">
+          <ArrowLeft size={16} />
+          {t('common:actions.back')}
+        </Button>
+      )}
       <Button onClick={openCreateDialog} data-testid="create-playlist-button">
         <Plus size={16} />
         {t('create')}
       </Button>
-      <ImportPlaylistMenu />
-      {hasPlaylists && (
+      {!isInFolder && (
+        <>
+          <CreateFolderButton />
+          <ImportPlaylistMenu />
+        </>
+      )}
+      {hasEntries && (
         <div className="ml-auto flex items-center gap-2">
           <PlaylistSortSelect
             sortBy={sortBy}

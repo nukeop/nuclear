@@ -64,6 +64,7 @@ export const playlistExportSchema = z.object({
 });
 
 export const playlistIndexEntrySchema = z.object({
+  kind: z.literal('playlist').default('playlist'),
   id: z.string(),
   name: z.string(),
   createdAtIso: z.string(),
@@ -75,7 +76,16 @@ export const playlistIndexEntrySchema = z.object({
   thumbnails: z.array(z.string()).default([]),
 });
 
-export const playlistIndexSchema = z.array(playlistIndexEntrySchema);
+const playlistFolderSchema = z.object({
+  kind: z.literal('folder'),
+  id: z.string(),
+  name: z.string(),
+  playlists: z.array(playlistIndexEntrySchema),
+});
+
+export const playlistIndexSchema = z.array(
+  z.union([playlistFolderSchema, playlistIndexEntrySchema]),
+);
 
 export const legacyTrackSchema = z.object({
   uuid: z.string().optional(),

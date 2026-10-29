@@ -125,7 +125,13 @@ export type {
   WordSyncedLyrics,
 } from './lyrics';
 export { isSyncedLyricsType } from './lyrics';
-export type { Playlist, PlaylistIndexEntry, PlaylistItem } from './playlists';
+export type {
+  Playlist,
+  PlaylistFolder,
+  PlaylistIndexEntry,
+  PlaylistIndexNode,
+  PlaylistItem,
+} from './playlists';
 export type { QueueItem, RepeatMode, Queue } from './queue';
 export type { SearchCategory, SearchParams, SearchResults } from './search';
 export type {

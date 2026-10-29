@@ -1,28 +1,39 @@
-import { produce } from 'immer';
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 
 import type {
   Playlist,
-  PlaylistIndexEntry,
+  PlaylistIndexNode,
   PlaylistItem,
   Track,
 } from '@nuclearplayer/model';
 import { stripResolutionState } from '@nuclearplayer/model';
 
 import { playlistFileService } from '../services/playlistFileService';
+import { PlaylistIndexTree } from './PlaylistIndexTree';
 import { useQueueStore } from './queueStore';
 
 type PlaylistStore = {
-  index: PlaylistIndexEntry[];
+  index: PlaylistIndexNode[];
   playlists: Map<string, Playlist>;
   loaded: boolean;
 
   loadIndex: () => Promise<void>;
   loadPlaylist: (id: string) => Promise<Playlist | null>;
-  createPlaylist: (name: string) => Promise<string>;
+  createPlaylist: (name: string, folderId?: string) => Promise<string>;
   deletePlaylist: (id: string) => Promise<void>;
-  movePlaylist: (fromIndex: number, toIndex: number) => Promise<void>;
+  moveEntry: (
+    fromIndex: number,
+    toIndex: number,
+    folderId?: string,
+  ) => Promise<void>;
+  createFolder: (name: string) => Promise<string>;
+  renameFolder: (id: string, name: string) => Promise<void>;
+  deleteFolder: (id: string) => Promise<void>;
+  movePlaylistToFolder: (
+    playlistId: string,
+    folderId: string | undefined,
+  ) => Promise<void>;
   addTracks: (playlistId: string, tracks: Track[]) => Promise<PlaylistItem[]>;
   removeTracks: (playlistId: string, itemIds: string[]) => Promise<void>;
   importPlaylist: (playlist: Playlist) => Promise<string>;
@@ -65,7 +76,7 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
     return playlist;
   },
 
-  createPlaylist: async (name: string) => {
+  createPlaylist: async (name: string, folderId?: string) => {
     const now = new Date().toISOString();
     const playlist: Playlist = {
       id: uuidv4(),
@@ -76,7 +87,7 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
       items: [],
     };
 
-    const index = await playlistFileService.savePlaylist(playlist);
+    const index = await playlistFileService.savePlaylist(playlist, folderId);
 
     set((state) => ({
       playlists: new Map(state.playlists).set(playlist.id, playlist),
@@ -239,15 +250,38 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
     });
   },
 
-  movePlaylist: async (fromIndex: number, toIndex: number) => {
-    const index = produce(get().index, (draft) => {
-      const [moved] = draft.splice(fromIndex, 1);
-      draft.splice(toIndex, 0, moved);
-    });
-    set({ index });
-    await playlistFileService.saveIndex(index);
+  moveEntry: async (fromIndex, toIndex, folderId) => {
+    await updateTree((tree) => tree.moveEntry(fromIndex, toIndex, folderId));
+  },
+
+  createFolder: async (name: string) => {
+    const id = uuidv4();
+    await updateTree((tree) => tree.addFolder(id, name));
+    return id;
+  },
+
+  renameFolder: async (id: string, name: string) => {
+    await updateTree((tree) => tree.renameFolder(id, name));
+  },
+
+  deleteFolder: async (id: string) => {
+    await updateTree((tree) => tree.removeFolder(id));
+  },
+
+  movePlaylistToFolder: async (playlistId, folderId) => {
+    await updateTree((tree) => tree.movePlaylistToFolder(playlistId, folderId));
   },
 }));
+
+const updateTree = async (
+  change: (tree: PlaylistIndexTree) => PlaylistIndexTree,
+) => {
+  const { nodes } = change(
+    new PlaylistIndexTree(usePlaylistStore.getState().index),
+  );
+  usePlaylistStore.setState({ index: nodes });
+  await playlistFileService.saveIndex(nodes);
+};
 
 export const initializePlaylistStore = async (): Promise<void> => {
   await usePlaylistStore.getState().loadIndex();
