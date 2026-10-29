@@ -18,7 +18,8 @@
       "clear": "Очистить",
       "search": "Поиск",
       "loading": "Загрузка...",
-      "retry": "Повторить"
+      "retry": "Повторить",
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "Ошибка сети. Проверьте подключение.",
