@@ -18,7 +18,8 @@
       "clear": "Leeren",
       "search": "Suchen",
       "loading": "Lädt...",
-      "retry": "Erneut versuchen"
+      "retry": "Erneut versuchen",
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
