@@ -18,7 +18,8 @@
       "clear": "Effacer",
       "search": "Rechercher",
       "loading": "Chargement...",
-      "retry": "Réessayer"
+      "retry": "Réessayer",
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "Erreur réseau. Veuillez vérifier votre connexion.",
