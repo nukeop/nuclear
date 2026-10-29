@@ -14,6 +14,9 @@ export const createCardWrapper = (index: number) => {
     get playButton() {
       return within(container()).queryByTestId('card-play-button');
     },
+    get isLoading() {
+      return within(container()).queryByTestId('card-loading-bar') !== null;
+    },
     async click() {
       await userEvent.click(this.element);
     },

@@ -1,14 +1,18 @@
+import { QueryClient } from '@tanstack/react-query';
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
 import { render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import type { AlbumRef } from '@nuclearplayer/model';
+import type { Album, AlbumRef } from '@nuclearplayer/model';
 import { createCardWrapper } from '@nuclearplayer/ui';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
+import { providersHost } from '../../services/providersHost';
 import { useFavoritesStore } from '../../stores/favoritesStore';
 import { useStartupStore } from '../../stores/startupStore';
+import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
+import { GIANT_STEPS } from '../../test/fixtures/albums';
 
 const user = userEvent.setup();
 
@@ -26,13 +30,30 @@ export const FavoriteAlbumsWrapper = {
     });
   },
 
+  registerSlowProvider() {
+    const response = Promise.withResolvers<Album>();
+    providersHost.register(
+      MetadataProviderBuilder.albumDetailsProvider()
+        .withFetchAlbumDetails(() => response.promise)
+        .build(),
+    );
+    return {
+      respond: () => response.resolve(GIANT_STEPS),
+    };
+  },
+
   async mount(): Promise<RenderResult> {
     useStartupStore.setState({ isStartingUp: false });
     const history = createMemoryHistory({
       initialEntries: ['/favorites/albums'],
     });
     const router = createRouter({ routeTree, history });
-    const component = render(<App routerProp={router} />);
+    const queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+    const component = render(
+      <App queryClientProp={queryClient} routerProp={router} />,
+    );
     await screen.findByTestId('favorite-albums-view');
     return component;
   },
@@ -51,6 +72,9 @@ export const FavoriteAlbumsWrapper = {
     const card = createCardWrapper(index);
 
     return {
+      get isLoading() {
+        return card.isLoading;
+      },
       play: () => card.play(),
       menu: {
         async addToQueue() {

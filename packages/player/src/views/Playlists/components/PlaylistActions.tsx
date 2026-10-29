@@ -6,7 +6,6 @@ import type { Track } from '@nuclearplayer/model';
 import { Button, cn, Popover } from '@nuclearplayer/ui';
 
 import { useQueueActions } from '../../../hooks/useQueueActions';
-import { playbackManager } from '../../../services/playback';
 
 type PlaylistActionsProps = {
   tracks: Track[];
@@ -20,23 +19,15 @@ export const PlaylistActions: FC<PlaylistActionsProps> = ({
   className,
 }) => {
   const { t } = useTranslation('playlists');
-  const { addToQueue, clearQueue } = useQueueActions();
-
-  const handlePlayAll = () => {
-    clearQueue();
-    addToQueue(tracks);
-    playbackManager.play();
-  };
-
-  const handleAddToQueue = () => {
-    addToQueue(tracks);
-  };
+  const { addToQueue, playTracks } = useQueueActions();
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
       <Button
         variant="tertiary"
-        onClick={handlePlayAll}
+        onClick={() => {
+          playTracks(tracks);
+        }}
         data-testid="play-all-button"
       >
         <PlayIcon size={16} />
@@ -59,7 +50,9 @@ export const PlaylistActions: FC<PlaylistActionsProps> = ({
         <Popover.Menu>
           <Popover.Item
             icon={<PlusIcon size={16} />}
-            onClick={handleAddToQueue}
+            onClick={() => {
+              addToQueue(tracks);
+            }}
             data-testid="add-to-queue-action"
           >
             {t('addToQueue')}

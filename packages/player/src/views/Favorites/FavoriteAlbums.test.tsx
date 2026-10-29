@@ -246,6 +246,19 @@ describe('FavoriteAlbums view', () => {
       expect(queuedTracks()).toEqual([existingTrack]);
     });
 
+    it('shows that the album is loading until its tracks arrive', async () => {
+      const provider = FavoriteAlbumsWrapper.registerSlowProvider();
+
+      await FavoriteAlbumsWrapper.mount();
+      await FavoriteAlbumsWrapper.card(0).menu.addToQueue();
+
+      expect(FavoriteAlbumsWrapper.card(0).isLoading).toBe(true);
+      provider.respond();
+      await vi.waitFor(() => {
+        expect(FavoriteAlbumsWrapper.card(0).isLoading).toBe(false);
+      });
+    });
+
     it('removes an album from favorites', async () => {
       await FavoriteAlbumsWrapper.mount();
       await FavoriteAlbumsWrapper.card(0).menu.removeFromFavorites();

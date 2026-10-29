@@ -264,6 +264,19 @@ describe('FavoriteArtists view', () => {
       expect(queuedTracks()).toEqual([existingTrack]);
     });
 
+    it('shows that the artist is loading until its popular tracks arrive', async () => {
+      const provider = FavoriteArtistsWrapper.registerSlowProvider();
+
+      await FavoriteArtistsWrapper.mount();
+      await FavoriteArtistsWrapper.card(0).menu.addToQueue();
+
+      expect(FavoriteArtistsWrapper.card(0).isLoading).toBe(true);
+      provider.respond();
+      await vi.waitFor(() => {
+        expect(FavoriteArtistsWrapper.card(0).isLoading).toBe(false);
+      });
+    });
+
     it('removes an artist from favorites', async () => {
       await FavoriteArtistsWrapper.mount();
       await FavoriteArtistsWrapper.card(0).menu.removeFromFavorites();

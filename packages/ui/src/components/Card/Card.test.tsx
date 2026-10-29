@@ -28,4 +28,19 @@ describe('Card', () => {
     );
     expect(container).toMatchSnapshot();
   });
+
+  it('(Snapshot) renders while loading', async () => {
+    const { container } = render(
+      <Card
+        src="https://picsum.photos/300"
+        title="Test album"
+        subtitle="Test artist"
+        onPlay={() => {}}
+        menuItems={<Popover.Item>Add to queue</Popover.Item>}
+        labels={{ play: 'Play', menu: 'More actions' }}
+        isLoading
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

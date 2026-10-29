@@ -18,6 +18,7 @@ type CardProps = {
   onPlay?: () => void;
   menuItems?: ReactNode;
   labels?: CardLabels;
+  isLoading?: boolean;
   imageReveal?: boolean;
 };
 
@@ -31,6 +32,7 @@ const CardBase: FC<CardProps> = ({
   onPlay,
   menuItems,
   labels,
+  isLoading,
   imageReveal = true,
 }) => (
   <div
@@ -86,7 +88,12 @@ const CardBase: FC<CardProps> = ({
     </Button>
 
     {(onPlay || menuItems) && (
-      <CardActions onPlay={onPlay} menuItems={menuItems} labels={labels} />
+      <CardActions
+        onPlay={onPlay}
+        menuItems={menuItems}
+        labels={labels}
+        isLoading={isLoading}
+      />
     )}
   </div>
 );

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PlusIcon, Trash2Icon } from 'lucide-react';
+import { ComponentProps, FC, useState } from 'react';
 
 import { Card, Popover } from '@nuclearplayer/ui';
 
@@ -47,6 +48,29 @@ export const WithActions: Story = {
     ),
     labels: { play: 'Play', menu: 'More actions' },
   },
+};
+
+export const Loading: Story = {
+  args: {
+    ...WithActions.args,
+    isLoading: true,
+  },
+};
+
+const LoadingOnPlayCard: FC<ComponentProps<typeof Card>> = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const startLoading = () => {
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 2500);
+  };
+
+  return <Card {...props} onPlay={startLoading} isLoading={isLoading} />;
+};
+
+export const LoadingOnPlay: Story = {
+  args: WithActions.args,
+  render: (args) => <LoadingOnPlayCard {...args} />,
 };
 
 export const WithLongText: Story = {

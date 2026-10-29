@@ -6,7 +6,7 @@ import { pickArtwork } from '@nuclearplayer/model';
 import { StatChip } from '@nuclearplayer/ui';
 
 import { ConnectedFavoriteButton } from '../../../components/ConnectedFavoriteButton';
-import { useAlbumDetails } from '../hooks/useAlbumDetails';
+import { useAlbumDetails } from '../../../queries/albumDetails';
 import { AlbumHeaderSkeleton } from './AlbumHeaderSkeleton';
 
 type AlbumHeaderProps = {

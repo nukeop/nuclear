@@ -4,7 +4,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import { TrackTable } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../../components/ConnectedTrackTable';
-import { useArtistTopTracks } from '../hooks/useArtistTopTracks';
+import { useArtistTopTracks } from '../../../queries/artistTopTracks';
 
 type ArtistPopularTracksProps = {
   providerId: string;

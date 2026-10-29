@@ -191,6 +191,101 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
                     </div>
                   </div>
                 </button>
+                <div
+                  class="group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y pointer-events-none absolute inset-0 border-(length:--border-width) border-transparent p-2 transition-all"
+                >
+                  <div
+                    class="relative aspect-square"
+                  >
+                    <div
+                      class="absolute inset-(--border-width) overflow-hidden rounded-[calc(var(--radius-md)-var(--border-width))]"
+                    >
+                      <div
+                        animate="idle"
+                        class="surface-background border-border absolute right-0 bottom-0 flex justify-end divide-x-(--border-width) overflow-hidden border-t-(length:--border-width) border-l-(length:--border-width) bg-clip-padding pointer-events-auto"
+                      >
+                        <div>
+                          <div
+                            class="relative"
+                            data-headlessui-state=""
+                          >
+                            <div
+                              aria-expanded="false"
+                              class="cursor-pointer"
+                              data-headlessui-state=""
+                              id="headlessui-popover-button-:r9:"
+                            >
+                              <button
+                                aria-label="More actions"
+                                class="inline-flex cursor-pointer items-center whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center surface-background hover:surface-muted rounded-none bg-clip-padding"
+                                data-headlessui-state=""
+                                data-testid="card-menu-button"
+                                type="button"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="lucide lucide-ellipsis-vertical"
+                                  fill="none"
+                                  height="16"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  viewBox="0 0 24 24"
+                                  width="16"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="1"
+                                  />
+                                  <circle
+                                    cx="12"
+                                    cy="5"
+                                    r="1"
+                                  />
+                                  <circle
+                                    cx="12"
+                                    cy="19"
+                                    r="1"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <button
+                            aria-label="Play"
+                            class="inline-flex cursor-pointer items-center whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center surface-primary hover:surface-muted rounded-none bg-clip-padding"
+                            data-headlessui-state=""
+                            data-testid="card-play-button"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="lucide lucide-play"
+                              fill="none"
+                              height="16"
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              viewBox="0 0 24 24"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div
                 class="group relative w-42"
@@ -262,6 +357,101 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
                     </div>
                   </div>
                 </button>
+                <div
+                  class="group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y pointer-events-none absolute inset-0 border-(length:--border-width) border-transparent p-2 transition-all"
+                >
+                  <div
+                    class="relative aspect-square"
+                  >
+                    <div
+                      class="absolute inset-(--border-width) overflow-hidden rounded-[calc(var(--radius-md)-var(--border-width))]"
+                    >
+                      <div
+                        animate="idle"
+                        class="surface-background border-border absolute right-0 bottom-0 flex justify-end divide-x-(--border-width) overflow-hidden border-t-(length:--border-width) border-l-(length:--border-width) bg-clip-padding pointer-events-auto"
+                      >
+                        <div>
+                          <div
+                            class="relative"
+                            data-headlessui-state=""
+                          >
+                            <div
+                              aria-expanded="false"
+                              class="cursor-pointer"
+                              data-headlessui-state=""
+                              id="headlessui-popover-button-:rd:"
+                            >
+                              <button
+                                aria-label="More actions"
+                                class="inline-flex cursor-pointer items-center whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center surface-background hover:surface-muted rounded-none bg-clip-padding"
+                                data-headlessui-state=""
+                                data-testid="card-menu-button"
+                                type="button"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="lucide lucide-ellipsis-vertical"
+                                  fill="none"
+                                  height="16"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  viewBox="0 0 24 24"
+                                  width="16"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="1"
+                                  />
+                                  <circle
+                                    cx="12"
+                                    cy="5"
+                                    r="1"
+                                  />
+                                  <circle
+                                    cx="12"
+                                    cy="19"
+                                    r="1"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <button
+                            aria-label="Play"
+                            class="inline-flex cursor-pointer items-center whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-8 justify-center surface-primary hover:surface-muted rounded-none bg-clip-padding"
+                            data-headlessui-state=""
+                            data-testid="card-play-button"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="lucide lucide-play"
+                              fill="none"
+                              height="16"
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              viewBox="0 0 24 24"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
