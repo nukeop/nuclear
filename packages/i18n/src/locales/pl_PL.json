@@ -18,7 +18,8 @@
       "clear": "Wyczyść",
       "search": "Wyszukaj",
       "loading": "Wczytywanie…",
-      "retry": "Ponów próbę"
+      "retry": "Ponów próbę",
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "Błąd sieci. Sprawdź swoje połączenie.",
