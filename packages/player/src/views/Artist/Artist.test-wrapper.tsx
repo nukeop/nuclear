@@ -5,6 +5,7 @@ import type { Album } from '@nuclearplayer/model';
 import { createCardWrapper } from '@nuclearplayer/ui';
 
 import { providersHost } from '../../services/providersHost';
+import { useStartupStore } from '../../stores/startupStore';
 import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
 import { GIANT_STEPS, GIANT_STEPS_REF } from '../../test/fixtures/albums';
 import { SearchWrapper } from '../Search/Search.test-wrapper';
@@ -13,6 +14,7 @@ const user = userEvent.setup();
 
 export const ArtistWrapper = {
   async mount(header: string): Promise<RenderResult> {
+    useStartupStore.setState({ isStartingUp: false });
     const component = await SearchWrapper.mount('test artist');
     await ArtistWrapper.openArtistFromSearch();
     await screen.findByRole('heading', {
@@ -21,6 +23,7 @@ export const ArtistWrapper = {
     return component;
   },
   async mountNoWait(): Promise<RenderResult> {
+    useStartupStore.setState({ isStartingUp: false });
     const component = await SearchWrapper.mount('test artist');
     await ArtistWrapper.openArtistFromSearch();
     await new Promise((resolve) => setTimeout(resolve, 0));

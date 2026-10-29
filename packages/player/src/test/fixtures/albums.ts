@@ -77,11 +77,7 @@ export const GIANT_STEPS_TRACKS: Track[] = [
       source: { provider: 'test-metadata-provider', id: 'artist-1' },
     },
   ],
-  album: {
-    title: 'Giant Steps',
-    artwork: GIANT_STEPS.artwork,
-    source: GIANT_STEPS.source,
-  },
+  album: GIANT_STEPS_REF,
   artwork: GIANT_STEPS.artwork,
   source: { provider: 'test-metadata-provider', id: `track-${index + 1}` },
 }));

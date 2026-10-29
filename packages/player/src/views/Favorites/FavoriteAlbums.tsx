@@ -4,9 +4,9 @@ import { useMemo, type FC } from 'react';
 import { useTranslation } from '@nuclearplayer/i18n';
 import { CardGrid, EmptyState, ViewShell } from '@nuclearplayer/ui';
 
+import { ConnectedAlbumCard } from '../../components/ConnectedAlbumCard';
 import { useFavoritesStore } from '../../stores/favoritesStore';
 import { sortByAddedAtDesc } from '../../utils/sort';
-import { FavoriteAlbumCard } from './components/FavoriteAlbumCard';
 
 export const FavoriteAlbums: FC = () => {
   const { t } = useTranslation('favorites');
@@ -26,7 +26,7 @@ export const FavoriteAlbums: FC = () => {
       ) : (
         <CardGrid>
           {sortedAlbums.map((entry) => (
-            <FavoriteAlbumCard
+            <ConnectedAlbumCard
               key={`${entry.ref.source.provider}-${entry.ref.source.id}`}
               album={entry.ref}
             />
