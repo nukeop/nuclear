@@ -1,5 +1,11 @@
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
-import { render, RenderResult, screen, within } from '@testing-library/react';
+import {
+  cleanup,
+  render,
+  RenderResult,
+  screen,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import type { PlaylistProvider } from '@nuclearplayer/plugin-sdk';
@@ -15,7 +21,7 @@ import { playlistFileService } from '../../services/playlistFileService';
 import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
 import { useStartupStore } from '../../stores/startupStore';
-import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
+import type { PlaylistIndexBuilder } from '../../test/builders/PlaylistFolderBuilder';
 
 const user = userEvent.setup();
 
@@ -43,19 +49,23 @@ const centerOf = (element: HTMLElement) => {
 };
 
 export const PlaylistsWrapper = {
-  createPlaylists(...builders: PlaylistBuilder[]) {
-    const playlists = builders.map((b) => b.build());
+  createPlaylists(...builders: PlaylistIndexBuilder[]) {
+    const playlists = builders.flatMap((builder) => builder.buildPlaylists());
     usePlaylistStore.setState({
-      index: builders.map((b) => b.buildIndexEntry()),
+      index: builders.map((builder) => builder.buildIndexNode()),
       playlists: new Map(playlists.map((p) => [p.id, p])),
       loaded: true,
     });
   },
 
-  async savePlaylists(...builders: PlaylistBuilder[]) {
-    for (const builder of builders) {
-      await playlistFileService.savePlaylist(builder.build());
+  async savePlaylists(...builders: PlaylistIndexBuilder[]) {
+    const playlists = builders.flatMap((builder) => builder.buildPlaylists());
+    for (const playlist of playlists) {
+      await playlistFileService.savePlaylist(playlist);
     }
+    await playlistFileService.saveIndex(
+      builders.map((builder) => builder.buildIndexNode()),
+    );
     usePlaylistStore.setState({
       index: await playlistFileService.loadIndex(),
       playlists: new Map(),
@@ -70,6 +80,86 @@ export const PlaylistsWrapper = {
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('playlists-view');
     return component;
+  },
+
+  async restart(): Promise<RenderResult> {
+    cleanup();
+    usePlaylistStore.setState({
+      index: [],
+      playlists: new Map(),
+      loaded: false,
+    });
+    await usePlaylistStore.getState().loadIndex();
+    return PlaylistsWrapper.mount();
+  },
+
+  get title() {
+    return screen.getByTestId('title').textContent;
+  },
+
+  backButton: {
+    get element() {
+      return screen.getByTestId('playlists-back-button');
+    },
+    async click() {
+      await user.click(this.element);
+    },
+  },
+
+  async goBack() {
+    await PlaylistsWrapper.backButton.click();
+  },
+
+  newFolderButton: {
+    get element() {
+      return screen.queryByTestId('create-folder-button');
+    },
+    async click() {
+      await user.click(screen.getByTestId('create-folder-button'));
+    },
+  },
+
+  get folderNameInput(): HTMLInputElement {
+    return screen.getByTestId('folder-name-input') as HTMLInputElement;
+  },
+
+  async createFolder(name: string) {
+    await PlaylistsWrapper.newFolderButton.click();
+    await user.type(PlaylistsWrapper.folderNameInput, name);
+    await user.click(DialogWrapper.getByText('Create new'));
+  },
+
+  get folderNames() {
+    return screen
+      .getAllByTestId('folder-card')
+      .map((folder) => within(folder).getByTestId('card-title').textContent);
+  },
+
+  folder(name: string) {
+    const card = createCardWrapper(PlaylistsWrapper.cardNames.indexOf(name));
+
+    return {
+      get subtitle() {
+        return card.subtitle;
+      },
+      open: () => card.click(),
+      menu: {
+        async openRenameDialog() {
+          await card.openMenu();
+          await user.click(screen.getByTestId('rename-folder-action'));
+        },
+        async rename(newName: string) {
+          await this.openRenameDialog();
+          await user.clear(PlaylistsWrapper.folderNameInput);
+          await user.type(PlaylistsWrapper.folderNameInput, newName);
+          await user.click(DialogWrapper.getByText('Save'));
+        },
+        async delete() {
+          await card.openMenu();
+          await user.click(screen.getByTestId('delete-folder-action'));
+        },
+      },
+    };
   },
 
   get emptyState() {
@@ -141,6 +231,15 @@ export const PlaylistsWrapper = {
         async delete() {
           await card.openMenu();
           await user.click(screen.getByTestId('delete-playlist-action'));
+        },
+        async moveToFolder(folderName: string) {
+          await card.openMenu();
+          await user.click(screen.getByTestId('move-to-folder-action'));
+          await user.click(DialogWrapper.getByText(folderName));
+        },
+        async removeFromFolder() {
+          await card.openMenu();
+          await user.click(screen.getByTestId('remove-from-folder-action'));
         },
       },
     };

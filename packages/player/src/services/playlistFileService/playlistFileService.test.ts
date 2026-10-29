@@ -1,6 +1,8 @@
 import { LazyStore } from '@tauri-apps/plugin-store';
+import omit from 'lodash-es/omit';
 
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
+import { PlaylistFolderBuilder } from '../../test/builders/PlaylistFolderBuilder';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { mockUuid } from '../../test/utils/mockUuid';
 import { PlaylistFileService } from './index';
@@ -35,6 +37,7 @@ describe('PlaylistFileService', () => {
           "id": "mock-uuid-0",
           "isReadOnly": false,
           "itemCount": 2,
+          "kind": "playlist",
           "lastModifiedIso": "2026-01-01T00:00:00.000Z",
           "name": "Test Playlist",
           "thumbnails": [],
@@ -75,6 +78,49 @@ describe('PlaylistFileService', () => {
     await store.save();
 
     expect(await new PlaylistFileService().loadIndex()).toEqual([]);
+  });
+
+  it('loads an index saved before folders existed', async () => {
+    const playlist = new PlaylistBuilder().withName('Road Trip');
+    const store = new LazyStore('playlists/index.json');
+    await store.set('entries', [omit(playlist.buildIndexEntry(), 'kind')]);
+    await store.save();
+
+    expect(await new PlaylistFileService().loadIndex()).toEqual([
+      playlist.buildIndexEntry(),
+    ]);
+  });
+
+  it('keeps a playlist in its folder when the playlist is saved again', async () => {
+    const service = new PlaylistFileService();
+    const roadTrip = new PlaylistBuilder().withName('Road Trip');
+    const beach = new PlaylistBuilder().withName('Beach');
+    const summer = new PlaylistFolderBuilder()
+      .withName('Summer')
+      .withPlaylists(beach);
+    await service.saveIndex([roadTrip.buildIndexEntry(), summer.build()]);
+
+    const renamedBeach = beach.withName('Beach Party');
+    const index = await service.savePlaylist(renamedBeach.build());
+
+    expect(index).toEqual([
+      roadTrip.buildIndexEntry(),
+      summer.withPlaylists(renamedBeach).build(),
+    ]);
+  });
+
+  it('removes a deleted playlist from its folder', async () => {
+    const service = new PlaylistFileService();
+    const beach = new PlaylistBuilder().withName('Beach');
+    const pool = new PlaylistBuilder().withName('Pool');
+    const summer = new PlaylistFolderBuilder()
+      .withName('Summer')
+      .withPlaylists(beach, pool);
+    await service.saveIndex([summer.build()]);
+
+    const index = await service.deletePlaylist(beach.build().id);
+
+    expect(index).toEqual([summer.withPlaylists(pool).build()]);
   });
 
   it('returns empty index when entries contain invalid items', async () => {

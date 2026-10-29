@@ -34,6 +34,7 @@ describe('playlistStore', () => {
           "id": "mock-uuid-0",
           "isReadOnly": false,
           "itemCount": 0,
+          "kind": "playlist",
           "lastModifiedIso": "2026-01-01T00:00:00.000Z",
           "name": "My Playlist",
           "thumbnails": [],

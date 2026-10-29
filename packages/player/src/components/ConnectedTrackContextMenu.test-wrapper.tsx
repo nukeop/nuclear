@@ -9,7 +9,7 @@ import userEvent from '@testing-library/user-event';
 import type { Track } from '@nuclearplayer/model';
 
 import { usePlaylistStore } from '../stores/playlistStore';
-import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
+import type { PlaylistIndexBuilder } from '../test/builders/PlaylistFolderBuilder';
 import { ConnectedTrackContextMenu } from './ConnectedTrackContextMenu';
 
 const user = userEvent.setup();
@@ -28,10 +28,10 @@ const defaultTrack: Track = {
 };
 
 export const ConnectedTrackContextMenuWrapper = {
-  createPlaylists(...builders: PlaylistBuilder[]) {
-    const playlists = builders.map((b) => b.build());
+  createPlaylists(...builders: PlaylistIndexBuilder[]) {
+    const playlists = builders.flatMap((builder) => builder.buildPlaylists());
     usePlaylistStore.setState({
-      index: builders.map((builder) => builder.buildIndexEntry()),
+      index: builders.map((builder) => builder.buildIndexNode()),
       playlists: new Map(playlists.map((playlist) => [playlist.id, playlist])),
       loaded: true,
     });
@@ -89,6 +89,11 @@ export const ConnectedTrackContextMenuWrapper = {
     },
     get items() {
       return screen.getAllByTestId('playlist-submenu-item');
+    },
+    get itemNames() {
+      return ConnectedTrackContextMenuWrapper.submenu.items.map(
+        (item) => item.textContent,
+      );
     },
   },
 };

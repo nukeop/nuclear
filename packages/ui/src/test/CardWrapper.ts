@@ -11,6 +11,9 @@ export const createCardWrapper = (index: number) => {
     get title() {
       return within(container()).getByTestId('card-title').textContent;
     },
+    get subtitle() {
+      return within(container()).getByTestId('card-subtitle').textContent;
+    },
     get playButton() {
       return within(container()).queryByTestId('card-play-button');
     },

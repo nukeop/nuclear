@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import type {
   Playlist,
   PlaylistIndexEntry,
+  PlaylistIndexNode,
   PlaylistItem,
   ProviderRef,
   Track,
@@ -145,6 +146,7 @@ export class PlaylistBuilder {
   buildIndexEntry(): PlaylistIndexEntry {
     const playlist = this.build();
     return {
+      kind: 'playlist',
       id: playlist.id,
       name: playlist.name,
       createdAtIso: playlist.createdAtIso,
@@ -158,5 +160,13 @@ export class PlaylistBuilder {
       ),
       thumbnails: this.thumbnails,
     };
+  }
+
+  buildIndexNode(): PlaylistIndexNode {
+    return this.buildIndexEntry();
+  }
+
+  buildPlaylists(): Playlist[] {
+    return [this.build()];
   }
 }
