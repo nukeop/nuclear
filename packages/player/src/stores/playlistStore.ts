@@ -37,7 +37,7 @@ type PlaylistStore = {
   addTracks: (playlistId: string, tracks: Track[]) => Promise<PlaylistItem[]>;
   removeTracks: (playlistId: string, itemIds: string[]) => Promise<void>;
   importPlaylist: (playlist: Playlist) => Promise<string>;
-  saveQueueAsPlaylist: (name: string) => Promise<string>;
+  saveQueueAsPlaylist: (name: string, folderId?: string) => Promise<string>;
   reorderTracks: (
     playlistId: string,
     from: number,
@@ -191,7 +191,7 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
     set({ index });
   },
 
-  saveQueueAsPlaylist: async (name: string) => {
+  saveQueueAsPlaylist: async (name: string, folderId?: string) => {
     const tracks = useQueueStore
       .getState()
       .items.map((item) => stripResolutionState(item.track));
@@ -210,7 +210,7 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
       })),
     };
 
-    const index = await playlistFileService.savePlaylist(playlist);
+    const index = await playlistFileService.savePlaylist(playlist, folderId);
 
     set((state) => ({
       playlists: new Map(state.playlists).set(playlist.id, playlist),

@@ -25,8 +25,10 @@ pub struct SourceBody {
 }
 
 #[derive(Deserialize)]
-pub struct PlaylistNameBody {
+#[serde(rename_all = "camelCase")]
+pub struct SaveQueueAsPlaylistBody {
     name: String,
+    folder_id: Option<String>,
 }
 
 async fn bridge_action(
@@ -154,13 +156,13 @@ pub async fn remove_favorite_track(
 
 pub async fn save_queue_as_playlist(
     State(state): State<AppState>,
-    Json(body): Json<PlaylistNameBody>,
+    Json(body): Json<SaveQueueAsPlaylistBody>,
 ) -> Result<Json<Value>, BridgeErrorResponse> {
     state
         .bridge
         .call(
             "Playlists.saveQueueAsPlaylist",
-            json!({ "name": body.name }),
+            json!({ "name": body.name, "folderId": body.folder_id }),
         )
         .await
         .map(|id| Json(json!({ "id": id })))

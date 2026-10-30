@@ -41,9 +41,9 @@ export class PlaylistFileService {
     playlist: Playlist,
     folderId?: string,
   ): Promise<PlaylistIndexNode[]> {
-    await this.#fileStore.save(playlist);
     const tree = new PlaylistIndexTree(await this.#indexStore.load());
     const { nodes } = tree.savePlaylist(toIndexEntry(playlist), folderId);
+    await this.#fileStore.save(playlist);
     await this.#indexStore.save(nodes);
     return nodes;
   }

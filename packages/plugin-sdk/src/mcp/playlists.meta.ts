@@ -1,11 +1,12 @@
 import type { DomainMeta } from './meta';
 
 export const PlaylistsAPIMeta: DomainMeta = {
-  description: 'Create, edit, import, and manage playlists.',
+  description: 'Create, edit, import, and manage playlists and folders.',
   methods: {
     getIndex: {
       name: 'getIndex',
-      description: 'Get the list of all playlists with summary info.',
+      description:
+        'Get a flat list of all playlists with summary info, including the playlists inside folders.',
       params: [],
       returns: 'PlaylistIndexEntry[]',
     },
@@ -67,9 +68,52 @@ export const PlaylistsAPIMeta: DomainMeta = {
     saveQueueAsPlaylist: {
       name: 'saveQueueAsPlaylist',
       description:
-        'Save the current queue as a new playlist. Returns the playlist ID.',
+        'Save the current queue as a new playlist, optionally inside a folder. Returns the playlist ID.',
+      params: [
+        { name: 'name', type: 'string' },
+        { name: 'folderId', type: 'string?' },
+      ],
+      returns: 'string',
+    },
+    getIndexTree: {
+      name: 'getIndexTree',
+      description:
+        'Get the playlists and folders in their display order. Each folder contains its playlists.',
+      params: [],
+      returns: '(PlaylistIndexEntry | PlaylistFolder)[]',
+    },
+    createFolder: {
+      name: 'createFolder',
+      description:
+        'Create an empty folder at the end of the top level. Returns the folder ID.',
       params: [{ name: 'name', type: 'string' }],
       returns: 'string',
+    },
+    renameFolder: {
+      name: 'renameFolder',
+      description: 'Rename a folder.',
+      params: [
+        { name: 'id', type: 'string' },
+        { name: 'name', type: 'string' },
+      ],
+      returns: 'void',
+    },
+    deleteFolder: {
+      name: 'deleteFolder',
+      description:
+        'Delete a folder. Its playlists will not be deleted. They will move to the position of the folder.',
+      params: [{ name: 'id', type: 'string' }],
+      returns: 'void',
+    },
+    movePlaylistToFolder: {
+      name: 'movePlaylistToFolder',
+      description:
+        'Move a playlist to the end of a folder. If there is no folder ID, move it to the end of the top level.',
+      params: [
+        { name: 'playlistId', type: 'string' },
+        { name: 'folderId', type: 'string?' },
+      ],
+      returns: 'void',
     },
   },
 };
