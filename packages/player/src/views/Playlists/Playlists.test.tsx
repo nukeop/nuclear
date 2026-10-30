@@ -696,6 +696,16 @@ describe('Playlists view', () => {
       ]);
     });
 
+    it('puts a playlist in the place of a folder when you drop it on the edge of the folder', async () => {
+      PlaylistsWrapper.createPlaylists(summer, roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.dragCardToEdge('Road Trip', 'Summer');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip', 'Summer']);
+      expect(PlaylistsWrapper.folder('Summer').subtitle).toBe('2 playlists');
+    });
+
     it('reorders a folder when you drag it onto another folder', async () => {
       PlaylistsWrapper.createPlaylists(
         summer,

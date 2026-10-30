@@ -11,6 +11,7 @@ type PlaylistCardGridProps = {
   onPlaylistClick: (id: string) => void;
   onFolderClick: (id: string) => void;
   onReorder: (fromIndex: number, toIndex: number) => void;
+  onMoveIntoFolder: (playlistId: string, folderId: string) => void;
   isReorderable: boolean;
 };
 
@@ -19,25 +20,37 @@ export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
   onPlaylistClick,
   onFolderClick,
   onReorder,
+  onMoveIntoFolder,
   isReorderable,
-}) => (
-  <CardGrid.Sortable
-    itemIds={entries.map((entry) => entry.id)}
-    onReorder={onReorder}
-    disabled={!isReorderable}
-  >
-    {entries.map((entry) => (
-      <CardGrid.SortableItem key={entry.id} id={entry.id}>
-        {entry.kind === 'folder' && (
-          <FolderCard folder={entry} onClick={() => onFolderClick(entry.id)} />
-        )}
-        {entry.kind === 'playlist' && (
-          <PlaylistCard
-            playlist={entry}
-            onClick={() => onPlaylistClick(entry.id)}
-          />
-        )}
-      </CardGrid.SortableItem>
-    ))}
-  </CardGrid.Sortable>
-);
+}) => {
+  const kindOf = (id: string) => entries.find((entry) => entry.id === id)?.kind;
+
+  return (
+    <CardGrid.Sortable
+      itemIds={entries.map((entry) => entry.id)}
+      onReorder={onReorder}
+      canDropInto={(activeId, targetId) =>
+        kindOf(activeId) === 'playlist' && kindOf(targetId) === 'folder'
+      }
+      onDropInto={onMoveIntoFolder}
+      disabled={!isReorderable}
+    >
+      {entries.map((entry) => (
+        <CardGrid.SortableItem key={entry.id} id={entry.id}>
+          {entry.kind === 'folder' && (
+            <FolderCard
+              folder={entry}
+              onClick={() => onFolderClick(entry.id)}
+            />
+          )}
+          {entry.kind === 'playlist' && (
+            <PlaylistCard
+              playlist={entry}
+              onClick={() => onPlaylistClick(entry.id)}
+            />
+          )}
+        </CardGrid.SortableItem>
+      ))}
+    </CardGrid.Sortable>
+  );
+};

@@ -34,6 +34,9 @@ const PlaylistsContent: FC<PlaylistsContentProps> = ({
   const { t } = useTranslation('playlists');
   const navigate = useNavigate();
   const moveEntry = usePlaylistStore((state) => state.moveEntry);
+  const movePlaylistToFolder = usePlaylistStore(
+    (state) => state.movePlaylistToFolder,
+  );
   const { filter, setFilter, filteredEntries, hasFilter } = usePlaylistFilter(
     entries,
     searchablePlaylists,
@@ -109,6 +112,7 @@ const PlaylistsContent: FC<PlaylistsContentProps> = ({
             onReorder={(fromIndex, toIndex) =>
               moveEntry(fromIndex, toIndex, folder?.id)
             }
+            onMoveIntoFolder={movePlaylistToFolder}
             isReorderable={sortBy === 'custom' && !hasFilter}
           />
         </ScrollableArea>

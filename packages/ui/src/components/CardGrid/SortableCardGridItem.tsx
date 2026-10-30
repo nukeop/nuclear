@@ -1,9 +1,10 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useContext } from 'react';
 
 import { cn } from '../../utils';
 import { CardDragHandle } from './CardDragHandle';
+import { DropTargetContext } from './useDropTarget';
 
 type SortableCardGridItemProps = {
   id: string;
@@ -23,6 +24,7 @@ export const SortableCardGridItem: FC<SortableCardGridItemProps> = ({
     transition,
     isDragging,
   } = useSortable({ id });
+  const isDropTarget = useContext(DropTargetContext) === id;
   const isDraggable = !attributes['aria-disabled'];
 
   return (
@@ -32,7 +34,14 @@ export const SortableCardGridItem: FC<SortableCardGridItemProps> = ({
       style={{ transform: CSS.Transform.toString(transform), transition }}
       className={cn('relative w-fit', { 'z-50': isDragging })}
     >
-      <div className="peer">{children}</div>
+      <div
+        className={cn('peer', {
+          'outline-foreground rounded-md outline-4 outline-offset-4 outline-dashed':
+            isDropTarget,
+        })}
+      >
+        {children}
+      </div>
       {isDraggable && (
         <CardDragHandle
           ref={setActivatorNodeRef}

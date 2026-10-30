@@ -3,7 +3,7 @@
 exports[`Card grid > (Snapshot) Renders correctly 1`] = `
 <div>
   <div
-    class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4"
+    class="grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-4 pr-2 pb-4"
     role="grid"
   >
     <div
@@ -97,7 +97,7 @@ exports[`Card grid > (Snapshot) Renders correctly 1`] = `
 exports[`Card grid > (Snapshot) Sortable 1`] = `
 <div>
   <div
-    class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4 gap-x-7 pl-3.5"
+    class="grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-4 pr-2 pb-4 gap-x-7 pt-3 pl-3.5"
     role="grid"
   >
     <div
@@ -404,7 +404,7 @@ exports[`Card grid > (Snapshot) Sortable 1`] = `
 exports[`Card grid > (Snapshot) Sortable disabled 1`] = `
 <div>
   <div
-    class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4 gap-x-7 pl-3.5"
+    class="grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-4 pr-2 pb-4 gap-x-7 pt-3 pl-3.5"
     role="grid"
   >
     <div

@@ -43,9 +43,24 @@ const placeInRow = (element: HTMLElement, position: number) => {
   });
 };
 
-const centerOf = (element: HTMLElement) => {
-  const { left, top, width, height } = element.getBoundingClientRect();
-  return { clientX: left + width / 2, clientY: top + height / 2 };
+const dragCardTo = async (name: string, targetName: string, dropX: number) => {
+  screen.getAllByTestId('sortable-card').forEach(placeInRow);
+  const from = PlaylistsWrapper.cardNames.indexOf(name);
+  const to = PlaylistsWrapper.cardNames.indexOf(targetName);
+  const clientY = cardHeight / 2;
+  const startX = from * cardWidth + cardWidth / 2;
+
+  await user.pointer([
+    {
+      keys: '[MouseLeft>]',
+      target: screen.getAllByTestId('card-drag-handle')[from],
+      coords: { clientX: startX, clientY },
+    },
+    { coords: { clientX: startX + 10, clientY } },
+    { coords: { clientX: to * cardWidth + dropX, clientY } },
+    { keys: '[/MouseLeft]' },
+  ]);
+  await new Promise((resolve) => setTimeout(resolve, 50));
 };
 
 export const PlaylistsWrapper = {
@@ -253,24 +268,10 @@ export const PlaylistsWrapper = {
     },
   },
   async dragCard(name: string, targetName: string) {
-    const sortableCards = screen.getAllByTestId('sortable-card');
-    sortableCards.forEach(placeInRow);
-    const names = PlaylistsWrapper.cardNames;
-    const source = sortableCards[names.indexOf(name)];
-    const target = sortableCards[names.indexOf(targetName)];
-    const start = centerOf(source);
-
-    await user.pointer([
-      {
-        keys: '[MouseLeft>]',
-        target: within(source).getByTestId('card-drag-handle'),
-        coords: start,
-      },
-      { coords: { clientX: start.clientX + 10, clientY: start.clientY } },
-      { target: within(target).getByTestId('card'), coords: centerOf(target) },
-      { keys: '[/MouseLeft]' },
-    ]);
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    await dragCardTo(name, targetName, cardWidth / 2);
+  },
+  async dragCardToEdge(name: string, targetName: string) {
+    await dragCardTo(name, targetName, 10);
   },
   get detailView() {
     return screen.queryByTestId('playlist-detail-view');
