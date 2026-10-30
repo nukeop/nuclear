@@ -19,7 +19,7 @@
       "search": "検索",
       "loading": "読み込み中...",
       "retry": "再試行",
-      "moreActions": "More actions"
+      "moreActions": "その他の操作"
     },
     "errors": {
       "network": "ネットワークエラー。接続を確認してください。",
@@ -161,18 +161,18 @@
     "importUrlImporting": "インポート中...",
     "descriptionPlaceholder": "説明を追加...",
     "folders": {
-      "create": "New folder",
-      "createTitle": "Create new folder",
-      "namePlaceholder": "Folder name...",
-      "rename": "Rename folder",
-      "delete": "Delete folder",
-      "deleteConfirm": "The playlists in this folder will be moved out of it. They will not be deleted.",
-      "playlistCount": "{{count}} playlist",
-      "playlistCount_other": "{{count}} playlists",
-      "moveTo": "Move to folder",
-      "removeFrom": "Remove from folder",
-      "empty": "This folder is empty",
-      "emptyDescription": "Move playlists here from their menu, or create a new one"
+      "create": "新規フォルダー",
+      "createTitle": "新規フォルダーの作成",
+      "namePlaceholder": "フォルダー名…",
+      "rename": "フォルダー名の変更",
+      "delete": "フォルダーを削除",
+      "deleteConfirm": "このフォルダー内のプレイリストは、このフォルダーから移動されます。削除されることはありません。",
+      "playlistCount": "{{count}} 個のプレイリスト",
+      "playlistCount_other": "{{count}} 個のプレイリスト",
+      "moveTo": "フォルダーへ移動",
+      "removeFrom": "フォルダーから削除",
+      "empty": "このフォルダーは空です",
+      "emptyDescription": "メニューからプレイリストをここに移動するか、新しいプレイリストを作成してください"
     }
   },
   "search": {
