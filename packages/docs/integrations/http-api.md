@@ -20,6 +20,7 @@ Enable Nuclear Jam in Settings, then Integrations. The **API URL** field shows t
 | GET | `/api/playback/volume` | `{ "volume": number }`, from 0 (silent) to 1 (full) |
 | GET | `/api/settings` | `{ "shuffle": boolean, "repeat": string, "discovery": boolean, "language": string, "dark": boolean, "themeId": string }` |
 | GET | `/api/settings/{id}` | The value of a single setting by its fully-qualified ID (e.g. `core.playback.shuffle`) |
+| GET | `/api/playlists` | [`PlaylistIndexNode[]`](../plugins/playlists.md#playlistindexnode), the top level of the playlist index in display order. Each item is a playlist (`"kind": "playlist"`) or a folder (`"kind": "folder"`). A folder contains its playlists in the `playlists` field |
 | GET | `/api/lyrics/current` | `AttributedLyrics[]`, the lyrics of the current track from all lyrics providers, ranked by type: word-synced, line-synced, plain, instrumental |
 
 ### Actions
@@ -43,7 +44,7 @@ All action endpoints return `200 OK` with no body on success.
 | POST | `/api/queue/clear` | none | Remove all items from the queue |
 | POST | `/api/favorites/tracks/add` | `{ "track": Track }` | Add a track to favorites |
 | POST | `/api/favorites/tracks/remove` | `{ "source": ProviderRef }` | Remove a track from favorites by its source |
-| POST | `/api/playlists/from-queue` | `{ "name": string }` | Save the queue as a new playlist. Returns `{ "id": string }` |
+| POST | `/api/playlists/from-queue` | `{ "name": string, "folderId"?: string }` | Save the queue as a new playlist. If you supply `folderId`, Nuclear saves the playlist in that folder. Returns `{ "id": string }` |
 | POST | `/api/search` | `{ "query": string, "types"?: SearchCategory[], "limit"?: number }` | Search for music. Returns `{ "tracks"?: Track[], "artists"?: ArtistRef[], "albums"?: AlbumRef[], "playlists"?: PlaylistRef[] }` |
 | POST | `/api/settings/{id}` | JSON value | Set a single setting by its fully-qualified ID |
 

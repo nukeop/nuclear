@@ -1,4 +1,5 @@
 import {
+  act,
   render,
   RenderResult,
   screen,
@@ -8,10 +9,95 @@ import {
 import userEvent from '@testing-library/user-event';
 
 import App from '../App';
+import { providersHost } from '../services/providersHost';
 import { useQueueStore } from '../stores/queueStore';
+import { setSetting } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
+import { useStartupStore } from '../stores/startupStore';
+import {
+  createMockCandidate,
+  createMockStream,
+  StreamingProviderBuilder,
+} from '../test/builders/StreamingProviderBuilder';
+import { createQueueItem } from '../test/fixtures/queue';
+import { PlayerBarWrapper } from './PlayerBar.test-wrapper';
+import { QueueWrapper } from './Queue.test-wrapper';
+import { SoundWrapper } from './Sound.test-wrapper';
+
+class DeferredSearches {
+  private readonly deferredByTitle = new Map<
+    string,
+    PromiseWithResolvers<void>
+  >();
+  private readonly requested: string[] = [];
+
+  get requestedTitles(): readonly string[] {
+    return this.requested;
+  }
+
+  async search(title: string) {
+    this.requested.push(title);
+    await this.deferredFor(title).promise;
+    return [createMockCandidate(`${title} stream`, title)];
+  }
+
+  release(title: string) {
+    this.deferredFor(title).resolve();
+  }
+
+  private deferredFor(title: string) {
+    const deferred =
+      this.deferredByTitle.get(title) ?? Promise.withResolvers<void>();
+    this.deferredByTitle.set(title, deferred);
+    return deferred;
+  }
+}
 
 export const StreamResolutionWrapper = {
+  streaming: {
+    searches: new DeferredSearches(),
+
+    async register() {
+      await setSetting('core.playback.streamVerification', false);
+      const searches = new DeferredSearches();
+      this.searches = searches;
+      providersHost.register(
+        new StreamingProviderBuilder()
+          .withSearchForTrack((_artist, title) => searches.search(title))
+          .withGetStreamUrl(async (candidateId) =>
+            createMockStream(candidateId),
+          )
+          .build(),
+      );
+    },
+
+    async waitForSearch(title: string) {
+      await waitFor(() => {
+        expect(this.searches.requestedTitles).toContain(title);
+      });
+    },
+
+    async releaseSearch(title: string) {
+      await act(async () => {
+        this.searches.release(title);
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+    },
+  },
+
+  async startQueuePlayback(titles: string[]) {
+    QueueWrapper.initQueue(titles.map((title) => createQueueItem(title)));
+    this.streaming.searches.release(titles[0]);
+    useStartupStore.setState({ isStartingUp: false });
+    await QueueWrapper.mount();
+    await waitFor(() => {
+      expect(useSoundStore.getState().src).not.toBeNull();
+    });
+
+    await PlayerBarWrapper.playButton.click();
+    SoundWrapper.fireCanPlay();
+  },
+
   async mount(): Promise<RenderResult> {
     const component = render(<App />);
     await screen.findByTestId('app-layout');

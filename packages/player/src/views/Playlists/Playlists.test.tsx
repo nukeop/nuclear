@@ -2,11 +2,25 @@ import * as dialog from '@tauri-apps/plugin-dialog';
 import * as fs from '@tauri-apps/plugin-fs';
 import { type Mock } from 'vitest';
 
-import type { Playlist } from '@nuclearplayer/model';
+import {
+  PLAYLIST_EXPORT_VERSION,
+  stripResolutionState,
+  type Playlist,
+  type Track,
+} from '@nuclearplayer/model';
 
+import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper';
+import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
+import { useQueueStore } from '../../stores/queueStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
+import { PlaylistFolderBuilder } from '../../test/builders/PlaylistFolderBuilder';
+import {
+  createMockCandidate,
+  StreamingProviderBuilder,
+} from '../../test/builders/StreamingProviderBuilder';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
+import { PlaylistDetailWrapper } from '../PlaylistDetail/PlaylistDetail.test-wrapper';
 import { PlaylistsWrapper } from './Playlists.test-wrapper';
 
 vi.mock('@tauri-apps/plugin-dialog', () => ({
@@ -26,6 +40,11 @@ vi.mock('sonner', () => ({
 vi.mock('@tauri-apps/plugin-fs', async () => ({
   readTextFile: vi.fn(),
   writeTextFile: vi.fn(),
+  remove: vi.fn(),
+}));
+
+vi.mock('@tauri-apps/api/core', () => ({
+  invoke: vi.fn().mockResolvedValue(9100),
 }));
 
 const mockPlaylistFile = (playlist: Playlist) =>
@@ -218,10 +237,87 @@ describe('Playlists view', () => {
       );
     });
 
-    it('shows the oldest playlists first by default', async () => {
+    it('shows playlists in their saved order by default', async () => {
       await PlaylistsWrapper.mount();
 
-      expect(PlaylistsWrapper.sort.select.selected()).toBe('Date added');
+      expect(PlaylistsWrapper.sort.select.selected()).toBe('Custom');
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Alpha Rock',
+        'Charlie Jazz',
+        'Bravo Rock',
+      ]);
+    });
+
+    it('lets the user drag every card in custom order', async () => {
+      await PlaylistsWrapper.mount();
+
+      expect(PlaylistsWrapper.draggableCardNames).toEqual([
+        'Delta Jazz',
+        'Alpha Rock',
+        'Charlie Jazz',
+        'Bravo Rock',
+      ]);
+    });
+
+    it('moves a playlist to where the user drags it', async () => {
+      await PlaylistsWrapper.mount();
+
+      await PlaylistsWrapper.dragCard('Bravo Rock', 'Alpha Rock');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Bravo Rock',
+        'Alpha Rock',
+        'Charlie Jazz',
+      ]);
+    });
+
+    it.each(['Name', 'Date added', 'Date modified', 'Tracks', 'Length'])(
+      'does not let the user drag cards while sorted by %s',
+      async (sortOption) => {
+        await PlaylistsWrapper.mount();
+
+        await PlaylistsWrapper.sort.select.select(sortOption);
+
+        expect(PlaylistsWrapper.draggableCardNames).toEqual([]);
+      },
+    );
+
+    it('does not let the user drag cards while filtering', async () => {
+      await PlaylistsWrapper.mount();
+
+      await PlaylistsWrapper.filter.type('Rock');
+
+      expect(PlaylistsWrapper.draggableCardNames).toEqual([]);
+    });
+
+    it('shows the saved order after switching to custom from a reversed sort', async () => {
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Name');
+      await PlaylistsWrapper.sort.direction.toggle();
+
+      await PlaylistsWrapper.sort.select.select('Custom');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Delta Jazz',
+        'Alpha Rock',
+        'Charlie Jazz',
+        'Bravo Rock',
+      ]);
+    });
+
+    it('does not let the user reverse the custom order', async () => {
+      await PlaylistsWrapper.mount();
+
+      expect(PlaylistsWrapper.sort.direction.element).toBeDisabled();
+    });
+
+    it('sorts by date added', async () => {
+      await PlaylistsWrapper.mount();
+
+      await PlaylistsWrapper.sort.select.select('Date added');
+
       expect(PlaylistsWrapper.cardNames).toEqual([
         'Charlie Jazz',
         'Alpha Rock',
@@ -298,6 +394,401 @@ describe('Playlists view', () => {
       await PlaylistsWrapper.filter.type('rock');
 
       expect(PlaylistsWrapper.cardNames).toEqual(['Bravo Rock', 'Alpha Rock']);
+    });
+  });
+
+  describe('without opening a playlist', () => {
+    const existingTrack: Track = {
+      title: 'Existing Track',
+      artists: [],
+      source: { provider: 'test', id: 'existing' },
+    };
+
+    const roadTrip = new PlaylistBuilder()
+      .withName('Road Trip')
+      .withTrackCount(2);
+    const roadTripTracks = roadTrip.build().items.map((item) => item.track);
+
+    const queuedTracks = () =>
+      useQueueStore.getState().items.map((item) => item.track);
+
+    beforeEach(() => {
+      PlaylistsWrapper.clearProviders();
+      useQueueStore.setState({ items: [], currentIndex: 0 });
+      useQueueStore.getState().addToQueue([existingTrack]);
+    });
+
+    it('plays a playlist in place of the queue', async () => {
+      providersHost.register(
+        new StreamingProviderBuilder()
+          .withSearchForTrack(async (artist: string, title: string) => [
+            createMockCandidate(`candidate-${title}`, `${artist} - ${title}`),
+          ])
+          .build(),
+      );
+      await PlaylistsWrapper.savePlaylists(roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).play();
+
+      await vi.waitFor(() => {
+        expect(PlayerBarWrapper.isPlaying).toBe(true);
+      });
+      expect(queuedTracks().map(stripResolutionState)).toEqual(roadTripTracks);
+      expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+    });
+
+    it('has no play button for an empty playlist', async () => {
+      PlaylistsWrapper.createPlaylists(
+        new PlaylistBuilder().withName('Road Trip').withTrackCount(2),
+        new PlaylistBuilder().withName('Empty'),
+      );
+
+      await PlaylistsWrapper.mount();
+
+      expect(PlaylistsWrapper.card(0).playButton).toBeInTheDocument();
+      expect(PlaylistsWrapper.card(1).playButton).not.toBeInTheDocument();
+    });
+
+    it('adds a playlist to the queue', async () => {
+      await PlaylistsWrapper.savePlaylists(roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.addToQueue();
+
+      await vi.waitFor(() => {
+        expect(queuedTracks()).toEqual([existingTrack, ...roadTripTracks]);
+      });
+      expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+    });
+
+    it('exports a playlist as JSON', async () => {
+      (dialog.save as Mock).mockResolvedValue('/downloads/Road Trip.json');
+      await PlaylistsWrapper.savePlaylists(roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.exportJson();
+
+      await vi.waitFor(() => {
+        expect(toastSuccess).toHaveBeenCalledWith('Playlist exported');
+      });
+      const [path, json] = (fs.writeTextFile as Mock).mock.calls[0];
+      expect(path).toBe('/downloads/Road Trip.json');
+      expect(JSON.parse(json)).toEqual({
+        version: PLAYLIST_EXPORT_VERSION,
+        playlist: roadTrip.build(),
+      });
+      expect(PlaylistsWrapper.detailView).not.toBeInTheDocument();
+    });
+
+    it('deletes a playlist after you confirm', async () => {
+      await PlaylistsWrapper.savePlaylists(
+        roadTrip,
+        new PlaylistBuilder().withName('Late Night'),
+      );
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.delete();
+      await PlaylistsWrapper.deleteDialog.confirm();
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Late Night']);
+    });
+
+    it('keeps a playlist when you cancel deleting it', async () => {
+      await PlaylistsWrapper.savePlaylists(
+        roadTrip,
+        new PlaylistBuilder().withName('Late Night'),
+      );
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.delete();
+      await PlaylistsWrapper.deleteDialog.cancel();
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip', 'Late Night']);
+    });
+  });
+
+  describe('folders', () => {
+    const roadTrip = new PlaylistBuilder().withName('Road Trip');
+    const lateNight = new PlaylistBuilder().withName('Late Night');
+    const beach = new PlaylistBuilder().withName('Beach').withTrackCount(2);
+    const pool = new PlaylistBuilder().withName('Pool');
+    const summer = new PlaylistFolderBuilder()
+      .withName('Summer')
+      .withPlaylists(beach, pool);
+
+    it('creates a folder after the existing playlists', async () => {
+      PlaylistsWrapper.createPlaylists(roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.createFolder('Summer');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip', 'Summer']);
+      expect(PlaylistsWrapper.folderNames).toEqual(['Summer']);
+      expect(PlaylistsWrapper.folder('Summer').subtitle).toBe('0 playlists');
+    });
+
+    it('opens a folder to show the playlists inside it', async () => {
+      PlaylistsWrapper.createPlaylists(roadTrip, summer);
+
+      await PlaylistsWrapper.mount();
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip', 'Summer']);
+      expect(PlaylistsWrapper.folder('Summer').subtitle).toBe('2 playlists');
+
+      await PlaylistsWrapper.folder('Summer').open();
+      expect(PlaylistsWrapper.title).toBe('Summer');
+      expect(PlaylistsWrapper.cardNames).toEqual(['Beach', 'Pool']);
+
+      await PlaylistsWrapper.goBack();
+      expect(PlaylistsWrapper.title).toBe('Playlists');
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip', 'Summer']);
+    });
+
+    it('moves a playlist into a folder', async () => {
+      PlaylistsWrapper.createPlaylists(roadTrip, lateNight, summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.card(0).menu.moveToFolder('Summer');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Late Night', 'Summer']);
+      await PlaylistsWrapper.folder('Summer').open();
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Beach',
+        'Pool',
+        'Road Trip',
+      ]);
+    });
+
+    it('takes a playlist out of a folder', async () => {
+      PlaylistsWrapper.createPlaylists(
+        roadTrip,
+        new PlaylistFolderBuilder().withName('Summer').withPlaylists(beach),
+      );
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').open();
+      await PlaylistsWrapper.card(0).menu.removeFromFolder();
+
+      expect(PlaylistsWrapper.cards).toHaveLength(0);
+      expect(PlaylistsWrapper.emptyState).toHaveTextContent(
+        'This folder is empty',
+      );
+      await PlaylistsWrapper.goBack();
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Road Trip',
+        'Summer',
+        'Beach',
+      ]);
+    });
+
+    it('creates a playlist inside the open folder', async () => {
+      await PlaylistsWrapper.savePlaylists(roadTrip, summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').open();
+      await PlaylistsWrapper.createButton.click();
+      await PlaylistsWrapper.createDialog.createPlaylist('Picnic');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Beach', 'Pool', 'Picnic']);
+      await PlaylistsWrapper.goBack();
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip', 'Summer']);
+    });
+
+    it('does not let you create a folder inside a folder', async () => {
+      PlaylistsWrapper.createPlaylists(summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').open();
+
+      expect(PlaylistsWrapper.newFolderButton.element).not.toBeInTheDocument();
+    });
+
+    it('renames a folder', async () => {
+      PlaylistsWrapper.createPlaylists(summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').menu.rename('Winter');
+
+      expect(PlaylistsWrapper.folderNames).toEqual(['Winter']);
+    });
+
+    it('suggests the current name when you rename a folder again', async () => {
+      PlaylistsWrapper.createPlaylists(summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').menu.rename('Winter');
+      await PlaylistsWrapper.folder('Winter').menu.openRenameDialog();
+
+      expect(PlaylistsWrapper.folderNameInput.value).toBe('Winter');
+    });
+
+    it('goes back to the folder after you delete a playlist from its page', async () => {
+      await PlaylistsWrapper.savePlaylists(summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').open();
+      await PlaylistsWrapper.card(0).click();
+      await PlaylistDetailWrapper.deleteDialog.openFromActions();
+      await PlaylistDetailWrapper.deleteDialog.confirmButton.click();
+
+      await vi.waitFor(() => {
+        expect(PlaylistsWrapper.title).toBe('Summer');
+      });
+      expect(PlaylistsWrapper.cardNames).toEqual(['Pool']);
+    });
+
+    it('deletes a folder but keeps its playlists in its place', async () => {
+      PlaylistsWrapper.createPlaylists(roadTrip, summer, lateNight);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').menu.delete();
+      await PlaylistsWrapper.deleteDialog.confirm();
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Road Trip',
+        'Beach',
+        'Pool',
+        'Late Night',
+      ]);
+    });
+
+    it('keeps a deleted folder deleted after a restart', async () => {
+      await PlaylistsWrapper.savePlaylists(roadTrip, summer, lateNight);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').menu.delete();
+      await PlaylistsWrapper.deleteDialog.confirm();
+      await PlaylistsWrapper.restart();
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Road Trip',
+        'Beach',
+        'Pool',
+        'Late Night',
+      ]);
+    });
+
+    it('moves a folder to where you drag it', async () => {
+      PlaylistsWrapper.createPlaylists(roadTrip, lateNight, summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.dragCard('Summer', 'Road Trip');
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Summer',
+        'Road Trip',
+        'Late Night',
+      ]);
+    });
+
+    it('moves a playlist into a folder when you drag it onto the folder', async () => {
+      PlaylistsWrapper.createPlaylists(roadTrip, lateNight, summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.dragCard('Road Trip', 'Summer');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Late Night', 'Summer']);
+      await PlaylistsWrapper.folder('Summer').open();
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Beach',
+        'Pool',
+        'Road Trip',
+      ]);
+    });
+
+    it('puts a playlist in the place of a folder when you drop it on the edge of the folder', async () => {
+      PlaylistsWrapper.createPlaylists(summer, roadTrip);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.dragCardToEdge('Road Trip', 'Summer');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip', 'Summer']);
+      expect(PlaylistsWrapper.folder('Summer').subtitle).toBe('2 playlists');
+    });
+
+    it('reorders a folder when you drag it onto another folder', async () => {
+      PlaylistsWrapper.createPlaylists(
+        summer,
+        new PlaylistFolderBuilder().withName('Autumn'),
+      );
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.dragCard('Autumn', 'Summer');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Autumn', 'Summer']);
+    });
+
+    it('reorders the playlists inside a folder', async () => {
+      PlaylistsWrapper.createPlaylists(summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').open();
+      await PlaylistsWrapper.dragCard('Pool', 'Beach');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Pool', 'Beach']);
+    });
+
+    it('finds the playlists inside folders when filtering', async () => {
+      PlaylistsWrapper.createPlaylists(roadTrip, summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.filter.type('beach');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Beach']);
+    });
+
+    it('lists folders before playlists, both sorted by name', async () => {
+      PlaylistsWrapper.createPlaylists(
+        roadTrip,
+        summer,
+        lateNight,
+        new PlaylistFolderBuilder().withName('Autumn'),
+      );
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.sort.select.select('Name');
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Autumn',
+        'Summer',
+        'Late Night',
+        'Road Trip',
+      ]);
+
+      await PlaylistsWrapper.sort.direction.toggle();
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Summer',
+        'Autumn',
+        'Road Trip',
+        'Late Night',
+      ]);
+    });
+
+    it('adds a playlist inside a folder to the queue', async () => {
+      useQueueStore.setState({ items: [], currentIndex: 0 });
+      await PlaylistsWrapper.savePlaylists(summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').open();
+      await PlaylistsWrapper.card(0).menu.addToQueue();
+
+      await vi.waitFor(() => {
+        expect(
+          useQueueStore.getState().items.map((item) => item.track),
+        ).toEqual(beach.build().items.map((item) => item.track));
+      });
+    });
+
+    it('keeps folders after a restart', async () => {
+      await PlaylistsWrapper.savePlaylists(roadTrip, lateNight);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.createFolder('Summer');
+      await PlaylistsWrapper.card(0).menu.moveToFolder('Summer');
+      await PlaylistsWrapper.restart();
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Late Night', 'Summer']);
+      await PlaylistsWrapper.folder('Summer').open();
+      expect(PlaylistsWrapper.cardNames).toEqual(['Road Trip']);
     });
   });
 

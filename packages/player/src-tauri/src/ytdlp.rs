@@ -1,31 +1,9 @@
 use log::{debug, error};
 use std::process::{Command, Stdio};
-use std::sync::RwLock;
-use tauri::command;
+use std::time::{Duration, SystemTime, UNIX_EPOCH};
+use tauri::{command, AppHandle};
 
-static YTDLP_PATH: RwLock<Option<String>> = RwLock::new(None);
-
-pub fn set_ytdlp_path(path: String) {
-    if let Ok(mut guard) = YTDLP_PATH.write() {
-        debug!("[yt-dlp] Binary path set to: {}", path);
-        *guard = Some(path);
-    }
-}
-
-fn get_ytdlp_path() -> Result<String, String> {
-    match YTDLP_PATH.read() {
-        Ok(guard) => match guard.as_ref() {
-            Some(path) => Ok(path.clone()),
-            None => {
-                Err("yt-dlp is not installed. It will be downloaded automatically.".to_string())
-            }
-        },
-        Err(_) => {
-            debug!("[yt-dlp] RwLock poisoned, falling back to system PATH");
-            Ok("yt-dlp".to_string())
-        }
-    }
-}
+use crate::ytdlp_setup::ensure_binary;
 
 #[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
 pub struct YtdlpStreamInfo {
@@ -92,12 +70,50 @@ struct YtdlpJson {
     album_artists: Option<Vec<String>>,
     creators: Option<Vec<String>>,
     upload_date: Option<String>,
+    available_at: Option<i64>,
 }
 
-fn run_ytdlp(args: &[&str]) -> Result<String, String> {
-    let program = get_ytdlp_path()?;
+fn stream_availability_wait(available_at: Option<i64>, now: i64) -> Result<Duration, String> {
+    let remaining_seconds = available_at.unwrap_or(now) - now;
+    if remaining_seconds <= 0 {
+        return Ok(Duration::ZERO);
+    }
+
+    let wait = Duration::from_secs(remaining_seconds as u64);
+    if wait > Duration::from_secs(45) {
+        return Err(format!(
+            "Stream is not available yet: YouTube will only serve it in {} seconds",
+            wait.as_secs()
+        ));
+    }
+
+    Ok(wait)
+}
+
+fn unix_now() -> i64 {
+    SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|elapsed| elapsed.as_secs() as i64)
+        .unwrap_or_default()
+}
+
+fn build_args<'a>(options: &[&'a str], target: &'a str) -> Vec<&'a str> {
+    let mut args = options.to_vec();
+    args.push("--");
+    args.push(target);
+    args
+}
+
+async fn run_ytdlp(
+    app_handle: &AppHandle,
+    options: &[&str],
+    target: &str,
+) -> Result<String, String> {
+    let program = ensure_binary(app_handle).await?;
     let mut cmd = Command::new(&program);
-    cmd.args(args).stdout(Stdio::piped()).stderr(Stdio::piped());
+    cmd.args(build_args(options, target))
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped());
 
     #[cfg(target_os = "windows")]
     {
@@ -146,6 +162,7 @@ fn normalize_album_artists(info: &YtdlpJson) -> Vec<String> {
 #[command]
 #[specta::specta]
 pub async fn ytdlp_search(
+    app_handle: AppHandle,
     query: String,
     max_results: Option<u32>,
 ) -> Result<Vec<YtdlpSearchResult>, String> {
@@ -153,12 +170,12 @@ pub async fn ytdlp_search(
     debug!("[yt-dlp] Searching: {} (limit: {})", query, limit);
 
     let search_url = format!("ytsearch{}:{}", limit, query);
-    let stdout = run_ytdlp(&[
-        "--dump-json",
-        "--flat-playlist",
-        "--no-warnings",
+    let stdout = run_ytdlp(
+        &app_handle,
+        &["--dump-json", "--flat-playlist", "--no-warnings"],
         &search_url,
-    ])?;
+    )
+    .await?;
 
     let results: Vec<YtdlpSearchResult> = parse_ndjson_entries(&stdout)
         .into_iter()
@@ -187,6 +204,7 @@ pub async fn ytdlp_search(
 #[specta::specta]
 // TODO: Remove video_id parameter after plugins have auto-updated to use url
 pub async fn ytdlp_get_stream(
+    app_handle: AppHandle,
     url: Option<String>,
     video_id: Option<String>,
 ) -> Result<YtdlpStreamInfo, String> {
@@ -198,14 +216,20 @@ pub async fn ytdlp_get_stream(
 
     debug!("[yt-dlp] Getting stream for: {}", resolved_url);
 
-    let stdout = run_ytdlp(&[
-        "-f",
-        "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
-        "--dump-json",
-        "--no-playlist",
-        "--no-warnings",
+    let stdout = run_ytdlp(
+        &app_handle,
+        &[
+            "-f",
+            "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
+            "--extractor-args",
+            "youtube:player_client=default,-tv_samsung",
+            "--dump-json",
+            "--no-playlist",
+            "--no-warnings",
+        ],
         &resolved_url,
-    ])?;
+    )
+    .await?;
 
     let info: YtdlpJson = serde_json::from_str(&stdout).map_err(|error| {
         error!("[yt-dlp] Failed to parse output: {}", error);
@@ -219,6 +243,15 @@ pub async fn ytdlp_get_stream(
         error!("[yt-dlp] No URL in output");
         "No stream URL returned by yt-dlp".to_string()
     })?;
+
+    let wait = stream_availability_wait(info.available_at, unix_now()).map_err(|message| {
+        error!("[yt-dlp] {}", message);
+        message
+    })?;
+    if !wait.is_zero() {
+        debug!("[yt-dlp] Waiting {:?} for stream to become available", wait);
+        tokio::time::sleep(wait).await;
+    }
 
     debug!(
         "[yt-dlp] Got stream for '{}', duration: {:?}s",
@@ -241,10 +274,18 @@ pub async fn ytdlp_get_stream(
 
 #[command]
 #[specta::specta]
-pub async fn ytdlp_get_playlist(url: String) -> Result<YtdlpPlaylistInfo, String> {
+pub async fn ytdlp_get_playlist(
+    app_handle: AppHandle,
+    url: String,
+) -> Result<YtdlpPlaylistInfo, String> {
     debug!("[yt-dlp] Getting playlist: {}", url);
 
-    let stdout = run_ytdlp(&["--dump-json", "--flat-playlist", "--no-warnings", &url])?;
+    let stdout = run_ytdlp(
+        &app_handle,
+        &["--dump-json", "--flat-playlist", "--no-warnings"],
+        &url,
+    )
+    .await?;
     let entries_json = parse_ndjson_entries(&stdout);
 
     let playlist_title = entries_json
@@ -310,6 +351,7 @@ mod tests {
             album_artists: None,
             creators: None,
             upload_date: None,
+            available_at: None,
         }
     }
 
@@ -374,10 +416,7 @@ not json
                 creators: Some(vec!["Performer 1".into(), "Performer 2".into()]),
                 ..empty_json()
             };
-            assert_eq!(
-                normalize_artists(&json),
-                vec!["Performer 1", "Performer 2"]
-            );
+            assert_eq!(normalize_artists(&json), vec!["Performer 1", "Performer 2"]);
         }
 
         #[test]
@@ -405,10 +444,7 @@ not json
                 album_artist: Some("Ignored".into()),
                 ..empty_json()
             };
-            assert_eq!(
-                normalize_album_artists(&json),
-                vec!["Group A", "Group B"]
-            );
+            assert_eq!(normalize_album_artists(&json), vec!["Group A", "Group B"]);
         }
 
         #[test]
@@ -423,6 +459,18 @@ not json
         #[test]
         fn returns_empty_when_all_null() {
             assert!(normalize_album_artists(&empty_json()).is_empty());
+        }
+    }
+
+    mod build_args_tests {
+        use super::*;
+
+        #[test]
+        fn places_dash_prefixed_video_id_after_end_of_options_marker() {
+            assert_eq!(
+                build_args(&["--dump-json", "--no-warnings"], "-2-tGiD2MpU"),
+                vec!["--dump-json", "--no-warnings", "--", "-2-tGiD2MpU"]
+            );
         }
     }
 }

@@ -380,6 +380,7 @@ exports[`QueueItem > (Snapshot) renders loading state 1`] = `
   </div>
   <div
     class="bg-stripes-diagonal absolute inset-x-0 bottom-0 h-1"
+    data-testid="queue-item-loading"
   />
 </div>
 `;

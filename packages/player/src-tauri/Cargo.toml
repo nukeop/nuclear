@@ -36,7 +36,7 @@ percent-encoding = "2.3"
 tempfile = "3.10"
 tauri-plugin-opener = "2"
 fix-path-env = { git = "https://github.com/tauri-apps/fix-path-env-rs" }
-rmcp = { version = "3.0", features = ["server", "transport-streamable-http-server"] }
+rmcp = { version = "3.6", features = ["server", "transport-streamable-http-server"] }
 schemars = "1.0"
 async-stream = "0.3"
 axum = { version = "0.8", default-features = false, features = ["http1", "tokio", "json"] }
@@ -51,11 +51,16 @@ sqlx = { version = "0.9", features = ["runtime-tokio", "sqlite", "migrate"] }
 specta = { version = "=2.0.0-rc.25", features = ["derive"] }
 specta-typescript = "0.0.12"
 tauri-specta = { version = "=2.0.0-rc.25", features = ["derive", "typescript"] }
+sha2 = "0.11"
+pgp = { version = "0.21", default-features = false }
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
-tauri-plugin-updater = "2"
+tauri-plugin-updater = "2.12"
 tauri-plugin-process = "2"
 
 [target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]
 tauri-plugin-window-state = "2.4.1"
+
+[dev-dependencies]
+rand = "0.8"
 

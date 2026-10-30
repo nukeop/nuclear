@@ -1,5 +1,5 @@
 ---
-description: Create, modify, and import playlists, or register a provider that fetches playlists from URLs.
+description: Create, modify, and import playlists, organize them into folders, or register a provider that fetches playlists from URLs.
 ---
 
 # Playlists
@@ -25,6 +25,21 @@ Nuclear keeps a lightweight **index** of all playlists and loads the full playli
 
 Use the index for listing and displaying playlists. Load the full playlist only when you need the tracks.
 
+### Folders
+
+Users can put playlists into folders. A folder can contain playlists only. A folder cannot contain other folders.
+
+There are two methods that read the index:
+
+- `getIndex()` returns a flat list of all playlists in display order. The list includes the playlists in folders. Use this method when you do not use folders.
+- `getIndexTree()` returns the top level of the index in display order. Each item is a playlist or a folder. Use the `kind` field to identify the item. A folder contains its playlists in the `playlists` field, in display order.
+
+`createPlaylist` and `importPlaylist` add the new playlist to the end of the top level. To move a playlist into a folder, use `movePlaylistToFolder`. All other playlist methods operate the same on playlists in folders.
+
+The listener of `subscribe` receives the same flat list as `getIndex()`. Nuclear also calls the listener when only the folders change. To get the folders, call `getIndexTree()` in the listener.
+
+If a folder ID or a playlist ID does not exist, the folder methods throw an error.
+
 ### Playlist items
 
 Each track in a playlist is wrapped in a `PlaylistItem`:
@@ -42,7 +57,7 @@ A single track can appear multiple times in a playlist, each as a separate `Play
 
 ### Persistence
 
-Each playlist is stored as a separate JSON file on disk. All mutations through the API persist automatically.
+Each playlist is stored as a separate JSON file on disk. The index stores the folders and the order of playlists and folders. All mutations through the API persist automatically.
 
 ---
 
@@ -130,6 +145,42 @@ export default {
 
     // Save the current queue as a new playlist
     const queuePlaylistId = await api.Playlists.saveQueueAsPlaylist('Queue Snapshot');
+  },
+};
+```
+{% endtab %}
+
+{% tab title="Folders" %}
+```typescript
+import type { NuclearPluginAPI } from '@nuclearplayer/plugin-sdk';
+
+export default {
+  async onEnable(api: NuclearPluginAPI) {
+    // Create a folder and move a playlist into it
+    const folderId = await api.Playlists.createFolder('Workouts');
+    const playlistId = await api.Playlists.createPlaylist('Leg day');
+    await api.Playlists.movePlaylistToFolder(playlistId, folderId);
+
+    // Save the queue as a playlist in the folder
+    await api.Playlists.saveQueueAsPlaylist('Cardio', folderId);
+
+    // Read the playlists and folders in display order
+    const tree = await api.Playlists.getIndexTree();
+    for (const node of tree) {
+      if (node.kind === 'folder') {
+        api.Logger.info(`${node.name}: ${node.playlists.length} playlists`);
+      } else {
+        api.Logger.info(node.name);
+      }
+    }
+
+    // Move the playlist to the top level
+    await api.Playlists.movePlaylistToFolder(playlistId);
+
+    await api.Playlists.renameFolder(folderId, 'Training');
+
+    // Delete the folder. Its playlists will move to the position of the folder.
+    await api.Playlists.deleteFolder(folderId);
   },
 };
 ```
@@ -252,6 +303,7 @@ type Playlist = {
 
 ```typescript
 type PlaylistIndexEntry = {
+  kind: 'playlist';
   id: string;
   name: string;
   createdAtIso: string;
@@ -262,6 +314,23 @@ type PlaylistIndexEntry = {
   totalDurationMs: number;
   thumbnails: string[];
 };
+```
+
+### PlaylistFolder
+
+```typescript
+type PlaylistFolder = {
+  kind: 'folder';
+  id: string;
+  name: string;
+  playlists: PlaylistIndexEntry[];  // In display order
+};
+```
+
+### PlaylistIndexNode
+
+```typescript
+type PlaylistIndexNode = PlaylistIndexEntry | PlaylistFolder;
 ```
 
 ### PlaylistItem
@@ -282,12 +351,19 @@ type PlaylistItem = {
 ```typescript
 // Reading
 api.Playlists.getIndex(): Promise<PlaylistIndexEntry[]>
+api.Playlists.getIndexTree(): Promise<PlaylistIndexNode[]>
 api.Playlists.getPlaylist(id: string): Promise<Playlist | null>
 
 // Creating
 api.Playlists.createPlaylist(name: string): Promise<string>
 api.Playlists.importPlaylist(playlist: Playlist): Promise<string>
-api.Playlists.saveQueueAsPlaylist(name: string): Promise<string>
+api.Playlists.saveQueueAsPlaylist(name: string, folderId?: string | null): Promise<string>
+
+// Folders
+api.Playlists.createFolder(name: string): Promise<string>
+api.Playlists.renameFolder(id: string, name: string): Promise<void>
+api.Playlists.deleteFolder(id: string): Promise<void>
+api.Playlists.movePlaylistToFolder(playlistId: string, folderId?: string | null): Promise<void>
 
 // Modifying
 api.Playlists.addTracks(playlistId: string, tracks: Track[]): Promise<PlaylistItem[]>

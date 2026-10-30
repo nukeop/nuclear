@@ -1,5 +1,6 @@
 import { usePlaylistStore } from '../stores/playlistStore';
 import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
+import { PlaylistFolderBuilder } from '../test/builders/PlaylistFolderBuilder';
 import { ConnectedTrackContextMenuWrapper as Wrapper } from './ConnectedTrackContextMenu.test-wrapper';
 
 vi.mock(
@@ -50,6 +51,21 @@ describe('ConnectedTrackContextMenu', () => {
       expect(addTracks).toHaveBeenCalledWith('p1', [
         expect.objectContaining({ title: 'Test Track' }),
       ]);
+    });
+
+    it('lists the playlists inside folders', async () => {
+      Wrapper.createPlaylists(
+        new PlaylistFolderBuilder()
+          .withName('Summer')
+          .withPlaylists(new PlaylistBuilder().withName('Beach')),
+        new PlaylistBuilder().withName('Road Trip'),
+      );
+
+      Wrapper.mount();
+      await Wrapper.open();
+      await Wrapper.submenu.open();
+
+      expect(Wrapper.submenu.itemNames).toEqual(['Beach', 'Road Trip']);
     });
 
     it('shows filter and caps at 5 items when many playlists exist', async () => {

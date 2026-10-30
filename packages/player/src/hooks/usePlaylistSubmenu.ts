@@ -2,13 +2,18 @@ import { useCallback, useMemo, useState } from 'react';
 
 import type { PlaylistIndexEntry } from '@nuclearplayer/model';
 
+import { PlaylistIndexTree } from '../stores/PlaylistIndexTree';
 import { usePlaylistStore } from '../stores/playlistStore';
 
 const FILTER_THRESHOLD = 5;
 const MAX_VISIBLE_ITEMS = 5;
 
 export const usePlaylistSubmenu = () => {
-  const playlistIndex = usePlaylistStore((state) => state.index);
+  const index = usePlaylistStore((state) => state.index);
+  const playlistIndex = useMemo(
+    () => new PlaylistIndexTree(index).playlists(),
+    [index],
+  );
   const addTracks = usePlaylistStore((state) => state.addTracks);
   const [filterText, setFilterText] = useState('');
 

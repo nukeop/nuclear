@@ -92,6 +92,21 @@ export class PlaybackManager {
 
     useQueueStore.getState().goToNext();
   };
+
+  sourceReady = (): void => {
+    this.updateMountedItem({ status: 'success' });
+  };
+
+  sourceFailed = (message: string): void => {
+    this.updateMountedItem({ status: 'error', error: message });
+  };
+
+  private updateMountedItem(updates: Partial<QueueItem>): void {
+    if (!this.mountedItemId) {
+      return;
+    }
+    useQueueStore.getState().updateItemState(this.mountedItemId, updates);
+  }
 }
 
 export const playbackManager = new PlaybackManager();

@@ -1,5 +1,165 @@
 [
   {
+    "date": "2026-10-30T04:00",
+    "description": "Fix yt-dlp client selection.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "YouTube",
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-30T03:00",
+    "description": "Now you can put playlists in folders by drag and drop.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-30T00:00",
+    "description": "Added integration features for playlist folders: HTTP API, MCP, and plugins can now access folders.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-29T00:00",
+    "description": "You can now organize your playlists into folders.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-29T00:00",
+    "description": "Playlist, album, and artist cards can now be played or added to the queue directly.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      },
+      {
+        "label": "Favorites",
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-27T00:00",
+    "description": "Nuclear now verifies yt-dlp's signature before installation.",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Security",
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-26T00:00",
+    "description": "Security updates for TLS certificate validation (distrusted eMudhra certificates), the auto-updater and the MCP server.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Security",
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-22T00:00",
+    "description": "Nuclear now verifies the plugins installed from the store to ensure they're safe to install.",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-20T00:00",
+    "description": "YouTube videos whose IDs start with a dash play again instead of being skipped for the next search result",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-19T00:00",
+    "description": "You can now reorder your playlists manually.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-16T00:00",
+    "description": "The first YouTube track no longer fails while yt-dlp is still downloading. Playback waits for the download, and a toast shows its progress",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "YouTube",
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-16T00:00",
+    "description": "Fixed silent YouTube playback on Linux. The AppImage now bundles the GStreamer libav plugin, and the AUR, .deb, and .rpm packages require it.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Linux",
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-15T00:00",
+    "description": "Listening history no longer records a track twice when the previous track ends on its own",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "History",
+        "color": "yellow"
+      }
+    ]
+  },
+  {
     "date": "2026-10-13T00:00",
     "description": "Nuclear Jam shows lyrics now. Tap the microphone button to open the lyrics page",
     "type": "feature",

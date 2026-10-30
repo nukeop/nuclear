@@ -1,3 +1,4 @@
+use sha2::{Digest, Sha256};
 use std::fs::{self, File};
 use std::io::BufReader;
 use std::path::{Path, PathBuf};
@@ -80,7 +81,7 @@ pub fn extract_zip(zip_path: PathBuf, dest_path: PathBuf) -> Result<(), String> 
                 #[cfg(unix)]
                 if let Some(mode) = entry.unix_mode() {
                     use std::os::unix::fs::PermissionsExt;
-                    fs::set_permissions(&out_path, fs::Permissions::from_mode(mode)).ok();
+                    fs::set_permissions(&out_path, fs::Permissions::from_mode(mode & 0o777)).ok();
                 }
             }
         }
@@ -94,6 +95,20 @@ pub fn extract_zip(zip_path: PathBuf, dest_path: PathBuf) -> Result<(), String> 
 
     log::info!("Extracted {:?} to {:?}", zip_path, dest_path);
     Ok(())
+}
+
+#[command]
+#[specta::specta]
+pub fn sha256_file(path: PathBuf) -> Result<String, String> {
+    fn inner(path: &Path) -> Result<String, Box<dyn std::error::Error>> {
+        let digest = Sha256::digest(fs::read(path)?);
+        Ok(digest.iter().map(|byte| format!("{:02x}", byte)).collect())
+    }
+
+    inner(&path).map_err(|e| {
+        log::error!("sha256_file failed for {:?}: {}", path, e);
+        e.to_string()
+    })
 }
 
 #[command]
@@ -128,6 +143,7 @@ pub async fn download_file(url: String, dest_path: PathBuf) -> Result<(), String
             let chunk = chunk?;
             file.write_all(&chunk).await?;
         }
+        file.flush().await?;
 
         log::info!("Download complete: {:?}", dest_path);
         Ok(())

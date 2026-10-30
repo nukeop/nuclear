@@ -3,7 +3,7 @@
 exports[`Playlists view > renders playlist cards when playlists exist 1`] = `
 [
   <button
-    class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+    class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
     data-headlessui-state=""
     data-testid="card"
     type="button"
@@ -64,13 +64,14 @@ exports[`Playlists view > renders playlist cards when playlists exist 1`] = `
       </div>
       <div
         class="text-card-foreground truncate text-xs opacity-60"
+        data-testid="card-subtitle"
       >
         10 tracks
       </div>
     </div>
   </button>,
   <button
-    class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+    class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto surface-card group-hover:translate-x-shadow-x group-hover:translate-y-shadow-y flex w-full flex-col items-stretch gap-2 p-2 text-left group-hover:shadow-none"
     data-headlessui-state=""
     data-testid="card"
     type="button"
@@ -131,6 +132,7 @@ exports[`Playlists view > renders playlist cards when playlists exist 1`] = `
       </div>
       <div
         class="text-card-foreground truncate text-xs opacity-60"
+        data-testid="card-subtitle"
       >
         8 tracks
       </div>

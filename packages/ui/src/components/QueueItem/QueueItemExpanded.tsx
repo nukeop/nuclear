@@ -119,7 +119,10 @@ export const QueueItemExpanded: FC<QueueItemProps> = ({
       </div>
 
       {status === 'loading' && (
-        <div className="bg-stripes-diagonal absolute inset-x-0 bottom-0 h-1" />
+        <div
+          data-testid="queue-item-loading"
+          className="bg-stripes-diagonal absolute inset-x-0 bottom-0 h-1"
+        />
       )}
     </Box>
   );

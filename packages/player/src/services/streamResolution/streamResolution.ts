@@ -132,23 +132,29 @@ export class StreamResolution {
   }
 
   private supersedeActiveResolution(itemId: string): AbortSignal {
-    if (this.activeController) {
-      this.activeController.abort();
-      if (this.activeItemId) {
-        const { getItemById, updateItemState } = useQueueStore.getState();
-        const previousItem = getItemById(this.activeItemId);
-        if (previousItem) {
-          updateItemState(this.activeItemId, {
-            status: undefined,
-            error: undefined,
-            track: stripResolutionState(previousItem.track),
-          });
-        }
-      }
-    }
-    this.activeController = new AbortController();
+    const previousController = this.activeController;
+    const previousItemId = this.activeItemId;
+    const controller = new AbortController();
+    this.activeController = controller;
     this.activeItemId = itemId;
-    return this.activeController.signal;
+
+    previousController?.abort();
+    if (previousItemId && previousItemId !== itemId) {
+      this.resetAbandonedItem(previousItemId);
+    }
+    return controller.signal;
+  }
+
+  private resetAbandonedItem(itemId: string): void {
+    const { getItemById, updateItemState } = useQueueStore.getState();
+    const item = getItemById(itemId);
+    if (item) {
+      updateItemState(itemId, {
+        status: undefined,
+        error: undefined,
+        track: stripResolutionState(item.track),
+      });
+    }
   }
 }
 

@@ -49,18 +49,13 @@ export const fakeMarketplacePlugins: MarketplacePlugin[] = [
   },
 ];
 
-export const fakeGitHubRelease = (repo: string) => ({
-  tag_name: 'v1.0.0',
-  name: 'Release 1.0.0',
-  published_at: '2026-01-20T00:00:00Z',
-  assets: [
-    {
-      name: 'plugin.zip',
-      browser_download_url: `https://github.com/${repo}/releases/download/v1.0.0/plugin.zip`,
-      size: 12345,
-    },
-  ],
-});
+export const fakeInstallableYouTubePlugin: MarketplacePlugin = {
+  ...fakeMarketplacePlugins[0],
+  version: '1.0.0',
+  downloadUrl:
+    'https://github.com/NuclearPlayer/nuclear-youtube-plugin/releases/download/v1.0.0/plugin.zip',
+  sha256: 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',
+};
 
 export const fakeYouTubePluginManifest = JSON.stringify({
   name: 'nuclear-youtube-plugin',

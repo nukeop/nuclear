@@ -4,10 +4,12 @@ import { useState, type FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import type { Track } from '@nuclearplayer/model';
-import { Button, Dialog, Popover } from '@nuclearplayer/ui';
+import { Popover } from '@nuclearplayer/ui';
 
 import { usePlaylistExport } from '../../../hooks/usePlaylistExport';
+import { PlaylistIndexTree } from '../../../stores/PlaylistIndexTree';
 import { usePlaylistStore } from '../../../stores/playlistStore';
+import { DeletePlaylistDialog } from '../../Playlists/components/DeletePlaylistDialog';
 import { PlaylistActions } from '../../Playlists/components/PlaylistActions';
 
 type PlaylistDetailActionsProps = {
@@ -26,9 +28,12 @@ export const PlaylistDetailActions: FC<PlaylistDetailActionsProps> = ({
   const { exportAsJson } = usePlaylistExport(playlistId);
 
   const handleDelete = async () => {
+    const folder = new PlaylistIndexTree(
+      usePlaylistStore.getState().index,
+    ).folderOf(playlistId);
     await deletePlaylist(playlistId);
     setIsDeleteDialogOpen(false);
-    navigate({ to: '/playlists' });
+    navigate({ to: '/playlists', search: { folder: folder?.id } });
   };
 
   return (
@@ -55,19 +60,11 @@ export const PlaylistDetailActions: FC<PlaylistDetailActionsProps> = ({
           </>
         }
       />
-      <Dialog.Root
+      <DeletePlaylistDialog
         isOpen={isDeleteDialogOpen}
         onClose={() => setIsDeleteDialogOpen(false)}
-      >
-        <Dialog.Title>{t('delete')}</Dialog.Title>
-        <Dialog.Description>{t('deleteConfirm')}</Dialog.Description>
-        <Dialog.Actions>
-          <Dialog.Close>{t('common:actions.cancel')}</Dialog.Close>
-          <Button intent="danger" onClick={handleDelete}>
-            {t('common:actions.delete')}
-          </Button>
-        </Dialog.Actions>
-      </Dialog.Root>
+        onConfirm={handleDelete}
+      />
     </>
   );
 };

@@ -4,7 +4,7 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>AGPL-3.0-only</project_license>
   <name>Nuclear</name>
-  <summary>Music streaming app</summary>
+  <summary>Search and play any song</summary>
 
   <developer id="com.nuclearplayer">
     <name>nukeop</name>
@@ -20,36 +20,33 @@
 
   <description>
     <p>
-      Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.
+      Nuclear finds and plays music from many sources in one place. Search for any song, album, or artist, build playlists, and start listening, with no ads and no tracking.
     </p>
-    <ul>
-      <li>Search for music across multiple sources</li>
-      <li>Explore new releases, top tracks, and editorial playlists</li>
-      <li>Extend the player with plugins - add new music sources, metadata providers, and more</li>
-      <li>Customize the look and feel with themes</li>
-    </ul>
+    <p>
+      Plugins add new music sources, lyrics, and metadata providers, and themes change how the player looks. Nuclear also shows synced lyrics, keeps your favorites and listening history, and can be controlled remotely from your phone.
+    </p>
   </description>
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/nukeop/nuclear/ed334efe1261d52cf3b145a79bc0fa21b1de557b/packages/docs/.gitbook/assets/dashboard-main.png</image>
-      <caption>Browse top tracks, new releases, and editorial playlists</caption>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/399e46961af2df79fd4ea0c3198b0422ecd2ecc4/flatpak/screenshots/01-dashboard.png</image>
+      <caption>Browse top playlists and artists while your queue plays</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/nukeop/nuclear/ed334efe1261d52cf3b145a79bc0fa21b1de557b/packages/docs/.gitbook/assets/search-artists.png</image>
-      <caption>Search for artists across multiple sources</caption>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/399e46961af2df79fd4ea0c3198b0422ecd2ecc4/flatpak/screenshots/02-artist.png</image>
+      <caption>Read about an artist and play their popular tracks</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/nukeop/nuclear/ed334efe1261d52cf3b145a79bc0fa21b1de557b/packages/docs/.gitbook/assets/playlists.png</image>
-      <caption>Create and manage playlists</caption>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/399e46961af2df79fd4ea0c3198b0422ecd2ecc4/flatpak/screenshots/03-album.png</image>
+      <caption>Play a whole album or add it to your queue</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/nukeop/nuclear/ed334efe1261d52cf3b145a79bc0fa21b1de557b/packages/docs/.gitbook/assets/plugin-store.png</image>
-      <caption>Install plugins to add new music sources and features</caption>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/399e46961af2df79fd4ea0c3198b0422ecd2ecc4/flatpak/screenshots/04-search.png</image>
+      <caption>Search for albums, artists, and tracks</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/nukeop/nuclear/ed334efe1261d52cf3b145a79bc0fa21b1de557b/packages/docs/.gitbook/assets/preferences.png</image>
-      <caption>Customize playback, appearance, and behavior</caption>
+      <image>https://raw.githubusercontent.com/nukeop/nuclear/399e46961af2df79fd4ea0c3198b0422ecd2ecc4/flatpak/screenshots/05-lyrics.png</image>
+      <caption>Follow along with word-synced lyrics</caption>
     </screenshot>
   </screenshots>
 
@@ -60,8 +57,8 @@
   <url type="vcs-browser">https://github.com/nukeop/nuclear</url>
 
   <branding>
-    <color type="primary" scheme_preference="light">#B7C3E6</color>
-    <color type="primary" scheme_preference="dark">#1F212D</color>
+    <color type="primary" scheme_preference="light">#8ed3ce</color>
+    <color type="primary" scheme_preference="dark">#295653</color>
   </branding>
 
   <content_rating type="oars-1.1" />
@@ -84,6 +81,52 @@
   </requires>
 
   <releases>
+    <release version="1.53.0" date="2026-10-30">
+      <description>
+        <ul>
+          <li>Now you can put playlists in folders by drag and drop.</li>
+          <li>Added integration features for playlist folders: HTTP API, MCP, and plugins can now access folders.</li>
+          <li>You can now organize your playlists into folders.</li>
+          <li>Playlist, album, and artist cards can now be played or added to the queue directly.</li>
+          <li>Nuclear now verifies yt-dlp's signature before installation.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.52.2" date="2026-10-26">
+      <description>
+        <p>Release 1.52.2.</p>
+      </description>
+    </release>
+    <release version="1.52.1" date="2026-10-26">
+      <description>
+        <ul>
+          <li>Security updates for TLS certificate validation (distrusted eMudhra certificates), the auto-updater and the MCP server.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.52.0" date="2026-10-23">
+      <description>
+        <ul>
+          <li>Nuclear now verifies the plugins installed from the store to ensure they're safe to install.</li>
+          <li>YouTube videos whose IDs start with a dash play again instead of being skipped for the next search result</li>
+          <li>You can now reorder your playlists manually.</li>
+          <li>The first YouTube track no longer fails while yt-dlp is still downloading. Playback waits for the download, and a toast shows its progress</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.51.2" date="2026-10-16">
+      <description>
+        <ul>
+          <li>Fixed silent YouTube playback on Linux. The AppImage now bundles the GStreamer libav plugin, and the AUR, .deb, and .rpm packages require it.</li>
+          <li>Listening history no longer records a track twice when the previous track ends on its own</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.51.1" date="2026-10-14">
+      <description>
+        <p>Release 1.51.1.</p>
+      </description>
+    </release>
     <release version="1.51.0" date="2026-10-14">
       <description>
         <ul>
@@ -107,7 +150,9 @@
     </release>
     <release version="1.49.1" date="2026-09-25">
       <description>
-        <p>Release 1.49.1.</p>
+        <ul>
+          <li>Fixed the Flatpak build, which broke with newer pnpm versions.</li>
+        </ul>
       </description>
     </release>
     <release version="1.49.0" date="2026-09-25">
@@ -120,7 +165,9 @@
     </release>
     <release version="1.48.6" date="2026-09-19">
       <description>
-        <p>Release 1.48.6.</p>
+        <ul>
+          <li>Stops log spam if Discord Rich Presence is unavailable. Reconnects correctly if it becomes available after Nuclear is launched.</li>
+        </ul>
       </description>
     </release>
     <release version="1.48.5" date="2026-09-19">
@@ -132,22 +179,31 @@
     </release>
     <release version="1.48.4" date="2026-09-14">
       <description>
-        <p>Release 1.48.4.</p>
+        <ul>
+          <li>The settings dialog is larger, and its sidebar highlights the section you're scrolling through.</li>
+          <li>Fixed several color issues in themes, buttons, and playlist headers.</li>
+        </ul>
       </description>
     </release>
     <release version="1.48.3" date="2026-09-04">
       <description>
-        <p>Release 1.48.3.</p>
+        <ul>
+          <li>Fixed another Flatpak build failure when installing dependencies offline.</li>
+        </ul>
       </description>
     </release>
     <release version="1.48.2" date="2026-09-04">
       <description>
-        <p>Release 1.48.2.</p>
+        <ul>
+          <li>Fixed the Flatpak build failing to install dependencies offline.</li>
+        </ul>
       </description>
     </release>
     <release version="1.48.1" date="2026-09-04">
       <description>
-        <p>Release 1.48.1.</p>
+        <ul>
+          <li>Updated the Flatpak build for pnpm 12.</li>
+        </ul>
       </description>
     </release>
     <release version="1.48.0" date="2026-09-04">
@@ -168,7 +224,10 @@
     </release>
     <release version="1.47.0" date="2026-08-15">
       <description>
-        <p>Release 1.47.0.</p>
+        <ul>
+          <li>Plugins that use yt-dlp can now request streams by URL, and get the album, artists, and upload date of each stream.</li>
+          <li>Streams without a thumbnail show a new placeholder in the stream sources popover.</li>
+        </ul>
       </description>
     </release>
     <release version="1.46.3" date="2026-08-13">
@@ -189,12 +248,16 @@
     </release>
     <release version="1.46.1" date="2026-08-09">
       <description>
-        <p>Release 1.46.1.</p>
+        <ul>
+          <li>Added Japanese, Polish, and Simplified Chinese to the language list, and finished the Russian and Spanish translations.</li>
+        </ul>
       </description>
     </release>
     <release version="1.40.2" date="2026-06-14">
       <description>
-        <p>Release 1.40.2.</p>
+        <ul>
+          <li>Fixed playback stalling every ten seconds (at 0:09, 0:19, and so on) on some tracks, and fixed tracks sometimes not starting after switching to another track.</li>
+        </ul>
       </description>
     </release>
     <release version="1.40.1" date="2026-06-14">
@@ -214,7 +277,9 @@
     </release>
     <release version="1.39.1" date="2026-06-07">
       <description>
-        <p>Release 1.39.1.</p>
+        <ul>
+          <li>Fixed the layout and scrolling of track lists in album and playlist views.</li>
+        </ul>
       </description>
     </release>
     <release version="1.39.0" date="2026-06-01">

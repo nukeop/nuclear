@@ -4,10 +4,12 @@ import type {
   PlaylistsListener,
 } from '@nuclearplayer/plugin-sdk';
 
+import { PlaylistIndexTree } from '../stores/PlaylistIndexTree';
 import { usePlaylistStore } from '../stores/playlistStore';
 
 export const createPlaylistsHost = (): PlaylistsHost => ({
-  getIndex: async () => usePlaylistStore.getState().index,
+  getIndex: async () =>
+    new PlaylistIndexTree(usePlaylistStore.getState().index).playlists(),
 
   getPlaylist: async (id: string) =>
     usePlaylistStore.getState().loadPlaylist(id),
@@ -30,11 +32,34 @@ export const createPlaylistsHost = (): PlaylistsHost => ({
   importPlaylist: async (playlist: Playlist) =>
     usePlaylistStore.getState().importPlaylist(playlist),
 
-  saveQueueAsPlaylist: async (name: string) =>
-    usePlaylistStore.getState().saveQueueAsPlaylist(name),
+  saveQueueAsPlaylist: async (name: string, folderId?: string | null) =>
+    usePlaylistStore
+      .getState()
+      .saveQueueAsPlaylist(name, folderId ?? undefined),
+
+  getIndexTree: async () => usePlaylistStore.getState().index,
+
+  createFolder: async (name: string) =>
+    usePlaylistStore.getState().createFolder(name),
+
+  renameFolder: async (id: string, name: string) =>
+    usePlaylistStore.getState().renameFolder(id, name),
+
+  deleteFolder: async (id: string) =>
+    usePlaylistStore.getState().deleteFolder(id),
+
+  movePlaylistToFolder: async (playlistId: string, folderId?: string | null) =>
+    usePlaylistStore
+      .getState()
+      .movePlaylistToFolder(playlistId, folderId ?? undefined),
 
   subscribe: (listener: PlaylistsListener) =>
-    usePlaylistStore.subscribe((state) => listener(state.index)),
+    usePlaylistStore.subscribe((state, previous) => {
+      if (state.index === previous.index) {
+        return;
+      }
+      listener(new PlaylistIndexTree(state.index).playlists());
+    }),
 });
 
 export const playlistsHost = createPlaylistsHost();

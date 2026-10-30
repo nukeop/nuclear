@@ -19,7 +19,6 @@ import { initMcpHandler } from './services/mcp';
 import { initMpdHandler } from './services/mpd';
 import { initPlaybackEventBridge } from './services/playbackEventBridge';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
-import { ytdlpEnsureInstalled } from './services/tauri/commands';
 import { initializeFavoritesStore } from './stores/favoritesStore';
 import { initializePlaylistStore } from './stores/playlistStore';
 import { initializeQueueStore } from './stores/queueStore';
@@ -55,7 +54,6 @@ const initThemes = () =>
 const startBackgroundTasks = () => {
   void hydratePluginsFromRegistry();
   void useUpdaterStore.getState().checkForUpdate();
-  void ytdlpEnsureInstalled();
 };
 
 export const initPlayerApp = async (

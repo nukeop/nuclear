@@ -1,10 +1,16 @@
-import type { Playlist, PlaylistIndexEntry } from '@nuclearplayer/model';
+import type {
+  Playlist,
+  PlaylistIndexEntry,
+  PlaylistIndexNode,
+} from '@nuclearplayer/model';
 
+import { PlaylistIndexTree } from '../../stores/PlaylistIndexTree';
 import { buildThumbnails } from './buildThumbnails';
 import { PlaylistFileStore } from './PlaylistFileStore';
 import { PlaylistIndexStore } from './PlaylistIndexStore';
 
 const toIndexEntry = (playlist: Playlist): PlaylistIndexEntry => ({
+  kind: 'playlist',
   id: playlist.id,
   name: playlist.name,
   createdAtIso: playlist.createdAtIso,
@@ -23,7 +29,7 @@ export class PlaylistFileService {
   #indexStore = new PlaylistIndexStore();
   #fileStore = new PlaylistFileStore();
 
-  async loadIndex(): Promise<PlaylistIndexEntry[]> {
+  async loadIndex(): Promise<PlaylistIndexNode[]> {
     return this.#indexStore.load();
   }
 
@@ -31,26 +37,27 @@ export class PlaylistFileService {
     return this.#fileStore.load(id);
   }
 
-  async savePlaylist(playlist: Playlist): Promise<PlaylistIndexEntry[]> {
+  async savePlaylist(
+    playlist: Playlist,
+    folderId?: string,
+  ): Promise<PlaylistIndexNode[]> {
+    const tree = new PlaylistIndexTree(await this.#indexStore.load());
+    const { nodes } = tree.savePlaylist(toIndexEntry(playlist), folderId);
     await this.#fileStore.save(playlist);
-    const index = [...(await this.#indexStore.load())];
-    const entry = toIndexEntry(playlist);
-    const existing = index.findIndex((e) => e.id === playlist.id);
-    if (existing >= 0) {
-      index[existing] = entry;
-    } else {
-      index.push(entry);
-    }
-    await this.#indexStore.save(index);
-    return index;
+    await this.#indexStore.save(nodes);
+    return nodes;
   }
 
-  async deletePlaylist(id: string): Promise<PlaylistIndexEntry[]> {
+  async saveIndex(index: PlaylistIndexNode[]): Promise<void> {
+    await this.#indexStore.save(index);
+  }
+
+  async deletePlaylist(id: string): Promise<PlaylistIndexNode[]> {
     await this.#fileStore.delete(id);
-    const index = await this.#indexStore.load();
-    const updated = index.filter((e) => e.id !== id);
-    await this.#indexStore.save(updated);
-    return updated;
+    const tree = new PlaylistIndexTree(await this.#indexStore.load());
+    const { nodes } = tree.removePlaylist(id);
+    await this.#indexStore.save(nodes);
+    return nodes;
   }
 }
 

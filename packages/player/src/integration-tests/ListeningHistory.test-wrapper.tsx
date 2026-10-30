@@ -35,6 +35,20 @@ export const createListeningHistoryWrapper = (
       .mock.calls.map(([event]) => event);
   },
 
+  get timeline() {
+    const events = this.events;
+    const startedTitles = new Map(
+      events
+        .filter((event) => event.kind === 'started')
+        .map((event) => [event.playId, event.snapshot?.title]),
+    );
+    return events.map((event) => ({
+      playId: event.playId,
+      kind: event.kind,
+      track: startedTitles.get(event.playId),
+    }));
+  },
+
   async startPlayback(durationSeconds?: number) {
     await QueueWrapper.mount();
     await SoundWrapper.initAndPlay();

@@ -28,7 +28,7 @@ export const checkAndUpdatePlugins = async (): Promise<void> => {
 
   for (const entry of storeEntries) {
     const remote = marketplacePlugins.find((plugin) => plugin.id === entry.id);
-    if (!remote?.version || !remote?.downloadUrl) {
+    if (!remote?.version || !remote?.downloadUrl || !remote?.sha256) {
       continue;
     }
 
@@ -45,6 +45,7 @@ export const checkAndUpdatePlugins = async (): Promise<void> => {
       const extractedPath = await downloadAndExtractPlugin({
         pluginId: entry.id,
         downloadUrl: remote.downloadUrl,
+        sha256: remote.sha256,
       });
 
       await usePluginStore.getState().unloadPlugin(entry.id);

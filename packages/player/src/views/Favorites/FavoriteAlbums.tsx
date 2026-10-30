@@ -1,17 +1,15 @@
-import { useNavigate } from '@tanstack/react-router';
 import { Disc3 } from 'lucide-react';
 import { useMemo, type FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
-import { pickArtwork } from '@nuclearplayer/model';
-import { Card, CardGrid, EmptyState, ViewShell } from '@nuclearplayer/ui';
+import { CardGrid, EmptyState, ViewShell } from '@nuclearplayer/ui';
 
+import { ConnectedAlbumCard } from '../../components/ConnectedAlbumCard';
 import { useFavoritesStore } from '../../stores/favoritesStore';
 import { sortByAddedAtDesc } from '../../utils/sort';
 
 export const FavoriteAlbums: FC = () => {
   const { t } = useTranslation('favorites');
-  const navigate = useNavigate();
   const albums = useFavoritesStore((state) => state.albums);
 
   const sortedAlbums = useMemo(() => sortByAddedAtDesc(albums), [albums]);
@@ -28,15 +26,9 @@ export const FavoriteAlbums: FC = () => {
       ) : (
         <CardGrid>
           {sortedAlbums.map((entry) => (
-            <Card
+            <ConnectedAlbumCard
               key={`${entry.ref.source.provider}-${entry.ref.source.id}`}
-              title={entry.ref.title}
-              src={pickArtwork(entry.ref.artwork, 'cover', 300)?.url}
-              onClick={() =>
-                navigate({
-                  to: `/album/${entry.ref.source.provider}/${entry.ref.source.id}`,
-                })
-              }
+              album={entry.ref}
             />
           ))}
         </CardGrid>

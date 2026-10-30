@@ -3,10 +3,7 @@ import { toast } from 'sonner';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 
-import {
-  pluginMarketplaceApi,
-  type MarketplacePlugin,
-} from '../apis/pluginMarketplaceApi';
+import { type MarketplacePlugin } from '../apis/pluginMarketplaceApi';
 import {
   cleanupDownload,
   downloadAndExtractPlugin,
@@ -26,18 +23,22 @@ export const useInstallPlugin = () => {
 
   return useMutation({
     mutationFn: async ({ plugin }: InstallPluginParams) => {
-      const release = await pluginMarketplaceApi.getLatestRelease(plugin.repo);
+      const { version, downloadUrl, sha256 } = plugin;
+      if (!version || !downloadUrl || !sha256) {
+        throw new Error(t('store.installError.unverifiedRelease'));
+      }
 
       const extractedPath = await downloadAndExtractPlugin({
         pluginId: plugin.id,
-        downloadUrl: release.downloadUrl,
+        downloadUrl,
+        sha256,
       });
 
       try {
         const now = new Date().toISOString();
         await upsertRegistryEntry({
           id: plugin.id,
-          version: release.version,
+          version,
           path: extractedPath,
           installationMethod: 'store',
           enabled: false,
@@ -51,7 +52,7 @@ export const useInstallPlugin = () => {
         await cleanupDownload(plugin.id);
       }
 
-      return { plugin, version: release.version };
+      return { plugin, version };
     },
     onError: (error, { plugin }) => {
       const message = errorMessage(error);

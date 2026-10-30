@@ -83,6 +83,23 @@ export const QueueWrapper = {
     });
   },
 
+  item(title: string) {
+    const findElement = () =>
+      screen
+        .getAllByTestId('queue-item')
+        .find(
+          (itemElement) =>
+            within(itemElement).getByTestId('queue-item-title').textContent ===
+            title,
+        )!;
+
+    return {
+      get loadingIndicator() {
+        return within(findElement()).getByTestId('queue-item-loading');
+      },
+    };
+  },
+
   getCurrentItemIndex() {
     const allTracks = screen.queryAllByTestId('queue-item');
     const currentTrackIndex = allTracks.findIndex(

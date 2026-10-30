@@ -25,6 +25,6 @@ export const downloadFile = async (
   await invoke('download_file', { url, destPath });
 };
 
-export const ytdlpEnsureInstalled = async (): Promise<boolean> => {
-  return invoke<boolean>('ytdlp_ensure_installed');
+export const sha256File = async (path: string): Promise<string> => {
+  return invoke<string>('sha256_file', { path });
 };
