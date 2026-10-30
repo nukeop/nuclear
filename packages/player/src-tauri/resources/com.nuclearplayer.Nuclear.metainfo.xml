@@ -81,6 +81,17 @@
   </requires>
 
   <releases>
+    <release version="1.53.0" date="2026-10-30">
+      <description>
+        <ul>
+          <li>Now you can put playlists in folders by drag and drop.</li>
+          <li>Added integration features for playlist folders: HTTP API, MCP, and plugins can now access folders.</li>
+          <li>You can now organize your playlists into folders.</li>
+          <li>Playlist, album, and artist cards can now be played or added to the queue directly.</li>
+          <li>Nuclear now verifies yt-dlp's signature before installation.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.52.2" date="2026-10-26">
       <description>
         <p>Release 1.52.2.</p>
