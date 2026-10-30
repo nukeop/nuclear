@@ -1,4 +1,10 @@
-import { PlusIcon, ShareIcon, Trash2Icon } from 'lucide-react';
+import {
+  FolderInputIcon,
+  FolderOutputIcon,
+  PlusIcon,
+  ShareIcon,
+  Trash2Icon,
+} from 'lucide-react';
 import { type FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
@@ -10,12 +16,20 @@ type PlaylistCardMenuItemsProps = {
   playlistId: string;
   onAddToQueue: () => void;
   onDelete: () => void;
+  canMoveToFolder: boolean;
+  isInFolder: boolean;
+  onMoveToFolder: () => void;
+  onRemoveFromFolder: () => void;
 };
 
 export const PlaylistCardMenuItems: FC<PlaylistCardMenuItemsProps> = ({
   playlistId,
   onAddToQueue,
   onDelete,
+  canMoveToFolder,
+  isInFolder,
+  onMoveToFolder,
+  onRemoveFromFolder,
 }) => {
   const { t } = useTranslation('playlists');
   const { exportAsJson } = usePlaylistExport(playlistId);
@@ -36,6 +50,24 @@ export const PlaylistCardMenuItems: FC<PlaylistCardMenuItemsProps> = ({
       >
         {t('exportJson')}
       </Popover.Item>
+      {canMoveToFolder && (
+        <Popover.Item
+          icon={<FolderInputIcon size={16} />}
+          onClick={onMoveToFolder}
+          data-testid="move-to-folder-action"
+        >
+          {t('folders.moveTo')}
+        </Popover.Item>
+      )}
+      {isInFolder && (
+        <Popover.Item
+          icon={<FolderOutputIcon size={16} />}
+          onClick={onRemoveFromFolder}
+          data-testid="remove-from-folder-action"
+        >
+          {t('folders.removeFrom')}
+        </Popover.Item>
+      )}
       <Popover.Item
         intent="danger"
         icon={<Trash2Icon size={16} />}

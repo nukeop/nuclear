@@ -4,10 +4,12 @@ import type {
   PlaylistsListener,
 } from '@nuclearplayer/plugin-sdk';
 
+import { PlaylistIndexTree } from '../stores/PlaylistIndexTree';
 import { usePlaylistStore } from '../stores/playlistStore';
 
 export const createPlaylistsHost = (): PlaylistsHost => ({
-  getIndex: async () => usePlaylistStore.getState().index,
+  getIndex: async () =>
+    new PlaylistIndexTree(usePlaylistStore.getState().index).playlists(),
 
   getPlaylist: async (id: string) =>
     usePlaylistStore.getState().loadPlaylist(id),
@@ -34,7 +36,12 @@ export const createPlaylistsHost = (): PlaylistsHost => ({
     usePlaylistStore.getState().saveQueueAsPlaylist(name),
 
   subscribe: (listener: PlaylistsListener) =>
-    usePlaylistStore.subscribe((state) => listener(state.index)),
+    usePlaylistStore.subscribe((state, previous) => {
+      if (state.index === previous.index) {
+        return;
+      }
+      listener(new PlaylistIndexTree(state.index).playlists());
+    }),
 });
 
 export const playlistsHost = createPlaylistsHost();

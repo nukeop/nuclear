@@ -58,7 +58,14 @@ export const useImportFromUrlContext = () => {
   return ctx;
 };
 
-const CreatePlaylistProvider: FC<PropsWithChildren> = ({ children }) => {
+type PlaylistsProviderProps = PropsWithChildren<{
+  folderId?: string;
+}>;
+
+const CreatePlaylistProvider: FC<PlaylistsProviderProps> = ({
+  folderId,
+  children,
+}) => {
   const storeCreatePlaylist = usePlaylistStore((state) => state.createPlaylist);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
@@ -67,10 +74,10 @@ const CreatePlaylistProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const createPlaylist = useCallback(
     async (name: string) => {
-      await storeCreatePlaylist(name);
+      await storeCreatePlaylist(name, folderId);
       setIsCreateDialogOpen(false);
     },
-    [storeCreatePlaylist],
+    [storeCreatePlaylist, folderId],
   );
 
   const value = useMemo(
@@ -137,8 +144,11 @@ const ImportFromUrlProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export const PlaylistsProvider: FC<PropsWithChildren> = ({ children }) => (
-  <CreatePlaylistProvider>
+export const PlaylistsProvider: FC<PlaylistsProviderProps> = ({
+  folderId,
+  children,
+}) => (
+  <CreatePlaylistProvider folderId={folderId}>
     <ImportFromUrlProvider>{children}</ImportFromUrlProvider>
   </CreatePlaylistProvider>
 );

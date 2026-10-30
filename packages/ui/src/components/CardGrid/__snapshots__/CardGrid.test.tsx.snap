@@ -83,6 +83,7 @@ exports[`Card grid > (Snapshot) Renders correctly 1`] = `
           </div>
           <div
             class="text-card-foreground truncate text-xs opacity-60"
+            data-testid="card-subtitle"
           >
             Test artist
           </div>
@@ -176,6 +177,7 @@ exports[`Card grid > (Snapshot) Sortable 1`] = `
               </div>
               <div
                 class="text-card-foreground truncate text-xs opacity-60"
+                data-testid="card-subtitle"
               >
                 Test artist
               </div>
@@ -315,6 +317,7 @@ exports[`Card grid > (Snapshot) Sortable 1`] = `
               </div>
               <div
                 class="text-card-foreground truncate text-xs opacity-60"
+                data-testid="card-subtitle"
               >
                 Test artist
               </div>
@@ -481,6 +484,7 @@ exports[`Card grid > (Snapshot) Sortable disabled 1`] = `
               </div>
               <div
                 class="text-card-foreground truncate text-xs opacity-60"
+                data-testid="card-subtitle"
               >
                 Test artist
               </div>

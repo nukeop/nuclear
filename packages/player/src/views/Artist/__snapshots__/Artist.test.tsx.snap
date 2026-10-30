@@ -1275,6 +1275,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                         </div>
                         <div
                           class="text-card-foreground truncate text-xs opacity-60"
+                          data-testid="card-subtitle"
                         >
                           Test Artist
                         </div>

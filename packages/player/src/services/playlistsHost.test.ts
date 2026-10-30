@@ -1,4 +1,6 @@
 import { usePlaylistStore } from '../stores/playlistStore';
+import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
+import { PlaylistFolderBuilder } from '../test/builders/PlaylistFolderBuilder';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { createMockTrack } from '../test/utils/mockTrack';
 import { mockUuid } from '../test/utils/mockUuid';
@@ -29,6 +31,7 @@ describe('playlistsHost', () => {
           "id": "mock-uuid-0",
           "isReadOnly": false,
           "itemCount": 0,
+          "kind": "playlist",
           "lastModifiedIso": "2026-01-01T00:00:00.000Z",
           "name": "Test Playlist",
           "thumbnails": [],
@@ -36,6 +39,27 @@ describe('playlistsHost', () => {
         },
       ]
     `);
+  });
+
+  it('lists the playlists inside folders in the index', async () => {
+    const roadTrip = new PlaylistBuilder().withName('Road Trip');
+    const beach = new PlaylistBuilder().withName('Beach');
+    const pool = new PlaylistBuilder().withName('Pool');
+    usePlaylistStore.setState({
+      index: [
+        new PlaylistFolderBuilder()
+          .withName('Summer')
+          .withPlaylists(beach, pool)
+          .build(),
+        roadTrip.buildIndexEntry(),
+      ],
+    });
+
+    expect(await playlistsHost.getIndex()).toEqual([
+      beach.buildIndexEntry(),
+      pool.buildIndexEntry(),
+      roadTrip.buildIndexEntry(),
+    ]);
   });
 
   it('gets a playlist by id', async () => {
@@ -229,6 +253,7 @@ describe('playlistsHost', () => {
           "id": "mock-uuid-0",
           "isReadOnly": false,
           "itemCount": 0,
+          "kind": "playlist",
           "lastModifiedIso": "2026-01-01T00:00:00.000Z",
           "name": "Subscribed Playlist",
           "thumbnails": [],
@@ -236,6 +261,15 @@ describe('playlistsHost', () => {
         },
       ]
     `);
+  });
+
+  it('does not notify subscribers when the index stays the same', async () => {
+    const listener = vi.fn();
+    playlistsHost.subscribe(listener);
+
+    usePlaylistStore.setState({ playlists: new Map() });
+
+    expect(listener).not.toHaveBeenCalled();
   });
 
   it('unsubscribes from index changes', async () => {

@@ -79,6 +79,7 @@ exports[`Card > (Snapshot) renders correctly 1`] = `
         </div>
         <div
           class="text-card-foreground truncate text-xs opacity-60"
+          data-testid="card-subtitle"
         >
           Test artist
         </div>
@@ -167,6 +168,7 @@ exports[`Card > (Snapshot) renders while loading 1`] = `
         </div>
         <div
           class="text-card-foreground truncate text-xs opacity-60"
+          data-testid="card-subtitle"
         >
           Test artist
         </div>
@@ -357,6 +359,7 @@ exports[`Card > (Snapshot) renders with play and menu buttons 1`] = `
         </div>
         <div
           class="text-card-foreground truncate text-xs opacity-60"
+          data-testid="card-subtitle"
         >
           Test artist
         </div>

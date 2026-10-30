@@ -1,37 +1,43 @@
 import { type FC } from 'react';
 
-import type { PlaylistIndexEntry } from '@nuclearplayer/model';
+import type { PlaylistIndexNode } from '@nuclearplayer/model';
 import { CardGrid } from '@nuclearplayer/ui';
 
+import { FolderCard } from './FolderCard';
 import { PlaylistCard } from './PlaylistCard';
 
 type PlaylistCardGridProps = {
-  playlists: PlaylistIndexEntry[];
-  onCardClick: (id: string) => void;
+  entries: PlaylistIndexNode[];
+  onPlaylistClick: (id: string) => void;
+  onFolderClick: (id: string) => void;
   onReorder: (fromIndex: number, toIndex: number) => void;
   isReorderable: boolean;
 };
 
 export const PlaylistCardGrid: FC<PlaylistCardGridProps> = ({
-  playlists,
-  onCardClick,
+  entries,
+  onPlaylistClick,
+  onFolderClick,
   onReorder,
   isReorderable,
-}) => {
-  return (
-    <CardGrid.Sortable
-      itemIds={playlists.map((playlist) => playlist.id)}
-      onReorder={onReorder}
-      disabled={!isReorderable}
-    >
-      {playlists.map((playlist) => (
-        <CardGrid.SortableItem key={playlist.id} id={playlist.id}>
+}) => (
+  <CardGrid.Sortable
+    itemIds={entries.map((entry) => entry.id)}
+    onReorder={onReorder}
+    disabled={!isReorderable}
+  >
+    {entries.map((entry) => (
+      <CardGrid.SortableItem key={entry.id} id={entry.id}>
+        {entry.kind === 'folder' && (
+          <FolderCard folder={entry} onClick={() => onFolderClick(entry.id)} />
+        )}
+        {entry.kind === 'playlist' && (
           <PlaylistCard
-            playlist={playlist}
-            onClick={() => onCardClick(playlist.id)}
+            playlist={entry}
+            onClick={() => onPlaylistClick(entry.id)}
           />
-        </CardGrid.SortableItem>
-      ))}
-    </CardGrid.Sortable>
-  );
-};
+        )}
+      </CardGrid.SortableItem>
+    ))}
+  </CardGrid.Sortable>
+);

@@ -79,7 +79,10 @@ const CardBase: FC<CardProps> = ({
             </div>
           )}
           {subtitle && (
-            <div className="text-card-foreground truncate text-xs opacity-60">
+            <div
+              data-testid="card-subtitle"
+              className="text-card-foreground truncate text-xs opacity-60"
+            >
               {subtitle}
             </div>
           )}

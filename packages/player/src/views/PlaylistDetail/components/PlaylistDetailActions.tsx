@@ -7,6 +7,7 @@ import type { Track } from '@nuclearplayer/model';
 import { Popover } from '@nuclearplayer/ui';
 
 import { usePlaylistExport } from '../../../hooks/usePlaylistExport';
+import { PlaylistIndexTree } from '../../../stores/PlaylistIndexTree';
 import { usePlaylistStore } from '../../../stores/playlistStore';
 import { DeletePlaylistDialog } from '../../Playlists/components/DeletePlaylistDialog';
 import { PlaylistActions } from '../../Playlists/components/PlaylistActions';
@@ -27,9 +28,12 @@ export const PlaylistDetailActions: FC<PlaylistDetailActionsProps> = ({
   const { exportAsJson } = usePlaylistExport(playlistId);
 
   const handleDelete = async () => {
+    const folder = new PlaylistIndexTree(
+      usePlaylistStore.getState().index,
+    ).folderOf(playlistId);
     await deletePlaylist(playlistId);
     setIsDeleteDialogOpen(false);
-    navigate({ to: '/playlists' });
+    navigate({ to: '/playlists', search: { folder: folder?.id } });
   };
 
   return (

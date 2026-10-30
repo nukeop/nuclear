@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-10-29T00:00",
+    "description": "You can now organize your playlists into folders.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-29T00:00",
     "description": "Playlist, album, and artist cards can now be played or added to the queue directly.",
     "type": "feature",
     "contributors": ["nukeop"],
