@@ -681,6 +681,33 @@ describe('Playlists view', () => {
       ]);
     });
 
+    it('moves a playlist into a folder when you drag it onto the folder', async () => {
+      PlaylistsWrapper.createPlaylists(roadTrip, lateNight, summer);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.dragCard('Road Trip', 'Summer');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Late Night', 'Summer']);
+      await PlaylistsWrapper.folder('Summer').open();
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Beach',
+        'Pool',
+        'Road Trip',
+      ]);
+    });
+
+    it('reorders a folder when you drag it onto another folder', async () => {
+      PlaylistsWrapper.createPlaylists(
+        summer,
+        new PlaylistFolderBuilder().withName('Autumn'),
+      );
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.dragCard('Autumn', 'Summer');
+
+      expect(PlaylistsWrapper.cardNames).toEqual(['Autumn', 'Summer']);
+    });
+
     it('reorders the playlists inside a folder', async () => {
       PlaylistsWrapper.createPlaylists(summer);
 
