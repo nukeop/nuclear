@@ -652,6 +652,22 @@ describe('Playlists view', () => {
       ]);
     });
 
+    it('keeps a deleted folder deleted after a restart', async () => {
+      await PlaylistsWrapper.savePlaylists(roadTrip, summer, lateNight);
+
+      await PlaylistsWrapper.mount();
+      await PlaylistsWrapper.folder('Summer').menu.delete();
+      await PlaylistsWrapper.deleteDialog.confirm();
+      await PlaylistsWrapper.restart();
+
+      expect(PlaylistsWrapper.cardNames).toEqual([
+        'Road Trip',
+        'Beach',
+        'Pool',
+        'Late Night',
+      ]);
+    });
+
     it('moves a folder to where you drag it', async () => {
       PlaylistsWrapper.createPlaylists(roadTrip, lateNight, summer);
 
