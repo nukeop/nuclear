@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-30T04:00",
+    "description": "Fix yt-dlp client selection.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "YouTube",
+        "color": "red"
+      }
+    ]
+  },
+  {
     "date": "2026-10-30T03:00",
     "description": "Now you can put playlists in folders by drag and drop.",
     "type": "feature",
