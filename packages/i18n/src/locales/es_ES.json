@@ -18,7 +18,8 @@
       "clear": "Limpiar",
       "search": "Buscar",
       "loading": "Cargando...",
-      "retry": "Reintentar"
+      "retry": "Reintentar",
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "Error de red. Por favor, verifica tu conexión.",
@@ -134,6 +135,7 @@
     "addToPlaylist": "Añadir a la lista de reproducción",
     "filterPlaylists": "Filtrar lista de reproducción...",
     "sortBy": {
+      "custom": "Custom",
       "name": "Name",
       "dateAdded": "Date added",
       "dateModified": "Date modified",
@@ -157,7 +159,21 @@
     "importUrlPlaceholder": "Pegar URL de la lista de reproducción...",
     "importUrlNoProvider": "No se encontró plug-in que pueda soportar esta URL. Instala el plug-in necesario para este servicio.",
     "importUrlImporting": "Importando...",
-    "descriptionPlaceholder": "Añade una descripción..."
+    "descriptionPlaceholder": "Añade una descripción...",
+    "folders": {
+      "create": "New folder",
+      "createTitle": "Create new folder",
+      "namePlaceholder": "Folder name...",
+      "rename": "Rename folder",
+      "delete": "Delete folder",
+      "deleteConfirm": "The playlists in this folder will be moved out of it. They will not be deleted.",
+      "playlistCount": "{{count}} playlist",
+      "playlistCount_other": "{{count}} playlists",
+      "moveTo": "Move to folder",
+      "removeFrom": "Remove from folder",
+      "empty": "This folder is empty",
+      "emptyDescription": "Move playlists here from their menu, or create a new one"
+    }
   },
   "search": {
     "title": "Buscar",
@@ -302,7 +318,8 @@
         "empty": "No plugins available yet."
       },
       "installError": {
-        "title": "Failed to install {{name}}"
+        "title": "Failed to install {{name}}",
+        "unverifiedRelease": "The plugin registry has no verified release for this plugin."
       }
     }
   },
@@ -554,6 +571,20 @@
     "page": "Page {{pageNumber}}"
   },
   "streaming": {
+    "ytdlp": {
+      "install": {
+        "progress": "Downloading yt-dlp… {{percent}}%",
+        "progressUnknown": "Downloading yt-dlp…",
+        "finished": "yt-dlp downloaded",
+        "failed": "Couldn't download yt-dlp"
+      },
+      "update": {
+        "progress": "Updating yt-dlp… {{percent}}%",
+        "progressUnknown": "Updating yt-dlp…",
+        "finished": "yt-dlp updated",
+        "failed": "Couldn't update yt-dlp"
+      }
+    },
     "errors": {
       "noCandidatesFound": "Failed to find stream candidates",
       "allCandidatesFailed": "All stream candidates failed",
@@ -585,6 +616,9 @@
     "browsePlugins": "Browse lyrics plugins",
     "noLyrics": "No lyrics for this track",
     "noLyricsDescription": "{{providers, list}} returned no results.",
+    "noLyricsFromAnyProvider": "No lyrics provider returned results.",
+    "loadError": "Could not load lyrics",
+    "loadErrorDescription": "Check the connection to Nuclear and try again.",
     "providerError": "A lyrics provider failed to load lyrics",
     "instrumental": "Instrumental",
     "instrumentalDescription": "This track has no lyrics.",
@@ -630,6 +664,10 @@
       "connected": "Connected",
       "reconnecting": "Reconnecting",
       "failed": "Disconnected"
+    },
+    "lyrics": {
+      "open": "Show lyrics",
+      "back": "Back"
     },
     "queue": {
       "upNext": "Up next",
