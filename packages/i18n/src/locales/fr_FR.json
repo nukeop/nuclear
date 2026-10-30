@@ -159,7 +159,21 @@
     "importUrlPlaceholder": "Paste a playlist URL...",
     "importUrlNoProvider": "No plugin can handle this URL. Install a plugin that supports this service.",
     "importUrlImporting": "Importing...",
-    "descriptionPlaceholder": "Add a description..."
+    "descriptionPlaceholder": "Add a description...",
+    "folders": {
+      "create": "New folder",
+      "createTitle": "Create new folder",
+      "namePlaceholder": "Folder name...",
+      "rename": "Rename folder",
+      "delete": "Delete folder",
+      "deleteConfirm": "The playlists in this folder will be moved out of it. They will not be deleted.",
+      "playlistCount": "{{count}} playlist",
+      "playlistCount_other": "{{count}} playlists",
+      "moveTo": "Move to folder",
+      "removeFrom": "Remove from folder",
+      "empty": "This folder is empty",
+      "emptyDescription": "Move playlists here from their menu, or create a new one"
+    }
   },
   "search": {
     "title": "Rechercher",
