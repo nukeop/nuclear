@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-30T00:00",
+    "description": "Added integration features for playlist folders: HTTP API, MCP, and plugins can now access folders.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-10-29T00:00",
     "description": "You can now organize your playlists into folders.",
     "type": "feature",

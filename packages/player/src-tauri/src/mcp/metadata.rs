@@ -76,7 +76,7 @@ pub fn list_methods(domain: &str) -> Result<Value, String> {
         }),
         "Playlists" => json!({
             "domain": "Playlists",
-            "description": "Create, edit, import, and manage playlists.",
+            "description": "Create, edit, import, and manage playlists and folders.",
             "methods": [
                 "getIndex",
                 "getPlaylist",
@@ -86,7 +86,12 @@ pub fn list_methods(domain: &str) -> Result<Value, String> {
                 "removeTracks",
                 "reorderTracks",
                 "importPlaylist",
-                "saveQueueAsPlaylist"
+                "saveQueueAsPlaylist",
+                "getIndexTree",
+                "createFolder",
+                "renameFolder",
+                "deleteFolder",
+                "movePlaylistToFolder"
             ]
         }),
         "Dashboard" => json!({
@@ -503,7 +508,7 @@ pub fn method_details(domain: &str, method: &str) -> Result<Value, String> {
         ("Playlists", "getIndex") => json!({
             "domain": "Playlists",
             "method": "getIndex",
-            "description": "Get the list of all playlists with summary info.",
+            "description": "Get a flat list of all playlists with summary info, including the playlists inside folders.",
             "params": [],
             "returns": "PlaylistIndexEntry[]"
         }),
@@ -569,9 +574,53 @@ pub fn method_details(domain: &str, method: &str) -> Result<Value, String> {
         ("Playlists", "saveQueueAsPlaylist") => json!({
             "domain": "Playlists",
             "method": "saveQueueAsPlaylist",
-            "description": "Save the current queue as a new playlist. Returns the playlist ID.",
+            "description": "Save the current queue as a new playlist, optionally inside a folder. Returns the playlist ID.",
+            "params": [
+                { "name": "name", "type": "string" },
+                { "name": "folderId", "type": "string?" }
+            ],
+            "returns": "string"
+        }),
+        ("Playlists", "getIndexTree") => json!({
+            "domain": "Playlists",
+            "method": "getIndexTree",
+            "description": "Get the playlists and folders in their display order. Each folder contains its playlists.",
+            "params": [],
+            "returns": "(PlaylistIndexEntry | PlaylistFolder)[]"
+        }),
+        ("Playlists", "createFolder") => json!({
+            "domain": "Playlists",
+            "method": "createFolder",
+            "description": "Create an empty folder at the end of the top level. Returns the folder ID.",
             "params": [{ "name": "name", "type": "string" }],
             "returns": "string"
+        }),
+        ("Playlists", "renameFolder") => json!({
+            "domain": "Playlists",
+            "method": "renameFolder",
+            "description": "Rename a folder.",
+            "params": [
+                { "name": "id", "type": "string" },
+                { "name": "name", "type": "string" }
+            ],
+            "returns": "void"
+        }),
+        ("Playlists", "deleteFolder") => json!({
+            "domain": "Playlists",
+            "method": "deleteFolder",
+            "description": "Delete a folder. Its playlists are not deleted. They move to the position of the folder.",
+            "params": [{ "name": "id", "type": "string" }],
+            "returns": "void"
+        }),
+        ("Playlists", "movePlaylistToFolder") => json!({
+            "domain": "Playlists",
+            "method": "movePlaylistToFolder",
+            "description": "Move a playlist to the end of a folder. If there is no folder ID, move it to the end of the top level.",
+            "params": [
+                { "name": "playlistId", "type": "string" },
+                { "name": "folderId", "type": "string?" }
+            ],
+            "returns": "void"
         }),
 
         ("Dashboard", "fetchTopTracks") => json!({
@@ -858,6 +907,7 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
             "type": "PlaylistIndexEntry",
             "description": "Summary info for a playlist in the index.",
             "fields": {
+                "kind": { "type": "\"playlist\"" },
                 "id": { "type": "string" },
                 "name": { "type": "string" },
                 "createdAtIso": { "type": "string" },
@@ -865,7 +915,18 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
                 "isReadOnly": { "type": "boolean" },
                 "artwork": { "type": "ArtworkSet", "optional": true },
                 "itemCount": { "type": "number" },
-                "totalDurationMs": { "type": "number" }
+                "totalDurationMs": { "type": "number" },
+                "thumbnails": { "type": "string[]", "description": "Artwork URLs used for the playlist card" }
+            }
+        }),
+        "PlaylistFolder" => json!({
+            "type": "PlaylistFolder",
+            "description": "A folder of playlists. Folders cannot contain folders.",
+            "fields": {
+                "kind": { "type": "\"folder\"" },
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "playlists": { "type": "PlaylistIndexEntry[]", "description": "The playlists in the folder, in display order" }
             }
         }),
         "SearchParams" => json!({
@@ -1086,7 +1147,7 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
         }),
         _ => {
             return Err(format!(
-                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation."
+                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, PlaylistFolder, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation."
             ))
         }
     };

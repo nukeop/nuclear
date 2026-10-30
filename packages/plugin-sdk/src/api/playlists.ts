@@ -1,6 +1,7 @@
 import type {
   Playlist,
   PlaylistIndexEntry,
+  PlaylistIndexNode,
   PlaylistItem,
   Track,
 } from '@nuclearplayer/model';
@@ -54,8 +55,33 @@ export class PlaylistsAPI {
     return this.#withHost((host) => host.importPlaylist(playlist));
   }
 
-  saveQueueAsPlaylist(name: string): Promise<string> {
-    return this.#withHost((host) => host.saveQueueAsPlaylist(name));
+  saveQueueAsPlaylist(name: string, folderId?: string | null): Promise<string> {
+    return this.#withHost((host) => host.saveQueueAsPlaylist(name, folderId));
+  }
+
+  getIndexTree(): Promise<PlaylistIndexNode[]> {
+    return this.#withHost((host) => host.getIndexTree());
+  }
+
+  createFolder(name: string): Promise<string> {
+    return this.#withHost((host) => host.createFolder(name));
+  }
+
+  renameFolder(id: string, name: string): Promise<void> {
+    return this.#withHost((host) => host.renameFolder(id, name));
+  }
+
+  deleteFolder(id: string): Promise<void> {
+    return this.#withHost((host) => host.deleteFolder(id));
+  }
+
+  movePlaylistToFolder(
+    playlistId: string,
+    folderId?: string | null,
+  ): Promise<void> {
+    return this.#withHost((host) =>
+      host.movePlaylistToFolder(playlistId, folderId),
+    );
   }
 
   subscribe(listener: PlaylistsListener): () => void {

@@ -64,19 +64,14 @@ export class PlaylistIndexTree {
 
   renameFolder(id: string, name: string): PlaylistIndexTree {
     return this.#update((draft) => {
-      const folder = findFolder(draft, id);
-      if (folder) {
-        folder.name = name;
-      }
+      requireFolder(draft, id).name = name;
     });
   }
 
   removeFolder(id: string): PlaylistIndexTree {
     return this.#update((draft) => {
-      const folder = findFolder(draft, id);
-      if (folder) {
-        draft.splice(draft.indexOf(folder), 1, ...folder.playlists);
-      }
+      const folder = requireFolder(draft, id);
+      draft.splice(draft.indexOf(folder), 1, ...folder.playlists);
     });
   }
 
@@ -85,12 +80,13 @@ export class PlaylistIndexTree {
     folderId: string | undefined,
   ): PlaylistIndexTree {
     return this.#update((draft) => {
+      const destination = containerOf(draft, folderId);
       const location = findPlaylist(draft, playlistId);
       if (!location) {
-        return;
+        throw new Error(`Playlist ${playlistId} not found`);
       }
       const [entry] = location.list.splice(location.position, 1);
-      containerOf(draft, folderId).push(entry);
+      destination.push(entry);
     });
   }
 
@@ -143,6 +139,17 @@ const findFolder = (
 ): Draft<PlaylistFolder> | undefined =>
   nodes.filter(isFolder).find((folder) => folder.id === id);
 
+const requireFolder = (
+  nodes: Draft<PlaylistIndexNode[]>,
+  id: string,
+): Draft<PlaylistFolder> => {
+  const folder = findFolder(nodes, id);
+  if (!folder) {
+    throw new Error(`Playlist folder ${id} not found`);
+  }
+  return folder;
+};
+
 const containerOf = (
   nodes: Draft<PlaylistIndexNode[]>,
   folderId: string | undefined,
@@ -150,9 +157,5 @@ const containerOf = (
   if (folderId === undefined) {
     return nodes;
   }
-  const folder = findFolder(nodes, folderId);
-  if (!folder) {
-    throw new Error(`Playlist folder ${folderId} not found`);
-  }
-  return folder.playlists;
+  return requireFolder(nodes, folderId).playlists;
 };

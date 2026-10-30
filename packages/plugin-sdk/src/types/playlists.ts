@@ -1,6 +1,7 @@
 import type {
   Playlist,
   PlaylistIndexEntry,
+  PlaylistIndexNode,
   PlaylistItem,
   Track,
 } from '@nuclearplayer/model';
@@ -27,6 +28,17 @@ export type PlaylistsHost = {
     to: number,
   ) => Promise<void>;
   importPlaylist: (playlist: Playlist) => Promise<string>;
-  saveQueueAsPlaylist: (name: string) => Promise<string>;
+  saveQueueAsPlaylist: (
+    name: string,
+    folderId?: string | null,
+  ) => Promise<string>;
+  getIndexTree: () => Promise<PlaylistIndexNode[]>;
+  createFolder: (name: string) => Promise<string>;
+  renameFolder: (id: string, name: string) => Promise<void>;
+  deleteFolder: (id: string) => Promise<void>;
+  movePlaylistToFolder: (
+    playlistId: string,
+    folderId?: string | null,
+  ) => Promise<void>;
   subscribe: (listener: PlaylistsListener) => () => void;
 };

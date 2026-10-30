@@ -49,6 +49,15 @@ async fn get_queue(State(state): State<AppState>) -> Result<Json<Value>, BridgeE
         .map_err(BridgeErrorResponse)
 }
 
+async fn get_playlists(State(state): State<AppState>) -> Result<Json<Value>, BridgeErrorResponse> {
+    state
+        .bridge
+        .call("Playlists.getIndexTree", json!({}))
+        .await
+        .map(Json)
+        .map_err(BridgeErrorResponse)
+}
+
 async fn get_playback(State(state): State<AppState>) -> Result<Json<Value>, BridgeErrorResponse> {
     state
         .bridge
@@ -185,6 +194,7 @@ pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Rout
             "/api/favorites/tracks/remove",
             post(actions::remove_favorite_track),
         )
+        .route("/api/playlists", get(get_playlists))
         .route(
             "/api/playlists/from-queue",
             post(actions::save_queue_as_playlist),
