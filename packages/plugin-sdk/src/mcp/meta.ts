@@ -2,6 +2,7 @@ import { DashboardAPIMeta } from './dashboard.meta';
 import { FavoritesAPIMeta } from './favorites.meta';
 import { LyricsAPIMeta } from './lyrics.meta';
 import { MetadataAPIMeta } from './metadata.meta';
+import { NavigationAPIMeta } from './navigation.meta';
 import { PlaybackAPIMeta } from './playback.meta';
 import { PlaylistsAPIMeta } from './playlists.meta';
 import { ProvidersAPIMeta } from './providers.meta';
@@ -37,4 +38,5 @@ export const apiMeta: ApiMeta = {
   Dashboard: DashboardAPIMeta,
   Providers: ProvidersAPIMeta,
   Lyrics: LyricsAPIMeta,
+  Navigation: NavigationAPIMeta,
 };

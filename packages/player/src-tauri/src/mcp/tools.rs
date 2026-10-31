@@ -76,7 +76,7 @@ impl NuclearMcpServer {
 
     #[tool(
         name = "list_methods",
-        description = "List available methods in a Nuclear API domain. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics."
+        description = "List available methods in a Nuclear API domain. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics, Navigation."
     )]
     async fn list_methods(
         &self,

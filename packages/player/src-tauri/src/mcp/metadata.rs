@@ -120,9 +120,19 @@ pub fn list_methods(domain: &str) -> Result<Value, String> {
                 "getLyricsForTrack"
             ]
         }),
+        "Navigation" => json!({
+            "domain": "Navigation",
+            "description": "Navigate the player UI like the browser history API: open a page, go back and forward, read the current location.",
+            "methods": [
+                "navigate",
+                "back",
+                "forward",
+                "current"
+            ]
+        }),
         _ => {
             return Err(format!(
-                "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics."
+                "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics, Navigation."
             ))
         }
     };
@@ -688,6 +698,35 @@ pub fn method_details(domain: &str, method: &str) -> Result<Value, String> {
             "returns": "ProviderDescriptor | undefined"
         }),
 
+        ("Navigation", "navigate") => json!({
+            "domain": "Navigation",
+            "method": "navigate",
+            "description": "Open the page at a player route path, for example /dashboard, /search?q=radiohead, /artist/<providerId>/<artistId>, /album/<providerId>/<albumId>, /playlists/<playlistId>, /favorites/tracks, /history, /lyrics.",
+            "params": [{ "name": "path", "type": "string" }],
+            "returns": "void"
+        }),
+        ("Navigation", "back") => json!({
+            "domain": "Navigation",
+            "method": "back",
+            "description": "Go back one page in the navigation history.",
+            "params": [],
+            "returns": "void"
+        }),
+        ("Navigation", "forward") => json!({
+            "domain": "Navigation",
+            "method": "forward",
+            "description": "Go forward one page in the navigation history.",
+            "params": [],
+            "returns": "void"
+        }),
+        ("Navigation", "current") => json!({
+            "domain": "Navigation",
+            "method": "current",
+            "description": "Get the location of the page the user is looking at.",
+            "params": [],
+            "returns": "NavigationLocation"
+        }),
+
         _ => {
             let domain_check = list_methods(domain);
             match domain_check {
@@ -708,7 +747,7 @@ pub fn method_details(domain: &str, method: &str) -> Result<Value, String> {
                 }
                 Err(_) => {
                     return Err(format!(
-                        "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers."
+                        "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics, Navigation."
                     ));
                 }
             }
@@ -1145,9 +1184,19 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
                 "text": { "type": "string" }
             }
         }),
+        "NavigationLocation" => json!({
+            "type": "NavigationLocation",
+            "description": "The location of a page in the player, in the shape of the browser Location.",
+            "fields": {
+                "href": { "type": "string", "description": "Full path with search string, e.g. /search?q=radiohead" },
+                "pathname": { "type": "string", "description": "Path without search string, e.g. /search" },
+                "search": { "type": "Record<string, unknown>", "description": "Parsed search parameters, e.g. { \"q\": \"radiohead\" }" },
+                "hash": { "type": "string" }
+            }
+        }),
         _ => {
             return Err(format!(
-                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, PlaylistFolder, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation."
+                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, PlaylistFolder, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation, NavigationLocation."
             ))
         }
     };
