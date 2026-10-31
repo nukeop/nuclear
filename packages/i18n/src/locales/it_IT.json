@@ -130,9 +130,6 @@
     "saveLocally": "Salva localmente",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "Questa playlist proviene da {{source}} ed è di sola lettura. Salva una copia locale per modificarla.",
-    "trackCount_one": "{{count}} brano",
-    "trackCount_other": "{{count}} brani",
-    "trackCount_many": "{{count}} di brani",
     "addToPlaylist": "Aggiungi alla playlist",
     "filterPlaylists": "Filtra playlist...",
     "sortBy": {
@@ -152,9 +149,6 @@
     "exportSuccess": "Playlist esportata",
     "exportError": "Impossibile esportare la playlist",
     "importSuccess": "Playlist importata",
-    "importBatchSuccess_one": "{{count}} playlist importata",
-    "importBatchSuccess_other": "{{count}} playlist importate",
-    "importBatchSuccess_many": "{{count}} di playlist importate",
     "importError": "Impossibile importare la playlist",
     "importNoPlaylists": "Nessuna playlist trovata in questo file",
     "importUrl": "Importa da URL",
@@ -170,14 +164,17 @@
       "rename": "Rinomina cartella",
       "delete": "Elimina cartella",
       "deleteConfirm": "Le playlist in questa cartella verranno spostate fuori dalla cartella. Non verranno eliminate.",
-      "playlistCount_one": "{{count}} playlist",
-      "playlistCount_other": "{{count}} playlist",
-      "playlistCount_many": "{{count}} di playlist",
       "moveTo": "Sposta nella cartella",
       "removeFrom": "Rimuovi dalla cartella",
       "empty": "Questa cartella è vuota",
-      "emptyDescription": "Sposta qui le playlist dal loro menu, oppure creane una nuova"
-    }
+      "emptyDescription": "Sposta qui le playlist dal loro menu, oppure creane una nuova",
+      "playlistCount_one": "{{count}} playlist",
+      "playlistCount_other": "{{count}} playlist"
+    },
+    "trackCount_one": "{{count}} brano",
+    "trackCount_other": "{{count}} brani",
+    "importBatchSuccess_one": "{{count}} playlist importata",
+    "importBatchSuccess_other": "{{count}} playlist importate"
   },
   "search": {
     "title": "Cerca",
@@ -650,10 +647,9 @@
     "openLogFolderButton": "Apri cartella dei registri",
     "noLogsMessage": "Nessun registro da mostrare",
     "invalidRegexMessage": "Modello regex non valido",
+    "exportSuccess": "Registri esportati",
     "entryCount_one": "{{count}} voce",
-    "entryCount_other": "{{count}} voci",
-    "entryCount_many": "{{count}} di voci",
-    "exportSuccess": "Registri esportati"
+    "entryCount_other": "{{count}} voci"
   },
   "remote": {
     "connecting": {
@@ -699,9 +695,6 @@
   },
   "changelog": {
     "title": "Novità",
-    "seeMore_one": "Vedi altro ({{count}} più vecchio)",
-    "seeMore_other": "Vedi altro ({{count}} più vecchi)",
-    "seeMore_many": "Vedi altro ({{count}} più vecchi)",
     "types": {
       "feature": "Funzionalità",
       "fix": "Correzione",
@@ -709,6 +702,8 @@
       "chore": "Manutenzione",
       "plugin": "Estensione",
       "docs": "Documentazione"
-    }
+    },
+    "seeMore_one": "Vedi altro ({{count}} più vecchio)",
+    "seeMore_other": "Vedi altro ({{count}} più vecchi)"
   }
 }

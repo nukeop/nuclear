@@ -130,8 +130,6 @@
     "saveLocally": "ローカルに保存",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "このプレイリストは{{source}}のもので読み取り専用です。編集するにはローカルコピーを保存してください。",
-    "trackCount_one": "{{count}} 曲",
-    "trackCount_other": "{{count}} 曲",
     "addToPlaylist": "プレイリストに追加",
     "filterPlaylists": "プレイリストを絞り込む...",
     "sortBy": {
@@ -151,8 +149,6 @@
     "exportSuccess": "プレイリストをエクスポートしました",
     "exportError": "プレイリストのエクスポートに失敗しました",
     "importSuccess": "プレイリストをインポートしました",
-    "importBatchSuccess_one": "{{count}} 件のプレイリストをインポートしました",
-    "importBatchSuccess_other": "{{count}} 件のプレイリストをインポートしました",
     "importError": "プレイリストのインポートに失敗しました",
     "importNoPlaylists": "このファイルにプレイリストが見つかりません",
     "importUrl": "URL からインポート",
@@ -168,13 +164,14 @@
       "rename": "フォルダー名の変更",
       "delete": "フォルダーを削除",
       "deleteConfirm": "このフォルダー内のプレイリストは、このフォルダーから移動されます。削除されることはありません。",
-      "playlistCount_one": "{{count}} 個のプレイリスト",
-      "playlistCount_other": "{{count}} 個のプレイリスト",
       "moveTo": "フォルダーへ移動",
       "removeFrom": "フォルダーから削除",
       "empty": "このフォルダーは空です",
-      "emptyDescription": "メニューからプレイリストをここに移動するか、新しいプレイリストを作成してください"
-    }
+      "emptyDescription": "メニューからプレイリストをここに移動するか、新しいプレイリストを作成してください",
+      "playlistCount_other": "{{count}} 個のプレイリスト"
+    },
+    "trackCount_other": "{{count}} 曲",
+    "importBatchSuccess_other": "{{count}} 件のプレイリストをインポートしました"
   },
   "search": {
     "title": "検索",
@@ -647,9 +644,8 @@
     "openLogFolderButton": "ログフォルダーを開く",
     "noLogsMessage": "表示するログがありません",
     "invalidRegexMessage": "無効な正規表現パターンです",
-    "entryCount_one": "{{count}} 件",
-    "entryCount_other": "{{count}} 件",
-    "exportSuccess": "ログをエクスポートしました"
+    "exportSuccess": "ログをエクスポートしました",
+    "entryCount_other": "{{count}} 件"
   },
   "remote": {
     "connecting": {
@@ -695,8 +691,6 @@
   },
   "changelog": {
     "title": "新着情報",
-    "seeMore_one": "もっと見る (過去 {{count}} 件)",
-    "seeMore_other": "もっと見る (過去 {{count}} 件)",
     "types": {
       "feature": "新機能",
       "fix": "修正",
@@ -704,6 +698,7 @@
       "chore": "雑務",
       "plugin": "プラグイン",
       "docs": "ドキュメント"
-    }
+    },
+    "seeMore_other": "もっと見る (過去 {{count}} 件)"
   }
 }

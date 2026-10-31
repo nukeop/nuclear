@@ -130,9 +130,6 @@
     "saveLocally": "Salvar localmente",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "Esta playlist é de {{source}} e é somente leitura. Salve uma cópia local para editá-la.",
-    "trackCount_one": "{{count}} faixa",
-    "trackCount_other": "{{count}} faixas",
-    "trackCount_many": "{{count}} de faixas",
     "addToPlaylist": "Adicionar à playlist",
     "filterPlaylists": "Filtrar playlists...",
     "sortBy": {
@@ -152,9 +149,6 @@
     "exportSuccess": "Playlist exportada",
     "exportError": "Falha ao exportar playlist",
     "importSuccess": "Playlist importada",
-    "importBatchSuccess_one": "{{count}} playlist importada",
-    "importBatchSuccess_other": "{{count}} playlists importadas",
-    "importBatchSuccess_many": "{{count}} de playlists importadas",
     "importError": "Falha ao importar playlist",
     "importNoPlaylists": "Nenhuma playlist encontrada neste arquivo",
     "importUrl": "Importar de URL",
@@ -170,14 +164,17 @@
       "rename": "Renomear pasta",
       "delete": "Excluir pasta",
       "deleteConfirm": "As playlists desta pasta serão movidas para fora dela. Elas não serão excluídas.",
-      "playlistCount_one": "{{count}} playlist",
-      "playlistCount_other": "{{count}} playlists",
-      "playlistCount_many": "{{count}} de playlists",
       "moveTo": "Mover para pasta",
       "removeFrom": "Remover da pasta",
       "empty": "Esta pasta está vazia",
-      "emptyDescription": "Mova playlists para cá pelo menu de cada uma delas, ou crie uma nova"
-    }
+      "emptyDescription": "Mova playlists para cá pelo menu de cada uma delas, ou crie uma nova",
+      "playlistCount_one": "{{count}} playlist",
+      "playlistCount_other": "{{count}} playlists"
+    },
+    "trackCount_one": "{{count}} faixa",
+    "trackCount_other": "{{count}} faixas",
+    "importBatchSuccess_one": "{{count}} playlist importada",
+    "importBatchSuccess_other": "{{count}} playlists importadas"
   },
   "search": {
     "title": "Buscar",
@@ -650,10 +647,9 @@
     "openLogFolderButton": "Abrir pasta de registros",
     "noLogsMessage": "Nenhum registro para exibir",
     "invalidRegexMessage": "Padrão de regex inválido",
+    "exportSuccess": "Registros exportados",
     "entryCount_one": "{{count}} entrada",
-    "entryCount_other": "{{count}} entradas",
-    "entryCount_many": "{{count}} de entradas",
-    "exportSuccess": "Registros exportados"
+    "entryCount_other": "{{count}} entradas"
   },
   "remote": {
     "connecting": {
@@ -699,9 +695,6 @@
   },
   "changelog": {
     "title": "Novidades",
-    "seeMore_one": "Ver mais ({{count}} anterior)",
-    "seeMore_other": "Ver mais ({{count}} anteriores)",
-    "seeMore_many": "Ver mais ({{count}} anteriores)",
     "types": {
       "feature": "Recurso",
       "fix": "Correção",
@@ -709,6 +702,8 @@
       "chore": "Manutenção",
       "plugin": "Plugin",
       "docs": "Documentação"
-    }
+    },
+    "seeMore_one": "Ver mais ({{count}} anterior)",
+    "seeMore_other": "Ver mais ({{count}} anteriores)"
   }
 }

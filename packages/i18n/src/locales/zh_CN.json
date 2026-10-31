@@ -130,8 +130,6 @@
     "saveLocally": "保存到本地",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "此播放列表来自 {{source}}，为只读状态。保存本地副本后即可编辑。",
-    "trackCount_one": "{{count}} 首曲目",
-    "trackCount_other": "{{count}} 首曲目",
     "addToPlaylist": "添加到播放列表",
     "filterPlaylists": "筛选播放列表……",
     "sortBy": {
@@ -151,8 +149,6 @@
     "exportSuccess": "播放列表已导出",
     "exportError": "导出播放列表失败",
     "importSuccess": "播放列表已导入",
-    "importBatchSuccess_one": "已导入 {{count}} 个播放列表",
-    "importBatchSuccess_other": "已导入 {{count}} 个播放列表",
     "importError": "导入播放列表失败",
     "importNoPlaylists": "此文件中未找到播放列表",
     "importUrl": "从网址导入",
@@ -168,13 +164,14 @@
       "rename": "重命名文件夹",
       "delete": "删除文件夹",
       "deleteConfirm": "此文件夹中的播放列表将被移出文件夹，不会被删除。",
-      "playlistCount_one": "{{count}} 个播放列表",
-      "playlistCount_other": "{{count}} 个播放列表",
       "moveTo": "移动到文件夹",
       "removeFrom": "从文件夹中移除",
       "empty": "此文件夹为空",
-      "emptyDescription": "从播放列表的菜单中把播放列表移到这里，或新建一个。"
-    }
+      "emptyDescription": "从播放列表的菜单中把播放列表移到这里，或新建一个。",
+      "playlistCount_other": "{{count}} 个播放列表"
+    },
+    "trackCount_other": "{{count}} 首曲目",
+    "importBatchSuccess_other": "已导入 {{count}} 个播放列表"
   },
   "search": {
     "title": "搜索",
@@ -647,9 +644,8 @@
     "openLogFolderButton": "打开日志文件夹",
     "noLogsMessage": "没有可显示的日志",
     "invalidRegexMessage": "无效的正则表达式",
-    "entryCount_one": "{{count}} 条日志",
-    "entryCount_other": "{{count}} 条日志",
-    "exportSuccess": "日志已导出"
+    "exportSuccess": "日志已导出",
+    "entryCount_other": "{{count}} 条日志"
   },
   "remote": {
     "connecting": {
@@ -695,8 +691,6 @@
   },
   "changelog": {
     "title": "更新内容",
-    "seeMore_one": "查看更多（另有 {{count}} 个更早的版本）",
-    "seeMore_other": "查看更多（另有 {{count}} 个更早的版本）",
     "types": {
       "feature": "功能",
       "fix": "修复",
@@ -704,6 +698,7 @@
       "chore": "杂项",
       "plugin": "插件",
       "docs": "文档"
-    }
+    },
+    "seeMore_other": "查看更多（另有 {{count}} 个更早的版本）"
   }
 }

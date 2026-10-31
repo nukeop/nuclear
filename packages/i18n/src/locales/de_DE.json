@@ -130,8 +130,6 @@
     "saveLocally": "Lokal speichern",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "Diese Playlist stammt von {{source}} und ist schreibgeschützt. Speichere eine lokale Kopie, um sie zu bearbeiten.",
-    "trackCount_one": "{{count}} Titel",
-    "trackCount_other": "{{count}} Titel",
     "addToPlaylist": "Zur Playlist hinzufügen",
     "filterPlaylists": "Playlists filtern...",
     "sortBy": {
@@ -151,8 +149,6 @@
     "exportSuccess": "Playlist exportiert",
     "exportError": "Der Export der Playlist ist fehlgeschlagen",
     "importSuccess": "Playlist importiert",
-    "importBatchSuccess_one": "{{count}} Playlist importiert",
-    "importBatchSuccess_other": "{{count}} Playlists importiert",
     "importError": "Der Import der Playlist ist fehlgeschlagen",
     "importNoPlaylists": "Keine Playlists in dieser Datei gefunden",
     "importUrl": "Von URL importieren",
@@ -168,13 +164,17 @@
       "rename": "Ordner umbenennen",
       "delete": "Ordner löschen",
       "deleteConfirm": "Die Playlists in diesem Ordner werden daraus entfernt. Sie werden nicht gelöscht.",
-      "playlistCount_one": "{{count}} Playlist",
-      "playlistCount_other": "{{count}} Playlists",
       "moveTo": "In Ordner verschieben",
       "removeFrom": "Aus Ordner entfernen",
       "empty": "Dieser Ordner ist leer",
-      "emptyDescription": "Verschiebe Playlists über ihr Menü hierher oder erstelle eine neue"
-    }
+      "emptyDescription": "Verschiebe Playlists über ihr Menü hierher oder erstelle eine neue",
+      "playlistCount_one": "{{count}} Playlist",
+      "playlistCount_other": "{{count}} Playlists"
+    },
+    "trackCount_one": "{{count}} Titel",
+    "trackCount_other": "{{count}} Titel",
+    "importBatchSuccess_one": "{{count}} Playlist importiert",
+    "importBatchSuccess_other": "{{count}} Playlists importiert"
   },
   "search": {
     "title": "Suche",
@@ -647,9 +647,9 @@
     "openLogFolderButton": "Log-Ordner öffnen",
     "noLogsMessage": "Keine Protokolle zur Ansicht verfügbar",
     "invalidRegexMessage": "Ungültiges Regex-Muster",
+    "exportSuccess": "Logs exportiert",
     "entryCount_one": "{{count}} Eintrag",
-    "entryCount_other": "{{count}} Einträge",
-    "exportSuccess": "Logs exportiert"
+    "entryCount_other": "{{count}} Einträge"
   },
   "remote": {
     "connecting": {
@@ -695,8 +695,6 @@
   },
   "changelog": {
     "title": "Neuigkeiten",
-    "seeMore_one": "Mehr anzeigen ({{count}} ältere Version)",
-    "seeMore_other": "Mehr anzeigen ({{count}} ältere Versionen)",
     "types": {
       "feature": "Funktion",
       "fix": "Beheben",
@@ -704,6 +702,8 @@
       "chore": "Aufgabe",
       "plugin": "Plugin",
       "docs": "Dokumente"
-    }
+    },
+    "seeMore_one": "Mehr anzeigen ({{count}} ältere Version)",
+    "seeMore_other": "Mehr anzeigen ({{count}} ältere Versionen)"
   }
 }

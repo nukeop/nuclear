@@ -130,9 +130,6 @@
     "saveLocally": "Guardar localmente",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "Esta lista de reproducción proviene de {{source}} y es de solo lectura. Guarda una copia local para editarla.",
-    "trackCount_one": "{{count}} canción",
-    "trackCount_many": "{{count}} canciones",
-    "trackCount_other": "{{count}} canciones",
     "addToPlaylist": "Añadir a la lista de reproducción",
     "filterPlaylists": "Filtrar listas de reproducción...",
     "sortBy": {
@@ -152,9 +149,6 @@
     "exportSuccess": "Lista de reproducción exportada",
     "exportError": "La exportación ha fallado",
     "importSuccess": "Lista de reproducción importada",
-    "importBatchSuccess_one": "{{count}} lista de reproducción importada",
-    "importBatchSuccess_many": "{{count}} listas de reproducción importadas",
-    "importBatchSuccess_other": "{{count}} listas de reproducción importadas",
     "importError": "La importación de la lista de reproducción ha fallado",
     "importNoPlaylists": "No se encontró ninguna lista de reproducción en este archivo",
     "importUrl": "Importar desde URL",
@@ -170,14 +164,17 @@
       "rename": "Renombrar carpeta",
       "delete": "Eliminar carpeta",
       "deleteConfirm": "Las listas de reproducción de esta carpeta se moverán fuera de ella. No se eliminarán.",
-      "playlistCount_one": "{{count}} lista de reproducción",
-      "playlistCount_many": "{{count}} listas de reproducción",
-      "playlistCount_other": "{{count}} listas de reproducción",
       "moveTo": "Mover a carpeta",
       "removeFrom": "Quitar de la carpeta",
       "empty": "Esta carpeta está vacía",
-      "emptyDescription": "Mueve aquí listas de reproducción desde el menú o crea una nueva"
-    }
+      "emptyDescription": "Mueve aquí listas de reproducción desde el menú o crea una nueva",
+      "playlistCount_one": "{{count}} lista de reproducción",
+      "playlistCount_other": "{{count}} listas de reproducción"
+    },
+    "trackCount_one": "{{count}} canción",
+    "trackCount_other": "{{count}} canciones",
+    "importBatchSuccess_one": "{{count}} lista de reproducción importada",
+    "importBatchSuccess_other": "{{count}} listas de reproducción importadas"
   },
   "search": {
     "title": "Buscar",
@@ -650,10 +647,9 @@
     "openLogFolderButton": "Abrir carpeta de registros",
     "noLogsMessage": "No hay registros que mostrar",
     "invalidRegexMessage": "Patrón de expresión regular no válido",
+    "exportSuccess": "Registros exportados",
     "entryCount_one": "{{count}} entrada",
-    "entryCount_many": "{{count}} entradas",
-    "entryCount_other": "{{count}} entradas",
-    "exportSuccess": "Registros exportados"
+    "entryCount_other": "{{count}} entradas"
   },
   "remote": {
     "connecting": {
@@ -699,9 +695,6 @@
   },
   "changelog": {
     "title": "Qué hay de nuevo",
-    "seeMore_one": "Ver {{count}} versión anterior",
-    "seeMore_many": "Ver {{count}} versiones anteriores",
-    "seeMore_other": "Ver {{count}} versiones anteriores",
     "types": {
       "feature": "Novedad",
       "fix": "Corrección",
@@ -709,6 +702,8 @@
       "chore": "Mantenimiento",
       "plugin": "Plugin",
       "docs": "Documentación"
-    }
+    },
+    "seeMore_one": "Ver {{count}} versión anterior",
+    "seeMore_other": "Ver {{count}} versiones anteriores"
   }
 }

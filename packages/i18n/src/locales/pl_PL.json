@@ -130,10 +130,6 @@
     "saveLocally": "Zapisz lokalnie",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "Ta lista odtwarzania pochodzi z {{source}} i jest tylko do odczytu. Zapisz lokalną kopię, aby ją edytować.",
-    "trackCount_one": "{{count}} utwór",
-    "trackCount_few": "{{count}} utwory",
-    "trackCount_many": "{{count}} utworów",
-    "trackCount_other": "{{count}} utworu",
     "addToPlaylist": "Dodaj do listy odtwarzania",
     "filterPlaylists": "Filtruj listy odtwarzania...",
     "sortBy": {
@@ -153,10 +149,6 @@
     "exportSuccess": "Lista odtwarzania wyeksportowana",
     "exportError": "Nie udało się wyeksportować listy odtwarzania",
     "importSuccess": "Lista odtwarzania zaimportowana",
-    "importBatchSuccess_one": "Zaimportowano {{count}} listę odtwarzania",
-    "importBatchSuccess_few": "Zaimportowano {{count}} listy odtwarzania",
-    "importBatchSuccess_many": "Zaimportowano {{count}} list odtwarzania",
-    "importBatchSuccess_other": "Zaimportowano {{count}} listy odtwarzania",
     "importError": "Nie udało się zaimportować listy odtwarzania",
     "importNoPlaylists": "W tym pliku nie znaleziono list odtwarzania",
     "importUrl": "Importuj z adresu URL",
@@ -172,15 +164,23 @@
       "rename": "Zmień nazwę folderu",
       "delete": "Usuń folder",
       "deleteConfirm": "Listy odtwarzania z tego folderu zostaną z niego przeniesione. Nie zostaną usunięte.",
-      "playlistCount_one": "{{count}} lista odtwarzania",
-      "playlistCount_few": "{{count}} listy odtwarzania",
-      "playlistCount_many": "{{count}} list odtwarzania",
-      "playlistCount_other": "{{count}} listy odtwarzania",
       "moveTo": "Przenieś do folderu",
       "removeFrom": "Usuń z folderu",
       "empty": "Ten folder jest pusty",
-      "emptyDescription": "Przenieś tu listy odtwarzania z ich menu albo utwórz nową"
-    }
+      "emptyDescription": "Przenieś tu listy odtwarzania z ich menu albo utwórz nową",
+      "playlistCount_one": "{{count}} lista odtwarzania",
+      "playlistCount_few": "{{count}} listy odtwarzania",
+      "playlistCount_many": "{{count}} list odtwarzania",
+      "playlistCount_other": "{{count}} listy odtwarzania"
+    },
+    "trackCount_one": "{{count}} utwór",
+    "trackCount_few": "{{count}} utwory",
+    "trackCount_many": "{{count}} utworów",
+    "trackCount_other": "{{count}} utworu",
+    "importBatchSuccess_one": "Zaimportowano {{count}} listę odtwarzania",
+    "importBatchSuccess_few": "Zaimportowano {{count}} listy odtwarzania",
+    "importBatchSuccess_many": "Zaimportowano {{count}} list odtwarzania",
+    "importBatchSuccess_other": "Zaimportowano {{count}} listy odtwarzania"
   },
   "search": {
     "title": "Wyszukiwanie",
@@ -653,11 +653,11 @@
     "openLogFolderButton": "Otwórz folder logów",
     "noLogsMessage": "Brak logów do wyświetlenia",
     "invalidRegexMessage": "Nieprawidłowy wzorzec wyrażenia regularnego",
+    "exportSuccess": "Logi wyeksportowane",
     "entryCount_one": "{{count}} wpis",
     "entryCount_few": "{{count}} wpisy",
     "entryCount_many": "{{count}} wpisów",
-    "entryCount_other": "{{count}} wpisu",
-    "exportSuccess": "Logi wyeksportowane"
+    "entryCount_other": "{{count}} wpisu"
   },
   "remote": {
     "connecting": {
@@ -703,10 +703,6 @@
   },
   "changelog": {
     "title": "Co nowego",
-    "seeMore_one": "Pokaż starsze wpisy ({{count}})",
-    "seeMore_few": "Pokaż starsze wpisy ({{count}})",
-    "seeMore_many": "Pokaż starsze wpisy ({{count}})",
-    "seeMore_other": "Pokaż starsze wpisy ({{count}})",
     "types": {
       "feature": "Nowa funkcja",
       "fix": "Poprawka",
@@ -714,6 +710,10 @@
       "chore": "Porządki",
       "plugin": "Wtyczka",
       "docs": "Dokumentacja"
-    }
+    },
+    "seeMore_one": "Pokaż starsze wpisy ({{count}})",
+    "seeMore_few": "Pokaż starsze wpisy ({{count}})",
+    "seeMore_many": "Pokaż starsze wpisy ({{count}})",
+    "seeMore_other": "Pokaż starsze wpisy ({{count}})"
   }
 }

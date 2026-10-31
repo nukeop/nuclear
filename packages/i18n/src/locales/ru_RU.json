@@ -130,10 +130,6 @@
     "saveLocally": "Сохранить локально",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "Этот плейлист от {{source}} доступен только для чтения. Сохраните локальную копию для редактирования.",
-    "trackCount_one": "{{count}} трек",
-    "trackCount_few": "{{count}} трека",
-    "trackCount_many": "{{count}} треков",
-    "trackCount_other": "{{count}} трека",
     "addToPlaylist": "Добавить в плейлист",
     "filterPlaylists": "Отфильтровать плейлисты...",
     "sortBy": {
@@ -153,10 +149,6 @@
     "exportSuccess": "Плейлист экспортирован",
     "exportError": "Не удалось экспортировать плейлист",
     "importSuccess": "Плейлист импортирован",
-    "importBatchSuccess_one": "{{count}} плейлист импортирован",
-    "importBatchSuccess_few": "{{count}} плейлиста импортировано",
-    "importBatchSuccess_many": "{{count}} плейлистов импортировано",
-    "importBatchSuccess_other": "{{count}} плейлиста импортировано",
     "importError": "Не удалось импортировать плейлист",
     "importNoPlaylists": "Плейлисты не найдены в этом файле",
     "importUrl": "Импортировать по URL",
@@ -172,15 +164,23 @@
       "rename": "Переименовать папку",
       "delete": "Удалить папку",
       "deleteConfirm": "Плейлисты из этой папки будут перемещены за её пределы. Они не будут удалены.",
-      "playlistCount_one": "{{count}} плейлист",
-      "playlistCount_few": "{{count}} плейлиста",
-      "playlistCount_many": "{{count}} плейлистов",
-      "playlistCount_other": "{{count}} плейлиста",
       "moveTo": "Переместить в папку",
       "removeFrom": "Убрать из папки",
       "empty": "Эта папка пуста",
-      "emptyDescription": "Переместите сюда плейлисты из их меню или создайте новый плейлист"
-    }
+      "emptyDescription": "Переместите сюда плейлисты из их меню или создайте новый плейлист",
+      "playlistCount_one": "{{count}} плейлист",
+      "playlistCount_few": "{{count}} плейлиста",
+      "playlistCount_many": "{{count}} плейлистов",
+      "playlistCount_other": "{{count}} плейлиста"
+    },
+    "trackCount_one": "{{count}} трек",
+    "trackCount_few": "{{count}} трека",
+    "trackCount_many": "{{count}} треков",
+    "trackCount_other": "{{count}} трека",
+    "importBatchSuccess_one": "{{count}} плейлист импортирован",
+    "importBatchSuccess_few": "{{count}} плейлиста импортировано",
+    "importBatchSuccess_many": "{{count}} плейлистов импортировано",
+    "importBatchSuccess_other": "{{count}} плейлиста импортировано"
   },
   "search": {
     "title": "Поиск",
@@ -653,11 +653,11 @@
     "openLogFolderButton": "Открыть папку с логами",
     "noLogsMessage": "Нет логов для отображения",
     "invalidRegexMessage": "Неправильный regex паттерн",
+    "exportSuccess": "Логи экспортированы",
     "entryCount_one": "{{count}} запись",
     "entryCount_few": "{{count}} записи",
     "entryCount_many": "{{count}} записей",
-    "entryCount_other": "{{count}} записи",
-    "exportSuccess": "Логи экспортированы"
+    "entryCount_other": "{{count}} записи"
   },
   "remote": {
     "connecting": {
@@ -703,10 +703,6 @@
   },
   "changelog": {
     "title": "Что нового?",
-    "seeMore_one": "Показать ещё ({{count}} старая запись)",
-    "seeMore_few": "Показать ещё ({{count}} старые записи)",
-    "seeMore_many": "Показать ещё ({{count}} старых записей)",
-    "seeMore_other": "Показать ещё ({{count}} старой записи)",
     "types": {
       "feature": "Функция",
       "fix": "Исправление",
@@ -714,6 +710,10 @@
       "chore": "Задача",
       "plugin": "Плагин",
       "docs": "Документация"
-    }
+    },
+    "seeMore_one": "Показать ещё ({{count}} старая запись)",
+    "seeMore_few": "Показать ещё ({{count}} старые записи)",
+    "seeMore_many": "Показать ещё ({{count}} старых записей)",
+    "seeMore_other": "Показать ещё ({{count}} старой записи)"
   }
 }

@@ -130,9 +130,6 @@
     "saveLocally": "Enregistrer localement",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "Cette playlist provient de {{source}} et est en lecture seule. Enregistrez une copie locale pour la modifier.",
-    "trackCount_one": "{{count}} morceau",
-    "trackCount_many": "{{count}} de morceaux",
-    "trackCount_other": "{{count}} morceaux",
     "addToPlaylist": "Ajouter à la playlist",
     "filterPlaylists": "Filtrer les playlists...",
     "sortBy": {
@@ -152,9 +149,6 @@
     "exportSuccess": "Playlist exportée",
     "exportError": "Échec de l'exportation de la playlist",
     "importSuccess": "Playlist importée",
-    "importBatchSuccess_one": "{{count}} playlist importée",
-    "importBatchSuccess_many": "{{count}} de playlists importées",
-    "importBatchSuccess_other": "{{count}} playlists importées",
     "importError": "Échec de l'importation de la playlist",
     "importNoPlaylists": "Aucune playlist trouvée dans ce fichier",
     "importUrl": "Importer depuis une URL",
@@ -170,14 +164,17 @@
       "rename": "Renommer le dossier",
       "delete": "Supprimer le dossier",
       "deleteConfirm": "Les playlists de ce dossier en seront retirées. Elles ne seront pas supprimées.",
-      "playlistCount_one": "{{count}} playlist",
-      "playlistCount_many": "{{count}} de playlists",
-      "playlistCount_other": "{{count}} playlists",
       "moveTo": "Déplacer vers le dossier",
       "removeFrom": "Retirer du dossier",
       "empty": "Ce dossier est vide",
-      "emptyDescription": "Déplacez des playlists ici depuis leur menu, ou créez-en une nouvelle"
-    }
+      "emptyDescription": "Déplacez des playlists ici depuis leur menu, ou créez-en une nouvelle",
+      "playlistCount_one": "{{count}} playlist",
+      "playlistCount_other": "{{count}} playlists"
+    },
+    "trackCount_one": "{{count}} morceau",
+    "trackCount_other": "{{count}} morceaux",
+    "importBatchSuccess_one": "{{count}} playlist importée",
+    "importBatchSuccess_other": "{{count}} playlists importées"
   },
   "search": {
     "title": "Rechercher",
@@ -650,10 +647,9 @@
     "openLogFolderButton": "Ouvrir le dossier des logs",
     "noLogsMessage": "Aucun log à afficher",
     "invalidRegexMessage": "Expression régulière invalide",
+    "exportSuccess": "Logs exportés",
     "entryCount_one": "{{count}} entrée",
-    "entryCount_many": "{{count}} d'entrées",
-    "entryCount_other": "{{count}} entrées",
-    "exportSuccess": "Logs exportés"
+    "entryCount_other": "{{count}} entrées"
   },
   "remote": {
     "connecting": {
@@ -699,9 +695,6 @@
   },
   "changelog": {
     "title": "Nouveautés",
-    "seeMore_one": "Voir plus ({{count}} version plus ancienne)",
-    "seeMore_many": "Voir plus ({{count}} de versions plus anciennes)",
-    "seeMore_other": "Voir plus ({{count}} versions plus anciennes)",
     "types": {
       "feature": "Fonctionnalité",
       "fix": "Correction",
@@ -709,6 +702,8 @@
       "chore": "Maintenance",
       "plugin": "Plugin",
       "docs": "Documentation"
-    }
+    },
+    "seeMore_one": "Voir plus ({{count}} version plus ancienne)",
+    "seeMore_other": "Voir plus ({{count}} versions plus anciennes)"
   }
 }
