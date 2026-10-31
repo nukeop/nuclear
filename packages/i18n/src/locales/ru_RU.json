@@ -19,7 +19,7 @@
       "search": "Поиск",
       "loading": "Загрузка...",
       "retry": "Повторить",
-      "moreActions": "Ещё действия"
+      "moreActions": "More actions"
     },
     "errors": {
       "network": "Ошибка сети. Проверьте подключение.",
@@ -32,7 +32,7 @@
     "collection": "Коллекция",
     "favoriteAlbums": "Избранные альбомы",
     "favoriteTracks": "Избранные треки",
-    "favoriteArtists": "Избранные исполнители",
+    "favoriteArtists": "Избранные артисты",
     "playlists": "Плейлисты",
     "history": "История",
     "lyrics": "Тексты песен",
@@ -54,14 +54,14 @@
       "addToQueue": "Добавить в очередь"
     },
     "stats": {
-      "busiestHour": "Час наибольшей активности",
+      "busiestHour": "Час наибольшей активности ",
       "listeningTime": "Время прослушивания",
       "hourOfDay": "По часам",
       "dayOfWeek": "По дням недели",
       "calendar": "Календарь прослушивания",
-      "topArtists": "Лучшие исполнители",
-      "topAlbums": "Лучшие альбомы",
-      "topTracks": "Лучшие треки",
+      "topArtists": "Лучшие Исполнители",
+      "topAlbums": "Лучшие Альбомы",
+      "topTracks": "Лучшие Треки",
       "empty": "Пока нет данных о прослушанных треках",
       "emptyDescription": "Прослушанные треки будут появляться в вашей статистике",
       "legendLess": "Меньше",
@@ -88,8 +88,8 @@
     "discovery": "Обнаружение",
     "discoveryDescription": "Источники обнаружения рекомендуют новые треки на основе того, что вы слушаете. Включите обнаружение музыки, используя иконку бумбокса в нижней панели.",
     "lyrics": "Текст песни",
-    "lyricsDescription": "Источники текстов песен предоставляют текст для текущего трека. Nuclear получает тексты одновременно из всех источников и показывает лучший результат. Вы можете выбрать текст из другого источника в разделе «Тексты песен».",
-    "lockedReason": "Источник метаданных <metadata>{{metadataName}}</metadata> требует источник трансляции <streaming>{{streamingName}}</streaming>.",
+    "lyricsDescription": "Источники текстов песен обеспечивают играющий трек текстом. Nuclear получает тексты одновременно из всех источников и показывает лучший результат. Вы можете выбирать текст песни из разных источников при Просмотре текста.",
+    "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
     "missingStreamingProvider": "Необходимый провайдер трансляции \"{{providerId}}\" не доступен",
     "noProviders": "Нет установленных провайдеров"
   },
@@ -98,19 +98,19 @@
   },
   "favorites": {
     "albums": {
-      "title": "Избранные альбомы",
-      "empty": "Ещё нет избранных альбомов",
-      "emptyDescription": "Альбомы, добавленные в Избранное, появятся здесь"
+      "title": "Любимые альбомы",
+      "empty": "Ещё нет любимых альбомов",
+      "emptyDescription": "Альбомы, отмеченные как любимые, появятся здесь"
     },
     "tracks": {
-      "title": "Избранные треки",
-      "empty": "Ещё нет избранных треков",
-      "emptyDescription": "Треки, добавленные в Избранное, появятся здесь"
+      "title": "Любимые треки",
+      "empty": "Ещё нет любимых треков",
+      "emptyDescription": "Треки, отмеченные как любимые, появятся здесь"
     },
     "artists": {
-      "title": "Избранные исполнители",
-      "empty": "Ещё нет избранных исполнителей",
-      "emptyDescription": "Исполнители, добавленные в Избранное, появятся здесь"
+      "title": "Любимые исполнители",
+      "empty": "Ещё нет любимых исполнителей",
+      "emptyDescription": "Исполнители, отмеченные как любимые, появятся здесь"
     }
   },
   "playlists": {
@@ -130,10 +130,8 @@
     "saveLocally": "Сохранить локально",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "Этот плейлист от {{source}} доступен только для чтения. Сохраните локальную копию для редактирования.",
-    "trackCount_one": "{{count}} трек",
-    "trackCount_few": "{{count}} трека",
-    "trackCount_many": "{{count}} треков",
-    "trackCount_other": "{{count}} трека",
+    "trackCount_one": "{{count}} track",
+    "trackCount_other": "{{count}} треков",
     "addToPlaylist": "Добавить в плейлист",
     "filterPlaylists": "Отфильтровать плейлисты...",
     "sortBy": {
@@ -153,10 +151,8 @@
     "exportSuccess": "Плейлист экспортирован",
     "exportError": "Не удалось экспортировать плейлист",
     "importSuccess": "Плейлист импортирован",
-    "importBatchSuccess_one": "{{count}} плейлист импортирован",
-    "importBatchSuccess_few": "{{count}} плейлиста импортировано",
-    "importBatchSuccess_many": "{{count}} плейлистов импортировано",
-    "importBatchSuccess_other": "{{count}} плейлиста импортировано",
+    "importBatchSuccess_one": "{{count}} playlist imported",
+    "importBatchSuccess_other": "{{count}} playlists imported",
     "importError": "Не удалось импортировать плейлист",
     "importNoPlaylists": "Плейлисты не найдены в этом файле",
     "importUrl": "Импортировать по URL",
@@ -166,20 +162,18 @@
     "importUrlImporting": "Импортирование...",
     "descriptionPlaceholder": "Добавить описание...",
     "folders": {
-      "create": "Новая папка",
-      "createTitle": "Создать новую папку",
-      "namePlaceholder": "Название папки...",
-      "rename": "Переименовать папку",
-      "delete": "Удалить папку",
-      "deleteConfirm": "Плейлисты из этой папки будут перемещены за её пределы. Они не будут удалены.",
-      "playlistCount_one": "{{count}} плейлист",
-      "playlistCount_few": "{{count}} плейлиста",
-      "playlistCount_many": "{{count}} плейлистов",
-      "playlistCount_other": "{{count}} плейлиста",
-      "moveTo": "Переместить в папку",
-      "removeFrom": "Убрать из папки",
-      "empty": "Эта папка пуста",
-      "emptyDescription": "Переместите сюда плейлисты из их меню или создайте новый плейлист"
+      "create": "New folder",
+      "createTitle": "Create new folder",
+      "namePlaceholder": "Folder name...",
+      "rename": "Rename folder",
+      "delete": "Delete folder",
+      "deleteConfirm": "The playlists in this folder will be moved out of it. They will not be deleted.",
+      "playlistCount_one": "{{count}} playlist",
+      "playlistCount_other": "{{count}} playlists",
+      "moveTo": "Move to folder",
+      "removeFrom": "Remove from folder",
+      "empty": "This folder is empty",
+      "emptyDescription": "Move playlists here from their menu, or create a new one"
     }
   },
   "search": {
@@ -194,14 +188,14 @@
     "results": {
       "tracks": "Треки",
       "albums": "Альбомы",
-      "artists": "Исполнители",
+      "artists": "Артисты",
       "playlists": "Плейлисты"
     },
     "filters": {
       "all": "Всё",
       "tracks": "Треки",
       "albums": "Альбомы",
-      "artists": "Исполнители",
+      "artists": "Артисты",
       "playlists": "Плейлисты"
     },
     "empty-state": "Плагин метаданных не установлен",
@@ -209,10 +203,10 @@
     "empty-state-action": "Просмотреть плагины"
   },
   "artist": {
-    "title": "Исполнитель",
+    "title": "Артист",
     "albums": "Альбомы",
     "tracks": "Треки",
-    "similar": "Похожие исполнители",
+    "similar": "Похожие артисты",
     "popularTracks": "Популярные треки",
     "biography": "Биография",
     "discography": "Дискография",
@@ -223,10 +217,10 @@
     "followings": "Подписки",
     "playlists": "Плейлисты",
     "errors": {
-      "failedToLoadDetails": "Не удалось загрузить информацию об исполнителе.",
+      "failedToLoadDetails": "Не удалось загрузить информацию об артисте.",
       "failedToLoadAlbums": "Не удалось загрузить альбомы.",
       "failedToLoadPopularTracks": "Не удалось загрузить популярные треки.",
-      "failedToLoadSimilarArtists": "Не удалось загрузить похожих исполнителей.",
+      "failedToLoadSimilarArtists": "Не удалось загрузить похожих артистов.",
       "failedToLoadSocialStats": "Не удалось загрузить статистику исполнителя.",
       "failedToLoadPlaylists": "Не удалось загрузить плейлисты."
     }
@@ -272,11 +266,11 @@
     "empty-state": "Нет доступных данных в панели управления",
     "empty-state-description": "Включите плагин, который предоставляет содержимое панели.",
     "empty-state-action": "Найти плагины",
-    "top-tracks": "Лучшие треки",
-    "top-artists": "Лучшие исполнители",
-    "top-albums": "Лучшие альбомы",
-    "editorial-playlists": "Лучшие плейлисты",
-    "new-releases": "Новые релизы",
+    "top-tracks": "Лучшие Треки",
+    "top-artists": "Лучшие Исполнители",
+    "top-albums": "Лучшие Альбомы",
+    "editorial-playlists": "Лучше Плейлисты",
+    "new-releases": "Новые Релизы",
     "filter-artists": "Фильтр исполнителей...",
     "filter-albums": "Фильтр альбомов...",
     "filter-playlists": "Фильтр плейлистов...",
@@ -307,7 +301,7 @@
         "all": "Всё",
         "streaming": "Трансляция",
         "metadata": "Метаданные",
-        "lyrics": "Тексты песен",
+        "lyrics": "Текст",
         "scrobbling": "Скробблинг",
         "dashboard": "Панель",
         "playlists": "Плейлисты",
@@ -334,7 +328,7 @@
     "updateAvailable": "Доступно обновление",
     "clickToUpdate": "Нажмите, чтобы обновить",
     "downloading": "Загрузка... {{progress}}%",
-    "clickToRestart": "Нажмите, чтобы перезапустить"
+    "clickToRestart": "Нажми, чтобы перезапустить"
   },
   "flatpak": {
     "sandboxWarning": "Вы используете Nuclear в среде Flatpak. Некоторые функции могут работать неправильно. Если вы столкнулись с проблемами, попробуйте .deb или AppImage.",
@@ -436,7 +430,7 @@
       },
       "discoveryVariety": {
         "title": "Разнообразие в рекомендациях",
-        "description": "Насколько рекомендации отклоняются от того, что вы слушаете сейчас. Чем меньше значение, тем ближе рекомендации к текущему прослушиванию.",
+        "description": "Нас сколько сильно рекомендации отклоняются от вашего текущего прослушивания. Чем меньше значение, тем меньше отклонение.",
         "startLabel": "Меньше сумасшедшего",
         "endLabel": "Больше сумасшедшего"
       },
@@ -462,7 +456,7 @@
     "updates": {
       "title": "Обновления",
       "checkForUpdates": {
-        "title": "Проверить наличие обновлений",
+        "title": "Проворить наличие обновлений",
         "description": "Автоматически проверяет наличие обновлений при запуске"
       },
       "autoInstall": {
@@ -474,7 +468,7 @@
       "title": "Интеграции",
       "jam": {
         "enabled": {
-          "title": "Nuclear Jam",
+          "title": "Nuclear Джем",
           "description": "Запускает локальный веб-сервер, который позволит вам управлять Nuclear с других устройств в вашей сети."
         },
         "remoteUrl": {
@@ -482,8 +476,8 @@
           "description": "Откройте этот URL-адрес на другом устройстве для управления Nuclear."
         },
         "apiUrl": {
-          "title": "URL-адрес API",
-          "description": "Базовый URL-адрес HTTP API для программного доступа."
+          "title": "API URL",
+          "description": "Базовый URL-адрес HTTP API для доступа к программному обеспечению."
         }
       },
       "mcp": {
@@ -502,14 +496,14 @@
           "description": "Запускает локальный MPD-совместимый сервер, чтобы MPD клиенты могли управлять Nuclear."
         },
         "serverUrl": {
-          "title": "URL MPD сервера",
-          "description": "Укажите этот адрес в вашем MPD-клиенте, чтобы подключиться к Nuclear."
+          "title": "URL-адрес сервера MPD",
+          "description": "Направьте Ваш ИИ инструмент на этот URL для подключения к Nuclear."
         }
       },
       "discord": {
         "enabled": {
           "title": "Discord Rich Presence",
-          "description": "Показывает в профиле Discord, что вы слушаете."
+          "description": "Показывает в профиле Discord, что вы слушаете. "
         }
       }
     }
@@ -529,7 +523,7 @@
       "playback": "Ошибка воспроизведения"
     },
     "candidates": {
-      "empty": "Нет кандидатов трансляции",
+      "empty": "No stream candidates",
       "failed": "ошибка"
     },
     "streamVerification": {
@@ -538,11 +532,11 @@
       "verified": "Подтверждено",
       "verifiedByUser": "Подтверждено вами",
       "verify": "Подтвердить",
-      "unverify": "Отменить подтверждение",
+      "unverify": "Отклонить",
       "failed": "Не удалось подтвердить трансляцию",
       "notShared": "Трансляция была подтверждена локально, однако Nuclear не смог подключиться к службе верификации.",
       "help": "Как работает верификация потока",
-      "explanation": "Nuclear может иногда воспроизводить неправильную трансляцию песни. Чтобы исправить, щелкните правой кнопкой мыши по песни в очереди и выберите нужную версию, затем нажмите \"Подтвердить\". Nuclear сохраняет вашу проверку на вашем компьютере и всегда будет проигрывать эту версию для трека.\n\nЕсли проверка онлайн включена, Nuclear также делится вашей верификацией с другими пользователями, поэтому они сначала получают эту трансляцию. Для каждого непроверенного трека Nuclear запрашивает у службы проверки трансляцию с наибольшим количеством голосов. Он передаёт исполнителя, название и случайный идентификатор.",
+      "explanation": "Nuclear может иногда воспроизводить неправильную трансляцию песни. Чтобы исправить, щелкните правой кнопкой мыши по песни в очереди и выберите нужную версию, затем нажмите \"Подтвердить\". Nuclear экономит вашу проверку на вашем компьютере и всегда будет проигрывать эту версию для трека.\n\nЕсли проверка онлайн включена, Nuclear также делится вашей верификацией с другими пользователями, так что сначала они получают эту трансляцию трека. Для каждого непроверенного трека, Nuclear просит службу проверки присласть трансляцию с наибольшим количеством голосов. Он посылает автора, название и случайный идентификатор.",
       "learnMore": "Узнать больше"
     }
   },
@@ -551,8 +545,8 @@
       "playNow": "Воспроизвести",
       "playNext": "Воспроизвести следующий",
       "addToQueue": "Добавить в очередь",
-      "addToFavorites": "Добавить в Избранное",
-      "removeFromFavorites": "Убрать из Избранного"
+      "addToFavorites": "Добавить в любимые",
+      "removeFromFavorites": "Убрать из любимых"
     }
   },
   "trackTable": {
@@ -572,7 +566,7 @@
     "filterPlaceholder": "Фильтр треков"
   },
   "pagination": {
-    "navigation": "Навигация по страницам",
+    "navigation": "Pagination",
     "previous": "Предыдущая страница",
     "next": "Следующая страница",
     "page": "Страница {{pageNumber}}"
@@ -600,7 +594,7 @@
       "hifi": {
         "loadFailed": "Не удалось загрузить аудио трансляции: {{details}}",
         "unsupportedFormat": "Аудио трансляции имеет неподдерживаемый формат. Попробуйте другой источник для этой дорожки.",
-        "mseUnavailable": "Трансляция недоступна, потому что в этой системе отсутствуют расширения MediaSource. Обновление вашего веб-движка может исправить это.",
+        "mseUnavailable": "Трансляция недоступно, потому что в этой системе отсутствует MediaSource расширения. Обновление вашего веб-движка может исправить это.",
         "appendRejected": "Аудио движок отклонил данные трансляции. Кодек может быть не поддерживается. Попробуйте другой источник для этой дорожки."
       }
     }
@@ -610,8 +604,8 @@
     "shuffleOn": "Перемешивание: вкл.",
     "shuffleOff": "Перемешивание: выкл.",
     "repeatOff": "Повтор: выкл.",
-    "repeatAll": "Повтор: всё",
-    "repeatOne": "Повтор: один трек",
+    "repeatAll": "Повтор: всё.",
+    "repeatOne": "Повтор: один раз",
     "discoveryOn": "Обнаружение: вкл.",
     "discoveryOff": "Обнаружение: выкл."
   },
@@ -622,25 +616,25 @@
     "noPluginsDescription": "Установите плагин для текстов песен, чтобы увидеть тексты песен для вашей музыки.",
     "browsePlugins": "Просмотреть плагины для текстов песен",
     "noLyrics": "Для этого трека нет текста",
-    "noLyricsDescription": "{{providers, list}} не вернули результатов.",
+    "noLyricsDescription": "{{providers, list}} не дал результатов.",
     "noLyricsFromAnyProvider": "Нет провайдеров текстов песен, вернувших результаты.",
     "loadError": "Не удалось загрузить текст песни",
     "loadErrorDescription": "Проверьте подключение к Nuclear и повторите попытку.",
     "providerError": "Провайдер текстов песен не смог загрузить текст",
     "instrumental": "Инструментальная",
-    "instrumentalDescription": "В этом треке нет текста песни.",
-    "currentLine": "Текущая строка",
-    "showEarlier": "Сдвинуть текст раньше",
-    "showLater": "Сдвинуть текст позже",
-    "smaller": "Уменьшить текст песни",
-    "larger": "Увеличить текст песни",
-    "autoScroll": "Автопрокрутка",
+    "instrumentalDescription": "This track has no lyrics.",
+    "currentLine": "Current line",
+    "showEarlier": "Show lyrics earlier",
+    "showLater": "Show lyrics later",
+    "smaller": "Smaller lyrics",
+    "larger": "Larger lyrics",
+    "autoScroll": "Auto-scroll",
     "types": {
-      "wordSynced": "Синхронизация по словам",
-      "lineSynced": "Синхронизация по строкам",
-      "plain": "Без синхронизации"
+      "wordSynced": "Word synced",
+      "lineSynced": "Line synced",
+      "plain": "Plain"
     },
-    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} с"
+    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} s"
   },
   "logs": {
     "title": "Логи",
@@ -653,60 +647,56 @@
     "openLogFolderButton": "Открыть папку с логами",
     "noLogsMessage": "Нет логов для отображения",
     "invalidRegexMessage": "Неправильный regex паттерн",
-    "entryCount_one": "{{count}} запись",
-    "entryCount_few": "{{count}} записи",
-    "entryCount_many": "{{count}} записей",
-    "entryCount_other": "{{count}} записи",
+    "entryCount_one": "{{count}} entry",
+    "entryCount_other": "{{count}} записей",
     "exportSuccess": "Логи экспортированы"
   },
   "remote": {
     "connecting": {
-      "title": "Подключение к Nuclear...",
-      "subtitle": "Убедитесь, что Nuclear запущен и Nuclear Jam включён"
+      "title": "Connecting to Nuclear...",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled"
     },
     "error": {
-      "title": "Не удалось подключиться к Nuclear",
-      "subtitle": "Убедитесь, что Nuclear запущен и Nuclear Jam включён в настройках"
+      "title": "Could not connect to Nuclear",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled in Settings"
     },
     "connection": {
-      "connecting": "Подключение",
-      "connected": "Подключено",
-      "reconnecting": "Переподключение",
-      "failed": "Отключено"
+      "connecting": "Connecting",
+      "connected": "Connected",
+      "reconnecting": "Reconnecting",
+      "failed": "Disconnected"
     },
     "lyrics": {
-      "open": "Показать текст песни",
-      "back": "Назад"
+      "open": "Show lyrics",
+      "back": "Back"
     },
     "queue": {
-      "upNext": "Далее",
-      "emptyTitle": "Очередь пуста",
-      "emptySubtitle": "Добавьте треки в Nuclear, чтобы увидеть их здесь"
+      "upNext": "Up next",
+      "emptyTitle": "Queue is empty",
+      "emptySubtitle": "Add tracks in Nuclear to see them here"
     },
     "search": {
-      "placeholder": "Поиск музыки",
-      "emptyTitle": "Ничего не найдено",
-      "emptyDescription": "По вашему запросу ничего не найдено",
-      "errorTitle": "Поиск не удался",
-      "errorDescription": "Проверьте подключение к Nuclear и повторите попытку"
+      "placeholder": "Search for music",
+      "emptyTitle": "No results",
+      "emptyDescription": "Nothing found for your search terms",
+      "errorTitle": "Search failed",
+      "errorDescription": "Check the connection to Nuclear and try again"
     },
     "qrCode": {
-      "tooltip": "Пульт удалённого управления Nuclear Jam",
-      "instructions": "Отсканируйте QR-код или скопируйте адрес ниже, чтобы подключиться к Nuclear Jam"
+      "tooltip": "Nuclear Jam remote control",
+      "instructions": "Scan the QR code or copy the address below to connect to Nuclear Jam"
     }
   },
   "titleBar": {
-    "title": "Музыкальный плеер Nuclear",
-    "minimize": "Свернуть",
-    "maximize": "Развернуть",
-    "close": "Закрыть"
+    "title": "Nuclear Music Player",
+    "minimize": "Minimize",
+    "maximize": "Maximize",
+    "close": "Close"
   },
   "changelog": {
     "title": "Что нового?",
-    "seeMore_one": "Показать ещё ({{count}} старая запись)",
-    "seeMore_few": "Показать ещё ({{count}} старые записи)",
-    "seeMore_many": "Показать ещё ({{count}} старых записей)",
-    "seeMore_other": "Показать ещё ({{count}} старой записи)",
+    "seeMore_one": "See more ({{count}} older)",
+    "seeMore_other": "See more ({{count}} older)",
     "types": {
       "feature": "Функция",
       "fix": "Исправление",
