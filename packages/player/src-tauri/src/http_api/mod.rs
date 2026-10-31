@@ -4,6 +4,7 @@ mod lyrics;
 mod navigation;
 mod routes;
 mod search;
+mod views;
 
 use std::sync::Arc;
 

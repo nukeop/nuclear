@@ -10,6 +10,7 @@ export { NavigationAPI } from './api/navigation';
 export { PlaybackAPI } from './api/playback';
 export { PlaylistsAPI } from './api/playlists';
 export { ShellAPI } from './api/shell';
+export { ViewsAPI } from './api/views';
 export { YtdlpAPI } from './api/ytdlp';
 export type {
   FetchFunction,
@@ -41,6 +42,7 @@ export * from './types/navigation';
 export * from './types/discovery';
 export * from './types/events';
 export * from './types/shell';
+export * from './types/views';
 export type {
   ProvidersHost,
   ProviderKind,

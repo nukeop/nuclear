@@ -130,9 +130,17 @@ pub fn list_methods(domain: &str) -> Result<Value, String> {
                 "current"
             ]
         }),
+        "Views" => json!({
+            "domain": "Views",
+            "description": "Add views to the left sidebar of the player.",
+            "methods": [
+                "register",
+                "unregister"
+            ]
+        }),
         _ => {
             return Err(format!(
-                "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics, Navigation."
+                "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics, Navigation, Views."
             ))
         }
     };
@@ -727,6 +735,21 @@ pub fn method_details(domain: &str, method: &str) -> Result<Value, String> {
             "returns": "NavigationLocation"
         }),
 
+        ("Views", "register") => json!({
+            "domain": "Views",
+            "method": "register",
+            "description": "Add a view to the left sidebar, or replace the view with the same id. The view opens at /plugin/bridge/<viewId>. source is one TSX module. Each route renders the export named in export, or the default export. Components get the props { params, api }. The module can import only react, @nuclearplayer/ui, and @nuclearplayer/plugin-sdk.",
+            "params": [{ "name": "view", "type": "SourceViewDefinition" }],
+            "returns": "void"
+        }),
+        ("Views", "unregister") => json!({
+            "domain": "Views",
+            "method": "unregister",
+            "description": "Remove the view with this id. When the view is open, the player opens the dashboard.",
+            "params": [{ "name": "id", "type": "string" }],
+            "returns": "void"
+        }),
+
         _ => {
             let domain_check = list_methods(domain);
             match domain_check {
@@ -747,7 +770,7 @@ pub fn method_details(domain: &str, method: &str) -> Result<Value, String> {
                 }
                 Err(_) => {
                     return Err(format!(
-                        "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics, Navigation."
+                        "Unknown domain: '{domain}'. Available domains: Queue, Playback, Metadata, Favorites, Playlists, Dashboard, Providers, Lyrics, Navigation, Views."
                     ));
                 }
             }
@@ -1194,9 +1217,28 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
                 "hash": { "type": "string" }
             }
         }),
+        "SourceViewDefinition" => json!({
+            "type": "SourceViewDefinition",
+            "description": "A view for the left sidebar, written as TSX source. See Views.register for the source format.",
+            "fields": {
+                "id": { "type": "string", "description": "ID of the view. The view opens at /plugin/bridge/<id>. A register call with the same id replaces the view" },
+                "title": { "type": "string", "description": "Text of the sidebar entry" },
+                "icon": { "type": "string", "description": "Name of a Lucide icon, e.g. ChartBar" },
+                "source": { "type": "string", "description": "One TSX module with the components of all routes" },
+                "routes": { "type": "SourceViewRoute[]" }
+            }
+        }),
+        "SourceViewRoute" => json!({
+            "type": "SourceViewRoute",
+            "description": "A page of a source view.",
+            "fields": {
+                "path": { "type": "string", "description": "Path in the view, e.g. / or /track/:index. A segment that starts with : is a parameter" },
+                "export": { "type": "string", "optional": true, "description": "Name of the export of the source that the route renders. When not set, the route renders the default export" }
+            }
+        }),
         _ => {
             return Err(format!(
-                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, PlaylistFolder, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation, NavigationLocation."
+                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, PlaylistFolder, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation, NavigationLocation, SourceViewDefinition, SourceViewRoute."
             ))
         }
     };
