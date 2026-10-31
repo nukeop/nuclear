@@ -2,37 +2,37 @@
   "common": {
     "app": {
       "name": "Nuclear",
-      "description": "Application de streaming de musique gratuite"
+      "description": "Music streaming app for your desktop"
     },
     "actions": {
-      "save": "Enregistrer",
-      "cancel": "Annuler",
-      "delete": "Supprimer",
-      "edit": "Modifier",
-      "close": "Fermer",
-      "back": "Retour",
-      "next": "Suivant",
-      "confirm": "Confirmer",
-      "apply": "Appliquer",
-      "reset": "Réinitialiser",
-      "clear": "Effacer",
-      "search": "Rechercher",
-      "loading": "Chargement...",
-      "retry": "Réessayer",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "close": "Close",
+      "back": "Back",
+      "next": "Next",
+      "confirm": "Confirm",
+      "apply": "Apply",
+      "reset": "Reset",
+      "clear": "Clear",
+      "search": "Search",
+      "loading": "Loading...",
+      "retry": "Retry",
       "moreActions": "More actions"
     },
     "errors": {
-      "network": "Erreur réseau. Veuillez vérifier votre connexion.",
-      "notFound": "Introuvable"
+      "network": "Network error. Please check your connection.",
+      "notFound": "Not found"
     }
   },
   "navigation": {
-    "explore": "Explorer",
-    "dashboard": "Tableau de bord",
+    "explore": "Explore",
+    "dashboard": "Dashboard",
     "collection": "Collection",
-    "favoriteAlbums": "Albums favoris",
-    "favoriteTracks": "Morceaux favoris",
-    "favoriteArtists": "Artistes favoris",
+    "favoriteAlbums": "Favorite albums",
+    "favoriteTracks": "Favorite tracks",
+    "favoriteArtists": "Favorite artists",
     "playlists": "Playlists",
     "history": "History",
     "lyrics": "Lyrics",
@@ -100,7 +100,7 @@
     "albums": {
       "title": "Favorite albums",
       "empty": "No favorite albums yet",
-      "emptyDescription": ""
+      "emptyDescription": "Albums you mark as favorites will appear here"
     },
     "tracks": {
       "title": "Favorite tracks",
@@ -130,8 +130,6 @@
     "saveLocally": "Save locally",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "This playlist is from {{source}} and is read-only. Save a local copy to edit it.",
-    "trackCount_one": "{{count}} track",
-    "trackCount_other": "{{count}} tracks",
     "addToPlaylist": "Add to playlist",
     "filterPlaylists": "Filter playlists...",
     "sortBy": {
@@ -151,8 +149,6 @@
     "exportSuccess": "Playlist exported",
     "exportError": "Failed to export playlist",
     "importSuccess": "Playlist imported",
-    "importBatchSuccess_one": "{{count}} playlist imported",
-    "importBatchSuccess_other": "{{count}} playlists imported",
     "importError": "Failed to import playlist",
     "importNoPlaylists": "No playlists found in this file",
     "importUrl": "Import from URL",
@@ -168,34 +164,38 @@
       "rename": "Rename folder",
       "delete": "Delete folder",
       "deleteConfirm": "The playlists in this folder will be moved out of it. They will not be deleted.",
-      "playlistCount_one": "{{count}} playlist",
-      "playlistCount_other": "{{count}} playlists",
       "moveTo": "Move to folder",
       "removeFrom": "Remove from folder",
       "empty": "This folder is empty",
-      "emptyDescription": "Move playlists here from their menu, or create a new one"
-    }
+      "emptyDescription": "Move playlists here from their menu, or create a new one",
+      "playlistCount_one": "{{count}} playlist",
+      "playlistCount_other": "{{count}} playlists"
+    },
+    "trackCount_one": "{{count}} track",
+    "trackCount_other": "{{count}} tracks",
+    "importBatchSuccess_one": "{{count}} playlist imported",
+    "importBatchSuccess_other": "{{count}} playlists imported"
   },
   "search": {
-    "title": "Rechercher",
-    "query": "Requête",
-    "placeholder": "Rechercher",
-    "noResults": "Aucun résultat trouvé",
-    "searching": "Recherche en cours...",
-    "failedToLoad": "Échec du chargement des résultats.",
+    "title": "Search",
+    "query": "Query",
+    "placeholder": "Search",
+    "noResults": "No results found",
+    "searching": "Searching...",
+    "failedToLoad": "Failed to load results.",
     "clearRecentSearches": "Clear recent searches",
     "recentSearches": "Recent searches",
     "results": {
       "tracks": "Tracks",
       "albums": "Albums",
-      "artists": "Artistes",
+      "artists": "Artists",
       "playlists": "Playlists"
     },
     "filters": {
-      "all": "Tout",
+      "all": "All",
       "tracks": "Tracks",
       "albums": "Albums",
-      "artists": "Artistes",
+      "artists": "Artists",
       "playlists": "Playlists"
     },
     "empty-state": "No metadata plugin installed",
@@ -203,24 +203,24 @@
     "empty-state-action": "Browse plugins"
   },
   "artist": {
-    "title": "Artiste",
+    "title": "Artist",
     "albums": "Albums",
     "tracks": "Tracks",
-    "similar": "Artistes similaires",
-    "popularTracks": "Tracks populaires",
-    "biography": "Biographie",
-    "discography": "Discographie",
+    "similar": "Similar artists",
+    "popularTracks": "Popular tracks",
+    "biography": "Biography",
+    "discography": "Discography",
     "topTracks": "Top tracks",
-    "onTour": "En tournée",
-    "notOnTour": "Pas en tournée",
+    "onTour": "On Tour",
+    "notOnTour": "Not on Tour",
     "followers": "Followers",
     "followings": "Following",
     "playlists": "Playlists",
     "errors": {
-      "failedToLoadDetails": "Échec du chargement des détails de l'artiste.",
-      "failedToLoadAlbums": "Échec du chargement des albums.",
-      "failedToLoadPopularTracks": "Échec du chargement des tracks populaires.",
-      "failedToLoadSimilarArtists": "Échec du chargement des artistes similaires.",
+      "failedToLoadDetails": "Failed to load artist details.",
+      "failedToLoadAlbums": "Failed to load albums.",
+      "failedToLoadPopularTracks": "Failed to load popular tracks.",
+      "failedToLoadSimilarArtists": "Failed to load similar artists.",
       "failedToLoadSocialStats": "Failed to load artist stats.",
       "failedToLoadPlaylists": "Failed to load playlists."
     }
@@ -236,13 +236,13 @@
     }
   },
   "themes": {
-    "title": "Thèmes",
-    "basic": "Thèmes basiques",
-    "advanced": "Thèmes avancés",
+    "title": "Themes",
+    "basic": "Basic themes",
+    "advanced": "Advanced themes",
     "marketplace": "Store themes",
-    "default": "Par défaut",
+    "default": "Default",
     "selectPlaceholder": "Select a theme",
-    "description": "Thèmes trouvés dans le répertoire de données de l'application",
+    "description": "Themes found in your app data themes directory",
     "tabs": {
       "myThemes": "My themes",
       "store": "Store"
@@ -262,7 +262,7 @@
     }
   },
   "dashboard": {
-    "title": "Tableau de bord",
+    "title": "Dashboard",
     "empty-state": "Welcome to Nuclear",
     "empty-state-description": "Install a plugin to see top tracks, new releases, and recommendations here.",
     "empty-state-action": "Browse plugins",
@@ -279,7 +279,7 @@
   },
   "plugins": {
     "title": "Plugins",
-    "addPlugin": "Ajouter un plugin",
+    "addPlugin": "Add Plugin",
     "tabs": {
       "installed": "Installed",
       "store": "Store"
@@ -647,9 +647,9 @@
     "openLogFolderButton": "Open Log Folder",
     "noLogsMessage": "No logs to display",
     "invalidRegexMessage": "Invalid regex pattern",
+    "exportSuccess": "Logs exported",
     "entryCount_one": "{{count}} entry",
-    "entryCount_other": "{{count}} entries",
-    "exportSuccess": "Logs exported"
+    "entryCount_other": "{{count}} entries"
   },
   "remote": {
     "connecting": {
@@ -695,8 +695,6 @@
   },
   "changelog": {
     "title": "What's New",
-    "seeMore_one": "See more ({{count}} older)",
-    "seeMore_other": "See more ({{count}} older)",
     "types": {
       "feature": "Feature",
       "fix": "Fix",
@@ -704,6 +702,8 @@
       "chore": "Chore",
       "plugin": "Plugin",
       "docs": "Docs"
-    }
+    },
+    "seeMore_one": "See more ({{count}} older)",
+    "seeMore_other": "See more ({{count}} older)"
   }
 }
