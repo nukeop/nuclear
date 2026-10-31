@@ -2,37 +2,37 @@
   "common": {
     "app": {
       "name": "Nuclear",
-      "description": "Aplicativo de streaming de música gratuito"
+      "description": "Music streaming app for your desktop"
     },
     "actions": {
-      "save": "Salvar",
-      "cancel": "Cancelar",
-      "delete": "Excluir",
-      "edit": "Editar",
-      "close": "Fechar",
-      "back": "Voltar",
-      "next": "Próximo",
-      "confirm": "Confirmar",
-      "apply": "Aplicar",
-      "reset": "Redefinir",
-      "clear": "Limpar",
-      "search": "Buscar",
-      "loading": "Carregando...",
-      "retry": "Tentar novamente",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "close": "Close",
+      "back": "Back",
+      "next": "Next",
+      "confirm": "Confirm",
+      "apply": "Apply",
+      "reset": "Reset",
+      "clear": "Clear",
+      "search": "Search",
+      "loading": "Loading...",
+      "retry": "Retry",
       "moreActions": "More actions"
     },
     "errors": {
-      "network": "Erro de rede. Verifique sua conexão.",
-      "notFound": "Não encontrado"
+      "network": "Network error. Please check your connection.",
+      "notFound": "Not found"
     }
   },
   "navigation": {
-    "explore": "Explorar",
-    "dashboard": "Painel",
-    "collection": "Coleção",
-    "favoriteAlbums": "Albums favoritos",
-    "favoriteTracks": "Tracks favoritos",
-    "favoriteArtists": "Artistas favoritos",
+    "explore": "Explore",
+    "dashboard": "Dashboard",
+    "collection": "Collection",
+    "favoriteAlbums": "Favorite albums",
+    "favoriteTracks": "Favorite tracks",
+    "favoriteArtists": "Favorite artists",
     "playlists": "Playlists",
     "history": "History",
     "lyrics": "Lyrics",
@@ -130,8 +130,6 @@
     "saveLocally": "Save locally",
     "readOnlyBadge": "{{source}}",
     "readOnlyTooltip": "This playlist is from {{source}} and is read-only. Save a local copy to edit it.",
-    "trackCount_one": "{{count}} track",
-    "trackCount_other": "{{count}} tracks",
     "addToPlaylist": "Add to playlist",
     "filterPlaylists": "Filter playlists...",
     "sortBy": {
@@ -151,8 +149,6 @@
     "exportSuccess": "Playlist exported",
     "exportError": "Failed to export playlist",
     "importSuccess": "Playlist imported",
-    "importBatchSuccess_one": "{{count}} playlist imported",
-    "importBatchSuccess_other": "{{count}} playlists imported",
     "importError": "Failed to import playlist",
     "importNoPlaylists": "No playlists found in this file",
     "importUrl": "Import from URL",
@@ -168,34 +164,38 @@
       "rename": "Rename folder",
       "delete": "Delete folder",
       "deleteConfirm": "The playlists in this folder will be moved out of it. They will not be deleted.",
-      "playlistCount_one": "{{count}} playlist",
-      "playlistCount_other": "{{count}} playlists",
       "moveTo": "Move to folder",
       "removeFrom": "Remove from folder",
       "empty": "This folder is empty",
-      "emptyDescription": "Move playlists here from their menu, or create a new one"
-    }
+      "emptyDescription": "Move playlists here from their menu, or create a new one",
+      "playlistCount_one": "{{count}} playlist",
+      "playlistCount_other": "{{count}} playlists"
+    },
+    "trackCount_one": "{{count}} track",
+    "trackCount_other": "{{count}} tracks",
+    "importBatchSuccess_one": "{{count}} playlist imported",
+    "importBatchSuccess_other": "{{count}} playlists imported"
   },
   "search": {
-    "title": "Buscar",
-    "query": "Busca",
-    "placeholder": "Buscar",
-    "noResults": "Nenhum resultado encontrado",
-    "searching": "Buscando...",
-    "failedToLoad": "Falha ao carregar resultados.",
+    "title": "Search",
+    "query": "Query",
+    "placeholder": "Search",
+    "noResults": "No results found",
+    "searching": "Searching...",
+    "failedToLoad": "Failed to load results.",
     "clearRecentSearches": "Clear recent searches",
     "recentSearches": "Recent searches",
     "results": {
       "tracks": "Tracks",
       "albums": "Albums",
-      "artists": "Artistas",
+      "artists": "Artists",
       "playlists": "Playlists"
     },
     "filters": {
-      "all": "Tudo",
+      "all": "All",
       "tracks": "Tracks",
       "albums": "Albums",
-      "artists": "Artistas",
+      "artists": "Artists",
       "playlists": "Playlists"
     },
     "empty-state": "No metadata plugin installed",
@@ -203,24 +203,24 @@
     "empty-state-action": "Browse plugins"
   },
   "artist": {
-    "title": "Artista",
+    "title": "Artist",
     "albums": "Albums",
     "tracks": "Tracks",
-    "similar": "Artistas similares",
-    "popularTracks": "Tracks populares",
-    "biography": "Biografia",
-    "discography": "Discografia",
+    "similar": "Similar artists",
+    "popularTracks": "Popular tracks",
+    "biography": "Biography",
+    "discography": "Discography",
     "topTracks": "Top tracks",
-    "onTour": "Em turnê",
-    "notOnTour": "Não está em turnê",
+    "onTour": "On Tour",
+    "notOnTour": "Not on Tour",
     "followers": "Followers",
     "followings": "Following",
     "playlists": "Playlists",
     "errors": {
-      "failedToLoadDetails": "Falha ao carregar detalhes do artista.",
-      "failedToLoadAlbums": "Falha ao carregar albums.",
-      "failedToLoadPopularTracks": "Falha ao carregar tracks populares.",
-      "failedToLoadSimilarArtists": "Falha ao carregar artistas similares.",
+      "failedToLoadDetails": "Failed to load artist details.",
+      "failedToLoadAlbums": "Failed to load albums.",
+      "failedToLoadPopularTracks": "Failed to load popular tracks.",
+      "failedToLoadSimilarArtists": "Failed to load similar artists.",
       "failedToLoadSocialStats": "Failed to load artist stats.",
       "failedToLoadPlaylists": "Failed to load playlists."
     }
@@ -236,13 +236,13 @@
     }
   },
   "themes": {
-    "title": "Temas",
-    "basic": "Temas básicos",
-    "advanced": "Temas avançados",
+    "title": "Themes",
+    "basic": "Basic themes",
+    "advanced": "Advanced themes",
     "marketplace": "Store themes",
-    "default": "Padrão",
+    "default": "Default",
     "selectPlaceholder": "Select a theme",
-    "description": "Temas encontrados no diretório de dados do app",
+    "description": "Themes found in your app data themes directory",
     "tabs": {
       "myThemes": "My themes",
       "store": "Store"
@@ -262,7 +262,7 @@
     }
   },
   "dashboard": {
-    "title": "Painel",
+    "title": "Dashboard",
     "empty-state": "Welcome to Nuclear",
     "empty-state-description": "Install a plugin to see top tracks, new releases, and recommendations here.",
     "empty-state-action": "Browse plugins",
@@ -279,7 +279,7 @@
   },
   "plugins": {
     "title": "Plugins",
-    "addPlugin": "Adicionar plugin",
+    "addPlugin": "Add Plugin",
     "tabs": {
       "installed": "Installed",
       "store": "Store"
@@ -647,9 +647,9 @@
     "openLogFolderButton": "Open Log Folder",
     "noLogsMessage": "No logs to display",
     "invalidRegexMessage": "Invalid regex pattern",
+    "exportSuccess": "Logs exported",
     "entryCount_one": "{{count}} entry",
-    "entryCount_other": "{{count}} entries",
-    "exportSuccess": "Logs exported"
+    "entryCount_other": "{{count}} entries"
   },
   "remote": {
     "connecting": {
@@ -695,8 +695,6 @@
   },
   "changelog": {
     "title": "What's New",
-    "seeMore_one": "See more ({{count}} older)",
-    "seeMore_other": "See more ({{count}} older)",
     "types": {
       "feature": "Feature",
       "fix": "Fix",
@@ -704,6 +702,8 @@
       "chore": "Chore",
       "plugin": "Plugin",
       "docs": "Docs"
-    }
+    },
+    "seeMore_one": "See more ({{count}} older)",
+    "seeMore_other": "See more ({{count}} older)"
   }
 }
