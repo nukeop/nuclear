@@ -335,7 +335,7 @@
     "title": "環境設定",
     "navigation": {
       "general": "設定",
-      "app": "App"
+      "app": "アプリ"
     },
     "general": {
       "title": "全般",
@@ -684,7 +684,7 @@
     }
   },
   "titleBar": {
-    "title": "Nuclear Music Player",
+    "title": "Nuclear ミュージックプレーヤー",
     "minimize": "最小化",
     "maximize": "最大化",
     "close": "閉じる"
