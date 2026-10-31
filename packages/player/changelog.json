@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-31T00:00",
+    "description": "Navigation API for plugins.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Integrations",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-10-30T04:00",
     "description": "Fix yt-dlp client selection.",
     "type": "fix",

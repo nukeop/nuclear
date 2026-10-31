@@ -87,7 +87,7 @@ Lists available methods in a domain.
 
 | Parameter | Type   | Required | Description                                                                                                            |
 | --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `domain`  | string | yes      | One of: `Queue`, `Playback`, `Metadata`, `Favorites`, `Playlists`, `Dashboard`, `Providers`, `Lyrics`. |
+| `domain`  | string | yes      | One of: `Queue`, `Playback`, `Metadata`, `Favorites`, `Playlists`, `Dashboard`, `Providers`, `Lyrics`, `Navigation`. |
 
 Returns the method names and short descriptions for that domain.
 

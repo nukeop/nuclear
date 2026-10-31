@@ -14,7 +14,7 @@ use futures::Stream;
 use serde_json::{json, Value};
 use tokio::sync::broadcast;
 
-use super::{actions, lyrics, search, RemoteEvent};
+use super::{actions, lyrics, navigation, search, RemoteEvent};
 use crate::bridge::{bridge::Bridge, types::BridgeError};
 
 #[derive(Clone)]
@@ -201,6 +201,10 @@ pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Rout
         )
         .route("/api/search", post(search::search))
         .route("/api/lyrics/current", get(lyrics::get_current_lyrics))
+        .route("/api/navigation/navigate", post(navigation::navigate))
+        .route("/api/navigation/back", post(navigation::back))
+        .route("/api/navigation/forward", post(navigation::forward))
+        .route("/api/navigation/current", get(navigation::current))
         .fallback(super::frontend::serve_frontend)
         .with_state(state)
 }

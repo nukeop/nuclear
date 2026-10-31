@@ -31,7 +31,7 @@ pub struct SaveQueueAsPlaylistBody {
     folder_id: Option<String>,
 }
 
-async fn bridge_action(
+pub(super) async fn bridge_action(
     bridge: &crate::bridge::bridge::Bridge,
     method: &str,
     params: Value,

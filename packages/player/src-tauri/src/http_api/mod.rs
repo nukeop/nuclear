@@ -1,6 +1,7 @@
 mod actions;
 mod frontend;
 mod lyrics;
+mod navigation;
 mod routes;
 mod search;
 
