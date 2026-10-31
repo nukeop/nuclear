@@ -1,0 +1,65 @@
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant short (@media (height <=740px));
+@custom-variant tall (@media (height > 740px));
+@custom-variant narrow (@media (width < 1080px));
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-input: var(--input);
+  --color-input-foreground: var(--input-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-overlay: var(--overlay);
+
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --color-accent-green: var(--accent-green);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-red: var(--accent-red);
+
+  --color-accent-green-foreground: var(--accent-green-foreground);
+  --color-accent-yellow-foreground: var(--accent-yellow-foreground);
+  --color-accent-purple-foreground: var(--accent-purple-foreground);
+  --color-accent-blue-foreground: var(--accent-blue-foreground);
+  --color-accent-orange-foreground: var(--accent-orange-foreground);
+  --color-accent-cyan-foreground: var(--accent-cyan-foreground);
+  --color-accent-red-foreground: var(--accent-red-foreground);
+
+  --color-shadow: var(--shadow-color);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  --font-weight-normal: var(--font-weight-normal);
+  --font-weight-bold: var(--font-weight-bold);
+  --font-weight-extra-bold: var(--font-weight-extra-bold);
+
+  --font-sans: var(--font-family);
+  --font-heading: var(--font-family-heading);
+  --font-mono: var(--font-family-mono);
+
+  --shadow: var(--shadow-x) var(--shadow-y) 0px 0px var(--border);
+  --shadow-shadow: var(--shadow);
+  --shadow-nav: 4px 4px 0px 0px var(--border);
+  --spacing-shadow-x: var(--shadow-x);
+  --spacing-shadow-y: var(--shadow-y);
+}

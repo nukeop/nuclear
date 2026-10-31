@@ -29,29 +29,32 @@ describe('Plugin views', () => {
 
     await PluginViewsWrapper.sidebar.entry('Podcasts').click();
 
-    expect(await PluginViewsWrapper.findPage('All podcasts')).toBeVisible();
+    expect(await PluginViewsWrapper.podcastList.find()).toBeVisible();
   });
+
   it('opens a sub-page with its params when the user clicks a link in the view', async () => {
     views.register(createPodcastsView(PLUGIN_ID));
     await PluginViewsWrapper.mount(`/plugin/${PLUGIN_ID}/podcasts`);
-    await PluginViewsWrapper.findPage('All podcasts');
+    await PluginViewsWrapper.podcastList.find();
 
-    await PluginViewsWrapper.link('Latest episode').click();
+    await PluginViewsWrapper.podcastList.latestEpisodeButton.click();
 
-    expect(
-      await PluginViewsWrapper.findPage('Show 7, episode 42'),
-    ).toBeVisible();
+    await PluginViewsWrapper.episodePage.find();
+    expect(PluginViewsWrapper.episodePage.text).toBe('Show 7, episode 42');
   });
+
   it('returns to the previous page of the view when the user clicks back in the top bar', async () => {
     views.register(createPodcastsView(PLUGIN_ID));
     await PluginViewsWrapper.mount(`/plugin/${PLUGIN_ID}/podcasts`);
-    await PluginViewsWrapper.link('Latest episode').click();
-    await PluginViewsWrapper.findPage('Show 7, episode 42');
+    await PluginViewsWrapper.podcastList.find();
+    await PluginViewsWrapper.podcastList.latestEpisodeButton.click();
+    await PluginViewsWrapper.episodePage.find();
 
-    await PluginViewsWrapper.topBar.back();
+    await PluginViewsWrapper.topBar.backButton.click();
 
-    expect(await PluginViewsWrapper.findPage('All podcasts')).toBeVisible();
+    expect(await PluginViewsWrapper.podcastList.find()).toBeVisible();
   });
+
   it('opens a sub-page directly from its URL', async () => {
     views.register(createPodcastsView(PLUGIN_ID));
 
@@ -59,37 +62,36 @@ describe('Plugin views', () => {
       `/plugin/${PLUGIN_ID}/podcasts/show/7/episode/42`,
     );
 
-    expect(
-      await PluginViewsWrapper.findPage('Show 7, episode 42'),
-    ).toBeVisible();
+    await PluginViewsWrapper.episodePage.find();
+    expect(PluginViewsWrapper.episodePage.text).toBe('Show 7, episode 42');
   });
 
   it('opens a player page from a link in the view, and back returns to the view', async () => {
     views.register(createPodcastsView(PLUGIN_ID));
     await PluginViewsWrapper.mount(`/plugin/${PLUGIN_ID}/podcasts`);
-    await PluginViewsWrapper.link('Manage sources').click();
+    await PluginViewsWrapper.podcastList.find();
+    await PluginViewsWrapper.podcastList.manageSourcesButton.click();
     await SourcesWrapper.view.find();
 
-    await PluginViewsWrapper.topBar.back();
+    await PluginViewsWrapper.topBar.backButton.click();
 
-    expect(await PluginViewsWrapper.findPage('All podcasts')).toBeVisible();
+    expect(await PluginViewsWrapper.podcastList.find()).toBeVisible();
   });
+
   it('shows the new version of the open view when the plugin registers it again', async () => {
     views.register(createPodcastsView(PLUGIN_ID));
     await PluginViewsWrapper.mount(`/plugin/${PLUGIN_ID}/podcasts`);
-    await PluginViewsWrapper.findPage('All podcasts');
+    await PluginViewsWrapper.podcastList.find();
 
     views.register(REDESIGNED_PODCASTS_VIEW);
 
-    expect(
-      await PluginViewsWrapper.findPage('All podcasts, redesigned'),
-    ).toBeVisible();
+    expect(await PluginViewsWrapper.redesignedPodcastList.find()).toBeVisible();
   });
 
   it('shows the dashboard when the plugin unregisters the open view', async () => {
     views.register(createPodcastsView(PLUGIN_ID));
     await PluginViewsWrapper.mount(`/plugin/${PLUGIN_ID}/podcasts`);
-    await PluginViewsWrapper.findPage('All podcasts');
+    await PluginViewsWrapper.podcastList.find();
 
     views.unregister('podcasts');
 

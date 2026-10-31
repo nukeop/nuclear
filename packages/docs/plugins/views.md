@@ -47,7 +47,7 @@ const plugin: NuclearPlugin = {
       icon: 'Podcast',
       routes: [
         { path: '/', component: EpisodeList },
-        { path: '/episode/:episodeId', component: Episode },
+        { path: '/episode/$episodeId', component: Episode },
       ],
     });
   },
@@ -63,7 +63,7 @@ export default plugin;
 
 The view can be seen at `/plugin/<pluginId>/<viewId>`. The path of each route comes after this prefix. In the example, the episode page opens at `/plugin/acme-podcasts/podcasts/episode/42`.
 
-A path segment that starts with `:` is a param. Nuclear gives the value of each param to the component in `params`. At `/episode/42`, `params` is `{ episodeId: '42' }`.
+A path segment that starts with `$` is a param. This is the same syntax as the routes of Nuclear. Nuclear gives the value of each param to the component in `params`. At `/episode/42`, `params` is `{ episodeId: '42' }`.
 
 Nuclear compares the routes in the order of the `routes` array. The first route that matches shows.
 

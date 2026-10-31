@@ -13,18 +13,18 @@ describe('Views registered over MCP', () => {
 
     await PluginViewsWrapper.sidebar.entry('Stats 2026').click();
 
-    expect(await PluginViewsWrapper.findPage('Listening stats')).toBeVisible();
+    expect(await PluginViewsWrapper.statsOverview.find()).toBeVisible();
   });
 
   it('shows the named export on a route that sets export', async () => {
     await dispatch('Views.register', { view: RAW_STATS_VIEW });
-    await PluginViewsWrapper.mount('/dashboard');
-    await PluginViewsWrapper.sidebar.entry('Stats 2026').click();
-    await PluginViewsWrapper.findPage('Listening stats');
+    await PluginViewsWrapper.mount('/plugin/bridge/stats-2026');
+    await PluginViewsWrapper.statsOverview.find();
 
-    await PluginViewsWrapper.link('March').click();
+    await PluginViewsWrapper.statsOverview.month(3).click();
 
-    expect(await PluginViewsWrapper.findPage('Month 3')).toBeVisible();
+    await PluginViewsWrapper.statsMonth.find();
+    expect(PluginViewsWrapper.statsMonth.text).toBe('Month 3');
   });
 
   it('shows a component that the view imports from @nuclearplayer/ui', async () => {
@@ -33,6 +33,7 @@ describe('Views registered over MCP', () => {
 
     await PluginViewsWrapper.sidebar.entry('Toolbox').click();
 
-    expect(await PluginViewsWrapper.findButton('Refresh stats')).toBeVisible();
+    await PluginViewsWrapper.toolboxRefreshButton.find();
+    expect(PluginViewsWrapper.toolboxRefreshButton.text).toBe('Refresh stats');
   });
 });

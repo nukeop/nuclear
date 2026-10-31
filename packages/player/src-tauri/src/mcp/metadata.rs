@@ -1232,7 +1232,7 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
             "type": "RawViewRoute",
             "description": "A page of a view.",
             "fields": {
-                "path": { "type": "string", "description": "Path in the view, for example / or /track/:index. Start a segment with : to make it a parameter." },
+                "path": { "type": "string", "description": "Path in the view, for example / or /track/$index. Start a segment with $ to make it a parameter." },
                 "export": { "type": "string", "optional": true, "description": "Name of the export to show on this route. If export is not set, the default export shows." }
             }
         }),

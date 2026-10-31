@@ -170,7 +170,7 @@ Example: to add a view with two pages, send this input to the `call` tool:
       "source": "export default function Hello() { return <h1 className=\"text-2xl font-bold\">Hello</h1>; }\nexport function Greeting({ params }) { return <p>Hello, {params.name}</p>; }",
       "routes": [
         { "path": "/" },
-        { "path": "/greet/:name", "export": "Greeting" }
+        { "path": "/greet/$name", "export": "Greeting" }
       ]
     }
   }
