@@ -2,708 +2,703 @@
   "common": {
     "app": {
       "name": "Nuclear",
-      "description": "デスクトップ用の音楽ストリーミングアプリ"
+      "description": "Music streaming app for your desktop"
     },
     "actions": {
-      "save": "保存",
-      "cancel": "キャンセル",
-      "delete": "削除",
-      "edit": "編集",
-      "close": "閉じる",
-      "back": "戻る",
-      "next": "次へ",
-      "confirm": "確認",
-      "apply": "適用",
-      "reset": "リセット",
-      "clear": "クリア",
-      "search": "検索",
-      "loading": "読み込み中...",
-      "retry": "再試行",
-      "moreActions": "その他の操作"
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "close": "Close",
+      "back": "Back",
+      "next": "Next",
+      "confirm": "Confirm",
+      "apply": "Apply",
+      "reset": "Reset",
+      "clear": "Clear",
+      "search": "Search",
+      "loading": "Loading...",
+      "retry": "Retry",
+      "moreActions": "More actions"
     },
     "errors": {
-      "network": "ネットワークエラー。接続を確認してください。",
-      "notFound": "見つかりません"
+      "network": "Network error. Please check your connection.",
+      "notFound": "Not found"
     }
   },
   "navigation": {
-    "explore": "エクスプローラー",
-    "dashboard": "ダッシュボード",
-    "collection": "コレクション",
-    "favoriteAlbums": "お気に入りのアルバム",
-    "favoriteTracks": "お気に入りのトラック",
-    "favoriteArtists": "お気に入りのアーティスト",
-    "playlists": "プレイリスト",
-    "history": "履歴",
-    "lyrics": "歌詞",
-    "sources": "ソース"
+    "explore": "Explore",
+    "dashboard": "Dashboard",
+    "collection": "Collection",
+    "favoriteAlbums": "Favorite albums",
+    "favoriteTracks": "Favorite tracks",
+    "favoriteArtists": "Favorite artists",
+    "playlists": "Playlists",
+    "history": "History",
+    "lyrics": "Lyrics",
+    "sources": "Sources"
   },
   "history": {
-    "title": "履歴",
-    "empty": "まだ何も再生されていません",
-    "emptyDescription": "再生したトラックがここに表示されます",
-    "today": "今日",
-    "yesterday": "昨日",
+    "title": "History",
+    "empty": "Nothing played yet",
+    "emptyDescription": "Tracks you play will appear here",
+    "today": "Today",
+    "yesterday": "Yesterday",
     "tabs": {
-      "stats": "統計",
-      "listeningHistory": "再生履歴"
+      "stats": "Stats",
+      "listeningHistory": "Listening history"
     },
     "row": {
-      "favorite": "お気に入りに追加",
-      "unfavorite": "お気に入りから削除",
-      "addToQueue": "キューに追加"
+      "favorite": "Add to favorites",
+      "unfavorite": "Remove from favorites",
+      "addToQueue": "Add to queue"
     },
     "stats": {
-      "busiestHour": "最も再生が多い時間帯",
-      "listeningTime": "再生時間",
-      "hourOfDay": "時間帯別",
-      "dayOfWeek": "曜日別",
-      "calendar": "再生カレンダー",
-      "topArtists": "トップアーティスト",
-      "topAlbums": "トップアルバム",
-      "topTracks": "トップトラック",
-      "empty": "再生データがまだありません",
-      "emptyDescription": "聴いたトラックが統計に表示されます",
-      "legendLess": "少",
-      "legendMore": "多",
+      "busiestHour": "Busiest hour",
+      "listeningTime": "Listening time",
+      "hourOfDay": "Time of day",
+      "dayOfWeek": "Day of week",
+      "calendar": "Listening calendar",
+      "topArtists": "Top artists",
+      "topAlbums": "Top albums",
+      "topTracks": "Top tracks",
+      "empty": "No listening data yet",
+      "emptyDescription": "Tracks you listen to will show up in your stats",
+      "legendLess": "Less",
+      "legendMore": "More",
       "range": {
-        "last7Days": "過去7日間",
-        "last30Days": "過去30日間",
-        "last90Days": "過去90日間",
-        "last12Months": "過去12ヶ月",
-        "allTime": "全期間"
+        "last7Days": "Last 7 days",
+        "last30Days": "Last 30 days",
+        "last90Days": "Last 90 days",
+        "last12Months": "Last 12 months",
+        "allTime": "All time"
       }
     }
   },
   "sources": {
-    "title": "ソース",
-    "streaming": "ストリーミング",
-    "streamingDescription": "ストリーミングソースは音声を提供します。トラックを再生すると、ストリーミングソースが音声ストリームを見つけて配信します。",
-    "metadata": "メタデータ",
-    "metadataDescription": "メタデータソースはアーティスト、アルバム、トラックの情報を提供します。検索結果、アーティストページ、アルバムの詳細はアクティブなメタデータソースから取得されます。",
-    "dashboard": "ダッシュボード",
-    "dashboardDescription": "ダッシュボードソースは、ホーム画面にトップトラック、新着リリース、おすすめなどのパーソナライズされたコンテンツを提供します。",
-    "playlists": "プレイリスト",
-    "playlistsDescription": "プレイリストソースでは、URL から外部サービスのプレイリストをインポートできます。",
-    "discovery": "ディスカバリー",
-    "discoveryDescription": "ディスカバリーソースは、あなたが聴いている音楽に基づいて新しいトラックを推薦します。下部バーのラジカセアイコンで音楽ディスカバリーを有効にできます。",
-    "lyrics": "歌詞",
-    "lyricsDescription": "歌詞ソースは、現在再生中の曲の歌詞を提供します。Nuclearは、すべての歌詞ソースから同時に歌詞を取得し、最適な結果を表示します。「歌詞」ビューでは、別のソースの歌詞を選択することができます。",
-    "lockedReason": "<metadata>{{metadataName}}</metadata> メタデータソースには <streaming>{{streamingName}}</streaming> ストリーミングソースが必要です。",
-    "missingStreamingProvider": "必要なストリーミングプロバイダー \"{{providerId}}\" が利用できません",
-    "noProviders": "プロバイダーがインストールされていません"
+    "title": "Sources",
+    "streaming": "Streaming",
+    "streamingDescription": "Streaming sources provide audio. When you play a track, the streaming source finds and delivers the audio stream.",
+    "metadata": "Metadata",
+    "metadataDescription": "Metadata sources provide information about artists, albums, and tracks. Search results, artist pages, and album details come from the active metadata source.",
+    "dashboard": "Dashboard",
+    "dashboardDescription": "Dashboard sources provide personalized content like top tracks, new releases, and recommendations on the home screen.",
+    "playlists": "Playlists",
+    "playlistsDescription": "Playlist sources let you import playlists from external services by URL.",
+    "discovery": "Discovery",
+    "discoveryDescription": "Discovery sources recommend new tracks based on what you're listening to. Enable music discovery by using the boombox icon in the bottom bar.",
+    "lyrics": "Lyrics",
+    "lyricsDescription": "Lyrics sources provide lyrics for the current track. Nuclear gets lyrics from all lyrics sources at the same time and shows the best result. You can select the lyrics of a different source in the Lyrics view.",
+    "lockedReason": "<metadata>{{metadataName}}</metadata> metadata source requires <streaming>{{streamingName}}</streaming> streaming source.",
+    "missingStreamingProvider": "Required streaming provider \"{{providerId}}\" is not available",
+    "noProviders": "No providers installed"
   },
   "discovery": {
-    "recommendationError": "おすすめの取得に失敗しました"
+    "recommendationError": "Failed to get recommendations"
   },
   "favorites": {
     "albums": {
-      "title": "お気に入りのアルバム",
-      "empty": "お気に入りのアルバムはまだありません",
-      "emptyDescription": "お気に入りに登録したアルバムがここに表示されます"
+      "title": "Favorite albums",
+      "empty": "No favorite albums yet",
+      "emptyDescription": "Albums you mark as favorites will appear here"
     },
     "tracks": {
-      "title": "お気に入りのトラック",
-      "empty": "お気に入りのトラックはまだありません",
-      "emptyDescription": "お気に入りに登録したトラックがここに表示されます"
+      "title": "Favorite tracks",
+      "empty": "No favorite tracks yet",
+      "emptyDescription": "Tracks you mark as favorites will appear here"
     },
     "artists": {
-      "title": "お気に入りのアーティスト",
-      "empty": "お気に入りのアーティストはまだいません",
-      "emptyDescription": "お気に入りに登録したアーティストがここに表示されます"
+      "title": "Favorite artists",
+      "empty": "No favorite artists yet",
+      "emptyDescription": "Artists you mark as favorites will appear here"
     }
   },
   "playlists": {
-    "title": "プレイリスト",
-    "empty": "プレイリストはまだありません",
-    "emptyDescription": "プレイリストを作成するかインポートして始めましょう",
-    "emptyTracks": "このプレイリストにはトラックがありません",
-    "emptyTracksDescription": "検索結果やライブラリからトラックを追加してください",
-    "create": "新規作成",
-    "importJson": "JSON からインポート",
-    "exportJson": "JSON としてエクスポート",
-    "add": "追加",
-    "delete": "プレイリストを削除",
-    "deleteConfirm": "このプレイリストを削除してもよろしいですか？",
-    "play": "再生",
-    "addToQueue": "キューに追加",
-    "saveLocally": "ローカルに保存",
+    "title": "Playlists",
+    "empty": "No playlists yet",
+    "emptyDescription": "Create a playlist or import one to get started",
+    "emptyTracks": "No tracks in this playlist",
+    "emptyTracksDescription": "Add tracks from search results or your library",
+    "create": "Create new",
+    "importJson": "Import from JSON",
+    "exportJson": "Export as JSON",
+    "add": "Add",
+    "delete": "Delete playlist",
+    "deleteConfirm": "Are you sure you want to delete this playlist?",
+    "play": "Play",
+    "addToQueue": "Add to queue",
+    "saveLocally": "Save locally",
     "readOnlyBadge": "{{source}}",
-    "readOnlyTooltip": "このプレイリストは{{source}}のもので読み取り専用です。編集するにはローカルコピーを保存してください。",
-    "trackCount_one": "{{count}} track",
-    "trackCount_other": "{{count}} 曲",
-    "addToPlaylist": "プレイリストに追加",
-    "filterPlaylists": "プレイリストを絞り込む...",
+    "readOnlyTooltip": "This playlist is from {{source}} and is read-only. Save a local copy to edit it.",
+    "addToPlaylist": "Add to playlist",
+    "filterPlaylists": "Filter playlists...",
     "sortBy": {
-      "custom": "カスタム",
-      "name": "名前",
-      "dateAdded": "追加日",
-      "dateModified": "更新日",
-      "trackCount": "トラック数",
-      "duration": "長さ"
+      "custom": "Custom",
+      "name": "Name",
+      "dateAdded": "Date added",
+      "dateModified": "Date modified",
+      "trackCount": "Tracks",
+      "duration": "Length"
     },
-    "filterNoResults": "フィルターに一致するプレイリストがありません",
-    "filterNoResultsDescription": "検索クエリを変更または削除してください",
-    "createNew": "新しいプレイリストを作成",
-    "saveQueueAsPlaylist": "キューをプレイリストとして保存",
-    "name": "名前",
-    "namePlaceholder": "プレイリスト名...",
-    "exportSuccess": "プレイリストをエクスポートしました",
-    "exportError": "プレイリストのエクスポートに失敗しました",
-    "importSuccess": "プレイリストをインポートしました",
-    "importBatchSuccess_one": "{{count}} playlist imported",
-    "importBatchSuccess_other": "{{count}} playlists imported",
-    "importError": "プレイリストのインポートに失敗しました",
-    "importNoPlaylists": "このファイルにプレイリストが見つかりません",
-    "importUrl": "URL からインポート",
-    "importUrlTitle": "URL からプレイリストをインポート",
-    "importUrlPlaceholder": "プレイリストの URL を貼り付け...",
-    "importUrlNoProvider": "この URL を処理できるプラグインがありません。このサービスをサポートするプラグインをインストールしてください。",
-    "importUrlImporting": "インポート中...",
-    "descriptionPlaceholder": "説明を追加...",
+    "filterNoResults": "No playlists match your filter",
+    "filterNoResultsDescription": "Change or remove the search query",
+    "createNew": "Create new playlist",
+    "saveQueueAsPlaylist": "Save queue as playlist",
+    "name": "Name",
+    "namePlaceholder": "Playlist name...",
+    "exportSuccess": "Playlist exported",
+    "exportError": "Failed to export playlist",
+    "importSuccess": "Playlist imported",
+    "importError": "Failed to import playlist",
+    "importNoPlaylists": "No playlists found in this file",
+    "importUrl": "Import from URL",
+    "importUrlTitle": "Import playlist from URL",
+    "importUrlPlaceholder": "Paste a playlist URL...",
+    "importUrlNoProvider": "No plugin can handle this URL. Install a plugin that supports this service.",
+    "importUrlImporting": "Importing...",
+    "descriptionPlaceholder": "Add a description...",
     "folders": {
-      "create": "新規フォルダー",
-      "createTitle": "新規フォルダーの作成",
-      "namePlaceholder": "フォルダー名…",
-      "rename": "フォルダー名の変更",
-      "delete": "フォルダーを削除",
-      "deleteConfirm": "このフォルダー内のプレイリストは、このフォルダーから移動されます。削除されることはありません。",
-      "playlistCount_one": "{{count}} playlist",
-      "playlistCount_other": "{{count}} 個のプレイリスト",
-      "moveTo": "フォルダーへ移動",
-      "removeFrom": "フォルダーから削除",
-      "empty": "このフォルダーは空です",
-      "emptyDescription": "メニューからプレイリストをここに移動するか、新しいプレイリストを作成してください"
-    }
+      "create": "New folder",
+      "createTitle": "Create new folder",
+      "namePlaceholder": "Folder name...",
+      "rename": "Rename folder",
+      "delete": "Delete folder",
+      "deleteConfirm": "The playlists in this folder will be moved out of it. They will not be deleted.",
+      "moveTo": "Move to folder",
+      "removeFrom": "Remove from folder",
+      "empty": "This folder is empty",
+      "emptyDescription": "Move playlists here from their menu, or create a new one",
+      "playlistCount_other": "{{count}} playlists"
+    },
+    "trackCount_other": "{{count}} tracks",
+    "importBatchSuccess_other": "{{count}} playlists imported"
   },
   "search": {
-    "title": "検索",
-    "query": "クエリ",
-    "placeholder": "検索",
-    "noResults": "結果が見つかりません",
-    "searching": "検索中...",
-    "failedToLoad": "結果の読み込みに失敗しました。",
-    "clearRecentSearches": "最近の検索をクリア",
-    "recentSearches": "最近の検索",
+    "title": "Search",
+    "query": "Query",
+    "placeholder": "Search",
+    "noResults": "No results found",
+    "searching": "Searching...",
+    "failedToLoad": "Failed to load results.",
+    "clearRecentSearches": "Clear recent searches",
+    "recentSearches": "Recent searches",
     "results": {
-      "tracks": "トラック",
-      "albums": "アルバム",
-      "artists": "アーティスト",
-      "playlists": "プレイリスト"
+      "tracks": "Tracks",
+      "albums": "Albums",
+      "artists": "Artists",
+      "playlists": "Playlists"
     },
     "filters": {
-      "all": "すべて",
-      "tracks": "トラック",
-      "albums": "アルバム",
-      "artists": "アーティスト",
-      "playlists": "プレイリスト"
+      "all": "All",
+      "tracks": "Tracks",
+      "albums": "Albums",
+      "artists": "Artists",
+      "playlists": "Playlists"
     },
-    "empty-state": "メタデータプラグインがインストールされていません",
-    "empty-state-description": "音楽を検索するにはメタデータプラグインをインストールしてください。",
-    "empty-state-action": "プラグインを探す"
+    "empty-state": "No metadata plugin installed",
+    "empty-state-description": "Install a metadata plugin to search for music.",
+    "empty-state-action": "Browse plugins"
   },
   "artist": {
-    "title": "アーティスト",
-    "albums": "アルバム",
-    "tracks": "トラック",
-    "similar": "似ているアーティスト",
-    "popularTracks": "人気のトラック",
-    "biography": "バイオグラフィー",
-    "discography": "ディスコグラフィー",
-    "topTracks": "トップトラック",
-    "onTour": "ツアー中",
-    "notOnTour": "ツアーなし",
-    "followers": "フォロワー",
-    "followings": "フォロー中",
-    "playlists": "プレイリスト",
+    "title": "Artist",
+    "albums": "Albums",
+    "tracks": "Tracks",
+    "similar": "Similar artists",
+    "popularTracks": "Popular tracks",
+    "biography": "Biography",
+    "discography": "Discography",
+    "topTracks": "Top tracks",
+    "onTour": "On Tour",
+    "notOnTour": "Not on Tour",
+    "followers": "Followers",
+    "followings": "Following",
+    "playlists": "Playlists",
     "errors": {
-      "failedToLoadDetails": "アーティストの詳細の読み込みに失敗しました。",
-      "failedToLoadAlbums": "アルバムの読み込みに失敗しました。",
-      "failedToLoadPopularTracks": "人気トラックの読み込みに失敗しました。",
-      "failedToLoadSimilarArtists": "似ているアーティストの読み込みに失敗しました。",
-      "failedToLoadSocialStats": "アーティスト統計の読み込みに失敗しました。",
-      "failedToLoadPlaylists": "プレイリストの読み込みに失敗しました。"
+      "failedToLoadDetails": "Failed to load artist details.",
+      "failedToLoadAlbums": "Failed to load albums.",
+      "failedToLoadPopularTracks": "Failed to load popular tracks.",
+      "failedToLoadSimilarArtists": "Failed to load similar artists.",
+      "failedToLoadSocialStats": "Failed to load artist stats.",
+      "failedToLoadPlaylists": "Failed to load playlists."
     }
   },
   "album": {
-    "title": "アルバム",
-    "genre": "ジャンル",
-    "year": "年",
-    "tracks": "トラック",
+    "title": "Album",
+    "genre": "Genre",
+    "year": "Year",
+    "tracks": "Tracks",
     "errors": {
-      "failedToLoadDetails": "アルバムの詳細の読み込みに失敗しました。",
-      "failedToLoadTracks": "トラックの読み込みに失敗しました。"
+      "failedToLoadDetails": "Failed to load album details.",
+      "failedToLoadTracks": "Failed to load tracks."
     }
   },
   "themes": {
-    "title": "テーマ",
-    "basic": "基本テーマ",
-    "advanced": "高度なテーマ",
-    "marketplace": "テーマストア",
-    "default": "デフォルト",
-    "selectPlaceholder": "テーマを選択",
-    "description": "アプリデータのテーマディレクトリにあるテーマ",
+    "title": "Themes",
+    "basic": "Basic themes",
+    "advanced": "Advanced themes",
+    "marketplace": "Store themes",
+    "default": "Default",
+    "selectPlaceholder": "Select a theme",
+    "description": "Themes found in your app data themes directory",
     "tabs": {
-      "myThemes": "マイテーマ",
-      "store": "ストア"
+      "myThemes": "My themes",
+      "store": "Store"
     },
     "store": {
-      "searchPlaceholder": "テーマを検索...",
-      "install": "インストール",
-      "installing": "インストール中",
-      "installed": "インストール済み",
-      "by": "作者:",
-      "installError": "{{name}} のインストールに失敗しました",
-      "loadError": "テーマストアの読み込みに失敗しました。",
-      "apply": "適用",
-      "active": "適用中",
-      "uninstall": "アンインストール",
-      "uninstallError": "{{name}} のアンインストールに失敗しました"
+      "searchPlaceholder": "Search themes...",
+      "install": "Install",
+      "installing": "Installing",
+      "installed": "Installed",
+      "by": "by",
+      "installError": "Failed to install {{name}}",
+      "loadError": "Failed to load the theme store.",
+      "apply": "Apply",
+      "active": "Active",
+      "uninstall": "Uninstall",
+      "uninstallError": "Failed to uninstall {{name}}"
     }
   },
   "dashboard": {
-    "title": "ダッシュボード",
-    "empty-state": "Nuclear へようこそ",
-    "empty-state-description": "プラグインをインストールすると、トップトラック、新着リリース、おすすめがここに表示されます。",
-    "empty-state-action": "プラグインを探す",
-    "top-tracks": "トップトラック",
-    "top-artists": "トップアーティスト",
-    "top-albums": "トップアルバム",
-    "editorial-playlists": "トッププレイリスト",
-    "new-releases": "新着リリース",
-    "filter-artists": "アーティストを絞り込む...",
-    "filter-albums": "アルバムを絞り込む...",
-    "filter-playlists": "プレイリストを絞り込む...",
-    "filter-releases": "リリースを絞り込む...",
-    "nothing-found": "何も見つかりません"
+    "title": "Dashboard",
+    "empty-state": "Welcome to Nuclear",
+    "empty-state-description": "Install a plugin to see top tracks, new releases, and recommendations here.",
+    "empty-state-action": "Browse plugins",
+    "top-tracks": "Top Tracks",
+    "top-artists": "Top Artists",
+    "top-albums": "Top Albums",
+    "editorial-playlists": "Top Playlists",
+    "new-releases": "New Releases",
+    "filter-artists": "Filter artists...",
+    "filter-albums": "Filter albums...",
+    "filter-playlists": "Filter playlists...",
+    "filter-releases": "Filter releases...",
+    "nothing-found": "Nothing found"
   },
   "plugins": {
-    "title": "プラグイン",
-    "addPlugin": "プラグインを追加",
+    "title": "Plugins",
+    "addPlugin": "Add Plugin",
     "tabs": {
-      "installed": "インストール済み",
-      "store": "ストア"
+      "installed": "Installed",
+      "store": "Store"
     },
     "installed": {
-      "empty-state": "プラグインがインストールされていません",
-      "empty-state-description": "プラグインストアでストリーミング、メタデータ、その他のプラグインを探しましょう。",
-      "empty-state-action": "ストアへ",
-      "update-available": "更新あり",
-      "by": "作者 :"
+      "empty-state": "No plugins installed",
+      "empty-state-description": "Browse the plugin store to find streaming, metadata, and other plugins.",
+      "empty-state-action": "Go to store",
+      "update-available": "Update available",
+      "by": "by"
     },
     "store": {
-      "searchPlaceholder": "プラグインを検索...",
-      "install": "インストール",
-      "installing": "インストール中",
-      "installed": "インストール済み",
-      "by": "作者:",
+      "searchPlaceholder": "Search plugins...",
+      "install": "Install",
+      "installing": "Installing",
+      "installed": "Installed",
+      "by": "by",
       "categories": {
-        "all": "すべて",
-        "streaming": "ストリーミング",
-        "metadata": "メタデータ",
-        "lyrics": "歌詞",
-        "scrobbling": "スクロブリング",
-        "dashboard": "ダッシュボード",
-        "playlists": "プレイリスト",
-        "discovery": "ディスカバリー",
-        "other": "その他"
+        "all": "All",
+        "streaming": "Streaming",
+        "metadata": "Metadata",
+        "lyrics": "Lyrics",
+        "scrobbling": "Scrobbling",
+        "dashboard": "Dashboard",
+        "playlists": "Playlists",
+        "discovery": "Discovery",
+        "other": "Other"
       },
       "error": {
-        "title": "プラグインの読み込みに失敗しました",
-        "description": "プラグインレジストリを取得できませんでした。インターネット接続を確認してください。",
-        "retry": "再試行"
+        "title": "Failed to load plugins",
+        "description": "Could not fetch the plugin registry. Please check your internet connection.",
+        "retry": "Retry"
       },
       "noResults": {
-        "title": "プラグインが見つかりません",
-        "filtered": "検索条件やフィルターを調整してください。",
-        "empty": "利用可能なプラグインはまだありません。"
+        "title": "No plugins found",
+        "filtered": "Try adjusting your search or filters.",
+        "empty": "No plugins available yet."
       },
       "installError": {
-        "title": "{{name}} のインストールに失敗しました",
-        "unverifiedRelease": "プラグインレジストリには、このプラグインの検証済みリリースは存在しません。"
+        "title": "Failed to install {{name}}",
+        "unverifiedRelease": "The plugin registry has no verified release for this plugin."
       }
     }
   },
   "updater": {
-    "updateAvailable": "更新があります",
-    "clickToUpdate": "クリックして更新",
-    "downloading": "ダウンロード中... {{progress}}%",
-    "clickToRestart": "クリックして再起動"
+    "updateAvailable": "Update available",
+    "clickToUpdate": "Click to update",
+    "downloading": "Downloading... {{progress}}%",
+    "clickToRestart": "Click to restart"
   },
   "flatpak": {
-    "sandboxWarning": "Nuclear は Flatpak サンドボックス内で実行されています。一部の機能が正常に動作しない可能性があります。問題が発生した場合は、.deb または AppImage を試してください。",
-    "dismiss": "了解"
+    "sandboxWarning": "You're running Nuclear in a Flatpak sandbox. Some features may not work correctly. If you experience issues, try the .deb or AppImage instead.",
+    "dismiss": "Got it"
   },
   "preferences": {
-    "title": "環境設定",
+    "title": "Preferences",
     "navigation": {
-      "general": "設定",
+      "general": "Settings",
       "app": "App"
     },
     "general": {
-      "title": "全般",
+      "title": "General",
       "language": {
-        "title": "言語",
-        "description": "優先する言語を選択してください"
+        "title": "Language",
+        "description": "Select your preferred language"
       }
     },
     "plugins": {
-      "title": "プラグイン",
+      "title": "Plugins",
       "auto-update": {
-        "title": "プラグインを自動更新",
-        "description": "起動時にストアプラグインの新しいバージョンを自動的にダウンロードしてインストールします"
+        "title": "Auto-update plugins",
+        "description": "Automatically download and install new versions of store plugins on startup"
       }
     },
     "themes": {
-      "title": "テーマ"
+      "title": "Themes"
     },
     "logs": {
-      "title": "ログ"
+      "title": "Logs"
     },
     "whats-new": {
-      "title": "新着情報"
+      "title": "What's New"
     },
     "shortcuts": {
-      "title": "キーボードショートカット",
+      "title": "Key Shortcuts",
       "sections": {
-        "playback": "再生",
-        "general": "全般"
+        "playback": "Playback",
+        "general": "General"
       },
       "commands": {
-        "playback.toggle": "再生 / 一時停止",
-        "playback.next": "次のトラック",
-        "playback.previous": "前のトラック",
-        "playback.seekForward": "早送り",
-        "playback.seekBackward": "巻き戻し",
-        "playback.volumeUp": "音量を上げる",
-        "playback.volumeDown": "音量を下げる",
-        "playback.mute": "ミュート / ミュート解除",
-        "general.toggleSettings": "設定を開く"
+        "playback.toggle": "Play / Pause",
+        "playback.next": "Next track",
+        "playback.previous": "Previous track",
+        "playback.seekForward": "Seek forward",
+        "playback.seekBackward": "Seek backward",
+        "playback.volumeUp": "Volume up",
+        "playback.volumeDown": "Volume down",
+        "playback.mute": "Mute / Unmute",
+        "general.toggleSettings": "Open settings"
       },
-      "recording": "キーの組み合わせを押してください...",
-      "resetAll": "すべてデフォルトに戻す",
-      "reset": "リセット",
-      "conflict": "このショートカットは既に「{{command}}」で使用されています"
+      "recording": "Press a key combination...",
+      "resetAll": "Reset all to defaults",
+      "reset": "Reset",
+      "conflict": "This shortcut is already used by \"{{command}}\""
     },
     "appearance": {
-      "title": "外観",
+      "title": "Appearance",
       "framelessWindow": {
-        "title": "フレームレスウィンドウ",
-        "description": "ネイティブのタイトルバーを非表示にします。上部バーをドラッグしてウィンドウを移動できます。"
+        "title": "Frameless window",
+        "description": "Hide the native title bar. Drag the top bar to move the window."
       },
       "customTitleBar": {
-        "title": "カスタムタイトルバー",
-        "description": "ネイティブのタイトルバーをアプリに合わせたスタイルのものに置き換えます。"
+        "title": "Custom title bar",
+        "description": "Replace the native title bar with a styled one that matches the app."
       },
       "titleBarStyle": {
-        "title": "タイトルバーのスタイル",
-        "description": "カスタムタイトルバーのコントロールの見た目のスタイルを選択してください。"
+        "title": "Title bar style",
+        "description": "Choose the visual style for the custom title bar controls."
       }
     },
     "lyrics": {
       "textSize": {
-        "title": "歌詞のテキストサイズ",
-        "description": "歌詞表示画面の文字サイズ。"
+        "title": "Lyrics text size",
+        "description": "The size of the text in the lyrics view."
       },
       "autoScroll": {
-        "title": "歌詞の自動スクロール",
-        "description": "曲に合わせて歌詞を同期スクロールします。"
+        "title": "Lyrics auto-scroll",
+        "description": "Scroll synced lyrics along with the song."
       }
     },
     "playback": {
-      "title": "再生",
+      "title": "Playback",
       "skipSeconds": {
-        "title": "スキップ時間",
-        "description": "早送り/巻き戻しする秒数"
+        "title": "Skip duration",
+        "description": "Number of seconds to skip forward/backward"
       },
       "crossfadeMs": {
-        "title": "クロスフェード",
-        "description": "トラック間のクロスフェード時間 (ミリ秒)"
+        "title": "Crossfade",
+        "description": "Crossfade duration between tracks in milliseconds"
       },
       "streamExpiryMs": {
-        "title": "ストリーム有効期限",
-        "description": "解決済みストリーム URL が期限切れと見なされ、再解決が必要になるまでの時間"
+        "title": "Stream expiry time",
+        "description": "How long before a resolved stream URL is considered expired and needs re-resolution"
       },
       "streamResolutionRetries": {
-        "title": "ストリーム解決の再試行回数",
-        "description": "次の候補に移る前にストリームURLの解決を再試行する回数"
+        "title": "Stream resolution retries",
+        "description": "Number of times to retry resolving a stream URL before moving to the next candidate"
       },
       "discoveryVariety": {
-        "title": "ディスカバリーの多様性",
-        "description": "おすすめが現在の再生傾向からどれだけ逸脱するか。低いほど近くなります。",
-        "startLabel": "控えめ",
-        "endLabel": "大胆"
+        "title": "Discovery variety",
+        "description": "How far recommendations deviate from your current listening. Lower is closer.",
+        "startLabel": "Less crazy",
+        "endLabel": "More crazy"
       },
       "streamVerification": {
-        "title": "ストリームの検証",
-        "description": "Nuclearは、検証済みのストリームを再生し、検証バーを表示します。この設定がオフの場合、Nuclearはすべての検証を無視します。"
+        "title": "Stream verification",
+        "description": "Nuclear plays the streams that you verified and shows the verification bar. When this setting is off, Nuclear ignores all verifications."
       },
       "streamVerificationService": {
-        "title": "オンライン検証",
-        "description": "Nuclearは、あなたの検証データを検証サービスに送信し、他のユーザーが検証したストリームを取得します。ストリームの検証機能が無効になっている場合、この設定は適用されません。"
+        "title": "Online verification",
+        "description": "Nuclear sends your verifications to the verification service and gets the streams that other users verified. This setting has no effect when stream verification is off."
       }
     },
     "history": {
-      "title": "履歴",
+      "title": "History",
       "enabled": {
-        "title": "再生履歴を記録",
-        "description": "再生した音楽のローカル記録を保持します。"
+        "title": "Record listening history",
+        "description": "Keep a local record of the music you play."
       }
     },
     "layout": {
-      "title": "レイアウト"
+      "title": "Layout"
     },
     "updates": {
-      "title": "アップデート",
+      "title": "Updates",
       "checkForUpdates": {
-        "title": "アップデートを確認",
-        "description": "起動時に新しいバージョンを自動的に確認します"
+        "title": "Check for updates",
+        "description": "Automatically check for new versions on startup"
       },
       "autoInstall": {
-        "title": "アップデートを自動インストール",
-        "description": "利用可能な場合、アップデートを自動的にダウンロードしてインストールします"
+        "title": "Auto-install updates",
+        "description": "Download and install updates automatically when available"
       }
     },
     "integrations": {
-      "title": "連携",
+      "title": "Integrations",
       "jam": {
         "enabled": {
           "title": "Nuclear Jam",
-          "description": "ネットワーク上の他のデバイスから Nuclear を操作できるローカル Web サーバーを起動します。"
+          "description": "Start a local web server that lets you control Nuclear from other devices on your network."
         },
         "remoteUrl": {
-          "title": "リモートURL",
-          "description": "別のデバイスでこの URL を開くと Nuclear を操作できます。"
+          "title": "Remote URL",
+          "description": "Open this URL on another device to control Nuclear."
         },
         "apiUrl": {
           "title": "API URL",
-          "description": "プログラムからアクセスするための HTTP API ベース URL。"
+          "description": "HTTP API base URL for programmatic access."
         }
       },
       "mcp": {
         "enabled": {
-          "title": "MCP サーバーを有効化",
-          "description": "AI ツールが Nuclear を操作できるローカル MCP サーバーを起動します。"
+          "title": "Enable MCP Server",
+          "description": "Start a local MCP server that allows AI tools to control Nuclear."
         },
         "serverUrl": {
-          "title": "MCP サーバー URL",
-          "description": "AI ツールをこの URL に向けて Nuclear に接続します。"
+          "title": "MCP Server URL",
+          "description": "Point your AI tool to this URL to connect to Nuclear."
         }
       },
       "mpd": {
         "enabled": {
-          "title": "MPD サーバーを有効化",
-          "description": "MPD クライアントが Nuclear を操作できるローカル MPD 互換サーバーを起動します。"
+          "title": "Enable MPD Server",
+          "description": "Start a local MPD-compatible server so MPD clients can control Nuclear."
         },
         "serverUrl": {
-          "title": "MPD サーバー URL",
-          "description": "MPD クライアントをこのアドレスに向けて Nuclear に接続します。"
+          "title": "MPD Server URL",
+          "description": "Point your MPD client to this address to connect to Nuclear."
         }
       },
       "discord": {
         "enabled": {
           "title": "Discord Rich Presence",
-          "description": "Discord プロフィールに再生中の音楽を表示します。"
+          "description": "Show what you're listening to on your Discord profile."
         }
       }
     }
   },
   "queue": {
-    "title": "キュー",
+    "title": "Queue",
     "empty": {
-      "title": "キューは空です",
-      "subtitle": "トラックを追加して再生を開始しましょう"
+      "title": "Queue is empty",
+      "subtitle": "Add tracks to start playing"
     },
     "actions": {
-      "remove": "キューから削除",
-      "clear": "キューをクリア",
-      "saveAsPlaylist": "キューをプレイリストとして保存"
+      "remove": "Remove from queue",
+      "clear": "Clear queue",
+      "saveAsPlaylist": "Save queue as playlist"
     },
     "errors": {
-      "playback": "再生エラー"
+      "playback": "Playback error"
     },
     "candidates": {
-      "empty": "ストリーム候補がありません",
-      "failed": "失敗"
+      "empty": "No stream candidates",
+      "failed": "failed"
     },
     "streamVerification": {
-      "unverified": "未検証",
-      "weaklyVerified": "検証が不十分",
-      "verified": "検証済み",
-      "verifiedByUser": "本人による検証済み",
-      "verify": "検証",
-      "unverify": "検証解除",
-      "failed": "ストリームの検証に失敗しました",
-      "notShared": "ストリームはローカルで検証されましたが、Nuclear は検証サービスに接続できませんでした。",
-      "help": "ストリーム検証の仕組み",
-      "explanation": "Nuclear は、時に楽曲の誤ったバージョンを再生することがあります。これを修正するには、キュー内の項目を右クリックして正しいストリームを選択し、「検証」をクリックしてください。Nuclear は検証結果をコンピュータに保存し、そのトラックについては常にそのストリームを再生するようになります。\n\n「オンライン検証」が有効になっている場合、検証結果は他のユーザーとも共有され、彼らもそのストリームを優先的に利用できるようになります。未検証のトラックについては、Nuclear は検証サービスに対して、最も多くの票を集めたストリームを問い合わせます。その際、アーティスト名、曲名、およびランダムな ID が送信されます。",
-      "learnMore": "詳細はこちら"
+      "unverified": "Unverified",
+      "weaklyVerified": "Weakly verified",
+      "verified": "Verified",
+      "verifiedByUser": "Verified by you",
+      "verify": "Verify",
+      "unverify": "Unverify",
+      "failed": "Failed to verify stream",
+      "notShared": "Stream was verified locally, but Nuclear couldn't reach the verification service.",
+      "help": "How stream verification works",
+      "explanation": "Nuclear may sometimes play the wrong version of a song. To fix it, right-click the queue item and pick the right stream, then click Verify. Nuclear saves your verification on your computer and always plays that stream for the track.\n\nIf Online verification is on, Nuclear also shares your verification with other users, so they get that stream first. For each track you didn't verify, Nuclear asks the verification service for the stream with the most votes. It sends the artist, the title, and a random ID.",
+      "learnMore": "Learn more"
     }
   },
   "track": {
     "actions": {
-      "playNow": "今すぐ再生",
-      "playNext": "次に再生",
-      "addToQueue": "キューに追加",
-      "addToFavorites": "お気に入りに追加",
-      "removeFromFavorites": "お気に入りから削除"
+      "playNow": "Play now",
+      "playNext": "Play next",
+      "addToQueue": "Add to queue",
+      "addToFavorites": "Add to favorites",
+      "removeFromFavorites": "Remove from favorites"
     }
   },
   "trackTable": {
     "headers": {
-      "artist": "アーティスト",
-      "title": "タイトル",
-      "album": "アルバム",
-      "duration": "長さ"
+      "artist": "Artist",
+      "title": "Title",
+      "album": "Album",
+      "duration": "Duration"
     },
-    "favorite": "お気に入りに追加",
-    "unfavorite": "お気に入りから削除",
-    "playAll": "すべて再生",
-    "addAllToQueue": "すべてキューに追加",
-    "addToQueue": "キューに追加",
-    "trackOptions": "トラックオプション",
-    "remove": "リストから削除",
-    "filterPlaceholder": "トラックを絞り込む"
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites",
+    "playAll": "Play all",
+    "addAllToQueue": "Add all to queue",
+    "addToQueue": "Add to queue",
+    "trackOptions": "Track options",
+    "remove": "Remove from list",
+    "filterPlaceholder": "Filter tracks"
   },
   "pagination": {
-    "navigation": "ページネーション",
-    "previous": "前のページ",
-    "next": "次のページ",
-    "page": "ページ {{pageNumber}}"
+    "navigation": "Pagination",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {{pageNumber}}"
   },
   "streaming": {
     "ytdlp": {
       "install": {
-        "progress": "yt-dlp のダウンロード中… {{percent}}%",
-        "progressUnknown": "yt-dlp のダウンロード中…",
-        "finished": "yt-dlp ダウンロード済み",
-        "failed": "yt-dlp をダウンロードできません"
+        "progress": "Downloading yt-dlp… {{percent}}%",
+        "progressUnknown": "Downloading yt-dlp…",
+        "finished": "yt-dlp downloaded",
+        "failed": "Couldn't download yt-dlp"
       },
       "update": {
-        "progress": "yt-dlp の更新中… {{percent}}%",
-        "progressUnknown": "yt-dlp の更新中…",
-        "finished": "yt-dlp 更新済み",
-        "failed": "yt-dlp を更新できません"
+        "progress": "Updating yt-dlp… {{percent}}%",
+        "progressUnknown": "Updating yt-dlp…",
+        "finished": "yt-dlp updated",
+        "failed": "Couldn't update yt-dlp"
       }
     },
     "errors": {
-      "noCandidatesFound": "ストリーム候補が見つかりませんでした",
-      "allCandidatesFailed": "すべてのストリーム候補が失敗しました",
-      "noProviderAvailable": "利用可能なストリーミングプロバイダーがありません。音楽を再生するにはストリーミングプラグインをインストールしてください。",
-      "streamRecoveryFailed": "ストリームが利用できなくなり、復元できませんでした",
+      "noCandidatesFound": "Failed to find stream candidates",
+      "allCandidatesFailed": "All stream candidates failed",
+      "noProviderAvailable": "No streaming provider is available. Install a streaming plugin to play music.",
+      "streamRecoveryFailed": "The stream became unavailable and could not be restored",
       "hifi": {
-        "loadFailed": "音声ストリームを読み込めませんでした : {{details}}",
-        "unsupportedFormat": "音声ストリームがサポートされていない形式です。このトラックには別のソースを試してください。",
-        "mseUnavailable": "このシステムには MediaSource Extensions がないため、ストリーミングを利用できません。システムの Web エンジンを更新すると解決する場合があります。",
-        "appendRejected": "音声エンジンがストリームデータを拒否しました。コーデックがサポートされていない可能性があります。このトラックには別のソースを試してください。"
+        "loadFailed": "Could not load the audio stream: {{details}}",
+        "unsupportedFormat": "The audio stream is not in a supported format. Try a different source for this track.",
+        "mseUnavailable": "Streaming is not available because this system lacks MediaSource Extensions. Updating your system web engine may fix this.",
+        "appendRejected": "The audio engine rejected the stream data. The codec may be unsupported. Try a different source for this track."
       }
     }
   },
   "playerBar": {
-    "noTrackPlaying": "再生中のトラックはありません",
-    "shuffleOn": "シャッフル : オン",
-    "shuffleOff": "シャッフル : オフ",
-    "repeatOff": "リピート : オフ",
-    "repeatAll": "リピート : すべて",
-    "repeatOne": "リピート : 1曲",
-    "discoveryOn": "ディスカバリー : オン",
-    "discoveryOff": "ディスカバリー : オフ"
+    "noTrackPlaying": "No track playing",
+    "shuffleOn": "Shuffle: on",
+    "shuffleOff": "Shuffle: off",
+    "repeatOff": "Repeat: off",
+    "repeatAll": "Repeat: all",
+    "repeatOne": "Repeat: one",
+    "discoveryOn": "Discovery: on",
+    "discoveryOff": "Discovery: off"
   },
   "lyrics": {
-    "nothingPlaying": "何も再生されていません",
-    "nothingPlayingDescription": "曲を再生すると、ここに歌詞が表示されます。",
-    "noPlugins": "歌詞プラグインがインストールされていません",
-    "noPluginsDescription": "歌詞を表示するには、歌詞プラグインをインストールしてください。",
-    "browsePlugins": "歌詞プラグインを参照",
-    "noLyrics": "このトラックの歌詞はありません",
-    "noLyricsDescription": "{{providers, list}} は結果を返しませんでした。",
-    "noLyricsFromAnyProvider": "歌詞プロバイダーから結果が返されませんでした。",
-    "loadError": "歌詞を読み込めませんでした",
-    "loadErrorDescription": "Nuclear への接続を確認し、再度試してください。",
-    "providerError": "歌詞プロバイダーが歌詞の読み込みに失敗しました",
-    "instrumental": "インストルメンタル",
-    "instrumentalDescription": "このトラックには歌詞がありません。",
-    "currentLine": "現在の行",
-    "showEarlier": "歌詞を早く表示",
-    "showLater": "歌詞を遅く表示",
-    "smaller": "歌詞を小さく",
-    "larger": "歌詞を大きく",
-    "autoScroll": "自動スクロール",
+    "nothingPlaying": "Nothing is playing",
+    "nothingPlayingDescription": "Play a track to see its lyrics here.",
+    "noPlugins": "No lyrics plugins installed",
+    "noPluginsDescription": "Install a lyrics plugin to see lyrics for your music.",
+    "browsePlugins": "Browse lyrics plugins",
+    "noLyrics": "No lyrics for this track",
+    "noLyricsDescription": "{{providers, list}} returned no results.",
+    "noLyricsFromAnyProvider": "No lyrics provider returned results.",
+    "loadError": "Could not load lyrics",
+    "loadErrorDescription": "Check the connection to Nuclear and try again.",
+    "providerError": "A lyrics provider failed to load lyrics",
+    "instrumental": "Instrumental",
+    "instrumentalDescription": "This track has no lyrics.",
+    "currentLine": "Current line",
+    "showEarlier": "Show lyrics earlier",
+    "showLater": "Show lyrics later",
+    "smaller": "Smaller lyrics",
+    "larger": "Larger lyrics",
+    "autoScroll": "Auto-scroll",
     "types": {
-      "wordSynced": "単語同期",
-      "lineSynced": "行同期",
-      "plain": "プレーン"
+      "wordSynced": "Word synced",
+      "lineSynced": "Line synced",
+      "plain": "Plain"
     },
-    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} 秒"
+    "offsetValue": "{{offset, number(minimumFractionDigits: 1; maximumFractionDigits: 1; signDisplay: exceptZero)}} s"
   },
   "logs": {
-    "title": "ログ",
-    "searchPlaceholder": "ログを検索...",
-    "searchAriaLabel": "ログを検索",
-    "levelLabel": "レベル :",
-    "scopeLabel": "スコープ :",
-    "clearButton": "クリア",
-    "exportButton": "エクスポート",
-    "openLogFolderButton": "ログフォルダーを開く",
-    "noLogsMessage": "表示するログがありません",
-    "invalidRegexMessage": "無効な正規表現パターンです",
-    "entryCount_one": "{{count}} entry",
-    "entryCount_other": "{{count}} 件",
-    "exportSuccess": "ログをエクスポートしました"
+    "title": "Logs",
+    "searchPlaceholder": "Search logs...",
+    "searchAriaLabel": "Search logs",
+    "levelLabel": "Level:",
+    "scopeLabel": "Scope:",
+    "clearButton": "Clear",
+    "exportButton": "Export",
+    "openLogFolderButton": "Open Log Folder",
+    "noLogsMessage": "No logs to display",
+    "invalidRegexMessage": "Invalid regex pattern",
+    "exportSuccess": "Logs exported",
+    "entryCount_other": "{{count}} entries"
   },
   "remote": {
     "connecting": {
-      "title": "Nuclear に接続中...",
-      "subtitle": "Nuclear が起動しており、Nuclear Jam が有効になっていることを確認してください"
+      "title": "Connecting to Nuclear...",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled"
     },
     "error": {
-      "title": "Nuclear に接続できませんでした",
-      "subtitle": "Nuclear が起動しており、設定で Nuclear Jam が有効になっていることを確認してください"
+      "title": "Could not connect to Nuclear",
+      "subtitle": "Make sure Nuclear is running and Nuclear Jam is enabled in Settings"
     },
     "connection": {
-      "connecting": "接続中",
-      "connected": "接続済み",
-      "reconnecting": "再接続中",
-      "failed": "切断されました"
+      "connecting": "Connecting",
+      "connected": "Connected",
+      "reconnecting": "Reconnecting",
+      "failed": "Disconnected"
     },
     "lyrics": {
-      "open": "歌詞を表示",
-      "back": "戻る"
+      "open": "Show lyrics",
+      "back": "Back"
     },
     "queue": {
-      "upNext": "次の再生",
-      "emptyTitle": "キューは空です",
-      "emptySubtitle": "Nuclear でトラックを追加するとここに表示されます"
+      "upNext": "Up next",
+      "emptyTitle": "Queue is empty",
+      "emptySubtitle": "Add tracks in Nuclear to see them here"
     },
     "search": {
-      "placeholder": "音楽を検索",
-      "emptyTitle": "結果なし",
-      "emptyDescription": "検索条件に一致するものが見つかりませんでした",
-      "errorTitle": "検索に失敗しました",
-      "errorDescription": "Nuclear への接続を確認して再試行してください"
+      "placeholder": "Search for music",
+      "emptyTitle": "No results",
+      "emptyDescription": "Nothing found for your search terms",
+      "errorTitle": "Search failed",
+      "errorDescription": "Check the connection to Nuclear and try again"
     },
     "qrCode": {
-      "tooltip": "Nuclear Jam リモートコントロール",
-      "instructions": "QR コードをスキャンするか、以下のアドレスをコピーして Nuclear Jam に接続してください"
+      "tooltip": "Nuclear Jam remote control",
+      "instructions": "Scan the QR code or copy the address below to connect to Nuclear Jam"
     }
   },
   "titleBar": {
     "title": "Nuclear Music Player",
-    "minimize": "最小化",
-    "maximize": "最大化",
-    "close": "閉じる"
+    "minimize": "Minimize",
+    "maximize": "Maximize",
+    "close": "Close"
   },
   "changelog": {
-    "title": "新着情報",
-    "seeMore_one": "See more ({{count}} older)",
-    "seeMore_other": "See more ({{count}} older)",
+    "title": "What's New",
     "types": {
-      "feature": "新機能",
-      "fix": "修正",
-      "improvement": "改善",
-      "chore": "雑務",
-      "plugin": "プラグイン",
-      "docs": "ドキュメント"
-    }
+      "feature": "Feature",
+      "fix": "Fix",
+      "improvement": "Improvement",
+      "chore": "Chore",
+      "plugin": "Plugin",
+      "docs": "Docs"
+    },
+    "seeMore_other": "See more ({{count}} older)"
   }
 }
