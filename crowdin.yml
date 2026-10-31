@@ -3,4 +3,5 @@ preserve_hierarchy: true
 files:
   - source: /packages/i18n/src/locales/en_US.json
     translation: /packages/i18n/src/locales/%locale_with_underscore%.json
+    type: i18next_json
     update_option: update_as_unapproved
