@@ -2,38 +2,38 @@
   "common": {
     "app": {
       "name": "Nuclear",
-      "description": "Darmowa aplikacja do streamingu muzyki"
+      "description": "Music streaming app for your desktop"
     },
     "actions": {
-      "save": "Zapisz",
-      "cancel": "Anuluj",
-      "delete": "Usuń",
-      "edit": "Edytuj",
-      "close": "Zamknij",
-      "back": "Cofnij",
-      "next": "Następny",
-      "confirm": "Potwierdź",
-      "apply": "Zastosuj",
-      "reset": "Resetuj",
-      "clear": "Wyczyść",
-      "search": "Wyszukaj",
-      "loading": "Wczytywanie…",
-      "retry": "Ponów próbę",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "close": "Close",
+      "back": "Back",
+      "next": "Next",
+      "confirm": "Confirm",
+      "apply": "Apply",
+      "reset": "Reset",
+      "clear": "Clear",
+      "search": "Search",
+      "loading": "Loading...",
+      "retry": "Retry",
       "moreActions": "More actions"
     },
     "errors": {
-      "network": "Błąd sieci. Sprawdź swoje połączenie.",
-      "notFound": "Nie znaleziono"
+      "network": "Network error. Please check your connection.",
+      "notFound": "Not found"
     }
   },
   "navigation": {
-    "explore": "Odkrywaj",
-    "dashboard": "Panel",
-    "collection": "Kolekcja",
-    "favoriteAlbums": "Ulubione albumy",
-    "favoriteTracks": "Ulubione utwory",
-    "favoriteArtists": "Ulubieni wykonawcy",
-    "playlists": "Listy odtwarzania",
+    "explore": "Explore",
+    "dashboard": "Dashboard",
+    "collection": "Collection",
+    "favoriteAlbums": "Favorite albums",
+    "favoriteTracks": "Favorite tracks",
+    "favoriteArtists": "Favorite artists",
+    "playlists": "Playlists",
     "history": "History",
     "lyrics": "Lyrics",
     "sources": "Sources"
@@ -98,42 +98,40 @@
   },
   "favorites": {
     "albums": {
-      "title": "Ulubione albumy",
-      "empty": "Brak ulubionych albumów",
-      "emptyDescription": "Albumy, które oznaczysz jako ulubione, pojawią się tutaj"
+      "title": "Favorite albums",
+      "empty": "No favorite albums yet",
+      "emptyDescription": "Albums you mark as favorites will appear here"
     },
     "tracks": {
-      "title": "Ulubione utwory",
-      "empty": "Brak ulubionych utworów",
-      "emptyDescription": "Tu pojawią się ulubione utwory"
+      "title": "Favorite tracks",
+      "empty": "No favorite tracks yet",
+      "emptyDescription": "Tracks you mark as favorites will appear here"
     },
     "artists": {
-      "title": "Ulubieni wykonawcy",
-      "empty": "Brak ulubionych wykonawców",
-      "emptyDescription": "Tu pojawią się ulubieni wykonawcy"
+      "title": "Favorite artists",
+      "empty": "No favorite artists yet",
+      "emptyDescription": "Artists you mark as favorites will appear here"
     }
   },
   "playlists": {
-    "title": "Listy odtwarzania",
-    "empty": "Brak list odtwarzania",
-    "emptyDescription": "Utwórz lub importuj listę odtwarzania, aby rozpocząć",
-    "emptyTracks": "Brak utworów na tej liście odtwarzania",
-    "emptyTracksDescription": "Dodaj utwory z wyników wyszukiwania lub twojej biblioteki",
-    "create": "Utwórz nową",
-    "importJson": "Importuj z pliku JSON",
-    "exportJson": "Eksportuj do pliku JSON",
-    "add": "Dodaj",
-    "delete": "Usuń listę odtwarzania",
-    "deleteConfirm": "Czy na pewno chcesz usunąć listę odtwarzania?",
-    "play": "Odtwórz",
-    "addToQueue": "Dodaj do kolejki",
-    "saveLocally": "Zapisz lokalnie",
+    "title": "Playlists",
+    "empty": "No playlists yet",
+    "emptyDescription": "Create a playlist or import one to get started",
+    "emptyTracks": "No tracks in this playlist",
+    "emptyTracksDescription": "Add tracks from search results or your library",
+    "create": "Create new",
+    "importJson": "Import from JSON",
+    "exportJson": "Export as JSON",
+    "add": "Add",
+    "delete": "Delete playlist",
+    "deleteConfirm": "Are you sure you want to delete this playlist?",
+    "play": "Play",
+    "addToQueue": "Add to queue",
+    "saveLocally": "Save locally",
     "readOnlyBadge": "{{source}}",
-    "readOnlyTooltip": "Ta playlista pochodzi z {{source}} i jest tylko do odczytu. Zapisz kopię lokalną, aby ją edytować.",
-    "trackCount_one": "{{count}} track",
-    "trackCount_other": "{{count}} utwory",
-    "addToPlaylist": "Dodaj do listy odtwarzania",
-    "filterPlaylists": "Filtruj listy odtwarzania...",
+    "readOnlyTooltip": "This playlist is from {{source}} and is read-only. Save a local copy to edit it.",
+    "addToPlaylist": "Add to playlist",
+    "filterPlaylists": "Filter playlists...",
     "sortBy": {
       "custom": "Custom",
       "name": "Name",
@@ -144,15 +142,13 @@
     },
     "filterNoResults": "No playlists match your filter",
     "filterNoResultsDescription": "Change or remove the search query",
-    "createNew": "Utwórz nową listę odtwarzania",
+    "createNew": "Create new playlist",
     "saveQueueAsPlaylist": "Save queue as playlist",
-    "name": "Nazwa",
-    "namePlaceholder": "Nazwa playlisty...",
+    "name": "Name",
+    "namePlaceholder": "Playlist name...",
     "exportSuccess": "Playlist exported",
     "exportError": "Failed to export playlist",
     "importSuccess": "Playlist imported",
-    "importBatchSuccess_one": "{{count}} playlist imported",
-    "importBatchSuccess_other": "{{count}} playlists imported",
     "importError": "Failed to import playlist",
     "importNoPlaylists": "No playlists found in this file",
     "importUrl": "Import from URL",
@@ -168,20 +164,30 @@
       "rename": "Rename folder",
       "delete": "Delete folder",
       "deleteConfirm": "The playlists in this folder will be moved out of it. They will not be deleted.",
-      "playlistCount_one": "{{count}} playlist",
-      "playlistCount_other": "{{count}} playlists",
       "moveTo": "Move to folder",
       "removeFrom": "Remove from folder",
       "empty": "This folder is empty",
-      "emptyDescription": "Move playlists here from their menu, or create a new one"
-    }
+      "emptyDescription": "Move playlists here from their menu, or create a new one",
+      "playlistCount_one": "{{count}} playlist",
+      "playlistCount_few": "{{count}} playlists",
+      "playlistCount_many": "{{count}} playlists",
+      "playlistCount_other": "{{count}} playlists"
+    },
+    "trackCount_one": "{{count}} track",
+    "trackCount_few": "{{count}} tracks",
+    "trackCount_many": "{{count}} tracks",
+    "trackCount_other": "{{count}} tracks",
+    "importBatchSuccess_one": "{{count}} playlist imported",
+    "importBatchSuccess_few": "{{count}} playlists imported",
+    "importBatchSuccess_many": "{{count}} playlists imported",
+    "importBatchSuccess_other": "{{count}} playlists imported"
   },
   "search": {
-    "title": "Wyszukaj",
-    "query": "Zapytanie",
-    "placeholder": "Wyszukaj",
-    "noResults": "Nic nie znaleziono",
-    "searching": "Wyszukiwanie...",
+    "title": "Search",
+    "query": "Query",
+    "placeholder": "Search",
+    "noResults": "No results found",
+    "searching": "Searching...",
     "failedToLoad": "Failed to load results.",
     "clearRecentSearches": "Clear recent searches",
     "recentSearches": "Recent searches",
@@ -647,9 +653,11 @@
     "openLogFolderButton": "Open Log Folder",
     "noLogsMessage": "No logs to display",
     "invalidRegexMessage": "Invalid regex pattern",
+    "exportSuccess": "Logs exported",
     "entryCount_one": "{{count}} entry",
-    "entryCount_other": "{{count}} entries",
-    "exportSuccess": "Logs exported"
+    "entryCount_few": "{{count}} entries",
+    "entryCount_many": "{{count}} entries",
+    "entryCount_other": "{{count}} entries"
   },
   "remote": {
     "connecting": {
@@ -695,8 +703,6 @@
   },
   "changelog": {
     "title": "What's New",
-    "seeMore_one": "See more ({{count}} older)",
-    "seeMore_other": "See more ({{count}} older)",
     "types": {
       "feature": "Feature",
       "fix": "Fix",
@@ -704,6 +710,10 @@
       "chore": "Chore",
       "plugin": "Plugin",
       "docs": "Docs"
-    }
+    },
+    "seeMore_one": "See more ({{count}} older)",
+    "seeMore_few": "See more ({{count}} older)",
+    "seeMore_many": "See more ({{count}} older)",
+    "seeMore_other": "See more ({{count}} older)"
   }
 }
