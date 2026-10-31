@@ -19,6 +19,14 @@ export const SourcesWrapper = {
     return { ...component, history };
   },
 
+  get view() {
+    return {
+      find() {
+        return screen.findByTestId('sources-view');
+      },
+    };
+  },
+
   section(kind: string) {
     const getElement = () => screen.getByTestId(`sources-section-${kind}`);
     return {

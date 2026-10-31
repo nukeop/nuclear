@@ -8,6 +8,7 @@ import { httpHost } from '../../services/httpHost';
 import { createLoggerHost } from '../../services/loggerHost';
 import { lyricsHost } from '../../services/lyricsHost';
 import { metadataHost } from '../../services/metadataHost';
+import { navigationHost } from '../../services/navigationHost';
 import { playbackHost } from '../../services/playbackHost';
 import { playlistsHost } from '../../services/playlistsHost';
 import { providersHost } from '../../services/providersHost';
@@ -38,6 +39,7 @@ export const createPluginAPI = (
     eventsHost: eventBus,
     shellHost,
     lyricsHost,
+    navigationHost,
     widgetRegistry,
     pluginId,
     loggerHost: createLoggerHost(pluginId),

@@ -6,6 +6,7 @@ import type { HttpHost } from '../types/http';
 import type { LoggerHost } from '../types/logger';
 import type { LyricsHost } from '../types/lyrics';
 import type { MetadataHost } from '../types/metadata';
+import type { NavigationHost } from '../types/navigation';
 import type { PlaybackHost } from '../types/playback';
 import type { PlaylistsHost } from '../types/playlists';
 import { ProvidersHost } from '../types/providers';
@@ -22,6 +23,7 @@ import { HttpAPI } from './http';
 import { LoggerAPI } from './logger';
 import { LyricsAPI } from './lyrics';
 import { MetadataAPI } from './metadata';
+import { NavigationAPI } from './navigation';
 import { PlaybackAPI } from './playback';
 import { PlaylistsAPI } from './playlists';
 import { Providers } from './providers';
@@ -48,6 +50,7 @@ export class NuclearAPI {
   readonly Events: EventsAPI;
   readonly Shell: ShellAPI;
   readonly Lyrics: LyricsAPI;
+  readonly Navigation: NavigationAPI;
 
   constructor(opts?: {
     settingsHost?: SettingsHost;
@@ -66,6 +69,7 @@ export class NuclearAPI {
     eventsHost?: EventsHost;
     shellHost?: ShellHost;
     lyricsHost?: LyricsHost;
+    navigationHost?: NavigationHost;
     widgetRegistry?: WidgetRegistry;
     pluginId?: string;
   }) {
@@ -89,6 +93,7 @@ export class NuclearAPI {
     this.Events = new EventsAPI(opts?.eventsHost);
     this.Shell = new ShellAPI(opts?.shellHost);
     this.Lyrics = new LyricsAPI(opts?.lyricsHost);
+    this.Navigation = new NavigationAPI(opts?.navigationHost);
   }
 }
 

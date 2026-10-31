@@ -81,6 +81,14 @@ export const DashboardWrapper = {
     return { ...component, router };
   },
 
+  get view() {
+    return {
+      find() {
+        return screen.findByTestId('dashboard-view');
+      },
+    };
+  },
+
   get skeleton() {
     return screen.queryByTestId('dashboard-skeleton');
   },
