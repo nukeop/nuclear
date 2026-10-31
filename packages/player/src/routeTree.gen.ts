@@ -23,6 +23,7 @@ import { Route as PlaylistsPlaylistIdRouteImport } from './routes/playlists/$pla
 import { Route as AlbumProviderIdAlbumIdRouteImport } from './routes/album/$providerId/$albumId'
 import { Route as ArtistProviderIdArtistIdRouteImport } from './routes/artist/$providerId/$artistId'
 import { Route as PlaylistsImportProviderIdRouteImport } from './routes/playlists/import.$providerId'
+import { Route as PluginPluginIdViewIdSplatRouteImport } from './routes/plugin/$pluginId/$viewId/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -96,6 +97,12 @@ const PlaylistsImportProviderIdRoute =
     path: '/playlists/import/$providerId',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PluginPluginIdViewIdSplatRoute =
+  PluginPluginIdViewIdSplatRouteImport.update({
+    id: '/plugin/$pluginId/$viewId/$',
+    path: '/plugin/$pluginId/$viewId/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/album/$providerId/$albumId': typeof AlbumProviderIdAlbumIdRoute
   '/artist/$providerId/$artistId': typeof ArtistProviderIdArtistIdRoute
   '/playlists/import/$providerId': typeof PlaylistsImportProviderIdRoute
+  '/plugin/$pluginId/$viewId/$': typeof PluginPluginIdViewIdSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -128,6 +136,7 @@ export interface FileRoutesByTo {
   '/album/$providerId/$albumId': typeof AlbumProviderIdAlbumIdRoute
   '/artist/$providerId/$artistId': typeof ArtistProviderIdArtistIdRoute
   '/playlists/import/$providerId': typeof PlaylistsImportProviderIdRoute
+  '/plugin/$pluginId/$viewId/$': typeof PluginPluginIdViewIdSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -145,6 +154,7 @@ export interface FileRoutesById {
   '/album/$providerId/$albumId': typeof AlbumProviderIdAlbumIdRoute
   '/artist/$providerId/$artistId': typeof ArtistProviderIdArtistIdRoute
   '/playlists/import/$providerId': typeof PlaylistsImportProviderIdRoute
+  '/plugin/$pluginId/$viewId/$': typeof PluginPluginIdViewIdSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/album/$providerId/$albumId'
     | '/artist/$providerId/$artistId'
     | '/playlists/import/$providerId'
+    | '/plugin/$pluginId/$viewId/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '/album/$providerId/$albumId'
     | '/artist/$providerId/$artistId'
     | '/playlists/import/$providerId'
+    | '/plugin/$pluginId/$viewId/$'
   id:
     | '__root__'
     | '/'
@@ -195,6 +207,7 @@ export interface FileRouteTypes {
     | '/album/$providerId/$albumId'
     | '/artist/$providerId/$artistId'
     | '/playlists/import/$providerId'
+    | '/plugin/$pluginId/$viewId/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -212,6 +225,7 @@ export interface RootRouteChildren {
   AlbumProviderIdAlbumIdRoute: typeof AlbumProviderIdAlbumIdRoute
   ArtistProviderIdArtistIdRoute: typeof ArtistProviderIdArtistIdRoute
   PlaylistsImportProviderIdRoute: typeof PlaylistsImportProviderIdRoute
+  PluginPluginIdViewIdSplatRoute: typeof PluginPluginIdViewIdSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -314,6 +328,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaylistsImportProviderIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/plugin/$pluginId/$viewId/$': {
+      id: '/plugin/$pluginId/$viewId/$'
+      path: '/plugin/$pluginId/$viewId/$'
+      fullPath: '/plugin/$pluginId/$viewId/$'
+      preLoaderRoute: typeof PluginPluginIdViewIdSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -332,6 +353,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlbumProviderIdAlbumIdRoute: AlbumProviderIdAlbumIdRoute,
   ArtistProviderIdArtistIdRoute: ArtistProviderIdArtistIdRoute,
   PlaylistsImportProviderIdRoute: PlaylistsImportProviderIdRoute,
+  PluginPluginIdViewIdSplatRoute: PluginPluginIdViewIdSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
