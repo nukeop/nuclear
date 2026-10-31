@@ -48,6 +48,7 @@
 * [Events](plugins/events.md)
 * [Shell](plugins/shell.md)
 * [Navigation](plugins/navigation.md)
+* [Views](plugins/views.md)
 * [Streaming](plugins/streaming.md)
 * [Metadata](plugins/metadata.md)
 * [Lyrics](plugins/lyrics.md)

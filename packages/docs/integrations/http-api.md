@@ -51,6 +51,8 @@ All action endpoints return `200 OK` with no body on success.
 | POST | `/api/navigation/navigate` | `{ "path": string }` | Open the page at a route path, e.g. `/artist/<providerId>/<artistId>`. See [Navigation](../plugins/navigation.md) |
 | POST | `/api/navigation/back` | none | Go back one page |
 | POST | `/api/navigation/forward` | none | Go forward one page |
+| POST | `/api/views/register` | `{ "view": RawViewDefinition }` | Add a view to the left sidebar. To replace a view, send the same `id` again. See [`RawViewDefinition`](../plugins/views.md#types) and [Views from MCP clients](mcp-server.md#views-from-mcp-clients) |
+| POST | `/api/views/unregister` | `{ "id": string }` | Remove the view with this ID. If the view is open, Nuclear opens the dashboard |
 
 ### Events (SSE)
 
