@@ -95,7 +95,7 @@ describe('Custom views from plugins', () => {
     expect(await CustomViewsWrapper.redesignedPodcastList.find()).toBeVisible();
   });
 
-  it('opens the root page of a custom view when its current sub-route no longer exists', async () => {
+  it('removes the open custom view and shows the crash toast when the plugin registers it again without the current sub-route', async () => {
     views.register(createPodcastsView(PLUGIN_ID));
     await CustomViewsWrapper.mount(
       `/plugin/${PLUGIN_ID}/podcasts/show/7/episode/42`,
@@ -104,7 +104,11 @@ describe('Custom views from plugins', () => {
 
     views.register(REDESIGNED_PODCASTS_VIEW);
 
-    expect(await CustomViewsWrapper.redesignedPodcastList.find()).toBeVisible();
+    await CustomViewsWrapper.crashToast.find();
+    expect(CustomViewsWrapper.crashToast.text).toBe(
+      'The view "Podcasts" from Nuclear Podcasts crashed and was removed.',
+    );
+    expect(CustomViewsWrapper.sidebar.entryTitles).toEqual([]);
   });
 
   it('shows the dashboard when the plugin unregisters the open view', async () => {

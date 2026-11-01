@@ -1,10 +1,10 @@
 import { Component, ReactNode } from 'react';
 
 import { handleCustomViewCrash } from '../services/customViewCrash';
-import type { RegisteredCustomView } from '../stores/customViewsStore';
 
 type CustomViewErrorBoundaryProps = {
-  registered: RegisteredCustomView;
+  pluginId: string;
+  viewId: string;
   children: ReactNode;
 };
 
@@ -23,7 +23,7 @@ export class CustomViewErrorBoundary extends Component<
   }
 
   componentDidCatch(error: unknown) {
-    handleCustomViewCrash(this.props.registered, error);
+    handleCustomViewCrash(this.props.pluginId, this.props.viewId, error);
   }
 
   render() {

@@ -1,7 +1,6 @@
 import { useParams } from '@tanstack/react-router';
 import { FC, useMemo } from 'react';
 
-import { CustomViewErrorBoundary } from '../../components/CustomViewErrorBoundary';
 import {
   customViewKey,
   useCustomViewsStore,
@@ -25,14 +24,17 @@ export const ViewOutlet: FC = () => {
     return null;
   }
 
-  const { route, params } = routeTable.match(_splat ?? '')!;
-  const Page = route.component;
+  const path = _splat ?? '';
+  const match = routeTable.match(path);
+  if (!match) {
+    throw new Error(`The view has no route for "${path}"`);
+  }
+
+  const Page = match.route.component;
   return (
     <>
       <RuntimeTailwind />
-      <CustomViewErrorBoundary registered={registered}>
-        <Page params={params} api={registered.api} />
-      </CustomViewErrorBoundary>
+      <Page params={match.params} api={registered.api} />
     </>
   );
 };

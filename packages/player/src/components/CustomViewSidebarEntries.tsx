@@ -12,13 +12,13 @@ export const CustomViewSidebarEntries: FC = () => {
 
   return (
     <div data-testid="custom-view-sidebar-entries" className="contents">
-      {Object.values(views).map((registered) => {
-        const { pluginId, view } = registered;
+      {Object.values(views).map(({ pluginId, view }) => {
         const Icon = icons[view.icon as keyof typeof icons];
         return (
           <CustomViewErrorBoundary
             key={customViewKey(pluginId, view.id)}
-            registered={registered}
+            pluginId={pluginId}
+            viewId={view.id}
           >
             <SidebarNavigationItem
               to={customViewPath(pluginId, view.id)}
