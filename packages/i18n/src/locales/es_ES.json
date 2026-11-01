@@ -280,6 +280,7 @@
   "plugins": {
     "title": "Plugins",
     "addPlugin": "Añadir plugin",
+    "viewCrashed": "The view \"{{title}}\" from {{pluginName}} crashed and was removed.",
     "tabs": {
       "installed": "Instalados",
       "store": "Tienda"
