@@ -1,7 +1,9 @@
 import { createPluginAPI } from '../services/plugins/createPluginAPI';
 import {
+  CRASHING_VIEW,
   createPodcastsView,
   REDESIGNED_PODCASTS_VIEW,
+  UNKNOWN_ICON_VIEW,
 } from '../test/fixtures/customViews';
 import { DashboardWrapper } from '../views/Dashboard/Dashboard.test-wrapper';
 import { SourcesWrapper } from '../views/Sources/Sources.test-wrapper';
@@ -96,5 +98,29 @@ describe('Custom views from plugins', () => {
     views.unregister('podcasts');
 
     expect(await DashboardWrapper.view.find()).toBeVisible();
+  });
+
+  it('removes a crashing view and shows a toast naming the plugin', async () => {
+    views.register(CRASHING_VIEW);
+
+    await CustomViewsWrapper.mount(`/plugin/${PLUGIN_ID}/broken`);
+
+    await CustomViewsWrapper.crashToast.find();
+    expect(CustomViewsWrapper.crashToast.text).toBe(
+      'The view "Broken" from Nuclear Podcasts crashed and was removed.',
+    );
+    expect(CustomViewsWrapper.sidebar.entryTitles).toEqual([]);
+  });
+
+  it('removes a view with an unknown icon and keeps the sidebar working', async () => {
+    views.register(createPodcastsView(PLUGIN_ID));
+    views.register(UNKNOWN_ICON_VIEW);
+    await CustomViewsWrapper.mount('/dashboard');
+    await CustomViewsWrapper.crashToast.find();
+
+    await CustomViewsWrapper.sidebar.entry('Podcasts').click();
+
+    expect(await CustomViewsWrapper.podcastList.find()).toBeVisible();
+    expect(CustomViewsWrapper.sidebar.entryTitles).toEqual(['Podcasts']);
   });
 });

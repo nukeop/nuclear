@@ -55,6 +55,24 @@ export const REDESIGNED_PODCASTS_VIEW: CustomViewDefinition = {
   routes: [{ path: '/', component: RedesignedPodcastList }],
 };
 
+const CrashingPage: CustomViewComponent = () => {
+  throw new Error('Broken view');
+};
+
+export const CRASHING_VIEW: CustomViewDefinition = {
+  id: 'broken',
+  title: 'Broken',
+  icon: 'Bug',
+  routes: [{ path: '/', component: CrashingPage }],
+};
+
+export const UNKNOWN_ICON_VIEW: CustomViewDefinition = {
+  id: 'mystery',
+  title: 'Mystery',
+  icon: 'NoSuchIcon',
+  routes: [{ path: '/', component: RedesignedPodcastList }],
+};
+
 export const RAW_STATS_VIEW: RawViewDefinition = {
   id: 'stats-2026',
   title: 'Stats 2026',

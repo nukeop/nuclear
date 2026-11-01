@@ -25,6 +25,11 @@ export const CustomViewsWrapper = {
   },
 
   sidebar: {
+    get entryTitles() {
+      return within(screen.getByTestId('custom-view-sidebar-entries'))
+        .queryAllByRole('link')
+        .map((link) => link.textContent);
+    },
     entry(title: string) {
       return {
         get element() {
@@ -36,6 +41,15 @@ export const CustomViewsWrapper = {
           await user.click(this.element);
         },
       };
+    },
+  },
+
+  crashToast: {
+    find() {
+      return screen.findByTestId('custom-view-crash-toast');
+    },
+    get text() {
+      return screen.getByTestId('custom-view-crash-toast').textContent;
     },
   },
 
