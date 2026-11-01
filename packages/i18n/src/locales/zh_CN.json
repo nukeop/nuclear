@@ -277,6 +277,7 @@
   "plugins": {
     "title": "插件",
     "addPlugin": "添加插件",
+    "viewCrashed": "The view \"{{title}}\" from {{pluginName}} crashed and was removed.",
     "tabs": {
       "installed": "已安装",
       "store": "商店"
