@@ -72,3 +72,4 @@
 * [Logging](development/logging.md)
 * [MCP Architecture](development/mcp-architecture.md)
 * [Profiles](development/profiles.md)
+* [Runtime Tailwind](development/runtime-tailwind.md)
