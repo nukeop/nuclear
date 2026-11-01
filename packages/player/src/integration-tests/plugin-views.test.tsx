@@ -1,3 +1,5 @@
+import { waitFor } from '@testing-library/react';
+
 import { createPluginAPI } from '../services/plugins/createPluginAPI';
 import {
   CRASHING_VIEW,
@@ -110,9 +112,12 @@ describe('Custom views from plugins', () => {
     await CustomViewsWrapper.sidebar.entry('Styled').click();
     await CustomViewsWrapper.styledPage.find();
 
-    const styles = await CustomViewsWrapper.tailwindStyles.findText();
-    expect(styles).toContain('.bg-accent-orange\\/40');
-    expect(styles).toContain('.animate-in');
+    await waitFor(() => {
+      expect(CustomViewsWrapper.tailwindStyles.text).toContain(
+        '.bg-accent-orange\\/40',
+      );
+      expect(CustomViewsWrapper.tailwindStyles.text).toContain('.animate-in');
+    });
   });
 
   it('styles content that a custom view renders in a portal', async () => {
@@ -120,8 +125,10 @@ describe('Custom views from plugins', () => {
     await CustomViewsWrapper.mount(`/plugin/${PLUGIN_ID}/portal`);
     await CustomViewsWrapper.portalContent.find();
 
-    expect(await CustomViewsWrapper.tailwindStyles.findText()).toContain(
-      '.bg-accent-green\\/45',
+    await waitFor(() =>
+      expect(CustomViewsWrapper.tailwindStyles.text).toContain(
+        '.bg-accent-green\\/45',
+      ),
     );
   });
 
