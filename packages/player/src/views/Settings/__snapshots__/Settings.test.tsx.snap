@@ -833,7 +833,7 @@ exports[`Settings view > (Snapshot) renders the settings view 1`] = `
                                   <p
                                     class="text-foreground/60 text-sm select-none"
                                   >
-                                    Start a local web server that lets you control Nuclear from other devices on your network.
+                                    Control Nuclear from your phone or other devices on the same Wi-Fi. Anyone on that Wi-Fi can control it too, so don't use it on public Wi-Fi.
                                   </p>
                                 </div>
                                 <div
