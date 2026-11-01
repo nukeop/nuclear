@@ -92,6 +92,13 @@ export const CRASHING_VIEW: CustomViewDefinition = {
   routes: [{ path: '/', component: CrashingPage }],
 };
 
+export const ROUTELESS_VIEW: CustomViewDefinition = {
+  id: 'routeless',
+  title: 'Routeless',
+  icon: 'Bug',
+  routes: [],
+};
+
 export const UNKNOWN_ICON_VIEW: CustomViewDefinition = {
   id: 'mystery',
   title: 'Mystery',

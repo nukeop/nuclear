@@ -6,6 +6,7 @@ import {
   createPodcastsView,
   PORTAL_VIEW,
   REDESIGNED_PODCASTS_VIEW,
+  ROUTELESS_VIEW,
   STYLED_VIEW,
   UNKNOWN_ICON_VIEW,
 } from '../test/fixtures/customViews';
@@ -94,6 +95,18 @@ describe('Custom views from plugins', () => {
     expect(await CustomViewsWrapper.redesignedPodcastList.find()).toBeVisible();
   });
 
+  it('opens the root page of a custom view when its current sub-route no longer exists', async () => {
+    views.register(createPodcastsView(PLUGIN_ID));
+    await CustomViewsWrapper.mount(
+      `/plugin/${PLUGIN_ID}/podcasts/show/7/episode/42`,
+    );
+    await CustomViewsWrapper.episodePage.find();
+
+    views.register(REDESIGNED_PODCASTS_VIEW);
+
+    expect(await CustomViewsWrapper.redesignedPodcastList.find()).toBeVisible();
+  });
+
   it('shows the dashboard when the plugin unregisters the open view', async () => {
     views.register(createPodcastsView(PLUGIN_ID));
     await CustomViewsWrapper.mount(`/plugin/${PLUGIN_ID}/podcasts`);
@@ -140,6 +153,18 @@ describe('Custom views from plugins', () => {
     await CustomViewsWrapper.crashToast.find();
     expect(CustomViewsWrapper.crashToast.text).toBe(
       'The view "Broken" from Nuclear Podcasts crashed and was removed.',
+    );
+    expect(CustomViewsWrapper.sidebar.entryTitles).toEqual([]);
+  });
+
+  it('removes a custom view that has no route for the current path and shows the crash toast', async () => {
+    views.register(ROUTELESS_VIEW);
+
+    await CustomViewsWrapper.mount(`/plugin/${PLUGIN_ID}/routeless`);
+
+    await CustomViewsWrapper.crashToast.find();
+    expect(CustomViewsWrapper.crashToast.text).toBe(
+      'The view "Routeless" from Nuclear Podcasts crashed and was removed.',
     );
     expect(CustomViewsWrapper.sidebar.entryTitles).toEqual([]);
   });
