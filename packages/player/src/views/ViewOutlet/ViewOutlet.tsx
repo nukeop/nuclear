@@ -28,10 +28,11 @@ export const ViewOutlet: FC = () => {
   const { route, params } = routeTable.match(_splat ?? '')!;
   const Page = route.component;
   return (
-    <RuntimeTailwind>
+    <>
+      <RuntimeTailwind />
       <CustomViewErrorBoundary registered={registered}>
         <Page params={params} api={registered.api} />
       </CustomViewErrorBoundary>
-    </RuntimeTailwind>
+    </>
   );
 };

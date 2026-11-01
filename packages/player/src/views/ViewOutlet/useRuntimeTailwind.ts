@@ -1,24 +1,35 @@
-import { RefObject, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { compileTailwind } from './compileTailwind';
 
-const collectClassNames = (root: Element) =>
-  Array.from(root.querySelectorAll('[class]'), (element) => [
+const classNamesIn = (root: Element) =>
+  [root, ...root.querySelectorAll('[class]')].flatMap((element) => [
     ...element.classList,
-  ]).flat();
+  ]);
 
-export const useRuntimeTailwind = (rootRef: RefObject<HTMLElement>) => {
+const classNamesFrom = (mutations: MutationRecord[]) =>
+  mutations.flatMap((mutation) => {
+    if (mutation.type === 'attributes') {
+      return [...(mutation.target as Element).classList];
+    }
+    return [...mutation.addedNodes]
+      .filter((node) => node instanceof Element)
+      .flatMap(classNamesIn);
+  });
+
+export const useRuntimeTailwind = () => {
   const [css, setCss] = useState<string>();
 
   useEffect(() => {
-    const root = rootRef.current!;
-    const rebuild = async () => {
-      setCss(await compileTailwind(collectClassNames(root)));
+    const compile = async (classNames: string[]) => {
+      setCss(await compileTailwind(classNames));
     };
 
-    void rebuild();
-    const observer = new MutationObserver(() => void rebuild());
-    observer.observe(root, {
+    void compile(classNamesIn(document.body));
+    const observer = new MutationObserver(
+      (mutations) => void compile(classNamesFrom(mutations)),
+    );
+    observer.observe(document.body, {
       subtree: true,
       childList: true,
       attributes: true,
@@ -26,7 +37,7 @@ export const useRuntimeTailwind = (rootRef: RefObject<HTMLElement>) => {
     });
 
     return () => observer.disconnect();
-  }, [rootRef]);
+  }, []);
 
   return css;
 };

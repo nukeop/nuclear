@@ -2,6 +2,7 @@ import { createPluginAPI } from '../services/plugins/createPluginAPI';
 import {
   CRASHING_VIEW,
   createPodcastsView,
+  PORTAL_VIEW,
   REDESIGNED_PODCASTS_VIEW,
   STYLED_VIEW,
   UNKNOWN_ICON_VIEW,
@@ -112,6 +113,16 @@ describe('Custom views from plugins', () => {
     const styles = await CustomViewsWrapper.tailwindStyles.findText();
     expect(styles).toContain('.bg-accent-orange\\/40');
     expect(styles).toContain('.animate-in');
+  });
+
+  it('styles content that a custom view renders in a portal', async () => {
+    views.register(PORTAL_VIEW);
+    await CustomViewsWrapper.mount(`/plugin/${PLUGIN_ID}/portal`);
+    await CustomViewsWrapper.portalContent.find();
+
+    expect(await CustomViewsWrapper.tailwindStyles.findText()).toContain(
+      '.bg-accent-green\\/45',
+    );
   });
 
   it('removes a crashing view and shows a toast naming the plugin', async () => {

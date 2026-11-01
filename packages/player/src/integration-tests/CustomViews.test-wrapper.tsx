@@ -63,6 +63,12 @@ export const CustomViewsWrapper = {
     },
   },
 
+  portalContent: {
+    find() {
+      return screen.findByTestId('portal-content');
+    },
+  },
+
   styledPage: {
     find() {
       return screen.findByTestId('styled-page');

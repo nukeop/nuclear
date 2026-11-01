@@ -1,3 +1,5 @@
+import { createPortal } from 'react-dom';
+
 import type {
   CustomViewComponent,
   CustomViewDefinition,
@@ -64,6 +66,19 @@ export const STYLED_VIEW: CustomViewDefinition = {
   title: 'Styled',
   icon: 'Palette',
   routes: [{ path: '/', component: StyledPage }],
+};
+
+const PortalPage: CustomViewComponent = () =>
+  createPortal(
+    <div data-testid="portal-content" className="bg-accent-green/45" />,
+    document.body,
+  );
+
+export const PORTAL_VIEW: CustomViewDefinition = {
+  id: 'portal',
+  title: 'Portal',
+  icon: 'Layers',
+  routes: [{ path: '/', component: PortalPage }],
 };
 
 const CrashingPage: CustomViewComponent = () => {
