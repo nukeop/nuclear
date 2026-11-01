@@ -2,17 +2,17 @@ import { useParams } from '@tanstack/react-router';
 import { FC, useMemo } from 'react';
 
 import {
-  pluginViewKey,
-  usePluginViewsStore,
-} from '../../stores/pluginViewsStore';
+  customViewKey,
+  useCustomViewsStore,
+} from '../../stores/customViewsStore';
 import { ViewRouteTable } from './ViewRouteTable';
 
 export const ViewOutlet: FC = () => {
   const { pluginId, viewId, _splat } = useParams({
     from: '/plugin/$pluginId/$viewId/$',
   });
-  const registered = usePluginViewsStore(
-    (state) => state.views[pluginViewKey(pluginId, viewId)],
+  const registered = useCustomViewsStore(
+    (state) => state.views[customViewKey(pluginId, viewId)],
   );
   const routeTable = useMemo(
     () => new ViewRouteTable(registered?.view.routes ?? []),

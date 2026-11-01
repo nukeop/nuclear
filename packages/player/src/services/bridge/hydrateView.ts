@@ -1,6 +1,6 @@
 import type {
-  PluginViewComponent,
-  PluginViewDefinition,
+  CustomViewComponent,
+  CustomViewDefinition,
 } from '@nuclearplayer/plugin-sdk';
 
 import { getEsbuild } from '../plugins/pluginCompiler';
@@ -21,7 +21,7 @@ export type RawViewDefinition = {
 
 export const hydrateView = async (
   rawView: RawViewDefinition,
-): Promise<PluginViewDefinition> => {
+): Promise<CustomViewDefinition> => {
   const esbuild = await getEsbuild();
   const { code } = await esbuild.transform(rawView.source, {
     loader: 'tsx',
@@ -30,7 +30,7 @@ export const hydrateView = async (
   });
   const moduleExports = evaluateModule(code) as Record<
     string,
-    PluginViewComponent
+    CustomViewComponent
   >;
 
   return {

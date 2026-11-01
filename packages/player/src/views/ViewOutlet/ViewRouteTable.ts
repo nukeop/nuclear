@@ -1,7 +1,7 @@
-import type { PluginViewRoute } from '@nuclearplayer/plugin-sdk';
+import type { CustomViewRoute } from '@nuclearplayer/plugin-sdk';
 
 type ViewRouteMatch = {
-  route: PluginViewRoute;
+  route: CustomViewRoute;
   params: Record<string, string>;
 };
 
@@ -9,9 +9,9 @@ const toSegments = (path: string) =>
   path.split('/').filter((segment) => segment !== '');
 
 export class ViewRouteTable {
-  #entries: { route: PluginViewRoute; segments: string[] }[];
+  #entries: { route: CustomViewRoute; segments: string[] }[];
 
-  constructor(routes: PluginViewRoute[]) {
+  constructor(routes: CustomViewRoute[]) {
     this.#entries = routes.map((route) => ({
       route,
       segments: toSegments(route.path),

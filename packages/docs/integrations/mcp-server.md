@@ -144,7 +144,7 @@ type RawViewDefinition = {
 
 Put all components of the view in one TSX module in `source`. To show a named export on a route, set `export` on that route to the name of the export. If you do not set `export`, Nuclear shows the default export.
 
-The props of each component are `{ params, api }`. These props, the route paths, and `icon` are the same as in a plugin view. For more information, see [Views](../plugins/views.md).
+The props of each component are `{ params, api }`. These props, the route paths, and `icon` are the same as in a custom view from a plugin. For more information, see [Views](../plugins/views.md).
 
 The module can import only these packages:
 

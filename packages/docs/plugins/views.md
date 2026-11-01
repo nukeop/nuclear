@@ -22,10 +22,10 @@ This example adds a "Podcasts" view with two pages: a list of episodes and an ep
 import type {
   NuclearPlugin,
   NuclearPluginAPI,
-  PluginViewComponent,
+  CustomViewComponent,
 } from '@nuclearplayer/plugin-sdk';
 
-const EpisodeList: PluginViewComponent = ({ api }) => (
+const EpisodeList: CustomViewComponent = ({ api }) => (
   <button
     onClick={() =>
       api.Navigation.navigate('/plugin/acme-podcasts/podcasts/episode/42')
@@ -35,7 +35,7 @@ const EpisodeList: PluginViewComponent = ({ api }) => (
   </button>
 );
 
-const Episode: PluginViewComponent = ({ params }) => (
+const Episode: CustomViewComponent = ({ params }) => (
   <h1>Episode {params.episodeId}</h1>
 );
 
@@ -84,7 +84,7 @@ Nuclear does not save views. Register your views again each time your plugin sta
 ## Reference
 
 ```typescript
-api.Views.register(view: PluginViewDefinition): void
+api.Views.register(view: CustomViewDefinition): void
 ```
 
 Adds the view to the left sidebar. To replace a view, call `register` again with the same `id`. If the view is open, the new version shows.
@@ -98,27 +98,27 @@ Removes the view with this `id`. If the view is open, Nuclear opens the dashboar
 ### Types
 
 ```typescript
-type PluginViewDefinition = {
+type CustomViewDefinition = {
   id: string;
   title: string;
   icon: string;
-  routes: PluginViewRoute[];
+  routes: CustomViewRoute[];
 };
 
-type PluginViewRoute = {
+type CustomViewRoute = {
   path: string;
-  component: PluginViewComponent;
+  component: CustomViewComponent;
 };
 
-type PluginViewProps = {
+type CustomViewProps = {
   params: Record<string, string>;
   api: NuclearPluginAPI;
 };
 
-type PluginViewComponent = FC<PluginViewProps>;
+type CustomViewComponent = FC<CustomViewProps>;
 
 type ViewsHost = {
-  register(view: PluginViewDefinition): void;
+  register(view: CustomViewDefinition): void;
   unregister(id: string): void;
 };
 ```

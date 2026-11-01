@@ -2,26 +2,26 @@ import type { FC } from 'react';
 
 import type { NuclearPluginAPI } from '../api';
 
-export type PluginViewRoute = {
+export type CustomViewRoute = {
   path: string;
-  component: PluginViewComponent;
+  component: CustomViewComponent;
 };
 
-export type PluginViewDefinition = {
+export type CustomViewDefinition = {
   id: string;
   title: string;
   icon: string;
-  routes: PluginViewRoute[];
+  routes: CustomViewRoute[];
 };
 
-export type PluginViewProps = {
+export type CustomViewProps = {
   params: Record<string, string>;
   api: NuclearPluginAPI;
 };
 
-export type PluginViewComponent = FC<PluginViewProps>;
+export type CustomViewComponent = FC<CustomViewProps>;
 
 export type ViewsHost = {
-  register(view: PluginViewDefinition): void;
+  register(view: CustomViewDefinition): void;
   unregister(id: string): void;
 };

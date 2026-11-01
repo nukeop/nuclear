@@ -650,7 +650,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
               </a>
               <div
                 class="contents"
-                data-testid="plugin-sidebar-entries"
+                data-testid="custom-view-sidebar-entries"
               />
             </div>
             <div>

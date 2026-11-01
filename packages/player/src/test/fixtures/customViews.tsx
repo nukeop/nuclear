@@ -1,12 +1,12 @@
 import type {
-  PluginViewComponent,
-  PluginViewDefinition,
+  CustomViewComponent,
+  CustomViewDefinition,
 } from '@nuclearplayer/plugin-sdk';
 
 import type { RawViewDefinition } from '../../services/bridge/hydrateView';
 
 const createPodcastList =
-  (pluginId: string): PluginViewComponent =>
+  (pluginId: string): CustomViewComponent =>
   ({ api }) => (
     <div data-testid="podcast-list">
       <button
@@ -28,17 +28,17 @@ const createPodcastList =
     </div>
   );
 
-const EpisodePage: PluginViewComponent = ({ params }) => (
+const EpisodePage: CustomViewComponent = ({ params }) => (
   <div data-testid="episode-page">
     {`Show ${params.showId}, episode ${params.episodeId}`}
   </div>
 );
 
-const RedesignedPodcastList: PluginViewComponent = () => (
+const RedesignedPodcastList: CustomViewComponent = () => (
   <div data-testid="redesigned-podcast-list" />
 );
 
-export const createPodcastsView = (pluginId: string): PluginViewDefinition => ({
+export const createPodcastsView = (pluginId: string): CustomViewDefinition => ({
   id: 'podcasts',
   title: 'Podcasts',
   icon: 'Podcast',
@@ -48,7 +48,7 @@ export const createPodcastsView = (pluginId: string): PluginViewDefinition => ({
   ],
 });
 
-export const REDESIGNED_PODCASTS_VIEW: PluginViewDefinition = {
+export const REDESIGNED_PODCASTS_VIEW: CustomViewDefinition = {
   id: 'podcasts',
   title: 'Podcasts',
   icon: 'Podcast',
@@ -60,9 +60,9 @@ export const RAW_STATS_VIEW: RawViewDefinition = {
   title: 'Stats 2026',
   icon: 'ChartBar',
   source: `
-    import type { PluginViewProps } from '@nuclearplayer/plugin-sdk';
+    import type { CustomViewProps } from '@nuclearplayer/plugin-sdk';
 
-    export default function Stats({ api }: PluginViewProps) {
+    export default function Stats({ api }: CustomViewProps) {
       return (
         <div data-testid="stats-overview">
           <button
@@ -75,7 +75,7 @@ export const RAW_STATS_VIEW: RawViewDefinition = {
       );
     }
 
-    export function Month({ params }: PluginViewProps) {
+    export function Month({ params }: CustomViewProps) {
       return <div data-testid="stats-month">{'Month ' + params.month}</div>;
     }
   `,

@@ -650,7 +650,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
               </a>
               <div
                 class="contents"
-                data-testid="plugin-sidebar-entries"
+                data-testid="custom-view-sidebar-entries"
               />
             </div>
             <div>
@@ -2514,7 +2514,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
               </a>
               <div
                 class="contents"
-                data-testid="plugin-sidebar-entries"
+                data-testid="custom-view-sidebar-entries"
               />
             </div>
             <div>

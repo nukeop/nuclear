@@ -1,4 +1,4 @@
-import type { PluginViewDefinition, ViewsHost } from '../types/views';
+import type { CustomViewDefinition, ViewsHost } from '../types/views';
 
 export class ViewsAPI {
   #host?: ViewsHost;
@@ -15,7 +15,7 @@ export class ViewsAPI {
     return fn(host);
   }
 
-  register(view: PluginViewDefinition): void {
+  register(view: CustomViewDefinition): void {
     this.#withHost((host) => host.register(view));
   }
 

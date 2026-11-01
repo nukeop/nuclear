@@ -32,9 +32,9 @@ import { ConnectedSettingsModal } from '../components/ConnectedSettingsModal';
 import { ConnectedStreamVerification } from '../components/ConnectedStreamVerification';
 import { ConnectedTitleBar } from '../components/ConnectedTitleBar';
 import { ConnectedTopBar } from '../components/ConnectedTopBar';
+import { CustomViewSidebarEntries } from '../components/CustomViewSidebarEntries';
 import { DevTools } from '../components/DevTools';
 import { FlatpakWarningBanner } from '../components/FlatpakWarningBanner';
-import { PluginSidebarEntries } from '../components/PluginSidebarEntries';
 import { SoundProvider } from '../components/SoundProvider';
 import { StreamResolver } from '../components/StreamResolver';
 import { GlobalShortcuts } from '../shortcuts';
@@ -118,7 +118,7 @@ const RootComponent = () => {
                   icon={<CableIcon />}
                   label={t('sources')}
                 />
-                <PluginSidebarEntries />
+                <CustomViewSidebarEntries />
               </div>
               <SidebarNavigationItem
                 icon={<SettingsIcon />}

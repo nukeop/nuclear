@@ -628,7 +628,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               </a>
               <div
                 class="contents"
-                data-testid="plugin-sidebar-entries"
+                data-testid="custom-view-sidebar-entries"
               />
             </div>
             <div>

@@ -1,9 +1,9 @@
 import type { NuclearPluginAPI, ViewsHost } from '@nuclearplayer/plugin-sdk';
 
-import { usePluginViewsStore } from '../stores/pluginViewsStore';
+import { useCustomViewsStore } from '../stores/customViewsStore';
 import { navigationHost } from './navigationHost';
 
-export const pluginViewPath = (pluginId: string, viewId: string) =>
+export const customViewPath = (pluginId: string, viewId: string) =>
   `/plugin/${pluginId}/${viewId}`;
 
 const isOpen = (viewPath: string) => {
@@ -16,11 +16,11 @@ export const createViewsHost = (
   getApi: () => NuclearPluginAPI,
 ): ViewsHost => ({
   register(view) {
-    usePluginViewsStore.getState().register({ pluginId, view, api: getApi() });
+    useCustomViewsStore.getState().register({ pluginId, view, api: getApi() });
   },
   unregister(id) {
-    const wasOpen = isOpen(pluginViewPath(pluginId, id));
-    usePluginViewsStore.getState().unregister(pluginId, id);
+    const wasOpen = isOpen(customViewPath(pluginId, id));
+    useCustomViewsStore.getState().unregister(pluginId, id);
     if (wasOpen) {
       void navigationHost.navigate('/dashboard');
     }

@@ -5,13 +5,13 @@ import userEvent from '@testing-library/user-event';
 
 import App from '../App';
 import { routeTree } from '../routeTree.gen';
-import { usePluginViewsStore } from '../stores/pluginViewsStore';
+import { useCustomViewsStore } from '../stores/customViewsStore';
 
 const user = userEvent.setup();
 
-export const PluginViewsWrapper = {
+export const CustomViewsWrapper = {
   reset() {
-    usePluginViewsStore.setState({ views: {} });
+    useCustomViewsStore.setState({ views: {} });
   },
 
   async mount(initialPath: string): Promise<RenderResult> {
@@ -20,7 +20,7 @@ export const PluginViewsWrapper = {
     const component = render(
       <App routerProp={router} queryClientProp={new QueryClient()} />,
     );
-    await screen.findByTestId('plugin-sidebar-entries');
+    await screen.findByTestId('custom-view-sidebar-entries');
     return component;
   },
 
@@ -28,10 +28,9 @@ export const PluginViewsWrapper = {
     entry(title: string) {
       return {
         get element() {
-          return within(screen.getByTestId('plugin-sidebar-entries')).getByRole(
-            'link',
-            { name: title },
-          );
+          return within(
+            screen.getByTestId('custom-view-sidebar-entries'),
+          ).getByRole('link', { name: title });
         },
         async click() {
           await user.click(this.element);

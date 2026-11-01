@@ -628,7 +628,7 @@ exports[`App > should render snapshot 1`] = `
               </a>
               <div
                 class="contents"
-                data-testid="plugin-sidebar-entries"
+                data-testid="custom-view-sidebar-entries"
               />
             </div>
             <div>
