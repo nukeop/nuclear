@@ -55,6 +55,17 @@ export const REDESIGNED_PODCASTS_VIEW: CustomViewDefinition = {
   routes: [{ path: '/', component: RedesignedPodcastList }],
 };
 
+const StyledPage: CustomViewComponent = () => (
+  <div data-testid="styled-page" className="bg-accent-orange/40 animate-in" />
+);
+
+export const STYLED_VIEW: CustomViewDefinition = {
+  id: 'styled',
+  title: 'Styled',
+  icon: 'Palette',
+  routes: [{ path: '/', component: StyledPage }],
+};
+
 const CrashingPage: CustomViewComponent = () => {
   throw new Error('Broken view');
 };

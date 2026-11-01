@@ -6,6 +6,7 @@ import {
   customViewKey,
   useCustomViewsStore,
 } from '../../stores/customViewsStore';
+import { RuntimeTailwind } from './RuntimeTailwind';
 import { ViewRouteTable } from './ViewRouteTable';
 
 export const ViewOutlet: FC = () => {
@@ -27,8 +28,10 @@ export const ViewOutlet: FC = () => {
   const { route, params } = routeTable.match(_splat ?? '')!;
   const Page = route.component;
   return (
-    <CustomViewErrorBoundary registered={registered}>
-      <Page params={params} api={registered.api} />
-    </CustomViewErrorBoundary>
+    <RuntimeTailwind>
+      <CustomViewErrorBoundary registered={registered}>
+        <Page params={params} api={registered.api} />
+      </CustomViewErrorBoundary>
+    </RuntimeTailwind>
   );
 };

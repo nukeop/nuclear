@@ -3,6 +3,7 @@ import {
   CRASHING_VIEW,
   createPodcastsView,
   REDESIGNED_PODCASTS_VIEW,
+  STYLED_VIEW,
   UNKNOWN_ICON_VIEW,
 } from '../test/fixtures/customViews';
 import { DashboardWrapper } from '../views/Dashboard/Dashboard.test-wrapper';
@@ -98,6 +99,19 @@ describe('Custom views from plugins', () => {
     views.unregister('podcasts');
 
     expect(await DashboardWrapper.view.find()).toBeVisible();
+  });
+
+  it('styles a custom view with Tailwind only once it opens', async () => {
+    views.register(STYLED_VIEW);
+    await CustomViewsWrapper.mount('/dashboard');
+    expect(CustomViewsWrapper.tailwindStyles.element).toBeNull();
+
+    await CustomViewsWrapper.sidebar.entry('Styled').click();
+    await CustomViewsWrapper.styledPage.find();
+
+    const styles = await CustomViewsWrapper.tailwindStyles.findText();
+    expect(styles).toContain('.bg-accent-orange\\/40');
+    expect(styles).toContain('.animate-in');
   });
 
   it('removes a crashing view and shows a toast naming the plugin', async () => {

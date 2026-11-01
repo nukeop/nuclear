@@ -1,6 +1,12 @@
 import { QueryClient } from '@tanstack/react-query';
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
-import { render, RenderResult, screen, within } from '@testing-library/react';
+import {
+  render,
+  RenderResult,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toast } from 'sonner';
 
@@ -43,6 +49,23 @@ export const CustomViewsWrapper = {
           await user.click(this.element);
         },
       };
+    },
+  },
+
+  tailwindStyles: {
+    get element() {
+      return screen.queryByTestId('custom-view-tailwind-styles');
+    },
+    async findText() {
+      const style = await screen.findByTestId('custom-view-tailwind-styles');
+      await waitFor(() => expect(style.textContent).not.toBe(''));
+      return style.textContent;
+    },
+  },
+
+  styledPage: {
+    find() {
+      return screen.findByTestId('styled-page');
     },
   },
 

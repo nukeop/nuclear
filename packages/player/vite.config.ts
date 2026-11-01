@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 /// <reference types="vite-plugin-svgr/client" />
 import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
 import { codecovVitePlugin } from '@codecov/vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { devtools } from '@tanstack/devtools-vite';
@@ -33,6 +34,13 @@ export default defineConfig(() => ({
       uploadToken: process.env.CODECOV_TOKEN,
     }),
   ],
+  resolve: {
+    alias: {
+      'tw-animate-css/dist': fileURLToPath(
+        new URL('./node_modules/tw-animate-css/dist', import.meta.url),
+      ),
+    },
+  },
   clearScreen: false,
   server: {
     host: process.env.VITE_HOST ?? 'localhost',
@@ -56,6 +64,7 @@ export default defineConfig(() => ({
     clearMocks: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
+    css: { include: [/\.css\?raw$/] },
     reporters: ['default', ...(process.env.CI ? ['junit'] : [])],
     outputFile: { junit: './test-results/junit.xml' },
     coverage: {
