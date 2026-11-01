@@ -8,6 +8,7 @@ import type {
 
 export type RegisteredCustomView = {
   pluginId: string;
+  pluginName: string;
   view: CustomViewDefinition;
   api: NuclearPluginAPI;
 };

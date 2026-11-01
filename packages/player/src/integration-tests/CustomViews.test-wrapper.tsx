@@ -2,6 +2,7 @@ import { QueryClient } from '@tanstack/react-query';
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
 import { render, RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { toast } from 'sonner';
 
 import App from '../App';
 import { routeTree } from '../routeTree.gen';
@@ -12,6 +13,7 @@ const user = userEvent.setup();
 export const CustomViewsWrapper = {
   reset() {
     useCustomViewsStore.setState({ views: {} });
+    toast.dismiss();
   },
 
   async mount(initialPath: string): Promise<RenderResult> {

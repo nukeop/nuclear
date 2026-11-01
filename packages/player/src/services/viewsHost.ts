@@ -13,10 +13,13 @@ const isOpen = (viewPath: string) => {
 
 export const createViewsHost = (
   pluginId: string,
+  pluginName: string,
   getApi: () => NuclearPluginAPI,
 ): ViewsHost => ({
   register(view) {
-    useCustomViewsStore.getState().register({ pluginId, view, api: getApi() });
+    useCustomViewsStore
+      .getState()
+      .register({ pluginId, pluginName, view, api: getApi() });
   },
   unregister(id) {
     const wasOpen = isOpen(customViewPath(pluginId, id));

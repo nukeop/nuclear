@@ -1,6 +1,7 @@
 import { useParams } from '@tanstack/react-router';
 import { FC, useMemo } from 'react';
 
+import { CustomViewErrorBoundary } from '../../components/CustomViewErrorBoundary';
 import {
   customViewKey,
   useCustomViewsStore,
@@ -25,5 +26,9 @@ export const ViewOutlet: FC = () => {
 
   const { route, params } = routeTable.match(_splat ?? '')!;
   const Page = route.component;
-  return <Page params={params} api={registered.api} />;
+  return (
+    <CustomViewErrorBoundary registered={registered}>
+      <Page params={params} api={registered.api} />
+    </CustomViewErrorBoundary>
+  );
 };

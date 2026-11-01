@@ -41,7 +41,7 @@ export const createPluginAPI = (
     shellHost,
     lyricsHost,
     navigationHost,
-    viewsHost: createViewsHost(pluginId, () => api),
+    viewsHost: createViewsHost(pluginId, displayName, () => api),
     widgetRegistry,
     pluginId,
     loggerHost: createLoggerHost(pluginId),
