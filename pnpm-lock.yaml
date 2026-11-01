@@ -344,6 +344,12 @@ importers:
       sonner:
         specifier: ^2.0.7
         version: 2.0.8(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tailwindcss:
+        specifier: 4.3.3
+        version: 4.3.3
+      tw-animate-css:
+        specifier: 1.4.0
+        version: 1.4.0
       uuid:
         specifier: ^14.0.0
         version: 14.0.2

@@ -8,6 +8,7 @@ import { PlaylistsAPIMeta } from './playlists.meta';
 import { ProvidersAPIMeta } from './providers.meta';
 import { QueueAPIMeta } from './queue.meta';
 import { SettingsAPIMeta } from './settings.meta';
+import { ViewsAPIMeta } from './views.meta';
 
 export type ParamMeta = {
   name: string;
@@ -39,4 +40,5 @@ export const apiMeta: ApiMeta = {
   Providers: ProvidersAPIMeta,
   Lyrics: LyricsAPIMeta,
   Navigation: NavigationAPIMeta,
+  Views: ViewsAPIMeta,
 };

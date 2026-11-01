@@ -280,6 +280,7 @@
   "plugins": {
     "title": "Plugins",
     "addPlugin": "Add Plugin",
+    "viewCrashed": "The view \"{{title}}\" from {{pluginName}} crashed and was removed.",
     "tabs": {
       "installed": "Installed",
       "store": "Store"
@@ -469,7 +470,7 @@
       "jam": {
         "enabled": {
           "title": "Nuclear Jam",
-          "description": "Start a local web server that lets you control Nuclear from other devices on your network."
+          "description": "Control Nuclear from your phone or other devices on the same Wi-Fi. Anyone on that Wi-Fi can control it too, so don't use it on public Wi-Fi."
         },
         "remoteUrl": {
           "title": "Remote URL",

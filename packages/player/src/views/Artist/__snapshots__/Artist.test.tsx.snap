@@ -50,6 +50,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
+              data-testid="top-bar-back"
               type="button"
             >
               <svg
@@ -74,6 +75,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-disabled=""
               data-headlessui-state="disabled"
+              data-testid="top-bar-forward"
               disabled=""
               type="button"
             >
@@ -646,6 +648,10 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                   </div>
                 </div>
               </a>
+              <div
+                class="contents"
+                data-testid="custom-view-sidebar-entries"
+              />
             </div>
             <div>
               <div
@@ -1902,6 +1908,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-headlessui-state=""
+              data-testid="top-bar-back"
               type="button"
             >
               <svg
@@ -1926,6 +1933,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-disabled=""
               data-headlessui-state="disabled"
+              data-testid="top-bar-forward"
               disabled=""
               type="button"
             >
@@ -2504,6 +2512,10 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                   </div>
                 </div>
               </a>
+              <div
+                class="contents"
+                data-testid="custom-view-sidebar-entries"
+              />
             </div>
             <div>
               <div

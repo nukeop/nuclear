@@ -14,6 +14,7 @@ import type { QueueHost } from '../types/queue';
 import type { SettingsHost, WidgetRegistry } from '../types/settings';
 import type { ShellHost } from '../types/shell';
 import type { StreamingHost } from '../types/streaming';
+import type { ViewsHost } from '../types/views';
 import type { YtdlpHost } from '../types/ytdlp';
 import { DashboardAPI } from './dashboard';
 import { DiscoveryAPI } from './discovery';
@@ -31,6 +32,7 @@ import { QueueAPI } from './queue';
 import { Settings } from './settings';
 import { ShellAPI } from './shell';
 import { StreamingAPI } from './streaming';
+import { ViewsAPI } from './views';
 import { YtdlpAPI } from './ytdlp';
 
 export class NuclearAPI {
@@ -51,6 +53,7 @@ export class NuclearAPI {
   readonly Shell: ShellAPI;
   readonly Lyrics: LyricsAPI;
   readonly Navigation: NavigationAPI;
+  readonly Views: ViewsAPI;
 
   constructor(opts?: {
     settingsHost?: SettingsHost;
@@ -70,6 +73,7 @@ export class NuclearAPI {
     shellHost?: ShellHost;
     lyricsHost?: LyricsHost;
     navigationHost?: NavigationHost;
+    viewsHost?: ViewsHost;
     widgetRegistry?: WidgetRegistry;
     pluginId?: string;
   }) {
@@ -94,6 +98,7 @@ export class NuclearAPI {
     this.Shell = new ShellAPI(opts?.shellHost);
     this.Lyrics = new LyricsAPI(opts?.lyricsHost);
     this.Navigation = new NavigationAPI(opts?.navigationHost);
+    this.Views = new ViewsAPI(opts?.viewsHost);
   }
 }
 

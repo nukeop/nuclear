@@ -8,6 +8,10 @@ When Nuclear Jam is enabled, Nuclear exposes a local HTTP API on the same server
 
 Enable Nuclear Jam in Settings, then Integrations. The **API URL** field shows the base URL (e.g. `http://192.168.1.42:4120/api`).
 
+{% hint style="warning" %}
+The API accepts requests only from your local network. In the URL, use an IP address or `localhost`, not a host name. The `/api/views` endpoints run code in Nuclear. Thus they accept requests only from the computer that runs Nuclear. Use `http://localhost:<port>/api` for these endpoints.
+{% endhint %}
+
 ## Endpoints
 
 ### State
@@ -51,6 +55,8 @@ All action endpoints return `200 OK` with no body on success.
 | POST | `/api/navigation/navigate` | `{ "path": string }` | Open the page at a route path, e.g. `/artist/<providerId>/<artistId>`. See [Navigation](../plugins/navigation.md) |
 | POST | `/api/navigation/back` | none | Go back one page |
 | POST | `/api/navigation/forward` | none | Go forward one page |
+| POST | `/api/views/register` | `{ "view": RawViewDefinition }` | Add a view to the left sidebar. To replace a view, send the same `id` again. See [`RawViewDefinition`](../plugins/views.md#types) and [Views from MCP clients](mcp-server.md#views-from-mcp-clients) |
+| POST | `/api/views/unregister` | `{ "id": string }` | Remove the view with this ID. If the view is open, Nuclear opens the dashboard |
 
 ### Events (SSE)
 

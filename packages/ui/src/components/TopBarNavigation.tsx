@@ -17,10 +17,20 @@ export const TopBarNavigation: FC<TopBarNavigationProps> = ({
   canGoForward = true,
 }) => (
   <div className="flex flex-row items-center gap-2">
-    <Button size="icon-sm" disabled={!canGoBack} onClick={onBack}>
+    <Button
+      data-testid="top-bar-back"
+      size="icon-sm"
+      disabled={!canGoBack}
+      onClick={onBack}
+    >
       <ChevronLeft size={16} />
     </Button>
-    <Button size="icon-sm" disabled={!canGoForward} onClick={onForward}>
+    <Button
+      data-testid="top-bar-forward"
+      size="icon-sm"
+      disabled={!canGoForward}
+      onClick={onForward}
+    >
       <ChevronRight size={16} />
     </Button>
   </div>

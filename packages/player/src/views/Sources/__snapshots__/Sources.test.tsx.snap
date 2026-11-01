@@ -51,6 +51,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-disabled=""
               data-headlessui-state="disabled"
+              data-testid="top-bar-back"
               disabled=""
               type="button"
             >
@@ -76,6 +77,7 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 surface-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none size-8 justify-center"
               data-disabled=""
               data-headlessui-state="disabled"
+              data-testid="top-bar-forward"
               disabled=""
               type="button"
             >
@@ -624,6 +626,10 @@ exports[`Sources view > (Snapshot) renders the view 1`] = `
                   </div>
                 </div>
               </a>
+              <div
+                class="contents"
+                data-testid="custom-view-sidebar-entries"
+              />
             </div>
             <div>
               <div

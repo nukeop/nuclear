@@ -33,17 +33,30 @@ vi.mock('@tauri-apps/api/path', () => ({
   normalize: async (p: string) => path.normalize(p),
 }));
 
-vi.mock('esbuild-wasm', () => ({
-  initialize: () => Promise.resolve(),
-  build: () =>
-    Promise.resolve({
-      outputFiles: [
-        {
-          text: 'module.exports = { default: {} };',
+vi.mock('esbuild-wasm', async () => {
+  const { default: ts } = await import('typescript');
+  return {
+    initialize: () => Promise.resolve(),
+    build: () =>
+      Promise.resolve({
+        outputFiles: [
+          {
+            text: 'module.exports = { default: {} };',
+          },
+        ],
+      }),
+    transform: async (source: string) => ({
+      code: ts.transpileModule(source, {
+        fileName: 'module.tsx',
+        compilerOptions: {
+          jsx: ts.JsxEmit.ReactJSX,
+          module: ts.ModuleKind.CommonJS,
+          target: ts.ScriptTarget.ES2022,
         },
-      ],
+      }).outputText,
     }),
-}));
+  };
+});
 
 vi.mock('esbuild-wasm/esbuild.wasm?url', () => ({
   default: '/esbuild.wasm',

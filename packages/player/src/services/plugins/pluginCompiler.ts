@@ -126,7 +126,7 @@ async function ensureInit() {
  * Wait for initialization and return the esbuild module instance.
  * Kept separate so call-sites don't need to remember to call ensureInit().
  */
-async function getEsbuild(): Promise<EsbuildModule> {
+export async function getEsbuild(): Promise<EsbuildModule> {
   await ensureInit();
   return es.mod!;
 }

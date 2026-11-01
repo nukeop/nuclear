@@ -19,7 +19,11 @@ How does it work? Nuclear can start a small web server that can be accessed on y
 The server binds to your LAN address on a port in the 4120-4129 range. If your computer's address is `192.168.1.42`, the Remote URL looks like `http://192.168.1.42:4120`.
 
 {% hint style="info" %}
-Nuclear Jam only listens on your local network. Devices need to be on the same Wi-Fi (or wired LAN) to connect.
+Nuclear Jam accepts connections only from your local network. Devices must be on the same Wi-Fi or wired LAN to connect. Nuclear refuses connections from other addresses, also when your router forwards the port.
+{% endhint %}
+
+{% hint style="warning" %}
+When Nuclear Jam is on, all devices on the same Wi-Fi can control Nuclear and change its settings. Use Nuclear Jam at home. Do not use it on public Wi-Fi, for example in a café or a hotel.
 {% endhint %}
 
 ## Connect from your phone

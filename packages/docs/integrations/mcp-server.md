@@ -87,7 +87,7 @@ Lists available methods in a domain.
 
 | Parameter | Type   | Required | Description                                                                                                            |
 | --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `domain`  | string | yes      | One of: `Queue`, `Playback`, `Metadata`, `Favorites`, `Playlists`, `Dashboard`, `Providers`, `Lyrics`, `Navigation`. |
+| `domain`  | string | yes      | One of: `Queue`, `Playback`, `Metadata`, `Favorites`, `Playlists`, `Dashboard`, `Providers`, `Lyrics`, `Navigation`, `Views`. |
 
 Returns the method names and short descriptions for that domain.
 
@@ -127,6 +127,58 @@ An agent follows this sequence to find and call an API method:
 5. Call `call` with the method name and parameters to execute it.
 
 Each step returns a small, focused payload to save on tokens.
+
+## Views from MCP clients
+
+To add a page to the left sidebar of Nuclear, call `Views.register`. Send the view as TSX source in a [`RawViewDefinition`](../plugins/views.md#types):
+
+```typescript
+type RawViewDefinition = {
+  id: string;
+  title: string;
+  icon: string;
+  source: string;
+  routes: { path: string; export?: string }[];
+};
+```
+
+Put all components of the view in one TSX module in `source`. To show a named export on a route, set `export` on that route to the name of the export. If you do not set `export`, Nuclear shows the default export.
+
+The props of each component are `{ params, api }`. These props, the route paths, and `icon` are the same as in a custom view from a plugin. For more information, see [Views](../plugins/views.md).
+
+The module can import only these packages:
+
+* `react`
+* `@nuclearplayer/ui`
+* `@nuclearplayer/plugin-sdk`
+
+You can use Tailwind classes in the module. Nuclear generates the CSS for all classes, also for classes that Nuclear itself does not use.
+
+Nuclear keeps views from MCP clients under the plugin ID `bridge`. Thus a view opens at `/plugin/bridge/<viewId>`. By design, Nuclear does not save these views, they are ephemeral. When you start Nuclear again, the views will no longer be there, and will need to be added a new.
+
+Example: to add a view with two pages, send this input to the `call` tool:
+
+{% code overflow="wrap" %}
+```json
+{
+  "method": "Views.register",
+  "params": {
+    "view": {
+      "id": "hello",
+      "title": "Hello",
+      "icon": "Smile",
+      "source": "export default function Hello() { return <h1 className=\"text-2xl font-bold\">Hello</h1>; }\nexport function Greeting({ params }) { return <p>Hello, {params.name}</p>; }",
+      "routes": [
+        { "path": "/" },
+        { "path": "/greet/$name", "export": "Greeting" }
+      ]
+    }
+  }
+}
+```
+{% endcode %}
+
+To remove the view, call `Views.unregister` with the input `{ "id": "hello" }`.
 
 ## Agent skill
 

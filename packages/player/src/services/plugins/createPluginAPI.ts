@@ -16,6 +16,7 @@ import { queueHost } from '../../services/queueHost';
 import { createPluginSettingsHost } from '../../services/settingsHost';
 import { shellHost } from '../../services/shellHost';
 import { streamingHost } from '../../services/streamingHost';
+import { createViewsHost } from '../../services/viewsHost';
 import { widgetRegistry } from '../../services/widgetRegistry';
 import { ytdlpHost } from '../../services/ytdlpHost';
 
@@ -23,7 +24,7 @@ export const createPluginAPI = (
   pluginId: string,
   displayName: string,
 ): NuclearPluginAPI => {
-  return new NuclearPluginAPI({
+  const api: NuclearPluginAPI = new NuclearPluginAPI({
     settingsHost: createPluginSettingsHost(pluginId, displayName),
     queueHost,
     providersHost,
@@ -40,8 +41,10 @@ export const createPluginAPI = (
     shellHost,
     lyricsHost,
     navigationHost,
+    viewsHost: createViewsHost(pluginId, displayName, () => api),
     widgetRegistry,
     pluginId,
     loggerHost: createLoggerHost(pluginId),
   });
+  return api;
 };

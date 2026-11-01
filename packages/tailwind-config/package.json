@@ -5,10 +5,16 @@
   "type": "module",
   "main": "./global.css",
   "exports": {
-    ".": "./global.css"
+    ".": "./global.css",
+    "./theme.css": "./theme.css",
+    "./utilities.css": "./utilities.css",
+    "./runtime.css": "./runtime.css"
   },
   "files": [
-    "global.css"
+    "global.css",
+    "theme.css",
+    "utilities.css",
+    "runtime.css"
   ],
   "scripts": {
     "lint": "eslint .",

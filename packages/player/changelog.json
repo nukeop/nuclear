@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-31T01:00",
+    "description": "New View API for plugins, HTTP API and MCP lets you create new custom views, listed in the left sidebar.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-10-31T00:00",
     "description": "Navigation API for plugins.",
     "type": "feature",
