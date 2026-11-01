@@ -286,6 +286,7 @@
   "plugins": {
     "title": "Wtyczki",
     "addPlugin": "Dodaj wtyczkę",
+    "viewCrashed": "The view \"{{title}}\" from {{pluginName}} crashed and was removed.",
     "tabs": {
       "installed": "Zainstalowane",
       "store": "Sklep"
