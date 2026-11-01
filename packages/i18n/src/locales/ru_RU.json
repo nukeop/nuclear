@@ -286,6 +286,7 @@
   "plugins": {
     "title": "Плагины",
     "addPlugin": "Добавить плагин",
+    "viewCrashed": "The view \"{{title}}\" from {{pluginName}} crashed and was removed.",
     "tabs": {
       "installed": "Установлено",
       "store": "Магазин"
