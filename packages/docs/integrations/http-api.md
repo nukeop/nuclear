@@ -8,6 +8,10 @@ When Nuclear Jam is enabled, Nuclear exposes a local HTTP API on the same server
 
 Enable Nuclear Jam in Settings, then Integrations. The **API URL** field shows the base URL (e.g. `http://192.168.1.42:4120/api`).
 
+{% hint style="warning" %}
+The API accepts requests only from your local network. In the URL, use an IP address or `localhost`, not a host name. The `/api/views` endpoints run code in Nuclear. Thus they accept requests only from the computer that runs Nuclear. Use `http://localhost:<port>/api` for these endpoints.
+{% endhint %}
+
 ## Endpoints
 
 ### State
