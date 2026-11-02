@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-02T00:00",
+    "description": "Fix favorite albums and artists views slowing down on large libraries.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Performance",
+        "color": "orange"
+      }
+    ]
+  },
+  {
     "date": "2026-10-31T01:00",
     "description": "New View API for plugins, HTTP API and MCP lets you create new custom views, listed in the left sidebar.",
     "type": "feature",

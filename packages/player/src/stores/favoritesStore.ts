@@ -34,8 +34,23 @@ type FavoritesState = FavoritesData & {
   isArtistFavorite: (source: ProviderRef) => boolean;
 };
 
-const matchesSource = (a: ProviderRef, b: ProviderRef): boolean =>
-  a.provider === b.provider && a.id === b.id;
+const sourceKey = (source: ProviderRef): string =>
+  JSON.stringify([source.provider, source.id]);
+
+const sourceKeysByList = new WeakMap<
+  FavoriteEntry<RefWithSource>[],
+  Set<string>
+>();
+
+const getSourceKeys = (list: FavoriteEntry<RefWithSource>[]): Set<string> => {
+  const cached = sourceKeysByList.get(list);
+  if (cached) {
+    return cached;
+  }
+  const keys = new Set(list.map((entry) => sourceKey(entry.ref.source)));
+  sourceKeysByList.set(list, keys);
+  return keys;
+};
 
 const saveToDisk = async (): Promise<void> => {
   const state = useFavoritesStore.getState();
@@ -54,7 +69,7 @@ const createAddFavorite =
   <T extends RefWithSource>(key: FavoritesKey) =>
   async (ref: T): Promise<void> => {
     const list = getList<T>(key);
-    if (list.some((entry) => matchesSource(entry.ref.source, ref.source))) {
+    if (getSourceKeys(list).has(sourceKey(ref.source))) {
       return;
     }
     const entry: FavoriteEntry<T> = {
@@ -68,9 +83,11 @@ const createAddFavorite =
 const createRemoveFavorite =
   <T extends RefWithSource>(key: FavoritesKey) =>
   async (source: ProviderRef): Promise<void> => {
-    const list = getList<T>(key);
+    const keyToRemove = sourceKey(source);
     useFavoritesStore.setState({
-      [key]: list.filter((entry) => !matchesSource(entry.ref.source, source)),
+      [key]: getList<T>(key).filter(
+        (entry) => sourceKey(entry.ref.source) !== keyToRemove,
+      ),
     });
     await saveToDisk();
   };
@@ -78,7 +95,7 @@ const createRemoveFavorite =
 const createIsFavorite =
   <T extends RefWithSource>(key: FavoritesKey) =>
   (source: ProviderRef): boolean =>
-    getList<T>(key).some((entry) => matchesSource(entry.ref.source, source));
+    getSourceKeys(getList<T>(key)).has(sourceKey(source));
 
 export const useFavoritesStore = create<FavoritesState>(() => ({
   tracks: [],

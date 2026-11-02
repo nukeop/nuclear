@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { type FC } from 'react';
 
@@ -6,7 +7,7 @@ import { pickArtwork, type AlbumRef } from '@nuclearplayer/model';
 import { Card } from '@nuclearplayer/ui';
 
 import { useFetchedTracksActions } from '../hooks/useFetchedTracksActions';
-import { useAlbumTracks } from '../queries/albumDetails';
+import { albumDetailsQuery, albumToTracks } from '../queries/albumDetails';
 import { useFavoritesStore } from '../stores/favoritesStore';
 import { CardMenuItems } from './CardMenuItems';
 
@@ -23,14 +24,16 @@ export const ConnectedAlbumCard: FC<ConnectedAlbumCardProps> = ({ album }) => {
   );
   const addAlbum = useFavoritesStore((state) => state.addAlbum);
   const removeAlbum = useFavoritesStore((state) => state.removeAlbum);
-  const tracksQuery = useAlbumTracks(provider, id, { enabled: false });
+  const queryClient = useQueryClient();
 
   const fetchTracks = async () => {
-    const { data } = await tracksQuery.refetch({ throwOnError: true });
-    return data ?? [];
+    const albumDetails = await queryClient.fetchQuery(
+      albumDetailsQuery(provider, id),
+    );
+    return albumToTracks(albumDetails);
   };
 
-  const { play, enqueue } = useFetchedTracksActions(fetchTracks, {
+  const { play, enqueue, isLoading } = useFetchedTracksActions(fetchTracks, {
     scope: 'metadata',
     message: t('album:errors.failedToLoadTracks'),
   });
@@ -50,7 +53,7 @@ export const ConnectedAlbumCard: FC<ConnectedAlbumCardProps> = ({ album }) => {
       src={pickArtwork(album.artwork, 'cover', 300)?.url}
       onClick={() => navigate({ to: `/album/${provider}/${id}` })}
       onPlay={play}
-      isLoading={tracksQuery.isFetching}
+      isLoading={isLoading}
       menuItems={
         <CardMenuItems
           isFavorite={isFavorite}

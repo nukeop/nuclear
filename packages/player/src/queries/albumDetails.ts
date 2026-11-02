@@ -27,14 +27,3 @@ export const useAlbumDetails = (providerId: string, albumId: string) =>
     ...albumDetailsQuery(providerId, albumId),
     enabled: Boolean(providerId && albumId),
   });
-
-export const useAlbumTracks = (
-  providerId: string,
-  albumId: string,
-  { enabled = true }: { enabled?: boolean } = {},
-) =>
-  useQuery({
-    ...albumDetailsQuery(providerId, albumId),
-    select: albumToTracks,
-    enabled: enabled && Boolean(providerId && albumId),
-  });

@@ -1,10 +1,12 @@
 import isEmpty from 'lodash-es/isEmpty';
+import { useState } from 'react';
 
 import type { Track } from '@nuclearplayer/model';
 
 import type { LogScope } from '../services/logger';
+import { playbackManager } from '../services/playback';
+import { useQueueStore } from '../stores/queueStore';
 import { reportError } from '../utils/logging';
-import { useQueueActions } from './useQueueActions';
 
 type FetchFailure = {
   scope: LogScope;
@@ -15,10 +17,12 @@ export const useFetchedTracksActions = (
   fetchTracks: () => Promise<Track[]>,
   failure: FetchFailure,
 ) => {
-  const { addToQueue, playTracks } = useQueueActions();
+  const addToQueue = useQueueStore((state) => state.addToQueue);
+  const [isLoading, setIsLoading] = useState(false);
 
   const withFetchedTracks =
     (handleTracks: (tracks: Track[]) => void) => async () => {
+      setIsLoading(true);
       try {
         const tracks = await fetchTracks();
         if (isEmpty(tracks)) {
@@ -30,11 +34,14 @@ export const useFetchedTracksActions = (
           userMessage: failure.message,
           error,
         });
+      } finally {
+        setIsLoading(false);
       }
     };
 
   return {
-    play: withFetchedTracks(playTracks),
+    play: withFetchedTracks(playbackManager.playTracks),
     enqueue: withFetchedTracks(addToQueue),
+    isLoading,
   };
 };

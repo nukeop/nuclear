@@ -1,5 +1,5 @@
 import type { AudioSource } from '@nuclearplayer/hifi';
-import type { QueueItem } from '@nuclearplayer/model';
+import type { QueueItem, Track } from '@nuclearplayer/model';
 
 import { useQueueStore } from '../../stores/queueStore';
 import { getSetting } from '../../stores/settingsStore';
@@ -35,6 +35,13 @@ export class PlaybackManager {
 
     useSoundStore.getState().play();
     eventBus.emit('trackStarted', item.track);
+  };
+
+  playTracks = (tracks: Track[]): void => {
+    const { clearQueue, addToQueue } = useQueueStore.getState();
+    clearQueue();
+    addToQueue(tracks);
+    this.play();
   };
 
   pause = (): void => {

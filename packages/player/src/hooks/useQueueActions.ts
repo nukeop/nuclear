@@ -3,7 +3,6 @@ import { useShallow } from 'zustand/react/shallow';
 
 import type { Track } from '@nuclearplayer/model';
 
-import { playbackManager } from '../services/playback';
 import { useQueueStore } from '../stores/queueStore';
 
 export const useQueueActions = () => {
@@ -47,15 +46,6 @@ export const useQueueActions = () => {
     [clearQueue, addToQueue],
   );
 
-  const playTracks = useCallback(
-    (tracks: Track[]) => {
-      clearQueue();
-      addToQueue(tracks);
-      playbackManager.play();
-    },
-    [clearQueue, addToQueue],
-  );
-
   return {
     addToQueue,
     addNext,
@@ -71,6 +61,5 @@ export const useQueueActions = () => {
     goToIndex,
     goToId,
     playNow,
-    playTracks,
   };
 };
