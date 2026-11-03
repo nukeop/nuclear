@@ -5,7 +5,10 @@ import { SkeletonColumn } from './skeletonColumns';
 import { SkeletonIconHeader } from './SkeletonIconHeader';
 import { SkeletonTextHeader } from './SkeletonTextHeader';
 
-const headerByKind: Record<TrackTableSkeletonColumnKind, FC> = {
+const headerByKind: Record<
+  TrackTableSkeletonColumnKind,
+  FC<{ className?: string }>
+> = {
   icon: SkeletonIconHeader,
   thumbnail: SkeletonIconHeader,
   text: SkeletonTextHeader,
@@ -19,7 +22,7 @@ export const SkeletonHeaderRow: FC<SkeletonHeaderRowProps> = ({ columns }) => (
   <tr className="border-border surface-primary border-b-(length:--border-width)">
     {columns.map((column) => {
       const Header = headerByKind[column.kind];
-      return <Header key={column.id} />;
+      return <Header key={column.id} className={column.className} />;
     })}
   </tr>
 );

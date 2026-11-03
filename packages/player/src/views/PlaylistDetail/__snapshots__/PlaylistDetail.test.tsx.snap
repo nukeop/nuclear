@@ -334,7 +334,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           </span>
                         </th>
                         <th
-                          class="px-2 text-left cursor-pointer"
+                          class="px-2 text-left w-[40%] cursor-pointer"
                           role="columnheader"
                         >
                           <span
@@ -344,7 +344,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           </span>
                         </th>
                         <th
-                          class="px-2 text-left cursor-pointer"
+                          class="px-2 text-left w-24 cursor-pointer"
                           role="columnheader"
                         >
                           <span

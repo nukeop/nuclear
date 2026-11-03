@@ -38,7 +38,7 @@ exports[`TrackTableSkeleton > (Snapshot) Defaults 1`] = `
           </div>
         </th>
         <th
-          class="px-2 text-left"
+          class="px-2 text-left w-[40%]"
           role="columnheader"
         >
           <div
@@ -51,7 +51,7 @@ exports[`TrackTableSkeleton > (Snapshot) Defaults 1`] = `
           </div>
         </th>
         <th
-          class="px-2 text-left"
+          class="px-2 text-left w-24"
           role="columnheader"
         >
           <div
@@ -502,7 +502,7 @@ exports[`TrackTableSkeleton > (Snapshot) WithPositionAndWithoutDuration 1`] = `
           </div>
         </th>
         <th
-          class="px-2 text-left"
+          class="px-2 text-left w-[40%]"
           role="columnheader"
         >
           <div

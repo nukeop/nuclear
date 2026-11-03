@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-11-03T00:00",
+    "description": "Give track titles more room in track tables and shrink the duration column.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "UI",
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "date": "2026-11-03T00:00",
     "description": "Fix dragging playlists into folders.",
     "type": "fix",
     "contributors": ["nukeop"],

@@ -318,7 +318,7 @@ exports[`FavoriteTracks view > (Snapshot) renders with tracks 1`] = `
                           </span>
                         </th>
                         <th
-                          class="px-2 text-left cursor-pointer"
+                          class="px-2 text-left w-[40%] cursor-pointer"
                           role="columnheader"
                         >
                           <span

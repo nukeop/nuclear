@@ -981,7 +981,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                                     </span>
                                   </th>
                                   <th
-                                    class="px-2 text-left cursor-pointer"
+                                    class="px-2 text-left w-[40%] cursor-pointer"
                                     role="columnheader"
                                   >
                                     <span
@@ -3021,7 +3021,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                     </span>
                                   </th>
                                   <th
-                                    class="px-2 text-left cursor-pointer"
+                                    class="px-2 text-left w-[40%] cursor-pointer"
                                     role="columnheader"
                                   >
                                     <span

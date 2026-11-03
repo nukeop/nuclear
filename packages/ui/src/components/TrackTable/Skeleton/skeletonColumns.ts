@@ -3,6 +3,7 @@ import { TrackTableProps, TrackTableSkeletonColumnKind } from '../types';
 export type SkeletonColumn = {
   id: string;
   kind: TrackTableSkeletonColumnKind;
+  className?: string;
 };
 
 type SkeletonColumnDefinition = SkeletonColumn & {
@@ -17,13 +18,18 @@ export const getSkeletonColumns = (
     { id: 'position', kind: 'icon', visible: display.displayPosition },
     { id: 'thumbnail', kind: 'thumbnail', visible: display.displayThumbnail },
     { id: 'artist', kind: 'text', visible: true },
-    { id: 'title', kind: 'text', visible: true },
+    { id: 'title', kind: 'text', visible: true, className: 'w-[40%]' },
     { id: 'album', kind: 'text', visible: display.displayAlbum },
-    { id: 'duration', kind: 'text', visible: display.displayDuration },
+    {
+      id: 'duration',
+      kind: 'text',
+      visible: display.displayDuration,
+      className: 'w-24',
+    },
     { id: 'delete', kind: 'icon', visible: display.displayDeleteButton },
   ];
 
   return columns
     .filter((column) => column.visible)
-    .map(({ id, kind }) => ({ id, kind }));
+    .map(({ id, kind, className }) => ({ id, kind, className }));
 };
