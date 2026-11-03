@@ -82,6 +82,17 @@ export class Fmp4TrackBuilder {
     return this;
   }
 
+  withSegments(
+    count: number,
+    sizeBytes: number,
+    durationSeconds: number,
+  ): this {
+    for (let segment = 0; segment < count; segment++) {
+      this.withSegment(sizeBytes, durationSeconds);
+    }
+    return this;
+  }
+
   build(): Fmp4Track {
     return new Fmp4Track(this.timescale, [...this.segments]);
   }

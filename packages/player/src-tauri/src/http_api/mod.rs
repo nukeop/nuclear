@@ -1,10 +1,13 @@
+mod access;
 mod actions;
 mod frontend;
 mod lyrics;
+mod navigation;
 mod routes;
 mod search;
+mod views;
 
-use std::sync::Arc;
+use std::{net::SocketAddr, sync::Arc};
 
 use tauri::{AppHandle, Listener, Manager};
 use tokio::sync::{broadcast, oneshot, Mutex};
@@ -99,11 +102,14 @@ async fn start_server(
         lan_address,
     }));
 
-    let _ = axum::serve(tcp_listener, router)
-        .with_graceful_shutdown(async move {
-            ct.cancelled().await;
-        })
-        .await;
+    let _ = axum::serve(
+        tcp_listener,
+        router.into_make_service_with_connect_info::<SocketAddr>(),
+    )
+    .with_graceful_shutdown(async move {
+        ct.cancelled().await;
+    })
+    .await;
 
     log::info!("HTTP API server stopped");
 }

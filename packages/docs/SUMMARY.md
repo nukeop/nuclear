@@ -47,6 +47,8 @@
 * [Playback](plugins/playback.md)
 * [Events](plugins/events.md)
 * [Shell](plugins/shell.md)
+* [Navigation](plugins/navigation.md)
+* [Views](plugins/views.md)
 * [Streaming](plugins/streaming.md)
 * [Metadata](plugins/metadata.md)
 * [Lyrics](plugins/lyrics.md)
@@ -70,3 +72,4 @@
 * [Logging](development/logging.md)
 * [MCP Architecture](development/mcp-architecture.md)
 * [Profiles](development/profiles.md)
+* [Runtime Tailwind](development/runtime-tailwind.md)

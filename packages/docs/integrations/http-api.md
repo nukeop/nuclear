@@ -8,6 +8,10 @@ When Nuclear Jam is enabled, Nuclear exposes a local HTTP API on the same server
 
 Enable Nuclear Jam in Settings, then Integrations. The **API URL** field shows the base URL (e.g. `http://192.168.1.42:4120/api`).
 
+{% hint style="warning" %}
+The API accepts requests only from your local network. In the URL, use an IP address or `localhost`, not a host name. The `/api/views` endpoints run code in Nuclear. Thus they accept requests only from the computer that runs Nuclear. Use `http://localhost:<port>/api` for these endpoints.
+{% endhint %}
+
 ## Endpoints
 
 ### State
@@ -22,6 +26,7 @@ Enable Nuclear Jam in Settings, then Integrations. The **API URL** field shows t
 | GET | `/api/settings/{id}` | The value of a single setting by its fully-qualified ID (e.g. `core.playback.shuffle`) |
 | GET | `/api/playlists` | [`PlaylistIndexNode[]`](../plugins/playlists.md#playlistindexnode), the top level of the playlist index in display order. Each item is a playlist (`"kind": "playlist"`) or a folder (`"kind": "folder"`). A folder contains its playlists in the `playlists` field |
 | GET | `/api/lyrics/current` | `AttributedLyrics[]`, the lyrics of the current track from all lyrics providers, ranked by type: word-synced, line-synced, plain, instrumental |
+| GET | `/api/navigation/current` | [`NavigationLocation`](../plugins/navigation.md#types), the location of the page that the user looks at |
 
 ### Actions
 
@@ -47,6 +52,11 @@ All action endpoints return `200 OK` with no body on success.
 | POST | `/api/playlists/from-queue` | `{ "name": string, "folderId"?: string }` | Save the queue as a new playlist. If you supply `folderId`, Nuclear saves the playlist in that folder. Returns `{ "id": string }` |
 | POST | `/api/search` | `{ "query": string, "types"?: SearchCategory[], "limit"?: number }` | Search for music. Returns `{ "tracks"?: Track[], "artists"?: ArtistRef[], "albums"?: AlbumRef[], "playlists"?: PlaylistRef[] }` |
 | POST | `/api/settings/{id}` | JSON value | Set a single setting by its fully-qualified ID |
+| POST | `/api/navigation/navigate` | `{ "path": string }` | Open the page at a route path, e.g. `/artist/<providerId>/<artistId>`. See [Navigation](../plugins/navigation.md) |
+| POST | `/api/navigation/back` | none | Go back one page |
+| POST | `/api/navigation/forward` | none | Go forward one page |
+| POST | `/api/views/register` | `{ "view": RawViewDefinition }` | Add a view to the left sidebar. To replace a view, send the same `id` again. See [`RawViewDefinition`](../plugins/views.md#types) and [Views from MCP clients](mcp-server.md#views-from-mcp-clients) |
+| POST | `/api/views/unregister` | `{ "id": string }` | Remove the view with this ID. If the view is open, Nuclear opens the dashboard |
 
 ### Events (SSE)
 

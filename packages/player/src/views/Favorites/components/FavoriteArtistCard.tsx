@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { type FC } from 'react';
 
@@ -7,7 +8,7 @@ import { Card } from '@nuclearplayer/ui';
 
 import { CardMenuItems } from '../../../components/CardMenuItems';
 import { useFetchedTracksActions } from '../../../hooks/useFetchedTracksActions';
-import { useArtistTopTracks } from '../../../queries/artistTopTracks';
+import { artistTopTracksQuery } from '../../../queries/artistTopTracks';
 import { useFavoritesStore } from '../../../stores/favoritesStore';
 
 type FavoriteArtistCardProps = {
@@ -31,14 +32,12 @@ export const FavoriteArtistCard: FC<FavoriteArtistCardProps> = ({ artist }) => {
     }
     addArtist(artist);
   };
-  const tracksQuery = useArtistTopTracks(provider, id, { enabled: false });
+  const queryClient = useQueryClient();
 
-  const fetchTracks = async () => {
-    const { data } = await tracksQuery.refetch({ throwOnError: true });
-    return data ?? [];
-  };
+  const fetchTracks = () =>
+    queryClient.fetchQuery(artistTopTracksQuery(provider, id));
 
-  const { play, enqueue } = useFetchedTracksActions(fetchTracks, {
+  const { play, enqueue, isLoading } = useFetchedTracksActions(fetchTracks, {
     scope: 'metadata',
     message: t('artist:errors.failedToLoadPopularTracks'),
   });
@@ -49,7 +48,7 @@ export const FavoriteArtistCard: FC<FavoriteArtistCardProps> = ({ artist }) => {
       src={pickArtwork(artist.artwork, 'cover', 300)?.url}
       onClick={() => navigate({ to: `/artist/${provider}/${id}` })}
       onPlay={play}
-      isLoading={tracksQuery.isFetching}
+      isLoading={isLoading}
       menuItems={
         <CardMenuItems
           isFavorite={isFavorite}

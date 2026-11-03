@@ -4568,6 +4568,7 @@ dependencies = [
  "tempfile",
  "tokio",
  "tokio-util",
+ "tower",
  "uuid 1.26.1",
  "zip 8.6.0",
 ]

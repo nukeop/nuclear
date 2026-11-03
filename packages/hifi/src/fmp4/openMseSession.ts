@@ -5,7 +5,7 @@ import {
   waitForSourceOpen,
 } from './MediaSourceAttachment';
 import { MseSession } from './MseSession';
-import { parseInitSegment } from './parser';
+import { findBoxes, parseInitSegment } from './parser';
 import {
   describeFetchFailure,
   isSourceInvalidStatus,
@@ -30,10 +30,15 @@ export type SessionSetupOptions = {
 const fetchHeader = async (
   fetcher: SegmentFetcher,
   signal: AbortSignal,
+  size = 8192,
 ): Promise<Uint8Array | null> => {
-  const result = await fetcher.fetchRange(0, 8192 - 1, signal);
+  const result = await fetcher.fetchRange(0, size - 1, signal);
 
   if (result.kind === 'ok') {
+    const sidxBox = findBoxes(result.bytes).find((box) => box.type === 'sidx');
+    if (sidxBox && sidxBox.offset + sidxBox.size > size) {
+      return fetchHeader(fetcher, signal, sidxBox.offset + sidxBox.size);
+    }
     return result.bytes;
   }
   if (result.kind === 'aborted') {

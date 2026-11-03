@@ -17,12 +17,8 @@ export const artistTopTracksQuery = (providerId: string, artistId: string) =>
     },
   });
 
-export const useArtistTopTracks = (
-  providerId: string,
-  artistId: string,
-  { enabled = true }: { enabled?: boolean } = {},
-) =>
+export const useArtistTopTracks = (providerId: string, artistId: string) =>
   useQuery({
     ...artistTopTracksQuery(providerId, artistId),
-    enabled: enabled && Boolean(providerId && artistId),
+    enabled: Boolean(providerId && artistId),
   });

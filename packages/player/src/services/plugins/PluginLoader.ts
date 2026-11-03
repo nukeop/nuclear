@@ -17,6 +17,31 @@ import { Logger } from '../logger';
 import { compilePlugin } from './pluginCompiler';
 import { safeParsePluginManifest } from './pluginManifest';
 
+const ALLOWED_MODULES: Record<string, unknown> = {
+  '@nuclearplayer/plugin-sdk': { NuclearPluginAPI },
+  '@nuclearplayer/ui': nuclearUI,
+  react: React,
+  'react/jsx-runtime': jsxRuntime,
+};
+
+const requireAllowedModule = (id: string) => {
+  if (id in ALLOWED_MODULES) {
+    return ALLOWED_MODULES[id];
+  }
+  Logger.plugins.error(`Plugin tried to require unknown module: ${id}`);
+  throw new Error(`Module ${id} not found`);
+};
+
+export const evaluateModule = (code: string): unknown => {
+  const module: { exports: unknown } = { exports: {} };
+  new Function('exports', 'module', 'require', code)(
+    module.exports,
+    module,
+    requireAllowedModule,
+  );
+  return module.exports;
+};
+
 export class PluginLoader {
   private path: string;
   private manifest?: PluginManifest;
@@ -115,34 +140,16 @@ export class PluginLoader {
 
   private evaluatePlugin(code: string): NuclearPlugin {
     Logger.plugins.debug('Evaluating plugin code');
-    const exports = {} as Record<string, unknown>;
-    const module = { exports } as { exports: unknown };
-    const ALLOWED_MODULES: Record<string, unknown> = {
-      '@nuclearplayer/plugin-sdk': { NuclearPluginAPI },
-      '@nuclearplayer/ui': nuclearUI,
-      react: React,
-      'react/jsx-runtime': jsxRuntime,
-    };
-    const require = (id: string) => {
-      if (id in ALLOWED_MODULES) {
-        return ALLOWED_MODULES[id];
-      }
-      Logger.plugins.error(`Plugin tried to require unknown module: ${id}`);
-      throw new Error(`Module ${id} not found`);
-    };
+    let moduleExports: unknown;
     try {
-      new Function('exports', 'module', 'require', code)(
-        exports,
-        module,
-        require,
-      );
+      moduleExports = evaluateModule(code);
     } catch (error) {
       Logger.plugins.error(`Plugin evaluation failed: ${errorMessage(error)}`);
       throw error;
     }
 
     // @ts-expect-error exports are actually unknown
-    const plugin = (module.exports as unknown).default || module.exports;
+    const plugin = moduleExports.default || moduleExports;
 
     if (!plugin || typeof plugin !== 'object') {
       Logger.plugins.error('Plugin does not export a default object');

@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: write
+  contents: read
 
 env:
   DO_NOT_TRACK: 1
@@ -39,6 +39,7 @@ jobs:
             bundle-dir: "packages/player/src-tauri/target/release/bundle"
 
     runs-on: ${{ matrix.platform }}
+    environment: release
 
     steps:
       - name: Checkout code
@@ -182,6 +183,8 @@ jobs:
   publish:
     needs: [build, flatpak, snap]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v7

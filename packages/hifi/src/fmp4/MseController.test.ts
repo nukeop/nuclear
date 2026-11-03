@@ -1,4 +1,5 @@
 import { SoundError } from '../SoundError';
+import { Fmp4TrackBuilder } from '../test/builders/Fmp4TrackBuilder';
 import { FakeStreamServer } from '../test/fakes/FakeStreamServer';
 import { DEFAULT_TRACK, MSE_URL } from '../test/fixtures/fmp4Stream';
 import { initMockLogger } from '../test/mocks/mockLogger';
@@ -101,6 +102,19 @@ describe('MseController', () => {
     expect(onError).toHaveBeenCalledWith(
       new SoundError('loadFailed', 'Streaming service returned error: 502'),
     );
+  });
+
+  it('plays a long track whose sidx box extends past the initial header read', async () => {
+    new FakeStreamServer(
+      new Fmp4TrackBuilder().withSegments(1000, 40000, 10).build(),
+    ).setup();
+
+    const controller = new MseController();
+    const onError = vi.fn();
+    const mediaSource = await fixture.initController(controller, { onError });
+
+    expect(onError).not.toHaveBeenCalled();
+    expect(mediaSource.duration).toBe(10000);
   });
 
   it('reports an error through onError when the stream header cannot be parsed', async () => {

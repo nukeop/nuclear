@@ -6,6 +6,7 @@ import type { Track } from '@nuclearplayer/model';
 import { Button, cn, Popover } from '@nuclearplayer/ui';
 
 import { useQueueActions } from '../../../hooks/useQueueActions';
+import { playbackManager } from '../../../services/playback';
 
 type PlaylistActionsProps = {
   tracks: Track[];
@@ -19,14 +20,14 @@ export const PlaylistActions: FC<PlaylistActionsProps> = ({
   className,
 }) => {
   const { t } = useTranslation('playlists');
-  const { addToQueue, playTracks } = useQueueActions();
+  const { addToQueue } = useQueueActions();
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
       <Button
         variant="tertiary"
         onClick={() => {
-          playTracks(tracks);
+          playbackManager.playTracks(tracks);
         }}
         data-testid="play-all-button"
       >

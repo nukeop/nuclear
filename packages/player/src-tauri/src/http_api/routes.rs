@@ -3,6 +3,7 @@ use std::convert::Infallible;
 use axum::{
     extract::{Path, State},
     http::StatusCode,
+    middleware::from_fn_with_state,
     response::{
         sse::{Event, KeepAlive, Sse},
         IntoResponse, Response,
@@ -14,7 +15,8 @@ use futures::Stream;
 use serde_json::{json, Value};
 use tokio::sync::broadcast;
 
-use super::{actions, lyrics, search, RemoteEvent};
+use super::access::{restrict_to, Audience};
+use super::{actions, lyrics, navigation, search, views, RemoteEvent};
 use crate::bridge::{bridge::Bridge, types::BridgeError};
 
 #[derive(Clone)]
@@ -201,6 +203,19 @@ pub fn router(bridge: Bridge, events_tx: broadcast::Sender<RemoteEvent>) -> Rout
         )
         .route("/api/search", post(search::search))
         .route("/api/lyrics/current", get(lyrics::get_current_lyrics))
+        .route("/api/navigation/navigate", post(navigation::navigate))
+        .route("/api/navigation/back", post(navigation::back))
+        .route("/api/navigation/forward", post(navigation::forward))
+        .route("/api/navigation/current", get(navigation::current))
+        .merge(views_router())
         .fallback(super::frontend::serve_frontend)
+        .layer(from_fn_with_state(Audience::LocalNetwork, restrict_to))
         .with_state(state)
+}
+
+fn views_router() -> Router<AppState> {
+    Router::new()
+        .route("/api/views/register", post(views::register))
+        .route("/api/views/unregister", post(views::unregister))
+        .route_layer(from_fn_with_state(Audience::ThisComputer, restrict_to))
 }

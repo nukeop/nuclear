@@ -1,73 +1,40 @@
+import type { DragMoveEvent } from '@dnd-kit/core';
 import {
-  closestCenter,
-  pointerWithin,
-  type ClientRect,
-  type Collision,
-  type CollisionDetection,
-  type DragMoveEvent,
-} from '@dnd-kit/core';
-import { rectSortingStrategy, type SortingStrategy } from '@dnd-kit/sortable';
+  hasSortableData,
+  rectSortingStrategy,
+  type SortingStrategy,
+} from '@dnd-kit/sortable';
 import { createContext, useState } from 'react';
 
-export type CanDropInto = (activeId: string, targetId: string) => boolean;
+import { dropTargetOf, holdsLayout } from './dropIntoCollisionDetection';
 
 export const DropTargetContext = createContext<string | undefined>(undefined);
 
-const middleOf = (rect: ClientRect): ClientRect => {
-  const insetX = rect.width / 4;
-  const insetY = rect.height / 4;
-  return {
-    left: rect.left + insetX,
-    right: rect.right - insetX,
-    top: rect.top + insetY,
-    bottom: rect.bottom - insetY,
-    width: rect.width - insetX * 2,
-    height: rect.height - insetY * 2,
-  };
-};
-
-export const dropTargetOf = (collisions: Collision[] | null) => {
-  const dropTarget = collisions?.find(
-    (collision) => collision.data?.isDropTarget,
-  );
-  return dropTarget && String(dropTarget.id);
-};
-
-export const useDropTarget = (canDropInto: CanDropInto | undefined) => {
+export const useDropTarget = () => {
   const [dropTargetId, setDropTargetId] = useState<string>();
+  const [layoutOverIndex, setLayoutOverIndex] = useState<number>();
 
-  const collisionDetection: CollisionDetection = (args) => {
-    const dropTargets = args.droppableContainers.filter((container) =>
-      canDropInto?.(String(args.active.id), String(container.id)),
-    );
-    const [dropTarget] = pointerWithin({
+  const sortingStrategy: SortingStrategy = (args) =>
+    rectSortingStrategy({
       ...args,
-      droppableContainers: dropTargets,
-      droppableRects: new Map(
-        [...args.droppableRects].map(([id, rect]) => [id, middleOf(rect)]),
-      ),
+      overIndex: layoutOverIndex ?? args.overIndex,
     });
-    if (dropTarget) {
-      return [
-        { ...dropTarget, data: { ...dropTarget.data, isDropTarget: true } },
-      ];
+
+  const updateDropTarget = ({ collisions, over }: DragMoveEvent) => {
+    const targetId = dropTargetOf(collisions);
+    setDropTargetId(targetId);
+    if (targetId || holdsLayout(collisions)) {
+      return;
     }
-    return closestCenter(args);
+    if (hasSortableData(over)) {
+      setLayoutOverIndex(over.data.current.sortable.index);
+    }
   };
 
-  const sortingStrategy: SortingStrategy = (args) => {
-    if (dropTargetId) {
-      return null;
-    }
-    return rectSortingStrategy(args);
+  const endDrag = () => {
+    setDropTargetId(undefined);
+    setLayoutOverIndex(undefined);
   };
 
-  return {
-    dropTargetId,
-    collisionDetection,
-    sortingStrategy,
-    updateDropTarget: ({ collisions }: DragMoveEvent) =>
-      setDropTargetId(dropTargetOf(collisions)),
-    clearDropTarget: () => setDropTargetId(undefined),
-  };
+  return { dropTargetId, sortingStrategy, updateDropTarget, endDrag };
 };

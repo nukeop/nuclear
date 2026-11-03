@@ -64,7 +64,9 @@ export function useColumns<T extends Track = Track>(
         id: 'title',
         enableSorting: true,
         header: (context) => (
-          <TextHeader context={context}>{labels.headers.title}</TextHeader>
+          <TextHeader context={context} className="w-[40%]">
+            {labels.headers.title}
+          </TextHeader>
         ),
         cell: TitleCell,
       }),
@@ -82,7 +84,9 @@ export function useColumns<T extends Track = Track>(
           id: 'duration',
           enableSorting: true,
           header: (context) => (
-            <TextHeader context={context}>{labels.headers.duration}</TextHeader>
+            <TextHeader context={context} className="w-24">
+              {labels.headers.duration}
+            </TextHeader>
           ),
           cell: TextCell,
         }),
