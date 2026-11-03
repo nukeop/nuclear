@@ -277,7 +277,7 @@
   "plugins": {
     "title": "プラグイン",
     "addPlugin": "プラグインを追加",
-    "viewCrashed": "The view \"{{title}}\" from {{pluginName}} crashed and was removed.",
+    "viewCrashed": "{{pluginName}} のビュー \"{{title}}\" がクラッシュしたため、削除されました。",
     "tabs": {
       "installed": "インストール済み",
       "store": "ストア"
