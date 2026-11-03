@@ -11,11 +11,11 @@ import { FC, ReactNode } from 'react';
 import { cn } from '../../utils';
 import { CardGridBase } from './CardGridBase';
 import {
-  DropTargetContext,
+  dropIntoCollisionDetection,
   dropTargetOf,
-  useDropTarget,
   type CanDropInto,
-} from './useDropTarget';
+} from './dropIntoCollisionDetection';
+import { DropTargetContext, useDropTarget } from './useDropTarget';
 
 type SortableCardGridProps = {
   itemIds: string[];
@@ -39,16 +39,11 @@ export const SortableCardGrid: FC<SortableCardGridProps> = ({
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
   );
-  const {
-    dropTargetId,
-    collisionDetection,
-    sortingStrategy,
-    updateDropTarget,
-    clearDropTarget,
-  } = useDropTarget(canDropInto);
+  const { dropTargetId, sortingStrategy, updateDropTarget, endDrag } =
+    useDropTarget();
 
   const handleDragEnd = ({ active, over, collisions }: DragEndEvent) => {
-    clearDropTarget();
+    endDrag();
     const targetId = dropTargetOf(collisions);
     if (targetId) {
       onDropInto?.(String(active.id), targetId);
@@ -65,10 +60,10 @@ export const SortableCardGrid: FC<SortableCardGridProps> = ({
   return (
     <DndContext
       sensors={sensors}
-      collisionDetection={collisionDetection}
+      collisionDetection={dropIntoCollisionDetection(canDropInto)}
       onDragMove={updateDropTarget}
       onDragEnd={handleDragEnd}
-      onDragCancel={clearDropTarget}
+      onDragCancel={endDrag}
     >
       <SortableContext
         items={itemIds}

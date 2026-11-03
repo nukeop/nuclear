@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-03T00:00",
+    "description": "Fix dragging playlists into folders.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playlists",
+        "color": "blue"
+      }
+    ]
+  },
+  {
     "date": "2026-11-02T00:00",
     "description": "Fix favorite albums and artists views slowing down on large libraries.",
     "type": "fix",
