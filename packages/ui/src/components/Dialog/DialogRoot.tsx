@@ -47,7 +47,7 @@ export const DialogRoot: FC<DialogRootProps> = ({
                   mass: 0.8,
                 }}
                 className={cn(
-                  'border-border surface-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6 backdrop-blur-xl',
+                  'border-border surface-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6 wrap-anywhere backdrop-blur-xl',
                   className,
                 )}
               >
