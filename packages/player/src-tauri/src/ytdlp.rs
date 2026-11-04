@@ -1,4 +1,5 @@
 use log::{debug, error};
+use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 use std::process::{Command, Stdio};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use tauri::{command, AppHandle};
@@ -170,27 +171,52 @@ pub async fn ytdlp_search(
     debug!("[yt-dlp] Searching: {} (limit: {})", query, limit);
 
     let search_url = format!("ytsearch{}:{}", limit, query);
-    let stdout = run_ytdlp(
+    let mut stdout = run_ytdlp(
         &app_handle,
         &["--dump-json", "--flat-playlist", "--no-warnings"],
         &search_url,
     )
     .await?;
 
+    if stdout.trim().is_empty() {
+        debug!("[yt-dlp] No YouTube results, falling back to YouTube Music");
+        let youtube_music_url = format!(
+            "https://music.youtube.com/search?q={}#songs",
+            utf8_percent_encode(&query, NON_ALPHANUMERIC)
+        );
+        let playlist_end = limit.to_string();
+        stdout = run_ytdlp(
+            &app_handle,
+            &[
+                "--dump-json",
+                "--flat-playlist",
+                "--no-warnings",
+                "--playlist-end",
+                &playlist_end,
+            ],
+            &youtube_music_url,
+        )
+        .await
+        .unwrap_or_default();
+    }
+
     let results: Vec<YtdlpSearchResult> = parse_ndjson_entries(&stdout)
         .into_iter()
         .filter_map(|entry| {
             entry.id.map(|id| YtdlpSearchResult {
+                thumbnail: entry
+                    .thumbnail
+                    .or_else(|| {
+                        entry
+                            .thumbnails
+                            .unwrap_or_default()
+                            .last()
+                            .map(|thumbnail| thumbnail.url.clone())
+                    })
+                    .or_else(|| Some(format!("https://i.ytimg.com/vi/{}/hqdefault.jpg", id))),
                 id,
                 title: entry.title.unwrap_or_else(|| "Unknown".to_string()),
                 duration: entry.duration,
-                thumbnail: entry.thumbnail.or_else(|| {
-                    entry
-                        .thumbnails
-                        .unwrap_or_default()
-                        .last()
-                        .map(|thumbnail| thumbnail.url.clone())
-                }),
                 channel: entry.channel,
             })
         })

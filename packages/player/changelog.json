@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-11-03T00:00",
+    "description": "Fix YouTube search returning no results for some queries.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "YouTube",
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "date": "2026-11-03T00:00",
     "description": "Fix tracks longer than about 1h30m failing to play with an unsupported format error.",
     "type": "fix",
     "contributors": ["nukeop"],
