@@ -20,6 +20,7 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    environment: publish
     container:
       image: archlinux:latest
 

@@ -229,6 +229,7 @@ jobs:
   homebrew:
     needs: publish
     runs-on: ubuntu-latest
+    environment: publish
     steps:
       - name: Extract version from tag
         id: version
