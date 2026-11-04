@@ -83,15 +83,13 @@ describe('Plugins view', () => {
           description: plugin.description,
           author: plugin.author,
         })),
-      ).toMatchInlineSnapshot(`
-        [
-          {
-            "author": "nukeop",
-            "description": "Fake plugin for testing",
-            "name": "Fake plugin",
-          },
-        ]
-      `);
+      ).toEqual([
+        {
+          author: 'nukeop',
+          description: 'Fake plugin for testing',
+          name: 'Fake plugin',
+        },
+      ]);
     });
 
     expect(PluginsWrapper.getPlugins()[0].enabled).toBe(false);
