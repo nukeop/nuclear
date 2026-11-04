@@ -81,6 +81,17 @@
   </requires>
 
   <releases>
+    <release version="1.54.1" date="2026-11-04">
+      <description>
+        <ul>
+          <li>Fix YouTube search returning no results for some queries.</li>
+          <li>Fix tracks longer than about 1h30m failing to play with an unsupported format error.</li>
+          <li>Give track titles more room in track tables and shrink the duration column.</li>
+          <li>Fix dragging playlists into folders.</li>
+          <li>Fix favorite albums and artists views slowing down on large libraries.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.54.0" date="2026-11-02">
       <description>
         <ul>
