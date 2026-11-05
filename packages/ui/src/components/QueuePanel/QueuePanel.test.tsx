@@ -5,6 +5,8 @@ import type { QueueItem as QueueItemType } from '@nuclearplayer/model';
 
 import { QueuePanel } from './QueuePanel';
 
+vi.mock('@tanstack/react-virtual', () => import('../../test/mockReactVirtual'));
+
 const createMockItem = (
   id: string,
   title: string,
@@ -52,7 +54,7 @@ describe('QueuePanel', () => {
       <QueuePanel
         items={mockItems}
         currentItemId="1"
-        onReorder={vi.fn()}
+        onMove={vi.fn()}
         onSelectItem={vi.fn()}
         onRemoveItem={vi.fn()}
         labels={mockLabels}
@@ -92,7 +94,7 @@ describe('QueuePanel', () => {
         items={mockItems}
         currentItemId="1"
         isCollapsed={true}
-        onReorder={vi.fn()}
+        onMove={vi.fn()}
         onSelectItem={vi.fn()}
         onRemoveItem={vi.fn()}
         labels={mockLabels}

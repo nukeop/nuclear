@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-04T00:00",
+    "description": "Fix queue panel virtualization. Improves performance for large queues.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Queue",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-11-03T00:00",
     "description": "Fix YouTube search returning no results for some queries.",
     "type": "fix",

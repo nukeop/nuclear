@@ -22,29 +22,9 @@ const labels: TrackTableLabels = {
   filterPlaceholder: 'Filter tracks',
 };
 
-const TEST_ROW_HEIGHT = 42;
-const TEST_MAX_VISIBLE = 20;
 const TEST_CONTAINER_HEIGHT = 400;
 
-vi.mock('@tanstack/react-virtual', () => {
-  return {
-    useVirtualizer: (opts: { count: number }) => {
-      const count = Math.max(0, Number(opts?.count ?? 0));
-      const len = Math.min(count, TEST_MAX_VISIBLE);
-      return {
-        getVirtualItems: () =>
-          Array.from({ length: len }).map((_, i) => ({
-            index: i,
-            start: i * TEST_ROW_HEIGHT,
-            end: (i + 1) * TEST_ROW_HEIGHT,
-            key: i,
-            size: TEST_ROW_HEIGHT,
-          })),
-        getTotalSize: () => count * TEST_ROW_HEIGHT,
-      } as const;
-    },
-  } as const;
-});
+vi.mock('@tanstack/react-virtual', () => import('../../test/mockReactVirtual'));
 
 function makeTracks(count: number): Track[] {
   return Array.from({ length: count }).map((_, i) => ({

@@ -5,28 +5,7 @@ import { vi } from 'vitest';
 import { LogViewer } from '.';
 import type { LogEntryData } from '../LogEntry';
 
-vi.mock('@tanstack/react-virtual', () => {
-  const TEST_ROW_HEIGHT = 32;
-  const TEST_MAX_VISIBLE = 20;
-  return {
-    useVirtualizer: (opts: { count: number }) => {
-      const count = Math.max(0, Number(opts?.count ?? 0));
-      const len = Math.min(count, TEST_MAX_VISIBLE);
-      return {
-        getVirtualItems: () =>
-          Array.from({ length: len }).map((_, i) => ({
-            index: i,
-            start: i * TEST_ROW_HEIGHT,
-            end: (i + 1) * TEST_ROW_HEIGHT,
-            key: i,
-            size: TEST_ROW_HEIGHT,
-          })),
-        getTotalSize: () => count * TEST_ROW_HEIGHT,
-        measureElement: () => {},
-      } as const;
-    },
-  } as const;
-});
+vi.mock('@tanstack/react-virtual', () => import('../../test/mockReactVirtual'));
 
 const baseTimestamp = new Date('2026-02-05T10:00:00.000Z');
 

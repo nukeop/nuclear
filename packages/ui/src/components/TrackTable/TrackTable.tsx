@@ -11,6 +11,7 @@ import { useMemo, useRef } from 'react';
 
 import { Track } from '@nuclearplayer/model';
 
+import { useVirtualRows } from '../../hooks';
 import { cn } from '../../utils';
 import { ScrollableArea } from '../ScrollableArea';
 import { defaultDisplay, defaultFeatures } from './defaults';
@@ -18,7 +19,6 @@ import { useColumns } from './hooks/useColumns';
 import { useGlobalFilter } from './hooks/useGlobalFilter';
 import { useReorder } from './hooks/useReorder';
 import { useSorting } from './hooks/useSorting';
-import { useVirtualRows } from './hooks/useVirtualRows';
 import { ReorderLayer } from './ReorderLayer';
 import { TrackTableSkeleton } from './Skeleton/TrackTableSkeleton';
 import { SortableRow } from './SortableRow';
