@@ -22,10 +22,6 @@ export const ConnectedQueuePanel: FC<ConnectedQueuePanelProps> = ({
   const currentItem = useCurrentQueueItem();
   const actions = useQueueActions();
 
-  const handleReorder = (fromIndex: number, toIndex: number) => {
-    actions.reorder(fromIndex, toIndex);
-  };
-
   const handleSelectItem = (itemId: string) => {
     actions.goToId(itemId);
   };
@@ -40,7 +36,7 @@ export const ConnectedQueuePanel: FC<ConnectedQueuePanelProps> = ({
       currentItemId={currentItem?.id}
       isCollapsed={isCollapsed}
       reorderable={!isCollapsed}
-      onReorder={handleReorder}
+      onMove={actions.moveBefore}
       onSelectItem={handleSelectItem}
       onRemoveItem={handleRemoveItem}
       onSelectCandidate={actions.selectCandidate}

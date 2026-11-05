@@ -1,5 +1,5 @@
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { useDraggable, useDroppable } from '@dnd-kit/core';
+import { useCombinedRefs } from '@dnd-kit/utilities';
 import { FC } from 'react';
 
 import type { QueueItem as QueueItemType } from '@nuclearplayer/model';
@@ -14,6 +14,7 @@ export type ReorderableQueueItemProps = {
   isCurrent: boolean;
   isCollapsed?: boolean;
   isReorderable?: boolean;
+  isDropSlot?: boolean;
   onSelect?: (id: string) => void;
   onRemove?: (id: string) => void;
   onSelectCandidate?: (itemId: string, candidateId: string) => void;
@@ -28,6 +29,7 @@ export const ReorderableQueueItem: FC<ReorderableQueueItemProps> = ({
   isCurrent,
   isCollapsed = false,
   isReorderable = false,
+  isDropSlot = false,
   onSelect,
   onRemove,
   onSelectCandidate,
@@ -36,53 +38,63 @@ export const ReorderableQueueItem: FC<ReorderableQueueItemProps> = ({
   const {
     attributes,
     listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
+    setNodeRef: setDraggableNodeRef,
+  } = useDraggable({
+    id: item.id,
+    disabled: !isReorderable,
+    attributes: { roleDescription: 'sortable' },
+  });
+  const { setNodeRef: setDroppableNodeRef } = useDroppable({
     id: item.id,
     disabled: !isReorderable,
   });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
+  const setNodeRef = useCombinedRefs(setDraggableNodeRef, setDroppableNodeRef);
 
   return (
     <div
       ref={setNodeRef}
-      style={style}
-      className={cn({
-        'z-50': isDragging,
+      data-queue-row-id={item.id}
+      className={cn('h-full pb-1', {
         'cursor-grab': isReorderable,
       })}
       {...attributes}
       {...listeners}
     >
-      <QueueItemPopover
-        track={item.track}
-        className="relative"
-        labels={{
-          noCandidates: labels.noCandidates,
-          failed: labels.candidateFailed,
-        }}
-        onSelectCandidate={(candidateId) =>
-          onSelectCandidate?.(item.id, candidateId)
-        }
-      >
-        <QueueItem
+      {isDropSlot && <DropSlot isCollapsed={isCollapsed} />}
+      {!isDropSlot && (
+        <QueueItemPopover
           track={item.track}
-          status={item.status}
-          isCurrent={isCurrent}
-          isCollapsed={isCollapsed}
-          errorMessage={item.error}
-          onSelect={() => onSelect?.(item.id)}
-          onRemove={() => onRemove?.(item.id)}
-          labels={labels}
-        />
-      </QueueItemPopover>
+          className="relative"
+          labels={{
+            noCandidates: labels.noCandidates,
+            failed: labels.candidateFailed,
+          }}
+          onSelectCandidate={(candidateId) =>
+            onSelectCandidate?.(item.id, candidateId)
+          }
+        >
+          <QueueItem
+            track={item.track}
+            status={item.status}
+            isCurrent={isCurrent}
+            isCollapsed={isCollapsed}
+            errorMessage={item.error}
+            onSelect={() => onSelect?.(item.id)}
+            onRemove={() => onRemove?.(item.id)}
+            labels={labels}
+          />
+        </QueueItemPopover>
+      )}
     </div>
   );
 };
+
+const DropSlot: FC<{ isCollapsed: boolean }> = ({ isCollapsed }) => (
+  <div
+    data-testid="queue-drop-slot"
+    className={cn(
+      'border-border bg-muted/50 h-full rounded-md border-(length:--border-width) border-dashed',
+      { 'aspect-square': isCollapsed, 'w-full': !isCollapsed },
+    )}
+  />
+);

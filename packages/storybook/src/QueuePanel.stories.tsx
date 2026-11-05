@@ -13,7 +13,7 @@ const meta = {
   argTypes: {
     isCollapsed: { control: 'boolean' },
     reorderable: { control: 'boolean' },
-    onReorder: { action: 'reordered' },
+    onMove: { action: 'moved' },
     onSelectItem: { action: 'item selected' },
     onRemoveItem: { action: 'item removed' },
   },

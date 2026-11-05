@@ -1,21 +1,24 @@
-import { DragEndEvent } from '@dnd-kit/core';
 import { Music } from 'lucide-react';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 
 import type { QueueItem as QueueItemType } from '@nuclearplayer/model';
 
+import { useVirtualRows } from '../../hooks';
 import { cn } from '../../utils';
+import { QueueItem } from '../QueueItem';
 import { type QueueItemLabels } from '../QueueItem/types';
 import { ScrollableArea } from '../ScrollableArea';
+import { queueLayout } from './constants';
 import { QueueReorderLayer } from './QueueReorderLayer';
 import { ReorderableQueueItem } from './ReorderableQueueItem';
+import { useQueueDrag } from './useQueueDrag';
 
 export type QueuePanelProps = {
   items: QueueItemType[];
   currentItemId?: string;
   isCollapsed?: boolean;
   reorderable?: boolean;
-  onReorder?: (fromIndex: number, toIndex: number) => void;
+  onMove?: (itemId: string, beforeItemId: string | null) => void;
   onSelectItem?: (itemId: string) => void;
   onRemoveItem?: (itemId: string) => void;
   onSelectCandidate?: (itemId: string, candidateId: string) => void;
@@ -37,27 +40,28 @@ export const QueuePanel: FC<QueuePanelProps> = ({
   currentItemId,
   isCollapsed = false,
   reorderable = true,
-  onReorder,
+  onMove,
   onSelectItem,
   onRemoveItem,
   onSelectCandidate,
   labels,
   classes,
 }) => {
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-    if (!over || active.id === over.id || !onReorder) {
-      return;
-    }
-
-    const fromIndex = items.findIndex((item) => item.id === active.id);
-    const toIndex = items.findIndex((item) => item.id === over.id);
-    if (fromIndex === -1 || toIndex === -1) {
-      return;
-    }
-
-    onReorder(fromIndex, toIndex);
-  };
+  const scrollParentRef = useRef<HTMLDivElement | null>(null);
+  let rowHeight = queueLayout.rowHeight.expanded;
+  if (isCollapsed) {
+    rowHeight = queueLayout.rowHeight.collapsed;
+  }
+  const { displayedItems, draggedItem, dragHandlers } = useQueueDrag(
+    items,
+    onMove,
+  );
+  const { virtualItems, paddingTop, paddingBottom } = useVirtualRows({
+    count: items.length,
+    rowHeight,
+    overscan: queueLayout.overscan,
+    scrollParentRef,
+  });
 
   if (items.length === 0) {
     return (
@@ -89,44 +93,59 @@ export const QueuePanel: FC<QueuePanelProps> = ({
     );
   }
 
-  const itemIds = items.map((item) => item.id);
-
   return (
     <div
       data-testid="queue-panel"
       className={cn('flex h-full flex-col', classes?.root)}
     >
-      <ScrollableArea>
+      <ScrollableArea
+        viewportRef={scrollParentRef}
+        viewportClassName="supports-[font:-apple-system-body]:scroll-smooth"
+        testViewportHeight={rowHeight * queueLayout.testViewportRows}
+      >
         <QueueReorderLayer
           enabled={reorderable}
-          items={itemIds}
-          onDragEnd={handleDragEnd}
+          viewportRef={scrollParentRef}
+          overlay={
+            draggedItem && (
+              <QueueItem
+                track={draggedItem.track}
+                status={draggedItem.status}
+                isCurrent={draggedItem.id === currentItemId}
+                isCollapsed={isCollapsed}
+                errorMessage={draggedItem.error}
+                labels={labels}
+              />
+            )
+          }
+          {...dragHandlers}
         >
           <div
             className={cn(
               'flex flex-col',
-              isCollapsed ? 'items-center gap-1 px-1' : 'gap-1',
+              isCollapsed && 'items-center px-1',
               classes?.list,
             )}
+            style={{ paddingTop, paddingBottom }}
           >
-            {items.map((item) => (
-              <ReorderableQueueItem
-                key={item.id}
-                item={item}
-                isCurrent={item.id === currentItemId}
-                isCollapsed={isCollapsed}
-                isReorderable={reorderable}
-                onSelect={onSelectItem}
-                onRemove={onRemoveItem}
-                onSelectCandidate={onSelectCandidate}
-                labels={{
-                  removeButton: labels?.removeButton,
-                  playbackError: labels?.playbackError,
-                  noCandidates: labels?.noCandidates,
-                  candidateFailed: labels?.candidateFailed,
-                }}
-              />
-            ))}
+            {virtualItems.map((virtualItem) => {
+              const item = displayedItems[virtualItem.index];
+              return (
+                <div key={item.id} style={{ height: rowHeight }}>
+                  <ReorderableQueueItem
+                    item={item}
+                    isCurrent={item.id === currentItemId}
+                    isCollapsed={isCollapsed}
+                    isReorderable={reorderable}
+                    isDropSlot={item.id === draggedItem?.id}
+                    onSelect={onSelectItem}
+                    onRemove={onRemoveItem}
+                    onSelectCandidate={onSelectCandidate}
+                    labels={labels}
+                  />
+                </div>
+              );
+            })}
           </div>
         </QueueReorderLayer>
       </ScrollableArea>
