@@ -202,6 +202,68 @@ describe('useQueueStore', () => {
     });
   });
 
+  describe('moveBefore', () => {
+    const addTracks = (...titles: string[]) => {
+      useQueueStore
+        .getState()
+        .addToQueue(titles.map((title) => createMockTrack(title)));
+      return useQueueStore.getState().items.map((item) => item.id);
+    };
+
+    const titles = () =>
+      useQueueStore.getState().items.map((item) => item.track.title);
+
+    it('moves an item in front of another item', () => {
+      const [idA, , idC] = addTracks('A', 'B', 'C');
+
+      useQueueStore.getState().moveBefore(idC, idA);
+
+      expect(titles()).toEqual(['C', 'A', 'B']);
+    });
+
+    it('moves an item to the end when there is no item to move it before', () => {
+      const [idA] = addTracks('A', 'B', 'C');
+
+      useQueueStore.getState().moveBefore(idA, null);
+
+      expect(titles()).toEqual(['B', 'C', 'A']);
+    });
+
+    it('keeps the current item current when other items move around it', () => {
+      const [idA, idB] = addTracks('A', 'B', 'C');
+      useQueueStore.setState({ currentIndex: 1 });
+
+      useQueueStore.getState().moveBefore(idA, null);
+
+      expect(useQueueStore.getState().getCurrentItem()?.id).toBe(idB);
+    });
+
+    it('keeps the current item current when it is the item that moves', () => {
+      const [idA, , idC] = addTracks('A', 'B', 'C');
+
+      useQueueStore.getState().moveBefore(idA, idC);
+
+      expect(titles()).toEqual(['B', 'A', 'C']);
+      expect(useQueueStore.getState().getCurrentItem()?.id).toBe(idA);
+    });
+
+    it('leaves the queue unchanged when the item to move is not in the queue', () => {
+      const [idA] = addTracks('A', 'B', 'C');
+
+      useQueueStore.getState().moveBefore('missing', idA);
+
+      expect(titles()).toEqual(['A', 'B', 'C']);
+    });
+
+    it('moves an item to the end when the item to move it before is not in the queue', () => {
+      const [idA] = addTracks('A', 'B', 'C');
+
+      useQueueStore.getState().moveBefore(idA, 'missing');
+
+      expect(titles()).toEqual(['B', 'C', 'A']);
+    });
+  });
+
   describe('updateItemState', () => {
     it('updates specific item properties', () => {
       useQueueStore.getState().addToQueue([createMockTrack('Track')]);

@@ -1,6 +1,7 @@
 import { LazyStore } from '@tauri-apps/plugin-store';
 import { produce } from 'immer';
 import partition from 'lodash-es/partition';
+import takeWhile from 'lodash-es/takeWhile';
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 
@@ -33,6 +34,7 @@ type QueueStore = Queue & {
   removeByIndices: (indices: number[]) => void;
   clearQueue: () => void;
   reorder: (fromIndex: number, toIndex: number) => void;
+  moveBefore: (itemId: string, beforeItemId: string | null) => void;
   updateItemState: (id: string, updates: Partial<QueueItem>) => void;
   updateCandidate: (itemId: string, candidate: StreamCandidate) => void;
   removeCandidate: (itemId: string, candidateId: string) => void;
@@ -263,6 +265,27 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
         }
       }),
     );
+  }),
+
+  moveBefore: withPersistence((itemId: string, beforeItemId: string | null) => {
+    const movedItem = get().getItemById(itemId);
+    if (!movedItem || itemId === beforeItemId) {
+      return;
+    }
+    const currentItemId = get().getCurrentItem()?.id;
+
+    const otherItems = get().items.filter((item) => item.id !== itemId);
+    const itemsBefore = takeWhile(
+      otherItems,
+      (item) => item.id !== beforeItemId,
+    );
+    const itemsAfter = otherItems.slice(itemsBefore.length);
+    const items = [...itemsBefore, movedItem, ...itemsAfter];
+
+    set({
+      items,
+      currentIndex: items.findIndex((item) => item.id === currentItemId),
+    });
   }),
 
   updateItemState: withPersistence(
