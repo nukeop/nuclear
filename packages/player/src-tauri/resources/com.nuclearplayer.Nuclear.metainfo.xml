@@ -81,6 +81,13 @@
   </requires>
 
   <releases>
+    <release version="1.54.2" date="2026-11-06">
+      <description>
+        <ul>
+          <li>Fix queue panel virtualization. Improves performance for large queues.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.54.1" date="2026-11-04">
       <description>
         <ul>
