@@ -4,7 +4,7 @@ import { createMockCandidate } from '../test/builders/StreamingProviderBuilder';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { createMockTrack } from '../test/utils/mockTrack';
 import { initializeQueueStore, useQueueStore } from './queueStore';
-import { useSettingsStore } from './settingsStore';
+import { setSetting, useSettingsStore } from './settingsStore';
 import { useSoundStore } from './soundStore';
 
 describe('useQueueStore', () => {
@@ -202,14 +202,14 @@ describe('useQueueStore', () => {
     });
   });
 
-  describe('moveBefore', () => {
-    const addTracks = (...titles: string[]) => {
-      useQueueStore
-        .getState()
-        .addToQueue(titles.map((title) => createMockTrack(title)));
-      return useQueueStore.getState().items.map((item) => item.id);
-    };
+  const addTracks = (...titles: string[]) => {
+    useQueueStore
+      .getState()
+      .addToQueue(titles.map((title) => createMockTrack(title)));
+    return useQueueStore.getState().items.map((item) => item.id);
+  };
 
+  describe('moveBefore', () => {
     const titles = () =>
       useQueueStore.getState().items.map((item) => item.track.title);
 
@@ -414,34 +414,94 @@ describe('useQueueStore', () => {
       useQueueStore.getState().goToPrevious();
       expect(useQueueStore.getState().currentIndex).toBe(2);
     });
+  });
 
-    it('goToNext picks a different random index when shuffle is enabled', () => {
-      const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.9);
-      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
-      useQueueStore.getState().goToNext();
-      expect(useQueueStore.getState().currentIndex).toBe(2);
-      randomSpy.mockRestore();
+  describe('shuffle', () => {
+    const TITLES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+    const currentTitle = () =>
+      useQueueStore.getState().getCurrentItem()?.track.title;
+
+    const playThrough = () => [
+      currentTitle(),
+      ...Array.from({ length: TITLES.length - 1 }, () => {
+        useQueueStore.getState().goToNext();
+        return currentTitle();
+      }),
+    ];
+
+    const goBack = (steps: number) =>
+      Array.from({ length: steps }, () => {
+        useQueueStore.getState().goToPrevious();
+        return currentTitle();
+      });
+
+    beforeEach(() => {
+      addTracks(...TITLES);
     });
 
-    it('goToNext retries random selection until index changes', () => {
-      const randomSpy = vi
-        .spyOn(Math, 'random')
-        .mockReturnValueOnce(0.1)
-        .mockReturnValueOnce(0.8);
-      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
-      useQueueStore.getState().goToNext();
-      expect(useQueueStore.getState().currentIndex).toBe(2);
-      expect(randomSpy).toHaveBeenCalledTimes(2);
-      randomSpy.mockRestore();
+    it('keeps the current item when shuffle is turned on', async () => {
+      useQueueStore.getState().goToIndex(4);
+
+      await setSetting('core.playback.shuffle', true);
+
+      expect(currentTitle()).toBe('E');
     });
 
-    it('goToPrevious picks a different random index when shuffle is enabled', () => {
-      const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.4);
-      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
-      useQueueStore.setState({ currentIndex: 2 });
+    it('plays each item one time before the end', async () => {
+      await setSetting('core.playback.shuffle', true);
+
+      const played = playThrough();
+      useQueueStore.getState().goToNext();
+
+      expect([...played].sort()).toEqual(TITLES);
+      expect(currentTitle()).toBe(played.at(-1));
+    });
+
+    it('goes back through the items that played, in reverse', async () => {
+      await setSetting('core.playback.shuffle', true);
+
+      const played = playThrough();
+      const playedBack = goBack(TITLES.length - 1);
+
+      expect(playedBack).toEqual(played.slice(0, -1).reverse());
+    });
+
+    it('keeps the current item on previous from the first item with repeat off', async () => {
+      useQueueStore.getState().goToIndex(4);
+      await setSetting('core.playback.shuffle', true);
+
       useQueueStore.getState().goToPrevious();
-      expect(useQueueStore.getState().currentIndex).toBe(1);
-      randomSpy.mockRestore();
+
+      expect(currentTitle()).toBe('E');
+    });
+
+    it('goes to the last item of the play order on previous from the first item with repeat all', async () => {
+      useQueueStore.getState().goToIndex(9);
+      await setSetting('core.playback.repeat', 'all');
+      await setSetting('core.playback.shuffle', true);
+
+      const played = playThrough();
+      goBack(TITLES.length - 1);
+      useQueueStore.getState().goToPrevious();
+
+      expect(currentTitle()).toBe(played.at(-1));
+    });
+
+    it('plays the items in the visible order after shuffle is turned off', async () => {
+      await setSetting('core.playback.repeat', 'all');
+      await setSetting('core.playback.shuffle', true);
+      useQueueStore.getState().goToNext();
+      useQueueStore.getState().goToNext();
+      const start = TITLES.indexOf(currentTitle()!);
+
+      await setSetting('core.playback.shuffle', false);
+      const played = playThrough();
+
+      expect(played).toEqual([
+        ...TITLES.slice(start),
+        ...TITLES.slice(0, start),
+      ]);
     });
   });
 
