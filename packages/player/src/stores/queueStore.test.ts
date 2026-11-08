@@ -15,6 +15,8 @@ describe('useQueueStore', () => {
     useQueueStore.setState({
       items: [],
       currentIndex: 0,
+      playOrder: [],
+      playCursor: 0,
       isReady: false,
       isLoading: false,
     });

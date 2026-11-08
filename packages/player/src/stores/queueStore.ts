@@ -8,6 +8,7 @@ import { create } from 'zustand';
 import type {
   Queue,
   QueueItem,
+  RepeatMode,
   StreamCandidate,
   Track,
 } from '@nuclearplayer/model';
@@ -17,13 +18,16 @@ import { eventBus } from '../services/eventBus';
 import { Logger } from '../services/logger';
 import { errorMessage } from '../utils/errorMessage';
 import { secondsToMs } from '../utils/time';
-import { getSetting } from './settingsStore';
+import { PlayOrder } from './playOrder';
+import { getSetting, useSettingsStore } from './settingsStore';
 import { useSoundStore } from './soundStore';
 
 const QUEUE_FILE = 'queue.json';
 const store = new LazyStore(QUEUE_FILE);
 
 type QueueStore = Queue & {
+  playOrder: string[];
+  playCursor: number;
   isLoading: boolean;
   isReady: boolean;
   loadFromDisk: () => Promise<void>;
@@ -54,48 +58,41 @@ const createQueueItem = (track: Track): QueueItem => ({
   addedAtIso: new Date().toISOString(),
 });
 
-const getDirectionalIndex = (
-  state: Pick<QueueStore, 'items' | 'currentIndex'>,
-  direction: 'forward' | 'backward',
-): number => {
-  const { items, currentIndex } = state;
+type NavigationState = Pick<
+  QueueStore,
+  'items' | 'currentIndex' | 'playOrder' | 'playCursor'
+>;
+
+type Position = Pick<QueueStore, 'currentIndex' | 'playCursor'>;
+
+const getActivePlayOrder = (state: NavigationState): PlayOrder => {
   const shuffleEnabled =
     (getSetting('core.playback.shuffle') as boolean) ?? false;
-  const repeatMode = (getSetting('core.playback.repeat') as string) ?? 'off';
-
-  if (items.length === 0) {
-    return currentIndex;
-  }
-
   if (shuffleEnabled) {
-    return getShuffledIndex(items.length, currentIndex);
+    return new PlayOrder(state.playOrder, state.playCursor);
   }
-
-  if (direction === 'forward') {
-    if (currentIndex < items.length - 1) {
-      return currentIndex + 1;
-    }
-    return repeatMode === 'all' ? 0 : currentIndex;
-  }
-
-  if (currentIndex > 0) {
-    return currentIndex - 1;
-  }
-
-  return repeatMode === 'all' ? items.length - 1 : currentIndex;
+  return new PlayOrder(
+    state.items.map((item) => item.id),
+    state.currentIndex,
+  );
 };
 
-const getShuffledIndex = (length: number, currentIndex: number): number => {
-  if (length <= 1) {
-    return currentIndex;
+const getDirectionalPosition = (
+  state: NavigationState,
+  direction: 'next' | 'previous',
+): Position => {
+  const { items, currentIndex, playCursor } = state;
+  if (items.length === 0) {
+    return { currentIndex, playCursor };
   }
 
-  let nextIndex = currentIndex;
-  while (nextIndex === currentIndex) {
-    nextIndex = Math.floor(Math.random() * length);
-  }
-
-  return nextIndex;
+  const repeatMode =
+    (getSetting('core.playback.repeat') as RepeatMode) ?? 'off';
+  const playOrder = getActivePlayOrder(state)[direction](repeatMode);
+  return {
+    currentIndex: items.findIndex((item) => item.id === playOrder.currentId),
+    playCursor: playOrder.cursor,
+  };
 };
 
 const emitSkip = (): void => {
@@ -127,6 +124,8 @@ const withPersistence = <T extends unknown[]>(
 export const useQueueStore = create<QueueStore>((set, get) => ({
   items: [],
   currentIndex: 0,
+  playOrder: [],
+  playCursor: 0,
   isReady: false,
   isLoading: false,
 
@@ -357,23 +356,27 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
 
   goToNext: withPersistence(() => {
     const state = get();
-    const nextIndex = getDirectionalIndex(state, 'forward');
-    if (nextIndex !== state.currentIndex) {
+    const nextPosition = getDirectionalPosition(state, 'next');
+    if (nextPosition.currentIndex !== state.currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
-      set({ currentIndex: nextIndex });
-      Logger.queue.debug(`Moved to next track (index ${nextIndex})`);
+      set(nextPosition);
+      Logger.queue.debug(
+        `Moved to next track (index ${nextPosition.currentIndex})`,
+      );
     }
   }),
 
   goToPrevious: withPersistence(() => {
     const state = get();
-    const previousIndex = getDirectionalIndex(state, 'backward');
-    if (previousIndex !== state.currentIndex) {
+    const previousPosition = getDirectionalPosition(state, 'previous');
+    if (previousPosition.currentIndex !== state.currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
-      set({ currentIndex: previousIndex });
-      Logger.queue.debug(`Moved to previous track (index ${previousIndex})`);
+      set(previousPosition);
+      Logger.queue.debug(
+        `Moved to previous track (index ${previousPosition.currentIndex})`,
+      );
     }
   }),
 
@@ -405,6 +408,25 @@ export const useQueueStore = create<QueueStore>((set, get) => ({
     return get().items.find((item) => item.id === id);
   },
 }));
+
+useSettingsStore.subscribe((settings, previousSettings) => {
+  const shuffleEnabled = settings.values['core.playback.shuffle'];
+  if (shuffleEnabled === previousSettings.values['core.playback.shuffle']) {
+    return;
+  }
+  if (!shuffleEnabled) {
+    return;
+  }
+  const { items, currentIndex } = useQueueStore.getState();
+  const playOrder = new PlayOrder(
+    items.map((item) => item.id),
+    currentIndex,
+  ).shuffle();
+  useQueueStore.setState({
+    playOrder: playOrder.ids,
+    playCursor: playOrder.cursor,
+  });
+});
 
 export const initializeQueueStore = async (): Promise<void> => {
   await useQueueStore.getState().loadFromDisk();
