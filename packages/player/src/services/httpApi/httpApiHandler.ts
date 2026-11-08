@@ -3,7 +3,7 @@ import { emit } from '@tauri-apps/api/event';
 
 import { DEFAULT_THEME_ID } from '@nuclearplayer/themes';
 
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import {
   getSetting,
   setSetting,

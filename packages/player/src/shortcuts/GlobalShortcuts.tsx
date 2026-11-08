@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { playbackManager } from '../services/playback';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
 import { getSetting, setSetting } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';

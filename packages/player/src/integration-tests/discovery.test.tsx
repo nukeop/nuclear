@@ -4,7 +4,7 @@ import type { Track } from '@nuclearplayer/model';
 
 import { initDiscoveryService } from '../services/discoveryService';
 import { providersHost } from '../services/providersHost';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { DiscoveryProviderBuilder } from '../test/builders/DiscoveryProviderBuilder';
 import { SoundWrapper } from './Sound.test-wrapper';

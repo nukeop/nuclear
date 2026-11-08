@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import type { SoundStatus } from '@nuclearplayer/hifi';
 import { formatArtistNames, type Track } from '@nuclearplayer/model';
 
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { getSetting, useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { errorMessage } from '../utils/errorMessage';

@@ -1,6 +1,6 @@
 import shuffle from 'lodash-es/shuffle';
 
-import type { RepeatMode } from '@nuclearplayer/model';
+import type { QueueItem, RepeatMode } from '@nuclearplayer/model';
 
 export class PlayOrder {
   constructor(
@@ -8,15 +8,22 @@ export class PlayOrder {
     readonly cursor: number,
   ) {}
 
-  get currentId(): string | undefined {
+  static fromQueue(items: QueueItem[], currentIndex: number) {
+    return new PlayOrder(
+      items.map((item) => item.id),
+      currentIndex,
+    );
+  }
+
+  get currentId() {
     return this.ids[this.cursor];
   }
 
-  private get lastSlot(): number {
+  private get lastSlot() {
     return this.ids.length - 1;
   }
 
-  shuffle(): PlayOrder {
+  shuffle() {
     const currentId = this.currentId;
     if (!currentId) {
       return this;
@@ -25,7 +32,7 @@ export class PlayOrder {
     return new PlayOrder([currentId, ...shuffle(otherIds)], 0);
   }
 
-  next(repeatMode: RepeatMode): PlayOrder {
+  next(repeatMode: RepeatMode) {
     if (this.cursor < this.lastSlot) {
       return new PlayOrder(this.ids, this.cursor + 1);
     }
@@ -35,7 +42,7 @@ export class PlayOrder {
     return this;
   }
 
-  previous(repeatMode: RepeatMode): PlayOrder {
+  previous(repeatMode: RepeatMode) {
     if (this.cursor > 0) {
       return new PlayOrder(this.ids, this.cursor - 1);
     }

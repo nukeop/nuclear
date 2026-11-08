@@ -1,7 +1,7 @@
 import { i18n } from '@nuclearplayer/i18n';
 import type { Track } from '@nuclearplayer/model';
 
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { reportError } from '../utils/logging';
 import { discoveryHost } from './discoveryHost';

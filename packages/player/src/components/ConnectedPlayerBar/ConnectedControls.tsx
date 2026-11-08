@@ -8,7 +8,7 @@ import { PlayerBar } from '@nuclearplayer/ui';
 import { useCoreSetting } from '../../hooks/useCoreSetting';
 import { useProviders } from '../../hooks/useProviders';
 import { playbackManager } from '../../services/playback';
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
 
 export const ConnectedControls: FC = () => {

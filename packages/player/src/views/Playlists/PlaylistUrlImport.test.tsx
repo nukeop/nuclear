@@ -5,7 +5,7 @@ import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper
 import { QueueWrapper } from '../../integration-tests/Queue.test-wrapper';
 import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { useStartupStore } from '../../stores/startupStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 import { PlaylistProviderBuilder } from '../../test/builders/PlaylistProviderBuilder';

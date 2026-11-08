@@ -5,7 +5,7 @@ import type {
   QueueItemStateUpdate,
 } from '@nuclearplayer/plugin-sdk';
 
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 
 export const createQueueHost = (): QueueHost => {
   return {

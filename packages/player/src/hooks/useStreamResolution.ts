@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import type { QueueItem } from '@nuclearplayer/model';
 
 import { streamResolution } from '../services/streamResolution';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useStreamRecovery } from './useStreamRecovery';
 
 const buildResolutionKey = (item: QueueItem): string => {

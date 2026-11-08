@@ -4,7 +4,7 @@ import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { createMockTrack } from '../test/utils/mockTrack';
 import { mockUuid } from '../test/utils/mockUuid';
 import { usePlaylistStore } from './playlistStore';
-import { useQueueStore } from './queueStore';
+import { useQueueStore } from './queue/queueStore';
 
 const resetStore = () => {
   usePlaylistStore.setState({

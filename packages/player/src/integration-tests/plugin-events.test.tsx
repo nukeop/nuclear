@@ -5,7 +5,7 @@ import { NuclearAPI } from '@nuclearplayer/plugin-sdk';
 
 import App from '../App';
 import { eventBus } from '../services/eventBus';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 
 const testTrack: Track = {

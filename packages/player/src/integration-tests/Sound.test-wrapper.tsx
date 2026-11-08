@@ -11,7 +11,7 @@ import { AudioSource } from '@nuclearplayer/hifi';
 
 import App from '../App';
 import { playbackManager } from '../services/playback';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 import { createQueueItem } from '../test/fixtures/queue';
 

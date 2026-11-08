@@ -9,7 +9,7 @@ import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper
 import { routeTree } from '../../routeTree.gen';
 import { providersHost } from '../../services/providersHost';
 import { useFavoritesStore } from '../../stores/favoritesStore';
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
 import {
   createMockCandidate,

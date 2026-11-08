@@ -13,7 +13,7 @@ import type { QueueItem, Track } from '@nuclearplayer/model';
 
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { useSettingsStore } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
 

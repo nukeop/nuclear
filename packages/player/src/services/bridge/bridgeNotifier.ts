@@ -3,7 +3,7 @@ import { invoke } from '@tauri-apps/api/core';
 import type { SoundStatus } from '@nuclearplayer/hifi';
 import type { SettingValue } from '@nuclearplayer/plugin-sdk';
 
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { useSettingsStore } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
 import { BridgeCommand } from '../tauri/bridge';

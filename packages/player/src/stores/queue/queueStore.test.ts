@@ -1,12 +1,12 @@
 import { LazyStore } from '@tauri-apps/plugin-store';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createMockCandidate } from '../test/builders/StreamingProviderBuilder';
-import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
-import { createMockTrack } from '../test/utils/mockTrack';
+import { createMockCandidate } from '../../test/builders/StreamingProviderBuilder';
+import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
+import { createMockTrack } from '../../test/utils/mockTrack';
+import { setSetting, useSettingsStore } from '../settingsStore';
+import { useSoundStore } from '../soundStore';
 import { initializeQueueStore, useQueueStore } from './queueStore';
-import { setSetting, useSettingsStore } from './settingsStore';
-import { useSoundStore } from './soundStore';
 
 describe('useQueueStore', () => {
   beforeEach(() => {

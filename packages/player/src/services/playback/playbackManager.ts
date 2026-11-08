@@ -1,7 +1,7 @@
 import type { AudioSource } from '@nuclearplayer/hifi';
 import type { QueueItem, Track } from '@nuclearplayer/model';
 
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { getSetting } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
 import { eventBus } from '../eventBus';

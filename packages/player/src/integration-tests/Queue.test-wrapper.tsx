@@ -14,7 +14,7 @@ import { DialogWrapper } from '@nuclearplayer/ui';
 import App from '../App';
 import { routeTree } from '../routeTree.gen';
 import { usePlaylistStore } from '../stores/playlistStore';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
 import { createStreamVerificationWrapper } from './StreamVerification.test-wrapper';
 
