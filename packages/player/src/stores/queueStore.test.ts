@@ -1,3 +1,4 @@
+import { LazyStore } from '@tauri-apps/plugin-store';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createMockCandidate } from '../test/builders/StreamingProviderBuilder';
@@ -438,6 +439,23 @@ describe('useQueueStore', () => {
         return currentTitle();
       });
 
+    const waitForSave = () => new Promise((resolve) => setTimeout(resolve, 10));
+
+    const restart = async () => {
+      await waitForSave();
+      useQueueStore.setState({
+        items: [],
+        currentIndex: 0,
+        playOrder: [],
+        playCursor: 0,
+        isReady: false,
+        isLoading: false,
+      });
+      useSettingsStore.setState({ values: {} });
+      await useSettingsStore.getState().loadFromDisk();
+      await initializeQueueStore();
+    };
+
     beforeEach(() => {
       addTracks(...TITLES);
     });
@@ -504,6 +522,32 @@ describe('useQueueStore', () => {
         ...TITLES.slice(start),
         ...TITLES.slice(0, start),
       ]);
+    });
+
+    it('continues the play order where it stopped after a restart', async () => {
+      await setSetting('core.playback.shuffle', true);
+      const played = playThrough();
+      goBack(6);
+
+      await restart();
+
+      expect(currentTitle()).toBe(played[3]);
+      expect(goBack(3)).toEqual([played[2], played[1], played[0]]);
+    });
+
+    it('makes a random play order for a saved queue without one, and keeps the current item', async () => {
+      const { items } = useQueueStore.getState();
+      await setSetting('core.playback.shuffle', true);
+      await waitForSave();
+      const queueFile = new LazyStore('queue.json');
+      await queueFile.clear();
+      await queueFile.set('queue.items', items);
+      await queueFile.set('queue.currentIndex', 4);
+
+      await restart();
+
+      expect(currentTitle()).toBe('E');
+      expect(playThrough().sort()).toEqual(TITLES);
     });
   });
 
