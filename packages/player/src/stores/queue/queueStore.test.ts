@@ -523,6 +523,18 @@ describe('useQueueStore', () => {
       expect(Wrapper.skip(4)).toEqual(['G', 'F', 'E', 'B']);
     });
 
+    it('keeps play next tracks directly after the current item when the user adds more tracks', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+      Wrapper.playNext('F');
+
+      Wrapper.shuffleWillReturn('G', 'D', 'E', 'B');
+      Wrapper.addTracks('G');
+
+      expect(Wrapper.skip(5)).toEqual(['F', 'G', 'D', 'E', 'B']);
+    });
+
     it('shuffles tracks added at a position in the visible queue into the items that did not play yet', async () => {
       Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
       await setSetting('core.playback.shuffle', true);

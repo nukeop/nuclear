@@ -1,7 +1,6 @@
 import { LazyStore } from '@tauri-apps/plugin-store';
 import shuffle from 'lodash-es/shuffle';
-import sortBy from 'lodash-es/sortBy';
-import { vi } from 'vitest';
+import { expect, vi } from 'vitest';
 
 import { createMockTrack } from '../../test/utils/mockTrack';
 import { mockUuid } from '../../test/utils/mockUuid';
@@ -52,7 +51,10 @@ export const QueueWrapper = {
 
   shuffleWillReturn(...titles: string[]) {
     vi.mocked<(ids: string[]) => string[]>(shuffle).mockImplementationOnce(
-      (ids) => sortBy(ids, (id) => titles.indexOf(id)),
+      (ids) => {
+        expect(new Set(ids)).toEqual(new Set(titles));
+        return titles;
+      },
     );
   },
 
