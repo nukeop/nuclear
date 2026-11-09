@@ -46,13 +46,17 @@ const saveToDisk = async (get: () => QueueStore): Promise<void> => {
   }
 };
 
+let latestSave = Promise.resolve();
+
+export const queueSaved = () => latestSave;
+
 export const withPersistence = <T extends unknown[]>(
   get: () => QueueStore,
   fn: (...args: T) => void,
 ): ((...args: T) => void) => {
   return (...args: T) => {
     fn(...args);
-    void saveToDisk(get);
+    latestSave = latestSave.then(() => saveToDisk(get));
   };
 };
 

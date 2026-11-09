@@ -1,4 +1,4 @@
-import { LazyStore } from '@tauri-apps/plugin-store';
+import shuffle from 'lodash-es/shuffle';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createMockCandidate } from '../../test/builders/StreamingProviderBuilder';
@@ -6,7 +6,12 @@ import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { createMockTrack } from '../../test/utils/mockTrack';
 import { setSetting, useSettingsStore } from '../settingsStore';
 import { useSoundStore } from '../soundStore';
-import { initializeQueueStore, useQueueStore } from './queueStore';
+import { useQueueStore } from './queueStore';
+import { QueueWrapper as Wrapper } from './queueStore.test-wrapper';
+
+vi.mock('lodash-es/shuffle', () => ({
+  default: vi.fn(<T>(list: T[]) => list),
+}));
 
 describe('useQueueStore', () => {
   beforeEach(() => {
@@ -22,6 +27,7 @@ describe('useQueueStore', () => {
       isLoading: false,
     });
     useSettingsStore.setState({ values: {} });
+    vi.mocked(shuffle).mockReset();
   });
 
   describe('initial state', () => {
@@ -205,35 +211,25 @@ describe('useQueueStore', () => {
     });
   });
 
-  const addTracks = (...titles: string[]) => {
-    useQueueStore
-      .getState()
-      .addToQueue(titles.map((title) => createMockTrack(title)));
-    return useQueueStore.getState().items.map((item) => item.id);
-  };
-
   describe('moveBefore', () => {
-    const titles = () =>
-      useQueueStore.getState().items.map((item) => item.track.title);
-
     it('moves an item in front of another item', () => {
-      const [idA, , idC] = addTracks('A', 'B', 'C');
+      const [idA, , idC] = Wrapper.addTracks('A', 'B', 'C');
 
       useQueueStore.getState().moveBefore(idC, idA);
 
-      expect(titles()).toEqual(['C', 'A', 'B']);
+      expect(Wrapper.titles).toEqual(['C', 'A', 'B']);
     });
 
     it('moves an item to the end when there is no item to move it before', () => {
-      const [idA] = addTracks('A', 'B', 'C');
+      const [idA] = Wrapper.addTracks('A', 'B', 'C');
 
       useQueueStore.getState().moveBefore(idA, null);
 
-      expect(titles()).toEqual(['B', 'C', 'A']);
+      expect(Wrapper.titles).toEqual(['B', 'C', 'A']);
     });
 
     it('keeps the current item current when other items move around it', () => {
-      const [idA, idB] = addTracks('A', 'B', 'C');
+      const [idA, idB] = Wrapper.addTracks('A', 'B', 'C');
       useQueueStore.setState({ currentIndex: 1 });
 
       useQueueStore.getState().moveBefore(idA, null);
@@ -242,28 +238,28 @@ describe('useQueueStore', () => {
     });
 
     it('keeps the current item current when it is the item that moves', () => {
-      const [idA, , idC] = addTracks('A', 'B', 'C');
+      const [idA, , idC] = Wrapper.addTracks('A', 'B', 'C');
 
       useQueueStore.getState().moveBefore(idA, idC);
 
-      expect(titles()).toEqual(['B', 'A', 'C']);
+      expect(Wrapper.titles).toEqual(['B', 'A', 'C']);
       expect(useQueueStore.getState().getCurrentItem()?.id).toBe(idA);
     });
 
     it('leaves the queue unchanged when the item to move is not in the queue', () => {
-      const [idA] = addTracks('A', 'B', 'C');
+      const [idA] = Wrapper.addTracks('A', 'B', 'C');
 
       useQueueStore.getState().moveBefore('missing', idA);
 
-      expect(titles()).toEqual(['A', 'B', 'C']);
+      expect(Wrapper.titles).toEqual(['A', 'B', 'C']);
     });
 
     it('moves an item to the end when the item to move it before is not in the queue', () => {
-      const [idA] = addTracks('A', 'B', 'C');
+      const [idA] = Wrapper.addTracks('A', 'B', 'C');
 
       useQueueStore.getState().moveBefore(idA, 'missing');
 
-      expect(titles()).toEqual(['B', 'C', 'A']);
+      expect(Wrapper.titles).toEqual(['B', 'C', 'A']);
     });
   });
 
@@ -420,172 +416,153 @@ describe('useQueueStore', () => {
   });
 
   describe('shuffle', () => {
-    const TITLES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-
-    const currentTitle = () =>
-      useQueueStore.getState().getCurrentItem()?.track.title;
-
-    const playThrough = () => [
-      currentTitle(),
-      ...Array.from({ length: TITLES.length - 1 }, () => {
-        useQueueStore.getState().goToNext();
-        return currentTitle();
-      }),
-    ];
-
-    const goBack = (steps: number) =>
-      Array.from({ length: steps }, () => {
-        useQueueStore.getState().goToPrevious();
-        return currentTitle();
-      });
-
-    const waitForSave = () => new Promise((resolve) => setTimeout(resolve, 10));
-
-    const restart = async () => {
-      await waitForSave();
-      useQueueStore.setState({
-        items: [],
-        currentIndex: 0,
-        playOrder: [],
-        playCursor: 0,
-        isReady: false,
-        isLoading: false,
-      });
-      useSettingsStore.setState({ values: {} });
-      await useSettingsStore.getState().loadFromDisk();
-      await initializeQueueStore();
-    };
-
     beforeEach(() => {
-      addTracks(...TITLES);
+      Wrapper.addTracks('A', 'B', 'C', 'D', 'E');
     });
 
     it('keeps the current item when shuffle is turned on', async () => {
-      useQueueStore.getState().goToIndex(4);
+      useQueueStore.getState().goToIndex(2);
 
       await setSetting('core.playback.shuffle', true);
 
-      expect(currentTitle()).toBe('E');
+      expect(Wrapper.currentTitle).toBe('C');
     });
 
     it('plays each item one time before the end', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
       await setSetting('core.playback.shuffle', true);
 
-      const played = playThrough();
-      useQueueStore.getState().goToNext();
-
-      expect([...played].sort()).toEqual(TITLES);
-      expect(currentTitle()).toBe(played.at(-1));
+      expect(Wrapper.skip(4)).toEqual(['C', 'E', 'B', 'D']);
+      expect(Wrapper.skip(1)).toEqual(['D']);
     });
 
     it('goes back through the items that played, in reverse', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
       await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(4);
 
-      const played = playThrough();
-      const playedBack = goBack(TITLES.length - 1);
-
-      expect(playedBack).toEqual(played.slice(0, -1).reverse());
+      expect(Wrapper.goBack(4)).toEqual(['B', 'E', 'C', 'A']);
     });
 
     it('keeps the current item on previous from the first item with repeat off', async () => {
-      useQueueStore.getState().goToIndex(4);
+      useQueueStore.getState().goToIndex(2);
       await setSetting('core.playback.shuffle', true);
 
-      useQueueStore.getState().goToPrevious();
-
-      expect(currentTitle()).toBe('E');
+      expect(Wrapper.goBack(1)).toEqual(['C']);
     });
 
     it('goes to the last item of the play order on previous from the first item with repeat all', async () => {
-      useQueueStore.getState().goToIndex(9);
       await setSetting('core.playback.repeat', 'all');
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
       await setSetting('core.playback.shuffle', true);
 
-      const played = playThrough();
-      goBack(TITLES.length - 1);
-      useQueueStore.getState().goToPrevious();
-
-      expect(currentTitle()).toBe(played.at(-1));
+      expect(Wrapper.goBack(1)).toEqual(['D']);
     });
 
     it('plays the items in the visible order after shuffle is turned off', async () => {
-      await setSetting('core.playback.repeat', 'all');
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
       await setSetting('core.playback.shuffle', true);
-      useQueueStore.getState().goToNext();
-      useQueueStore.getState().goToNext();
-      const start = TITLES.indexOf(currentTitle()!);
+      Wrapper.skip(1);
 
       await setSetting('core.playback.shuffle', false);
-      const played = playThrough();
 
-      expect(played).toEqual([
-        ...TITLES.slice(start),
-        ...TITLES.slice(0, start),
-      ]);
+      expect(Wrapper.skip(2)).toEqual(['D', 'E']);
     });
 
     it('continues the play order where it stopped after a restart', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
       await setSetting('core.playback.shuffle', true);
-      const played = playThrough();
-      goBack(6);
+      Wrapper.skip(2);
 
-      await restart();
+      await Wrapper.restart();
 
-      expect(currentTitle()).toBe(played[3]);
-      expect(goBack(3)).toEqual([played[2], played[1], played[0]]);
+      expect(Wrapper.currentTitle).toBe('E');
+      expect(Wrapper.skip(2)).toEqual(['B', 'D']);
     });
 
-    it('makes a random play order for a saved queue without one, and keeps the current item', async () => {
-      const { items } = useQueueStore.getState();
+    it('makes a shuffled play order for a saved queue without one, and keeps the current item', async () => {
       await setSetting('core.playback.shuffle', true);
-      await waitForSave();
-      const queueFile = new LazyStore('queue.json');
-      await queueFile.clear();
-      await queueFile.set('queue.items', items);
-      await queueFile.set('queue.currentIndex', 4);
+      await Wrapper.saveQueueFileWithoutPlayOrder(2);
+      Wrapper.shuffleWillReturn('E', 'A', 'D', 'B');
 
-      await restart();
+      await Wrapper.restart();
 
-      expect(currentTitle()).toBe('E');
-      expect(playThrough().sort()).toEqual(TITLES);
+      expect(Wrapper.currentTitle).toBe('C');
+      expect(Wrapper.skip(4)).toEqual(['E', 'A', 'D', 'B']);
+    });
+
+    it('shuffles added tracks into the items that did not play yet', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+
+      Wrapper.shuffleWillReturn('F', 'D', 'E', 'G', 'B');
+      Wrapper.addTracks('F', 'G');
+
+      expect(Wrapper.skip(5)).toEqual(['F', 'D', 'E', 'G', 'B']);
+    });
+
+    it('plays tracks from play next directly after the current item, in the sequence they were added', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+
+      Wrapper.playNext('F', 'G');
+
+      expect(Wrapper.skip(4)).toEqual(['F', 'G', 'E', 'B']);
+    });
+
+    it('plays the latest play next tracks first', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+
+      Wrapper.playNext('F');
+      Wrapper.playNext('G');
+
+      expect(Wrapper.skip(4)).toEqual(['G', 'F', 'E', 'B']);
+    });
+
+    it('shuffles tracks added at a position in the visible queue into the items that did not play yet', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+
+      Wrapper.shuffleWillReturn('D', 'G', 'B', 'F', 'E');
+      Wrapper.addTracksAt(0, 'F', 'G');
+
+      expect(Wrapper.skip(5)).toEqual(['D', 'G', 'B', 'F', 'E']);
+    });
+
+    it('makes the first track added to an empty queue the current item', async () => {
+      useQueueStore.getState().clearQueue();
+      await setSetting('core.playback.shuffle', true);
+
+      Wrapper.shuffleWillReturn('H', 'G');
+      Wrapper.addTracks('F', 'G', 'H');
+
+      expect(Wrapper.currentTitle).toBe('F');
+      expect(Wrapper.skip(2)).toEqual(['H', 'G']);
     });
   });
 
   describe('persistence', () => {
     it('initializeQueueStore restores state from storage', async () => {
-      const tracks = [createMockTrack('Track 1'), createMockTrack('Track 2')];
-      useQueueStore.getState().addToQueue(tracks);
+      Wrapper.addTracks('A', 'B');
       useQueueStore.getState().goToIndex(1);
 
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await Wrapper.restart();
 
-      useQueueStore.setState({
-        items: [],
-        currentIndex: 0,
-        isReady: false,
-        isLoading: false,
-      });
-
-      await initializeQueueStore();
-
-      const state = useQueueStore.getState();
-      expect(state.items).toHaveLength(2);
-      expect(state.currentIndex).toBe(1);
-      expect(state.isReady).toBe(true);
+      expect(Wrapper.titles).toEqual(['A', 'B']);
+      expect(Wrapper.currentTitle).toBe('B');
+      expect(useQueueStore.getState().isReady).toBe(true);
     });
 
     it('sanitizes out-of-bounds currentIndex on load', async () => {
-      useQueueStore.getState().addToQueue([createMockTrack('Track 1')]);
-      useQueueStore.setState({ currentIndex: 5 });
+      Wrapper.addTracks('A');
+      await Wrapper.saveQueueFileWithoutPlayOrder(5);
 
-      useQueueStore.setState({
-        items: [],
-        currentIndex: 0,
-        isReady: false,
-        isLoading: false,
-      });
-
-      await initializeQueueStore();
+      await Wrapper.restart();
 
       expect(useQueueStore.getState().currentIndex).toBe(0);
     });
