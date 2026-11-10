@@ -18,14 +18,7 @@ describe('useQueueStore', () => {
     const date = new Date(2025, 1, 1);
     vi.setSystemTime(date);
     resetInMemoryTauriStore();
-    useQueueStore.setState({
-      items: [],
-      currentIndex: 0,
-      playOrder: [],
-      playCursor: 0,
-      isReady: false,
-      isLoading: false,
-    });
+    useQueueStore.setState(useQueueStore.getInitialState());
     useSettingsStore.setState({ values: {} });
     vi.mocked(shuffle).mockReset();
   });
@@ -528,11 +521,12 @@ describe('useQueueStore', () => {
       await setSetting('core.playback.shuffle', true);
       Wrapper.skip(1);
       Wrapper.playNext('F');
+      Wrapper.playNext('G');
 
-      Wrapper.shuffleWillReturn('G', 'D', 'E', 'B');
-      Wrapper.addTracks('G');
+      Wrapper.shuffleWillReturn('H', 'D', 'E', 'B');
+      Wrapper.addTracks('H');
 
-      expect(Wrapper.skip(5)).toEqual(['F', 'G', 'D', 'E', 'B']);
+      expect(Wrapper.skip(6)).toEqual(['G', 'F', 'H', 'D', 'E', 'B']);
     });
 
     it('shuffles tracks added at a position in the visible queue into the items that did not play yet', async () => {

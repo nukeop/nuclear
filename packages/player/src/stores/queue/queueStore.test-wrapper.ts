@@ -68,14 +68,7 @@ export const QueueWrapper = {
 
   async restart() {
     await queueSaved();
-    useQueueStore.setState({
-      items: [],
-      currentIndex: 0,
-      playOrder: [],
-      playCursor: 0,
-      isReady: false,
-      isLoading: false,
-    });
+    useQueueStore.setState(useQueueStore.getInitialState());
     useSettingsStore.setState({ values: {} });
     await useSettingsStore.getState().loadFromDisk();
     await initializeQueueStore();

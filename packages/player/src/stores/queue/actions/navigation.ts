@@ -15,7 +15,11 @@ const getActivePlayOrder = (state: QueueStore) => {
   const shuffleEnabled =
     (getSetting('core.playback.shuffle') as boolean) ?? false;
   if (shuffleEnabled) {
-    return new PlayOrder(state.playOrder, state.playCursor);
+    return new PlayOrder(
+      state.playOrder,
+      state.playCursor,
+      state.playNextTailId,
+    );
   }
   return PlayOrder.fromQueue(state.items, state.currentIndex);
 };

@@ -13,6 +13,7 @@ export const useQueueStore = create<QueueStore>()((...args) => ({
   currentIndex: 0,
   playOrder: [],
   playCursor: 0,
+  playNextTailId: null,
   isReady: false,
   isLoading: false,
   ...createPersistenceSlice(...args),
@@ -32,10 +33,15 @@ useSettingsStore.subscribe((settings, previousSettings) => {
     useQueueStore.setState({
       playOrder: playOrder.ids,
       playCursor: playOrder.cursor,
+      playNextTailId: playOrder.playNextTailId,
     });
     return;
   }
-  useQueueStore.setState({ playOrder: [], playCursor: 0 });
+  useQueueStore.setState({
+    playOrder: [],
+    playCursor: 0,
+    playNextTailId: null,
+  });
 });
 
 export const initializeQueueStore = async (): Promise<void> => {

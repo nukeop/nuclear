@@ -7,8 +7,10 @@ import type { QueueItem, Track } from '@nuclearplayer/model';
 import { stripResolutionState } from '@nuclearplayer/model';
 
 import { Logger } from '../../../services/logger';
+import { getSetting } from '../../settingsStore';
 import { useSoundStore } from '../../soundStore';
 import { withPersistence } from '../persistence';
+import { PlayOrder } from '../playOrder';
 import type { QueueStore } from '../types';
 
 const createQueueItem = (track: Track): QueueItem => ({
@@ -17,6 +19,34 @@ const createQueueItem = (track: Track): QueueItem => ({
   status: 'idle',
   addedAtIso: new Date().toISOString(),
 });
+
+const updatePlayOrder = (
+  state: QueueStore,
+  update: (playOrder: PlayOrder) => PlayOrder,
+) => {
+  const shuffleEnabled =
+    (getSetting('core.playback.shuffle') as boolean) ?? false;
+  if (!shuffleEnabled) {
+    return;
+  }
+  const playOrder = update(
+    new PlayOrder(state.playOrder, state.playCursor, state.playNextTailId),
+  );
+  state.playOrder = playOrder.ids;
+  state.playCursor = playOrder.cursor;
+  state.playNextTailId = playOrder.playNextTailId;
+};
+
+const insertTracks = (state: QueueStore, tracks: Track[], index: number) => {
+  const newItems = tracks.map(createQueueItem);
+  state.items.splice(index, 0, ...newItems);
+
+  if (index <= state.currentIndex) {
+    state.currentIndex += newItems.length;
+  }
+
+  return newItems.map((item) => item.id);
+};
 
 export const createEditingSlice: StateCreator<
   QueueStore,
@@ -39,24 +69,27 @@ export const createEditingSlice: StateCreator<
       produce((state: QueueStore) => {
         const newItems = tracks.map(createQueueItem);
         state.items.push(...newItems);
+        const newIds = newItems.map((item) => item.id);
+        updatePlayOrder(state, (playOrder) => playOrder.shuffleIn(newIds));
       }),
     );
     Logger.queue.debug(`Added ${tracks.length} tracks to queue`);
   }),
 
-  addNext: (tracks: Track[]) => {
-    const { currentIndex } = get();
-    get().addAt(tracks, currentIndex + 1);
-  },
+  addNext: withPersistence(get, (tracks: Track[]) => {
+    set(
+      produce((state: QueueStore) => {
+        const newIds = insertTracks(state, tracks, state.currentIndex + 1);
+        updatePlayOrder(state, (playOrder) => playOrder.playNext(newIds));
+      }),
+    );
+  }),
 
   addAt: withPersistence(get, (tracks: Track[], index: number) => {
     set(
       produce((state: QueueStore) => {
-        const newItems = tracks.map(createQueueItem);
-        state.items.splice(index, 0, ...newItems);
-        if (index <= state.currentIndex) {
-          state.currentIndex += newItems.length;
-        }
+        const newIds = insertTracks(state, tracks, index);
+        updatePlayOrder(state, (playOrder) => playOrder.shuffleIn(newIds));
       }),
     );
   }),

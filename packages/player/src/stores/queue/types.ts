@@ -8,6 +8,7 @@ import type {
 export type QueueStore = Queue & {
   playOrder: string[];
   playCursor: number;
+  playNextTailId: string | null;
   isLoading: boolean;
   isReady: boolean;
   loadFromDisk: () => Promise<void>;
