@@ -550,6 +550,67 @@ describe('useQueueStore', () => {
       expect(Wrapper.currentTitle).toBe('F');
       expect(Wrapper.skip(2)).toEqual(['H', 'G']);
     });
+
+    it('does not play a removed item', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+
+      useQueueStore.getState().removeByIds(['E']);
+
+      expect(Wrapper.skip(3)).toEqual(['C', 'B', 'D']);
+    });
+
+    it('does not play an item removed by its position in the visible queue', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+
+      useQueueStore.getState().removeByIndices([4]);
+
+      expect(Wrapper.skip(3)).toEqual(['C', 'B', 'D']);
+    });
+
+    it('continues the play order when the user removes an item that played before', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(2);
+
+      useQueueStore.getState().removeByIds(['C']);
+
+      expect(Wrapper.currentTitle).toBe('E');
+      expect(Wrapper.skip(2)).toEqual(['B', 'D']);
+    });
+
+    it('makes the next item of the play order current when the user removes the current item', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+
+      useQueueStore.getState().removeByIds(['C']);
+
+      expect(Wrapper.currentTitle).toBe('E');
+      expect(Wrapper.skip(2)).toEqual(['B', 'D']);
+    });
+
+    it('makes the item before it current when the user removes the current item at the end of the play order', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(4);
+
+      useQueueStore.getState().removeByIds(['D']);
+
+      expect(Wrapper.currentTitle).toBe('B');
+    });
+
+    it('makes the next added track the current item after the user clears the queue', async () => {
+      await setSetting('core.playback.shuffle', true);
+      useQueueStore.getState().clearQueue();
+
+      Wrapper.shuffleWillReturn('H', 'G');
+      Wrapper.addTracks('F', 'G', 'H');
+
+      expect(Wrapper.currentTitle).toBe('F');
+      expect(Wrapper.skip(2)).toEqual(['H', 'G']);
+    });
   });
 
   describe('persistence', () => {
