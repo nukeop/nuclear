@@ -50,9 +50,9 @@ export const QueueWrapper = {
   },
 
   shuffleWillReturn(...titles: string[]) {
-    vi.mocked<(ids: string[]) => string[]>(shuffle).mockImplementationOnce(
-      (ids) => {
-        expect(new Set(ids)).toEqual(new Set(titles));
+    vi.mocked<(itemIds: string[]) => string[]>(shuffle).mockImplementationOnce(
+      (itemIds) => {
+        expect(new Set(itemIds)).toEqual(new Set(titles));
         return titles;
       },
     );

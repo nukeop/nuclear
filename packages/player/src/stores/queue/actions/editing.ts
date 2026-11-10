@@ -32,9 +32,14 @@ const updatePlayOrder = (
   const playOrder = update(
     new PlayOrder(state.playOrder, state.playCursor, state.playNextTailId),
   );
-  state.playOrder = playOrder.ids;
+  state.playOrder = playOrder.itemIds;
   state.playCursor = playOrder.cursor;
   state.playNextTailId = playOrder.playNextTailId;
+  if (playOrder.itemIds.length > 0) {
+    state.currentIndex = state.items.findIndex(
+      (item) => item.id === playOrder.currentItemId,
+    );
+  }
 };
 
 const insertTracks = (state: QueueStore, tracks: Track[], index: number) => {
@@ -69,8 +74,8 @@ export const createEditingSlice: StateCreator<
       produce((state: QueueStore) => {
         const newItems = tracks.map(createQueueItem);
         state.items.push(...newItems);
-        const newIds = newItems.map((item) => item.id);
-        updatePlayOrder(state, (playOrder) => playOrder.shuffleIn(newIds));
+        const newItemIds = newItems.map((item) => item.id);
+        updatePlayOrder(state, (playOrder) => playOrder.shuffleIn(newItemIds));
       }),
     );
     Logger.queue.debug(`Added ${tracks.length} tracks to queue`);
@@ -79,8 +84,8 @@ export const createEditingSlice: StateCreator<
   addNext: withPersistence(get, (tracks: Track[]) => {
     set(
       produce((state: QueueStore) => {
-        const newIds = insertTracks(state, tracks, state.currentIndex + 1);
-        updatePlayOrder(state, (playOrder) => playOrder.playNext(newIds));
+        const newItemIds = insertTracks(state, tracks, state.currentIndex + 1);
+        updatePlayOrder(state, (playOrder) => playOrder.playNext(newItemIds));
       }),
     );
   }),
@@ -88,8 +93,8 @@ export const createEditingSlice: StateCreator<
   addAt: withPersistence(get, (tracks: Track[], index: number) => {
     set(
       produce((state: QueueStore) => {
-        const newIds = insertTracks(state, tracks, index);
-        updatePlayOrder(state, (playOrder) => playOrder.shuffleIn(newIds));
+        const newItemIds = insertTracks(state, tracks, index);
+        updatePlayOrder(state, (playOrder) => playOrder.shuffleIn(newItemIds));
       }),
     );
   }),
@@ -114,6 +119,8 @@ export const createEditingSlice: StateCreator<
         if (state.currentIndex >= state.items.length) {
           state.currentIndex = Math.max(0, state.items.length - 1);
         }
+
+        updatePlayOrder(state, (playOrder) => playOrder.remove(ids));
       }),
     );
 
@@ -122,37 +129,23 @@ export const createEditingSlice: StateCreator<
     }
   }),
 
-  removeByIndices: withPersistence(get, (indices: number[]) => {
-    const currentIndex = get().currentIndex;
-    const currentIndexRemoved = indices.includes(currentIndex);
-
-    set(
-      produce((state: QueueStore) => {
-        const indicesSet = new Set(indices);
-        const removedBeforeCurrent = indices.filter(
-          (idx) => idx < state.currentIndex,
-        ).length;
-
-        state.items = state.items.filter((_, idx) => !indicesSet.has(idx));
-        state.currentIndex = Math.max(
-          0,
-          state.currentIndex - removedBeforeCurrent,
-        );
-
-        if (state.currentIndex >= state.items.length) {
-          state.currentIndex = Math.max(0, state.items.length - 1);
-        }
-      }),
+  removeByIndices: (indices: number[]) => {
+    const indicesSet = new Set(indices);
+    const { items, removeByIds } = get();
+    removeByIds(
+      items.filter((_, index) => indicesSet.has(index)).map((item) => item.id),
     );
-
-    if (currentIndexRemoved || get().items.length === 0) {
-      useSoundStore.getState().stop();
-    }
-  }),
+  },
 
   clearQueue: withPersistence(get, () => {
     const itemCount = get().items.length;
-    set({ items: [], currentIndex: 0 });
+    set({
+      items: [],
+      currentIndex: 0,
+      playOrder: [],
+      playCursor: 0,
+      playNextTailId: null,
+    });
     useSoundStore.getState().stop();
     Logger.queue.info(`Cleared queue (${itemCount} items removed)`);
   }),

@@ -31,7 +31,7 @@ useSettingsStore.subscribe((settings, previousSettings) => {
     const { items, currentIndex } = useQueueStore.getState();
     const playOrder = PlayOrder.fromQueue(items, currentIndex).shuffle();
     useQueueStore.setState({
-      playOrder: playOrder.ids,
+      playOrder: playOrder.itemIds,
       playCursor: playOrder.cursor,
       playNextTailId: playOrder.playNextTailId,
     });

@@ -601,6 +601,17 @@ describe('useQueueStore', () => {
       expect(Wrapper.currentTitle).toBe('B');
     });
 
+    it('makes the next added track the current item after the user removes all items', async () => {
+      await setSetting('core.playback.shuffle', true);
+      useQueueStore.getState().removeByIds(['A', 'B', 'C', 'D', 'E']);
+
+      Wrapper.shuffleWillReturn('H', 'G');
+      Wrapper.addTracks('F', 'G', 'H');
+
+      expect(Wrapper.currentTitle).toBe('F');
+      expect(Wrapper.skip(2)).toEqual(['H', 'G']);
+    });
+
     it('makes the next added track the current item after the user clears the queue', async () => {
       await setSetting('core.playback.shuffle', true);
       useQueueStore.getState().clearQueue();

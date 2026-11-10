@@ -37,7 +37,9 @@ const getDirectionalPosition = (
     (getSetting('core.playback.repeat') as RepeatMode) ?? 'off';
   const playOrder = getActivePlayOrder(state)[direction](repeatMode);
   return {
-    currentIndex: items.findIndex((item) => item.id === playOrder.currentId),
+    currentIndex: items.findIndex(
+      (item) => item.id === playOrder.currentItemId,
+    ),
     playCursor: playOrder.cursor,
   };
 };

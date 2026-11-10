@@ -4,7 +4,7 @@ import type { QueueItem, RepeatMode } from '@nuclearplayer/model';
 
 export class PlayOrder {
   constructor(
-    readonly ids: string[],
+    readonly itemIds: string[],
     readonly cursor: number,
     readonly playNextTailId: string | null,
   ) {}
@@ -17,55 +17,85 @@ export class PlayOrder {
     );
   }
 
-  get currentId() {
-    return this.ids[this.cursor];
+  get currentItemId() {
+    return this.itemIds[this.cursor];
   }
 
   private get lastSlot() {
-    return this.ids.length - 1;
+    return this.itemIds.length - 1;
   }
 
   private get playNextTailSlot() {
-    return this.ids.findIndex((id) => id === this.playNextTailId);
+    return this.itemIds.findIndex((itemId) => itemId === this.playNextTailId);
   }
 
   shuffle() {
-    const currentId = this.currentId;
-    if (!currentId) {
+    const currentItemId = this.currentItemId;
+    if (!currentItemId) {
       return this;
     }
-    const otherIds = this.ids.filter((id) => id !== currentId);
-    return new PlayOrder([currentId, ...shuffle(otherIds)], 0, null);
+    const otherItemIds = this.itemIds.filter(
+      (itemId) => itemId !== currentItemId,
+    );
+    return new PlayOrder([currentItemId, ...shuffle(otherItemIds)], 0, null);
   }
 
-  shuffleIn(newIds: string[]) {
-    const ids = [...this.ids, ...newIds];
+  shuffleIn(newItemIds: string[]) {
+    const allItemIds = [...this.itemIds, ...newItemIds];
     const firstShuffledSlot = Math.max(this.cursor, this.playNextTailSlot) + 1;
+    const protectedItemIds = allItemIds.slice(0, firstShuffledSlot);
+    const shuffledItemIds = shuffle(allItemIds.slice(firstShuffledSlot));
     return new PlayOrder(
-      [
-        ...ids.slice(0, firstShuffledSlot),
-        ...shuffle(ids.slice(firstShuffledSlot)),
-      ],
+      [...protectedItemIds, ...shuffledItemIds],
       this.cursor,
       this.playNextTailId,
     );
   }
 
-  playNext(newIds: string[]) {
+  playNext(newItemIds: string[]) {
     const firstNewSlot = this.cursor + 1;
-    const ids = [
-      ...this.ids.slice(0, firstNewSlot),
-      ...newIds,
-      ...this.ids.slice(firstNewSlot),
+    const itemIdsAfterInsert = [
+      ...this.itemIds.slice(0, firstNewSlot),
+      ...newItemIds,
+      ...this.itemIds.slice(firstNewSlot),
     ];
     if (this.playNextTailSlot > this.cursor) {
-      return new PlayOrder(ids, this.cursor, this.playNextTailId);
+      return new PlayOrder(
+        itemIdsAfterInsert,
+        this.cursor,
+        this.playNextTailId,
+      );
     }
-    return new PlayOrder(ids, this.cursor, newIds.at(-1) ?? null);
+    return new PlayOrder(
+      itemIdsAfterInsert,
+      this.cursor,
+      newItemIds.at(-1) ?? null,
+    );
+  }
+
+  remove(removedItemIds: string[]) {
+    const removed = new Set(removedItemIds);
+    const remainingItemIds = this.itemIds.filter(
+      (itemId) => !removed.has(itemId),
+    );
+
+    const removedBeforeCursor = this.itemIds
+      .slice(0, this.cursor)
+      .filter((itemId) => removed.has(itemId)).length;
+
+    const cursor = Math.min(
+      this.cursor - removedBeforeCursor,
+      remainingItemIds.length - 1,
+    );
+    return new PlayOrder(
+      remainingItemIds,
+      Math.max(0, cursor),
+      this.playNextTailId,
+    );
   }
 
   private moveTo(cursor: number) {
-    return new PlayOrder(this.ids, cursor, this.playNextTailId);
+    return new PlayOrder(this.itemIds, cursor, this.playNextTailId);
   }
 
   next(repeatMode: RepeatMode) {

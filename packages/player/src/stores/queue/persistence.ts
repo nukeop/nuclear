@@ -27,7 +27,7 @@ const loadPlayOrder = async (
       state.items,
       state.currentIndex,
     ).shuffle();
-    return { playOrder: shuffled.ids, playCursor: shuffled.cursor };
+    return { playOrder: shuffled.itemIds, playCursor: shuffled.cursor };
   }
   const playCursor = await store.get<number>('queue.playCursor');
   return { playOrder, playCursor };
