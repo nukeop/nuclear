@@ -622,6 +622,49 @@ describe('useQueueStore', () => {
       expect(Wrapper.currentTitle).toBe('F');
       expect(Wrapper.skip(2)).toEqual(['H', 'G']);
     });
+
+    it('plays the item the user jumps to, then the items that did not play yet in their sequence', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+
+      useQueueStore.getState().goToId('B');
+
+      expect(Wrapper.currentTitle).toBe('B');
+      expect(Wrapper.skip(2)).toEqual(['E', 'D']);
+    });
+
+    it('jumps to an item by its position in the visible queue', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+
+      useQueueStore.getState().goToIndex(1);
+
+      expect(Wrapper.currentTitle).toBe('B');
+      expect(Wrapper.skip(2)).toEqual(['E', 'D']);
+    });
+
+    it('goes back to the item that played before the jump on previous', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(1);
+
+      useQueueStore.getState().goToId('B');
+
+      expect(Wrapper.goBack(2)).toEqual(['C', 'A']);
+    });
+
+    it('continues the play order after the user jumps to an item that played before', async () => {
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(2);
+
+      useQueueStore.getState().goToId('A');
+
+      expect(Wrapper.currentTitle).toBe('A');
+      expect(Wrapper.skip(2)).toEqual(['B', 'D']);
+    });
   });
 
   describe('persistence', () => {
