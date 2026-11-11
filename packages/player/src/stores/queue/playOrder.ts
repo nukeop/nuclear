@@ -114,14 +114,22 @@ export class PlayOrder {
     return new PlayOrder(this.itemIds, cursor, this.playNextTailId);
   }
 
-  next(repeatMode: RepeatMode) {
+  next(repeatMode: RepeatMode, shuffleEnabled: boolean) {
     if (this.cursor < this.lastSlot) {
       return this.moveTo(this.cursor + 1);
     }
-    if (repeatMode === 'all') {
+    if (repeatMode !== 'all') {
+      return this;
+    }
+    if (!shuffleEnabled) {
       return this.moveTo(0);
     }
-    return this;
+    const otherItemIds = this.itemIds.slice(0, this.lastSlot);
+    return new PlayOrder(
+      [...shuffle(otherItemIds), this.currentItemId],
+      0,
+      null,
+    );
   }
 
   previous(repeatMode: RepeatMode) {

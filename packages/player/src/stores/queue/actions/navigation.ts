@@ -11,36 +11,42 @@ import { withPersistence } from '../persistence';
 import { PlayOrder } from '../playOrder';
 import type { QueueStore } from '../types';
 
-const getActivePlayOrder = (state: QueueStore) => {
-  const shuffleEnabled =
-    (getSetting('core.playback.shuffle') as boolean) ?? false;
-  if (shuffleEnabled) {
-    return new PlayOrder(
-      state.playOrder,
-      state.playCursor,
-      state.playNextTailId,
-    );
-  }
-  return PlayOrder.fromQueue(state.items, state.currentIndex);
-};
-
-const getDirectionalPosition = (
+const getPositionAfter = (
   state: QueueStore,
-  direction: 'next' | 'previous',
+  move: (
+    playOrder: PlayOrder,
+    repeatMode: RepeatMode,
+    shuffleEnabled: boolean,
+  ) => PlayOrder,
 ) => {
-  const { items, currentIndex, playCursor } = state;
+  const { items, currentIndex } = state;
   if (items.length === 0) {
-    return { currentIndex, playCursor };
+    return { currentIndex };
   }
 
   const repeatMode =
     (getSetting('core.playback.repeat') as RepeatMode) ?? 'off';
-  const playOrder = getActivePlayOrder(state)[direction](repeatMode);
+  const shuffleEnabled =
+    (getSetting('core.playback.shuffle') as boolean) ?? false;
+  if (!shuffleEnabled) {
+    const visibleOrder = PlayOrder.fromQueue(items, currentIndex);
+    return {
+      currentIndex: move(visibleOrder, repeatMode, shuffleEnabled).cursor,
+    };
+  }
+
+  const playOrder = move(
+    new PlayOrder(state.playOrder, state.playCursor, state.playNextTailId),
+    repeatMode,
+    shuffleEnabled,
+  );
   return {
     currentIndex: items.findIndex(
       (item) => item.id === playOrder.currentItemId,
     ),
+    playOrder: playOrder.itemIds,
     playCursor: playOrder.cursor,
+    playNextTailId: playOrder.playNextTailId,
   };
 };
 
@@ -66,7 +72,11 @@ export const createNavigationSlice: StateCreator<
 > = (set, get) => ({
   goToNext: withPersistence(get, () => {
     const state = get();
-    const nextPosition = getDirectionalPosition(state, 'next');
+    const nextPosition = getPositionAfter(
+      state,
+      (playOrder, repeatMode, shuffleEnabled) =>
+        playOrder.next(repeatMode, shuffleEnabled),
+    );
     if (nextPosition.currentIndex !== state.currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
@@ -79,7 +89,9 @@ export const createNavigationSlice: StateCreator<
 
   goToPrevious: withPersistence(get, () => {
     const state = get();
-    const previousPosition = getDirectionalPosition(state, 'previous');
+    const previousPosition = getPositionAfter(state, (playOrder, repeatMode) =>
+      playOrder.previous(repeatMode),
+    );
     if (previousPosition.currentIndex !== state.currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
