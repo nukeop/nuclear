@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { useSettingsStore } from '../settingsStore';
+import { playbackSettings } from '../../services/playbackSettings';
 import { createCandidatesSlice } from './actions/candidates';
 import { createEditingSlice } from './actions/editing';
 import { createNavigationSlice } from './actions/navigation';
@@ -22,11 +22,7 @@ export const useQueueStore = create<QueueStore>()((...args) => ({
   ...createNavigationSlice(...args),
 }));
 
-useSettingsStore.subscribe((settings, previousSettings) => {
-  const shuffleEnabled = settings.values['core.playback.shuffle'];
-  if (shuffleEnabled === previousSettings.values['core.playback.shuffle']) {
-    return;
-  }
+playbackSettings.onShuffleChange((shuffleEnabled) => {
   if (shuffleEnabled) {
     const { items, currentIndex } = useQueueStore.getState();
     const playOrder = PlayOrder.fromQueue(items, currentIndex).shuffle();

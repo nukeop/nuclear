@@ -4,8 +4,8 @@ import { StateCreator } from 'zustand';
 import type { QueueItem } from '@nuclearplayer/model';
 
 import { Logger } from '../../services/logger';
+import { playbackSettings } from '../../services/playbackSettings';
 import { errorMessage } from '../../utils/errorMessage';
-import { getSetting } from '../settingsStore';
 import { PlayOrder } from './playOrder';
 import type { QueueStore } from './types';
 
@@ -15,9 +15,7 @@ const store = new LazyStore(QUEUE_FILE);
 const loadPlayOrder = async (
   state: Pick<QueueStore, 'items' | 'currentIndex'>,
 ) => {
-  const shuffleEnabled =
-    (getSetting('core.playback.shuffle') as boolean) ?? false;
-  if (!shuffleEnabled) {
+  if (!playbackSettings.shuffleEnabled) {
     return { playOrder: [], playCursor: 0 };
   }
 

@@ -2,12 +2,11 @@ import type {
   PlaybackHost,
   PlaybackListener,
   PlaybackState,
-  RepeatMode,
 } from '@nuclearplayer/plugin-sdk';
 
-import { getSetting, setSetting } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { playbackManager } from './playback';
+import { playbackSettings } from './playbackSettings';
 
 const toPlaybackState = (): PlaybackState => {
   const { status, seek, duration } = useSoundStore.getState();
@@ -36,17 +35,15 @@ export const createPlaybackHost = (): PlaybackHost => ({
       }),
     ),
 
-  getVolume: async () => (getSetting('core.playback.volume') as number) ?? 1,
-  setVolume: async (volume) => setSetting('core.playback.volume', volume),
-  isMuted: async () => (getSetting('core.playback.muted') as boolean) ?? false,
-  setMuted: async (muted) => setSetting('core.playback.muted', muted),
-  isShuffleEnabled: async () =>
-    (getSetting('core.playback.shuffle') as boolean) ?? false,
+  getVolume: async () => playbackSettings.volume,
+  setVolume: async (volume) => playbackSettings.setVolume(volume),
+  isMuted: async () => playbackSettings.muted,
+  setMuted: async (muted) => playbackSettings.setMuted(muted),
+  isShuffleEnabled: async () => playbackSettings.shuffleEnabled,
   setShuffleEnabled: async (enabled) =>
-    setSetting('core.playback.shuffle', enabled),
-  getRepeatMode: async () =>
-    (getSetting('core.playback.repeat') as RepeatMode) ?? 'off',
-  setRepeatMode: async (mode) => setSetting('core.playback.repeat', mode),
+    playbackSettings.setShuffleEnabled(enabled),
+  getRepeatMode: async () => playbackSettings.repeatMode,
+  setRepeatMode: async (mode) => playbackSettings.setRepeatMode(mode),
 });
 
 export const playbackHost = createPlaybackHost();

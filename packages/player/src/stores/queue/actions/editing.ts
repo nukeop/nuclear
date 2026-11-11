@@ -7,7 +7,7 @@ import type { QueueItem, Track } from '@nuclearplayer/model';
 import { stripResolutionState } from '@nuclearplayer/model';
 
 import { Logger } from '../../../services/logger';
-import { getSetting } from '../../settingsStore';
+import { playbackSettings } from '../../../services/playbackSettings';
 import { useSoundStore } from '../../soundStore';
 import { withPersistence } from '../persistence';
 import { PlayOrder } from '../playOrder';
@@ -24,9 +24,7 @@ const updatePlayOrder = (
   state: QueueStore,
   update: (playOrder: PlayOrder) => PlayOrder,
 ) => {
-  const shuffleEnabled =
-    (getSetting('core.playback.shuffle') as boolean) ?? false;
-  if (!shuffleEnabled) {
+  if (!playbackSettings.shuffleEnabled) {
     return;
   }
   const playOrder = update(

@@ -4,8 +4,8 @@ import type { RepeatMode } from '@nuclearplayer/model';
 
 import { eventBus } from '../../../services/eventBus';
 import { Logger } from '../../../services/logger';
+import { playbackSettings } from '../../../services/playbackSettings';
 import { secondsToMs } from '../../../utils/time';
-import { getSetting } from '../../settingsStore';
 import { useSoundStore } from '../../soundStore';
 import { withPersistence } from '../persistence';
 import { PlayOrder } from '../playOrder';
@@ -24,10 +24,7 @@ const getPositionAfter = (
     return { currentIndex };
   }
 
-  const repeatMode =
-    (getSetting('core.playback.repeat') as RepeatMode) ?? 'off';
-  const shuffleEnabled =
-    (getSetting('core.playback.shuffle') as boolean) ?? false;
+  const { repeatMode, shuffleEnabled } = playbackSettings;
   if (!shuffleEnabled) {
     const visibleOrder = PlayOrder.fromQueue(items, currentIndex);
     return {
@@ -117,9 +114,7 @@ export const createNavigationSlice: StateCreator<
       emitSkip();
       useSoundStore.getState().stop();
 
-      const shuffleEnabled =
-        (getSetting('core.playback.shuffle') as boolean) ?? false;
-      if (shuffleEnabled) {
+      if (playbackSettings.shuffleEnabled) {
         const playOrder = new PlayOrder(
           state.playOrder,
           state.playCursor,
