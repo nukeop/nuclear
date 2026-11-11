@@ -90,22 +90,37 @@ export const createNavigationSlice: StateCreator<
     }
   }),
 
-  goToIndex: withPersistence(get, (index: number) => {
-    const { items, currentIndex } = get();
-    if (index >= 0 && index < items.length && index !== currentIndex) {
-      emitSkip();
-      useSoundStore.getState().stop();
-      set({ currentIndex: index });
+  goToIndex: (index: number) => {
+    const { items, goToId } = get();
+    const item = items[index];
+    if (item) {
+      goToId(item.id);
     }
-  }),
+  },
 
-  goToId: withPersistence(get, (id: string) => {
-    const { items, currentIndex } = get();
-    const index = items.findIndex((item) => item.id === id);
-    if (index !== -1 && index !== currentIndex) {
+  goToId: withPersistence(get, (itemId: string) => {
+    const state = get();
+    const index = state.items.findIndex((item) => item.id === itemId);
+    if (index !== -1 && index !== state.currentIndex) {
       emitSkip();
       useSoundStore.getState().stop();
-      set({ currentIndex: index });
+
+      const shuffleEnabled =
+        (getSetting('core.playback.shuffle') as boolean) ?? false;
+      if (shuffleEnabled) {
+        const playOrder = new PlayOrder(
+          state.playOrder,
+          state.playCursor,
+          state.playNextTailId,
+        ).jumpTo(itemId);
+        set({
+          currentIndex: index,
+          playOrder: playOrder.itemIds,
+          playCursor: playOrder.cursor,
+        });
+      } else {
+        set({ currentIndex: index });
+      }
     }
   }),
 

@@ -94,6 +94,22 @@ export class PlayOrder {
     );
   }
 
+  jumpTo(selectedItemId: string) {
+    const otherItemIds = this.itemIds.filter(
+      (itemId) => itemId !== selectedItemId,
+    );
+    const selectedSlot = otherItemIds.indexOf(this.currentItemId) + 1;
+    return new PlayOrder(
+      [
+        ...otherItemIds.slice(0, selectedSlot),
+        selectedItemId,
+        ...otherItemIds.slice(selectedSlot),
+      ],
+      selectedSlot,
+      this.playNextTailId,
+    );
+  }
+
   private moveTo(cursor: number) {
     return new PlayOrder(this.itemIds, cursor, this.playNextTailId);
   }
