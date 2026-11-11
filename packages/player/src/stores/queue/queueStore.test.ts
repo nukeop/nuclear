@@ -665,6 +665,32 @@ describe('useQueueStore', () => {
       expect(Wrapper.currentTitle).toBe('A');
       expect(Wrapper.skip(2)).toEqual(['B', 'D']);
     });
+
+    it('plays a new shuffled cycle after the last item with repeat all, with the item that played last at the end', async () => {
+      await setSetting('core.playback.repeat', 'all');
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.skip(4);
+
+      Wrapper.shuffleWillReturn('B', 'A', 'E', 'C');
+
+      expect(Wrapper.skip(5)).toEqual(['B', 'A', 'E', 'C', 'D']);
+    });
+
+    it('shuffles added tracks into all items of a new cycle that did not play yet, including the play next tracks of the cycle before', async () => {
+      await setSetting('core.playback.repeat', 'all');
+      Wrapper.shuffleWillReturn('C', 'E', 'B', 'D');
+      await setSetting('core.playback.shuffle', true);
+      Wrapper.playNext('F');
+      Wrapper.skip(5);
+      Wrapper.shuffleWillReturn('E', 'A', 'C', 'F', 'B');
+      Wrapper.skip(1);
+
+      Wrapper.shuffleWillReturn('G', 'D', 'A', 'F', 'B', 'C');
+      Wrapper.addTracks('G');
+
+      expect(Wrapper.skip(6)).toEqual(['G', 'D', 'A', 'F', 'B', 'C']);
+    });
   });
 
   describe('persistence', () => {
