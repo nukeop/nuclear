@@ -64,6 +64,7 @@ export const createNavigationSlice: StateCreator<
     | 'goToIndex'
     | 'goToId'
     | 'getCurrentItem'
+    | 'isCurrentItemLastToPlay'
     | 'getItemById'
   >
 > = (set, get) => ({
@@ -134,6 +135,14 @@ export const createNavigationSlice: StateCreator<
   getCurrentItem: () => {
     const { items, currentIndex } = get();
     return items[currentIndex];
+  },
+
+  isCurrentItemLastToPlay: () => {
+    const { items, currentIndex, playOrder, playCursor } = get();
+    if (playbackSettings.shuffleEnabled) {
+      return playCursor >= playOrder.length - 1;
+    }
+    return currentIndex >= items.length - 1;
   },
 
   getItemById: (id: string) => {

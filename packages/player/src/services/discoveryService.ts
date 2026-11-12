@@ -21,9 +21,8 @@ export const initDiscoveryService = () => {
       return;
     }
 
-    const { items, currentIndex } = useQueueStore.getState();
-    const isLastTrack = currentIndex >= items.length - 1;
-    if (!isLastTrack) {
+    const { items, isCurrentItemLastToPlay } = useQueueStore.getState();
+    if (!isCurrentItemLastToPlay()) {
       return;
     }
 

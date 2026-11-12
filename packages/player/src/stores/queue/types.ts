@@ -29,5 +29,6 @@ export type QueueStore = Queue & {
   goToIndex: (index: number) => void;
   goToId: (id: string) => void;
   getCurrentItem: () => QueueItem | undefined;
+  isCurrentItemLastToPlay: () => boolean;
   getItemById: (id: string) => QueueItem | undefined;
 };
