@@ -1624,6 +1624,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
+              data-testid="player-previous-button"
               type="button"
             >
               <svg
@@ -3546,6 +3547,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
+              data-testid="player-previous-button"
               type="button"
             >
               <svg
