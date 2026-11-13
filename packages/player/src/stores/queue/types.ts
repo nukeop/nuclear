@@ -5,7 +5,7 @@ import type {
   Track,
 } from '@nuclearplayer/model';
 
-export type QueueStore = Queue & {
+export type QueueStore = Pick<Queue, 'items' | 'currentIndex'> & {
   playOrder: string[];
   playCursor: number;
   playNextTailId: string | null;
@@ -30,5 +30,6 @@ export type QueueStore = Queue & {
   goToId: (id: string) => void;
   getCurrentItem: () => QueueItem | undefined;
   isCurrentItemLastToPlay: () => boolean;
+  getQueue: () => Queue;
   getItemById: (id: string) => QueueItem | undefined;
 };

@@ -18,12 +18,13 @@ Access the queue via `api.Queue.*` in your plugin's lifecycle hooks. All queue o
 
 ### Queue structure
 
-The queue is a list of items with a pointer to the current playback position:
+The queue is a list of items with a pointer to the current playback position, and the order in which the items play:
 
 ```typescript
 type Queue = {
-  items: QueueItem[];        // Ordered list of tracks
-  currentIndex: number;      // Position of currently playing item (0-based)
+  items: QueueItem[];        // List of tracks, in the sequence of the queue panel
+  currentIndex: number;      // Position of currently playing item in items (0-based)
+  playOrder: PlayOrder;      // Sequence in which the items play
 };
 ```
 
@@ -51,6 +52,19 @@ type QueueItem = {
 * `success` - Stream resolved and ready for playback
 * `error` - All streams failed or playback error occurred
 
+### Play order
+
+`playOrder` is the sequence in which the queue items play:
+
+```typescript
+type PlayOrder = {
+  itemIds: string[];         // IDs of all queue items, in the sequence in which they play
+  currentIndex: number;      // Position of the current item in itemIds (0-based)
+};
+```
+
+With shuffle off, it is the same sequence as `items`. With shuffle on, it is the shuffled sequence, and `items` keeps the sequence of the queue panel. The play order is read-only.
+
 ---
 
 ## Usage
@@ -66,6 +80,10 @@ export default {
     const queue = await api.Queue.getQueue();
     console.log(`Queue has ${queue.items.length} items`);
     console.log(`Currently at index ${queue.currentIndex}`);
+    
+    // IDs of the items that play after the current one
+    const { itemIds, currentIndex } = queue.playOrder;
+    const upcomingItemIds = itemIds.slice(currentIndex + 1);
     
     // Get just the current item
     const current = await api.Queue.getCurrentItem();
@@ -193,3 +211,4 @@ api.Queue.subscribeToCurrentItem(listener: (item: QueueItem | undefined) => void
 ## Best practices
 
 * Use subscriptions for reactive features. `subscribe()` for queue-wide changes, `subscribeToCurrentItem()` for playback tracking
+* To find the item that plays next, use `queue.playOrder`, not `queue.currentIndex + 1`

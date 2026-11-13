@@ -65,6 +65,7 @@ export const createNavigationSlice: StateCreator<
     | 'goToId'
     | 'getCurrentItem'
     | 'isCurrentItemLastToPlay'
+    | 'getQueue'
     | 'getItemById'
   >
 > = (set, get) => ({
@@ -143,6 +144,22 @@ export const createNavigationSlice: StateCreator<
       return playCursor >= playOrder.length - 1;
     }
     return currentIndex >= items.length - 1;
+  },
+
+  getQueue: () => {
+    const { items, currentIndex, playOrder, playCursor } = get();
+    if (playbackSettings.shuffleEnabled) {
+      return {
+        items,
+        currentIndex,
+        playOrder: { itemIds: playOrder, currentIndex: playCursor },
+      };
+    }
+    return {
+      items,
+      currentIndex,
+      playOrder: { itemIds: items.map((item) => item.id), currentIndex },
+    };
   },
 
   getItemById: (id: string) => {

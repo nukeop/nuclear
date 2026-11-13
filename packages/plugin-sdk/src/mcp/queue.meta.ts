@@ -6,7 +6,8 @@ export const QueueAPIMeta: DomainMeta = {
   methods: {
     getQueue: {
       name: 'getQueue',
-      description: 'Get the current queue state.',
+      description:
+        'Get the current queue state: the items, the current item, and the play order.',
       params: [],
       returns: 'Queue',
     },

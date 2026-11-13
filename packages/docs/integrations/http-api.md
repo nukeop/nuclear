@@ -19,7 +19,7 @@ The API accepts requests only from your local network. In the URL, use an IP add
 | Method | Path | Returns |
 |--------|------|---------|
 | GET | `/api/health` | `{ "status": "ok" }` |
-| GET | `/api/queue` | `{ "items": QueueItem[], "currentIndex": number }` |
+| GET | `/api/queue` | `{ "items": QueueItem[], "currentIndex": number, "playOrder": { "itemIds": string[], "currentIndex": number } }`. `items` has the queue items in the sequence of the queue panel. `playOrder.itemIds` has the ID of each queue item in the sequence in which the items play. With shuffle on, this is the shuffled sequence. See [Play order](../plugins/queue.md#play-order) |
 | GET | `/api/playback` | `{ "status": string, "seek": number, "duration": number }` |
 | GET | `/api/playback/volume` | `{ "volume": number }`, from 0 (silent) to 1 (full) |
 | GET | `/api/settings` | `{ "shuffle": boolean, "repeat": string, "discovery": boolean, "language": string, "dark": boolean, "themeId": string }` |
@@ -67,7 +67,7 @@ Three event types:
 {% code title="queue" %}
 ```
 event: queue
-data: {"items":[...],"currentIndex":3}
+data: {"items":[...],"currentIndex":3,"playOrder":{"itemIds":[...],"currentIndex":1}}
 ```
 {% endcode %}
 
@@ -85,7 +85,7 @@ data: {"shuffle":false,"repeat":"off","discovery":false,"language":"en_US","dark
 ```
 {% endcode %}
 
-Events carry the full state for their domain in JSON.
+Events carry the full state for their domain in JSON. The `queue` event has the same data as `GET /api/queue`. The server also sends it when only the play order changes, for example when shuffle goes on.
 
 ## Errors
 

@@ -10,11 +10,7 @@ import { useQueueStore } from '../stores/queue/queueStore';
 export const createQueueHost = (): QueueHost => {
   return {
     getQueue: async () => {
-      const state = useQueueStore.getState();
-      return {
-        items: state.items,
-        currentIndex: state.currentIndex,
-      };
+      return useQueueStore.getState().getQueue();
     },
 
     getCurrentItem: async () => {
@@ -71,10 +67,7 @@ export const createQueueHost = (): QueueHost => {
 
     subscribe: (listener: (queue: Queue) => void) => {
       return useQueueStore.subscribe((state) => {
-        listener({
-          items: state.items,
-          currentIndex: state.currentIndex,
-        });
+        listener(state.getQueue());
       });
     },
 

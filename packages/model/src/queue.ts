@@ -10,7 +10,13 @@ export type QueueItem = {
 
 export type RepeatMode = 'off' | 'all' | 'one';
 
+export type PlayOrder = {
+  itemIds: string[];
+  currentIndex: number;
+};
+
 export type Queue = {
   items: QueueItem[];
   currentIndex: number;
+  playOrder: PlayOrder;
 };

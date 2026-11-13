@@ -26,15 +26,10 @@ type HttpApiStartResult = {
 type Unsubscribe = () => void;
 
 const watchQueue = (): Unsubscribe => {
-  const getSnapshot = () => {
-    const { items, currentIndex } = useQueueStore.getState();
-    return { items, currentIndex };
-  };
+  emit('remote:queue', useQueueStore.getState().getQueue());
 
-  emit('remote:queue', getSnapshot());
-
-  return useQueueStore.subscribe(() => {
-    emit('remote:queue', getSnapshot());
+  return useQueueStore.subscribe((state) => {
+    emit('remote:queue', state.getQueue());
   });
 };
 
