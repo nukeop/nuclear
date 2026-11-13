@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-11-13T00:00",
+    "description": "Show Nuclear's name and icon in the volume mixer on Windows.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Windows",
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "date": "2026-11-13T00:00",
     "description": "Shuffle without repeats.",
     "type": "improvement",
     "contributors": ["nukeop"],

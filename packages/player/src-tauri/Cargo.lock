@@ -4570,6 +4570,8 @@ dependencies = [
  "tokio-util",
  "tower",
  "uuid 1.26.1",
+ "windows",
+ "windows-core",
  "zip 8.6.0",
 ]
 

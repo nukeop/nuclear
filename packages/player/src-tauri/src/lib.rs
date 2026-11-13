@@ -13,6 +13,8 @@ pub mod pagination;
 pub mod profile;
 mod setup;
 pub mod stream_server;
+#[cfg(windows)]
+mod win_mixer;
 pub mod ytdlp;
 pub mod ytdlp_setup;
 pub mod ytdlp_verify;
@@ -140,6 +142,9 @@ pub fn run() {
             stream_server::init_stream_server(app.handle().clone());
             discord::init_discord(app.handle().clone());
             history::init_history(app.handle().clone());
+
+            #[cfg(windows)]
+            win_mixer::init_win_mixer(app.handle().clone());
 
             #[cfg(target_os = "linux")]
             maximize_for_gamescope(app);

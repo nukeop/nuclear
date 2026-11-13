@@ -61,6 +61,10 @@ tauri-plugin-process = "2"
 [target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]
 tauri-plugin-window-state = "2.4.1"
 
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.61", features = ["Win32_Media_Audio", "Win32_System_Com", "Win32_System_Com_StructuredStorage", "Win32_System_Variant", "Win32_System_Diagnostics_ToolHelp"] }
+windows-core = "0.61"
+
 [dev-dependencies]
 rand = "0.8"
 tower = { version = "0.5", features = ["util"] }
