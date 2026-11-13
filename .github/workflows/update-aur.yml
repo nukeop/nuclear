@@ -29,10 +29,10 @@ jobs:
         run: pacman -Syu --noconfirm base-devel git openssh curl
 
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
+        uses: shimataro/ssh-key-action@v2.8.1
         with:
           key: ${{ secrets.AUR_SSH_KEY }}
           known_hosts: ${{ secrets.AUR_KNOWN_HOSTS }}

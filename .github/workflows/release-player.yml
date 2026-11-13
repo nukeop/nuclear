@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
         with:
           fetch-tags: true
           fetch-depth: 0
@@ -53,12 +53,12 @@ jobs:
         run: echo "VERSION=${GITHUB_REF_NAME#player@}" >> "$GITHUB_ENV"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v7.1.0
         with:
           node-version: "24"
 
       - name: Setup PNPM
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@v6.1.1
 
       - name: Get PNPM store directory
         shell: bash
@@ -66,7 +66,7 @@ jobs:
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - name: Setup PNPM cache
-        uses: actions/cache@v6
+        uses: actions/cache@v6.1.0
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -79,7 +79,7 @@ jobs:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
       - name: Cache cargo dependencies
-        uses: actions/cache@v6
+        uses: actions/cache@v6.1.0
         with:
           path: |
             ~/.cargo/bin/
@@ -99,7 +99,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Tauri app
-        uses: tauri-apps/tauri-action@v1
+        uses: tauri-apps/tauri-action@v1.0.0
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
@@ -108,7 +108,7 @@ jobs:
           args: ${{ matrix.args }}
 
       - name: Upload bundles
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: ${{ matrix.artifact }}
           if-no-files-found: error
@@ -129,7 +129,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Extract version from tag
         shell: bash
@@ -162,7 +162,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Generate snapcraft.yaml from template
         run: |
@@ -170,11 +170,11 @@ jobs:
           mv snap/snapcraft.resolved.yaml snap/snapcraft.yaml
 
       - name: Build snap
-        uses: snapcore/action-build@v1
+        uses: snapcore/action-build@v1.3.0
         id: snapcraft
 
       - name: Upload snap
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: snap
           if-no-files-found: error
@@ -187,7 +187,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
         with:
           fetch-tags: true
           fetch-depth: 0
@@ -196,12 +196,12 @@ jobs:
         run: echo "VERSION=${GITHUB_REF_NAME#player@}" >> "$GITHUB_ENV"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v7.1.0
         with:
           node-version: "24"
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v8.0.2
         with:
           path: artifacts
 
@@ -254,7 +254,7 @@ jobs:
           echo "intel=$(sha256sum Nuclear_*_x64.dmg | cut -d' ' -f1)" >> $GITHUB_OUTPUT
 
       - name: Checkout tap
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
         with:
           repository: NuclearPlayer/homebrew-tap
           token: ${{ secrets.HOMEBREW_TAP_TOKEN }}

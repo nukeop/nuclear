@@ -19,29 +19,44 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Setup JS
-        uses: ./.github/actions/setup-js
+        uses: $/.github/actions/setup-js
 
       - name: Lint
         run: pnpm lint
+
+  actions-lockfile:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7.0.1
+
+      - name: Install gh-actions-lock
+        run: gh extension install github/gh-actions-lock --pin v0.4.1
+
+      - name: Verify actions lockfile
+        run: gh actions-lock --verify
 
   test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Setup JS
-        uses: ./.github/actions/setup-js
+        uses: $/.github/actions/setup-js
 
       - name: Run tests with coverage
         run: pnpm test:coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v7
+        uses: codecov/codecov-action@v7.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./packages/*/coverage/lcov.info
@@ -51,7 +66,7 @@ jobs:
 
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
-        uses: codecov/codecov-action@v7
+        uses: codecov/codecov-action@v7.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./packages/*/test-results/junit.xml
@@ -66,13 +81,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
       - name: Cache cargo dependencies
-        uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@v2.9.3
         with:
           workspaces: packages/player/src-tauri -> target
 
@@ -80,13 +95,13 @@ jobs:
         run: sudo apt-get update
 
       - name: Install system dependencies
-        uses: awalsh128/cache-apt-pkgs-action@v1
+        uses: awalsh128/cache-apt-pkgs-action@v1.6.3
         with:
           packages: libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev
           version: 2.0
 
       - name: Setup JS
-        uses: ./.github/actions/setup-js
+        uses: $/.github/actions/setup-js
 
       - name: Build packages
         run: pnpm turbo build --filter='!@nuclearplayer/player'

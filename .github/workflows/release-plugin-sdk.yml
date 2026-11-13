@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Extract version from tag
         id: version
@@ -33,13 +33,13 @@ jobs:
           echo "tag=$TAG" >> $GITHUB_OUTPUT
 
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v7.1.0
         with:
           node-version: "24"
           registry-url: "https://registry.npmjs.org"
 
       - name: Setup PNPM
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@v6.1.1
 
       - name: Get PNPM store directory
         shell: bash
@@ -47,7 +47,7 @@ jobs:
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - name: Setup PNPM cache
-        uses: actions/cache@v6
+        uses: actions/cache@v6.1.0
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}

@@ -43,7 +43,7 @@ jobs:
           --pattern "nuclear_${{ steps.version.outputs.version }}_amd64.snap"
 
       - name: Publish to Snap Store
-        uses: snapcore/action-publish@v1
+        uses: snapcore/action-publish@v1.2.0
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
         with:
