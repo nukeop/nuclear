@@ -1,0 +1,47 @@
+name: Windows Test Build
+
+on:
+  push:
+    branches:
+      - windows-test-build
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  DO_NOT_TRACK: 1
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: "24"
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v6.1.1
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Tauri app
+        uses: tauri-apps/tauri-action@v1.0.0
+        with:
+          args: --bundles nsis --config '{"bundle":{"createUpdaterArtifacts":false}}'
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: nuclear-windows-test
+          if-no-files-found: error
+          path: packages/player/src-tauri/target/release/bundle/nsis/*-setup.exe
