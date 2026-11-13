@@ -76,11 +76,14 @@ jobs:
         with:
           workspaces: packages/player/src-tauri -> target
 
+      - name: Update apt package lists
+        run: sudo apt-get update
+
       - name: Install system dependencies
         uses: awalsh128/cache-apt-pkgs-action@v1
         with:
           packages: libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev
-          version: 1.0
+          version: 2.0
 
       - name: Setup JS
         uses: ./.github/actions/setup-js
