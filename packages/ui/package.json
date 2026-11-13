@@ -52,7 +52,7 @@
     "d3-scale": "^4.0.2",
     "d3-shape": "^3.2.0",
     "lodash-es": "^4.17.21",
-    "lucide-react": "^0.542.0",
+    "lucide-react": "^0.577.0",
     "luxon": "^3.7.1",
     "react-activity-calendar": "3.2.1",
     "recharts": "^3.9.2",
