@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-13T00:00",
+    "description": "Shuffle without repeats.",
+    "type": "improvement",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Queue",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-11-04T00:00",
     "description": "Fix queue panel virtualization. Improves performance for large queues.",
     "type": "fix",
