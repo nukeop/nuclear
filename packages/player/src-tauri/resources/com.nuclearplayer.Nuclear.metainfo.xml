@@ -81,6 +81,13 @@
   </requires>
 
   <releases>
+    <release version="1.55.0" date="2026-11-13">
+      <description>
+        <ul>
+          <li>Shuffle without repeats.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.54.2" date="2026-11-06">
       <description>
         <ul>
