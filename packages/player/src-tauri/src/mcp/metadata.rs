@@ -153,7 +153,7 @@ pub fn method_details(domain: &str, method: &str) -> Result<Value, String> {
         ("Queue", "getQueue") => json!({
             "domain": "Queue",
             "method": "getQueue",
-            "description": "Get the current queue state.",
+            "description": "Get the current queue state: the items, the current item, and the play order.",
             "params": [],
             "returns": "Queue"
         }),
@@ -924,8 +924,17 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
             "type": "Queue",
             "description": "The playback queue state.",
             "fields": {
-                "items": { "type": "QueueItem[]" },
-                "currentIndex": { "type": "number" }
+                "items": { "type": "QueueItem[]", "description": "The items in the sequence that the user sees in the queue panel" },
+                "currentIndex": { "type": "number", "description": "Position of the current item in items" },
+                "playOrder": { "type": "PlayOrder" }
+            }
+        }),
+        "PlayOrder" => json!({
+            "type": "PlayOrder",
+            "description": "The sequence in which the queue items play. With shuffle off, this is the sequence of the queue items. With shuffle on, this is the shuffled sequence.",
+            "fields": {
+                "itemIds": { "type": "string[]", "description": "The IDs of all queue items, in the sequence in which they play" },
+                "currentIndex": { "type": "number", "description": "Position of the current item in itemIds. The items before it played. The items after it play next" }
             }
         }),
         "PlaylistRef" => json!({
@@ -1238,7 +1247,7 @@ pub fn describe_type(type_name: &str) -> Result<Value, String> {
         }),
         _ => {
             return Err(format!(
-                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, PlaylistFolder, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation, NavigationLocation, RawViewDefinition, RawViewRoute."
+                "Unknown type: '{type_name}'. Available types: ProviderRef, ArtistCredit, Artwork, ArtworkSet, ArtistRef, AlbumRef, TrackRef, LocalFileInfo, Stream, StreamCandidate, Track, QueueItem, Queue, PlayOrder, PlaylistRef, PlaylistItem, Playlist, PlaylistIndexEntry, PlaylistFolder, SearchParams, SearchResults, Album, ReleaseDate, ArtistBio, ArtistSocialStats, PlaybackState, FavoriteEntry, AttributedResult, StreamResolutionResult, ProviderDescriptor, YtdlpSearchResult, YtdlpStreamInfo, QueueItemStateUpdate, AttributedLyrics, Lyrics, LyricsMetadata, LyricsVocalist, LyricsSection, LyricsLine, LyricsSegment, LineAnnotation, NavigationLocation, RawViewDefinition, RawViewRoute."
             ))
         }
     };

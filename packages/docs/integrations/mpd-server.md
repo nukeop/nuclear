@@ -58,7 +58,7 @@ Use `127.0.0.1` on the port shown in Nuclear's settings. No password is required
 
 | Command          | Description                                      |
 | ---------------- | ------------------------------------------------ |
-| `status`         | Volume, playback state, repeat/random/single mode, queue length, current song position, elapsed/duration. |
+| `status`         | Volume, playback state, repeat/random/single mode, queue length, current song position, next song position, elapsed/duration. With random mode on, `status` does not send the next song position. |
 | `currentsong`    | Title, artist, album, position, and duration of the current track. |
 | `playlistinfo`   | List all queue items, a single position, or a range. |
 

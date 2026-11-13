@@ -1,6 +1,6 @@
 import { providersHost } from '../../services/providersHost';
 import { useFavoritesStore } from '../../stores/favoritesStore';
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { MetadataProviderBuilder } from '../../test/builders/MetadataProviderBuilder';
 import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
 import { AlbumWrapper } from './Album.test-wrapper';

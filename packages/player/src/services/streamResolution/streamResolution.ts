@@ -3,7 +3,7 @@ import { omit } from 'lodash-es';
 import type { QueueItem, StreamCandidate } from '@nuclearplayer/model';
 import { stripResolutionState } from '@nuclearplayer/model';
 
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
 import { playbackManager } from '../playback';
 import { hasActiveStreamingProvider, streamingHost } from '../streamingHost';

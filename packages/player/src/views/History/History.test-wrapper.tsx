@@ -17,7 +17,7 @@ import type {
   TopTrack,
 } from '../../services/tauri/bindings';
 import { useFavoritesStore } from '../../stores/favoritesStore';
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import type { TauriCommandMocks } from '../../test/utils/commandMocks';
 import { ok } from '../../test/utils/commandMocks';
 

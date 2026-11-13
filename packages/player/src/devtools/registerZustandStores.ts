@@ -1,6 +1,6 @@
 import { useLayoutStore } from '../stores/layoutStore';
 import { usePluginStore } from '../stores/pluginStore';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { useStartupStore } from '../stores/startupStore';

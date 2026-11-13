@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import { registerBuiltInCoreSettings } from '../services/coreSettings';
 import { playbackManager } from '../services/playback';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
 import {
   getSetting,

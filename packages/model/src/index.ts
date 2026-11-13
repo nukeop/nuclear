@@ -132,7 +132,7 @@ export type {
   PlaylistIndexNode,
   PlaylistItem,
 } from './playlists';
-export type { QueueItem, RepeatMode, Queue } from './queue';
+export type { QueueItem, RepeatMode, Queue, PlayOrder } from './queue';
 export type { SearchCategory, SearchParams, SearchResults } from './search';
 export type {
   LocalFileInfo,

@@ -1,23 +1,22 @@
+import { LazyStore } from '@tauri-apps/plugin-store';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createMockCandidate } from '../test/builders/StreamingProviderBuilder';
-import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
-import { createMockTrack } from '../test/utils/mockTrack';
+import { createMockCandidate } from '../../test/builders/StreamingProviderBuilder';
+import { createQueueItem } from '../../test/fixtures/queue';
+import { resetInMemoryTauriStore } from '../../test/utils/inMemoryTauriStore';
+import { createMockTrack } from '../../test/utils/mockTrack';
+import { mockUuid } from '../../test/utils/mockUuid';
+import { useSettingsStore } from '../settingsStore';
+import { useSoundStore } from '../soundStore';
+import { queueSaved } from './persistence';
 import { initializeQueueStore, useQueueStore } from './queueStore';
-import { useSettingsStore } from './settingsStore';
-import { useSoundStore } from './soundStore';
 
 describe('useQueueStore', () => {
   beforeEach(() => {
     const date = new Date(2025, 1, 1);
     vi.setSystemTime(date);
     resetInMemoryTauriStore();
-    useQueueStore.setState({
-      items: [],
-      currentIndex: 0,
-      isReady: false,
-      isLoading: false,
-    });
+    useQueueStore.setState(useQueueStore.getInitialState());
     useSettingsStore.setState({ values: {} });
   });
 
@@ -203,64 +202,69 @@ describe('useQueueStore', () => {
   });
 
   describe('moveBefore', () => {
-    const addTracks = (...titles: string[]) => {
+    beforeEach(() => {
+      mockUuid.willReturn('A', 'B', 'C');
       useQueueStore
         .getState()
-        .addToQueue(titles.map((title) => createMockTrack(title)));
-      return useQueueStore.getState().items.map((item) => item.id);
-    };
-
-    const titles = () =>
-      useQueueStore.getState().items.map((item) => item.track.title);
+        .addToQueue([
+          createMockTrack('A'),
+          createMockTrack('B'),
+          createMockTrack('C'),
+        ]);
+    });
 
     it('moves an item in front of another item', () => {
-      const [idA, , idC] = addTracks('A', 'B', 'C');
+      useQueueStore.getState().moveBefore('C', 'A');
 
-      useQueueStore.getState().moveBefore(idC, idA);
-
-      expect(titles()).toEqual(['C', 'A', 'B']);
+      const titles = useQueueStore
+        .getState()
+        .items.map((item) => item.track.title);
+      expect(titles).toEqual(['C', 'A', 'B']);
     });
 
     it('moves an item to the end when there is no item to move it before', () => {
-      const [idA] = addTracks('A', 'B', 'C');
+      useQueueStore.getState().moveBefore('A', null);
 
-      useQueueStore.getState().moveBefore(idA, null);
-
-      expect(titles()).toEqual(['B', 'C', 'A']);
+      const titles = useQueueStore
+        .getState()
+        .items.map((item) => item.track.title);
+      expect(titles).toEqual(['B', 'C', 'A']);
     });
 
     it('keeps the current item current when other items move around it', () => {
-      const [idA, idB] = addTracks('A', 'B', 'C');
       useQueueStore.setState({ currentIndex: 1 });
 
-      useQueueStore.getState().moveBefore(idA, null);
+      useQueueStore.getState().moveBefore('A', null);
 
-      expect(useQueueStore.getState().getCurrentItem()?.id).toBe(idB);
+      expect(useQueueStore.getState().getCurrentItem()?.id).toBe('B');
     });
 
     it('keeps the current item current when it is the item that moves', () => {
-      const [idA, , idC] = addTracks('A', 'B', 'C');
+      useQueueStore.getState().moveBefore('A', 'C');
 
-      useQueueStore.getState().moveBefore(idA, idC);
-
-      expect(titles()).toEqual(['B', 'A', 'C']);
-      expect(useQueueStore.getState().getCurrentItem()?.id).toBe(idA);
+      const titles = useQueueStore
+        .getState()
+        .items.map((item) => item.track.title);
+      expect(titles).toEqual(['B', 'A', 'C']);
+      expect(useQueueStore.getState().getCurrentItem()?.id).toBe('A');
     });
 
     it('leaves the queue unchanged when the item to move is not in the queue', () => {
-      const [idA] = addTracks('A', 'B', 'C');
+      useQueueStore.getState().moveBefore('missing', 'A');
 
-      useQueueStore.getState().moveBefore('missing', idA);
-
-      expect(titles()).toEqual(['A', 'B', 'C']);
+      const titles = useQueueStore
+        .getState()
+        .items.map((item) => item.track.title);
+      expect(titles).toEqual(['A', 'B', 'C']);
     });
 
     it('moves an item to the end when the item to move it before is not in the queue', () => {
-      const [idA] = addTracks('A', 'B', 'C');
+      useQueueStore.getState().moveBefore('A', 'missing');
 
-      useQueueStore.getState().moveBefore(idA, 'missing');
-
-      expect(titles()).toEqual(['B', 'C', 'A']);
+      const titles = useQueueStore
+        .getState()
+        .items.map((item) => item.track.title);
+      expect(titles).toEqual(['B', 'C', 'A']);
     });
   });
 
@@ -414,70 +418,29 @@ describe('useQueueStore', () => {
       useQueueStore.getState().goToPrevious();
       expect(useQueueStore.getState().currentIndex).toBe(2);
     });
-
-    it('goToNext picks a different random index when shuffle is enabled', () => {
-      const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.9);
-      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
-      useQueueStore.getState().goToNext();
-      expect(useQueueStore.getState().currentIndex).toBe(2);
-      randomSpy.mockRestore();
-    });
-
-    it('goToNext retries random selection until index changes', () => {
-      const randomSpy = vi
-        .spyOn(Math, 'random')
-        .mockReturnValueOnce(0.1)
-        .mockReturnValueOnce(0.8);
-      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
-      useQueueStore.getState().goToNext();
-      expect(useQueueStore.getState().currentIndex).toBe(2);
-      expect(randomSpy).toHaveBeenCalledTimes(2);
-      randomSpy.mockRestore();
-    });
-
-    it('goToPrevious picks a different random index when shuffle is enabled', () => {
-      const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.4);
-      useSettingsStore.setState({ values: { 'core.playback.shuffle': true } });
-      useQueueStore.setState({ currentIndex: 2 });
-      useQueueStore.getState().goToPrevious();
-      expect(useQueueStore.getState().currentIndex).toBe(1);
-      randomSpy.mockRestore();
-    });
   });
 
   describe('persistence', () => {
     it('initializeQueueStore restores state from storage', async () => {
-      const tracks = [createMockTrack('Track 1'), createMockTrack('Track 2')];
-      useQueueStore.getState().addToQueue(tracks);
+      useQueueStore
+        .getState()
+        .addToQueue([createMockTrack('A'), createMockTrack('B')]);
       useQueueStore.getState().goToIndex(1);
-
-      await new Promise((resolve) => setTimeout(resolve, 10));
-
-      useQueueStore.setState({
-        items: [],
-        currentIndex: 0,
-        isReady: false,
-        isLoading: false,
-      });
+      await queueSaved();
+      useQueueStore.setState(useQueueStore.getInitialState());
 
       await initializeQueueStore();
 
       const state = useQueueStore.getState();
-      expect(state.items).toHaveLength(2);
-      expect(state.currentIndex).toBe(1);
+      expect(state.items.map((item) => item.track.title)).toEqual(['A', 'B']);
+      expect(state.getCurrentItem()?.track.title).toBe('B');
       expect(state.isReady).toBe(true);
     });
 
     it('sanitizes out-of-bounds currentIndex on load', async () => {
-      useQueueStore.getState().addToQueue([createMockTrack('Track 1')]);
-      useQueueStore.setState({ currentIndex: 5 });
-
-      useQueueStore.setState({
-        items: [],
-        currentIndex: 0,
-        isReady: false,
-        isLoading: false,
-      });
+      const queueFile = new LazyStore('queue.json');
+      await queueFile.set('queue.items', [createQueueItem('A')]);
+      await queueFile.set('queue.currentIndex', 5);
 
       await initializeQueueStore();
 

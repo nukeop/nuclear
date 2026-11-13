@@ -21,7 +21,7 @@ import { initPlaybackEventBridge } from './services/playbackEventBridge';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { initializeFavoritesStore } from './stores/favoritesStore';
 import { initializePlaylistStore } from './stores/playlistStore';
-import { initializeQueueStore } from './stores/queueStore';
+import { initializeQueueStore } from './stores/queue/queueStore';
 import { initializeSettingsStore } from './stores/settingsStore';
 import { initializeShortcutsStore } from './stores/shortcutsStore';
 import { initializeStreamVerificationStore } from './stores/streamVerificationStore';

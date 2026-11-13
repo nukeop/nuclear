@@ -27,7 +27,28 @@ const dispatchPluginApi = async (
   methodName: string,
   params: Record<string, unknown>,
 ): Promise<unknown> => {
-  const methodMeta = apiMeta[domain].methods[methodName];
+  const domainMeta = apiMeta[domain];
+  if (!domainMeta) {
+    throw new Error(
+      `Unknown domain: '${domain}'. Available domains: ${Object.keys(apiMeta).join(', ')}.`,
+    );
+  }
+
+  const methodMeta = domainMeta.methods[methodName];
+  if (!methodMeta) {
+    throw new Error(
+      `Unknown method '${methodName}' in domain '${domain}'. Available methods: ${Object.keys(domainMeta.methods).join(', ')}.`,
+    );
+  }
+
+  const missingParam = methodMeta.params.find(
+    (param) => !param.type.endsWith('?') && params[param.name] === undefined,
+  );
+  if (missingParam) {
+    throw new Error(
+      `Missing parameter '${missingParam.name}' of ${domain}.${methodName}.`,
+    );
+  }
 
   const domainInstance = bridgeApi[domain as keyof NuclearPluginAPI];
   const fn = domainInstance[methodName as keyof typeof domainInstance] as (

@@ -6,7 +6,7 @@ import { pickArtwork } from '@nuclearplayer/model';
 import { FavoriteButton, PlayerBar } from '@nuclearplayer/ui';
 
 import { useFavoritesStore } from '../../stores/favoritesStore';
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 
 export const ConnectedNowPlaying: FC = () => {
   const { t } = useTranslation('playerBar');

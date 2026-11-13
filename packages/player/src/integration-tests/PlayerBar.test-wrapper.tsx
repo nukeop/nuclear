@@ -6,6 +6,28 @@ export const PlayerBarWrapper = {
     return screen.queryByTestId('player-pause-button') !== null;
   },
 
+  get nowPlayingTitle() {
+    return screen.getByTestId('now-playing-title').textContent;
+  },
+
+  previousButton: {
+    get element() {
+      return screen.getByTestId('player-previous-button');
+    },
+    async click() {
+      await userEvent.click(this.element);
+    },
+  },
+
+  shuffleButton: {
+    get element() {
+      return screen.getByTestId('player-shuffle-button');
+    },
+    async click() {
+      await userEvent.click(this.element);
+    },
+  },
+
   nextButton: {
     get element() {
       return screen.getByTestId('player-next-button');

@@ -1031,6 +1031,7 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             <button
               class="inline-flex cursor-pointer items-center rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 size-10 justify-center"
               data-headlessui-state=""
+              data-testid="player-previous-button"
               type="button"
             >
               <svg

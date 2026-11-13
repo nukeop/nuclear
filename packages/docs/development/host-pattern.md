@@ -63,7 +63,7 @@ Lives in the player. Implements the host interface and bridges it to whatever ba
 ```typescript
 // services/queueHost.ts
 import type { QueueHost } from '@nuclearplayer/plugin-sdk';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 
 export const createQueueHost = (): QueueHost => ({
   getQueue: () => useQueueStore.getState().queue,

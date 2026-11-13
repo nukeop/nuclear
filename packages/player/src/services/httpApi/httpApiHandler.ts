@@ -3,7 +3,7 @@ import { emit } from '@tauri-apps/api/event';
 
 import { DEFAULT_THEME_ID } from '@nuclearplayer/themes';
 
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import {
   getSetting,
   setSetting,
@@ -12,6 +12,7 @@ import {
 import { useSoundStore } from '../../stores/soundStore';
 import { errorMessage } from '../../utils/errorMessage';
 import { Logger } from '../logger';
+import { playbackSettings } from '../playbackSettings';
 
 const JAM_ENABLED_SETTING = 'core.integrations.jam.enabled';
 const JAM_REMOTE_URL_SETTING = 'core.integrations.jam.remoteUrl';
@@ -25,15 +26,10 @@ type HttpApiStartResult = {
 type Unsubscribe = () => void;
 
 const watchQueue = (): Unsubscribe => {
-  const getSnapshot = () => {
-    const { items, currentIndex } = useQueueStore.getState();
-    return { items, currentIndex };
-  };
+  emit('remote:queue', useQueueStore.getState().getQueue());
 
-  emit('remote:queue', getSnapshot());
-
-  return useQueueStore.subscribe(() => {
-    emit('remote:queue', getSnapshot());
+  return useQueueStore.subscribe((state) => {
+    emit('remote:queue', state.getQueue());
   });
 };
 
@@ -53,8 +49,8 @@ const watchPlayback = (): Unsubscribe => {
 const getSettingsSnapshot = () => {
   const getValue = useSettingsStore.getState().getValue;
   return {
-    shuffle: (getValue('core.playback.shuffle') as boolean) ?? false,
-    repeat: (getValue('core.playback.repeat') as string) ?? 'off',
+    shuffle: playbackSettings.shuffleEnabled,
+    repeat: playbackSettings.repeatMode,
     discovery: (getValue('core.playback.discovery') as boolean) ?? false,
     language: (getValue('core.general.language') as string) ?? 'en_US',
     dark: (getValue('core.theme.dark') as boolean) ?? false,

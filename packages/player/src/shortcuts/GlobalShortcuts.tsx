@@ -1,9 +1,10 @@
 import { FC } from 'react';
 
 import { playbackManager } from '../services/playback';
-import { useQueueStore } from '../stores/queueStore';
+import { playbackSettings } from '../services/playbackSettings';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
-import { getSetting, setSetting } from '../stores/settingsStore';
+import { getSetting } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { useShortcut } from './useShortcut';
 
@@ -35,18 +36,19 @@ export const GlobalShortcuts: FC = () => {
   });
 
   useShortcut('playback.volumeUp', () => {
-    const volume = getSetting('core.playback.volume') as number;
-    void setSetting('core.playback.volume', Math.min(1, volume + 0.05));
+    void playbackSettings.setVolume(
+      Math.min(1, playbackSettings.volume + 0.05),
+    );
   });
 
   useShortcut('playback.volumeDown', () => {
-    const volume = getSetting('core.playback.volume') as number;
-    void setSetting('core.playback.volume', Math.max(0, volume - 0.05));
+    void playbackSettings.setVolume(
+      Math.max(0, playbackSettings.volume - 0.05),
+    );
   });
 
   useShortcut('playback.mute', () => {
-    const muted = getSetting('core.playback.muted') as boolean;
-    void setSetting('core.playback.muted', !muted);
+    void playbackSettings.setMuted(!playbackSettings.muted);
   });
 
   useShortcut('general.toggleSettings', () => {

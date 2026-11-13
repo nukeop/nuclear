@@ -17,11 +17,16 @@ export const REMOTE_QUEUE: Queue = {
     { ...createQueueItem('First Test Track'), status: 'success' },
     createQueueItem('Second Test Track'),
   ],
+  playOrder: {
+    itemIds: ['item-first-test-track', 'item-second-test-track'],
+    currentIndex: 0,
+  },
 };
 
 export const REMOTE_EMPTY_QUEUE: Queue = {
   currentIndex: 0,
   items: [],
+  playOrder: { itemIds: [], currentIndex: 0 },
 };
 
 export const REMOTE_SEARCH_TRACKS: Track[] = [

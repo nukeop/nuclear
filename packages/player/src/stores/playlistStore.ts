@@ -11,7 +11,7 @@ import { stripResolutionState } from '@nuclearplayer/model';
 
 import { playlistFileService } from '../services/playlistFileService';
 import { PlaylistIndexTree } from './PlaylistIndexTree';
-import { useQueueStore } from './queueStore';
+import { useQueueStore } from './queue/queueStore';
 
 type PlaylistStore = {
   index: PlaylistIndexNode[];

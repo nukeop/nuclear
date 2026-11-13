@@ -77,7 +77,12 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
         <Shuffle size={16} />
       </Button>
     </Tooltip>
-    <Button size="icon" variant="text" onClick={onPrevious}>
+    <Button
+      size="icon"
+      variant="text"
+      onClick={onPrevious}
+      data-testid="player-previous-button"
+    >
       <SkipBack size={16} />
     </Button>
     <Button

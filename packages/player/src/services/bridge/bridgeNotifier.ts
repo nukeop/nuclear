@@ -1,16 +1,11 @@
 import { invoke } from '@tauri-apps/api/core';
 
 import type { SoundStatus } from '@nuclearplayer/hifi';
-import type { SettingValue } from '@nuclearplayer/plugin-sdk';
 
-import { useQueueStore } from '../../stores/queueStore';
-import { useSettingsStore } from '../../stores/settingsStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
+import { playbackSettings } from '../playbackSettings';
 import { BridgeCommand } from '../tauri/bridge';
-
-const VOLUME_SETTING = 'core.playback.volume';
-const REPEAT_SETTING = 'core.playback.repeat';
-const SHUFFLE_SETTING = 'core.playback.shuffle';
 
 const notifyPlayer = () =>
   void invoke(BridgeCommand.notify, { notification: { subsystem: 'player' } });
@@ -71,44 +66,11 @@ const watchQueueContents = () => {
   });
 };
 
-const watchVolume = () => {
-  let previousVolume: SettingValue = useSettingsStore
-    .getState()
-    .getValue(VOLUME_SETTING);
-
-  useSettingsStore.subscribe((state) => {
-    const volume = state.getValue(VOLUME_SETTING);
-    if (volume === previousVolume) {
-      return;
-    }
-    previousVolume = volume;
-    notifyMixer();
-  });
-};
-
-const watchOptions = () => {
-  const getValues = () => ({
-    repeat: useSettingsStore.getState().getValue(REPEAT_SETTING),
-    shuffle: useSettingsStore.getState().getValue(SHUFFLE_SETTING),
-  });
-
-  let previous = getValues();
-
-  useSettingsStore.subscribe((state) => {
-    const repeat = state.getValue(REPEAT_SETTING);
-    const shuffle = state.getValue(SHUFFLE_SETTING);
-    if (repeat === previous.repeat && shuffle === previous.shuffle) {
-      return;
-    }
-    previous = { repeat, shuffle };
-    notifyOptions();
-  });
-};
-
 export const initBridgeNotifier = (): void => {
   watchSoundStatus();
   watchQueueIndex();
   watchQueueContents();
-  watchVolume();
-  watchOptions();
+  playbackSettings.onVolumeChange(notifyMixer);
+  playbackSettings.onRepeatModeChange(notifyOptions);
+  playbackSettings.onShuffleChange(notifyOptions);
 };

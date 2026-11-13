@@ -2,7 +2,7 @@ import { mockIPC } from '@tauri-apps/api/mocks';
 import { screen, waitFor, within } from '@testing-library/react';
 
 import { providersHost } from '../services/providersHost';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 import { MetadataProviderBuilder } from '../test/builders/MetadataProviderBuilder';
 import {

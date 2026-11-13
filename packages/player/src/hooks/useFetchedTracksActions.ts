@@ -5,7 +5,7 @@ import type { Track } from '@nuclearplayer/model';
 
 import type { LogScope } from '../services/logger';
 import { playbackManager } from '../services/playback';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { reportError } from '../utils/logging';
 
 type FetchFailure = {

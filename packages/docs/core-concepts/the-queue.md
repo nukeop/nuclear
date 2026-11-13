@@ -44,8 +44,8 @@ The player bar has shuffle and repeat buttons that control how Nuclear moves thr
 - **Repeat off**: plays through the queue in order and stops after the last track
 - **Repeat all**: loops back to the first track after the last one
 - **Repeat one**: replays the current track indefinitely
-- **Shuffle on**: picks a random track from the queue after each track ends
+- **Shuffle on**: plays the queue in a random order without repeats.
 
 ## Persistence
 
-The queue saves to disk automatically. When you close and reopen Nuclear, your queue and position are restored. Tracks that were mid-stream get reset to an idle state so they can be re-fetched when you play them again.
+The queue saves to disk automatically. When you close and reopen Nuclear, your queue, position in it, and the shuffled order are restored. Tracks that were mid-stream get reset to an idle state so they can be re-fetched when you play them again.

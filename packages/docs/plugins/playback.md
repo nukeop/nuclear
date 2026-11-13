@@ -46,7 +46,7 @@ Repeat mode is stored in the settings under the `core.playback.repeat` key.
 
 ### Shuffle
 
-When shuffle is enabled, `goToNext()` and `goToPrevious()` on the Queue API pick random indices instead of sequential ones. The algorithm avoids repeating the same track twice in a row.
+When shuffle is enabled, `goToNext()` and `goToPrevious()` on the Queue API move through a shuffled [play order](queue.md#play-order) in which each queue item plays exactly one time.
 
 Shuffle state is stored in the settings under the `core.playback.shuffle` key.
 

@@ -87,11 +87,8 @@ async fn status(bridge: &Bridge) -> CommandResult {
     let queue_length = items.map(|arr| arr.len()).unwrap_or(0);
     let current_index = queue["currentIndex"].as_i64().unwrap_or(0);
 
-    let mpd_random = if shuffle.as_bool().unwrap_or(false) {
-        1
-    } else {
-        0
-    };
+    let shuffle_enabled = shuffle.as_bool().unwrap_or(false);
+    let mpd_random = if shuffle_enabled { 1 } else { 0 };
     let repeat_str = repeat_mode.as_str().unwrap_or("off");
     let mpd_repeat = if repeat_str != "off" { 1 } else { 0 };
     let mpd_single = if repeat_str == "one" { 1 } else { 0 };
@@ -122,7 +119,7 @@ async fn status(bridge: &Bridge) -> CommandResult {
 
         if let Some(items) = items {
             let next_index = current_index as usize + 1;
-            if next_index < items.len() {
+            if !shuffle_enabled && next_index < items.len() {
                 fields.push(field("nextsong", next_index));
                 fields.push(field("nextsongid", next_index));
             }

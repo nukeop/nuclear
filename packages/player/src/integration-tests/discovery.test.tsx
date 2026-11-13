@@ -1,16 +1,23 @@
 import { screen, waitFor } from '@testing-library/react';
+import shuffle from 'lodash-es/shuffle';
 
 import type { Track } from '@nuclearplayer/model';
 
 import { initDiscoveryService } from '../services/discoveryService';
 import { providersHost } from '../services/providersHost';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { DiscoveryProviderBuilder } from '../test/builders/DiscoveryProviderBuilder';
+import { PlayerBarWrapper } from './PlayerBar.test-wrapper';
+import { QueueWrapper } from './Queue.test-wrapper';
 import { SoundWrapper } from './Sound.test-wrapper';
 
 vi.mock('@tauri-apps/api/core', () => ({
   invoke: vi.fn().mockResolvedValue(9100),
+}));
+
+vi.mock('lodash-es/shuffle', () => ({
+  default: vi.fn(<T,>(list: T[]) => list),
 }));
 
 const toastError = vi.fn();
@@ -114,6 +121,41 @@ describe('Discovery', () => {
         expect(toastError).toHaveBeenCalled();
       });
       expect(useQueueStore.getState().items).toHaveLength(3);
+    });
+
+    it('adds recommended tracks when the last item of the play order starts with shuffle on', async () => {
+      SoundWrapper.initQueue();
+      await SoundWrapper.mount();
+      vi.mocked<(itemIds: string[]) => string[]>(shuffle).mockReturnValueOnce([
+        'item-track-3',
+        'item-track-2',
+      ]);
+      await PlayerBarWrapper.shuffleButton.click();
+      await PlayerBarWrapper.nextButton.click();
+      await PlayerBarWrapper.nextButton.click();
+
+      await SoundWrapper.playCurrentItem();
+      SoundWrapper.fireCanPlay();
+
+      expect(
+        await QueueWrapper.findItemByTitle('Recommended Track'),
+      ).toBeInTheDocument();
+    });
+
+    it('does not ask for recommendations when the last item of the visible queue starts before the end of the play order', async () => {
+      SoundWrapper.initQueue();
+      await SoundWrapper.mount();
+      vi.mocked<(itemIds: string[]) => string[]>(shuffle).mockReturnValueOnce([
+        'item-track-3',
+        'item-track-2',
+      ]);
+      await PlayerBarWrapper.shuffleButton.click();
+      await PlayerBarWrapper.nextButton.click();
+
+      await SoundWrapper.playCurrentItem();
+      SoundWrapper.fireCanPlay();
+
+      expect(getRecommendations).not.toHaveBeenCalled();
     });
   });
 });

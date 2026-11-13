@@ -14,7 +14,7 @@ import { DialogWrapper } from '@nuclearplayer/ui';
 import App from '../App';
 import { routeTree } from '../routeTree.gen';
 import { usePlaylistStore } from '../stores/playlistStore';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
 import { createStreamVerificationWrapper } from './StreamVerification.test-wrapper';
 
@@ -76,6 +76,10 @@ export const QueueWrapper = {
     }));
   },
 
+  async findItemByTitle(title: string) {
+    return within(await screen.findByTestId('queue-panel')).findByText(title);
+  },
+
   async waitForItems(count: number) {
     await waitFor(() => {
       const queueItems = screen.queryAllByTestId('queue-item');
@@ -109,19 +113,13 @@ export const QueueWrapper = {
   },
 
   async selectItem(title: string) {
-    const queuePanel = await screen.findByTestId('queue-panel');
-    const queueItems = await within(queuePanel).findAllByTestId('queue-item');
-    const item = queueItems.find((itemElement) =>
-      itemElement.textContent?.includes(title),
-    );
-
-    await userEvent.dblClick(item!);
+    await userEvent.dblClick(await this.findItemByTitle(title));
   },
 
   async removeItemByTitle(title: string) {
     const allItems = screen.queryAllByTestId('queue-item');
     const item = allItems.find((itemElement) =>
-      itemElement.textContent?.includes(title),
+      within(itemElement).queryByText(title),
     );
     const removeButton = within(item!).getByTestId('queue-item-remove-button');
     await userEvent.click(removeButton);

@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 
 import { providersHost } from '../services/providersHost';
 import { usePlaylistStore } from '../stores/playlistStore';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { MetadataProviderBuilder } from '../test/builders/MetadataProviderBuilder';
 import {

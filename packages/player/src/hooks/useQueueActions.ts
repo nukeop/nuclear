@@ -3,7 +3,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import type { Track } from '@nuclearplayer/model';
 
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 
 export const useQueueActions = () => {
   const {

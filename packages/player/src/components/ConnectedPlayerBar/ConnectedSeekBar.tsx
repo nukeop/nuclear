@@ -3,7 +3,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { PlayerBar } from '@nuclearplayer/ui';
 
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
 
 export const ConnectedSeekBar: FC = () => {

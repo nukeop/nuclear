@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { eventBus } from '../services/eventBus';
 import { Logger } from '../services/logger';
 import { streamResolution } from '../services/streamResolution';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSoundStore } from '../stores/soundStore';
 
 export const useStreamRecovery = (maxAttemptsPerItem = 2): void => {

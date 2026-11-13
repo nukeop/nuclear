@@ -12,7 +12,7 @@ import {
 import { PlayerBarWrapper } from '../../integration-tests/PlayerBar.test-wrapper';
 import { providersHost } from '../../services/providersHost';
 import { usePlaylistStore } from '../../stores/playlistStore';
-import { useQueueStore } from '../../stores/queueStore';
+import { useQueueStore } from '../../stores/queue/queueStore';
 import { PlaylistBuilder } from '../../test/builders/PlaylistBuilder';
 import { PlaylistFolderBuilder } from '../../test/builders/PlaylistFolderBuilder';
 import {

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { createMockTrack } from '../test/utils/mockTrack';
 import { queueHost } from './queueHost';

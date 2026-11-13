@@ -3,7 +3,7 @@ import { waitFor } from '@testing-library/react';
 import type { QueueItem, StreamCandidate } from '@nuclearplayer/model';
 
 import { providersHost } from '../services/providersHost';
-import { useQueueStore } from '../stores/queueStore';
+import { useQueueStore } from '../stores/queue/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useSoundStore } from '../stores/soundStore';
 import { useStartupStore } from '../stores/startupStore';
