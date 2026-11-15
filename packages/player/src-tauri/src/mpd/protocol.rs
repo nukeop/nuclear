@@ -18,6 +18,7 @@ pub const SUPPORTED_COMMANDS: &[&str] = &[
     "ping",
     "play",
     "playlistinfo",
+    "plchanges",
     "previous",
     "random",
     "repeat",
@@ -42,6 +43,7 @@ pub enum Command {
     Status,
     CurrentSong,
     PlaylistInfo(Option<PlaylistRange>),
+    PlChanges(i64, Option<String>),
     Play(Option<i32>),
     Pause(Option<bool>),
     Stop,
@@ -164,6 +166,10 @@ pub fn parse_command(line: &str) -> Command {
             Err(_) => Command::Unknown(name.to_string()),
         },
         "playlistinfo" => Command::PlaylistInfo(parse_playlist_range(first_arg)),
+        "plchanges" => match first_arg.parse::<i64>() {
+            Ok(version) => Command::PlChanges(version, args.get(1).cloned()),
+            Err(_) => Command::Unknown(name.to_string()),
+        },
         "seek" => match (
             first_arg.parse::<u32>(),
             args.get(1).and_then(|arg| arg.parse::<f64>().ok()),
@@ -229,7 +235,7 @@ fn parse_optional_i32(arg: &str) -> Option<i32> {
     }
 }
 
-fn parse_playlist_range(arg: &str) -> Option<PlaylistRange> {
+pub fn parse_playlist_range(arg: &str) -> Option<PlaylistRange> {
     if arg.is_empty() {
         return None;
     }

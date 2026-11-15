@@ -13,7 +13,7 @@ use super::protocol::{
 
 use options::{getvol, random, repeat, setvol, single};
 use playback::{next, pause, play, previous, seek, seekcur, seekid, stop};
-use queue::{clear, currentsong, delete, deleteid, move_track, playlistinfo};
+use queue::{clear, currentsong, delete, deleteid, move_track, playlistinfo, plchanges};
 use status::status;
 
 type Fields = Vec<(String, String)>;
@@ -61,6 +61,7 @@ pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
         Command::Status => status(bridge).await,
         Command::CurrentSong => currentsong(bridge).await,
         Command::PlaylistInfo(range) => playlistinfo(bridge, range).await,
+        Command::PlChanges(version, range) => plchanges(bridge, *version, range).await,
         Command::Play(position) => play(bridge, position).await,
         Command::Pause(state) => pause(bridge, state).await,
         Command::Stop => stop(bridge).await,

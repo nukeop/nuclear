@@ -3,6 +3,7 @@ use serde_json::json;
 use crate::bridge::bridge::Bridge;
 use crate::mpd::protocol::MpdResponse;
 
+use super::queue::playlist_version;
 use super::{call, field, CommandResult, Fields};
 
 pub(super) async fn status(bridge: &Bridge) -> CommandResult {
@@ -36,7 +37,7 @@ pub(super) async fn status(bridge: &Bridge) -> CommandResult {
         field("random", mpd_random),
         field("single", mpd_single),
         field("consume", 0),
-        field("playlist", 0),
+        field("playlist", playlist_version(&queue)),
         field("playlistlength", queue_length),
         field("state", mpd_state),
     ];

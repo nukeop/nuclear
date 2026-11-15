@@ -1,7 +1,11 @@
-use serde_json::json;
+use std::hash::{DefaultHasher, Hash, Hasher};
+
+use serde_json::{json, Value};
 
 use crate::bridge::bridge::Bridge;
-use crate::mpd::protocol::{MpdError, MpdResponse, PlaylistRange, ACK_ERROR_ARG};
+use crate::mpd::protocol::{
+    parse_playlist_range, MpdError, MpdResponse, PlaylistRange, ACK_ERROR_ARG,
+};
 
 use super::{call, field, CommandResult, Fields};
 
@@ -59,13 +63,27 @@ pub(super) async fn currentsong(bridge: &Bridge) -> CommandResult {
     Ok(MpdResponse { fields })
 }
 
-pub(super) async fn playlistinfo(bridge: &Bridge, range: &Option<PlaylistRange>) -> CommandResult {
-    let queue = call(bridge, "playlistinfo", "Queue.getQueue", json!({})).await?;
+pub(super) fn playlist_version(queue: &Value) -> u32 {
+    let mut hasher = DefaultHasher::new();
+    for item in queue["items"].as_array().into_iter().flatten() {
+        item["id"].as_str().unwrap_or("").hash(&mut hasher);
+    }
 
+    match (hasher.finish() & 0x7fff_ffff) as u32 {
+        0 => 1,
+        version => version,
+    }
+}
+
+fn queue_fields(
+    command: &str,
+    queue: &Value,
+    range: &Option<PlaylistRange>,
+) -> Result<Fields, MpdError> {
     let items = queue["items"].as_array();
     let all_items = match items {
         Some(items) => items,
-        None => return Ok(MpdResponse { fields: Vec::new() }),
+        None => return Ok(Vec::new()),
     };
 
     let selected: Vec<(usize, &serde_json::Value)> = match range {
@@ -77,7 +95,7 @@ pub(super) async fn playlistinfo(bridge: &Bridge, range: &Option<PlaylistRange>)
                 None => {
                     return Err(MpdError {
                         code: ACK_ERROR_ARG,
-                        command: "playlistinfo".to_string(),
+                        command: command.to_string(),
                         list_index: 0,
                         message: format!("Bad song index: {pos}"),
                     })
@@ -96,11 +114,42 @@ pub(super) async fn playlistinfo(bridge: &Bridge, range: &Option<PlaylistRange>)
         }
     };
 
-    let fields = selected
+    Ok(selected
         .iter()
         .flat_map(|(pos, item)| track_fields(item, *pos))
-        .collect();
+        .collect())
+}
 
+pub(super) async fn playlistinfo(bridge: &Bridge, range: &Option<PlaylistRange>) -> CommandResult {
+    let queue = call(bridge, "playlistinfo", "Queue.getQueue", json!({})).await?;
+    let fields = queue_fields("playlistinfo", &queue, range)?;
+    Ok(MpdResponse { fields })
+}
+
+pub(super) async fn plchanges(
+    bridge: &Bridge,
+    version: i64,
+    raw_range: &Option<String>,
+) -> CommandResult {
+    let range = match raw_range {
+        None => None,
+        Some(raw_range) => match parse_playlist_range(raw_range) {
+            Some(range) => Some(range),
+            None => {
+                return Err(MpdError {
+                    code: ACK_ERROR_ARG,
+                    command: "plchanges".to_string(),
+                    list_index: 0,
+                    message: format!("Integer or range expected: {raw_range}"),
+                })
+            }
+        },
+    };
+    let queue = call(bridge, "plchanges", "Queue.getQueue", json!({})).await?;
+    if version == playlist_version(&queue) as i64 {
+        return Ok(MpdResponse { fields: Vec::new() });
+    }
+    let fields = queue_fields("plchanges", &queue, &range)?;
     Ok(MpdResponse { fields })
 }
 
