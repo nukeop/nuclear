@@ -9,15 +9,18 @@ use crate::mpd::protocol::{
 
 use super::{call, field, CommandResult, Fields};
 
-fn track_fields(item: &serde_json::Value, position: usize) -> Fields {
-    let track = &item["track"];
+pub(super) fn file_uri(track: &Value) -> String {
     let source = &track["source"];
-
-    let file = format!(
+    format!(
         "nuclear://{}/{}",
         source["provider"].as_str().unwrap_or("unknown"),
         source["id"].as_str().unwrap_or("unknown")
-    );
+    )
+}
+
+fn track_fields(item: &serde_json::Value, position: usize) -> Fields {
+    let track = &item["track"];
+    let file = file_uri(track);
 
     let title = track["title"].as_str().unwrap_or("");
     let artist = track["artists"]

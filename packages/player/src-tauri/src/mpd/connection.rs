@@ -4,7 +4,7 @@ use tokio::net::TcpStream;
 
 use crate::bridge::bridge::Bridge;
 
-use super::commands;
+use super::commands::{self, AlbumArt};
 use super::idle::{IdleResult, IdleTracker};
 use super::protocol::{self, Command, MpdError, MpdResponse};
 
@@ -19,6 +19,7 @@ struct Connection {
     writer: OwnedWriteHalf,
     bridge: Bridge,
     idle_tracker: IdleTracker,
+    album_art: AlbumArt,
     peer: String,
 }
 
@@ -38,6 +39,7 @@ impl Connection {
             writer,
             bridge,
             idle_tracker,
+            album_art: AlbumArt::default(),
             peer,
         }
     }
@@ -65,6 +67,17 @@ impl Connection {
         match command {
             Command::Idle(subsystems) => self.handle_idle(subsystems).await,
             Command::NoIdle => self.write_ok().await,
+            Command::AlbumArt(uri, offset) => {
+                match self.album_art.chunk(&self.bridge, &uri, offset).await {
+                    Ok(response) => {
+                        self.writer
+                            .write_all(&protocol::format_binary_response(&response))
+                            .await?;
+                        self.write_ok().await
+                    }
+                    Err(error) => self.write_error(&error).await,
+                }
+            }
             _ => match commands::dispatch(&command, &self.bridge).await {
                 Ok(response) => self.write_response(&response).await,
                 Err(error) => self.write_error(&error).await,

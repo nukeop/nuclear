@@ -1,3 +1,4 @@
+mod album_art;
 mod options;
 mod playback;
 mod queue;
@@ -11,6 +12,7 @@ use super::protocol::{
     Command, MpdError, MpdResponse, ACK_ERROR_SYSTEM, ACK_ERROR_UNKNOWN, SUPPORTED_COMMANDS,
 };
 
+pub use album_art::AlbumArt;
 use options::{getvol, random, repeat, setvol, single, volume};
 use playback::{next, pause, play, playid, previous, seek, seekcur, seekid, stop};
 use queue::{clear, currentsong, delete, deleteid, move_track, playlistinfo, plchanges};
@@ -56,6 +58,12 @@ pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
             command: "idle".to_string(),
             list_index: 0,
             message: "idle not allowed in command lists".to_string(),
+        }),
+        Command::AlbumArt(..) => Err(MpdError {
+            code: ACK_ERROR_UNKNOWN,
+            command: "albumart".to_string(),
+            list_index: 0,
+            message: "albumart not allowed in command lists".to_string(),
         }),
         Command::Commands => Ok(commands()),
         Command::Status => status(bridge).await,

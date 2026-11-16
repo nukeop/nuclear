@@ -1,6 +1,7 @@
 pub const GREETING: &[u8] = b"OK MPD 0.25.0\n";
 
 pub const SUPPORTED_COMMANDS: &[&str] = &[
+    "albumart",
     "binarylimit",
     "clear",
     "commands",
@@ -21,6 +22,7 @@ pub const SUPPORTED_COMMANDS: &[&str] = &[
     "playlistinfo",
     "plchanges",
     "previous",
+    "readpicture",
     "random",
     "repeat",
     "seek",
@@ -43,6 +45,7 @@ pub enum Command {
     Idle(Vec<String>),
     NoIdle,
     Status,
+    AlbumArt(String, usize),
     CurrentSong,
     PlaylistInfo(Option<PlaylistRange>),
     PlChanges(i64, Option<String>),
@@ -76,6 +79,11 @@ pub enum PlaylistRange {
 
 pub struct MpdResponse {
     pub fields: Vec<(String, String)>,
+}
+
+pub struct BinaryResponse {
+    pub size: usize,
+    pub data: Vec<u8>,
 }
 
 pub struct MpdError {
@@ -149,11 +157,15 @@ pub fn parse_command(line: &str) -> Command {
 
     match name {
         "ping" => Command::Ping,
-        "password" | "tagtypes" | "outputs" | "binarylimit" => Command::Noop,
+        "password" | "tagtypes" | "outputs" | "binarylimit" | "readpicture" => Command::Noop,
         "commands" => Command::Commands,
         "idle" => Command::Idle(args),
         "noidle" => Command::NoIdle,
         "status" => Command::Status,
+        "albumart" => match args.get(1).and_then(|arg| arg.parse::<usize>().ok()) {
+            Some(offset) => Command::AlbumArt(first_arg.to_string(), offset),
+            None => Command::Unknown(name.to_string()),
+        },
         "currentsong" => Command::CurrentSong,
         "stop" => Command::Stop,
         "next" => Command::Next,
@@ -267,6 +279,14 @@ pub fn format_response(response: &MpdResponse) -> Vec<u8> {
         output.extend_from_slice(value.as_bytes());
         output.push(b'\n');
     }
+    output
+}
+
+pub fn format_binary_response(response: &BinaryResponse) -> Vec<u8> {
+    let mut output =
+        format!("size: {}\nbinary: {}\n", response.size, response.data.len()).into_bytes();
+    output.extend_from_slice(&response.data);
+    output.push(b'\n');
     output
 }
 
