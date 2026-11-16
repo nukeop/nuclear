@@ -26,6 +26,11 @@ fn track_fields(item: &serde_json::Value, position: usize) -> Fields {
         .and_then(|artist| artist["name"].as_str())
         .unwrap_or("");
     let album = track["album"]["title"].as_str().unwrap_or("");
+    let album_artist = track["album"]["artists"]
+        .as_array()
+        .and_then(|artists| artists.first())
+        .and_then(|artist| artist["name"].as_str())
+        .unwrap_or("");
     let duration_ms = track["durationMs"].as_f64().unwrap_or(0.0);
     let duration_secs = duration_ms / 1000.0;
 
@@ -39,6 +44,15 @@ fn track_fields(item: &serde_json::Value, position: usize) -> Fields {
     }
     if !album.is_empty() {
         fields.push(field("Album", album));
+    }
+    if !album_artist.is_empty() {
+        fields.push(field("AlbumArtist", album_artist));
+    }
+    if let Some(track_number) = track["trackNumber"].as_u64() {
+        fields.push(field("Track", track_number));
+    }
+    if let Some(disc) = track["disc"].as_str() {
+        fields.push(field("Disc", disc));
     }
 
     fields.push(field("Time", duration_secs as i64));
