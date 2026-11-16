@@ -1,7 +1,7 @@
 use serde_json::json;
 
 use crate::bridge::bridge::Bridge;
-use crate::mpd::protocol::MpdResponse;
+use crate::mpd::protocol::{MpdError, MpdResponse, ACK_ERROR_ARG};
 
 use super::{call, field, CommandResult};
 
@@ -23,6 +23,28 @@ pub(super) async fn getvol(bridge: &Bridge) -> CommandResult {
     Ok(MpdResponse {
         fields: vec![field("volume", mpd_volume)],
     })
+}
+
+pub(super) async fn volume(bridge: &Bridge, change: i32) -> CommandResult {
+    if !(-100..=100).contains(&change) {
+        return Err(MpdError {
+            code: ACK_ERROR_ARG,
+            command: "volume".to_string(),
+            list_index: 0,
+            message: format!("Number too large: {change}"),
+        });
+    }
+    let current = call(bridge, "volume", "Playback.getVolume", json!({})).await?;
+    let current = (current.as_f64().unwrap_or(1.0) * 100.0).round() as i32;
+    let new_volume = (current + change).clamp(0, 100);
+    call(
+        bridge,
+        "volume",
+        "Playback.setVolume",
+        json!({ "volume": new_volume as f64 / 100.0 }),
+    )
+    .await?;
+    Ok(MpdResponse { fields: Vec::new() })
 }
 
 pub(super) async fn random(bridge: &Bridge, enabled: bool) -> CommandResult {

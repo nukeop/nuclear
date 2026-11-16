@@ -11,7 +11,7 @@ use super::protocol::{
     Command, MpdError, MpdResponse, ACK_ERROR_SYSTEM, ACK_ERROR_UNKNOWN, SUPPORTED_COMMANDS,
 };
 
-use options::{getvol, random, repeat, setvol, single};
+use options::{getvol, random, repeat, setvol, single, volume};
 use playback::{next, pause, play, playid, previous, seek, seekcur, seekid, stop};
 use queue::{clear, currentsong, delete, deleteid, move_track, playlistinfo, plchanges};
 use status::status;
@@ -70,6 +70,7 @@ pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
         Command::Previous => previous(bridge).await,
         Command::SetVol(vol) => setvol(bridge, *vol).await,
         Command::GetVol => getvol(bridge).await,
+        Command::Volume(change) => volume(bridge, *change).await,
         Command::Seek(position, time) => seek(bridge, *position, *time).await,
         Command::SeekId(id, time) => seekid(bridge, *id, *time).await,
         Command::SeekCur(raw_time) => seekcur(bridge, raw_time).await,

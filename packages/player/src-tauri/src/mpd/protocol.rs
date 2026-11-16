@@ -32,6 +32,7 @@ pub const SUPPORTED_COMMANDS: &[&str] = &[
     "status",
     "stop",
     "tagtypes",
+    "volume",
 ];
 
 pub enum Command {
@@ -53,6 +54,7 @@ pub enum Command {
     Previous,
     SetVol(u8),
     GetVol,
+    Volume(i32),
     Seek(u32, f64),
     SeekId(u32, f64),
     SeekCur(String),
@@ -157,6 +159,10 @@ pub fn parse_command(line: &str) -> Command {
         "next" => Command::Next,
         "previous" => Command::Previous,
         "getvol" => Command::GetVol,
+        "volume" => match first_arg.parse::<i32>() {
+            Ok(change) => Command::Volume(change),
+            Err(_) => Command::Unknown(name.to_string()),
+        },
         "play" => Command::Play(parse_optional_i32(first_arg)),
         "playid" => Command::PlayId(parse_optional_i32(first_arg)),
         "pause" => Command::Pause(match first_arg {
