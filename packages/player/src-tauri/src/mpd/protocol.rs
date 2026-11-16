@@ -1,6 +1,7 @@
 pub const GREETING: &[u8] = b"OK MPD 0.25.0\n";
 
 pub const SUPPORTED_COMMANDS: &[&str] = &[
+    "albumart",
     "binarylimit",
     "clear",
     "commands",
@@ -17,8 +18,11 @@ pub const SUPPORTED_COMMANDS: &[&str] = &[
     "pause",
     "ping",
     "play",
+    "playid",
     "playlistinfo",
+    "plchanges",
     "previous",
+    "readpicture",
     "random",
     "repeat",
     "seek",
@@ -30,6 +34,7 @@ pub const SUPPORTED_COMMANDS: &[&str] = &[
     "status",
     "stop",
     "tagtypes",
+    "volume",
 ];
 
 pub enum Command {
@@ -40,15 +45,19 @@ pub enum Command {
     Idle(Vec<String>),
     NoIdle,
     Status,
+    AlbumArt(String, usize),
     CurrentSong,
     PlaylistInfo(Option<PlaylistRange>),
+    PlChanges(i64, Option<String>),
     Play(Option<i32>),
+    PlayId(Option<i32>),
     Pause(Option<bool>),
     Stop,
     Next,
     Previous,
     SetVol(u8),
     GetVol,
+    Volume(i32),
     Seek(u32, f64),
     SeekId(u32, f64),
     SeekCur(String),
@@ -70,6 +79,11 @@ pub enum PlaylistRange {
 
 pub struct MpdResponse {
     pub fields: Vec<(String, String)>,
+}
+
+pub struct BinaryResponse {
+    pub size: usize,
+    pub data: Vec<u8>,
 }
 
 pub struct MpdError {
@@ -143,17 +157,26 @@ pub fn parse_command(line: &str) -> Command {
 
     match name {
         "ping" => Command::Ping,
-        "password" | "tagtypes" | "outputs" | "binarylimit" => Command::Noop,
+        "password" | "tagtypes" | "outputs" | "binarylimit" | "readpicture" => Command::Noop,
         "commands" => Command::Commands,
         "idle" => Command::Idle(args),
         "noidle" => Command::NoIdle,
         "status" => Command::Status,
+        "albumart" => match args.get(1).and_then(|arg| arg.parse::<usize>().ok()) {
+            Some(offset) => Command::AlbumArt(first_arg.to_string(), offset),
+            None => Command::Unknown(name.to_string()),
+        },
         "currentsong" => Command::CurrentSong,
         "stop" => Command::Stop,
         "next" => Command::Next,
         "previous" => Command::Previous,
         "getvol" => Command::GetVol,
+        "volume" => match first_arg.parse::<i32>() {
+            Ok(change) => Command::Volume(change),
+            Err(_) => Command::Unknown(name.to_string()),
+        },
         "play" => Command::Play(parse_optional_i32(first_arg)),
+        "playid" => Command::PlayId(parse_optional_i32(first_arg)),
         "pause" => Command::Pause(match first_arg {
             "0" => Some(false),
             "1" => Some(true),
@@ -164,6 +187,10 @@ pub fn parse_command(line: &str) -> Command {
             Err(_) => Command::Unknown(name.to_string()),
         },
         "playlistinfo" => Command::PlaylistInfo(parse_playlist_range(first_arg)),
+        "plchanges" => match first_arg.parse::<i64>() {
+            Ok(version) => Command::PlChanges(version, args.get(1).cloned()),
+            Err(_) => Command::Unknown(name.to_string()),
+        },
         "seek" => match (
             first_arg.parse::<u32>(),
             args.get(1).and_then(|arg| arg.parse::<f64>().ok()),
@@ -229,7 +256,7 @@ fn parse_optional_i32(arg: &str) -> Option<i32> {
     }
 }
 
-fn parse_playlist_range(arg: &str) -> Option<PlaylistRange> {
+pub fn parse_playlist_range(arg: &str) -> Option<PlaylistRange> {
     if arg.is_empty() {
         return None;
     }
@@ -252,6 +279,14 @@ pub fn format_response(response: &MpdResponse) -> Vec<u8> {
         output.extend_from_slice(value.as_bytes());
         output.push(b'\n');
     }
+    output
+}
+
+pub fn format_binary_response(response: &BinaryResponse) -> Vec<u8> {
+    let mut output =
+        format!("size: {}\nbinary: {}\n", response.size, response.data.len()).into_bytes();
+    output.extend_from_slice(&response.data);
+    output.push(b'\n');
     output
 }
 

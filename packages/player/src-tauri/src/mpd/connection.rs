@@ -4,8 +4,8 @@ use tokio::net::TcpStream;
 
 use crate::bridge::bridge::Bridge;
 
-use super::commands;
-use super::idle::{IdleResult, IdleWait};
+use super::commands::{self, AlbumArt};
+use super::idle::{IdleResult, IdleTracker};
 use super::protocol::{self, Command, MpdError, MpdResponse};
 
 enum ListMode {
@@ -18,6 +18,8 @@ struct Connection {
     reader: BufReader<OwnedReadHalf>,
     writer: OwnedWriteHalf,
     bridge: Bridge,
+    idle_tracker: IdleTracker,
+    album_art: AlbumArt,
     peer: String,
 }
 
@@ -30,11 +32,14 @@ impl Connection {
 
         let (read_half, writer) = stream.into_split();
         let reader = BufReader::new(read_half);
+        let idle_tracker = IdleTracker::new(bridge.subscribe_notifications());
 
         Connection {
             reader,
             writer,
             bridge,
+            idle_tracker,
+            album_art: AlbumArt::default(),
             peer,
         }
     }
@@ -62,6 +67,17 @@ impl Connection {
         match command {
             Command::Idle(subsystems) => self.handle_idle(subsystems).await,
             Command::NoIdle => self.write_ok().await,
+            Command::AlbumArt(uri, offset) => {
+                match self.album_art.chunk(&self.bridge, &uri, offset).await {
+                    Ok(response) => {
+                        self.writer
+                            .write_all(&protocol::format_binary_response(&response))
+                            .await?;
+                        self.write_ok().await
+                    }
+                    Err(error) => self.write_error(&error).await,
+                }
+            }
             _ => match commands::dispatch(&command, &self.bridge).await {
                 Ok(response) => self.write_response(&response).await,
                 Err(error) => self.write_error(&error).await,
@@ -72,14 +88,12 @@ impl Connection {
     async fn handle_idle(&mut self, subsystems: Vec<String>) -> std::io::Result<()> {
         log::debug!(target: "mpd", "[{}] entering idle (subsystems: {:?})", self.peer, subsystems);
 
-        let receiver = self.bridge.subscribe_notifications();
-        let mut idle_wait = IdleWait::new(receiver, subsystems);
         let mut idle_line = String::new();
 
         'idle: loop {
             idle_line.clear();
             tokio::select! {
-                idle_result = idle_wait.wait() => {
+                idle_result = self.idle_tracker.wait(&subsystems) => {
                     match idle_result {
                         IdleResult::Changed(changed) => {
                             for subsystem in &changed {

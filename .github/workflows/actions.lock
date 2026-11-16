@@ -137,7 +137,7 @@ dependencies:
         repo_id: 356423100
     'dtolnay/rust-toolchain@stable':
         ref: 'stable'
-        commit: 'sha1-b725eda525362e7cf34af9a7243cac1e3f01a7ec'
+        commit: 'sha1-39008827e6b4319a349e9a42dfc90579dd25f1ca'
         owner_id: 1940490
         repo_id: 260749683
     'flatpak/flatpak-github-actions@v6':
