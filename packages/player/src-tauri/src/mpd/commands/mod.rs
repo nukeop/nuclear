@@ -12,7 +12,7 @@ use super::protocol::{
 };
 
 use options::{getvol, random, repeat, setvol, single};
-use playback::{next, pause, play, previous, seek, seekcur, seekid, stop};
+use playback::{next, pause, play, playid, previous, seek, seekcur, seekid, stop};
 use queue::{clear, currentsong, delete, deleteid, move_track, playlistinfo, plchanges};
 use status::status;
 
@@ -63,6 +63,7 @@ pub async fn dispatch(command: &Command, bridge: &Bridge) -> CommandResult {
         Command::PlaylistInfo(range) => playlistinfo(bridge, range).await,
         Command::PlChanges(version, range) => plchanges(bridge, *version, range).await,
         Command::Play(position) => play(bridge, position).await,
+        Command::PlayId(id) => playid(bridge, id).await,
         Command::Pause(state) => pause(bridge, state).await,
         Command::Stop => stop(bridge).await,
         Command::Next => next(bridge).await,

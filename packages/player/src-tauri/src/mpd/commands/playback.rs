@@ -1,7 +1,7 @@
 use serde_json::json;
 
 use crate::bridge::bridge::Bridge;
-use crate::mpd::protocol::{MpdError, MpdResponse, ACK_ERROR_ARG};
+use crate::mpd::protocol::{MpdError, MpdResponse, ACK_ERROR_ARG, ACK_ERROR_NO_EXIST};
 
 use super::{call, CommandResult};
 
@@ -11,6 +11,22 @@ pub(super) async fn play(bridge: &Bridge, position: &Option<i32>) -> CommandResu
     }
     call(bridge, "play", "Playback.play", json!({})).await?;
     Ok(MpdResponse { fields: Vec::new() })
+}
+
+pub(super) async fn playid(bridge: &Bridge, id: &Option<i32>) -> CommandResult {
+    if let Some(id) = id.filter(|id| *id >= 0) {
+        let queue = call(bridge, "playid", "Queue.getQueue", json!({})).await?;
+        let length = queue["items"].as_array().map_or(0, |items| items.len());
+        if id as usize >= length {
+            return Err(MpdError {
+                code: ACK_ERROR_NO_EXIST,
+                command: "playid".to_string(),
+                list_index: 0,
+                message: "No such song".to_string(),
+            });
+        }
+    }
+    play(bridge, id).await
 }
 
 pub(super) async fn pause(bridge: &Bridge, state: &Option<bool>) -> CommandResult {

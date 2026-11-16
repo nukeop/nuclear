@@ -17,6 +17,7 @@ pub const SUPPORTED_COMMANDS: &[&str] = &[
     "pause",
     "ping",
     "play",
+    "playid",
     "playlistinfo",
     "plchanges",
     "previous",
@@ -45,6 +46,7 @@ pub enum Command {
     PlaylistInfo(Option<PlaylistRange>),
     PlChanges(i64, Option<String>),
     Play(Option<i32>),
+    PlayId(Option<i32>),
     Pause(Option<bool>),
     Stop,
     Next,
@@ -156,6 +158,7 @@ pub fn parse_command(line: &str) -> Command {
         "previous" => Command::Previous,
         "getvol" => Command::GetVol,
         "play" => Command::Play(parse_optional_i32(first_arg)),
+        "playid" => Command::PlayId(parse_optional_i32(first_arg)),
         "pause" => Command::Pause(match first_arg {
             "0" => Some(false),
             "1" => Some(true),
