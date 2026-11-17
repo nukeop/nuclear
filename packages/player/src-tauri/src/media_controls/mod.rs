@@ -1,3 +1,4 @@
+mod events;
 mod now_playing;
 mod platform;
 
@@ -5,7 +6,7 @@ use std::error::Error;
 
 use serde::de::DeserializeOwned;
 use serde_json::json;
-use souvlaki::{MediaControlEvent, MediaControls, MediaMetadata, OsMediaControls};
+use souvlaki::{MediaControls, MediaMetadata, OsMediaControls};
 use tauri::{AppHandle, Manager};
 use tokio::sync::broadcast::error::RecvError;
 
@@ -32,9 +33,8 @@ struct MediaSession {
 impl MediaSession {
     fn new(app_handle: &AppHandle, bridge: Bridge) -> Result<Self> {
         let mut controls = OsMediaControls::new(platform::config(app_handle)?)?;
-        controls.attach(
-            |event: MediaControlEvent| log::debug!(target: "media_controls", "{event:?}"),
-        )?;
+        controls.attach(events::handler(bridge.clone()))?;
+        controls.set_permissions(platform::permissions())?;
         Ok(Self { controls, bridge })
     }
 
