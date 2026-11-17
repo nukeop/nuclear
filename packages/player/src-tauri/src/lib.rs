@@ -7,6 +7,7 @@ pub mod http;
 pub mod http_api;
 pub mod logging;
 pub mod mcp;
+pub mod media_controls;
 pub mod mpd;
 pub mod net;
 pub mod pagination;
@@ -136,6 +137,7 @@ pub fn run() {
             }
             logging::mark_startup_complete();
             bridge::init_bridge(app.handle().clone());
+            media_controls::init_media_controls(app.handle().clone());
             mcp::init_mcp(app.handle().clone());
             mpd::init_mpd(app.handle().clone());
             http_api::init_http_api(app.handle().clone());
