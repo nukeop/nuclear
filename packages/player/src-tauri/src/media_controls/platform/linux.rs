@@ -1,4 +1,6 @@
 use souvlaki::platform::mpris::{MprisConfig, MprisCover};
+use souvlaki::platform::OsError;
+use souvlaki::{MediaControls, OsMediaControls};
 use tauri::AppHandle;
 
 pub fn config(_app_handle: &AppHandle) -> Result<MprisConfig, String> {
@@ -9,6 +11,6 @@ pub fn config(_app_handle: &AppHandle) -> Result<MprisConfig, String> {
     })
 }
 
-pub fn cover(url: String) -> MprisCover {
-    MprisCover::Url(url)
+pub fn set_cover(controls: &mut OsMediaControls, url: Option<String>) -> Result<(), OsError> {
+    controls.set_cover(url.map(MprisCover::Url))
 }

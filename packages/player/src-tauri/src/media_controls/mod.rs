@@ -60,10 +60,9 @@ impl MediaSession {
 
         let metadata = track.as_ref().map(MediaMetadata::from).unwrap_or_default();
         self.controls.set_metadata(metadata)?;
-        self.controls.set_cover(
-            track
-                .and_then(|track| track.cover_url())
-                .map(platform::cover),
+        platform::set_cover(
+            &mut self.controls,
+            track.and_then(|track| track.cover_url()),
         )?;
         self.controls.set_playback(state.into())?;
         Ok(())

@@ -1,4 +1,6 @@
 use souvlaki::platform::windows::{WindowsConfig, WindowsCover};
+use souvlaki::platform::OsError;
+use souvlaki::{MediaControls, OsMediaControls};
 use tauri::{AppHandle, Manager};
 
 pub fn config(app_handle: &AppHandle) -> Result<WindowsConfig, String> {
@@ -9,6 +11,9 @@ pub fn config(app_handle: &AppHandle) -> Result<WindowsConfig, String> {
     Ok(WindowsConfig { hwnd: hwnd.0 })
 }
 
-pub fn cover(url: String) -> WindowsCover {
-    WindowsCover::Uri(url)
+pub fn set_cover(controls: &mut OsMediaControls, url: Option<String>) -> Result<(), OsError> {
+    let Some(url) = url else {
+        return Ok(());
+    };
+    controls.set_cover(Some(WindowsCover::Uri(url)))
 }
