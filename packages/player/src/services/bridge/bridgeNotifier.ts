@@ -4,6 +4,7 @@ import type { SoundStatus } from '@nuclearplayer/hifi';
 
 import { useQueueStore } from '../../stores/queue/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
+import { eventBus } from '../eventBus';
 import { playbackSettings } from '../playbackSettings';
 import { BridgeCommand } from '../tauri/bridge';
 
@@ -73,4 +74,5 @@ export const initBridgeNotifier = (): void => {
   playbackSettings.onVolumeChange(notifyMixer);
   playbackSettings.onRepeatModeChange(notifyOptions);
   playbackSettings.onShuffleChange(notifyOptions);
+  eventBus.on('playbackSeeked', async () => notifyPlayer());
 };

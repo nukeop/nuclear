@@ -1,6 +1,7 @@
 use serde_json::{json, Value};
 use souvlaki::{MediaControlEvent, MediaPosition};
 
+use super::repeat::RepeatMode;
 use crate::bridge::bridge::Bridge;
 
 pub fn handler(bridge: Bridge) -> impl Fn(MediaControlEvent) + Send + 'static {
@@ -30,6 +31,10 @@ fn bridge_call(event: &MediaControlEvent) -> Option<(&'static str, Value)> {
         MediaControlEvent::SetPosition(MediaPosition(position)) => Some((
             "Playback.seekTo",
             json!({ "seconds": position.as_secs_f64() }),
+        )),
+        MediaControlEvent::SetRepeat(repeat) => Some((
+            "Playback.setRepeatMode",
+            json!({ "mode": RepeatMode::from(*repeat) }),
         )),
         _ => None,
     }

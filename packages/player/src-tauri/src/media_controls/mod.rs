@@ -1,6 +1,7 @@
 mod events;
 mod now_playing;
 mod platform;
+mod repeat;
 
 use std::error::Error;
 
@@ -12,6 +13,7 @@ use tokio::sync::broadcast::error::RecvError;
 
 use crate::bridge::bridge::Bridge;
 use now_playing::{PlaybackState, QueueItem};
+use repeat::RepeatMode;
 
 type Result<T> = std::result::Result<T, Box<dyn Error + Send + Sync>>;
 
@@ -42,18 +44,32 @@ impl MediaSession {
         let mut notifications = self.bridge.subscribe_notifications();
         loop {
             match notifications.recv().await {
-                Ok(notification) if notification.subsystem == "player" => {
-                    if let Err(error) = self.update().await {
+                Ok(notification) => {
+                    if let Err(error) = self.update(&notification.subsystem).await {
                         log::warn!(target: "media_controls", "Update failed: {error}");
                     }
                 }
-                Ok(_) | Err(RecvError::Lagged(_)) => {}
+                Err(RecvError::Lagged(_)) => {}
                 Err(RecvError::Closed) => break,
             }
         }
     }
 
-    async fn update(&mut self) -> Result<()> {
+    async fn update(&mut self, subsystem: &str) -> Result<()> {
+        match subsystem {
+            "player" => self.update_now_playing().await,
+            "options" => self.update_repeat().await,
+            _ => Ok(()),
+        }
+    }
+
+    async fn update_repeat(&mut self) -> Result<()> {
+        let mode: RepeatMode = self.fetch("Playback.getRepeatMode").await?;
+        self.controls.set_repeat(mode.into())?;
+        Ok(())
+    }
+
+    async fn update_now_playing(&mut self) -> Result<()> {
         let item: Option<QueueItem> = self.fetch("Queue.getCurrentItem").await?;
         let state: PlaybackState = self.fetch("Playback.getState").await?;
         let track = item.map(|item| item.track);
