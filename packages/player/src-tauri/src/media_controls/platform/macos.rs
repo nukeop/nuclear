@@ -22,7 +22,7 @@ pub fn permissions() -> ApplePermissions {
         seek_forward: false,
         skip_backward: false,
         skip_forward: false,
-        change_playback_position: false,
+        change_playback_position: true,
     }
 }
 

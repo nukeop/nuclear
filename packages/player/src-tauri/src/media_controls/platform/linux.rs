@@ -17,6 +17,7 @@ pub fn permissions() -> MprisPermissions {
         can_go_previous: true,
         can_play: true,
         can_pause: true,
+        can_seek: true,
         can_control: true,
         ..MprisPermissions::none()
     }
