@@ -46,14 +46,15 @@ impl Track {
 
 impl From<&Track> for MediaMetadata {
     fn from(track: &Track) -> Self {
-        let artists: Vec<&str> = track
+        let artists: Vec<String> = track
             .artists
             .iter()
-            .map(|artist| artist.name.as_str())
+            .map(|artist| artist.name.clone())
             .collect();
         MediaMetadata {
             title: Some(track.title.clone()),
             artist: Some(artists.join(", ")),
+            artists: Some(artists),
             album_title: track.album.as_ref().map(|album| album.title.clone()),
             duration: track
                 .duration_ms
