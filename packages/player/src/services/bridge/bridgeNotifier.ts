@@ -4,6 +4,7 @@ import type { SoundStatus } from '@nuclearplayer/hifi';
 
 import { useQueueStore } from '../../stores/queue/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
+import { eventBus } from '../eventBus';
 import { playbackSettings } from '../playbackSettings';
 import { BridgeCommand } from '../tauri/bridge';
 
@@ -35,14 +36,32 @@ const watchSoundStatus = () => {
   });
 };
 
-const watchQueueIndex = () => {
-  let previousIndex: number = useQueueStore.getState().currentIndex;
+const watchPlaybackStart = () => {
+  let previousDuration = useSoundStore.getState().duration;
 
-  useQueueStore.subscribe((state) => {
-    if (state.currentIndex === previousIndex) {
+  useSoundStore.subscribe((state) => {
+    const started = previousDuration === 0 && state.duration > 0;
+    previousDuration = state.duration;
+    if (started) {
+      notifyPlayer();
+    }
+  });
+};
+
+const currentItemFingerprint = () => {
+  const { items, currentIndex } = useQueueStore.getState();
+  return `${currentIndex}:${items[currentIndex]?.id}`;
+};
+
+const watchCurrentItem = () => {
+  let previousFingerprint = currentItemFingerprint();
+
+  useQueueStore.subscribe(() => {
+    const fingerprint = currentItemFingerprint();
+    if (fingerprint === previousFingerprint) {
       return;
     }
-    previousIndex = state.currentIndex;
+    previousFingerprint = fingerprint;
     notifyPlayer();
   });
 };
@@ -68,9 +87,14 @@ const watchQueueContents = () => {
 
 export const initBridgeNotifier = (): void => {
   watchSoundStatus();
-  watchQueueIndex();
+  watchPlaybackStart();
+  watchCurrentItem();
   watchQueueContents();
   playbackSettings.onVolumeChange(notifyMixer);
   playbackSettings.onRepeatModeChange(notifyOptions);
   playbackSettings.onShuffleChange(notifyOptions);
+  eventBus.on('playbackSeeked', async () => notifyPlayer());
+  notifyPlayer();
+  notifyOptions();
+  notifyMixer();
 };

@@ -16,7 +16,23 @@ fn main() {
     #[cfg(target_os = "linux")]
     apply_linux_workarounds();
 
+    #[cfg(target_os = "linux")]
+    set_audio_stream_identity();
+
     app_lib::run();
+}
+
+#[cfg(target_os = "linux")]
+fn set_audio_stream_identity() {
+    glib::set_application_name("Nuclear");
+
+    if std::env::var("PULSE_PROP").is_err() {
+        let icon =
+            std::env::var("FLATPAK_ID").unwrap_or_else(|_| "nuclear-music-player".to_string());
+        unsafe {
+            std::env::set_var("PULSE_PROP", format!("application.icon_name={icon}"));
+        }
+    }
 }
 
 // macOS GUI apps don't inherit TMPDIR from the login session. It's set per-user

@@ -60,10 +60,14 @@ tauri-plugin-process = "2"
 
 [target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]
 tauri-plugin-window-state = "2.4.1"
+souvlaki = { git = "https://github.com/Sinono3/souvlaki", rev = "76b345b1e4cbd0b32de954a955f5b90c2af2f590", default-features = false, features = ["mpris_zbus"] }
 
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.61", features = ["Win32_Media_Audio", "Win32_System_Com", "Win32_System_Com_StructuredStorage", "Win32_System_Variant", "Win32_System_Diagnostics_ToolHelp"] }
 windows-core = "0.61"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+glib = "0.18"
 
 [dev-dependencies]
 rand = "0.8"
