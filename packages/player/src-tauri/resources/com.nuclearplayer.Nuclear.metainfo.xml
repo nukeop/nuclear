@@ -81,6 +81,15 @@
   </requires>
 
   <releases>
+    <release version="1.56.0" date="2026-11-18">
+      <description>
+        <ul>
+          <li>Linux, MacOS, and Windows media controls.</li>
+          <li>MPD server improvements. Album art, volume controls, queue updates, and more.</li>
+          <li>Show Nuclear's name and icon in the volume mixer on Windows.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.55.0" date="2026-11-13">
       <description>
         <ul>
