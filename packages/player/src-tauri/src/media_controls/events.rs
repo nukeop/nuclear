@@ -36,6 +36,9 @@ fn bridge_call(event: &MediaControlEvent) -> Option<(&'static str, Value)> {
             "Playback.setRepeatMode",
             json!({ "mode": RepeatMode::from(*repeat) }),
         )),
+        MediaControlEvent::SetShuffle(enabled) => {
+            Some(("Playback.setShuffleEnabled", json!({ "enabled": enabled })))
+        }
         _ => None,
     }
 }

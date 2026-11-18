@@ -75,4 +75,6 @@ export const initBridgeNotifier = (): void => {
   playbackSettings.onRepeatModeChange(notifyOptions);
   playbackSettings.onShuffleChange(notifyOptions);
   eventBus.on('playbackSeeked', async () => notifyPlayer());
+  notifyPlayer();
+  notifyOptions();
 };

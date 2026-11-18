@@ -58,14 +58,16 @@ impl MediaSession {
     async fn update(&mut self, subsystem: &str) -> Result<()> {
         match subsystem {
             "player" => self.update_now_playing().await,
-            "options" => self.update_repeat().await,
+            "options" => self.update_options().await,
             _ => Ok(()),
         }
     }
 
-    async fn update_repeat(&mut self) -> Result<()> {
+    async fn update_options(&mut self) -> Result<()> {
         let mode: RepeatMode = self.fetch("Playback.getRepeatMode").await?;
+        let shuffle: bool = self.fetch("Playback.isShuffleEnabled").await?;
         self.controls.set_repeat(mode.into())?;
+        self.controls.set_shuffle(shuffle)?;
         Ok(())
     }
 

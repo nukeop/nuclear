@@ -16,7 +16,7 @@ pub fn permissions() -> ApplePermissions {
         previous_track: true,
         next_track: true,
         change_repeat_mode: true,
-        change_shuffle_mode: false,
+        change_shuffle_mode: true,
         change_playback_rate: false,
         seek_backward: false,
         seek_forward: false,
