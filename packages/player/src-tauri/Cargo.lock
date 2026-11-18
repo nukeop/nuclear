@@ -4634,6 +4634,7 @@ dependencies = [
  "discord-rich-presence",
  "fix-path-env",
  "futures",
+ "glib",
  "http",
  "libc",
  "log",
