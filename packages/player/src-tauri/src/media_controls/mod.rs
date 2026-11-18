@@ -59,6 +59,7 @@ impl MediaSession {
         match subsystem {
             "player" => self.update_now_playing().await,
             "options" => self.update_options().await,
+            "mixer" => self.update_volume().await,
             _ => Ok(()),
         }
     }
@@ -68,6 +69,12 @@ impl MediaSession {
         let shuffle: bool = self.fetch("Playback.isShuffleEnabled").await?;
         self.controls.set_repeat(mode.into())?;
         self.controls.set_shuffle(shuffle)?;
+        Ok(())
+    }
+
+    async fn update_volume(&mut self) -> Result<()> {
+        let volume: f64 = self.fetch("Playback.getVolume").await?;
+        self.controls.set_volume(volume)?;
         Ok(())
     }
 

@@ -39,6 +39,10 @@ fn bridge_call(event: &MediaControlEvent) -> Option<(&'static str, Value)> {
         MediaControlEvent::SetShuffle(enabled) => {
             Some(("Playback.setShuffleEnabled", json!({ "enabled": enabled })))
         }
+        MediaControlEvent::SetVolume(volume) => Some((
+            "Playback.setVolume",
+            json!({ "volume": volume.clamp(0.0, 1.0) }),
+        )),
         _ => None,
     }
 }

@@ -77,4 +77,5 @@ export const initBridgeNotifier = (): void => {
   eventBus.on('playbackSeeked', async () => notifyPlayer());
   notifyPlayer();
   notifyOptions();
+  notifyMixer();
 };

@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-18T00:00",
+    "description": "Linux, MacOS, and Windows media controls.",
+    "type": "feature",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Integrations",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-11-16T00:00",
     "description": "MPD server improvements. Album art, volume controls, queue updates, and more.",
     "type": "feature",
