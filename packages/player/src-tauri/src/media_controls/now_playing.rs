@@ -5,6 +5,7 @@ use souvlaki::{MediaMetadata, MediaPlayback, MediaPosition};
 
 #[derive(Deserialize)]
 pub struct QueueItem {
+    pub id: String,
     pub track: Track,
 }
 

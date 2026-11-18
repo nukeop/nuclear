@@ -12,7 +12,7 @@ use tauri::{AppHandle, Manager};
 use tokio::sync::broadcast::error::RecvError;
 
 use crate::bridge::bridge::Bridge;
-use now_playing::{PlaybackState, QueueItem};
+use now_playing::{PlaybackState, QueueItem, Track};
 use repeat::RepeatMode;
 
 type Result<T> = std::result::Result<T, Box<dyn Error + Send + Sync>>;
@@ -30,6 +30,7 @@ pub fn init_media_controls(app_handle: AppHandle) {
 struct MediaSession {
     controls: OsMediaControls,
     bridge: Bridge,
+    current_item_id: Option<String>,
 }
 
 impl MediaSession {
@@ -37,7 +38,11 @@ impl MediaSession {
         let mut controls = OsMediaControls::new(platform::config(app_handle)?)?;
         controls.attach(events::handler(bridge.clone()))?;
         controls.set_permissions(platform::permissions())?;
-        Ok(Self { controls, bridge })
+        Ok(Self {
+            controls,
+            bridge,
+            current_item_id: None,
+        })
     }
 
     async fn run(mut self) {
@@ -81,15 +86,23 @@ impl MediaSession {
     async fn update_now_playing(&mut self) -> Result<()> {
         let item: Option<QueueItem> = self.fetch("Queue.getCurrentItem").await?;
         let state: PlaybackState = self.fetch("Playback.getState").await?;
-        let track = item.map(|item| item.track);
 
+        let item_id = item.as_ref().map(|item| item.id.clone());
+        if item_id != self.current_item_id {
+            self.update_track(item.map(|item| item.track))?;
+            self.current_item_id = item_id;
+        }
+        self.controls.set_playback(state.into())?;
+        Ok(())
+    }
+
+    fn update_track(&mut self, track: Option<Track>) -> Result<()> {
         let metadata = track.as_ref().map(MediaMetadata::from).unwrap_or_default();
         self.controls.set_metadata(metadata)?;
         platform::set_cover(
             &mut self.controls,
             track.and_then(|track| track.cover_url()),
         )?;
-        self.controls.set_playback(state.into())?;
         Ok(())
     }
 
