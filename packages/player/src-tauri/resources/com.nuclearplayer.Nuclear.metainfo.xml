@@ -81,6 +81,13 @@
   </requires>
 
   <releases>
+    <release version="1.56.1" date="2026-11-19">
+      <description>
+        <ul>
+          <li>Streaming plugins can now add mime type.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.56.0" date="2026-11-18">
       <description>
         <ul>
