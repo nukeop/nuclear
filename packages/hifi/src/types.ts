@@ -5,6 +5,7 @@ export type AudioSource = {
   protocol: 'file' | 'http' | 'https' | 'hls' | 'mse';
   durationSeconds?: number;
   codec?: string;
+  mimeType?: string;
   startPositionSeconds?: number;
 };
 

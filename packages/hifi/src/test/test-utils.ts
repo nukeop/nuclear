@@ -79,3 +79,8 @@ export const fireMediaLoadStart = (audio: HTMLAudioElement): void => {
   });
   audio.dispatchEvent(new Event('loadstart', { bubbles: false }));
 };
+
+export const loadedAudio = () => {
+  const audio = document.querySelector('audio')!;
+  return { src: audio.getAttribute('src'), children: audio.innerHTML };
+};

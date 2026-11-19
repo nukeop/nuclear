@@ -3,8 +3,14 @@ import { act, render } from '@testing-library/react';
 import { Sound } from '../Sound';
 import { AudioSource } from '../types';
 import {
+  FLAC_SOURCE_A,
+  FLAC_SOURCE_B,
+  MP3_SOURCE,
+} from './fixtures/audioSources';
+import {
   fireMediaCanPlay,
   fireMediaLoadStart,
+  loadedAudio,
   resetMediaSpies,
   setupAudioContextMock,
 } from './test-utils';
@@ -134,6 +140,47 @@ describe('Sound', () => {
     });
 
     expect(playMock).toHaveBeenCalled();
+    restore();
+  });
+
+  it.each([
+    {
+      name: 'first load of a typed source',
+      sources: [FLAC_SOURCE_A],
+      expected: {
+        src: null,
+        children: '<source src="/a.flac" type="audio/flac">',
+      },
+    },
+    {
+      name: 'typed source followed by an untyped one',
+      sources: [FLAC_SOURCE_A, MP3_SOURCE],
+      expected: { src: '/a.mp3', children: '' },
+    },
+    {
+      name: 'untyped source followed by a typed one',
+      sources: [MP3_SOURCE, FLAC_SOURCE_A],
+      expected: {
+        src: null,
+        children: '<source src="/a.flac" type="audio/flac">',
+      },
+    },
+    {
+      name: 'typed source followed by another typed one',
+      sources: [FLAC_SOURCE_A, FLAC_SOURCE_B],
+      expected: {
+        src: null,
+        children: '<source src="/b.flac" type="audio/flac">',
+      },
+    },
+  ])('loads the audio element correctly: $name', ({ sources, expected }) => {
+    const { restore } = setupAudioContextMock();
+    const { rerender } = render(<Sound src={sources[0]} status="paused" />);
+    sources
+      .slice(1)
+      .forEach((source) => rerender(<Sound src={source} status="paused" />));
+
+    expect(loadedAudio()).toEqual(expected);
     restore();
   });
 

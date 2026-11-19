@@ -76,6 +76,7 @@ describe('Stream Resolution Integration', () => {
       expect(src).toEqual({
         url: 'http://127.0.0.1:9100/stream/aHR0cHM6Ly9leGFtcGxlLmNvbS95dC0xLm1wMw',
         protocol: 'https',
+        mimeType: 'audio/mpeg',
       });
 
       const currentItem = StreamResolutionWrapper.getCurrentQueueItem();

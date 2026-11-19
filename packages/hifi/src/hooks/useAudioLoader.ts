@@ -19,9 +19,22 @@ export const useAudioLoader = (
     }
 
     if (src.url !== prevUrl.current) {
-      audio.src = src.url;
+      if (src.mimeType) {
+        audio.removeAttribute('src');
+        audio.replaceChildren(createSourceElement(src.url, src.mimeType));
+      } else {
+        audio.replaceChildren();
+        audio.src = src.url;
+      }
       audio.load();
       prevUrl.current = src.url;
     }
   }, [src, audioRef]);
+};
+
+const createSourceElement = (url: string, mimeType: string) => {
+  const source = document.createElement('source');
+  source.src = url;
+  source.type = mimeType;
+  return source;
 };

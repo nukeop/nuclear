@@ -30,7 +30,11 @@ export class AudioSourceFactory {
       };
     }
 
-    return { url: proxyUrl, protocol: stream.protocol };
+    return {
+      url: proxyUrl,
+      protocol: stream.protocol,
+      mimeType: stream.mimeType,
+    };
   }
 
   private async streamServerPort(): Promise<number> {
