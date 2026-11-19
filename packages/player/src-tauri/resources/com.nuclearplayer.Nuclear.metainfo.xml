@@ -81,6 +81,11 @@
   </requires>
 
   <releases>
+    <release version="1.56.4" date="2026-11-19">
+      <description>
+        <p>Release 1.56.4.</p>
+      </description>
+    </release>
     <release version="1.56.3" date="2026-11-19">
       <description>
         <p>Release 1.56.3.</p>
