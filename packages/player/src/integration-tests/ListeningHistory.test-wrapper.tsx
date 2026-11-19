@@ -6,7 +6,6 @@ import { providersHost } from '../services/providersHost';
 import { useHistoryStore } from '../stores/historyStore';
 import { setSetting } from '../stores/settingsStore';
 import type { TauriCommandMocks } from '../test/utils/commandMocks';
-import { ok } from '../test/utils/commandMocks';
 import { QueueWrapper } from './Queue.test-wrapper';
 import { SoundWrapper } from './Sound.test-wrapper';
 
@@ -15,7 +14,7 @@ export const createListeningHistoryWrapper = (
 ) => ({
   async init() {
     commandMocks.reset();
-    commandMocks.command('historyRecordEvent').mockResolvedValue(ok(null));
+    commandMocks.command('historyRecordEvent').mockResolvedValue(null);
     useHistoryStore.setState({ currentPlayId: null });
     QueueWrapper.initQueue([]);
     providersHost.clear();

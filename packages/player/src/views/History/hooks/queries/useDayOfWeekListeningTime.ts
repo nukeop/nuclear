@@ -7,15 +7,15 @@ import type { DayOfWeekValues } from '@nuclearplayer/ui';
 
 import type { TimeRange } from '../../../../services/tauri/bindings';
 import { commands } from '../../../../services/tauri/bindings';
-import { unwrapResult } from '../../../../services/tauri/results';
+import { rethrowAsError } from '../../../../services/tauri/results';
 
 export const useDayOfWeekListeningTime = (timeRange: TimeRange) =>
   useQuery<DayOfWeekValues>({
     queryKey: ['history', 'stats', 'dayOfWeek', timeRange.from, timeRange.to],
     queryFn: async () => {
-      const days = unwrapResult(
-        await commands.historyDailyListeningTime(timeRange),
-      );
+      const days = await commands
+        .historyDailyListeningTime(timeRange)
+        .catch(rethrowAsError);
 
       const byWeekday = groupBy(
         days,

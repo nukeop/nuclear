@@ -1,5 +1,5 @@
 import { useTrackActions } from '../../../hooks/useTrackActions';
-import type { HistoryEntry } from '../../../services/tauri/bindings';
+import type { HistoryEntry_Serialize } from '../../../services/tauri/bindings';
 import { entryToTrack } from '../utils/entryToTrack';
 
 export type HistoryRowActions = {
@@ -12,7 +12,7 @@ export type HistoryRowActions = {
 export const useHistoryRowActions = () => {
   const trackActions = useTrackActions();
 
-  return (entry: HistoryEntry): HistoryRowActions | null => {
+  return (entry: HistoryEntry_Serialize): HistoryRowActions | null => {
     const track = entryToTrack(entry);
     if (track === null) {
       return null;

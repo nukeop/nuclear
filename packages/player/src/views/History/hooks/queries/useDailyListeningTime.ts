@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 
 import type { DailyListeningTime } from '../../../../services/tauri/bindings';
 import { commands } from '../../../../services/tauri/bindings';
-import { unwrapResult } from '../../../../services/tauri/results';
+import { rethrowAsError } from '../../../../services/tauri/results';
 
 const isoDate = (millis: number) =>
   DateTime.fromMillis(millis).toFormat('yyyy-MM-dd');
@@ -33,9 +33,9 @@ export const useDailyListeningTime = () => {
   return useQuery({
     queryKey: ['history', 'stats', 'daily', range.from, range.to],
     queryFn: async () => {
-      const days = unwrapResult(
-        await commands.historyDailyListeningTime(range),
-      );
+      const days = await commands
+        .historyDailyListeningTime(range)
+        .catch(rethrowAsError);
       return padToRange(days, isoDate(range.from), isoDate(range.to));
     },
   });

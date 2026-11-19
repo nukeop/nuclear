@@ -4,7 +4,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import type { HistoryRowLabels } from '@nuclearplayer/ui';
 import { HistoryDayGroup, HistoryRow } from '@nuclearplayer/ui';
 
-import type { HistoryEntry } from '../../../services/tauri/bindings';
+import type { HistoryEntry_Serialize } from '../../../services/tauri/bindings';
 import { formatTimeOfDay } from '../../../utils/time';
 import { useDayMarker } from '../hooks/useDayMarker';
 import { useHistoryRowActions } from '../hooks/useHistoryRowActions';
@@ -13,7 +13,7 @@ import { HistoryEmptyState } from './HistoryEmptyState';
 
 type HistoryBodyProps = {
   isPending: boolean;
-  entries: HistoryEntry[];
+  entries: HistoryEntry_Serialize[];
 };
 
 export const HistoryBody: FC<HistoryBodyProps> = ({ isPending, entries }) => {

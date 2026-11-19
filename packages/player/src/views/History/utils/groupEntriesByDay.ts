@@ -1,14 +1,16 @@
 import groupBy from 'lodash-es/groupBy';
 import { DateTime } from 'luxon';
 
-import type { HistoryEntry } from '../../../services/tauri/bindings';
+import type { HistoryEntry_Serialize } from '../../../services/tauri/bindings';
 
 export type DayGroup = {
   day: DateTime;
-  entries: HistoryEntry[];
+  entries: HistoryEntry_Serialize[];
 };
 
-export const groupEntriesByDay = (entries: HistoryEntry[]): DayGroup[] => {
+export const groupEntriesByDay = (
+  entries: HistoryEntry_Serialize[],
+): DayGroup[] => {
   const byIsoDate = groupBy(entries, (entry) =>
     DateTime.fromMillis(entry.startedAt).toISODate(),
   );

@@ -1,6 +1,6 @@
 import type { ArtworkSet, Track } from '@nuclearplayer/model';
 
-import type { HistoryEntry } from '../../../services/tauri/bindings';
+import type { HistoryEntry_Serialize } from '../../../services/tauri/bindings';
 
 const artworkFrom = (url: string | null): ArtworkSet | undefined => {
   if (url === null) {
@@ -9,7 +9,7 @@ const artworkFrom = (url: string | null): ArtworkSet | undefined => {
   return { items: [{ url, purpose: 'thumbnail' }] };
 };
 
-export const entryToTrack = (entry: HistoryEntry): Track | null => {
+export const entryToTrack = (entry: HistoryEntry_Serialize): Track | null => {
   if (entry.provider === null || entry.providerId === null) {
     return null;
   }

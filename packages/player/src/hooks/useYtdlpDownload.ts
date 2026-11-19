@@ -6,7 +6,6 @@ import { i18n } from '@nuclearplayer/i18n';
 
 import { Logger } from '../services/logger';
 import { commands } from '../services/tauri/bindings';
-import { unwrapResult } from '../services/tauri/results';
 import { errorMessage } from '../utils/errorMessage';
 
 export const YTDLP_DOWNLOAD_EVENT = 'ytdlp:download';
@@ -26,7 +25,7 @@ const TOAST_OPTIONS = {
 
 const ensureYtdlpInstalled = async () => {
   try {
-    unwrapResult(await commands.ytdlpEnsureInstalled());
+    await commands.ytdlpEnsureInstalled();
   } catch (error) {
     Logger.streaming.error(`yt-dlp setup failed: ${errorMessage(error)}`);
   }

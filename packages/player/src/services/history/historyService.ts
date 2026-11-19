@@ -4,6 +4,7 @@ import { pickArtwork } from '@nuclearplayer/model';
 import { useHistoryStore } from '../../stores/historyStore';
 import { getSetting } from '../../stores/settingsStore';
 import { useSoundStore } from '../../stores/soundStore';
+import { errorMessage } from '../../utils/errorMessage';
 import { secondsToMs } from '../../utils/time';
 import { eventBus } from '../eventBus';
 import { Logger } from '../logger';
@@ -36,18 +37,18 @@ const buildSnapshot = (track: Track): TrackSnapshot => ({
 });
 
 const record = async (playId: string, fields: PlayEventFields) => {
-  const result = await commands.historyRecordEvent({
-    playId,
-    kind: fields.kind,
-    at: Date.now(),
-    positionMs: fields.positionMs,
-    seekToMs: fields.seekToMs ?? null,
-    snapshot: fields.snapshot ?? null,
-  });
-
-  if (result.status === 'error') {
+  try {
+    await commands.historyRecordEvent({
+      playId,
+      kind: fields.kind,
+      at: Date.now(),
+      positionMs: fields.positionMs,
+      seekToMs: fields.seekToMs ?? null,
+      snapshot: fields.snapshot ?? null,
+    });
+  } catch (error) {
     Logger.history.error(
-      `Failed to record ${fields.kind} event: ${result.error}`,
+      `Failed to record ${fields.kind} event: ${errorMessage(error)}`,
     );
   }
 };

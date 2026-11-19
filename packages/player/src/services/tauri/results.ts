@@ -1,9 +1,6 @@
-export type CommandResult<T, E> =
-  { status: 'ok'; data: T } | { status: 'error'; error: E };
-
-export const unwrapResult = <T>(result: CommandResult<T, string>): T => {
-  if (result.status === 'error') {
-    throw new Error(result.error);
+export const rethrowAsError = (error: unknown): never => {
+  if (error instanceof Error) {
+    throw error;
   }
-  return result.data;
+  throw new Error(String(error));
 };

@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import type { HistoryEntry } from '../../services/tauri/bindings';
+import type { HistoryEntry_Serialize } from '../../services/tauri/bindings';
 
 const THREE_MINUTES_MS = 3 * 60 * 1000;
 
 export class HistoryEntryBuilder {
-  private entry: HistoryEntry;
+  private entry: HistoryEntry_Serialize;
 
   constructor() {
     this.entry = {
@@ -44,7 +44,7 @@ export class HistoryEntryBuilder {
     return this;
   }
 
-  build(): HistoryEntry {
+  build(): HistoryEntry_Serialize {
     return { ...this.entry, artists: [...this.entry.artists] };
   }
 }

@@ -11,7 +11,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../../App';
 import { routeTree } from '../../routeTree.gen';
 import type {
-  HistoryEntry,
+  HistoryEntry_Serialize,
   TopAlbum,
   TopArtist,
   TopTrack,
@@ -19,7 +19,6 @@ import type {
 import { useFavoritesStore } from '../../stores/favoritesStore';
 import { useQueueStore } from '../../stores/queue/queueStore';
 import type { TauriCommandMocks } from '../../test/utils/commandMocks';
-import { ok } from '../../test/utils/commandMocks';
 
 const user = userEvent.setup();
 
@@ -61,45 +60,41 @@ export const createHistoryWrapper = (commandMocks: TauriCommandMocks) => ({
     });
   },
 
-  mockHistoryEntries(...entries: HistoryEntry[]) {
-    commandMocks.command('historyFetch').mockImplementation(async (page) =>
-      ok({
-        items: entries.slice(page.offset, page.offset + page.limit),
-        total: entries.length,
-      }),
-    );
+  mockHistoryEntries(...entries: HistoryEntry_Serialize[]) {
+    commandMocks.command('historyFetch').mockImplementation(async (page) => ({
+      items: entries.slice(page.offset, page.offset + page.limit),
+      total: entries.length,
+    }));
   },
 
   mockFirstPlayAt(at: number) {
-    commandMocks.command('historyFirstPlayAt').mockResolvedValue(ok({ at }));
+    commandMocks.command('historyFirstPlayAt').mockResolvedValue({ at });
   },
 
   mockNoListeningHistory() {
-    commandMocks.command('historyFirstPlayAt').mockResolvedValue(ok(null));
+    commandMocks.command('historyFirstPlayAt').mockResolvedValue(null);
   },
 
   mockHourlyListeningTime(values: number[]) {
     commandMocks
       .command('historyHourlyListeningTime')
-      .mockResolvedValue(ok({ values }));
+      .mockResolvedValue({ values });
   },
 
   mockDailyListeningTime(days: { date: string; value: number }[]) {
-    commandMocks
-      .command('historyDailyListeningTime')
-      .mockResolvedValue(ok(days));
+    commandMocks.command('historyDailyListeningTime').mockResolvedValue(days);
   },
 
   mockTopArtists(...artists: TopArtist[]) {
-    commandMocks.command('historyTopArtists').mockResolvedValue(ok(artists));
+    commandMocks.command('historyTopArtists').mockResolvedValue(artists);
   },
 
   mockTopAlbums(...albums: TopAlbum[]) {
-    commandMocks.command('historyTopAlbums').mockResolvedValue(ok(albums));
+    commandMocks.command('historyTopAlbums').mockResolvedValue(albums);
   },
 
   mockTopTracks(...tracks: TopTrack[]) {
-    commandMocks.command('historyTopTracks').mockResolvedValue(ok(tracks));
+    commandMocks.command('historyTopTracks').mockResolvedValue(tracks);
   },
 
   async mount(): Promise<RenderResult> {

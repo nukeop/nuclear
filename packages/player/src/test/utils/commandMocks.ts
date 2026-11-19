@@ -11,19 +11,6 @@ const unprogrammed = (name: CommandName) => () => {
   );
 };
 
-export type CommandResult<Data, Err> =
-  { status: 'ok'; data: Data } | { status: 'error'; error: Err };
-
-export const ok = <Data>(data: Data): CommandResult<Data, never> => ({
-  status: 'ok',
-  data,
-});
-
-export const err = <Err>(error: Err): CommandResult<never, Err> => ({
-  status: 'error',
-  error,
-});
-
 export class TauriCommandMocks {
   private registry = new Map<CommandName, Mock>();
 
