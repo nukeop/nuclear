@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-19T00:00",
+    "description": "Streaming plugins can now add mime type.",
+    "type": "fix",
+    "contributors": ["nukeop"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
     "date": "2026-11-18T00:00",
     "description": "Linux, MacOS, and Windows media controls.",
     "type": "feature",
